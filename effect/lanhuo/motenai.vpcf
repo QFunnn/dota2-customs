@@ -1,0 +1,51 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 256
+	m_nInitialParticles = 2
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 176, 245, 253, 255 ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/lanhuo/c_motenai.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/lanhuo/b_motenai.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/lanhuo/glow_motenai.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 12
+}

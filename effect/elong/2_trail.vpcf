@@ -1,0 +1,163 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf59:version{6cf97bfa-52a0-441a-87f0-856fb7aaa129} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -200.0 ]
+			m_fDrag = 0.2
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.3
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_min = 0.0
+			m_flStartTime_max = 0.0
+			m_flEndTime_min = 0.3
+			m_flEndTime_max = 0.3
+			m_bDisableOperator = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 10
+			}
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 241, 234, 179, 255 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_flares/particle_flare_004_mod.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMinTesselation = 3
+			m_nMaxTesselation = 3
+			m_flTextureVWorldSize = 200.0
+			m_flRadiusScale = 0.4
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_jagged_01.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 160.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 176, 163, 31, 255 ]
+			m_ColorMax = [ 252, 238, 51, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.215686
+			}
+			m_nOutputField = 7
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 5
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 19.0
+			}
+		},
+	]
+	m_nMaxParticles = 10
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_nOutControlPointNumber = 5
+			m_flInputMin = 50.0
+			m_flInputMax = 500.0
+		},
+	]
+	m_nBehaviorVersion = 4
+}

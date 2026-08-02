@@ -1,0 +1,188 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 4.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/sphere.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bDisableOperator = true
+			m_nSkin = 5
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 600.0
+			m_nOverrideCP = 2
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flRotOffset = 270.0
+			m_nCP = 1
+			m_nFieldOutput = 12
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = 0.0
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1000000.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_dark_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_feathers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_dark.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_trail_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_embers.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_streaks.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_projectile.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_core_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_light.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"effect/qianjiaomonv/1_end.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_launch.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/qianjiaomonv/1_launch_b.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 4
+}

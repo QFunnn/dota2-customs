@@ -1,0 +1,292 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "huya"
+						filename = "models/huyazhu/modle/huya_huya.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "birth"
+						source_filename = "models/huyazhu/modle/birth.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_SPAWN"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "dead"
+						source_filename = "models/huyazhu/modle/dead.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "run"
+						source_filename = "models/huyazhu/modle/run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_RUN"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "standby"
+						source_filename = "models/huyazhu/modle/standby.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "joint25"
+						origin = [ -0.010507, -0.0, 1.32573 ]
+						angles = [ -19.508495, 0.000001, 90.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "joint26"
+								origin = [ 5.263021, 0.0, -0.0 ]
+								angles = [ -0.000003, 107.736259, -179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "joint27"
+										origin = [ 5.199119, 0.000004, 0.0 ]
+										angles = [ 0.000003, 64.019684, -179.999985 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "joint28"
+												origin = [ 3.461027, 0.000003, -0.0 ]
+												angles = [ 90.0, -51.340195, 5.710593 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "joint29"
+												origin = [ 0.398475, 6.118165, -0.000001 ]
+												angles = [ -0.364873, 26.774921, -90.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "joint30"
+														origin = [ 1.497084, 0.000743, -0.091984 ]
+														angles = [ 15.000167, 0.615969, -91.151558 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "joint31"
+																origin = [ 1.563832, -0.528656, -0.009052 ]
+																angles = [ 0.468915, -10.933502, 91.148521 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "joint32"
+																		origin = [ 3.007271, 0.000001, 0.319414 ]
+																		angles = [ 0.000056, 90.000031, -179.999985 ]
+																		do_not_discard = true
+																	},
+																	{
+																		_class = "Bone"
+																		name = "joint43"
+																		origin = [ -0.160642, 1.393838, 0.009348 ]
+																		angles = [ 0.000058, 92.83873, -179.999985 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "joint44"
+																				origin = [ 0.929121, -0.007079, -0.001325 ]
+																				angles = [ 0.000005, 3.293468, 0.000001 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "joint45"
+																						origin = [ 1.025532, 0.090767, -0.003198 ]
+																						angles = [ 0.000004, -0.454719, 0.000001 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "joint48"
+																		origin = [ -0.160684, -1.39384, 0.009355 ]
+																		angles = [ 0.000058, 92.83873, -179.999985 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "joint49"
+																				origin = [ -0.923864, -0.098907, -0.00132 ]
+																				angles = [ 0.000005, 3.293468, 0.000003 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "joint50"
+																						origin = [ -1.023967, 0.107064, -0.003199 ]
+																						angles = [ 0.000004, -0.454719, -0.0 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "joint46"
+														origin = [ -0.076255, 1.205476, 0.000013 ]
+														angles = [ -0.000001, 168.30571, 179.999985 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "joint47"
+																origin = [ 1.122179, -0.280998, -0.000036 ]
+																angles = [ 0.000001, 77.940842, 0.000001 ]
+																do_not_discard = true
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "joint51"
+														origin = [ -0.060929, -1.206352, 0.000013 ]
+														angles = [ -0.000001, 168.30571, 179.999985 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "joint52"
+																origin = [ 1.139002, -0.202071, -0.000036 ]
+																angles = [ 0.000001, 77.940842, 0.000001 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "joint24"
+								origin = [ -3.506792, 3.768661, -0.0 ]
+								angles = [ -0.000003, 93.690186, -179.999985 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "joint23"
+										origin = [ 4.101925, 0.000001, 0.0 ]
+										angles = [ 0.000011, -179.999924, 179.999985 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

@@ -1,0 +1,165 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf59:version{6cf97bfa-52a0-441a-87f0-856fb7aaa129} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_BoundingBoxMin = [ -32.0, -32.0, -150.0 ]
+	m_BoundingBoxMax = [ 32.0, 32.0, 32.0 ]
+	m_flCullRadius = -1.0
+	m_flConstantRadius = 4.0
+	m_ConstantColor = [ 255, 255, 255, 90 ]
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_bUseTexture = true
+			m_flStartFalloff = 0.01
+			m_flAlphaScale = 5.0
+			m_flRadiusScale = 6.0
+			m_hTexture = resource:"materials/particle/particle_light_mask_tower_good.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 249, 190, 121 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 15.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.2
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.225
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_bAdditive = true
+			m_vecOutputMin = [ -0.25, -0.25, -0.5 ]
+			m_nFieldOutput = 0
+			m_fl4NoiseScale = 1.0
+			m_vecOutputMax = [ 0.25, 0.25, 0.5 ]
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flStartScale = 0.0
+			m_flEndTime = 0.15
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_nField = 16
+			m_RateMin = -15.0
+			m_RateMax = 15.0
+			m_FrequencyMax = 5.0
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.9
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 246, 199, 108, 255 ]
+			m_ColorMin = [ 253, 237, 164, 255 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fRadiusMax = 2.0
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flOutputMax = 32.0
+			m_flOutputMin = 25.0
+			m_flNoiseScale = 4.0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -0.75
+				m_flRandomMax = 0.75
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 14.0, 24.0, 56.0 ]
+			m_vecOutputMin = [ -24.0, -24.0, 22.0 ]
+			m_flNoiseScale = 1.5
+			m_TransformInput = 
+			{
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 28.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 28.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 4.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/bs_bloodbath/bloodritual_candle_flame_a_medium.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/bs_bloodbath/bloodritual_candle_flame_b_medium.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/bs_bloodbath/bloodritual_candle_flame_c_medium.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/bs_bloodbath/bloodritual_prop_dust.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

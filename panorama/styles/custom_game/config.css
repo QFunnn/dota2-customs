@@ -1,0 +1,137 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.Root
+{
+	width: 100%;
+	height: 100%;
+}
+
+#panel_config
+{
+	width: 315px;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-bottom:100px;
+	margin-left:200px;
+	flow-children: down;
+	padding:10px;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color, position;
+	transition-duration: 0.2s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	position: -50px 50px 0px;
+	background-size: 100% 100%;
+}
+
+#panel_config.show
+{
+	sound: "ui.settings_open";
+	sound-out: "Shop.PanelUp";
+	opacity: 1;
+	transform: scale3d( 1, 1, 1);
+	position: 0px 0px 0px;
+}
+
+#panel_loot_box_title
+{
+	width: 100%;
+	height:40px;
+	margin-bottom:10px;
+}
+
+#text_panel_loot_box
+{
+	font-size:24px;
+	color:#bbb;
+	margin-left:10px;
+	margin-top:10px;
+}
+
+.panel_config_row
+{
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+.image_close
+{
+	horizontal-align:right;
+	width:20px;
+	height:20px;
+	margin-right:10px;
+	margin-top:10px;
+	transition-property:transform;
+	transition-duration:0.2s;
+}
+
+.image_close:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5);
+}
+
+.panel_button
+{
+	width:100%;
+	height:50px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #102149cc ), to( #1e3565cc ) );
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100% 100%;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	border-top:1px solid #ffffff44;
+	border-right:1px solid #00000088;
+	border-left:1px solid #ffffff44;
+	border-bottom:1px solid #00000088;
+	flow-children:right;
+	horizontal-align: right;
+	padding:10px;
+	margin:5px;
+}
+
+.panel_button:not(.unavailable):hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #304169cc ), to( #3e5585cc ) );
+}
+
+.panel_button Panel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children:right;
+}
+
+.panel_button Panel Image
+{
+	width:30px;
+	height:30px;
+	margin-right:10px;
+}
+
+.panel_button Panel DOTAItemImage
+{
+	margin-right:10px;
+}
+
+.panel_button Panel Label
+{
+	color: #fff;
+	font-size:18px;
+	vertical-align: center;
+}
+
+.unavailable
+{
+	brightness: 0.2;
+	saturation: 0;
+}

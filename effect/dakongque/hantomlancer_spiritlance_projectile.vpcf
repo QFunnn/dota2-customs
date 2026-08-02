@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf51:version{6d03d500-2498-454e-b833-f654e870bb3d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bBlendFramesSeq0 = false
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/lens_flare/lens_flare.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_nOverrideCP = 2
+			m_flMaxVelocity = 600.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 15.0
+			m_flMaxTraceLength = 512.0
+			m_bDisableOperator = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_CONTROL_POINT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 180, 0, 255 ]
+			m_ColorMin = [ 255, 144, 0, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 148.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 6
+			m_nSequenceMin = 6
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 15.0
+			m_bSetNormal = true
+			m_flMaxTraceLength = 512.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1000000.0
+			}
+			m_fFalloffPower = 0.0
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_spiritlance_projectile_explosion.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_spiritlance_projectile_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_lance_smoke.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_phant_lance_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_spiritlance_projectile_trail_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/hantomlancer_spiritlance_projectile_trail_sparkexpl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/dakongque/l_pl_slash_flashbang_glow.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 9
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

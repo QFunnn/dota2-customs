@@ -1,0 +1,245 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "diver"
+						filename = "models/diverabndsubmarine/diver_diver.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "diver_run"
+						source_filename = "models/diverabndsubmarine/diver_run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "diver_idle"
+						source_filename = "models/diverabndsubmarine/diver_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "diver_walk"
+						source_filename = "models/diverabndsubmarine/diver_walk.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Body"
+						origin = [ -0.0, 0.0, 27.409903 ]
+						angles = [ 0.0, 90.0, 90.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "Light01"
+								origin = [ 0.0, 46.76532, -15.513287 ]
+								angles = [ 0.0, 0.0, -38.855175 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Light02"
+										origin = [ 0.0, 1.087898, 14.195343 ]
+										angles = [ 0.0, 0.0, 38.855175 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Eye"
+								origin = [ 0.0, 31.727427, 8.285164 ]
+								angles = [ 0.0, 0.0, 0.0 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "Shoulder_L"
+								origin = [ 25.807362, 7.721586, -0.406813 ]
+								angles = [ -31.137274, 0.0, -90.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Wrist_L"
+										origin = [ 11.026707, 0.621016, -0.000004 ]
+										angles = [ 0.000003, -0.000005, 0.000007 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "GrasperThumb_L"
+												origin = [ 5.014679, -4.686377, 0.0 ]
+												angles = [ 0.000002, 31.137266, 90.0 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "GrasperFinger_L"
+												origin = [ 5.568058, 4.562527, -0.000015 ]
+												angles = [ -0.000007, -146.101425, -89.999992 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Shoulder_R"
+								origin = [ -25.80739, 7.721586, -0.406814 ]
+								angles = [ 31.137281, 0.0, 90.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Wrist_R"
+										origin = [ -11.026676, -0.620992, 0.000023 ]
+										angles = [ -0.000003, 0.000002, -0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "GrasperThumb_R"
+												origin = [ -5.014576, 4.686406, 0.000053 ]
+												angles = [ 0.000007, 31.137266, 90.0 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "GrasperFinger_R"
+												origin = [ -5.567966, -4.562475, 0.000061 ]
+												angles = [ -0.000009, -146.101425, -90.000008 ]
+												do_not_discard = true
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Hip_L"
+								origin = [ 8.51233, -3.894432, 1.166575 ]
+								angles = [ 0.0, 0.0, 89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Ankle_L"
+										origin = [ -0.000013, -0.000003, 16.681702 ]
+										angles = [ 0.0, 0.0, -89.999992 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "Hip_R"
+								origin = [ -8.512332, -3.894428, 1.166579 ]
+								angles = [ 0.0, 0.0, -89.999992 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "Ankle_R"
+										origin = [ 0.000011, 0.000003, -16.681704 ]
+										angles = [ 0.0, 0.0, -89.999939 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

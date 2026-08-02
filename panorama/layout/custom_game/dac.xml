@@ -1,0 +1,2284 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/dac.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/window.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/bubble.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/cursorheroicon.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/battlebox.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/drodochat.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/dac.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/chessdialogue.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/wordfilter.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/chatbubble.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/popupbox.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/lootbox.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/drodoemotion.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/tooltips.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/event_ti.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/window.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/camera.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="bubble">
+			<Panel class="bubble" hittest="false">
+				<Panel id="bubble_container" />
+				<Panel id="Arrow" hittest="false" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;z-index:200;" hittest="false">
+		<Panel id="iconlist" class="">
+			<Panel class="iconone" id="icon-guide" onactivate="ShowGuide();" onmouseover="tips_over_guide(&apos;tips_icon-guide&apos;,&apos;icon-guide&apos;)" onmouseout="tips_out()" style="tooltip-position:bottom;" />
+			<Panel class="iconone" id="icon-list" onactivate="ShowList();" onmouseover="tips_over_guide(&apos;tips_icon-list&apos;,&apos;icon-list&apos;)" onmouseout="tips_out()" style="tooltip-position:bottom;" />
+			<Panel class="iconone" id="icon-ranking" onactivate="ShowRanking();" onmouseover="tips_over_guide(&apos;tips_icon-ranking&apos;,&apos;icon-ranking&apos;)" onmouseout="tips_out()" style="tooltip-position:bottom;" />
+			<Panel class="iconone invisible" id="icon-my" onactivate="ShowStoreV5();" onmouseover="tips_over_guide(&apos;tips_icon-my&apos;,&apos;icon-my&apos;)" onmouseout="tips_out()" style="tooltip-position:bottom;" />
+			<Panel id="icon_event_ti12" onmouseover="OnMouseOverEventti12(&apos;event_ti12&apos;,&apos;icon_event_ti12&apos;)" onmouseout="OnMouseOutEventti12()" onactivate="ShowEventti12()" class="" visible="false">
+				<Image id="icon_event_ti12_shield" src="s2r://panorama/images/custom_game/event/ti13/logo_small_png.vtex" />
+			</Panel>
+		</Panel>
+		<Panel id="legendary_box" class="panel_with_border" hittest="true" onactivate="" draggable="true">
+			<Panel class="store_title">
+				<Panel style="flow-children:right;vertical-align:center;">
+					<Label id="text_legendary_box_title" class="text_panel_title" style="font-size:30px;margin-top:5px;width:400px;line-height:35px;vertical-align:center;white-space: normal;font-family:defaultFont;" text="#text_chess_and_relic_pool" />
+					<Panel id="img_legendary_box_title_wenhao" class="img_legendary_box_title_wenhao" style="margin-top:5px;" onmouseover="show_legendary_box_tips(&apos;img_legendary_box_title_wenhao&apos;)" onmouseout="DOTAHideTitleTextTooltip()" />
+				</Panel>
+				<Image id="image_close_panel_guide" class="icon_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_legendary_box();" />
+			</Panel>
+			<Panel id="panel_legendary_box_inner">
+				<Panel id="panel_legendary_container">
+					<Panel id="panel_legendary_box_0" class="panel_legendary_box_one" onmouseover="show_legendary_tips(0,&apos;panel_legendary_box_0&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_0">
+							<Panel id="flip_0" class="flipper unturn">
+								<Panel id="backend_0" class="backend" />
+								<Panel id="frontend_0" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_0" heroname="" />
+									<Panel id="bottom_bar_legendary_box_0" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_1" class="panel_legendary_box_one" onmouseover="show_legendary_tips(1,&apos;panel_legendary_box_1&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_1">
+							<Panel id="flip_1" class="flipper unturn">
+								<Panel id="backend_1" class="backend" />
+								<Panel id="frontend_1" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_1" heroname="" />
+									<Panel id="bottom_bar_legendary_box_1" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_2" class="panel_legendary_box_one" onmouseover="show_legendary_tips(2,&apos;panel_legendary_box_2&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_2">
+							<Panel id="flip_2" class="flipper unturn">
+								<Panel id="backend_2" class="backend" />
+								<Panel id="frontend_2" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_2" heroname="" />
+									<Panel id="bottom_bar_legendary_box_2" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_3" class="panel_legendary_box_one" onmouseover="show_legendary_tips(3,&apos;panel_legendary_box_3&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_3">
+							<Panel id="flip_3" class="flipper unturn">
+								<Panel id="backend_3" class="backend" />
+								<Panel id="frontend_3" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_3" heroname="" />
+									<Panel id="bottom_bar_legendary_box_3" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_4" class="panel_legendary_box_one" onmouseover="show_legendary_tips(4,&apos;panel_legendary_box_4&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_4">
+							<Panel id="flip_4" class="flipper unturn">
+								<Panel id="backend_4" class="backend" />
+								<Panel id="frontend_4" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_4" heroname="" />
+									<Panel id="bottom_bar_legendary_box_4" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_5" class="panel_legendary_box_one" onmouseover="show_legendary_tips(5,&apos;panel_legendary_box_5&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_5">
+							<Panel id="flip_5" class="flipper unturn">
+								<Panel id="backend_5" class="backend" />
+								<Panel id="frontend_5" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_5" heroname="" />
+									<Panel id="bottom_bar_legendary_box_5" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_6" class="panel_legendary_box_one" onmouseover="show_legendary_tips(6,&apos;panel_legendary_box_6&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_6">
+							<Panel id="flip_6" class="flipper unturn">
+								<Panel id="backend_6" class="backend" />
+								<Panel id="frontend_6" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_6" heroname="" />
+									<Panel id="bottom_bar_legendary_box_6" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_7" class="panel_legendary_box_one" onmouseover="show_legendary_tips(7,&apos;panel_legendary_box_7&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_7">
+							<Panel id="flip_7" class="flipper unturn">
+								<Panel id="backend_7" class="backend" />
+								<Panel id="frontend_7" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_7" heroname="" />
+									<Panel id="bottom_bar_legendary_box_7" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_8" class="panel_legendary_box_one" onmouseover="show_legendary_tips(8,&apos;panel_legendary_box_8&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_8">
+							<Panel id="flip_8" class="flipper unturn">
+								<Panel id="backend_8" class="backend" />
+								<Panel id="frontend_8" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_8" heroname="" />
+									<Panel id="bottom_bar_legendary_box_8" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="panel_legendary_box_9" class="panel_legendary_box_one" onmouseover="show_legendary_tips(9,&apos;panel_legendary_box_9&apos;)" onmouseout="DOTAHideTitleTextTooltip()">
+						<Panel class="onecard flipcard" id="flip_outer_9">
+							<Panel id="flip_9" class="flipper unturn">
+								<Panel id="backend_9" class="backend">
+									<Panel style="width:100%;height:100%;background-color:#000;" />
+								</Panel>
+								<Panel id="frontend_9" class="frontend invisible">
+									<DOTAHeroMovie id="movie_legendary_box_9" heroname="" />
+									<Panel id="bottom_bar_legendary_box_9" class="bottom_bar_legendary_box" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="panel_relic_box_inner">
+				<Panel class="panel_splitter bg-cost6" style="margin-top:0px;" />
+				<Panel id="relic_box_container">
+					<DOTAItemImage id="relic_active_0" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_1" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_2" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_3" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_4" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_5" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_6" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_7" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_8" class="relic_active" itemname="" />
+					<DOTAItemImage id="relic_active_9" class="relic_active" itemname="" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_game_mode" class="invisible">
+			<Label id="txt_game_mode" text="" />
+		</Panel>
+		<Panel id="panel_camera" class="invisible">
+			<Label id="text_panel_camera" text="" />
+			<Image id="image_close_panel_camera" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="OnESCCamera();" />
+		</Panel>
+		<Panel id="item_operation_box">
+			<Panel id="panel_loot_box" class="invisible panel_with_border">
+				<Panel class="panel_loot_box_title">
+					<Label class="text_panel_loot_box" text="#text_select_loot" />
+					<Panel class="panel_loot_box_ops">
+						<Image id="image_reroll" class="image_reroll invisible" style="width:25px;height:25px;margin-top:10px;" src="s2r://panorama/images/custom_game/icon_second_chance_png.vtex" onactivate="confirm_reroll_panel_lootbox();" onmouseover="OnMouseInTips(&apos;image_reroll&apos;,&apos;tips_title_image_reroll&apos;,&apos;tips_image_reroll_panel_lootbox&apos;);" onmouseout="OnMouseOutTips();" />
+						<Image id="image_random" class="image_random" style="width:25px;height:25px;margin-top:10px;" src="s2r://panorama/images/custom_game/random_png.vtex" onactivate="confirm_random_panel_lootbox();" onmouseover="OnMouseInTips(&apos;image_random&apos;,&apos;tips_title_image_random&apos;,&apos;tips_image_random_panel_lootbox&apos;);" onmouseout="OnMouseOutTips();" />
+						<Image id="image_close" class="image_close" style="width:25px;height:25px;margin-right:10px;margin-top:10px;" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="confirm_close_panel_lootbox();" onmouseover="OnMouseInTips(&apos;image_close&apos;,&apos;tips_title_image_close&apos;,&apos;tips_image_close_panel_lootbox&apos;);" onmouseout="OnMouseOutTips();" />
+						<Image id="image_stolen_vault" class="image_reroll invisible" style="width:25px;height:25px;margin-right:10px;margin-top:10px;" src="s2r://panorama/images/custom_game/stolen_vault_png.vtex" onactivate="confirm_choose_stolen_vault();" onmouseover="OnMouseInTips(&apos;image_stolen_vault&apos;,&apos;tips_title_image_stolen_vault&apos;,&apos;tips_image_stolen_vault_panel_lootbox&apos;);" onmouseout="OnMouseOutTips();" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_loot_box_inner">
+					<Panel id="panel_loot_box_inner_row_1" class="panel_loot_box_inner_row" />
+					<Panel id="panel_loot_box_inner_row_2" class="panel_loot_box_inner_row" />
+					<Panel id="panel_loot_box_inner_row_3" class="panel_loot_box_inner_row" />
+				</Panel>
+			</Panel>
+			<Panel id="panel_emotion_box" class="invisible panel_with_border" onfocus="DropInputFocus()" oncancel="HideChatEmotion()" onactivate="HideChatEmotion()">
+				<Panel id="panel_emotion_box_bg">
+					<Panel id="panel_emotion_box_title">
+						<Label id="text_emotion_box" text="#text_emotion_box" />
+					</Panel>
+					<Panel id="panel_emotion_box_container">
+						<Panel id="panel_emotion_box_inner" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="panel_lineup_box" class="invisible panel_with_border" onfocus="DropInputFocus()" oncancel="HideLineupShortCuts()" onactivate="HideLineupShortCuts()">
+				<Panel id="panel_lineup_box_bg">
+					<Panel id="panel_lineup_box_title">
+						<Label id="text_lineup_box" text="#text_lineup_box" />
+					</Panel>
+					<Panel id="panel_lineup_box_container">
+						<Panel id="panel_lineup_box_inner">
+							<Panel class="empty">
+								<Label text="" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;top&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_top&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/top_png.vtex" />
+							</Panel>
+							<Panel class="empty">
+								<Label text="" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;left&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_left&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/left_png.vtex" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;sparse&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_sparse&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/sparse_png.vtex" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;right&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_right&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/right_png.vtex" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;revx&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_revx&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/revx_png.vtex" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;bottom&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_bottom&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/bottom_png.vtex" />
+							</Panel>
+							<Panel class="button" onactivate="lineup(&apos;revy&apos;)" onmouseover="DOTAShowTextTooltip(&apos;#text_lineup_box_revy&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Image src="s2r://panorama/images/custom_game/ui/revy_png.vtex" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_talent_tree_box">
+			<Panel id="panel_talent_tree_box_inner" class="panel_with_border">
+				<Panel class="panel_loot_box_title">
+					<Label class="text_panel_loot_box" text="#text_talent_tree" style="horizontal-align:center;" />
+					<Panel class="panel_loot_box_ops">
+						<Image id="image_panel_talent_tree_box_close" class="image_close" style="width:25px;height:25px;margin-right:10px;margin-top:10px;" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="HideTalentTreeBox();" onmouseover="DOTAShowTextTooltip(&apos;#text_close&apos;)" onmouseout="DOTAHideTextTooltip()" />
+					</Panel>
+				</Panel>
+				<Panel class="panel_talent_tree_content">
+					<Panel class="panel_talent_tree_line">
+						<Panel id="talent_tree_4a" class="panel_talent_tree_line_inner left">
+							<Label class="title" text="#talent_4a_title" />
+							<Label class="text" text="#talent_4a_description" />
+						</Panel>
+						<Panel class="panel_talent_tree_line_center">
+							<Label class="round" text="#text_round" />
+							<Label class="round_big" text="35" />
+						</Panel>
+						<Panel id="talent_tree_4b" class="panel_talent_tree_line_inner right">
+							<Label class="title" text="#talent_4b_title" />
+							<Label class="text" text="#talent_4b_description" />
+						</Panel>
+					</Panel>
+					<Panel class="panel_talent_tree_line">
+						<Panel id="talent_tree_3a" class="panel_talent_tree_line_inner left">
+							<Label class="title" text="#talent_3a_title" />
+							<Label class="text" text="#talent_3a_description" />
+						</Panel>
+						<Panel class="panel_talent_tree_line_center">
+							<Label class="round" text="#text_round" />
+							<Label class="round_big" text="25" />
+						</Panel>
+						<Panel id="talent_tree_3b" class="panel_talent_tree_line_inner right">
+							<Label class="title" text="#talent_3b_title" />
+							<Label class="text" text="#talent_3b_description" />
+						</Panel>
+					</Panel>
+					<Panel class="panel_talent_tree_line">
+						<Panel id="talent_tree_2a" class="panel_talent_tree_line_inner left">
+							<Label class="title" text="#talent_2a_title" />
+							<Label class="text" text="#talent_2a_description" />
+						</Panel>
+						<Panel class="panel_talent_tree_line_center">
+							<Label class="round" text="#text_round" />
+							<Label class="round_big" text="15" />
+						</Panel>
+						<Panel id="talent_tree_2b" class="panel_talent_tree_line_inner right">
+							<Label class="title" text="#talent_2b_title" />
+							<Label id="text_talent_tree_2b" class="text" text="#talent_2b_description" />
+						</Panel>
+					</Panel>
+					<Panel class="panel_talent_tree_line">
+						<Panel id="talent_tree_1a" class="panel_talent_tree_line_inner left">
+							<Label class="title" text="#talent_1a_title" />
+							<Label class="text" text="#talent_1a_description" />
+						</Panel>
+						<Panel class="panel_talent_tree_line_center">
+							<Label class="round" text="#text_round" />
+							<Label class="round_big" text="5" />
+						</Panel>
+						<Panel id="talent_tree_1b" class="panel_talent_tree_line_inner right">
+							<Label class="title" text="#talent_1b_title" />
+							<Label class="text" text="#talent_1b_description" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_popup_box" class="invisible">
+			<Panel class="panel_popup_box_inner">
+				<Panel id="panel_popup_box_player_avatar_container" />
+				<Label id="text_panel_popup_box_inner_line1" text="" />
+				<Label id="text_panel_popup_box_inner_line2" text="" />
+				<DOTAUserName id="cloud_name" class="invisible" steamid="" />
+				<Label id="text_panel_popup_box_inner_line3" text="#battle_history" />
+				<Label id="text_panel_popup_box_inner_line4" text="" />
+				<Label id="text_panel_popup_box_inner_line5" text="#loot_round" />
+				<Label id="text_panel_popup_box_inner_line6" text="#round_loot_line6" />
+				<Label id="text_panel_popup_box_inner_line7" text="#round_loot_line7" />
+				<Panel id="panel_popup_box_player_details_buff" class="race_col36" style="width:400px;" />
+			</Panel>
+		</Panel>
+		<Panel id="panel_gameover" hittest="true">
+			<Image id="image_close_panel_gameover" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_panel_gameover();" style="margin-top:20px;margin-right:20px;width:20px;height:20px;" />
+			<Label id="gameover_text_lost" class="gameover_text_lost" text="#txt_you_dead" />
+			<Panel id="gameover_panel_rank">
+				<Panel class="gameover_panel_rank_inner">
+					<Label id="gameover_text_rank_1" text="#txt_your_rank" />
+					<Label id="gameover_text_rank_2" text="8" />
+					<Label id="gameover_text_rank_3" text="/8" />
+				</Panel>
+			</Panel>
+			<Panel id="gameover_panel_candy" class="invisible">
+				<Panel class="gameover_panel_candy_inner">
+					<Image class="gameover_image_candy" src="s2r://panorama/images/custom_game/award_candy_png.vtex" />
+					<Label id="gameover_text_candy" text="× 0" />
+				</Panel>
+			</Panel>
+			<Panel id="gameover_panel_biscuit" class="invisible">
+				<Panel class="gameover_panel_biscuit_inner">
+					<Image class="gameover_image_biscuit" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" />
+					<Label id="gameover_text_biscuit" text="× 0" />
+				</Panel>
+			</Panel>
+			<Panel id="gameover_panel_courier" class="invisible">
+				<Image id="gameover_image_courier" />
+				<Panel class="gameover_courier_exp_bar">
+					<Panel class="courier_exp_bar_exp_0" />
+					<Panel id="gameover_courier_exp_bar_exp_1" class="courier_exp_bar_exp_1" />
+					<Label id="gameover_courier_exp_level" class="courier_exp_level" text="" />
+				</Panel>
+			</Panel>
+			<Panel id="gameover_panel_level">
+				<Panel class="gameover_panel_level_inner">
+					<Image id="gameover_image_level" src="s2r://panorama/images/custom_game/level_0_png.vtex" />
+					<Label id="gameover_text_level_1" text="#text_player_level_0" />
+					<Label id="gameover_text_level_2" text="" />
+				</Panel>
+			</Panel>
+			<Panel id="gameover_panel_quest" class="invisible">
+				<Panel class="gameover_panel_quest_inner">
+					<Label id="gameover_text_quest" text="" />
+					<Image id="gameover_image_quest" src="s2r://panorama/images/custom_game/tick_png.vtex" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_lottery_show" class="invisible">
+			<Panel id="panel_lottery_show_title">
+				<Label id="text_lottery_content_list" text="#text_lottery_content_list" />
+			</Panel>
+			<Panel id="panel_lottery_show_inner">
+				<Panel class="panel_lottery_show_inner_line">
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h127_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h124_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h126_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h110_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h130_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h122_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h133_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h129_png.vtex" />
+				</Panel>
+				<Panel class="panel_lottery_show_inner_line">
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h217_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h202_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h204_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h212_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h215_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h221_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h214_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h229_png.vtex" />
+				</Panel>
+				<Panel class="panel_lottery_show_inner_line">
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h302_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h304_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h311_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h313_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h317_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h323_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h331_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h310_png.vtex" />
+				</Panel>
+				<Panel class="panel_lottery_show_inner_line">
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h402_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h403_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h404_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h407_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h416_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h421_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h427_png.vtex" />
+					<Image class="img_chesser" src="s2r://panorama/images/custom_game/skaters/h415_png.vtex" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="go_lottery" class="invisible" style="z-index:10000;vertical-align:center;horizontal-align:center;height:800px;width:600px;">
+			<Image src="s2r://panorama/images/custom_game/lottery/grab_png.vtex" class="lottery_bg" />
+			<Panel class="lottery_inner">
+				<Panel class="lottery_track" id="lottery_track">
+					<Panel class="lottery_one" id="lottery_0">
+						<Panel id="lottery_effect_0" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_1">
+						<Panel id="lottery_effect_1" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_2">
+						<Panel id="lottery_effect_2" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_3">
+						<Panel id="lottery_effect_3" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_4">
+						<Panel id="lottery_effect_4" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_5">
+						<Panel id="lottery_effect_5" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_6">
+						<Panel id="lottery_effect_6" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_7">
+						<Panel id="lottery_effect_7" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_8">
+						<Panel id="lottery_effect_8" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_9">
+						<Panel id="lottery_effect_9" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_10">
+						<Panel id="lottery_effect_10" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_11">
+						<Panel id="lottery_effect_11" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_12">
+						<Panel id="lottery_effect_12" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_13">
+						<Panel id="lottery_effect_13" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_14">
+						<Panel id="lottery_effect_14" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_15">
+						<Panel id="lottery_effect_15" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_16">
+						<Panel id="lottery_effect_16" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_17">
+						<Panel id="lottery_effect_17" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_18">
+						<Panel id="lottery_effect_18" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_19">
+						<Panel id="lottery_effect_19" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_20">
+						<Panel id="lottery_effect_20" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_21">
+						<Panel id="lottery_effect_21" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_22">
+						<Panel id="lottery_effect_22" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_23">
+						<Panel id="lottery_effect_23" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_24">
+						<Panel id="lottery_effect_24" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_25">
+						<Panel id="lottery_effect_25" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_26">
+						<Panel id="lottery_effect_26" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_27">
+						<Panel id="lottery_effect_27" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_28">
+						<Panel id="lottery_effect_28" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_29">
+						<Panel id="lottery_effect_29" class="invisible" />
+					</Panel>
+					<Panel class="lottery_one" id="lottery_30">
+						<Panel id="lottery_effect_30" class="invisible" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_draw_card" class="panel_draw_card_bg">
+			<Image id="panel_draw_card_guangzhao_0" class="invisible" src="s2r://panorama/images/custom_game/guangzhao2_png.vtex" style="width:600px;height:400px;margin-top:-100px;margin-left:-75px;opacity:0.8;" />
+			<Image id="panel_draw_card_guangzhao_1" class="invisible" src="s2r://panorama/images/custom_game/guangzhao2_png.vtex" style="width:600px;height:400px;margin-top:-100px;margin-left:175px;opacity:0.8;" />
+			<Image id="panel_draw_card_guangzhao_2" class="invisible" src="s2r://panorama/images/custom_game/guangzhao2_png.vtex" style="width:600px;height:400px;margin-top:-100px;margin-left:425px;opacity:0.8;" />
+			<Image id="panel_draw_card_guangzhao_3" class="invisible" src="s2r://panorama/images/custom_game/guangzhao2_png.vtex" style="width:600px;height:400px;margin-top:-100px;margin-left:675px;opacity:0.8;" />
+			<Image id="panel_draw_card_guangzhao_4" class="invisible" src="s2r://panorama/images/custom_game/guangzhao2_png.vtex" style="width:600px;height:400px;margin-top:-100px;margin-left:925px;opacity:0.8;" />
+			<Panel class="panel_draw_card">
+				<Panel id="panel_hero_draw_card_0" class="panel_hero_draw_card">
+					<Panel id="hero_draw_card_box_0" class="hero_draw_card_box" onactivate="request_buy_chess(0)" onfocus="DropInputFocus()" />
+					<Panel class="panel_draw_card_name_outer">
+						<Panel class="panel_draw_card_name_brush" id="panel_draw_card_name_brush_0" />
+						<Panel class="panel_draw_card_name_effect" id="panel_draw_card_name_effect_0" />
+						<Panel id="panel_draw_card_name_0" class="panel_draw_card_name">
+							<DOTAHeroImage id="img_draw_card_0" class="img_draw_card" heroname="" heroimagestyle="icon" />
+							<Label id="text_draw_card_0" html="true" class="text_draw_card" text="" />
+						</Panel>
+					</Panel>
+					<Panel id="text_draw_card_0_spec_class" class="panel_draw_card_spec_class" />
+					<Panel class="panel_draw_card_price_container">
+						<Image id="img_draw_card_price_0" class="image_draw_card_money invisible" src="s2r://panorama/images/custom_game/money_png.vtex" defaultsrc="" scaling="stretch" />
+						<Label id="text_draw_card_price_0" class="text_draw_card_price" text="" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_hero_draw_card_1" class="panel_hero_draw_card">
+					<Panel id="hero_draw_card_box_1" class="hero_draw_card_box" onactivate="request_buy_chess(1)" onfocus="DropInputFocus()" />
+					<Panel class="panel_draw_card_name_outer">
+						<Panel class="panel_draw_card_name_brush" id="panel_draw_card_name_brush_1" />
+						<Panel class="panel_draw_card_name_effect" id="panel_draw_card_name_effect_1" />
+						<Panel id="panel_draw_card_name_1" class="panel_draw_card_name">
+							<DOTAHeroImage id="img_draw_card_1" class="img_draw_card" heroname="" heroimagestyle="icon" />
+							<Label id="text_draw_card_1" html="true" class="text_draw_card" text="" />
+						</Panel>
+					</Panel>
+					<Panel id="text_draw_card_1_spec_class" class="panel_draw_card_spec_class" />
+					<Panel class="panel_draw_card_price_container">
+						<Image id="img_draw_card_price_1" class="image_draw_card_money invisible" src="s2r://panorama/images/custom_game/money_png.vtex" defaultsrc="" scaling="stretch" />
+						<Label id="text_draw_card_price_1" class="text_draw_card_price" text="" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_hero_draw_card_2" class="panel_hero_draw_card">
+					<Panel id="hero_draw_card_box_2" class="hero_draw_card_box" onactivate="request_buy_chess(2)" onfocus="DropInputFocus()" />
+					<Panel class="panel_draw_card_name_outer">
+						<Panel class="panel_draw_card_name_brush" id="panel_draw_card_name_brush_2" />
+						<Panel class="panel_draw_card_name_effect" id="panel_draw_card_name_effect_2" />
+						<Panel id="panel_draw_card_name_2" class="panel_draw_card_name">
+							<DOTAHeroImage id="img_draw_card_2" class="img_draw_card" heroname="" heroimagestyle="icon" />
+							<Label id="text_draw_card_2" html="true" class="text_draw_card" text="" />
+						</Panel>
+					</Panel>
+					<Panel id="text_draw_card_2_spec_class" class="panel_draw_card_spec_class" />
+					<Panel class="panel_draw_card_price_container">
+						<Image id="img_draw_card_price_2" class="image_draw_card_money invisible" src="s2r://panorama/images/custom_game/money_png.vtex" defaultsrc="" scaling="stretch" />
+						<Label id="text_draw_card_price_2" class="text_draw_card_price" text="" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_hero_draw_card_3" class="panel_hero_draw_card">
+					<Panel id="hero_draw_card_box_3" class="hero_draw_card_box" onactivate="request_buy_chess(3)" onfocus="DropInputFocus()" />
+					<Panel class="panel_draw_card_name_outer">
+						<Panel class="panel_draw_card_name_brush" id="panel_draw_card_name_brush_3" />
+						<Panel class="panel_draw_card_name_effect" id="panel_draw_card_name_effect_3" />
+						<Panel id="panel_draw_card_name_3" class="panel_draw_card_name">
+							<DOTAHeroImage id="img_draw_card_3" class="img_draw_card" heroname="" heroimagestyle="icon" />
+							<Label id="text_draw_card_3" html="true" class="text_draw_card" text="" />
+						</Panel>
+					</Panel>
+					<Panel id="text_draw_card_3_spec_class" class="panel_draw_card_spec_class" />
+					<Panel class="panel_draw_card_price_container">
+						<Image id="img_draw_card_price_3" class="image_draw_card_money invisible" src="s2r://panorama/images/custom_game/money_png.vtex" defaultsrc="" scaling="stretch" />
+						<Label id="text_draw_card_price_3" class="text_draw_card_price" text="" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_hero_draw_card_4" class="panel_hero_draw_card">
+					<Panel id="hero_draw_card_box_4" class="hero_draw_card_box" onactivate="request_buy_chess(4)" onfocus="DropInputFocus()" />
+					<Panel class="panel_draw_card_name_outer">
+						<Panel class="panel_draw_card_name_brush" id="panel_draw_card_name_brush_4" />
+						<Panel class="panel_draw_card_name_effect" id="panel_draw_card_name_effect_4" />
+						<Panel id="panel_draw_card_name_4" class="panel_draw_card_name">
+							<DOTAHeroImage id="img_draw_card_4" class="img_draw_card" heroname="" heroimagestyle="icon" />
+							<Label id="text_draw_card_4" html="true" class="text_draw_card" text="" />
+						</Panel>
+					</Panel>
+					<Panel id="text_draw_card_4_spec_class" class="panel_draw_card_spec_class" />
+					<Panel class="panel_draw_card_price_container">
+						<Image id="img_draw_card_price_4" class="image_draw_card_money invisible" src="s2r://panorama/images/custom_game/money_png.vtex" defaultsrc="" scaling="stretch" />
+						<Label id="text_draw_card_price_4" class="text_draw_card_price" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_draw_card_bottom" />
+			<Image id="image_close_draw" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="guanbi_panel_draw_card();" onmouseover="OnMouseInTips(&apos;image_close_draw&apos;,&apos;tips_title_image_close&apos;,&apos;tips_image_close&apos;);" onmouseout="OnMouseOutTips();" style="margin-top:260px;margin-right:70px;width:30px;height:30px;" />
+			<Image id="image_reroll_draw" class="image_draw_reroll invisible" src="s2r://panorama/images/custom_game/icon_second_chance_png.vtex" onactivate="reroll_panel_draw_card();" onmouseover="OnMouseInTips(&apos;image_reroll_draw&apos;,&apos;tips_title_image_reroll&apos;,&apos;tips_image_reroll&apos;);" onmouseout="OnMouseOutTips();" />
+			<Image id="image_lock" class="image_lock" src="s2r://panorama/images/custom_game/unlock_png.vtex" onactivate="lock_panel_draw_card();" onmouseover="OnMouseInTips(&apos;image_lock&apos;,&apos;tips_title_image_lock&apos;,&apos;tips_image_lock&apos;);" onmouseout="OnMouseOutTips();" />
+			<Image id="image_refresh" class="image_refresh" src="s2r://panorama/images/custom_game/refresh_png.vtex" onactivate="refresh_chess();" onmouseover="DOTAShowAbilityTooltip(&apos;summon_hero&apos;);" onmouseout="DOTAHideAbilityTooltip();" />
+			<Panel class="panel_draw_card_side_left" />
+			<Panel class="panel_draw_card_side_right" />
+		</Panel>
+		<DOTAHeroImage id="cursor_hero_icon" heroname="npc_dota_hero_juggernaut" heroimagestyle="icon" />
+		<Panel id="board_top" draggable="true">
+			<Panel id="board_unknown" onactivate="toggle_panel()">
+				<Panel class="board_line_title" />
+				<Panel class="board_line_content" />
+				<Image src="s2r://panorama/images/custom_game/5chess_png.vtex" style="width:120px;height:52px;margin-top:-58px;margin-left:25px;tooltip-position: bottom;brightness:0.8;" onmouseover="DOTAShowTitleTextTooltip(&apos;#tips_summon_chess&apos;,&apos;#tips_summon_chess_desc&apos;)" onmouseout="DOTAHideTitleTextTooltip()" />
+			</Panel>
+			<Panel id="board_battle" onmouseover="ShowBattle(&apos;board_battle&apos;)" onmouseout="OnMouseOut()">
+				<Panel class="board_line_title">
+					<Label id="round_info" text="#pve_preparing" />
+				</Panel>
+				<Panel class="board_line_content" style="margin-top:4px;">
+					<Panel class="align-container">
+						<Image id="battle_icon" src="s2r://panorama/images/custom_game/defend_png.vtex" class="invisible" />
+						<Image id="cloud_icon" src="s2r://panorama/images/custom_game/cloud_png.vtex" class="invisible" />
+						<Image id="creep_icon" src="s2r://panorama/images/custom_game/creep_png.vtex" class="invisible" />
+						<Label id="round_battle" text="#round_pve" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="board_round">
+				<Panel class="board_line_title">
+					<Label id="total_time" text="00:00:00" />
+				</Panel>
+				<Panel class="board_line_content">
+					<Panel class="align-container">
+						<Label id="round_status" text="#zhunbeihuihe" class="text_xl text_green" />
+					</Panel>
+				</Panel>
+				<Panel class="board_line_plus">
+					<Label id="round_time" text="" />
+				</Panel>
+			</Panel>
+			<Panel id="board_chess" style="tooltip-position: bottom;" onmouseover="ShowChesses(&apos;board_chess&apos;)" onmouseout="OnMouseOut()">
+				<Panel class="board_line_title">
+					<Label text="#text_top_pieces" />
+				</Panel>
+				<Panel class="board_line_content">
+					<Panel class="align-container">
+						<Image src="s2r://panorama/images/custom_game/population_png.vtex" />
+						<Label id="population" style="font-family: titleFont;" text="0 / 1" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="board_money" onmouseover="ShowInterest(&apos;gold_count&apos;)" onmouseout="OnMouseOut()">
+				<Panel class="board_line_title">
+					<Label text="#text_top_gold" />
+				</Panel>
+				<Panel class="board_line_content" style="tooltip-position:bottom;">
+					<Panel class="align-container" style="margin-left:10px;">
+						<Image src="s2r://panorama/images/custom_game/money_png.vtex" style="tooltip-position:bottom;" />
+						<Label id="gold_count" style="font-family:titleFont;tooltip-position:bottom;" text="0" />
+						<Label id="lixi_count" text="" style="tooltip-position:bottom;" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="quest_bar" class="invisible" style="" />
+		<Panel class="board_line_bg" />
+		<Panel id="round_time_bg" />
+		<Panel id="panel_top_player_round_winlose" class="invisible" />
+		<Panel id="board_left">
+			<Panel id="panel_damage_stat_title" class="panel_damage_stat_row">
+				<Label id="text_damage_stat_title" text="" />
+			</Panel>
+			<Panel id="panel_damage_stat_0" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_0" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_0" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_0" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_0" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_0" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_1" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_1" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_1" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_1" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_1" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_1" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_2" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_2" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_2" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_2" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_2" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_2" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_3" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_3" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_3" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_3" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_3" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_3" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_4" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_4" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_4" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_4" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_4" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_4" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_5" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_5" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_5" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_5" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_5" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_5" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_6" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_6" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_6" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_6" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_6" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_6" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_7" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_7" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_7" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_7" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_7" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_7" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_8" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_8" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_8" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_8" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_8" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_8" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+			<Panel id="panel_damage_stat_9" class="panel_damage_stat_row">
+				<Panel id="panel_damage_stat_bar_physical_9" class="panel_damage_stat_bar_physical" />
+				<Panel id="panel_damage_stat_bar_pure_9" class="panel_damage_stat_bar_pure" />
+				<Panel id="panel_damage_stat_bar_magical_9" class="panel_damage_stat_bar_magical" />
+				<Label id="panel_damage_stat_text_9" text="" class="panel_damage_stat_text" />
+				<Label id="panel_damage_stat_text_per_9" text="" class="panel_damage_stat_text_per" />
+			</Panel>
+		</Panel>
+		<Panel id="board_right">
+			<Panel id="player_board_title">
+				<Label id="player_board_title_talent_tree" text="#text_stat_title_talent_tree" />
+				<Label id="player_board_title_lineup" text="#text_stat_title_lineup" />
+				<Label id="player_board_title_buff" text="#text_stat_title_buff" />
+				<Label id="player_board_title_relic" text="#text_stat_title_relic" />
+				<Label id="player_board_title_ban" text="#text_stat_title_ban" />
+				<Label id="player_board_title_gold" text="#text_stat_title_gold" />
+				<Label id="player_board_title_wl" text="#text_stat_title_wl" />
+				<Label id="player_board_title_damage" text="#text_stat_title_damage" />
+			</Panel>
+			<Panel id="outer_player_board_0" class="outer_player_board">
+				<Panel id="panel_badge_0" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_0" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_0" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_0" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_0" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_0" class="player_board" onactivate="" hittest="true">
+					<Image id="p2team_flag_0" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_0" onactivate="" steamid="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_0" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_0" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_0" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_0" class="pic_player_level" />
+								<Label id="text_player_level_0" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_0" class="player_board_line2">
+						<Panel id="player_hp_0" class="player_hp" />
+						<Label id="text_player_hp_0" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_0" class="player_board_line3">
+						<Panel id="player_mp_0" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_0" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_0" class="player_board_courier_level">
+						<Label id="text_player_courier_level_0" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_0" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_0" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_0" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_0" class="col_talent_tree" />
+						<Panel id="player_details_lineup_0" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_0" class="race_col36" />
+						<Panel id="player_details_relic_0" class="race_col365" />
+						<Panel id="player_details_ban_0" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_0" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_0" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_0" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_0" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_0" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_0" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_0" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_0" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_0" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_0" class="player_chat_bubble">
+					<Label id="text_chat_bubble_0" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_0" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_0" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_0" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_1" class="outer_player_board">
+				<Panel id="panel_badge_1" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_1" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_1" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_1" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_1" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_1" class="player_board invisible" onactivate="" hittest="true">
+					<Image id="p2team_flag_1" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_1" onactivate="" steamid="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_1" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_1" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_1" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_1" class="pic_player_level" />
+								<Label id="text_player_level_1" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_1" class="player_board_line2">
+						<Panel id="player_hp_1" class="player_hp" />
+						<Label id="text_player_hp_1" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_1" class="player_board_line3">
+						<Panel id="player_mp_1" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_1" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_1" class="player_board_courier_level">
+						<Label id="text_player_courier_level_1" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_1" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_1" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_1" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_1" class="col_talent_tree" />
+						<Panel id="player_details_lineup_1" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_1" class="race_col36" />
+						<Panel id="player_details_relic_1" class="race_col365" />
+						<Panel id="player_details_ban_1" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_1" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_1" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_1" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_1" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_1" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_1" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_1" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_1" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_1" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_1" class="player_chat_bubble">
+					<Label id="text_chat_bubble_1" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_1" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_1" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_1" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_2" class="outer_player_board">
+				<Panel id="panel_badge_2" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_2" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_2" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_2" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_2" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_2" class="player_board invisible" onactivate="" hittest="true">
+					<Image id="p2team_flag_2" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_2" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_2" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_2" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_2" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_2" class="pic_player_level" />
+								<Label id="text_player_level_2" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_2" class="player_board_line2">
+						<Panel id="player_hp_2" class="player_hp" />
+						<Label id="text_player_hp_2" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_2" class="player_board_line3">
+						<Panel id="player_mp_2" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_2" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_2" class="player_board_courier_level">
+						<Label id="text_player_courier_level_2" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_2" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_2" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_2" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_2" class="col_talent_tree" />
+						<Panel id="player_details_lineup_2" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_2" class="race_col36" />
+						<Panel id="player_details_relic_2" class="race_col365" />
+						<Panel id="player_details_ban_2" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_2" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_2" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_2" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_2" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_2" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_2" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_2" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_2" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_2" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_2" class="player_chat_bubble">
+					<Label id="text_chat_bubble_2" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_2" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_2" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_2" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_3" class="outer_player_board">
+				<Panel id="panel_badge_3" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_3" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_3" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_3" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_3" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_3" class="player_board invisible" hittest="true" onactivate="">
+					<Image id="p2team_flag_3" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_3" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_3" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_3" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_3" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_3" class="pic_player_level" />
+								<Label id="text_player_level_3" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_3" class="player_board_line2">
+						<Panel id="player_hp_3" class="player_hp" />
+						<Label id="text_player_hp_3" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_3" class="player_board_line3">
+						<Panel id="player_mp_3" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_3" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_3" class="player_board_courier_level">
+						<Label id="text_player_courier_level_3" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_3" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_3" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_3" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_3" class="col_talent_tree" />
+						<Panel id="player_details_lineup_3" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_3" class="race_col36" />
+						<Panel id="player_details_relic_3" class="race_col365" />
+						<Panel id="player_details_ban_3" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_3" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_3" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_3" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_3" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_3" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_3" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_3" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_3" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_3" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_3" class="player_chat_bubble">
+					<Label id="text_chat_bubble_3" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_3" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_3" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_3" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_4" class="outer_player_board">
+				<Panel id="panel_badge_4" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_4" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_4" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_4" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_4" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_4" class="player_board invisible" hittest="true" onactivate="">
+					<Image id="p2team_flag_4" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_4" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_4" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_4" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_4" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_4" class="pic_player_level" />
+								<Label id="text_player_level_4" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_4" class="player_board_line2">
+						<Panel id="player_hp_4" class="player_hp" />
+						<Label id="text_player_hp_4" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_4" class="player_board_line3">
+						<Panel id="player_mp_4" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_4" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_4" class="player_board_courier_level">
+						<Label id="text_player_courier_level_4" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_4" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_4" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_4" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_4" class="col_talent_tree" />
+						<Panel id="player_details_lineup_4" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_4" class="race_col36" />
+						<Panel id="player_details_relic_4" class="race_col365" />
+						<Panel id="player_details_ban_4" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_4" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_4" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_4" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_4" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_4" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_4" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_4" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_4" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_4" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_4" class="player_chat_bubble">
+					<Label id="text_chat_bubble_4" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_4" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_4" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_4" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_5" class="outer_player_board">
+				<Panel id="panel_badge_5" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_5" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_5" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_5" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_5" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_5" class="player_board invisible" hittest="true" onactivate="">
+					<Image id="p2team_flag_5" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_5" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_5" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_5" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_5" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_5" class="pic_player_level" />
+								<Label id="text_player_level_5" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_5" class="player_board_line2">
+						<Panel id="player_hp_5" class="player_hp" />
+						<Label id="text_player_hp_5" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_5" class="player_board_line3">
+						<Panel id="player_mp_5" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_5" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_5" class="player_board_courier_level">
+						<Label id="text_player_courier_level_5" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_5" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_5" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_5" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_5" class="col_talent_tree" />
+						<Panel id="player_details_lineup_5" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_5" class="race_col36" />
+						<Panel id="player_details_relic_5" class="race_col365" />
+						<Panel id="player_details_ban_5" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_5" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_5" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_5" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_5" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_5" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_5" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_5" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_5" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_5" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_5" class="player_chat_bubble">
+					<Label id="text_chat_bubble_5" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_5" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_5" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_5" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_6" class="outer_player_board">
+				<Panel id="panel_badge_6" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_6" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_6" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_6" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_6" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_6" class="player_board invisible" hittest="true" onactivate="">
+					<Image id="p2team_flag_6" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_6" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_6" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_6" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_6" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_6" class="pic_player_level" />
+								<Label id="text_player_level_6" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_6" class="player_board_line2">
+						<Panel id="player_hp_6" class="player_hp" />
+						<Label id="text_player_hp_6" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_6" class="player_board_line3">
+						<Panel id="player_mp_6" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_6" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_6" class="player_board_courier_level">
+						<Label id="text_player_courier_level_6" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_6" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_6" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_6" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_6" class="col_talent_tree" />
+						<Panel id="player_details_lineup_6" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_6" class="race_col36" />
+						<Panel id="player_details_relic_6" class="race_col365" />
+						<Panel id="player_details_ban_6" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_6" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_6" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_6" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_6" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_6" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_6" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_6" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_6" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_6" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_6" class="player_chat_bubble">
+					<Label id="text_chat_bubble_6" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_6" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_6" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_6" class="player_chat_bubble_arrow" />
+			</Panel>
+			<Panel id="outer_player_board_7" class="outer_player_board">
+				<Panel id="panel_badge_7" class="player_badge" style="background-size:100% 100%;" />
+				<DOTAScenePanel id="panel_winstreak_effect_7" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+				<Panel id="avatar_player_vip_badge_7" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_battle_7" visible="false" class="player_battle" onmouseover="DOTAShowTextTooltip(&apos;#txt_curr_battle_oppo&apos;)" onmouseout="DOTAHideTextTooltip()" />
+				<Panel id="panel_player_round_winlose_7" class="player_round_winlose invisible" />
+				<Panel id="panel_player_board_7" class="player_board invisible" hittest="true" onactivate="">
+					<Image id="p2team_flag_7" class="invisible" style="height:70px;width:5px;margin-left:215px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+					<Panel class="player_board_line1">
+						<DOTAAvatarImage class="dota_avatar" id="avatar_player_7" steamid="" onactivate="" nocompendiumborder="true" />
+						<Panel id="avatar_player_vip_7" class="dota_avatar_vip invisible" />
+						<Panel class="player_board_line1_right">
+							<Label id="player_name_7" class="player_name" style="margin-left:2px;background-color:rgba(0,0,0,0);" text="" onactivate="" />
+							<Panel class="player_board_line1_right_line2">
+								<Panel id="pic_player_hero_7" class="pic_player_hero" style="background-size:100% 100%;" />
+								<Panel id="pic_player_level_7" class="pic_player_level" />
+								<Label id="text_player_level_7" class="text_player_level" text="迷之棋手" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="player_board_xuetiao_7" class="player_board_line2">
+						<Panel id="player_hp_7" class="player_hp" />
+						<Label id="text_player_hp_7" class="text_player_hp" text="100%" />
+					</Panel>
+					<Panel id="player_board_lantiao_7" class="player_board_line3">
+						<Panel id="player_mp_7" class="player_mp" />
+					</Panel>
+					<Label id="text_player_mp_7" class="text_player_mp" text="$0" />
+					<Panel id="player_board_level_7" class="player_board_courier_level">
+						<Label id="text_player_courier_level_7" class="text_player_courier_level" text="1" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_player_details_bg_7" class="panel_player_details_bg" />
+				<Panel id="panel_player_details_bg_self_7" class="panel_player_details_bg_self" />
+				<Panel id="panel_player_details_7" class="panel_player_details">
+					<Panel class="race_line" style="padding-left:0px;">
+						<Panel id="player_details_talent_tree_7" class="col_talent_tree" />
+						<Panel id="player_details_lineup_7" class="race_col35 player_details_lineup" />
+						<Panel id="player_details_buff_7" class="race_col36" />
+						<Panel id="player_details_relic_7" class="race_col365" />
+						<Panel id="player_details_ban_7" class="race_col37" />
+						<Panel class="race_col15">
+							<Label id="player_details_money_7" text="" />
+						</Panel>
+						<Panel class="race_col5">
+							<Label id="player_details_win_7" text="" />
+						</Panel>
+						<Panel class="race_col16">
+							<Label id="player_details_damage_7" text="" />
+						</Panel>
+						<Panel id="player_details_blockchat_7" class="race_col17 invisible" onmouseover="DOTAShowTextTooltip(&apos;#tips_muted_player&apos;)" onmouseout="DOTAHideTextTooltip()">
+							<Image id="player_details_blockchat_image_7" class="" src="s2r://panorama/images/custom_game/banchat_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel id="panel_player_details_g_bar_7" class="panel_player_details_g_bar">
+						<Panel id="panel_player_details_g_bar_bar_7" class="panel_player_details_g_bar_bar" />
+						<Label id="panel_player_details_g_bar_text_7" class="panel_player_details_g_bar_text" text="" />
+						<Panel id="panel_player_details_g_bar_bar_total_7" class="panel_player_details_g_bar_bar_total" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_chat_bubble_7" class="player_chat_bubble">
+					<Label id="text_chat_bubble_7" class="player_chat_bubble_text" text="" />
+					<Label id="title_chat_bubble_7" class="player_chat_bubble_text_ally" text="#text_ally" />
+					<Image id="img_chat_bubble_7" class="player_chat_bubble_image invisible" src="s2r://panorama/images/custom_game/chat/1_png.vtex" />
+				</Panel>
+				<Panel id="panel_chat_bubble_arrow_7" class="player_chat_bubble_arrow" />
+			</Panel>
+		</Panel>
+		<Panel id="button_board_right" class="invisible" onactivate="toggle_player_details();" onmouseover="DOTAShowTitleTextTooltip(&apos;#tips_button_board_right&apos;,&apos;#tips_button_board_right_desc&apos;)" onmouseout="DOTAHideTitleTextTooltip()" />
+		<Panel hittest="false" style="z-index:2000;">
+			<Label id="curtain_tips" text="" style="font-size:28px;color:#66aabb;font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;z-index:9999;margin-left:1600px;margin-top:11px;" />
+		</Panel>
+		<Panel id="store_panel_v5" class="exclusion_window panel_with_border panel_bg" hittest="true" onactivate="">
+			<Panel id="store_panel_v5_title" class="store_title" hittest="true">
+				<Panel style="flow-children:right;vertical-align:center;">
+					<Label id="text_panel_shop_title" text="#text_panel_shop_title" class="text_panel_title" />
+					<Panel id="store_panel_v5_title_plus" />
+				</Panel>
+				<Panel id="candy_storage_panel">
+					<Panel id="money_panel_container">
+						<Image id="image_biscuit_storage" style="width:40px;height:40px;z-index:40;margin-top:10px;margin-right:10px;" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" />
+						<Label id="text_store_v5_biscuit" class="text_large text_title_money" text="× ?" />
+						<Image id="image_ice_storage" style="width:40px;height:40px;z-index:40;margin-top:10px;margin-right:10px;" src="s2r://panorama/images/custom_game/award_candy_png.vtex" onactivate="DebugLink();" />
+						<Label id="text_store_v5_candy" class="text_large text_title_money" text="× ?" onactivate="DebugLink();" />
+						<Panel id="store_link" style="width:40px;height:40px;flow-children:right;vertical-align:center;margin-right:30px;margin-top:5px;" class="" onactivate="DebugLink();">
+							<Image id="store_link_img" src="s2r://panorama/images/dota_plus/dotaplus_logo_small_png.vtex" style="height:40px;width:40px;" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Image id="image_close_panel_store" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="ShowStoreV5();" />
+			</Panel>
+			<Panel id="store_panel_v5_inner">
+				<Panel id="store_panel_v5_goods_empty" class="">
+					<Label id="text_store_v5_nogoods" text="#text_store_nogoods" />
+					<Panel class="bg" />
+					<Panel id="refresh_empty_shop_v5" onactivate="refresh_shop_v5_manual();" class="dac_button">
+						<Panel>
+							<Label text="#refresh" style="font-size:24px;" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="store_panel_v5_goods_outer" hittest="true">
+					<Panel class="store_v5_subtitle">
+						<Panel id="store_panel_v5_cate_recomment" class="store_panel_v5_cate active" onactivate="OnStoreV5ChooseCate(&apos;recomment&apos;)">
+							<Image src="s2r://panorama/images/custom_game/recomment_png.vtex" style="width:30px;height:30px;margin:2px;margin-top:3px;" />
+							<Label text="#tags_recomment" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_chessboard" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;chessboard&apos;)">
+							<Image src="s2r://panorama/images/custom_game/chessboard_png.vtex" style="width:30px;height:30px;margin:2px;margin-top:3px;" />
+							<Label text="#type_b" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_courier" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;courier&apos;)">
+							<Image src="s2r://panorama/images/icon_courier_psd.vtex" style="width:35px;height:31px;margin-top:2px;" />
+							<Label text="#courier" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_season" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;season&apos;)">
+							<Image src="s2r://panorama/images/icon_courier_psd.vtex" style="width:35px;height:31px;margin-top:2px;margin-left:30px;" />
+							<Label text="#courier_season" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_collect" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;collect&apos;)">
+							<Image src="s2r://panorama/images/icon_courier_psd.vtex" style="width:35px;height:31px;margin-top:2px;margin-left:30px;" />
+							<Label text="#courier_collect" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_effect" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;effect&apos;)">
+							<Image src="s2r://panorama/images/status_icons/modifier_ambienteffects_psd.vtex" />
+							<Label text="#type_e" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_projectile" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;projectile&apos;)">
+							<Image src="s2r://panorama/images/status_icons/modifier_spelleffects_psd.vtex" />
+							<Label text="#type_p" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_animation" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;animation&apos;)">
+							<Image src="s2r://panorama/images/status_icons/modifier_animation_psd.vtex" />
+							<Label text="#type_n" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_pet" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;pet&apos;)">
+							<Image src="s2r://panorama/images/status_icons/modifier_model_psd.vtex" />
+							<Label text="#type_t" />
+						</Panel>
+						<Panel id="store_panel_v5_cate_emotion" class="store_panel_v5_cate" onactivate="OnStoreV5ChooseCate(&apos;emotion&apos;)">
+							<Image src="s2r://panorama/images/control_icons/emoticon_icon_psd.vtex" style="width:31px;height:31px;margin-top:4px;margin-right:2px;" />
+							<Label text="#type_m" />
+						</Panel>
+					</Panel>
+					<Panel class="store_v5_goods_inner">
+						<Panel id="store_panel_v5_goods_list_recomment_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_recomment" class="store_v5_goods_container_list" style="flow-children: down;">
+								<Panel id="store_panel_v5_goods_list_recomment_chessboard" class="store_v5_goods_container_list" />
+								<Panel id="store_panel_v5_goods_list_recomment_other" class="store_v5_goods_container_list" />
+							</Panel>
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_chessboard_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_chessboard" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_courier_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_courier" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_season_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_season" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_collect_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_collect" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_effect_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_effect" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_projectile_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_projectile" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_animation_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_animation" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_pet_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_pet" class="store_v5_goods_container_list" />
+						</Panel>
+						<Panel id="store_panel_v5_goods_list_emotion_outer" class="store_v5_goods_container">
+							<Panel id="store_panel_v5_goods_list_emotion" class="store_v5_goods_container_list" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="store_panel_v5_my_courier_list_outer">
+					<Panel id="store_panel_my_courier">
+						<Label id="text_store_panel_my_curr_courier" text="#text_my_curr_courier" />
+						<Panel id="store_panel_my_courier_outer">
+							<Panel id="store_panel_my_courier_courier" />
+							<Panel id="store_panel_my_courier_name_bar" class="goods_item_title_v5">
+								<Label id="text_my_courier_name" class="text_name_bar" text="" />
+							</Panel>
+						</Panel>
+						<Panel id="store_panel_my_courier_courier_container">
+							<Panel id="icon_my_equiped" class="icon_equiped icon_my_equiped" />
+							<Panel id="icon_my_equiped" class="icon_equiped icon_my_equiped" />
+						</Panel>
+						<Panel id="store_panel_my_courier_effect" onactivate="OnStoreV5ChooseCate(&apos;effect&apos;)" />
+						<Panel id="store_panel_my_courier_projectile" onactivate="OnStoreV5ChooseCate(&apos;projectile&apos;)" />
+						<Panel id="store_panel_my_courier_animation" onactivate="OnStoreV5ChooseCate(&apos;animation&apos;)" />
+						<Panel id="store_panel_my_courier_pet" onactivate="OnStoreV5ChooseCate(&apos;pet&apos;)" />
+						<Panel id="store_panel_my_courier_effect_bg" onactivate="OnStoreV5ChooseCate(&apos;effect&apos;)" />
+						<Panel id="store_panel_my_courier_projectile_bg" onactivate="OnStoreV5ChooseCate(&apos;projectile&apos;)" />
+						<Panel id="store_panel_my_courier_animation_bg" onactivate="OnStoreV5ChooseCate(&apos;animation&apos;)" />
+						<Panel id="store_panel_my_courier_pet_bg" onactivate="OnStoreV5ChooseCate(&apos;pet&apos;)" />
+						<Panel id="store_panel_my_courier_pet" />
+						<Panel class="courier_exp_bar">
+							<Panel class="courier_exp_bar_exp_0" />
+							<Panel id="courier_exp_bar_exp_1" class="courier_exp_bar_exp_1" />
+							<Label id="courier_exp_level" class="courier_exp_level" text="" />
+						</Panel>
+						<Panel id="icon_my_equiped_effect" class="icon_effect invisible" onactivate="OnStoreV5ChooseCate(&apos;effect&apos;)" />
+						<Panel id="my_courier_effect_bg" class="my_courier_effect_line1 my_courier_subtitle" onactivate="OnStoreV5ChooseCate(&apos;effect&apos;)">
+							<Label id="text_my_courier_effect_line1" />
+						</Panel>
+						<Panel class="my_courier_effect_line2">
+							<Label id="text_my_courier_effect_line2" class="invisible" text="#text_lv1_unlock" />
+							<Panel id="button_recycle_effect" class="dota_button button_red" onactivate="confirm_recycle_effect();">
+								<Label id="text_button_recycle_effect" class="text_name_bar" text="#text_recycle_effect" />
+							</Panel>
+						</Panel>
+						<Panel id="icon_my_equiped_projectile" class="icon_projectile invisible" onactivate="OnStoreV5ChooseCate(&apos;projectile&apos;)" />
+						<Panel id="my_courier_projectile_bg" class="my_courier_projectile_line1 my_courier_subtitle" onactivate="OnStoreV5ChooseCate(&apos;projectile&apos;)">
+							<Label id="text_my_courier_projectile_line1" />
+						</Panel>
+						<Panel class="my_courier_projectile_line2">
+							<Label id="text_my_courier_projectile_line2" class="invisible" text="#text_lv10_unlock" />
+							<Panel id="button_recycle_projectile" class="dota_button button_red" onactivate="confirm_recycle_projectile();">
+								<Label id="text_button_recycle_projectile" class="text_name_bar" text="#text_recycle_projectile" />
+							</Panel>
+						</Panel>
+						<Panel id="icon_my_equiped_animation" class="icon_animation invisible" onactivate="OnStoreV5ChooseCate(&apos;animation&apos;)" />
+						<Panel id="my_courier_animation_bg" class="my_courier_animation_line1 my_courier_subtitle" onactivate="OnStoreV5ChooseCate(&apos;animation&apos;)">
+							<Label id="text_my_courier_animation_line1" />
+						</Panel>
+						<Panel class="my_courier_animation_line2">
+							<Label id="text_my_courier_animation_line2" class="invisible" text="#text_lv20_unlock" />
+							<Panel id="button_recycle_animation" class="dota_button button_red" onactivate="confirm_recycle_animation();">
+								<Label id="text_button_recycle_animation" class="text_name_bar" text="#text_recycle_animation" />
+							</Panel>
+						</Panel>
+						<Panel id="icon_my_equiped_pet" class="icon_pet invisible" onactivate="OnStoreV5ChooseCate(&apos;pet&apos;)" />
+						<Panel id="my_courier_pet_bg" class="my_courier_pet_line1 my_courier_subtitle" onactivate="OnStoreV5ChooseCate(&apos;pet&apos;)">
+							<Label id="text_my_courier_pet_line1" />
+						</Panel>
+						<Panel class="my_courier_pet_line2">
+							<Label id="text_my_courier_pet_line2" class="invisible" text="#text_lv30_unlock" />
+							<Panel id="button_recycle_pet" class="dota_button button_red" onactivate="confirm_recycle_pet();">
+								<Label id="text_button_recycle_pet" class="text_name_bar" text="#text_recycle_pet" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="button_show_my_warehouse" class="dota_button" onactivate="show_my_warehouse();">
+						<Label id="text_show_my_warehouse" text="#show_my_warehouse" style="font-size:22px;vertical-align:center;horizontal-align:center;" />
+					</Panel>
+					<Panel id="button_show_my_shop" class="dota_button invisible" onactivate="show_my_shop();">
+						<Label id="text_show_my_shop" text="#show_my_shop" style="font-size:22px;vertical-align:center;horizontal-align:center;" />
+					</Panel>
+				</Panel>
+				<Panel id="store_panel_my_courier_list_outer">
+					<Panel id="store_panel_my_courier_list_top">
+						<Label id="text_store_panel_my_courier_list" text="#text_my_courier_list" />
+						<Panel id="store_panel_my_courier_list_top_right">
+							<Panel id="button_use_courier" class="dota_button unavailable" onactivate="set_curr_courier();">
+								<Label text="#text_set_curr_courier" />
+							</Panel>
+							<Panel id="button_recycle_courier" class="dota_button button_red unavailable" onactivate="confirm_recycle_hero();">
+								<Label id="text_button_recycle_courier" text="#text_recycle_courier" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="store_panel_my_courier_list" style="overflow:scroll clip;" hittest="true" />
+				</Panel>
+				<Panel id="store_panel_my_chessboard_list_outer">
+					<Panel id="store_panel_my_chessboard_list_top">
+						<Label id="text_store_panel_my_chessboard_list" text="#text_my_chessboard_list" />
+						<Panel id="button_use_chessboard" class="dota_button" onactivate="set_curr_chessboard();">
+							<Label text="#text_set_curr_chessboard" />
+						</Panel>
+					</Panel>
+					<Panel id="store_panel_my_chessboard_list" style="overflow:scroll clip;" hittest="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_mima">
+			<Label id="text_mima" text="" />
+		</Panel>
+		<Panel id="bulletbox" style="width:1925px; height:980px; flow-children:down;z-index:300;margin-top:150px;" hittest="false">
+			<Panel id="bulletchannel_1" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_1" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_1" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_1" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_1" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_1" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_1" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_1" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_1" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_2" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_2" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_2" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_2" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_2" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_2" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_2" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_2" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_2" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_3" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_3" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_3" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_3" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_3" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_3" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_3" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_3" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_3" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_4" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_4" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_4" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_4" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_4" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_4" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_4" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_4" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_4" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_5" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_5" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_5" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_5" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_5" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_5" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_5" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_5" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_5" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_6" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_6" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_6" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_6" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_6" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_6" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_6" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_6" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_6" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_7" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_7" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_7" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_7" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_7" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_7" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_7" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_7" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_7" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_8" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_8" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_8" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_8" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_8" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_8" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_8" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_8" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_8" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_9" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_9" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_9" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_9" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_9" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_9" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_9" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_9" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_9" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="bulletchannel_10" style="width:5775px;height:80px;flow-children:right;margin-left:-1925px;" hittest="false">
+				<Label id="bullet_empty_10" style="height:50px;transition-property: width; transition-duration: 20s; transition-timing-function: linear; width: 3840px;" hittest="false" />
+				<Panel class="bullet_line" hittest="false">
+					<Image id="bullet_img_10" style="width:104px;height:80px;z-index:9999;" src="s2r://panorama/images/custom_game/vip/little_drodo_1_png.vtex" class="invisible" />
+					<Panel id="bullet_banner_10" style="flow-children:down;margin-left:-80px;padding-left:80px;margin-top:15px;">
+						<Panel class="bullet_line1">
+							<Label id="bullet_text_10" class="bullet_text" text="" hittest="false" />
+							<Panel class="bullet_icon" hittest="false" />
+						</Panel>
+						<Panel class="bullet_line2">
+							<DOTAHeroImage class="bullet_hero_icon invisible" heroname="" id="bullet_hero_icon_10" heroimagestyle="icon" />
+							<DOTAItemImage id="bullet_item_icon_10" class="bullet_item_icon invisible" itemname="" />
+							<Image id="bullet_ban_img_10" class="bullet_ban_img invisible" />
+							<Label id="bullet_tower_10" class="bullet_tower" text="" hittest="false" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_vip" class="exclusion_window panel_with_border" hittest="true" onactivate="">
+			<Panel class="store_title" style="z-index:600;background-image:none;box-shadow: fill #00000000 -4px -4px 8px 8px;">
+				<Label class="text_panel_title" text="#tips_icon-vip_title" />
+			</Panel>
+			<Panel id="panel_vip_ad_2" class="dac_shade">
+				<Image src="s2r://panorama/images/custom_game/vip/vip1_png.vtex" />
+				<Panel id="panel_vip_firstwin" class="panel_vip_item" style="padding-top:20px;">
+					<Label text="#text_vip_firstwin_title" class="panel_vip_title" />
+					<Label text="#text_vip_firstwin_desc" class="panel_vip_text" />
+					<Label text="#text_vip_firstwin_desc_1" class="panel_vip_subtitle_1" />
+					<Image src="s2r://panorama/images/custom_game/candy_png.vtex" class="img_panel_vip_candy_1" />
+					<Label class="text_panel_vip_candy_1" text="× 5" />
+					<Panel id="panel_vip_firstwin_got_1" class="panel_new_event tags_one unavailable" style="margin-top: 175px;">
+						<Label id="text_vip_firstwin_got_1" class="text_new_event" text="#text_vip_ungot" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="panel_vip_ad_3" class="dac_shade">
+				<Image src="s2r://panorama/images/custom_game/vip/vip2_png.vtex" />
+				<Panel id="panel_vip_quest" class="panel_vip_item" style="padding-top:20px;">
+					<Label text="#text_vip_quest_title" class="panel_vip_title" />
+					<Label text="#text_vip_quest_desc" class="panel_vip_text" />
+					<Label text="#text_vip_quest_desc_1" class="panel_vip_subtitle_1" />
+					<Image src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_panel_vip_biscuit_1" />
+					<Label id="text_vip_biscuit" class="text_panel_vip_biscuit_1" text="× 1" />
+					<Panel id="panel_vip_quest_got_1" class="panel_new_event tags_one unavailable" style="margin-top: 175px;">
+						<Label id="text_vip_quest_got_1" class="text_new_event" text="#text_vip_ungot" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<DOTAScenePanel id="panel_vip_roshan_model" unit="pve_baby_roshan" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+			<Panel id="panel_vip_roshan" class="panel_vip_item">
+				<Label text="#text_vip_roshan_title" class="panel_vip_title" />
+				<Label text="#text_vip_roshan_desc" class="panel_vip_text right_space" />
+				<Panel class="panel_new_event tags_one right_space">
+					<Label class="text_new_event" text="#text_vip_got" />
+				</Panel>
+			</Panel>
+			<Panel id="panel_vip_projectile" class="panel_vip_item">
+				<Label text="#text_vip_projectile_title" class="panel_vip_title" />
+				<Label text="#text_vip_projectile_desc" class="panel_vip_text" style="margin-right:260px;" />
+				<Panel id="panel_vip_chessboard_model" class="good_list_one" style="background-image:url(&apos;file://{images}/custom_game/chessboard/b104.png&apos;);background-size:100% 100%;">
+					<Panel class="goods_list_one_chessboard_name_bar">
+						<Label style="color:#b0c3d9;" text="#b104" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vip_chessboard_model2" class="good_list_one" style="background-image:url(&apos;file://{images}/custom_game/chessboard/b102.png&apos;);background-size:100% 100%;">
+					<Panel class="goods_list_one_chessboard_name_bar">
+						<Label style="color:#b0c3d9;" text="#b102" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="panel_vip_avatar" class="panel_vip_item">
+				<Label text="#text_vip_avatar_title" class="panel_vip_title" />
+				<Label text="#text_vip_avatar_desc" class="panel_vip_text" />
+				<Panel class="panel_new_event tags_one">
+					<Label class="text_new_event" text="#text_vip_on" />
+				</Panel>
+			</Panel>
+			<Panel id="panel_vip_bullet" class="panel_vip_item">
+				<Label text="#text_vip_bullet_title" class="panel_vip_title" />
+				<Label text="#text_vip_bullet_desc" class="panel_vip_text" />
+				<Panel class="panel_new_event tags_one">
+					<Label class="text_new_event" text="#text_vip_on" />
+				</Panel>
+			</Panel>
+			<Panel id="panel_vip_ad_4">
+				<Panel id="list_vip_vote_null" class="list_vip_vote_null">
+					<Image src="s2r://panorama/images/custom_game/vip/bird_sang_png.vtex" style="width:180px;height:105px;horizontal-align:center;margin-top:160px;" />
+					<Label style="font-size:24px;horizontal-align:center;margin-top:5px;" text="#text_no_vote" />
+				</Panel>
+				<Panel class="list_vip_vote">
+					<Panel id="panel_vote_box_1" class="panel_vote_box invisible">
+						<Panel id="panel_vote_box_1_winner_1" class="panel_vote_box_winner1">
+							<DOTAScenePanel id="panel_vote_box_1_winner_1_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_1_winner_2" class="panel_vote_box_winner2">
+							<DOTAScenePanel id="panel_vote_box_1_winner_2_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_1_winner_3" class="panel_vote_box_winner3">
+							<DOTAScenePanel id="panel_vote_box_1_winner_3_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_1_title" class="panel_vote_box_title">
+							<Label id="text_vote_box_1_title" class="text_vote_box_title" text="" />
+							<Label id="text_vote_box_1_time" class="text_vote_box_time" text="" />
+							<Panel id="button_vote_box_1" class="dota_button button_vote_box invisible" onactivate="show_vote_panel(1);">
+								<Label text="#vote" />
+							</Panel>
+							<Panel id="panel_vote_box_1_voted" class="panel_vote_box_voted invisible">
+								<Image class="image_vote_box_voted_tick" src="s2r://panorama/images/custom_game/tick_png.vtex" />
+								<DOTAHeroImage id="panel_vote_box_1_hero" heroname="" heroimagestyle="icon" />
+							</Panel>
+						</Panel>
+						<Label id="panel_vote_box_1_winner_text_1" class="panel_vote_box_winner_text1" text="30%" />
+						<Label id="panel_vote_box_1_winner_text_2" class="panel_vote_box_winner_text2" text="30%" />
+						<Label id="panel_vote_box_1_winner_text_3" class="panel_vote_box_winner_text3" text="30%" />
+					</Panel>
+					<Panel id="panel_vote_box_2" class="panel_vote_box invisible">
+						<Panel id="panel_vote_box_2_winner_1" class="panel_vote_box_winner1">
+							<DOTAScenePanel id="panel_vote_box_2_winner_1_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_2_winner_2" class="panel_vote_box_winner2">
+							<DOTAScenePanel id="panel_vote_box_2_winner_2_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_2_winner_3" class="panel_vote_box_winner3">
+							<DOTAScenePanel id="panel_vote_box_2_winner_3_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_2_title" class="panel_vote_box_title">
+							<Label id="text_vote_box_2_title" class="text_vote_box_title" text="" />
+							<Label id="text_vote_box_2_time" class="text_vote_box_time" text="" />
+							<Panel id="button_vote_box_2" class="dota_button button_vote_box invisible" onactivate="show_vote_panel(2);">
+								<Label text="#vote" />
+							</Panel>
+							<Panel id="panel_vote_box_2_voted" class="panel_vote_box_voted invisible">
+								<Image class="image_vote_box_voted_tick" src="s2r://panorama/images/custom_game/tick_png.vtex" />
+								<DOTAHeroImage id="panel_vote_box_2_hero" heroname="" heroimagestyle="icon" />
+							</Panel>
+						</Panel>
+						<Label id="panel_vote_box_2_winner_text_1" class="panel_vote_box_winner_text1" text="30%" />
+						<Label id="panel_vote_box_2_winner_text_2" class="panel_vote_box_winner_text2" text="30%" />
+						<Label id="panel_vote_box_2_winner_text_3" class="panel_vote_box_winner_text3" text="30%" />
+					</Panel>
+					<Panel id="panel_vote_box_3" class="panel_vote_box invisible">
+						<Panel id="panel_vote_box_3_winner_1" class="panel_vote_box_winner1">
+							<DOTAScenePanel id="panel_vote_box_3_winner_1_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_3_winner_2" class="panel_vote_box_winner2">
+							<DOTAScenePanel id="panel_vote_box_3_winner_2_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_3_winner_3" class="panel_vote_box_winner3">
+							<DOTAScenePanel id="panel_vote_box_3_winner_3_hero" class="panel_vote_box_winner_hero" unit="" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
+						</Panel>
+						<Panel id="panel_vote_box_3_title" class="panel_vote_box_title">
+							<Label id="text_vote_box_3_title" class="text_vote_box_title" text="" />
+							<Label id="text_vote_box_3_time" class="text_vote_box_time" text="" />
+							<Panel id="button_vote_box_3" class="dota_button button_vote_box invisible" onactivate="show_vote_panel(3);">
+								<Label text="#vote" />
+							</Panel>
+							<Panel id="panel_vote_box_3_voted" class="panel_vote_box_voted invisible">
+								<Image class="image_vote_box_voted_tick" src="s2r://panorama/images/custom_game/tick_png.vtex" />
+								<DOTAHeroImage id="panel_vote_box_3_hero" heroname="" heroimagestyle="icon" />
+							</Panel>
+						</Panel>
+						<Label id="panel_vote_box_3_winner_text_1" class="panel_vote_box_winner_text1" text="30%" />
+						<Label id="panel_vote_box_3_winner_text_2" class="panel_vote_box_winner_text2" text="30%" />
+						<Label id="panel_vote_box_3_winner_text_3" class="panel_vote_box_winner_text3" text="30%" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Image id="image_close_panel_vip" style="z-index:700;" class="icon_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="ShowVip();" />
+		</Panel>
+		<Panel id="panel_guide" class="exclusion_window panel_with_border panel_bg" hittest="true" onactivate="">
+			<Panel class="store_title">
+				<Label class="text_panel_title" text="#tips_icon-guide_title" />
+				<Image id="image_close_panel_guide" class="icon_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="ShowGuide();" />
+			</Panel>
+			<Image style="width:800px;height:376px;margin-left:30px;margin-top:120px;z-index:100;opacity-mask:url(s2r://panorama/images/masks/scratched_box_psd.vtex);" class="" src="s2r://panorama/images/custom_game/guide/guide1_png.vtex" />
+			<Label style="margin-top:501px;margin-left:30px;width:800px;z-index:100;" class="text_close_panel" text="#step1" />
+			<Image style="width:800px;height:376px;margin-left:860px;margin-top:120px;z-index:100;opacity-mask:url(s2r://panorama/images/masks/scratched_box_psd.vtex);" class="" src="s2r://panorama/images/custom_game/guide/guide2_png.vtex" />
+			<Label style="margin-top:501px;margin-left:860px;width:800px;z-index:100;" class="text_close_panel" text="#step2" />
+			<Image style="width:800px;height:376px;margin-left:30px;margin-top:566px;z-index:100;opacity-mask:url(s2r://panorama/images/masks/scratched_box_psd.vtex);" class="" src="s2r://panorama/images/custom_game/guide/guide3_png.vtex" />
+			<Label style="margin-top:947px;margin-left:30px;width:800px;z-index:100;" class="text_close_panel" text="#step3" />
+			<Image style="width:800px;height:376px;margin-left:860px;margin-top:566px;z-index:100;opacity-mask:url(s2r://panorama/images/masks/scratched_box_psd.vtex);" class="" src="s2r://panorama/images/custom_game/guide/guide4_png.vtex" />
+			<Label style="margin-top:947px;margin-left:860px;width:800px;z-index:100;" class="text_close_panel" text="#step4" />
+		</Panel>
+		<Panel id="panel_list" class="exclusion_window panel_with_border panel_bg" hittest="true" onactivate="HideChessDetail();">
+			<Panel class="store_title" onactivate="HideChessDetail();">
+				<Label id="text_chess_list_title" class="text_panel_title" text="#tips_icon-list_title" />
+				<Panel id="panel_list_top_tags_container">
+					<Panel id="panel_list_top_tags_chess" class="panel_list_top_tags_one" onactivate="select_panel_list_top_tags(&apos;panel_list_top_tags_chess&apos;)">
+						<Image src="s2r://panorama/images/custom_game/chess_knight_png.vtex" style="width:25px;height:25px;margin-right:5px;" />
+						<Label text="#chess_list" />
+					</Panel>
+					<Panel id="panel_list_top_tags_item" class="panel_list_top_tags_one unactive" onactivate="select_panel_list_top_tags(&apos;panel_list_top_tags_item&apos;)">
+						<Image src="s2r://panorama/images/custom_game/items_png.vtex" style="width:35px;height:35px;margin-right:5px;" />
+						<Label text="#item_list" />
+					</Panel>
+				</Panel>
+				<Image id="image_close_panel_list" class="icon_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="ShowList();" />
+			</Panel>
+			<Panel class="list_main_outer" onactivate="HideChessDetail();">
+				<Panel class="list_main" id="panel_chess_list">
+					<Panel id="chess_list_1" class="list_col" />
+					<Panel id="chess_list_2" class="list_col" />
+					<Panel id="chess_list_3" class="list_col" />
+					<Panel id="chess_list_4" class="list_col" />
+					<Panel id="chess_list_5" class="list_col" />
+					<Panel id="item_list_1" class="list_col" style="margin-left:10px;" />
+					<Panel id="item_list_2" class="list_col" />
+					<Panel id="item_list_3" class="list_col" />
+					<Panel id="item_list_4" class="list_col" />
+					<Panel id="item_list_5" class="list_col" />
+					<Panel id="item_list_relic" class="list_col" />
+				</Panel>
+				<Panel id="panel_chess_detail" onactivate="HideChessDetail();">
+					<Panel id="panel_chess_detail_inner" />
+				</Panel>
+			</Panel>
+			<Panel id="panel_list_ban_chess" hittest="false" />
+		</Panel>
+		<Panel id="panel_vote" class="panel_with_border panel_vote" hittest="true">
+			<Panel class="panel_vote_title">
+				<Label id="text_vote_title" class="text_vote_title" text="#vote" />
+				<Image id="image_close_panel_vote" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_panel_vote();" />
+			</Panel>
+			<Panel class="panel_vote_table">
+				<Panel id="panel_vote_line_1" class="panel_vote_line">
+					<Panel id="panel_vote_grid_1" class="panel_vote_grid grid_white" onactivate="vote_chess(1);">
+						<DOTAHeroImage id="panel_vote_chess_1" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_2" class="panel_vote_grid grid_black" onactivate="vote_chess(2);">
+						<DOTAHeroImage id="panel_vote_chess_2" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_3" class="panel_vote_grid grid_white" onactivate="vote_chess(3);">
+						<DOTAHeroImage id="panel_vote_chess_3" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_4" class="panel_vote_grid grid_black" onactivate="vote_chess(4);">
+						<DOTAHeroImage id="panel_vote_chess_4" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_5" class="panel_vote_grid grid_white" onactivate="vote_chess(5);">
+						<DOTAHeroImage id="panel_vote_chess_5" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_6" class="panel_vote_grid grid_black" onactivate="vote_chess(6);">
+						<DOTAHeroImage id="panel_vote_chess_6" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_7" class="panel_vote_grid grid_white" onactivate="vote_chess(7);">
+						<DOTAHeroImage id="panel_vote_chess_7" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_8" class="panel_vote_grid grid_black" onactivate="vote_chess(8);">
+						<DOTAHeroImage id="panel_vote_chess_8" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_2" class="panel_vote_line">
+					<Panel id="panel_vote_grid_9" class="panel_vote_grid grid_black" onactivate="vote_chess(9);">
+						<DOTAHeroImage id="panel_vote_chess_9" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_10" class="panel_vote_grid grid_white" onactivate="vote_chess(10);">
+						<DOTAHeroImage id="panel_vote_chess_10" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_11" class="panel_vote_grid grid_black" onactivate="vote_chess(11);">
+						<DOTAHeroImage id="panel_vote_chess_11" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_12" class="panel_vote_grid grid_white" onactivate="vote_chess(12);">
+						<DOTAHeroImage id="panel_vote_chess_12" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_13" class="panel_vote_grid grid_black" onactivate="vote_chess(13);">
+						<DOTAHeroImage id="panel_vote_chess_13" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_14" class="panel_vote_grid grid_white" onactivate="vote_chess(14);">
+						<DOTAHeroImage id="panel_vote_chess_14" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_15" class="panel_vote_grid grid_black" onactivate="vote_chess(15);">
+						<DOTAHeroImage id="panel_vote_chess_15" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_16" class="panel_vote_grid grid_white" onactivate="vote_chess(16);">
+						<DOTAHeroImage id="panel_vote_chess_16" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_3" class="panel_vote_line">
+					<Panel id="panel_vote_grid_17" class="panel_vote_grid grid_white" onactivate="vote_chess(17);">
+						<DOTAHeroImage id="panel_vote_chess_17" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_18" class="panel_vote_grid grid_black" onactivate="vote_chess(18);">
+						<DOTAHeroImage id="panel_vote_chess_18" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_19" class="panel_vote_grid grid_white" onactivate="vote_chess(19);">
+						<DOTAHeroImage id="panel_vote_chess_19" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_20" class="panel_vote_grid grid_black" onactivate="vote_chess(20);">
+						<DOTAHeroImage id="panel_vote_chess_20" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_21" class="panel_vote_grid grid_white" onactivate="vote_chess(21);">
+						<DOTAHeroImage id="panel_vote_chess_21" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_22" class="panel_vote_grid grid_black" onactivate="vote_chess(22);">
+						<DOTAHeroImage id="panel_vote_chess_22" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_23" class="panel_vote_grid grid_white" onactivate="vote_chess(23);">
+						<DOTAHeroImage id="panel_vote_chess_23" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_24" class="panel_vote_grid grid_black" onactivate="vote_chess(24);">
+						<DOTAHeroImage id="panel_vote_chess_24" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_4" class="panel_vote_line">
+					<Panel id="panel_vote_grid_25" class="panel_vote_grid grid_black" onactivate="vote_chess(25);">
+						<DOTAHeroImage id="panel_vote_chess_25" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_26" class="panel_vote_grid grid_white" onactivate="vote_chess(26);">
+						<DOTAHeroImage id="panel_vote_chess_26" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_27" class="panel_vote_grid grid_black" onactivate="vote_chess(27);">
+						<DOTAHeroImage id="panel_vote_chess_27" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_28" class="panel_vote_grid grid_white" onactivate="vote_chess(28);">
+						<DOTAHeroImage id="panel_vote_chess_28" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_29" class="panel_vote_grid grid_black" onactivate="vote_chess(29);">
+						<DOTAHeroImage id="panel_vote_chess_29" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_30" class="panel_vote_grid grid_white" onactivate="vote_chess(30);">
+						<DOTAHeroImage id="panel_vote_chess_30" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_31" class="panel_vote_grid grid_black" onactivate="vote_chess(31);">
+						<DOTAHeroImage id="panel_vote_chess_31" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_32" class="panel_vote_grid grid_white" onactivate="vote_chess(32);">
+						<DOTAHeroImage id="panel_vote_chess_32" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_5" class="panel_vote_line">
+					<Panel id="panel_vote_grid_33" class="panel_vote_grid grid_white" onactivate="vote_chess(33);">
+						<DOTAHeroImage id="panel_vote_chess_33" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_34" class="panel_vote_grid grid_black" onactivate="vote_chess(34);">
+						<DOTAHeroImage id="panel_vote_chess_34" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_35" class="panel_vote_grid grid_white" onactivate="vote_chess(35);">
+						<DOTAHeroImage id="panel_vote_chess_35" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_36" class="panel_vote_grid grid_black" onactivate="vote_chess(36);">
+						<DOTAHeroImage id="panel_vote_chess_36" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_37" class="panel_vote_grid grid_white" onactivate="vote_chess(37);">
+						<DOTAHeroImage id="panel_vote_chess_37" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_38" class="panel_vote_grid grid_black" onactivate="vote_chess(38);">
+						<DOTAHeroImage id="panel_vote_chess_38" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_39" class="panel_vote_grid grid_white" onactivate="vote_chess(39);">
+						<DOTAHeroImage id="panel_vote_chess_39" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_40" class="panel_vote_grid grid_black" onactivate="vote_chess(40);">
+						<DOTAHeroImage id="panel_vote_chess_40" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_6" class="panel_vote_line">
+					<Panel id="panel_vote_grid_41" class="panel_vote_grid grid_black" onactivate="vote_chess(41);">
+						<DOTAHeroImage id="panel_vote_chess_41" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_42" class="panel_vote_grid grid_white" onactivate="vote_chess(42);">
+						<DOTAHeroImage id="panel_vote_chess_42" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_43" class="panel_vote_grid grid_black" onactivate="vote_chess(43);">
+						<DOTAHeroImage id="panel_vote_chess_43" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_44" class="panel_vote_grid grid_white" onactivate="vote_chess(44);">
+						<DOTAHeroImage id="panel_vote_chess_44" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_45" class="panel_vote_grid grid_black" onactivate="vote_chess(45);">
+						<DOTAHeroImage id="panel_vote_chess_45" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_46" class="panel_vote_grid grid_white" onactivate="vote_chess(46);">
+						<DOTAHeroImage id="panel_vote_chess_46" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_47" class="panel_vote_grid grid_black" onactivate="vote_chess(47);">
+						<DOTAHeroImage id="panel_vote_chess_47" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_48" class="panel_vote_grid grid_white" onactivate="vote_chess(48);">
+						<DOTAHeroImage id="panel_vote_chess_48" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_7" class="panel_vote_line">
+					<Panel id="panel_vote_grid_49" class="panel_vote_grid grid_white" onactivate="vote_chess(49);">
+						<DOTAHeroImage id="panel_vote_chess_49" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_50" class="panel_vote_grid grid_black" onactivate="vote_chess(50);">
+						<DOTAHeroImage id="panel_vote_chess_50" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_51" class="panel_vote_grid grid_white" onactivate="vote_chess(51);">
+						<DOTAHeroImage id="panel_vote_chess_51" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_52" class="panel_vote_grid grid_black" onactivate="vote_chess(52);">
+						<DOTAHeroImage id="panel_vote_chess_52" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_53" class="panel_vote_grid grid_white" onactivate="vote_chess(53);">
+						<DOTAHeroImage id="panel_vote_chess_53" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_54" class="panel_vote_grid grid_black" onactivate="vote_chess(54);">
+						<DOTAHeroImage id="panel_vote_chess_54" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_55" class="panel_vote_grid grid_white" onactivate="vote_chess(55);">
+						<DOTAHeroImage id="panel_vote_chess_55" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_56" class="panel_vote_grid grid_black" onactivate="vote_chess(56);">
+						<DOTAHeroImage id="panel_vote_chess_56" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+				<Panel id="panel_vote_line_8" class="panel_vote_line">
+					<Panel id="panel_vote_grid_57" class="panel_vote_grid grid_black" onactivate="vote_chess(57);">
+						<DOTAHeroImage id="panel_vote_chess_57" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_58" class="panel_vote_grid grid_white" onactivate="vote_chess(58);">
+						<DOTAHeroImage id="panel_vote_chess_58" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_59" class="panel_vote_grid grid_black" onactivate="vote_chess(59);">
+						<DOTAHeroImage id="panel_vote_chess_59" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_60" class="panel_vote_grid grid_white" onactivate="vote_chess(60);">
+						<DOTAHeroImage id="panel_vote_chess_60" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_61" class="panel_vote_grid grid_black" onactivate="vote_chess(61);">
+						<DOTAHeroImage id="panel_vote_chess_61" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_62" class="panel_vote_grid grid_white" onactivate="vote_chess(62);">
+						<DOTAHeroImage id="panel_vote_chess_62" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_63" class="panel_vote_grid grid_black" onactivate="vote_chess(63);">
+						<DOTAHeroImage id="panel_vote_chess_63" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+					<Panel id="panel_vote_grid_64" class="panel_vote_grid grid_white" onactivate="vote_chess(64);">
+						<DOTAHeroImage id="panel_vote_chess_64" class="panel_vote_chess" heroimagestyle="icon" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_vote_bottom">
+				<Panel id="button_vote" class="dota_button button_vote" onactivate="request_vote();">
+					<Label text="#confirm_vote" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_ranking" class="panel_with_border exclusion_window panel_bg" hittest="true" onactivate="">
+			<Panel id="panel_ranking_title" class="store_title">
+				<Panel style="flow-children:right;vertical-align:center;">
+					<Label class="text_panel_ranking text_panel_title" text="#ranking_title" />
+					<Panel id="img_panel_ranking_title" onmouseover="DOTAShowTitleTextTooltip(&apos;#ranking_title&apos;,&apos;#ranking_desc&apos;)" onmouseout="DOTAHideTitleTextTooltip()" />
+				</Panel>
+				<Image id="image_close_panel_ranking" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="ShowRanking();" />
+			</Panel>
+			<Panel class="ranking_main">
+				<Panel id="ranking_main_col_event" class="ranking_col" style="width:600px;margin-right:0px;">
+					<Panel id="panel_event_container" />
+				</Panel>
+				<Panel id="ranking_world_outer">
+					<Panel class="ranking_line_title no_bg" style="width:100%;background-color: rgba(0,0,0,0.0);">
+						<Label id="tab_ranking_self_container" class="grey_title" text="#text_season_event_ranking_self" onactivate="change_tab_ranking(&apos;ranking_self&apos;)" />
+						<Label id="tab_ranking_world_container" class="grey_title leftspace" text="#text_season_event_ranking_world" onactivate="change_tab_ranking(&apos;ranking_world&apos;)" />
+						<Label id="tab_leaderboard_lineup_value_container" class="grey_title leftspace" text="#text_season_event_leaderboard_lineup_value" onactivate="change_tab_ranking(&apos;leaderboard_lineup_value&apos;)" />
+						<Label id="tab_leaderboard_mvp_chess_container" class="grey_title leftspace" text="#text_season_event_leaderboard_mvp_chess" onactivate="change_tab_ranking(&apos;leaderboard_mvp_chess&apos;)" />
+						<Label id="tab_leaderboard_pandaman_fish_container" class="grey_title leftspace" text="#text_season_event_leaderboard_pandaman_fish" onactivate="change_tab_ranking(&apos;leaderboard_pandaman_fish&apos;)" />
+					</Panel>
+					<Panel id="ranking_self_container">
+						<Panel id="ranking_self_empty" class="panel_empty">
+							<Label id="text_ranking_self_empty" class="text_empty" text="#text_ranking_self_empty" />
+							<Panel class="bg" />
+						</Panel>
+						<Panel id="ranking_self_inner">
+							<Panel id="ranking_self_top">
+								<Panel id="ranking_self_avatar_container">
+									<DOTAAvatarImage id="ranking_self_avatar" steamid="" />
+									<ToggleButton id="panel_ranking_self_checkbox_only_rank" selected="false" text="#text_only_show_rank" onactivate="ToggleOnlyShowRankMatch();" />
+								</Panel>
+								<Panel id="ranking_self_top_right">
+									<Panel id="ranking_self_top_right_name">
+										<DOTAUserName id="ranking_self_top_right_name_username" steamid="" />
+										<Label id="ranking_self_top_right_name_steam_id_label" text="Steam ID:" />
+									</Panel>
+									<Panel id="ranking_self_top_right_tags_container">
+										<Panel class="ranking_self_top_right_tag" style="min-width:160px;">
+											<Label class="ranking_self_top_right_tag_title" text="#text_season_max_level" />
+											<Panel id="ranking_self_level_season" class="panel_ranking_line_event_level invisible" style="horizontal-align: center;margin-top:5px;">
+												<Panel id="img_ranking_self_level_season" class="img_panel_ranking_line_event_level" />
+												<Label id="text_ranking_self_level_season" class="text_panel_ranking_line_event_level" text="#text_player_level_0" style="font-size:20px;margin-right:10px;" />
+											</Panel>
+										</Panel>
+										<Panel class="ranking_self_top_right_tag" style="min-width:175px;">
+											<Label class="ranking_self_top_right_tag_title" text="#text_rank_chicken_count" />
+											<Panel class="ranking_self_top_right_tag_chikens_container">
+												<DOTAEmoticon emoticonid="12" animating="false" style="margin-left:10px;width:30px;height:30px;" />
+												<Label id="ranking_self_top_right_tag_chikens" class="ranking_self_top_right_tag_text" text="" />
+												<Label id="ranking_self_top_right_tag_chikens_per" class="ranking_self_top_right_tag_text" text="" style="font-size:16px;color:#888;margin-left:5px;margin-right:10px;" />
+											</Panel>
+										</Panel>
+										<Panel class="ranking_self_top_right_tag_line2" style="min-width:735px;">
+											<Panel style="width:160px;height:60px;flow-children:down;">
+												<Label class="ranking_self_top_right_tag_title" text="#text_season_max_lineup_value" />
+												<Panel class="" style="horizontal-align: center;margin-top:5px;flow-children: right;">
+													<Image src="s2r://panorama/images/custom_game/money_png.vtex" style="width:30px;height:30px;" />
+													<Label text="0" style="margin-left: 5px;font-size:24px;font-family:titleFont;vertical-align:center;" id="ranking_self_leaderboard_max_lineup_value" />
+												</Panel>
+											</Panel>
+											<Panel id="panel_season_max_lineup_value_container" />
+										</Panel>
+									</Panel>
+									<Panel id="ranking_self_top_right_tags_container2">
+										<Panel class="ranking_self_top_right_tag" style="min-width:110px;">
+											<Label class="ranking_self_top_right_tag_title" text="#text_rank_match_count" />
+											<Label id="ranking_self_top_right_tag_match" class="ranking_self_top_right_tag_text" text="" />
+										</Panel>
+										<Panel class="ranking_self_top_right_tag" style="min-width:110px;">
+											<Label class="ranking_self_top_right_tag_title" text="#text_ave_rank" />
+											<Label id="ranking_self_top_right_tag_ave_rank" class="ranking_self_top_right_tag_text" text="" />
+										</Panel>
+										<Panel class="ranking_self_top_right_tag" style="min-width:110px;">
+											<Label class="ranking_self_top_right_tag_title" text="#text_favorite_chess" />
+											<Panel class="ranking_self_top_right_tag_chikens_container">
+												<DOTAHeroImage id="icon_ranking_self_top_right_tag_favorite_chess" class="" heroname="" heroimagestyle="icon" style="width:32px;height:32px;" />
+												<DOTAAbilityImage id="icon_ranking_self_top_right_tag_favorite_synergy" class="" abilityname="empty1" style="width:30px;height:30px;margin-left:5px;" />
+											</Panel>
+										</Panel>
+										<Panel class="ranking_self_top_right_tag_line2" style="min-width:800px;">
+											<Panel style="width:160px;height:60px;flow-children:down;">
+												<Label class="ranking_self_top_right_tag_title" text="#text_season_max_mvp_chess" />
+												<Panel class="" style="horizontal-align: center;margin-top:5px;flow-children: right;">
+													<Image src="s2r://panorama/images/hud/facets/icons/damage_png.vtex" style="width:30px;height:30px;" />
+													<Label text="0" style="margin-left: 5px;font-size:24px;font-family:titleFont;vertical-align:center;" id="ranking_self_leaderboard_max_mvp_damage" />
+												</Panel>
+											</Panel>
+											<Panel id="panel_season_max_mvp_chess_container" />
+										</Panel>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel id="ranking_self_list" />
+						</Panel>
+					</Panel>
+					<Panel id="ranking_world_container">
+						<Panel id="ranking_world_empty" class="panel_empty">
+							<Label id="text_ranking_world_empty1" class="text_empty" text="#text_ranking_world_empty" />
+							<Panel class="bg" />
+						</Panel>
+						<Panel id="ranking_world_half" />
+						<Panel id="ranking_world_half2" />
+					</Panel>
+					<Panel id="leaderboard_lineup_value_container">
+						<Panel id="leaderboard_lineup_value_container_empty" class="panel_empty">
+							<Label id="text_friend_world_empty2" class="text_empty" text="#text_ranking_friend_empty" />
+							<Panel class="bg" />
+						</Panel>
+						<Panel id="ranking_world_leaderboard_lineup_value" />
+					</Panel>
+					<Panel id="leaderboard_mvp_chess_container">
+						<Panel id="leaderboard_mvp_chess_container_empty" class="panel_empty">
+							<Label id="text_friend_world_empty3" class="text_empty" text="#text_ranking_friend_empty" />
+							<Panel class="bg" />
+						</Panel>
+						<Panel id="ranking_world_leaderboard_mvp_chess" />
+					</Panel>
+					<Panel id="leaderboard_pandaman_fish_container">
+						<Panel id="leaderboard_pandaman_fish_container_empty" class="panel_empty">
+							<Label id="text_friend_world_empty4" class="text_empty" text="#text_ranking_friend_empty" />
+							<Panel class="bg" />
+						</Panel>
+						<Panel id="ranking_world_leaderboard_pandaman_fish" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Image id="dac_minimap_top_ad" class="logo-panel invisible" src="" />
+		<Label id="winstreak" class="invisible" text="" />
+		<Panel id="ban_panel" class="panel_with_border exclusion_window" onactivate="">
+			<Panel style="width:100%;height:100%;flow-children:down;z-index:10;">
+				<Panel class="ban_title_outer">
+					<Panel id="ban_panel_button_show_chess_list" class="dota_button" onactivate="show_ban_panel_chess_list();">
+						<Label id="text_show_chess_list" class="text_name_bar" text="#text_ban_panel_show_chess_list" />
+					</Panel>
+					<Label class="ban_title" text="#ban_choose" html="true" />
+					<Image style="z-index:700;" class="icon_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_ban_choose();" />
+				</Panel>
+				<Panel id="ban_body" class="ban_body" />
+				<Label class="ban_foot" text="#ban_tips" html="true" />
+			</Panel>
+		</Panel>
+		<Panel id="show_screen_info" class="invisible" style="width:250px;height:40px;padding-top:10px;padding-left:10px;vertical-align:top;horizontal-align:right;background-color:#222222;" />
+		<Panel id="show_screen_info_lua" class="invisible" style="width:250px;height:40px;margin-top:50px;padding-top:10px;padding-left:10px;vertical-align:top;horizontal-align:right;background-color:#222222;" />
+	</Panel>
+</root>

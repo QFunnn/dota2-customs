@@ -1,0 +1,338 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.invisible
+{
+	visibility:collapse;
+}
+
+#panel_award
+{
+	width:700px;
+	height:450px;
+	margin-left:610px;
+	margin-top:315px;
+	transition-property: opacity,position,transform;
+	transition-duration: 0.3s;
+	position: 0px -100px 0px;
+	transform: scale3d( 1.5, 1.5, 1.5);
+	opacity: 0;
+	z-index: 30000;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+}
+
+#panel_award.show
+{
+	position: 0px 0px 0px;
+	transform: scale3d( 1, 1, 1);
+	opacity: 1;
+}
+
+#panel_award_title
+{
+	width:700px;
+	height:80px;
+	background-color: #666;
+	margin-top:120px;
+	z-index:300;
+}
+
+#panel_award_bgimg
+{
+	width:700px;
+	height:450px;
+	z-index:200;
+}
+
+#panel_award_bgimg_zhezhao
+{
+	width:700px;
+	height:450px;
+	z-index:250;
+	background-color: rgba(0,0,0,0.8);
+}
+
+#panel_award_emotion
+{
+	width:250px;
+	height:250px;
+	z-index:600;
+	margin-top:50px;
+	margin-left:50px;
+}
+
+#panel_award_img
+{
+	width:150px;
+	height:150px;
+	z-index:500;
+	margin-top:85px;
+	margin-left:60px;
+}
+
+#panel_award_img.small
+{
+	width:150px;
+	height:150px;
+	margin-top:85px;
+	margin-left:60px;
+	z-index:700;
+	opacity-mask:url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+}
+
+#panel_award_img.big
+{
+	width:250px;
+	height:250px;
+	margin-top:50px;
+	margin-left:50px;
+	z-index:700;
+	opacity-mask:url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+}
+
+#panel_award_img_hero
+{
+	width:180px;
+	height:250px;
+	z-index:500;
+	margin-top:60px;
+	margin-left:50px;
+	background-color: #333;
+	border-radius:20px;
+	box-shadow: #000000ff 0px 0px 10px 0px;
+}
+
+#panel_award_title_count
+{
+	font-size:36px;
+	color:#ffffff;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	margin-top:137px;
+	z-index:600;
+	margin-left:240px;
+	text-align:left;
+	width:200px;
+}
+
+#panel_award_title_text
+{
+	font-size:40px;
+	color:#ffffff;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	margin-top:136px;
+	z-index:600;
+	margin-right:50px;
+	horizontal-align: right;
+}
+
+#panel_award_title_subtitle
+{
+	font-size:26px;
+	color:#bbb;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	margin-top:80px;
+	z-index:600;
+	margin-right:50px;
+	horizontal-align: right;
+}
+
+#panel_award_title_desc
+{
+	font-size:22px;
+	color:#bbb;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	margin-top:260px;
+	z-index:600;
+	margin-right:50px;
+	horizontal-align: right;
+}
+
+#panel_award_tag_container
+{
+	width:400px;
+	height:40px;
+	margin-top:210px;
+	z-index:600;
+	margin-left:300px;
+	margin-right: 45px;
+}
+
+#panel_award_ok
+{
+	width:150px;
+	height:60px;
+	background-color:#333;
+	margin-top:340px;
+	margin-left:500px;
+	z-index:500;
+}
+
+#panel_award_ok:hover
+{
+	background-color:#666;
+}
+
+#panel_award_ok_text
+{
+	font-size:26px;
+	color:#ffffff;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	horizontal-align:center;
+	margin-top:0px;
+}
+
+#msg_box
+{
+	min-width:400px;
+	min-height:160px;
+	max-width:600px;
+	max-height:400px;
+	horizontal-align:center;
+	vertical-align: center;
+	transition-property:transform;
+	transition-duration:0.3s;
+	z-index:40000;
+	padding:20px;
+	flow-children:down;
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8dc0f288 ), color-stop( 0.00, #0e1318ee), to( #0e1318ff ) );
+}
+
+#msg_box_image
+{
+	horizontal-align: center;
+	margin-bottom:20px;
+	opacity-mask:url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+	max-height:250px;
+	max-width:250px;
+}
+
+#msg_box_text
+{
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-size:26px;
+	color:#ffffff;
+	line-height:40px;
+	text-align:center;
+	padding-left:40px;
+	padding-right:40px;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#confirm_box
+{
+	min-width:400px;
+	min-height:150px;
+	horizontal-align: center;
+	vertical-align: center;
+	transition-duration:0.5s;
+	z-index:400;
+	padding:20px;
+	padding-left:30px;
+	padding-right:30px;
+	flow-children:down;
+	background-size: 100% 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8dc0f2dd ), color-stop( 0.00, #0e1318ee), to( #0e1318ff ) );
+}
+
+.confirmtext
+{
+	padding:10px;
+	horizontal-align: center;
+}
+
+.confirmtext Label
+{
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	line-height:40px;
+	color:#ffffff;
+	text-align:center;
+	vertical-align: center;
+	font-size:24px;
+}
+
+#confirm_content
+{
+	flow-children:right;
+	horizontal-align: center;
+	margin-bottom:20px;
+}
+
+.confirmbtn
+{
+	height:75px;
+	line-height:60px;
+	flow-children:right;
+	horizontal-align: middle;
+	padding:10px;
+	padding-top:0px;
+}
+
+.confirmres
+{
+	height:60px;
+	width:60px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-align:center;
+	color:#ffffff;
+	font-size:24px;
+	background-image: url("s2r://panorama/images/custom_game/tick_png.vtex");
+	background-size: 50% 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property:transform;
+	transition-duration:0.2s;
+}
+
+.confirmres:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5);
+}
+
+.confirmrej
+{
+	height:60px;
+	width:60px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-align:center;
+	margin-left:50px;
+	color:#ffffff;
+	font-size:32px;
+	background-image: url("s2r://panorama/images/custom_game/cross_png.vtex");
+	background-size: 50% 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property:transform;
+	transition-duration:0.2s;
+}
+
+.confirmrej:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5);
+}
+
+.unavailable
+{
+	brightness: 0.2;
+	saturation: 0;
+}
+
+.panel_with_border
+{
+	horizontal-align:center;
+	background-image: url("s2r://panorama/images/custom_game/ui/ability_bg_psd2_png.vtex");
+	background-size: 100% 100%;
+	box-shadow: black 0px 0px 4px 0px;
+	border: 1px solid #5e6869;
+}

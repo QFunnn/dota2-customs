@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf50:version{da6429d4-166f-47ed-8f47-45d5c5f1bd9f} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 400.0, 0.0, -400.0 ]
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "flame_attachment"
+					m_entityName = "parent"
+				},
+			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/snow2022/sigil_base.vpcf"
+		},
+	]
+}

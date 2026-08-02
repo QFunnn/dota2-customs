@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/config.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/window.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/config.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/window.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;z-index:250;" hittest="false">
+		<Panel id="panel_config" class="panel_with_border">
+			<Panel id="panel_loot_box_title">
+				<Label id="text_panel_loot_box" text="#text_icon_config" />
+				<Image id="image_close" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="CloseConfig();" />
+			</Panel>
+			<Panel class="panel_config_row">
+				<ToggleButton id="toggle_combine" selected="false" text="#auto_combine_hand" onactivate="ToggleCombine();" />
+			</Panel>
+			<Panel class="panel_config_row">
+				<ToggleButton id="toggle_select" selected="false" text="#left_click_select_chess" onactivate="ToggleSelect();" />
+			</Panel>
+			<Panel class="panel_config_row">
+				<ToggleButton id="toggle_auto_ai" selected="false" text="#auto_ai" onactivate="ToggleAutoAI();" />
+			</Panel>
+			<Panel class="panel_button" style="width:60%;" onactivate="OnTP();">
+				<Panel>
+					<DOTAEmoticon emoticonid="63" animating="true" />
+					<Label text="#text_config_courier_tp" style="margin-left:5px;" />
+				</Panel>
+			</Panel>
+			<Panel id="button_liuju" class="panel_button unavailable" style="width:60%;" onactivate="OnSuggestLiuju();">
+				<Panel>
+					<DOTAEmoticon emoticonid="175" animating="true" />
+					<Label id="txt_liuju" text="#txt_liuju" style="margin-left:5px;" />
+				</Panel>
+			</Panel>
+			<Panel class="panel_button" style="width:60%;" onactivate="OnGGSimida();">
+				<Panel>
+					<DOTAEmoticon emoticonid="175" animating="true" />
+					<Label id="text_config_courier_gg" text="#text_config_courier_gg" style="margin-left:5px;" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_mima">
+			<Label id="text_mima" text="" />
+		</Panel>
+	</Panel>
+</root>

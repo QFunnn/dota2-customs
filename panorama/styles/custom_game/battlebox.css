@@ -1,0 +1,137 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#panel_battle_box_outer
+{
+	horizontal-align: left;
+	vertical-align: center;
+	margin-top: 300px;
+	width:400px;
+	height:600px;
+	margin-left:100px;
+}
+
+#panel_battle_box_guest
+{
+	width:400px;
+	height:150px;
+	margin-top:150px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8dc0f2bb ), color-stop( 0.00, #0e1318ee), to( #0e1318ff ) );
+	border-top:1px solid #8dc0f205;
+	transition-property: position,opacity,transform;
+	transition-duration: 1s;
+	opacity: 0;
+	position: 0px -200px 0px;
+	transform: scale3d( 1,1,1);
+}
+
+#panel_battle_box_guest.show
+{
+	opacity: 1;
+	position: 0px 0px 0px;
+	transform: scale3d( 1, 1, 1);
+}
+
+#panel_battle_box_host
+{
+	width:400px;
+	height:150px;
+	margin-top:300px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #8dc0f2bb ), color-stop( 0.00, #0e1318ee), to( #0e1318ff ) );
+	border-top:1px solid #8dc0f205;
+	transition-property: position,opacity,transform;
+	transition-duration: 1s;
+	opacity: 0;
+	position: 0px 200px 0px;
+	transform: scale3d( 1,1,1);
+}
+
+#panel_battle_box_host.show
+{
+	opacity: 1;
+	position: 0px 0px 0px;
+	transform: scale3d( 1, 1, 1);
+}
+
+#panel_battle_box_guest_title
+{
+	width:100%;
+	height:60px;
+	background-color: red;
+	margin-top: 0px;
+}
+
+#panel_battle_box_host_title
+{
+	width:100%;
+	height:60px;
+	background-color: blue;
+	margin-top: 90px;
+}
+
+#panel_battle_box_guest_content
+{
+	width:100%;
+	height:90px;
+	margin-top: 60px;
+	border:1px solid #ffffff44;
+	flow-children: right;
+}
+
+#panel_battle_box_host_content
+{
+	width:100%;
+	height:90px;
+	margin-top: 0px;
+	border:1px solid #ffffff44;
+	flow-children: right;
+}
+
+#panel_battle_box_guest_content_inner
+{
+	height: 80px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: right;
+}
+
+#panel_battle_box_host_content_inner
+{
+	height: 80px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.panel_battle_box_item
+{
+	height:80px;
+	margin:5px;
+	flow-children:down;
+}
+
+.panel_battle_box_item_title
+{
+	horizontal-align:center;
+	font-size: 16px;
+	color: #888;
+	margin-top:5px;
+}
+
+.panel_battle_box_item_text
+{
+	horizontal-align:center;
+	font-size: 28px;
+	color: #ddd;
+	margin-top:3px;
+	vertical-align: center;
+}
