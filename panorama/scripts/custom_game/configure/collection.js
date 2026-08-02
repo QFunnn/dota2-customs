@@ -1,0 +1,777 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().collection = {
+	"410001": {
+		id: 410001,
+		name: "裂生毒牙",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			exp_gain_amount: 0.1
+		},
+		hide: 0
+	},
+	"410002": {
+		id: 410002,
+		name: "蜕生逆鳞",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			health: 1
+		},
+		hide: 0
+	},
+	"410003": {
+		id: 410003,
+		name: "无回渡桨",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			initial_gold: 1
+		},
+		hide: 0
+	},
+	"410004": {
+		id: 410004,
+		name: "赎魂银盘",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			attack_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410005": {
+		id: 410005,
+		name: "惑心琴拨",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			spell_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410006": {
+		id: 410006,
+		name: "遗羽礁石",
+		rarity: 1,
+		type: "collection",
+		attribute: {
+			gold_gain_amount: 0.1
+		},
+		hide: 0
+	},
+	"410007": {
+		id: 410007,
+		name: "七弦琴",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			freeze_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410008": {
+		id: 410008,
+		name: "悔恨之石",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			poison_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410009": {
+		id: 410009,
+		name: "魅蛇双镯",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			lightning_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410010": {
+		id: 410010,
+		name: "双尾 项链",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			bleed_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410011": {
+		id: 410011,
+		name: "百首号角",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			holy_shield_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410012": {
+		id: 410012,
+		name: "万魔手套",
+		rarity: 2,
+		type: "collection",
+		attribute: {
+			blade_damage_boost: 0.1
+		},
+		hide: 0
+	},
+	"410013": {
+		id: 410013,
+		name: "丰饶种子",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			physical_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410014": {
+		id: 410014,
+		name: "麦穗头冠",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			magical_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410015": {
+		id: 410015,
+		name: "处刑之镰",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			elite_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410016": {
+		id: 410016,
+		name: "死亡面纱",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			melee_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410017": {
+		id: 410017,
+		name: "索心长弓",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			backstab_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410018": {
+		id: 410018,
+		name: "神谕纺锤",
+		rarity: 3,
+		type: "collection",
+		attribute: {
+			ranged_damage_boost: 0.2
+		},
+		hide: 0
+	},
+	"410019": {
+		id: 410019,
+		name: "复仇之刃",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			barrier_damage_boost: 0.4
+		},
+		hide: 0
+	},
+	"410020": {
+		id: 410020,
+		name: "缚罪短镰",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			spell_crit_damage_boost: 0.4
+		},
+		hide: 0
+	},
+	"410021": {
+		id: 410021,
+		name: "折磨之鞭",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			defense_intensity: 4
+		},
+		hide: 0
+	},
+	"410022": {
+		id: 410022,
+		name: "悔罪之镜",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			damage_intensity: 4
+		},
+		hide: 0
+	},
+	"410023": {
+		id: 410023,
+		name: "混沌亡铃",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			boss_damage_boost: 0.4
+		},
+		hide: 0
+	},
+	"410024": {
+		id: 410024,
+		name: "怨魂之戒",
+		rarity: 4,
+		type: "collection",
+		attribute: {
+			attack_crit_damage_boost: 0.4
+		},
+		hide: 0
+	},
+	"410025": {
+		id: 410025,
+		name: "苍穹王冠",
+		rarity: 5,
+		type: "collection",
+		attribute: {
+			crit_chance: 0.5
+		},
+		hide: 0
+	},
+	"410026": {
+		id: 410026,
+		name: "混沌棱镜",
+		rarity: 5,
+		type: "collection",
+		attribute: {
+			spell_crit_chance: 0.5
+		},
+		hide: 0
+	},
+	"410027": {
+		id: 410027,
+		name: "永恒火炬",
+		rarity: 5,
+		type: "collection",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0
+	},
+	"420000": {
+		id: 420000,
+		name: "水母",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			damage_intensity: 1
+		},
+		hide: 0,
+		model: "models/items/siren/naga_ti10_immortal_head/naga_ti10_immortal_jellyfish.vmdl",
+		weight_min: 0.2,
+		weight_max: 1.5,
+		length_min: 20,
+		length_max: 40
+	},
+	"420001": {
+		id: 420001,
+		name: "橙色斗鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			defense_intensity: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_0.vmdl",
+		weight_min: 0.1,
+		weight_max: 0.2,
+		length_min: 5,
+		length_max: 8
+	},
+	"420002": {
+		id: 420002,
+		name: "黄绿斗鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			poison_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_1.vmdl",
+		weight_min: 0.1,
+		weight_max: 0.22,
+		length_min: 5,
+		length_max: 9
+	},
+	"420003": {
+		id: 420003,
+		name: "玫红斗鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			lightning_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_2.vmdl",
+		weight_min: 0.12,
+		weight_max: 0.25,
+		length_min: 6,
+		length_max: 9
+	},
+	"420004": {
+		id: 420004,
+		name: "粉红紫斗鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			holy_shield_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_3.vmdl",
+		weight_min: 0.12,
+		weight_max: 0.28,
+		length_min: 6,
+		length_max: 10
+	},
+	"420005": {
+		id: 420005,
+		name: "霓虹孔雀鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			blade_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_4.vmdl",
+		weight_min: 0.1,
+		weight_max: 0.15,
+		length_min: 3,
+		length_max: 5
+	},
+	"420006": {
+		id: 420006,
+		name: "蓝魔鬼雀鲷",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			freeze_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_5.vmdl",
+		weight_min: 0.1,
+		weight_max: 0.18,
+		length_min: 8,
+		length_max: 12
+	},
+	"420007": {
+		id: 420007,
+		name: "黄纹海金鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			gold_gain_amount: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_6.vmdl",
+		weight_min: 0.15,
+		weight_max: 0.35,
+		length_min: 12,
+		length_max: 18
+	},
+	"420008": {
+		id: 420008,
+		name: "花斑海金鱼",
+		rarity: 1,
+		type: "fish",
+		attribute: {
+			exp_gain_amount: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_01/reef_fish_01_7.vmdl",
+		weight_min: 0.18,
+		weight_max: 0.45,
+		length_min: 14,
+		length_max: 20
+	},
+	"420009": {
+		id: 420009,
+		name: "银龙鱼",
+		rarity: 2,
+		type: "fish",
+		attribute: {
+			splash_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_02/reef_fish_02_0.vmdl",
+		weight_min: 2.5,
+		weight_max: 6.5,
+		length_min: 60,
+		length_max: 100
+	},
+	"420010": {
+		id: 420010,
+		name: "红鼓鱼",
+		rarity: 2,
+		type: "fish",
+		attribute: {
+			backstab_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_02/reef_fish_02_1.vmdl",
+		weight_min: 5,
+		weight_max: 18,
+		length_min: 50,
+		length_max: 100
+	},
+	"420011": {
+		id: 420011,
+		name: "虾虎鱼",
+		rarity: 2,
+		type: "fish",
+		attribute: {
+			barrier_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_02/reef_fish_02_2.vmdl",
+		weight_min: 0.1,
+		weight_max: 0.3,
+		length_min: 10,
+		length_max: 20
+	},
+	"420012": {
+		id: 420012,
+		name: "七彩雷龙",
+		rarity: 2,
+		type: "fish",
+		attribute: {
+			ring_damage_boost: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/reef_fish_02/reef_fish_02_3.vmdl",
+		weight_min: 0.6,
+		weight_max: 2.5,
+		length_min: 35,
+		length_max: 60
+	},
+	"420013": {
+		id: 420013,
+		name: "狮子鱼",
+		rarity: 3,
+		type: "fish",
+		attribute: {
+			attack_crit_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/rare_fish/rare_fish_1/rare_fish_1.vmdl",
+		weight_min: 0.4,
+		weight_max: 1.2,
+		length_min: 25,
+		length_max: 40
+	},
+	"420014": {
+		id: 420014,
+		name: "鬼头刀",
+		rarity: 3,
+		type: "fish",
+		attribute: {
+			spell_crit_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/rare_fish/rare_fish_2/rare_fish_2.vmdl",
+		weight_min: 7,
+		weight_max: 25,
+		length_min: 80,
+		length_max: 150
+	},
+	"420015": {
+		id: 420015,
+		name: "雪花魟",
+		rarity: 3,
+		type: "fish",
+		attribute: {
+			attack_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/rare_fish/rare_fish_3/rare_fish_3.vmdl",
+		weight_min: 2.5,
+		weight_max: 12,
+		length_min: 35,
+		length_max: 80
+	},
+	"420016": {
+		id: 420016,
+		name: "巨骨舌鱼",
+		rarity: 3,
+		type: "fish",
+		attribute: {
+			spell_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/rare_fish/rare_fish_4/rare_fish_4.vmdl",
+		weight_min: 45,
+		weight_max: 140,
+		length_min: 150,
+		length_max: 250
+	},
+	"420017": {
+		id: 420017,
+		name: "绿海龟",
+		rarity: 3,
+		type: "fish",
+		attribute: {
+			initial_gold: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/rare_fish/rare_fish_5/rare_fish_5.vmdl",
+		weight_min: 90,
+		weight_max: 220,
+		length_min: 80,
+		length_max: 130
+	},
+	"420018": {
+		id: 420018,
+		name: "魟鱼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			physical_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_01/epic_fish_01.vmdl",
+		weight_min: 12,
+		weight_max: 60,
+		length_min: 100,
+		length_max: 220
+	},
+	"420019": {
+		id: 420019,
+		name: "长吻帆蜥鱼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			magical_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_02/epic_fish_02.vmdl",
+		weight_min: 6,
+		weight_max: 22,
+		length_min: 90,
+		length_max: 160
+	},
+	"420020": {
+		id: 420020,
+		name: "刺河豚",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			minion_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_03/epic_fish_03.vmdl",
+		weight_min: 0.8,
+		weight_max: 4.5,
+		length_min: 25,
+		length_max: 60
+	},
+	"420021": {
+		id: 420021,
+		name: "蓝枪鱼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			elite_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_04/epic_fish_04.vmdl",
+		weight_min: 120,
+		weight_max: 500,
+		length_min: 180,
+		length_max: 400
+	},
+	"420022": {
+		id: 420022,
+		name: "翻车鱼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			boss_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_05/epic_fish_05.vmdl",
+		weight_min: 300,
+		weight_max: 1500,
+		length_min: 180,
+		length_max: 330
+	},
+	"420023": {
+		id: 420023,
+		name: "独角鲸",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			attackspeed: 1
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_01/legend_fish_01.vmdl",
+		weight_min: 800,
+		weight_max: 1600,
+		length_min: 300,
+		length_max: 500
+	},
+	"420024": {
+		id: 420024,
+		name: "深渊鲨",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			cooldown_reduction: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_02/legend_fish_02.vmdl",
+		weight_min: 250,
+		weight_max: 800,
+		length_min: 250,
+		length_max: 450
+	},
+	"420025": {
+		id: 420025,
+		name: "娃娃鱼",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_03/legend_fish_03.vmdl",
+		weight_min: 18,
+		weight_max: 45,
+		length_min: 100,
+		length_max: 180
+	},
+	"420026": {
+		id: 420026,
+		name: "猫猫鱼",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_08/legend_fish_08.vmdl",
+		weight_min: 30,
+		weight_max: 85,
+		length_min: 75,
+		length_max: 135
+	},
+	"420027": {
+		id: 420027,
+		name: "炎纹胖喵鱼",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_05/legend_fish_05.vmdl",
+		weight_min: 35,
+		weight_max: 95,
+		length_min: 80,
+		length_max: 145
+	},
+	"420028": {
+		id: 420028,
+		name: "虹渊环蝶鱼",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_09/legend_fish_09.vmdl",
+		weight_min: 18,
+		weight_max: 65,
+		length_min: 120,
+		length_max: 220
+	},
+	"420029": {
+		id: 420029,
+		name: "冥潮古鲸",
+		rarity: 5,
+		type: "fish",
+		attribute: {
+			damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/legend_fish/legend_fish_07/legend_fish_07.vmdl",
+		weight_min: 1800,
+		weight_max: 6500,
+		length_min: 500,
+		length_max: 900
+	},
+	"420030": {
+		id: 420030,
+		name: "吸血鬼乌贼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			minion_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_08/epic_fish_08.vmdl",
+		weight_min: 2,
+		weight_max: 10,
+		length_min: 45,
+		length_max: 100
+	},
+	"420031": {
+		id: 420031,
+		name: "熔脉刺尾鱼",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			elite_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_07/epic_fish_07.vmdl",
+		weight_min: 6,
+		weight_max: 30,
+		length_min: 70,
+		length_max: 140
+	},
+	"420032": {
+		id: 420032,
+		name: "月纱水母",
+		rarity: 4,
+		type: "fish",
+		attribute: {
+			boss_damage_boost: 0.5
+		},
+		hide: 0,
+		model: "models/eom/props/fish/epic_fish/epic_fish_06/epic_fish_06.vmdl",
+		weight_min: 12,
+		weight_max: 60,
+		length_min: 120,
+		length_max: 300
+	}
+};

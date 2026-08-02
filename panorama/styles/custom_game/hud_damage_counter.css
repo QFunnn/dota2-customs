@@ -1,0 +1,1312 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	overflow: noclip;
+}
+
+#DamageCounterRoot
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+#DamageCounterDock
+{
+	align: right center;
+	width: 514px;
+	height: 86%;
+	max-height: 920px;
+	flow-children: right;
+	overflow: noclip;
+}
+
+#DamageCounterViewport
+{
+	width: 486px;
+	height: 100%;
+	overflow: noclip;
+}
+
+#DamageCounterToggle
+{
+	width: 28px;
+	height: 116px;
+	vertical-align: center;
+	margin-top: 24px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3656a8), to(#203261));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #6a8ef0;
+	box-shadow: fill #000000aa 0px 0px 12px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.14s;
+	transition-timing-function: ease-in-out;
+}
+
+#DamageCounterToggle:hover
+{
+	brightness: 1.2;
+}
+
+#DamageCounterToggle:active
+{
+	transform: translateX(-2px);
+}
+
+.DamageCounterToggleArrow
+{
+	align: center center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #f2f6ff;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+#DamageCounterPanel
+{
+	width: 486px;
+	height: 100%;
+	flow-children: down;
+	margin-right: -1px;
+	padding: 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0f1320f4), to(#0a0d14f2));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2d3652;
+	border-radius: 16px;
+	box-shadow: fill #000000dd 0px 0px 22px 0px;
+	transition-property: transform, opacity;
+	transition-duration: 0.22s;
+	transition-timing-function: ease-in-out;
+}
+
+#DamageCounterPanel.Collapsed
+{
+	opacity: 0;
+	transform: translateX(486px);
+}
+
+.CounterCard
+{
+	width: 100%;
+	background-color: #171d2bf2;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2a334d;
+	border-radius: 14px;
+	box-shadow: fill #00000055 0px 0px 10px 0px;
+}
+
+#DamageCounterHeader
+{
+	padding: 14px;
+	flow-children: down;
+	margin-bottom: 10px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#19233bf7), to(#121927f7));
+}
+
+.HeaderTitleBlock
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 12px;
+}
+
+.HeaderIconWrap
+{
+	width: 34px;
+	height: 34px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#4f6fe9), to(#7998ff));
+	margin-right: 10px;
+}
+
+.HeaderIcon
+{
+	align: center center;
+	font-size: 18px;
+	color: #f8fbff;
+}
+
+.HeaderTextWrap
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.HeaderTitle
+{
+	font-size: 19px;
+	font-weight: bold;
+	color: #eef3ff;
+	letter-spacing: 0.5px;
+}
+
+.HeaderSubtitle
+{
+	margin-top: 2px;
+	font-size: 12px;
+	color: #7f8aa9;
+}
+
+.HeaderStatsRow
+{
+	width: 100%;
+	flow-children: right-wrap;
+}
+
+.StatChip
+{
+	width: 32%;
+	margin-right: 8px;
+	padding: 9px 10px;
+	flow-children: down;
+	border-radius: 10px;
+	background-color: #131927;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2b3350;
+}
+
+.StatChip.Gold
+{
+	margin-right: 0px;
+}
+
+.StatChipValue
+{
+	font-size: 18px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #eef3ff;
+}
+
+.StatChipLabel
+{
+	margin-top: 2px;
+	font-size: 11px;
+	color: #7f8aa9;
+}
+
+.StatChip.Blue .StatChipValue
+{
+	color: #75a3ff;
+}
+
+.StatChip.Cyan .StatChipValue
+{
+	color: #7de4ff;
+}
+
+.StatChip.Gold .StatChipValue
+{
+	color: #f0c35b;
+}
+
+#DamageCounterBody
+{
+	width: 100%;
+	height: fill-parent-flow(7);
+	flow-children: right;
+	margin-bottom: 10px;
+	background-color: none;
+	border-width: 0px;
+	box-shadow: none;
+}
+
+#DamageCounterSidebar
+{
+	width: 154px;
+	height: 100%;
+	padding: 10px;
+	flow-children: down;
+	margin-right: 10px;
+}
+
+.SectionEyebrow
+{
+	font-size: 11px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+	color: #68718d;
+	margin-bottom: 8px;
+}
+
+.OverviewButton
+{
+	width: 100%;
+	padding: 8px;
+	flow-children: right;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #00000000;
+	background-color: #141a27;
+	transition-property: brightness, border;
+	transition-duration: 0.14s;
+}
+
+.OverviewButton.Active
+{
+	background-color: #1f2a41;
+	border-color: #5473c9;
+}
+
+.OverviewButton:hover
+{
+	brightness: 1.15;
+}
+
+.OverviewButtonIcon
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 8px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#f0c35b), to(#f29c4d));
+}
+
+.OverviewButtonIcon Label
+{
+	align: center center;
+	color: #211300;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.OverviewButtonText
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.OverviewButtonTitle
+{
+	font-size: 13px;
+	font-weight: semi-bold;
+	color: #f1f5fe;
+}
+
+.OverviewButtonSubtitle
+{
+	font-size: 11px;
+	color: #7c87a6;
+}
+
+.SidebarDivider
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	background-color: #29324a;
+}
+
+.SidebarScroll
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	min-height: 0px;
+	flow-children: down;
+	overflow: squish scroll;
+	padding-right: 4px;
+}
+
+.PlayerButton
+{
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 4px;
+	flow-children: right;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #00000000;
+	background-color: #151b28;
+	transition-property: brightness, border;
+	transition-duration: 0.14s;
+}
+
+.PlayerButton.Active
+{
+	background-color: #1f2a41;
+	border-color: #5473c9;
+}
+
+.PlayerButton:hover
+{
+	brightness: 1.15;
+}
+
+.PlayerAvatar
+{
+	width: 34px;
+	height: 34px;
+	border-radius: 17px;
+	margin-right: 8px;
+}
+
+.PlayerAvatar Label
+{
+	align: center center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.PlayerRankBadge
+{
+	align: right bottom;
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	background-color: #0d1321;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #cad5ef;
+}
+
+.PlayerRankBadge Label
+{
+	align: center center;
+	font-size: 9px;
+	font-weight: bold;
+	color: #cad5ef;
+}
+
+.PlayerButtonMain
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	vertical-align: center;
+}
+
+.PlayerButtonTopRow
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.PlayerName
+{
+	width: fill-parent-flow(1);
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #eef3ff;
+	text-overflow: shrink;
+}
+
+.PlayerValue
+{
+	margin-left: 6px;
+	font-size: 11px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	vertical-align: center;
+}
+
+.PlayerMeta
+{
+	margin-top: 1px;
+	font-size: 10px;
+	color: #7e88a5;
+	font-family: monospaceNumbersFont;
+}
+
+.ProgressTrack
+{
+	width: 100%;
+	height: 4px;
+	margin-top: 4px;
+	background-color: #2a3347;
+	border-radius: 2px;
+}
+
+.ProgressFill
+{
+	height: 100%;
+	border-radius: 2px;
+}
+
+#DamageCounterContentShell
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	min-width: 0px;
+	padding: 0px;
+}
+
+#DamageCounterContent
+{
+	width: 100%;
+	height: 100%;
+	min-height: 0px;
+	padding: 12px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.OverviewView,.PlayerView
+{
+	width: 100%;
+	min-width: 0px;
+	flow-children: down;
+}
+
+.OverviewSummaryRow
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-bottom: 10px;
+}
+
+.SummaryCard
+{
+	width: 100%;
+	margin-right: 8px;
+	padding: 12px;
+	flow-children: right;
+	border-radius: 12px;
+	background-color: #141b2a;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2a334d;
+	margin-bottom: 8px;
+}
+
+.SummaryCard.Gold
+{
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.SummaryIcon
+{
+	width: 34px;
+	height: 34px;
+	margin-right: 10px;
+	border-radius: 8px;
+	background-color: #202a40;
+}
+
+.SummaryIcon Label
+{
+	align: center center;
+	font-size: 17px;
+	font-weight: bold;
+	color: #eef3ff;
+}
+
+.SummaryText
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.SummaryValue
+{
+	font-size: 18px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #eef3ff;
+	text-overflow: shrink;
+}
+
+.SummaryLabel
+{
+	font-size: 11px;
+	color: #7f8aa9;
+}
+
+.SummaryCard.Blue .SummaryValue
+{
+	color: #75a3ff;
+}
+
+.SummaryCard.Cyan .SummaryValue
+{
+	color: #7de4ff;
+}
+
+.SummaryCard.Gold .SummaryValue
+{
+	color: #f0c35b;
+}
+
+.SectionHeader
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 2px;
+	margin-bottom: 10px;
+}
+
+.SectionHeaderLeft
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+}
+
+.SectionIconBox
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 8px;
+	border-radius: 6px;
+	background-color: #2c3752;
+}
+
+.SectionIconBox Label
+{
+	align: center center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #f0c35b;
+}
+
+.SectionTitle
+{
+	vertical-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #eef3ff;
+}
+
+.SectionBadge
+{
+	vertical-align: center;
+	padding: 4px 9px;
+	border-radius: 12px;
+	background-color: #24314b;
+	font-size: 11px;
+	font-weight: semi-bold;
+	color: #75a3ff;
+}
+
+.OverviewRankList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.RankRow
+{
+	width: 100%;
+	flow-children: down;
+	padding: 8px 10px;
+	margin-bottom: 4px;
+	border-radius: 10px;
+	background-color: #151c2a;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #20283d;
+}
+
+.RankRowTop
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.RankRowBottom
+{
+	width: 100%;
+	margin-top: 8px;
+}
+
+.RankIndex,.CategoryRank,.TagRank
+{
+	width: 24px;
+	height: 24px;
+	margin-right: 10px;
+	border-radius: 12px;
+	background-color: #252e42;
+}
+
+.RankIndex Label,.CategoryRank Label,.TagRank Label
+{
+	align: center center;
+	font-size: 11px;
+	font-weight: bold;
+	color: #aab6d4;
+}
+
+.RankIndex.Gold,.CategoryRank.Gold,.TagRank.Gold
+{
+	background-color: #4f3c13;
+}
+
+.RankIndex.Gold Label,.CategoryRank.Gold Label,.TagRank.Gold Label
+{
+	color: #f0c35b;
+}
+
+.RankIndex.Silver,.CategoryRank.Silver,.TagRank.Silver
+{
+	background-color: #31404e;
+}
+
+.RankIndex.Silver Label,.CategoryRank.Silver Label,.TagRank.Silver Label
+{
+	color: #c7d2db;
+}
+
+.RankIndex.Bronze,.CategoryRank.Bronze,.TagRank.Bronze
+{
+	background-color: #4b3024;
+}
+
+.RankIndex.Bronze Label,.CategoryRank.Bronze Label,.TagRank.Bronze Label
+{
+	color: #c98c61;
+}
+
+.RankAvatar
+{
+	width: 34px;
+	height: 34px;
+	margin-right: 10px;
+	border-radius: 17px;
+}
+
+.RankAvatar Label
+{
+	align: center center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.RankInfo
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.RankName
+{
+	font-size: 13px;
+	font-weight: semi-bold;
+	color: #eef3ff;
+}
+
+.RankMeta
+{
+	margin-top: 1px;
+	font-size: 10px;
+	color: #7f8aa9;
+	text-overflow: shrink;
+}
+
+.RankBarTrack,.CategoryProgressTrack
+{
+	width: 100%;
+	height: 5px;
+	vertical-align: center;
+	background-color: #2b3448;
+	border-radius: 3px;
+}
+
+.RankBarFill,.CategoryProgressFill
+{
+	height: 100%;
+	border-radius: 3px;
+}
+
+.RankValueWrap
+{
+	flow-children: down;
+	margin-left: 10px;
+	vertical-align: center;
+	min-width: 70px;
+}
+
+.RankValue,.CategoryValue,.TagValue,.DetailStatValue
+{
+	font-size: 13px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-align: right;
+}
+
+.RankValueSub,.CategoryValueSub,.TagValueSub,.DetailStatLabel
+{
+	margin-top: 1px;
+	font-size: 9px;
+	color: #7f8aa9;
+	text-align: right;
+}
+
+.DetailHeroCard
+{
+	width: 100%;
+	padding: 10px 12px;
+	height: 120px;
+	flow-children: down;
+	border-radius: 14px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#1c2741), to(#141a28));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #39538b;
+}
+
+.DetailHeaderRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 8px;
+}
+
+.DetailAvatar
+{
+	width: 42px;
+	height: 42px;
+	border-radius: 21px;
+	margin-right: 10px;
+}
+
+.DetailAvatar Label
+{
+	align: center center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.DetailInfoWrap
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.DetailName
+{
+	font-size: 17px;
+	font-weight: bold;
+	color: #eef3ff;
+}
+
+.DetailSub
+{
+	margin-top: 1px;
+	font-size: 11px;
+	color: #91a0c6;
+}
+
+.DetailStatsRow
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-right: -6px;
+}
+
+.DetailStat
+{
+	width: 48%;
+	min-width: 84px;
+	padding: 6px 8px;
+	margin-right: 6px;
+	flow-children: down;
+	border-radius: 10px;
+	background-color: #121927d9;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2b3550;
+}
+
+.DetailStat.Blue .DetailStatValue
+{
+	color: #75a3ff;
+}
+
+.DetailStat.Cyan .DetailStatValue
+{
+	color: #7de4ff;
+}
+
+.DetailStat.Green .DetailStatValue
+{
+	color: #63d587;
+}
+
+.DetailStat.Gold .DetailStatValue
+{
+	color: #f0c35b;
+}
+
+.TabBar
+{
+	width: 100%;
+	flow-children: right;
+	padding: 4px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	background-color: #121826;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2a334d;
+}
+
+.TabButton
+{
+	width: fill-parent-flow(1);
+	padding: 7px 14px;
+	margin-right: 4px;
+	border-radius: 8px;
+	background-color: #00000000;
+	transition-property: brightness, background-color;
+	transition-duration: 0.14s;
+}
+
+.TabButton.Active
+{
+	background-color: #1e2941;
+}
+
+.TabButton:hover
+{
+	brightness: 1.12;
+}
+
+.TabButton Label
+{
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #dce7ff;
+}
+
+.CategoryList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.CategoryCard
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 6px;
+	border-radius: 12px;
+	background-color: #141b29;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #24304a;
+}
+
+.CategoryCard.Expanded
+{
+	border-color: #4f6fe9;
+}
+
+.CategoryHeader
+{
+	width: 100%;
+	padding: 10px;
+	flow-children: down;
+	transition-property: brightness;
+	transition-duration: 0.14s;
+}
+
+.CategoryHeader:hover
+{
+	brightness: 1.14;
+}
+
+.CategoryHeaderTop
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CategoryHeaderBottom
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 8px;
+}
+
+.CategoryIcon
+{
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	border-radius: 8px;
+}
+
+.CategoryIcon Label
+{
+	align: center center;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.CategoryInfo
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.CategoryName
+{
+	font-size: 13px;
+	font-weight: semi-bold;
+}
+
+.CategoryMeta
+{
+	font-size: 10px;
+	color: #7f8aa9;
+}
+
+.CategoryProgressWrap,.TagProgressWrap
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+}
+
+.CategoryValueWrap,.TagValueWrap
+{
+	flow-children: down;
+	margin-left: 10px;
+	vertical-align: center;
+	min-width: 70px;
+}
+
+.CategoryChevron
+{
+	margin-left: 8px;
+	vertical-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	color: #8f9dc2;
+}
+
+.CategoryBarMeta
+{
+	margin-left: 8px;
+	vertical-align: center;
+	font-size: 10px;
+	color: #7f8aa9;
+}
+
+.TagList
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0px 8px 8px 8px;
+}
+
+.TagRow
+{
+	width: 100%;
+	flow-children: down;
+	padding: 8px 10px;
+	margin-top: 4px;
+	border-radius: 10px;
+	background-color: #101521;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #20283d;
+}
+
+.TagRowTop
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.TagRowBottom
+{
+	width: 100%;
+	margin-top: 7px;
+}
+
+.TagInfo
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.TagName
+{
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #eef3ff;
+}
+
+.TypePill
+{
+	margin-top: 4px;
+	padding: 2px 7px;
+	width: fit-children;
+	border-radius: 9px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.TypePill Label
+{
+	font-size: 10px;
+	font-weight: semi-bold;
+}
+
+#DamageCounterLog
+{
+	width: 100%;
+	height: fill-parent-flow(5);
+	min-height: 248px;
+	flow-children: down;
+	background-color: #10141ef3;
+}
+
+.LogHeader
+{
+	width: 100%;
+	flow-children: right-wrap;
+	padding: 10px 12px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #26304a;
+}
+
+.LogTitleWrap
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	vertical-align: center;
+}
+
+.LogDot
+{
+	width: 8px;
+	height: 8px;
+	margin-right: 8px;
+	vertical-align: center;
+	border-radius: 4px;
+	background-color: #63d587;
+}
+
+.LogTitle
+{
+	vertical-align: center;
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #dbe7ff;
+}
+
+.LogCount
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 11px;
+	color: #7f8aa9;
+}
+
+.LogActions
+{
+	flow-children: right;
+	horizontal-align: right;
+}
+
+.CounterReset
+{
+	margin-left: 6px;
+	padding: 4px 8px;
+	border-radius: 8px;
+	background-color: #1a2233;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2d3958;
+	transition-property: brightness;
+	transition-duration: 0.14s;
+}
+
+.CounterReset:hover
+{
+	brightness: 1.16;
+}
+
+.CounterReset Label
+{
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #dce7ff;
+}
+
+.LogActionButton
+{
+	margin-left: 6px;
+	padding: 4px 8px;
+	border-radius: 8px;
+	background-color: #1a2233;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2d3958;
+	transition-property: brightness;
+	transition-duration: 0.14s;
+}
+
+.LogActionButton:hover
+{
+	brightness: 1.16;
+}
+
+.LogActionButton Label
+{
+	font-size: 11px;
+	font-weight: semi-bold;
+	color: #dce7ff;
+}
+
+.LogScroll
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	min-height: 0px;
+	flow-children: down;
+	overflow: squish scroll;
+	padding: 6px 0px;
+}
+
+.LogRow
+{
+	width: 100%;
+	flow-children: down;
+	padding: 8px 12px;
+	border-left-style: solid;
+	border-left-width: 2px;
+	border-left-color: #00000000;
+	transition-property: background-color, border;
+	transition-duration: 0.12s;
+}
+
+.LogRow.NewEntry
+{
+	background-color: #182337;
+	border-left-color: #4f6fe9;
+}
+
+.LogRow:hover
+{
+	background-color: #171f31;
+}
+
+.LogHeaderRow,.LogTagRow
+{
+	width: 100%;
+	flow-children: right-wrap;
+}
+
+.LogTagRow
+{
+	margin-top: 4px;
+}
+
+.LogTime,.LogPlayer
+{
+	vertical-align: center;
+	font-size: 11px;
+	margin-right: 8px;
+	font-weight: semi-bold;
+}
+
+.LogTime
+{
+	color: #7f8aa9;
+	font-family: monospaceNumbersFont;
+	font-weight: normal;
+}
+
+.LogSource,.LogDamage
+{
+	vertical-align: center;
+	margin-right: 8px;
+	font-size: 11px;
+	font-weight: semi-bold;
+}
+
+.LogSource
+{
+	color: #dbe7ff;
+	text-overflow: shrink;
+	margin-right: 6px;
+}
+
+.LogTagRow
+{
+	margin-right: -6px;
+	padding-right: 6px;
+}
+
+.LogPill
+{
+	width: fit-children;
+	padding: 2px 7px;
+	margin-right: 6px;
+	border-radius: 9px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.LogPill Label
+{
+	font-size: 10px;
+	font-weight: semi-bold;
+}
+
+.LogDamage
+{
+	font-size: 12px;
+	font-family: monospaceNumbersFont;
+	min-width: 64px;
+}
+
+.EmptyLogState
+{
+	align: center center;
+	flow-children: down;
+}
+
+.EmptyLogTitle
+{
+	horizontal-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #dce7ff;
+}
+
+.EmptyLogDesc
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	font-size: 11px;
+	color: #7f8aa9;
+}

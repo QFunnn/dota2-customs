@@ -1,0 +1,1257 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().info_item_cosmetic = {
+	"1710000": {
+		id: 1710000,
+		name: "默认",
+		type: "BORDER",
+		rarity: "1",
+		default: 1
+	},
+	"1710001": {
+		id: 1710001,
+		name: "恶魔之眼",
+		type: "BORDER",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			final_damage: 1
+		},
+		effect: "privilege_idle_explore_043"
+	},
+	"1710002": {
+		id: 1710002,
+		name: "赛博时刻",
+		type: "BORDER",
+		rarity: "4",
+		attribute: {
+			damage_intensity: 1,
+			defense_intensity: 1
+		}
+	},
+	"1710003": {
+		id: 1710003,
+		name: "小恶魔",
+		type: "BORDER",
+		rarity: "4",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1710004": {
+		id: 1710004,
+		name: "金枝月羽",
+		type: "BORDER",
+		rarity: "4",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 10,
+			equip_rarity_chance: 10,
+			equip_drop_pct: 5
+		}
+	},
+	"1710005": {
+		id: 1710005,
+		name: "淘金者",
+		type: "BORDER",
+		rarity: "4",
+		hide: 1,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		}
+	},
+	"1710006": {
+		id: 1710006,
+		name: "至尊",
+		type: "BORDER",
+		rarity: "4",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1710007": {
+		id: 1710007,
+		name: "星辰（内部累充",
+		type: "BORDER",
+		rarity: "5",
+		is_sign: 1,
+		attribute: {
+			damage_intensity: 20,
+			defense_intensity: 20,
+			damage_intensity_boost: 2,
+			defense_intensity_boost: 2,
+			hero_damage_boost: 2,
+			final_damage: 2
+		},
+		particle: "particles/ui/game/ui_game_total_recharge_01_fx.vpcf"
+	},
+	"1711001": {
+		id: 1711001,
+		name: "渊瞳域主",
+		type: "TITLE",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			final_damage: 1
+		},
+		effect: "privilege_102"
+	},
+	"1711002": {
+		id: 1711002,
+		name: "烬冕之主",
+		type: "TITLE",
+		rarity: "5",
+		is_sign: 1,
+		attribute: {
+			damage_intensity: 30,
+			defense_intensity: 30,
+			damage_intensity_boost: 3,
+			defense_intensity_boost: 3,
+			hero_damage_boost: 3,
+			final_damage: 3
+		},
+		particle: "particles/ui/game/ui_game_total_recharge_fx.vpcf"
+	},
+	"1720001": {
+		id: 1720001,
+		name: "飞升残迹",
+		type: "HEAD",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 5,
+			final_damage: 2
+		},
+		effect: "privilege_030",
+		model: "models/eom/hero/items/grimstroke_head/grimstroke_head.vmdl"
+	},
+	"1720002": {
+		id: 1720002,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/supercourier_head/supercourier_head.vmdl"
+	},
+	"1720003": {
+		id: 1720003,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/meepo_head/meepo_head.vmdl"
+	},
+	"1720401": {
+		id: 1720401,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/slark_head_1.vmdl"
+	},
+	"1720402": {
+		id: 1720402,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/phantom_lancer_head_1.vmdl"
+	},
+	"1720403": {
+		id: 1720403,
+		name: "发条机冠",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/rattle_head_1.vmdl"
+	},
+	"1720404": {
+		id: 1720404,
+		name: "夜叉狐面",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 5,
+			final_damage: 2
+		},
+		model: "models/eom/hero/assaassin_props_1/riki_head_1.vmdl"
+	},
+	"1720405": {
+		id: 1720405,
+		name: "坚冰之眼",
+		type: "HEAD",
+		rarity: "3",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		},
+		model: "models/eom/hero/assaassin_props_1/drow_ranger_head_1.vmdl"
+	},
+	"1720406": {
+		id: 1720406,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/luna_head_1.vmdl"
+	},
+	"1720500": {
+		id: 1720500,
+		name: "制式猎冠",
+		type: "HEAD",
+		rarity: "1",
+		default: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/shooter_head.vmdl"
+	},
+	"1720501": {
+		id: 1720501,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/pangolier_head/pangolier_01_head.vmdl"
+	},
+	"1720502": {
+		id: 1720502,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/riki_head/riki_head.vmdl"
+	},
+	"1720503": {
+		id: 1720503,
+		name: "翎羽游侠",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/pangolier_head/pangolier_02_head.vmdl"
+	},
+	"1720504": {
+		id: 1720504,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/lion_head/lion_head.vmdl"
+	},
+	"1720505": {
+		id: 1720505,
+		name: "枪魂之帽",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 5,
+			final_damage: 2
+		},
+		model: "models/eom/hero/shooter_1/sniper_head/sniper_head.vmdl"
+	},
+	"1720506": {
+		id: 1720506,
+		name: "牛仔帽",
+		type: "HEAD",
+		rarity: "3",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		},
+		model: "models/eom/hero/shooter_props_1/lycan_head_1.vmdl"
+	},
+	"1720600": {
+		id: 1720600,
+		name: "初灵巫帽",
+		type: "HEAD",
+		rarity: "1",
+		default: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_1/witch_head.vmdl"
+	},
+	"1720601": {
+		id: 1720601,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/siren_head_1.vmdl"
+	},
+	"1720602": {
+		id: 1720602,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/death_prophet_head_1.vmdl"
+	},
+	"1720603": {
+		id: 1720603,
+		name: "霜晶法冠",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 5,
+			final_damage: 2
+		},
+		model: "models/eom/hero/witch_props_1/crystal_maiden_head_1.vmdl"
+	},
+	"1720604": {
+		id: 1720604,
+		name: "女巫帽",
+		type: "HEAD",
+		rarity: "3",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		},
+		model: "models/eom/hero/witch_props_1/keeper_of_the_light_head_1.vmdl"
+	},
+	"1720700": {
+		id: 1720700,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "1",
+		default: 1,
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_1/paladin_head.vmdl"
+	},
+	"1720701": {
+		id: 1720701,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/omniknight_head_1.vmdl"
+	},
+	"1720702": {
+		id: 1720702,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/axe_head_1.vmdl"
+	},
+	"1720703": {
+		id: 1720703,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/sven_head_2.vmdl"
+	},
+	"1720704": {
+		id: 1720704,
+		name: "龙誓战盔",
+		type: "HEAD",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 5,
+			final_damage: 2
+		},
+		model: "models/eom/hero/paladin_props_1/dragon_knight_head_1.vmdl"
+	},
+	"1720705": {
+		id: 1720705,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/sven_head_1.vmdl"
+	},
+	"1720706": {
+		id: 1720706,
+		name: "头饰",
+		type: "HEAD",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/axe_head_2.vmdl"
+	},
+	"1720707": {
+		id: 1720707,
+		name: "恶角面具",
+		type: "HEAD",
+		rarity: "3",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		},
+		model: "models/eom/hero/paladin_props_1/doom_head_1.vmdl"
+	},
+	"1730001": {
+		id: 1730001,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 25,
+			defense_intensity: 25,
+			hero_damage_boost: 8,
+			final_damage: 5,
+			attackspeed: 10,
+			cooldown_reduction: 5,
+			ability_upgrade_refresh_count: 1,
+			ability_upgrade_allin_count: 1
+		},
+		model: "models/eom/hero/items/windrunner_shoulders/windrunner_shoulders.vmdl"
+	},
+	"1730400": {
+		id: 1730400,
+		name: "影行肩甲",
+		type: "SHOULDER",
+		rarity: "1",
+		default: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assassin_1/assassin_shoulders.vmdl"
+	},
+	"1730401": {
+		id: 1730401,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/lanaya_shoulders_1.vmdl"
+	},
+	"1730402": {
+		id: 1730402,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/phantom_assassin_shoulders_1.vmdl"
+	},
+	"1730403": {
+		id: 1730403,
+		name: "幻刃肩甲",
+		type: "SHOULDER",
+		rarity: "5",
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/phantom_assassin_shoulders_2.vmdl"
+	},
+	"1730404": {
+		id: 1730404,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/lanaya_shoulders_2.vmdl"
+	},
+	"1730405": {
+		id: 1730405,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/lycan_shoulders_1.vmdl"
+	},
+	"1730406": {
+		id: 1730406,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/lycan_shoulders_2.vmdl"
+	},
+	"1730500": {
+		id: 1730500,
+		name: "猎手肩甲",
+		type: "SHOULDER",
+		rarity: "1",
+		default: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_1/shooter_shoulders.vmdl"
+	},
+	"1730501": {
+		id: 1730501,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/muerta_shoulders_2.vmdl"
+	},
+	"1730502": {
+		id: 1730502,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/huskar_shoulders_1.vmdl"
+	},
+	"1730503": {
+		id: 1730503,
+		name: "鹰眼肩甲",
+		type: "SHOULDER",
+		rarity: "5",
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/sniper_shoulders_1.vmdl"
+	},
+	"1730504": {
+		id: 1730504,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/kunkka_shoulders_1.vmdl"
+	},
+	"1730601": {
+		id: 1730601,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/rubick_shoulders_1.vmdl"
+	},
+	"1730602": {
+		id: 1730602,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/muerta_shoulders_1.vmdl"
+	},
+	"1730603": {
+		id: 1730603,
+		name: "死誓肩饰",
+		type: "SHOULDER",
+		rarity: "5",
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/death_prophet_shoulders_1.vmdl"
+	},
+	"1730604": {
+		id: 1730604,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/crystal_maiden_shoulders_1.vmdl"
+	},
+	"1730701": {
+		id: 1730701,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/omniknight_shoulders_1.vmdl"
+	},
+	"1730702": {
+		id: 1730702,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/axe_shoulders_1.vmdl"
+	},
+	"1730703": {
+		id: 1730703,
+		name: "断斧肩铠",
+		type: "SHOULDER",
+		rarity: "5",
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/axe_shoulders_2.vmdl"
+	},
+	"1730704": {
+		id: 1730704,
+		name: "肩部",
+		type: "SHOULDER",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/sven_shoulders_1.vmdl"
+	},
+	"1730705": {
+		id: 1730705,
+		name: "圣卫肩铠",
+		type: "SHOULDER",
+		rarity: "1",
+		default: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_1/paladin_shoulders.vmdl"
+	},
+	"1740001": {
+		id: 1740001,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/pudge_cape/pudge_cape.vmdl"
+	},
+	"1740400": {
+		id: 1740400,
+		name: "影行披风",
+		type: "BACK",
+		rarity: "1",
+		default: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assassin_1/assassin_cape.vmdl"
+	},
+	"1740401": {
+		id: 1740401,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/riki_cape_1.vmdl"
+	},
+	"1740402": {
+		id: 1740402,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/phantom_lancer_cape_1.vmdl"
+	},
+	"1740403": {
+		id: 1740403,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/antimage_cape_1.vmdl"
+	},
+	"1740404": {
+		id: 1740404,
+		name: "寒巫披风",
+		type: "BACK",
+		rarity: "5",
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/lich_cape_1.vmdl"
+	},
+	"1740405": {
+		id: 1740405,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/phantom_assassin_cape_1.vmdl"
+	},
+	"1740406": {
+		id: 1740406,
+		name: "后背",
+		type: "BACK",
+		rarity: "3",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/drow_ranger_cape_1.vmdl"
+	},
+	"1740407": {
+		id: 1740407,
+		name: "后背",
+		type: "BACK",
+		rarity: "3",
+		hide: 1,
+		hero_id: 224,
+		model: "models/eom/hero/assaassin_props_1/juggernaut_cape_1.vmdl"
+	},
+	"1740501": {
+		id: 1740501,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/windrunner_cape_1.vmdl"
+	},
+	"1740502": {
+		id: 1740502,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/clinkz_cape_1.vmdl"
+	},
+	"1740503": {
+		id: 1740503,
+		name: "霜弦披风",
+		type: "BACK",
+		rarity: "5",
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/drow_ranger_cape_2.vmdl"
+	},
+	"1740504": {
+		id: 1740504,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 225,
+		model: "models/eom/hero/shooter_props_1/drow_ranger_cape_3.vmdl"
+	},
+	"1740601": {
+		id: 1740601,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/puck_cape_1.vmdl"
+	},
+	"1740602": {
+		id: 1740602,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/lina_cape_1.vmdl"
+	},
+	"1740603": {
+		id: 1740603,
+		name: "暗贤斗篷",
+		type: "BACK",
+		rarity: "5",
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/dark_seer_cape_1.vmdl"
+	},
+	"1740604": {
+		id: 1740604,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 226,
+		model: "models/eom/hero/witch_props_1/lich_cape_2.vmdl"
+	},
+	"1740701": {
+		id: 1740701,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/axe_cape_1.vmdl"
+	},
+	"1740702": {
+		id: 1740702,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/legion_commander_cape_1.vmdl"
+	},
+	"1740703": {
+		id: 1740703,
+		name: "征服披风",
+		type: "BACK",
+		rarity: "5",
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/legion_commander_cape_2.vmdl"
+	},
+	"1740704": {
+		id: 1740704,
+		name: "后背",
+		type: "BACK",
+		rarity: "5",
+		hide: 1,
+		hero_id: 227,
+		model: "models/eom/hero/paladin_props_1/sven_cape_1.vmdl"
+	},
+	"1750001": {
+		id: 1750001,
+		name: "林渊化身",
+		type: "TAIL",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 20,
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			final_damage: 4
+		},
+		effect: "privilege_bless_001",
+		model: "models/eom/hero/items/hoodwink_tail/hoodwink_02_tail.vmdl"
+	},
+	"1750002": {
+		id: 1750002,
+		name: "尾巴",
+		type: "TAIL",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/hoodwink_tail/hoodwink_01_tail.vmdl"
+	},
+	"1750003": {
+		id: 1750003,
+		name: "尾巴",
+		type: "TAIL",
+		rarity: "4",
+		hide: 1,
+		model: "models/eom/hero/items/hoodwink_tail/hoodwink_03_tail.vmdl"
+	},
+	"1750004": {
+		id: 1750004,
+		name: "铁蹄战尾",
+		type: "TAIL",
+		rarity: "4",
+		attribute: {
+			damage_intensity: 20,
+			defense_intensity: 20,
+			hero_damage_boost: 3,
+			final_damage: 1
+		},
+		effect: "privilege_bless_010",
+		model: "models/eom/hero/items/centaur_tail/centaur_tail.vmdl"
+	},
+	"1760001": {
+		id: 1760001,
+		name: "辉羽征服者",
+		type: "WING",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 30,
+			defense_intensity: 30,
+			damage_intensity_boost: 15,
+			defense_intensity_boost: 15,
+			hero_damage_boost: 12,
+			final_damage: 10,
+			attackspeed: 15,
+			cooldown_reduction: 10,
+			crit_chance: 5,
+			crit_damage: 10,
+			revive_health_recover: 30
+		},
+		effect: "privilege_bless_004",
+		model: "models/eom/hero/items/legion_commander_back/legion_commander_back.vmdl"
+	},
+	"1760002": {
+		id: 1760002,
+		name: "翅膀",
+		type: "WING",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 50,
+			defense_intensity: 50,
+			hero_damage_boost: 10,
+			final_damage: 8,
+			crit_chance: 5,
+			crit_damage: 10
+		},
+		effect: "privilege_cosmetic_001",
+		model: "models/eom/hero/items/queenofpain_back/queenofpain_back.vmdl"
+	},
+	"1760003": {
+		id: 1760003,
+		name: "翅膀",
+		type: "WING",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/doom_back/doom_back.vmdl"
+	},
+	"1770001": {
+		id: 1770001,
+		name: "冰晶足迹",
+		type: "FOOTPRINT_EFFECT",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 6,
+			final_damage: 3,
+			tavern_effect_amplify: 30
+		},
+		effect: "privilege_vip_004",
+		particle: "particles/events/footprint/ice_footprint/ice_footprint_fx.vpcf"
+	},
+	"1771001": {
+		id: 1771001,
+		name: "冰魄灵辉",
+		type: "AURA_EFFECT",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 20,
+			defense_intensity: 20,
+			hero_damage_boost: 8,
+			final_damage: 5
+		},
+		effect: "privilege_bless_008",
+		particle: "particles/events/emblem_loadout/ice_emblem_loadout/ice_emblem_loadout_fx.vpcf"
+	},
+	"1772001": {
+		id: 1772001,
+		name: "维斯佩拉·短匕连击",
+		type: "ATTACK_EFFECT",
+		rarity: "5",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1772002": {
+		id: 1772002,
+		name: "维西斯·回音连弹",
+		type: "ATTACK_EFFECT",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1772003": {
+		id: 1772003,
+		name: "索尔莎·火焰攻击",
+		type: "ATTACK_EFFECT",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1772004": {
+		id: 1772004,
+		name: "朱迪卡尔·裁决圣槌",
+		type: "ATTACK_EFFECT",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1773001": {
+		id: 1773001,
+		name: "维斯佩拉·投掷飞镖",
+		type: "SPECIAL_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1773002": {
+		id: 1773002,
+		name: "维西斯·午夜祷告",
+		type: "SPECIAL_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1773003": {
+		id: 1773003,
+		name: "索尔莎·火球术",
+		type: "SPECIAL_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1773004": {
+		id: 1773004,
+		name: "朱迪卡尔·天槌投掷",
+		type: "SPECIAL_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1774001": {
+		id: 1774001,
+		name: "维斯佩拉·幻影突袭",
+		type: "DASH_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1774002": {
+		id: 1774002,
+		name: "维西斯·变奏突袭",
+		type: "DASH_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1774003": {
+		id: 1774003,
+		name: "索尔莎·火焰冲刺",
+		type: "DASH_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1774004": {
+		id: 1774004,
+		name: "朱迪卡尔·圣盾突进",
+		type: "DASH_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1775001": {
+		id: 1775001,
+		name: "维斯佩拉·模糊",
+		type: "DEFENSE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1775002": {
+		id: 1775002,
+		name: "维西斯·华丽演出",
+		type: "DEFENSE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1775003": {
+		id: 1775003,
+		name: "索尔莎·烈火罩",
+		type: "DEFENSE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1775004": {
+		id: 1775004,
+		name: "朱迪卡尔·不屈壁垒",
+		type: "DEFENSE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1776001": {
+		id: 1776001,
+		name: "绝招技能特效",
+		type: "ULTIMATE_SKILL_EFFECT",
+		rarity: "5",
+		hide: 1,
+		hero_id: 224,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1776002": {
+		id: 1776002,
+		name: "维西斯·无限咏叹",
+		type: "ULTIMATE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 225,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1776003": {
+		id: 1776003,
+		name: "索尔莎·混沌陨石",
+		type: "ULTIMATE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 226,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1776004": {
+		id: 1776004,
+		name: "朱迪卡尔·天辉降临",
+		type: "ULTIMATE_SKILL_EFFECT",
+		rarity: "5",
+		hero_id: 227,
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 4,
+			final_damage: 2
+		}
+	},
+	"1780001": {
+		id: 1780001,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 20,
+			defense_intensity: 20,
+			hero_damage_boost: 5,
+			final_damage: 3,
+			explore_profit_110005_pct: 50,
+			explore_limit: 144
+		},
+		effect: "privilege_cosmetic_002",
+		model: "models/eom/hero/items/shadow_demon_misc/shadow_demon_misc.vmdl"
+	},
+	"1780002": {
+		id: 1780002,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/lion_misc/lion_misc.vmdl"
+	},
+	"1780003": {
+		id: 1780003,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/bristleback_misc/bristleback_misc.vmdl"
+	},
+	"1780004": {
+		id: 1780004,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/warlock_misc/warlock_misc.vmdl"
+	},
+	"1780005": {
+		id: 1780005,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/rattletrap_misc/rattletrap_misc.vmdl"
+	},
+	"1780006": {
+		id: 1780006,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/hoodwink_misc/hoodwink_misc.vmdl"
+	},
+	"1780007": {
+		id: 1780007,
+		name: "杂项",
+		type: "MISC",
+		rarity: "5",
+		hide: 1,
+		model: "models/eom/hero/items/tinker_misc/tinker_misc.vmdl"
+	}
+};

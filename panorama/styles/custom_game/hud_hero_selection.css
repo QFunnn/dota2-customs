@@ -1,0 +1,1060 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+#HeroSelection
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#0c0c0c), to(#131313));
+	background-size: 2048px 1080px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	align: center center;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#HeroSelection.Show
+{
+	opacity: 1;
+}
+
+#HeroSelection #HeroSelection3DScene
+{
+	height: 100%;
+	width: height-percentage(177.77%);
+	align: center center;
+}
+
+#HeroSelection .HeroSelectionParticleScene
+{
+	height: 100%;
+	width: height-percentage(177.77%);
+	align: center center;
+}
+
+#HeroSelection #Countdown
+{
+	horizontal-align: center;
+	width: 359px;
+	height: 76px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_time_bg_png.vtex");
+	background-size: 359px 91px;
+	background-position: bottom;
+}
+
+#HeroSelection #Countdown #NumberContent
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#HeroSelection #Countdown #Value
+{
+	font-family: UnifrakturCook;
+	font-weight: bold;
+	font-size: 30px;
+	color: #A39770;
+}
+
+#HeroSelection #Countdown #Unit
+{
+	vertical-align: bottom;
+	margin-bottom: 4px;
+	font-family: SimHei;
+	font-size: 18px;
+	color: #A39770;
+}
+
+#HeroSelection #HeroSelectionList
+{
+	margin-left: 120px;
+	margin-top: 120px;
+	flow-children: down;
+}
+
+#HeroSelection #HeroSelectionList #TopDecorator
+{
+	horizontal-align: center;
+	width: 206px;
+	height: 23px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_line_04_png.vtex");
+	background-size: 100%;
+}
+
+#HeroSelection #HeroSelectionList #HeroSelectionLabel
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 32px;
+	horizontal-align: center;
+	font-size: 32px;
+	color: gradient(linear, 0% 30%, 0% 100%, from(#817055), to(#B9A27A));
+}
+
+#HeroSelection #HeroSelectionList #LineTop
+{
+	horizontal-align: center;
+	width: 158px;
+	height: 9px;
+	margin-bottom: 6px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_line_03_png.vtex");
+	background-size: 100%;
+}
+
+#HeroSelection #HeroSelectionList #LineBottom
+{
+	horizontal-align: center;
+	width: 158px;
+	height: 9px;
+	margin-top: 6px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_line_03_png.vtex");
+	background-size: 100%;
+	transform: scaleY(-1);
+}
+
+#HeroSelection .HeroCard
+{
+	horizontal-align: center;
+}
+
+#HeroSelection #FullBodyPreview
+{
+	height: 100%;
+	width: height-percentage(100%);
+	align: center bottom;
+}
+
+#HeroSelection #HeroDetail
+{
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 113px;
+	flow-children: down;
+	width: 416px;
+}
+
+#HeroSelection #HeroDetail #HeroNameRow
+{
+	width: 100%;
+}
+
+#HeroSelection #HeroDetail #HeroNameRow #HeroName
+{
+	font-size: 48px;
+	color: #BDA87F;
+	text-overflow: shrink;
+}
+
+#HeroSelection #HeroDetail #Divider
+{
+	width: 416px;
+	height: 11px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_line_01_png.vtex");
+	background-size: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#HeroSelection #HeroDetail #HeroAttribute
+{
+	width: 416px;
+	height: 32px;
+	margin: 4px 0px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_text_bg_png.vtex");
+	background-size: 100%;
+	flow-children: right;
+}
+
+#HeroSelection #HeroDetail #HeroAttribute .AttributeIcon
+{
+	width: 22.4px;
+	height: 22.4px;
+	vertical-align: center;
+	background-size: 100%;
+	margin-left: 20px;
+	wash-color: #a39770;
+	transform: translateY(1px);
+}
+
+#HeroSelection #HeroDetail #HeroAttribute #Health
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_life_png.vtex");
+}
+
+#HeroSelection #HeroDetail #HeroAttribute #Attack
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_attack_png.vtex");
+}
+
+#HeroSelection #HeroDetail #HeroAttribute #Armor
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_shield_png.vtex");
+}
+
+#HeroSelection #HeroDetail #HeroAttribute #Movespeed
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_speed_png.vtex");
+}
+
+#HeroSelection #HeroDetail #HeroAttribute .AttributeName
+{
+	transform: translateY(1px);
+	vertical-align: center;
+	font-size: 18px;
+	color: #A39770;
+	margin-left: 8px;
+	width: fill-parent-flow(1);
+}
+
+#HeroSelection #HeroDetail #HeroAttribute .AttributeValue
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #A39770;
+	margin-right: 20px;
+}
+
+#HeroSelection #HeroDetail #LabelDivider
+{
+	flow-children: right;
+	margin-top: 28px;
+}
+
+#HeroSelection #HeroDetail #LabelDivider Label
+{
+	font-size: 20px;
+	color: #7C6D53;
+	vertical-align: center;
+}
+
+#HeroSelection #HeroDetail #LabelDivider Image
+{
+	width: fill-parent-flow(1);
+	height: 11px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_line_02_png.vtex");
+	background-size: 365px 11px;
+}
+
+#HeroSelection #HeroDetail #AbilityList
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 12px;
+}
+
+#HeroSelection #HeroDetail #AbilityList #AbilityContainer
+{
+	width: 74px;
+	height: 74px;
+	background-image: url("s2r://panorama/images/custom_game/h1_hero_selection/h1_skill_frame_png.vtex");
+	background-size: 100%;
+	tooltip-position: top;
+}
+
+#HeroSelection #HeroDetail #AbilityList #AbilityContainer DOTAAbilityImage
+{
+	margin: 4px;
+	opacity-mask: url("s2r://panorama/images/custom_game/h2_hero/h2_mask_png.vtex");
+}
+
+#HeroSelection #HeroDetail #WeaponContainer
+{
+	horizontal-align: center;
+}
+
+#HeroSelection #HeroDetail #WeaponIcon
+{
+	horizontal-align: center;
+	margin-top: -40px;
+	width: 400px;
+	height: 400px;
+}
+
+#HeroSelection #HeroDetail #SelectHero
+{
+	horizontal-align: center;
+}
+
+#HeroSelection #HeroDetail #SelectHero .EOM_GamePad
+{
+	margin-right: 20px;
+	align: right top;
+}
+
+#HeroSelection #HeroDetail #SelectHero .EOM_GamePad Label
+{
+	line-height: 12px;
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+.HeroCard
+{
+	width: 134.4px;
+	height: 146.4px;
+}
+
+.HeroCard.Selected #HeroCardBorder
+{
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.HeroCard.Selected .BorderParticle
+{
+	visibility: visible;
+}
+
+.HeroCard .EOM_HeroImage
+{
+	width: 110px;
+	height: 122px;
+	align: center center;
+}
+
+.HeroCard #HeroCardBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+	background-size: 100%;
+}
+
+.HeroCard .BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	overflow: noclip;
+}
+
+.HeroLevelMain
+{
+	width: 280px;
+	height: 74px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/h2_panel_level1_png.vtex");
+	background-size: 100%;
+	tooltip-position: top;
+}
+
+.HeroLevelMain.Small
+{
+	width: 252px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/h2_panel_level_png.vtex");
+}
+
+.HeroLevelMain.Small #HeroLevel
+{
+	width: 45px;
+	font-size: 18px;
+}
+
+.HeroLevelMain.Small #HeroLevelTitle
+{
+	margin-left: 60px;
+	font-size: 18px;
+}
+
+.HeroLevelMain.Small #ProgressBarBG
+{
+	width: 150px;
+	height: 8px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/h2_progress_0_png.vtex");
+	background-size: 100%;
+}
+
+.HeroLevelMain.Small #ProgressBar
+{
+	width: 144px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/h2_progress_1_png.vtex");
+	background-size: 144px 6px;
+}
+
+.HeroLevelMain #HeroLevel
+{
+	vertical-align: bottom;
+	margin-left: 4px;
+	margin-bottom: 16px;
+	width: 52px;
+	text-align: center;
+	font-size: 24px;
+	color: #CEBDAB;
+}
+
+.HeroLevelMain #HeroLevelTitle
+{
+	vertical-align: bottom;
+	margin-left: 64px;
+	margin-bottom: 19px;
+	font-size: 20px;
+	color: #CEBDAB;
+}
+
+.HeroLevelMain #HeroLevelProgressBar
+{
+	margin-left: 50px;
+	vertical-align: bottom;
+	margin-bottom: 8px;
+}
+
+.HeroLevelMain #ProgressBarBG
+{
+	vertical-align: center;
+	width: 166px;
+	height: 8px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/n_h2_progress_0_png.vtex");
+	background-size: 100%;
+}
+
+.HeroLevelMain #ProgressBar
+{
+	align: left center;
+	width: 160px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/n_h2_progress_1_png.vtex");
+	background-size: 160px 6px;
+	background-repeat: no-repeat;
+}
+
+.HeroLevelMain #ProgressValue
+{
+	horizontal-align: center;
+	color: #DDD6CD;
+	font-size: 12px;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.HeroLevelMain #HeroLevelTooltip
+{
+	align: right bottom;
+	margin-bottom: 15px;
+	margin-right: 30px;
+	width: 38px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_description_png.vtex");
+	background-size: 100%;
+}
+
+.HeroLevelMain #HeroLevelTooltip:hover
+{
+	brightness: 2;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsCourier #PortraitsCourierScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Weapon3DPreview #Weapon3DPreviewScene
+{
+	width: 100%;
+	height: 100%;
+}

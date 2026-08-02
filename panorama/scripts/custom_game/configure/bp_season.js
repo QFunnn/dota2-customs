@@ -1,0 +1,36 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().bp_season = {
+	"1": {
+		sid: 1,
+		start_time: 1782144000,
+		end_time: 1785081599,
+		max_level: 60,
+		exp: 1300001,
+		plus_item_id: 1200001,
+		plus_goods_id: 810001,
+		exp_goods_id: 800012,
+		read_start_time: "2026-06-22 16:00:00",
+		read_end_time: "2026-07-26 15:59:59"
+	},
+	"2": {
+		sid: 2,
+		start_time: 1785081600,
+		end_time: 1787500799,
+		max_level: 60,
+		exp: 1300002,
+		plus_item_id: 1200002,
+		plus_goods_id: 810002,
+		exp_goods_id: 800150,
+		read_start_time: "2026-07-26 16:00:00",
+		read_end_time: "2026-08-23 15:59:59"
+	}
+};

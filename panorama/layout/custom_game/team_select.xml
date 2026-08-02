@@ -1,0 +1,78 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/global_style.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PlayerContainerRoot">
+			<Panel class="team_select PlayerContainerRoot">
+				<Panel class="PlayerInfoPanel">
+					<Panel class="PlayerInfoBackgroundGradient" />
+					<Panel class="PlayerInfoCol">
+						<Panel class="CourierPanel">
+							<Image src="s2r://" />
+						</Panel>
+						<Panel class="PlayerInfoRow">
+							<DOTAAvatarImage class="PlayerAvatar" accountid="128320546" />
+							<Label class="PlayerName" text="" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList" />
+			<Panel id="GameAndPlayersRoot">
+				<Panel id="Blank" />
+				<Panel id="GameInfoPanel">
+					<Image id="GameLogo" hittest="false" />
+					<Panel id="MapInfo" />
+					<Panel id="StartGameCountdownTimer">
+						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+					</Panel>
+				</Panel>
+				<Panel id="UnassignedPlayerPanel">
+					<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+						<Panel id="UnassignedPlayersHeader">
+							<Label text="#custom_game_team_select_unassigned_players" />
+						</Panel>
+						<Panel id="UnassignedPlayersDivider" />
+						<Panel id="UnassignedPlayersContainer" />
+					</Button>
+					<Panel id="TeamsListGroup">
+						<Panel id="TeamsListRoot" />
+					</Panel>
+				</Panel>
+				<Button id="LockAndStartButton" class="CustomPlayButton color-Confirm" onactivate="OnLockAndStartPressed()">
+					<Label text="#custom_game_team_select_lock_start" />
+				</Button>
+				<Button id="CancelAndUnlockButton" class="CustomPlayButton color-Cancel" onactivate="OnCancelAndUnlockPressed()">
+					<Label text="#custom_game_team_select_cancel_unlock" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

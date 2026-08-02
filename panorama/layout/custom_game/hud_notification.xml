@@ -1,0 +1,59 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/global_style.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/hud_notification.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud_notification.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CombatEventPlayerIcon">
+			<Panel class="hud_notification CombatEventPlayerIcon" hittest="false" hittestchildren="false">
+				<DOTAAvatarImage id="PlayerAvatarImage" nocompendiumborder="true" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="CombatEventItemIcon">
+			<Panel class="CombatEventItemIcon" hittest="false" hittestchildren="false">
+				<DOTAItemImage id="ItemImage" hittest="false" hittestchildren="false" />
+			</Panel>
+		</snippet>
+		<snippet name="Notification">
+			<Panel class="Notification" hittest="false" hittestchildren="false">
+				<Panel id="SlashContainer">
+					<Panel id="TeamColorBar" />
+				</Panel>
+				<Label id="NotificationLabel" class="NotificationListLabel" hittest="false" />
+				<Panel id="NotificationIcon" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="notificationRoot HUDFlipped" hittest="false">
+		<Panel id="ToastManager" hittest="false" />
+		<Panel id="UpperNotificationContainer" hittest="false" />
+		<Panel id="CombatNotificationContainer" hittest="false">
+			<Panel id="CombatNotificationLinesWrapper" hittest="false">
+				<ToastManager id="CombatNotificationToastManager" hittest="false" toastduration="10s" maxtoastsvisible="15" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="false" />
+			</Panel>
+		</Panel>
+		<ToastManager id="RightNotificationContainer" hittest="false" toastduration="8.0s" maxtoastsvisible="3" />
+		<Panel id="BottomNotificationContainer" hittest="false" />
+		<Panel id="TipsContainer" hittest="false" />
+		<Panel id="PlaceNameContainer" hittest="false" hittestchildren="false">
+			<Label id="PlaceName" />
+		</Panel>
+	</Panel>
+</root>

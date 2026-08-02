@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+#base "units/enemies.kv"
+#base "units/boss.kv"
+#base "units/interact.kv"
+#base "units/breakable.kv"
+#base "units/summon.kv"
+#base "units/courier.kv"
+#base "units/npc.kv"
+#base "units/trap.kv"
+
+"DOTAUnits"
+{
+	"demo_dummy"
+	{
+		"BaseClass"								"npc_dota_creature"
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"					"0"
+		"VisionNighttimeRange"					"0"
+		"Level"									"1"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"							"300"
+		"StatusHealth"							"10000"
+		"StatusHealthRegen"						"10000"
+		"StatusMana"							"0"
+		"StatusManaRegen"						"0"
+		"Model"									"models/props_gameplay/dummy/dummy_large.vmdl"
+		"ModelScale"							"1"
+		"HealthBarOffset"						"150"
+		"SpawnModifier"							"modifier_demo_dummy"
+	}
+	"npc_dota_pugna_nether_ward_custom"
+	{
+		"Model"									"models/items/pugna/ward/nether_heart/nether_heart.vmdl"
+		"BaseClass"								"npc_dota_base_additive"
+		"SoundSet"								"Pugna_NetherWard"
+		"Level"									"0"
+		"ModelScale"							"1"
+		"wearable"								"8627"
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"HealthBarOffset"						"145"
+		"BoundsHullName"						"DOTA_HULL_SIZE_SMALL"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"							"0"
+		"StatusHealth"							"16"
+		"StatusHealthRegen"						"0.0"
+		"VisionDaytimeRange"					"600"
+		"VisionNighttimeRange"					"600"
+	}
+	"fishing_dummy"
+	{
+		"Model"									"models/items/vengefulspirit/vengeful_spirit_arcana/vengeful_spirit_arcana.vmdl"
+		"BaseClass"								"npc_dota_creature"
+		"SoundSet"								""
+		"Level"									"0"
+		"ModelScale"							"1"
+		"wearable"								""
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"							"100"
+		"StatusHealth"							"100"
+		"StatusHealthRegen"						"0"
+		"VisionDaytimeRange"					"0"
+		"VisionNighttimeRange"					"0"
+		"StatusMana"							"0"
+		"StatusManaRegen"						"0"
+		"Creature"
+		{
+			"DisableClumpingBehavior"			"1"
+			"AttachWearables"
+			{
+				"1"
+				{
+					"ItemDef"					"22718"
+				}
+				"2"
+				{
+					"ItemDef"					"22720"
+				}
+				"3"
+				{
+					"ItemDef"					"22721"
+				}
+				"4"
+				{
+					"ItemDef"					"517"
+				}
+			}
+		}
+	}
+	"npc_dota_blank_unit"
+	{
+		"Model"									"models/development/invisiblebox.vmdl"
+		"BaseClass"								"npc_dota_creature"
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"HealthBarOffset"						"145"
+		"BoundsHullName"						"DOTA_HULL_SIZE_SMALL"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"							"0"
+		"StatusHealth"							"1"
+		"StatusHealthRegen"						"0.0"
+		"VisionDaytimeRange"					"0"
+		"VisionNighttimeRange"					"0"
+	}
+}

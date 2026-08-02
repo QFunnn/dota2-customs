@@ -1,0 +1,2272 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+}
+
+#BattleGemSettlementRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: collapse;
+}
+
+#BattleGemSettlementRoot.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#BattleGemSettlementRoot .EOM_CloseButton
+{
+	visibility: collapse;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	padding-top: 86px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_bg_png.vtex");
+	background-size: 100%;
+	background-position: 0px 86px;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader
+{
+	width: 100%;
+	height: 35px;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitleLine
+{
+	width: 89px;
+	height: 12px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_title1_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitleLine.Reversed
+{
+	transform: scaleX(-1);
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitle
+{
+	height: 35px;
+	line-height: 35px;
+	font-size: 20px;
+	color: #D99A46;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop
+{
+	width: 100%;
+	height: 150px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages
+{
+	align: center bottom;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages .BattleGemSettlementTitleLine
+{
+	width: 228px;
+	height: 30px;
+	margin-bottom: 15px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_title2_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages .BattleGemSettlementTitleLine.Reversed
+{
+	transform: rotateY(180deg);
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages #BattleGemSettlementTitleText
+{
+	width: 424px;
+	height: 76px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_txt_en_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel
+{
+	width: 360px;
+	margin-right: 40px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar
+{
+	width: 357px;
+	height: 126px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	horizontal-align: center;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_frame_ap_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips
+{
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip.Used
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_ap_0_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip.Available
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_ap_1_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary
+{
+	height: 34px;
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionLabel
+{
+	vertical-align: bottom;
+	font-size: 24px;
+	color: #7F7559;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionCount
+{
+	margin-left: 16px;
+	margin-right: 16px;
+	vertical-align: bottom;
+	font-size: 32px;
+	color: #d8b062;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionAddButton
+{
+	width: 34px;
+	height: 34px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_btn_add_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock
+{
+	width: 329px;
+	margin-top: 66px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemSectionTitle
+{
+	width: 150px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList
+{
+	width: 329px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList.ActivatedEffects .BattleGemStatusItem
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_list_gray_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem
+{
+	width: 330px;
+	height: 36px;
+	margin-top: 10px;
+	padding-left: 11px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_list_red_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusIcon
+{
+	width: 21px;
+	height: 31px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusText
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 16px;
+	color: #E6D4A4;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusCount
+{
+	width: 42px;
+	margin-right: 20px;
+	vertical-align: center;
+	font-size: 16px;
+	color: #E6D4A4;
+	text-align: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel
+{
+	width: 1006px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer
+{
+	width: 1006px;
+	height: 736px;
+	padding: 10px;
+	opacity: 0.7;
+	background-color: #000000;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows
+{
+	align: center center;
+	z-index: 1;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow
+{
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer
+{
+	width: fit-children;
+	height: fit-children;
+	transition-property: transform, brightness, opacity, box-shadow, border;
+	transition-duration: 0.16s;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_gray_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-0
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_gray_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-4
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_pup_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-5,#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-6
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_red_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Reachable .BattleGemGridCellSelection
+{
+	opacity: 1;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_select_yellow_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Reachable
+{
+	animation-name: BattleGemReachablePulse;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Visited .BattleGemGridCellSelection
+{
+	opacity: 1;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_select_blue_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Unreachable
+{
+	opacity: 0.4;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellSelection
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	ignore-parent-flow: true;
+	opacity: 0;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent
+{
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent .BattleGemGridCellIcon
+{
+	width: 106px;
+	height: 76px;
+	align: center center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent .BattleGemGridCellName
+{
+	width: 100%;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	font-size: 12px;
+	color: #e0d3ba;
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellOrder
+{
+	width: 26px;
+	height: 26px;
+	margin-left: 5px;
+	margin-top: 5px;
+	align: left top;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_nub_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellOrder Label
+{
+	width: 100%;
+	vertical-align: center;
+	font-size: 16px;
+	color: #E6D4A4;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridPathOverlay
+{
+	align: center center;
+	ignore-parent-flow: true;
+	z-index: 2;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridPathOverlay .BattleGemPathSegment
+{
+	height: 4px;
+	border-radius: 2px;
+	background-color: #e7c77b;
+	transform-origin: 0% 50%;
+	box-shadow: 0px 0px 8px 2 #e7c77b44;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridHint
+{
+	width: 100%;
+	margin-top: 12px;
+	font-size: 24px;
+	color: #7a6c55;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel
+{
+	width: 372px;
+	height: 756px;
+	margin-left: 42px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemSectionTitle
+{
+	width: 184px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock
+{
+	width: 362px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList
+{
+	width: 362px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem
+{
+	width: 362px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop
+{
+	width: 362px;
+	height: 48px;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceIcon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 8px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceName
+{
+	width: fill-parent-flow(1);
+	margin-left: 10px;
+	vertical-align: center;
+	font-size: 16px;
+	color: #b9a788;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceCount
+{
+	margin-right: 8px;
+	vertical-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #E6D4A4;
+	text-align: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceDivider
+{
+	width: 362px;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_divider_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock
+{
+	width: 362px;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 116px;
+	margin-bottom: 30px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList
+{
+	width: 362px;
+	height: fill-parent-flow(1);
+	flow-children: right-wrap;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .BattleGemRewardItem
+{
+	margin: 2px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem .FakeGemIcon
+{
+	width: 70px;
+	height: 70px;
+	align: center center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem .FakeGemCount
+{
+	align: right bottom;
+	margin-right: 8px;
+	margin-bottom: 6px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 3 #000000;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel #BattleGemSettlementButtons
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel #BattleGemSettlementButtons #BattleGemResetButton
+{
+	margin-top: 24px;
+}
+
+@keyframes 'BattleGemReachablePulse'
+{
+	0%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.12;
+		pre-transform-scale2d: 1.02;
+	}
+	
+	100%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+}
+
+#BattleGemSettlementRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	visibility: collapse;
+}
+
+#BattleGemSettlementRoot.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#BattleGemSettlementRoot .EOM_CloseButton
+{
+	visibility: collapse;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	padding-top: 86px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_bg_png.vtex");
+	background-size: 100%;
+	background-position: 0px 86px;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader
+{
+	width: 100%;
+	height: 35px;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitleLine
+{
+	width: 89px;
+	height: 12px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_title1_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitleLine.Reversed
+{
+	transform: scaleX(-1);
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen .BattleGemSectionHeader .BattleGemSectionTitle
+{
+	height: 35px;
+	line-height: 35px;
+	font-size: 20px;
+	color: #D99A46;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop
+{
+	width: 100%;
+	height: 150px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages
+{
+	align: center bottom;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages .BattleGemSettlementTitleLine
+{
+	width: 228px;
+	height: 30px;
+	margin-bottom: 15px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_title2_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages .BattleGemSettlementTitleLine.Reversed
+{
+	transform: rotateY(180deg);
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementTop #BattleGemSettlementTitleImages #BattleGemSettlementTitleText
+{
+	width: 424px;
+	height: 76px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_txt_en_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel
+{
+	width: 360px;
+	margin-right: 40px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar
+{
+	width: 357px;
+	height: 126px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	horizontal-align: center;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_frame_ap_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips
+{
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList
+{
+	width: fit-children;
+	height: fit-children;
+	align: center center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip.Used
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_ap_0_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionPips #BattleGemActionPipList .BattleGemActionPip.Available
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_ap_1_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary
+{
+	height: 34px;
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionLabel
+{
+	vertical-align: bottom;
+	font-size: 24px;
+	color: #7F7559;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionCount
+{
+	margin-left: 16px;
+	margin-right: 16px;
+	vertical-align: bottom;
+	font-size: 32px;
+	color: #d8b062;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel #BattleGemActionBar #BattleGemActionSummary #BattleGemActionAddButton
+{
+	width: 34px;
+	height: 34px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_btn_add_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock
+{
+	width: 329px;
+	margin-top: 66px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemSectionTitle
+{
+	width: 150px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList
+{
+	width: 329px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList.ActivatedEffects .BattleGemStatusItem
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_list_gray_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem
+{
+	width: 330px;
+	height: 36px;
+	margin-top: 10px;
+	padding-left: 11px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_list_red_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusIcon
+{
+	width: 21px;
+	height: 31px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusText
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 16px;
+	color: #E6D4A4;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemLeftPanel .BattleGemInfoBlock .BattleGemStatusList .BattleGemStatusItem .BattleGemStatusCount
+{
+	width: 42px;
+	margin-right: 20px;
+	vertical-align: center;
+	font-size: 16px;
+	color: #E6D4A4;
+	text-align: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel
+{
+	width: 1006px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer
+{
+	width: 1006px;
+	height: 736px;
+	padding: 10px;
+	opacity: 0.7;
+	background-color: #000000;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows
+{
+	align: center center;
+	z-index: 1;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow
+{
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer
+{
+	width: fit-children;
+	height: fit-children;
+	transition-property: transform, brightness, opacity, box-shadow, border;
+	transition-duration: 0.16s;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_gray_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-0
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_gray_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-4
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_pup_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-5,#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Rarity-6
+{
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_tile_red_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Reachable .BattleGemGridCellSelection
+{
+	opacity: 1;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_select_yellow_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Reachable
+{
+	animation-name: BattleGemReachablePulse;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Visited .BattleGemGridCellSelection
+{
+	opacity: 1;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_select_blue_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell.Unreachable
+{
+	opacity: 0.4;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellSelection
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	ignore-parent-flow: true;
+	opacity: 0;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent
+{
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent .BattleGemGridCellIcon
+{
+	width: 106px;
+	height: 76px;
+	align: center center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellContent .BattleGemGridCellName
+{
+	width: 100%;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	font-size: 12px;
+	color: #e0d3ba;
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellOrder
+{
+	width: 26px;
+	height: 26px;
+	margin-left: 5px;
+	margin-top: 5px;
+	align: left top;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_img_nub_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridRows .BattleGemGridRow .BattleGemGridCellContainer .BattleGemGridCell .BattleGemGridCellOrder Label
+{
+	width: 100%;
+	vertical-align: center;
+	font-size: 16px;
+	color: #E6D4A4;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridPathOverlay
+{
+	align: center center;
+	ignore-parent-flow: true;
+	z-index: 2;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridContainer #BattleGemGridPathOverlay .BattleGemPathSegment
+{
+	height: 4px;
+	border-radius: 2px;
+	background-color: #e7c77b;
+	transform-origin: 0% 50%;
+	box-shadow: 0px 0px 8px 2 #e7c77b44;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemGridPanel #BattleGemGridHint
+{
+	width: 100%;
+	margin-top: 12px;
+	font-size: 24px;
+	color: #7a6c55;
+	text-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel
+{
+	width: 372px;
+	height: 756px;
+	margin-left: 42px;
+	vertical-align: top;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemSectionTitle
+{
+	width: 184px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock
+{
+	width: 362px;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList
+{
+	width: 362px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem
+{
+	width: 362px;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop
+{
+	width: 362px;
+	height: 48px;
+	flow-children: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceIcon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 8px;
+	vertical-align: center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceName
+{
+	width: fill-parent-flow(1);
+	margin-left: 10px;
+	vertical-align: center;
+	font-size: 16px;
+	color: #b9a788;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceItemTop .BattleGemResourceCount
+{
+	margin-right: 8px;
+	vertical-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #E6D4A4;
+	text-align: right;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemResourceBlock .BattleGemResourceList .BattleGemResourceItem .BattleGemResourceDivider
+{
+	width: 362px;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/g1_gem/g1_line_divider_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock
+{
+	width: 362px;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 116px;
+	margin-bottom: 30px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList
+{
+	width: 362px;
+	height: fill-parent-flow(1);
+	flow-children: right-wrap;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .BattleGemRewardItem
+{
+	margin: 2px;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem .FakeGemIcon
+{
+	width: 70px;
+	height: 70px;
+	align: center center;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel .BattleGemRewardBlock #BattleGemRewardList .FakeGem .FakeGemCount
+{
+	align: right bottom;
+	margin-right: 8px;
+	margin-bottom: 6px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 3 #000000;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel #BattleGemSettlementButtons
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#BattleGemSettlementRoot #BattleGemSettlementScreen #BattleGemSettlementContent #BattleGemSidePanel #BattleGemSettlementButtons #BattleGemResetButton
+{
+	margin-top: 24px;
+}
+
+@keyframes 'BattleGemReachablePulse'
+{
+	0%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.12;
+		pre-transform-scale2d: 1.02;
+	}
+	
+	100%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.EOM_RedMark
+{
+	flow-children: none;
+}
+
+.EOM_RedMark .EOM_RedMark-Dot
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_01_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-exclamation.Size-small
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-medium
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-large
+{
+	width: 69.6px;
+	height: 69.6px;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark.Type-new
+{
+	align: right top;
+	margin-right: -5px;
+	margin-top: -3px;
+	width: 52.8px;
+	height: 28.8px;
+	overflow: noclip;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-new.Size-small
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-medium
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-large
+{
+	width: 63.36px;
+	height: 34.56px;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark .EOM_RedMark-Count
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px 2 black;
+	text-align: center;
+}
+
+.EOM_RedMark.Type-dot.Size-small
+{
+	width: 12px;
+	height: 12px;
+}
+
+.EOM_RedMark.Type-dot.Size-small .EOM_RedMark-Count
+{
+	font-size: 8px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium .EOM_RedMark-Count
+{
+	font-size: 10px;
+}
+
+.EOM_RedMark.Type-dot.Size-large
+{
+	width: 42px;
+	height: 42px;
+}
+
+.EOM_RedMark.Type-dot.Size-large .EOM_RedMark-Count
+{
+	font-size: 14px;
+}
+
+.EOM_RedMark.EOM_RedMark-Breathe .EOM_RedMark-Dot
+{
+	animation-name: RedMarkBreathe;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'RedMarkBreathe'
+{
+	0%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		opacity: 0.8;
+		transform: scale3d(1.15, 1.15, 1);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: black;
+	transform: translateY(-30px);
+	transition-property: opacity, transform;
+	transition-duration: 0.24s;
+	transition-timing-function: ease-out;
+}
+
+.EOM_MenuLayout.Show
+{
+	sound: "UI.Menu.Open";
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout .EOM_CloseButton
+{
+	margin-top: 16px;
+	margin-right: 16px;
+	horizontal-align: right;
+	z-index: 2;
+}
+
+.EOM_MenuLayout #TopBottomBG
+{
+	width: 100%;
+	height: 86px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_panel_1_png.vtex");
+	background-size: 100%;
+	z-index: 1;
+}
+
+.EOM_MenuLayout #WindowTitle
+{
+	align: center top;
+	margin-top: 15px;
+}
+
+.EOM_MenuLayout #WindowTitle Label
+{
+	font-size: 24px;
+	font-weight: normal;
+	color: #3b89d1;
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+}
+
+.EOM_MenuLayout .CurrencyGroup
+{
+	margin-top: 24px;
+	margin-right: 73px;
+}
+
+.EOM_MenuLayout .CurrencyGroup .EOM_Currency
+{
+	margin: 0px 12px;
+}
+
+.CurrencyGroup
+{
+	z-index: 2;
+}
+
+.EOM_MenuLayout_Content
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Content.Show
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Content_BG
+{
+	background-color: black;
+}
+
+.EOM_MenuLayout_Content_Box
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 246px;
+	padding-top: 86px;
+}
+
+#EOM_MenuLayoutBGScene
+{
+	align: center center;
+	width: 100%;
+	height: width-percentage(100%);
+	z-index: -100;
+}
+
+.EOM_MenuLayout_Menu
+{
+	opacity: 0;
+	transform: translateX(-40px);
+	animation-name: none;
+	animation-duration: 0.24s;
+	animation-timing-function: ease-out;
+	animation-delay: 0.24s;
+	animation-fill-mode: forwards;
+	min-width: 246px;
+	height: 895px;
+	margin-top: 169px;
+	margin-left: 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_line_png.vtex");
+	background-size: 2px 618px;
+	background-position: left 42px top 0px;
+	background-repeat: no-repeat;
+	overflow: squish scroll;
+	flow-children: down;
+	padding-top: 85px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu.Show
+{
+	animation-name: SlideInLeft;
+}
+
+.EOM_MenuLayout_Menu .MenuLockIcon
+{
+	width: 30px;
+	height: 38px;
+	vertical-align: center;
+	ui-scale: 60%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu VerticalScrollBar
+{
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Menu .TabButton
+{
+	width: 246px;
+	height: 52px;
+	margin-top: 10px;
+	margin-bottom: 39px;
+	z-index: 1;
+	flow-children: right;
+	overflow: noclip;
+	background-size: 100%;
+	transition-property: position, background-image;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton:hover .TabLabel
+{
+	brightness: 2;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected,.EOM_MenuLayout_Menu .TabButton:selected
+{
+	sound: "UI.TabButton";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select_png.vtex");
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundArrow,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundArrow
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_1_png.vtex");
+	transform: rotateZ(0deg);
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabLabel,.EOM_MenuLayout_Menu .TabButton:selected .TabLabel
+{
+	color: #E6D4A4;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:hover .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabLabel
+{
+	vertical-align: center;
+	margin: 0px 1px 0px 5px;
+	font-size: 22px;
+	color: #686868;
+	transition-property: color, brightness;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.15s;
+}
+
+.EOM_MenuLayout_Menu .TabButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .russian
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabIcon
+{
+	width: 26px;
+	height: 26px;
+	vertical-align: center;
+	margin-left: 33px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu .TabButton.HasSecondaryMenu .TabIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundArrow
+{
+	width: 36px;
+	height: 28px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_0_png.vtex");
+	background-position: center;
+	transform: rotateZ(180deg);
+	background-repeat: no-repeat;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-right: -10px;
+	align: right top;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundActive
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton .MenuMarkIcon
+{
+	align: right top;
+	margin-top: 0px;
+	margin-right: 6px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabButtonParticle
+{
+	align: center center;
+	width: 230px;
+	height: 100px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer
+{
+	width: 100%;
+	max-height: 0px;
+	margin-left: 24px;
+	margin-top: -38px;
+	margin-bottom: 39px;
+	opacity: 0;
+	flow-children: down;
+	transition-property: height, max-height, position;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	z-index: 0;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected,.EOM_MenuLayout_Menu .SecondaryContainer:selected
+{
+	max-height: 600px;
+	opacity: 1;
+	margin-bottom: 0px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected .SecondaryMenuButton,.EOM_MenuLayout_Menu .SecondaryContainer:selected .SecondaryMenuButton
+{
+	visibility: visible;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton
+{
+	visibility: collapse;
+	width: 150px;
+	height: 38px;
+	margin: 0px 1px;
+	padding-left: 12px;
+	transition-property: transform;
+	transition-timing-function: cubic-bezier(0.65, 0.1, 0.9, 0.31);
+	transition-duration: 0.3s;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton #TextAndRedMark
+{
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 26px;
+	flow-children: right;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .MenuLockIcon
+{
+	margin-top: -8px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton Label
+{
+	font-size: 18px;
+	color: #A69F87;
+	text-shadow: 0px 1px 2px 2 #000000;
+	transition-property: color, transform;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.1s;
+	text-overflow: shrink;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-top: -8px;
+	align: right top;
+	overflow: noclip;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected
+{
+	sound: "ui_find_match_change_options";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select2_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected .SecondaryBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected Label
+{
+	color: #FFF0BA;
+	text-shadow: 0px 1px 4px 4 #71541B;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .SecondaryBackgroundActive
+{
+	horizontal-align: center;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/tag_hightlight_2_png.vtex");
+	background-repeat: no-repeat;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .TabButtonParticle
+{
+	vertical-align: center;
+	margin-left: 7px;
+	width: 115px;
+	height: 50px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_ShadowBoder
+{
+	width: 600px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex"), url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex");
+	wash-color: #000000;
+	background-img-opacity: 0.9, 0.2;
+	background-size: 100%, 280px 100%;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.EOM_MenuLayout_ShadowBoder.Right
+{
+	horizontal-align: right;
+	transform: rotateZ(180deg);
+}
+
+.Equipment
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+	padding: 4px;
+}
+
+.Equipment #EquipmentIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Equipment #LevelLabel
+{
+	margin-left: 5px;
+	margin-top: 2px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Equipment #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Equipment .SuitIcon
+{
+	margin: -4px;
+}
+
+.Equipment #EquipedTag
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -6px;
+	flow-children: right;
+}
+
+.Equipment #EquipGemSlots .GemSlot
+{
+	width: 26px;
+	height: 26px;
+	margin: 0px 1px;
+}
+
+.Equipment #EquipGemSlots .GemSlot.EmptySlot
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_dark_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_yellow_png.vtex");
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_red_png.vtex");
+}
+
+.Equipment #RarityParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.Equipment.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Equipment.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Equipment.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Equipment.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Equipment.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Equipment.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Equipment.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.Equipment.Rarity7 #RarityParticle
+{
+	opacity: 1;
+}
+
+.Gem
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.Gem #GemIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Gem #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Gem #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Gem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Gem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Gem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Gem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Gem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Gem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Gem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.SuitIcon
+{
+	width: 36px;
+	height: 36px;
+	align: right bottom;
+	background-size: 100%;
+}
+
+.EquipmentIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentIcon Image
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.EquipmentIcon.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.EquipmentIcon.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.EquipmentIcon.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.EquipmentIcon.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.EquipmentIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.EquipmentIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.EquipmentIcon.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}

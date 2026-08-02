@@ -1,0 +1,1620 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().hero_level_grow = {
+	"1": {
+		"1": {
+			inc_id: 1,
+			attribute: {
+				health: 0,
+				attack: 0,
+				spell_damage_amplify: 0
+			}
+		},
+		"2": {
+			inc_id: 2,
+			attribute: {
+				health: 3,
+				attack: 0,
+				spell_damage_amplify: 2
+			}
+		},
+		"3": {
+			inc_id: 3,
+			attribute: {
+				health: 7,
+				attack: 1,
+				spell_damage_amplify: 4
+			}
+		},
+		"4": {
+			inc_id: 4,
+			attribute: {
+				health: 10,
+				attack: 1,
+				spell_damage_amplify: 6
+			}
+		},
+		"5": {
+			inc_id: 5,
+			attribute: {
+				health: 13,
+				attack: 1,
+				spell_damage_amplify: 8
+			}
+		},
+		"6": {
+			inc_id: 6,
+			attribute: {
+				health: 16,
+				attack: 1,
+				spell_damage_amplify: 10
+			}
+		},
+		"7": {
+			inc_id: 7,
+			attribute: {
+				health: 20,
+				attack: 2,
+				spell_damage_amplify: 12
+			}
+		},
+		"8": {
+			inc_id: 8,
+			attribute: {
+				health: 23,
+				attack: 2,
+				spell_damage_amplify: 14
+			}
+		},
+		"9": {
+			inc_id: 9,
+			attribute: {
+				health: 26,
+				attack: 2,
+				spell_damage_amplify: 16
+			}
+		},
+		"10": {
+			inc_id: 10,
+			attribute: {
+				health: 29,
+				attack: 3,
+				spell_damage_amplify: 18
+			}
+		},
+		"11": {
+			inc_id: 11,
+			attribute: {
+				health: 33,
+				attack: 3,
+				spell_damage_amplify: 20
+			}
+		},
+		"12": {
+			inc_id: 12,
+			attribute: {
+				health: 36,
+				attack: 3,
+				spell_damage_amplify: 22
+			}
+		},
+		"13": {
+			inc_id: 13,
+			attribute: {
+				health: 39,
+				attack: 3,
+				spell_damage_amplify: 24
+			}
+		},
+		"14": {
+			inc_id: 14,
+			attribute: {
+				health: 42,
+				attack: 4,
+				spell_damage_amplify: 27
+			}
+		},
+		"15": {
+			inc_id: 15,
+			attribute: {
+				health: 46,
+				attack: 4,
+				spell_damage_amplify: 29
+			}
+		},
+		"16": {
+			inc_id: 16,
+			attribute: {
+				health: 49,
+				attack: 4,
+				spell_damage_amplify: 31
+			}
+		},
+		"17": {
+			inc_id: 17,
+			attribute: {
+				health: 52,
+				attack: 5,
+				spell_damage_amplify: 33
+			}
+		},
+		"18": {
+			inc_id: 18,
+			attribute: {
+				health: 56,
+				attack: 5,
+				spell_damage_amplify: 35
+			}
+		},
+		"19": {
+			inc_id: 19,
+			attribute: {
+				health: 59,
+				attack: 5,
+				spell_damage_amplify: 37
+			}
+		},
+		"20": {
+			inc_id: 20,
+			attribute: {
+				health: 62,
+				attack: 5,
+				spell_damage_amplify: 39
+			}
+		},
+		"21": {
+			inc_id: 21,
+			attribute: {
+				health: 65,
+				attack: 6,
+				spell_damage_amplify: 41
+			}
+		},
+		"22": {
+			inc_id: 22,
+			attribute: {
+				health: 69,
+				attack: 6,
+				spell_damage_amplify: 43
+			}
+		},
+		"23": {
+			inc_id: 23,
+			attribute: {
+				health: 72,
+				attack: 6,
+				spell_damage_amplify: 45
+			}
+		},
+		"24": {
+			inc_id: 24,
+			attribute: {
+				health: 75,
+				attack: 7,
+				spell_damage_amplify: 47
+			}
+		},
+		"25": {
+			inc_id: 25,
+			attribute: {
+				health: 78,
+				attack: 7,
+				spell_damage_amplify: 49
+			}
+		},
+		"26": {
+			inc_id: 26,
+			attribute: {
+				health: 82,
+				attack: 7,
+				spell_damage_amplify: 51
+			}
+		},
+		"27": {
+			inc_id: 27,
+			attribute: {
+				health: 85,
+				attack: 7,
+				spell_damage_amplify: 53
+			}
+		},
+		"28": {
+			inc_id: 28,
+			attribute: {
+				health: 88,
+				attack: 8,
+				spell_damage_amplify: 55
+			}
+		},
+		"29": {
+			inc_id: 29,
+			attribute: {
+				health: 91,
+				attack: 8,
+				spell_damage_amplify: 57
+			}
+		},
+		"30": {
+			inc_id: 30,
+			attribute: {
+				health: 95,
+				attack: 8,
+				spell_damage_amplify: 59
+			}
+		},
+		"31": {
+			inc_id: 31,
+			attribute: {
+				health: 98,
+				attack: 9,
+				spell_damage_amplify: 61
+			}
+		},
+		"32": {
+			inc_id: 32,
+			attribute: {
+				health: 101,
+				attack: 9,
+				spell_damage_amplify: 63
+			}
+		},
+		"33": {
+			inc_id: 33,
+			attribute: {
+				health: 104,
+				attack: 9,
+				spell_damage_amplify: 65
+			}
+		},
+		"34": {
+			inc_id: 34,
+			attribute: {
+				health: 108,
+				attack: 9,
+				spell_damage_amplify: 67
+			}
+		},
+		"35": {
+			inc_id: 35,
+			attribute: {
+				health: 111,
+				attack: 10,
+				spell_damage_amplify: 69
+			}
+		},
+		"36": {
+			inc_id: 36,
+			attribute: {
+				health: 114,
+				attack: 10,
+				spell_damage_amplify: 71
+			}
+		},
+		"37": {
+			inc_id: 37,
+			attribute: {
+				health: 118,
+				attack: 10,
+				spell_damage_amplify: 73
+			}
+		},
+		"38": {
+			inc_id: 38,
+			attribute: {
+				health: 121,
+				attack: 11,
+				spell_damage_amplify: 76
+			}
+		},
+		"39": {
+			inc_id: 39,
+			attribute: {
+				health: 124,
+				attack: 11,
+				spell_damage_amplify: 78
+			}
+		},
+		"40": {
+			inc_id: 40,
+			attribute: {
+				health: 127,
+				attack: 11,
+				spell_damage_amplify: 80
+			}
+		},
+		"41": {
+			inc_id: 41,
+			attribute: {
+				health: 131,
+				attack: 11,
+				spell_damage_amplify: 82
+			}
+		},
+		"42": {
+			inc_id: 42,
+			attribute: {
+				health: 134,
+				attack: 12,
+				spell_damage_amplify: 84
+			}
+		},
+		"43": {
+			inc_id: 43,
+			attribute: {
+				health: 137,
+				attack: 12,
+				spell_damage_amplify: 86
+			}
+		},
+		"44": {
+			inc_id: 44,
+			attribute: {
+				health: 140,
+				attack: 12,
+				spell_damage_amplify: 88
+			}
+		},
+		"45": {
+			inc_id: 45,
+			attribute: {
+				health: 144,
+				attack: 13,
+				spell_damage_amplify: 90
+			}
+		},
+		"46": {
+			inc_id: 46,
+			attribute: {
+				health: 147,
+				attack: 13,
+				spell_damage_amplify: 92
+			}
+		},
+		"47": {
+			inc_id: 47,
+			attribute: {
+				health: 150,
+				attack: 13,
+				spell_damage_amplify: 94
+			}
+		},
+		"48": {
+			inc_id: 48,
+			attribute: {
+				health: 153,
+				attack: 13,
+				spell_damage_amplify: 96
+			}
+		},
+		"49": {
+			inc_id: 49,
+			attribute: {
+				health: 157,
+				attack: 14,
+				spell_damage_amplify: 98
+			}
+		},
+		"50": {
+			inc_id: 50,
+			attribute: {
+				health: 160,
+				attack: 14,
+				spell_damage_amplify: 100
+			}
+		}
+	},
+	"2": {
+		"1": {
+			inc_id: 51,
+			attribute: {
+				health: 0,
+				attack: 0,
+				spell_damage_amplify: 0
+			}
+		},
+		"2": {
+			inc_id: 52,
+			attribute: {
+				health: 2,
+				attack: 0,
+				spell_damage_amplify: 2
+			}
+		},
+		"3": {
+			inc_id: 53,
+			attribute: {
+				health: 4,
+				attack: 0,
+				spell_damage_amplify: 4
+			}
+		},
+		"4": {
+			inc_id: 54,
+			attribute: {
+				health: 6,
+				attack: 1,
+				spell_damage_amplify: 6
+			}
+		},
+		"5": {
+			inc_id: 55,
+			attribute: {
+				health: 8,
+				attack: 1,
+				spell_damage_amplify: 8
+			}
+		},
+		"6": {
+			inc_id: 56,
+			attribute: {
+				health: 10,
+				attack: 1,
+				spell_damage_amplify: 10
+			}
+		},
+		"7": {
+			inc_id: 57,
+			attribute: {
+				health: 12,
+				attack: 1,
+				spell_damage_amplify: 12
+			}
+		},
+		"8": {
+			inc_id: 58,
+			attribute: {
+				health: 14,
+				attack: 2,
+				spell_damage_amplify: 14
+			}
+		},
+		"9": {
+			inc_id: 59,
+			attribute: {
+				health: 16,
+				attack: 2,
+				spell_damage_amplify: 16
+			}
+		},
+		"10": {
+			inc_id: 60,
+			attribute: {
+				health: 18,
+				attack: 2,
+				spell_damage_amplify: 18
+			}
+		},
+		"11": {
+			inc_id: 61,
+			attribute: {
+				health: 20,
+				attack: 2,
+				spell_damage_amplify: 20
+			}
+		},
+		"12": {
+			inc_id: 62,
+			attribute: {
+				health: 22,
+				attack: 3,
+				spell_damage_amplify: 22
+			}
+		},
+		"13": {
+			inc_id: 63,
+			attribute: {
+				health: 24,
+				attack: 3,
+				spell_damage_amplify: 24
+			}
+		},
+		"14": {
+			inc_id: 64,
+			attribute: {
+				health: 27,
+				attack: 3,
+				spell_damage_amplify: 27
+			}
+		},
+		"15": {
+			inc_id: 65,
+			attribute: {
+				health: 29,
+				attack: 3,
+				spell_damage_amplify: 29
+			}
+		},
+		"16": {
+			inc_id: 66,
+			attribute: {
+				health: 31,
+				attack: 4,
+				spell_damage_amplify: 31
+			}
+		},
+		"17": {
+			inc_id: 67,
+			attribute: {
+				health: 33,
+				attack: 4,
+				spell_damage_amplify: 33
+			}
+		},
+		"18": {
+			inc_id: 68,
+			attribute: {
+				health: 35,
+				attack: 4,
+				spell_damage_amplify: 35
+			}
+		},
+		"19": {
+			inc_id: 69,
+			attribute: {
+				health: 37,
+				attack: 4,
+				spell_damage_amplify: 37
+			}
+		},
+		"20": {
+			inc_id: 70,
+			attribute: {
+				health: 39,
+				attack: 5,
+				spell_damage_amplify: 39
+			}
+		},
+		"21": {
+			inc_id: 71,
+			attribute: {
+				health: 41,
+				attack: 5,
+				spell_damage_amplify: 41
+			}
+		},
+		"22": {
+			inc_id: 72,
+			attribute: {
+				health: 43,
+				attack: 5,
+				spell_damage_amplify: 43
+			}
+		},
+		"23": {
+			inc_id: 73,
+			attribute: {
+				health: 45,
+				attack: 5,
+				spell_damage_amplify: 45
+			}
+		},
+		"24": {
+			inc_id: 74,
+			attribute: {
+				health: 47,
+				attack: 6,
+				spell_damage_amplify: 47
+			}
+		},
+		"25": {
+			inc_id: 75,
+			attribute: {
+				health: 49,
+				attack: 6,
+				spell_damage_amplify: 49
+			}
+		},
+		"26": {
+			inc_id: 76,
+			attribute: {
+				health: 51,
+				attack: 6,
+				spell_damage_amplify: 51
+			}
+		},
+		"27": {
+			inc_id: 77,
+			attribute: {
+				health: 53,
+				attack: 6,
+				spell_damage_amplify: 53
+			}
+		},
+		"28": {
+			inc_id: 78,
+			attribute: {
+				health: 55,
+				attack: 7,
+				spell_damage_amplify: 55
+			}
+		},
+		"29": {
+			inc_id: 79,
+			attribute: {
+				health: 57,
+				attack: 7,
+				spell_damage_amplify: 57
+			}
+		},
+		"30": {
+			inc_id: 80,
+			attribute: {
+				health: 59,
+				attack: 7,
+				spell_damage_amplify: 59
+			}
+		},
+		"31": {
+			inc_id: 81,
+			attribute: {
+				health: 61,
+				attack: 7,
+				spell_damage_amplify: 61
+			}
+		},
+		"32": {
+			inc_id: 82,
+			attribute: {
+				health: 63,
+				attack: 8,
+				spell_damage_amplify: 63
+			}
+		},
+		"33": {
+			inc_id: 83,
+			attribute: {
+				health: 65,
+				attack: 8,
+				spell_damage_amplify: 65
+			}
+		},
+		"34": {
+			inc_id: 84,
+			attribute: {
+				health: 67,
+				attack: 8,
+				spell_damage_amplify: 67
+			}
+		},
+		"35": {
+			inc_id: 85,
+			attribute: {
+				health: 69,
+				attack: 8,
+				spell_damage_amplify: 69
+			}
+		},
+		"36": {
+			inc_id: 86,
+			attribute: {
+				health: 71,
+				attack: 9,
+				spell_damage_amplify: 71
+			}
+		},
+		"37": {
+			inc_id: 87,
+			attribute: {
+				health: 73,
+				attack: 9,
+				spell_damage_amplify: 73
+			}
+		},
+		"38": {
+			inc_id: 88,
+			attribute: {
+				health: 76,
+				attack: 9,
+				spell_damage_amplify: 76
+			}
+		},
+		"39": {
+			inc_id: 89,
+			attribute: {
+				health: 78,
+				attack: 9,
+				spell_damage_amplify: 78
+			}
+		},
+		"40": {
+			inc_id: 90,
+			attribute: {
+				health: 80,
+				attack: 10,
+				spell_damage_amplify: 80
+			}
+		},
+		"41": {
+			inc_id: 91,
+			attribute: {
+				health: 82,
+				attack: 10,
+				spell_damage_amplify: 82
+			}
+		},
+		"42": {
+			inc_id: 92,
+			attribute: {
+				health: 84,
+				attack: 10,
+				spell_damage_amplify: 84
+			}
+		},
+		"43": {
+			inc_id: 93,
+			attribute: {
+				health: 86,
+				attack: 10,
+				spell_damage_amplify: 86
+			}
+		},
+		"44": {
+			inc_id: 94,
+			attribute: {
+				health: 88,
+				attack: 11,
+				spell_damage_amplify: 88
+			}
+		},
+		"45": {
+			inc_id: 95,
+			attribute: {
+				health: 90,
+				attack: 11,
+				spell_damage_amplify: 90
+			}
+		},
+		"46": {
+			inc_id: 96,
+			attribute: {
+				health: 92,
+				attack: 11,
+				spell_damage_amplify: 92
+			}
+		},
+		"47": {
+			inc_id: 97,
+			attribute: {
+				health: 94,
+				attack: 11,
+				spell_damage_amplify: 94
+			}
+		},
+		"48": {
+			inc_id: 98,
+			attribute: {
+				health: 96,
+				attack: 12,
+				spell_damage_amplify: 96
+			}
+		},
+		"49": {
+			inc_id: 99,
+			attribute: {
+				health: 98,
+				attack: 12,
+				spell_damage_amplify: 98
+			}
+		},
+		"50": {
+			inc_id: 100,
+			attribute: {
+				health: 100,
+				attack: 12,
+				spell_damage_amplify: 100
+			}
+		}
+	},
+	"3": {
+		"1": {
+			inc_id: 101,
+			attribute: {
+				health: 0,
+				attack: 0,
+				spell_damage_amplify: 0
+			}
+		},
+		"2": {
+			inc_id: 102,
+			attribute: {
+				health: 2,
+				attack: 0,
+				spell_damage_amplify: 2
+			}
+		},
+		"3": {
+			inc_id: 103,
+			attribute: {
+				health: 4,
+				attack: 0,
+				spell_damage_amplify: 4
+			}
+		},
+		"4": {
+			inc_id: 104,
+			attribute: {
+				health: 6,
+				attack: 1,
+				spell_damage_amplify: 6
+			}
+		},
+		"5": {
+			inc_id: 105,
+			attribute: {
+				health: 8,
+				attack: 1,
+				spell_damage_amplify: 8
+			}
+		},
+		"6": {
+			inc_id: 106,
+			attribute: {
+				health: 10,
+				attack: 1,
+				spell_damage_amplify: 10
+			}
+		},
+		"7": {
+			inc_id: 107,
+			attribute: {
+				health: 12,
+				attack: 1,
+				spell_damage_amplify: 12
+			}
+		},
+		"8": {
+			inc_id: 108,
+			attribute: {
+				health: 14,
+				attack: 1,
+				spell_damage_amplify: 14
+			}
+		},
+		"9": {
+			inc_id: 109,
+			attribute: {
+				health: 16,
+				attack: 2,
+				spell_damage_amplify: 16
+			}
+		},
+		"10": {
+			inc_id: 110,
+			attribute: {
+				health: 18,
+				attack: 2,
+				spell_damage_amplify: 18
+			}
+		},
+		"11": {
+			inc_id: 111,
+			attribute: {
+				health: 20,
+				attack: 2,
+				spell_damage_amplify: 20
+			}
+		},
+		"12": {
+			inc_id: 112,
+			attribute: {
+				health: 22,
+				attack: 2,
+				spell_damage_amplify: 22
+			}
+		},
+		"13": {
+			inc_id: 113,
+			attribute: {
+				health: 24,
+				attack: 2,
+				spell_damage_amplify: 24
+			}
+		},
+		"14": {
+			inc_id: 114,
+			attribute: {
+				health: 27,
+				attack: 3,
+				spell_damage_amplify: 27
+			}
+		},
+		"15": {
+			inc_id: 115,
+			attribute: {
+				health: 29,
+				attack: 3,
+				spell_damage_amplify: 29
+			}
+		},
+		"16": {
+			inc_id: 116,
+			attribute: {
+				health: 31,
+				attack: 3,
+				spell_damage_amplify: 31
+			}
+		},
+		"17": {
+			inc_id: 117,
+			attribute: {
+				health: 33,
+				attack: 3,
+				spell_damage_amplify: 33
+			}
+		},
+		"18": {
+			inc_id: 118,
+			attribute: {
+				health: 35,
+				attack: 3,
+				spell_damage_amplify: 35
+			}
+		},
+		"19": {
+			inc_id: 119,
+			attribute: {
+				health: 37,
+				attack: 4,
+				spell_damage_amplify: 37
+			}
+		},
+		"20": {
+			inc_id: 120,
+			attribute: {
+				health: 39,
+				attack: 4,
+				spell_damage_amplify: 39
+			}
+		},
+		"21": {
+			inc_id: 121,
+			attribute: {
+				health: 41,
+				attack: 4,
+				spell_damage_amplify: 41
+			}
+		},
+		"22": {
+			inc_id: 122,
+			attribute: {
+				health: 43,
+				attack: 4,
+				spell_damage_amplify: 43
+			}
+		},
+		"23": {
+			inc_id: 123,
+			attribute: {
+				health: 45,
+				attack: 4,
+				spell_damage_amplify: 45
+			}
+		},
+		"24": {
+			inc_id: 124,
+			attribute: {
+				health: 47,
+				attack: 5,
+				spell_damage_amplify: 47
+			}
+		},
+		"25": {
+			inc_id: 125,
+			attribute: {
+				health: 49,
+				attack: 5,
+				spell_damage_amplify: 49
+			}
+		},
+		"26": {
+			inc_id: 126,
+			attribute: {
+				health: 51,
+				attack: 5,
+				spell_damage_amplify: 51
+			}
+		},
+		"27": {
+			inc_id: 127,
+			attribute: {
+				health: 53,
+				attack: 5,
+				spell_damage_amplify: 53
+			}
+		},
+		"28": {
+			inc_id: 128,
+			attribute: {
+				health: 55,
+				attack: 6,
+				spell_damage_amplify: 55
+			}
+		},
+		"29": {
+			inc_id: 129,
+			attribute: {
+				health: 57,
+				attack: 6,
+				spell_damage_amplify: 57
+			}
+		},
+		"30": {
+			inc_id: 130,
+			attribute: {
+				health: 59,
+				attack: 6,
+				spell_damage_amplify: 59
+			}
+		},
+		"31": {
+			inc_id: 131,
+			attribute: {
+				health: 61,
+				attack: 6,
+				spell_damage_amplify: 61
+			}
+		},
+		"32": {
+			inc_id: 132,
+			attribute: {
+				health: 63,
+				attack: 6,
+				spell_damage_amplify: 63
+			}
+		},
+		"33": {
+			inc_id: 133,
+			attribute: {
+				health: 65,
+				attack: 7,
+				spell_damage_amplify: 65
+			}
+		},
+		"34": {
+			inc_id: 134,
+			attribute: {
+				health: 67,
+				attack: 7,
+				spell_damage_amplify: 67
+			}
+		},
+		"35": {
+			inc_id: 135,
+			attribute: {
+				health: 69,
+				attack: 7,
+				spell_damage_amplify: 69
+			}
+		},
+		"36": {
+			inc_id: 136,
+			attribute: {
+				health: 71,
+				attack: 7,
+				spell_damage_amplify: 71
+			}
+		},
+		"37": {
+			inc_id: 137,
+			attribute: {
+				health: 73,
+				attack: 7,
+				spell_damage_amplify: 73
+			}
+		},
+		"38": {
+			inc_id: 138,
+			attribute: {
+				health: 76,
+				attack: 8,
+				spell_damage_amplify: 76
+			}
+		},
+		"39": {
+			inc_id: 139,
+			attribute: {
+				health: 78,
+				attack: 8,
+				spell_damage_amplify: 78
+			}
+		},
+		"40": {
+			inc_id: 140,
+			attribute: {
+				health: 80,
+				attack: 8,
+				spell_damage_amplify: 80
+			}
+		},
+		"41": {
+			inc_id: 141,
+			attribute: {
+				health: 82,
+				attack: 8,
+				spell_damage_amplify: 82
+			}
+		},
+		"42": {
+			inc_id: 142,
+			attribute: {
+				health: 84,
+				attack: 8,
+				spell_damage_amplify: 84
+			}
+		},
+		"43": {
+			inc_id: 143,
+			attribute: {
+				health: 86,
+				attack: 9,
+				spell_damage_amplify: 86
+			}
+		},
+		"44": {
+			inc_id: 144,
+			attribute: {
+				health: 88,
+				attack: 9,
+				spell_damage_amplify: 88
+			}
+		},
+		"45": {
+			inc_id: 145,
+			attribute: {
+				health: 90,
+				attack: 9,
+				spell_damage_amplify: 90
+			}
+		},
+		"46": {
+			inc_id: 146,
+			attribute: {
+				health: 92,
+				attack: 9,
+				spell_damage_amplify: 92
+			}
+		},
+		"47": {
+			inc_id: 147,
+			attribute: {
+				health: 94,
+				attack: 9,
+				spell_damage_amplify: 94
+			}
+		},
+		"48": {
+			inc_id: 148,
+			attribute: {
+				health: 96,
+				attack: 10,
+				spell_damage_amplify: 96
+			}
+		},
+		"49": {
+			inc_id: 149,
+			attribute: {
+				health: 98,
+				attack: 10,
+				spell_damage_amplify: 98
+			}
+		},
+		"50": {
+			inc_id: 150,
+			attribute: {
+				health: 100,
+				attack: 10,
+				spell_damage_amplify: 100
+			}
+		}
+	},
+	"4": {
+		"1": {
+			inc_id: 151,
+			attribute: {
+				health: 0,
+				attack: 0,
+				spell_damage_amplify: 0
+			}
+		},
+		"2": {
+			inc_id: 152,
+			attribute: {
+				health: 4,
+				attack: 0,
+				spell_damage_amplify: 2
+			}
+		},
+		"3": {
+			inc_id: 153,
+			attribute: {
+				health: 7,
+				attack: 0,
+				spell_damage_amplify: 4
+			}
+		},
+		"4": {
+			inc_id: 154,
+			attribute: {
+				health: 11,
+				attack: 1,
+				spell_damage_amplify: 6
+			}
+		},
+		"5": {
+			inc_id: 155,
+			attribute: {
+				health: 15,
+				attack: 1,
+				spell_damage_amplify: 8
+			}
+		},
+		"6": {
+			inc_id: 156,
+			attribute: {
+				health: 18,
+				attack: 1,
+				spell_damage_amplify: 10
+			}
+		},
+		"7": {
+			inc_id: 157,
+			attribute: {
+				health: 22,
+				attack: 1,
+				spell_damage_amplify: 12
+			}
+		},
+		"8": {
+			inc_id: 158,
+			attribute: {
+				health: 26,
+				attack: 2,
+				spell_damage_amplify: 14
+			}
+		},
+		"9": {
+			inc_id: 159,
+			attribute: {
+				health: 29,
+				attack: 2,
+				spell_damage_amplify: 16
+			}
+		},
+		"10": {
+			inc_id: 160,
+			attribute: {
+				health: 33,
+				attack: 2,
+				spell_damage_amplify: 18
+			}
+		},
+		"11": {
+			inc_id: 161,
+			attribute: {
+				health: 37,
+				attack: 2,
+				spell_damage_amplify: 20
+			}
+		},
+		"12": {
+			inc_id: 162,
+			attribute: {
+				health: 40,
+				attack: 3,
+				spell_damage_amplify: 22
+			}
+		},
+		"13": {
+			inc_id: 163,
+			attribute: {
+				health: 44,
+				attack: 3,
+				spell_damage_amplify: 24
+			}
+		},
+		"14": {
+			inc_id: 164,
+			attribute: {
+				health: 48,
+				attack: 3,
+				spell_damage_amplify: 27
+			}
+		},
+		"15": {
+			inc_id: 165,
+			attribute: {
+				health: 51,
+				attack: 3,
+				spell_damage_amplify: 29
+			}
+		},
+		"16": {
+			inc_id: 166,
+			attribute: {
+				health: 55,
+				attack: 4,
+				spell_damage_amplify: 31
+			}
+		},
+		"17": {
+			inc_id: 167,
+			attribute: {
+				health: 59,
+				attack: 4,
+				spell_damage_amplify: 33
+			}
+		},
+		"18": {
+			inc_id: 168,
+			attribute: {
+				health: 62,
+				attack: 4,
+				spell_damage_amplify: 35
+			}
+		},
+		"19": {
+			inc_id: 169,
+			attribute: {
+				health: 66,
+				attack: 4,
+				spell_damage_amplify: 37
+			}
+		},
+		"20": {
+			inc_id: 170,
+			attribute: {
+				health: 70,
+				attack: 5,
+				spell_damage_amplify: 39
+			}
+		},
+		"21": {
+			inc_id: 171,
+			attribute: {
+				health: 73,
+				attack: 5,
+				spell_damage_amplify: 41
+			}
+		},
+		"22": {
+			inc_id: 172,
+			attribute: {
+				health: 77,
+				attack: 5,
+				spell_damage_amplify: 43
+			}
+		},
+		"23": {
+			inc_id: 173,
+			attribute: {
+				health: 81,
+				attack: 5,
+				spell_damage_amplify: 45
+			}
+		},
+		"24": {
+			inc_id: 174,
+			attribute: {
+				health: 84,
+				attack: 6,
+				spell_damage_amplify: 47
+			}
+		},
+		"25": {
+			inc_id: 175,
+			attribute: {
+				health: 88,
+				attack: 6,
+				spell_damage_amplify: 49
+			}
+		},
+		"26": {
+			inc_id: 176,
+			attribute: {
+				health: 92,
+				attack: 6,
+				spell_damage_amplify: 51
+			}
+		},
+		"27": {
+			inc_id: 177,
+			attribute: {
+				health: 96,
+				attack: 6,
+				spell_damage_amplify: 53
+			}
+		},
+		"28": {
+			inc_id: 178,
+			attribute: {
+				health: 99,
+				attack: 7,
+				spell_damage_amplify: 55
+			}
+		},
+		"29": {
+			inc_id: 179,
+			attribute: {
+				health: 103,
+				attack: 7,
+				spell_damage_amplify: 57
+			}
+		},
+		"30": {
+			inc_id: 180,
+			attribute: {
+				health: 107,
+				attack: 7,
+				spell_damage_amplify: 59
+			}
+		},
+		"31": {
+			inc_id: 181,
+			attribute: {
+				health: 110,
+				attack: 7,
+				spell_damage_amplify: 61
+			}
+		},
+		"32": {
+			inc_id: 182,
+			attribute: {
+				health: 114,
+				attack: 8,
+				spell_damage_amplify: 63
+			}
+		},
+		"33": {
+			inc_id: 183,
+			attribute: {
+				health: 118,
+				attack: 8,
+				spell_damage_amplify: 65
+			}
+		},
+		"34": {
+			inc_id: 184,
+			attribute: {
+				health: 121,
+				attack: 8,
+				spell_damage_amplify: 67
+			}
+		},
+		"35": {
+			inc_id: 185,
+			attribute: {
+				health: 125,
+				attack: 8,
+				spell_damage_amplify: 69
+			}
+		},
+		"36": {
+			inc_id: 186,
+			attribute: {
+				health: 129,
+				attack: 9,
+				spell_damage_amplify: 71
+			}
+		},
+		"37": {
+			inc_id: 187,
+			attribute: {
+				health: 132,
+				attack: 9,
+				spell_damage_amplify: 73
+			}
+		},
+		"38": {
+			inc_id: 188,
+			attribute: {
+				health: 136,
+				attack: 9,
+				spell_damage_amplify: 76
+			}
+		},
+		"39": {
+			inc_id: 189,
+			attribute: {
+				health: 140,
+				attack: 9,
+				spell_damage_amplify: 78
+			}
+		},
+		"40": {
+			inc_id: 190,
+			attribute: {
+				health: 143,
+				attack: 10,
+				spell_damage_amplify: 80
+			}
+		},
+		"41": {
+			inc_id: 191,
+			attribute: {
+				health: 147,
+				attack: 10,
+				spell_damage_amplify: 82
+			}
+		},
+		"42": {
+			inc_id: 192,
+			attribute: {
+				health: 151,
+				attack: 10,
+				spell_damage_amplify: 84
+			}
+		},
+		"43": {
+			inc_id: 193,
+			attribute: {
+				health: 154,
+				attack: 10,
+				spell_damage_amplify: 86
+			}
+		},
+		"44": {
+			inc_id: 194,
+			attribute: {
+				health: 158,
+				attack: 11,
+				spell_damage_amplify: 88
+			}
+		},
+		"45": {
+			inc_id: 195,
+			attribute: {
+				health: 162,
+				attack: 11,
+				spell_damage_amplify: 90
+			}
+		},
+		"46": {
+			inc_id: 196,
+			attribute: {
+				health: 165,
+				attack: 11,
+				spell_damage_amplify: 92
+			}
+		},
+		"47": {
+			inc_id: 197,
+			attribute: {
+				health: 169,
+				attack: 11,
+				spell_damage_amplify: 94
+			}
+		},
+		"48": {
+			inc_id: 198,
+			attribute: {
+				health: 173,
+				attack: 12,
+				spell_damage_amplify: 96
+			}
+		},
+		"49": {
+			inc_id: 199,
+			attribute: {
+				health: 176,
+				attack: 12,
+				spell_damage_amplify: 98
+			}
+		},
+		"50": {
+			inc_id: 200,
+			attribute: {
+				health: 180,
+				attack: 12,
+				spell_damage_amplify: 100
+			}
+		}
+	}
+};

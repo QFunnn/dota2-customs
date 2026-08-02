@@ -1,0 +1,169 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 10
+	m_nBehaviorVersion = 12
+	m_ConstantColor = [ 173, 238, 255, 255 ]
+	m_nSnapshotControlPoint = 6
+	m_hSnapshot = resource:"particles/models/events/crownfall/fishing_pole/crownfall_fishing_pole_vengeful/crownfall_fishing_pole_vengeful_model_line_fx_mesh.vsnap"
+	m_bEnableNamedValues = true
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "Venge"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_ABSORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_reel"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_a"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 13
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_b"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 14
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_c"
+					m_entityName = "self"
+				},
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_rope_end"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/events/crownfall/fishing_pole/crownfall_fishing_pole_vengeful.vmdl"
+				m_nModSpecificData = 2147511118
+				m_sequenceName = "runN"
+				m_hitboxSetName = "default"
+				m_bShouldDrawControlPointAxes = true
+			}
+		},
+		{
+			m_name = "Sky"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_reel"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_a"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 13
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_b"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 14
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_ring_c"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/events/crownfall/fishing_pole/crownfall_fishing_pole.vmdl"
+				m_nModSpecificData = 27471
+				m_sequenceName = "skywrath_mage_idle_aggressive_anim"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 10
+			m_nNumControlPoints = 3
+			m_nFirstSourcePoint = 11
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 11
+			m_nNumControlPoints = 3
+			m_nFirstSourcePoint = 12
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/events/crownfall/fishing_pole_ambient_bobber.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/events/crownfall/fishing_pole_ambient_rope_cloth.vpcf"
+		},
+	]
+	m_NamedValueLocals = 
+	[
+		{
+			m_Name = "CP2x - On Off Switch"
+			m_DefaultConfig = 
+			{
+				m_ConfigName = ""
+				m_ConfigValue = 0.0
+				m_BoundValuePath = ""
+				m_iAttachType = "PATTACH_WORLDORIGIN"
+				m_strEntityScope = "self"
+				m_strAttachmentName = ""
+			}
+			m_ValueType = "PVAL_FLOAT"
+		},
+	]
+}

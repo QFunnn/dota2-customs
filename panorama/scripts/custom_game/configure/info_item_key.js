@@ -1,0 +1,138 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().info_item_key = {
+	"1951001": {
+		id: 1951001,
+		class: 1,
+		rarity: 1,
+		icon: 1951001
+	},
+	"1951002": {
+		id: 1951002,
+		class: 1,
+		rarity: 2,
+		icon: 1951002
+	},
+	"1951003": {
+		id: 1951003,
+		class: 1,
+		rarity: 3,
+		icon: 1951003
+	},
+	"1951004": {
+		id: 1951004,
+		class: 1,
+		rarity: 4,
+		icon: 1951004
+	},
+	"1951005": {
+		id: 1951005,
+		class: 1,
+		rarity: 5,
+		icon: 1951005
+	},
+	"1951006": {
+		id: 1951006,
+		class: 1,
+		rarity: 6,
+		icon: 1951006
+	},
+	"1951007": {
+		id: 1951007,
+		class: 1,
+		rarity: 7,
+		icon: 1951007
+	},
+	"1952001": {
+		id: 1952001,
+		class: 2,
+		rarity: 1,
+		icon: 1951001
+	},
+	"1952002": {
+		id: 1952002,
+		class: 2,
+		rarity: 2,
+		icon: 1951002
+	},
+	"1952003": {
+		id: 1952003,
+		class: 2,
+		rarity: 3,
+		icon: 1951003
+	},
+	"1952004": {
+		id: 1952004,
+		class: 2,
+		rarity: 4,
+		icon: 1951004
+	},
+	"1952005": {
+		id: 1952005,
+		class: 2,
+		rarity: 5,
+		icon: 1951005
+	},
+	"1952006": {
+		id: 1952006,
+		class: 2,
+		rarity: 6,
+		icon: 1951006
+	},
+	"1952007": {
+		id: 1952007,
+		class: 2,
+		rarity: 7,
+		icon: 1951007
+	},
+	"1953001": {
+		id: 1953001,
+		class: 3,
+		rarity: 1,
+		icon: 1951001
+	},
+	"1953002": {
+		id: 1953002,
+		class: 3,
+		rarity: 2,
+		icon: 1951002
+	},
+	"1953003": {
+		id: 1953003,
+		class: 3,
+		rarity: 3,
+		icon: 1951003
+	},
+	"1953004": {
+		id: 1953004,
+		class: 3,
+		rarity: 4,
+		icon: 1951004
+	},
+	"1953005": {
+		id: 1953005,
+		class: 3,
+		rarity: 5,
+		icon: 1951005
+	},
+	"1953006": {
+		id: 1953006,
+		class: 3,
+		rarity: 6,
+		icon: 1951006
+	},
+	"1953007": {
+		id: 1953007,
+		class: 3,
+		rarity: 7,
+		icon: 1951007
+	}
+};

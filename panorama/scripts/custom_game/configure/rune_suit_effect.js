@@ -1,0 +1,76 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().rune_suit_effect = {
+	suit_1: {
+		id: "suit_1",
+		points__effect: {
+			"10": "item_rune_charge",
+			"20": "item_rune_charge_upgrade1"
+		},
+		suit_icon: "item_rune_charge"
+	},
+	suit_2: {
+		id: "suit_2",
+		points__effect: {
+			"10": "item_rune_charge_active",
+			"20": "item_rune_charge_active_upgrade1"
+		},
+		suit_icon: "item_rune_charge_active"
+	},
+	suit_3: {
+		id: "suit_3",
+		points__effect: {
+			"10": "item_rune_substitute",
+			"20": "item_rune_substitute_upgrade1"
+		},
+		suit_icon: "item_rune_substitute"
+	},
+	suit_4: {
+		id: "suit_4",
+		points__effect: {
+			"10": "item_rune_vulnerable",
+			"20": "item_rune_vulnerable_upgrade1"
+		},
+		suit_icon: "item_rune_vulnerable"
+	},
+	suit_5: {
+		id: "suit_5",
+		points__effect: {
+			"10": "item_rune_weaken",
+			"20": "item_rune_weaken_upgrade1"
+		},
+		suit_icon: "item_rune_weaken"
+	},
+	suit_6: {
+		id: "suit_6",
+		points__effect: {
+			"10": "item_rune_celerity",
+			"20": "item_rune_celerity_upgrade1"
+		},
+		suit_icon: "item_rune_celerity"
+	},
+	suit_7: {
+		id: "suit_7",
+		points__effect: {
+			"10": "item_rune_shield",
+			"20": "item_rune_shield_upgrade1"
+		},
+		suit_icon: "item_rune_shield"
+	},
+	suit_8: {
+		id: "suit_8",
+		points__effect: {
+			"10": "item_rune_circle",
+			"20": "item_rune_circle_upgrade1"
+		},
+		suit_icon: "item_rune_circle"
+	}
+};

@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf64:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_flConstantRadius = 4.5
+	m_ConstantColor = [ 190, 185, 108, 155 ]
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_bShouldSort = false
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_flConstantLifespan = 3.0
+	m_hSnapshot = resource:"particles/models/items/crystal_maiden/cm_ti9_immortal_weapon/cm_ti9_immortal_weapon_fx.vsnap"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_cockpit_fx"
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.81, 0.81, 0.81 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/snapfire/snapfire.vmdl"
+				m_nModSpecificData = 691
+				m_sequenceName = "snapfire_taunt"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/passive_abilities/soap_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/passive_abilities/soap_a.vpcf"
+			m_flDelay = 0.2
+		},
+		{
+			m_ChildRef = resource:"particles/units/passive_abilities/soap_e.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/units/passive_abilities/soap_b.vpcf"
+			m_bEndCap = true
+		},
+	]
+}

@@ -1,0 +1,523 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+#HUDBattleGemRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	overflow: noclip;
+	z-index: 80;
+}
+
+#HUDBattleGemRoot.Show
+{
+	opacity: 1;
+}
+
+#BattleGemTopCenter
+{
+	width: 450px;
+	height: 116px;
+	horizontal-align: center;
+	overflow: noclip;
+	transition-property: background-image;
+	transition-duration: 0.06s;
+	transition-timing-function: ease-in;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BattleGemTopTextPanel
+{
+	width: 354px;
+	height: 24px;
+	horizontal-align: center;
+	margin-top: 12px;
+	transition-property: opacity;
+	transition-duration: 0.06s;
+}
+
+#BattleGemTitle,#BattleGemEnemyCount
+{
+	width: 176px;
+	height: 24px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+	font-size: 16px;
+	color: #A28F78;
+	text-shadow: 0px 0px 2px #000000;
+}
+
+#BattleGemTitle
+{
+	horizontal-align: left;
+	text-align: left;
+}
+
+#BattleGemEnemyCount
+{
+	horizontal-align: right;
+	text-align: right;
+}
+
+.BattleGemProgressBar
+{
+	width: 368px;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 35px;
+	overflow: clip;
+	transition-property: opacity;
+	transition-duration: 0.06s;
+}
+
+.BattleGemProgressBar .BattleGemProgressBarBg
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+.BattleGemProgressBar .BattleGemProgressFillClip
+{
+	width: 100%;
+	height: 30px;
+	overflow: clip;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.BattleGemProgressBar .BattleGemProgressFill
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_png.vtex");
+	background-size: 368px 30px;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemTopTextPanel,#HUDBattleGemRoot.Finished #BattleGemProgressBar
+{
+	opacity: 0;
+}
+
+#BattleGemTimeLabel,#BattleGemLevelLabel
+{
+	width: 150px;
+	height: 24px;
+	margin-top: 3px;
+	text-overflow: shrink;
+}
+
+#BattleGemTimeLabel
+{
+	vertical-align: center;
+	horizontal-align: left;
+	margin-left: 26px;
+	text-align: left;
+	height: 16px;
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	font-size: 14px;
+	color: #E8DCBE;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#BattleGemLevelLabel
+{
+	horizontal-align: right;
+	margin-right: 26px;
+	text-align: right;
+	font-family: UnifrakturCook;
+	font-weight: bold;
+	font-size: 24px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#BattleGemFinishedSummary
+{
+	width: 100%;
+	height: 116px;
+	align: center top;
+	opacity: 0;
+	overflow: noclip;
+}
+
+#BattleGemFinishedTitle,#BattleGemFinishedLevel
+{
+	width: 400px;
+	horizontal-align: center;
+	text-align: center;
+	text-overflow: shrink;
+	opacity: 0;
+}
+
+#BattleGemFinishedTitle
+{
+	height: 42px;
+	margin-top: 8px;
+	font-family: monospaceNumbersFont;
+	font-size: 32px;
+	font-weight: semi-bold;
+	color: #D6C08D;
+	text-shadow: 0px 2px 5px 3 #000000CC;
+}
+
+#BattleGemFinishedLevel
+{
+	height: 46px;
+	margin-top: 44px;
+	font-family: UnifrakturCook;
+	font-size: 36px;
+	font-weight: bold;
+	color: #E6D4A4;
+	text-shadow: 0px 2px 5px 3 #000000CC;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedSummary
+{
+	opacity: 1;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedTitle
+{
+	animation-name: BattleGemFinishedTitleMove;
+	animation-duration: 0.62s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedLevel
+{
+	animation-name: BattleGemFinishedLevelMove;
+	animation-duration: 0.68s;
+	animation-delay: 0.06s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+@keyframes 'BattleGemFinishedTitleMove'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d(-89px, -6px, 0px);
+		pre-transform-scale2d: 0.5;
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 3px, 0px);
+		pre-transform-scale2d: 1.04;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'BattleGemFinishedLevelMove'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d(42px, -20px, 0px);
+		pre-transform-scale2d: 0.67;
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 3px, 0px);
+		pre-transform-scale2d: 1.04;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+#HUDBattleGemRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	overflow: noclip;
+	z-index: 80;
+}
+
+#HUDBattleGemRoot.Show
+{
+	opacity: 1;
+}
+
+#BattleGemTopCenter
+{
+	width: 450px;
+	height: 116px;
+	horizontal-align: center;
+	overflow: noclip;
+	transition-property: background-image;
+	transition-duration: 0.06s;
+	transition-timing-function: ease-in;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BattleGemTopTextPanel
+{
+	width: 354px;
+	height: 24px;
+	horizontal-align: center;
+	margin-top: 12px;
+	transition-property: opacity;
+	transition-duration: 0.06s;
+}
+
+#BattleGemTitle,#BattleGemEnemyCount
+{
+	width: 176px;
+	height: 24px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+	font-size: 16px;
+	color: #A28F78;
+	text-shadow: 0px 0px 2px #000000;
+}
+
+#BattleGemTitle
+{
+	horizontal-align: left;
+	text-align: left;
+}
+
+#BattleGemEnemyCount
+{
+	horizontal-align: right;
+	text-align: right;
+}
+
+.BattleGemProgressBar
+{
+	width: 368px;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 35px;
+	overflow: clip;
+	transition-property: opacity;
+	transition-duration: 0.06s;
+}
+
+.BattleGemProgressBar .BattleGemProgressBarBg
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+.BattleGemProgressBar .BattleGemProgressFillClip
+{
+	width: 100%;
+	height: 30px;
+	overflow: clip;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.BattleGemProgressBar .BattleGemProgressFill
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_png.vtex");
+	background-size: 368px 30px;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemTopTextPanel,#HUDBattleGemRoot.Finished #BattleGemProgressBar
+{
+	opacity: 0;
+}
+
+#BattleGemTimeLabel,#BattleGemLevelLabel
+{
+	width: 150px;
+	height: 24px;
+	margin-top: 3px;
+	text-overflow: shrink;
+}
+
+#BattleGemTimeLabel
+{
+	vertical-align: center;
+	horizontal-align: left;
+	margin-left: 26px;
+	text-align: left;
+	height: 16px;
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	font-size: 14px;
+	color: #E8DCBE;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#BattleGemLevelLabel
+{
+	horizontal-align: right;
+	margin-right: 26px;
+	text-align: right;
+	font-family: UnifrakturCook;
+	font-weight: bold;
+	font-size: 24px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#BattleGemFinishedSummary
+{
+	width: 100%;
+	height: 116px;
+	align: center top;
+	opacity: 0;
+	overflow: noclip;
+}
+
+#BattleGemFinishedTitle,#BattleGemFinishedLevel
+{
+	width: 400px;
+	horizontal-align: center;
+	text-align: center;
+	text-overflow: shrink;
+	opacity: 0;
+}
+
+#BattleGemFinishedTitle
+{
+	height: 42px;
+	margin-top: 8px;
+	font-family: monospaceNumbersFont;
+	font-size: 32px;
+	font-weight: semi-bold;
+	color: #D6C08D;
+	text-shadow: 0px 2px 5px 3 #000000CC;
+}
+
+#BattleGemFinishedLevel
+{
+	height: 46px;
+	margin-top: 44px;
+	font-family: UnifrakturCook;
+	font-size: 36px;
+	font-weight: bold;
+	color: #E6D4A4;
+	text-shadow: 0px 2px 5px 3 #000000CC;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedSummary
+{
+	opacity: 1;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedTitle
+{
+	animation-name: BattleGemFinishedTitleMove;
+	animation-duration: 0.62s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+#HUDBattleGemRoot.Finished #BattleGemFinishedLevel
+{
+	animation-name: BattleGemFinishedLevelMove;
+	animation-duration: 0.68s;
+	animation-delay: 0.06s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+@keyframes 'BattleGemFinishedTitleMove'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d(-89px, -6px, 0px);
+		pre-transform-scale2d: 0.5;
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 3px, 0px);
+		pre-transform-scale2d: 1.04;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'BattleGemFinishedLevelMove'
+{
+	0%
+	{
+		opacity: 1;
+		transform: translate3d(42px, -20px, 0px);
+		pre-transform-scale2d: 0.67;
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 3px, 0px);
+		pre-transform-scale2d: 1.04;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+		pre-transform-scale2d: 1;
+	}
+	
+}

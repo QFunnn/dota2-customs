@@ -1,0 +1,232 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"				"Root"
+	"Name"				"火元素BossAI"
+	"Description"		"火元素Boss - 多技能 + 状态管理"
+	"X"					"470"
+	"Y"					"100"
+	"Params"
+	{
+		"Debug"			"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"				"Selector"
+			"Name"				"Boss主选择器"
+			"Description"		"危急状态优先，否则战斗，没有敌人则巡逻"
+			"X"					"470"
+			"Y"					"220"
+			"Index"				"1"
+			"Children"
+			{
+				"EscapeSequence"
+				{
+					"Type"				"Sequence"
+					"Name"				"危急撤退"
+					"Description"		"HP低于20%时逃离敌人"
+					"X"					"100"
+					"Y"					"342"
+					"Index"				"1"
+					"Children"
+					{
+						"CheckCriticalHP"
+						{
+							"Type"			"Condition"
+							"Name"			"CheckHealthPct"
+							"Description"	"检查HP是否低于20%"
+							"X"				"20"
+							"Y"				"553"
+							"Index"			"1"
+							"Params"
+							{
+								"HealthPercent"	"20"
+							}
+						}
+						"Escape"
+						{
+							"Type"			"Action"
+							"Name"			"EscapeFromEnemy"
+							"Description"	"逃离敌人"
+							"X"				"180"
+							"Y"				"553"
+							"Index"			"2"
+							"Params"
+							{
+								"EscapeDistance"	"800"
+								"SafeDistance"	"1200"
+							}
+						}
+					}
+				}
+				"CombatSequence"
+				{
+					"Type"				"Sequence"
+					"Name"				"战斗序列"
+					"Description"		"检测敌人后释放技能或攻击"
+					"X"					"300"
+					"Y"					"342"
+					"Index"				"2"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"			"Condition"
+							"Name"			"CheckEnemy"
+							"Description"	"检查1000范围内是否有敌人"
+							"X"				"220"
+							"Y"				"553"
+							"Index"			"1"
+							"Params"
+							{
+								"Radius"		"1000"
+							}
+						}
+						"SkillSelector"
+						{
+							"Type"			"Selector"
+							"Name"			"技能选择器"
+							"Description"	"优先释放大招，否则普通技能，否则近战攻击"
+							"X"				"380"
+							"Y"				"552"
+							"Index"			"2"
+							"Children"
+							{
+								"UltimateSkillSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"大招序列"
+									"Description"	"MP高于80%时释放烈焰风暴"
+									"X"			"150"
+									"Y"			"673"
+									"Index"		"1"
+									"Children"
+									{
+										"CheckManaForUltimate"
+										{
+											"Type"		"Condition"
+											"Name"		"CheckMana"
+											"Description"	"检查MP是否高于80%"
+											"X"			"70"
+											"Y"			"837"
+											"Index"		"1"
+											"Params"
+											{
+												"ManaPercent"	"80"
+											}
+										}
+										"CastUltimate"
+										{
+											"Type"		"Action"
+											"Name"		"SpellAbility"
+											"Description"	"释放烈焰风暴"
+											"X"			"230"
+											"Y"			"828"
+											"Index"		"2"
+											"Params"
+											{
+												"ability"	"infernal_blade"
+											}
+										}
+									}
+								}
+								"FireballSkillSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"火球术序列"
+									"Description"	"释放火球术"
+									"X"			"380"
+									"Y"			"673"
+									"Index"		"2"
+									"Children"
+									{
+										"CheckFireballStatus"
+										{
+											"Type"		"Action"
+											"Name"		"CheckAbilityStatus"
+											"Description"	"检测火球术状态"
+											"X"			"300"
+											"Y"			"837"
+											"Index"		"1"
+											"Params"
+											{
+												"ability"	"fireball"
+											}
+										}
+										"CastFireball"
+										{
+											"Type"		"Action"
+											"Name"		"SpellAbility"
+											"Description"	"释放火球术"
+											"X"			"460"
+											"Y"			"828"
+											"Index"		"2"
+											"Params"
+											{
+												"ability"	"fireball"
+											}
+										}
+									}
+								}
+								"MeleeAttackSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"近战攻击序列"
+									"Description"	"近战攻击"
+									"X"			"610"
+									"Y"			"673"
+									"Index"		"3"
+									"Children"
+									{
+										"CheckAttackStatus"
+										{
+											"Type"		"Action"
+											"Name"		"CheckAttackStatus"
+											"Description"	"检测攻击状态"
+											"X"			"530"
+											"Y"			"837"
+											"Index"		"1"
+											"Params"
+											{
+												"ability"	"custom_attack"
+											}
+										}
+										"Attack"
+										{
+											"Type"		"Action"
+											"Name"		"Attack"
+											"Description"	"攻击敌人"
+											"X"			"690"
+											"Y"			"828"
+											"Index"		"2"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"			"Action"
+					"Name"			"Patrol"
+					"Description"	"在区域内巡逻"
+					"X"				"700"
+					"Y"				"342"
+					"Index"			"3"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,1736 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 41;
+}
+
+.TutorialUpperRoot
+{
+	horizontal-align: center;
+	vertical-align: top;
+	width: 100%;
+	min-height: 500px;
+	max-height: 600px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#000000cc), to(#00000000));
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+.TutorialUpperRoot.Show
+{
+	opacity: 1;
+}
+
+#TutorialBackground
+{
+	align: center center;
+	width: 1300px;
+	height: 500px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beginner_bg_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.9;
+}
+
+#TutorialUpperMain
+{
+	padding: 0 300px 50px 300px;
+	align: center center;
+	flow-children: down;
+}
+
+#TopContent
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#TopContent .MoveKeyList
+{
+	horizontal-align: center;
+	width: 96px;
+	margin-right: 11px;
+	flow-children: right-wrap;
+}
+
+#TopContent .KeyContainer
+{
+	width: 27px;
+	margin: 2px;
+}
+
+#TopContent .KeyContainer .EOM_HotKeyDisplay
+{
+	width: 100%;
+}
+
+#TopContent .EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_light_png.vtex");
+}
+
+#TopContent .EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	color: #323030;
+}
+
+.TutorialAbilityHint
+{
+	flow-children: down;
+	horizontal-align: center;
+	max-width: 840px;
+}
+
+.TutorialAbilityRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.TutorialAbilityRow .AbilityImageContainer
+{
+	vertical-align: center;
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_frame_png.vtex");
+	z-index: 1;
+	padding: 2px;
+	margin-bottom: 10px;
+}
+
+.TutorialAbilityRow DOTAAbilityImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TutorialAbilityRow .DOTAAbilityImage
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 14px;
+	vertical-align: center;
+}
+
+.HeroAbility__Name
+{
+	margin-left: 10px;
+	vertical-align: center;
+	margin-right: 10px;
+	color: #FDEFC8;
+	font-size: 24px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 4px 2 #000000cc;
+	max-width: 200px;
+	text-overflow: shrink;
+}
+
+.HeroAbility__Tag
+{
+	margin-left: 16px;
+	margin-top: 10px;
+	background-color: #43382C;
+	border: 1px solid #625344;
+	padding: 1px 6px;
+	border-radius: 1px;
+	color: #CABEA2;
+	font-size: 14px;
+}
+
+#HeroAbility__Description
+{
+	horizontal-align: center;
+	margin-top: 12px;
+	max-width: 800px;
+	color: #bcc8d6;
+	font-size: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 2px 1 #00000088;
+}
+
+.TutorialMovementHint
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+#TutorialMovementLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #f4fbff;
+	font-size: 26px;
+	font-weight: semi-bold;
+	letter-spacing: 0.5px;
+	text-shadow: 0px 0px 6px 3 #08111dcc;
+	text-overflow: shrink;
+	max-width: 800px;
+}
+
+#TextContent
+{
+	horizontal-align: center;
+	margin-top: 14px;
+}
+
+#TutorialTextLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #A39C82;
+	font-size: 20px;
+	font-weight: medium;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 3px 2 #00000088;
+	text-overflow: shrink;
+	max-width: 820px;
+}
+
+.TutorialSettingRoot
+{
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-color: #00000088;
+	opacity: 0;
+}
+
+.TutorialSettingRoot #Border
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+.TutorialSettingRoot.Show
+{
+	opacity: 1;
+}
+
+.TutorialSettingRoot.Show #Border
+{
+	background-color: #000000;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	animation-name: GradientShow;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-direction: reverse;
+}
+
+@keyframes 'GradientShow'
+{
+	0%
+	{
+		background-color: #000000;
+	}
+	
+	100%
+	{
+		background-color: #00000000;
+	}
+	
+}
+
+#TutorialPreface
+{
+	align: center center;
+	width: 1600px;
+	height: 800px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beginner_bg_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.9;
+	padding: 170px 250px 300px 250px;
+}
+
+#TutorialPreface #TutorialPrefaceLabel
+{
+	align: center center;
+	text-align: center;
+	color: #A39C82;
+	font-size: 24px;
+	text-shadow: 0px 0px 3px 2 #00000088;
+	text-overflow: shrink;
+}
+
+#TutorialPreface .EOM_Button
+{
+	margin: 0 10px;
+	ui-scale: 75%;
+}
+
+.MainHeader
+{
+	font-size: 36px;
+	font-weight: thin;
+	color: #A39A7A;
+	text-transform: uppercase;
+}
+
+.SectionHeader
+{
+	font-size: 20px;
+	font-weight: thin;
+	color: #A39A7A;
+	text-transform: uppercase;
+	border-bottom: 1px solid #00000000;
+}
+
+.SectionHeader.UnderLine
+{
+	border-bottom: 1px solid #ddcd93;
+	color: #ddcd93;
+}
+
+#TurtorialMoveMode
+{
+	width: 450px;
+	margin: 0 20px;
+	brightness: 0.4;
+	transition-duration: 0s;
+}
+
+#TurtorialMoveMode.Selected
+{
+	brightness: 1;
+}
+
+#TurtorialMoveMode #SettingTabContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TurtorialMoveMode .EOM_RadioButton
+{
+	margin: 4px 32px;
+}
+
+#TurtorialMoveMode .Separator
+{
+	width: 100%;
+	height: 10px;
+}
+
+#TurtorialMoveMode .SettingTab
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 10px 0px;
+	opacity: 0;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#TurtorialMoveMode .SettingTab.Show
+{
+	opacity: 1;
+}
+
+#TurtorialMoveMode .SettingTab VerticalScrollBar
+{
+	height: 95%;
+	vertical-align: center;
+}
+
+#TurtorialMoveMode .KeyBinderRow
+{
+	ui-scale: 90%;
+	horizontal-align: center;
+	margin-bottom: 2px;
+	flow-children: right;
+}
+
+#TurtorialMoveMode .KeyBinderRow.Disable
+{
+	saturation: 0;
+	wash-color: gray;
+	brightness: 0.45;
+}
+
+#TurtorialMoveMode .KeyBinderRow.Disable:hover
+{
+	brightness: 0.45;
+}
+
+#TurtorialMoveMode .KeyBinderRow.Disable:hover .KeyBinderHotKey,#TurtorialMoveMode .KeyBinderRow.Disable:hover .KeyBinderText
+{
+	color: #B9B1A6;
+}
+
+#TurtorialMoveMode .KeyBinderRow.Binding .GamepadInput
+{
+	opacity: 0;
+}
+
+#TurtorialMoveMode .KeyBinderRow .KeyBinderText
+{
+	vertical-align: center;
+	letter-spacing: 1px;
+	background-color: #000000d0;
+	width: 208px;
+	height: 39px;
+	margin: 0px 8px 0px 0px;
+	border-width: 0px;
+	padding-top: 8px;
+	padding-left: 8px;
+	font-size: 18px;
+	color: #B9B1A6;
+	horizontal-align: left;
+	transition-property: color, background-color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+#TurtorialMoveMode .KeyBinderRow .KeyBinderInput
+{
+	vertical-align: center;
+	width: 154px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	background-size: 100%;
+	horizontal-align: right;
+	transition-property: box-shadow, background-color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+#TurtorialMoveMode .KeyBinderRow .KeyBinderHotKey
+{
+	width: 100%;
+	vertical-align: center;
+	color: #FDEFC8;
+	text-align: center;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+#TurtorialMoveMode .KeyBinderRow .GamepadInput
+{
+	vertical-align: center;
+	width: 154px;
+	height: 39px;
+	background-color: #000000d0;
+	horizontal-align: right;
+	overflow: noclip;
+}
+
+.SelectedLight
+{
+	width: 100%;
+	height: 100%;
+	margin: 20px 12px 0 12px;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_png.vtex");
+	background-size: 100%;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffff00), color-stop(0.2, #ffffff), color-stop(0.8, #ffffff), to(#ffffff));
+}
+
+#TutorialBottomButtons
+{
+	align: center bottom;
+}
+
+#TutorialBottomButtons .EOM_Button
+{
+	ui-scale: 80%;
+	margin: 0 16px;
+}
+
+.GradientShow
+{
+	animation-name: GradientShow;
+	animation-duration: 0.2s;
+	animation-timing-function: linear;
+}
+
+@keyframes 'GradientShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#SkipTutorialButton
+{
+	align: center top;
+	x: 350px;
+	z-index: -1;
+	ui-scale: 70%;
+	margin-top: 6px;
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_HotKeyDisplay:not(.IsImage)
+{
+	min-width: 24px;
+}
+
+.EOM_HotKeyDisplay.IsImage
+{
+	min-height: 24px;
+}
+
+.EOM_HotKeyDisplay.Filp
+{
+	transform: rotateY(-180deg);
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	align: center center;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	width: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.AspectRatio4x3 .EOM_PopupMain.large
+{
+	ui-scale: 90%;
+}
+
+.EOM_PopupMain
+{
+	align: center center;
+	width: 981px;
+	height: 620px;
+	opacity: 0;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+}
+
+.EOM_PopupMain.Custom
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.EOM_PopupMain.normal
+{
+	width: 884px;
+	height: 635px;
+}
+
+.EOM_PopupMain.small
+{
+	width: 814px;
+	height: 380px;
+}
+
+.EOM_PopupMain.small .EOM_CloseButton
+{
+	margin: 2px -11px 0px 0px;
+}
+
+.EOM_PopupMain.large
+{
+	width: 1362px;
+	height: 872px;
+}
+
+.EOM_PopupMain.PopupType_LeftTop
+{
+	transition-duration: 0.4s;
+	transform: translateX(-120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+.EOM_PopupMain.PopupType_LeftTop.EOM_PopupMainShow
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+.EOM_PopupMain.PopupType_PopOut
+{
+	transition-duration: 0.2s;
+	animation-name: PopOut;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainShow
+{
+	opacity: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainClose
+{
+	opacity: 0;
+	animation-name: PopOutClose;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain .EOM_PopupBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.small.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_small_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.normal.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_middle_png.vtex");
+	background-size: 100% 602px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.large.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_big_png.vtex");
+	background-size: 1362px 804px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 408px;
+	height: 66px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 24px;
+	font-weight: normal;
+	color: #e1cb7e;
+	text-shadow: 0px 0px 3px 3 rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_title_png.vtex");
+	background-size: 408px 66px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: 22px;
+}
+
+.small.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 592px;
+	margin-top: 42px;
+	padding-top: 5px;
+	font-size: 22px;
+	color: #D0CA95;
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_board_title_png.vtex");
+	background-size: 592px 34px;
+	background-position: center top;
+}
+
+.EOM_PopupMain .EOM_PopupContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 100px 60px 60px 60px;
+}
+
+.EOM_PopupMain .EOM_PopupContent.Custom
+{
+	width: fit-children;
+	height: fit-children;
+	margin: 0px;
+}
+
+.small.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 85px 63px 40px 63px;
+}
+
+.normal.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 73px 32px 48px 30px;
+}
+
+.EOM_PopupMain .EOM_CloseButton
+{
+	horizontal-align: right;
+	margin-top: 15px;
+	margin-right: -6px;
+}
+
+.EOM_PopupMain .EOM_CloseButton:active
+{
+	sound: "ui_settings_out_multi";
+}
+
+.EOM_PopupMain .EOM_CloseButton:hover
+{
+	wash-color: none;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}
+
+.EOM_RadioButton
+{
+	margin: 2px;
+}
+
+.EOM_RadioButton:enabled:hover > .RadioBox
+{
+	border: 2px solid #8d8569;
+}
+
+.EOM_RadioButton:enabled:selected:hover > .RadioBox
+{
+	border: 3px solid #000000;
+}
+
+.EOM_RadioButton:selected > .RadioBox
+{
+	box-shadow: #8d856977 0px 0px 6px 0px;
+	background-color: gradient(radial, 50% 50%, -5% -5%, 60% 60%, from(#8d8569), to(#473c2d));
+}
+
+.EOM_RadioButton > .RadioBox
+{
+	vertical-align: center;
+	border: 2px solid #473c2d;
+}
+
+.EOM_RadioButton > Label
+{
+	color: #A39C82;
+	vertical-align: center;
+}
+
+.EOM_Breadcrumb
+{
+	flow-children: right;
+}
+
+.EOM_Breadcrumb .EOM_BreadcrumbSeparator
+{
+	font-size: 20px;
+	color: #939da022;
+	margin: 0px 12px;
+}
+
+.EOM_Breadcrumb > TabButton Label
+{
+	margin-top: 2px;
+	color: #939da044;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+.EOM_Breadcrumb > TabButton:selected Label
+{
+	color: white;
+	sound: "ui_rollover_micro";
+}
+
+.EOM_Breadcrumb > TabButton:hover Label
+{
+	color: #CCCCCC;
+}
+
+.EOM_Breadcrumb > TabButton:active
+{
+	transform: translateY(2px);
+}
+
+.EOM_Breadcrumb > TabButton:active:selected
+{
+	transform: translateY(0px);
+}
+
+.GamepadPicker
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000aa;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity, visibility;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.GamepadPicker.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.GamepadPicker .GamepadPickerWindow
+{
+	width: 332px;
+	height: 306px;
+	background-image: url("s2r://panorama/images/custom_game/s2_settings/s2_img_gamepad_png.vtex");
+	background-size: 100%;
+	align: center center;
+	flow-children: down;
+	padding: 15px;
+}
+
+.GamepadPicker .GamepadPickerClose
+{
+	align: right top;
+	ignore-parent-flow: true;
+}
+
+.GamepadPicker .GamepadPickerTitle
+{
+	horizontal-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	color: #f4e5c4;
+	letter-spacing: 2px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.GamepadPicker .GamepadPickerDesc
+{
+	horizontal-align: center;
+	margin-top: 12px;
+	font-size: 18px;
+	color: #b9b1a6;
+	text-align: center;
+}
+
+.GamepadPicker .GamepadPickerContent
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin: 8px 0px;
+	width: 110px;
+	height: 110px;
+	background-color: #00000066;
+	border: 1px solid #4f453b;
+}
+
+.GamepadPicker .GamepadPickerKeyName
+{
+	horizontal-align: center;
+	font-size: 18px;
+	color: #f4e5c4;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.GamepadPicker .GamepadPickerConfirm
+{
+	horizontal-align: center;
+	margin-top: 8px;
+}
+
+.KeyBindPicker
+{
+	flow-children: down;
+	padding: 11px 10px 11px 10px;
+	margin: 0px;
+	width: 864px;
+	height: 306px;
+	background-image: url("s2r://panorama/images/custom_game/s2_settings/s2_img_keyboard_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#Header
+{
+	flow-children: right;
+	width: 100%;
+	padding: 10px 7px 0px 18px;
+}
+
+#Instructions
+{
+	text-transform: uppercase;
+	vertical-align: middle;
+	color: #B9B1A6;
+	font-size: 20px;
+}
+
+#KeyBindOption
+{
+	opacity: 1;
+	flow-children: right;
+}
+
+.KeyboardOption
+{
+	padding-left: 13px;
+	padding-top: 9px;
+	flow-children: down;
+}
+
+.MouseOption
+{
+	padding-top: 27px;
+	height: 220px;
+	width: 118px;
+	vertical-align: center;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/s2_settings/s2_img_mouse_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.MouseOption .Mouse
+{
+	width: 43px;
+	margin: 0px;
+}
+
+.MouseOption #MOUSE0
+{
+	margin-left: 4px;
+	margin-right: 20px;
+}
+
+.LeftRightFlow
+{
+	flow-children: right;
+}
+
+.BindingRow
+{
+	background-color: none;
+	flow-children: right;
+	width: 100%;
+	height: 28px;
+	margin: 4px 0px 4px 0px;
+	tooltip-position: bottom;
+}
+
+#BindingLabelContainer
+{
+	height: 100%;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#BindingLabelContainer.ActiveBindButton
+{
+	background-color: #1350a9;
+	width: 100%;
+	animation-name: BackgroundPulse;
+	animation-duration: 1.35s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#mod
+{
+	visibility: collapse;
+	margin-right: -2px;
+	text-overflow: shrink;
+}
+
+#dash
+{
+	visibility: collapse;
+	margin-right: 1px;
+}
+
+.SettingsKeyBinder.selected .ActiveBindButton #mod,.SettingsKeyBinder.selected .ActiveBindButton #dash
+{
+	visibility: collapse;
+}
+
+.Modifier #dash,.Modifier #mod
+{
+	visibility: visible;
+}
+
+.ClearKeybinding
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	visibility: collapse;
+}
+
+.SettingsKeyBinder.selected .ClearKeybinding
+{
+	visibility: visible;
+}
+
+.BindingRowButton
+{
+	color: #877A68;
+	horizontal-align: right;
+	text-align: center;
+	font-size: 18px;
+	padding-top: 3px;
+	text-overflow: shrink;
+}
+
+.BindingRowButton:hover
+{
+	color: #BDAC93;
+}
+
+.HeroAbilityBindAbilityButton
+{
+	flow-children: none;
+	width: 38px;
+	height: 38px;
+	margin: 4px;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+#KeyBinderBG
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/s2_settings/s2_btn_key_png.vtex");
+	border-image-slice: 10px fill;
+	border-width: 10px;
+	border-image-repeat: stretch;
+}
+
+.HeroAbilityBindAbilityButton:not(:disabled):hover
+{
+	box-shadow: #5d4423 0px 0px 3px 0.3px;
+}
+
+.HeroAbilityBindAbilityButton:not(:disabled):hover .BindingRowButton
+{
+	color: #BDAC93;
+}
+
+.HeroAbilityBindAbilityButton:not(:disabled):hover #KeyBinderBG
+{
+	border-image-source: url("s2r://panorama/images/custom_game/s2_settings/s2_select_png.vtex");
+}
+
+.HeroAbilityBindAbilityButton:disabled
+{
+	opacity: 0.2;
+}
+
+.HeroAbilityBindAbilityButton #LabelFXContainer
+{
+	width: 100%;
+	background-color: none;
+}
+
+.SettingsKeyBinder.selected .ActiveBindButton
+{
+	background-color: #1350a9;
+	animation-name: BackgroundPulse;
+	animation-duration: 1.35s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#LabelFXContainer
+{
+	background-color: #1a2d47;
+	width: fill-parent-flow(0.3);
+	height: 100%;
+	horizontal-align: right;
+	transition-property: box-shadow, background-color;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.ActiveBindFX
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.36s;
+	transition-timing-function: ease-in-out;
+}
+
+@keyframes 'BackgroundPulse'
+{
+	0%
+	{
+		background-color: #1350a9;
+	}
+	
+	50%
+	{
+		background-color: #021088;
+	}
+	
+	100%
+	{
+		background-color: #1350a9;
+	}
+	
+}
+
+.Back
+{
+	width: 88px;
+}
+
+.Tab
+{
+	width: 61px;
+}
+
+.CapLk
+{
+	width: 76px;
+}
+
+.Enter
+{
+	width: 92px;
+}
+
+.Shift
+{
+	width: 107px;
+}
+
+.Ctrl
+{
+	width: 46px;
+}
+
+.Alt
+{
+	width: 46px;
+}
+
+.Space
+{
+	width: 466px;
+}

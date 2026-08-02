@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+local a = "abilities/privilege/privilege_weapon_011"
+local b = require("lualib_bundle")
+local c = b.__TS__Class
+local d = b.__TS__ClassExtends
+local e = b.__TS__DecorateLegacy
+local f = {}
+local g = require("abilities.eom_privilege")
+local h = g.EOMPrivilege
+local i = g.RegisterPrivilege
+local j = c()
+j.name = "privilege_weapon_011"
+d(j, h)
+function j.prototype.OnCreated(self)
+	local k = self:GetCaster()
+	if not IsValid(k) then
+		return
+	end
+	AbilityUpgrade:AddAbilityUpgrade(k, "solthra_attack_upgrade_5", self.level, "privilege_weapon_011")
+	AbilityUpgrade:AddAbilityUpgrade(k, "solthra_attack_upgrade_6", self.level, "privilege_weapon_011")
+end
+function j.prototype.OnDestroy(self)
+	local k = self:GetCaster()
+	if not IsValid(k) then
+		return
+	end
+	AbilityUpgrade:RemoveAbilityUpgrade(k, "solthra_attack_upgrade_5", "privilege_weapon_011")
+	AbilityUpgrade:RemoveAbilityUpgrade(k, "solthra_attack_upgrade_6", "privilege_weapon_011")
+end
+j = e({ i(nil) }, j)
+return f

@@ -1,0 +1,54 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().version = {
+	"100": {
+		major: 100
+	},
+	"101": {
+		major: 101
+	},
+	"102": {
+		major: 102
+	},
+	"103": {
+		major: 103
+	},
+	"104": {
+		major: 104
+	},
+	"105": {
+		major: 105
+	},
+	"106": {
+		major: 106
+	},
+	"107": {
+		major: 107
+	},
+	"108": {
+		major: 108
+	},
+	"109": {
+		major: 109
+	},
+	"110": {
+		major: 110
+	},
+	"111": {
+		major: 111
+	},
+	"112": {
+		major: 112
+	},
+	"113": {
+		major: 113
+	}
+};

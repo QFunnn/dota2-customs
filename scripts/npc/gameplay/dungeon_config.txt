@@ -1,0 +1,495 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DungeonConfig"
+{
+	// 难度 -> 地形主题映射。当前约定：整局所有 Zone 共用同一个地形主题。
+	"DifficultyTerrainMap"
+	{
+		"default"				"lava"
+		"1"					"lava"
+		"2"					"sand"
+		"3"					"ice"
+		"4"					"jungle"
+		"5"					"lava"
+		"6"					"sand"
+		"7"					"ice"
+		"8"					"jungle"
+		"9"					"lava"
+		"10"				"sand"
+	}
+	"DifficultyBossMap"
+	{
+		"default"
+		{
+			"Zone1"				"boss_deep_magma_earthshaker|boss_axe|boss_lion"
+			"Zone2"				"boss_bloodseeker|boss_shredder|boss_lion"
+			"Zone3"				"boss_skeleton_king|boss_grimstroke|boss_treant|boss_queenofpain"
+		}
+		"1"
+		{
+			"Zone1"				"boss_axe"
+			"Zone2"				"boss_lion"
+			"Zone3"				"boss_deep_magma_earthshaker"
+		}
+		"2"
+		{
+			"Zone1"				"boss_lion"
+			"Zone2"				"boss_bloodseeker"
+			"Zone3"				"boss_shredder"
+		}
+		"3"
+		{
+			"Zone1"				"boss_deep_magma_earthshaker|boss_axe|boss_lion"
+			"Zone2"				"boss_bloodseeker|boss_shredder|boss_lion"
+			"Zone3"				"boss_skeleton_king|boss_grimstroke"
+		}
+		"4"
+		{
+			"Zone1"				"boss_deep_magma_earthshaker|boss_axe|boss_lion"
+			"Zone2"				"boss_bloodseeker|boss_shredder|boss_lion"
+			"Zone3"				"boss_treant"
+		}
+	}
+	// 地形主题池。房间流程仍由各 Zone 配置决定，这里只负责提供 Small/Medium/Boss/Shop/Bar/Stair prefab。
+	// 多人模式下Large模板会自动加入到Medium里，不用通过配置处理。
+	"TerrainThemes"
+	{
+		"lava"
+		{
+			"Time"				"night"
+			"Small"
+			{
+				"prefabs/level_lava/level_lava_3x8_0"	"1"
+				"prefabs/level_lava/level_lava_5x5_0"	"1"
+				"prefabs/level_lava/level_lava_5x6_0"	"1"
+				"prefabs/level_lava/level_lava_4x8_0"	"1"
+				"prefabs/level_lava/level_lava_4x8_1"	"1"
+			}
+			"Medium"
+			{
+				"prefabs/level_lava/level_lava_5x7_0"	"1"
+				"prefabs/level_lava/level_lava_5x7_1"	"1"
+				"prefabs/level_lava/level_lava_5x7_2"	"1"
+				"prefabs/level_lava/level_lava_5x7_3"	"1"
+				"prefabs/level_lava/level_lava_5x7_4"	"1"
+				"prefabs/level_lava/level_lava_5x7_5"	"1"
+				"prefabs/level_lava/level_lava_5x7_6"	"1"
+				"prefabs/level_lava/level_lava_5x7_7"	"1"
+				"prefabs/level_lava/level_lava_5x8_0"	"1"
+				"prefabs/level_lava/level_lava_6x7_0"	"1"
+				"prefabs/level_lava/level_lava_6x7_1"	"1"
+				"prefabs/level_lava/level_lava_7x5_0"	"1"
+				"prefabs/level_lava/level_lava_7x5_1"	"1"
+				"prefabs/level_lava/level_lava_7x5_2"	"1"
+				"prefabs/level_lava/level_lava_7x5_3"	"1"
+				"prefabs/level_lava/level_lava_7x5_4"	"1"
+				"prefabs/level_lava/level_lava_7x5_5"	"1"
+				"prefabs/level_lava/level_lava_7x6_0"	"1"
+				"prefabs/level_lava/level_lava_7x6_1"	"1"
+				"prefabs/level_lava/level_lava_7x6_2"	"1" 
+				"prefabs/level_lava/level_lava_7x7_3"	"1"
+			}
+			"Large"
+			{
+				"prefabs/level_lava/level_lava_7x7_0"	"1"
+				"prefabs/level_lava/level_lava_7x7_1"	"1"
+				"prefabs/level_lava/level_lava_7x7_2"	"1"
+				"prefabs/level_lava/level_lava_7x7_3"	"1"
+				"prefabs/level_lava/level_lava_7x7_4"	"1"
+			}
+			"Boss"
+			{
+				"prefabs/level_lava/boss_lava_7x7_0"	"1"
+				"prefabs/level_lava/boss_lava_7x7_1"	"1"
+				"prefabs/level_lava/boss_lava_7x7_2"	"1"
+				"prefabs/level_lava/boss_lava_7x7_3"	"1"
+			}
+			"Shop"
+			{
+				"prefabs/level_lava/shop_lava_5x5_0"	"1"
+			}
+			"Bar"
+			{
+				"prefabs/level_lava/bar_lava_5x5_0"	"1"
+			}
+			"Stair"
+			{
+				"prefabs/level_lava/reward_lava_5x5_0"	"1"
+			}
+			"SecretTop"
+			{
+				"prefabs/level_lava/award_lava_front"	"1"
+			}
+			"SecretLeft"
+			{
+				"prefabs/level_lava/award_lava_left"	"1"
+			}
+			"SecretRight"
+			{
+				"prefabs/level_lava/award_lava_right"	"1"
+			}
+		}
+		"jungle"
+		{
+			"Time"				"night"
+			"Small"
+			{
+				"prefabs/level_jungle/level_jungle_3x8_0"	"1"
+				"prefabs/level_jungle/level_jungle_5x5_0"	"1"
+				"prefabs/level_jungle/level_jungle_5x5_1"	"1"
+				"prefabs/level_jungle/level_jungle_5x5_2"	"1"
+			}
+			"Medium"
+			{
+				"prefabs/level_jungle/level_jungle_5x7_0"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_1"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_2"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_3"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_4"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_5"	"1"
+				"prefabs/level_jungle/level_jungle_5x7_6"	"1"
+				"prefabs/level_jungle/level_jungle_5x8_0"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_0"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_1"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_3"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_5"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_6"	"1"
+				"prefabs/level_jungle/level_jungle_7x5_7"	"1" 
+				"prefabs/level_jungle/level_jungle_7x7_3"	"1"
+			}
+			"Large"
+			{
+				"prefabs/level_jungle/level_jungle_7x7_0"	"1"
+				"prefabs/level_jungle/level_jungle_7x7_1"	"1"
+				"prefabs/level_jungle/level_jungle_7x7_2"	"1"
+				"prefabs/level_jungle/level_jungle_7x7_3"	"1"
+			}
+			"Boss"
+			{
+				"prefabs/level_jungle/boss_jungle_7x7_0"	"1"
+				"prefabs/level_jungle/boss_jungle_7x7_1"	"1"
+				"prefabs/level_jungle/boss_jungle_7x7_2"	"1"
+			}
+			"Shop"
+			{
+				"prefabs/level_jungle/shop_jungle_5x5_0"	"1"
+			}
+			"Bar"
+			{
+				"prefabs/level_jungle/bar_jungle_5x5_0"	"1"
+			}
+			"Stair"
+			{
+				"prefabs/level_jungle/reward_jungle_5x5_0"	"1"
+			}
+			"SecretTop"
+			{
+				"prefabs/level_jungle/award_jungle_front"	"1"
+			}
+			"SecretLeft"
+			{
+				"prefabs/level_jungle/award_jungle_left"	"1"
+			}
+			"SecretRight"
+			{
+				"prefabs/level_jungle/award_jungle_right"	"1"
+			}
+		}
+		"ice"
+		{
+			"Time"				"night"
+			"Small"
+			{
+				"prefabs/level_ice/level_ice_3x8_0"	"1"
+				"prefabs/level_ice/level_ice_5x5_0"	"1"
+				"prefabs/level_ice/level_ice_5x6_0"	"1"
+				"prefabs/level_ice/level_ice_4x8_0"	"1"
+				"prefabs/level_ice/level_ice_4x8_1"	"1"
+			}
+			"Medium"
+			{
+				"prefabs/level_ice/level_ice_5x7_0"	"1"
+				"prefabs/level_ice/level_ice_5x7_1"	"1"
+				"prefabs/level_ice/level_ice_5x7_2"	"1"
+				"prefabs/level_ice/level_ice_5x7_3"	"1"
+				"prefabs/level_ice/level_ice_5x7_4"	"1"
+				"prefabs/level_ice/level_ice_5x7_5"	"1"
+				"prefabs/level_ice/level_ice_5x7_6"	"1"
+				"prefabs/level_ice/level_ice_5x7_7"	"1"
+				"prefabs/level_ice/level_ice_5x8_0"	"1"
+				"prefabs/level_ice/level_ice_6x7_0"	"1"
+				"prefabs/level_ice/level_ice_6x7_1"	"1"
+				"prefabs/level_ice/level_ice_7x5_0"	"1"
+				"prefabs/level_ice/level_ice_7x5_1"	"1"
+				"prefabs/level_ice/level_ice_7x5_2"	"1"
+				"prefabs/level_ice/level_ice_7x5_3"	"1"
+				"prefabs/level_ice/level_ice_7x5_4"	"1"
+				"prefabs/level_ice/level_ice_7x5_5"	"1"
+				"prefabs/level_ice/level_ice_7x6_0"	"1"
+				"prefabs/level_ice/level_ice_7x6_1"	"1"
+				"prefabs/level_ice/level_ice_7x6_2"	"1" 
+				"prefabs/level_ice/level_ice_7x7_3"	"1"
+			}
+			"Large"
+			{
+				"prefabs/level_ice/level_ice_7x7_0"	"1"
+				"prefabs/level_ice/level_ice_7x7_1"	"1"
+				"prefabs/level_ice/level_ice_7x7_2"	"1"
+				"prefabs/level_ice/level_ice_7x7_3"	"1"
+				"prefabs/level_ice/level_ice_7x7_4"	"1"
+			}
+			"Boss"
+			{
+				"prefabs/level_ice/boss_ice_7x7_0"	"1"
+				"prefabs/level_ice/boss_ice_7x7_1"	"1"
+				"prefabs/level_ice/boss_ice_7x7_2"	"1"
+			}
+			"Shop"
+			{
+				"prefabs/level_ice/shop_ice_5x5_0"	"1"
+			}
+			"Bar"
+			{
+				"prefabs/level_ice/bar_ice_5x5_0"	"1"
+			}
+			"Stair"
+			{
+				"prefabs/level_ice/reward_ice_5x5_0"	"1"
+			}
+			"SecretTop"
+			{
+				"prefabs/level_ice/award_ice_front"	"1"
+			}
+			"SecretLeft"
+			{
+				"prefabs/level_ice/award_ice_left"	"1"
+			}
+			"SecretRight"
+			{
+				"prefabs/level_ice/award_ice_right"	"1"
+			}
+		}
+		"sand"
+		{
+			"Time"				"day"
+			"Small"
+			{
+				"prefabs/level_sand/level_sand_3x8_0"	"1"
+				"prefabs/level_sand/level_sand_5x5_0"	"1"
+				"prefabs/level_sand/level_sand_5x6_0"	"1"
+				"prefabs/level_sand/level_sand_4x8_0"	"1"
+				"prefabs/level_sand/level_sand_4x8_1"	"1"
+			}
+			"Medium"
+			{
+				"prefabs/level_sand/level_sand_5x7_0"	"1"
+				"prefabs/level_sand/level_sand_5x7_1"	"1"
+				"prefabs/level_sand/level_sand_5x7_2"	"1"
+				"prefabs/level_sand/level_sand_5x7_3"	"1"
+				"prefabs/level_sand/level_sand_5x7_4"	"1"
+				"prefabs/level_sand/level_sand_5x7_5"	"1"
+				"prefabs/level_sand/level_sand_5x7_6"	"1"
+				"prefabs/level_sand/level_sand_5x7_7"	"1"
+				"prefabs/level_sand/level_sand_5x8_0"	"1"
+				"prefabs/level_sand/level_sand_6x7_0"	"1"
+				"prefabs/level_sand/level_sand_6x7_1"	"1"
+				"prefabs/level_sand/level_sand_7x5_0"	"1"
+				"prefabs/level_sand/level_sand_7x5_1"	"1"
+				"prefabs/level_sand/level_sand_7x5_2"	"1"
+				"prefabs/level_sand/level_sand_7x5_3"	"1"
+				"prefabs/level_sand/level_sand_7x5_4"	"1"
+				"prefabs/level_sand/level_sand_7x5_5"	"1"
+				"prefabs/level_sand/level_sand_7x6_0"	"1"
+				"prefabs/level_sand/level_sand_7x6_1"	"1"
+				"prefabs/level_sand/level_sand_7x6_2"	"1" 
+				"prefabs/level_sand/level_sand_7x7_3"	"1"
+			}
+			"Large"
+			{
+				"prefabs/level_sand/level_sand_7x7_0"	"1"
+				"prefabs/level_sand/level_sand_7x7_1"	"1"
+				"prefabs/level_sand/level_sand_7x7_2"	"1"
+				"prefabs/level_sand/level_sand_7x7_3"	"1"
+				"prefabs/level_sand/level_sand_7x7_4"	"1"
+			}
+			"Boss"
+			{
+				"prefabs/level_sand/boss_sand_7x7_0"	"1"
+				"prefabs/level_sand/boss_sand_7x7_1"	"1"
+				"prefabs/level_sand/boss_sand_7x7_2"	"1"
+				"prefabs/level_sand/boss_sand_7x7_3"	"1"
+			}
+			"Shop"
+			{
+				"prefabs/level_sand/shop_sand_5x5_0"	"1"
+			}
+			"Bar"
+			{
+				"prefabs/level_sand/bar_sand_5x5_0"	"1"
+			}
+			"Stair"
+			{
+				"prefabs/level_sand/reward_sand_5x5_0"	"1"
+			}
+			"SecretTop"
+			{
+				"prefabs/level_sand/award_sand_front"	"1"
+			}
+			"SecretLeft"
+			{
+				"prefabs/level_sand/award_sand_left"	"1"
+			}
+			"SecretRight"
+			{
+				"prefabs/level_sand/award_sand_right"	"1"
+			}
+		}
+	}
+	"Zone1"
+	{
+		// 哈迪斯风格房间生成规则
+		"RoomRules"
+		{
+			"TotalRooms"			"15"	// 固定15房：1开局，2-5战斗，6特殊，7战斗，8酒馆，9战斗/精英，10战斗，11特殊，13商店，14Boss，15楼梯
+			"FinalShopRoom"			"13"	// 最终商店房间号（房间13）
+			"BossRoom"				"14"	// Boss房间号（房间14）
+			"SpecialRoom"			"6|11"	// 特殊房房间号（房间6、11；当前由代码固定流程驱动）
+			"StairRoom"				"15"	// 楼梯房间号（房间15）
+			"EarlyStagePool"		"HERO_UPGRADE|GOLD_OR_POM|BOON|BOON"	// 房间2-5的四阶段池，会在运行时打乱顺序
+			"SpecialRoomOptions"	"Smithy|WishingPool|RegenWell|Book"	// 特殊房候选内容，房间5/10的出口会从这里生成
+			"Room7RewardOptions"	"BOON|TREASURE"	// 房间7奖励池
+			"LateBoonRewardOptions"	"BOON|DOUBLE_BOON"	// 房间9/12奖励池
+			"TavernSpecialKind"	"Tavern"	// 房间8的特殊商店类型
+			"MiniBossRange"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+			"MiniBossCount"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+		}
+		// 商店规则
+		"ShopRules"
+		{
+			"MidShopRoom"			"8"		// 中段酒馆房间号（房间8，当前由代码固定为 Tavern）
+			"MidShopChance"			"100"		// 固定触发；当前15房固定流程由代码直接使用
+			"Pool"					"shop_rarity_zone1"	// 商店物品池
+		}
+		"MerchantRules"
+		{
+			"Chance"				"60"		// 游商出现概率（15%-25% 建议范围）
+			"MinGapRooms"			"2"		// 两次游商出现之间至少间隔的房间数；楼梯房保底不受此限制
+		}
+		"SecretRoomRules"
+		{
+			"Chance"				"20"		// 隐藏房间入口生成概率
+		}
+		"DropPool"
+		{
+			"DropChance"							"5"
+			"ItemList"
+			{
+				"item_health_potion_1"				"12"
+				"item_health_potion_2"				"12"
+				"item_health_potion_3"				"12"
+				"item_ball_attack"					"3"
+				"item_ball_health"					"3"
+			}
+		}
+	}
+	"Zone2"
+	{
+		"RoomRules"
+		{
+			"TotalRooms"			"15"	// 固定15房流程
+			"FinalShopRoom"			"13"	// 房间13为商店
+			"BossRoom"				"14"	// 房间14为Boss
+			"SpecialRoom"			"6|11"	// 房间6、11为特殊房（代码固定流程）
+			"StairRoom"				"15"	// 房间15为楼梯
+			"EarlyStagePool"		"HERO_UPGRADE|GOLD_OR_POM|BOON|BOON"	// 房间2-5的四阶段池，会在运行时打乱顺序
+			"SpecialRoomOptions"	"Smithy|WishingPool|RegenWell|Book"	// 特殊房候选内容，房间5/10的出口会从这里生成
+			"Room7RewardOptions"	"BOON|TREASURE"	// 房间7奖励池
+			"LateBoonRewardOptions"	"BOON|DOUBLE_BOON"	// 房间9/12奖励池
+			"TavernSpecialKind"	"Tavern"	// 房间8的特殊商店类型
+			"MiniBossRange"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+			"MiniBossCount"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+		}
+		// 商店规则
+		"ShopRules"
+		{
+			"MidShopRoom"			"8"		// 中段酒馆房间号（房间8）
+			"MidShopChance"			"100"		// 固定触发；当前由代码固定为 Tavern
+			"Pool"					"shop_rarity_zone2"	// 商店物品池
+		}
+		"MerchantRules"
+		{
+			"Chance"				"60"		// 游商出现概率（15%-25% 建议范围）
+			"MinGapRooms"			"2"		// 两次游商出现之间至少间隔的房间数；楼梯房保底不受此限制
+		}
+		"SecretRoomRules"
+		{
+			"Chance"				"20"		// 隐藏房间入口生成概率
+		}
+		"DropPool"
+		{
+			"DropChance"							"5"
+			"ItemList"
+			{
+				"item_health_potion_1"				"12"
+				"item_health_potion_2"				"12"
+				"item_health_potion_3"				"12"
+				"item_ball_attack"					"3"
+				"item_ball_health"					"3"
+			}
+		}
+	}
+	"Zone3"
+	{
+		"RoomRules"
+		{
+			"TotalRooms"			"15"	// 固定15房流程
+			"FinalShopRoom"			"13"	// 房间13为商店
+			"BossRoom"				"14"	// 房间14为Boss
+			"SpecialRoom"			"6|11"	// 房间6、11为特殊房（代码固定流程）
+			"StairRoom"				"15"	// 房间15为楼梯
+			"EarlyStagePool"		"HERO_UPGRADE|GOLD_OR_POM|BOON|BOON"	// 房间2-5的四阶段池，会在运行时打乱顺序
+			"SpecialRoomOptions"	"Smithy|WishingPool|RegenWell|Book"	// 特殊房候选内容，房间5/10的出口会从这里生成
+			"Room7RewardOptions"	"BOON|TREASURE"	// 房间7奖励池
+			"LateBoonRewardOptions"	"BOON|DOUBLE_BOON"	// 房间9/12奖励池
+			"TavernSpecialKind"	"Tavern"	// 房间8的特殊商店类型
+			"MiniBossRange"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+			"MiniBossCount"			"0|0"	// 当前15房固定流程不使用 Mini-boss
+		}
+		// 商店规则
+		"ShopRules"
+		{
+			"MidShopRoom"			"8"		// 中段酒馆房间号（房间8）
+			"MidShopChance"			"100"		// 固定触发；当前由代码固定为 Tavern
+			"Pool"					"shop_rarity_zone3"	// 商店物品池
+		}
+		"MerchantRules"
+		{
+			"Chance"				"70"		// 游商出现概率（15%-25% 建议范围）
+			"MinGapRooms"			"2"		// 两次游商出现之间至少间隔的房间数；楼梯房保底不受此限制
+		}
+		"SecretRoomRules"
+		{
+			"Chance"				"20"		// 隐藏房间入口生成概率
+		}
+		"DropPool"
+		{
+			"DropChance"							"5"
+			"ItemList"
+			{
+				"item_health_potion_1"				"12"
+				"item_health_potion_2"				"12"
+				"item_health_potion_3"				"12"
+				"item_ball_attack"					"3"
+				"item_ball_health"					"3"
+			}
+		}
+	}
+}

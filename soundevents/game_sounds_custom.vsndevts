@@ -1,0 +1,597 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	ui.death_stinger = 
+	{
+		type = "dota_src1_2d"
+		volume = 0.1
+		pitch = 1.0
+		event_type = 3.0
+		vsnd_files = 
+		[
+			"sounds/ui/stingers/death_default.vsnd",
+		]
+		vsnd_duration = 0.1
+	}
+	UI.Deny.Melee = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.1
+		pitch = 1.0
+		pitch_rand_max = 0.1
+		soundlevel = 90.0
+		mixgroup = "UI"
+		delay = 0.1
+		vsnd_files = "sounds/ui/last_hit.vsnd"
+		vsnd_duration = 0.1
+	}
+	UI.Deny.Ranged = 
+	{
+		type = "dota_src1_2d"
+		volume = 0.1
+		pitch = 1.0
+		mixgroup = "UI"
+		vsnd_files = "sounds/ui/last_hit.vsnd"
+		vsnd_duration = 0.1
+	}
+	GameDungeon.Battle = 
+	{
+		type = "dota_update_battle_music"
+		volume = 1.2
+		vsnd_files = "sounds/music/valve_2024_1/music/laning_01_layer_01.vsnd"
+		start_point = 0.0
+		end_point = 44.304001
+		restart_time = 44.0
+		vsnd_duration = 80.020409
+		volume_fade_in = 0.001
+		volume_fade_out = 0.001
+	}
+	GameDungeon.NoBattle = 
+	{
+		type = "dota_update_battle_music"
+		volume = 0.2
+		vsnd_files = "sounds/music/mlange_01/music/laning_01_layer_01.vsnd"
+		start_point = 0.65
+		end_point = 96.638
+		restart_time = 96.0
+		vsnd_duration = 96.914284
+		volume_fade_in = 0.001
+	}
+	Aquarium.UI = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1
+		vsnd_files = "sounds/music/thefatrat_01/music/ui_main.vsnd"
+		vsnd_duration = 119.909126
+		start_point = 6.65
+		end_point = 119.638
+		restart_time = 119.0
+	}
+	GateMetalOpen = 
+	{
+		type = "dota_src1_3d"
+		volume = 4.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/ambient/tut_gate_metal_open01.vsnd",
+			"sounds/ambient/tut_gate_metal_open02.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	GateStoneOpen = 
+	{
+		type = "dota_src1_3d"
+		volume = 4.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/addons/dungeon/stone_gate_move.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	TrapFloor = 
+	{
+		type = "dota_src1_3d"
+		volume = 4.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kez/impale_target.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 10000.0
+		volume_fade_in = 0.001
+		volume_fade_out = 0.001
+	}
+	TrapSawUnit = 
+	{
+		type = "dota_src1_3d"
+		volume = 14.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/physics/movement/automaton/idle_loop_1.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 10000.0
+		volume_fade_in = 0.001
+		volume_fade_out = 0.001
+	}
+	TrapSandTornado = 
+	{
+		type = "dota_src1_3d"
+		volume = 4.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/creep/neutral/wildkin_tornado_loop.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 10000.0
+		volume_fade_in = 0.001
+		volume_fade_out = 0.001
+	}
+	Teleport = 
+	{
+		type = "dota_src1_3d"
+		volume = 7.0
+		event_type = 1.0
+		vsnd_files = "sounds/teleport.vsnd"
+		vsnd_duration = 2
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	Creep_T7_Melee.PreAttack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1
+		distance_max = 1000.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/creep/shared/whoosh01.vsnd",
+			"sounds/weapons/creep/shared/whoosh02.vsnd",
+			"sounds/weapons/creep/shared/whoosh03.vsnd",
+			"sounds/weapons/creep/shared/whoosh04.vsnd",
+			"sounds/weapons/creep/shared/whoosh05.vsnd",
+			"sounds/weapons/creep/shared/whoosh06.vsnd",
+			"sounds/weapons/creep/shared/whoosh07.vsnd",
+			"sounds/weapons/creep/shared/whoosh08.vsnd",
+		]
+	}
+	Creep_T7_Melee.Attack = 
+	{
+		type = "dota_src1_3d"
+		volume = 1
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/guaiwu/guaiwu_hit.vsnd",
+		]
+	}
+	Bless.ArcLightning = 
+	{
+		type = "dota_src1_3d"
+		volume = 1
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/zuus/arc_lightning.vsnd",
+		]
+	}
+	Bless.LightningStrike = 
+	{
+		type = "dota_src1_3d"
+		volume = 1.5
+		distance_max = 1500.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/zuus/arc_lightning.vsnd",
+		]
+	}
+	Windrunner.PowerShot = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.5
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 2500.0
+		event_type = 1.0
+		volume_fade_out = 0.5
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/windrunner/windrunner_powershot.vsnd",
+		]
+	}
+	Tinker.Teleport = 
+	{
+		type = "dota_src1_3d"
+		volume = 0.5
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		vsnd_duration = 2
+		pitch = 1.0
+		soundlevel = 75.0
+		distance_max = 2500.0
+		event_type = 1.0
+		volume_fade_out = 0.5
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tinker/mecha_boots_lp.vsnd",
+		]
+	}
+	first_battle_movie_cn = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/first_battle_movie_cn.vsnd",
+		]
+		volume = "10.000000"
+		pitch = "1.000000"
+	}
+	first_battle_movie_en = 
+	{
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/first_battle_movie_en.vsnd",
+		]
+		volume = "10.000000"
+		pitch = "1.000000"
+	}
+	DrawEquip.Rarity1 = 
+	{
+		type = "dota_src1_2d"
+		pitch = 1.0
+		volume = 0.66
+		vsnd_files = "sounds/ui/inventory/common_equip.vsnd"
+		vsnd_duration = 3.376009
+	}
+	ConfirmDrawEquipment = 
+	{
+		type = "dota_src1_2d"
+		pitch = 1.0
+		volume = 0.66
+		vsnd_files = "sounds/ui/menu/map_open.vsnd"
+		vsnd_duration = 3.376009
+	}
+	UI.Menu.Open = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 0.8
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/menu/switch_view.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.TabButton = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 0.8
+		pitch = 0.8
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/menu/click_forward.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.Draw.Fall = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 0.8
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/fall.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.Athena.Dialog = 
+	{
+		type = "dota_src1_2d"
+		volume = 2.0
+		pitch = 1.2
+		vsnd_files = 
+		[
+			"sounds/vo/dawnbreaker/valora_awakening_01.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_02.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_03.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_04.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_05.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_06.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_07.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_08.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_09.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_10.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_11.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_12.vsnd",
+			"sounds/vo/dawnbreaker/valora_awakening_13.vsnd",
+		]
+	}
+	UI.Store.Card = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 0.4
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/panorama/panorama_rollover_micro_01.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.Store.Click = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/menu/click_forward.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.SeaMystery.Draw = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 2.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/abilitydraft.vsnd"
+		vsnd_duration = 2.0
+	}
+	UI.Buy = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/buy.vsnd"
+	}
+	UI.Coin = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/coins.vsnd"
+	}
+	Pickup.Item = 
+	{
+		type = "dota_src1_2d"
+		volume = 1.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/ui/inventory/chest_pickup_01.vsnd",
+			"sounds/ui/inventory/chest_pickup_02.vsnd",
+			"sounds/ui/inventory/highvalue_pickup.vsnd",
+			"sounds/ui/item_pickup_ring_shop.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	Pickup.Equip = 
+	{
+		type = "dota_src1_2d"
+		volume = 1.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/ui/inventory/metalarmour_pickup_01.vsnd",
+			"sounds/ui/inventory/metalarmour_pickup_02.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	Pickup.Weapon = 
+	{
+		type = "dota_src1_2d"
+		volume = 2.0
+		event_type = 1.0
+		vsnd_files = 
+		[
+			"sounds/ui/inventory/metalblade_pickup_01.vsnd",
+			"sounds/ui/inventory/metalblade_pickup_02.vsnd",
+		]
+		vsnd_duration = 1
+		distance_max = 2000.0
+		volume_fade_in = 0.1
+	}
+	Chess.Open = 
+	{
+		type = "dota_src1_2d"
+		volume = 1
+		vsnd_files = 
+		[
+			"sounds/ui/economy/plink_ball_launch.vsnd",
+		]
+	}
+	Chess.LongOpen = 
+	{
+		type = "dota_src1_2d"
+		volume = 2.0
+		pitch_rand_min = -0.08
+		pitch_rand_max = 0.08
+		vsnd_files = "sounds/ui/inventory/treasure_unlock.vsnd"
+	}
+	Chess.Finish = 
+	{
+		type = "dota_src1_2d"
+		volume = 1.5
+		vsnd_files = "sounds/ui/treasure_01.vsnd"
+	}
+	Drop.Item = 
+	{
+		type = "dota_limit_speakers_ui"
+		pitch = 1.0
+		volume = 0.4
+		vsnd_files = 
+		[
+			"sounds/ui/inventory/highvalue_drop.vsnd",
+			"sounds/ui/item_drop_ring_world.vsnd",
+		]
+		vsnd_duration = 0.465397
+	}
+	Drop.Equip = 
+	{
+		type = "dota_limit_speakers_ui"
+		pitch = 1.0
+		volume = 0.4
+		vsnd_files = 
+		[
+			"sounds/ui/inventory/metalarmour_equip_01.vsnd",
+			"sounds/ui/inventory/metalarmour_equip_02.vsnd",
+		]
+		vsnd_duration = 0.465397
+	}
+	Drop.Weapon = 
+	{
+		type = "dota_limit_speakers_ui"
+		pitch = 1.0
+		volume = 0.4
+		vsnd_files = 
+		[
+			"sounds/physics/items/weapon_drop_common_01.vsnd",
+			"sounds/physics/items/weapon_drop_common_02.vsnd",
+			"sounds/physics/items/weapon_drop_common_03.vsnd",
+			"sounds/physics/items/weapon_drop_common_04.vsnd",
+			"sounds/physics/items/weapon_drop_common_05.vsnd",
+		]
+		vsnd_duration = 0.465397
+	}
+	Drop.Gem = 
+	{
+		type = "dota_limit_speakers_ui"
+		pitch = 1.0
+		volume = 0.4
+		vsnd_files = 
+		[
+			"sounds/ui/crafting/gem_drop.vsnd",
+		]
+		vsnd_duration = 0.465397
+	}
+	UI.ChainFallDown = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = 
+		[
+			"sounds/physics/movement/hero/pudge/arc_chain_move01.vsnd",
+			"sounds/physics/movement/hero/pudge/arc_chain_move02.vsnd",
+			"sounds/physics/movement/hero/pudge/arc_chain_move03.vsnd",
+			"sounds/physics/movement/hero/pudge/arc_chain_move04.vsnd",
+			"sounds/physics/movement/hero/pudge/arc_chain_move05.vsnd",
+		]
+	}
+	UI.StartRequest = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 2.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = 
+		[
+			"sounds/ui/compendium_points.vsnd",
+		]
+	}
+	UI.DiffSelection = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 2.0
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = 
+		[
+			"sounds/ui/npe_objective_given.vsnd",
+		]
+	}
+	UI.Pick.GemUp = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/rune_pickup01.vsnd"
+	}
+	UI.Pick.Gem = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = 
+		[
+			"sounds/ui/item_pickup_gem_shop.vsnd",
+		]
+	}
+	UI.Pick.GemItem = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = 
+		[
+			"sounds/ui/item_pickup_gem_shop.vsnd",
+		]
+	}
+	UI.Pick.Anycell = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/ui_pickup_from_ground_01.vsnd"
+	}
+	UI.Key.Show = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 0.1
+		pitch = 1.0
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/vo/ui/ui_key_show.vsnd"
+		vsnd_duration = 2.438095
+	}
+	UI.Dice.Roll = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.0
+		pitch = 0.8
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/misc/idles/idle_huskar.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.Dice.Treasure = 
+	{
+		type = "dota_limit_speakers_ui"
+		volume = 1.2
+		pitch = 0.8
+		mixgroup = "Ultimates"
+		vsnd_files = "sounds/ui/inventory/treasure_reveal.vsnd"
+		vsnd_duration = 1.0
+	}
+	UI.Draw.Rarity4 = 
+	{
+		type = "dota_src1_2d"
+		pitch = 1.0
+		volume = 0.66
+		vsnd_files = "sounds/ui/inventory/treasure_reveal.vsnd"
+		vsnd_duration = 3.376009
+	}
+}

@@ -1,0 +1,100 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'FadeInOut'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'TextFadeIn'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+}
+
+.DungeonTransition
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+	z-index: 2000;
+}
+
+.DungeonTransition .TransitionOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 1;
+	animation-name: FadeInOut;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.DungeonTransition .TransitionContent
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	flow-children: down;
+	z-index: 2001;
+	opacity: 1;
+	animation-name: TextFadeIn;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+}
+
+.DungeonTransition .TransitionContent .ZoneName
+{
+	font-size: 72px;
+	font-weight: bold;
+	color: #FFD700;
+	text-shadow: 0px 0px 24px #ffd700;
+	margin-bottom: 20px;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.DungeonTransition .TransitionContent .RoomDepth
+{
+	font-size: 36px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
+	horizontal-align: center;
+	text-align: center;
+}

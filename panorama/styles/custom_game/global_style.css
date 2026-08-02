@@ -1,0 +1,362 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+Label
+{
+	color: #A39C82;
+}
+
+Label.Rarity1,.Rarity1 Label
+{
+	color: #7C918E;
+}
+
+Label.Rarity2,.Rarity2 Label
+{
+	color: #69944A;
+}
+
+Label.Rarity3,.Rarity3 Label
+{
+	color: #4472CE;
+}
+
+Label.Rarity4,.Rarity4 Label
+{
+	color: #875DD4;
+}
+
+Label.Rarity5,.Rarity5 Label
+{
+	color: #CEAD3C;
+}
+
+Label.Rarity6,.Rarity6 Label
+{
+	color: #E55043;
+}
+
+Label.Rarity7,.Rarity7 Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#917E4B), to(#F1D999));
+}
+
+.TooltipContent
+{
+	background-color: none;
+	box-shadow: none;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+	border-color: none;
+	padding: -12px;
+}
+
+.FeatureLabel
+{
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	color: #f0e6d2;
+}
+
+.AbilityLabel
+{
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	color: #f0e6d2;
+}
+
+.MarkLabel
+{
+	color: #f0e6d2;
+}
+
+.GameplayVariable
+{
+	color: #f0e6d2;
+}
+
+.current
+{
+	color: #ffffff;
+}
+
+.GoldIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+	background-size: 100%;
+}
+
+.SecondaryButtonStates:not(:disabled):hover
+{
+	brightness: 1.2;
+}
+
+.SecondaryButtonStates:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+	pre-transform-scale2d: 0.9;
+}
+
+.SecondaryButtonStates:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.VerticalScrollStyle > VerticalScrollBar
+{
+	width: 26px;
+	padding: -10px 5px -10px 5px;
+	background-color: none;
+	background-repeat: no-repeat;
+	border-image-source: url("s2r://panorama/images/custom_game/conv/common/bar_bg_png.vtex");
+	border-image-slice: 10px 0px fill;
+	border-width: 10px 0px;
+	border-image-repeat: stretch;
+}
+
+.VerticalScrollStyle > VerticalScrollBar .ScrollThumb
+{
+	background-color: none;
+	border: 1px solid #8b735500;
+	border-image-source: url("s2r://panorama/images/custom_game/conv/common/scrollbar_02_png.vtex");
+	border-image-slice: 20px 100% 20px 0px;
+	border-width: 20px 16px 20px 0px;
+	border-image-repeat: stretch;
+}
+
+.HorizontalScrollBar
+{
+	box-shadow: none;
+}
+
+.HorizontalScrollBar > HorizontalScrollBar
+{
+	box-shadow: none;
+	height: 26px;
+	padding: 5px -10px 5px -10px;
+	background-color: none;
+	background-repeat: no-repeat;
+	border-image-source: url("s2r://panorama/images/custom_game/conv/common/hor_bg_png.vtex");
+	border-image-slice: 0px 10px fill;
+	border-width: 0px 10px;
+	border-image-repeat: stretch;
+}
+
+.HorizontalScrollBar > HorizontalScrollBar .ScrollThumb
+{
+	background-color: none;
+	border: 1px solid #8b735500;
+	border-image-source: url("s2r://panorama/images/custom_game/conv/common/hor_bar_png.vtex");
+	border-image-slice: 100% 10px 0px 10px;
+	border-width: 16px 10px 0px 10px;
+	border-image-repeat: stretch;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}
+
+@keyframes 'GlowPulse'
+{
+	0%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+	25%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+	75%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+}
+
+@keyframes 'GlowPulseSimple'
+{
+	0%
+	{
+		brightness: 1.5;
+	}
+	
+	25%
+	{
+		brightness: 0.5;
+	}
+	
+	50%
+	{
+		brightness: 1.5;
+	}
+	
+	75%
+	{
+		brightness: 0.5;
+	}
+	
+	100%
+	{
+		brightness: 1.5;
+	}
+	
+}
+
+@keyframes 'SlideInBottom'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(40px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
+}
+
+@keyframes 'SlideInBottomSlow'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
+}
+
+@keyframes 'SlideInRight'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(40px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+	
+}
+
+@keyframes 'SlideInLeft'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(-40px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+	
+}
+
+@keyframes 'HideOpactiy'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'OpacityShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}

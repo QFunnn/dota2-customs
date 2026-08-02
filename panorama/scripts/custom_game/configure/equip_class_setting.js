@@ -1,0 +1,134 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().equip_class_setting = {
+	"1": {
+		equip_class: 1,
+		need_level: 1,
+		main_bonus: 0,
+		adverb_bonus: 0,
+		adverb_weight: "48|34|16|2|0|0|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"2": {
+		equip_class: 2,
+		need_level: 3,
+		main_bonus: 0.05,
+		adverb_bonus: 0.05,
+		adverb_weight: "40|34|20|5|1|0|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"3": {
+		equip_class: 3,
+		need_level: 5,
+		main_bonus: 0.1,
+		adverb_bonus: 0.1,
+		adverb_weight: "30|34|24|9|3|0|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"4": {
+		equip_class: 4,
+		need_level: 7,
+		main_bonus: 0.15,
+		adverb_bonus: 0.15,
+		adverb_weight: "20|30|28|14|6|2|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"5": {
+		equip_class: 5,
+		need_level: 10,
+		main_bonus: 0.25,
+		adverb_bonus: 0.25,
+		adverb_weight: "10|24|30|20|11|5|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"6": {
+		equip_class: 6,
+		need_level: 12,
+		main_bonus: 0.3,
+		adverb_bonus: 0.3,
+		adverb_weight: "0|18|32|26|16|8|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"7": {
+		equip_class: 7,
+		need_level: 15,
+		main_bonus: 0.35,
+		adverb_bonus: 0.35,
+		adverb_weight: "0|10|28|30|21|11|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"8": {
+		equip_class: 8,
+		need_level: 18,
+		main_bonus: 0.5,
+		adverb_bonus: 0.5,
+		adverb_weight: "0|4|20|33|28|15|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 6,
+		ischange: 0
+	},
+	"9": {
+		equip_class: 9,
+		need_level: 20,
+		main_bonus: 0.55,
+		adverb_bonus: 0.55,
+		adverb_weight: "0|0|10|35|34|21|0|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 7,
+		ischange: 0
+	},
+	"10": {
+		equip_class: 10,
+		need_level: 25,
+		main_bonus: 0.7,
+		adverb_bonus: 0.7,
+		adverb_weight: "0|0|0|33|37|25|5|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 7,
+		ischange: 1,
+		consume: "120001:5000|120008:3000"
+	},
+	"11": {
+		equip_class: 11,
+		need_level: 30,
+		main_bonus: 0.8,
+		adverb_bonus: 0.8,
+		adverb_weight: "0|0|0|20|40|30|10|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 7,
+		ischange: 1,
+		consume: "120001:5000|120008:3000"
+	},
+	"12": {
+		equip_class: 12,
+		need_level: 35,
+		main_bonus: 0.9,
+		adverb_bonus: 0.9,
+		adverb_weight: "0|0|0|15|35|40|10|0|0|0|0",
+		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
+		rarity_upgrade_max: 7,
+		ischange: 0
+	}
+};

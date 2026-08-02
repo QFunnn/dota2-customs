@@ -1,0 +1,1125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+#HUDAbyssRoot
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+#HUDAbyssRoot.Show
+{
+	opacity: 1;
+}
+
+#AbyssHudModeSwitch
+{
+	horizontal-align: right;
+	margin-top: 20px;
+	margin-right: 20px;
+	flow-children: right;
+	padding: 4px;
+	background-color: #080b12e8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #39445b;
+	border-radius: 4px;
+	z-index: 100;
+}
+
+.AbyssHudModeButton
+{
+	width: 64px;
+	height: 26px;
+	margin-right: 4px;
+	background-color: #121a27d8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263147;
+}
+
+.AbyssHudModeButton Label
+{
+	align: center center;
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #8792aa;
+}
+
+.AbyssHudModeButton:hover
+{
+	brightness: 1.4;
+}
+
+.AbyssHudModeButton:active
+{
+	brightness: 0.8;
+}
+
+.AbyssHudModeButton.Active
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#1f4a67), to(#55451f));
+	border-color: #f0c35b;
+}
+
+.AbyssHudModeButton.Active Label
+{
+	color: #f2e6c5;
+}
+
+#HUDAbyss
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	overflow: noclip;
+	z-index: 80;
+}
+
+.HUDAbyssSection
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#111725ee), to(#070a10e8));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #3a455e;
+	box-shadow: fill #000000aa 0px 0px 18px 0px;
+}
+
+#AbyssTopCenter
+{
+	horizontal-align: center;
+	width: 760px;
+	flow-children: down;
+	border-radius: 8px;
+	padding: 8px;
+}
+
+#AbyssMainStats
+{
+	width: 100%;
+	height: 70px;
+	flow-children: right;
+	background-color: #0d111bd8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263147;
+}
+
+.AbyssTopTimeTrack
+{
+	width: 100%;
+	height: 4px;
+	background-color: #1a2230;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2a344b;
+}
+
+.AbyssStatBlock
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	padding-top: 10px;
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+.AbyssStatDivider
+{
+	width: 1px;
+	height: 46px;
+	vertical-align: center;
+	background-color: #344057;
+}
+
+.AbyssStatLabel,.AbyssMiniLabel,.AbyssStatusLabel,.AbyssProgressLabel,.AbyssPanelSubTitle
+{
+	font-size: 11px;
+	font-weight: semi-bold;
+	color: #7c879d;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.AbyssStatValue
+{
+	margin-top: 4px;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #f2e6c5;
+	text-shadow: 0px 0px 3px 2 #000000d8;
+}
+
+.TimeValue
+{
+	color: #7de4ff;
+}
+
+.ScoreValue
+{
+	color: #f0c35b;
+}
+
+#AbyssComboPanel
+{
+	width: 100%;
+	height: 96px;
+	margin-top: 8px;
+	flow-children: right;
+	padding: 10px;
+	background-color: #101623e0;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #29354d;
+}
+
+#AbyssComboPanel.Paused
+{
+	brightness: 0.72;
+	saturation: 0.55;
+}
+
+#AbyssComboMultiplier
+{
+	width: 132px;
+	height: 100%;
+	flow-children: down;
+	margin-right: 12px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#2a2133f0), to(#121d29f0));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #856a38;
+	padding-top: 8px;
+}
+
+#AbyssComboValue
+{
+	horizontal-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #f0c35b;
+	text-shadow: 0px 0px 5px 2 #000000;
+}
+
+#AbyssComboText
+{
+	horizontal-align: center;
+	margin-top: -2px;
+	font-size: 10px;
+	font-weight: semi-bold;
+	color: #a99873;
+}
+
+#AbyssComboDetails
+{
+	width: 246px;
+	height: 100%;
+	flow-children: right;
+	margin-right: 12px;
+}
+
+.AbyssMiniStat
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	padding: 10px;
+	margin-right: 6px;
+	background-color: #121a27d8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #253049;
+}
+
+.AbyssMiniValue
+{
+	margin-top: 8px;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #dfe8f8;
+}
+
+.AbyssMiniTrack
+{
+	width: 100%;
+	height: 4px;
+	margin-top: 6px;
+	background-color: #232b3c;
+}
+
+#AbyssComboTimer
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	padding-top: 10px;
+}
+
+.AbyssProgressHeader
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.AbyssProgressValue
+{
+	horizontal-align: right;
+	font-size: 11px;
+	font-family: monospaceNumbersFont;
+	color: #a9b6cf;
+}
+
+.AbyssProgressTrack
+{
+	width: 100%;
+	height: 10px;
+	margin-top: 10px;
+	background-color: #232b3c;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #39445b;
+}
+
+.AbyssProgressFill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#52a6ff), to(#f0c35b));
+}
+
+#AbyssComboTimerFill
+{
+	width: 64%;
+}
+
+#AbyssEventBroadcastPanel
+{
+	horizontal-align: center;
+	margin-top: 210px;
+	width: 560px;
+	height: 76px;
+	flow-children: right;
+	padding: 10px 12px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#161d2be8), to(#241827e8));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #725e37;
+	box-shadow: fill #00000099 0px 0px 18px 0px;
+	border-radius: 8px;
+	opacity: 0;
+	transform: translateY(0px) scale3d(0.82, 0.82, 1);
+}
+
+#AbyssEventBroadcastPanel.Show
+{
+	animation-name: AbyssEventBroadcastShow;
+	animation-duration: 2.8s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+#AbyssEventIcon
+{
+	width: 40px;
+	height: 40px;
+	margin-right: 12px;
+	vertical-align: center;
+	background-color: #4b3820;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #f0c35b;
+	border-radius: 4px;
+}
+
+#AbyssEventIcon Label
+{
+	align: center center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #f0c35b;
+}
+
+#AbyssEventTextWrap
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	vertical-align: center;
+}
+
+#AbyssEventBroadcast
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #f2e6c5;
+	text-shadow: 0px 0px 3px 2 #000000cc;
+}
+
+#AbyssEventDescription
+{
+	margin-top: 1px;
+	font-size: 12px;
+	color: #aeb8cb;
+	text-overflow: shrink;
+}
+
+.EventTrack
+{
+	height: 5px;
+	margin-top: 6px;
+}
+
+#AbyssEventTimerFill
+{
+	width: 58%;
+}
+
+#AbyssEventTime
+{
+	width: 42px;
+	vertical-align: center;
+	text-align: right;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #7de4ff;
+}
+
+#AbyssRightStatus
+{
+	align: right center;
+	width: 280px;
+	flow-children: down;
+	padding: 12px;
+	border-radius: 8px;
+}
+
+#AbyssRightTitle
+{
+	width: 100%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #eef3ff;
+	letter-spacing: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #303a52;
+	padding-bottom: 8px;
+	margin-bottom: 10px;
+}
+
+.AbyssStatusGrid
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-right: -8px;
+}
+
+.AbyssStatusCell
+{
+	width: 116px;
+	height: 58px;
+	flow-children: down;
+	padding: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	background-color: #121a27df;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263147;
+}
+
+.AbyssStatusCell.AbyssalDropRow
+{
+	width: 100%;
+}
+
+.AbyssStatusValue
+{
+	margin-top: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #dfe8f8;
+}
+
+.AbyssStatusValue.Gold
+{
+	color: #f0c35b;
+}
+
+.AbyssStatusValue.Cyan
+{
+	color: #7de4ff;
+}
+
+#AbyssDebugControls
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 4px;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #101724d8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #344057;
+}
+
+.AbyssDebugScoreRow
+{
+	width: 100%;
+	height: 32px;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+#AbyssDebugScoreEntry
+{
+	width: fill-parent-flow(1);
+	height: 32px;
+	padding: 4px 8px;
+	font-size: 15px;
+	font-family: monospaceNumbersFont;
+	color: #eef3ff;
+	background-color: #0a0f18f2;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #39445b;
+}
+
+#AbyssDebugScoreEntry:focus
+{
+	border-color: #7de4ff;
+}
+
+.AbyssDebugButton
+{
+	height: 32px;
+	min-width: 64px;
+	margin-left: 8px;
+	background-color: #1b2638;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #4b5b78;
+}
+
+.AbyssDebugButton Label
+{
+	align: center center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #dfe8f8;
+	letter-spacing: 1px;
+}
+
+.AbyssDebugButton:hover
+{
+	brightness: 1.35;
+}
+
+.AbyssDebugButton:disabled
+{
+	brightness: 0.45;
+	saturation: 0.2;
+}
+
+.AbyssDebugButton.Confirm
+{
+	border-color: #59845b;
+	background-color: #1f3a2b;
+}
+
+.AbyssDebugButton.Danger
+{
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 8px;
+	border-color: #8a4c4c;
+	background-color: #3a1f24;
+}
+
+#AbyssEventProgressBlock
+{
+	width: 100%;
+	flow-children: down;
+	padding: 10px;
+	margin-top: 2px;
+	background-color: #101724d8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263147;
+}
+
+#AbyssEventChargeFill
+{
+	width: 84%;
+}
+
+#AbyssActiveEvents
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 12px;
+}
+
+.AbyssEventRow
+{
+	width: 100%;
+	height: 48px;
+	flow-children: right;
+	margin-top: 6px;
+	padding: 8px;
+	background-color: #121a27d8;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263147;
+}
+
+.AbyssEventRow.Active
+{
+	border-color: #725e37;
+	background-color: #1b1b24e6;
+}
+
+.AbyssEventDot
+{
+	width: 8px;
+	height: 8px;
+	margin-right: 8px;
+	vertical-align: center;
+	border-radius: 4px;
+	background-color: #536078;
+}
+
+.AbyssEventRow.Active .AbyssEventDot
+{
+	background-color: #f0c35b;
+}
+
+.AbyssEventRowText
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	vertical-align: center;
+}
+
+.AbyssEventRowName
+{
+	font-size: 13px;
+	font-weight: semi-bold;
+	color: #eef3ff;
+	text-overflow: shrink;
+}
+
+.AbyssEventRowDesc
+{
+	margin-top: 1px;
+	font-size: 11px;
+	color: #8792aa;
+	text-overflow: shrink;
+}
+
+.AspectRatio16x10 #AbyssTopCenter
+{
+	ui-scale: 92%;
+}
+
+.AspectRatio16x10 #AbyssRightStatus
+{
+	ui-scale: 92%;
+}
+
+.AspectRatio4x3 #AbyssTopCenter
+{
+	ui-scale: 82%;
+}
+
+.AspectRatio4x3 #AbyssRightStatus
+{
+	ui-scale: 82%;
+	margin-right: 12px;
+}
+
+@keyframes 'AbyssEventBroadcastShow'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(18px) scale3d(0.78, 0.78, 1);
+	}
+	
+	12%
+	{
+		opacity: 1;
+		transform: translateY(0px) scale3d(1.12, 1.12, 1);
+	}
+	
+	28%
+	{
+		opacity: 1;
+		transform: translateY(-4px) scale3d(1, 1, 1);
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translateY(-18px) scale3d(0.94, 0.94, 1);
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY(-42px) scale3d(0.9, 0.9, 1);
+	}
+	
+}
+
+#NormalAbyss
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	overflow: noclip;
+	z-index: 80;
+}
+
+#NormalAbyssTopCenter
+{
+	width: 450px;
+	height: 116px;
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+#NoromalAbyssBottomContainer
+{
+	align: center bottom;
+	margin-bottom: 130px;
+	flow-children: up;
+}
+
+#NoromalAbyssBottomContainer #NormalAbyssBottomComboBar
+{
+	margin-top: 0px;
+}
+
+#NormalAbyssTopCenterImage
+{
+	width: 450px;
+	height: 116px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bg_png.vtex");
+	background-size: 100%;
+}
+
+#TopTextPanel
+{
+	width: 354px;
+	height: 24px;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+#NormalAbyssTopLeftLabel,#NormalAbyssTopRightLabel
+{
+	width: 176px;
+	height: 24px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+	font-size: 16px;
+	color: #A28F78;
+	text-shadow: 0px 0px 2px #000000;
+}
+
+#NormalAbyssTopLeftLabel
+{
+	horizontal-align: left;
+	text-align: left;
+}
+
+#NormalAbyssTopRightLabel
+{
+	horizontal-align: right;
+	text-align: right;
+}
+
+.NormalAbyssComboBar
+{
+	width: 368px;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 35px;
+	overflow: clip;
+}
+
+.NormalAbyssComboBar .NormalAbyssComboBarBg
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+.NormalAbyssComboBar .NormalAbyssComboBarFillClip
+{
+	width: 100%;
+	height: 30px;
+	overflow: clip;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.NormalAbyssComboBar .NormalAbyssComboBarFill
+{
+	width: 368px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/hud_challenge/h_challenge_bar_png.vtex");
+	background-size: 368px 30px;
+}
+
+#NormalAbyssBottomScoreLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	transform: scale3d(1, 1, 1);
+	overflow: noclip;
+	font-family: UnifrakturCook;
+	font-weight: bold;
+	font-size: 42px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#NormalAbyssBottomScoreLabel.ScoreBurstA,#NormalAbyssBottomScoreLabel.ScoreBurstB
+{
+	animation-duration: 0.36s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+#NormalAbyssBottomScoreLabel.ScoreBurstA
+{
+	animation-name: NormalAbyssBottomScoreBurstA;
+}
+
+#NormalAbyssBottomScoreLabel.ScoreBurstB
+{
+	animation-name: NormalAbyssBottomScoreBurstB;
+}
+
+#ComboBarLeftLabel,#ComboBarRightLabel,.NormalAbyssComboBarLeftLabel,.NormalAbyssComboBarRightLabel
+{
+	width: 150px;
+	height: 24px;
+	margin-top: 3px;
+	text-overflow: shrink;
+}
+
+#ComboBarLeftLabel,.NormalAbyssComboBarLeftLabel
+{
+	vertical-align: center;
+	horizontal-align: left;
+	margin-left: 26px;
+	text-align: left;
+	height: 16px;
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	font-size: 14px;
+	color: #E8DCBE;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#ComboBarRightLabel,.NormalAbyssComboBarRightLabel
+{
+	horizontal-align: right;
+	margin-right: 26px;
+	text-align: right;
+	font-family: UnifrakturCook;
+	font-weight: bold;
+	font-size: 24px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+}
+
+#NormalAbyssEventPanel
+{
+	width: 300px;
+	height: 24px;
+	horizontal-align: center;
+	margin-top: 66px;
+}
+
+#NormalAbyssEventLabel
+{
+	width: 100%;
+	height: 24px;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 16px;
+	color: #A28F78;
+	text-shadow: 0px 0px 2px #000000;
+}
+
+#NormalAbyssBroadCastPanel
+{
+	width: 586px;
+	height: 239px;
+	align: center top;
+	margin-top: 126px;
+	opacity: 0;
+	transform: translateY(12px) scale3d(0.92, 0.92, 1);
+	transition-property: opacity, transform;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+	overflow: noclip;
+}
+
+#NormalAbyssBroadCastPanel.Show
+{
+	opacity: 1;
+	transform: translateY(0px) scale3d(1, 1, 1);
+	animation-name: NormalAbyssBroadcastShow;
+	animation-duration: 2.8s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+#NormalAbyssBroadCastPanel #NormalAbyssBroadCastBg
+{
+	width: 586px;
+	height: 239px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beginner_bg_png.vtex");
+	background-size: 100%;
+}
+
+#NormalAbyssBroadCastPanel #NormalAbyssBroadCastContentPanel
+{
+	width: fit-children;
+	max-width: 420px;
+	height: 42px;
+	align: center center;
+	margin-top: -16px;
+	flow-children: right;
+}
+
+#NormalAbyssBroadCastPanel .NormalAbyssBroadCastIcon
+{
+	width: 11.5px;
+	height: 30.5px;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-right: 8px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_exclamation_mark_png.vtex");
+	background-size: 100%;
+}
+
+#NormalAbyssBroadCastPanel #NormalAbyssBroadCastLabel
+{
+	width: fit-children;
+	max-width: 326px;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-weight: semi-bold;
+	font-size: 24px;
+	color: #FFEFC9;
+	text-shadow: 0px 0px 5px #830303;
+}
+
+@keyframes 'NormalAbyssBroadcastShow'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(14px) scale3d(0.9, 0.9, 1);
+	}
+	
+	12%
+	{
+		opacity: 1;
+		transform: translateY(0px) scale3d(1.04, 1.04, 1);
+	}
+	
+	72%
+	{
+		opacity: 1;
+		transform: translateY(-8px) scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY(-24px) scale3d(0.96, 0.96, 1);
+	}
+	
+}
+
+@keyframes 'NormalAbyssBottomScoreBurstA'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		color: #E6D4A4;
+		text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+	}
+	
+	16%
+	{
+		transform: scale3d(1.98, 1.98, 1);
+		color: #FFF5C8;
+		text-shadow: 0px 0px 10px transparent;
+	}
+	
+	45%
+	{
+		transform: scale3d(1.36, 1.36, 1);
+		color: #FFE9A8;
+		text-shadow: 0px 0px 6px transparent;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		color: #E6D4A4;
+		text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+	}
+	
+}
+
+@keyframes 'NormalAbyssBottomScoreBurstB'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		color: #E6D4A4;
+		text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+	}
+	
+	16%
+	{
+		transform: scale3d(1.98, 1.98, 1);
+		color: #FFF5C8;
+		text-shadow: 0px 0px 10px transparent;
+	}
+	
+	45%
+	{
+		transform: scale3d(1.36, 1.36, 1);
+		color: #FFE9A8;
+		text-shadow: 0px 0px 6px transparent;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		color: #E6D4A4;
+		text-shadow: 0px 0px 0px rgba(0, 0, 0, 0.85);
+	}
+	
+}
+
+#NormalAbyssRightEvents
+{
+	align: right center;
+	width: 280px;
+	flow-children: down;
+	margin-right: 16px;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventRow
+{
+	width: 100%;
+	margin-top: -20px;
+	margin-bottom: -10px;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beginner_bg_png.vtex");
+	background-size: 100%;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventRowContent
+{
+	width: 100%;
+	flow-children: down;
+	margin: 35px 15px;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventRowText
+{
+	horizontal-align: center;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventRowName
+{
+	width: fit-children;
+	max-width: 326px;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-weight: semi-bold;
+	font-size: 22px;
+	color: #FFEFC9;
+	text-shadow: 0px 0px 5px #830303;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventBar
+{
+	width: 180px;
+	height: 6px;
+	horizontal-align: center;
+	margin-top: 2px;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventBarBg
+{
+	width: 180px;
+	height: 8px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/n_h2_progress_0_png.vtex");
+	background-size: 100%;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventBarFillClip
+{
+	width: 100%;
+	height: 8px;
+	transition-property: width;
+	transition-duration: 1s;
+	transition-timing-function: linear;
+}
+
+#NormalAbyssRightEvents .NormalAbyssEventBarFill
+{
+	width: 180px;
+	height: 3px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/n_h2_progress_1_png.vtex");
+	background-size: 100%;
+}
