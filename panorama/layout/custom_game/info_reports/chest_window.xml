@@ -1,0 +1,114 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vcss_c" />
+	</styles>
+	<Panel class="ChestWindowParent" hittest="false">
+		<Panel class="ChestHudMainPanel" id="ChestHudMainPanel" onactivate="">
+			<Panel class="DropItemPanel" id="DropItemPanel">
+				<Panel class="ItemDropHeader" id="ItemDropHeader">
+					<Label class="ItemDropName" id="ItemDropName" text="" />
+					<Panel class="ItemDropCategory" id="ItemDropCategory">
+						<Panel class="ItemDropCategoryIcon" id="ItemDropCategoryIcon" />
+						<Label class="ItemDropCategoryText" id="ItemDropCategoryText" />
+					</Panel>
+				</Panel>
+				<Panel class="DropItemContentAndEffects">
+					<DOTAParticleScenePanel id="DropEffect" class="DropEffect" particleName="particles/ui/ui_generic_rays.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="130 0 0" lookAt="0 0 0" fov="80" />
+					<DOTAParticleScenePanel id="DropEffect_top" class="DropEffect_top" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="130 0 0" lookAt="0 0 0" fov="80" />
+					<DOTAParticleScenePanel id="DropEffect_bottom" class="DropEffect_bottom" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="130 0 0" lookAt="0 0 0" fov="80" />
+					<Panel class="DropItemContent">
+						<Panel class="ItemDropIcon" id="ItemDropIcon" />
+						<Panel class="DropButtons">
+							<Panel class="ItemDropClaimButton" id="ItemDropClaimButton">
+								<Label class="ItemDropClaimButtonLabel" id="ItemDropClaimButtonLabel" text="#claim_reward" />
+							</Panel>
+							<Panel class="ItemDropRerollButton" id="ItemDropRerollButton">
+								<Label class="ItemDropClaimButtonLabel" text="#reroll_reward" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="CloseChestHudIcon" id="CloseChestHudIcon" />
+			<Panel class="ChestHeader" id="ChestHeader">
+				<Label class="ChestName" id="ChestName" text="" />
+			</Panel>
+			<Panel class="ChestPairRollBlock" id="ChestPairRollBlock">
+				<Panel class="ChestPairLineUnit ChestPairLineUnitPoor" id="ChestPairLineUnitPoor">
+					<Label class="RollLineTitle RollLineTitlePoor" id="RollLineTitlePoor" text="#chest_pair_poor_line" />
+					<Panel class="RollLine" id="RollLine">
+						<Panel class="RollLineBack" id="RollLineBack">
+							<Panel class="RollLineBg" />
+							<Panel class="pointer_top" />
+							<Panel class="pointer_bottom" />
+							<Panel class="RollItemsList">
+								<Panel class="RollItemsListMain" id="RollItemsListMain" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="ChestPairButtonRow">
+						<Panel class="RollLineChestIcon" id="RollLineChestIconPoor" />
+						<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonPoor">
+							<Panel class="ChestCostPanel">
+								<Label class="ChestCostLabel" id="OpenChestButtonPoorLabel" text="#open_chest" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="ChestPairLineUnit ChestPairLineUnitRich" id="ChestPairLineUnitRich">
+					<Label class="RollLineTitle RollLineTitleRich" id="RollLineTitleRich" text="#chest_pair_rich_line" />
+					<Panel class="RollLine RollLine2" id="RollLine2">
+						<Panel class="RollLineBack" id="RollLineBack2">
+							<Panel class="RollLineBg" />
+							<Panel class="pointer_top" />
+							<Panel class="pointer_bottom" />
+							<Panel class="RollItemsList">
+								<Panel class="RollItemsListMain" id="RollItemsListMain2" />
+							</Panel>
+						</Panel>
+						<Label class="RollLineLockLabel" id="RollLineLockLabel" html="true" text="#chest_pair_rich_locked" />
+					</Panel>
+					<Panel class="ChestPairButtonRow">
+						<Panel class="RollLineChestIcon RollLineChestIconRich" id="RollLineChestIconRich" />
+						<Panel class="OpenChestButton OpenChestButtonPair" id="OpenChestButtonRich">
+							<Panel class="ChestCostPanel">
+								<Label class="ChestCostLabel" id="OpenChestButtonRichLabel" text="#open_chest" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="OpenChestButton OpenChestButtonSingle" id="OpenChestButton">
+				<Panel class="ChestCostPanel">
+					<Panel class="ChestCostIcon" id="ChestCostIcon" />
+					<Label class="ChestCostLabel" id="ChestCostLabel" text="0" />
+				</Panel>
+			</Panel>
+			<Panel class="RarePanelWithInfo" id="RarePanelWithInfo">
+				<Label class="ItemsInChestName ItemsInChestNameRare" id="RarePanelName" text="#chest_items_rare" />
+				<Panel class="RareInfoItem" onmouseover="UIShowTextTooltip( #item_chest_info_rare )" onmouseout="UIHideTextTooltip()" />
+			</Panel>
+			<Panel class="BorderItemsChestBlock BorderItemsChestBlockRare" id="RarePanelBorder" />
+			<Panel class="ItemsInChestBlock" id="ItemsInChestBlockRare" />
+			<Panel class="ItemsInChestNameBlock">
+				<Label class="ItemsInChestName" id="ItemsInChestName" text="#chest_items_normal" />
+				<Panel class="InfoOpenReroll" id="InfoOpenReroll" />
+			</Panel>
+			<Panel class="BorderItemsChestBlock" />
+			<Panel class="ItemsInChestBlock" id="ItemsInChestBlock" />
+			<Panel class="ChestBackground" />
+		</Panel>
+	</Panel>
+</root>

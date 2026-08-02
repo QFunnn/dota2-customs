@@ -1,0 +1,78 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/main_settings.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/configs/items_heroes_info.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/player_data.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/info_reports.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_heroes.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_cosmetics.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/shards_updater.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/buy_windows.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/init_selection.vjs_c" />
+	</scripts>
+	<Panel class="HeroSelectionItemsPreviewParent panel_hidden_right_items" hittest="false">
+		<Panel class="HeroSelectionTopBar">
+			<Panel class="HeroSelectionItemsModeSwitch">
+				<Panel class="HeroSelectionItemsModeButton HeroSelectionItemsModeButtonActive" id="HeroSelectionItemsModeHero" onactivate="SetHeroSelectionItemsMode(&apos;hero&apos;);">
+					<Label text="#hero_selection_items_hero" />
+				</Panel>
+				<Panel class="HeroSelectionItemsModeButton" id="HeroSelectionItemsModeEffects" onactivate="SetHeroSelectionItemsMode(&apos;effects&apos;);">
+					<Label text="#Effects" />
+				</Panel>
+			</Panel>
+			<Panel id="HeroSelectionChestInfoPanel">
+				<Panel id="HeroSelectionChestAlert">
+					<Label id="HeroSelectionChestAlertText" text="!" />
+				</Panel>
+				<Panel class="HeroSelectionChestInfo" id="HeroSelectionChestInfo">
+					<Panel class="HeroSelectionChestIcon" id="HeroSelectionChestIcon" />
+					<Panel class="HeroSelectionChestSquares" id="HeroSelectionChestSquares" />
+					<Label class="HeroSelectionChestCdLabel" id="HeroSelectionChestCdLabel" text="" visible="false" />
+					<Panel class="HeroSelectionChestOpenButton HeroSelectionChestOpenButton_locked" id="HeroSelectionChestOpenButton" onactivate="OpenSelectionChest();">
+						<Label class="HeroSelectionChestOpenButtonLabel" id="HeroSelectionChestOpenButtonLabel" text="#chest_pair_open_button" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="HeroSelectionItemsPreview" id="HeroSelectionItemsPreview">
+			<Panel class="shop_window_show_selection" id="window_shop">
+				<Panel class="shop_window_main">
+					<Panel class="HeroListItems" id="HeroListItemsSelection" />
+					<Panel class="CategoryEffectsSelection" id="CategoryEffectsSelection" />
+				</Panel>
+				<Panel class="shop_window_blur_hidden" id="shop_window_blur_selected_set" hittest="true" />
+				<Panel class="shop_window_blur_hidden" id="shop_window_blur" hittest="true" />
+				<Panel class="ChestWindowHolder" id="chest_window_holder" hittest="false" />
+			</Panel>
+			<Panel class="PanelMenuSelection">
+				<Panel class="CrystalsPanelSelection">
+					<Panel class="CrystalIconSelection" />
+					<Label class="CrystalLabelSelection" id="CrystalLabelSelection" text="0" />
+				</Panel>
+				<Panel class="SiteUrlButton" onactivate="activate_but_button();">
+					<Label text="#buy_shards" />
+				</Panel>
+				<Panel class="SalePanel">
+					<Label text="#buy_shards_sale_30" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>
