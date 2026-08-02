@@ -1,0 +1,137 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/sequence.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/dps_counter/dps_counter.vjs_c" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/dps_counter/dps_counter.vcss_c" />
+	</styles>
+	<snippets>
+		<snippet name="DPS_C_Instance">
+			<Panel class="DPS_C_Instance">
+				<Panel class="DPS_C_I_Background" />
+				<Panel class="DPS_C_I_Content">
+					<DOTAAbilityImage id="DPS_C_I_Icon" scaling="stretch-to-fit-y-preserve-aspect" />
+					<Panel class="DPS_C_I_ValuesContainer">
+						<Panel id="DPS_C_I_DamageBar_Background" class="ProgressBar_MultiDamage_Background">
+							<Panel>
+								<Panel id="DPS_C_I_DamageBar" class="ProgressBar_MultiDamage">
+									<Panel id="DPS_C_I_DamageBar_Pure" class="ProgressBar_MultiDamage_Pure" />
+									<Panel id="DPS_C_I_DamageBar_Magical" class="ProgressBar_MultiDamage_Magical" />
+									<Panel id="DPS_C_I_DamageBar_Physical" class="ProgressBar_MultiDamage_Physical" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="DPC_C_I_ValuesContainer">
+							<Label class="DPS_C_I_Count" text="x{d:count}" />
+							<Label class="DPS_C_I_DamageValue" text="{d:damage}" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="DPS_C_Team">
+			<Panel class="DPS_C_Team">
+				<Panel class="DPS_C_TeamHeader">
+					<Panel class="DPS_C_T_Frame" />
+					<Image id="DPS_C_T_Icon" />
+				</Panel>
+				<Panel id="DPS_C_T_PlayersList_Wrap">
+					<Panel id="DPS_C_T_PlayersList" />
+					<Panel class="DPS_C_T_LockState" />
+					<Panel id="DPS_C_T_LockOverlay" onmouseout="DOTAHideTextTooltip()" onactivate="" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="DPS_C_HeroButton">
+			<Button class="DPS_C_HeroButton" onmouseout="DOTAHideTextTooltip()">
+				<Panel class="DPS_C_HB_Overlay" />
+				<Image id="DPS_C_HB_Image" scaling="stretch-to-fit-y-preserve-aspect" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="DPS_Counter_Root DPS_FullMode" hittest="false">
+		<Button id="DPS_C_ToggleButton" onactivate="ToggleDPSCounter()" onmouseover="DOTAShowTextTooltip(#dps_counter_hint)" onmouseout="DOTAHideTextTooltip()">
+			<Image src="s2r://panorama/images/custom_game/dps_counter/dps_icon_png.vtex" />
+		</Button>
+		<Panel class="DPS_C_ContentContainer">
+			<Panel id="DPS_C_TeamsList_Wrap">
+				<Panel class="DPS_C_TeamsList_Background" />
+				<Panel class="DPS_C_TeamsList_Content">
+					<Button class="DPS_C_TeamsList_ToggleButton" onactivate="ToggleFullMode()">
+						<Image src="s2r://panorama/images/custom_game/dps_counter/double_arrow_png.vtex" />
+					</Button>
+					<Panel id="DPS_C_TeamsList" />
+				</Panel>
+			</Panel>
+			<Panel class="DPS_Counter">
+				<Panel class="DPS_C_HeaderRoot">
+					<Label class="DPS_C_Header_Text" text="#dps_counter_header" />
+					<Button class="DPS_C_Close" onactivate="ToggleDPSCounter()" />
+				</Panel>
+				<Panel class="DPS_C_MainContent">
+					<Panel class="DPS_C_MainContent_Wrapper">
+						<Panel class="DPS_C_TotalStat">
+							<Panel class="DPS_C_Modes">
+								<TextButton id="DPS_C_Mode_Total" text="#dps_counter_total" onactivate="ActivateMode(&apos;Total&apos;)" />
+								<TextButton id="DPS_C_Mode_PerSec" text="#dps_counter_per_sec" onactivate="ActivateMode(&apos;PerSec&apos;)" />
+							</Panel>
+							<Label class="DPS_C_TS_TotalDamage_Value" text="{d:total_damage}" />
+							<Panel class="ProgressBar_MultiDamage_Background">
+								<Panel>
+									<Panel id="DPS_C_TS_DamageBar" class="ProgressBar_MultiDamage">
+										<Panel id="DPS_C_TS_DamageBar_Pure" class="ProgressBar_MultiDamage_Pure" />
+										<Panel id="DPS_C_TS_DamageBar_Magical" class="ProgressBar_MultiDamage_Magical" />
+										<Panel id="DPS_C_TS_DamageBar_Physical" class="ProgressBar_MultiDamage_Physical" />
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="DPS_C_TS_DamageByType">
+								<Panel class="DPS_C_TS_DamageType Physical">
+									<Image src="s2r://panorama/images/custom_game/dps_counter/physical_damage_icon_png.vtex" />
+									<Label class="DPS_C_TS_DamageType_TypeName" text="#dps_counter_physical_damage" />
+									<Label class="DPS_C_TS_DamageType_Value" text="{d:total_physical}" />
+								</Panel>
+								<Panel class="DPS_C_TS_DamageType Magical">
+									<Image src="s2r://panorama/images/custom_game/dps_counter/magical_damage_icon_png.vtex" />
+									<Label class="DPS_C_TS_DamageType_TypeName" text="#dps_counter_magical_damage" />
+									<Label class="DPS_C_TS_DamageType_Value" text="{d:total_magical}" />
+								</Panel>
+								<Panel class="DPS_C_TS_DamageType Pure">
+									<Image src="s2r://panorama/images/custom_game/dps_counter/pure_damage_icon_png.vtex" />
+									<Label class="DPS_C_TS_DamageType_TypeName" text="#dps_counter_pure_damage" />
+									<Label class="DPS_C_TS_DamageType_Value" text="{d:total_pure}" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel id="DPS_C_InstancesContainer" />
+					</Panel>
+					<Panel class="DPS_C_MainContent_Shadow" hittest="false" />
+				</Panel>
+				<Panel class="DPS_C_Foot">
+					<TextButton class="DPS_C_Reset DPS_OnlyLocal" text="#dps_counter_reset" onactivate="ResetRequest()" />
+					<Label class="DPS_C_ResetTime DPS_OnlyLocal" text="#dps_counter_record_time" />
+					<Panel class="DPS_C_Options">
+						<ToggleButton class="DPS_C_Option" id="DPS_C_ResetOnRespawn" text="#dps_counter_reset_on_respawn" onactivate="ToggleResetOnRespawn()" />
+						<ToggleButton class="DPS_C_Option" id="DPS_C_AutoOpen" text="#dps_counter_auto_open" onactivate="ToggleAutoOpen()" onmouseover="DOTAShowTextTooltip(#dps_counter_auto_open_hint)" onmouseout="DOTAHideTextTooltip()" />
+						<ToggleButton class="DPS_C_Option" id="DPS_C_OnlyHeroDamage" text="#dps_counter_only_hero_damage" onactivate="ToggleOnlyHeroesDamage()" />
+						<ToggleButton class="DPS_C_Option" id="DPS_C_OnlyBuildingDamage" text="#dps_counter_only_building_damage" onactivate="ToggleOnlyBuildingsDamage()" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

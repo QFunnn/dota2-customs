@@ -1,0 +1,653 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EarlyConsumables_Root
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EC_Items
+{
+	align: left bottom;
+	margin-bottom: 300px;
+	flow-children: down;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+.HUDFlipped .EC_Items
+{
+	align: right bottom;
+	transform: translateX(100px);
+}
+
+.ShowItems .EC_Items
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.EC_TopBorder
+{
+	width: 100%;
+	margin: 0 10px;
+	height: 10px;
+	background-color: rgba(28, 30, 31, 0.95);
+	border-top: 2px solid #7a6b8d;
+	border-right: 2px solid #7a6b8d;
+	border-left: 2px solid #7a6b8d;
+}
+
+.EC_Close
+{
+	width: 70px;
+	height: 70px;
+	z-index: 1;
+	horizontal-align: right;
+	margin: 2px;
+}
+
+.EC_Close_Icon
+{
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 100%;
+	align: right top;
+	margin: 7px 7px 0 0;
+	wash-color: #7a6b8d;
+	transition-property: transform, width, height, wash-color, pre-transform-scale2d;
+	transition-duration: 0.15s, 0.15s, 0.15s, 0.15s, 0.1s;
+	img-shadow: black 0 0 2px 1;
+}
+
+.EC_Close:active .EC_Close_Icon
+{
+	pre-transform-scale2d: 0.85;
+}
+
+.EC_Close:hover .EC_Close_Icon
+{
+	width: 25px;
+	height: 25px;
+	wash-color: #907fa7;
+}
+
+.EC_Close_Background
+{
+	background-color: transparent;
+	border: 2px solid #7a6b8d;
+	transform: rotateZ(45deg) translateX(30px) translateY(-80px);
+	transition-property: transform;
+	transition-duration: 0.15s;
+	width: 140px;
+	height: 140px;
+	overflow: noclip;
+}
+
+.EC_Close:hover .EC_Close_Background
+{
+	transform: rotateZ(45deg) translateX(20px) translateY(-80px);
+}
+
+.EC_Close_Background_Hover
+{
+	width: 140px;
+	height: 140px;
+	background-color: #344047;
+	transform: rotateZ(45deg) translateX(-16px) translateY(170px);
+	transition-property: transform, background-color;
+	transition-duration: 0.15s, 0.1s;
+}
+
+.EC_Close:hover .EC_Close_Background_Hover
+{
+	transform: rotateZ(45deg) translateX(-9px) translateY(123px);
+}
+
+.EC_Close:active .EC_Close_Background_Hover
+{
+	background-color: #283339;
+	transform: rotateZ(45deg) translateX(-9px) translateY(127px);
+}
+
+.EC_Content
+{
+	flow-children: right;
+	height: 285px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.8)), to(rgba(15, 16, 30, 0.8)));
+	border: 1px solid black;
+}
+
+.EC_Content > Panel
+{
+	height: 100%;
+	flow-children: down;
+}
+
+.EC_KillLimit
+{
+	width: 330px;
+}
+
+.EC_DoubleMmrTokens
+{
+	width: 244px;
+}
+
+.EC_Content_Entry
+{
+	height: fill-parent-flow(1);
+	width: 100%;
+}
+
+.EC_Content_Entry > Panel
+{
+	flow-children: down;
+	align: center top;
+	width: 100%;
+}
+
+.EC_Content_Header
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.95)), to(rgba(15, 16, 30, 0.95)));
+	horizontal-align: center;
+	width: 100%;
+	border-bottom: 1px solid black;
+	padding: 5px 0;
+}
+
+.EC_Content_Header Label
+{
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 23px;
+	font-family: titleFont;
+	background-image: url("s2r://panorama/images/custom_game/early_menu/kl_icon_png.vtex");
+	background-size: 23px;
+	background-repeat: no-repeat;
+	background-position: 5px 50%;
+	padding-left: 33px;
+	color: white;
+	wash-color: #899ce2;
+	horizontal-align: center;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Header Label
+{
+	background-image: url("s2r://panorama/images/custom_game/early_menu/double_mmr_icon_png.vtex");
+}
+
+.EC_Content_Buttons
+{
+	margin-top: 35px;
+	flow-children: right;
+	padding-left: -25px;
+	horizontal-align: center;
+}
+
+.EC_Content_Button
+{
+	margin-left: 25px;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button
+{
+	margin-top: -10px;
+}
+
+.EC_Content_Button_Background
+{
+	width: 110px;
+	height: 57px;
+	background-image: url("s2r://panorama/images/custom_game/early_menu/button_hexagon_png.vtex");
+	background-size: 100%;
+	margin-top: 17px;
+	transition-property: transform, brightness;
+	transition-duration: 0.1s;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Background
+{
+	margin-top: 27px;
+}
+
+.EC_Content_Button.Token .EC_Content_Button_Background
+{
+	background-image: url("s2r://panorama/images/custom_game/early_menu/button_hexagon_gold_png.vtex");
+}
+
+.EarlyConsumables_Root:not(.BLocalPlayerHas_bp_gg_token) .EC_KillLimit .EC_Content_Button.Token,.EarlyConsumables_Root:not(.BLocalPlayerHas_double_mmr_token) .EC_DoubleMmrTokens .EC_Content_Button.Token,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Hint,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button_Hint,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Background,.BPlayerVotedKL .EC_KillLimit .EC_Content_Button_Value,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Background,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Value
+{
+	saturation: 0;
+	wash-color: #cbcbcb;
+}
+
+.EC_Content_Button:not(.Token):hover .EC_Content_Button_Background,.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:hover .EC_Content_Button_Background,.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:hover .EC_Content_Button_Background
+{
+	brightness: 1.7;
+}
+
+.EC_Content_Button:not(.Token):active .EC_Content_Button_Background,.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:active .EC_Content_Button_Background,.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:active .EC_Content_Button_Background
+{
+	brightness: 0.6;
+	transform: translateY(3px);
+}
+
+.EC_Content_Button_Value
+{
+	font-size: 41px;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dda038), to(#eecd5e));
+	text-shadow: black 0 3px 0 0;
+	horizontal-align: center;
+	text-align: center;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Value
+{
+	width: 70px;
+	height: 70px;
+	background-image: url("s2r://panorama/images/custom_game/early_menu/double_mmr_token_hr_png.vtex");
+	background-size: 100%;
+}
+
+.EC_Content_Button:not(.Token):hover .EC_Content_Button_Value,.EarlyConsumables_Root.BLocalPlayerHas_bp_gg_token .EC_KillLimit .EC_Content_Button.Token:hover .EC_Content_Button_Value,.EarlyConsumables_Root.BLocalPlayerHas_double_mmr_token .EC_DoubleMmrTokens .EC_Content_Button.Token:hover .EC_Content_Button_Value
+{
+	animation-name: shake_text;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'shake_text'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(-6deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(6deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.EC_Content_Button_Hint_Container
+{
+	horizontal-align: center;
+}
+
+.EC_Content_Button_Hint
+{
+	margin-top: 74px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dea23a), to(#eece5f));
+	font-size: 23px;
+	horizontal-align: center;
+	text-align: center;
+	text-shadow: black 0 3px 0 0;
+	padding: 10px 0;
+}
+
+.EC_Content_Button.Token .EC_Content_Button_Hint
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/bp_gg_token_icon_png.vtex");
+	background-size: 42px;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-left: 43px;
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_Button_Hint
+{
+	background-image: url("s2r://panorama/images/custom_game/collection/double_mmr_token_icon_png.vtex");
+}
+
+.EC_DoubleMmrTokens .EC_Content_Button_Hint
+{
+	margin-top: 84px;
+}
+
+.EC_Content_OptionUsed
+{
+	width: 27px;
+	height: 21px;
+	align: right bottom;
+	margin: 0 -15px 23px 15px;
+	background-image: url("s2r://panorama/images/custom_game/early_menu/tick_png.vtex");
+	background-size: 15px 13px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1c2224), to(#434f55));
+	border: 2px solid #1a2022;
+	border-radius: 10px;
+	visibility: collapse;
+}
+
+.EC_Content_Button.Token .EC_Content_OptionUsed
+{
+	align: left bottom;
+	margin: 0 0 23px 21px;
+}
+
+.PlayerKLVoteType_1 .EC_KillLimit .EC_Content_Button:not(.Token) .EC_Content_OptionUsed,.PlayerKLVoteType_2 .EC_KillLimit .EC_Content_Button.Token .EC_Content_OptionUsed,.BPlayerUsedDoubleMMR .EC_DoubleMmrTokens .EC_Content_Button.Token .EC_Content_OptionUsed
+{
+	visibility: visible;
+}
+
+.EC_Content_Description
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 15px;
+	font-family: titleFont;
+	font-weight: lighter;
+	color: #aab7bf;
+}
+
+#EC_KL_Footer
+{
+	height: 55px;
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.95)), to(rgba(15, 16, 30, 0.95)));
+	margin: 0 10px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	flow-children: right;
+	padding-left: 8px;
+}
+
+.EC_Footer_Item
+{
+	margin-left: -8px;
+}
+
+.EC_Footer_Item:hover
+{
+	brightness: 1.5;
+}
+
+.EC_Footer_Item:active
+{
+	brightness: 0.7;
+}
+
+#EC_KL_Footer > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+.EC_FI_ImageContainer
+{
+	align: center center;
+}
+
+.EC_FI_ImageContainer Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#342a3f), to(#726285));
+	height: 40px;
+	width: 35px;
+	opacity-mask: url("s2r://panorama/images/custom_game/early_menu/hexagon_transparent_png.vtex");
+	align: center center;
+	margin-top: 6px;
+}
+
+#EC_FI_Image
+{
+	align: center center;
+	width: 32px;
+	height: 32px;
+	margin-top: 6px;
+}
+
+.EC_Footer_Item Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#fad773), to(#fad773));
+	text-shadow: black 0 2px 0 0;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1c2224), to(#434f55));
+	padding: 0px 2px;
+	border-radius: 10px;
+	border: 2px solid #1a2022;
+	margin-left: 40px;
+}
+
+.EC_ContentSeparator
+{
+	width: 2px;
+	height: 100%;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from(transparent), color-stop(0.05, transparent), color-stop(0.3, rgba(52, 50, 61, 0.6)), color-stop(0.5, rgba(86, 83, 101, 0.7)), color-stop(0.7, rgba(52, 50, 61, 0.6)), color-stop(0.95, transparent), to(transparent) );
+	margin: 0 25px;
+}
+
+.EC_Close_Simple
+{
+	width: 30px;
+	height: 30px;
+	align: right top;
+	wash-color: #99afd6;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 22px 22px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	margin: 7px;
+	z-index: 1;
+}
+
+.EC_Close_Simple:hover
+{
+	brightness: 1.5;
+}
+
+.EC_Close_Simple:active
+{
+	brightness: 0.75;
+	pre-transform-scale2d: 0.9;
+}
+
+.EC_Info
+{
+	align: right bottom;
+	margin-bottom: 200px;
+	background-image: url("s2r://panorama/images/custom_game/early_menu/glow2_png.vtex");
+	background-size: 325px 308px;
+	background-position: left 0px top -14px;
+	background-repeat: no-repeat;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	visibility: collapse;
+}
+
+.BProPlayer .EC_Info
+{
+	visibility: visible;
+}
+
+.HUDFlipped .EC_Info
+{
+	align: left bottom;
+}
+
+.BHideSupport .EC_Info,.BShopOpen_Custom .EC_Info
+{
+	opacity: 0;
+	transform: translateX(100px);
+}
+
+.HUDFlipped .BHideSupport .EC_Info,.HUDFlipped .BShopOpen_Custom .EC_Info
+{
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+.EC_I_TopGradient
+{
+	width: 100%;
+	height: 218px;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 53% 53%, from(rgba(255, 178, 0, 0.3)), color-stop(0.2, rgba(205, 119, 17, 0.45)), color-stop(0.97, transparent), to(transparent) );
+	opacity-brush: gradient( linear, 0% 100%, 0% 0%, from(transparent), color-stop(0.5, transparent), color-stop(0.5, white), to(white) );
+}
+
+.EC_I_Cat
+{
+	width: 139px;
+	height: 88px;
+	horizontal-align: center;
+	margin: 47px 0 0 16px;
+}
+
+.EC_I_Content
+{
+	margin-top: 109px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.8)), to(rgba(15, 16, 30, 0.8)));
+	border: 1px solid black;
+	flow-children: down;
+}
+
+.EC_I_Content_Header
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.9)), to(rgba(15, 16, 30, 0.9)));
+	width: 100%;
+	horizontal-align: center;
+	padding: 4px 0;
+	border-bottom: 1px solid black;
+}
+
+.EC_I_Content_Header > Label
+{
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-align: center;
+	font-size: 16px;
+	margin: 0 30px;
+	font-family: titleFont;
+	color: gradient(linear, 0% 100%, 0% 0%, from(rgb(237, 157, 74)), to(rgb(245, 202, 86)));
+	align: center center;
+}
+
+.EC_I_Content_Header .EC_Close_Simple
+{
+	margin: 0 4px 0 0;
+	wash-color: #efa94e;
+}
+
+.EC_I_Logos
+{
+	margin: 10px 10px 0 10px;
+	background-color: #0f1e21;
+	width: 295px;
+	horizontal-align: center;
+	height: 70px;
+	border: 1px solid #5e4f34;
+	border-radius: 6px;
+}
+
+.EC_I_Logos:hover
+{
+	brightness: 1.4;
+}
+
+.EC_I_Logos:active
+{
+	brightness: 0.7;
+	pre-transform-scale2d: 0.96;
+}
+
+.EC_I_Logos Panel
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 20% -90%, 95% 0%, from(#5e4f34), color-stop(0.5, transparent), to(rgba(94, 79, 52, 0.3)) );
+	opacity: 0.1;
+}
+
+.EC_I_Logos Image
+{
+	width: 90%;
+	align: center center;
+	height: 100%;
+	margin: 8px 8px;
+}
+
+.EC_I_Description
+{
+	width: 100%;
+	text-align: center;
+	padding: 10px 6px;
+	color: #9eacdd;
+}
+
+.EC_I_Separator
+{
+	width: 100%;
+	height: 1px;
+	background-color: #332545;
+}
+
+.EC_I_ChatWheel
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding: 0 6px;
+}
+
+.EC_I_ChatWheel Image
+{
+	width: 29px;
+	height: 23px;
+	vertical-align: center;
+	wash-color: #9eacdd;
+}
+
+#EC_I_ChatWheelHint
+{
+	width: fit-children;
+	padding: 10px 0px;
+	margin-left: 6px;
+}
+
+#ChatWheelKeybind
+{
+	color: #ffffff;
+	text-align: center;
+	padding: 0px 6px -1px 5px;
+	background-color: #1b1d1c;
+	border-radius: 3px;
+	border: 1px solid #7d7f8c;
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0);
+}
+
+.Language_schinese #ChatWheelKeybind,.Language_tchinese #ChatWheelKeybind
+{
+	margin: 0 3px;
+}

@@ -1,0 +1,89 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_perks/game_perks.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/game_perks/game_perks.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="Perk">
+			<Panel class="Perk" onmouseout="DOTAHideTextTooltip()">
+				<Image id="Perk_Image" />
+				<Label id="Perk_Name" text="{s:perk_name}" />
+			</Panel>
+		</snippet>
+		<snippet name="Perks_Tier">
+			<Panel class="Perks_Tier">
+				<Panel>
+					<Panel id="Perks_Tier_Header">
+						<Label class="Perks_Tier_HeaderText" text="{s:perk_tier_header}" />
+						<Panel class="ActiveTierHeader_Indicator" />
+					</Panel>
+					<Panel class="PerksStatesContainer">
+						<Panel class="Perks_State Choose">
+							<Label text="#perks_header_choose" />
+						</Panel>
+						<Panel class="Perks_State Old">
+							<Label text="#perks_header_old" />
+						</Panel>
+						<Button id="UnlockTierBySuppButton" class="Perks_State Unlock">
+							<Panel>
+								<Panel class="PS_UnlockIcon">
+									<Panel />
+								</Panel>
+								<Label text="#perks_header_unlock" />
+							</Panel>
+						</Button>
+						<Panel class="Perks_OverlayTop" hittest="false" />
+					</Panel>
+					<Panel id="Perks_Container" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="GamePerks">
+		<Panel id="Perks_MapButton_BG" />
+		<Panel id="Perks_MapButton">
+			<Image id="Perks_MapButton_Image" src="s2r://" onmouseout="DOTAHideTextTooltip()" />
+		</Panel>
+		<Panel id="Perks_Menu">
+			<Panel class="PM_Header">
+				<Label class="PM_HeaderText" text="#patreons_perk_hide_choose" />
+				<Button id="PM_Close" onactivate="HideGamePerks()" onmouseover="DOTAShowTextTooltip(#close_patreons_game_perks_menu)" onmouseout="DOTAHideTextTooltip()" />
+			</Panel>
+			<Panel class="Perks_Search" onactivate="FocusSearchInput()">
+				<TextButton class="Perks_Search_Clear" text="#perk_clear" onactivate="DropSearchInput()" />
+				<TextEntry id="Perks_Search_TextEntry" placeholder=" " ontextentrychange="UpdateSearch()" onblur="OnSearchBlur()" oninputsubmit="DropInputFocus()" />
+				<Button class="Perks_Search_Placeholder">
+					<Label text="#perk_search" />
+				</Button>
+			</Panel>
+			<Panel id="PM_ListWrap">
+				<Panel id="PM_List" />
+				<Panel class="Perks_OverlayBottom" hittest="false" />
+			</Panel>
+			<Panel class="PM_ServerStateContainer">
+				<Panel class="PM_SS_Indicator">
+					<Panel class="Perks_OverlayTopIndicator" hittest="false" />
+				</Panel>
+				<Panel class="PM_SS_Content">
+					<Label class="PM_SS_Header" text="{s:server_loading_state_header}" html="true" />
+					<Label class="PM_SS_Description" text="{s:server_loading_state_desc}" html="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

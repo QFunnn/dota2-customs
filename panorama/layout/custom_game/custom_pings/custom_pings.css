@@ -1,0 +1,447 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.WheelPingFixRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomPingsHudTracker
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Custom_PingWheel
+{
+	flow-children: down;
+}
+
+#Custom_PingWheel.DefaultPing
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 33% 33%, from(#e4d500), color-stop(0.4, #ffe10c), color-stop(0.7, rgba(255, 225, 12, 0.3)), to(transparent) );
+}
+
+.Ping_Line
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.Custom_Ping
+{
+	width: 53px;
+	height: 53px;
+	padding: 3px;
+	saturation: 0;
+	opacity: 0.65;
+}
+
+.Custom_Ping.Active
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from(#fff000), color-stop(0.6, #fff000), to(transparent) );
+	saturation: 1;
+	opacity: 1;
+}
+
+#CustomPings_Minimap
+{
+	width: 280px;
+	height: 280px;
+	vertical-align: bottom;
+	opacity-mask: url("s2r://panorama/images/custom_game/custom_pings_map_mask_png.vtex");
+	transform: scaleY(-1);
+}
+
+.MinimapExtraLarge #CustomPings_Minimap
+{
+	width: 316px;
+	height: 316px;
+}
+
+.HUDFlipped #CustomPings_Minimap
+{
+	transform: scaleY(-1) scaleX(-1);
+	horizontal-align: right;
+}
+
+.CustomPing
+{
+	width: 50px;
+	height: 50px;
+	transform: scaleY(-1);
+}
+
+#CustomPing_Marker
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomPing_Marker.Pulse
+{
+	animation-duration: 3.6s;
+	animation-iteration-count: infinite;
+	animation-name: PingPulse;
+	animation-timing-function: linear;
+}
+
+#CustomPing_HeroImage
+{
+	align: center center;
+	width: 21px;
+	height: 21px;
+}
+
+@keyframes 'PingPulse'
+{
+	0%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 0;
+	}
+	
+	20%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	30%
+	{
+		pre-transform-scale2d: 0;
+	}
+	
+	40%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 0;
+	}
+	
+	60%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	70%
+	{
+		pre-transform-scale2d: 0;
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	90%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0;
+	}
+	
+}
+
+#MapOverlay
+{
+	width: 245px;
+	height: 317px;
+	background-image: url("s2r://panorama/images/custom_game/minimap_overlay_12v12_png.vtex");
+	background-size: 100%;
+	vertical-align: bottom;
+	z-index: 2;
+	opacity: 0;
+}
+
+.MinimapExtraLarge #MapOverlay
+{
+	height: 362px;
+	width: 280px;
+}
+
+.HUDFlipped #MapOverlay
+{
+	horizontal-align: right;
+}
+
+.ShowMinimap #MapOverlay
+{
+	opacity: 1;
+}
+
+.HeroNamePing
+{
+	font-size: 19px;
+	text-shadow: 1px 1.5px 0px 2 #000000;
+	font-weight: bold;
+	padding: 10px;
+}
+
+#MapOverlay.Memorial
+{
+	background-image: url("s2r://");
+	width: 257px;
+	height: 357px;
+}
+
+.MinimapExtraLarge #MapOverlay.Memorial
+{
+	width: 294px;
+	height: 408px;
+}
+
+.HUDFlipped #MapOverlay.Memorial
+{
+	transform: scaleX(-1);
+}
+
+#MemorialLogo
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: bottom;
+	width: 150px;
+	height: 30px;
+	margin: 0px 0px 306px 45px;
+}
+
+.MinimapExtraLarge #MemorialLogo
+{
+	margin: 0px 0px 350px 64px;
+}
+
+.HUDFlipped #MemorialLogo
+{
+	horizontal-align: right;
+	margin: 0px 45px 306px 0px;
+}
+
+.MinimapExtraLarge.HUDFlipped #MemorialLogo
+{
+	margin: 0px 64px 350px 0px;
+}
+
+#MemorialBlock
+{
+	vertical-align: bottom;
+	margin-bottom: 245px;
+	width: 245px;
+	height: 60px;
+}
+
+.MinimapExtraLarge #MemorialBlock
+{
+	margin-bottom: 280px;
+	width: 280px;
+	height: 69px;
+}
+
+.HUDFlipped #MemorialBlock
+{
+	horizontal-align: right;
+}
+
+#MemorialBlock:hover #MemorialBlock_Arrow,#MemorialBlock:hover #MemorialBlock_Info
+{
+	brightness: 2;
+}
+
+#MemorialBlock:active #MemorialBlock_Arrow,#MemorialBlock:active #MemorialBlock_Info
+{
+	brightness: 0.8;
+}
+
+#MemorialBlock_Header
+{
+	align: center top;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c8630f), to(#e18f2d));
+	text-shadow: black 0px 1px 3px 1;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	font-size: 17px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.MinimapExtraLarge #MemorialBlock_Header
+{
+	margin-top: 12px;
+}
+
+#MemorialBlock_Header_2
+{
+	align: center top;
+	margin-top: 32px;
+	color: white;
+	text-shadow: black 0px 0px 3px 1;
+	font-family: titleFont;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+.MinimapExtraLarge #MemorialBlock_Header_2
+{
+	margin-top: 35px;
+}
+
+#MemorialBlock_Arrow
+{
+	width: 15px;
+	height: 11px;
+	transition: brightness 0.1s ease-in-out 0s;
+	align: right bottom;
+	margin: 0px 5px 2px 0px;
+}
+
+.HUDFlipped #MemorialBlock_Arrow
+{
+	align: left bottom;
+	margin: 0px 0px 2px 5px;
+	transform: scaleX(-1);
+}
+
+#MemorialBlock_Info
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c8630f), to(#e18f2d));
+	text-shadow: black 0px 1px 3px 1;
+	text-transform: uppercase;
+	font-size: 12px;
+	transition: brightness 0.1s ease-in-out 0s;
+	align: right bottom;
+	margin: 0px 22px 1px 0px;
+}
+
+.HUDFlipped #MemorialBlock_Info
+{
+	align: left bottom;
+	margin: 0px 1px 1px 22px;
+}
+
+#MemorialInfo_Root
+{
+	width: 630px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	box-shadow: transparent 0px 0px 0px 0px;
+	opacity: 0;
+	transform: translatey(-70px);
+	transition: opacity 0.2s ease-in-out 0s, transform 0.15s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+	padding: 10px;
+	align: center center;
+}
+
+#MemorialInfo_Root.Show
+{
+	opacity: 1;
+	transform: translatey(0px);
+	box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 10px 0px;
+}
+
+#MemorialInfo_Desc_Block
+{
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	flow-children: down;
+	padding: 10px;
+}
+
+#MemorialInfo_Desc_Header
+{
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	padding: 9px;
+	font-size: 30px;
+	font-weight: semi-bold;
+	color: white;
+}
+
+#MemorialInfo_Close
+{
+	align: right top;
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 100%;
+	margin: -9px;
+	wash-color: #8f94ab;
+	transition: wash-color 0.1s ease-in-out 0s;
+}
+
+#MemorialInfo_Close:hover
+{
+	wash-color: #c6c3d3;
+}
+
+#MemorialInfo_Close:active
+{
+	wash-color: #8a8993;
+}
+
+#MemorialInfo_Desc_Separator
+{
+	width: 100%;
+	horizontal-align: center;
+	height: 2px;
+	background-color: #717171;
+}
+
+#MemorialInfo_Desc_Text
+{
+	color: #c0c2ca;
+	margin-top: 15px;
+	padding: 0px 10px;
+}
+
+.ContaindedTextContent .UrlLink
+{
+	text-decoration: underline;
+	color: #93a0cd;
+}
+
+.UrlLink:hover
+{
+	color: #b7cbff;
+}
+
+.ContaindedTextContent
+{
+	flow-children: down;
+	padding: 10px 25px 0px 25px;
+}
+
+.ContaindedTextContent Label
+{
+	color: #c0c2ca;
+}
+
+.ContaindedTextContent Image
+{
+	width: 21px;
+	height: 21px;
+	margin-left: 4px;
+}

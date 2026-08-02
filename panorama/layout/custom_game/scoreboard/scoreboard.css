@@ -1,0 +1,846 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.CustomScoreboard
+{
+	flow-children: down;
+	margin-top: 64px;
+	transform: translateX(-100px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+}
+
+.CustomScoreboard.dota_tournament
+{
+	margin-top: 72px;
+}
+
+.HUDFlipped .CustomScoreboard
+{
+	horizontal-align: right;
+	transform: translateX(-100px) scaleX(-1);
+}
+
+.CustomScoreboard.Show
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+.HUDFlipped .CustomScoreboard.Show
+{
+	transform: translateX(0px) scaleX(-1);
+}
+
+#CS_TeamsList
+{
+	flow-children: down;
+}
+
+.CS_Team
+{
+	flow-children: down;
+}
+
+.CS_T_Header_Text
+{
+	vertical-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #b6dbec;
+	text-overflow: clip;
+	height: 21px;
+}
+
+.HUDFlipped .CS_T_Header_Text
+{
+	transform: scaleX(-1);
+}
+
+.CS_T_Header
+{
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgba(46, 95, 59, 0.95)), color-stop(0.47, rgba(0, 0, 0, 0.95)), to(rgba(0, 0, 0, 0.95)) );
+	height: 37px;
+}
+
+#CS_Team_3 .CS_T_Header
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgba(87, 30, 28, 0.95)), color-stop(0.47, rgba(0, 0, 0, 0.95)), to(rgba(0, 0, 0, 0.95)) );
+}
+
+.CS_T_NameScore_Container
+{
+	flow-children: right;
+	width: 240px;
+	vertical-align: center;
+}
+
+.CS_T_NameScore_Container Label
+{
+	font-size: 28px;
+	color: white;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	text-shadow: #00bb00 0 0 4px 2;
+	font-family: monospaceNumbersFont;
+}
+
+#CS_Team_3 .CS_T_NameScore_Container Label
+{
+	text-shadow: rgba(217, 19, 13, 0.8) 0 0 4px 2;
+}
+
+.CS_T_Score
+{
+	width: 45px;
+	margin-left: 5px;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.HUDFlipped .CS_T_Score
+{
+	transform: scaleX(-1);
+}
+
+.CS_T_Name
+{
+	margin-left: 5px;
+}
+
+.HUDFlipped .CS_T_Name
+{
+	transform: scaleX(-1);
+}
+
+.CS_T_AbiltiesFiller
+{
+	width: 160px;
+	margin-left: 18px;
+	height: 100%;
+}
+
+.CS_T_Kills,.CS_PC_Kills
+{
+	width: 35px;
+}
+
+.CS_T_Deaths,.CS_PC_Deaths
+{
+	width: 35px;
+}
+
+.CS_T_Assists,.CS_PC_Assists
+{
+	width: 35px;
+}
+
+.CS_T_Talents
+{
+	width: 45px;
+}
+
+.CS_T_Perk,.CS_PC_RadialEntity.Perk
+{
+	width: 51px;
+}
+
+.CS_T_NeutralItem,.CS_PC_RadialEntity.NeutralItem
+{
+	width: 41px;
+}
+
+.CS_T_Rank
+{
+	height: 100%;
+	font-size: 15px;
+	padding-top: 1px;
+}
+
+.CS_T_Rank,.CS_PC_Rank
+{
+	width: 60px;
+}
+
+.CS_T_Networth,.CS_PC_Networth
+{
+	width: 85px;
+}
+
+.CS_T_Tips,#CS_PC_Tips
+{
+	width: 85px;
+	margin-right: 4px;
+}
+
+.CS_T_Header_RadialEntity
+{
+	width: 45px;
+	vertical-align: center;
+}
+
+.CS_T_Header_RadialEntity ToggleButton
+{
+	padding: 0;
+	box-shadow: transparent 0 0 0 0;
+	border: 0px solid transparent;
+	background-size: 100%;
+	width: 27px;
+	height: 27px;
+	flow-children: none;
+	horizontal-align: center;
+	border-radius: 50%;
+	box-shadow: black 0 1px 3px 2;
+}
+
+.HUDFlipped .CS_T_Header_RadialEntity ToggleButton
+{
+	transform: scaleX(-1);
+}
+
+.CS_T_Header_RadialEntity ToggleButton .TickBox
+{
+	padding: 0;
+	box-shadow: transparent 0 0 0 0;
+	border: 0px solid transparent;
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+}
+
+#CS_T_Header_MuteAll_Voice,#CS_PC_Mute_Voice
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_mute_voice_png.vtex");
+}
+
+#CS_T_Header_MuteAll_Text,#CS_PC_Mute_Text
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_mute_text_png.vtex");
+}
+
+#CS_T_Header_DisableHelpAll,#CS_PC_DisableHelp
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_help_png.vtex");
+}
+
+.CS_OffIcon
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.15s ease-in-out 0s;
+}
+
+#CS_T_Header_MuteAll_Voice:selected .CS_OffIcon,#CS_T_Header_MuteAll_Text:selected .CS_OffIcon,#CS_T_Header_DisableHelpAll:selected .CS_OffIcon,.BPlayerMuted_Voice #CS_PC_Mute_Voice .CS_OffIcon,.BPlayerMuted_Text #CS_PC_Mute_Text .CS_OffIcon,.BDisabledHelp #CS_PC_DisableHelp .CS_OffIcon
+{
+	opacity: 1;
+}
+
+#CS_T_Header_KickInfo
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_kick_transparent_bg_png.vtex");
+	box-shadow: none;
+}
+
+#CS_PC_Kick
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/icon_kick_png.vtex");
+}
+
+.KickGlow #CS_PC_Kick
+{
+	animation-name: kick_glow;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.CustomScoreboard:not(.BKickVotingEnabled) .CS_PC_KickContainer,.CustomScoreboard:not(.BKickVotingEnabled) #CS_T_Header_KickInfo
+{
+	visibility: collapse;
+}
+
+@keyframes 'kick_glow'
+{
+	0%
+	{
+		box-shadow: #d80f00 0px 0px 1px 0px;
+	}
+	
+	50%
+	{
+		box-shadow: #d80f00 0px 0px 5px 0px;
+	}
+	
+	100%
+	{
+		box-shadow: #d80f00 0px 0px 1px 0px;
+	}
+	
+}
+
+#CS_T_PlayersList
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.CS_Player
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CS_PlayerContent
+{
+	width: 100%;
+	flow-children: right;
+	height: 34px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#151318), to(#1f1f1f));
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+}
+
+.CS_Player:not(.LocalPlayer) .CS_PlayerContent
+{
+	border-bottom: 1px solid rgba(22, 49, 23, 0.9);
+}
+
+#CS_Team_3 .CS_Player:not(.LocalPlayer) .CS_PlayerContent
+{
+	border-bottom: 1px solid rgba(62, 22, 27, 0.9);
+}
+
+.LocalPlayer .CS_PlayerContent
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#2f2921), to(#23221f));
+	border-top: 1px solid #714b1f;
+	border-bottom: 1px solid #8e7d22;
+}
+
+#CS_PlayerColor
+{
+	height: 100%;
+	width: 4px;
+}
+
+.CS_PlayerColor_Shadow
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(black), color-stop(0.5, transparent), to(black));
+}
+
+.CS_PC_HeroImage_Container
+{
+	width: 57px;
+}
+
+.HUDFlipped .CS_PC_HeroImage_Container
+{
+	transform: scaleX(-1);
+}
+
+#CS_PC_HeroImage_Disconnect
+{
+	width: 56px;
+	height: 16px;
+	align: center center;
+	visibility: collapse;
+}
+
+.Disconnected #CS_PC_HeroImage_Disconnect,.Abandoneded #CS_PC_HeroImage_Disconnect
+{
+	visibility: visible;
+}
+
+.Abandoneded #CS_PC_HeroImage
+{
+	saturation: 0;
+	wash-color: #9b9b9b;
+}
+
+.CS_PC_HeroNamePlayerName
+{
+	width: 179px;
+	height: 100%;
+	padding-left: 3px;
+}
+
+#CS_PC_PlayerName
+{
+	height: 20px;
+}
+
+.HUDFlipped #CS_PC_PlayerName
+{
+	transform: scaleX(-1);
+}
+
+#CS_PC_PlayerName Label
+{
+	font-size: 16px;
+	margin-top: 1px;
+	font-weight: semi-bold;
+}
+
+.CS_PC_HeroName
+{
+	font-size: 14px;
+	vertical-align: bottom;
+	transform: translateY(1px);
+	color: #c5c5c5;
+	height: 17px;
+}
+
+.HUDFlipped .CS_PC_HeroName
+{
+	transform: translateY(1px) scaleX(-1);
+}
+
+.CS_PC_RadialEntity
+{
+	width: 45px;
+	height: 100%;
+}
+
+.HUDFlipped .CS_PC_RadialEntity
+{
+	transform: scaleX(-1);
+}
+
+.CS_PC_NeutralItemContainer,.CS_PC_PerkContainer
+{
+	width: 27px;
+	height: 27px;
+	align: center center;
+	border-radius: 50%;
+	border: 2px solid white;
+	border-brush: gradient( linear, 0% 100%, 100% 0%, from(#697485), color-stop(0.4, #191919), color-stop(0.6, #191919), to(#4c5460) );
+	box-shadow: black 0 0 2px 1;
+}
+
+.BGrantedByFamily .CS_PC_PerkContainer
+{
+	border-brush: gradient( linear, 0% 100%, 100% 0%, from(#f9d014), color-stop(0.45, #191919), color-stop(0.55, #191919), to(#ffe500) );
+}
+
+#CS_PC_NeutralItem
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	box-shadow: inset rgba(0, 0, 0, 0.98) 0 0 5px 0px;
+	margin: -1px;
+}
+
+#CS_PC_Perk
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	box-shadow: inset rgba(0, 0, 0, 0.98) 0 0 3px 0px;
+	margin: -1px;
+	background-image: url("s2r://panorama/images/items/emptyitembg_png.vtex");
+	background-size: 100% 99%;
+	background-repeat: no-repeat;
+}
+
+.CS_PC_NumberStat
+{
+	vertical-align: center;
+	height: 100%;
+}
+
+.CS_PC_NumberStat Label
+{
+	align: center center;
+	text-align: center;
+	color: #d0cfcf;
+	text-shadow: black 0 0 2 0;
+	font-family: monospaceNumbersFont;
+	height: 21px;
+	text-overflow: clip;
+	width: 100%;
+	text-align: center;
+}
+
+.HUDFlipped .CS_PC_NumberStat Label
+{
+	transform: scaleX(-1);
+}
+
+.CS_PC_Kills Label
+{
+	font-weight: semi-bold;
+}
+
+.CS_PC_Networth Label
+{
+	color: #ffda4e;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+}
+
+.LocalTeamColumn
+{
+	opacity: 0;
+}
+
+.LocalTeam .LocalTeamColumn
+{
+	opacity: 1;
+}
+
+.CS_PC_RadialEntity Button
+{
+	width: 27px;
+	height: 27px;
+	background-size: 100%;
+	align: center center;
+	transition-property: brightness, wash-color;
+	transition-duration: 0.15s;
+	border-radius: 50%;
+	box-shadow: rgba(0, 0, 0, 0.6) 0 1px 3px 2;
+}
+
+.CS_PC_RadialEntity Button:hover,.CS_T_Header_RadialEntity ToggleButton:hover
+{
+	brightness: 1.7;
+}
+
+.CS_PC_RadialEntity Button.BHasAction:active,.CS_T_Header_RadialEntity.BHasAction ToggleButton:active
+{
+	brightness: 0.7;
+}
+
+#CS_PC_Talents
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/statbranch_bg_png.vtex"), url("s2r://panorama/images/custom_game/scoreboard/statbranch_tree_png.vtex");
+}
+
+.CS_PC_TalentGraphic
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+.CS_PC_Talent_1,.CS_PC_Talent_3,.CS_PC_Talent_5,.CS_PC_Talent_7
+{
+	transform: rotateY(180deg);
+}
+
+.CS_PC_TalentMainProgress
+{
+	height: 100%;
+	width: 1px;
+	background-color: #ff7b1e;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from(#ff7b1e), color-stop(0.2, #e7c06b), color-stop(0.8, #e7c06b), to(#ff7b1e) );
+	align: center bottom;
+	margin: 40px 0 1px 0;
+}
+
+.HeroLevel25 .CS_PC_TalentMainProgress
+{
+	margin: 8px 0 1px 0;
+}
+
+.HeroLevel20 .CS_PC_TalentMainProgress
+{
+	margin: 12px 0 1px 0;
+}
+
+.HeroLevel15 .CS_PC_TalentMainProgress
+{
+	margin: 16px 0 1px 0;
+}
+
+.HeroLevel10 .CS_PC_TalentMainProgress
+{
+	margin: 22px 0 1px 0;
+}
+
+.BTalentLearned_0 .CS_PC_Talent_0,.BTalentLearned_1 .CS_PC_Talent_1,.BTalentLearned_2 .CS_PC_Talent_2,.BTalentLearned_3 .CS_PC_Talent_3,.BTalentLearned_4 .CS_PC_Talent_4,.BTalentLearned_5 .CS_PC_Talent_5,.BTalentLearned_6 .CS_PC_Talent_6,.BTalentLearned_7 .CS_PC_Talent_7
+{
+	visibility: visible;
+}
+
+.SolidColumnBG
+{
+	background-color: #121615;
+}
+
+.CS_PC_KickContainer
+{
+	background-color: #281213;
+}
+
+.LocalPlayer .HideForLocalPlayer
+{
+	opacity: 0;
+}
+
+.CS_PC_KickContainer Button:hover
+{
+	wash-color: #dd8580;
+}
+
+.CS_TopContainer
+{
+	flow-children: right;
+	margin-left: 196px;
+}
+
+.dota_tournament .CS_TopContainer
+{
+	margin-left: 143px;
+}
+
+.IsLocalPlayerSpectating .CS_TopContainer
+{
+	margin-left: 408px;
+}
+
+.IsLocalPlayerSpectating .dota_tournament .CS_TopContainer
+{
+	margin-left: 355px;
+}
+
+.CS_ControlButtons_Container
+{
+	padding: 4px;
+	margin-left: 58px;
+}
+
+.dota_tournament .CS_ControlButtons_Container
+{
+	margin-left: 0px;
+}
+
+.IsLocalPlayerSpectating .CS_ControlButtons_Container
+{
+	opacity: 0;
+}
+
+.CS_CB_Backgrounds,.CS_CB_Icons
+{
+	flow-children: right;
+	margin: 2px;
+	border-radius: 5px;
+}
+
+.CS_CB_Entity
+{
+	height: 30px;
+	width: 40px;
+}
+
+.CS_CB_Backgrounds .CS_CB_Entity
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0e1213), to(#0f101e));
+	box-shadow: black 0 0 4px 0;
+}
+
+#CS_CB_StateTracker
+{
+	height: 34px;
+	width: 44px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1e1841), to(#120e17));
+	box-shadow: black 0 0 4px 0;
+	border: 2px solid white;
+	border-radius: 5px;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#594243), to(#222125));
+	transition: transform 0.15s ease-in-out 0s;
+}
+
+.CS_Type_Long #CS_CB_StateTracker
+{
+	transform: translateX(40px);
+}
+
+.CS_CB_Icons .CS_CB_Entity
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/scoreboard_icon_short_png.vtex");
+	background-size: 39px 21px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	transition-property: saturation, wash-color;
+	transition-duration: 0.15s;
+}
+
+.CS_CB_Icons .CS_CB_Entity.Long
+{
+	background-image: url("s2r://panorama/images/custom_game/scoreboard/scoreboard_icon_long_png.vtex");
+}
+
+.CS_Type_Short .CS_CB_Icons .Long,.CS_Type_Long .CS_CB_Icons .Short
+{
+	saturation: 0;
+	wash-color: #929292;
+}
+
+.CS_LongInfo
+{
+	height: 100%;
+	flow-children: right;
+	width: 0px;
+	transition: width 0.15s ease-in-out 0s;
+}
+
+.CS_Type_Long .CS_LongInfo
+{
+	width: 309px;
+}
+
+.BKickVotingEnabled.CS_Type_Long .CS_LongInfo
+{
+	width: 354px;
+}
+
+.dota_tournament.CS_Type_Long .CS_LongInfo
+{
+	width: 309px;
+}
+
+.IsLocalPlayerSpectating .CS_LongInfo,.IsLocalPlayerSpectating .CS_Type_Long .CS_LongInfo,.IsLocalPlayerSpectating .dota_tournament .CS_LongInfo,.IsLocalPlayerSpectating .dota_tournament.CS_Type_Long .CS_LongInfo
+{
+	width: 80px;
+}
+
+#CS_PC_Tips
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#523e1c), to(#1a2128));
+	padding: 0 10px;
+	height: 24px;
+	vertical-align: center;
+	border-top: 1px solid rgba(255, 255, 255, 0.07);
+	box-shadow: black 0 0 3px 0px;
+	padding-left: 27px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_small_png.vtex");
+	background-size: 18px;
+	background-position: 10% 50%;
+	background-repeat: no-repeat;
+	width: 77px;
+	margin: 0 7px 0 5px;
+}
+
+.LocalPlayer #CS_PC_Tips
+{
+	opacity: 0;
+}
+
+.BTipsBlocked #CS_PC_Tips
+{
+	saturation: 0;
+	brightness: 0.7;
+}
+
+#DotaHud:not(.BTipsBlocked) #CS_PC_Tips:hover
+{
+	brightness: 1.5;
+}
+
+#DotaHud:not(.BTipsBlocked) #CS_PC_Tips:active
+{
+	brightness: 0.8;
+}
+
+#CS_PC_Tips Label
+{
+	color: #f9d014;
+	margin-bottom: 2px;
+}
+
+#CS_VoteButton
+{
+	width: 212px;
+	height: 30px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 4% 130%, from(rgba(126, 24, 23, 0.95)), to(#2f0404));
+	border: 2px solid white;
+	border-brush: gradient( radial, -5% 75%, 0% 0%, 10% 60%, from(rgba(173, 77, 49, 0.6)), color-stop(0.8, #672d27), to(transparent) ), gradient( radial, 100% 15%, 0% 0%, 30% 90%, from(rgba(30, 0, 0, 0.8)), color-stop(0.8, transparent), to(transparent) ), gradient( linear, 0% 100%, 0% 0%, from(rgba(61, 16, 0, 0.85)), color-stop(0.15, transparent), color-stop(0.9, transparent), to(rgba(255, 255, 255, 0.15)) );
+	border-radius: 5px;
+	padding: 0 4px;
+}
+
+.HUDFlipped #CS_VoteButton
+{
+	transform: scaleX(-1);
+}
+
+.BLocalPlayerSurrenders #CS_VoteButton
+{
+	background-color: gradient(linear, 0% 0%, 4% 150%, from(rgba(111, 110, 88, 0.95), to(#2c2c1f)));
+	border: 2px solid white;
+	border-brush: gradient(radial, -5% 75%, 0% 0%, 10% 60%, from(rgb(201, 196, 108)), to(transparent)), gradient( radial, 100% 15%, 0% 0%, 30% 90%, from(rgba(30, 30, 0, 0.8)), color-stop(0.8, transparent), to(transparent) ), gradient( linear, 0% 100%, 0% 0%, from(rgba(61, 54, 0, 0.85)), color-stop(0.15, transparent), color-stop(0.9, transparent), to(rgba(255, 255, 255, 0.15)) );
+}
+
+#CS_VoteButton Label
+{
+	align: center center;
+	text-align: center;
+	text-shadow: black 0 1px 2 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	padding-left: 25px;
+	background-image: url("s2r://");
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	img-shadow: black 0 1px 2 0;
+	color: white;
+	padding-top: 1px;
+	text-transform: uppercase;
+	color: #fdd8d9;
+}
+
+#CS_VoteButton .CS_VoteButton_Cancel
+{
+	background-image: url("s2r://");
+	color: gradient(linear, 0% 100%, 0% 0%, from(rgb(174, 156, 124)), to(#e0dccd));
+}
+
+.CS_VoteButton_Cancel
+{
+	opacity: 0;
+	transform: translateX(10px);
+}
+
+.BLocalPlayerSurrenders .CS_VoteButton_Cancel
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.BLocalPlayerSurrenders .CS_VoteButton_Yes
+{
+	opacity: 0;
+	transform: translateX(-10px);
+}
+
+.dota_tournament .CS_PC_KickContainer,.dota_tournament .CS_T_Header_Kick,.dota_tournament .CS_PC_Rank,.dota_tournament .CS_T_Rank,.dota_tournament .CS_PC_RadialEntity.Perk,.dota_tournament .CS_T_Perk
+{
+	visibility: collapse;
+}
+
+.IsLocalPlayerSpectating .CS_T_Tips,.IsLocalPlayerSpectating #CS_PC_Tips,.IsLocalPlayerSpectating .CS_T_Header_RadialEntity,.IsLocalPlayerSpectating .CS_PC_RadialEntity.SolidColumnBG,.IsLocalPlayerSpectating .CS_PC_KickContainer,.IsLocalPlayerSpectating #CS_VoteButton
+{
+	visibility: collapse;
+}
+
+.IsLocalPlayerSpectating .CS_T_Networth,.IsLocalPlayerSpectating .CS_PC_Networth
+{
+	opacity: 1;
+}

@@ -1,0 +1,85 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/early_menu/early_menu.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/early_menu/early_menu_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/early_menu/early_menu.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="EC_Footer_Item">
+			<Button class="EC_Footer_Item" onmouseover="DOTAShowTextTooltip(#early_consumables_more_hint)" onmouseout="DOTAHideTextTooltip()">
+				<Panel class="EC_FI_ImageContainer">
+					<Panel />
+					<Image id="EC_FI_Image" />
+				</Panel>
+				<Label text="{s:items_count}x" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="EarlyConsumables_Root" hittest="false">
+		<Panel class="EC_Info">
+			<Panel class="EC_I_TopGradient" />
+			<Image class="EC_I_Cat" src="s2r://panorama/images/custom_game/early_menu/cat_png.vtex" />
+			<Panel class="EC_I_Content">
+				<Panel class="EC_I_Content_Header">
+					<Label text="#support_community_header" />
+					<Button class="EC_Close_Simple" onactivate="HideSupportMenu(true)" />
+				</Panel>
+				<Button class="EC_I_Logos" onactivate="OpenCollection()">
+					<Panel />
+					<Image src="s2r://panorama/images/custom_game/early_menu/logos_png.vtex" />
+				</Button>
+				<Label class="EC_I_Description" text="#support_community_description" />
+				<Panel class="EC_I_Separator" />
+				<Panel class="EC_I_ChatWheel">
+					<Image src="s2r://panorama/images/custom_game/early_menu/chat_wheel_icon_png.vtex" />
+					<Label id="EC_I_ChatWheelHint" class="EC_I_Description" text="#support_community_chat_wheel_hint" html="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="EC_Items">
+			<Panel class="EC_ContentWrap">
+				<Button class="EC_Close_Simple" onactivate="CloseItemsMenu()" />
+				<Panel class="EC_Content">
+					<Panel class="EC_DoubleMmrTokens">
+						<Panel class="EC_Content_Entry">
+							<Panel>
+								<Panel class="EC_Content_Header">
+									<Label text="#double_mmr_token_header" />
+								</Panel>
+								<Panel class="EC_Content_Buttons">
+									<Button class="EC_Content_Button Token" onactivate="DoubleRankRequest()">
+										<Panel class="EC_Content_Button_Background" />
+										<Label class="EC_Content_Button_Value" />
+										<Panel class="EC_Content_Button_Hint_Container">
+											<Label class="EC_Content_Button_Hint" text="#double_mmr_token_hint" />
+											<Panel class="EC_Content_OptionUsed" />
+										</Panel>
+									</Button>
+								</Panel>
+								<Label class="EC_Content_Description" text="#double_mmr_description" html="true" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="EC_KL_Footer">
+				<Panel />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

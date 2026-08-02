@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_pings/custom_pings.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_pings/custom_pings_const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_pings/custom_pings.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CustomPing">
+			<Image class="CustomPing" hittest="false">
+				<Image id="CustomPing_Marker" src="s2r://panorama/images/custom_game/import_dota/ping_icon_friendlyward_psd_png.vtex" hittest="false" />
+				<Image id="CustomPing_HeroImage" hittest="false" />
+			</Image>
+		</snippet>
+	</snippets>
+	<Panel class="WheelPingFixRoot" hittest="false">
+		<Panel id="CustomPingsHudTracker" hittest="true" />
+		<Panel id="Custom_PingWheel">
+			<Panel class="Ping_Line">
+				<Image id="Custom_Ping3" class="Custom_Ping" ping-type="2" src="s2r://panorama/images/custom_game/import_dota/ping_icon_waypoint_psd_png.vtex" />
+				<Image id="Custom_Ping2" class="Custom_Ping" ping-type="3" src="s2r://panorama/images/custom_game/import_dota/ping_icon_retreat_psd_png.vtex" />
+			</Panel>
+			<Panel class="Ping_Line">
+				<Image id="Custom_Ping4" class="Custom_Ping" ping-type="4" src="s2r://panorama/images/custom_game/import_dota/ping_icon_attack_psd_png.vtex" />
+				<Image id="Custom_Ping7" class="Custom_Ping" ping-type="0" src="s2r://panorama/images/custom_game/import_dota/ping_icon_default_psd_png.vtex" />
+				<Image id="Custom_Ping1" class="Custom_Ping" ping-type="5" src="s2r://panorama/images/custom_game/import_dota/ping_icon_enemyward_psd_png.vtex" />
+			</Panel>
+			<Panel class="Ping_Line">
+				<Image id="Custom_Ping5" class="Custom_Ping" ping-type="6" src="s2r://panorama/images/custom_game/import_dota/ping_icon_friendlyward_psd_png.vtex" />
+				<Image id="Custom_Ping6" class="Custom_Ping" ping-type="1" src="s2r://panorama/images/custom_game/import_dota/ping_danger_psd_png.vtex" />
+			</Panel>
+		</Panel>
+		<Panel id="CustomPings_Minimap" hittest="false" />
+		<Panel id="MapOverlay" hittest="false" />
+	</Panel>
+</root>

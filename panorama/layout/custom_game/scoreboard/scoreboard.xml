@@ -1,0 +1,159 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/scoreboard/scoreboard.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/party_highlighter/party_highlighter.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/party_highlighter/party_highlighter.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scoreboard/scoreboard.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="CS_Team">
+			<Panel class="CS_Team">
+				<Panel class="CS_T_Header">
+					<Panel class="CS_T_NameScore_Container">
+						<Label class="CS_T_Score" text="{s:team_score}" />
+						<Label class="CS_T_Name" text="{s:team_name}" />
+					</Panel>
+					<Label class="CS_T_Header_Text CS_T_Kills" text="#scoreboard_header_kills" />
+					<Label class="CS_T_Header_Text CS_T_Deaths" text="#scoreboard_header_deaths" />
+					<Label class="CS_T_Header_Text CS_T_Assists" text="#scoreboard_header_assists" />
+					<Label class="CS_T_Header_Text CS_T_Talents" text="#scoreboard_header_talents" />
+					<Label class="CS_T_Header_Text CS_T_Perk" text="#scoreboard_header_perk" />
+					<Label class="CS_T_Header_Text CS_T_NeutralItem" text="#scoreboard_header_neutral_item" />
+					<Label class="CS_T_Header_Text CS_T_Rank" text="#scoreboard_header_rank" html="true" />
+					<Panel class="CS_LongInfo">
+						<Label class="CS_T_Header_Text CS_T_Networth LocalTeamColumn" text="#scoreboard_header_networth" />
+						<Label class="CS_T_Header_Text CS_T_Tips" text="#scoreboard_header_tips" />
+						<Panel class="CS_T_Header_RadialEntity BHasAction LocalTeamColumn">
+							<ToggleButton id="CS_T_Header_MuteAll_Voice" onmouseover="UIShowTextTooltip(#scoreboard_mute_all_voice_hint)" onmouseout="UIHideTextTooltip()" onactivate="MuteAll(&apos;Voice&apos;)">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</ToggleButton>
+						</Panel>
+						<Panel class="CS_T_Header_RadialEntity BHasAction LocalTeamColumn">
+							<ToggleButton id="CS_T_Header_MuteAll_Text" onmouseover="UIShowTextTooltip(#scoreboard_mute_all_text_hint)" onmouseout="UIHideTextTooltip()" onactivate="MuteAll(&apos;Text&apos;)">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</ToggleButton>
+						</Panel>
+						<Panel class="CS_T_Header_RadialEntity BHasAction LocalTeamColumn">
+							<ToggleButton id="CS_T_Header_DisableHelpAll" onmouseover="UIShowTextTooltip(#scoreboard_disable_help_all_hint)" onmouseout="UIHideTextTooltip()" onactivate="DisableHelpAll()">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</ToggleButton>
+						</Panel>
+						<Panel class="CS_T_Header_RadialEntity LocalTeamColumn CS_T_Header_Kick">
+							<ToggleButton id="CS_T_Header_KickInfo" onmouseover="UIShowTextTooltip(#scoreboard_kick_header_hint)" onmouseout="UIHideTextTooltip()" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="CS_T_PlayersList" />
+			</Panel>
+		</snippet>
+		<snippet name="CS_Player">
+			<Panel class="CS_Player">
+				<Panel id="CS_PlayerColor">
+					<Panel class="CS_PlayerColor_Shadow" />
+				</Panel>
+				<Panel class="CS_PlayerContent">
+					<Panel class="CS_PC_HeroImage_Container">
+						<Image id="CS_PC_HeroImage" />
+						<Image id="CS_PC_HeroImage_Disconnect" src="s2r://panorama/images/custom_game/scoreboard/icon_disconnect_png.vtex" />
+					</Panel>
+					<Panel class="CS_PC_HeroNamePlayerName">
+						<DOTAUserName id="CS_PC_PlayerName" />
+						<Label class="CS_PC_HeroName" text="#custom_scoreboard_hero_name_and_desc" />
+					</Panel>
+					<Panel class="CS_PC_NumberStat CS_PC_Kills SolidColumnBG">
+						<Label text="{d:kills}" />
+					</Panel>
+					<Panel class="CS_PC_NumberStat CS_PC_Deaths">
+						<Label text="{d:deaths}" />
+					</Panel>
+					<Panel class="CS_PC_NumberStat CS_PC_Assists">
+						<Label text="{d:assists}" />
+					</Panel>
+					<Panel class="CS_PC_RadialEntity">
+						<Button id="CS_PC_Talents" onmouseout="DOTAHUDHideStatBranchTooltip()">
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_0" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip10_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_1" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip10_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_2" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip15_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_3" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip15_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_4" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip20_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_5" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip20_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_6" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip25_png.vtex" />
+							<Image class="CS_PC_TalentGraphic CS_PC_Talent_7" src="s2r://panorama/images/custom_game/scoreboard/talent_tree_pip25_png.vtex" />
+							<Panel class="CS_PC_TalentMainProgress" />
+						</Button>
+					</Panel>
+					<Panel class="CS_PC_RadialEntity Perk">
+						<Panel class="CS_PC_PerkContainer">
+							<Image id="CS_PC_Perk" scaling="stretch-to-fit-y-preserve-aspect" onmouseout="DOTAHideTitleTextTooltip()" />
+						</Panel>
+					</Panel>
+					<Panel class="CS_PC_RadialEntity NeutralItem">
+						<Panel class="CS_PC_NeutralItemContainer">
+							<DOTAItemImage id="CS_PC_NeutralItem" scaling="stretch-to-fit-y-preserve-aspect" />
+						</Panel>
+					</Panel>
+					<Panel class="CS_PC_NumberStat CS_PC_Rank">
+						<Label text="{d:rank}" />
+					</Panel>
+					<Panel class="CS_LongInfo">
+						<Panel class="CS_PC_NumberStat CS_PC_Networth LocalTeamColumn">
+							<Label text="{s:networth}" />
+						</Panel>
+						<Panel id="CS_PC_Tips" class="CS_PC_NumberStat">
+							<Label text="+++" />
+						</Panel>
+						<Panel class="CS_PC_RadialEntity SolidColumnBG HideForLocalPlayer">
+							<Button id="CS_PC_Mute_Voice" class="BHasAction" onmouseover="DOTAShowTextTooltip(#scoreboard_mute_voice)" onmouseout="DOTAHideTextTooltip()">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</Button>
+						</Panel>
+						<Panel class="CS_PC_RadialEntity SolidColumnBG HideForLocalPlayer">
+							<Button id="CS_PC_Mute_Text" class="BHasAction" onmouseover="DOTAShowTextTooltip(#scoreboard_mute_text)" onmouseout="DOTAHideTextTooltip()">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</Button>
+						</Panel>
+						<Panel class="CS_PC_RadialEntity SolidColumnBG LocalTeamColumn HideForLocalPlayer">
+							<Button id="CS_PC_DisableHelp" class="BHasAction" onmouseover="DOTAShowTextTooltip(#scoreboard_disable_help)" onmouseout="DOTAHideTextTooltip()">
+								<Image class="CS_OffIcon" src="s2r://panorama/images/custom_game/scoreboard/off_icon_png.vtex" hittest="false" />
+							</Button>
+						</Panel>
+						<Panel class="CS_PC_RadialEntity CS_PC_KickContainer LocalTeamColumn HideForLocalPlayer">
+							<Button id="CS_PC_Kick" class="BHasAction" onmouseover="DOTAShowTextTooltip(#scoreboard_kick)" onmouseout="DOTAHideTextTooltip()" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="CustomScoreboard">
+		<Panel class="CS_TopContainer">
+			<Panel class="CS_ControlButtons_Container">
+				<Panel class="CS_CB_Backgrounds">
+					<Panel class="CS_CB_Entity Short" />
+					<Panel class="CS_CB_Entity Long" />
+				</Panel>
+				<Panel id="CS_CB_StateTracker" />
+				<Panel class="CS_CB_Icons">
+					<Button class="CS_CB_Entity Short" onactivate="ActiveScoreboardState(&apos;Short&apos;)" />
+					<Button class="CS_CB_Entity Long" onactivate="ActiveScoreboardState(&apos;Long&apos;)" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="CS_TeamsList" />
+	</Panel>
+</root>

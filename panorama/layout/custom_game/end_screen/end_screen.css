@@ -1,0 +1,2446 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EG_Root
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+}
+
+.EG_FadeBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/end_game/fade_bg_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.EG_StartPhase_2 .EG_FadeBG,.EG_StartPhase_3 .EG_FadeBG,.EG_StartPhase_4 .EG_FadeBG,.EG_StartPhase_Promo .EG_FadeBG
+{
+	opacity: 1;
+}
+
+.EG_Phase
+{
+	width: 100%;
+	height: 100%;
+	transition: opacity 0.3s ease-in-out 0s;
+	opacity: 0;
+}
+
+#EG_Phase_1
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 1)), color-stop(0.4, rgba(0, 0, 0, 0.8)), color-stop(0.5, transparent), color-stop(0.7, rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 1)) );
+}
+
+.EG_StartPhase_1 #EG_Phase_1,.EG_StartPhase_2 #EG_Phase_1
+{
+	opacity: 1;
+}
+
+.EG_VictoryTeam
+{
+	font-size: 80px;
+	color: #cccccc;
+	text-transform: uppercase;
+	text-align: right;
+	text-overflow: shrink;
+	padding-right: 50px;
+	font-family: titleFont;
+	horizontal-align: center;
+	text-shadow: black 0px 0px 3px 3;
+	margin-top: 25%;
+}
+
+#EG_TopTeamsPreviews_Root
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding-left: -30px;
+	margin-top: 300px;
+}
+
+.EG_TeamScoresContainer
+{
+	width: 440px;
+	height: 80px;
+	align: center center;
+	flow-children: right;
+	transform: translateY(-50px);
+	transition: transform 0.2s ease-in-out 0s;
+	padding-left: -20px;
+}
+
+.EG_Phase1_ShowTeamScores .EG_TeamScoresContainer
+{
+	transform: translateY(0px);
+}
+
+.EG_TeamScore
+{
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 100%;
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+}
+
+.EG_Phase1_ShowTeamScores .EG_TeamScore
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+.EG_TeamScore Label
+{
+	align: center center;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 1) 0px 0px 8px 3;
+	font-size: 60px;
+	font-weight: lighter;
+}
+
+.EG_TeamScore_Radiant
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/base_radiant_png.vtex");
+	transform: translateX(-90px);
+}
+
+.EG_TeamScore_Dire
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/base_dire_png.vtex");
+	transform: translateX(90px);
+	margin-left: 20px;
+}
+
+.WinnerTeam_2 .EG_TeamScore_Radiant Label,.WinnerTeam_3 .EG_TeamScore_Dire Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f78e0c), color-stop(0.6, #f7c90c), to(#f78e0c));
+}
+
+#EG_Phase_2 > Panel
+{
+	align: center center;
+	flow-children: right;
+	margin-bottom: 80px;
+}
+
+.EG_StartPhase_2 #EG_Phase_2
+{
+	opacity: 1;
+}
+
+#EG_LocalMVPBadges .MVP_Badge
+{
+	margin-top: 10px;
+	pre-transform-scale2d: 1.3;
+	opacity: 0;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-duration: 0.4s;
+	transform: rotateY(180deg);
+}
+
+#EG_LocalMVPBadges .MVP_Badge.Show
+{
+	margin-top: 5px;
+	pre-transform-scale2d: 1;
+	opacity: 1;
+}
+
+.EG_LocalHero_Container
+{
+	min-height: 600px;
+	min-width: 300px;
+	border: 1px solid black;
+	margin-left: 5px;
+}
+
+#EG_LocalHero_Model_Container,#EG_LocalHero_Model_Container DOTAScenePanel,.Hero_3DModel_Overlay
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EG_LocalHero_Level
+{
+	border: 1px solid wheat;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: 10px;
+	box-shadow: rgba(19, 19, 19, 1) 0px 0px 5px 0px;
+}
+
+.EG_LocalHero_Level_Value
+{
+	align: center center;
+	color: wheat;
+	font-size: 20px;
+}
+
+.EG_LocalHero_Name
+{
+	text-transform: uppercase;
+	padding: 4px 2px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgba(0, 0, 0, 0.6)), color-stop(0.7, rgba(0, 0, 0, 0.6)), to(transparent) );
+	margin: 14px 0 0 58px;
+}
+
+#EG_LocalHero_Effects
+{
+	vertical-align: bottom;
+	width: 100%;
+	padding: 5px 10px;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+#EG_LocalHero_Effects > Panel
+{
+	align: center center;
+	flow-children: right-wrap;
+}
+
+#EG_LocalHero_Effects #EG_Status_Moonshard
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.EG_Local_Agh_Container
+{
+	flow-children: down;
+}
+
+#EG_LocalHero_Effects #EG_Status_AghScepter
+{
+	height: 30px;
+	width: 30px;
+}
+
+#EG_LocalHero_Effects #EG_Status_AghShard
+{
+	height: 15px;
+	width: 30px;
+}
+
+#EG_LocalHero_Effects #EG_Status_Upgrades
+{
+	width: 45px;
+	height: 45px;
+	background-image: url("s2r://panorama/images/custom_game/orb_png.vtex");
+	background-size: 100%;
+	margin-left: 1px;
+}
+
+#EG_LocalStats
+{
+	flow-children: down;
+	width: 450px;
+}
+
+.EG_Local_PlayerName_Container,.EG_Local_Kills_Header
+{
+	width: 100%;
+	height: 50px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgb(11, 20, 38)), to(rgb(22, 40, 102)));
+}
+
+#EG_Local_PlayerName
+{
+	align: center center;
+	font-size: 20px;
+}
+
+#EG_Local_PlayerName Label
+{
+	font-size: 31px;
+}
+
+.EG_LocalStats_Container
+{
+	flow-children: right;
+	width: 100%;
+	height: 41px;
+	transform: translateY(-15px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.4s;
+}
+
+.EG_LocalStats_Container.Show
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+.EG_LocalStats_Container.Header
+{
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.EG_LocalStats_Container Label
+{
+	width: 50%;
+	vertical-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	font-weight: lighter;
+	color: #a7aba7;
+}
+
+.EG_LocalStats_Container.Header Label
+{
+	font-family: titleFont;
+	margin-top: 3px;
+}
+
+.EG_LocalStats_Container.KDA_Container Label
+{
+	width: 33.333%;
+}
+
+.EG_LocalStats_Container:not(.Header) Label
+{
+	color: white;
+}
+
+.EG_LocalStats_Container.Gold_Container Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#d4b531), to(#ffdd05));
+}
+
+.Gold_Container:not(.Header) Label
+{
+	font-weight: semi-bold;
+}
+
+.EG_Local_Kills
+{
+	flow-children: down;
+	height: 100%;
+	margin-left: 10px;
+}
+
+.EG_Local_Kills .EG_KillEntity
+{
+	transition-property: opacity, transform;
+	transition-duration: 0.25s;
+	transform: translateY(-10px);
+	opacity: 0;
+}
+
+.EG_Local_Kills .EG_KillEntity.Show
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+.EG_Local_Kills_Header Label
+{
+	align: center center;
+	color: white;
+	font-size: 31px;
+}
+
+#EG_Local_TeamKills_Container
+{
+	min-width: 100px;
+	height: 100%;
+	flow-children: down;
+	padding: 1px 5px 5px 5px;
+}
+
+.EG_Local_KilledTeam
+{
+	flow-children: right;
+	margin-top: 6px;
+}
+
+#EG_Local_KilledTeam_List
+{
+	flow-children: right;
+	vertical-align: bottom;
+	margin-left: 4px;
+}
+
+.EG_Local_KilledTeam_Logo
+{
+	width: 25px;
+	height: 29px;
+	vertical-align: top;
+	background-image: url("s2r://panorama/images/custom_game/dps_counter/team_logo_2_png.vtex");
+	background-size: 25px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+#EG_KillEntity_Icon
+{
+	width: 30px;
+	height: 30px;
+	margin: 0 5px 8px 0;
+	saturation: 0;
+	brightness: 0.8;
+	transition-property: saturation, brightness;
+	transition-duration: 0.3s;
+}
+
+.BHasKills #EG_KillEntity_Icon,#EG_KilledHeroes .BHasKills #EG_KillEntity_Icon
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.EG_KillEntity_Count
+{
+	align: right bottom;
+	border: 1px solid #8c908c;
+	border-radius: 2px;
+	padding: 0 2px;
+	color: white;
+	background-color: rgb(19, 17, 17);
+	text-align: center;
+	font-size: 13px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+#EG_KilledHeroes .EG_KillEntity
+{
+	vertical-align: center;
+	width: 27px;
+	margin-left: 2px;
+}
+
+#EG_KilledHeroes #EG_KillEntity_Icon
+{
+	margin: 0px;
+	height: 26px;
+	width: 26px;
+	saturation: 1;
+	brightness: 0.15;
+}
+
+#EG_KilledHeroes .EG_KillEntity_Count
+{
+	padding: 0 1px;
+	font-size: 12px;
+	align: right bottom;
+}
+
+#EG_KilledHeroes .EG_KillEntity_Count
+{
+	opacity: 1;
+	brightness: 0.1;
+}
+
+.BHasKills .EG_KillEntity_Count,#EG_KilledHeroes .BHasKills .EG_KillEntity_Count
+{
+	opacity: 1;
+	brightness: 1;
+}
+
+.MVP_Badge
+{
+	width: 140px;
+	height: 150px;
+}
+
+.BadgeImageContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BadgeImage
+{
+	width: 100px;
+	height: 100px;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	background-color: black;
+	margin-top: 9px;
+	align: center top;
+}
+
+.BadgeGlow
+{
+	align: center top;
+	width: 100%;
+	height: 80%;
+	opacity-mask: url("s2r://panorama/images/custom_game/end_game/badge_glow_opacity_mask_png.vtex");
+}
+
+.BadgeName_Container
+{
+	align: center bottom;
+	max-width: 100%;
+	flow-children: right;
+}
+
+.BadgeName_Container Image
+{
+	height: 24px;
+	width: 7px;
+}
+
+.BadgeName
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/badge_title_bg_png.vtex");
+	background-size: 100%;
+	padding: 3px 2px;
+	margin-bottom: 25px;
+	min-width: 60px;
+	max-width: 112px;
+	font-size: 14px;
+	height: 24px;
+	text-overflow: shrink;
+	text-align: center;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 110%, 0% 0%, from(#ceae55), to(#fff1d3));
+	text-shadow: black 0 1px 4px 3;
+}
+
+.BadgeCounter
+{
+	align: center bottom;
+	background-image: url("s2r://panorama/images/custom_game/end_game/badge_counter_bg_png.vtex");
+	background-size: 100%;
+	padding: 6px 8px 1px 8px;
+	font-size: 18px;
+	color: gradient(linear, 0% 110%, 0% 0%, from(#ababab), to(#ffffff));
+	font-weight: semi-bold;
+	text-align: center;
+	min-width: 60px;
+	margin-bottom: 4px;
+	text-shadow: black 0 0 2px 2;
+}
+
+.upgrades_variety .BadgeCounter
+{
+	visibility: collapse;
+}
+
+.EG_StartPhase_3 #EG_Phase_3
+{
+	opacity: 1;
+}
+
+#EG_MVP_Heroes
+{
+	width: 100%;
+	height: 100%;
+}
+
+.MVP_Hero
+{
+	width: 33.3333%;
+	height: 65%;
+	vertical-align: bottom;
+	margin-bottom: 250px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.MVP_Hero.ShowRoot
+{
+	opacity: 1;
+}
+
+.MVP_Hero.Place_1
+{
+	horizontal-align: center;
+}
+
+.MVP_Hero.Place_3
+{
+	horizontal-align: right;
+}
+
+.MVP_Status_Wrap
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.MVP_Status
+{
+	align: center top;
+	flow-children: down;
+}
+
+.MVP_Status_Value
+{
+	horizontal-align: center;
+	text-align: center;
+	font-family: titleFont;
+	font-size: 22px;
+	text-transform: uppercase;
+	color: white;
+	height: 40px;
+	padding-top: 10px;
+}
+
+.Place_1 .MVP_Status_Value
+{
+	font-size: 30px;
+	padding-top: 0px;
+	font-weight: bold;
+}
+
+#MVP_PlayerName
+{
+	horizontal-align: center;
+	text-align: center;
+}
+
+.MVP_KDA
+{
+	horizontal-align: center;
+	text-align: center;
+}
+
+.MVP_KDA_Kills
+{
+	color: white;
+}
+
+.MVP_Logo
+{
+	width: 42px;
+	height: 42px;
+	margin-top: 15px;
+	background-image: url("s2r://panorama/images/custom_game/dps_counter/team_logo_2_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin: 12px 10px 0 10px;
+}
+
+.MVP_Team_3 .MVP_Logo
+{
+	background-image: url("s2r://panorama/images/custom_game/dps_counter/team_logo_3_png.vtex");
+}
+
+.Place_1 .MVP_Logo
+{
+	width: 60px;
+	height: 60px;
+	margin-top: 5px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/team_logo_2_hr_png.vtex");
+}
+
+.Place_1.MVP_Team_3 .MVP_Logo
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/team_logo_3_hr_png.vtex");
+}
+
+#MVP_Hero_Container
+{
+	width: 90%;
+	height: 90%;
+	align: center bottom;
+}
+
+.MVP_Hero_Model
+{
+	height: 80%;
+	width: 80%;
+	align: center bottom;
+	transform: translateY(25%);
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.35s;
+	opacity-mask: url("s2r://panorama/images/custom_game/end_game/mvp_hero_mask_png.vtex");
+}
+
+.EG_StartPhase_3 .ShowModel .MVP_Hero_Model
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.Place_1 .MVP_Hero_Model
+{
+	height: 100%;
+	width: 100%;
+}
+
+.MVP_Rays
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity-mask: url("s2r://panorama/images/custom_game/end_game/badge_glow_opacity_mask_png.vtex");
+}
+
+#MVP_Hero_Badges
+{
+	flow-children: right;
+	align: center bottom;
+	z-index: 1;
+	margin-bottom: 25px;
+	transform: translateY(50px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.4s;
+}
+
+.EG_StartPhase_3 .ShowBadges #MVP_Hero_Badges
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#EG_Footer
+{
+	height: 265px;
+	width: 100%;
+	vertical-align: bottom;
+	flow-children: down;
+	transform: translateY(265px);
+	transition-property: transform;
+	transition-duration: 0.32s;
+}
+
+.EG_StartPhase_2.ShowFooter #EG_Footer,.EG_StartPhase_3.ShowFooter #EG_Footer
+{
+	transform: translateY(0px);
+}
+
+.EG_Footer_Header
+{
+	width: 100%;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/exp_boost_line_png.vtex");
+	background-size: 100%;
+}
+
+#BP_LevelIcon
+{
+	align: center center;
+	margin: 15px 0 5px 0;
+	width: 78px;
+}
+
+.EG_Footer_Content
+{
+	width: 100%;
+	height: 100%;
+	align: center bottom;
+	background-color: black;
+}
+
+.EG_FullTable
+{
+	flow-children: down;
+	margin-top: 50px;
+	align: center center;
+}
+
+.EG_Table_Wrap
+{
+	flow-children: right;
+}
+
+#EG_TeamsAndPlayer
+{
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e2020), to(#121a1f));
+	padding: -7px 1px 8px 4px;
+	margin-top: 37px;
+	transform: translateX(-50px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+}
+
+.EG_StartPhase_4 .ShowMainTeamInfo #EG_TeamsAndPlayer
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+#EG_FullStatsRows_Wrap
+{
+	flow-children: down;
+	overflow: scroll clip;
+	padding-bottom: 8px;
+}
+
+#EG_FullStatsRows_Wrap HorizontalScrollBar
+{
+	height: 8px;
+	box-shadow: transparent 0 0 0 0;
+}
+
+.EG_Header
+{
+	align: center bottom;
+	text-align: center;
+	font-size: 18px;
+	color: #90999b;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: black 0px 1px 1px 2;
+}
+
+.BSort
+{
+	vertical-align: bottom;
+}
+
+.BSort:hover
+{
+	brightness: 1.5;
+}
+
+.BSort > Panel
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-left: 14px;
+}
+
+.SortIcon
+{
+	width: 12px;
+	height: 12px;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/hud/reborn/sort_team_icon_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 0 0 5px 2px;
+	wash-color: #aebabc;
+	img-shadow: 0 0 3px 2 black;
+}
+
+.SortInc .EG_Header
+{
+	color: #008d09;
+}
+
+.SortInc .SortIcon
+{
+	wash-color: #008d09;
+}
+
+.SortDec .EG_Header
+{
+	color: #bf2422;
+}
+
+.SortDec .SortIcon
+{
+	wash-color: #bf2422;
+}
+
+.EG_StartPhase_4 #EG_Phase_4
+{
+	opacity: 1;
+}
+
+#EG_FullTable_Headers
+{
+	flow-children: right;
+	background-color: #151515;
+	height: 45px;
+}
+
+.EG_BasicTeamInfo
+{
+	flow-children: right;
+	margin-top: 15px;
+	box-shadow: hollow black 0 0 3px 0;
+}
+
+.EG_BTI_StatContainer
+{
+	flow-children: down;
+	height: 100%;
+}
+
+.EG_BTI_Logo
+{
+	width: 57px;
+	height: 35px;
+	padding: 4px 16px;
+	background-color: #0f1113;
+	background-image: url("s2r://panorama/images/custom_game/dps_counter/team_logo_2_png.vtex");
+	background-size: 27px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.Team_3 .EG_BTI_Logo
+{
+	background-image: url("s2r://panorama/images/custom_game/dps_counter/team_logo_3_png.vtex");
+}
+
+.EG_BTI_ScoreContainer
+{
+	height: 100%;
+	width: 100%;
+	margin-top: 1px;
+	background-color: #0f1113;
+}
+
+.EG_BTI_ScoreContainer Panel
+{
+	flow-children: down;
+	align: center center;
+	padding-top: -15px;
+}
+
+.EG_BTI_ScoreContainer Label
+{
+	margin-top: 15px;
+	align: center center;
+	text-align: center;
+	text-shadow: black 1px 0px 2px 3;
+	color: #f4f5f5;
+	letter-spacing: 1px;
+	font-size: 30px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	background-image: url("s2r://panorama/images/custom_game/end_game/skull_png.vtex");
+	background-size: 37px;
+	background-repeat: no-repeat;
+	background-img-opacity: 0.25;
+	width: 37px;
+	height: 37px;
+	font-family: monospaceNumbersFont;
+}
+
+#EG_BTI_OrbsCount
+{
+	background-image: url("s2r://panorama/images/custom_game/map_orb_epic_png.vtex");
+}
+
+.WinnerTeam_2 #BasicTeamRoot_2 .EG_BTI_ScoreContainer Label,.WinnerTeam_3 #BasicTeamRoot_3 .EG_BTI_ScoreContainer Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f78e0c), color-stop(0.6, #f7c90c), to(#f78e0c));
+}
+
+#EG_BTI_PlayersContainer
+{
+	flow-children: down;
+	padding-top: -1px;
+}
+
+.EG_PlayerStats_Basic
+{
+	flow-children: right;
+	width: 300px;
+	background-color: #0f1113;
+	height: 35px;
+	margin-top: 1px;
+}
+
+.EG_PlayerStats_Basic.BLocalPlayer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#292e33), color-stop(0.4, #1d2023), color-stop(0.6, #1d2023), to(#292e33) );
+}
+
+.BLocalPlayer .EG_PSB_HeroName
+{
+	color: white;
+}
+
+#EG_HeroIcon
+{
+	border: 1px solid black;
+	width: 57px;
+	height: 33px;
+	vertical-align: center;
+}
+
+#LocalHeroFlag
+{
+	height: 100%;
+	width: 5px;
+	background-color: #18a73a;
+	border-right: 1px solid black;
+	visibility: collapse;
+}
+
+.LocalPlayer #LocalHeroFlag
+{
+	visibility: visible;
+}
+
+.EG_PSB_NameAndHero
+{
+	height: 100%;
+	margin: 1px 0 2px 4px;
+	flow-children: down;
+	width: fill-parent-flow(1);
+}
+
+#EG_PSB_Name
+{
+	margin-top: -1px;
+	max-width: 100%;
+	height: 16px;
+}
+
+#EG_PSB_Name Label
+{
+	font-size: 14px;
+}
+
+.EG_PSB_HeroName
+{
+	color: #9aa19a;
+	font-weight: lighter;
+	font-size: 15px;
+}
+
+.EG_HeroLevel
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dfc880), to(#ffd95d));
+}
+
+.EG_PSB_RightInfo
+{
+	align: right center;
+	flow-children: right;
+}
+
+#EG_PSB_MVP_Icon
+{
+	width: 27px;
+	height: 23px;
+	background-image: url("s2r://panorama/images/hud/player_mvp_crown_png.vtex");
+	background-size: 100%;
+	saturation: 1.1;
+	margin-right: 3px;
+	opacity: 0;
+}
+
+.MVP_State_1 #EG_PSB_MVP_Icon
+{
+	opacity: 1;
+}
+
+.MVP_State_2 #EG_PSB_MVP_Icon,.MVP_State_3 #EG_PSB_MVP_Icon
+{
+	opacity: 1;
+	saturation: 0;
+}
+
+#Col_rating,#EG_RatingContainer
+{
+	width: 100px;
+}
+
+#Col_kills,#EG_KillsContainer,#Col_deaths,#EG_DeathsContainer,#Col_assists,#EG_AssistsContainer
+{
+	width: 50px;
+}
+
+#Col_networth,#EG_Networth
+{
+	width: 140px;
+}
+
+#Col_networth Label,#EG_Networth > Label
+{
+	color: #d4b531;
+}
+
+#Col_perk,#EG_PerkContainer
+{
+	width: 58px;
+}
+
+#EG_Perk
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/items/emptyitembg_png.vtex");
+	background-size: 100%;
+}
+
+#EG_Perk.GrantedByFamily
+{
+	border: 2px solid #dfbb12;
+	padding: -1px;
+}
+
+#Col_items,#EG_Items
+{
+	width: 398px;
+}
+
+#Col_status_effects,#StatusEffects
+{
+	width: 90px;
+}
+
+#Col_gpm,#EG_Gpm
+{
+	width: 90px;
+}
+
+#Col_xpm,#EG_Xpm
+{
+	width: 90px;
+}
+
+#Col_hero_damage,#EG_HeroDamage
+{
+	width: 180px;
+}
+
+#Col_building_damage,#EG_BuildingDamage
+{
+	width: 180px;
+}
+
+#Col_damage_taken,#EG_DamageTaken
+{
+	width: 180px;
+}
+
+#Col_total_healing,#EG_Heal
+{
+	width: 180px;
+}
+
+#Col_capture_orbs_time,#EG_OrbsCaptureTime
+{
+	width: 150px;
+}
+
+#Col_total_stuns,#EG_Stuns
+{
+	width: 150px;
+}
+
+#Col_wards,#EG_Wards
+{
+	width: 100px;
+}
+
+#Col_killed_enemies
+{
+	width: 356px;
+}
+
+#Col_creeps,#EG_Creeps
+{
+	width: 100px;
+}
+
+#EG_FullStatsRows_Container
+{
+	flow-children: down;
+	padding-top: -15px;
+}
+
+.EG_TeamFullRowsContainer
+{
+	flow-children: down;
+	margin-top: 15px;
+	padding-top: -1px;
+}
+
+.EG_PlayerStats_FullRow
+{
+	flow-children: right;
+	height: 35px;
+	margin-top: 1px;
+	background-color: #101010;
+}
+
+.EG_PlayerStats_FullRow.BLocalPlayer
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#2c3232), color-stop(0.4, #4d5656), color-stop(0.6, #4d5656), to(#2c3232) );
+}
+
+.EG_StatContainer
+{
+	height: 100%;
+}
+
+.EG_StatContainer Label:not(.EG_KillEntity_Count)
+{
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+	height: 24px;
+	font-size: 20px;
+	font-weight: lighter;
+	text-shadow: black 0 0 3px 2;
+}
+
+.BLocalPlayer .EG_StatContainer Label:not(.EG_KillEntity_Count)
+{
+	font-weight: semi-bold;
+	color: white;
+}
+
+#EG_RatingContainer Label
+{
+	font-size: 18px;
+	height: 21px;
+	text-shadow: black 0 0px 0 2;
+}
+
+.MmrInc #EG_RatingContainer Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#00a600), to(#00ff00));
+}
+
+.MmrDec #EG_RatingContainer Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c6150f), to(#e04136));
+}
+
+#EG_Items
+{
+	flow-children: right;
+	padding: 0px 1px;
+}
+
+.EG_Item
+{
+	width: 42px;
+	height: 30px;
+	margin: 1px;
+	vertical-align: center;
+	border: 1px solid #2c2c2c;
+}
+
+#EG_BackpackItems
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-top: -1px;
+}
+
+#EG_BackpackItems .EG_Item
+{
+	width: 30px;
+	saturation: 0;
+	wash-color: rgb(191, 191, 191);
+	box-shadow: inset rgba(0, 0, 0, 0.4) 0 0 7px -2px;
+	border: 1px solid black;
+}
+
+#EG_BackpackItems .EG_Item.BHasItemOwned
+{
+	box-shadow: inset rgba(0, 0, 0, 0.75) 0 0 10px -2px;
+}
+
+.EG_NeuralItem
+{
+	width: 30px;
+	border-radius: 100%;
+	margin-left: 3px;
+}
+
+#StatusEffects > Panel
+{
+	align: center center;
+}
+
+.EG_AghScepterShardContainer
+{
+	vertical-align: center;
+	flow-children: down;
+}
+
+#EG_Status_AghScepter
+{
+	width: 21px;
+	height: 23px;
+	margin-left: 1px;
+}
+
+#EG_Status_AghShard
+{
+	width: 23px;
+	height: 13px;
+	vertical-align: bottom;
+	margin-right: -1px;
+}
+
+#EG_Status_Moonshard
+{
+	width: 26px;
+	height: 26px;
+	margin: 1px 1px 1px 25px;
+	vertical-align: center;
+	border-radius: 100%;
+	border: 1px solid black;
+	box-shadow: inset 0 0 4px 0px rgba(0, 0, 0, 0.8);
+	saturation: 0;
+	brightness: 0.7;
+}
+
+#EG_Status_Moonshard.BActive
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+#EG_Status_Upgrades
+{
+	width: 32px;
+	height: 32px;
+	margin: 1px 1px 1px 51px;
+	vertical-align: center;
+	border-radius: 100%;
+	transition: saturation 0.1s linear 0s;
+	saturation: 0.7;
+}
+
+#EG_Status_Upgrades:hover
+{
+	saturation: 1;
+}
+
+#EG_KilledHeroes
+{
+	flow-children: right;
+	padding: 0px 5px 0 3px;
+}
+
+#EG_TopButtons
+{
+	margin-top: 20px;
+	opacity: 0;
+	transform: translateY(-40px);
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	width: 100%;
+}
+
+#EG_TopButtons > Panel
+{
+	flow-children: right;
+	padding-left: -40px;
+	horizontal-align: center;
+}
+
+.ShowTopButtons #EG_TopButtons
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EG_TopButton
+{
+	margin-left: 40px;
+	padding: 8px 30px 7px 30px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_bg_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, background-image, box-shadow;
+	transition-duration: 0.2s;
+	box-shadow: rgba(130, 205, 195, 0.8) 0 0 0px 0;
+	width: 220px;
+}
+
+.Language_russian .EG_TopButton:not(.EG_CloseButton)
+{
+	width: 300px;
+}
+
+.ShowTopButtons.EG_StartPhase_2 .EG_TopButton_MyScore,.ShowTopButtons.EG_StartPhase_3 .EG_TopButton_MVP,.ShowTopButtons.EG_StartPhase_4 .EG_TopButton_FullScore,.ShowTopButtons.EG_StartPhase_Promo .EG_TopButton_Promo
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_bg_active_png.vtex");
+	box-shadow: rgba(130, 205, 195, 0.8) 0 0 4px 0;
+}
+
+.EG_CloseButton
+{
+	horizontal-align: right;
+	margin-right: 20px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_close_png.vtex");
+	box-shadow: rgba(223, 51, 51, 0.8) 0 0 4px 0;
+}
+
+@keyframes 'collection_button'
+{
+	0%
+	{
+		box-shadow: #b69300 0px 0px 3px 0px;
+	}
+	
+	50%
+	{
+		box-shadow: #fecd00 0px 0px 10px 0px;
+	}
+	
+	100%
+	{
+		box-shadow: #b69300 0px 0px 3px 0px;
+	}
+	
+}
+
+.EG_TopButton:hover,.EG_CircleButton:hover,.EG_AIC_CloseButton:hover
+{
+	brightness: 1.5;
+}
+
+.EG_TopButton:active,.EG_CircleButton:active,.EG_AIC_CloseButton:active
+{
+	brightness: 0.8;
+	sound: "General.ButtonClick";
+}
+
+.EG_TopButton Label
+{
+	align: center center;
+	text-align: center;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #f6f6f6;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+.ShowTopButtons.EG_StartPhase_2 .EG_TopButton_MyScore Label,.ShowTopButtons.EG_StartPhase_3 .EG_TopButton_MVP Label,.ShowTopButtons.EG_StartPhase_4 .EG_TopButton_FullScore Label,.ShowTopButtons.EG_StartPhase_Promo .EG_TopButton_Promo Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#d5ffff), to(#ffffff));
+	text-shadow: 0 0 3px 1 #82cdc3;
+}
+
+#EG_LocalMVPBadges,.EG_LocalHero_Container,#EG_LocalStats,.EG_Local_Kills
+{
+	transform: translateY(100%);
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.25s;
+}
+
+#EG_LocalMVPBadges
+{
+	flow-children: down-wrap;
+	max-height: 500px;
+	transform: translateY(100%) rotateY(180deg);
+}
+
+.EG_StartPhase_2 #EG_LocalMVPBadges
+{
+	transform: rotateY(180deg) translateY(0px);
+	opacity: 1;
+}
+
+.EG_StartPhase_2 .EG_ShowLocalHero .EG_LocalHero_Container
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+.EG_StartPhase_2 .EG_ShowLocalStats #EG_LocalStats
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+.EG_StartPhase_2 .EG_ShowLocalKills .EG_Local_Kills
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+#MVP_Rewards
+{
+	flow-children: right-wrap;
+	padding-left: -10px;
+	max-width: 95%;
+	horizontal-align: center;
+	margin-top: 20px;
+	z-index: 1;
+	transform: translateY(-50px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.4s;
+}
+
+.EG_StartPhase_3 .ShowRewards #MVP_Rewards
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.MVP_Reward
+{
+	flow-children: down;
+	width: 80px;
+	margin-left: 10px;
+}
+
+.MVP_Reward.BAnimation
+{
+	animation-name: reward-animation;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'reward-animation'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
+}
+
+.MVP_Reward.TREASURES
+{
+	width: 123px;
+}
+
+.MVP_Reward_Border
+{
+	width: 100%;
+	height: width-percentage(100%);
+	padding: 2px;
+	box-shadow: black 0 0 3px 1;
+}
+
+.MVP_Reward.TREASURES .MVP_Reward_Border
+{
+	height: 80px;
+}
+
+#MVP_Reward_Icon
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#23242b), to(#1a1b1f));
+	width: 100%;
+	height: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.Reward_currency #MVP_Reward_Icon
+{
+	background-size: 60px;
+	background-image: url("s2r://panorama/images/custom_game/collection/currency_icon_240_png.vtex");
+}
+
+.Reward_currency .MVP_Reward_Border
+{
+	background-color: gradient( linear, 0% 0%, 100% 100%, from(#8f9db6), color-stop(0.1, #8f9db6), color-stop(0.5, #3e424d), color-stop(0.9, #8f9db6), to(#8f9db6) );
+}
+
+.MVP_Reward_Amount
+{
+	text-align: center;
+	font-size: 17px;
+	font-weight: lighter;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.5, rgba(0, 0, 0, 0.76)), to(rgba(0, 0, 0, 0.96)) );
+	padding: 0 5px 0 10px;
+	min-width: 35px;
+	text-align: right;
+	align: right bottom;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 3px 2;
+	color: #bccee2;
+}
+
+.MVP_Reward_Name
+{
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+	padding: 6px 3px 4px 3px;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #ebebeb;
+	text-shadow: black 0px 1px 3px 2;
+	text-overflow: clip;
+}
+
+.Reward_currency .MVP_Reward_Name
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f58907), to(#f9d64b));
+}
+
+.EG_CircleButton
+{
+	height: 40px;
+	flow-children: right;
+	margin-left: 25px;
+}
+
+.EG_CircleButton Image
+{
+	height: 100%;
+	width: height-percentage(100%);
+	img-shadow: black 0 0 5px 3;
+}
+
+.EG_CircleButton Label
+{
+	vertical-align: center;
+	background-color: #5865f2;
+	margin-left: -10px;
+	z-index: -1;
+	padding: 2px 9px 2px 16px;
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+	box-shadow: black 0 0 5px 3;
+	color: white;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 0 3px 3;
+}
+
+#EG_Challenge_Root
+{
+	align: center center;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgba(0, 0, 0, 0.15)), to(#423626));
+	border-top: 4px solid white;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from(#37210e), color-stop(0.25, #6e4c23), color-stop(0.4, #cfa760), color-stop(0.6, #cfa760), color-stop(0.75, #6e4c23), to(#37210e) );
+	min-width: 600px;
+	opacity: 0;
+	transform: translateY(-46px);
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+}
+
+#EG_Challenge_Root.ShowChallengeInit
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EG_C_Wrap
+{
+	flow-children: right;
+	margin: 15px 30px;
+	align: center center;
+}
+
+.EG_C_IconsContainer
+{
+	flow-children: down;
+}
+
+.EG_C_Icon
+{
+	width: 34px;
+	height: 33px;
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_icon_png.vtex");
+	background-size: 33px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.EG_C_DiffIcon
+{
+	width: 34px;
+	height: 25px;
+	background-image: url("s2r://panorama/images/custom_game/hero_challenges_diff_1_png.vtex");
+	background-size: 100%;
+	margin-top: 8px;
+}
+
+.EG_C_Content
+{
+	flow-children: down;
+	margin-left: 4px;
+}
+
+.EG_C_Header
+{
+	vertical-align: center;
+	font-size: 24px;
+	font-weight: lighter;
+	color: rgb(246, 246, 246);
+	text-shadow: black 0 1px 1px 2;
+	height: 22px;
+	text-overflow: clip;
+	margin-top: 2px;
+}
+
+.EG_C_Details
+{
+	flow-children: right;
+	margin: 17px 10px 0 0;
+	height: 25px;
+}
+
+.EG_C_Description
+{
+	vertical-align: center;
+	font-weight: lighter;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffd168), to(#ffea91));
+	text-shadow: black 0 1px 2px 1;
+	text-overflow: clip;
+}
+
+#EG_C_RewardsContainer
+{
+	flow-children: right;
+}
+
+#EG_C_RewardsContainer .MVP_Reward
+{
+	transition-property: width;
+	transition-duration: 0.15s;
+}
+
+#EG_C_RewardsContainer .MVP_Reward:not(.Show)
+{
+	width: -10px;
+}
+
+.EG_C_Overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(rgb(19, 2, 1)), to(rgba(0, 0, 0, 0.76)));
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.ShowChallengeStateBG .EG_C_Overlay
+{
+	opacity: 1;
+}
+
+.EG_C_StateText
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ff1815), to(#ff7770));
+	text-shadow: black 0 0 10px 5;
+	font-size: 50px;
+	opacity: 0;
+	pre-transform-scale2d: 1.2;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.3s;
+}
+
+.ShowChallengeStateText .EG_C_StateText
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+.BChallengeCompleted .EG_C_Overlay
+{
+	background-color: rgba(0, 0, 0, 0.76);
+}
+
+.BChallengeCompleted .EG_C_StateText
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffd168), to(#ffea91));
+}
+
+#EG_C_Particle_Completed
+{
+	height: 100%;
+	width: 100%;
+	overflow: clip;
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/custom_game/end_game/badge_glow_opacity_mask_png.vtex");
+}
+
+#EG_MatchServerErrors_Indicator
+{
+	width: 100%;
+	height: 4px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(#821a1a), color-stop(0.3, #df3333), color-stop(0.7, #df3333), to(#821a1a) );
+	opacity: 0;
+	transition: opacity 0.15s ease-in-out 0s;
+}
+
+.BShowServerErrors_Indicator #EG_MatchServerErrors_Indicator
+{
+	opacity: 1;
+}
+
+.EG_AdditionalInfoContainer
+{
+	margin-top: 60px;
+	margin-right: 4px;
+	width: 420px;
+	horizontal-align: right;
+	flow-children: down;
+	width: 450px;
+	padding: 15px;
+}
+
+.EG_AIC_Content
+{
+	flow-children: down;
+	width: 100%;
+	background-color: #0a0a0a;
+	box-shadow: hollow rgba(223, 51, 51, 0.8) 0 0 0 0;
+	border: 2px solid white;
+	border-brush: gradient( radial, 50% 100%, 0% 0%, 50% 50%, from(#ff3f3f), color-stop(0.3, #b42828), color-stop(0.8, #3d4445), to(#327170) );
+	transform: translateX(50px);
+	opacity: 0;
+	transition-property: transform, opacity, box-shadow;
+	transition-duration: 0.15s;
+	margin-top: 15px;
+}
+
+.EG_AIC_Content.ServerErrors
+{
+	opacity: 0;
+}
+
+.BShowServerErrors .EG_AIC_Content.ServerErrors,.BShowFeedbackForm .EG_AIC_Content.Feedback
+{
+	transform: translateX(0px);
+	opacity: 1;
+	box-shadow: hollow rgba(223, 51, 51, 0.8) 0 0 4px 0;
+}
+
+.Language_schinese .BShowFeedbackForm .EG_AIC_Content.Feedback,.Language_tchinese .BShowFeedbackForm .EG_AIC_Content.Feedback
+{
+	opacity: 0;
+}
+
+.EG_AIC_Content.Feedback
+{
+	box-shadow: hollow rgba(50, 113, 112, 0.8) 0 0 0 0;
+	border-brush: gradient( radial, 50% 100%, 0% 0%, 50% 50%, from(#c8cbff), color-stop(0.3, #6e86b4), color-stop(0.8, #3d4445), to(#327170) );
+}
+
+.BShowFeedbackForm .EG_AIC_Content.Feedback
+{
+	transform: translateX(0px);
+	opacity: 1;
+	box-shadow: hollow rgba(50, 113, 112, 0.8) 0 0 4px 0;
+}
+
+.EG_AIC_Header
+{
+	width: 100%;
+	padding: 10px;
+	border-bottom: 1px solid #171426;
+	font-size: 25px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#a6a4a2), to(#fbf9f7));
+	font-weight: lighter;
+	text-shadow: black 0 1px 1px 2;
+	margin: 0 12px;
+}
+
+.EG_AIC_CloseButton
+{
+	padding: 8px 30px 7px 30px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/end_game/eg_button_bg_png.vtex");
+	background-size: 100%;
+	margin-bottom: 10px;
+}
+
+.EG_AIC_CloseButton Label
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	color: #f6f6f6;
+	text-shadow: black 0px 0px 3px 2;
+}
+
+#EG_AIC_ServerErrorsContainer
+{
+	flow-children: down;
+	width: 100%;
+	padding: 10px 15px 15px 15px;
+}
+
+#EG_AIC_ServerErrorsContainer Label
+{
+	color: #fafafa;
+	margin-top: 5px;
+}
+
+#EG_Exp_Root
+{
+	flow-children: right;
+	margin-left: 695px;
+	margin-top: 9px;
+	transform: translateY(-15px);
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.15s;
+}
+
+.ShowFootExpRoot #EG_Exp_Root
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+#EG_E_BarContainer
+{
+	flow-children: right;
+}
+
+.EG_E_LevelContainer
+{
+	width: 50px;
+	height: 75px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/current_level_bg_png.vtex");
+	background-size: 100%;
+	margin-top: 22px;
+}
+
+.EG_E_Level
+{
+	align: center center;
+	color: white;
+	text-shadow: rgb(0, 0, 0) 0px 1px 1px 2.5;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: titleFont;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.EG_E_ProgressBarCotnainer
+{
+	flow-children: down;
+	margin-left: -4px;
+	z-index: -1;
+}
+
+.EG_E_LevelUp
+{
+	text-transform: uppercase;
+	horizontal-align: right;
+	font-size: 20px;
+	font-style: italic;
+	font-weight: semi-bold;
+	color: white;
+	text-shadow: rgb(168, 146, 38) 0px 0px 4px 1;
+	opacity: 0;
+	transform: translateX(-20px);
+	transition-property: opacity, transform;
+	transition-duration: 0.25s;
+}
+
+.ShowExpLevelUp .EG_E_LevelUp
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#EG_E_ProgressBar
+{
+	align: left center;
+	border-radius: 0px;
+	height: 45px;
+	width: 450px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgb(9, 65, 65)), color-stop(0.5, rgb(11, 42, 42), to(rgb(9, 65, 65))) );
+	box-shadow: rgba(19, 19, 19, 1) 0px 0px 5px 0px;
+	margin-top: 5px;
+}
+
+#EG_E_ProgressBar_Left
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(rgb(11, 145, 145)), color-stop(0.5, rgba(11, 95, 95, 0.7), to(rgb(11, 145, 145))) );
+	border: 2px solid rgb(12, 224, 224);
+}
+
+.EG_E_Values
+{
+	color: white;
+	text-shadow: rgb(5, 59, 59) 0px 0px 2px 3;
+	font-size: 20px;
+	font-weight: lighter;
+	align: center center;
+	text-align: center;
+	margin-top: 3px;
+	font-family: monospaceNumbersFont;
+}
+
+.EG_E_LimitsContainer
+{
+	width: 100%;
+	margin-top: 7px;
+	padding-left: 7px;
+}
+
+.EG_E_Text
+{
+	color: white;
+	text-shadow: rgb(8, 168, 168) 0px 0px 4px 1;
+	font-size: 20px;
+	font-weight: lighter;
+	font-family: monospaceNumbersFont;
+	transition-property: transform, opacity;
+	transition-duration: 0.25s;
+}
+
+.EG_E_Earned
+{
+	opacity: 0;
+	transform: translateY(-10px);
+}
+
+.BExpEarned .EG_E_Earned,.BExpLimitReached .EG_E_LimitReached
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EG_E_LimitReached
+{
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.BExpEarned .EG_E_LimitReached
+{
+	margin-top: 24px;
+}
+
+.EG_E_Limit
+{
+	horizontal-align: right;
+}
+
+#EG_E_LevelupRewards
+{
+	padding-top: 13px;
+	flow-children: right;
+}
+
+#EG_E_LevelupRewards .MVP_Reward
+{
+	width: 80px;
+}
+
+#EG_ChatContainer
+{
+	width: 600px;
+	horizontal-align: right;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#030609), to(#080b16));
+	vertical-align: center;
+	margin-right: 10px;
+}
+
+#EG_ChatContainer .ChatLine
+{
+	opacity: 1;
+}
+
+#EG_Local_TeamKills_Container
+{
+	min-width: 0px;
+	width: fit-children;
+}
+
+#EG_Local_TeamKills_Container .EG_Local_KilledTeam_Logo
+{
+	visibility: collapse;
+}
+
+#EG_Local_KilledTeam_List
+{
+	flow-children: right-wrap;
+	margin-left: 6px;
+	padding-top: -5px;
+}
+
+#EG_Local_TeamKills_Container .EG_Local_KilledTeam
+{
+	width: 80px;
+}
+
+#EG_Local_TeamKills_Container .EG_KillEntity
+{
+	margin-top: 5px;
+}
+
+.EG_AIC_Feedback_Desc
+{
+	color: #f6f6f6;
+	text-shadow: black 0px 0px 3px 2;
+	margin-top: 5px;
+	padding: 10px 15px 7px 15px;
+}
+
+.EG_AIC_Feedback_Click
+{
+	margin: 0 15px 17px 15px;
+	width: 100%;
+}
+
+.EG_AIC_Feedback_Click Label
+{
+	width: 100%;
+	text-align: center;
+	font-style: italic;
+	text-decoration: underline;
+	color: #67c2ff;
+}
+
+.EG_AIC_Feedback_Click:hover Label
+{
+	color: #b4d4ff;
+}
+
+.EG_AIC_Feedback_Click:active Label
+{
+	color: #6b7e97;
+}
+
+.EG_StartPhase_Promo #EG_Phase_Promo
+{
+	opacity: 1;
+}
+
+#EG_Phase_Promo > Panel
+{
+	width: 100%;
+	height: 100%;
+	padding-top: 70px;
+}
+
+.EG_Promo_Header
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 65px;
+}
+
+.EG_Promo_Header Label
+{
+	font-size: 28px;
+	horizontal-align: center;
+	text-align: center;
+	color: #ffcc6e;
+	margin: 0 30px;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	text-shadow: black 0px 0px 4px 3;
+}
+
+.EG_Promo_Header > Panel
+{
+	width: 100%;
+	height: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.2, rgba(251, 202, 118, 0.3)), color-stop(0.5, white), color-stop(0.8, rgba(251, 202, 118, 0.3)), to(transparent) );
+	margin: 5px 0;
+}
+
+.EG_Promo_Background
+{
+	width: 1300px;
+	height: 479px;
+	background-image: url("s2r://panorama/images/custom_game/end_game/promo_tab/aaf_bg_png.vtex");
+	background-size: 100%;
+	z-index: -1;
+	horizontal-align: center;
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from(#ffffff00), color-stop(0.2, #ffffff00), color-stop(0.6, white), color-stop(0.6, white), color-stop(0.8, #ffffff00), to(#ffffff00) );
+	transition-property: opacity-brush;
+	transition-duration: 0.3s;
+	transition-delay: 0.1s;
+}
+
+.EG_StartPhase_Promo .EG_Promo_Background
+{
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from(white), color-stop(0.2, white), color-stop(0.4, white), color-stop(0.6, white), color-stop(0.8, white), to(white) );
+	transition-duration: 0.3s;
+	transition-delay: 0s;
+}
+
+.EG_Promo_Logo
+{
+	background-image: url("s2r://panorama/images/custom_game/end_game/promo_tab/aaf_logo_png.vtex");
+	background-size: 100%;
+	align: center bottom;
+	height: 246px;
+	width: 442px;
+	margin-bottom: 33px;
+	img-shadow: black 0 1px 2px 2;
+}
+
+.EG_Promo_Button
+{
+	margin-top: 450px;
+	height: 62px;
+	width: 286px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/end_game/promo_tab/promo_button_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.EG_Promo_Button:hover
+{
+	brightness: 1.4;
+}
+
+.EG_Promo_Button:active
+{
+	brightness: 0.7;
+}
+
+.EG_Promo_Button Panel
+{
+	align: center center;
+	flow-children: right;
+	margin: 4px;
+	padding: 4px;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.EG_Promo_Button:active Panel
+{
+	pre-transform-scale2d: 0.96;
+}
+
+.EG_Promo_Button Label
+{
+	text-align: center;
+	font-size: 23px;
+	background-repeat: no-repeat;
+	color: #fbca76;
+	font-weight: semi-bold;
+	text-shadow: black 0 1px 2px 2;
+}
+
+.EG_Promo_Button Image
+{
+	width: 22px;
+	height: 18px;
+	img-shadow: black 0 1px 2px 2;
+	wash-color: #fbca76;
+	vertical-align: center;
+	margin: 2px 0 0 4px;
+}
+
+.EG_Promo_Button:not(:hover) Image
+{
+	animation-name: arrow_shakle;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'arrow_shakle'
+{
+	0%
+	{
+		transform: translateX(0px);
+	}
+	
+	50%
+	{
+		transform: translateX(4px);
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+	}
+	
+}
+
+.EG_Promo_Footer
+{
+	margin-top: 540px;
+	horizontal-align: center;
+	flow-children: down;
+	padding-bottom: 50px;
+}
+
+.EG_Promo_Contents
+{
+	flow-children: right;
+	height: 250px;
+	padding-left: -20px;
+}
+
+.EG_Promo_Contents > Panel
+{
+	height: 100%;
+	width: 320px;
+	margin-left: 20px;
+	background-color: gradient(radial, 50% 65%, 0% 0%, 50% 50%, from(#2b3e4c), color-stop(0.5, #192530), to(#050809));
+	border: 3px solid #21303b;
+	border-radius: 12px;
+	flow-children: down;
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.EG_StartPhase_Promo .EG_Promo_Contents > Panel
+{
+	transform: translateX(0) translateY(0);
+}
+
+.EG_Promo_Contents > Panel > Panel
+{
+	height: 170px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background-color: #101e39;
+	background-color: gradient(radial, 50% 60%, 0% 0%, 50% 50%, from(#0d9bbf), color-stop(0.9, #006190), to(#004267));
+	box-shadow: rgba(0, 0, 0, 0.7) 0 1px 2px 2;
+}
+
+.EG_Promo_Contents Image
+{
+	margin: 4px;
+	border-radius: 8px;
+}
+
+.EG_Promo_Contents Label
+{
+	width: 100%;
+	margin: 10px 5px;
+	text-align: center;
+	font-family: titleFont;
+	color: #83b0c6;
+	text-shadow: black 0 1px 2px 2;
+}
+
+.EG_Promo_Content_1
+{
+	transform: translateX(-50px);
+}
+
+.EG_Promo_Content_2
+{
+	transform: translateY(-50px);
+}
+
+.EG_Promo_Content_3
+{
+	transform: translateX(50px);
+}
+
+.EG_StartPhase_Promo .EG_Promo_DescriptionBlock
+{
+	transform: translateY(0);
+}
+
+.EG_Promo_DescriptionBlock
+{
+	width: 100%;
+	height: 100px;
+	background-color: #21303b;
+	margin-top: 30px;
+	border-radius: 12px;
+	border: 3px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(#748c99), to(#2b4455));
+	flow-children: right;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transform: translateY(40px);
+}
+
+.EG_StartPhase_Promo .EG_Promo_DescriptionBlock
+{
+	transform: translateY(0);
+}
+
+.EG_Promo_DescriptionBlock > Image
+{
+	width: 69px;
+	height: 70px;
+	vertical-align: center;
+	margin-left: 20px;
+	img-shadow: black 0 1px 3px 1;
+}
+
+.EG_Promo_DescriptionBlock > Panel
+{
+	vertical-align: center;
+	flow-children: down;
+	margin-left: 20px;
+}
+
+.EG_Promo_DescriptionBlock Label
+{
+	color: #fbca76;
+	text-shadow: black 0 1px 2px 2;
+	font-family: titleFont;
+}
+
+.EG_Promo_FooterHeader
+{
+	font-size: 23px;
+	font-weight: semi-bold;
+}
+
+.EG_Promo_FooterDesc
+{
+	font-weight: lighter;
+}
+
+.EG_PromoClickToClose
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	font-style: italic;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+.BFirstPromoView .EG_PromoClickToClose
+{
+	opacity: 1;
+}
+
+.EG_PromoClickToClose Label
+{
+	text-decoration: underline;
+	color: #95b3c4;
+}
+
+.EG_TopButton_Promo
+{
+	visibility: collapse;
+}
+
+.BPromoEnabled .EG_TopButton_Promo
+{
+	visibility: visible;
+}
+
+.EG_MatchInfo
+{
+	align: left bottom;
+	flow-children: down;
+	margin: 2px;
+	padding-top: -2px;
+}
+
+.EG_MatchInfo > Label
+{
+	margin-top: 2px;
+	color: #355872;
+}
