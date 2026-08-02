@@ -1,0 +1,182 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().TeamCardKv = {
+	"team_card_2": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 20,
+		"AppearRound": "0-10",
+		"ScriptFile": "abilities/team_card/team_card_2",
+		"AbilityValues": {
+			"self_count": 1,
+			"teammate_count": 2,
+		},
+	},
+	"team_card_3": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 40,
+		"AppearRound": "10-15",
+		"ScriptFile": "abilities/team_card/team_card_3",
+		"AbilityValues": {
+			"self_count": 2,
+			"teammate_count": 4,
+		},
+	},
+	"team_card_4": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 20,
+		"AppearRound": "0-10",
+		"ScriptFile": "abilities/team_card/team_card_4",
+		"AbilityValues": {
+			"sect_exp": 2,
+		},
+	},
+	"team_card_5": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 20,
+		"AppearRound": 0,
+		"ScriptFile": "abilities/team_card/team_card_5",
+		"AbilityValues": {
+			"round_count": 2,
+			"gold": 50,
+		},
+	},
+	"team_card_6": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 40,
+		"AppearRound": 0,
+		"ScriptFile": "abilities/team_card/team_card_6",
+		"AbilityValues": {
+			"gold": 50,
+		},
+	},
+	"team_card_7": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": "0-10",
+		"ScriptFile": "abilities/team_card/team_card_7",
+	},
+	"team_card_8": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 150,
+		"AppearRound": 10,
+		"ScriptFile": "abilities/team_card/team_card_8",
+	},
+	"team_card_9": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 0,
+		"AppearRound": 10,
+		"ScriptFile": "abilities/team_card/team_card_9",
+		"AbilityValues": {
+			"round_reduce": 2,
+		},
+	},
+	"team_card_10": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 50,
+		"AppearRound": "0-15",
+		"ScriptFile": "abilities/team_card/team_card_10",
+	},
+	"team_card_11": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": 0,
+		"ScriptFile": "abilities/team_card/team_card_11",
+	},
+	"team_card_12": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 60,
+		"AppearRound": 15,
+		"ScriptFile": "abilities/team_card/team_card_12",
+	},
+	"team_card_13": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 50,
+		"AppearRound": "0-15",
+		"ScriptFile": "abilities/team_card/team_card_13",
+		"AbilityValues": {
+			"get_chance": 50,
+			"base_gold": 50,
+			"count": 1,
+		},
+	},
+	"team_card_14": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 50,
+		"AppearRound": 0,
+		"ScriptFile": "abilities/team_card/team_card_14",
+	},
+	"team_card_15": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": 5,
+		"Limit": 3,
+		"ScriptFile": "abilities/team_card/team_card_15",
+		"AbilityValues": {
+			"crit_chance": 15,
+		},
+	},
+	"team_card_16": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 350,
+		"AppearRound": 15,
+		"Limit": 1,
+		"ScriptFile": "abilities/team_card/team_card_16",
+		"AbilityValues": {
+			"level_one": 5,
+			"level_two": 10,
+			"level_three": 20,
+		},
+	},
+	"team_card_17": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": 0,
+		"ScriptFile": "abilities/team_card/team_card_17",
+		"AbilityValues": {
+			"count": 3,
+		},
+	},
+	"team_card_18": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": 10,
+		"ScriptFile": "abilities/team_card/team_card_18",
+	},
+	"team_card_19": {
+		"CardType": "special",
+		"Weight": 15,
+		"GoldCost": 100,
+		"AppearRound": 0,
+		"Limit": 3,
+		"Stackable": 1,
+		"ScriptFile": "abilities/team_card/team_card_19",
+		"AbilityValues": {
+			"exp": 1,
+		},
+	},
+};

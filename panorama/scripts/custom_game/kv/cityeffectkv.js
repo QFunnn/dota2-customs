@@ -1,0 +1,198 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().CityEffectKv = {
+	"city_1": {
+		"Note": "暗黑之礁",
+		"LandType": "sunken_city",
+		"ScriptFile": "modifiers/city_effect/city_1",
+		"AbilityValues": {
+			"gold_gain": 80,
+		},
+	},
+	"city_5": {
+		"Note": "虚无奥法",
+		"LandType": "void_rift",
+		"ScriptFile": "modifiers/city_effect/city_5",
+		"AbilityValues": {
+			"chance": 20,
+		},
+	},
+	"city_8": {
+		"Note": "圣树的启迪",
+		"LandType": "silvernight_forest",
+		"ScriptFile": "modifiers/city_effect/city_8",
+		"AbilityValues": {
+			"count": 3,
+			"card": 1,
+			"round": 3,
+			"r_count": 1,
+		},
+	},
+	"city_10": {
+		"Note": "锻造大师",
+		"LandType": "violet_plateau",
+		"ScriptFile": "modifiers/city_effect/city_10",
+		"AbilityValues": {
+			"count": 1,
+		},
+	},
+	"city_12": {
+		"Note": "石堂城",
+		"LandType": "violet_plateau",
+		"ScriptFile": "modifiers/city_effect/city_12",
+		"AbilityValues": {
+			"gold": 50,
+		},
+	},
+	"city_14": {
+		"Note": "扭曲倒影",
+		"LandType": "prison_desolation",
+		"ScriptFile": "modifiers/city_effect/city_14",
+		"AbilityValues": {
+			"round": 16,
+		},
+	},
+	"city_15": {
+		"Note": "蓝心冰川",
+		"LandType": "glacial_remnants",
+		"ScriptFile": "modifiers/city_effect/city_15",
+		"AbilityValues": {
+			"gold": 900,
+		},
+	},
+	"city_16": {
+		"Note": "鲜血回馈",
+		"LandType": "bloodied_hills",
+		"ScriptFile": "modifiers/city_effect/city_16",
+		"AbilityValues": {
+			"gold_pct": 200,
+		},
+	},
+	"city_17": {
+		"Note": "鲜血渴望",
+		"LandType": "bloodied_hills",
+		"ScriptFile": "modifiers/city_effect/city_17",
+		"AbilityValues": {
+			"gold": 15,
+		},
+	},
+	"city_18": {
+		"Note": "虚空乱流",
+		"LandType": "void_rift",
+		"ScriptFile": "modifiers/city_effect/city_18",
+		"AbilityValues": {
+			"reduce": 50,
+			"min": 0,
+			"max": 200,
+		},
+	},
+	"city_22": {
+		"Note": "丘陵矿洞",
+		"LandType": "druidic_plateau",
+		"ScriptFile": "modifiers/city_effect/city_22",
+		"AbilityValues": {
+			"level": 5,
+		},
+	},
+	"city_23": {
+		"Note": "肉山宝藏",
+		"LandType": "hovin_woodlands",
+		"ScriptFile": "modifiers/city_effect/city_23",
+	},
+	"city_26": {
+		"Note": "风暴地",
+		"LandType": "druidic_plateau",
+		"ScriptFile": "modifiers/city_effect/city_26",
+		"AbilityValues": {
+			"count": 6,
+		},
+	},
+	"city_27": {
+		"Note": "地精实验室",
+		"LandType": "glacial_remnants",
+		"ScriptFile": "modifiers/city_effect/city_27",
+		"AbilityValues": {
+			"gain": 100,
+			"limit_reduce": 50,
+		},
+	},
+	"city_28": {
+		"Note": "预兆之城",
+		"LandType": "river_three_paths",
+		"ScriptFile": "modifiers/city_effect/city_28",
+		"AbilityValues": {
+			"count": 1,
+			"round": 18,
+		},
+	},
+	"city_29": {
+		"Note": "黑市洼地",
+		"LandType": "prison_desolation",
+		"ScriptFile": "modifiers/city_effect/city_29",
+		"AbilityValues": {
+			"select_round": 1,
+			"affect_round": 11,
+		},
+	},
+	"city_30": {
+		"Note": "永恒裂隙",
+		"LandType": "violet_plateau",
+		"ScriptFile": "modifiers/city_effect/city_30",
+		"AbilityValues": {
+			"legend_cnt": 3,
+			"chance": 1,
+		},
+	},
+	"city_31": {
+		"Note": "水泉武库",
+		"LandType": "river_three_paths",
+		"ScriptFile": "modifiers/city_effect/city_31",
+		"AbilityValues": {
+			"round1": 1,
+			"round2": 2,
+			"round3": 3,
+		},
+	},
+	"city_32": {
+		"Note": "遗迹熔炉",
+		"LandType": "hovin_woodlands",
+		"ScriptFile": "modifiers/city_effect/city_32",
+		"AbilityValues": {
+			"round": 5,
+			"level": 3,
+		},
+	},
+	"city_36": {
+		"Note": "冥河馈赠",
+		"LandType": "sunken_city",
+		"ScriptFile": "modifiers/city_effect/city_36",
+		"AbilityValues": {
+			"count": 2,
+		},
+	},
+	"city_38": {
+		"Note": "异度位面",
+		"LandType": "prison_desolation",
+		"ScriptFile": "modifiers/city_effect/city_38",
+		"AbilityValues": {
+			"select_round": 1,
+			"affect_round": 11,
+		},
+	},
+	"city_39": {
+		"Note": "魔能之泉",
+		"LandType": "silvernight_forest",
+		"ScriptFile": "modifiers/city_effect/city_39",
+		"AbilityValues": {
+			"round": 2,
+		},
+	},
+};

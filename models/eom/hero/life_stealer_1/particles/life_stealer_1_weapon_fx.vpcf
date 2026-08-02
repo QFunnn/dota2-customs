@@ -1,0 +1,69 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_flConstantRadius = 2.0
+	m_ConstantColor = [ 156, 227, 255, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_nMaxParticles = 32
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "life_stealer_1_weapon_fx_1"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "life_stealer_1_weapon_fx_2"
+					m_entityName = "self_with_wearables"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/life_stealer_1/life_stealer_1.vmdl"
+				m_sequenceName = "life_stealer_1_skin"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/life_stealer_1/particles/life_stealer_1_weapon_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/life_stealer_1/particles/life_stealer_1_weapon_01.vpcf"
+			m_flDelay = 1.0
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/life_stealer_1/particles/life_stealer_1_weapon_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/life_stealer_1/particles/life_stealer_1_weapon_03.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/life_stealer_1/particles/life_stealer_1_weapon_05.vpcf"
+		},
+	]
+}

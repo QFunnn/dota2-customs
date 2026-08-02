@@ -1,0 +1,170 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf62:version{c135a90d-ef52-47fa-a9b8-83a382a77471} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 100.0
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1000.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_VelocityFromCP"
+			m_velocityInput = 
+			{
+				m_nType = "PVEC_TYPE_CP_VALUE"
+				m_nControlPoint = 1
+			}
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 1024.0
+			m_bSetNormal = true
+			m_flOffset = 6.0
+			m_bIncludeWater = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.1
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_bSetNormal = true
+			m_flTolerance = 0.0
+			m_flOffset = 4.0
+			m_flMaxTraceLength = 1024.0
+			m_flTraceOffset = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_14.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_12.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_13.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_base_attack_smoke_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_07.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_10.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_04.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_trail_04.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_trail_05.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_03.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_05.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_06.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_08.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_skill_attack_trail_03.vpcf"
+		},
+	]
+}

@@ -1,0 +1,140 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_flConstantRadius = 50.0
+	m_bShouldSort = false
+	m_nConstantSequenceNumber1 = 3
+	m_flNoDrawTimeToGoToSleep = 60.0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMin = [ 200.0, 0.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 200.0, 0.0, 0.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_nOverrideCP = 2
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fFalloffPower = 0.0
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 9999.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_04e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_01c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_03.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_04c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_01e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_04d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_04a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_dandao_01b.vpcf"
+			m_bEndCap = true
+		},
+	]
+}

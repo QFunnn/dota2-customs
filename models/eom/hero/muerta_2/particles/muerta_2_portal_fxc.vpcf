@@ -1,0 +1,104 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_ConstantColor = [ 118, 221, 222, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 7
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 300.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 2
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_MULT"
+				m_flMultFactor = 1.05
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 65.0
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc2.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc4.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc5.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc3.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc6.vpcf"
+			m_flDelay = 0.25
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/muerta_2/particles/muerta_2_portal_fxc1.vpcf"
+			m_bEndCap = true
+		},
+	]
+}

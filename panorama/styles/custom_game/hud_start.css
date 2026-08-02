@@ -1,0 +1,972 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_Panel > VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	background-color: #191A267D;
+	border-radius: 3px;
+}
+
+.EOM_Panel > VerticalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel > HorizontalScrollBar
+{
+	height: 6px;
+	width: 95%;
+	horizontal-align: center;
+	border-radius: 3px;
+	background-color: #191A26;
+}
+
+.EOM_Panel > HorizontalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel.Default
+{
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+}
+
+.EOM_LabelTitle
+{
+	font-size: 22px;
+	color: #DFC97C;
+	text-shadow: 0px 0px 1px 4 #000000;
+}
+
+.EOM_LabelNormal
+{
+	font-size: 16px;
+	color: #A7A18D;
+}
+
+.EOM_LabelMoney
+{
+	font-size: 24px;
+	color: #FFD060;
+}
+
+.EOM_LabelTip
+{
+	font-size: 16px;
+	color: white;
+}
+
+.EOM_Loading.Wave
+{
+	flow-children: right;
+}
+
+.EOM_Loading.Wave Image
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: EOM_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	transform: scale3d(1, 0, 1);
+}
+
+.EOM_Loading.Wave .WaveCol2
+{
+	animation-delay: 0.1s;
+}
+
+.EOM_Loading.Wave .WaveCol3
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.Wave .WaveCol4
+{
+	animation-delay: 0.3s;
+}
+
+.EOM_Loading.Wave .WaveCol5
+{
+	animation-delay: 0.4s;
+}
+
+.EOM_Loading.Wave .WaveCol6
+{
+	animation-delay: 0.5s;
+}
+
+.EOM_Loading.Wave .WaveCol7
+{
+	animation-delay: 0.6s;
+}
+
+.EOM_Loading.Wave .WaveCol8
+{
+	animation-delay: 0.7s;
+}
+
+.EOM_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	transform: rotateZ(45deg);
+}
+
+.EOM_Loading.Matrix .Row2 Image
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.Matrix .Row3 Image
+{
+	animation-delay: 0.4s;
+}
+
+.EOM_Loading.Matrix .Row4 Image
+{
+	animation-delay: 0.6s;
+}
+
+.EOM_Loading.Matrix Image
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: EOM_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: EOM_Loading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin Image
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.EOM_Loading.PointSpin .Point1
+{
+	opacity: 1;
+}
+
+.EOM_Loading.PointSpin .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.EOM_Loading.PointSpin .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.EOM_Loading.PointSpin .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+@keyframes 'EOM_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 70;
+}
+
+#GameStart
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hero_selection/t4_bg_png.vtex");
+	background-color: #000000;
+	background-size: 100%;
+	wash-color: #00000000;
+	blur: gaussian(0);
+	z-index: 1000000;
+	opacity: 1;
+}
+
+#GameStart.Hidden
+{
+	opacity: 0;
+}
+
+#GameStart #Logo
+{
+	font-size: 32px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#CEF9FF));
+	horizontal-align: right;
+	margin-top: 18px;
+	margin-right: 20px;
+	font-style: italic;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#GameStart #BulletinBoard
+{
+	margin-top: 60px;
+	margin-right: 10px;
+	width: 359px;
+	height: 742px;
+	background-image: url("s2r://panorama/images/custom_game/start_page/bulletin_board_bg_png.vtex");
+	background-size: 100%;
+	horizontal-align: right;
+}
+
+#GameStart #BulletinBoard #BulletinBoardBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/start_page/bulletin_board_bg_png.vtex");
+	background-size: 100%;
+}
+
+#GameStart #BulletinBoard #BulletinBoardBGColor
+{
+	width: 100%;
+	height: 100%;
+	margin: 9px 4px 9px 3px;
+	background-color: gradient(linear, 0% 70%, 0% 100%, from(#160f1b66), to(#160f1b00));
+}
+
+#GameStart #BulletinBoard #BulletinContainer
+{
+	width: 100%;
+	height: 75px;
+	margin: 32px;
+	margin-bottom: 0px;
+	flow-children: down;
+}
+
+#GameStart #BulletinBoard #BulletinContainer .BulletinTitle
+{
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	color: #F9F1BD;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#GameStart #BulletinBoard #BulletinContainer .BulletinContent
+{
+	margin-top: 10px;
+	width: 100%;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#GameStart #BulletinBoard #TaskContainer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 15px;
+	margin-right: 13px;
+	flow-children: down;
+}
+
+#GameStart #BulletinBoard #TaskContainer > VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 5px;
+	height: 95%;
+	background-color: #424242b3;
+	vertical-align: center;
+	border: 1px solid #21152E;
+}
+
+#GameStart #BulletinBoard #TaskContainer > VerticalScrollBar .ScrollThumb
+{
+	background-color: #495878;
+	border-width: 0px;
+	border-radius: 0px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: #21152E;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskTitle
+{
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	color: #90EC99;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskRow
+{
+	margin: 3px 5px 3px 16px;
+	padding: 9px 7px 5px 5px;
+	width: 320px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskRow:hover
+{
+	background-color: #44396e66;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskRow .Point
+{
+	background-image: url("s2r://panorama/images/custom_game/start_page/point_png.vtex");
+	background-size: 100%;
+	width: 7px;
+	height: 7px;
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskRow .TaskContent
+{
+	margin-left: 16px;
+}
+
+#GameStart #BulletinBoard #TaskContainer .TaskRow .TaskContent .TaskLabel
+{
+	font-size: 12px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 1px 3 #000000;
+}
+
+#GameStart #Carousel
+{
+	border: 2px solid #767267;
+	box-shadow: fill #00000033 0px 0px 1px 1px;
+	align: right bottom;
+	margin-right: 13px;
+	margin-bottom: 28px;
+}
+
+#GameStart #Carousel .EOM_Image
+{
+	width: 100%;
+	height: 100%;
+}
+
+#GameStart #FriendBoard
+{
+	vertical-align: bottom;
+	margin-left: 8px;
+	margin-bottom: 4px;
+	width: 294px;
+	height: 520px;
+}
+
+#GameStart #FriendBoard #FriendBoardBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/start_page/friend_board_bg_png.vtex");
+	background-size: 100%;
+}
+
+#GameStart #FriendBoard #FriendBoardBGColor
+{
+	width: 100%;
+	height: 100%;
+	margin: 9px 4px 9px 3px;
+	background-color: gradient(linear, 0% 70%, 0% 100%, from(#160f1b66), to(#160f1b00));
+}
+
+#GameStart #FriendBoard #FriendBoardTitle
+{
+	font-size: 12px;
+	color: #D8D8D8;
+}
+
+#GameStart #FriendBoard #FriendBoardNumber
+{
+	font-size: 12px;
+	color: #D8D8D8;
+	horizontal-align: right;
+}
+
+#GameStart #FriendBoard #FriendsContainer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 18px;
+	padding: 12px 22px;
+	flow-children: down;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory.Expand .FriendsHeader #FriendsHeader_Toggle
+{
+	transform: rotateZ(-90deg);
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory.Expand .PlayerRow
+{
+	padding: 0px;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory.Expand .PlayerRow .EOM_Avatar,#GameStart #FriendBoard #FriendsContainer .FriendsCategory.Expand .PlayerRow .EOM_UserName,#GameStart #FriendBoard #FriendsContainer .FriendsCategory.Expand .PlayerRow .EOM_IconButton
+{
+	height: 0px;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader
+{
+	flow-children: right;
+	height: 32px;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader:hover
+{
+	wash-color: #ffffff;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader:hover #FriendsHeader_Toggle
+{
+	wash-color: #ffffff;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader:hover #FriendsHeader_Label
+{
+	color: #ffffff;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader #FriendsHeader_Toggle
+{
+	width: 12px;
+	height: 12px;
+	vertical-align: center;
+	wash-color: #888888;
+	background-image: url("s2r://panorama/images/control_icons/expand_collapse_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	transform: none;
+	transition-property: transform, wash-color;
+	transition-duration: 0.2s;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .FriendsHeader #FriendsHeader_Label
+{
+	font-size: 14px;
+	color: #999999;
+	margin-left: 5px;
+	letter-spacing: 2px;
+	vertical-align: center;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow
+{
+	width: 100%;
+	padding: 4px 4px;
+	transition-property: padding;
+	transition-duration: 0.2s;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow:hover
+{
+	background-color: #44396e44;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow:hover .EOM_IconButton
+{
+	opacity: 1;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_Avatar,#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_UserName,#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_IconButton
+{
+	vertical-align: center;
+	transition-property: height, opacity;
+	transition-duration: 0.2s;
+	height: 25px;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_IconButton
+{
+	opacity: 0;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_UserName
+{
+	color: white;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_UserName Label
+{
+	color: white;
+	vertical-align: center;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_UserName.Offline
+{
+	color: #686767;
+}
+
+#GameStart #FriendBoard #FriendsContainer .FriendsCategory .PlayerRow .EOM_UserName.Offline Label
+{
+	color: #686767;
+}
+
+#GameStart #LastGame
+{
+	background-color: #160f1bcc;
+	width: 286px;
+}
+
+#GameStart #LastGame .EOM_Portrait
+{
+	box-shadow: #00000066 0px 0px 6px 0px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_sharper_png.vtex");
+}
+
+#GameStart .ButtonsInLastGameRow
+{
+	margin-left: 20px;
+	background-color: #160f1bcc;
+	height: 100%;
+	width: height-percentage(100%);
+}
+
+#GameStart .ButtonsInLastGameRow Image
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+}
+
+#GameStart .ButtonsInLastGameRow Label
+{
+	align: center center;
+	font-size: 22px;
+	color: #ffffff;
+}
+
+#GameStart .ButtonsInLastGameRow:active
+{
+	background-color: #160f1bee;
+}
+
+#GameStart #PastGameList
+{
+	background-color: #160f1bcc;
+	width: 286px;
+	margin-top: 8px;
+}
+
+#GameStart #PastGameList .MatchCol
+{
+	border-radius: 4px;
+	padding: 4px;
+	margin-right: 5px;
+}
+
+#GameStart #PastGameList .MatchCol:hover
+{
+	background-color: #4443;
+}
+
+#GameStart #PastGameList .MatchCol .Win
+{
+	color: #8f8;
+	horizontal-align: center;
+}
+
+#GameStart #PastGameList .MatchCol .Lose
+{
+	horizontal-align: center;
+	color: #f43;
+}
+
+#GameStart #GameOption
+{
+	flow-children: down;
+	align: center center;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+#GameStart #GameOption .GameOptionButton
+{
+	width: 347px;
+	height: 95px;
+	margin: 19px;
+	background-image: url("s2r://panorama/images/custom_game/start_page/btn_bg_png.vtex");
+	background-size: 100%;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.2s;
+}
+
+#GameStart #GameOption .GameOptionButton:hover
+{
+	pre-transform-scale2d: 1.1;
+}
+
+#GameStart #GameOption .GameOptionButton .GameOptionButtonTitle
+{
+	font-size: 16px;
+	color: #F9F1BD;
+	margin-top: 25px;
+	horizontal-align: center;
+	text-shadow: 0px 0px 1px 2 #000000;
+}
+
+#GameStart #GameOption .GameOptionButton .GameOptionButtonDes
+{
+	margin-top: 54px;
+	horizontal-align: center;
+	font-size: 12px;
+	color: #BAC3E3;
+	text-shadow: 0px 0px 1px 2 #000000;
+}
+
+#GameStart #GameOption.Matching
+{
+	opacity: 0;
+	transform: translateX(-280px);
+}
+
+#GameStart #GameOption .EOM_Button.Outline
+{
+	width: 280px;
+	height: 40px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#36AEEA00), color-stop(0.15, #000), color-stop(0.5, #000), color-stop(0.85, #000), to(#36AEEA00));
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 0%, 100% 0%, from(#36AEEA00), color-stop(0.15, #36AEEA00), color-stop(0.5, #36AEEA), color-stop(0.85, #36AEEA00), to(#36AEEA00));
+}
+
+#GameStart #GameOption .EOM_Button.Outline Label
+{
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: 2px;
+	align: center center;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#36AEEA), color-stop(0.5, #D8FBFE), to(#36AEEA));
+}
+
+#GameStart #MatchingInfo
+{
+	flow-children: down;
+	align: center bottom;
+	margin-bottom: 300px;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transform: translateX(280px);
+	opacity: 0;
+}
+
+#GameStart #MatchingInfo Label
+{
+	font-size: 24px;
+}
+
+#GameStart #MatchingInfo.Matching
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#GameStart #BotInfo
+{
+	flow-children: down;
+	align: center bottom;
+	margin-bottom: 400px;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transform: translateX(280px);
+	opacity: 0;
+}
+
+#GameStart #BotInfo Label
+{
+	font-size: 24px;
+}
+
+#GameStart #BotInfo.Matching
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#GameStart #CDKEntry
+{
+	flow-children: down;
+	align: center bottom;
+	margin-bottom: 300px;
+}
+
+#GameStart #RoomList
+{
+	flow-children: down;
+	align: center bottom;
+	margin-bottom: 200px;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transform: translateX(280px);
+	opacity: 0;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#8dc0f211), color-stop(0.004, #0e1318cc), to(#0e1318dd));
+	box-shadow: fill #00000033 0px 0px 12px 0px;
+	width: 800px;
+	height: 500px;
+}
+
+#GameStart #RoomList #TagTitle .EOM_Label
+{
+	text-align: center;
+}
+
+#GameStart #RoomList .RoomRow
+{
+	height: 40px;
+}
+
+#GameStart #RoomList .RoomRow .EOM_Label
+{
+	text-align: center;
+	vertical-align: center;
+}
+
+#GameStart #RoomList.RoomList
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#GameStart #RoomList .PlayerRoomDes
+{
+	margin-left: 40px;
+	width: 180px;
+	height: 30px;
+}
+
+#GameStart #InRoomPlayers
+{
+	flow-children: down;
+	align: center bottom;
+	margin-bottom: 350px;
+	transition-property: transform, opacity;
+	transition-duration: 0.2s;
+	transform: translateX(280px);
+	opacity: 0;
+}
+
+#GameStart #InRoomPlayers Label
+{
+	font-size: 24px;
+}
+
+#GameStart #InRoomPlayers.InRoomPlayers
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#GameStart #InRoomPlayers .PlayerRoomDes
+{
+	margin-left: 10px;
+	width: 150px;
+	height: 30px;
+}
+
+#GameStart #ButtonList
+{
+	flow-children: right;
+	align: center bottom;
+	margin-bottom: 450px;
+}
+
+#GameStart #ButtonList .EOM_BaseButton
+{
+	flow-children: down;
+	margin: 10px;
+}
+
+#GameStart #ButtonList .EOM_BaseButton .EOM_Image
+{
+	width: 100px;
+	height: 100px;
+}
+
+#GameStart #ButtonList .EOM_BaseButton .EOM_Label
+{
+	font-size: 24px;
+	color: white;
+	horizontal-align: center;
+}
+
+.BuffInfo
+{
+	width: 14px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/status_icons/information_psd.vtex");
+	background-size: 100%;
+}
+
+.Inline_SectIcon
+{
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+}
+
+.Inline_Regen
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/healer_psd_png.vtex");
+}
+
+.Inline_Crit
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/assassin_psd_png.vtex");
+}
+
+.Inline_Health
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/brawny_psd_png.vtex");
+}
+
+.Inline_Injury
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/beast_psd_png.vtex");
+}
+
+.Inline_Fury
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/fury_psd_png.vtex");
+}
+
+.Inline_Ice
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/ice_psd_png.vtex");
+}
+
+.Inline_Poison
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/poisoner_psd_png.vtex");
+}
+
+.Inline_Wisp
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/void_psd_png.vtex");
+}
+
+.Inline_Attack
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/swordsman_psd_png.vtex");
+}
+
+.Inline_Shield
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/warrior_psd_png.vtex");
+}
+
+.Inline_Evade
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/wild_psd_png.vtex");
+}
+
+.Inline_Mana
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/mage_psd_png.vtex");
+}
+
+.Inline_Ulti
+{
+	background-image: url("s2r://panorama/images/custom_game/synergyicons/mage_psd_png.vtex");
+}
+
+.Inline_HpLoss
+{
+	width: 0px;
+	height: 0px;
+}

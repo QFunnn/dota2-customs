@@ -1,0 +1,68 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_flConstantRadius = 8.0
+	m_nMaxParticles = 16
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "body"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "fllower_r"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "fllower_l"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/crystal_maiden_2/crystal_maiden_2_elf.vmdl"
+				m_sequenceName = "crystal_maiden_2_elf_idle"
+				m_hitboxSetName = "default"
+				m_flPlaybackSpeed = 0.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/crystal_maiden_2/particles/crystal_maiden_2_elf_body_fx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/crystal_maiden_2/particles/crystal_maiden_2_elf_fllower_r_01_fx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/crystal_maiden_2/particles/crystal_maiden_2_elf_fllower_l_01_fx.vpcf"
+		},
+	]
+}

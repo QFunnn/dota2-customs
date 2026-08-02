@@ -1,0 +1,1278 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"KeyValue"
+{
+	"item_artifact_1"
+	{
+		"Note"									"噬魂灵龛"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_1"
+		"AbilityTextureName"					"item_urn_of_shadows"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"hp_regen"							"3"
+			"first_regen"						"6"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_2"
+	{
+		"Note"									"医疗输血包"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_2"
+		"AbilityTextureName"					"item_elixer1"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"gold_cost"							"100"
+			"hp_regen"							"6"
+			"charges"							"3"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_3"
+	{
+		"Note"									"空白遗嘱"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_3"
+		"AbilityTextureName"					"item_tome_of_omniscience"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"						"200"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_4"
+	{
+		"Note"									"神秘学书籍"
+		"ID"									"1"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_4"
+		"AbilityTextureName"					"item_tome_of_aghanim"
+		"Repeat"								"1"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"exp"								"9"
+			"max_exp_reduce"					"10"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_6"
+	{
+		"Note"									"贷款协定"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_6"
+		"AbilityTextureName"					"item_artifact_09"
+		"Repeat"								"1"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"700"
+				"_turbo"						"1000"
+			}
+			"rounds"
+			{
+				"value"							"6"
+				"_turbo"						"4"
+			}
+			"gold_reduce"
+			{
+				"value"							"50"
+				"_turbo"						"100"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_7"
+	{
+		"Note"									"战利品贮藏箱"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_7"
+		"AbilityTextureName"					"item_artifact_07"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_per_gold"					"15"
+			"max_gold"							"140"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_8"
+	{
+		"Note"									"复仇者雕像"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_8"
+		"AbilityTextureName"					"item_wraith_pact"
+		"AppearRound"							"8"
+		"IsHidden"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"hp_regen"							"5"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_9"
+	{
+		"Note"									"藏宝图"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_9"
+		"AbilityTextureName"					"item_recipe_scroll"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"ability_count"
+			{
+				"value"							"8"
+				"_turbo"						"10"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_10"
+	{
+		"Note"									"决斗圣杯"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_10"
+		"AbilityTextureName"					"item_panic_button"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"init_gold"							"50"
+			"max_gold"							"400"
+			"re_pct"							"50"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_15"
+	{
+		"Note"									"凤凰余烬"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_15"
+		"AbilityTextureName"					"item_fortitude_ring"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"threshold"							"21"
+			"hp_regen"							"2"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_16"
+	{
+		"Note"									"誓约胜利之剑"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_16"
+		"AbilityTextureName"					"item_rapier"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"extra_bonus"						"60"
+			"extra_bonus_limit"					"75"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_17"
+	{
+		"Note"									"希瓦的守护"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_17"
+		"AbilityTextureName"					"item_shivas_guard"
+		"AppearRound"							"8"
+		"IsHidden"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"threshold"							"5"
+			"damage_reduce"						"3"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_20"
+	{
+		"Note"									"神眷者权杖"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_20"
+		"AbilityTextureName"					"item_ultimate_scepter_2"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"txt_bonus_pct"						"1.8"
+			"buy_sr_gain_gold"					"100"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_21"
+	{
+		"Note"									"幸运金币"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_21"
+		"AbilityTextureName"					"item_stonework_pendant"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"gold_bonus"						"25"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_22"
+	{
+		"Note"									"暗淡的能量石"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_22"
+		"AbilityTextureName"					"item_refresher"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|5"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"5"
+				"_turbo"						"10"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_23"
+	{
+		"Note"									"蛛丝斗篷"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_23"
+		"AbilityTextureName"					"item_gossamer_cape"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_immunity_counts"			"2"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_25"
+	{
+		"Note"									"探险家的锄头"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_25"
+		"AbilityTextureName"					"item_trusty_shovel"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|5"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"20"
+				"_turbo"						"20"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_26"
+	{
+		"Note"									"掠夺者之斧"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_26"
+		"AbilityTextureName"					"item_reaver"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"count"								"1"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_28"
+	{
+		"Note"									"月色指环I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_28"
+		"AbilityTextureName"					"item_ambient_sorcery"
+		"AppearRound"							"8|13"
+		"TurboAppearRound"						"4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"						"20"
+			"gold_max"							"140"
+			"chance_bonus"						"5"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_32"
+	{
+		"Note"									"新年红包"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_32"
+		"AbilityTextureName"					"item_artifact_32"
+		"Repeat"								"1"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"500"
+				"_turbo"						"600"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_37"
+	{
+		"Note"									"会员卡"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_37"
+		"AbilityTextureName"					"item_ofrenda"
+		"AppearRound"							"3|8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"refresh_gold_reduce"				"10"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_39"
+	{
+		"Note"									"赌博筹码"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_39"
+		"AbilityTextureName"					"item_tier4_token"
+		"AppearRound"							"8|13"
+		"TurboAppearRound"						"4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"stack"
+			{
+				"value"							"7"
+				"_turbo"						"6"
+			}
+			"ability_cnt_max"					"15"
+		}
+	}
+	"item_artifact_44"
+	{
+		"Note"									"魅影之纱的庇护"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_44"
+		"AbilityTextureName"					"item_illusionsts_cape"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"invic_chance"						"100"
+			"round_cd"							"5"
+		}
+	}
+	"item_artifact_45"
+	{
+		"Note"									"人寿保险"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_45"
+		"AbilityTextureName"					"item_neutral"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"gold_per_hp"						"25"
+		}
+	}
+	"item_artifact_46"
+	{
+		"Note"									"绝处逢生"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_46"
+		"AbilityTextureName"					"item_light_collector"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"threshold"							"25"
+			"bonus_gold"						"100"
+		}
+	}
+	"item_artifact_47"
+	{
+		"Note"									"买一送一"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_47"
+		"AbilityTextureName"					"item_bottle_bounty"
+		"AppearRound"							"3|8|13"
+		"TurboAppearRound"						"1|4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"
+			{
+				"value"							"45"
+				"_turbo"						"45"
+			}
+			"free"
+			{
+				"value"							"1"
+				"_turbo"						"1"
+			}
+			"max_stack"
+			{
+				"value"							"1"
+				"_turbo"						"1"
+			}
+		}
+	}
+	"item_artifact_49"
+	{
+		"Note"									"复制装置"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_49"
+		"AbilityTextureName"					"item_bottle_illusion"
+		"AppearRound"							"8|13"
+		"TurboAppearRound"						"4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"cost_gold"							"100"
+			"count"								"3"
+			"round_cd"							"1"
+		}
+	}
+	"item_artifact_52"
+	{
+		"Note"									"恶魔契约"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_52"
+		"AbilityTextureName"					"item_tome_of_shadow_wave"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"cost_hp_pct"						"40"
+			"count"
+			{
+				"value"							"3"
+				"_turbo"						"3"
+			}
+			"initial_charge"
+			{
+				"value"							"1"
+				"_turbo"						"1"
+			}
+			"bonus_gold"
+			{
+				"value"							"200"
+				"_turbo"						"400"
+			}
+		}
+	}
+	"item_artifact_53"
+	{
+		"Note"									"返利"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_53"
+		"AbilityTextureName"					"item_royale_with_cheese"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"return_gold"
+			{
+				"value"							"15"
+				"_turbo"						"15"
+			}
+		}
+	}
+	"item_artifact_55"
+	{
+		"Note"									"灵光一现"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_55"
+		"AbilityTextureName"					"item_fusion_rune"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"sect_threshold"
+			{
+				"value"							"2"
+				"_turbo"						"2"
+			}
+			"stack"
+			{
+				"value"							"1"
+				"_turbo"						"1"
+			}
+			"max"								"5"
+		}
+	}
+	"item_artifact_58"
+	{
+		"Note"									"救救救"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_58"
+		"AbilityTextureName"					"item_artifact_58"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"min_health"
+			{
+				"value"							"1"
+				"_turbo"						"1"
+			}
+			"gold"
+			{
+				"value"							"500"
+				"_turbo"						"500"
+			}
+			"count"								"1"
+		}
+	}
+	"item_artifact_62"
+	{
+		"Note"									"贷款协定II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_62"
+		"AbilityTextureName"					"item_artifact_09"
+		"Repeat"								"1"
+		"AppearRound"							"8"
+		"TurboAppearRound"						"4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"						"700"
+			"rounds"							"4"
+			"gold_reduce"						"60"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_65"
+	{
+		"Note"									"新年红包II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_65"
+		"AbilityTextureName"					"item_artifact_32"
+		"Repeat"								"1"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"						"400"
+			"gold_bonus_next"					"300"
+			"round"								"4"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_67"
+	{
+		"Note"									"魔瓶1"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_67"
+		"AbilityTextureName"					"item_bottle_empty"
+		"AppearRound"							"8"
+		"TurboAppearRound"						"4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"require_stack"						"4"
+			"bonus_gold"						"120"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_69"
+	{
+		"Note"									"传承之书2"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_69"
+		"AbilityTextureName"					"item_book_of_shadows"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"						"25"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_70"
+	{
+		"Note"									"生长激素2"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_70"
+		"AbilityTextureName"					"item_bottle_xp"
+		"Repeat"								"1"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"exp"
+			{
+				"value"							"2"
+				"_turbo"						"6"
+			}
+			"start_exp"
+			{
+				"value"							"3"
+				"_turbo"						"0"
+			}
+		}
+	}
+	"item_artifact_73"
+	{
+		"Note"									"胜负看淡"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_73"
+		"AbilityTextureName"					"item_artifact_73"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"round"								"4"
+			"gold"								"65"
+		}
+	}
+	"item_artifact_74"
+	{
+		"Note"									"消费大户"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_74"
+		"AbilityTextureName"					"item_artifact_74"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"refresh"							"15"
+			"sr_count"							"3"
+		}
+	}
+	"item_artifact_75"
+	{
+		"Note"									"后期专家"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_75"
+		"AbilityTextureName"					"item_artifact_75"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"level"
+			{
+				"value"							"15"
+				"_turbo"						"18"
+			}
+			"gold"
+			{
+				"value"							"900"
+				"_turbo"						"1800"
+			}
+		}
+	}
+	"item_artifact_76"
+	{
+		"Note"									"惊喜礼盒"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_76"
+		"AbilityTextureName"					"item_pocket_roshan"
+		"Repeat"								"1"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"8"
+			"max"								"8"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_79"
+	{
+		"Note"									"命中注定"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_79"
+		"AbilityTextureName"					"item_ofrenda_12"
+		"AppearRound"							"8|13"
+		"TurboAppearRound"						"4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"750"
+				"_turbo"						"1000"
+			}
+			"refresh_gold_bonus"
+			{
+				"value"							"10"
+				"_turbo"						"10"
+			}
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_80"
+	{
+		"Note"									"跳级"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_80"
+		"AbilityTextureName"					"item_courier_radiant_flying"
+		"AppearRound"							"3|8|13"
+		"TurboAppearRound"						"1|4|7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_bonus"
+			{
+				"value"							"0"
+			}
+			"n_count"
+			{
+				"value"							"1"
+			}
+			"max"								"20"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_84"
+	{
+		"Note"									"金色恐龙蛋"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_84"
+		"AbilityTextureName"					"item_precious_egg"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"init_count"						"6"
+			"lose_count"						"2"
+			"win_count"							"1"
+			"sr_count"							"3"
+		}
+	}
+	"item_artifact_85"
+	{
+		"Note"									"偏科"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_85"
+		"AbilityTextureName"					"item_holy_locket_enemy"
+		"Repeat"								"1"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"chance"							"50"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_86"
+	{
+		"Note"									"偏科II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_86"
+		"AbilityTextureName"					"item_holy_locket_enemy"
+		"Repeat"								"1"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"chance"							"70"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_87"
+	{
+		"Note"									"偏科III"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_87"
+		"AbilityTextureName"					"item_holy_locket_enemy"
+		"Repeat"								"1"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"chance"							"90"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_89"
+	{
+		"Note"									"翻箱倒柜"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_89"
+		"AbilityTextureName"					"item_holy_locket"
+		"AppearRound"							"3|8"
+		"TurboAppearRound"						"1|4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"refresh_count"						"4"
+			"exp"								"2"
+			"max"								"3"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_90"
+	{
+		"Note"									"幸运骰子I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_90"
+		"AbilityTextureName"					"item_phylactery_skywrath_mage_arcana_alt2"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_min"
+			{
+				"value"							"10"
+				"_turbo"						"20"
+			}
+			"gold_max"
+			{
+				"value"							"50"
+				"_turbo"						"160"
+			}
+			"round_gold"						"20"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_91"
+	{
+		"Note"									"幸运骰子II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_91"
+		"AbilityTextureName"					"item_phylactery_skywrath_mage_arcana_alt2"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_min"							"40"
+			"gold_max"							"110"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_94"
+	{
+		"Note"									"绝处逢生II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_94"
+		"AbilityTextureName"					"item_light_collector"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"threshold"							"23"
+			"bonus_gold"						"110"
+		}
+	}
+	"item_artifact_95"
+	{
+		"Note"									"消费主义I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_95"
+		"AbilityTextureName"					"item_artifact_95"
+		"AppearRound"							"8"
+		"TurboAppearRound"						"4"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"threshold"							"200"
+			"chance"							"100"
+			"gold"								"65"
+			"round_gold"						"20"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_96"
+	{
+		"Note"									"消费主义II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_96"
+		"AbilityTextureName"					"item_artifact_95"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"threshold"							"200"
+			"chance"							"100"
+			"gold"								"65"
+			"round_gold"						"30"
+		}
+	}
+	"item_artifact_97"
+	{
+		"Note"									"肉山杀手"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_97"
+		"AbilityTextureName"					"item_artifact_97"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"gold"								"300"
+			"refresh"							"5"
+		}
+	}
+	"item_artifact_98"
+	{
+		"Note"									"流派秘典I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_98"
+		"AbilityTextureName"					"item_artifact_98"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"5"
+		}
+	}
+	"item_artifact_99"
+	{
+		"Note"									"流派秘典II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_99"
+		"AbilityTextureName"					"item_artifact_98"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"6"
+		}
+	}
+	"item_artifact_100"
+	{
+		"Note"									"流派秘典III"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_100"
+		"AbilityTextureName"					"item_artifact_98"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"7"
+		}
+	}
+	"item_artifact_101"
+	{
+		"Note"									"复苏源泉"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_101"
+		"AbilityTextureName"					"item_seeds_of_serenity"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"base_regen"						"2"
+			"sect_lv"							"2"
+			"bonus_regen"						"2"
+		}
+	}
+	"item_artifact_103"
+	{
+		"Note"									"免费协议II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_103"
+		"AbilityTextureName"					"item_ofrenda_10"
+		"AppearRound"							"8|13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"refresh"							"11"
+			"limit"								"1"
+		}
+	}
+	"item_artifact_105"
+	{
+		"Note"									"练级I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_105"
+		"AbilityTextureName"					"item_artifact_105"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold"								"40"
+		}
+	}
+	"item_artifact_106"
+	{
+		"Note"									"练级II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_106"
+		"AbilityTextureName"					"item_artifact_105"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold"								"50"
+		}
+	}
+	"item_artifact_108"
+	{
+		"Note"									"胜负不看淡II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_108"
+		"AbilityTextureName"					"item_artifact_107"
+		"AppearRound"							"8|13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"hp"								"3"
+			"gold"								"50"
+		}
+	}
+	"item_artifact_109"
+	{
+		"Note"									"淘汰契约"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_109"
+		"AbilityTextureName"					"item_ofrenda_13"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"GroupModeBan"							"1"
+		"AbilityValues"
+		{
+			"base_gold"							"45"
+			"extra_gold"						"20"
+		}
+	}
+	"item_artifact_110"
+	{
+		"Note"									"投资"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_110"
+		"AbilityTextureName"					"item_artifact_110"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"gold"								"10"
+		}
+	}
+	"item_artifact_111"
+	{
+		"Note"									"静默红利I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_111"
+		"AbilityTextureName"					"item_ofrenda_21"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold"								"100"
+		}
+	}
+	"item_artifact_112"
+	{
+		"Note"									"静默红利II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_112"
+		"AbilityTextureName"					"item_ofrenda_21"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold"								"135"
+		}
+	}
+	"item_artifact_113"
+	{
+		"Note"									"美好前景"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_113"
+		"AbilityTextureName"					"item_artifact_113"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold"								"1300"
+			"round"								"17"
+		}
+	}
+	"item_artifact_114"
+	{
+		"Note"									"生命精华"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_114"
+		"AbilityTextureName"					"item_artifact_114"
+		"AppearRound"							"8"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_factor"						"2"
+			"limit"								"80"
+		}
+	}
+	"item_artifact_115"
+	{
+		"Note"									"寄生税赋I"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_115"
+		"AbilityTextureName"					"item_artifact_115"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"gold"								"70"
+		}
+	}
+	"item_artifact_117"
+	{
+		"Note"									"固定折扣"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_117"
+		"AbilityTextureName"					"item_artifact_117"
+		"AppearRound"							"8|13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"gold_reduce"						"15"
+		}
+	}
+	"item_artifact_118"
+	{
+		"Note"									"点金手"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_118"
+		"AbilityTextureName"					"hand_of_midas"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+	"item_artifact_122"
+	{
+		"Note"									"抑制器"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_122"
+		"AbilityTextureName"					"item_magnifying_monocle"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"6"
+		}
+	}
+	"item_artifact_125"
+	{
+		"Note"									"神秘学书籍II"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_125"
+		"AbilityTextureName"					"item_tome_of_aghanim"
+		"AppearRound"							"13"
+		"TurboAppearRound"						"7"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"exp"								"9"
+			"max_exp_reduce"					"10"
+			"charges"							"2"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_127"
+	{
+		"Note"									"助学贷"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_127"
+		"AbilityTextureName"					"item_ofrenda_05"
+		"AppearRound"							"3"
+		"TurboAppearRound"						"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"base_gold"							"70"
+			"sect_level"						"2"
+			"reduce_gold"						"5"
+		}
+		"Model"									"models/props_gameplay/neutral_box.vmdl"
+	}
+	"item_artifact_128"
+	{
+		"Note"									"狗头人酒杯"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_128"
+		"AbilityTextureName"					"item_kobold_cup"
+		"AppearRound"							"3"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"round"								"13"
+			"count"								"2"
+		}
+	}
+	"item_artifact_129"
+	{
+		"Note"									"复制器"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_129"
+		"AbilityTextureName"					"item_spellslinger"
+		"AppearRound"							"13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityValues"
+		{
+			"count"								"1"
+		}
+	}
+	"item_artifact_130"
+	{
+		"Note"									"丝奎奥克神像"
+		"BaseClass"								"item_lua"
+		"ScriptFile"							"abilities/artifact/item_artifact_130"
+		"AbilityTextureName"					"item_idol_of_screeauk"
+		"AppearRound"							"8|13"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"base_gold_reduce"					"100"
+			"count"								"1"
+		}
+	}
+}

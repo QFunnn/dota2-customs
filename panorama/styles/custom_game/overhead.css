@@ -1,0 +1,4146 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_Panel > VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	background-color: #191A267D;
+	border-radius: 3px;
+}
+
+.EOM_Panel > VerticalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel > HorizontalScrollBar
+{
+	height: 6px;
+	width: 95%;
+	horizontal-align: center;
+	border-radius: 3px;
+	background-color: #191A26;
+}
+
+.EOM_Panel > HorizontalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel.Default
+{
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+}
+
+.EOM_Image
+{
+	background-size: 100%;
+}
+
+.BattleWin
+{
+	max-width: 310px;
+	max-height: 310px;
+	align: center center;
+}
+
+.BattleWin #BattleWinSlogan
+{
+	width: 236px;
+	height: 148px;
+	background-image: url("s2r://panorama/images/custom_game/battle_message/battle_win/5420000_png.vtex");
+	background-size: 100%;
+	align: center center;
+}
+
+.BattleWin #BattleWinText
+{
+	vertical-align: center;
+	y: 4px;
+	width: 120px;
+	height: 34px;
+	font-size: 32px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFEEB3), to(#FFFFFF));
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3 #0E1236;
+	horizontal-align: center;
+}
+
+.BattleWin .BattleWinSloganEffect
+{
+	animation-name: BattleWinEffectFadeOut;
+	animation-duration: 1.5s;
+}
+
+.BattleWin #BattleWinSloganEffect
+{
+	width: 310px;
+	height: 310px;
+	align: center center;
+	opacity: 0;
+}
+
+.BattleWin #BattleWinSloganEffect #BattleWinBg
+{
+	width: 310px;
+	height: 310px;
+	overflow: noclip;
+	align: center center;
+}
+
+.BattleWin #BattleWinSloganEffect .BattleWinImage
+{
+	overflow: noclip;
+	align: center center;
+}
+
+.BattleWin #BattleWinSloganEffect #Left
+{
+	width: 94px;
+	height: 94px;
+	x: 8px;
+	y: -8px;
+}
+
+.BattleWin #BattleWinSloganEffect #Right
+{
+	width: 94px;
+	height: 94px;
+	x: -8px;
+	y: -8px;
+}
+
+.BattleWin #BattleWinSloganEffect #Center
+{
+	width: 156px;
+	height: 156px;
+}
+
+.BattleWin #BattleWinSloganEffect .Left
+{
+	animation-name: LeftPopup;
+	animation-duration: 0.25s;
+	animation-delay: 0.05s;
+}
+
+.BattleWin #BattleWinSloganEffect .Right
+{
+	animation-name: RightPopup;
+	animation-duration: 0.25s;
+}
+
+.BattleWin #BattleWinSloganEffect .Center
+{
+	animation-name: CenterPopup;
+	animation-duration: 0.25s;
+	animation-delay: 0.15s;
+}
+
+.BattleWin #BattleWinSloganEffect .BattleWinTextEffect
+{
+	animation-name: BattleWinTextFadeOut, BattleWinTextFadeIn;
+	animation-duration: 0.5s, 0.8s;
+	animation-delay: 1s, 0.2s;
+}
+
+.BattleWin #BattleWinSloganEffect #BattleWinTextEffect
+{
+	width: 120px;
+	height: 34px;
+	align: center center;
+	y: -2px;
+	opacity: 0;
+	font-size: 32px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFEEB3), to(#FFFFFF));
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 0px 3px 3 #0E1236;
+	horizontal-align: center;
+	z-index: 11;
+}
+
+@keyframes 'BattleWinEffectFadeOut'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	66.66667%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'BattleWinTextFadeOut'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'BattleWinTextFadeIn'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	10%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'LeftPopup'
+{
+	0%
+	{
+		transform: translateX(80px) translateY(-80px);
+		pre-transform-scale2d: 1.5;
+		opacity: 0;
+	}
+	
+	40%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	60%
+	{
+		transform: translateX(0px) translateY(0px);
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'RightPopup'
+{
+	0%
+	{
+		transform: translateX(-80px) translateY(-80px);
+		pre-transform-scale2d: 1.5;
+		opacity: 0;
+	}
+	
+	40%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	60%
+	{
+		transform: translateX(0px) translateY(0px);
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'CenterPopup'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.25;
+		opacity: 0;
+	}
+	
+	40%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+.CourierTitle
+{
+	width: 192px;
+	height: 60px;
+	overflow: noclip;
+}
+
+.CourierTitle #CourierTitleBG
+{
+	width: 192px;
+	height: 192px;
+	align: center center;
+	z-index: -10;
+}
+
+.CourierTitle #CourierTitleLabel
+{
+	max-width: 120px;
+	max-height: 32px;
+	text-overflow: shrink;
+	text-align: center;
+	color: white;
+	align: center center;
+	text-shadow: 0px 0px 3px 3 black;
+	y: 1px;
+	font-size: 20px;
+}
+
+.CourierTitle #CourierTitleParticle
+{
+	width: 200px;
+	height: 200px;
+	align: center center;
+}
+
+.CourierTitle.ID5250011 #CourierTitleParticle
+{
+	z-index: -1;
+}
+
+.EOM_Icon
+{
+	width: 100%;
+	height: width-percentage(100%);
+	background-size: 100%;
+	transition-property: pre-transform-rotate2d;
+	transition-duration: 0.2s;
+}
+
+.EOM_Icon.EOM_IconSpin
+{
+	animation-name: SpinnerRotate;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Icon.EOM_IconShadow
+{
+	img-shadow: 0px 0px 3px 3 black;
+}
+
+.EOM_Icon.Mirror
+{
+	transform: rotateY(180deg);
+}
+
+.EOM_Icon.Size16
+{
+	width: 16px;
+	height: 16px;
+}
+
+.EOM_Icon.Size24
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_Icon.Size32
+{
+	width: 32px;
+	height: 32px;
+}
+
+.EOM_Icon.Size48
+{
+	width: 48px;
+	height: 48px;
+}
+
+.EOM_Icon.Size64
+{
+	width: 64px;
+	height: 64px;
+}
+
+.EOM_Icon.Size96
+{
+	width: 96px;
+	height: 96px;
+}
+
+.EOM_Icon.Size128
+{
+	width: 128px;
+	height: 128px;
+}
+
+.EOM_IconRefresh
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_IconGear
+{
+	background-image: url("s2r://panorama/images/control_icons/gear_png.vtex");
+}
+
+.EOM_IconArrowRight
+{
+	width: 18px;
+	height: width-percentage(175%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_right_psd.vtex");
+}
+
+.EOM_IconArrowSolidRight
+{
+	width: 19px;
+	height: width-percentage(167%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+}
+
+.EOM_IconArrowExpand
+{
+	background-image: url("s2r://panorama/images/control_icons/expand_png.vtex");
+}
+
+.EOM_IconPopout
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_popout_png.vtex");
+}
+
+.EOM_IconLockSmall
+{
+	background-image: url("s2r://panorama/images/profile/icon_locked_psd.vtex");
+}
+
+.EOM_IconXClose
+{
+	width: 34px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Gradient
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
+}
+
+.EOM_IconXClose.Quit
+{
+	background-image: url("s2r://panorama/images/control_icons/quit_png.vtex");
+}
+
+.EOM_IconXClose.Tui9
+{
+	width: 37px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui9/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui10
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui10/x_close3_png.vtex");
+}
+
+.EOM_IconXClose.Tui10_old
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui10/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui7/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui3/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.P2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/p2/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.C4_old
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.C4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_store_close_png.vtex");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_close_png.vtex");
+}
+
+.EOM_IconSpinner
+{
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+}
+
+.EOM_Button
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness;
+	transition-duration: 0.05s;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_Button_Text
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_IconButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness;
+	transition-duration: 0.05s;
+	height: width-percentage(100%);
+	z-index: 1;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+}
+
+.EOM_IconButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_IconButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_IconButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.Loading Label
+{
+	opacity: 0;
+}
+
+.EOM_Button.Tui6
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui6.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui6.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui6.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui6.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui6.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui6.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui6:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.Tui6:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.Tui6:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.Tui6 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui7
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui7.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui7.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui7.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui7.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui7.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui7.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui7:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.Tui7:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.Tui7:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.Tui7 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui7.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui7.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui7.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui7.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui7.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui7.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui7/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui9
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui9.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui9.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui9.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui9.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui9.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui9.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui9:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.Tui9:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.Tui9:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.Tui9 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui9.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui9.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui9.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui9.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui9.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui9.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui9/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui3
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui3.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui3.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui3.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui3.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui3.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui3.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.Tui3:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.Tui3:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.Tui3:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.Tui3 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Tui3.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_red_png.vtex");
+}
+
+.EOM_Button.Tui3.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_green_png.vtex");
+}
+
+.EOM_Button.Tui3.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_purple_png.vtex");
+}
+
+.EOM_Button.Tui3.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_gray_png.vtex");
+}
+
+.EOM_Button.Tui3.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_gold_png.vtex");
+}
+
+.EOM_Button.Tui3.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui3/btn_blue_png.vtex");
+}
+
+.EOM_Button.P2
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.P2.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.P2.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.P2.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.P2.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.P2.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.P2.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.P2:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.P2:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.P2:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.P2 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.P2.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_red_png.vtex");
+}
+
+.EOM_Button.P2.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_green_png.vtex");
+}
+
+.EOM_Button.P2.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_purple_png.vtex");
+}
+
+.EOM_Button.P2.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_gray_png.vtex");
+}
+
+.EOM_Button.P2.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_gold_png.vtex");
+}
+
+.EOM_Button.P2.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/p2/btn_blue_png.vtex");
+}
+
+.EOM_Button.C4
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+	width: 186px;
+	height: 58px;
+}
+
+.EOM_Button.C4.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.C4.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.C4.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.C4.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.C4.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.C4.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.C4:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.C4:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.C4:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.C4 Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.C4 Label
+{
+	color: #FFF9EB;
+	font-size: 22px;
+	text-shadow: 0px 0px 3px 1 #606061;
+}
+
+.EOM_Button.C4.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_red_png.vtex");
+}
+
+.EOM_Button.C4.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_green_png.vtex");
+}
+
+.EOM_Button.C4.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_purple_png.vtex");
+}
+
+.EOM_Button.C4.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_gray_png.vtex");
+}
+
+.EOM_Button.C4.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_gold_png.vtex");
+}
+
+.EOM_Button.C4.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_blue_png.vtex");
+}
+
+.EOM_Button.C4.Light
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/q_buttom_light_png.vtex");
+}
+
+.EOM_Button.C4:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_gray_png.vtex");
+	wash-color: white;
+	saturation: 1;
+	brightness: 1;
+}
+
+.EOM_Button.C4:disabled Label
+{
+	color: #CBCBCB;
+	text-shadow: 0px 0px 3px 1 #606061;
+}
+
+.EOM_Button.C4glass
+{
+	width: 152px;
+	height: 42px;
+	margin: 8px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+	width: 186px;
+	height: 58px;
+}
+
+.EOM_Button.C4glass.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_red_png.vtex");
+}
+
+.EOM_Button.C4glass.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_green_png.vtex");
+}
+
+.EOM_Button.C4glass.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_purple_png.vtex");
+}
+
+.EOM_Button.C4glass.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gray_png.vtex");
+}
+
+.EOM_Button.C4glass.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_gold_png.vtex");
+}
+
+.EOM_Button.C4glass.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/tui6/btn_blue_png.vtex");
+}
+
+.EOM_Button.C4glass:enabled:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Button.C4glass:active
+{
+	brightness: 0.5;
+}
+
+.EOM_Button.C4glass:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.C4glass Label
+{
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.C4glass Label
+{
+	color: #FFF9EB;
+	font-size: 22px;
+	text-shadow: 0px 0px 3px 1 #606061;
+}
+
+.EOM_Button.C4glass.Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_red_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Green
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_green_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_purple_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_grey_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_gold_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_blue_02_png.vtex");
+}
+
+.EOM_Button.C4glass.Light
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_light_02_png.vtex");
+}
+
+.EOM_Button.C4glass:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/button_grey_02_png.vtex");
+	wash-color: white;
+	saturation: 1;
+	brightness: 1;
+}
+
+.EOM_Button.C4glass:disabled Label
+{
+	color: #CBCBCB;
+	text-shadow: 0px 0px 3px 1 #606061;
+}
+
+.EOM_Button.Bevel
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#373d45), to(#4d5860));
+	border-style: solid;
+	border-width: 1px;
+	padding: 4px 10px;
+	margin: 8px;
+	border-top-color: #555555;
+	border-left-color: #494949;
+	border-bottom-color: #333333;
+	border-right-color: #404040;
+	transition-property: background-color, opacity;
+	transition-duration: 0.05s;
+	transition-timing-function: linear;
+	box-shadow: #00000055 0px 0px 4px 0px;
+	min-width: 192px;
+	min-height: 36px;
+}
+
+.EOM_Button.Bevel.Green
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a481f), to(#226326));
+	border-top-color: #355639;
+	border-left-color: #2c4d30;
+	border-bottom-color: #1e371e;
+	border-right-color: #214123;
+}
+
+.EOM_Button.Bevel.DarkGreen
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2c13), to(#18441b));
+	border-top-color: #223524;
+	border-left-color: #2c4d30;
+	border-bottom-color: #091009;
+	border-right-color: #132615;
+}
+
+.EOM_Button.Bevel.Bronze
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#b9894c), to(#dca157));
+	border-top-color: #e0a75e;
+	border-left-color: #dca35b;
+	border-bottom-color: #8d683a;
+	border-right-color: #8f6b3c;
+}
+
+.EOM_Button.Bevel.Plus
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#877f4f), to(#a79c5b));
+	border-top-color: #b4a442;
+	border-left-color: #aea463;
+	border-bottom-color: #635e3b;
+	border-right-color: #756f45;
+}
+
+.EOM_Button.Bevel:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4c5561), to(#6c7d88));
+	border-top-color: #aaaaaa77;
+	border-left-color: #aaaaaa33;
+	border-bottom-color: #333333;
+	border-right-color: #404040;
+}
+
+.EOM_Button.Bevel.Green:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#226528), to(#288a36));
+	border-top-color: #030503;
+	border-left-color: #000000;
+	border-bottom-color: #1e371d;
+	border-right-color: #244426;
+}
+
+.EOM_Button.Bevel.DarkGreen:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#17421b), to(#185321));
+	border-top-color: #000000;
+	border-left-color: #000000;
+	border-bottom-color: #172a16;
+	border-right-color: #152716;
+}
+
+.EOM_Button.Bevel.Bronze:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#dda45a), to(#fcb965));
+	border-top-color: #f2b362;
+	border-left-color: #edb062;
+	border-bottom-color: #966f3e;
+	border-right-color: #966f3e;
+}
+
+.EOM_Button.Bevel.Plus:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a79d63), to(#c2b56b));
+	border-top-color: #cab84b;
+	border-left-color: #c6bb72;
+	border-bottom-color: #7c764b;
+	border-right-color: #8e8755;
+}
+
+.EOM_Button.Bevel:disabled
+{
+	wash-color: #AAAAAA;
+	saturation: 0;
+}
+
+.EOM_Button.Bevel.Bronze:disabled
+{
+	saturation: 0.75;
+}
+
+.EOM_Button.Bevel.Plus:disabled
+{
+	saturation: 0.75;
+}
+
+.EOM_Button.Bevel Label
+{
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	horizontal-align: center;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 0px 0px 1 #000000;
+	transition-property: color;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button.Bevel:disabled Label
+{
+	color: #333333;
+}
+
+.EOM_Button.Bevel:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#393939), to(#555555));
+	border-top-color: #222222;
+	border-left-color: #303030;
+	border-bottom-color: #666666;
+	border-right-color: #444444;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_Button.Bevel.Green:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1f3d25), to(#2b562c));
+	border-top-color: #132416;
+	border-left-color: #192f1b;
+	border-bottom-color: #386b3b;
+	border-right-color: #264a29;
+}
+
+.EOM_Button.Bevel.DarkGreen:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#132416), to(#183019));
+	border-top-color: #09110a;
+	border-left-color: #0f1b10;
+	border-bottom-color: #1f3820;
+	border-right-color: #172c19;
+}
+
+.EOM_Button.Bevel.Bronze:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4d391f), to(#9b713c));
+	border-top-color: #684e2d;
+	border-left-color: #6d522f;
+	border-bottom-color: #977242;
+	border-right-color: #906c3f;
+}
+
+.EOM_Button.Bevel.Plus:active
+{
+	color: #DCD086;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#877f4f), to(#a79c5b));
+	border-top-color: #635e3b;
+	border-left-color: #756f45;
+	border-bottom-color: #b4a442;
+	border-right-color: #aea463;
+}
+
+.EOM_Button.Bevel:active Label
+{
+	transform: translateY(1px);
+}
+
+.EOM_Button.Default
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#222222), to(#4B555D));
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: cover;
+	border: 1px solid #83838390;
+	margin: 8px;
+	min-width: 192px;
+	max-width: 500px;
+	padding: 10px 30px;
+	transition-property: background-color, wash-color;
+	transition-delay: 0s;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.EOM_Button.Default Label
+{
+	color: white;
+	font-size: 20px;
+	horizontal-align: center;
+	vertical-align: middle;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 3 #000000;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+}
+
+.EOM_Button.Default:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#58636e), to(#53626e));
+}
+
+.EOM_Button.Default:disabled
+{
+	opacity: 0.3;
+}
+
+.EOM_Button.Default:disabled Label
+{
+	color: #999999;
+}
+
+.EOM_Button.Default:active Label
+{
+	transform: translateY(1px);
+}
+
+.EOM_Button.Default:active
+{
+	border: 1px solid #83838390;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#272f33), to(#5a6c75));
+}
+
+.EOM_Button.Default.Activated
+{
+	sound: "ui_quit_menu_fadeout";
+}
+
+.EOM_Button.Default.Green
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#03380a), to(#3d9b3d));
+	border: 1px solid #91EA4B40;
+}
+
+.EOM_Button.Default.Green:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#085c13), to(#49a349));
+}
+
+.EOM_Button.Default.Green:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#012907), to(#215c21));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Default.Blue
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#112b3a), to(#1E5D81));
+	border: 1px solid #4BCDEA30;
+}
+
+.EOM_Button.Default.Blue:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#164f70), to(#287aaa));
+}
+
+.EOM_Button.Default.Blue:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#091a24), to(#174864));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Default.Red
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#7e1212), to(#da4d4d));
+	border: 1px solid #ff555550;
+}
+
+.EOM_Button.Default.Red:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9e2828), to(#f76d6d));
+}
+
+.EOM_Button.Default.Red:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#580d0d), to(#a52e2e));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Default.Purple
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#431172), to(#893cad));
+	border: 1px solid #b772f850;
+}
+
+.EOM_Button.Default.Purple:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5c179c), to(#ad5cd3));
+}
+
+.EOM_Button.Default.Purple:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2e0b4e), to(#61237e));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Default.Gold
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#795714), to(#fdc762));
+	border: 1px solid #fcc81e50;
+}
+
+.EOM_Button.Default.Gold:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a37924), to(#ffda95));
+}
+
+.EOM_Button.Default.Gold:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4b360b), to(#b48630));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Store
+{
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+	padding: 5px 14px 3px 14px;
+	min-width: 180px;
+	margin: 8px;
+	height: 39px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+}
+
+.EOM_Button.Store Label
+{
+	color: white;
+	horizontal-align: center;
+	vertical-align: middle;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 2 #000000;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+}
+
+.EOM_Button.Store:disabled Label
+{
+	color: #999999;
+}
+
+.EOM_Button.Store:hover:enabled
+{
+	brightness: 2;
+}
+
+.EOM_Button.Store:active
+{
+	brightness: 1.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_Button.Store:disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#646666), to(#646666));
+}
+
+.EOM_Button.Store.Direct
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+}
+
+.EOM_Button.Store.InBundle
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#c28000), to(#744c00));
+}
+
+.EOM_Button.Store.Blue,.EOM_Button.Store.InTreasure
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3784a6), to(#215373));
+}
+
+.EOM_Button.Store.AdditionalDropInTreasure
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3751a6), to(#1b2b5e));
+}
+
+.EOM_Button.Store.DotaPlus
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e0c59a), to(#ae9249));
+}
+
+.EOM_Button.Store.DotaPlus:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f7d9aa), to(#d1af58));
+}
+
+.EOM_Button.Store.DotaPlus:active
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#f7d9aa), to(#d1af58));
+}
+
+.EOM_Button.Store.Market
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#307663), to(#245a4b));
+}
+
+.EOM_Button.Store.ShardsPurchase
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#433620), to(#141b21));
+	border-top: 1px solid #ffffff11;
+}
+
+.EOM_Button.Store.Gift
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+}
+
+.EOM_Button.Store.Season_Winter2017
+{
+	background-image: url("s2r://panorama/images/compendium/winter2016/home_block_backgrounds/silver_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_International2016
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6b211c), to(#8e2b19));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_Fall2016
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b3e18), to(#455c1e));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_International2017
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#154e6b), to(#52a0ae));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_International2018
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#012311), to(#1f8c51));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_International2019
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0B0119), to(#34156B));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_International2020
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#B28948), to(#3A1803));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Store.Season_Spring2021
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9D5599), to(#3A103A));
+	background-size: 100% 100%;
+}
+
+.EOM_Button.Primary
+{
+	margin: 8px;
+	min-width: 330px;
+	max-height: 49px;
+	padding: 4px 12px 4px 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5A615Ecc), to(#879695cc));
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 328px 50px;
+	box-shadow: fill #002a6644 1px 1px 8px 1px;
+	border-top: 1px solid #ffffff44;
+	border-right: 1px solid #00000088;
+	border-left: 1px solid #ffffff44;
+	border-bottom: 1px solid #00000088;
+	opacity: 1;
+	transition-property: box-shadow, background-color, opacity, transform;
+	transition-delay: 0s;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5Aa15E), to(#87d69533));
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+.EOM_Button.Primary:enabled:hover
+{
+	box-shadow: fill #414f4daa 0px 0px 8px 0px;
+	brightness: 1.2;
+}
+
+.EOM_Button.Primary:disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5A615E), to(#ffffff));
+}
+
+.EOM_Button.Primary:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5A615E), to(#ffffff));
+}
+
+.EOM_Button.Primary Label
+{
+	margin-top: 2px;
+	horizontal-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	text-align: center;
+	height: 40px;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px #000000;
+	transition-property: color;
+	transition-delay: 0s;
+	transition-duration: 0.2s;
+}
+
+.EOM_Button.Primary.Gray
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5A615Ecc), to(#879695cc));
+	saturation: 0.1;
+	opacity: 0.5;
+	box-shadow: none;
+}
+
+.EOM_Button.Primary.Gray:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5Aa15E), to(#87d695));
+	box-shadow: fill #5Aa15E20 0px 0px 8px 0px;
+}
+
+.EOM_Button.Primary.Black
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14161a), to(#23262b));
+	box-shadow: fill #00000000 0px 0px 0px 0px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+}
+
+.EOM_Button.Primary.Black:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14161a), to(#23262b));
+	box-shadow: fill #00000000 0px 0px 0px 0px;
+}
+
+.EOM_Button.Primary.Blue
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#486ca9cc));
+	box-shadow: fill #486ca922 0px 0px 8px 0px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+}
+
+.EOM_Button.Primary.Blue:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#84acff));
+	box-shadow: fill #486ca966 0px 0px 18px 0px;
+}
+
+.EOM_Button.Primary.DarkBlue
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#102149cc), to(#1e3565cc));
+	box-shadow: fill #486ca922 0px 0px 8px 0px;
+	border-top: 1px solid #486ca944;
+	border-left: 1px solid #486ca944;
+	border-right: 1px solid #00000088;
+	border-bottom: 1px solid #00000088;
+}
+
+.EOM_Button.Primary.DarkBlue:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#102149ff), to(#345288));
+	box-shadow: fill transparent 0px 0px 0px 0px;
+}
+
+.EOM_Button.Primary.Red
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#7e1212), to(#da4d4d));
+	border: 1px solid #ff555550;
+}
+
+.EOM_Button.Primary.Red:enabled:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9e2828), to(#f76d6d));
+}
+
+.EOM_Button.Primary.Red:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#580d0d), to(#a52e2e));
+	border: 1px solid #ffffff10;
+}
+
+.EOM_Button.Text
+{
+	margin: 8px;
+	height: 24px;
+}
+
+.EOM_Button.Text:enabled:hover Label
+{
+	color: #CCCCCC;
+}
+
+.EOM_Button.Text.selected Label
+{
+	color: white;
+	sound: "ui_rollover_micro";
+}
+
+.EOM_Button.Text:active
+{
+	transform: translateY(2px);
+}
+
+.EOM_Button.Text:active:selected
+{
+	transform: translateY(0px);
+}
+
+.EOM_Button.Text Label
+{
+	color: #939da044;
+	font-size: 20px;
+	align: center center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 5px 3 #000000;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	transition-property: color, text-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+}
+
+.EOM_Button.Outline
+{
+	margin: 8px;
+	border: 1px solid #ffffff30;
+	padding: 8px 16px;
+	border-radius: 2px;
+	background-color: #00000030;
+	transition-property: border, background-color;
+	transition-duration: 0.3s;
+}
+
+.EOM_Button.Outline Label
+{
+	text-align: right;
+	font-size: 14px;
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px 4px black;
+}
+
+.EOM_Button.Outline:hover
+{
+	border: 1px solid #ffffff90;
+	background-color: #00000090;
+	transition-property: border, background-color;
+	transition-duration: 0.3s;
+}
+
+.EOM_Button.Outline:active
+{
+	brightness: 1.5;
+	sound: "ui_select_blue";
+}
+
+.EOM_Button.Outline.Blue
+{
+	border: 1px solid #3366aa55;
+	background-color: #3366aa11;
+	border-radius: 0px;
+}
+
+.EOM_Button.Outline.Blue Label
+{
+	margin: 0px 24px 0px 24px;
+	color: #66aadd;
+	font-size: 16px;
+	letter-spacing: normal;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+.EOM_Button.Outline.Blue:enabled:hover Label
+{
+	color: white;
+}
+
+.EOM_Button.Outline.Blue:enabled:hover
+{
+	border: 1px solid #22aaffaa;
+	background-color: #3366aa44;
+}
+
+.EOM_Button.Outline.Blue:active
+{
+	background-color: #23468a44;
+	sound: "ui_select_blue";
+}
+
+.EOM_Button.Outline.Blue:active Label
+{
+	color: #76baed;
+}
+
+.EOM_Button.Outline.Blue:disabled
+{
+	wash-color: #000000DD;
+	saturation: 0;
+}
+
+.EOM_Button.Outline.Gray
+{
+	border-color: #4C575F44;
+	border-color: #4C575Fff;
+	background-color: #3A444433;
+	border-radius: 0px;
+}
+
+.EOM_Button.Outline.Gray Label
+{
+	color: #768E8D;
+}
+
+.EOM_Button.Outline.Gray:enabled:hover Label
+{
+	color: white;
+}
+
+.EOM_Button.Outline.Gray:enabled:hover
+{
+	border-color: #4C575Fff;
+}
+
+.EOM_Button.Outline.Gray:selected,.EOM_Button.Outline.Gray:active
+{
+	background-color: #4C575F;
+}
+
+.EOM_Button.Outline.Red
+{
+	border-color: #EA6953;
+	border-radius: 0px;
+}
+
+.EOM_Button.Outline.Red Label
+{
+	color: #EA6953;
+}
+
+.EOM_Button.Outline.Red:enabled:hover Label
+{
+	color: #FEE6A9;
+}
+
+.EOM_Button.Outline.Red:enabled:hover
+{
+	border-color: #EA6953;
+}
+
+.EOM_DiamondButton
+{
+	background-repeat: no-repeat;
+	transition-property: brightness;
+	transition-duration: 0.05s;
+	width: 38px;
+	height: 38px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/anim_button_bg_png.vtex");
+}
+
+.EOM_DiamondButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_DiamondButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_DiamondButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_DiamondButton #EOM_DiamondButton_Point
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/anim_button_point_png.vtex");
+}
+
+.EOM_DiamondButton #EOM_DiamondButton_Arrow
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/anim_button_arrow_png.vtex");
+}
+
+.EOM_DiamondButton.animation #EOM_DiamondButton_Point
+{
+	animation-duration: 2s;
+	animation-name: EOM_DiamondButtonPoint;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.EOM_DiamondButton.animation #EOM_DiamondButton_Arrow
+{
+	animation-duration: 2s;
+	animation-name: EOM_DiamondButtonArrow;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.EOM_DiamondButton.up
+{
+	pre-transform-rotate2d: -90deg;
+}
+
+.EOM_DiamondButton.down
+{
+	pre-transform-rotate2d: 90deg;
+}
+
+.EOM_DiamondButton.left
+{
+	pre-transform-rotate2d: 180deg;
+}
+
+@keyframes 'EOM_DiamondButtonPoint'
+{
+	0%
+	{
+		x: 6%;
+	}
+	
+	50%
+	{
+		x: -8%;
+	}
+	
+	100%
+	{
+		x: 6%;
+	}
+	
+}
+
+@keyframes 'EOM_DiamondButtonArrow'
+{
+	0%
+	{
+		x: 0;
+	}
+	
+	50%
+	{
+		x: 7%;
+	}
+	
+	100%
+	{
+		x: 0%;
+	}
+	
+}
+
+.HeroProficiencyIcon
+{
+	width: 100px;
+	height: 100px;
+	overflow: noclip;
+}
+
+.HeroProficiencyIcon.small
+{
+	width: 80px;
+	height: 80px;
+}
+
+.HeroProficiencyIcon #HeroProficiencyIconMedal
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.HeroProficiencyIcon.Level0 #HeroProficiencyIconFX
+{
+	width: 120%;
+	height: 120%;
+}
+
+.HeroProficiencyIcon.Level1 #HeroProficiencyIconFX
+{
+	opacity: 0.5;
+	width: 120%;
+	height: 120%;
+	saturation: 0;
+}
+
+.HeroProficiencyIcon.Level2 #HeroProficiencyIconFX
+{
+	opacity: 0.5;
+	hue-rotation: -80deg;
+}
+
+.HeroProficiencyIcon.Level3 #HeroProficiencyIconFX
+{
+	saturation: 1.7;
+	opacity: 0.7;
+}
+
+.HeroProficiencyIcon.Level4 #HeroProficiencyIconFX
+{
+	hue-rotation: 110deg;
+	saturation: 1.5;
+	opacity: 0.7;
+}
+
+.HeroProficiencyIcon.Level5 #HeroProficiencyIconFX
+{
+	width: 170%;
+	height: 170%;
+	hue-rotation: 150deg;
+	saturation: 1.5;
+	opacity: 0.7;
+}
+
+.HeroProficiencyIcon.Level6 #HeroProficiencyIconFX
+{
+	width: 200%;
+	height: 200%;
+	hue-rotation: 10deg;
+	saturation: 0.7;
+	opacity: 0.7;
+}
+
+.HeroProficiencyIcon.Level7 #HeroProficiencyIconFX
+{
+	width: 180%;
+	height: 180%;
+	hue-rotation: -20deg;
+	saturation: 1.1;
+	animation-name: ProficiencyIconFXRGBLV7;
+	animation-duration: 5s;
+	animation-delay: 0.4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.HeroProficiencyIcon.Level8 #HeroProficiencyIconFX
+{
+	width: 200%;
+	height: 200%;
+	hue-rotation: 240deg;
+	animation-name: ProficiencyIconFXRGBLV8;
+	animation-duration: 5s;
+	animation-delay: 0.4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.HeroProficiencyIcon #HeroProficiencyIconFX
+{
+	align: center center;
+	width: 150%;
+	height: 150%;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_irregular_png.vtex");
+}
+
+.HeroProficiencyIcon.Level8 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/08_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level8 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/08_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level7 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/07_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level7 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/07_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level6 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/06_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level6 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/06_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level5 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/05_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level5 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/05_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level4 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/04_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level4 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/04_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level3 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/03_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level3 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/03_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level2 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/02_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level2 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/02_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level1 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/01_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level1 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/01_80x80_png.vtex");
+}
+
+.HeroProficiencyIcon.Level0 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/00_100x100_png.vtex");
+}
+
+.HeroProficiencyIcon.small.Level0 #HeroProficiencyIconMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/proficiency_icon/00_80x80_png.vtex");
+}
+
+@keyframes 'ProficiencyIconFXRGBLV7'
+{
+	0%
+	{
+		hue-rotation: -30deg;
+	}
+	
+	10%
+	{
+		hue-rotation: -20deg;
+		saturation: 1.1;
+	}
+	
+	20%
+	{
+		hue-rotation: -40deg;
+	}
+	
+	40%
+	{
+		hue-rotation: -20deg;
+		saturation: 1.1;
+	}
+	
+	60%
+	{
+		hue-rotation: -30deg;
+	}
+	
+	80%
+	{
+		hue-rotation: 10deg;
+		saturation: 1.1;
+	}
+	
+	100%
+	{
+		hue-rotation: -30deg;
+	}
+	
+}
+
+@keyframes 'ProficiencyIconFXRGBLV8'
+{
+	0%
+	{
+		hue-rotation: 190deg;
+	}
+	
+	10%
+	{
+		hue-rotation: 150deg;
+	}
+	
+	20%
+	{
+		hue-rotation: 170deg;
+	}
+	
+	30%
+	{
+		hue-rotation: 150deg;
+	}
+	
+	40%
+	{
+		hue-rotation: 190deg;
+	}
+	
+	50%
+	{
+		hue-rotation: 210deg;
+	}
+	
+	60%
+	{
+		hue-rotation: 200deg;
+	}
+	
+	70%
+	{
+		hue-rotation: 220deg;
+	}
+	
+	80%
+	{
+		hue-rotation: 180deg;
+	}
+	
+	90%
+	{
+		hue-rotation: 200deg;
+	}
+	
+	100%
+	{
+		hue-rotation: 190deg;
+	}
+	
+}
+
+.EOM_LabelTitle
+{
+	font-size: 22px;
+	color: #DFC97C;
+	text-shadow: 0px 0px 1px 4 #000000;
+}
+
+.EOM_LabelNormal
+{
+	font-size: 16px;
+	color: #A7A18D;
+}
+
+.EOM_LabelMoney
+{
+	font-size: 24px;
+	color: #FFD060;
+}
+
+.EOM_LabelTip
+{
+	font-size: 16px;
+	color: white;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.EOM_Currency
+{
+	width: 146px;
+	margin: 0px 6px;
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	flow-children: down;
+}
+
+.EOM_Currency .EOM_Feedback
+{
+	horizontal-align: center;
+}
+
+.EOM_Currency .EOM_Feedback Label
+{
+	font-size: 10px;
+	color: #3AC7DB;
+	text-decoration: underline;
+}
+
+.EOM_Currency .EOM_Feedback:hover
+{
+	brightness: 2;
+}
+
+.EOM_Currency .EOM_Feedback:active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_Currency .EOM_CurrencyContainer
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyIconBG
+{
+	vertical-align: center;
+	width: 28px;
+	height: 28px;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyIcon
+{
+	align: center center;
+	width: 26px;
+	height: 26px;
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 138px;
+	height: 26px;
+	margin-left: 14px;
+	margin-right: 13px;
+	background-color: #060D14;
+	border: 1px solid #394860;
+	z-index: -1;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyLabelContainer Label
+{
+	vertical-align: center;
+	margin-left: 23px;
+	font-size: 16px;
+	color: #FAE9AE;
+	text-overflow: shrink;
+	width: 84px;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyRecharge
+{
+	width: 26px;
+	height: 26px;
+	horizontal-align: right;
+}
+
+.EOM_Currency .EOM_CurrencyContainer .EOM_CurrencyRecharge .EOM_Image
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EOM_Currency.Tui7 .EOM_CurrencyContainer .EOM_CurrencyRecharge .EOM_Image
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui7/btn_add_png.vtex");
+}
+
+.EOM_Currency.P2 .EOM_CurrencyContainer .EOM_CurrencyRecharge .EOM_Image
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/p2/btn_add_png.vtex");
+}
+
+.EOM_Currency.C4
+{
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer
+{
+	width: 100%;
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyRecharge .EOM_Image
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_store_add_png.vtex");
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	height: 32px;
+	margin-left: 30px;
+	margin-right: 13px;
+	background-color: #1F2948;
+	border: 1px solid #394860;
+	z-index: -1;
+	border-top-right-radius: 16px;
+	border-bottom-right-radius: 16px;
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyLabelContainer Label
+{
+	vertical-align: center;
+	font-size: 16px;
+	color: #e5e5e5;
+	text-overflow: shrink;
+	width: 100%;
+	margin-top: 1px;
+	margin-left: 10px;
+	margin-right: 30px;
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyIconBG
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/store/new/currency_icon_bg_png.vtex");
+}
+
+.EOM_Currency.C4 .EOM_CurrencyContainer .EOM_CurrencyIcon
+{
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.PlayerAvatar
+{
+	width: 56px;
+	height: 56px;
+}
+
+.PlayerAvatar .EOM_Avatar
+{
+	width: 76%;
+	height: 76%;
+	align: center center;
+}
+
+.PlayerAvatar .AvatarBorder
+{
+	width: 100%;
+	height: 100%;
+	background-size: 150%;
+	background-position: center center;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: bottom;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderBG
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_exchange_png.vtex");
+	background-size: 100%;
+	width: 78px;
+	height: 28px;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+#RecentOrder #RecentOrderTips
+{
+	color: #5cc5e6;
+	font-size: 14px;
+	margin-top: 32px;
+	horizontal-align: center;
+	text-decoration: underline;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/common/c4/btn_exchange_png.vtex");
+	background-size: 100%;
+	width: 78px;
+	height: 28px;
+	align: right center;
+	margin: 0px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 236px;
+	height: 37px;
+}
+
+.ExchangeEntry #ExchangeTextEntry TextEntry
+{
+	width: 100%;
+	height: 27px;
+	font-size: 16px;
+	margin: 4px 85px 4px 21px;
+	padding: 3px 0px;
+	vertical-align: center;
+	overflow: clip;
+}
+
+.ExchangeEntry #ExchangeTextEntry TextEntry.russian #PlaceholderText
+{
+	font-size: 12px;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.PlayerRowBGOrnament
+{
+	width: 250px;
+	height: 80px;
+}
+
+.PlayerRowBGOrnament .PlayerRowBG
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/s_player_bg_png.vtex");
+	background-size: 100%;
+	width: 182px;
+	height: 48px;
+	margin-left: 38px;
+	margin-top: 20px;
+	z-index: -1;
+	opacity: 0.5;
+	margin-right: 5px;
+}
+
+.PlayerRowBGOrnament.oid5760001 #NameDecorationHealthBarContainer
+{
+	y: 2px;
+	x: -1px;
+}
+
+.PlayerRowBGOrnament.oid5760002 #NameDecorationHealthBarContainer
+{
+	y: 1px;
+}
+
+.PlayerRowBGOrnament.oid5760004 #NameDecorationHealthBarContainer
+{
+	y: -2px;
+}
+
+.PlayerRowBGOrnament .NameDecorationHealthBG,.PlayerRowBGOrnament .PlayerRowNameDecoration
+{
+	width: 250px;
+	height: 80px;
+	background-size: 100%;
+	opacity: 0.8;
+}
+
+.PlayerRowBGOrnament #NameDecorationHealthBarContainer
+{
+	horizontal-align: right;
+	margin-right: 24px;
+	margin-top: 12px;
+}
+
+.SectAbilityImage #SectAbilityImage_Image
+{
+	width: 100%;
+	height: 100%;
+	img-shadow: 0px 0px 5px 5 black;
+}
+
+.SectAbilityImage .SectAbilityImageBorder
+{
+	align: center center;
+	width: 88px;
+	height: 88px;
+	overflow: noclip;
+}
+
+.OverheadRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+}
+
+.OverheadContainer
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+.New #HealthProgress #HealthProgress_Loss
+{
+	transition-duration: 0s;
+	animation-duration: 0s;
+}
+
+.Overhead
+{
+	overflow: noclip;
+}
+
+.Overhead.IsEnemy.IsCursor:not(.IsSelected) #LifeTime
+{
+	box-shadow: #ef2e3e 0px 0px 2px 0px;
+}
+
+.Overhead.IsEnemy.IsCursor:not(.IsSelected) #Bar
+{
+	box-shadow: #ef2e3e 0px 0px 8px 0px;
+}
+
+.Overhead.IsEnemy #LifeTime
+{
+	hue-rotation: 256deg;
+	saturation: 1.1;
+}
+
+.Overhead.IsEnemy #HealthProgress #HealthProgress_Left
+{
+	hue-rotation: 256deg;
+	saturation: 1.1;
+}
+
+.Overhead.IsEnemy #HealthProgress #HealthProgress_Loss
+{
+	background-color: #e4bb86;
+}
+
+.Overhead.IsPortrait #HealthProgress,.Overhead.IsPortrait #ManaProgress
+{
+	brightness: 1.5;
+}
+
+.Overhead.IsUpper
+{
+	z-index: 1;
+}
+
+.Overhead.IsCursor:not(.IsSelected) #LifeTime
+{
+	box-shadow: #75e637 0px 0px 2px 0px;
+}
+
+.Overhead.IsCursor:not(.IsSelected) #Bar
+{
+	box-shadow: #75e637aa 0px 0px 8px 0px;
+}
+
+.Overhead.New #Bar #HealthProgress_Loss
+{
+	transition-duration: 0s;
+}
+
+#HealthProgress
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 0px;
+	border-width: 1px;
+	border-top-width: 0px;
+	background-color: #000000ff;
+	box-shadow: #00000066 0px 0px 2px 0px;
+}
+
+#HealthProgress #HealthProgress_Left
+{
+	height: 100%;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: ease;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#425d25), color-stop(0.2, #5BA539), color-stop(0.5, #4D9030), to(#425d25));
+}
+
+#HealthProgress #HealthProgress_Loss
+{
+	height: 100%;
+	background-color: white;
+	transition-property: width;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+#HealthProgress #HealthProgress_Label
+{
+	align: center center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	font-size: 16px;
+}
+
+#ManaProgress
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 0px;
+	border-width: 1px;
+	border-top-width: 0px;
+	background-color: #000000ff;
+	box-shadow: #00000066 0px 0px 2px 0px;
+}
+
+#ManaProgress #ManaProgress_Left
+{
+	height: 100%;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: ease;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b4287), color-stop(0.2, #4165ce), color-stop(0.5, #4a73ea), to(#2b4287));
+}
+
+#ManaProgress #ManaProgress_Label
+{
+	align: center center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	font-size: 16px;
+}
+
+.Common #LifeTime
+{
+	width: height-percentage(100%);
+	border-radius: 50%;
+	transform: scaleX(-1);
+	background-color: #1a240f;
+	z-index: 1;
+}
+
+.Common #LifeTime_FG
+{
+	width: 100%;
+	height: 100%;
+	background-color: #5BA539;
+}
+
+.Common #Bar
+{
+	width: 96px;
+	height: 8px;
+}
+
+.Common.IsSummoned
+{
+	margin-left: -8px;
+}
+
+.Common.IsSummoned #LifeTime
+{
+	margin-top: -3px;
+	margin-bottom: -3px;
+	height: 14px;
+}
+
+.Common.IsSummoned #Bar
+{
+	margin-left: 16px;
+}
+
+.Tower,.Hero
+{
+	flow-children: down;
+}
+
+.Tower.Simple #PlayerNameBG,.Hero.Simple #PlayerNameBG
+{
+	ui-scale: 80%;
+}
+
+.Tower.Simple #PlayerName .EOM_Label,.Hero.Simple #PlayerName .EOM_Label
+{
+	color: white;
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Tower.Simple #PlayerName .EOM_UserName,.Hero.Simple #PlayerName .EOM_UserName
+{
+	max-width: 150px;
+	text-overflow: ellipsis;
+}
+
+.Tower.Simple #PlayerName .EOM_UserName Label,.Hero.Simple #PlayerName .EOM_UserName Label
+{
+	text-overflow: ellipsis;
+}
+
+.Tower #PlayerName,.Hero #PlayerName
+{
+	width: 300px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.Tower #PlayerName .PlayerName,.Hero #PlayerName .PlayerName
+{
+	align: center center;
+}
+
+.Tower #PlayerName .PlayerName Label,.Hero #PlayerName .PlayerName Label
+{
+	text-shadow: 0px 0px 3px 3 #000000;
+	color: white;
+}
+
+.Tower #PlayerName .EOM_UserName,.Hero #PlayerName .EOM_UserName
+{
+	font-size: 18px;
+	height: 21px;
+	color: white;
+	horizontal-align: center;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Tower #PlayerName .EOM_UserName Label,.Hero #PlayerName .EOM_UserName Label
+{
+	font-size: 18px;
+	height: 21px;
+	color: white;
+	horizontal-align: center;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Tower .CourierTitle,.Hero .CourierTitle
+{
+	horizontal-align: center;
+}
+
+.Tower #HeroStage,.Hero #HeroStage
+{
+	min-width: 140px;
+	background-image: url("s2r://panorama/images/custom_game/draw/title_bg_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-bottom: 6px;
+}
+
+.Tower #HeroStage Label,.Hero #HeroStage Label
+{
+	height: 21px;
+	color: white;
+	horizontal-align: center;
+	text-overflow: shrink;
+}
+
+.Tower #HeroMainContainer,.Hero #HeroMainContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.Tower #Level,.Hero #Level
+{
+	vertical-align: center;
+	width: 18px;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#204420), to(#3f7e3f));
+}
+
+.Tower #Level Label,.Hero #Level Label
+{
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 0px 2 #000000;
+	font-weight: bold;
+}
+
+.Tower #Bar,.Hero #Bar
+{
+	vertical-align: center;
+	width: 150px;
+	flow-children: down;
+	border: 2px solid #204420;
+}
+
+.Tower #HealthProgress,.Hero #HealthProgress
+{
+	height: 12px;
+}
+
+.Tower #ManaProgress,.Hero #ManaProgress
+{
+	height: 12px;
+}
+
+.Tower #Standby,.Hero #Standby
+{
+	vertical-align: center;
+}
+
+.Greevil
+{
+	z-index: -1;
+}
+
+#DiceAbilityList
+{
+	width: 150px;
+	height: 150px;
+}
+
+#DiceAbilityList .DiceAbility
+{
+	align: center center;
+	width: 28px;
+	height: 28px;
+	sound: "ui.shortwhoosh";
+}
+
+#DiceAbilityList .DiceAbility.r .SectAbilityImage #SectAbilityImage_Image
+{
+	img-shadow: 0px 0px 5px 3 #8e5eff;
+	border: 1px solid #8e5cff;
+}
+
+#DiceAbilityList .DiceAbility.sr .SectAbilityImage #SectAbilityImage_Image
+{
+	img-shadow: 0px 0px 5px 3 #dfb322;
+	border: 1px solid gold;
+}
+
+#DiceAbilityList .DiceAbility .SectAbilityImage #SectAbilityImage_Image
+{
+	border: 1px solid #afaead;
+	img-shadow: 0px 0px 5px 3 #aca9a8;
+}
+
+#DiceAbilityList .DiceAbilityContainer
+{
+	align: center bottom;
+	width: 32px;
+	height: 32px;
+	animation-name: DiceAbilityPopup;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+#DiceAbilityList .SectAbilityImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes 'DiceAbilityPopup'
+{
+	0%
+	{
+		pre-transform-scale2d: 0;
+		transform: translateY(0px);
+		opacity: 0;
+	}
+	
+	15%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	30%
+	{
+		opacity: 1;
+	}
+	
+	40%
+	{
+		transform: translateY(-40px);
+	}
+	
+	75%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateY(-60px);
+		opacity: 0;
+	}
+	
+}
+
+.Wisp #Bar
+{
+	width: 96px;
+	height: fit-children;
+}
+
+.Wisp #Bar #HealthProgress
+{
+	border-width: 0px;
+	height: 8px;
+	vertical-align: center;
+	border-radius: 8px;
+}
+
+.Wisp #Bar #HealthProgress_Label
+{
+	align: center center;
+	font-size: 14px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.HeroShow
+{
+	width: 200px;
+}
+
+.HeroShow #HeroShow
+{
+	width: 100%;
+}
+
+.HeroShow #PlayerNameBG
+{
+	width: 100%;
+	height: 40px;
+}
+
+.HeroShow #PlayerName
+{
+	align: center center;
+	width: 100%;
+	height: 21px;
+}
+
+.HeroShow #PlayerName .EOM_UserName
+{
+	align: center center;
+}
+
+.HeroShow #PlayerName Label
+{
+	height: 21px;
+	color: white;
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Courier
+{
+	width: 300px;
+}
+
+.Courier #PlayerName
+{
+	width: 100%;
+	height: 21px;
+	horizontal-align: center;
+}
+
+.Courier #PlayerName Label
+{
+	height: 21px;
+	color: white;
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Tower .StatusImage
+{
+	width: 36px;
+	height: 36px;
+	margin: 0px 6px;
+	animation-name: PopOut;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.Tower #BattleContainer
+{
+	flow-children: down;
+}
+
+.Tower #Bar
+{
+	width: 300px;
+	border-width: 0px;
+}
+
+.Tower #BuffList
+{
+	flow-children: right;
+}
+
+.Tower #BuffList .BuffContainer
+{
+	margin-right: 8px;
+	opacity: 0;
+	visibility: collapse;
+	flow-children: down;
+	transition-property: position, opacity, saturation;
+	transition-duration: 0.1s;
+	tooltip-position: bottom;
+}
+
+.Tower #BuffList .BuffContainer.Show
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+.Tower #BuffList .BuffContainer.Debuff .BuffValue
+{
+	color: crimson;
+}
+
+.Tower #BuffList .BuffContainer .BuffImage
+{
+	width: 36px;
+	height: 36px;
+	background-position: center center;
+}
+
+.Tower #BuffList .BuffContainer .BuffValue
+{
+	align: center bottom;
+	color: lime;
+	margin-right: 2px;
+	margin-bottom: 1px;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.Tower #BuffList .BuffContainer.NoBuff
+{
+	opacity: 0.5;
+	saturation: 0;
+}
+
+.Tower #BuffList .BuffContainer.NoBuff .BuffValue
+{
+	opacity: 0;
+}
+
+.Tower #HeroAttributeInfo
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.Tower #HeroAttributeInfo #PlayerNameContainer
+{
+	width: 235px;
+	height: 52px;
+	background-image: url("s2r://panorama/images/custom_game/hud/player_name_png.vtex");
+	background-size: 100%;
+}
+
+.Tower #HeroAttributeInfo #PlayerName
+{
+	width: 180px;
+	font-size: 16px;
+	max-height: 24px;
+	color: white;
+	text-shadow: 0px 0px 1px 2 #000000;
+	text-overflow: shrink;
+	align: center center;
+	text-align: center;
+}
+
+.Tower #HeroAttributeInfo .AttributeImage
+{
+	width: 50px;
+	height: 36px;
+	border-radius: 4px;
+}
+
+.Tower #HeroAttributeInfo .AttributeValue
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	padding-left: 10px;
+}
+
+.Tower #HeroBattleRecord
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.Tower #HeroBattleRecord .RecordData
+{
+	width: 48%;
+	flow-children: right;
+	margin: 2px 0px;
+}
+
+.Tower #HeroBattleRecord .RecordDataList
+{
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	margin: 25px 4px 4px 4px;
+	height: 190px;
+}
+
+.Tower #HeroBattleRecord .RecordDataList.Show
+{
+	opacity: 1;
+}
+
+.Tower #HeroBattleRecord .RecordImage
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 2px;
+}
+
+.Tower #HeroBattleRecord .RecordDamagevalue,.Tower #HeroBattleRecord .Recordvalue
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	padding-left: 10px;
+}
+
+.Tower #HeroBattleRecord .RecordName
+{
+	font-size: 16px;
+	margin-left: 32px;
+	vertical-align: center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	z-index: 1;
+}
+
+.Tower #HeroBattleRecord .RecordProgress
+{
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.Tower #HeroBattleRecord .RecordDamagevalue
+{
+	horizontal-align: right;
+	text-align: right;
+	padding-right: 6px;
+	font-size: 16px;
+}
+
+.Tower #HealthProgress
+{
+	height: 16px;
+	border-width: 0px;
+	border-radius: 16px;
+}
+
+.Tower #HealthProgress #HealthProgress_Left
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#66cf29), to(#2C630F));
+}
+
+.Tower #HealthProgress #HealthProgress_Label
+{
+	font-size: 18px;
+	overflow: noclip;
+}
+
+.Tower #ManaProgress
+{
+	height: 16px;
+	margin-top: 4px;
+	border-width: 0px;
+	border-radius: 16px;
+}
+
+.Tower #ManaProgress #ManaProgress_Left
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2971cf), to(#0f2c63));
+}
+
+.Tower #ManaProgress #ManaProgress_Label
+{
+	font-size: 18px;
+	overflow: noclip;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.8;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.2;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.Base #Bar
+{
+	width: 128px;
+	height: 10px;
+}
+
+.NPC #UnitName
+{
+	font-size: 20px;
+	color: white;
+	text-shadow: 0px 0px 0px 2 #000000;
+}
+
+.Test
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+.Test #Bar
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 8px;
+	margin-bottom: 2px;
+}
+
+.Test #TestRecord
+{
+	flow-children: down;
+}
+
+.Test #TestRecord #TestRecordCountdownBar
+{
+	width: 128px;
+	height: 4px;
+	opacity: 0;
+}
+
+.Test #TestRecord #TestRecordCountdownBar .ProgressBarLeft
+{
+	background-color: #cccccc;
+}
+
+.Test #TestRecord .TestRecordRow
+{
+	width: 128px;
+	flow-children: right;
+}
+
+.Test #TestRecord .TestRecordRowLeft
+{
+	width: 50px;
+	text-overflow: shrink;
+}
+
+.Test #TestRecord .TestRecordRowRight
+{
+	horizontal-align: right;
+	text-overflow: shrink;
+	text-align: right;
+}
+
+.Test #TestRecord Label
+{
+	height: 19px;
+	color: white;
+	text-shadow: 0px 0px 2px 3 #000000;
+	font-size: 16px;
+}
+
+.Test.ShowCountdown #TestRecord #TestRecordCountdownBar
+{
+	opacity: 1;
+}
+
+.EOM_TooltipBG .EOM_LeftTopBG,.EOM_TooltipBG .EOM_RightTopBG
+{
+	height: 30px;
+	width: 48px;
+	background-size: 48px 48px;
+}
+
+.EOM_TooltipBG .EOM_RightBottomBG,.EOM_TooltipBG .EOM_LeftBottomBG
+{
+	height: 30px;
+	width: 48px;
+	background-size: 48px 48px;
+	background-position: center bottom;
+}
+
+.EOM_TooltipBG .EOM_CenterTopBG,.EOM_TooltipBG .EOM_CenterBottomBG
+{
+	height: 8px;
+	width: 100%;
+	margin-left: 48px;
+	margin-right: 48px;
+}
+
+.EOM_TooltipBG .EOM_LeftCenterBG,.EOM_TooltipBG .EOM_RightCenterBG
+{
+	width: 8px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.DialogContainer
+{
+	flow-children: down;
+}
+
+.DialogContainer .DialogContent
+{
+	border-radius: 3px;
+	border: 1px solid #2a3e5e;
+	min-height: 60px;
+	width: 300px;
+	padding: 15px;
+}
+
+.DialogContainer .DialogContent Label
+{
+	text-shadow: 0px 0px 12px 1 #7299DB;
+	color: #e3eafa;
+	align: center center;
+}
+
+.DialogContainer .DialogArrow
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	transform: translateY(-15px);
+	background-image: url("s2r://panorama/images/control_icons/arrow_dropdown_png.vtex");
+	background-size: 100%;
+}
+
+#TalentBranch
+{
+	width: 48px;
+	height: 48px;
+}
+
+#TalentBranch .LevelUp
+{
+	opacity: 0;
+}
+
+#TalentBranch .LevelUp.Show
+{
+	opacity: 1;
+	animation-name: LevelUpPulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'LevelUpPulse'
+{
+	0%
+	{
+		opacity: 0.3;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0.3;
+	}
+	
+}
+
+#EmojiContainer
+{
+	horizontal-align: center;
+	margin-bottom: 30px;
+}
+
+#EmojiContainer MoviePanel
+{
+	animation-name: PopupUp;
+	animation-duration: 0.3s;
+}
+
+#EmojiContainer Image
+{
+	background-size: 100%;
+	animation-name: PopupUp;
+	animation-duration: 0.3s;
+}
+
+@keyframes 'PopupUp'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.2;
+	}
+	
+	25%
+	{
+		pre-transform-scale2d: 1.1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+.HeroBase
+{
+	width: 600px;
+	height: 300px;
+	transform: translateY(80px);
+}
+
+.HeroBase.Simple .HeroProficiency
+{
+	ui-scale: 80%;
+}
+
+.HeroBase #HeroEmoji
+{
+	align: left center;
+}
+
+.HeroBase #HeroEmoji.right
+{
+	align: right center;
+}
+
+.HeroBase #BattleWin
+{
+	align: center center;
+}
+
+.HeroProficiency
+{
+	align: center bottom;
+	opacity: 0;
+	pre-transform-scale2d: 0;
+}
+
+.HeroProficiency.ProficiencyShow
+{
+	opacity: 1;
+	animation-name: ProficiencyIconPopup;
+	animation-timing-function: ease-out;
+	animation-duration: 0.2s;
+	transition-property: opacity, pre-transform-scale2d;
+	pre-transform-scale2d: 1;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.HeroProficiency .HeroProficiencyIcon
+{
+	align: center center;
+}
+
+@keyframes 'ProficiencyIconPopup'
+{
+	0%
+	{
+		transform: translateY(200px);
+		opacity: 0.1;
+		pre-transform-scale2d: 0.1;
+	}
+	
+	50%
+	{
+		transform: translateY(50px);
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'TeamPortalBaseShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.TeamPortalBase
+{
+	opacity: 0;
+	animation-delay: 0.1s;
+	animation-name: TeamPortalBaseShow;
+	animation-timing-function: linear;
+	animation-duration: 0.1s;
+	animation-fill-mode: forwards;
+}
+
+.TeamPortalBase #PortalOverHead
+{
+	align: center center;
+	horizontal-align: center;
+}
+
+.TeamPortalBase #PortalOverHeadTitleContainer
+{
+	height: 30px;
+	width: 100%;
+	margin: 0 6px;
+}
+
+.TeamPortalBase #PortalOverHeadTitle
+{
+	height: 100%;
+	width: 100%;
+	background-color: gradient(linear, 0 0, 0 100%, from(#0b222ecc), to(#082b3d));
+	border: 1px solid #0a1a2a;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	box-shadow: hollow #00000088 0px 0px 2px 0px;
+	transition-duration: 0.2s;
+	transition-property: opacity, transform;
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.TeamPortalBase #PortalOverHeadTitle.PortalShow
+{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.TeamPortalBase #PortalOverHeadTitle Label
+{
+	align: center center;
+	text-align: center;
+	color: #8ee5f5;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.TeamPortalBase #PortalOverHeadTitle Label:hover
+{
+	color: #ffffff;
+}
+
+.TeamPortalBase #PortalOverHeadMain
+{
+	width: 200px;
+	margin-top: 30px;
+	background-color: #000000cc;
+	border-radius: 3px;
+	flow-children: down;
+}
+
+.TeamPortalBase #PortalAbilityBless
+{
+	width: 100%;
+	height: 32px;
+}
+
+.TeamPortalBase .PortalInfoIcon
+{
+	margin-right: -4px;
+	margin-top: -2px;
+	ignore-parent-flow: true;
+	align: right top;
+	width: 14px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/icon/c_info_png.vtex");
+	background-size: 100%;
+	img-shadow: 0 0 3px 1px #000;
+	transition-property: opacity;
+	wash-color: #fad194;
+	transition-duration: 0.2s;
+	transition-property: brightness;
+}
+
+.TeamPortalBase .PortalInfoIcon:hover
+{
+	brightness: 1.5;
+}
+
+.TeamPortalBase #PortalCooldownContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin: 8px 20px;
+}
+
+.TeamPortalBase .PortalCooldownBlock
+{
+	width: 16px;
+	height: 16px;
+	margin: 0px 4px;
+	background-color: #1a2a3a;
+	border: 1px solid #0a1a2a;
+	border-radius: 2px;
+	box-shadow: inset 0px 0px 2px 0px #000000cc;
+	transition-property: background-color, box-shadow;
+	transition-duration: 0.2s;
+}
+
+.TeamPortalBase .PortalCooldownBlock.Active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a7d1dd), to(#3097b6));
+	border-color: #0b396e;
+	box-shadow: 2px 2px 3px 0px #000000cc, inset 0px 1px 2px 0px #6de4ffaa;
+}
+
+.TeamPortalBase #PortalEquipmentExchangeContainer
+{
+	box-shadow: inset 0px 0px 6px 2px #000000cc;
+	border-top: 1px solid #000000;
+	width: 100%;
+	height: 48px;
+}
+
+.TeamPortalBase .PortalEquipmentBox
+{
+	vertical-align: center;
+	width: 42px;
+	height: 28px;
+	background-color: #000000;
+	border: 1px solid #727272;
+}
+
+.TeamPortalBase .PortalEquipmentBox:disabled
+{
+	brightness: 1;
+	saturation: 1;
+}
+
+.TeamPortalBase .PortalEquipmentBox.Active
+{
+	border: 1px solid #5c8aa5;
+	box-shadow: 0 0 6px 1px #4fbeff66;
+}
+
+.TeamPortalBase .PortalEquipmentBox.Teammate
+{
+	border: 1px solid #ff9664;
+	box-shadow: 0 0 6px 1px rgba(255, 150, 100, 0.3);
+}
+
+.TeamPortalBase .PortalEquipmentBox .Equipment
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TeamPortalBase .PortalEquipmentBox .ItemImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TeamPortalBase #PortalEquipmentExchangeIcon
+{
+	margin: 4px;
+	vertical-align: center;
+	width: 32px;
+	height: 23px;
+	background-image: url("s2r://panorama/images/custom_game/icon/exchange_icon_png.vtex");
+	background-size: 100%;
+	wash-color: #9fbfd1;
+}

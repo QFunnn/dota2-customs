@@ -1,0 +1,166 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().SectAbilitiesKv = {
+	"sect_attack": {
+		"Note": "普攻",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_attack",
+		"AbilityTextureName": "skill_swordsman",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"attackspeed": "16 32 48 80",
+			"attackdamage": "12 24 36 60",
+		},
+	},
+	"sect_evade": {
+		"Note": "闪避",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_evade",
+		"AbilityTextureName": "skill_wild",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"damage_reduce_pct": "8 16 24 40",
+			"evasion": "2 4 6 10",
+		},
+	},
+	"sect_crit": {
+		"Note": "暴击",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_crit",
+		"AbilityTextureName": "skill_assassin",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"crit_chance": "2 4 6 10",
+			"crit_damage": "12 24 36 60",
+		},
+	},
+	"sect_health": {
+		"Note": "生命",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_health",
+		"AbilityTextureName": "skill_brawny",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"health_pct": "5 10 15 20",
+			"interval_reduce": "0 0.1 0.1 0.2",
+		},
+	},
+	"sect_regen": {
+		"Note": "回复",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_regen",
+		"AbilityTextureName": "skill_healer",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"regen": "5 10 15 25",
+		},
+	},
+	"sect_ulti": {
+		"Note": "大招",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_ulti",
+		"AbilityTextureName": "skill_mage",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"damage_pct": "10 20 30 50",
+			"mana_regen": "2 4 6 10",
+		},
+	},
+	"sect_poison": {
+		"Note": "中毒",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_poison",
+		"AbilityTextureName": "skill_poisoner",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"poison_count_extra": "2 4 6 10",
+			"poison_interval_reduce": "0.1 0.2 0.3 0.4",
+		},
+	},
+	"sect_ice": {
+		"Note": "寒霜",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_ice",
+		"AbilityTextureName": "skill_ice",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"ice_count_extra": "8 16 24 40",
+			"ice_fury_pct": 50,
+		},
+	},
+	"sect_shield": {
+		"Note": "护盾",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_shield",
+		"AbilityTextureName": "skill_warrior",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"shield_count_bonus": "2 4 6 8",
+		},
+	},
+	"sect_injury": {
+		"Note": "易伤",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_injury",
+		"AbilityTextureName": "skill_beast",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"injury_count_bonus": "2 4 6 8",
+		},
+	},
+	"sect_wisp": {
+		"Note": "守卫",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_wisp",
+		"AbilityTextureName": "skill_void",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"health_bonus_pct": "8 16 24 40",
+			"share_bonus": 0,
+			"cooldown_reduction": "0.1 0.2 0.3 0.5",
+		},
+	},
+	"sect_fury": {
+		"Note": "怒火",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_fury",
+		"AbilityTextureName": "skill_fury",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"fury_count_extra": "8 16 24 40",
+			"ice_fury_pct": 50,
+		},
+	},
+	"sect_chaos": {
+		"Note": "混沌",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/sect/sect_chaos",
+		"AbilityTextureName": "skill_chaos",
+		"MaxLevel": 4,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"chaos_prebattle": "15 30 45 75",
+			"chaos_damage": "30 60 90 150",
+		},
+	},
+};

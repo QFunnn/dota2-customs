@@ -1,0 +1,158 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimageimage.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimageimage.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimageimage.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimageimage.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimageimage.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath_atmoselec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/zeus/arcana_chariot/zeus_arcana_electricimagebits_warp.vpcf"
+			m_bDisableChild = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.15
+			m_Gravity = [ 0.0, 0.0, 150.0 ]
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_nFirstControlPoint = 3
+			m_nNumControlPoints = 5
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 30.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flTextureVWorldSize = 300.0
+			m_bDisableOperator = true
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/electricity/electricity_beam_white_a.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderSprites"
+			m_bDisableOperator = true
+			m_vecTexturesInput = 
+			[
+				{
+				},
+			]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 5.0
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5.0
+			}
+			m_flInitialSpeedMin = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 600.0
+			}
+			m_flInitialSpeedMax = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 600.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 60.0
+				m_flRandomMax = 120.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 60.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 60.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5.0
+			}
+		},
+	]
+	m_flConstantLifespan = 0.1
+	m_ConstantColor = [ 170, 255, 255, 255 ]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_flMaxDistance0 = 300.0
+			m_flMaxDistance1 = 0.0
+			m_flTravelTime = 0.65
+			m_bDisableOperator = true
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 0.45
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 2
+}

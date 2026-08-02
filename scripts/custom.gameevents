@@ -1,0 +1,323 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{
+	"pui_error_msg"
+	{
+		"error"						"string"
+	}
+	"trigger_start_touch"
+	{
+		"trigger_name"				"string"
+		"activator_entindex"		"short"
+		"caller_entindex"			"short"
+	}
+	"trigger_end_touch"
+	{
+		"trigger_name"				"string"
+		"activator_entindex"		"short"
+		"caller_entindex"			"short"
+	}
+	"custom_inventory_contents_changed"
+	{
+		"EntityIndex"				"short"
+	}
+	"custom_game_start"
+	{
+		"player_count"				"short"
+	}
+	"custom_npc_first_spawned"
+	{
+		"entindex"					"short"
+	}
+	"custom_trigger_event"
+	{
+		"event_name"				"string"
+		"outputid"					"short"
+		"activator_ent_index"		"short"
+		"caller_ent_index"			"short"
+	}
+	"custom_entity_removed"
+	{
+		"entindex"					"short"
+	}
+	"custom_round_state_change"
+	{
+		"round_number"				"short"
+	}
+	"custom_teleport"
+	{
+		"entindex"					"short"
+		"point_name"				"string"
+	}
+	"custom_time_event"
+	{
+		"tick_time"					"float"
+	}
+	"custom_dialog_event"
+	{
+		"PlayerID"					"short"
+		"dialog_event_name"			"string"
+	}
+	// UI Events
+	"custom_net_data_changed_client"
+	{
+		"local"						"1"
+		"PlayerID"					"short"
+		"key"						"string"
+	}
+	"client_global_data_changed"
+	{
+		"local"						"1"
+		"key"						"string"
+	}
+	"custom_update_fps"
+	{
+		"fps"						"short"
+	}
+	"custom_get_ability_cooldown"
+	{
+		"ability_ent_index"			"short"
+		"level"						"short"
+	}
+	"custom_get_ability_mana_cost"
+	{
+		"ability_ent_index"			"short"
+		"level"						"short"
+	}
+	"custom_get_ability_gold_cost"
+	{
+		"ability_ent_index"			"short"
+		"level"						"short"
+	}
+	"custom_get_ability_energy_cost"
+	{
+		"ability_ent_index"			"short"
+		"level"						"short"
+	}
+	"custom_get_ability_special_value"
+	{
+		"ability_ent_index"			"short"
+		"level"						"short"
+		"key_name"					"string"
+	}
+	"custom_get_unit_data"
+	{
+		"unit_ent_index"			"short"
+		"function_name"				"string"
+	}
+	"custom_get_player_data"
+	{
+		"player_id"					"short"
+		"function_name"				"string"
+	}
+	"custom_vector_ability"
+	{
+		"type"						"short"
+		"ability_ent_index"			"short"
+		"x"							"float"
+		"y"							"float"
+		"z"							"float"
+	}
+	"custom_ui_toggle_windows"
+	{
+		"local"						"1"
+		"window_name"				"string"
+	}
+	"custom_ui_exclamation"
+	{
+		"local"						"1"
+		"name"						"string"
+		"type"						"string"
+	}
+	"custom_ui_toggle_flyout_scoreboard"
+	{
+		"local"						"1"
+		"visible"					"bool"
+	}
+	"custom_goto_ui"
+	{
+		"local"						"1"
+		"name"						"string"
+	}
+	"custom_ui_toggle_record_panel"
+	{
+		"local"						"1"
+		"index"						"short"
+	}
+	"custom_enemy_spawn"
+	{
+		"entindex"					"short"
+	}
+	"update_keybind"
+	{
+		"key_name"						"string"
+		"key_type"						"string"
+	}
+	"custom_refresh_order"
+	{
+		"local"						"1"
+		"name"						"string"
+	}
+	"custom_hover_item"
+	{
+		"item_entindex"				"short"
+	}
+	"custom_get_active_ability"
+	{
+		"entindex"					"short"
+	}
+	"custom_exp_change"
+	{
+		"entindex"					"short"
+	}
+	"custom_neutral_respawn"
+	{
+		"sNPCClassName"					"string"
+		"fSpawnOffset"					"float"
+		"iTotalUnitsToSpawn"			"short"
+		"sSpawnerName"					"string"
+		"fWaitForTime"					"short"
+		"fSpawnInterval"				"float"
+	}
+	"custom_learn_ability"
+	{
+		"entindex"					"short"
+		"ability_name"				"string"
+	}
+	"custom_remove_ability"
+	{
+		"entindex"					"short"
+		"ability_name"				"string"
+	}
+	"custom_crit_msg"
+	{
+		"victim"					"short"
+		"attacker"					"short"
+		"damage_type"				"short"
+		"damage"					"string"
+		"scale"						"float"
+	}
+	"custom_damage_msg"
+	{
+		"victim"					"short"
+		"attacker"					"short"
+		"damage_type"				"short"
+		"damage"					"string"
+	}
+	"custom_settlement_msg"
+	{
+		"gold"						"short"
+		"damage"					"short"
+		"entindex"					"short"
+	}
+	"custom_callback"
+	{
+		"event"						"string"
+	}
+	"date_now"
+	{
+		"local"						"1"
+		"date"						"string"
+	}
+	"custom_local_console_message"
+	{
+		"local"						"1"
+		"key"						"string"
+		"event"						"string"
+		"enable"					"short"
+	}
+	"custom_particle"
+	{
+		"index"						"short"
+		"caster"					"short"
+		"target"					"short"
+	}
+	"custom_game_state_change"
+	{
+		"state_name"				"string"
+		"life_cycle"				"string"
+	}
+	"client_request_event"
+	{
+		"event"						"string"
+		"data"						"string"
+	}
+	"custom_update_portrait_name"
+	{
+		"local"						"1"
+		"name"						"string"
+	}
+	"teleport_player_area"
+	{
+		"local"						"1"
+		"battleDataIndex"			"short"
+	}
+	"toggle_custom_ability"
+	{
+		"local"						"1"
+		"type"						"string"
+	}
+	"toggle_custom_shop"
+	{
+		"local"						"1"
+	}
+	"client_side_event"
+	{
+		"local"						"1"
+		"event_name"				"string"
+		"event_data"				"string"
+	}
+	"battle_killed"
+	{
+		"entindex_attacker"				"short"
+		"entindex_killed"				"short"
+	}
+	"set_camera_yaw"
+	{
+		"yaw"						"short"
+	}
+	"custom_update_preview_attacker_model"
+	{
+		"local"						"1"
+		"model"						"string"
+	}
+	"cosmetic_preview_live_worldlayer"
+	{
+		"local"						"1"
+		"state"						"short"
+	}
+	"clear_client_ability_upgrade_cache"
+	{
+		"clear"				"short"
+	}
+}
+

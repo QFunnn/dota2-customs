@@ -1,0 +1,125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+#base "kv/abilities/sect_abilities.kv"
+#base "kv/abilities/hero_abilities.kv"
+#base "kv/abilities/hero_talent.kv"
+#base "kv/abilities/neutral_abilities.kv"
+#base "kv/abilities/trait_abilities.kv"
+#base "kv/abilities/consumables.kv"
+#base "kv/abilities/hero_shard.kv"
+#base "kv/abilities/greevil_ability.kv"
+#base "kv/abilities/greevil_egg.kv"
+#base "kv/abilities/greevil_effect.kv"
+
+"DOTAAbilities"
+{
+	"client_request_event"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/client_request_event"
+		"AbilityTextureName"					""
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"unit_state"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/unit_state"
+		"AbilityTextureName"					""
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"christmas_tree"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/christmas_tree"
+		"AbilityTextureName"					""
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"nian_scene"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/nian_scene"
+		"AbilityTextureName"					""
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"empty_1"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"empty_2"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"empty_3"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"empty_4"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"empty_5"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"empty_6"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"shard_empty"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"custom_team_portal"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/custom_team_portal"
+		"AbilityTextureName"					"empty"
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	}
+	"greevil_effect_dummy"
+	{
+		"Note"									"贪魔效果马甲技能"
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"greevil_effect_icon"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityValues"
+		{
+			"injury_stack"						"5"
+		}
+	}
+}

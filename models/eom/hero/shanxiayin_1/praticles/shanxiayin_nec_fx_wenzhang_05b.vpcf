@@ -1,0 +1,277 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 7
+	m_flConstantLifespan = 5.0
+	m_nConstantSequenceNumber1 = 1
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_vecRotAxis = [ 1.0, -1.0, 1.0 ]
+			m_flRotRate = -32.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_NoiseEmitter"
+			m_flOutputMax = 4.0
+			m_flOutputMin = 0.5
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.25
+				m_flRandomMax = 1.2
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 3.0
+				m_flRandomMax = 4.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.0
+				m_flRandomMax = 3.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 70.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 50.0 ]
+		},
+		{
+			_class = "C_INIT_RemapTransformToVector"
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_nFieldOutput = 6
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 15
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_flOscAdd = 0.25
+			m_flStartTime_max = 0.75
+			m_flStartTime_min = 0.75
+			m_FrequencyMax = [ 0.0, 0.0, 0.2 ]
+			m_FrequencyMin = [ 0.0, 0.0, 0.2 ]
+			m_RateMax = [ 0.0, 0.0, -24.0 ]
+			m_RateMin = [ 0.0, 0.0, -24.0 ]
+			m_bOffset = true
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flStartScale = 0.0
+			m_flEndTime = 0.15
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_flEndTime_max = 100000000000000000.0
+			m_flEndTime_min = 100000000000000000.0
+			m_bProportional = false
+			m_FrequencyMax = [ 2.0, 2.0, 2.0 ]
+			m_RateMax = [ 200.0, 200.0, 200.0 ]
+			m_RateMin = [ -200.0, -200.0, -200.0 ]
+			m_bOffset = true
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_flMaxVelocity = 1750.0
+		},
+		{
+			_class = "C_OP_VelocityMatchingForce"
+			m_flSpdScale = 0.0025
+			m_flDirScale = 0.013129
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_bAdditive = true
+			m_vecOutputMin = [ -10.0, -10.0, -10.0 ]
+			m_nFieldOutput = 0
+			m_vecOutputMax = [ 10.0, 10.0, 10.0 ]
+		},
+		{
+			_class = "C_OP_OrientTo2dDirection"
+			m_nFieldOutput = 12
+			m_flRotOffset = 90.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+			m_Gravity = [ 0.0, 0.0, 200.0 ]
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -250.0
+			}
+			m_fFalloffPower = -0.01
+			m_vecComponentScale = [ 1.0, 1.0, 0.5 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+				m_bUseOrientation = false
+			}
+		},
+		{
+			_class = "C_OP_TwistAroundAxis"
+			m_fForceAmount = 250.0
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_OP_TurbulenceForce"
+			m_vecNoiseAmount3 = [ -300.0, -300.0, -300.0 ]
+			m_flNoiseCoordScale3 = 5.0
+			m_vecNoiseAmount2 = [ 100.0, 100.0, 100.0 ]
+			m_flNoiseCoordScale2 = 3.0
+			m_vecNoiseAmount1 = [ -510.0, -510.0, -510.0 ]
+			m_flNoiseCoordScale1 = 0.1
+			m_vecNoiseAmount0 = [ 450.0, 450.0, 450.0 ]
+		},
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_vecComponentScale = [ 1.0, 1.0, 0.25 ]
+			m_fFalloffPower = -0.625
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 60.0
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_PlanarConstraint"
+			m_bGlobalNormal = true
+		},
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMinDistance = 50.0
+			m_fMaxDistance = 200.0
+			m_CenterOffset = [ 0.0, 0.0, 70.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/props_wildlife/wildlife_butterfly004.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_modelInput = 
+			{
+			}
+		},
+	]
+}

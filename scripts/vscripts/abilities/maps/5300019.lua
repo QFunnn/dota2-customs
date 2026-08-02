@@ -1,0 +1,18 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+local a = "content/c4/scripts/vscripts/abilities/maps/5300019.ts"
+local b = getfenv()
+if b then
+	b.__TUI_FILEPATH = a
+end
+local c = require("lualib_bundle")
+local d = c.__TS__SourceMapTraceBack
+d(debug.getinfo(1).short_src, {})

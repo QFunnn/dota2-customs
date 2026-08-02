@@ -1,0 +1,72 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf50:version{da6429d4-166f-47ed-8f47-45d5c5f1bd9f} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 300.0
+	m_flConstantLifespan = 0.6
+	m_ConstantColor = [ 60, 244, 255, 255 ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_NormalLock"
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b3.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b4.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/sect/sect_crit_45b2a.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 6
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_bSetOnce = true
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_vecRotation = [ 30.0, 30.0, 0.0 ]
+			m_nHeadLocation = 1
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 0.0, 100.0 ]
+			m_nHeadLocation = 1
+			m_bSetOnce = true
+		},
+		{
+			_class = "C_OP_SetControlPointFromObjectScale"
+			m_nCPOutput = 2
+		},
+	]
+	m_nBehaviorVersion = 12
+}

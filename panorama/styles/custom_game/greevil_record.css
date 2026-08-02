@@ -1,0 +1,746 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_Panel > VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	background-color: #191A267D;
+	border-radius: 3px;
+}
+
+.EOM_Panel > VerticalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel > HorizontalScrollBar
+{
+	height: 6px;
+	width: 95%;
+	horizontal-align: center;
+	border-radius: 3px;
+	background-color: #191A26;
+}
+
+.EOM_Panel > HorizontalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel.Default
+{
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+}
+
+#Contents,.EOM_Tooltip,.EOM_TooltipBG
+{
+	border: 0px solid white;
+	border-radius: 2px;
+	box-shadow: 0px 0px 10px 0px #000000cc;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a09a72), to(#755417));
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#273163), to(#3c5a90));
+	padding: 4px;
+	margin: 6px;
+}
+
+.EOM_TooltipHeader
+{
+	width: 100%;
+	background-color: #1c294c;
+	border-radius: 2px;
+	background-size: 100%;
+}
+
+.EOM_TooltipDivder
+{
+	background-size: 100%;
+}
+
+.EOM_TooltipDivder.Horizontal
+{
+	background-image: url("s2r://panorama/images/custom_game/tooltip/divider_horizontal_png.vtex");
+	width: 100%;
+	height: 6px;
+}
+
+.EOM_TooltipDivder.Vertical
+{
+	background-image: url("s2r://panorama/images/custom_game/tooltip/divider_vertical.png_png.vtex");
+	width: 6px;
+	height: 100%;
+}
+
+.EOM_LabelTitle
+{
+	font-size: 22px;
+	color: #DFC97C;
+	text-shadow: 0px 0px 1px 4 #000000;
+}
+
+.EOM_LabelNormal
+{
+	font-size: 16px;
+	color: #A7A18D;
+}
+
+.EOM_LabelMoney
+{
+	font-size: 24px;
+	color: #FFD060;
+}
+
+.EOM_LabelTip
+{
+	font-size: 16px;
+	color: white;
+}
+
+#Contents.TooltipContent
+{
+	height: fit-children;
+	min-width: 360px;
+	width: fit-children;
+	border: 0px;
+	border-radius: 0px;
+	box-shadow: none;
+	background-color: none;
+	padding: 0px;
+	margin: 0px;
+	overflow: noclip;
+}
+
+#Contents.TooltipContent .EOM_Tooltip
+{
+	margin: 0px;
+}
+
+#GreevilRecordTooltip
+{
+	min-width: 360px;
+	max-width: 1000px;
+}
+
+#RecordHeader
+{
+	padding: 8px 10px;
+	margin: 0px;
+	background-color: #00000088;
+}
+
+#RecordHeader Label
+{
+	font-size: 18px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#TooltipContent
+{
+	margin: 4px;
+	padding: 2px;
+	max-height: 700px;
+}
+
+#RecordList
+{
+	flow-children: down-wrap;
+}
+
+#RecordEmpty
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #ffffffaa;
+	text-shadow: 0px 0px 3px 3 #04133a;
+	font-size: 16px;
+	padding: 14px 10px;
+}
+
+.RecordRow
+{
+	width: 350px;
+	flow-children: right;
+	padding: 6px 8px;
+	margin: 2px 0px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+}
+
+.RecordRow .RecordName
+{
+	width: fill-parent-flow(1);
+	color: #f4edd8;
+	font-size: 16px;
+}
+
+.RecordRow .RecordValue
+{
+	color: #8ef58e;
+	font-size: 16px;
+	font-weight: bold;
+	horizontal-align: right;
+}
+
+.RecordRow .RecordAttribute
+{
+	color: #b1b1b1;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.RecordRow .RecordAttribute.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.RecordRow .RecordAttribute .GameplayValues
+{
+	color: #4d5560;
+}
+
+.RecordRow .RecordAttribute .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.RecordAbilityRow
+{
+	width: 320px;
+	padding: 6px;
+	margin: 2px 0px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+	flow-children: down;
+}
+
+.RecordExtraInfoBlock
+{
+	width: 100%;
+	padding: 0;
+	margin: 2px 0px;
+	margin-top: 4px;
+	ui-scale: 80%;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+	flow-children: down;
+}
+
+.RecordAbilityImage
+{
+	width: 44px;
+	height: 44px;
+	border: 1px solid #ffffff22;
+	box-shadow: fill #00000066 0px 0px 4px 0px;
+}
+
+.RecordAbilityImage.GreevilGift
+{
+	background-image: url("s2r://panorama/images/custom_game/greevil_shop/greevil_gift_ability_icon_png.vtex");
+	background-size: 120%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.RecordAbilityImage.CardEffect
+{
+	background-image: url("s2r://panorama/images/custom_game/card/s_icon_magic_png.vtex");
+	background-size: 42px 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.RecordAbilityContent
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-left: 8px;
+}
+
+.RecordAbilityName
+{
+	color: #ffffff;
+	font-size: 16px;
+	text-shadow: 0px 0px 3px 2 #000000;
+}
+
+.RecordAbilityDescription
+{
+	color: #d8e0ef;
+	font-size: 14px;
+	margin-top: 2px;
+}
+
+.RecordAbilityExtra
+{
+	margin: 0px 10px 4px 6px;
+	width: 100%;
+	padding: 6px;
+	background-color: #10233a;
+	color: #9bb1cd;
+	font-size: 16px;
+}
+
+.RecordAbilityExtra.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.RecordAbilityExtra .GameplayValues
+{
+	color: #4d5560;
+}
+
+.RecordAbilityExtra .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.RecordAbilityUpgrade
+{
+	margin: 0px 4px 4px 0px;
+	width: 100%;
+	padding: 6px;
+	background-color: #10233a;
+	font-size: 16px;
+	color: #ffffff;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.RecordAbilityLimitTip
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	font-size: 16px;
+	color: white;
+	text-shadow: 0 0 2px 2 #000000;
+	text-align: center;
+}
+
+.AbilityList
+{
+	width: 100%;
+}
+
+.AbilityList.OverFlow
+{
+	opacity-mask: url("s2r://panorama/images/masks/vertical_scroll_mask_up_png.vtex");
+	opacity-mask-scale: 100% 100%;
+	opacity-mask-position: 50% 2%;
+}
+
+.AbilityList .AbilityRow
+{
+	width: 100%;
+	margin: 4px 0px 4px 0px;
+}
+
+.AbilityList .AbilityDescription
+{
+	font-size: 14px;
+	color: #9bb1cd;
+}
+
+.AbilityList .AbilityDescription.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.AbilityList .AbilityDescription .GameplayValues
+{
+	color: #4d5560;
+}
+
+.AbilityList .AbilityDescription .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.AbilityImage
+{
+	width: 36px;
+	height: 36px;
+	border: 1px solid white;
+	border-radius: 2px;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a09a72), to(#755417));
+}
+
+.SectName
+{
+	font-size: 16px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.SectName.Rare
+{
+	color: #9e6eff;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffffff), to(#a076ff));
+	brightness: 2;
+}
+
+.SectName.SuperRare
+{
+	color: dotaPlusGoldGradient;
+	brightness: 1.5;
+}
+
+#ExtraAbilityCount
+{
+	margin-top: 8px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000000), color-stop(0.25, #00000088), color-stop(0.75, #00000088), to(#00000000));
+	width: 100%;
+	horizontal-align: center;
+	color: #ffffff;
+	font-size: 16px;
+	text-shadow: 0 0 2px 2 #000000;
+	text-align: center;
+}
+
+.ShopEffectCard
+{
+	margin: 2px 0px;
+}
+
+.ShopEffectCard .CostContainer
+{
+	visibility: collapse;
+}
+
+.RuneRewardCard
+{
+	margin: 2px 0px;
+}
+
+#Contents.TooltipContent
+{
+	height: fit-children;
+	min-width: 360px;
+	width: fit-children;
+	border: 0px;
+	border-radius: 0px;
+	box-shadow: none;
+	background-color: none;
+	padding: 0px;
+	margin: 0px;
+	overflow: noclip;
+}
+
+#Contents.TooltipContent .EOM_Tooltip
+{
+	margin: 0px;
+}
+
+#GreevilRecordTooltip
+{
+	min-width: 360px;
+	max-width: 1000px;
+}
+
+#RecordHeader
+{
+	padding: 8px 10px;
+	margin: 0px;
+	background-color: #00000088;
+}
+
+#RecordHeader Label
+{
+	font-size: 18px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#TooltipContent
+{
+	margin: 4px;
+	padding: 2px;
+	max-height: 700px;
+}
+
+#RecordList
+{
+	flow-children: down-wrap;
+}
+
+#RecordEmpty
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #ffffffaa;
+	text-shadow: 0px 0px 3px 3 #04133a;
+	font-size: 16px;
+	padding: 14px 10px;
+}
+
+.RecordRow
+{
+	width: 350px;
+	flow-children: right;
+	padding: 6px 8px;
+	margin: 2px 0px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+}
+
+.RecordRow .RecordName
+{
+	width: fill-parent-flow(1);
+	color: #f4edd8;
+	font-size: 16px;
+}
+
+.RecordRow .RecordValue
+{
+	color: #8ef58e;
+	font-size: 16px;
+	font-weight: bold;
+	horizontal-align: right;
+}
+
+.RecordRow .RecordAttribute
+{
+	color: #b1b1b1;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.RecordRow .RecordAttribute.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.RecordRow .RecordAttribute .GameplayValues
+{
+	color: #4d5560;
+}
+
+.RecordRow .RecordAttribute .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.RecordAbilityRow
+{
+	width: 320px;
+	padding: 6px;
+	margin: 2px 0px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+	flow-children: down;
+}
+
+.RecordExtraInfoBlock
+{
+	width: 100%;
+	padding: 0;
+	margin: 2px 0px;
+	margin-top: 4px;
+	ui-scale: 80%;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000088), to(#00000000));
+	flow-children: down;
+}
+
+.RecordAbilityImage
+{
+	width: 44px;
+	height: 44px;
+	border: 1px solid #ffffff22;
+	box-shadow: fill #00000066 0px 0px 4px 0px;
+}
+
+.RecordAbilityImage.GreevilGift
+{
+	background-image: url("s2r://panorama/images/custom_game/greevil_shop/greevil_gift_ability_icon_png.vtex");
+	background-size: 120%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.RecordAbilityImage.CardEffect
+{
+	background-image: url("s2r://panorama/images/custom_game/card/s_icon_magic_png.vtex");
+	background-size: 42px 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.RecordAbilityContent
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-left: 8px;
+}
+
+.RecordAbilityName
+{
+	color: #ffffff;
+	font-size: 16px;
+	text-shadow: 0px 0px 3px 2 #000000;
+}
+
+.RecordAbilityDescription
+{
+	color: #d8e0ef;
+	font-size: 14px;
+	margin-top: 2px;
+}
+
+.RecordAbilityExtra
+{
+	margin: 0px 10px 4px 6px;
+	width: 100%;
+	padding: 6px;
+	background-color: #10233a;
+	color: #9bb1cd;
+	font-size: 16px;
+}
+
+.RecordAbilityExtra.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.RecordAbilityExtra .GameplayValues
+{
+	color: #4d5560;
+}
+
+.RecordAbilityExtra .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.RecordAbilityUpgrade
+{
+	margin: 0px 4px 4px 0px;
+	width: 100%;
+	padding: 6px;
+	background-color: #10233a;
+	font-size: 16px;
+	color: #ffffff;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.RecordAbilityLimitTip
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	font-size: 16px;
+	color: white;
+	text-shadow: 0 0 2px 2 #000000;
+	text-align: center;
+}
+
+.AbilityList
+{
+	width: 100%;
+}
+
+.AbilityList.OverFlow
+{
+	opacity-mask: url("s2r://panorama/images/masks/vertical_scroll_mask_up_png.vtex");
+	opacity-mask-scale: 100% 100%;
+	opacity-mask-position: 50% 2%;
+}
+
+.AbilityList .AbilityRow
+{
+	width: 100%;
+	margin: 4px 0px 4px 0px;
+}
+
+.AbilityList .AbilityDescription
+{
+	font-size: 14px;
+	color: #9bb1cd;
+}
+
+.AbilityList .AbilityDescription.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.AbilityList .AbilityDescription .GameplayValues
+{
+	color: #4d5560;
+}
+
+.AbilityList .AbilityDescription .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.AbilityImage
+{
+	width: 36px;
+	height: 36px;
+	border: 1px solid white;
+	border-radius: 2px;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a09a72), to(#755417));
+}
+
+.SectName
+{
+	font-size: 16px;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.SectName.Rare
+{
+	color: #9e6eff;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffffff), to(#a076ff));
+	brightness: 2;
+}
+
+.SectName.SuperRare
+{
+	color: dotaPlusGoldGradient;
+	brightness: 1.5;
+}
+
+#ExtraAbilityCount
+{
+	margin-top: 8px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#00000000), color-stop(0.25, #00000088), color-stop(0.75, #00000088), to(#00000000));
+	width: 100%;
+	horizontal-align: center;
+	color: #ffffff;
+	font-size: 16px;
+	text-shadow: 0 0 2px 2 #000000;
+	text-align: center;
+}
+
+.ShopEffectCard
+{
+	margin: 2px 0px;
+}
+
+.ShopEffectCard .CostContainer
+{
+	visibility: collapse;
+}
+
+.RuneRewardCard
+{
+	margin: 2px 0px;
+}

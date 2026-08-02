@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+return (decryptModule("a662da959358518aa92ca43755ab1b61f8e4e356ac2ffde338c27eab74063b01f22d948ef3783099878b2fe005868624a05ac3dbeabf86774d3d4f2a2f6fb508d4e8a19ae5c276458d45f45228e94df3b2570ede2dffc3cbe92d24eb9548699d80f4723b3da866252052accf4949fc0b7d2ff86bdd8360d61f7ed2eab928021f177c218bf79637ee07f78f2b4789df78b149d2c0a5301c9facc0fc4b46b42d8edd4acc6878083f2e521698bf786c643b31c262401381dd293bab95b66173de41e9c910e9c1916c98719fedff75c8062ee928ded3cb27d50a8a1d64b355436b4837469a288837fc0add952c91b918f183724fe6941c1b419036e0d778978d06bcaccd02d0ad9594c2e4b070c1a4fec046131bed17554f878d37da3f01da97898269fcf381f16376c16e005a829ca44411fda66e59d1e11b26cda6abdba25a916faa44dcb98b6ff5ec0c7ef9f8d1b2997c7029a35686cdd93509d972a7f9fc772f", "@content/c4/scripts/vscripts/mechanics\\team_mode\\index.lua", ...))

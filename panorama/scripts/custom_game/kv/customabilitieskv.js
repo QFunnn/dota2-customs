@@ -1,0 +1,191 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().CustomAbilitiesKv = {
+	"sect_attack_trigger": {
+		"Note": "普攻流触发器",
+		"AbilityValues": {
+			"chance": 60,
+		},
+	},
+	"sect_attack_effect": {
+		"Note": "普攻流效果",
+		"AbilityTextureName": "magnataur/forgemaster_icons/magnataur_empower",
+		"AbilityValues": {
+			"value": 10,
+			"max_value": 100,
+			"duration": 2,
+		},
+	},
+	"sect_evade_trigger": {
+		"Note": "闪避流触发器",
+		"AbilityValues": {
+			"chance": 40,
+		},
+	},
+	"sect_evade_effect": {
+		"Note": "闪避流效果",
+		"AbilityTextureName": "bounty_hunter_wind_walk_ally",
+		"AbilityValues": {
+			"value": 1.5,
+			"max_value": 12,
+			"duration": 2,
+		},
+	},
+	"sect_crit_trigger": {
+		"Note": "暴击流触发器",
+		"AbilityValues": {
+			"chance": 40,
+		},
+	},
+	"sect_crit_effect": {
+		"Note": "暴击流效果",
+		"AbilityTextureName": "chaos_knight_reality_rift",
+		"AbilityValues": {
+			"value": 10,
+			"max_value": 100,
+			"duration": 3,
+		},
+	},
+	"sect_health_trigger": {
+		"Note": "生命流触发器",
+		"AbilityValues": {
+			"health_loss": 600,
+		},
+	},
+	"sect_health_effect": {
+		"Note": "生命流效果",
+		"AbilityTextureName": "tiny_grow",
+		"AbilityValues": {
+			"value": 120,
+			"duration": 6,
+		},
+	},
+	"sect_regen_trigger": {
+		"Note": "回复流触发器",
+		"AbilityValues": {
+			"chance": 30,
+		},
+	},
+	"sect_regen_effect": {
+		"Note": "回复流效果",
+		"AbilityTextureName": "forest_troll_high_priest_heal_amp_aura",
+		"AbilityValues": {
+			"value": 40,
+		},
+	},
+	"sect_ulti_trigger": {
+		"Note": "大招流触发器",
+		"AbilityValues": {
+			"chance": 30,
+		},
+	},
+	"sect_ulti_effect": {
+		"Note": "大招流效果",
+		"AbilityTextureName": "chen_holy_persuasion",
+		"AbilityValues": {
+			"value": 6,
+		},
+	},
+	"sect_poison_trigger": {
+		"Note": "中毒流触发器",
+		"AbilityValues": {
+			"chance": 16,
+		},
+	},
+	"sect_poison_effect": {
+		"Note": "中毒流效果",
+		"AbilityTextureName": "venomancer_noxious_plague",
+		"AbilityValues": {
+			"value": 30,
+		},
+	},
+	"sect_ice_trigger": {
+		"Note": "冰冻流触发器",
+		"AbilityValues": {
+			"chance": 24,
+		},
+	},
+	"sect_ice_effect": {
+		"Note": "冰冻流效果",
+		"AbilityTextureName": "ancient_apparition_ice_vortex",
+		"AbilityValues": {
+			"value": 40,
+		},
+	},
+	"sect_shield_trigger": {
+		"Note": "护盾流触发器",
+		"AbilityValues": {
+			"chance": 27,
+		},
+	},
+	"sect_shield_effect": {
+		"Note": "护盾流效果",
+		"AbilityTextureName": "miniboss_unyielding_shield",
+		"AbilityValues": {
+			"value": 20,
+		},
+	},
+	"sect_injury_trigger": {
+		"Note": "易伤流触发器",
+		"AbilityValues": {
+			"chance": 16,
+		},
+	},
+	"sect_injury_effect": {
+		"Note": "易伤流效果",
+		"AbilityTextureName": "spectre/immortal/spectre_spectral_dagger",
+		"AbilityValues": {
+			"value": 20,
+		},
+	},
+	"sect_wisp_trigger": {
+		"Note": "精灵流触发器",
+		"AbilityValues": {
+			"interval": 0.8,
+		},
+	},
+	"sect_wisp_effect": {
+		"Note": "精灵流效果",
+		"AbilityTextureName": "puck_ethereal_jaunt",
+		"AbilityValues": {
+			"reduce_interval": 0.1,
+			"max_reduce": 0.3,
+			"duration": 2,
+			"value": 3,
+		},
+	},
+	"sect_fury_trigger": {
+		"Note": "怒火流触发器",
+		"AbilityValues": {
+			"chance": 24,
+		},
+	},
+	"sect_fury_effect": {
+		"Note": "怒火流效果",
+		"AbilityTextureName": "dragon_knight/fireborn_ability_icons/dragon_knight_dragon_tail",
+		"AbilityValues": {
+			"value": 40,
+		},
+	},
+	"sect_chaos_trigger": {
+		"Note": "混沌流触发器",
+		"AbilityValues": {
+			"chance": 16,
+		},
+	},
+	"sect_chaos_effect": {
+		"Note": "混沌流效果",
+		"AbilityTextureName": "faceless_void/brancerofaeons/faceless_void_time_dilation",
+		"AbilityValues": {
+			"value": 20,
+		},
+	},
+};

@@ -1,0 +1,774 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.EOM_Panel > VerticalScrollBar
+{
+	margin-right: 0px;
+	width: 6px;
+	height: 95%;
+	vertical-align: center;
+	background-color: #191A267D;
+	border-radius: 3px;
+}
+
+.EOM_Panel > VerticalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel > HorizontalScrollBar
+{
+	height: 6px;
+	width: 95%;
+	horizontal-align: center;
+	border-radius: 3px;
+	background-color: #191A26;
+}
+
+.EOM_Panel > HorizontalScrollBar .ScrollThumb
+{
+	background-color: #b5e1ff;
+	border-width: 0px;
+	border-radius: 3px;
+}
+
+.EOM_Panel.Default
+{
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 8px 0px;
+	border: 2px solid #32383677;
+}
+
+#Contents,.EOM_Tooltip,.EOM_TooltipBG
+{
+	border: 0px solid white;
+	border-radius: 2px;
+	box-shadow: 0px 0px 10px 0px #000000cc;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a09a72), to(#755417));
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#273163), to(#3c5a90));
+	padding: 4px;
+	margin: 6px;
+}
+
+.EOM_TooltipHeader
+{
+	width: 100%;
+	background-color: #1c294c;
+	border-radius: 2px;
+	background-size: 100%;
+}
+
+.EOM_TooltipDivder
+{
+	background-size: 100%;
+}
+
+.EOM_TooltipDivder.Horizontal
+{
+	background-image: url("s2r://panorama/images/custom_game/tooltip/divider_horizontal_png.vtex");
+	width: 100%;
+	height: 6px;
+}
+
+.EOM_TooltipDivder.Vertical
+{
+	background-image: url("s2r://panorama/images/custom_game/tooltip/divider_vertical.png_png.vtex");
+	width: 6px;
+	height: 100%;
+}
+
+.EOM_Icon
+{
+	width: 100%;
+	height: width-percentage(100%);
+	background-size: 100%;
+	transition-property: pre-transform-rotate2d;
+	transition-duration: 0.2s;
+}
+
+.EOM_Icon.EOM_IconSpin
+{
+	animation-name: SpinnerRotate;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Icon.EOM_IconShadow
+{
+	img-shadow: 0px 0px 3px 3 black;
+}
+
+.EOM_Icon.Mirror
+{
+	transform: rotateY(180deg);
+}
+
+.EOM_Icon.Size16
+{
+	width: 16px;
+	height: 16px;
+}
+
+.EOM_Icon.Size24
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_Icon.Size32
+{
+	width: 32px;
+	height: 32px;
+}
+
+.EOM_Icon.Size48
+{
+	width: 48px;
+	height: 48px;
+}
+
+.EOM_Icon.Size64
+{
+	width: 64px;
+	height: 64px;
+}
+
+.EOM_Icon.Size96
+{
+	width: 96px;
+	height: 96px;
+}
+
+.EOM_Icon.Size128
+{
+	width: 128px;
+	height: 128px;
+}
+
+.EOM_IconRefresh
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_IconGear
+{
+	background-image: url("s2r://panorama/images/control_icons/gear_png.vtex");
+}
+
+.EOM_IconArrowRight
+{
+	width: 18px;
+	height: width-percentage(175%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_right_psd.vtex");
+}
+
+.EOM_IconArrowSolidRight
+{
+	width: 19px;
+	height: width-percentage(167%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+}
+
+.EOM_IconArrowExpand
+{
+	background-image: url("s2r://panorama/images/control_icons/expand_png.vtex");
+}
+
+.EOM_IconPopout
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_popout_png.vtex");
+}
+
+.EOM_IconLockSmall
+{
+	background-image: url("s2r://panorama/images/profile/icon_locked_psd.vtex");
+}
+
+.EOM_IconXClose
+{
+	width: 34px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Gradient
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
+}
+
+.EOM_IconXClose.Quit
+{
+	background-image: url("s2r://panorama/images/control_icons/quit_png.vtex");
+}
+
+.EOM_IconXClose.Tui9
+{
+	width: 37px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui9/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui10
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui10/x_close3_png.vtex");
+}
+
+.EOM_IconXClose.Tui10_old
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui10/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui7/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.Tui3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/tui3/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.P2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/p2/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.C4_old
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_close_png.vtex");
+}
+
+.EOM_IconXClose.C4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_store_close_png.vtex");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/btn_close_png.vtex");
+}
+
+.EOM_IconSpinner
+{
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+}
+
+.EOM_Image
+{
+	background-size: 100%;
+}
+
+.SectIcon
+{
+	width: 60px;
+	height: 60px;
+}
+
+.SectIcon .SectImage
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	align: center center;
+	background-position: center;
+}
+
+.SectIcon.sect_attack .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_swordsman_grey_png.vtex");
+}
+
+.SectIcon.sect_crit .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_assassin_grey_png.vtex");
+}
+
+.SectIcon.sect_injury .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_beast_grey_png.vtex");
+}
+
+.SectIcon.sect_health .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_brawny_grey_png.vtex");
+}
+
+.SectIcon.sect_fury .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_fury_grey_png.vtex");
+}
+
+.SectIcon.sect_regen .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_healer_grey_png.vtex");
+}
+
+.SectIcon.sect_ice .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_ice_grey_png.vtex");
+}
+
+.SectIcon.sect_ulti .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_mage_grey_png.vtex");
+}
+
+.SectIcon.sect_poison .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_poisoner_grey_png.vtex");
+}
+
+.SectIcon.sect_wisp .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_void_grey_png.vtex");
+}
+
+.SectIcon.sect_shield .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_warrior_grey_png.vtex");
+}
+
+.SectIcon.sect_evade .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_wild_grey_png.vtex");
+}
+
+.SectIcon.sect_chaos .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_chaos_grey_png.vtex");
+}
+
+.SectIcon.sect_none .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_none_grey_png.vtex");
+}
+
+.SectIcon.sect_attack.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_swordsman_png.vtex");
+}
+
+.SectIcon.sect_crit.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_assassin_png.vtex");
+}
+
+.SectIcon.sect_injury.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_beast_png.vtex");
+}
+
+.SectIcon.sect_health.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_brawny_png.vtex");
+}
+
+.SectIcon.sect_fury.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_fury_png.vtex");
+}
+
+.SectIcon.sect_regen.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_healer_png.vtex");
+}
+
+.SectIcon.sect_ice.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_ice_png.vtex");
+}
+
+.SectIcon.sect_ulti.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_mage_png.vtex");
+}
+
+.SectIcon.sect_poison.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_poisoner_png.vtex");
+}
+
+.SectIcon.sect_wisp.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_void_png.vtex");
+}
+
+.SectIcon.sect_shield.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_warrior_png.vtex");
+}
+
+.SectIcon.sect_evade.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_wild_png.vtex");
+}
+
+.SectIcon.sect_chaos.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_chaos_png.vtex");
+}
+
+.SectIcon.sect_none.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_none_png.vtex");
+}
+
+.SectIcon.sect_attack.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_swordsman_grey_png.vtex");
+}
+
+.SectIcon.sect_crit.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_assassin_grey_png.vtex");
+}
+
+.SectIcon.sect_injury.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_beast_grey_png.vtex");
+}
+
+.SectIcon.sect_health.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_brawny_grey_png.vtex");
+}
+
+.SectIcon.sect_fury.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_fury_grey_png.vtex");
+}
+
+.SectIcon.sect_regen.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_healer_grey_png.vtex");
+}
+
+.SectIcon.sect_ice.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_ice_grey_png.vtex");
+}
+
+.SectIcon.sect_ulti.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_mage_grey_png.vtex");
+}
+
+.SectIcon.sect_poison.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_poisoner_grey_png.vtex");
+}
+
+.SectIcon.sect_wisp.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_void_grey_png.vtex");
+}
+
+.SectIcon.sect_shield.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_warrior_grey_png.vtex");
+}
+
+.SectIcon.sect_evade.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_wild_grey_png.vtex");
+}
+
+.SectIcon.sect_chaos.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_chaos_grey_png.vtex");
+}
+
+.SectIcon.sect_none.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_none_grey_png.vtex");
+}
+
+.SectIcon.sect_attack.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_swordsman_png.vtex");
+}
+
+.SectIcon.sect_crit.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_assassin_png.vtex");
+}
+
+.SectIcon.sect_injury.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_beast_png.vtex");
+}
+
+.SectIcon.sect_health.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_brawny_png.vtex");
+}
+
+.SectIcon.sect_fury.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_fury_png.vtex");
+}
+
+.SectIcon.sect_regen.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_healer_png.vtex");
+}
+
+.SectIcon.sect_ice.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_ice_png.vtex");
+}
+
+.SectIcon.sect_ulti.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_mage_png.vtex");
+}
+
+.SectIcon.sect_poison.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_poisoner_png.vtex");
+}
+
+.SectIcon.sect_wisp.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_void_png.vtex");
+}
+
+.SectIcon.sect_shield.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_warrior_png.vtex");
+}
+
+.SectIcon.sect_evade.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_wild_png.vtex");
+}
+
+.SectIcon.sect_chaos.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_chaos_png.vtex");
+}
+
+.SectIcon.sect_none.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_none_png.vtex");
+}
+
+.EOM_TooltipHeader
+{
+	padding: 4px;
+}
+
+#SectContainer
+{
+	align: center center;
+}
+
+#SectNameHeader
+{
+	font-size: 18px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	margin-left: 10px;
+	vertical-align: center;
+}
+
+#SectNameDescription
+{
+	text-align: center;
+	font-size: 16px;
+	height: 18px;
+	vertical-align: bottom;
+	text-overflow: shrink;
+}
+
+#SectNameDescription.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+#SectNameDescription .GameplayValues
+{
+	color: #4d5560;
+}
+
+#SectNameDescription .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+.SectRow
+{
+	margin: 4px 0px 4px 5px;
+}
+
+.AbilityImage
+{
+	width: 36px;
+	height: 36px;
+	border: 1px solid white;
+	border-radius: 2px;
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#a09a72), to(#755417));
+}
+
+.AbilityImageBorder
+{
+	align: center center;
+	width: 36px;
+	height: 36px;
+	overflow: noclip;
+}
+
+.SectName
+{
+	font-size: 16px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+.SectName.Rare
+{
+	color: #9e6eff;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#ffffffff), to(#a076ff));
+	brightness: 2;
+}
+
+.SectName.SuperRare
+{
+	color: dotaPlusGoldGradient;
+	brightness: 1.5;
+}
+
+.SectDescription
+{
+	font-size: 14px;
+	color: #6DBED9;
+	vertical-align: bottom;
+}
+
+.SectDescription.GameplayVariable
+{
+	font-weight: semibold;
+	color: #e1e1e1;
+}
+
+.SectDescription .GameplayValues
+{
+	color: #4d5560;
+}
+
+.SectDescription .GameplayValues.GameplayVariable
+{
+	color: #e1e1e1;
+}
+
+#LoreContainer
+{
+	width: 100%;
+	vertical-align: bottom;
+	padding: 5px 10px 5px 10px;
+	background-color: #0c1316;
+	border-radius: 2px;
+	margin: 4px;
+}
+
+#LoreContainer Label
+{
+	font-size: 14px;
+	color: #3d4e5b;
+	font-style: italic;
+}
+
+.RecordData
+{
+	width: 48%;
+	flow-children: right;
+	margin: 2px 0px;
+}
+
+.RecordDataList
+{
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	margin: 4px 4px 4px 4px;
+}
+
+.RecordDataList.Show
+{
+	opacity: 1;
+}
+
+.RecordImage
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 2px;
+}
+
+.RecordDamagevalue,.Recordvalue
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	padding-left: 10px;
+}
+
+.RecordName
+{
+	font-size: 16px;
+	margin-left: 32px;
+	vertical-align: center;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+	z-index: 1;
+}
+
+.RecordProgress
+{
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b1b1b1), to(#616161));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.RecordDamagevalue
+{
+	horizontal-align: right;
+	text-align: right;
+	padding-right: 6px;
+	font-size: 16px;
+}
+
+#HealthProgress
+{
+	height: 20px;
+}
+
+#ManaProgress
+{
+	height: 20px;
+}

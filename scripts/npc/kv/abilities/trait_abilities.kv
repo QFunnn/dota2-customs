@@ -1,0 +1,1501 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"KeyValue"
+{
+	"trait_1"
+	{
+		"Note"									"富三代"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_1"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"gold"								"300"
+			"wage"								"30"
+		}
+	}
+	"trait_2"
+	{
+		"Note"									"贵族血统"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_2"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"round"								"4"
+		}
+	}
+	"trait_3"
+	{
+		"Note"									"浴血奋战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_3"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomRefresh"							"5"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"lifesteal"							"25"
+			"interval"							"1"
+			"extra_lifesteal"					"15"
+		}
+	}
+	"trait_6"
+	{
+		"Note"									"僵尸体质"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_6"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"not_sect,sect_regen"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"health"							"30"
+			"armor"								"20"
+		}
+	}
+	"trait_8"
+	{
+		"Note"									"极意剑豪"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_8"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"command_sect,sect_attack"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"attackspeed"						"6"
+			"attack"							"6"
+			"damage_reduce"						"70"
+		}
+	}
+	"trait_9"
+	{
+		"Note"									"对赌协议 "
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_9"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"value"								"200"
+		}
+	}
+	"trait_11"
+	{
+		"Note"									"每2回合从一个随机玩家处学习一个技能"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_11"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"round"
+			{
+				"value"							"2"
+				"_turbo"						"1"
+			}
+		}
+	}
+	"trait_13"
+	{
+		"Note"									"战术目镜"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_13"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"attackspeed"						"20"
+			"attackspeed_pct"					"20"
+			"hit_rate"							"30"
+			"crit_chance"						"10"
+			"crit_damage"						"150"
+		}
+	}
+	"trait_14"
+	{
+		"Note"									"医疗兵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_14"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_regen"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"command_sect,sect_regen"
+		"AbilityValues"
+		{
+			"heal_pct"							"15"
+			"heal_damage_pct"					"120"
+			"damage_reduce_pct"					"40"
+		}
+	}
+	"trait_16"
+	{
+		"Note"									"白嫖怪"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_16"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"max_count"							"7"
+		}
+	}
+	"trait_17"
+	{
+		"Note"									"奥术至尊"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_17"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ulti"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"ulti"								"3"
+			"mana"								"60"
+			"evade"								"60"
+		}
+	}
+	"trait_18"
+	{
+		"Note"									"幽灵护甲"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_18"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"sect_debuff,2"
+		"AbilityValues"
+		{
+			"return"							"40"
+			"get"								"20"
+		}
+	}
+	"trait_19"
+	{
+		"Note"									"仁爱之友"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_19"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_wisp"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"reduce"							"0.15"
+			"health"							"1"
+		}
+	}
+	"trait_20"
+	{
+		"Note"									"厄难毒体"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_20"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_poison"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"interval"							"0.1"
+			"damage"							"25"
+			"reduce"							"20"
+		}
+	}
+	"trait_24"
+	{
+		"Note"									"企业家"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_24"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"gold"								"5"
+			"reduce"							"10"
+			"damage"							"25"
+			"damage_bonus"						"1"
+		}
+	}
+	"trait_25"
+	{
+		"Note"									"节俭者"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_25"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"no_city,city_1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"add"								"0"
+			"gold"								"100"
+			"interest"							"15"
+		}
+	}
+	"trait_32"
+	{
+		"Note"									"技能升华"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_32"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"round"								"3"
+		}
+	}
+	"trait_33"
+	{
+		"Note"									"专属福利"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_33"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"not_sect,sect_none"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"card"								"3"
+			"count"								"1"
+		}
+	}
+	"trait_36"
+	{
+		"Note"									"神杖碎片II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_36"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"150"
+		"CustomRefresh"							"15"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"chance"							"14"
+		}
+	}
+	"trait_37"
+	{
+		"Note"									"免费购物I"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_37"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"round"								"3"
+			"count"								"1"
+		}
+	}
+	"trait_38"
+	{
+		"Note"									"免费购物II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_38"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"AbilityValues"
+		{
+			"round"								"3"
+			"count"								"1"
+		}
+	}
+	"trait_39"
+	{
+		"Note"									"忍术I"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_39"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"2"
+			"round"								"3"
+			"tooltip_cd"						"2"
+		}
+	}
+	"trait_40"
+	{
+		"Note"									"忍术II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_40"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"3"
+			"round"								"3"
+			"tooltip_cd"						"2"
+		}
+	}
+	"trait_43"
+	{
+		"Note"									"随机财宝"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_43"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"2"
+			"round"								"3"
+		}
+	}
+	"trait_44"
+	{
+		"Note"									"三元重戟"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_44"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"150"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+	}
+	"trait_46"
+	{
+		"Note"									"背水一战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_46"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomRefresh"							"5"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"count"								"1"
+			"count2"							"2"
+			"round"								"2"
+		}
+	}
+	"trait_49"
+	{
+		"Note"									"神杖碎片III"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_49"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"15"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"chance"							"2"
+		}
+	}
+	"trait_50"
+	{
+		"Note"									"中级祈求术"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_50"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"4"
+		}
+	}
+	"trait_51"
+	{
+		"Note"									"金币奖励"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_51"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"gold"								"80"
+		}
+	}
+	"trait_52"
+	{
+		"Note"									"闪电打击"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_52"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomRefresh"							"5"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"duration"							"1.5"
+			"time"								"8"
+			"repeat"							"1"
+		}
+	}
+	"trait_58"
+	{
+		"Note"									"强攻II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_58"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_crit"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_58"
+		"Round"									"11"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"count"								"1"
+			"crit_bonus"						"2"
+			"max_stack"							"4"
+		}
+	}
+	"trait_60"
+	{
+		"Note"									"风行II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_60"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_evade"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_60"
+		"Round"									"11"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"count"								"1"
+			"evade_bonus"						"2"
+			"max_stack"							"4"
+		}
+	}
+	"trait_62"
+	{
+		"Note"									"蜥蜴绝吻II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_62"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_fury"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_62"
+		"Round"									"11"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"damage"							"30"
+			"count"								"1"
+		}
+	}
+	"trait_64"
+	{
+		"Note"									"刺骨严寒II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_64"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ice"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_64"
+		"Round"									"11"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"damage"							"25"
+			"count"								"1"
+		}
+	}
+	"trait_70"
+	{
+		"Note"									"热血战魂II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_70"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_70"
+		"Round"									"11"
+		"CustomRefresh"							"5"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"life_steal"						"4"
+			"count"								"1"
+		}
+	}
+	"trait_74"
+	{
+		"Note"									"野兽血脉II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_74"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_health"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_74"
+		"Round"									"11"
+		"CustomRefresh"							"5"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"hp_percent"						"10"
+			"count"								"1"
+		}
+	}
+	"trait_79"
+	{
+		"Note"									"呼唤守卫II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_79"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_wisp"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"trait_78"
+		"Round"									"11"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"sect_lv,2"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"guard_hp"							"600"
+			"count"								"1"
+		}
+	}
+	"trait_82"
+	{
+		"Note"									"风险骰子I"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_82"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"chance"							"70"
+			"base"								"1"
+			"gold"								"20"
+		}
+	}
+	"trait_83"
+	{
+		"Note"									"风险骰子II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_83"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"chance"							"70"
+			"base"								"2"
+			"gold"								"25"
+		}
+	}
+	"trait_90"
+	{
+		"Note"									"复制"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_90"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"chance"							"35"
+		}
+	}
+	"trait_92"
+	{
+		"Note"									"魔法剑 I"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_92"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"200"
+		"AbilityValues"
+		{
+			"mana"								"4"
+		}
+	}
+	"trait_93"
+	{
+		"Note"									"魔法剑II"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_93"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"200"
+		"AbilityValues"
+		{
+			"mana"								"6"
+		}
+	}
+	"trait_94"
+	{
+		"Note"									"弱肉强食"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_94"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"not_sect,sect_none"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"gold"								"200"
+		}
+	}
+	"trait_95"
+	{
+		"Note"									"双面币（黑）"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_95"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"6"
+			"count2"							"1"
+			"sect_none_add_cnt"					"1"
+		}
+	}
+	"trait_96"
+	{
+		"Note"									"双面币（白）"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_96"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"AppearCondition"						"not_sect,sect_none"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"4"
+			"count2"							"1"
+		}
+	}
+	"trait_97"
+	{
+		"Note"									"流派经验"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_97"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomRefresh"							"10"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"2"
+		}
+	}
+	"trait_101"
+	{
+		"Note"									"封印轮盘"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_101"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"2"
+			"exp"								"2"
+		}
+	}
+	"trait_102"
+	{
+		"Note"									"期望胜利"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_102"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"round"								"3"
+			"gold"								"300"
+		}
+	}
+	"trait_103"
+	{
+		"Note"									"存心失利"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_103"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"gold"								"70"
+			"refresh"							"2"
+		}
+	}
+	"trait_104"
+	{
+		"Note"									"珍藏财宝"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_104"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"3"
+			"first_add"							"2"
+			"round"								"2"
+		}
+	}
+	"trait_105"
+	{
+		"Note"									"别再错过"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_105"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"1"
+		}
+	}
+	"trait_106"
+	{
+		"Note"									"征战之路"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_106"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"expedition"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"r_count"							"1"
+			"damage"							"30"
+			"sr_count"							"1"
+		}
+	}
+	"trait_107"
+	{
+		"Note"									"怒火征战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_107"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_fury"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"expedition"
+		"Round"									"11"
+		"AppearCondition"						"command_sect,sect_fury"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"300 400 800 1600 3200"
+			"gold"								"50 100 150 200 300"
+		}
+	}
+	"trait_108"
+	{
+		"Note"									"寒霜征战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_108"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ice"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"expedition"
+		"Round"									"11"
+		"AppearCondition"						"command_sect,sect_ice"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"300 400 800 1600 3200"
+			"gold"								"50 100 150 200 300"
+		}
+	}
+	"trait_109"
+	{
+		"Note"									"护盾征战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_109"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_shield"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"expedition"
+		"Round"									"11"
+		"AppearCondition"						"command_sect,sect_shield"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"200 300 600 1200 2400"
+			"gold"								"50 100 150 200 300"
+		}
+	}
+	"trait_110"
+	{
+		"Note"									"易伤征战"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_110"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_injury"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"repeatKey"								"expedition"
+		"Round"									"11"
+		"AppearCondition"						"command_sect,sect_injury"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"150 200 400 800 1600"
+			"gold"								"50 100 150 200 300"
+		}
+	}
+	"trait_119"
+	{
+		"Note"									"黑皇杖"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_119"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"200"
+		"CustomRefresh"							"10"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"duration"							"18"
+		}
+	}
+	"trait_120"
+	{
+		"Note"									"魔晶"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_120"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"200"
+		"CustomRefresh"							"10"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"gold"								"200"
+		}
+	}
+	"trait_123"
+	{
+		"Note"									"风暴之力"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_123"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"5"
+		}
+	}
+	"trait_127"
+	{
+		"Note"									"北伐"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_127"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"win"								"1"
+			"base_gold"							"20"
+			"bonus_gold"						"130"
+		}
+	}
+	"trait_130"
+	{
+		"Note"									"恶牛角"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_134"
+			}
+			"level"								"3"
+		}
+	}
+	"trait_131"
+	{
+		"Note"									"散魂剑"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ulti"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"10"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_135"
+			}
+			"level"								"2"
+		}
+	}
+	"trait_132"
+	{
+		"Note"									"天堂之戟"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_replace"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_141"
+			}
+			"level"								"3"
+		}
+	}
+	"trait_133"
+	{
+		"Note"									"海盗帽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_136"
+			}
+		}
+	}
+	"trait_134"
+	{
+		"Note"									"深渊之刃"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_137"
+			}
+		}
+	}
+	"trait_135"
+	{
+		"Note"									"钢铁之心"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_135"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_health"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"100"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"bonus_tick"						"0"
+		}
+	}
+	"trait_136"
+	{
+		"Note"									"法术棱镜"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_replace"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ulti"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_138"
+			}
+			"level"								"3"
+		}
+	}
+	"trait_137"
+	{
+		"Note"									"圣斧"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_poison"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_139"
+			}
+		}
+	}
+	"trait_138"
+	{
+		"Note"									"辉耀"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_evade"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_140"
+			}
+		}
+	}
+	"trait_139"
+	{
+		"Note"									" "
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_139"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_fury"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"CustomRefresh"							"5"
+		"AppearCondition"						"command_sect,sect_fury|command_sect,sect_attack"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"gain_reduce"						"50"
+			"fury"								"40"
+			"attackspeed"						"15"
+			"duration"							"2"
+			"fury_pct"							"20"
+			"threshold"							"350"
+		}
+	}
+	"trait_140"
+	{
+		"Note"									"霜之哀伤"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_140"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_ice"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
+		"Type"									"2"
+		"AbilityValues"
+		{
+			"mana_regen_pct"					"50"
+			" "									""
+		}
+	}
+	"trait_141"
+	{
+		"Note"									"刷新福利"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_141"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"threshold"							"160"
+			"count"								"1"
+		}
+	}
+	"trait_142"
+	{
+		"Note"									"购物协议"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_142"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"CustomGainGold"						"200"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"n_count"							"0.5"
+			"r_count"							"1"
+			"sr_count"							"3"
+		}
+	}
+	"trait_144"
+	{
+		"Note"									"人生重开器"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_144"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"convert_pct"						"95"
+			"hero"								"4"
+		}
+	}
+	"trait_145"
+	{
+		"Note"									"炼狱魔刃"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_fury"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_142"
+			}
+		}
+	}
+	"trait_146"
+	{
+		"Note"									"吸魂巫术"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_146"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"count"								"3"
+			"first_count"						"5"
+		}
+	}
+	"trait_147"
+	{
+		"Note"									"俄罗斯轮盘"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_147"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"loss_hp"							"2"
+			"add_gold"							"160"
+			"add_hp"							"2"
+		}
+	}
+	"trait_148"
+	{
+		"Note"									"全能之手"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_148"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"wait_round"						"5"
+		}
+	}
+	"trait_149"
+	{
+		"Note"									"复制1"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_149"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+	}
+	"trait_150"
+	{
+		"Note"									"复制2"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_150"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+	}
+	"trait_151"
+	{
+		"Note"									"商城"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_151"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"gain_gold"							"10"
+		}
+	}
+	"trait_152"
+	{
+		"Note"									"剑心犹在"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_152"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"interval"							"0.5"
+			"attack_cnt_max"					"5"
+		}
+	}
+	"trait_153"
+	{
+		"Note"									"坚毅不倒"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_153"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"loss_hp_trigger"					"600"
+			"dmg_outgoing"						"2"
+			"dmg_outgoing_max"					"20"
+		}
+	}
+	"trait_154"
+	{
+		"Note"									"魔力涌动"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_154"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"mana_regen"						"35"
+			"max_ult_cnt"						"3"
+		}
+	}
+	"trait_155"
+	{
+		"Note"									"神器专家"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_155"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+	}
+	"trait_156"
+	{
+		"Note"									"撒旦之邪力"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_item_give"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"CustomGainGold"						"100"
+		"AppearCondition"						"trait,158"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"item"
+			{
+				"value"							"item_equipment_143"
+			}
+		}
+	}
+	"trait_157"
+	{
+		"Note"									"卢修斯之力"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_157"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_poison"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"3"
+		"AbilityValues"
+		{
+			"timer"								"1.4"
+			"poison_dmg_steal"					"50"
+			"interval"							"0.1"
+		}
+	}
+	"trait_158"
+	{
+		"Note"									"中立装备"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_158"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"GroupModeBan"							"1"
+		"Type"									"3"
+	}
+	"trait_159"
+	{
+		"Note"									"雷锤思维/暗灭思维"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_159"
+		"AbilityTextureName"					"rune_reward"
+		"Sect"									"sect_attack"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"2"
+	}
+	"trait_160"
+	{
+		"Note"									"雷锤思维"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_160"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"4"
+		"AbilityValues"
+		{
+			"attack_speed"						"30"
+			"chance"							"25"
+			"damage"							"100"
+			"extra_gold"						"30"
+		}
+	}
+	"trait_161"
+	{
+		"Note"									"暗灭思维"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_161"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"11"
+		"Type"									"4"
+		"AbilityValues"
+		{
+			"attack"							"15"
+			"physical_reduce"					"5"
+			"round_attack"						"3"
+		}
+	}
+}

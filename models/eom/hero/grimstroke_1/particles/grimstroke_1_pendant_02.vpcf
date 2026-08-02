@@ -1,0 +1,168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "grimstroke_1_pendant_01"
+					m_entityName = "self_with_wearables"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/grimstroke_1/grimstroke_1.vmdl"
+				m_sequenceName = "grimstroke_1_idle"
+				m_hitboxSetName = "default"
+				m_flPlaybackSpeed = 0.0
+			}
+		},
+	]
+	m_PreEmissionOperators = [  ]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 30.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 3.0
+			m_flMaxTraceLength = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bIncludeWater = true
+			m_bSetNormal = true
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.588235
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 15.0
+				m_flRandomMax = 30.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 16
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 199, 0, 0, 255 ]
+			m_ColorMax = [ 155, 0, 0, 255 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_min = 0.01
+			m_flStartTime_max = 0.01
+			m_flEndTime_min = 0.01
+			m_flEndTime_max = 0.01
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flBias = 0.2
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 54, 4, 4, 255 ]
+			m_flFadeEndTime = 0.85
+		},
+		{
+			_class = "C_OP_DistanceToTransform"
+			m_nFieldOutput = 16
+			m_flInputMin = 60.0
+			m_flInputMax = 512.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_TransformStart = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_pendant_02c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_pendant_02b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/grimstroke_1/particles/grimstroke_1_pendant_02a.vpcf"
+		},
+	]
+}

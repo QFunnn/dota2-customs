@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+local a = "modifiers/skin/modifier_5100026"
+local b = require("lualib_bundle")
+local c = b.__TS__Class
+local d = b.__TS__ClassExtends
+local e = b.__TS__DecorateLegacy
+local f = b.__TS__SourceMapTraceBack
+f(
+	debug.getinfo(1).short_src,
+	{
+		["8"] = 1,
+		["9"] = 1,
+		["10"] = 1,
+		["11"] = 4,
+		["12"] = 12,
+		["13"] = 4,
+		["14"] = 12,
+		["15"] = 14,
+		["16"] = 15,
+		["17"] = 15,
+		["18"] = 15,
+		["19"] = 15,
+		["20"] = 15,
+		["21"] = 16,
+		["22"] = 16,
+		["23"] = 16,
+		["24"] = 16,
+		["25"] = 16,
+		["26"] = 17,
+		["27"] = 17,
+		["28"] = 17,
+		["29"] = 17,
+		["30"] = 17,
+		["31"] = 14,
+		["32"] = 28,
+		["33"] = 29,
+		["34"] = 28,
+		["35"] = 33,
+		["36"] = 34,
+		["37"] = 33,
+		["38"] = 12,
+		["39"] = 4,
+		["40"] = 4,
+		["41"] = 4,
+		["42"] = 4,
+		["43"] = 4,
+		["44"] = 4,
+		["45"] = 4,
+		["46"] = 4,
+		["47"] = 12,
+		["49"] = 12,
+	}
+)
+local g = {}
+local h = require("modifiers.eom_modifier")
+local i = h.EOMModifier
+local j = h.registerEOMModifier
+g.modifier_5100026 = c()
+local k = g.modifier_5100026
+k.name = "modifier_5100026"
+d(k, i)
+function k.prototype.OnCreated(self, l)
+	Wearable:registerParticleModifier(
+		self:GetParent(),
+		"particles/units/heroes/hero_void_spirit/astral_step/astral_step.vpcf",
+		"models/eom/hero/void_sprit_1/particles/void_sprit_1_step.vpcf"
+	)
+	Wearable:registerParticleModifier(
+		self:GetParent(),
+		"particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse.vpcf",
+		"models/eom/hero/void_sprit_1/particles/void_spirit_1_pulse.vpcf"
+	)
+	Wearable:registerParticleModifier(
+		self:GetParent(),
+		"particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse_absorb.vpcf",
+		"models/eom/hero/void_sprit_1/particles/void_spirit_1_pulse_absorb.vpcf"
+	)
+end
+function k.prototype.DeclareFunctions(self)
+	return { MODIFIER_PROPERTY_MODEL_SCALE }
+end
+function k.prototype.GetModifierModelScale(self)
+	return -20
+end
+k = e(
+	{
+		j(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				RemoveOnDeath = false,
+				AllowIllusionDuplicate = false,
+			}
+		),
+	},
+	k
+)
+g.modifier_5100026 = k
+return g
