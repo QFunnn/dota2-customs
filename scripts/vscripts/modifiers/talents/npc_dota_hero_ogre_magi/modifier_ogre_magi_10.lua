@@ -1,0 +1,43 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_ogre_magi_10 = class({})
+
+function modifier_ogre_magi_10:IsHidden()
+	return true
+end
+function modifier_ogre_magi_10:IsPurgable()
+	return false
+end
+function modifier_ogre_magi_10:IsPurgeException()
+	return false
+end
+function modifier_ogre_magi_10:RemoveOnDeath()
+	return false
+end
+
+function modifier_ogre_magi_10:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(1)
+	local ogre_magi_ignite_custom = self:GetCaster():FindAbilityByName("ogre_magi_ignite_custom")
+	if ogre_magi_ignite_custom then
+		ogre_magi_ignite_custom:SetHidden(true)
+		ogre_magi_ignite_custom:SetActivated(false)
+	end
+end
+
+function modifier_ogre_magi_10:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(self:GetStackCount() + 1)
+end

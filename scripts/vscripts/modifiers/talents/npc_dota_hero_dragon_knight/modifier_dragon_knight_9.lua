@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_dragon_knight_9 = class({})
+
+function modifier_dragon_knight_9:IsHidden()
+	return true
+end
+function modifier_dragon_knight_9:IsPurgable()
+	return false
+end
+function modifier_dragon_knight_9:IsPurgeException()
+	return false
+end
+function modifier_dragon_knight_9:RemoveOnDeath()
+	return false
+end
+
+function modifier_dragon_knight_9:OnCreated()
+	self.bonus = { 3, 6 }
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(1)
+end
+
+function modifier_dragon_knight_9:OnRefresh()
+	self.bonus = { 3, 6 }
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(self:GetStackCount() + 1)
+end
+
+function modifier_dragon_knight_9:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_dragon_knight_9:GetModifierSpellAmplify_Percentage()
+	return self.bonus[self:GetStackCount()]
+end
