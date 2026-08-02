@@ -20,6 +20,29 @@ run_decrypt() {
   ( cd "$dir" && bash "$path" "$dir" )
 }
 
+format_lua() {
+  local dir="$1" disabled="$2" f skipped=0
+  local -A encrypted=()
+  local -a files=()
+  [[ "$disabled" != "true" ]] || return 0
+  command -v stylua >/dev/null || { echo "StyLua not found"; exit 1; }
+  echo "-- format: StyLua"
+  while IFS= read -r -d '' f; do
+    encrypted["$f"]=1
+  done < <(grep -rlZE --include="*.lua" 'return[[:space:]]+\(?[[:space:]]*(decrypt|decryptModule)[[:space:]]*\(' "$dir" || true)
+  while IFS= read -r -d '' f; do
+    if [[ -n "${encrypted[$f]+x}" ]]; then
+      ((skipped += 1))
+    else
+      files+=("$f")
+    fi
+  done < <(find "$dir" -type f -name "*.lua" -not -path "$dir/.git/*" -print0)
+  if ((${#files[@]} > 0)) && ! printf '%s\0' "${files[@]}" | xargs -0 stylua --syntax Lua52 --verify; then
+    echo "warn: StyLua rejected one or more files; rejected files left unchanged"
+  fi
+  ((skipped == 0)) || echo "skipped $skipped encrypted Lua wrapper(s)"
+}
+
 fetch_remote_updated() {
   local id="$1" resp updated
   resp=$(curl -fsS -X POST \
@@ -86,6 +109,7 @@ main() {
   [[ -n "$(ls -A "$OUT")" ]] || { echo "Extraction empty"; exit 1; }
 
   run_decrypt "$OUT" "$DECRYPT_SCRIPT"
+  format_lua "$OUT" "$DISABLE_FORMAT"
   apply_watermark "$OUT" "$WATERMARK"
 
   jq -n \
