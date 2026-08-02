@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"undy_spray_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/undying/undying"
+		"AbilityTextureName"			"alchemist_acid_spray"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"900"
+		"AbilityCooldown"				"16"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"radius"					"450"
+			"duration"					"10"
+			"damage"					"250"
+			"diff_boost_damage"     	"50"
+			"armor_reduction"			"5"
+			"diff_boost_additional"		"1"
+			"tick_rate"					"1"
+		}
+	}	
+	
+	"undy_corrosive_skin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/undying/undying"
+		"AbilityTextureName"			"viper_corrosive_skin"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"duration"					"4"
+			"bonus_attack_speed"		"15"
+			"damage"					"100"
+			"diff_boost_damage"     	"25"
+			"max_range"					"1000"
+		}
+	}
+
+    "undy_skeletons_on_death_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/undying/undying"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"				"1200"
+
+        "AbilityValues"
+        {
+            "radius"                	"1200"
+            "skeleton_count"        	"3"
+        }
+    }
+
+	"undying_str_steal_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/bosses/undying/undying"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCooldown"				"10"
+		
+		"AbilityValues"
+		{
+			"radius"                	"700"
+			"str_steal"             	"3"
+			"hp_per_str"            	"20"
+			"duration"              	"15"
+			"diff_boost_damage"     	"10" 
+			"diff_boost_additional"  	"1"
+		}
+	}
+}

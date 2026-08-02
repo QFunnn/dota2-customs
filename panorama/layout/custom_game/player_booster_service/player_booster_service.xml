@@ -1,0 +1,372 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/common_styles.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/player_booster_service.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/player_booster_service.js" />
+	</scripts>
+	<snippets>
+		<snippet name="booster_card">
+			<Panel class="booster-card">
+				<Panel class="booster-hero">
+					<DOTAAvatarImage id="avatar_image2" class="avatar-image" steamid="76561198146952643" />
+					<DOTAHeroImage id="avatar_image" class="avatar-image" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				</Panel>
+				<Panel class="booster-info">
+					<DOTAUserName id="booster_name" class="booster-name" steamid="76561198146952643" />
+					<Label id="booster_stats" class="booster-stats" text="#ui_booster_orders_completed" html="true" />
+					<Label id="booster_description" class="booster-description" text="#ui_booster_description_placeholder" />
+				</Panel>
+				<Panel id="booster_price_panel" class="booster-price">
+					<Label id="booster_price" class="price-label" text="100" />
+					<Panel class="unified-currency" />
+				</Panel>
+				<Button id="order_button" class="button order-button">
+					<Label class="button-text" text="#ui_booster_order_button" />
+				</Button>
+			</Panel>
+		</snippet>
+		<snippet name="booster_order_item">
+			<Panel class="order-item">
+				<Panel class="order-header">
+					<DOTAAvatarImage id="booster_order_avatar" class="order-avatar" steamid="76561198146952643" />
+					<DOTAUserName id="booster_order_customer_name" class="order-customer-name" steamid="76561198146952643" />
+					<Label id="booster_order_status" class="order-status" text="#ui_booster_status_in_progress" />
+				</Panel>
+				<Panel class="order-details">
+					<Panel class="order-details-row">
+						<Panel class="order-detail-column">
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_payout_label" />
+								<Label id="booster_order_payout" class="order-detail-value order-payout" text="90" />
+							</Panel>
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_difficulty_short" />
+								<Label id="booster_order_difficulty" class="order-detail-value order-difficulty" text="20" />
+							</Panel>
+						</Panel>
+						<Panel class="order-detail-column">
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_payment_status_label" />
+								<Label id="booster_order_payment_status" class="order-detail-value order-payment-status" text="#ui_booster_payment_held_short" />
+							</Panel>
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_date_label" />
+								<Label id="booster_order_date" class="order-detail-value order-date" text="18.10.2025" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="customer_order_item">
+			<Panel class="order-item">
+				<Panel class="order-header">
+					<DOTAAvatarImage id="order_avatar" class="order-avatar" steamid="76561198146952643" />
+					<DOTAUserName id="order_booster_name" class="order-booster-name" steamid="76561198146952643" />
+					<Label id="order_status" class="order-status" text="#ui_booster_status_in_progress" />
+				</Panel>
+				<Panel class="order-details">
+					<Panel class="order-details-row">
+						<Panel class="order-detail-column">
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_cost_label" />
+								<Label id="order_price" class="order-detail-value order-price" text="100" />
+							</Panel>
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_difficulty_short" />
+								<Label id="order_difficulty" class="order-detail-value order-difficulty" text="20" />
+							</Panel>
+						</Panel>
+						<Panel class="order-detail-column">
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_payment_status_label" />
+								<Label id="order_payment_status" class="order-detail-value order-payment-status" text="#ui_booster_payment_held" />
+							</Panel>
+							<Panel class="order-detail-item">
+								<Label class="order-detail-label" text="#ui_booster_date_label" />
+								<Label id="order_date" class="order-detail-value order-date" text="18.10.2025" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false">
+		<Panel class="order-boost-panel">
+			<Panel class="panel-header" id="panel-header">
+				<Button class="tab-button active" id="tab_order_boost">
+					<Label class="tab-text" text="#ui_booster_order_boost_tab" />
+				</Button>
+				<Button class="tab-button" id="tab_my_orders">
+					<Label class="tab-text" text="#ui_booster_my_orders_tab" />
+				</Button>
+			</Panel>
+			<Panel class="tab-content" id="tab_content_order_boost">
+				<Label class="panel-title" id="panel_title_order_boost" text="#ui_booster_order_boost_title" />
+				<Panel class="scroll-container">
+					<Panel class="info-box current-game-badgeline">
+						<Label class="info-text" text="#ui_booster_payment_info" />
+					</Panel>
+					<Panel class="boosters-list" id="boosters-list" />
+					<Panel class="info-box separator-line">
+						<Label class="info-text" text="#ui_booster_random_boosters_info" />
+					</Panel>
+					<Panel class="boosters-list" id="random_boosters_list" />
+					<Panel class="info-box">
+						<Label class="info-text" text="#ui_booster_order_restriction_info" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="tab-content" id="tab_content_my_orders">
+				<Panel class="scroll-container">
+					<Panel class="orders-list" id="customer_orders_list" />
+					<Panel class="info-box">
+						<Label class="info-text" text="#ui_booster_customer_orders_info" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="booster-settings-panel">
+			<Panel class="panel-header" id="left_panel_header">
+				<Button class="tab-button active" id="tab_booster_settings">
+					<Label class="tab-text" text="#ui_booster_settings_tab" />
+				</Button>
+				<Button class="tab-button" id="tab_booster_orders" style="visibility: collapse;">
+					<Label class="tab-text" text="#ui_booster_my_orders_booster_tab" />
+				</Button>
+			</Panel>
+			<Panel class="tab-content" id="tab_content_booster_settings">
+				<Panel class="license-purchase-section" id="license_purchase_section">
+					<Label class="panel-title" text="#ui_booster_license_title" />
+					<Panel class="license-info-box">
+						<Label class="license-description" text="#ui_booster_license_description" />
+						<Panel class="license-features">
+							<Label class="feature-item" text="#ui_booster_license_feature_pricing" />
+							<Label class="feature-item" text="#ui_booster_license_feature_display" />
+							<Label class="feature-item" text="#ui_booster_license_feature_orders" />
+							<Label class="feature-item" text="#ui_booster_license_feature_stats" />
+						</Panel>
+						<Panel class="license-price">
+							<Label class="price-text" text="#ui_booster_license_price_label" />
+							<Panel class="price-container">
+								<Label class="price-amount" text="150" />
+								<Panel class="unified-currency" />
+							</Panel>
+						</Panel>
+						<Button class="button license-purchase-button" id="license_purchase_button2">
+							<Label class="button-text" text="#ui_booster_buy_license_button" />
+						</Button>
+						<Label class="license-duration" text="#ui_booster_license_duration" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="booster-settings-content" id="booster_settings_content">
+				<Label class="panel-title" id="booster_settings_title" text="#ui_booster_settings_title" />
+				<Panel class="booster-stats-section">
+					<Label class="stats-label" text="#ui_booster_my_stats_title" />
+					<Panel class="stats-grid">
+						<Panel class="stats-card">
+							<Panel class="stats-icon">
+								<Image class="stats-icon-image" src="s2r://panorama/images/custom_game/booster_stats_icon_png.vtex" />
+							</Panel>
+							<Panel class="stats-content">
+								<Label class="stats-text" text="#ui_booster_completed_boosts_label" />
+								<Label class="stats-number" id="completed_boosts" text="127" />
+							</Panel>
+						</Panel>
+						<Panel class="stats-card">
+							<Panel class="stats-icon">
+								<Image class="stats-icon-image" src="s2r://panorama/images/custom_game/booster_earnings_icon_png.vtex" />
+							</Panel>
+							<Panel class="stats-content">
+								<Label class="stats-text" text="#ui_booster_earned_coins_label" />
+								<Label class="stats-number" id="earned_coins" text="127" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="license-info-section">
+						<Panel class="license-header">
+							<Panel class="license-icon">
+								<Image class="license-icon-image" src="s2r://panorama/images/custom_game/license_icon_png.vtex" />
+							</Panel>
+							<Label class="license-info-label" text="Информация о лицензии" />
+						</Panel>
+						<Panel class="license-details">
+							<Panel class="license-detail-row">
+								<Panel class="license-detail-icon">
+									<Image class="license-detail-icon-image" src="s2r://panorama/images/custom_game/time_icon_png.vtex" />
+								</Panel>
+								<Label class="license-detail-label" text="Дней осталось:" />
+								<Label class="license-detail-value" id="license_days_remaining" text="30" />
+							</Panel>
+							<Panel class="license-detail-row">
+								<Panel class="license-detail-icon">
+									<Image class="license-detail-icon-image" src="s2r://panorama/images/custom_game/calendar_icon_png.vtex" />
+								</Panel>
+								<Label class="license-detail-label" text="Дата покупки:" />
+								<Label class="license-detail-value" id="license_purchased_date" text="01.01.2024" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="description-section">
+					<Label class="section-label" text="#ui_booster_description_label" />
+					<TextEntry class="description-input" id="description_input" placeholder="#ui_booster_description_placeholder" />
+				</Panel>
+				<Panel class="pricing-section">
+					<Label class="section-label" text="#ui_booster_pricing_title" />
+					<Label class="commission-info" text="#ui_booster_commission_info" />
+					<Panel class="difficulty-prices">
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_20" />
+							<TextEntry class="price-input" id="price-input-20" text="100" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" id="toggle-button-20" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_19" />
+							<TextEntry class="price-input" text="500" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_18" />
+							<TextEntry class="price-input" text="600" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_17" />
+							<TextEntry class="price-input" text="700" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_16" />
+							<TextEntry class="price-input" text="800" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_15" />
+							<TextEntry class="price-input" text="900" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_14" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_13" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_12" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_11" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_10" />
+							<TextEntry class="price-input" text="100" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_9" />
+							<TextEntry class="price-input" text="500" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_8" />
+							<TextEntry class="price-input" text="600" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_7" />
+							<TextEntry class="price-input" text="700" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_6" />
+							<TextEntry class="price-input" text="800" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_5" />
+							<TextEntry class="price-input" text="900" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_4" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_3" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_2" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+						<Panel class="price-row">
+							<Label class="difficulty-label" text="#ui_booster_difficulty_1" />
+							<TextEntry class="price-input" text="1000" />
+							<Panel class="unified-currency" />
+							<ToggleButton class="toggle-button" checked="true" text="#ui_booster_difficulty_accept" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<ToggleButton class="toggle-button" id="hide_checkbox" text="#ui_booster_hide_from_list" />
+				<Button class="button confirm-button" id="confirm_button">
+					<Label class="button-text" text="#ui_booster_confirm_changes_button" />
+				</Button>
+			</Panel>
+			<Panel class="tab-content" id="tab_content_booster_orders">
+				<Panel class="scroll-container">
+					<Panel class="orders-list" id="booster_orders_list" />
+					<Panel class="info-box">
+						<Label class="info-text" text="#ui_booster_booster_orders_info" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

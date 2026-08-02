@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"huskar_inner_vitality_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_inner_vitality_lua/huskar_inner_vitality_lua"
+		"AbilityTextureName"			"huskar_inner_vitality"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"					   
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+		"AbilityDuration"				"8"
+
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"140"
+
+		"AbilityValues"
+		{
+			"heal"					"10 15 20 25"
+			"str_bonus"			
+			{
+				"value"					"6 9 12 15"
+				"LinkedSpecialBonus"	"special_bonus_huskar_tal_2"
+			}
+			"hurt_percent"			"35"
+			"str_heal"
+			{
+				"value"					"50"
+				"LinkedSpecialBonus"	"special_bonus_huskar_tal_7"
+			}
+		}
+	}
+}

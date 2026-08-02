@@ -1,0 +1,199 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"lua_snapfire_scatterblast"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_snapfire/hero_snapfire"
+		"AbilityTextureName"			"snapfire_scatterblast"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.4"
+		"AbilityChannelTime"			"0"
+		"AbilityDuration"				"0.0"
+
+		"AbilityCooldown"				"13 12 11 10"
+		"AbilityManaCost"				"80 90 100 110"
+
+		"AbilityValues"
+		{
+			"damage"
+			{
+                "value" "70 140 210 280"
+                "special_bonus_unique_underlord_2" "+70"
+            }
+			"blast_speed"				"3000"
+			"blast_width_initial"		"275"
+			"blast_width_end"			"500"
+			"debuff_duration"			"3.0"
+			"movement_slow_pct"			"100"
+			"point_blank_range"			"450"
+			"point_blank_dmg_bonus_pct"	"50.0"
+			"slow_duration"				"1.0"
+		}
+	}
+"lua_snapfire_firesnap_cookie"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_snapfire/hero_snapfire"
+		"AbilityTextureName"			"snapfire_firesnap_cookie"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+
+		"AbilityCooldown"				"24 21 18 15"
+		"AbilityManaCost"				"50 60 70 80"
+
+		"AbilityValues"
+		{
+			"hp"						
+			{
+                "value" "70 140 210 280"
+                "special_bonus_unique_underlord_4" "+70"
+            }
+			"damage"					
+			{
+                "value" "20 40 60 80"
+                "special_bonus_unique_underlord_6" "+50"
+            }
+			"duration"
+			{
+                "value" "3"
+                "special_bonus_unique_underlord_1" "+2"
+            }
+		}
+	}
+
+"lua_snapfire_lil_shredder"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_snapfire/hero_snapfire"
+		"AbilityTextureName"			"snapfire_lil_shredder"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+		"AbilityDuration"				"8"
+
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"90"
+
+		"AbilityValues"
+		{
+			"damage"						"20 40 60 80"
+			"buffed_attacks"				
+			{
+                "value" "6"
+                "special_bonus_unique_underlord_5" "+3"
+            }
+			"attack_speed_bonus"			"300"
+			"attack_range_bonus"			"75 150 225 300"
+			"buff_duration_tooltip"			"8"
+			"base_attack_time"				"0.9"
+			"fury"							"10 15 20 25"
+		}
+	}
+
+"lua_snapfire_mortimer_kisses"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_snapfire/hero_snapfire"
+		"AbilityTextureName"			"snapfire_mortimer_kisses"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityValues"
+		{
+			"chance"				
+			{
+                "value" "8 10 12"
+                "special_bonus_unique_underlord_7" "+8"
+            }
+			"projectile_speed"		"800"
+			"projectile_width"		"130"
+			"impact_radius"			"275"
+			"damage_per_impact"		"160 240 320"
+			"burn_interval"			"0.1"
+			"burn_damage"			"40 80 120"
+			"burn_ground_duration"	"2"
+		}
+	}
+	
+	"special_bonus_unique_snapfire_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_snapfire_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_snapfire_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

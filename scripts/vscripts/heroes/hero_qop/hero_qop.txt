@@ -1,0 +1,147 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"npc_dota_hero_queenofpain_spell1"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_qop/npc_dota_hero_queenofpain_spell1"
+		"AbilityTextureName"			"queen/1"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+        "AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"14 13 12 11"
+		"AbilityManaCost"				"70 80 90 100"
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"distanse" "700"
+			"damage" 
+			{
+				"value"					"40 60 80 100"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_1"
+			}	
+			
+            "count"
+			{
+				"value"					"3 4 5 6"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_2"
+			}	
+            "slow" "25"
+			"duration" "2"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+	
+"npc_dota_hero_queenofpain_spell2"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_qop/npc_dota_hero_queenofpain_spell2"
+		"AbilityTextureName"			"queen/2"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"7.0"
+		"AbilityManaCost"				"110 120 130 140"
+
+		"AbilityValues"
+		{
+			"scream_radius" "500"
+			"scream_damage" 
+			{
+				"value"					"75 150 225 300"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_3"
+			}
+			"ExtraIntelligenceDamage"			"0.2"			
+		}
+	}
+
+"npc_dota_hero_queenofpain_spell3"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"heroes/hero_qop/npc_dota_hero_queenofpain_spell3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"queen/4"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.4"
+		
+		"AbilityCooldown"				"32 30 28 26"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+		{
+			"burn_damage"		
+			{
+				"value"					"30 60 90 120"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_4"
+			}	
+			"radius_flashback"	"300"
+			"duration"
+			{
+				"value"					"3"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_5"
+			}
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+
+"npc_dota_hero_queenofpain_spell6"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_qop/npc_dota_hero_queenofpain_spell6"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"queenofpain_sonic_wave"
+		"MaxLevel"						"3"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.452"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"AbilityCooldown"				"100 85 70"
+		"AbilityManaCost"				"250 360 500"
+		
+		"AbilityValues"
+		{
+			"damage"				
+			{
+				"value"					"400 600 800"
+				"LinkedSpecialBonus"	"special_bonus_qop_tal_6"
+			}	
+			"start_radius"			"100"
+			"end_radius"			"450"
+			"travel_distance"		"900"
+			"projectile_speed"		"900"
+			"duration" 				"3"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}

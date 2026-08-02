@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"sven_gods_strength_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"sven_gods_strength"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
+		"ScriptFile"					"heroes/hero_sven/sven_gods_strength_lua/sven_gods_strength_lua"
+
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"90 75 60"
+		"AbilityDuration"				"25"
+	
+		"AbilityManaCost"				"100 150 200"
+
+		"AbilityValues"
+		{
+			"aura_radius"				"700"
+			"gods_strength_damage"
+			{
+				"value"						"100 150 200"
+				"LinkedSpecialBonus"		"special_bonus_sven_tal4"
+			}
+			"gods_strength_duration"	"25"
+		}
+	}
+}

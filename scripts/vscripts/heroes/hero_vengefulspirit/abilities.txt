@@ -1,0 +1,168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{	
+	"vengefulspirit_magic_missile_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_vengefulspirit/hero_vengefulspirit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"vengefulspirit_magic_missile"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"14 12 10 8"				
+		"AbilityManaCost"				"110 120 130 140"
+
+		"AbilityValues"
+		{
+			"magic_missile_speed"	"1250"
+			"magic_missile_stun"	"1.0 1.4 1.8 2.2"
+			"magic_missile_damage"		
+			{
+				"value"									"100 175 250 325"
+				"special_bonus_unique_vengefulspirit_4"	"+175"
+			}	
+		}
+	}
+
+	"vengefulspirit_wave_of_terror_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_vengefulspirit/hero_vengefulspirit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"vengefulspirit_wave_of_terror"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"14 12 10 8"	
+		"AbilityManaCost"				"40 60 80 100"
+
+		"AbilityValues"
+		{
+			"wave_speed"		"2000.0"
+			"wave_width"		"300"
+			"armor_reduction"	
+			{
+				"value"									"3 4 5 6"
+				"special_bonus_unique_vengefulspirit_2"	"+3"
+			}
+			"vision_aoe"		"500"
+			"duration"			"5"
+			"wave_damage"		
+			{
+				"value"									"50 100 150 200"	
+				"special_bonus_unique_vengefulspirit_1"	"+50"
+			}	
+		}
+	}	
+
+	"vengefulspirit_command_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_vengefulspirit/hero_vengefulspirit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityTextureName"			"vengefulspirit_command_aura"
+		"AbilityCastRange"				"700"
+		
+		"AbilityValues"
+		{
+			"bonus_damage_pct"	
+			{
+				"value"									"8 14 20 26"
+				"special_bonus_unique_vengefulspirit_7"	"+12"
+			}
+			"aura_radius"		"700"
+		}
+	}
+
+"vengefulspirit_nether_swap_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_vengefulspirit/hero_vengefulspirit"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"vengefulspirit_nether_swap"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"70 65 60"
+		"AbilityManaCost"				"100 200 300"
+		
+		"AbilityValues"
+		{
+			"tooltip_range"				"700"
+			"duration" 					"4 5 6"
+			"count"	
+			{
+				"value"									"1 2 3"
+				"special_bonus_unique_vengefulspirit_8"	"+1"
+			}
+		}
+	}
+
+	"special_bonus_unique_vengefulspirit_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_vengefulspirit_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_vengefulspirit_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

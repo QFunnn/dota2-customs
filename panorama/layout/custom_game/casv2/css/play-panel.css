@@ -1,0 +1,860 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.play-panel
+{
+	width: 750px;
+	flow-children: down;
+	padding: 16px;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.SpeedBlock
+{
+	flow-children: right;
+	vertical-align: center;
+	width: 100%;
+	margin-bottom: 4px;
+}
+
+.SpeedBlockTitle
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-right: 14px;
+	vertical-align: center;
+	width: 85px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.speed-buttons-container
+{
+	flow-children: right;
+	vertical-align: center;
+	height: 36px;
+}
+
+.speed-btn,.autospin-mode-btn
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 0px;
+	overflow: noclip;
+}
+
+.speed-btn
+{
+	width: 60px;
+	height: 30px;
+	margin-right: 6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.autospin-mode-btn
+{
+	width: 60px;
+	height: 30px;
+	margin-right: 6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.speed-btn-bg
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.speed-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.speed-btn:hover,.autospin-mode-btn:hover
+{
+	sound: "ui_select_arrow";
+	animation-name: none;
+	border-color: rgba(100, 181, 246, 0.6);
+	background-color: rgba(100, 181, 246, 0.1);
+	transition-property: border-color, background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.speed-btn:active,.autospin-mode-btn:active
+{
+	brightness: 0.9;
+	margin-top: 1px;
+	transition-property: brightness;
+	transition-duration: 0.08s;
+	transition-timing-function: ease-out;
+}
+
+.speed-btn.selected,.autospin-mode-btn.selected
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-left: 3px solid #64b5f6;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	margin-top: 2px;
+	transition-property: background-color, border-color;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+}
+
+.speed-text
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #e5e0c5;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 3;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.speed-btn:hover .speed-text,.autospin-mode-btn:hover .speed-text
+{
+	text-shadow: 0px 1px 1px rgba(8, 10, 12, 0.55);
+}
+
+.speed-btn.selected .speed-text,.autospin-mode-btn.selected .speed-text
+{
+	color: #ffffff;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.8);
+	margin-top: 1px;
+	transition-property: color, text-shadow;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+}
+
+.control-line
+{
+	width: 100%;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-bottom: 10px;
+	padding: 12px;
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controls-container.main-row
+{
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: right;
+	width: 100%;
+}
+
+.settings-zone
+{
+	flow-children: right;
+	margin-right: 24px;
+	height: 100%;
+	width: fill-parent-flow(1);
+	min-width: 260px;
+	margin-left: 70px;
+}
+
+.economy-info-btn
+{
+	width: 50px;
+	height: 50px;
+	flow-children: none;
+	vertical-align: center;
+	margin-right: 12px;
+	padding: 0px;
+	overflow: noclip;
+	border-radius: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.economy-info-btn:hover
+{
+	sound: "ui_select_arrow";
+}
+
+.economy-info-btn-bg
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.economy-info-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.economy-info-icon
+{
+	width: 20px;
+	height: 20px;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 2;
+	wash-color: #e5e0c5;
+}
+
+.BetSelectionPanel
+{
+	flow-children: down;
+	vertical-align: center;
+	min-width: 220px;
+	margin-right: 0;
+	border-radius: 8px;
+	padding: 0px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.BetSelectionTitle
+{
+	margin: 4px 8px 6px 8px;
+	horizontal-align: left;
+	visibility: collapse;
+}
+
+.CurrencyRow
+{
+	flow-children: right;
+	width: 100%;
+	height: 36px;
+	padding: 0px 4px;
+	margin: 0px 0 4px 0;
+	background-color: transparent;
+	vertical-align: center;
+	visibility: collapse;
+}
+
+.CurrencySegments
+{
+	flow-children: right;
+	width: 100%;
+	height: 100%;
+}
+
+.CurrencyTab
+{
+	flow-children: none;
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 0px 4px;
+	vertical-align: center;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+}
+
+.CurrencyTab.CurrencyTab--Active
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-left: 3px solid #64b5f6;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: background-color, border-color;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+}
+
+.CurrencyTab--Shield
+{
+	border-radius: 12px 0 0 12px;
+	border-right: 0px solid transparent;
+}
+
+.CurrencyTab--Crystal
+{
+	border-radius: 0 12px 12px 0;
+	border-left: 1px solid rgba(60, 80, 110, 0.3);
+}
+
+.tab-icon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	horizontal-align: center;
+	opacity: 0.85;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.CurrencyTab:hover
+{
+	sound: "ui_select_arrow";
+}
+
+.CurrencyTab.CurrencyTab--Active .tab-icon
+{
+	opacity: 1.0;
+	brightness: 1.1;
+}
+
+.BetContentPanel
+{
+	width: 100%;
+	height: 54px;
+	flow-children: right;
+	padding: 4px;
+	vertical-align: center;
+	horizontal-align: center;
+	border-radius: 8px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.BetControls
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;
+	width: fit-children;
+}
+
+.BetStepBtn
+{
+	width: 36px;
+	height: 36px;
+	flow-children: none;
+	vertical-align: center;
+	horizontal-align: center;
+	padding: 0;
+	border-radius: 14px;
+}
+
+.BetStepBtn:hover
+{
+	sound: "ui_select_arrow";
+}
+
+.BetStepBtn:disabled
+{
+	opacity: 0.4;
+	brightness: 0.7;
+}
+
+.BetStepLabel
+{
+	font-size: 22px;
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+}
+
+.BetValueDisplay
+{
+	flow-children: right;
+	width: 100px;
+	height: 36px;
+	margin: 0 6px;
+	padding: 0 10px 0 12px;
+	vertical-align: center;
+	horizontal-align: center;
+	border-radius: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(25, 41, 57, 1)), to(rgba(22, 38, 53, 1)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.BetValueInner
+{
+	flow-children: right;
+	width: fit-children;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.BetValueText
+{
+	vertical-align: center;
+	margin-right: 6px;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.BetValueCurrencyIcon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	opacity: 0.92;
+	img-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.play-panel.casino-panel--expanded .BetCompactSwitch
+{
+	visibility: collapse;
+}
+
+.BetCompactSwitch
+{
+	width: 44px;
+	height: 34px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 0;
+	margin: 0 8px 0 4px;
+	border-radius: 12px;
+	transition-property: box-shadow, brightness;
+	transition-duration: 0.18s;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetCompactSwitch
+{
+	margin: 0 8px 0 2px;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetControls:hover .BetValueDisplay
+{
+	brightness: 1.10;
+}
+
+.BetCompactSwitch:hover
+{
+	sound: "ui_select_arrow";
+}
+
+.play-panel:not(.casino-panel--expanded) .BetControls:hover .BetCompactSwitch
+{
+	brightness: 1.04;
+}
+
+.BetCompactSwitchLabel
+{
+	font-size: 18px;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 2;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+}
+
+.BetCompactSwitch--flash
+{
+	box-shadow: 0 0 12px rgba(100, 181, 246, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+	brightness: 1.12;
+}
+
+#BetDecrease,#BetIncrease
+{
+	visibility: collapse;
+}
+
+.play-panel.casino-panel--expanded #BetDecrease,.play-panel.casino-panel--expanded #BetIncrease
+{
+	visibility: visible;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetSelectionPanel
+{
+	padding: 8px;
+	border-radius: 16px;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetContentPanel
+{
+	height: 66px;
+	padding: 10px 8px;
+	border-radius: 16px;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetValueDisplay
+{
+	width: 118px;
+	height: 42px;
+	margin: 0 4px 0 8px;
+	padding: 0 12px 0 14px;
+	border-radius: 16px;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetValueText
+{
+	font-size: 20px;
+}
+
+.play-panel:not(.casino-panel--expanded) .BetValueCurrencyIcon
+{
+	width: 28px;
+	height: 28px;
+}
+
+.play-panel.casino-panel--expanded .BetSelectionTitle
+{
+	visibility: visible;
+	margin: 6px 8px 8px 8px;
+}
+
+.play-panel.casino-panel--expanded .CurrencyRow
+{
+	visibility: visible;
+	padding: 0px 8px;
+	margin: 0px 0 8px 0;
+}
+
+.play-panel.casino-panel--expanded .CurrencyTab
+{
+	padding: 0px 6px;
+}
+
+.play-panel.casino-panel--expanded .BetContentPanel
+{
+	padding: 10px 8px;
+}
+
+.action-zone
+{
+	flow-children: down;
+	vertical-align: top;
+	width: 400px;
+	horizontal-align: right;
+}
+
+.action-row
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.action-zone-left
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	vertical-align: center;
+}
+
+.modes-btn
+{
+	width: 38px;
+	height: 38px;
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-right: 8px;
+	padding: 0;
+	overflow: noclip;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.modes-btn:hover
+{
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+	background-color: rgba(100, 181, 246, 0.1);
+}
+
+.modes-btn:active
+{
+	brightness: 0.9;
+	margin-top: 1px;
+	transition-property: brightness;
+	transition-duration: 0.08s;
+	transition-timing-function: ease-out;
+}
+
+.modes-btn:hover .modes-btn-icon
+{
+	wash-color: #ffffff;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.modes-btn:active .modes-btn-icon
+{
+	wash-color: #e5e0c5;
+	transition-property: wash-color;
+	transition-duration: 0.08s;
+	transition-timing-function: ease-out;
+}
+
+.play-panel.casino-panel--expanded .modes-btn
+{
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	border-left: 3px solid #64b5f6;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
+	box-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+	transition-property: border-color, background-color, box-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.play-panel.casino-panel--expanded .modes-btn .modes-btn-icon
+{
+	wash-color: #ffffff;
+	transition-property: wash-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.modes-btn-icon
+{
+	width: 22px;
+	height: 22px;
+	horizontal-align: center;
+	vertical-align: center;
+	wash-color: #e5e0c5;
+}
+
+.modes-drawer
+{
+	flow-children: down;
+	horizontal-align: right;
+	width: 375px;
+	visibility: collapse;
+}
+
+.modes-drawer.modes-panel--open
+{
+	visibility: visible;
+	margin-top: 75px;
+}
+
+.AutoSpinBlock
+{
+	flow-children: right;
+	vertical-align: center;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.AutoSpinBlockTitle
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-right: 14px;
+	vertical-align: center;
+	width: 85px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.autospin-buttons-container
+{
+	flow-children: right;
+	vertical-align: center;
+	height: 36px;
+}
+
+.autospin-mode-btn:disabled,.speed-btn:disabled
+{
+	animation-name: none;
+	background-color: rgba(20, 30, 45, 0.5);
+	border-color: rgba(60, 80, 110, 0.25);
+	box-shadow: none;
+	opacity: 0.5;
+	brightness: 0.6;
+}
+
+.autospin-mode-btn:disabled .speed-text,.speed-btn:disabled .speed-text
+{
+	color: #b0bfc9;
+	text-shadow: none;
+}
+
+.speed-btn:disabled .speed-btn-frame
+{
+	border-color: rgba(98, 87, 65, 0.3);
+}
+
+@keyframes 'spin_button_idle_glow'
+{
+	0%
+	{
+		box-shadow: 0 0 14px rgba(76, 175, 80, 0.5), 0 0 6px rgba(76, 175, 80, 0.25), 0 4px 20px rgba(0, 0, 0, 0.5);
+		border-color: rgba(76, 175, 80, 0.7);
+	}
+	
+	50%
+	{
+		box-shadow: 0 0 20px rgba(76, 175, 80, 0.6), 0 0 10px rgba(76, 175, 80, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+		border-color: rgba(100, 200, 110, 0.85);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 14px rgba(76, 175, 80, 0.5), 0 0 6px rgba(76, 175, 80, 0.25), 0 4px 20px rgba(0, 0, 0, 0.5);
+		border-color: rgba(76, 175, 80, 0.7);
+	}
+	
+}
+
+.spin-btn
+{
+	width: 292px;
+	height: 72px;
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 8px;
+	padding: 0px;
+	overflow: noclip;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.75)), to(rgba(56, 142, 60, 0.65)));
+	border: 2px solid rgba(76, 175, 80, 0.8);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	animation-name: spin_button_idle_glow;
+	animation-duration: 2.8s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	pre-transform-scale2d: 1.0;
+	transition-property: box-shadow, border-color, background-color, brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.spin-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.spin-btn:hover
+{
+	sound: "ui_select_arrow";
+	animation-name: none;
+	pre-transform-scale2d: 1.0;
+	brightness: 1.2;
+	border-color: rgba(100, 200, 110, 0.95);
+	box-shadow: 0 0 24px rgba(76, 175, 80, 0.6), 0 0 12px rgba(76, 175, 80, 0.35), 0 4px 20px rgba(0, 0, 0, 0.5);
+	transition-property: box-shadow, brightness, border-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.spin-btn:active
+{
+	animation-name: none;
+	pre-transform-scale2d: 1.0;
+	brightness: 0.92;
+	border-color: rgba(56, 142, 60, 0.9);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+	transition-property: box-shadow, brightness, border-color;
+	transition-duration: 0.08s;
+	transition-timing-function: ease-out;
+}
+
+.spin-btn.skip-mode
+{
+	background-color: #999999;
+	brightness: 0.8;
+}
+
+.spin-btn.skip-mode:hover
+{
+	background-color: #aaaaaa;
+	brightness: 0.9;
+}
+
+.spin-btn.skip-mode.skip-active
+{
+	background-color: #999999;
+	brightness: 0.9;
+}
+
+.spin-btn.skip-mode.skip-active:hover
+{
+	background-color: #aaaaaa;
+	brightness: 1.0;
+}
+
+.spin-btn:disabled
+{
+	animation-name: none;
+	background-color: rgba(40, 50, 60, 0.5);
+	border-color: rgba(60, 80, 110, 0.3);
+	box-shadow: none;
+	opacity: 0.5;
+	brightness: 0.6;
+}
+
+.spin-btn:disabled .spin-text
+{
+	color: #b0bfc9;
+	text-shadow: none;
+}
+
+.spin-btn:disabled .spin-btn-frame
+{
+	border-color: rgba(98, 87, 65, 0.3);
+}
+
+.spin-bg-huge
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.spin-text
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 3;
+	text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6), 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.spin-btn:hover .spin-text
+{
+	color: #ffffff;
+	text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.spin-btn:active .spin-text
+{
+	color: #e5e0c5;
+	text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}

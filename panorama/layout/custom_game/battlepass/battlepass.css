@@ -1,0 +1,1255 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height: 100%;
+	width: 100%;
+}
+
+#BP_container
+{
+	vertical-align: center;
+	horizontal-align: center;
+	height: 740px;
+	width: 1200px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+#BP_main
+{
+	vertical-align: top;
+	horizontal-align: center;
+	width: 1180px;
+	height: 720px;
+	margin-top: 38px;
+	flow-children: down;
+}
+
+#BP_open_button
+{
+	width: 35px;
+	height: 35px;
+	background-image: url("s2r://panorama/images/bp/bpopen_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left: 420px;
+	margin-top: 10px;
+	tooltip-position: bottom;
+}
+
+#BP_open_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#BP_open_button:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#CloseShopButton
+{
+	horizontal-align: right;
+	vertical-align: top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	z-index: 100;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+#CloseShopButton:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseShopButton:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#BP_header
+{
+	width: 1180px;
+	height: 160px;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+#BP_content_top_left
+{
+	width: 195px;
+	height: 160px;
+}
+
+#BP_icon
+{
+	margin-top: 8px;
+	horizontal-align: center;
+	width: 90px;
+	height: 90px;
+}
+
+#BP_icon_back
+{
+	margin-top: 8px;
+	horizontal-align: center;
+	width: 90px;
+	height: 90px;
+	background-image: url("s2r://panorama/images/bp/player_back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#BP_name
+{
+	margin-top: 98px;
+	horizontal-align: center;
+	width: 195px;
+	color: #e5e0c5;
+	font-size: 15px;
+}
+
+#BP_name Label
+{
+	align: center center;
+}
+
+#BP_header_info
+{
+	width: 978px;
+	height: 160px;
+	flow-children: down;
+	padding: 12px 15px 8px 15px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.85)), to(rgba(20, 35, 50, 0.75)));
+	border: 1px solid rgba(60, 80, 110, 0.5);
+	border-radius: 8px;
+	margin-left: 7px;
+}
+
+#BP_progress_labels_row
+{
+	width: 100%;
+	height: 20px;
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+#BP_progress_title
+{
+	color: #607080;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	vertical-align: center;
+	margin-right: 12px;
+}
+
+#BP_level_label
+{
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+	vertical-align: center;
+	margin-right: 12px;
+}
+
+#BP_exp_text
+{
+	color: #607080;
+	font-size: 11px;
+	vertical-align: center;
+}
+
+#BP_progress_bar_section
+{
+	width: 940px;
+	height: 24px;
+	margin-bottom: 10px;
+}
+
+#BP_exp_icon
+{
+	width: 940px;
+	height: 24px;
+	horizontal-align: left;
+	vertical-align: center;
+	margin: 0;
+	background-image: none;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(60, 80, 110, 0.5);
+	border-radius: 3px;
+	z-index: 1;
+}
+
+#BP_icon_pr_bar
+{
+	height: 24px;
+	width: 0px;
+	horizontal-align: left;
+	vertical-align: center;
+	margin: 0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#1a5070), to(#3a90c0));
+	border-radius: 3px;
+	z-index: 2;
+}
+
+#BP_daily_row
+{
+	width: 100%;
+	height: 58px;
+	flow-children: right;
+}
+
+#Gold_everyday_reward
+{
+	width: 185px;
+	height: 50px;
+	flow-children: right;
+	background-color: rgba(100, 181, 246, 0.07);
+	border: 1px solid rgba(60, 80, 110, 0.5);
+	border-radius: 5px;
+	padding: 5px 8px;
+	vertical-align: center;
+	margin-right: 8px;
+}
+
+#Gold_everyday_reward:hover
+{
+	brightness: 1.3;
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.5);
+}
+
+#Gold_everyday_reward_image
+{
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/ds/protection_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	vertical-align: center;
+	margin-right: 8px;
+}
+
+#Gold_everyday_reward_text
+{
+	vertical-align: center;
+	color: #ffd700;
+	font-weight: bold;
+	font-size: 22px;
+	text-shadow: 0px 0px 4px black;
+}
+
+#BP_daily_buttons
+{
+	width: 365px;
+	height: 50px;
+	vertical-align: center;
+	horizontal-align: right;
+	flow-children: right;
+}
+
+#BuyLevels
+{
+	width: 175px;
+	height: 50px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(30, 90, 150, 0.7)), to(rgba(20, 65, 110, 0.6)));
+	border: 2px solid rgba(60, 140, 220, 0.6);
+	border-radius: 5px;
+	margin-right: 8px;
+}
+
+#BuyLevels_text
+{
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#BuyLevels:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+}
+
+#BuyBP
+{
+	width: 175px;
+	height: 50px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 5px;
+}
+
+#BuyBP_text
+{
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#BuyBP:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+}
+
+#BP_tabs_row
+{
+	width: 1180px;
+	height: 40px;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 10px;
+	margin-left: 8px;
+}
+
+#BP_tabs_line
+{
+	width: 100%;
+	height: 2px;
+	vertical-align: bottom;
+	background-color: rgba(60, 80, 110, 0.4);
+	margin-bottom: 4px;
+	margin-right: 10px;
+}
+
+.BP_tab
+{
+	height: 36px;
+	width: 170px;
+	border-bottom: 2px solid transparent;
+	border-radius: 4px 4px 0 0;
+	background-color: rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(60, 80, 110, 0.3);
+	border-bottom: 2px solid transparent;
+	padding: 0 5px;
+	margin-right: 5px;
+}
+
+.BP_tab:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+	background-color: rgba(60, 80, 110, 0.3);
+}
+
+.BP_tab_active
+{
+	background-color: rgba(60, 80, 110, 0.45);
+	border-bottom-color: rgba(100, 181, 246, 0.9);
+}
+
+.BP_tab_label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #8090a0;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	width: 100%;
+	text-align: center;
+}
+
+.BP_tab_active .BP_tab_label
+{
+	color: #e5e0c5;
+}
+
+#BP_rewards_content
+{
+	width: 1180px;
+	height: 165px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#BP_content_bottom_container
+{
+	width: 1160px;
+	height: 160px;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+#BP_content_bottom
+{
+	height: 100%;
+	flow-children: right;
+	overflow: scroll squish;
+	padding: 6px 10px 6px 10px;
+}
+
+#BP_content_bottom_back
+{
+	width: 1160px;
+	height: 160px;
+	vertical-align: top;
+	horizontal-align: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+#ScrollThumb
+{
+	background-color: #3a4a5a;
+	margin-top: 6px;
+}
+
+#BP_quests_content
+{
+	width: 1180px;
+	height: 0px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#BP_content_top_right
+{
+	height: 260px;
+	width: 1160px;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	padding: 5px;
+	flow-children: right;
+	overflow: scroll squish;
+}
+
+#BP_quest_tabs_row
+{
+	width: fit-children;
+	height: 40px;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 8px;
+}
+
+#BP_daily_quests_section,#BP_weekly_quests_section
+{
+	width: 1180px;
+	horizontal-align: center;
+	margin-top: 4px;
+}
+
+#BP_daily_quests_container,#BP_weekly_quests_container
+{
+	width: fit-children;
+	horizontal-align: center;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	padding: 5px;
+}
+
+#BP_timer_row
+{
+	width: 1180px;
+	height: 70px;
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 14px;
+}
+
+#BP_season_name
+{
+	horizontal-align: center;
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 2px;
+}
+
+#BP_timer_label
+{
+	horizontal-align: center;
+	color: #e5e0c5;
+	font-size: 32px;
+	text-align: center;
+}
+
+.pass_content
+{
+	width: 155px;
+	height: 140px;
+	margin: 6px 4px;
+	flow-children: down;
+}
+
+.free_bp
+{
+	width: 155px;
+	height: 135px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
+	box-shadow: #00000080 4px 4px 8px 0px;
+}
+
+.free_bp:hover
+{
+	brightness: 1.8;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.pass_content_image_simple,.pass_content_image_simple_image
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 120px;
+	height: 90px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
+}
+
+.pass_content_image_lock
+{
+	z-index: 100;
+	horizontal-align: center;
+	vertical-align: center;
+	width: 90px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/bp/lock_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#pass_content_level_simple,#pass_content_level_gold
+{
+	horizontal-align: left;
+	vertical-align: top;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 22px;
+	margin: 4px;
+	text-shadow: black 0px 2px 2px 0;
+}
+
+@keyframes 'fizzy2'
+{
+	0%
+	{
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
+	}
+	
+}
+
+@keyframes 'fizzy'
+{
+	0%
+	{
+		box-shadow: 0 0 6px #ffd700;
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 6px #ffd700;
+	}
+	
+}
+
+.pass_content_back_gold
+{
+	animation-name: fizzy;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.pass_content_back_simple
+{
+	animation-name: fizzy2;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.Player_quest
+{
+	height: 170px;
+	width: 210px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(22, 35, 58, 0.95)), to(rgba(12, 20, 38, 0.95)));
+	border: 1px solid rgba(60, 80, 110, 0.6);
+	border-top: 2px solid rgba(100, 160, 240, 0.5);
+	margin: 6px 5px;
+	border-radius: 8px;
+	box-shadow: #00000090 3px 3px 10px 0px;
+}
+
+.Player_quest:hover
+{
+	brightness: 1.15;
+	border-color: rgba(100, 181, 246, 0.8);
+	border-top-color: rgba(100, 181, 246, 0.9);
+	sound: "ui_select_arrow";
+}
+
+#Player_quest_image
+{
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/bp/quests/spray_quest_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+	margin-top: 8px;
+}
+
+#Player_quest_image_back
+{
+	width: 60px;
+	height: 60px;
+	background-color: rgba(0, 0, 0, 0.35);
+	border-radius: 6px;
+	horizontal-align: center;
+	margin-top: 8px;
+}
+
+#Player_quest_image_desc
+{
+	horizontal-align: center;
+	color: #c8d4e8;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: black 0px 1px 3px 0;
+	margin: 0 6px;
+	margin-top: 74px;
+	text-align: center;
+}
+
+#Player_quest_image_progress
+{
+	horizontal-align: center;
+	color: #607080;
+	font-size: 11px;
+	margin-top: 110px;
+	text-align: center;
+}
+
+#Player_quest_image_reward
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin: 0 0 10px 0;
+	flow-children: right;
+}
+
+#Player_quest_image_reward .DNMoneyLogoBuy
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	margin-left: 0;
+	margin-right: 4px;
+}
+
+#Player_quest_image_reward .DNMoneyLabel
+{
+	font-size: 18px;
+	vertical-align: center;
+	margin-left: 0;
+}
+
+#PassSelectModal
+{
+	vertical-align: center;
+	horizontal-align: center;
+	width: 620px;
+	height: 420px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.6);
+	border-radius: 10px;
+	padding: 20px 20px 15px 20px;
+	flow-children: down;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+	z-index: 200;
+}
+
+#PassSelect_title
+{
+	horizontal-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+#PassSelect_subtitle
+{
+	horizontal-align: center;
+	font-size: 12px;
+	color: #607080;
+	text-align: center;
+	margin-bottom: 14px;
+}
+
+#PassSelect_cards
+{
+	width: 580px;
+	height: 280px;
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 12px;
+}
+
+.pass_select_card
+{
+	width: 278px;
+	height: 275px;
+	background-color: rgba(10, 20, 35, 0.8);
+	border: 2px solid rgba(60, 140, 220, 0.7);
+	border-radius: 8px;
+	padding: 14px;
+	flow-children: down;
+}
+
+.pass_select_card:not(:last-child)
+{
+	margin-right: 12px;
+}
+
+.pass_select_card:hover
+{
+	brightness: 1.25;
+	sound: "ui_select_arrow";
+}
+
+.pass_card_premium
+{
+	border-color: #b8922a;
+}
+
+.pass_card_premium .pass_card_title
+{
+	color: #c9a030;
+}
+
+.pass_card_badge
+{
+	horizontal-align: center;
+	width: 130px;
+	height: 20px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#7a5a10), to(#c49a20));
+	color: #0f1a2a;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	border-radius: 3px;
+	margin-bottom: 6px;
+}
+
+.pass_card_title
+{
+	horizontal-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: rgba(100, 175, 255, 1);
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+.pass_card_features
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 10px;
+}
+
+.pass_card_feature
+{
+	font-size: 13px;
+	color: rgba(100, 175, 255, 0.9);
+	margin-bottom: 5px;
+	margin-left: 2px;
+}
+
+.pass_card_feature_prem
+{
+	color: #c9a030;
+}
+
+.pass_card_divider
+{
+	width: 100%;
+	height: 1px;
+	background-color: rgba(60, 80, 110, 0.4);
+	margin-bottom: 10px;
+}
+
+.pass_card_buy_row
+{
+	width: 100%;
+	horizontal-align: center;
+	vertical-align: bottom;
+	flow-children: right;
+	height: 50px;
+}
+
+.pass_card_pay_btn
+{
+	width: 118px;
+	height: 48px;
+	border-radius: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 90, 150, 0.85)), to(rgba(20, 65, 110, 0.75)));
+	border: 1px solid rgba(60, 140, 220, 0.7);
+}
+
+.pass_card_pay_btn:not(:last-child)
+{
+	margin-right: 12px;
+}
+
+.pass_card_pay_btn:hover
+{
+	brightness: 1.45;
+	sound: "ui_select_arrow";
+}
+
+.pass_card_pay_rp
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(200, 120, 20, 0.85)), to(rgba(150, 80, 10, 0.75)));
+	border-color: rgba(255, 165, 40, 0.8);
+}
+
+.pass_card_pay_gems_prem
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(140, 100, 20, 0.9)), to(rgba(90, 65, 10, 0.8)));
+	border-color: rgba(190, 150, 40, 0.9);
+}
+
+.pass_card_pay_inner
+{
+	width: fit-children;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.pass_card_pay_icon
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	margin-right: 7px;
+}
+
+.pass_card_pay_price
+{
+	vertical-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffd700;
+	text-shadow: 0px 0px 4px black;
+}
+
+#PassSelect_close_btn
+{
+	width: 160px;
+	height: 30px;
+	horizontal-align: center;
+	background-color: rgba(255, 107, 107, 0.1);
+	border: 1px solid rgba(255, 107, 107, 0.35);
+	border-radius: 4px;
+}
+
+#PassSelect_close_btn:hover
+{
+	brightness: 1.3;
+	sound: "ui_select_arrow";
+}
+
+#PassSelect_close_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ff9090;
+	font-size: 12px;
+	text-align: center;
+}
+
+#BuyLevelsModal
+{
+	vertical-align: center;
+	horizontal-align: center;
+	width: 580px;
+	height: 335px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.6);
+	border-radius: 10px;
+	padding: 18px 20px 15px 20px;
+	flow-children: down;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+	z-index: 200;
+}
+
+#BuyLevels_modal_title
+{
+	horizontal-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	margin-bottom: 4px;
+}
+
+#BuyLevels_modal_subtitle
+{
+	horizontal-align: center;
+	font-size: 11px;
+	color: #607080;
+	text-align: center;
+	margin-bottom: 14px;
+}
+
+#BuyLevels_cards
+{
+	width: 540px;
+	height: 195px;
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 12px;
+}
+
+.level_pack_card
+{
+	width: 168px;
+	height: 190px;
+	background-color: rgba(10, 20, 35, 0.8);
+	border: 2px solid rgba(60, 80, 110, 0.5);
+	border-radius: 8px;
+	padding: 14px 10px;
+	flow-children: down;
+}
+
+.level_pack_card:hover
+{
+	brightness: 1.2;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.level_pack_card_mid
+{
+	margin: 0 12px;
+}
+
+.level_pack_amount
+{
+	horizontal-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	text-shadow: 0px 0px 6px rgba(60, 140, 220, 0.5);
+}
+
+.level_pack_label
+{
+	horizontal-align: center;
+	font-size: 11px;
+	color: #607080;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.level_pack_price_row
+{
+	horizontal-align: center;
+	flow-children: right;
+	height: 32px;
+	margin-bottom: 8px;
+}
+
+.level_pack_price_icon
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+	margin-right: 5px;
+}
+
+.level_pack_price_val
+{
+	vertical-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffd700;
+	text-shadow: 0px 0px 4px black;
+}
+
+.level_pack_divider
+{
+	width: 100%;
+	height: 1px;
+	background-color: rgba(60, 80, 110, 0.4);
+	margin-bottom: 8px;
+}
+
+.level_pack_btn
+{
+	width: 140px;
+	height: 32px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 90, 150, 0.8)), to(rgba(20, 65, 110, 0.7)));
+	border: 1px solid rgba(60, 140, 220, 0.6);
+	border-radius: 4px;
+}
+
+.level_pack_btn:hover
+{
+	brightness: 1.4;
+}
+
+.level_pack_btn_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#BuyLevels_close_btn
+{
+	width: 140px;
+	height: 28px;
+	horizontal-align: center;
+	background-color: rgba(255, 107, 107, 0.1);
+	border: 1px solid rgba(255, 107, 107, 0.35);
+	border-radius: 4px;
+}
+
+#BuyLevels_close_btn:hover
+{
+	brightness: 1.3;
+	sound: "ui_select_arrow";
+}
+
+#BuyLevels_close_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ff9090;
+	font-size: 12px;
+	text-align: center;
+}
+
+.BuyControl
+{
+	vertical-align: center;
+	horizontal-align: center;
+	width: 400px;
+	height: 280px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+}
+
+#item_buy_label
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 20px;
+	width: 380px;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+	line-height: 24px;
+}
+
+#item_buy_label2
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 55px;
+	width: 380px;
+	color: #b0bfc9;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+#don_button
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 30px;
+	margin-bottom: 60px;
+}
+
+#rp_button
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 30px;
+	margin-bottom: 60px;
+}
+
+.buy_button
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	height: 40px;
+	width: 150px;
+	flow-children: right;
+}
+
+.buy_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.DNMoneyLogoBuy
+{
+	vertical-align: center;
+	height: 30px;
+	width: 30px;
+	margin-left: 10px;
+}
+
+.DNMoneyLabel
+{
+	color: #ffd700;
+	font-size: 21px;
+	margin-left: 10px;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+	font-weight: bold;
+}
+
+#close_button
+{
+	height: 30px;
+	width: 120px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff6b6b55), to(#ff6b6b22));
+	border: 1px solid #ff6b6b;
+}
+
+.close_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#ShowReward
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	padding: 20px;
+}
+
+#reward_image,#reward_item_image
+{
+	horizontal-align: center;
+	vertical-align: center;
+	height: 88px;
+	width: 124px;
+}
+
+#reward_item_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.animate-show
+{
+	animation-duration: 1.3s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+	animation-name: show;
+}
+
+@keyframes 'show'
+{
+	0%
+	{
+		transform: scale3d(0, 0, 0);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+#done
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin: 20px;
+}

@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "simple_trap_shot"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/traps/traps"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"				   
+
+		"AbilityValues"
+		{
+			"start_radius"			"50"
+			"end_radius"			"50"
+			"speed"					"1000"
+			"diff_boost_damage"     "800" 
+		}
+	}
+
+    "circle_trap_lua"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/traps/traps"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"				   
+	}
+
+	"pendulum_trap"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/traps/traps"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"	
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"			   
+
+		"AbilityCastRange"				"60000"
+			
+		"AbilityModifierSupportValue"	"0.0"
+
+		"AbilityValues"
+		{
+			"damage"					"10000"
+			"cast_range_scepter"		"60000"
+			"damage_delay"				"10000"
+		}
+	}	
+
+	"spike_trap"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/traps/traps"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"				   
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCooldown"				"1"
+		"AbilityValues"
+		{
+			"light_strike_array_aoe"			"150"
+			"light_strike_array_delay_time"		"0.45"
+			"light_strike_array_stun_duration"	"1.4"
+			"cast_animation"					"12"
+			"light_strike_array_damage"			"4000"
+			"diff_boost_damage"     			"500"
+		}
+	}	
+
+	"simple_roll_shot"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/traps/traps"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"				   
+
+		"AbilityValues"
+		{
+			"start_radius"			"200"
+			"end_radius"			"200"
+			"speed"					"400"
+		}
+	}
+	
+}

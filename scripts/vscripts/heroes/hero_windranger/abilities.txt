@@ -1,0 +1,178 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "windrunner_attack_triggers"
+    {
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "windrunner_shackleshot"
+        "ScriptFile"					"heroes/hero_windranger/hero_windranger"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityManaCost"               "70 85 100 115"
+        "AbilityCooldown"               "16 14 12 10"
+        "AbilityCastRange"              "700"
+        "AbilityCastPoint"              "0.15"
+
+        "AbilityValues"
+        {
+            "arrow_speed"               "1650"
+            "shackle_distance"          "350"
+            "shackle_angle"             "40"
+            "fail_stun_duration"        "0.5"
+            "stun_duration"             "1.0 1.5 2.0 2.5"
+            "shackle_count"             "3"
+            "damage"                    
+            {
+				"value"							    "50 100 150 200"
+                "special_bonus_unique_windrunner_2"  "+50"
+			}
+        }
+    }
+
+    "windrunner_powershot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_windranger/hero_windranger"
+		"AbilityTextureName"			"windrunner_powershot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Ability.Powershot"
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCooldown"				"18 15 12 9"
+		"AbilityManaCost"				"90 100 110 120"
+		
+		"AbilityValues"
+		{
+			"powershot_damage"				
+            {
+				"value"							    "75 150 225 300"
+                "special_bonus_unique_windrunner_1"  "+100"
+			}
+			"arrow_width"				"125"
+			"arrow_range"				"800"
+			"arrow_speed"				"3000"
+			"vision_radius"				"300"
+			"vision_duration"			"3.34"
+		}
+	}
+
+    "windrunner_windrun_lua"
+    {
+     	"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_windranger/hero_windranger"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName" 			"windrunner_windrun"
+        "AbilityValues"
+        {
+            "speed"	                    
+            {
+				"value"							    "20 40 60 80"
+                "special_bonus_unique_windrunner_4"  "+40"
+			}
+            "eva"	                    
+            {
+				"value"							    "15 25 35 45"
+                "special_bonus_unique_windrunner_3"  "+25"
+			}
+        }
+	}
+
+    "windrunner_focusfire_lua"
+    {
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"windrunner_focusfire"
+		"ScriptFile"				"heroes/hero_windranger/hero_windranger"
+		"AbilityType"				"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"			"50 45 40"
+		"AbilityCastRange"			"700"
+		"AbilityManaCost"			"150 200 250"
+		
+        "AbilityValues"
+        {
+            "duration"	            "5"
+            "damage"	            
+            {
+				"value"							     "100 150 200"
+                "special_bonus_unique_windrunner_7"  "+100"
+			}
+            "count"
+            {
+				"value"							     "20"
+                "special_bonus_unique_windrunner_8"  "+5"
+			}
+        }
+    }
+
+    "special_bonus_unique_windrunner_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_windrunner_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_windrunner_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

@@ -1,0 +1,365 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+﻿"DOTAAbilities"
+{
+
+"jackpot_pet_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "pets/jackpot_pet_lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityValues"
+		{
+			"hero_stat_share_percent"   "50"
+		}
+	}
+
+//======================================================================================================================
+
+"thundergod_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"sunstrike_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"silence_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"overgrowth_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"mine_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"roshan_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"stun_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"poison_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
+"blind_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"resist_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+
+"ice_ultra_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ultra_skills"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}	
+//======================================================================================================================
+
+"box_ability"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/box_ability"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"breakable_container"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/breakable_container"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+
+"creep_translate_activity"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/creep_translate_activity"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+
+"push"
+    {
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/creeps/push"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+
+"boss_status_resist"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/boss_status_resist"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	}
+
+"golden_passive"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/golden_units"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }
+
+"roshan_spell_block"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown"				"6.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+"roshan_slam_lua"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/roshan_slam_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+		"AbilityManaCost"               "0"
+        "AbilityCooldown"               "10.0"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"      	"ACT_DOTA_CAST_ABILITY_3"
+        "AbilityValues"
+        {
+            "radius" 					"350"
+            "duration" 					"4"
+            "slow_ms"					"50"
+            "slow_as"					"50"
+            "damage"					"500"
+			"diff_boost_damage"     	"50" 
+        }
+	}
+
+"creep_hide_attribute"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/creep_hide_attribute"
+		"AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"trap_unselectable"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"            		"abilities/creeps/trap_unselectable"
+		"AbilityBehavior"      			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+
+"gold_200"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
+		"AbilityValues"
+		{
+			"gold_value"                "10"
+		}
+	}
+
+"gold_500"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
+		"AbilityValues"
+		{
+			"gold_value"                "10"
+		}
+	}
+
+"gold_3500"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		
+		"AbilityValues"
+		{
+			"gold_value"                "10"
+		}
+	}
+
+"gold_treasure"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/gold_treasure"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"            "item_hand_of_midas"
+		"AbilityValues"
+		{
+			"gold_value"                "50"
+		}
+	}
+
+//==================================================================================================== pets =============================================================================================
+
+"pet_dagon"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_dagon"
+		"AbilityTextureName"			"dagon"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"60"
+		"AbilityValues"
+		{
+			"damage"					"700"
+			"radius"					"600"
+		}
+	}
+	
+"pet_block_aura"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_block_aura"
+		"AbilityTextureName"			"crims"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"90"
+		"AbilityValues"
+		{
+			"duration"					"10"
+			"radius"					"700"
+			"block"						"35"
+		}
+	}	
+	
+"pet_magic_block_aura"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_magic_block_aura"
+		"AbilityTextureName"			"pipe"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"90"
+		"AbilityValues"
+		{
+			"duration"					"10"
+			"radius"					"700"
+			"block"						"50"
+		}
+	}	
+	
+"pet_orchid"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_orchid"
+		"AbilityTextureName"			"orchid"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"90"
+		"AbilityValues"
+		{
+			"damage"					"30"
+			"duration"					"5"
+		}
+	}
+	
+"pet_health_bag"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_health_bag"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"health_bag_2"
+		"AbilityCooldown"				"90"
+		"AbilityCastRange"				"700"
+
+		"AbilityValues"
+		{
+			"heal_interval"	        "0.25"
+			"heal_pct"			    "2"
+			"duration"				"6"
+		}
+	}	
+	
+"pet_medallion_of_courage"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"pets/ability/pet_medallion_of_courage"
+		"AbilityTextureName"			"medal"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"90"
+		"AbilityValues"
+		{
+			"armor"						"10"
+			"duration"					"10"
+		}
+	}
+
+}

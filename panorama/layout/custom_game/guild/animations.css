@@ -1,0 +1,329 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'guild-merits-pulse-animation'
+{
+	0%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+}
+
+@keyframes 'guild-merits-icon-animation'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(0.1, 1.1, 1.1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+@keyframes 'stat-glow-pulse'
+{
+	0%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+		opacity: 0.6;
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+		opacity: 0.6;
+	}
+	
+}
+
+@keyframes 'status-pulse'
+{
+	0%
+	{
+		transform: scale3d(0.9, 0.9, 0.9);
+		opacity: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.1, 1.1, 1.1);
+		opacity: 0.8;
+	}
+	
+	100%
+	{
+		transform: scale3d(0.9, 0.9, 0.9);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'progress-bar-filler-animation'
+{
+	0%
+	{
+		transform: translatex(-100%);
+	}
+	
+	100%
+	{
+		transform: translatex(100%);
+	}
+	
+}
+
+@keyframes 'top-merits-glow-pulse'
+{
+	0%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+}
+
+@keyframes 'arrow-pulse-x'
+{
+	0%
+	{
+		transform: translatex(-4px);
+	}
+	
+	50%
+	{
+		transform: translatex(4px);
+	}
+	
+	100%
+	{
+		transform: translatex(-4px);
+	}
+	
+}
+
+@keyframes 'arrow-pulse-y'
+{
+	0%
+	{
+		transform: translatey(-4px);
+	}
+	
+	50%
+	{
+		transform: translatey(4px);
+	}
+	
+	100%
+	{
+		transform: translatey(-4px);
+	}
+	
+}
+
+@keyframes 'star-rotate'
+{
+	0%
+	{
+		transform: rotateZ(0deg) scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg) scale3d(1.1, 1.1, 1.1);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg) scale3d(1, 1, 1);
+	}
+	
+}
+
+@keyframes 'indicator-pulse'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.1, 1.1, 1.1);
+		opacity: 0.8;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'service-icon-float'
+{
+	0%
+	{
+		transform: translatey(-3px);
+	}
+	
+	50%
+	{
+		transform: translatey(3px);
+	}
+	
+	100%
+	{
+		transform: translatey(-3px);
+	}
+	
+}
+
+@keyframes 'place-icon-glow-pulse'
+{
+	0%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+}
+
+@keyframes 'loading-animation'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-360deg);
+	}
+	
+}
+
+@keyframes 'join-requests-count'
+{
+	0%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+	
+}
+
+@keyframes 'send-message-arrow'
+{
+	0%
+	{
+		transform: translatex(-2px);
+	}
+	
+	50%
+	{
+		transform: translatex(2px);
+	}
+	
+	100%
+	{
+		transform: translatex(-2px);
+	}
+	
+}
+
+@keyframes 'bounce-animation'
+{
+	0%
+	{
+		transform: translatex(0px);
+	}
+	
+	25%
+	{
+		transform: translatex(5px);
+	}
+	
+	50%
+	{
+		transform: translatex(0px);
+	}
+	
+	75%
+	{
+		transform: translatex(-5px);
+	}
+	
+	100%
+	{
+		transform: translatex(0px);
+	}
+	
+}

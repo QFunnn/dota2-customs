@@ -1,0 +1,1823 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CRenderMesh"
+	m_sceneObjects = 
+	[
+		{
+			m_vMinBounds = [ -141.992996, -106.633003, -68.976608 ]
+			m_vMaxBounds = [ 61.658588, -89.687698, 25.828794 ]
+			m_drawCalls = 
+			[
+				{
+					m_nPrimitiveType = "RENDER_PRIM_TRIANGLES"
+					m_nBaseVertex = 0
+					m_nVertexCount = 703
+					m_nStartIndex = 0
+					m_nIndexCount = 3156
+					m_nStartInstance = 0
+					m_nInstanceCount = 0
+					m_flUvDensity = 85.381569
+					m_vTintColor = [ 1.0, 1.0, 1.0 ]
+					m_CullDataIndex = -1
+					m_indexBuffer = 
+					{
+						m_hBuffer = 0
+						m_nBindOffsetBytes = 0
+					}
+					m_material = resource:"materials/models/heroes/fiddlesticks/fiddlesticks_weapon.vmat"
+					m_vertexBuffers = 
+					[
+						{
+							m_hBuffer = 0
+							m_nBindOffsetBytes = 0
+						},
+					]
+					m_bUseCompressedNormalTangent = true
+				},
+			]
+			m_drawCullData = [  ]
+			m_vTintColor = [ 0.0, 0.0, 0.0, 0.0 ]
+		},
+	]
+	m_constraints = [  ]
+	m_skeleton = 
+	{
+		m_bones = 
+		[
+			{
+				m_boneName = "Scythe_Tip"
+				m_parentName = ""
+				m_invBindPose = 
+				[
+					0.0, -1.0, -0.0, -100.704018,
+					-0.0, -0.0, 1.0, 56.022034,
+					-1.0, -0.0, -0.0, 12.020987,
+				]
+				m_bbox = 
+				{
+					m_vecCenter = [ -2.543671, 59.367634, 54.827942 ]
+					m_vecSize = [ 8.472664, 22.483204, 99.18605 ]
+				}
+				m_flSphereRadius = 164.0383
+			},
+			{
+				m_boneName = "Scythe_Smear"
+				m_parentName = "Scythe_Tip"
+				m_invBindPose = 
+				[
+					0.0, -1.0, -0.0, -100.704018,
+					-0.0, -0.0, 1.0, 13.769041,
+					-1.0, -0.0, -0.0, 36.692986,
+				]
+				m_bbox = 
+				{
+					m_vecCenter = [ -0.615116, -16.864689, 4.051027 ]
+					m_vecSize = [ 4.041103, 38.342869, 29.016623 ]
+				}
+				m_flSphereRadius = 58.142735
+			},
+			{
+				m_boneName = "Jaw"
+				m_parentName = ""
+				m_invBindPose = 
+				[
+					-0.0, -1.0, 0.0, -0.000005,
+					0.315141, -0.0, -0.949045, 157.779129,
+					0.949045, -0.0, 0.315141, -98.521362,
+				]
+				m_bbox = 
+				{
+					m_vecCenter = [ 0.0, 0.0, 0.0 ]
+					m_vecSize = [ 0.0, 0.0, 0.0 ]
+				}
+				m_flSphereRadius = 0.0
+			},
+			{
+				m_boneName = "C_Buffbone_Glb_Chest_Loc"
+				m_parentName = ""
+				m_invBindPose = 
+				[
+					0.0, -1.0, -0.0, 0.001505,
+					-0.0, -0.0, 1.0, -164.378937,
+					-1.0, -0.0, -0.0, -15.132272,
+				]
+				m_bbox = 
+				{
+					m_vecCenter = [ 0.0, 0.0, 0.0 ]
+					m_vecSize = [ 0.0, 0.0, 0.0 ]
+				}
+				m_flSphereRadius = 0.0
+			},
+		]
+		m_boneParents = [  ]
+		m_nBoneWeightCount = 2
+	}
+	m_attachments = 
+	[
+		{
+			key = "attach_hitloc"
+			value = 
+			{
+				m_name = "attach_hitloc"
+				m_influenceNames = 
+				[
+					"C_Buffbone_Glb_Chest_Loc",
+					"",
+					"",
+				]
+				m_vInfluenceOffsets = 
+				[
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+				]
+				m_vInfluenceRotations = 
+				[
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+				]
+				m_influenceWeights = [ 1.0, 0.0, 0.0 ]
+				m_bInfluenceRootTransform = [ false, false, false ]
+				m_nInfluences = 1
+				m_bIgnoreRotation = false
+			}
+		},
+		{
+			key = "attach_attack1"
+			value = 
+			{
+				m_name = "attach_attack1"
+				m_influenceNames = 
+				[
+					"Jaw",
+					"",
+					"",
+				]
+				m_vInfluenceOffsets = 
+				[
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+				]
+				m_vInfluenceRotations = 
+				[
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+				]
+				m_influenceWeights = [ 1.0, 0.0, 0.0 ]
+				m_bInfluenceRootTransform = [ false, false, false ]
+				m_nInfluences = 1
+				m_bIgnoreRotation = false
+			}
+		},
+		{
+			key = "attach_attack2"
+			value = 
+			{
+				m_name = "attach_attack2"
+				m_influenceNames = 
+				[
+					"Jaw",
+					"",
+					"",
+				]
+				m_vInfluenceOffsets = 
+				[
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+					[ 0.0, 0.0, 0.0 ],
+				]
+				m_vInfluenceRotations = 
+				[
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+					[ 0.0, 0.0, 0.0, 1.0 ],
+				]
+				m_influenceWeights = [ 1.0, 0.0, 0.0 ]
+				m_bInfluenceRootTransform = [ false, false, false ]
+				m_nInfluences = 1
+				m_bIgnoreRotation = false
+			}
+		},
+	]
+	m_hitboxsets = 
+	[
+		{
+			key = "default"
+			value = 
+			{
+				m_name = "default"
+				m_nNameHash = 1977497166
+				m_HitBoxes = 
+				[
+					{
+						m_vMinBounds = [ -9.79781, 22.598, -32.344528 ]
+						m_vMaxBounds = [ 4.49527, 29.508995, -18.520271 ]
+						m_name = "Root"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Root"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3153423456
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 0
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -13.383598, 7.32798, -29.776592 ]
+						m_vMaxBounds = [ 13.067102, 54.029846, 4.094487 ]
+						m_name = "Spine1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Spine1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 104719390
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 1
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -38.164001, -21.168259, -33.8545 ]
+						m_vMaxBounds = [ 31.113396, 54.158943, 4.180557 ]
+						m_name = "Spine2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Spine2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 913953252
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 2
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -38.671402, -28.312159, -46.347504 ]
+						m_vMaxBounds = [ 37.287094, 46.146065, 14.119186 ]
+						m_name = "Chest"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Chest"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 627873529
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 3
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -25.886101, -36.333832, -47.305794 ]
+						m_vMaxBounds = [ 50.072395, 18.525162, 22.411201 ]
+						m_name = "L_Clavicle"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Clavicle"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3753281198
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 4
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -76.080879, -30.071049, -8.333839 ]
+						m_vMaxBounds = [ 10.918884, 7.898186, 17.581781 ]
+						m_name = "L_Shoulder"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Shoulder"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2906100524
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 5
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -23.681801, -17.374222, -19.819237 ]
+						m_vMaxBounds = [ 27.270397, 36.333939, 24.86602 ]
+						m_name = "R_Clavicle"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Clavicle"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2680197134
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 6
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -14.341297, -37.506989, -21.201965 ]
+						m_vMaxBounds = [ 30.208897, 20.718781, 21.915543 ]
+						m_name = "Head"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Head"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1237665725
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 7
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -73.985786, -5.919044, -8.486414 ]
+						m_vMaxBounds = [ 3.613266, 6.02124, 13.410326 ]
+						m_name = "L_Demon_Arm_Shoulder"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Shoulder"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 461185067
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 8
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -3.613174, -6.021187, -13.410891 ]
+						m_vMaxBounds = [ 73.985817, 5.919106, 8.486298 ]
+						m_name = "R_Demon_Arm_Shoulder"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Shoulder"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4178450910
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 9
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -76.066818, -7.41864, -9.05633 ]
+						m_vMaxBounds = [ 71.910294, 9.492958, 21.185591 ]
+						m_name = "L_Elbow"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Elbow"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2340799398
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 10
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.510925, -8.687668, -10.989796 ]
+						m_vMaxBounds = [ 71.157944, 14.009125, 11.204241 ]
+						m_name = "R_Shoulder"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Shoulder"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1067451428
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 11
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -40.482708, -11.720444, -5.23465 ]
+						m_vMaxBounds = [ 4.423698, 2.578735, 5.234651 ]
+						m_name = "Tongue1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Tongue1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 576786080
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 12
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -62.335091, -7.010223, -11.546957 ]
+						m_vMaxBounds = [ 25.210693, 6.983353, 11.237942 ]
+						m_name = "L_Demon_Arm_Elbow"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Elbow"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1008313627
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 13
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -25.21052, -6.983246, -11.238142 ]
+						m_vMaxBounds = [ 62.335213, 7.010391, 11.546652 ]
+						m_name = "R_Demon_Arm_Elbow"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Elbow"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2939187277
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 14
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.502502, -5.697998, -10.057901 ]
+						m_vMaxBounds = [ 16.502502, 24.978996, 7.498301 ]
+						m_name = "Pelvis"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Pelvis"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 162587645
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 15
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -23.450897, -1.005993, -0.914001 ]
+						m_vMaxBounds = [ 0.582199, 1.005922, 1.097992 ]
+						m_name = "Lantern1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Lantern1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3933348955
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 16
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -26.029448, -11.611916, -9.137747 ]
+						m_vMaxBounds = [ 16.236769, 5.669891, 7.551998 ]
+						m_name = "L_Hand"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Hand"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1953694944
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 17
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -4.966728, -6.00769, -7.238317 ]
+						m_vMaxBounds = [ 70.831024, 14.969284, 7.665405 ]
+						m_name = "R_Elbow"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Elbow"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1275261697
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 18
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -35.114929, -13.604507, -5.234649 ]
+						m_vMaxBounds = [ 19.26889, 1.961029, 5.234651 ]
+						m_name = "Tongue2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Tongue2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3683399841
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 19
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -37.241974, -9.400148, -24.186598 ]
+						m_vMaxBounds = [ 21.863678, 8.021126, 27.846998 ]
+						m_name = "Front_Drape1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Front_Drape1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1993527288
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 20
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -41.89238, -14.470978, -35.564507 ]
+						m_vMaxBounds = [ 23.035278, 9.91539, 23.233086 ]
+						m_name = "Back_Drape1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Back_Drape1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2599536264
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 21
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -33.291817, -12.402092, -9.043327 ]
+						m_vMaxBounds = [ 51.345207, 3.647987, 11.865236 ]
+						m_name = "L_Demon_Arm_Hand"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Hand"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 721023324
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 22
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -51.34507, -3.647812, -11.865961 ]
+						m_vMaxBounds = [ 33.291924, 12.402283, 9.042482 ]
+						m_name = "R_Demon_Arm_Hand"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Hand"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1506006659
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 23
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -15.125505, -8.244955, -4.413391 ]
+						m_vMaxBounds = [ 63.317184, 7.653484, 9.57538 ]
+						m_name = "R_Hip"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Hip"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4023167376
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 24
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -71.556381, -14.905846, -13.122462 ]
+						m_vMaxBounds = [ 13.679649, 13.534693, 5.396909 ]
+						m_name = "L_Hip"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Hip"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3708554947
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 25
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -30.733513, -2.318266, -0.914001 ]
+						m_vMaxBounds = [ 1.005402, 2.317924, 1.097992 ]
+						m_name = "Lantern2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Lantern2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 517673363
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 26
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -11.016296, 36.884399, -44.358109 ]
+						m_vMaxBounds = [ 5.929008, 81.8508, 154.013992 ]
+						m_name = "Scythe_Tip"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Scythe_Tip"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3468640179
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 27
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -10.542879, -1.981216, -2.718248 ]
+						m_vMaxBounds = [ 0.932198, 3.097389, 1.61256 ]
+						m_name = "L_Pinky1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Pinky1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1816891810
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 28
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.330706, -4.506996, -3.414257 ]
+						m_vMaxBounds = [ 1.183159, 4.010506, 2.698621 ]
+						m_name = "L_Middle1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Middle1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3262077892
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 29
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -15.83498, -2.75724, -4.059702 ]
+						m_vMaxBounds = [ 0.486626, 2.902542, 1.558303 ]
+						m_name = "L_Index1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Index1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 360392500
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 30
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -12.123772, -8.135975, -3.672794 ]
+						m_vMaxBounds = [ 9.738045, 2.066246, 8.573635 ]
+						m_name = "L_Thumb1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Thumb1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 983544859
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 31
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -2.479008, -3.268417, -4.193365 ]
+						m_vMaxBounds = [ 12.120998, 3.693085, 6.017895 ]
+						m_name = "R_Hand"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Hand"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2590177460
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 32
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -25.677116, -5.154633, -4.976698 ]
+						m_vMaxBounds = [ 18.287727, 1.180054, 4.976701 ]
+						m_name = "Tongue3"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Tongue3"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4095316322
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 33
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -48.488503, -7.521332, -12.959394 ]
+						m_vMaxBounds = [ 4.022629, 8.454666, 13.043104 ]
+						m_name = "C_Feather1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "C_Feather1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1099092066
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 34
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -39.160545, -6.640839, -4.402534 ]
+						m_vMaxBounds = [ -1.638733, 5.111511, 4.853626 ]
+						m_name = "L_Feather1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Feather1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 994472559
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 35
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -17.543381, -5.884949, -3.409714 ]
+						m_vMaxBounds = [ 4.688965, 5.277817, 5.291473 ]
+						m_name = "L_FeatherTop1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_FeatherTop1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3998329092
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 36
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ 2.06739, -4.176056, -5.921995 ]
+						m_vMaxBounds = [ 31.896042, 4.87587, 7.223383 ]
+						m_name = "R_Feather1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Feather1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 377707325
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 37
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -4.051811, -2.892365, -4.150398 ]
+						m_vMaxBounds = [ 17.795639, 2.850723, 4.541946 ]
+						m_name = "R_FeatherTop1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_FeatherTop1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1375580150
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 38
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -35.667313, -9.012056, -21.080297 ]
+						m_vMaxBounds = [ 19.10083, 4.382124, 20.736601 ]
+						m_name = "Front_Drape2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Front_Drape2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 683606995
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 39
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -29.34938, -4.789673, -35.56451 ]
+						m_vMaxBounds = [ 17.413864, 11.495544, 23.233082 ]
+						m_name = "Back_Drape2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Back_Drape2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2097158336
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 40
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -5.958675, -4.685078, -3.917016 ]
+						m_vMaxBounds = [ 16.915691, 3.335339, 9.280872 ]
+						m_name = "L_Demon_Arm_Ring1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Ring1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3246251918
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 41
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -4.03846, -4.096046, 0.219536 ]
+						m_vMaxBounds = [ 15.54261, 3.683826, 8.95807 ]
+						m_name = "L_Demon_Arm_Pinky1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Pinky1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3821921530
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 42
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -9.891426, -13.724724, -8.857876 ]
+						m_vMaxBounds = [ 6.634003, 4.233688, 2.843811 ]
+						m_name = "L_Demon_Arm_Thumb1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Thumb1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1873640925
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 43
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -6.164276, -4.546204, -4.79783 ]
+						m_vMaxBounds = [ 10.140366, 3.191414, 4.440197 ]
+						m_name = "L_Demon_Arm_Index1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Index1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 422512367
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 44
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.021683, -3.94318, -5.150197 ]
+						m_vMaxBounds = [ 10.796455, 3.923901, 7.825992 ]
+						m_name = "L_Demon_Arm_Middle1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Middle1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1664337138
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 45
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.915535, -3.33535, -9.281759 ]
+						m_vMaxBounds = [ 5.958801, 4.685066, 3.916153 ]
+						m_name = "R_Demon_Arm_Ring1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Ring1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2915171799
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 46
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -15.542488, -3.683773, -8.958958 ]
+						m_vMaxBounds = [ 4.038578, 4.096092, -0.220421 ]
+						m_name = "R_Demon_Arm_Pinky1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Pinky1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1193674951
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 47
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -6.633575, -4.234356, -2.843719 ]
+						m_vMaxBounds = [ 9.891747, 13.724083, 8.857977 ]
+						m_name = "R_Demon_Arm_Thumb1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Thumb1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3276488252
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 48
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -10.140274, -3.191631, -4.440993 ]
+						m_vMaxBounds = [ 6.164352, 4.546001, 4.796968 ]
+						m_name = "R_Demon_Arm_Index1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Index1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 679296593
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 49
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -10.796394, -3.923923, -7.826865 ]
+						m_vMaxBounds = [ 7.021759, 3.943157, 5.149314 ]
+						m_name = "R_Demon_Arm_Middle1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Middle1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 663338771
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 50
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.910133, -9.865305, -7.178769 ]
+						m_vMaxBounds = [ 45.358154, 13.769737, 7.337207 ]
+						m_name = "R_KneeLower"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_KneeLower"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3612434462
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 51
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -38.27182, -12.789715, -7.213653 ]
+						m_vMaxBounds = [ -1.591938, 3.69949, 6.562129 ]
+						m_name = "L_KneeLower"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_KneeLower"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 661328437
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 52
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -10.326199, -2.318266, -0.914001 ]
+						m_vMaxBounds = [ -1.439793, 2.317924, 1.097992 ]
+						m_name = "Lantern3"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Lantern3"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 803184905
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 53
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -4.656212, -55.207603, -24.965595 ]
+						m_vMaxBounds = [ 3.425987, 21.478142, 33.067646 ]
+						m_name = "Scythe_Smear"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Scythe_Smear"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1654102718
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 54
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -5.185903, -16.098511, -2.718248 ]
+						m_vMaxBounds = [ 30.497662, 2.226006, 1.542603 ]
+						m_name = "L_Pinky2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Pinky2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1648404632
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 55
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.877655, -3.190666, -3.310719 ]
+						m_vMaxBounds = [ 6.4158, 3.251045, 1.650913 ]
+						m_name = "L_Middle2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Middle2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3216026738
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 56
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.852772, -9.374046, -2.75924 ]
+						m_vMaxBounds = [ 9.106964, 2.208664, 4.195233 ]
+						m_name = "L_Index2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Index2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2218721422
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 57
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.21175, -8.734276, -1.901329 ]
+						m_vMaxBounds = [ 20.729328, 3.422028, 16.865067 ]
+						m_name = "L_Thumb2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Thumb2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3225739221
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 58
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -6.346832, -7.418648, -7.011451 ]
+						m_vMaxBounds = [ 63.98893, 9.49295, 7.346076 ]
+						m_name = "L_Hand_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Hand_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1785372347
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 59
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -3.839917, -17.157974, -31.72003 ]
+						m_vMaxBounds = [ 3.201863, 35.275238, 23.436384 ]
+						m_name = "Saw_Wheel"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Saw_Wheel"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2857919216
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 60
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -6.288757, -35.530426, -5.213157 ]
+						m_vMaxBounds = [ 21.088722, 14.194527, 4.558309 ]
+						m_name = "R_Index1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Index1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4259291627
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 61
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -7.072929, -35.638172, -4.978408 ]
+						m_vMaxBounds = [ 22.778511, 13.61085, 5.488389 ]
+						m_name = "R_Middle1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Middle1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4075953496
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 62
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -18.339676, -34.779915, -2.845446 ]
+						m_vMaxBounds = [ 18.900703, 13.120285, 5.184867 ]
+						m_name = "R_Pinky1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Pinky1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 858932314
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 63
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -13.805964, -2.752975, -4.920151 ]
+						m_vMaxBounds = [ 5.165708, 5.934738, 2.979223 ]
+						m_name = "R_Hand_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Hand_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1007669721
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 64
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -72.110657, -8.687668, -10.403931 ]
+						m_vMaxBounds = [ 12.745729, 10.416122, 7.035488 ]
+						m_name = "R_Elbow_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Elbow_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3781133491
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 65
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ 0.000488, -0.432648, -13.3423 ]
+						m_vMaxBounds = [ 32.54985, 16.43428, 2.790264 ]
+						m_name = "R_Arm_Demon_Soul"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Arm_Demon_Soul"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2261906525
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 66
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -12.857701, -7.061646, -16.818497 ]
+						m_vMaxBounds = [ 12.933303, 23.000046, 9.182533 ]
+						m_name = "Jaw"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Jaw"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 742740932
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 67
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -12.918297, -5.029388, -4.311208 ]
+						m_vMaxBounds = [ 22.24836, 1.320145, 4.311212 ]
+						m_name = "Tongue4"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Tongue4"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1488941013
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 68
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -24.805908, -5.098343, -7.245719 ]
+						m_vMaxBounds = [ 1.399719, 4.794098, 9.53075 ]
+						m_name = "Hair1"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Hair1"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2697171207
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 69
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -28.258362, -7.521332, -12.959398 ]
+						m_vMaxBounds = [ 23.161491, 8.454666, 13.504202 ]
+						m_name = "C_Feather2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "C_Feather2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2878114643
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 70
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -20.31855, -6.640839, -4.04576 ]
+						m_vMaxBounds = [ 17.203262, 5.111526, 4.853633 ]
+						m_name = "L_Feather2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Feather2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3775914509
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 71
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -17.806198, -2.617325, -4.288643 ]
+						m_vMaxBounds = [ 1.298618, 3.007065, 1.113167 ]
+						m_name = "L_FeatherTop2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_FeatherTop2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2400605807
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 72
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -8.306952, -4.175995, -5.921999 ]
+						m_vMaxBounds = [ 19.748161, 5.440491, 8.823788 ]
+						m_name = "R_Feather2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Feather2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3320477736
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 73
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -1.308311, -0.892426, -8.262398 ]
+						m_vMaxBounds = [ 13.262741, 8.174057, 1.391602 ]
+						m_name = "R_FeatherTop2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_FeatherTop2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 70540295
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 74
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.354309, -4.77167, -8.730448 ]
+						m_vMaxBounds = [ 13.613998, 0.747972, 11.5373 ]
+						m_name = "Front_Drape3"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Front_Drape3"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 196128921
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 75
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -9.394348, -7.146553, -24.237949 ]
+						m_vMaxBounds = [ 13.953659, 15.110931, 23.233074 ]
+						m_name = "Back_Drape3"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Back_Drape3"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 4037588395
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 76
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -14.823689, -2.71582, 0.249969 ]
+						m_vMaxBounds = [ 0.34787, 2.69416, 3.393108 ]
+						m_name = "L_Demon_Arm_Ring2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Ring2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2418910953
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 77
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -13.548367, -2.458656, 0.42147 ]
+						m_vMaxBounds = [ 3.015522, 2.346107, 3.670365 ]
+						m_name = "L_Demon_Arm_Pinky2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Pinky2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2036653601
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 78
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -11.014816, -5.911896, -8.857864 ]
+						m_vMaxBounds = [ 10.518051, 4.316086, 2.843822 ]
+						m_name = "L_Demon_Arm_Thumb2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Thumb2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3858045995
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 79
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -16.0453, -1.434059, 0.038374 ]
+						m_vMaxBounds = [ 8.532524, 3.149315, 3.803139 ]
+						m_name = "L_Demon_Arm_Index2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Index2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3250166499
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 80
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -15.883595, -2.508965, 0.492702 ]
+						m_vMaxBounds = [ 0.139671, 2.847969, 3.63107 ]
+						m_name = "L_Demon_Arm_Middle2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Middle2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2922539050
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 81
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -9.984463, -10.119774, -5.028131 ]
+						m_vMaxBounds = [ 33.122784, 5.785965, 11.865242 ]
+						m_name = "L_Demon_Arm_Hand_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Hand_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3652573828
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 82
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -31.55275, -5.689545, -5.027975 ]
+						m_vMaxBounds = [ 25.488922, 6.983353, 11.238102 ]
+						m_name = "L_Demon_Arm_Elbow_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Demon_Arm_Elbow_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 46777953
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 83
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -0.34774, -2.694168, -3.39409 ]
+						m_vMaxBounds = [ 14.823807, 2.71582, -0.25095 ]
+						m_name = "R_Demon_Arm_Ring2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Ring2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2899711702
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 84
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -3.015408, -2.34605, -3.671264 ]
+						m_vMaxBounds = [ 13.548489, 2.458714, -0.422383 ]
+						m_name = "R_Demon_Arm_Pinky2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Pinky2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1021051140
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 85
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -10.51767, -4.316765, -2.843739 ]
+						m_vMaxBounds = [ 11.015163, 5.911236, 8.857958 ]
+						m_name = "R_Demon_Arm_Thumb2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Thumb2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3875131883
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 86
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -8.532455, -3.149521, -3.804049 ]
+						m_vMaxBounds = [ 16.04538, 1.43383, -0.039249 ]
+						m_name = "R_Demon_Arm_Index2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Index2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1816909105
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 87
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -0.139618, -2.847973, -3.632069 ]
+						m_vMaxBounds = [ 15.883656, 2.508961, -0.493701 ]
+						m_name = "R_Demon_Arm_Middle2"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Middle2"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 2861638312
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 88
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -33.122623, -5.785843, -11.865961 ]
+						m_vMaxBounds = [ 9.984531, 10.119934, 5.027691 ]
+						m_name = "R_Demon_Arm_Hand_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Hand_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3307239413
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 89
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -25.489731, -6.983246, -11.238548 ]
+						m_vMaxBounds = [ 31.551895, 5.689667, 5.027287 ]
+						m_name = "R_Demon_Arm_Elbow_Helper"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Demon_Arm_Elbow_Helper"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3842623713
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 90
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -32.381546, -11.024071, -36.121933 ]
+						m_vMaxBounds = [ 32.425827, 18.415699, 0.416 ]
+						m_name = "L_Ribs"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Ribs"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3050715509
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 91
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -32.425919, -18.415699, -0.415977 ]
+						m_vMaxBounds = [ 32.381439, 11.024071, 36.121826 ]
+						m_name = "R_Ribs"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Ribs"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1927488487
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 92
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -13.432577, -6.347992, -2.054976 ]
+						m_vMaxBounds = [ 26.612604, 7.225141, 3.010136 ]
+						m_name = "R_Foot"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "R_Foot"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3145851261
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 93
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -26.683077, -6.40305, -7.773214 ]
+						m_vMaxBounds = [ 6.210024, 4.87656, 7.759871 ]
+						m_name = "L_Foot"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "L_Foot"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1578592900
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 94
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+					{
+						m_vMinBounds = [ -39.157082, -10.159318, -13.917999 ]
+						m_vMaxBounds = [ 2.401203, 10.158683, 14.10199 ]
+						m_name = "Lantern4"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Lantern4"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 1868044783
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 95
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+				]
+				m_SourceFilename = ""
+			}
+		},
+		{
+			key = "select_high"
+			value = 
+			{
+				m_name = "select_high"
+				m_nNameHash = 2570599
+				m_HitBoxes = 
+				[
+					{
+						m_vMinBounds = [ -70.0, -110.0, -60.0 ]
+						m_vMaxBounds = [ 70.0, 120.0, 40.0 ]
+						m_name = "root_copy"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Root"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3153423456
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 96
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+				]
+				m_SourceFilename = ""
+			}
+		},
+		{
+			key = "select_low"
+			value = 
+			{
+				m_name = "select_low"
+				m_nNameHash = 3944345580
+				m_HitBoxes = 
+				[
+					{
+						m_vMinBounds = [ -100.0, -110.0, -90.0 ]
+						m_vMaxBounds = [ 100.0, 70.0, 70.0 ]
+						m_name = "root"
+						m_sSurfaceProperty = ""
+						m_sBoneName = "Root"
+						m_flShapeRadius = 0.0
+						m_nBoneNameHash = 3153423456
+						m_nGroupId = 0
+						m_cRenderColor = [ 0, 0, 0, 0 ]
+						m_nHitBoxIndex = 97
+						m_nShapeType = 0
+						m_bTranslationOnly = false
+						m_bVisible = false
+						m_bSelected = false
+					},
+				]
+				m_SourceFilename = ""
+			}
+		},
+	]
+	m_morphSet = null
+}

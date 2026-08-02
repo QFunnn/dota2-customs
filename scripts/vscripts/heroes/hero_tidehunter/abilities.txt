@@ -1,0 +1,174 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"tidehunter_gush_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tidehunter/hero_tidehunter"
+		"AbilityTextureName"			"tidehunter_gush"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"90 100 110 120"
+
+		"AbilityValues"
+		{
+			"gush_damage"		        
+            {
+                "value"                             "80 160 240 320"
+                "special_bonus_unique_tidehunter_1" "+80"
+            }
+			"projectile_speed"	        "2500"
+			"movement_speed"	        "15 25 35 45"
+			"negative_armor"	        
+            {
+                "value"                             "4 5 6 7"
+                "special_bonus_unique_tidehunter_3" "+4"
+            }
+			"talent_speed"		        "1500"
+			"talent_aoe"		        "240"
+			"duration"  		        "4"
+		}
+	}
+
+    "tidehunter_kraken_shell_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tidehunter/hero_tidehunter"
+		"AbilityTextureName"			"tidehunter_kraken_shell"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "6 5 4 3"
+
+		"AbilityValues"
+		{
+			"damage_reduction"			
+            {
+                "value"					            "10 25 40 55"
+                "special_bonus_unique_tidehunter_4"	"+25"
+            }
+			"damage_cleanse"			"600 500 400 300"
+		}
+	}
+
+    "tidehunter_anchor_smash_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tidehunter/hero_tidehunter"
+		"AbilityTextureName"			"tidehunter_anchor_smash"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"375"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"7 6 5 4"
+		"AbilityManaCost"				"50 70 90 110"
+
+		"AbilityValues"
+		{
+			"attack_damage"			    
+            {
+                "value"					            "40 80 120 160"
+                "special_bonus_unique_tidehunter_2"	"+40"
+            }
+			"damage_reduction"		    
+            {
+                "value"					            "5 10 15 20"
+                "special_bonus_unique_tidehunter_7"	"+15"
+            }
+			"reduction_duration"	    "2"
+			"radius"				    "375"
+		}
+	}
+
+    "tidehunter_ravage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tidehunter/hero_tidehunter"
+		"AbilityTextureName"			"tidehunter_ravage"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCooldown"				"180 150 120"
+		"AbilityManaCost"				"300"
+		"AbilityDamage"					"300 600 900"
+
+		"AbilityValues"
+		{
+			"radius"			"1250"
+			"speed"				"725"
+			"duration"			"2 3 4"
+		}
+	}
+
+    "special_bonus_unique_tidehunter_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_tidehunter_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_tidehunter_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

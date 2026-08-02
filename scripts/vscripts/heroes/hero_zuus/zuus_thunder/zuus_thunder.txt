@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"zuus_thundergods_wrath_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_zuus/zuus_thunder/zuus_thunder.lua"
+		"AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"            "zuus_thundergods_wrath"
+		"MaxLevel"						"3"
+		"AbilitySound"                  "Hero_Zuus.GodsWrath"
+	
+		"AbilityCastPoint"              "0.4"
+		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
+
+		"AbilityCooldown"               "100 80 60"
+		"AbilityManaCost"				"300 400 500"
+		"AbilityCastRange"				"600"
+
+		"AbilityValues"
+		{
+			"sight_radius"     		"300"
+			"sight_duration"        "3"
+			"damage"              	
+			{
+				"value"					"500 1000 1500"
+				"LinkedSpecialBonus"	"special_bonus_zuus_5"
+			}
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}

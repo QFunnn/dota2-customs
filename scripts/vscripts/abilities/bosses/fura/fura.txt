@@ -1,0 +1,90 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"boss_furion_custom_forest"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/fura"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"						"4500"
+			"diff_boost_damage"				"450"
+			"tick"							"0.4"
+			"range"							"700"
+			"duration"						"5"
+			"delay"							"1"
+			"damage_radius"					"225"
+		}
+	}	
+	
+"boss_furion_custom_sprout"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/fura"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"16"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"radius"						"700"
+			"duration"						"15"
+		}
+	}	
+	
+"boss_furion_custom_wrath"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/fura/fura"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"					"4500"
+			"diff_boost_damage"			"450"
+			"duration"					"5"
+			"tick_damage"				"500"
+			"diff_boost_additional"		"50"
+		}
+	}		
+
+"boss_furion_vine_grab"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/bosses/fura/fura"
+		"AbilityTextureName"            "treant_overgrowth"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"              "1000"
+		"AbilityCastPoint"              "0.6"
+		"AbilityCooldown"               "14"
+
+		"AbilityValues"
+		{
+			"speed"             "800"
+			"width"             "150"
+			"grab_duration"     "2"
+			"damage"            "4500"
+			"diff_boost_damage" "450"
+			"count"           	"7"
+			"frequency"         "4"
+		}
+	}		
+}

@@ -1,0 +1,52 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bloodseeker_bloodrage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bloodseeker/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua"
+		"AbilityTextureName"			"bloodseeker_bloodrage"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityHealthCost"				"50 80 110 140"
+
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"					"4"
+				"LinkedSpecialBonus"	"special_bonus_bloodseeker_3"
+			}	
+			"damage_increase_pct"		
+			{
+				"value"					"15 20 25 30"
+				"LinkedSpecialBonus"	"special_bonus_bloodseeker_6"
+			}	
+			"attack_speed"
+			{
+				"value"					"40 60 80 100"
+				"LinkedSpecialBonus"	"special_bonus_bloodseeker_5"
+			}	
+			"health_lose"				"3"
+		}
+	}
+}

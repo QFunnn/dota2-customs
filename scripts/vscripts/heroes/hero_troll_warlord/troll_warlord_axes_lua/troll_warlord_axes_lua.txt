@@ -1,0 +1,83 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"troll_warlord_whirling_axes_ranged_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_troll_warlord/troll_warlord_axes_lua/troll_warlord_axes_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"troll_warlord_whirling_axes_ranged"
+		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Ranged"
+
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_WHIRLING_AXES_RANGED"
+
+		"AbilityCooldown"				"9.0"
+		
+		"AbilityManaCost"				"60"
+
+
+		"AbilityValues"
+		{
+			"axe_width"	"100"
+			"axe_speed"	"2000"
+			"axe_range"	"650"
+			"axe_damage"	"50 100 150 200"
+			"duration"	"3"
+			"movement_speed"			"40"
+			"axe_spread"	"25"
+			"axe_count"					"5"
+			"on_hit_pct"	"25 50 75 100"
+		}
+	}
+	
+"troll_warlord_whirling_axes_melee_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_troll_warlord/troll_warlord_axes_lua/troll_warlord_axes_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"troll_warlord_whirling_axes_melee"
+		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Melee"
+
+		"AbilityCastRange"				"450"		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		"AbilityCooldown"				"9.0"
+		
+		"AbilityManaCost"				"60"
+
+		"AbilityValues"
+		{
+			"damage"	"50 100 150 200"
+			"axe_radius"	"100"
+			"max_range"	"350"
+			"axe_movement_speed"	"277"
+			"blind_duration"	"3"
+			"blind_pct"	"60"
+			"blind_stacks"	"3"
+			"whirl_duration"	"3.0"
+		}
+	}
+}

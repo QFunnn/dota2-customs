@@ -1,0 +1,50 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"special_bonus_unique_drow_ranger_4"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"drow_cross_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"POWERSHOT"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_powershot_lua/drow_cross_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"4"
+		"AbilityCooldown"				"2"
+		"AbilityManaCost"				"5 10 15 20"
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"speed"										"1500"
+			"distance"									"800"
+			"reduction"									"-100"
+			"armor_reduction"							"2 3 4 5"
+			"armor_reduction_duration"					"5"
+			"damage"									"50 100 150 200"
+			"count"
+			{
+				"value"									"2"
+				"special_bonus_unique_drow_ranger_4" 	"+4"
+			}
+		}
+	}
+	
+}

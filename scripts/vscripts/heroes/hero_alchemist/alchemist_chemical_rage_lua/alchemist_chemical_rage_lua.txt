@@ -1,0 +1,48 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"alchemist_chemical_rage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_chemical_rage_lua/alchemist_chemical_rage_lua"
+		"AbilityTextureName"			"alchemist_chemical_rage"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCastPoint"				"0.0"
+
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"50 100 150"
+
+		"AbilityValues"
+		{
+			"duration"				"25.0"
+			"transformation_time"	"0.35"
+			"base_attack_time"		
+			{
+				"value"					"1.2 1.1 1.0"
+				"LinkedSpecialBonus"	"special_bonus_alchemist_agi7"
+			}	
+			"bonus_health_regen"	
+			{
+				"value"					"50 75 100"
+				"LinkedSpecialBonus"	"special_bonus_alchemist_agi8"
+			}	
+			"bonus_mana_regen"		"4 10 16"
+			"bonus_movespeed"		"40 50 60"
+		}
+	}
+}

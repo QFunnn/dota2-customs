@@ -1,0 +1,102 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "boss_ursa_earthshock_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/ursa/ursa"
+        "AbilityTextureName"            "ursa_earthshock"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        
+        "AbilityCastRange"				"350"
+        "AbilityCastPoint"				"0.3"
+        "AbilityCooldown"				"6"
+        "AbilityManaCost"				"75"
+
+        "AbilityValues"
+        {
+            "radius"                "350"
+            "damage"                "300"
+            "diff_boost_damage"     "50"
+            "duration"              "0.5"
+            "wave_max_radius"       "900"
+        }
+    }
+
+    "boss_ursa_fury_swipes_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/bosses/ursa/ursa"
+        "AbilityTextureName"			"ursa_fury_swipes"
+        "FightRecapLevel"				"1"
+
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+        "AbilityValues"
+        {
+            "bonus_reset_time"			"6"
+            "damage_per_stack"			"2"
+        }
+    }	
+
+    "boss_ursa_roar_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/ursa/ursa"
+        "AbilityTextureName"            "ursa_enrage"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        
+        "AbilityCooldown"               "11"
+        "AbilityCastPoint"              "0.4"
+
+        "AbilityValues"
+        {
+            "radius"                    "800"
+            "fear_duration"             "2.0"
+            "leap_damage"               "250"
+            "diff_boost_damage"         "50"
+            "duration_enrage"           "3"
+            "damage_reduction"          "80"
+            "slow"                      "50"
+        }
+    }
+
+    "boss_ursa_overpower_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/ursa/ursa"
+		"AbilityTextureName"			"ursa_overpower"
+		"FightRecapLevel"				"1"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"9"
+		"AbilityManaCost"				"45"
+
+		"AbilityValues"
+		{
+			"max_attacks"				"4"
+			"attack_speed_bonus"		"400"
+			"duration"			        "10"
+		}
+	}    
+}

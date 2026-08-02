@@ -1,0 +1,108 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"boos_doom_solar_flare_lua"	
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastPoint"				"0.2"
+		"AbilityTextureName"			"invoker_sun_strike"	
+		"AbilityCooldown"				"12.0"
+		"AbilityManaCost"				"400"
+
+		"AbilityValues"
+		{
+			"damage"						"100000"
+			"delay"							"2.3"
+			"range"							"3000"
+			"damage_radius"					"200"
+		}	
+	}
+
+	"boos_doom_pit_lua"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_pit_of_malice"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"3000"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"400"
+
+		"AbilityValues"
+		{
+			"radius"					"300"
+			"pit_duration"				"4"
+			"pit_interval"				"2"
+			"pit_damage"				"5000"
+			"diff_boost_damage"			"500"
+			"ensnare_duration"			"0.8"
+		}
+	}	
+	
+	"boos_doom_fire_ring_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityTextureName"			"fire_ring"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"13"
+		"AbilityManaCost"				"125"		
+
+		"AbilityValues"
+		{
+			"damage_min"				"4000"
+			"damage_max"				"10000"
+			"diff_boost_damage"			"200"
+			"radius"					"800"
+			"speed"						"636"
+		}
+	}
+
+	"boos_doom_doom_lua"	
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lord/lord"
+		"AbilityTextureName"			"doom_bringer_doom"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"22"
+		"AbilityManaCost"				"500"
+		
+		"AbilityValues"
+		{
+			"duration"				"12"
+			"damage"				"8"
+		}
+	}
+}

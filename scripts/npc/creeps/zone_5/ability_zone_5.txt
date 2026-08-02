@@ -1,0 +1,178 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_nethertoxin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_5/zone_5"
+		"AbilityTextureName"			"viper_nethertoxin"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"125"
+
+		"AbilityValues"
+		{
+			"damage"			        "700"
+            "diff_boost_damage"     	"70"
+			"radius"		            "400"
+			"attack_slow"	            "60"
+			"duration"			        "6"
+			"projectile_speed"	        "2000"
+		}
+	}
+
+    "creep_corrosive_skin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_5/zone_5"
+		"AbilityTextureName"			"viper_corrosive_skin"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+            "duration"					"4"
+            "bonus_attack_speed"		"30"
+            "bonus_magic_resistance"	"30"
+            "damage"					"250"
+            "diff_boost_damage"     	"50"
+            "max_range"			        "1400"
+		}
+	}
+
+    "creep_stone_form_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_5/zone_5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "25"
+        
+        "AbilityValues"
+        {
+            "hp_regen_pct"              "3"
+            "diff_boost_damage"     	"1"
+            "duration"                  "5"
+            "threshold_pct"             "25"
+        }
+    }
+
+    "creep_death_pulse_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_5/zone_5"
+        "AbilityTextureName"			"necrolyte_death_pulse"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC"
+        "AbilityDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "5"
+        "AbilityCastRange"              "700"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+            "radius"                "700"
+            "damage"                "500"
+            "base_heal"             "500"
+            "diff_boost_damage"     "100"
+            "enemy_speed"           "400"
+            "ally_speed"            "400"
+        }
+    }
+
+    "creep_heartstopper_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/creeps/zone_5/zone_5"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"            "necrolyte_heartstopper_aura"
+        "AbilityCastRange"              "700"
+
+		"AbilityValues"
+		{
+			"radius"		        "700"
+			"damage"				"3"
+            "diff_boost_damage"     "0.1"
+			"heal_reduce_pct"		"50"
+		}
+	}
+
+    "creep_reapers_scythe_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_5/zone_5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"            "necrolyte_reapers_scythe"
+        "AbilityCooldown"               "7.0"
+
+        "AbilityValues"
+        {
+            "cast_range"                "600"
+            "stun_duration"             "1.5"
+            "damage_per_missing_hp"     "0.6"
+            "diff_boost_damage"         "0.1"
+        }
+    }
+
+    "creep_purification_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_5/zone_5"
+		"AbilityTextureName"			"omniknight_purification"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"85"
+
+		"AbilityValues"
+		{
+			"heal"	                    "500"
+            "diff_boost_damage"         "100"
+			"radius"	                "260"
+		}
+	}
+
+    "creep_degen_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_5/zone_5"
+		"AbilityTextureName"			"omniknight_degen_aura"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"				"400"
+
+		"AbilityValues"
+	    {
+		    "speed_bonus"	            "30"
+			"attack_bonus"	            "30"
+			"radius"	                "400"
+	    }
+    }
+}

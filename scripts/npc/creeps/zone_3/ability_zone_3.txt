@@ -1,0 +1,155 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_ice_shards_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_3/zone_3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"            "tusk_ice_shards"
+        "AbilityCastRange"              "1500"
+        "AbilityCooldown"               "9"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "shard_damage"              "400"
+            "diff_boost_damage"     	"50" 
+            "shard_duration"            "3.0"
+            "shard_speed"               "1000"
+            "shard_width"               "200"
+        }
+    }
+
+    "creep_walrus_punch_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_3/zone_3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "tusk_walrus_punch"
+        "AbilityCooldown"               "10"
+
+        "AbilityValues"
+        {
+            "bonus_damage"              "300"
+            "diff_boost_damage"     	"50" 
+            "crit_multiplier"           "300"
+            "air_time"                  "1.0"
+        }
+    }
+
+    "creep_tag_team_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_3/zone_3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityTextureName"            "tusk_tag_team"
+        
+        "AbilityCastRange"              "500"
+        "AbilityCooldown"               "15"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "bonus_damage"              "150"
+            "diff_boost_damage"         "25"
+            "movement_slow"             "75"
+            "slow_duration"             "0.5"
+            "debuff_duration"           "6"
+            "radius"                    "350"
+        }
+    }
+
+    "creep_crystal_nova_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_3/zone_3"
+		"AbilityTextureName"			"crystal_maiden_crystal_nova"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"9"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"radius"                    "300"
+			"movespeed_slow"            "25"
+			"attackspeed_slow"          "25"
+			"duration"                  "3"
+			"nova_damage"               "250"
+            "diff_boost_damage"         "50"
+		}
+	}
+
+    "creep_freezing_field_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_3/zone_3"
+		"AbilityTextureName"			"crystal_maiden_freezing_field"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"7"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"radius"					"700"
+			"explosion_radius"			"300"
+			"explosion_interval"		"0.1"
+			"movespeed_slow"			"-30"
+			"attack_slow"				"-30"
+			"slow_duration"				"1.0"
+			"explosion_min_dist"		"195"
+			"explosion_max_dist"		"785"
+			"damage" 					"250"
+            "diff_boost_damage"         "50"
+			"duration"					"10"
+		}
+	}
+
+    "creep_ice_vortex_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_3/zone_3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityTextureName"            "ancient_apparition_ice_vortex"
+        "AbilityCastRange"              "700"
+        "AbilityCooldown"               "5"
+        "AbilityManaCost"               "50"
+
+        "AbilityValues"
+        {
+            "radius"                    "350"
+            "vortex_duration"           "10"
+            "movement_speed_pct"        "30"
+            "spell_resist_pct"          "30"
+            "vision_aoe"                "200"
+        }
+    }
+
+}

@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"centaur_warrunner_hoof_stomp_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_centaur/hero_centaur"
+		"AbilityTextureName"				"centaur_hoof_stomp"
+		"FightRecapLevel"					"1"
+		"MaxLevel"							"4"
+		
+		"AbilityType"						"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"					"325"
+		"AbilityCastPoint"					"0.5"
+
+		"AbilityCooldown"					"18 16 14 12"
+		"AbilityManaCost"					"100 110 120 130"
+
+		"AbilityValues"
+		{
+			"radius"						"325"
+			"stun_duration"					"1.4 1.6 1.8 2.0"
+			"stomp_damage"				
+			{
+				"value"									"100 180 260 340"
+				"special_bonus_unique_centaur_lua_1"	"+60"
+			}	
+		}
+	}
+
+"centaur_return_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_centaur/hero_centaur"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"				"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityTextureName"				"centaur_return"
+		"MaxLevel"							"4"
+
+		"AbilityValues"
+		{
+			"damage"					
+			{
+				"value"									"15 25 35 45"
+				"special_bonus_unique_centaur_lua_4"	"+15"
+			}	
+			"str_damage"				
+			{
+				"value"									"16 24 32 40"
+				"special_bonus_unique_centaur_lua_7"	"+16"
+			}	
+		}
+	}
+
+"centaur_repel_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_centaur/hero_centaur"
+		"AbilityTextureName"				"centaur"
+		"FightRecapLevel"					"1"
+		"MaxLevel"							"4"
+
+		"AbilityType"						"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_NO"
+
+		"AbilityCastRange"					"600"
+		"AbilityCastPoint"					"0.1"
+
+		"AbilityCooldown"					"30 26 22 18"
+		"AbilityManaCost"					"100 120 140 160"
+
+		"AbilityValues"
+		{
+			"duration"					
+			{
+				"value"									"1.0 1.5 2.0 2.5"
+				"special_bonus_unique_centaur_lua_2"	"+1"
+			}	
+			"armor"
+			{
+				"value"									"25"
+				"special_bonus_unique_centaur_lua_5"	"+15"
+			}	
+			"radius"					"600"
+		}
+	}
+	
+"centaur_stampede_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/hero_centaur"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"centaur_stampede"
+		"MaxLevel"						"3"
+		"AbilityCooldown"				"55 50 45"
+		"AbilityManaCost"				"150 200 250"
+
+		"AbilityValues"
+		{
+			"duration"					"4.0"
+			"strength_damage"			
+			{
+				"value"									"2.0 2.5 3.0"
+				"special_bonus_unique_centaur_lua_3"	"+0.5"
+			}	
+			"stun_duration"				"0.75"
+			"radius"					"105"
+			"absolute_move_speed"		"550"
+			"ms_slow_pct"				"100"
+			"slow_duration"				"3"
+		}
+
+	}
+
+
+	"special_bonus_unique_centaur_lua_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_centaur_lua_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_centaur_lua_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

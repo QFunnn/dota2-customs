@@ -1,0 +1,168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"juggernaut_blade_fury_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/hero_juggernaut"
+		"AbilityTextureName"			"juggernaut_blade_fury"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"250"
+		"AbilityCooldown"				"32 28 24 20"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+        {
+            "blade_fury_damage_tick"	"0.2"
+            "blade_fury_radius"	        "250"
+            "blade_fury_damage"	        
+            {
+				"value"					              "70 110 150 190"
+				"special_bonus_unique_juggernaut_1"   "+40"
+			}
+            "duration"
+            {
+				"value"					              "3"
+				"special_bonus_unique_juggernaut_2"   "+1"
+			}
+        }
+	}
+
+    "juggernaut_heling_ward_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_juggernaut/hero_juggernaut"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityTextureName"			"juggernaut_healing_ward"
+        "AbilityCastRange"				"350"
+        "AbilityCooldown"				"40"
+        "AbilityManaCost"				"100 120 140 160"
+        "AbilityValues"
+        {
+            "health"	                
+            {
+				"value"					              "1.0 1.5 2.0 2.5"
+				"special_bonus_unique_juggernaut_4"   "+1"
+			}
+            "radius"                    "350"
+            "duration"                  "10 15 20 25"
+        }
+    }
+
+    "juggernaut_blade_dance_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/hero_juggernaut"
+		"AbilityTextureName"			"juggernaut_blade_dance"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"blade_dance_crit_chance"	
+            {
+				"value"					              "15 20 25 30"
+				"special_bonus_unique_juggernaut_5"   "+20"
+			}
+			"blade_dance_crit_mult"		
+            {
+				"value"					              "180"
+				"special_bonus_unique_juggernaut_3"   "+60"
+			}
+		}
+	}
+
+    "juggernaut_omni_slash_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/hero_juggernaut"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"juggernaut_omni_slash"
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"80 65 50"
+		"AbilityManaCost"				"150 200 250"
+
+		"AbilityValues"
+		{
+			"bounce_delay"				"0.5 0.4 0.3"
+			"bonus_damage"				
+            {
+				"value"					              "50 100 150"
+				"special_bonus_unique_juggernaut_8"   "+100"
+			}
+			"duration"					"2.5 3.0 3.5"
+			"radius"			        "425"
+		}
+	}
+
+
+
+
+    "special_bonus_unique_juggernaut_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_juggernaut_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_juggernaut_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

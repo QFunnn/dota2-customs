@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/spell_menu/spell_menu.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/spell_menu/spell_menu.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="spell_select">
+			<Panel class="SpellsMenuSpell">
+				<DOTAAbilityImage id="SpellImage" />
+				<Panel id="SpellImageBack" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="SpellsShow" hittest="false">
+		<Panel id="SpellsMenuContainer">
+			<Label class="SpellsMenuContainerBack" id="SpellsMenuContainerBack" text="#select_skill" html="true" />
+			<Panel id="SpellsMenuContent" />
+		</Panel>
+		<Panel class="SpellsMenuSwap" hittest="false">
+			<Panel id="SpellsMenuSpellsBlockSwap" />
+		</Panel>
+		<Panel id="SpellsMenuReroll" hittest="false">
+			<Label class="SpellsMenuContainerBack" id="SpellsMenuContainerBack2" text="#reroll_skill" html="true" />
+			<Panel id="SpellsMenuRerollContent" />
+		</Panel>
+		<Panel id="SpellSwapButton" onactivate="OpenSpellsListingForPlayerHero()" />
+	</Panel>
+</root>

@@ -1,0 +1,120 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/blacksmith/blacksmith.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/blacksmith/blacksmith.js" />
+	</scripts>
+	<snippets>
+		<snippet name="blacksmith_up_snippet">
+			<Panel class="blacksmith_up_panel">
+				<Label id="blacksmith_up_panel_name" class="blacksmith_up_panel_name" html="true" text="Item Name" />
+				<Image id="blacksmith_up_panel_image" class="blacksmith_up_panel_image" />
+				<Image class="blacksmith_up_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Label id="blacksmith_up_panel_base" class="blacksmith_up_panel_base" html="true" text="Base Stat" />
+				<Panel id="blacksmith_up_panel_bonus" class="blacksmith_up_panel_bonus" />
+			</Panel>
+		</snippet>
+		<snippet name="blacksmith_up_desc">
+			<Panel class="blacksmith_up_panel_desc">
+				<Label id="blacksmith_up_panel_desc_label_chance" html="true" text="Шанс 30%" />
+				<Panel id="blacksmith_up_panel_price">
+					<Image id="blacksmith_up_panel_price_image" src="s2r://" />
+					<Label id="blacksmith_up_panel_price_label" html="true" text=" = 2" />
+				</Panel>
+				<Panel id="blacksmith_up_panel_dust_price">
+					<Image src="s2r://panorama/images/dust_png.vtex" />
+					<Label id="blacksmith_up_panel_price_dust_label" html="true" text=" = 2" />
+				</Panel>
+				<Panel id="blacksmith_up_panel_desc_button" class="Enchant_button">
+					<Label id="blacksmith_up_panel_desc_button_label" html="true" text="#upgrade" />
+				</Panel>
+				<Panel id="blacksmith_up_panel_desc_loading" />
+			</Panel>
+		</snippet>
+		<snippet name="blacksmith_Enchant_desc">
+			<Panel class="blacksmith_Enchant_panel">
+				<Label id="Enchant_title" text="#add_bonus_item" />
+				<Label id="Enchant_count" text="" />
+				<Panel class="Enchant_price_row">
+					<Image src="s2r://panorama/images/sets/soul_png.vtex" />
+					<Label id="Enchant_price_row_text" text="= 20" />
+				</Panel>
+				<Panel id="Enchant_button_container">
+					<Button id="Enchant_execute_button" class="Enchant_button">
+						<Label text="#enchant_item" />
+					</Button>
+				</Panel>
+				<Panel id="blacksmith_enchant_panel_desc_loading" />
+				<Label id="Enchant_max_label" text="#max_bonuses" visible="false" />
+			</Panel>
+		</snippet>
+		<snippet name="blacksmith_merge_desc">
+			<Panel class="">
+				<Label id="reforge_rules" text="#reforge_rules" html="true" />
+				<Panel class="blacksmith_merge_container">
+					<Label id="MergeTitle" text="#merge_tir_item" />
+					<Panel id="MergeSlotsRow">
+						<Panel id="MergeSlot_1" class="MergeSlotTarget" />
+						<Panel id="MergeSlot_2" class="MergeSlotTarget" />
+						<Panel id="MergeSlot_3" class="MergeSlotTarget" />
+					</Panel>
+					<Label id="MergeArrow" text="▼" />
+					<Panel id="MergeResultPreview" class="MergeSlotTarget Result" />
+					<Panel class="MergePriceRow">
+						<Image src="s2r://panorama/images/sets/soul_png.vtex" />
+						<Label id="MergePriceLabel" text="= 0" />
+						<Image src="s2r://panorama/images/dust_png.vtex" />
+						<Label id="MergePriceLabelDust" text="= 0" />
+					</Panel>
+					<Button id="MergeExecuteButton" class="Enchant_button">
+						<Label text="#reforge_item" />
+					</Button>
+					<Panel id="blacksmith_merge_panel_desc_loading" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="blacksmith_root" hittest="false">
+		<Panel class="blacksmith_panel_main" id="blacksmith_panel_main">
+			<Panel id="blacksmith_close" onmouseactivate="close()" />
+			<Panel id="BlacksmithTabSelector">
+				<Button id="TabUpgradeBtn" class="TabBtn Active" onmouseactivate="SwitchBlacksmithTab(&apos;upgrade&apos;)">
+					<Label text="#upgrade_items" />
+				</Button>
+				<Button id="TabEnchantBtn" class="TabBtn" onmouseactivate="SwitchBlacksmithTab(&apos;enchant&apos;)">
+					<Label text="#enchant_item" />
+				</Button>
+				<Button id="TabReforgeBtn" class="TabBtn" onmouseactivate="SwitchBlacksmithTab(&apos;reforge&apos;)">
+					<Label text="#reforge_item" />
+				</Button>
+			</Panel>
+			<Panel id="blacksmith_select_panel">
+				<Panel id="blacksmith_target" />
+				<Label id="blacksmith_description_text" html="true" text="#choose_item" />
+				<Panel id="blacksmith_description" />
+				<Panel id="blacksmith_result" />
+				<Panel id="blacksmith_merge_altar" visible="false" />
+			</Panel>
+			<Panel class="BlacksmithInventoryMain" id="BlacksmithInventoryMain">
+				<Panel class="BlacksmithInventorySlots" id="BlacksmithInventorySlots" />
+			</Panel>
+			<Panel id="DustPanel">
+				<Panel id="DustPanelImage" />
+				<Label id="DustPaneLabel" text="0" />
+			</Panel>
+			<Label id="blacksmith_errors_label" html="true" text="" />
+		</Panel>
+	</Panel>
+</root>

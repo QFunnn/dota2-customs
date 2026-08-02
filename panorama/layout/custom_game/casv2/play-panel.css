@@ -1,0 +1,1210 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.play-panel
+{
+	width: 750px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(20, 22, 26, 0.95)), to(rgba(15, 17, 20, 0.95)));
+	border: 3px solid rgba(158, 118, 6, 0.6);
+	border-radius: 20px;
+	padding: 16px;
+	box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.95), inset 0px 0px 40px rgba(0, 0, 0, 0.7), 0px 0px 30px rgba(158, 118, 6, 0.3);
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+.panel-frame-top,.panel-frame-bottom
+{
+	visibility: collapse;
+	width: 0px;
+	height: 0px;
+}
+
+.bet-line
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(transparent), to(rgba(255, 215, 0, 0.03)));
+	border-radius: 8px;
+	padding: 8px;
+}
+
+.speed-controls
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	width: 260px;
+	margin-bottom: 2px;
+}
+
+.speed-buttons-container
+{
+	flow-children: right;
+	horizontal-align: center;
+	height: 26px;
+}
+
+.speed-btn,.autospin-btn
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 0px;
+	overflow: noclip;
+}
+
+@keyframes 'button_idle_glow'
+{
+	0%
+	{
+		box-shadow: 0px 0px 8px rgba(184, 134, 11, 0.20), 0px 0px 5px rgba(212, 175, 55, 0.16), 0px 6px 12px rgba(0, 0, 0, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.42), 0px 1px 2px rgba(0, 0, 0, 0.35), inset 0px 3px 6px rgba(0, 0, 0, 0.4), inset 0px -2px 4px rgba(0, 0, 0, 0.5), inset 0px 1px 2px rgba(255, 220, 100, 0.21), inset 0px 0px 1px rgba(255, 240, 150, 0.14);
+	}
+	
+	50%
+	{
+		box-shadow: 0px 0px 10px rgba(184, 134, 11, 0.25), 0px 0px 6px rgba(212, 175, 55, 0.20), 0px 6px 12px rgba(0, 0, 0, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.42), 0px 1px 2px rgba(0, 0, 0, 0.35), inset 0px 3px 6px rgba(0, 0, 0, 0.4), inset 0px -2px 4px rgba(0, 0, 0, 0.5), inset 0px 1px 2px rgba(255, 220, 100, 0.24), inset 0px 0px 1px rgba(255, 240, 150, 0.18);
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 8px rgba(184, 134, 11, 0.20), 0px 0px 5px rgba(212, 175, 55, 0.16), 0px 6px 12px rgba(0, 0, 0, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.42), 0px 1px 2px rgba(0, 0, 0, 0.35), inset 0px 3px 6px rgba(0, 0, 0, 0.4), inset 0px -2px 4px rgba(0, 0, 0, 0.5), inset 0px 1px 2px rgba(255, 220, 100, 0.21), inset 0px 0px 1px rgba(255, 240, 150, 0.14);
+	}
+	
+}
+
+.speed-btn
+{
+	width: 78px;
+	height: 32px;
+	margin-left: 3px;
+	margin-right: 3px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(240, 200, 80, 0.72)), color-stop(0.15, rgba(212, 175, 55, 0.70)), color-stop(0.3, rgba(184, 134, 11, 0.68)), color-stop(0.5, rgba(200, 160, 50, 0.70)), color-stop(0.7, rgba(158, 118, 6, 0.72)), color-stop(0.85, rgba(138, 102, 4, 0.74)), to(rgba(118, 87, 3, 0.76)));
+	border: 2px solid rgba(212, 175, 55, 0.75);
+	border-top-color: rgba(255, 240, 150, 0.55);
+	border-left-color: rgba(255, 220, 100, 0.60);
+	border-right-color: rgba(184, 134, 11, 0.72);
+	border-bottom-color: rgba(98, 72, 2, 0.80);
+	border-radius: 10px;
+	box-shadow: 0px 0px 8px rgba(184, 134, 11, 0.22), 0px 0px 5px rgba(212, 175, 55, 0.18), 0px 0px 3px rgba(255, 220, 100, 0.14), 0px 6px 12px rgba(0, 0, 0, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.42), 0px 1px 3px rgba(0, 0, 0, 0.35), 0px 1px 2px rgba(0, 0, 0, 0.30), inset 0px 4px 8px rgba(0, 0, 0, 0.5), inset 0px -3px 6px rgba(0, 0, 0, 0.6), inset 0px 2px 4px rgba(255, 240, 150, 0.24), inset 0px 1px 2px rgba(255, 255, 200, 0.21), inset 0px 0px 1px rgba(255, 255, 220, 0.18);
+	animation-name: button_idle_glow;
+	animation-duration: 3.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.autospin-btn
+{
+	width: 42px;
+	height: 32px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(240, 200, 80, 0.72)), color-stop(0.15, rgba(212, 175, 55, 0.70)), color-stop(0.3, rgba(184, 134, 11, 0.68)), color-stop(0.5, rgba(200, 160, 50, 0.70)), color-stop(0.7, rgba(158, 118, 6, 0.72)), color-stop(0.85, rgba(138, 102, 4, 0.74)), to(rgba(118, 87, 3, 0.76)));
+	border: 2px solid rgba(212, 175, 55, 0.75);
+	border-top-color: rgba(255, 240, 150, 0.55);
+	border-left-color: rgba(255, 220, 100, 0.60);
+	border-right-color: rgba(184, 134, 11, 0.72);
+	border-bottom-color: rgba(98, 72, 2, 0.80);
+	border-radius: 10px;
+	box-shadow: 0px 0px 8px rgba(184, 134, 11, 0.22), 0px 0px 5px rgba(212, 175, 55, 0.18), 0px 0px 3px rgba(255, 220, 100, 0.14), 0px 6px 12px rgba(0, 0, 0, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.42), 0px 1px 3px rgba(0, 0, 0, 0.35), 0px 1px 2px rgba(0, 0, 0, 0.30), inset 0px 4px 8px rgba(0, 0, 0, 0.5), inset 0px -3px 6px rgba(0, 0, 0, 0.6), inset 0px 2px 4px rgba(255, 240, 150, 0.24), inset 0px 1px 2px rgba(255, 255, 200, 0.21), inset 0px 0px 1px rgba(255, 255, 220, 0.18);
+	animation-name: button_idle_glow;
+	animation-duration: 3.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.speed-btn-bg,.autospin-btn-bg
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.speed-btn-frame,.autospin-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.speed-btn:hover,.autospin-btn:hover
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(rgba(255, 240, 150, 0.78)), color-stop(0.2, rgba(255, 220, 100, 0.75)), color-stop(0.4, rgba(240, 200, 80, 0.73)), color-stop(0.6, rgba(212, 175, 55, 0.71)), color-stop(0.8, rgba(184, 134, 11, 0.69)), to(rgba(158, 118, 6, 0.71)));
+	border-color: rgba(255, 240, 150, 0.80);
+	border-top-color: rgba(255, 255, 200, 0.72);
+	border-left-color: rgba(255, 240, 150, 0.76);
+	border-right-color: rgba(212, 175, 55, 0.76);
+	border-bottom-color: rgba(184, 134, 11, 0.80);
+	box-shadow: 0px 0px 12px rgba(184, 134, 11, 0.35), 0px 0px 8px rgba(212, 175, 55, 0.28), 0px 0px 5px rgba(255, 220, 100, 0.22), 0px 0px 3px rgba(255, 240, 150, 0.18), 0px 8px 16px rgba(0, 0, 0, 0.60), 0px 4px 8px rgba(0, 0, 0, 0.50), 0px 2px 4px rgba(0, 0, 0, 0.42), 0px 1px 2px rgba(0, 0, 0, 0.35), inset 0px 4px 8px rgba(0, 0, 0, 0.5), inset 0px -3px 6px rgba(0, 0, 0, 0.6), inset -2px -2px 8px rgba(255, 255, 200, 0.14), inset 0px 2px 5px rgba(255, 255, 220, 0.32), inset 0px 1px 3px rgba(255, 255, 240, 0.28), inset 0px 0px 2px rgba(255, 255, 255, 0.24);
+}
+
+.speed-btn.selected,.autospin-btn:active
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(158, 118, 6, 0.60)), color-stop(0.2, rgba(138, 102, 4, 0.62)), color-stop(0.4, rgba(118, 87, 3, 0.66)), color-stop(0.6, rgba(98, 72, 2, 0.68)), color-stop(0.8, rgba(78, 57, 1, 0.70)), to(rgba(58, 42, 1, 0.74)));
+	border-color: rgba(184, 134, 11, 0.68);
+	border-top-color: rgba(158, 118, 6, 0.64);
+	border-left-color: rgba(184, 134, 11, 0.68);
+	border-right-color: rgba(138, 102, 4, 0.72);
+	border-bottom-color: rgba(118, 87, 3, 0.76);
+	box-shadow: 0px 0px 8px rgba(184, 134, 11, 0.22), 0px 0px 4px rgba(158, 118, 6, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.48), 0px 2px 4px rgba(0, 0, 0, 0.40), 0px 1px 2px rgba(0, 0, 0, 0.32), inset 0px 6px 12px rgba(0, 0, 0, 0.7), inset 0px 3px 6px rgba(0, 0, 0, 0.65), inset 0px -2px 4px rgba(0, 0, 0, 0.6), inset 0px -1px 1px rgba(184, 134, 11, 0.12);
+	margin-top: 2px;
+}
+
+.speed-text,.autospin-symbol
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 240, 150, 0.85)), to(rgba(212, 175, 55, 0.80)));
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 3;
+	letter-spacing: 1px;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.9), 0px 1px 1px rgba(0, 0, 0, 0.9), -1px 0px 1px rgba(0, 0, 0, 0.9), 1px 0px 1px rgba(0, 0, 0, 0.9), 0px 2px 3px rgba(0, 0, 0, 0.85), 0px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 4px rgba(184, 134, 11, 0.32), 0px 0px 2px rgba(212, 175, 55, 0.25), 0px 0px 1px rgba(255, 220, 100, 0.20);
+}
+
+.autospin-symbol
+{
+	font-size: 14px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 240, 150, 0.85)), to(rgba(212, 175, 55, 0.80)));
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.9), 0px 1px 1px rgba(0, 0, 0, 0.9), -1px 0px 1px rgba(0, 0, 0, 0.9), 1px 0px 1px rgba(0, 0, 0, 0.9), 0px 2px 3px rgba(0, 0, 0, 0.85), 0px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 4px rgba(184, 134, 11, 0.32), 0px 0px 2px rgba(212, 175, 55, 0.25), 0px 0px 1px rgba(255, 220, 100, 0.20);
+}
+
+.speed-btn:hover .speed-text,.autospin-btn:hover .autospin-symbol
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 200, 0.90)), to(rgba(255, 240, 150, 0.85)));
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.95), 0px 1px 2px rgba(0, 0, 0, 0.9), 0px 0px 6px rgba(184, 134, 11, 0.42), 0px 0px 4px rgba(212, 175, 55, 0.35), 0px 0px 2px rgba(255, 220, 100, 0.28), 0px 0px 1px rgba(255, 240, 150, 0.22);
+}
+
+.speed-btn.selected .speed-text,.autospin-btn:active .autospin-symbol
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 200, 0.88)), to(rgba(255, 240, 150, 0.83)));
+	text-shadow: 0px 3px 5px rgba(0, 0, 0, 1.0), 0px 1px 2px rgba(0, 0, 0, 0.9), 0px 0px 6px rgba(184, 134, 11, 0.40), 0px 0px 3px rgba(212, 175, 55, 0.30);
+	margin-top: 1px;
+}
+
+.control-line
+{
+	width: 100%;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-bottom: 10px;
+	padding: 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(25, 27, 32, 0.6)), to(rgba(20, 22, 26, 0.6)));
+	border: 2px solid rgba(158, 118, 6, 0.4);
+	border-radius: 12px;
+	box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.6);
+	flow-children: right;
+}
+
+.controls-container
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.economy-block
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 16px;
+	height: 100%;
+}
+
+.economy-info-btn
+{
+	width: 64px;
+	height: 64px;
+	flow-children: none;
+	vertical-align: center;
+	margin-right: 16px;
+	border-radius: 6px;
+	padding: 0px;
+	overflow: noclip;
+	background-color: rgba(25, 27, 32, 0.4);
+	border: 1px solid rgba(158, 118, 6, 0.3);
+	transition-property: brightness, border-color;
+	transition-duration: 0.15s;
+}
+
+.economy-info-btn:hover
+{
+	brightness: 1.2;
+	border-color: rgba(184, 134, 11, 0.5);
+}
+
+.economy-info-btn-bg
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.economy-info-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.economy-info-icon
+{
+	width: 20px;
+	height: 20px;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 2;
+	wash-color: rgba(184, 134, 11, 0.9);
+}
+
+.EconRows
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 295px;
+	margin-right: 15px;
+}
+
+.BetSelectionPanel
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 295px;
+	margin-right: 15px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border: 1px solid rgba(255, 200, 80, 0.12);
+	border-radius: 8px;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.65), 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), inset 0px -2px 3px rgba(0, 0, 0, 0.42);
+	padding: 0px;
+	overflow: noclip;
+}
+
+.CurrencyTabsContainer
+{
+	flow-children: right;
+	width: 100%;
+	height: 42px;
+	padding: 0px;
+	margin: 0px;
+	background-color: transparent;
+}
+
+.CurrencyTab
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 0px 14px;
+	border-radius: 8px 8px 0px 0px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(20, 22, 26, 0.60)), to(rgba(15, 17, 20, 0.60)));
+	border: 1px solid rgba(255, 200, 80, 0.08);
+	border-bottom: 1px solid transparent;
+	vertical-align: bottom;
+	margin-bottom: 0px;
+	transition-property: brightness, background-color, border-color, margin-bottom, z-index, height;
+	transition-duration: 0.15s;
+	z-index: 1;
+}
+
+.CurrencyTab:hover
+{
+	brightness: 1.15;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 32, 36, 0.70)), to(rgba(25, 27, 31, 0.70)));
+	border-color: rgba(255, 200, 80, 0.15);
+}
+
+.CurrencyTab--Active
+{
+	margin-bottom: 0px;
+	z-index: 2;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border: 1px solid rgba(255, 200, 80, 0.20);
+	border-bottom: 1px solid rgba(255, 200, 80, 0.20);
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), 0px -2px 4px rgba(0, 0, 0, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.2);
+	brightness: 1.08;
+}
+
+.CurrencyTab--Active:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(36, 38, 42, 0.80)), to(rgba(28, 30, 34, 0.80)));
+	border-color: rgba(255, 200, 80, 0.28);
+	brightness: 1.12;
+}
+
+.tab-icon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	margin-right: 7px;
+	opacity: 0.85;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.CurrencyTab--Active .tab-icon
+{
+	opacity: 1.0;
+	brightness: 1.1;
+}
+
+.tab-label
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.80);
+	vertical-align: center;
+	letter-spacing: 0.9px;
+	text-transform: uppercase;
+}
+
+.CurrencyTab--Active .tab-label
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.1;
+}
+
+.BetContentPanel
+{
+	width: 100%;
+	height: 64px;
+	flow-children: none;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border-radius: 0px 0px 8px 8px;
+	border: 0px;
+}
+
+.BetOptions
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	padding: 0px;
+	background-color: transparent;
+	border: 0px;
+	box-shadow: none;
+}
+
+.BetOption
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-right: 5px;
+	padding: 0px 10px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(36, 38, 42, 0.20)), to(rgba(32, 34, 38, 0.20)));
+	border: 1px solid rgba(255, 200, 80, 0.15);
+	vertical-align: center;
+	horizontal-align: center;
+	opacity: 0.70;
+	transition-property: brightness, opacity, background-color, border-color, box-shadow;
+	transition-duration: 0.15s;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.08), inset 0px -1px 2px rgba(0, 0, 0, 0.20), 0px 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.BetOption:last-child
+{
+	margin-right: 0px;
+}
+
+.BetOption:hover
+{
+	brightness: 1.08;
+	opacity: 0.85;
+	border-color: rgba(255, 200, 80, 0.25);
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px -1px 2px rgba(0, 0, 0, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.20);
+}
+
+.BetOption--Selected
+{
+	opacity: 1.0;
+	brightness: 1.12;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 200, 80, 0.22)), to(rgba(255, 200, 80, 0.18)));
+	border: 1px solid rgba(255, 200, 80, 0.35);
+	box-shadow: inset 0px 1px 4px rgba(255, 255, 255, 0.16), inset 0px 0px 1px rgba(255, 255, 255, 0.12), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.40), 0px 2px 4px rgba(0, 0, 0, 0.28), inset 0px 0px 10px rgba(255, 200, 80, 0.10);
+}
+
+.BetOption--Selected:hover
+{
+	brightness: 1.15;
+	border-color: rgba(255, 200, 80, 0.45);
+	box-shadow: inset 0px 1px 5px rgba(255, 255, 255, 0.18), inset 0px 0px 1px rgba(255, 255, 255, 0.14), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.50), 0px 3px 6px rgba(0, 0, 0, 0.32), inset 0px 0px 12px rgba(255, 200, 80, 0.12);
+}
+
+.BetOption:active
+{
+	brightness: 0.96;
+	margin-top: 1px;
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.04), inset 0px -2px 2px rgba(0, 0, 0, 0.30);
+}
+
+.bet-option-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 7px;
+	opacity: 0.90;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.BetOption--Selected .bet-option-icon
+{
+	opacity: 1.0;
+	brightness: 1.15;
+}
+
+.bet-option-value
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.90);
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.BetOption--Selected .bet-option-value
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.15;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.30);
+}
+
+.EconRowPill
+{
+	flow-children: right;
+	width: 100%;
+	height: 42px;
+	margin-bottom: 7px;
+	border-radius: 8px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(34, 36, 40, 0.76)), to(rgba(26, 28, 32, 0.76)));
+	border: 1px solid rgba(255, 200, 80, 0.12);
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.65), 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), inset 0px -2px 3px rgba(0, 0, 0, 0.42);
+	transition-property: brightness, box-shadow;
+	transition-duration: 0.15s;
+}
+
+.EconRowPill:last-child
+{
+	margin-bottom: 0px;
+}
+
+.EconRowPill.isShieldSelected .BetSection,.EconRowPill.isCrystalSelected .BetSection
+{
+	opacity: 1.0;
+	brightness: 1.05;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 200, 80, 0.10)), to(rgba(255, 200, 80, 0.08)));
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.08), inset 0px -1px 1px rgba(0, 0, 0, 0.2), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.15);
+}
+
+.BalanceSection
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fill-parent-flow(0.55);
+	height: 100%;
+	padding: 0px 16px;
+}
+
+.BetSection
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fill-parent-flow(0.49);
+	height: 100%;
+	padding: 0px 16px;
+	opacity: 0.65;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(36, 38, 42, 0.20)), to(rgba(32, 34, 38, 0.20)));
+	border-radius: 0px 8px 8px 0px;
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px 0px 1px rgba(255, 255, 255, 0.06), inset 0px -1px 2px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.15), inset 0px 0px 8px rgba(255, 200, 80, 0.04);
+	transition-property: brightness, opacity, box-shadow, margin-top, border-color;
+	transition-duration: 0.15s;
+}
+
+.BetSectionSelected
+{
+	opacity: 1.0;
+	brightness: 1.08;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 200, 80, 0.16)), to(rgba(255, 200, 80, 0.12)));
+	border: 1px solid rgba(255, 200, 80, 0.22);
+	box-shadow: inset 0px 1px 4px rgba(255, 255, 255, 0.14), inset 0px 0px 1px rgba(255, 255, 255, 0.10), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.28), inset 0px 0px 10px rgba(255, 200, 80, 0.08);
+}
+
+.BetSectionUnselected
+{
+	opacity: 0.58;
+	brightness: 0.95;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(32, 34, 38, 0.18)), to(rgba(28, 30, 34, 0.18)));
+	border: 1px solid transparent;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.06), inset 0px 0px 1px rgba(255, 255, 255, 0.04), inset 0px -1px 2px rgba(0, 0, 0, 0.20), 0px 1px 2px rgba(0, 0, 0, 0.12), inset 0px 0px 6px rgba(255, 200, 80, 0.02);
+}
+
+.BetSection.isActiveBet
+{
+	opacity: 1.0;
+	brightness: 1.08;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 200, 80, 0.14)), to(rgba(255, 200, 80, 0.10)));
+	box-shadow: inset 0px 1px 4px rgba(255, 255, 255, 0.12), inset 0px 0px 1px rgba(255, 255, 255, 0.08), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.20), 0px 2px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 10px rgba(255, 200, 80, 0.06);
+}
+
+.BetSection:hover
+{
+	brightness: 1.06;
+	opacity: 0.78;
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px -1px 2px rgba(0, 0, 0, 0.28), 0px 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.BetSectionSelected:hover
+{
+	brightness: 1.10;
+	opacity: 1.0;
+	border-color: rgba(255, 200, 80, 0.28);
+	box-shadow: inset 0px 1px 5px rgba(255, 255, 255, 0.16), inset 0px 0px 1px rgba(255, 255, 255, 0.12), inset 0px -1px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.30), 0px 3px 6px rgba(0, 0, 0, 0.32), inset 0px 0px 12px rgba(255, 200, 80, 0.10);
+}
+
+.BetSectionUnselected:hover
+{
+	brightness: 1.02;
+	opacity: 0.68;
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.08), inset 0px 0px 1px rgba(255, 255, 255, 0.05), inset 0px -1px 2px rgba(0, 0, 0, 0.22), 0px 1px 3px rgba(0, 0, 0, 0.15), inset 0px 0px 8px rgba(255, 200, 80, 0.03);
+}
+
+.BetSection.isActiveBet:hover
+{
+	brightness: 1.07;
+	opacity: 1.0;
+	box-shadow: inset 0px 1px 3px rgba(255, 255, 255, 0.10), inset 0px -1px 1px rgba(0, 0, 0, 0.2), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.18), 0px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.BetSection:active
+{
+	brightness: 0.96;
+	margin-top: 1px;
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.04), inset 0px -2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.BetSectionSelected:active
+{
+	brightness: 0.98;
+	margin-top: 1px;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.06), inset 0px -2px 3px rgba(0, 0, 0, 0.35), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.18), 0px 1px 2px rgba(0, 0, 0, 0.20);
+}
+
+.BetSectionUnselected:active
+{
+	brightness: 0.92;
+	margin-top: 1px;
+	box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.03), inset 0px -2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.LabelBalance,.LabelBet
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.7);
+	vertical-align: center;
+	letter-spacing: 0.9px;
+	text-transform: uppercase;
+	opacity: 0.78;
+	margin-right: 8px;
+}
+
+.LabelBalance
+{
+	opacity: 0.72;
+}
+
+.ValueBalance,.ValueBet
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.94);
+	vertical-align: center;
+	letter-spacing: 0.4px;
+}
+
+.ValueBalance
+{
+	opacity: 0.96;
+	font-size: 15px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.95);
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ValueBet
+{
+	opacity: 1.0;
+	font-size: 17px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.98);
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.BetSectionSelected .ValueBet
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.10;
+	opacity: 1.0;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.BetSectionUnselected .ValueBet
+{
+	color: rgba(184, 134, 11, 0.82);
+	brightness: 0.92;
+	opacity: 0.90;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.BetSection.isActiveBet .ValueBet
+{
+	color: rgba(184, 134, 11, 1.0);
+	brightness: 1.08;
+	opacity: 1.0;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.balance-icon,.bet-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 8px;
+	opacity: 0.88;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.bet-icon
+{
+	opacity: 0.92;
+}
+
+.BetSectionSelected .bet-icon
+{
+	opacity: 1.0;
+	brightness: 1.10;
+}
+
+.BetSectionUnselected .bet-icon
+{
+	opacity: 0.75;
+	brightness: 0.88;
+}
+
+.BetSection.isActiveBet .bet-icon
+{
+	opacity: 1.0;
+	brightness: 1.08;
+}
+
+.EconModule
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 250px;
+	height: 110px;
+	padding: 12px 18px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.30)), to(rgba(0, 0, 0, 0.34)));
+	border: 1px solid rgba(255, 200, 80, 0.12);
+	border-radius: 10px;
+	box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.06), inset 0px -2px 4px rgba(0, 0, 0, 0.55), inset 0px 0px 0px 1px rgba(255, 200, 80, 0.10);
+}
+
+.BalanceRow
+{
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: center;
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding-bottom: 2px;
+}
+
+.balance-currency-item
+{
+	flow-children: right;
+	vertical-align: center;
+	width: 50%;
+	margin-left: 10px;
+}
+
+.balance-currency-item:last-child
+{
+	margin-right: 10px;
+	margin-left: 0px;
+}
+
+.balance-icon
+{
+	width: 17px;
+	height: 17px;
+	vertical-align: center;
+	margin-right: 8px;
+	opacity: 0.8;
+	brightness: 0.95;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.BalanceShieldValue,.BalanceCrystalValue
+{
+	font-size: 17px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.75);
+	vertical-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.35);
+	opacity: 0.85;
+	brightness: 0.92;
+}
+
+.econ-module-divider
+{
+	width: 100%;
+	height: 1px;
+	horizontal-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: rgba(158, 118, 6, 0.12);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.BetRow
+{
+	flow-children: right;
+	vertical-align: bottom;
+	horizontal-align: center;
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding-top: 2px;
+	background-color: transparent;
+	border-radius: 0px 0px 8px 8px;
+}
+
+.BetChip
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	height: 34px;
+	padding: 7px 14px;
+	margin-right: 10px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, 0.70)), to(rgba(40, 40, 40, 0.65)));
+	border: 1px solid rgba(255, 200, 80, 0.18);
+	opacity: 0.58;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.55), inset 0px 1px 0px rgba(255, 255, 255, 0.08), inset 0px -1px 0px rgba(0, 0, 0, 0.40);
+	transition-property: brightness, border-color, opacity, background-color, box-shadow, margin-top;
+	transition-duration: 0.15s;
+}
+
+.BetChip:last-child
+{
+	margin-right: 0px;
+}
+
+.BetChip:hover
+{
+	brightness: 1.05;
+	border-color: rgba(255, 200, 80, 0.20);
+	opacity: 0.63;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.60), inset 0px 1px 0px rgba(255, 255, 255, 0.10), inset 0px -1px 0px rgba(0, 0, 0, 0.40);
+}
+
+.BetChip.isSelected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(42, 42, 42, 0.75)), to(rgba(38, 38, 38, 0.70)));
+	border-color: rgba(255, 200, 80, 0.24);
+	opacity: 1.0;
+	brightness: 1.06;
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.55), inset 0px 1px 0px rgba(255, 255, 255, 0.10), inset 0px -1px 0px rgba(0, 0, 0, 0.40), inset 0px 0px 0px 1px rgba(255, 220, 140, 0.10);
+}
+
+.BetChip.isSelected:hover
+{
+	border-color: rgba(255, 200, 80, 0.28);
+	brightness: 1.08;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.60), inset 0px 1px 0px rgba(255, 255, 255, 0.12), inset 0px -1px 0px rgba(0, 0, 0, 0.40), inset 0px 0px 0px 1px rgba(255, 220, 140, 0.12);
+}
+
+.BetChip:active
+{
+	brightness: 0.94;
+	margin-top: 1px;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45), inset 0px 1px 0px rgba(255, 255, 255, 0.06), inset 0px -2px 4px rgba(0, 0, 0, 0.55);
+}
+
+.BetChip:disabled
+{
+	opacity: 0.4;
+	brightness: 0.7;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 0px rgba(0, 0, 0, 0.20);
+}
+
+.BetChip:disabled:hover
+{
+	brightness: 0.7;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.30), inset 0px 1px 0px rgba(255, 255, 255, 0.03), inset 0px -1px 0px rgba(0, 0, 0, 0.20);
+}
+
+.bet-chip-icon
+{
+	width: 17px;
+	height: 17px;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-right: 8px;
+	opacity: 0.9;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.BetChip.isSelected .bet-chip-icon
+{
+	opacity: 1.0;
+	brightness: 1.05;
+}
+
+.BetChip:disabled .bet-chip-icon
+{
+	opacity: 0.6;
+}
+
+.BetShieldValue,.BetCrystalValue
+{
+	font-size: 17px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.9);
+	vertical-align: center;
+	horizontal-align: center;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.BetChip.isSelected .BetShieldValue,.BetChip.isSelected .BetCrystalValue
+{
+	color: rgba(184, 134, 11, 0.95);
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.BetChip:disabled .BetShieldValue,.BetChip:disabled .BetCrystalValue
+{
+	color: rgba(120, 100, 80, 0.5);
+	text-shadow: none;
+}
+
+.BetChip.isSelected .BetShieldValue,.BetChip.isSelected .BetCrystalValue
+{
+	color: rgba(212, 175, 55, 0.95);
+	opacity: 1.0;
+}
+
+.BetChip:disabled:hover
+{
+	opacity: 0.4;
+	brightness: 0.7;
+}
+
+.BetChip:disabled .BetShieldValue,.BetChip:disabled .BetCrystalValue
+{
+	color: rgba(120, 100, 80, 0.5);
+}
+
+.autospin-wrapper
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.autospin-block
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	overflow: noclip;
+	margin-top: 2px;
+}
+
+.autospin-block.active
+{
+	border-color: rgba(255, 215, 0, 0.7);
+	border-width: 2px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 215, 0, 0.2)), to(rgba(255, 215, 0, 0.1)));
+	box-shadow: inset 0px 2px 8px rgba(0, 0, 0, 0.6), 0px 0px 24px rgba(255, 215, 0, 0.5);
+}
+
+.autospin-title
+{
+	font-size: 7px;
+	font-weight: bold;
+	color: #888888;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 1px;
+	horizontal-align: center;
+	vertical-align: center;
+	height: 8px;
+}
+
+.autospin-block.active .autospin-title
+{
+	color: #ffd700;
+}
+
+.autospin-controls
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 0px;
+	height: 26px;
+}
+
+.autospin-btn:disabled,.speed-btn:disabled
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(98, 87, 65, 0.4)), color-stop(0.5, rgba(78, 70, 55, 0.45)), to(rgba(68, 60, 45, 0.5)));
+	border-color: rgba(98, 87, 65, 0.4);
+	border-top-color: rgba(108, 97, 75, 0.3);
+	border-bottom-color: rgba(78, 70, 55, 0.5);
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4), 0px 1px 2px rgba(0, 0, 0, 0.3), inset 0px 2px 4px rgba(0, 0, 0, 0.4), inset 0px -1px 2px rgba(0, 0, 0, 0.3);
+	opacity: 0.5;
+	brightness: 0.6;
+}
+
+.autospin-btn:disabled .autospin-symbol,.speed-btn:disabled .speed-text
+{
+	color: rgba(78, 70, 55, 0.6);
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.autospin-btn:disabled .autospin-btn-frame,.speed-btn:disabled .speed-btn-frame
+{
+	border-color: rgba(98, 87, 65, 0.3);
+}
+
+.autospin-display
+{
+	width: 76px;
+	height: 32px;
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	margin: 0px 4px;
+}
+
+.autospin-display-bg
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(18, 20, 24, 0.95)), to(rgba(12, 14, 18, 0.95)));
+	border-radius: 10px;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.04), inset 0px -2px 4px rgba(0, 0, 0, 0.6), inset 0px 0px 12px rgba(0, 0, 0, 0.5);
+}
+
+.autospin-display-frame
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgba(158, 118, 6, 0.35);
+	border-radius: 10px;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.65), 0px 1px 3px rgba(0, 0, 0, 0.5), 0px 0px 4px rgba(184, 134, 11, 0.12);
+}
+
+.autospin-number
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.95);
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 2;
+	letter-spacing: 1px;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.autospin-status
+{
+	font-size: 6px;
+	color: #ffd700;
+	font-weight: bold;
+	horizontal-align: center;
+	vertical-align: center;
+	height: 6px;
+	margin-top: 0px;
+	letter-spacing: 0.5px;
+}
+
+@keyframes 'spin_button_idle_glow'
+{
+	0%
+	{
+		box-shadow: 0px 0px 24px rgba(184, 134, 11, 0.5), 0px 0px 16px rgba(212, 175, 55, 0.4), 0px 0px 8px rgba(255, 220, 100, 0.3), 0px 10px 24px rgba(0, 0, 0, 0.7), 0px 6px 12px rgba(0, 0, 0, 0.6), 0px 3px 6px rgba(0, 0, 0, 0.5), 0px 1px 3px rgba(0, 0, 0, 0.4), inset 0px 4px 10px rgba(0, 0, 0, 0.5), inset 0px -4px 8px rgba(0, 0, 0, 0.6), inset 0px 2px 4px rgba(255, 240, 150, 0.4), inset 0px 1px 2px rgba(255, 255, 200, 0.3), inset 0px 0px 1px rgba(255, 255, 220, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: 0px 0px 30px rgba(184, 134, 11, 0.6), 0px 0px 20px rgba(212, 175, 55, 0.5), 0px 0px 12px rgba(255, 220, 100, 0.4), 0px 10px 24px rgba(0, 0, 0, 0.7), 0px 6px 12px rgba(0, 0, 0, 0.6), 0px 3px 6px rgba(0, 0, 0, 0.5), 0px 1px 3px rgba(0, 0, 0, 0.4), inset 0px 4px 10px rgba(0, 0, 0, 0.5), inset 0px -4px 8px rgba(0, 0, 0, 0.6), inset 0px 2px 4px rgba(255, 240, 150, 0.45), inset 0px 1px 2px rgba(255, 255, 200, 0.35), inset 0px 0px 1px rgba(255, 255, 220, 0.3);
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 24px rgba(184, 134, 11, 0.5), 0px 0px 16px rgba(212, 175, 55, 0.4), 0px 0px 8px rgba(255, 220, 100, 0.3), 0px 10px 24px rgba(0, 0, 0, 0.7), 0px 6px 12px rgba(0, 0, 0, 0.6), 0px 3px 6px rgba(0, 0, 0, 0.5), 0px 1px 3px rgba(0, 0, 0, 0.4), inset 0px 4px 10px rgba(0, 0, 0, 0.5), inset 0px -4px 8px rgba(0, 0, 0, 0.6), inset 0px 2px 4px rgba(255, 240, 150, 0.4), inset 0px 1px 2px rgba(255, 255, 200, 0.3), inset 0px 0px 1px rgba(255, 255, 220, 0.2);
+	}
+	
+}
+
+.spin-btn
+{
+	width: 280px;
+	height: 68px;
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 18px;
+	padding: 0px;
+	overflow: noclip;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 240, 150, 0.95)), color-stop(0.1, rgba(255, 220, 100, 0.93)), color-stop(0.2, rgba(240, 200, 80, 0.91)), color-stop(0.3, rgba(212, 175, 55, 0.89)), color-stop(0.4, rgba(200, 160, 50, 0.9)), color-stop(0.5, rgba(184, 134, 11, 0.88)), color-stop(0.6, rgba(200, 160, 50, 0.9)), color-stop(0.7, rgba(158, 118, 6, 0.92)), color-stop(0.8, rgba(138, 102, 4, 0.94)), color-stop(0.9, rgba(118, 87, 3, 0.96)), to(rgba(98, 72, 2, 0.98)));
+	border: 3px solid rgba(212, 175, 55, 0.98);
+	border-top-color: rgba(255, 255, 200, 0.8);
+	border-left-color: rgba(255, 240, 150, 0.85);
+	border-right-color: rgba(184, 134, 11, 0.95);
+	border-bottom-color: rgba(98, 72, 2, 1.0);
+	box-shadow: 0px 4px 20px rgba(184, 134, 11, 0.40), 0px 2px 14px rgba(212, 175, 55, 0.32), 0px 1px 8px rgba(255, 220, 100, 0.24), 0px 0px 4px rgba(255, 240, 150, 0.18), 0px 12px 28px rgba(0, 0, 0, 0.75), 0px 8px 16px rgba(0, 0, 0, 0.7), 0px 4px 8px rgba(0, 0, 0, 0.65), 0px 2px 4px rgba(0, 0, 0, 0.6), 0px 1px 2px rgba(0, 0, 0, 0.55), inset 0px 5px 12px rgba(0, 0, 0, 0.6), inset 0px -5px 10px rgba(0, 0, 0, 0.7), inset 0px 3px 6px rgba(255, 255, 200, 0.4), inset 0px 2px 4px rgba(255, 255, 220, 0.35), inset 0px 1px 2px rgba(255, 255, 240, 0.3), inset 0px 0px 1px rgba(255, 255, 255, 0.25);
+	animation-name: spin_button_idle_glow;
+	animation-duration: 3.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.spin-btn-frame
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.spin-btn:hover
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(rgba(255, 255, 200, 0.98)), color-stop(0.15, rgba(255, 240, 150, 0.96)), color-stop(0.3, rgba(255, 220, 100, 0.94)), color-stop(0.45, rgba(240, 200, 80, 0.92)), color-stop(0.6, rgba(212, 175, 55, 0.9)), color-stop(0.75, rgba(184, 134, 11, 0.88)), color-stop(0.9, rgba(158, 118, 6, 0.9)), to(rgba(138, 102, 4, 0.92)));
+	border-color: rgba(255, 255, 200, 1.0);
+	border-top-color: rgba(255, 255, 220, 0.95);
+	border-left-color: rgba(255, 240, 150, 0.98);
+	border-right-color: rgba(212, 175, 55, 0.98);
+	border-bottom-color: rgba(184, 134, 11, 1.0);
+	box-shadow: 0px 0px 40px rgba(184, 134, 11, 0.75), 0px 0px 28px rgba(212, 175, 55, 0.65), 0px 0px 18px rgba(255, 220, 100, 0.55), 0px 0px 10px rgba(255, 240, 150, 0.45), 0px 0px 5px rgba(255, 255, 200, 0.35), 0px 14px 32px rgba(0, 0, 0, 0.8), 0px 10px 20px rgba(0, 0, 0, 0.75), 0px 6px 12px rgba(0, 0, 0, 0.7), 0px 3px 6px rgba(0, 0, 0, 0.65), 0px 1px 3px rgba(0, 0, 0, 0.6), inset 0px 5px 12px rgba(0, 0, 0, 0.5), inset 0px -5px 10px rgba(0, 0, 0, 0.6), inset -3px -3px 12px rgba(255, 255, 220, 0.25), inset 0px 3px 7px rgba(255, 255, 240, 0.5), inset 0px 2px 5px rgba(255, 255, 255, 0.45), inset 0px 1px 3px rgba(255, 255, 255, 0.4), inset 0px 0px 2px rgba(255, 255, 255, 0.35);
+}
+
+.spin-btn:active
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(158, 118, 6, 0.8)), color-stop(0.15, rgba(138, 102, 4, 0.82)), color-stop(0.3, rgba(118, 87, 3, 0.85)), color-stop(0.45, rgba(98, 72, 2, 0.88)), color-stop(0.6, rgba(78, 57, 1, 0.9)), color-stop(0.75, rgba(58, 42, 1, 0.93)), color-stop(0.9, rgba(48, 35, 1, 0.96)), to(rgba(38, 28, 1, 1.0)));
+	border-color: rgba(184, 134, 11, 0.88);
+	border-top-color: rgba(158, 118, 6, 0.85);
+	border-left-color: rgba(184, 134, 11, 0.88);
+	border-right-color: rgba(138, 102, 4, 0.92);
+	border-bottom-color: rgba(118, 87, 3, 0.98);
+	box-shadow: 0px 0px 14px rgba(184, 134, 11, 0.4), 0px 0px 8px rgba(158, 118, 6, 0.3), 0px 0px 4px rgba(138, 102, 4, 0.2), 0px 6px 12px rgba(0, 0, 0, 0.7), 0px 4px 8px rgba(0, 0, 0, 0.65), 0px 2px 4px rgba(0, 0, 0, 0.6), 0px 1px 2px rgba(0, 0, 0, 0.55), inset 0px 8px 16px rgba(0, 0, 0, 0.75), inset 0px 4px 8px rgba(0, 0, 0, 0.7), inset 0px -3px 6px rgba(0, 0, 0, 0.65), inset 0px -1px 2px rgba(184, 134, 11, 0.2);
+	margin-top: 2px;
+}
+
+.spin-btn.skip-mode
+{
+	background-color: #999999;
+	brightness: 0.8;
+}
+
+.spin-btn.skip-mode:hover
+{
+	background-color: #aaaaaa;
+	brightness: 0.9;
+}
+
+.spin-btn.skip-mode.skip-active
+{
+	background-color: #999999;
+	brightness: 0.9;
+}
+
+.spin-btn.skip-mode.skip-active:hover
+{
+	background-color: #aaaaaa;
+	brightness: 1.0;
+}
+
+.spin-btn:disabled
+{
+	animation-name: none;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(98, 87, 65, 0.4)), color-stop(0.3, rgba(78, 70, 55, 0.45)), color-stop(0.7, rgba(68, 60, 45, 0.5)), to(rgba(58, 52, 38, 0.55)));
+	border-color: rgba(98, 87, 65, 0.4);
+	border-top-color: rgba(108, 97, 75, 0.3);
+	border-left-color: rgba(98, 87, 65, 0.4);
+	border-right-color: rgba(78, 70, 55, 0.45);
+	border-bottom-color: rgba(68, 60, 45, 0.5);
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5), 0px 1px 3px rgba(0, 0, 0, 0.4), inset 0px 3px 6px rgba(0, 0, 0, 0.5), inset 0px -2px 4px rgba(0, 0, 0, 0.4);
+	opacity: 0.5;
+	brightness: 0.6;
+}
+
+.spin-btn:disabled .spin-text
+{
+	color: rgba(78, 70, 55, 0.6);
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.spin-btn:disabled .spin-btn-frame
+{
+	border-color: rgba(98, 87, 65, 0.3);
+}
+
+.spin-bg-huge
+{
+	width: 0px;
+	height: 0px;
+	visibility: collapse;
+}
+
+.spin-text
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 200, 1.0)), to(rgba(212, 175, 55, 0.95)));
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	horizontal-align: center;
+	vertical-align: center;
+	z-index: 3;
+	text-shadow: 0px -1px 2px rgba(0, 0, 0, 0.95), 0px 1px 2px rgba(0, 0, 0, 0.95), -1px 0px 2px rgba(0, 0, 0, 0.95), 1px 0px 2px rgba(0, 0, 0, 0.95), 0px 3px 5px rgba(0, 0, 0, 0.9), 0px 2px 3px rgba(0, 0, 0, 0.85), 0px 1px 2px rgba(0, 0, 0, 0.8), 0px 0px 10px rgba(184, 134, 11, 0.75), 0px 0px 6px rgba(212, 175, 55, 0.65), 0px 0px 3px rgba(255, 220, 100, 0.5), 0px 0px 1px rgba(255, 240, 150, 0.4);
+}
+
+.spin-btn:hover .spin-text
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 1.0)), to(rgba(255, 255, 200, 0.98)));
+	text-shadow: 0px 3px 6px rgba(0, 0, 0, 1.0), 0px 2px 4px rgba(0, 0, 0, 0.95), 0px 1px 2px rgba(0, 0, 0, 0.9), 0px 0px 16px rgba(184, 134, 11, 0.95), 0px 0px 12px rgba(212, 175, 55, 0.85), 0px 0px 8px rgba(255, 220, 100, 0.7), 0px 0px 4px rgba(255, 240, 150, 0.5), 0px 0px 2px rgba(255, 255, 200, 0.4);
+}
+
+.spin-btn:active .spin-text
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 1.0)), to(rgba(255, 255, 200, 0.98)));
+	text-shadow: 0px 3px 6px rgba(0, 0, 0, 1.0), 0px 2px 4px rgba(0, 0, 0, 0.95), 0px 0px 10px rgba(184, 134, 11, 0.8), 0px 0px 6px rgba(212, 175, 55, 0.7), 0px 0px 3px rgba(255, 220, 100, 0.5);
+}

@@ -1,0 +1,5428 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"item_str_atribute"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"str"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+	}
+
+"item_agi_atribute"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"agi"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+	}
+
+"item_int_atribute"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/item_atribute"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"int"
+		"ItemCost"						"0"
+		
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemDisassemblable"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+	}
+
+//=============================================================================================================================
+
+"item_chest_d"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"chest_5"
+		"ItemCost"						"0"
+		"ItemStackable"					"1"  
+		"ItemStockInitial"				"1"
+		"ItemInitialStockTime"			"1200.0"
+		"ItemPurchasable"				"0"
+		"AbilityCooldown"				"0.3"
+		"OnSpellStart"
+		{				
+			"RunScript"
+			{
+				"ScriptFile"            "items/item_chest.lua"
+				"Function"              "chest_d"
+			}
+		}
+	}
+	
+//=============================================================================================================================
+
+"item_bkb_flask"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_bkb_flask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"90"
+		"AbilityTextureName"			"bkb_flask"
+		"ItemStackable"					"1"
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDroppable"					"1"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"ItemKillable"					"0"
+		"AbilityValues"
+		{
+			"radius" "400"
+			"duration" "3"
+		}
+	}
+	
+
+"item_armor_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_4"
+		"ScriptFile"					"items/d_items/book_armor"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"armor"					"5"
+			"duration"				"180"
+		}
+	}
+	
+"item_base_damage_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_6"
+		"ScriptFile"					"items/d_items/book_base_damage"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"dmg"					"10"
+			"duration"				"180"
+		}
+	}	
+	
+"item_expiriance_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_2"
+		"ScriptFile"					"items/d_items/book_exp"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"exp"					"10"
+			"duration"				"180"
+		}
+	}
+
+"item_move_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_3"
+		"ScriptFile"					"items/d_items/book_move"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"move"					"50"
+			"duration"				"180"
+		}
+	}
+
+"item_attack_speed_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_1"
+		"ScriptFile"					"items/d_items/book_attack_speed"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"attack_speed"			"35"
+			"duration"				"180"
+		}
+	}		
+	
+"item_hp_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"scroll_5"
+		"ScriptFile"					"items/d_items/book_hp"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"hp"					"2"
+			"duration"				"180"
+		}
+	}	
+	
+"item_cd_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"cd_buff"
+		"ScriptFile"					"items/d_items/book_cd"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"cd"					"5"
+			"duration"				"180"
+		}
+	}
+
+"item_lifesteal_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"lifesteal_buff"
+		"ScriptFile"					"items/d_items/book_lifesteal"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"lifesteal"				"5"
+			"duration"				"180"
+		}
+	}
+	
+"item_spell_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"spell_buff"
+		"ScriptFile"					"items/d_items/book_spell"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"lifesteal"				"5"
+			"duration"				"180"
+		}
+	}
+	
+"item_gold_aura"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "BaseClass"						"item_lua"
+		"AbilityTextureName"			"gold_buff"
+		"ScriptFile"					"items/d_items/book_gold"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"180"
+		"ItemDroppable" 				"1"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"500"
+		"ItemInitialCharges"			"1"
+		"AbilityValues"
+		{
+			"radius"				"1000"
+			"gold"					"5"
+			"duration"				"180"
+		}
+	}	
+//============================================================================================================================
+
+"item_health_bag"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_health_bag.lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"health_bag_2"
+		"AbilityCooldown"				"60.0"
+		"AbilityCastRange"				"800"
+		"AbilityManaCost"				"200"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0" 
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE" 
+
+		"AbilityValues"
+		{
+			"hp_regen"	            "4"
+			"mana_regen"	        "2"
+			"bonus_all_stats" 	    "4"
+			"heal_interval"	        "0.25"
+			"base_heal"			    "40"
+			"heal_pct"			    "0.3"
+			"duration"				"6"
+		}
+	}
+	
+//====================================================================================================================================	
+
+"item_mp_bag"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_mp_bag.lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"mp_bag"
+		"AbilityCooldown"				"60.0"
+		"AbilityCastRange"				"800"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemPurchasable"				"0"		
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+
+		"AbilityValues"
+		{
+			"hp_regen"	            "2"
+			"mana_regen"	        "5"
+			"bonus_all_stats" 	    "4"
+			"heal_interval"	        "0.25"
+			"base_heal"			    "20"
+			"heal_pct"			    "0.20"
+			"duration"				"5"
+			"required_level"				"3"
+			"less_heal"			    "30"
+		}
+	}
+
+	
+//====================================================================================================================================
+
+"item_block_shield"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"block_shield"
+		"ScriptFile"					"items/d_items/item_block_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"2"
+			"block"					"2 4 6 8 10"
+			"helth_recovery"		"2 4 6 8 10"
+		}
+	}
+	
+"item_block_shield2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"block_shield"
+		"ScriptFile"					"items/d_items/item_block_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"2"
+			"block"					"2 4 6 8 10"
+			"helth_recovery"		"2 4 6 8 10"
+		}
+	}
+
+"item_block_shield3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"block_shield"
+		"ScriptFile"					"items/d_items/item_block_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"2"
+			"block"					"2 4 6 8 10"
+			"helth_recovery"		"2 4 6 8 10"
+		}
+	}
+
+"item_block_shield4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"block_shield"
+		"ScriptFile"					"items/d_items/item_block_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"2"
+			"block"					"2 4 6 8 10"
+			"helth_recovery"		"2 4 6 8 10"
+		}
+	}
+
+"item_block_shield5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"block_shield"
+		"ScriptFile"					"items/d_items/item_block_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"2"
+			"block"					"2 4 6 8 10"
+			"helth_recovery"		"2 4 6 8 10"
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_power_pendant"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"power_pendant"
+		"ScriptFile"					"items/d_items/item_power_pendant"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"5"
+			"bonus_all"				"3 5 7 9 11"
+			"helth_recovery"		"50 100 150 200 250"
+			"mp_cost"				"50 100 150 200 250"
+		}
+	}
+	
+"item_power_pendant2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"power_pendant"
+		"ScriptFile"					"items/d_items/item_power_pendant"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"5"
+			"bonus_all"				"3 5 7 9 11"
+			"helth_recovery"		"50 100 150 200 250"
+			"mp_cost"				"50 100 150 200 250"
+		}
+	}
+
+"item_power_pendant3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"power_pendant"
+		"ScriptFile"					"items/d_items/item_power_pendant"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"5"
+			"bonus_all"				"3 5 7 9 11"
+			"helth_recovery"		"50 100 150 200 250"
+			"mp_cost"				"50 100 150 200 250"
+		}
+	}
+
+"item_power_pendant4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"power_pendant"
+		"ScriptFile"					"items/d_items/item_power_pendant"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"5"
+			"bonus_all"				"3 5 7 9 11"
+			"helth_recovery"		"50 100 150 200 250"
+			"mp_cost"				"50 100 150 200 250"
+		}
+	}
+
+"item_power_pendant5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"power_pendant"
+		"ScriptFile"					"items/d_items/item_power_pendant"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"5"
+			"bonus_all"				"3 5 7 9 11"
+			"helth_recovery"		"50 100 150 200 250"
+			"mp_cost"				"50 100 150 200 250"
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_dark_stick"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"dark_stick"
+		"ScriptFile"					"items/d_items/item_dark_stick"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_hp"				"200 300 400 500 600"
+			"bonus_mp"				"200 300 400 500 600"
+			"gold_per_kill"			"2"
+			"hp_recovery"			"2 4 6 8 10"
+			"mp_recovery"			"2 4 6 8 10"
+			"radius"				"700"
+		}
+	}	
+	
+"item_dark_stick2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"dark_stick"
+		"ScriptFile"					"items/d_items/item_dark_stick"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_hp"				"200 300 400 500 600"
+			"bonus_mp"				"200 300 400 500 600"
+			"gold_per_kill"			"2"
+			"hp_recovery"			"2 4 6 8 10"
+			"mp_recovery"			"2 4 6 8 10"
+			"radius"				"700"
+		}
+	}	
+
+"item_dark_stick3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"dark_stick"
+		"ScriptFile"					"items/d_items/item_dark_stick"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_hp"				"200 300 400 500 600"
+			"bonus_mp"				"200 300 400 500 600"
+			"gold_per_kill"			"2"
+			"hp_recovery"			"2 4 6 8 10"
+			"mp_recovery"			"2 4 6 8 10"
+			"radius"				"700"
+		}
+	}	
+
+"item_dark_stick4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"dark_stick"
+		"ScriptFile"					"items/d_items/item_dark_stick"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_hp"				"200 300 400 500 600"
+			"bonus_mp"				"200 300 400 500 600"
+			"gold_per_kill"			"2"
+			"hp_recovery"			"2 4 6 8 10"
+			"mp_recovery"			"2 4 6 8 10"
+			"radius"				"700"
+		}
+	}	
+
+"item_dark_stick5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"dark_stick"
+		"ScriptFile"					"items/d_items/item_dark_stick"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_hp"				"200 300 400 500 600"
+			"bonus_mp"				"200 300 400 500 600"
+			"gold_per_kill"			"2"
+			"hp_recovery"			"2 4 6 8 10"
+			"mp_recovery"			"2 4 6 8 10"
+			"radius"				"700"
+		}
+	}		
+	
+//====================================================================================================================================
+
+"item_physical_immune"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"physical_immune"
+		"ScriptFile"					"items/d_items/item_physical_immune"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"required_level"		"13"
+			"bonus_all"				"10 14 18 22 26"
+			"duration"				"3"
+			"bonus_as"				"15 30 45 60 75"
+			"tooltip_reapply_time"				"20"
+		}
+	}	
+
+"item_physical_immune2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"physical_immune"
+		"ScriptFile"					"items/d_items/item_physical_immune"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"required_level"		"13"
+			"bonus_all"				"10 14 18 22 26"
+			"duration"				"3"
+			"bonus_as"				"15 30 45 60 75"
+			"tooltip_reapply_time"				"20"
+		}
+	}	
+	
+"item_physical_immune3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"physical_immune"
+		"ScriptFile"					"items/d_items/item_physical_immune"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"required_level"		"13"
+			"bonus_all"				"10 14 18 22 26"
+			"duration"				"3"
+			"bonus_as"				"15 30 45 60 75"
+			"tooltip_reapply_time"				"20"
+		}
+	}	
+
+"item_physical_immune4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"physical_immune"
+		"ScriptFile"					"items/d_items/item_physical_immune"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"required_level"		"13"
+			"bonus_all"				"10 14 18 22 26"
+			"duration"				"3"
+			"bonus_as"				"15 30 45 60 75"
+			"tooltip_reapply_time"				"20"
+		}
+	}	
+
+"item_physical_immune5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"physical_immune"
+		"ScriptFile"					"items/d_items/item_physical_immune"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"required_level"		"13"
+			"bonus_all"				"10 14 18 22 26"
+			"duration"				"3"
+			"bonus_as"				"15 30 45 60 75"
+			"tooltip_reapply_time"				"20"
+		}
+	}		
+//====================================================================================================================================
+
+"item_crit_blade"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade_image"
+		"ScriptFile"					"items/d_items/item_crit_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"17"
+			"bonus_agility"			"15 30 45 60 75"
+			"attack_speed"			"20 30 40 50 60"
+			"crit"					"10 15 20 25 30"
+			"crit_damage"			"150 200 250 300 350"
+		}
+	}
+	
+"item_crit_blade2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade_image"
+		"ScriptFile"					"items/d_items/item_crit_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"17"
+			"bonus_agility"			"15 30 45 60 75"
+			"attack_speed"			"20 30 40 50 60"
+			"crit"					"10 15 20 25 30"
+			"crit_damage"			"150 200 250 300 350"
+		}
+	}
+
+"item_crit_blade3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade_image"
+		"ScriptFile"					"items/d_items/item_crit_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"17"
+			"bonus_agility"			"15 30 45 60 75"
+			"attack_speed"			"20 30 40 50 60"
+			"crit"					"10 15 20 25 30"
+			"crit_damage"			"150 200 250 300 350"
+		}
+	}
+
+"item_crit_blade4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade_image"
+		"ScriptFile"					"items/d_items/item_crit_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"17"
+			"bonus_agility"			"15 30 45 60 75"
+			"attack_speed"			"20 30 40 50 60"
+			"crit"					"10 15 20 25 30"
+			"crit_damage"			"150 200 250 300 350"
+		}
+	}
+
+"item_crit_blade5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade_image"
+		"ScriptFile"					"items/d_items/item_crit_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"17"
+			"bonus_agility"			"15 30 45 60 75"
+			"attack_speed"			"20 30 40 50 60"
+			"crit"					"10 15 20 25 30"
+			"crit_damage"			"150 200 250 300 350"
+		}
+	}
+	
+	
+//====================================================================================================================================
+
+"item_des_blade"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"ancient_amulet"
+		"ScriptFile"					"items/d_items/item_des_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		"AbilityValues"
+		{
+			"required_level"		"21"
+			"bonus_damage"			"200 250 300 350 400"
+			"duration"				"3"
+			"disarm"				"0.2 0.4 0.6 0.8 1.0"
+		}
+	}	
+	
+"item_des_blade2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"ancient_amulet"
+		"ScriptFile"					"items/d_items/item_des_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		"AbilityValues"
+		{
+			"required_level"		"21"
+			"bonus_damage"			"200 250 300 350 400"
+			"duration"				"3"
+			"disarm"				"0.2 0.4 0.6 0.8 1.0"
+		}
+	}	
+
+"item_des_blade3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"ancient_amulet"
+		"ScriptFile"					"items/d_items/item_des_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		"AbilityValues"
+		{
+			"required_level"		"21"
+			"bonus_damage"			"200 250 300 350 400"
+			"duration"				"3"
+			"disarm"				"0.2 0.4 0.6 0.8 1.0"
+		}
+	}	
+
+"item_des_blade4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"ancient_amulet"
+		"ScriptFile"					"items/d_items/item_des_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		"AbilityValues"
+		{
+			"required_level"		"21"
+			"bonus_damage"			"200 250 300 350 400"
+			"duration"				"3"
+			"disarm"				"0.2 0.4 0.6 0.8 1.0"
+		}
+	}	
+
+"item_des_blade5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"ancient_amulet"
+		"ScriptFile"					"items/d_items/item_des_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		"AbilityValues"
+		{
+			"required_level"		"21"
+			"bonus_damage"			"200 250 300 350 400"
+			"duration"				"3"
+			"disarm"				"0.2 0.4 0.6 0.8 1.0"
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_universal_lua"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"universal"
+		"ScriptFile"					"items/d_items/item_universal_lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"required_level"		"25"
+			"bonus_all"				"40 60 80 100 120"
+			"damage"				"0.1 0.2 0.3 0.4 0.5"
+			"aura"					"10 20 30 40 50"
+		}
+	}	
+	
+"item_universal_lua2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"universal"
+		"ScriptFile"					"items/d_items/item_universal_lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"required_level"		"25"
+			"bonus_all"				"40 60 80 100 120"
+			"damage"				"0.1 0.2 0.3 0.4 0.5"
+			"aura"					"10 20 30 40 50"
+		}
+	}
+
+"item_universal_lua3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"universal"
+		"ScriptFile"					"items/d_items/item_universal_lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"required_level"		"25"
+			"bonus_all"				"40 60 80 100 120"
+			"damage"				"0.1 0.2 0.3 0.4 0.5"
+			"aura"					"10 20 30 40 50"
+		}
+	}
+
+"item_universal_lua4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"universal"
+		"ScriptFile"					"items/d_items/item_universal_lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"required_level"		"25"
+			"bonus_all"				"40 60 80 100 120"
+			"damage"				"0.1 0.2 0.3 0.4 0.5"
+			"aura"					"10 20 30 40 50"
+		}
+	}
+
+"item_universal_lua5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"universal"
+		"ScriptFile"					"items/d_items/item_universal_lua"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"
+		"AbilityCastRange"				"700"
+		"AbilityValues"
+		{
+			"required_level"		"25"
+			"bonus_all"				"40 60 80 100 120"
+			"damage"				"0.1 0.2 0.3 0.4 0.5"
+			"aura"					"10 20 30 40 50"
+		}
+	}	
+//====================================================================================================================================
+
+"item_hell_blade"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"hell"
+		"ScriptFile"					"items/d_items/item_hell_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_damage"			"20 40 60 80 100"
+			"bonus_move_speed"		"20 25 30 35 40"
+			"bonus_evasion"			"10 15 20 25 30"
+		}
+	}
+	
+"item_hell_blade2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"hell"
+		"ScriptFile"					"items/d_items/item_hell_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_damage"			"20 40 60 80 100"
+			"bonus_move_speed"		"20 25 30 35 40"
+			"bonus_evasion"			"10 15 20 25 30"
+		}
+	}
+
+"item_hell_blade3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"hell"
+		"ScriptFile"					"items/d_items/item_hell_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_damage"			"20 40 60 80 100"
+			"bonus_move_speed"		"20 25 30 35 40"
+			"bonus_evasion"			"10 15 20 25 30"
+		}
+	}
+
+"item_hell_blade4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"hell"
+		"ScriptFile"					"items/d_items/item_hell_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_damage"			"20 40 60 80 100"
+			"bonus_move_speed"		"20 25 30 35 40"
+			"bonus_evasion"			"10 15 20 25 30"
+		}
+	}
+
+"item_hell_blade5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"hell"
+		"ScriptFile"					"items/d_items/item_hell_blade"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+			"required_level"		"9"
+			"bonus_damage"			"20 40 60 80 100"
+			"bonus_move_speed"		"20 25 30 35 40"
+			"bonus_evasion"			"10 15 20 25 30"
+		}
+	}	
+
+//====================================================================================================================================
+
+"item_talisman_of_evasion_lua"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	        "pendant"
+		"ScriptFile"					"items/d_items/item_talisman_of_evasion"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+
+				"bonus_armor"			"4 6 8 10 12"
+
+				"bonus_agility"			"20 25 30 35 40"
+
+				"bonus_movespeed"		"40 45 50 55 60"
+
+				"duration"				"3.0"
+
+				"evasion"				"40 50 60 70 80"
+
+				"required_level"		"13"
+		}
+	}
+	
+"item_talisman_of_evasion_lua2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	        "pendant"
+		"ScriptFile"					"items/d_items/item_talisman_of_evasion"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+
+				"bonus_armor"			"4 6 8 10 12"
+
+				"bonus_agility"			"20 25 30 35 40"
+
+				"bonus_movespeed"		"40 45 50 55 60"
+
+				"duration"				"3.0"
+
+				"evasion"				"40 50 60 70 80"
+
+				"required_level"		"13"
+		}
+	}
+
+"item_talisman_of_evasion_lua3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	        "pendant"
+		"ScriptFile"					"items/d_items/item_talisman_of_evasion"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+
+				"bonus_armor"			"4 6 8 10 12"
+
+				"bonus_agility"			"20 25 30 35 40"
+
+				"bonus_movespeed"		"40 45 50 55 60"
+
+				"duration"				"3.0"
+
+				"evasion"				"40 50 60 70 80"
+
+				"required_level"		"13"
+			
+		}
+	}
+
+"item_talisman_of_evasion_lua4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	        "pendant"
+		"ScriptFile"					"items/d_items/item_talisman_of_evasion"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+
+				"bonus_armor"			"4 6 8 10 12"
+
+				"bonus_agility"			"20 25 30 35 40"
+
+				"bonus_movespeed"		"40 45 50 55 60"
+
+				"duration"				"3.0"
+
+				"evasion"				"40 50 60 70 80"
+
+				"required_level"		"13"
+			
+		}
+	}
+
+"item_talisman_of_evasion_lua5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName"	        "pendant"
+		"ScriptFile"					"items/d_items/item_talisman_of_evasion"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		"AbilityValues"
+		{
+
+				"bonus_armor"			"4 6 8 10 12"
+
+				"bonus_agility"			"20 25 30 35 40"
+
+				"bonus_movespeed"		"40 45 50 55 60"
+
+				"duration"				"3.0"
+
+				"evasion"				"40 50 60 70 80"
+
+				"required_level"		"13"
+			
+		}
+	}	
+
+//====================================================================================================================================
+
+"item_bloody_knife" 
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"shiv"
+		"ScriptFile"					"items/d_items/item_bloody_knife"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		
+		"AbilityValues"
+		{
+
+				"bonus_damage"			"10 20 30 40 50"
+
+				"bonus_attack_speed"	"20 25 30 35 40"
+
+				"required_level"		"2"
+			
+		}
+	}
+	
+"item_bloody_knife2" 
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"shiv"
+		"ScriptFile"					"items/d_items/item_bloody_knife"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		
+		"AbilityValues"
+		{
+
+				"bonus_damage"			"10 20 30 40 50"
+
+				"bonus_attack_speed"	"20 25 30 35 40"
+
+				"required_level"		"2"
+			
+		}
+	}
+
+"item_bloody_knife3" 
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"shiv"
+		"ScriptFile"					"items/d_items/item_bloody_knife"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		
+		"AbilityValues"
+		{
+
+				"bonus_damage"			"10 20 30 40 50"
+
+				"bonus_attack_speed"	"20 25 30 35 40"
+
+				"required_level"		"2"
+			
+		}
+	}
+
+"item_bloody_knife4" 
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"shiv"
+		"ScriptFile"					"items/d_items/item_bloody_knife"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		
+		"AbilityValues"
+		{
+
+				"bonus_damage"			"10 20 30 40 50"
+
+				"bonus_attack_speed"	"20 25 30 35 40"
+
+				"required_level"		"2"
+			
+		}
+	}
+
+"item_bloody_knife5" 
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"shiv"
+		"ScriptFile"					"items/d_items/item_bloody_knife"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"	
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		
+		"AbilityValues"
+		{
+
+				"bonus_damage"			"10 20 30 40 50"
+
+				"bonus_attack_speed"	"20 25 30 35 40"
+
+				"required_level"		"2"
+			
+		}
+	}	
+
+//====================================================================================================================================
+
+"item_heavy_shield"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                   	"items/d_items/item_heavy_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "fury_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"dmg"					"4 6 8 10 12"
+
+				"arm"					"4 6 8 10 12"
+
+				"str"					"4 6 8 10 12"
+
+				"agi"	    			"4 6 8 10 12"
+
+				"int"	    			"4 6 8 10 12"
+
+				"hpr"					"4 6 8 10 12"
+
+				"required_level"		"5"
+
+				"ms"					"-20 -18 -16 -14 -12"
+			
+		}
+	}
+
+"item_heavy_shield2"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                   	"items/d_items/item_heavy_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "fury_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"dmg"					"4 6 8 10 12"
+
+				"arm"					"4 6 8 10 12"
+
+				"str"					"4 6 8 10 12"
+
+				"agi"	    			"4 6 8 10 12"
+
+				"int"	    			"4 6 8 10 12"
+
+				"hpr"					"4 6 8 10 12"
+
+				"required_level"		"5"
+
+				"ms"					"-20 -18 -16 -14 -12"
+			
+		}
+	}
+	
+"item_heavy_shield3"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                   	"items/d_items/item_heavy_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "fury_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"dmg"					"4 6 8 10 12"
+
+				"arm"					"4 6 8 10 12"
+
+				"str"					"4 6 8 10 12"
+
+				"agi"	    			"4 6 8 10 12"
+
+				"int"	    			"4 6 8 10 12"
+
+				"hpr"					"4 6 8 10 12"
+
+				"required_level"		"5"
+
+				"ms"					"-20 -18 -16 -14 -12"
+			
+		}
+	}
+
+"item_heavy_shield4"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                   	"items/d_items/item_heavy_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "fury_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"dmg"					"4 6 8 10 12"
+
+				"arm"					"4 6 8 10 12"
+
+				"str"					"4 6 8 10 12"
+
+				"agi"	    			"4 6 8 10 12"
+
+				"int"	    			"4 6 8 10 12"
+
+				"hpr"					"4 6 8 10 12"
+
+				"required_level"		"5"
+
+				"ms"					"-20 -18 -16 -14 -12"
+			
+		}
+	}
+
+"item_heavy_shield5"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                   	"items/d_items/item_heavy_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "fury_shield"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"dmg"					"4 6 8 10 12"
+
+				"arm"					"4 6 8 10 12"
+
+				"str"					"4 6 8 10 12"
+
+				"agi"	    			"4 6 8 10 12"
+
+				"int"	    			"4 6 8 10 12"
+
+				"hpr"					"4 6 8 10 12"
+
+				"required_level"		"5"
+
+				"ms"					"-20 -18 -16 -14 -12"
+			
+		}
+	}	
+
+//====================================================================================================================================
+
+"item_grave_shoulder"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade"
+		"ScriptFile"                   	"items/d_items/item_grave_shoulder"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"				"21"
+
+				"damage_block"					"25 30 35 40 45"
+
+				"bonus_all_stats"				"15 25 35 45 55"
+
+				"bonus_hp_regen"				"15 25 35"
+
+		}
+	}
+	
+"item_grave_shoulder2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade"
+		"ScriptFile"                   	"items/d_items/item_grave_shoulder"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"				"21"
+
+				"damage_block"					"25 30 35 40 45"
+
+				"bonus_all_stats"				"15 25 35 45 55"
+
+				"bonus_hp_regen"				"15 25 35"
+			
+		}
+	}
+
+"item_grave_shoulder3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade"
+		"ScriptFile"                   	"items/d_items/item_grave_shoulder"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"				"21"
+
+				"damage_block"					"25 30 35 40 45"
+
+				"bonus_all_stats"				"15 25 35 45 55"
+
+				"bonus_hp_regen"				"15 25 35"
+			
+		}
+	}
+
+"item_grave_shoulder4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade"
+		"ScriptFile"                   	"items/d_items/item_grave_shoulder"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"				"21"
+
+				"damage_block"					"25 30 35 40 45"
+
+				"bonus_all_stats"				"15 25 35 45 55"
+
+				"bonus_hp_regen"				"15 25 35"
+			
+		}
+	}
+
+"item_grave_shoulder5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"blade"
+		"ScriptFile"                   	"items/d_items/item_grave_shoulder"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"				"21"
+
+				"damage_block"					"25 30 35 40 45"
+
+				"bonus_all_stats"				"15 25 35 45 55"
+
+				"bonus_hp_regen"				"15 25 35"
+			
+		}
+	}	
+//====================================================================================================================================
+
+"item_immune_mask"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_immune_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "devils_seal"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+   
+		"AbilityValues"
+		{
+
+				"bonus_mgarmor"			"20 25 30 35 40"
+
+				"bonus_health"			"550 800 1050 1300 1550"
+
+				"bkbchance"				"10"
+
+				"duration"	    		"1.0 1.2 1.4 1.6 1.8"
+
+				"required_level"		"17"
+			
+		}
+	}
+	
+"item_immune_mask2"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_immune_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "devils_seal"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+   
+		"AbilityValues"
+		{
+
+				"bonus_mgarmor"			"20 25 30 35 40"
+
+				"bonus_health"			"550 800 1050 1300 1550"
+
+				"bkbchance"				"10"
+
+				"duration"	    		"1.0 1.2 1.4 1.6 1.8"
+
+				"required_level"		"17"
+			
+		}
+	}
+
+"item_immune_mask3"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_immune_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "devils_seal"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+   
+		"AbilityValues"
+		{
+
+				"bonus_mgarmor"			"20 25 30 35 40"
+
+				"bonus_health"			"550 800 1050 1300 1550"
+
+				"bkbchance"				"10"
+
+				"duration"	    		"1.0 1.2 1.4 1.6 1.8"
+
+				"required_level"		"17"
+			
+		}
+	}
+
+"item_immune_mask4"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_immune_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "devils_seal"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+   
+		"AbilityValues"
+		{
+
+				"bonus_mgarmor"			"20 25 30 35 40"
+
+				"bonus_health"			"550 800 1050 1300 1550"
+
+				"bkbchance"				"10"
+
+				"duration"	    		"1.0 1.2 1.4 1.6 1.8"
+
+				"required_level"		"17"
+			
+		}
+	}
+
+"item_immune_mask5"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"                    "items/d_items/item_immune_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "devils_seal"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+   
+		"AbilityValues"
+		{
+
+				"bonus_mgarmor"			"20 25 30 35 40"
+
+				"bonus_health"			"550 800 1050 1300 1550"
+
+				"bkbchance"				"10"
+
+				"duration"	    		"1.0 1.2 1.4 1.6 1.8"
+
+				"required_level"		"17"
+			
+		}
+	}	
+
+	
+//====================================================================================================================================
+	
+"item_god_tribute"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"miracle"
+		"ScriptFile"                    "items/d_items/item_god_tribute"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+				"damage"				"250"
+
+				"required_level"		"25"
+
+				"bonus_intellect"			"55 75 95 115 135"
+
+				"mana_regen_sec"			"20 30 40 50 60"
+
+				"rupture_chance"			"15 20 25 30 35"
+
+				"refresh_pct"			"15 17 19 21 23"
+			
+		}
+	}
+	
+"item_god_tribute2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"miracle"
+		"ScriptFile"                    "items/d_items/item_god_tribute"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+				"damage"				"250"
+
+				"required_level"		"25"
+
+				"bonus_intellect"			"55 75 95 115 135"
+
+				"mana_regen_sec"			"20 30 40 50 60"
+
+				"rupture_chance"			"15 20 25 30 35"
+
+				"refresh_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_god_tribute3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"miracle"
+		"ScriptFile"                    "items/d_items/item_god_tribute"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+				"damage"				"250"
+
+				"required_level"		"25"
+
+				"bonus_intellect"			"55 75 95 115 135"
+
+				"mana_regen_sec"			"20 30 40 50 60"
+
+				"rupture_chance"			"15 20 25 30 35"
+
+				"refresh_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_god_tribute4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"miracle"
+		"ScriptFile"                    "items/d_items/item_god_tribute"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+				"damage"				"250"
+
+				"required_level"		"25"
+
+				"bonus_intellect"			"55 75 95 115 135"
+
+				"mana_regen_sec"			"20 30 40 50 60"
+
+				"rupture_chance"			"15 20 25 30 35"
+
+				"refresh_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_god_tribute5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"miracle"
+		"ScriptFile"                    "items/d_items/item_god_tribute"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+				"damage"				"250"
+
+				"required_level"		"25"
+
+				"bonus_intellect"			"55 75 95 115 135"
+
+				"mana_regen_sec"			"20 30 40 50 60"
+
+				"rupture_chance"			"15 20 25 30 35"
+
+				"refresh_pct"			"15 17 19 21 23"
+			
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_magic_soul"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"soul"
+		"ScriptFile"                   	"items/d_items/item_magic_soul"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"13"
+
+				"bonus_intelligence"	"25 30 35 40 45"
+
+				"cooldown_reduction_pct" "15 17 19 21 23"
+
+				"aura_mana_regen"				"10 15 20 25 30"
+			
+		}
+	}
+	
+"item_magic_soul2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"soul"
+		"ScriptFile"                   	"items/d_items/item_magic_soul"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"13"
+
+				"bonus_intelligence"	"25 30 35 40 45"
+
+				"cooldown_reduction_pct" "15 17 19 21 23"
+
+				"aura_mana_regen"				"10 15 20 25 30"
+			
+		}
+	}
+
+"item_magic_soul3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"soul"
+		"ScriptFile"                   	"items/d_items/item_magic_soul"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"13"
+
+				"bonus_intelligence"	"25 30 35 40 45"
+
+				"cooldown_reduction_pct" "15 17 19 21 23"
+
+				"aura_mana_regen"				"10 15 20 25 30"
+			
+		}
+	}
+
+"item_magic_soul4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"soul"
+		"ScriptFile"                   	"items/d_items/item_magic_soul"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"13"
+
+				"bonus_intelligence"	"25 30 35 40 45"
+
+				"cooldown_reduction_pct" "15 17 19 21 23"
+
+				"aura_mana_regen"				"10 15 20 25 30"
+			
+		}
+	}
+
+"item_magic_soul5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"soul"
+		"ScriptFile"                   	"items/d_items/item_magic_soul"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"13"
+
+				"bonus_intelligence"	"25 30 35 40 45"
+
+				"cooldown_reduction_pct" "15 17 19 21 23"
+
+				"aura_mana_regen"				"10 15 20 25 30"
+		}
+		
+	}	
+
+	
+//====================================================================================================================================
+
+"item_armor_of_god"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"chest"
+		"ScriptFile"                   	"items/d_items/item_armor_of_god"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"		
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"			"25"
+
+				"bonus_hp"				"1000 1400 1800 2200 2600"
+
+				"bonus_mana"			"1000 1400 1800 2200 2600"
+
+				"bonus_armor"				"20 25 30 35 40"
+
+				"magic_resistance"			"20 25 30 35 40"
+			
+		}
+	}
+	
+"item_armor_of_god2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"chest"
+		"ScriptFile"                   	"items/d_items/item_armor_of_god"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"		
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"			"25"
+
+				"bonus_hp"				"1000 1400 1800 2200 2600"
+
+				"bonus_mana"			"1000 1400 1800 2200 2600"
+
+				"bonus_armor"				"20 25 30 35 40"
+
+				"magic_resistance"			"20 25 30 35 40"
+			
+		}
+	}
+
+"item_armor_of_god3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"chest"
+		"ScriptFile"                   	"items/d_items/item_armor_of_god"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"		
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"			"25"
+
+				"bonus_hp"				"1000 1400 1800 2200 2600"
+
+				"bonus_mana"			"1000 1400 1800 2200 2600"
+
+				"bonus_armor"				"20 25 30 35 40"
+
+				"magic_resistance"			"20 25 30 35 40"
+			
+		}
+	}
+
+"item_armor_of_god4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"chest"
+		"ScriptFile"                   	"items/d_items/item_armor_of_god"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"		
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"			"25"
+
+				"bonus_hp"				"1000 1400 1800 2200 2600"
+
+				"bonus_mana"			"1000 1400 1800 2200 2600"
+
+				"bonus_armor"				"20 25 30 35 40"
+
+				"magic_resistance"			"20 25 30 35 40"
+			
+		}
+	}
+
+"item_armor_of_god5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"chest"
+		"ScriptFile"                   	"items/d_items/item_armor_of_god"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"		
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"			"25"
+
+				"bonus_hp"				"1000 1400 1800 2200 2600"
+
+				"bonus_mana"			"1000 1400 1800 2200 2600"
+
+				"bonus_armor"				"20 25 30 35 40"
+
+				"magic_resistance"			"20 25 30 35 40"
+			
+		}
+	}	
+
+	
+//====================================================================================================================================
+
+"item_magic_amulet"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"mana"
+		"ScriptFile"                   	"items/d_items/item_magic_amulet"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_mana"			"300 500 700 900 1100"
+
+				"cooldown_reduction_pct" "12 16 20 24 28"
+
+				"mana_cost_reduction_pct"			"15 17 19 21 23"
+			}
+	}
+	
+"item_magic_amulet2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"mana"
+		"ScriptFile"                   	"items/d_items/item_magic_amulet"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_mana"			"300 500 700 900 1100"
+
+				"cooldown_reduction_pct" "12 16 20 24 28"
+
+				"mana_cost_reduction_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_magic_amulet3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"mana"
+		"ScriptFile"                   	"items/d_items/item_magic_amulet"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_mana"			"300 500 700 900 1100"
+
+				"cooldown_reduction_pct" "12 16 20 24 28"
+
+				"mana_cost_reduction_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_magic_amulet4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"mana"
+		"ScriptFile"                   	"items/d_items/item_magic_amulet"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_mana"			"300 500 700 900 1100"
+
+				"cooldown_reduction_pct" "12 16 20 24 28"
+
+				"mana_cost_reduction_pct"			"15 17 19 21 23"
+			
+		}
+	}
+
+"item_magic_amulet5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"mana"
+		"ScriptFile"                   	"items/d_items/item_magic_amulet"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_mana"			"300 500 700 900 1100"
+
+				"cooldown_reduction_pct" "12 16 20 24 28"
+
+				"mana_cost_reduction_pct"			"15 17 19 21 23"
+			
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_life_catcher"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_life_catcher"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"AbilityTextureName"	        "demon_talon"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"600"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		
+		"AbilityValues"
+		{
+
+				"bonus_str"				"20 25 30 35 40"
+
+				"bonus_hpregen"			"10 15 20 25 30"
+
+				"bonus_damage"			"30 40 50 60 70"
+
+				"damage"				"250 350 450 550 650"
+
+				"mainstat_to_dmg"		"100"
+
+				"projectile_speed"		"1050"
+
+				"required_level"		"13"
+			
+		}
+	}
+	
+"item_life_catcher2"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_life_catcher"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"AbilityTextureName"	        "demon_talon"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"600"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		
+		"AbilityValues"
+		{
+
+				"bonus_str"				"20 25 30 35 40"
+
+				"bonus_hpregen"			"10 15 20 25 30"
+
+				"bonus_damage"			"30 40 50 60 70"
+
+				"damage"				"250 350 450 550 650"
+
+				"mainstat_to_dmg"		"100"
+
+				"projectile_speed"		"1050"
+
+				"required_level"		"13"
+			
+		}
+	}
+
+"item_life_catcher3"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_life_catcher"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"AbilityTextureName"	        "demon_talon"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"600"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		
+		"AbilityValues"
+		{
+
+				"bonus_str"				"20 25 30 35 40"
+
+				"bonus_hpregen"			"10 15 20 25 30"
+
+				"bonus_damage"			"30 40 50 60 70"
+
+				"damage"				"250 350 450 550 650"
+
+				"mainstat_to_dmg"		"100"
+
+				"projectile_speed"		"1050"
+
+				"required_level"		"13"
+			
+		}
+	}
+
+"item_life_catcher4"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_life_catcher"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"AbilityTextureName"	        "demon_talon"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"600"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		
+		"AbilityValues"
+		{
+
+				"bonus_str"				"20 25 30 35 40"
+
+				"bonus_hpregen"			"10 15 20 25 30"
+
+				"bonus_damage"			"30 40 50 60 70"
+
+				"damage"				"250 350 450 550 650"
+
+				"mainstat_to_dmg"		"100"
+
+				"projectile_speed"		"1050"
+
+				"required_level"		"13"
+			
+		}
+	}
+
+"item_life_catcher5"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_life_catcher"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES"
+		"AbilityTextureName"	        "demon_talon"
+		"AbilityCooldown"				"35.0"
+		"AbilityManaCost"				"250"
+		"AbilityCastRange"				"600"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		
+		"AbilityValues"
+		{
+
+				"bonus_str"				"20 25 30 35 40"
+
+				"bonus_hpregen"			"10 15 20 25 30"
+
+				"bonus_damage"			"30 40 50 60 70"
+
+				"damage"				"250 350 450 550 650"
+
+				"mainstat_to_dmg"		"100"
+
+				"projectile_speed"		"1050"
+
+				"required_level"		"13"
+			
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_critical_ring"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName" 			"crit_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"items/d_items/item_critical_ring"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_hpregen"				"10 20 30 40 50"
+
+				"bonus_mana"				"200 400 600 800 1000"
+
+				"bonus_spellamp"			"10 15 20 25 30"
+
+				"chance"					"15 20 25 30 35"
+
+				"magical_crit"				"200"
+
+				"required_level"			"17"
+			
+		}
+	}
+	
+"item_critical_ring2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName" 			"crit_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"items/d_items/item_critical_ring"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_hpregen"				"10 20 30 40 50"
+
+				"bonus_mana"				"200 400 600 800 1000"
+
+				"bonus_spellamp"			"10 15 20 25 30"
+
+				"chance"					"15 20 25 30 35"
+
+				"magical_crit"				"200"
+
+				"required_level"			"17"
+			
+		}
+	}
+
+"item_critical_ring3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName" 			"crit_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"items/d_items/item_critical_ring"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_hpregen"				"10 20 30 40 50"
+
+				"bonus_mana"				"200 400 600 800 1000"
+
+				"bonus_spellamp"			"10 15 20 25 30"
+
+				"chance"					"15 20 25 30 35"
+
+				"magical_crit"				"200"
+
+				"required_level"			"17"
+			
+		}
+	}
+
+"item_critical_ring4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName" 			"crit_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"items/d_items/item_critical_ring"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_hpregen"				"10 20 30 40 50"
+
+				"bonus_mana"				"200 400 600 800 1000"
+
+				"bonus_spellamp"			"10 15 20 25 30"
+
+				"chance"					"15 20 25 30 35"
+
+				"magical_crit"				"200"
+
+				"required_level"			"17"
+			
+		}
+	}
+
+"item_critical_ring5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName" 			"crit_ring"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"items/d_items/item_critical_ring"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_hpregen"				"10 20 30 40 50"
+
+				"bonus_mana"				"200 400 600 800 1000"
+
+				"bonus_spellamp"			"10 15 20 25 30"
+
+				"chance"					"15 20 25 30 35"
+
+				"magical_crit"				"200"
+
+				"required_level"			"17"
+			
+		}
+	}	
+
+//====================================================================================================================================
+
+"item_dark_mist"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"    		"conduit"
+		"ScriptFile"					"items/d_items/item_dark_mist"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"500"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"	
+		
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_mana"				"300 600 900 1200 1500"
+
+				"aura_radius"				"700"
+
+				"active_duration"			"3"
+
+				"incom_damage"				"20 25 30 35 40"
+
+				"active_hp_regen"			"2.0 2.5 3.0 3.5 4.0"
+
+				"active_mana_regen"			"1.0 1.5 2.0 2.5 3.0"
+
+				"required_level"		"21"
+			
+		}
+	}
+	
+"item_dark_mist2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"    		"conduit"
+		"ScriptFile"					"items/d_items/item_dark_mist"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"500"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"ItemPurchasable"				"0"	
+		
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_mana"				"300 600 900 1200 1500"
+
+				"aura_radius"				"700"
+
+				"active_duration"			"3"
+
+				"incom_damage"				"20 25 30 35 40"
+
+				"active_hp_regen"			"2.0 2.5 3.0 3.5 4.0"
+
+				"active_mana_regen"			"1.0 1.5 2.0 2.5 3.0"
+
+				"required_level"		"21"
+			
+		}
+	}
+
+"item_dark_mist3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"    		"conduit"
+		"ScriptFile"					"items/d_items/item_dark_mist"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"500"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"ItemPurchasable"				"0"	
+		
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_mana"				"300 600 900 1200 1500"
+
+				"aura_radius"				"700"
+
+				"active_duration"			"3"
+
+				"incom_damage"				"20 25 30 35 40"
+
+				"active_hp_regen"			"2.0 2.5 3.0 3.5 4.0"
+
+				"active_mana_regen"			"1.0 1.5 2.0 2.5 3.0"
+
+				"required_level"		"21"
+			
+		}
+	}
+
+"item_dark_mist4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"    		"conduit"
+		"ScriptFile"					"items/d_items/item_dark_mist"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"500"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"ItemPurchasable"				"0"	
+		
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_mana"				"300 600 900 1200 1500"
+
+				"aura_radius"				"700"
+
+				"active_duration"			"3"
+
+				"incom_damage"				"20 25 30 35 40"
+
+				"active_hp_regen"			"2.0 2.5 3.0 3.5 4.0"
+
+				"active_mana_regen"			"1.0 1.5 2.0 2.5 3.0"
+
+				"required_level"		"21"
+			
+		}
+	}
+
+"item_dark_mist5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"    		"conduit"
+		"ScriptFile"					"items/d_items/item_dark_mist"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"500"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"ItemPurchasable"				"0"	
+		
+		"AbilityValues"
+		{
+
+				"bonus_int"					"35 40 45 50 55"
+
+				"bonus_mana"				"300 600 900 1200 1500"
+
+				"aura_radius"				"700"
+
+				"active_duration"			"3"
+
+				"incom_damage"				"20 25 30 35 40"
+
+				"active_hp_regen"			"2.0 2.5 3.0 3.5 4.0"
+
+				"active_mana_regen"			"1.0 1.5 2.0 2.5 3.0"
+
+				"required_level"		"21"
+			
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_doom_sword"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cursed_bloodthorn"
+		"ScriptFile"					"items/d_items/item_doom_sword"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"21"
+
+				"bonus_all_stats"		"15 25 35 45 55"
+
+				"lifesteal_pct"			"7 9 11 13 15"
+
+				"hp_regen"				"10 15 20 25 30"
+
+				"bonus_damage_pct"		"20 25 30 35 40"
+			
+		}
+	}
+	
+"item_doom_sword2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cursed_bloodthorn"
+		"ScriptFile"					"items/d_items/item_doom_sword"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"21"
+
+				"bonus_all_stats"		"15 25 35 45 55"
+
+				"lifesteal_pct"			"7 9 11 13 15"
+
+				"hp_regen"				"10 15 20 25 30"
+
+				"bonus_damage_pct"		"20 25 30 35 40"
+			
+		}
+	}
+
+"item_doom_sword3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cursed_bloodthorn"
+		"ScriptFile"					"items/d_items/item_doom_sword"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"21"
+
+				"bonus_all_stats"		"15 25 35 45 55"
+
+				"lifesteal_pct"			"7 9 11 13 15"
+
+				"hp_regen"				"10 15 20 25 30"
+
+				"bonus_damage_pct"		"20 25 30 35 40"
+			
+		}
+	}
+
+"item_doom_sword4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cursed_bloodthorn"
+		"ScriptFile"					"items/d_items/item_doom_sword"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"21"
+
+				"bonus_all_stats"		"15 25 35 45 55"
+
+				"lifesteal_pct"			"7 9 11 13 15"
+
+				"hp_regen"				"10 15 20 25 30"
+
+				"bonus_damage_pct"		"20 25 30 35 40"
+			
+		}
+	}
+
+"item_doom_sword5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cursed_bloodthorn"
+		"ScriptFile"					"items/d_items/item_doom_sword"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.0"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"21"
+
+				"bonus_all_stats"		"15 25 35 45 55"
+
+				"lifesteal_pct"			"7 9 11 13 15"
+
+				"hp_regen"				"10 15 20 25 30"
+
+				"bonus_damage_pct"		"20 25 30 35 40"
+			
+		}
+	}	
+	
+//====================================================================================================================================
+
+"item_blasting_shot"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile"					"items/d_items/item_blasting_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"            "imba_gungnir"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+        "AbilityValues"
+        {
+
+                "bonus_all_stats"       "20 30 40 50"
+
+                "bonus_magical_damage_multiplier"  "0.0"
+
+                "radius_melee"          "0"
+
+                "radius_ranged"         "150"
+
+                "melee_dmg_multiplier"  "0"
+
+                "ranged_dmg_multiplier" "0.15"
+
+                "internal_cooldown"     "0.33 0.3 0.27 0.24 0.21"
+
+            "required_level"				"17"
+
+            "dmg"					"15 20 25 30 35"
+
+        }
+    }
+
+"item_blasting_shot2"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile"					"items/d_items/item_blasting_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"            "imba_gungnir"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+        "AbilityValues"
+        {
+
+                "bonus_all_stats"       "20 30 40 50"
+
+                "bonus_magical_damage_multiplier"  "0.0"
+
+                "radius_melee"          "0"
+
+                "radius_ranged"         "150"
+
+                "melee_dmg_multiplier"  "0"
+
+                "ranged_dmg_multiplier" "0.15"
+
+                "internal_cooldown"     "0.33 0.3 0.27 0.24 0.21"
+
+            "required_level"				"17"
+
+            "dmg"					"15 20 25 30 35"
+			
+        }
+    }
+	
+"item_blasting_shot3"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile"					"items/d_items/item_blasting_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"            "imba_gungnir"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+        "AbilityValues"
+        {
+
+                "bonus_all_stats"       "20 30 40 50"
+
+                "bonus_magical_damage_multiplier"  "0.0"
+
+                "radius_melee"          "0"
+
+                "radius_ranged"         "150"
+
+                "melee_dmg_multiplier"  "0"
+
+                "ranged_dmg_multiplier" "0.15"
+
+                "internal_cooldown"     "0.33 0.3 0.27 0.24 0.21"
+
+            "required_level"				"17"
+
+            "dmg"					"15 20 25 30 35"
+			
+        }
+    }
+	
+"item_blasting_shot4"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile"					"items/d_items/item_blasting_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"            "imba_gungnir"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+        "AbilityValues"
+        {
+
+                "bonus_all_stats"       "20 30 40 50"
+
+                "bonus_magical_damage_multiplier"  "0.0"
+
+                "radius_melee"          "0"
+
+                "radius_ranged"         "150"
+
+                "melee_dmg_multiplier"  "0"
+
+                "ranged_dmg_multiplier" "0.15"
+
+                "internal_cooldown"     "0.33 0.3 0.27 0.24 0.21"
+
+            "required_level"				"17"
+
+            "dmg"					"15 20 25 30 35"
+			
+        }
+    }
+	
+"item_blasting_shot5"
+    {
+        "BaseClass"                     "item_lua"
+        "ScriptFile"					"items/d_items/item_blasting_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"            "imba_gungnir"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+        "AbilityValues"
+        {
+
+                "bonus_all_stats"       "20 30 40 50"
+
+                "bonus_magical_damage_multiplier"  "0.0"
+
+                "radius_melee"          "0"
+
+                "radius_ranged"         "150"
+
+                "melee_dmg_multiplier"  "0"
+
+                "ranged_dmg_multiplier" "0.15"
+
+                "internal_cooldown"     "0.33 0.3 0.27 0.24 0.21"
+
+            "required_level"				"17"
+
+            "dmg"					"15 20 25 30 35"
+			
+        }
+    }
+//====================================================================================================================================
+
+"item_doom_spear"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"spear"
+		"ScriptFile"					"items/d_items/item_doom_spear"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"25"
+
+				"bonus_agility"			"50 65 80 95 110"
+
+				"bonus_move_speed_pct"	"15 20 25 30 35"
+
+				"attack_speed"			"50 60 70 80 90"
+
+				"bonus_damage"			"300 400 500 600 700"
+			
+		}
+	}
+	
+"item_doom_spear2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"spear"
+		"ScriptFile"					"items/d_items/item_doom_spear"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"25"
+
+				"bonus_agility"			"50 65 80 95 110"
+
+				"bonus_move_speed_pct"	"15 20 25 30 35"
+
+				"attack_speed"			"50 60 70 80 90"
+
+				"bonus_damage"			"300 400 500 600 700"
+			
+		}
+	}
+
+"item_doom_spear3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"spear"
+		"ScriptFile"					"items/d_items/item_doom_spear"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"25"
+
+				"bonus_agility"			"50 65 80 95 110"
+
+				"bonus_move_speed_pct"	"15 20 25 30 35"
+
+				"attack_speed"			"50 60 70 80 90"
+
+				"bonus_damage"			"300 400 500 600 700"
+			
+		}
+	}
+
+"item_doom_spear4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"spear"
+		"ScriptFile"					"items/d_items/item_doom_spear"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"25"
+
+				"bonus_agility"			"50 65 80 95 110"
+
+				"bonus_move_speed_pct"	"15 20 25 30 35"
+
+				"attack_speed"			"50 60 70 80 90"
+
+				"bonus_damage"			"300 400 500 600 700"
+			
+		}
+	}
+
+"item_doom_spear5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"spear"
+		"ScriptFile"					"items/d_items/item_doom_spear"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"25"
+
+				"bonus_agility"			"50 65 80 95 110"
+
+				"bonus_move_speed_pct"	"15 20 25 30 35"
+
+				"attack_speed"			"50 60 70 80 90"
+
+				"bonus_damage"			"300 400 500 600 700"
+			
+		}
+	}	
+	
+	
+//====================================================================================================================================
+
+"item_mana_plate"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_mana_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "polarized_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		
+		"AbilityValues"
+		{
+
+				"bonus_health"			"250 325 400 475 550"
+
+				"bonus_mana"			"250 325 400 475 550"
+
+				"damage_to_mana"	    "1 2 3 4 5"
+
+				"required_level"		"2"
+			
+		}
+	}
+	
+"item_mana_plate2"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_mana_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "polarized_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		
+		"AbilityValues"
+		{
+
+				"bonus_health"			"250 325 400 475 550"
+
+				"bonus_mana"			"250 325 400 475 550"
+
+				"damage_to_mana"	    "1 2 3 4 5"
+
+				"required_level"		"2"
+			
+		}
+	}
+
+"item_mana_plate3"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_mana_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "polarized_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		
+		"AbilityValues"
+		{
+
+				"bonus_health"			"250 325 400 475 550"
+
+				"bonus_mana"			"250 325 400 475 550"
+
+				"damage_to_mana"	    "1 2 3 4 5"
+
+				"required_level"		"2"
+			
+		}
+	}
+	
+"item_mana_plate4"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_mana_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "polarized_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		
+		"AbilityValues"
+		{
+
+				"bonus_health"			"250 325 400 475 550"
+
+				"bonus_mana"			"250 325 400 475 550"
+
+				"damage_to_mana"	    "1 2 3 4 5"
+
+				"required_level"		"2"
+			
+		}
+	}
+	
+"item_mana_plate5"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/d_items/item_mana_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		    "polarized_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		
+		"AbilityValues"
+		{
+
+				"bonus_health"			"250 325 400 475 550"
+
+				"bonus_mana"			"250 325 400 475 550"
+
+				"damage_to_mana"	    "1 2 3 4 5"
+
+				"required_level"		"2"
+			
+		}
+	}
+	
+//====================================================================================================================================
+
+"item_magic_boots"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"high_tech_boots"
+		"ScriptFile"					"items/d_items/item_magic_boots"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_intelligence"	"10 14 18 22 26"
+
+				"helth"					"300 450 600 750 900"
+			
+		}
+	}
+
+"item_magic_boots2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"high_tech_boots"
+		"ScriptFile"					"items/d_items/item_magic_boots"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_intelligence"	"10 14 18 22 26"
+
+				"helth"					"300 450 600 750 900"
+			
+		}
+	}
+	
+"item_magic_boots3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"high_tech_boots"
+		"ScriptFile"					"items/d_items/item_magic_boots"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_intelligence"	"10 14 18 22 26"
+
+				"helth"					"300 450 600 750 900"
+			
+		}
+	}
+	
+"item_magic_boots4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"high_tech_boots"
+		"ScriptFile"					"items/d_items/item_magic_boots"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_intelligence"	"10 14 18 22 26"
+
+				"helth"					"300 450 600 750 900"
+			
+		}
+	}
+	
+"item_magic_boots5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"high_tech_boots"
+		"ScriptFile"					"items/d_items/item_magic_boots"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_intelligence"	"10 14 18 22 26"
+
+				"helth"					"300 450 600 750 900"
+			
+		}
+	}	
+	
+//====================================================================================================================================	
+	
+"item_book_of_knowledge"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"tome"
+		"ScriptFile"					"items/d_items/item_book_of_knowledge"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDroppable"					"1" 
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPurchasable"				"0"
+		
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_xp"				"20"
+
+            "bonus_all_stats" 	    	"5"
+			
+		}
+	}
+
+//====================================================================================================================================	
+
+"item_gu"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"gu"
+		"ScriptFile"					"items/d_items/item_gu"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"2"
+
+				"mana_regen_sec"		"3 5 7 9 11"
+
+				"ms"					"25 30 35 40 45"
+
+                "SAT"      				"100 150 200 250 300"
+            
+		}
+	}
+	
+"item_gu2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"gu"
+		"ScriptFile"					"items/d_items/item_gu"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"2"
+
+				"mana_regen_sec"		"3 5 7 9 11"
+
+				"ms"					"25 30 35 40 45"
+
+                "SAT"      				"100 150 200 250 300"
+            
+		}
+	}
+
+"item_gu3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"gu"
+		"ScriptFile"					"items/d_items/item_gu"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"2"
+
+				"mana_regen_sec"		"3 5 7 9 11"
+
+				"ms"					"25 30 35 40 45"
+
+                "SAT"      				"100 150 200 250 300"
+            
+		}
+	}
+
+"item_gu4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"gu"
+		"ScriptFile"					"items/d_items/item_gu"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"2"
+
+				"mana_regen_sec"		"3 5 7 9 11"
+
+				"ms"					"25 30 35 40 45"
+
+                "SAT"      				"100 150 200 250 300"
+            
+		}
+	}
+
+"item_gu5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"gu"
+		"ScriptFile"					"items/d_items/item_gu"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemPurchasable"				"0"	
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"2"
+
+				"mana_regen_sec"		"3 5 7 9 11"
+
+				"ms"					"25 30 35 40 45"
+
+                "SAT"      				"100 150 200 250 300"
+            
+		}
+	}	
+	
+//====================================================================================================================================	
+
+"item_winter_cloak"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cape"
+		"ScriptFile"					"items/d_items/item_winter_cloak"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_health_regen"	"3 6 9 12 15"
+
+				"bonus_agility"			"7 9 11 13 15"
+
+				"movespeed_slow"		"-15 -17 -19 -21 -23"
+
+				"attackspeed_slow"		"-15 -17 -19 -21 -23"
+
+				"slow_duration"			"0.5 0.7 0.9 1.1 1.3"
+			
+		}
+	}
+	
+"item_winter_cloak2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cape"
+		"ScriptFile"					"items/d_items/item_winter_cloak"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_health_regen"	"3 6 9 12 15"
+
+				"bonus_agility"			"7 9 11 13 15"
+
+				"movespeed_slow"		"-15 -17 -19 -21 -23"
+
+				"attackspeed_slow"		"-15 -17 -19 -21 -23"
+
+				"slow_duration"			"0.5 0.7 0.9 1.1 1.3"
+			
+		}
+	}
+
+"item_winter_cloak3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cape"
+		"ScriptFile"					"items/d_items/item_winter_cloak"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_health_regen"	"3 6 9 12 15"
+
+				"bonus_agility"			"7 9 11 13 15"
+
+				"movespeed_slow"		"-15 -17 -19 -21 -23"
+
+				"attackspeed_slow"		"-15 -17 -19 -21 -23"
+
+				"slow_duration"			"0.5 0.7 0.9 1.1 1.3"
+			
+		}
+	}
+
+"item_winter_cloak4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cape"
+		"ScriptFile"					"items/d_items/item_winter_cloak"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_health_regen"	"3 6 9 12 15"
+
+				"bonus_agility"			"7 9 11 13 15"
+
+				"movespeed_slow"		"-15 -17 -19 -21 -23"
+
+				"attackspeed_slow"		"-15 -17 -19 -21 -23"
+
+				"slow_duration"			"0.5 0.7 0.9 1.1 1.3"
+			
+		}
+	}
+
+"item_winter_cloak5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"cape"
+		"ScriptFile"					"items/d_items/item_winter_cloak"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"5"
+
+				"bonus_health_regen"	"3 6 9 12 15"
+
+				"bonus_agility"			"7 9 11 13 15"
+
+				"movespeed_slow"		"-15 -17 -19 -21 -23"
+
+				"attackspeed_slow"		"-15 -17 -19 -21 -23"
+
+				"slow_duration"			"0.5 0.7 0.9 1.1 1.3"
+			
+		}
+	}	
+	
+//=============================================================================================	
+
+"item_heavy_plate"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"plate"
+		"ScriptFile"					"items/d_items/item_heavy_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+
+	    "ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		
+		"ItemBaseLevel"                 "1"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_armor"			"7 9 11 13 15"
+
+				"bonus_hp_regen"		"5 7 9 11 13"
+
+				"bonus_strength"		"10 15 20 25 30"
+		}
+	}
+	
+"item_heavy_plate2"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"plate"
+		"ScriptFile"					"items/d_items/item_heavy_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+
+	    "ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		
+		"ItemBaseLevel"                 "2"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_armor"			"7 9 11 13 15"
+
+				"bonus_hp_regen"		"5 7 9 11 13"
+
+				"bonus_strength"		"10 15 20 25 30"
+		
+		}
+	}
+
+"item_heavy_plate3"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"plate"
+		"ScriptFile"					"items/d_items/item_heavy_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+
+	    "ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		
+		"ItemBaseLevel"                 "3"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_armor"			"7 9 11 13 15"
+
+				"bonus_hp_regen"		"5 7 9 11 13"
+
+				"bonus_strength"		"10 15 20 25 30"
+			
+		}
+	}
+
+"item_heavy_plate4"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"plate"
+		"ScriptFile"					"items/d_items/item_heavy_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+
+	    "ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		
+		"ItemBaseLevel"                 "4"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_armor"			"7 9 11 13 15"
+
+				"bonus_hp_regen"		"5 7 9 11 13"
+
+				"bonus_strength"		"10 15 20 25 30"
+			
+		}
+	}
+
+"item_heavy_plate5"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"plate"
+		"ScriptFile"					"items/d_items/item_heavy_plate"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable"				"0"
+
+	    "ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0" 
+		"ItemDisassemblable"			"0"
+		"UIPickupSound" 				"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+		
+		"ItemBaseLevel"                 "5"
+		"AbilityValues"
+		{
+
+				"required_level"		"9"
+
+				"bonus_armor"			"7 9 11 13 15"
+
+				"bonus_hp_regen"		"5 7 9 11 13"
+
+				"bonus_strength"		"10 15 20 25 30"
+			
+		}
+	}	
+
+}

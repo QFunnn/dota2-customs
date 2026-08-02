@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lion_earth_spike_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lion/lion_earth_spike_lua/lion_earth_spike_lua"
+		"AbilityTextureName"			"lion_impale"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+		
+		"AbilityManaCost"				"100 140 180 220"
+
+		"AbilityCooldown"				"12.0"
+
+		"AbilityValues"
+		{
+			"width"						"125"
+			"duration"					"0.4 0.8 1.2 1.6"
+			"speed"						"1600"
+			"damage"					
+			{
+				"value"					"80 140 200 260"
+				"LinkedSpecialBonus"	"special_bonus_lion_1"
+			}		
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}

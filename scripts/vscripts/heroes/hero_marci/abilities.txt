@@ -1,0 +1,208 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"marci_dispose_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_marci/hero_marci"
+		"AbilityTextureName"			"marci_grapple"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"325"
+
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"90"
+
+		"AbilityValues"
+		{
+			"radius" 					"325"
+			"stun_duration"				"1.2 1.5 1.8 2.1"
+			"impact_damage"
+			{
+				"value"								"70 140 210 280"
+				"special_bonus_unique_marci_1"   	"+140"
+			}		
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2_END"
+	}
+	
+"marci_rebound_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_marci/hero_marci"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"				"marci_companion_run"
+		"MaxLevel"							"4"
+
+		"AbilityCooldown"					"12 9 6 3"
+
+		"AbilityValues"
+		{
+			"bonus_damage"				
+			{
+				"value"							"20 40 60 80"
+				"special_bonus_unique_marci_2"	"+40"
+			}	
+			"armor"						
+			{
+				"value"							"2 4 6 8"
+				"special_bonus_unique_marci_3"	"+2"
+			}
+			"duration"					"0.3"
+		}
+	}
+
+"marci_sidekick_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_marci/hero_marci"
+		"AbilityTextureName"			"marci_guardian"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.0"
+
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"45 40 35 30"
+
+		"AbilityValues"
+		{
+			"buff_duration"
+			{
+				"value"							"4"
+				"special_bonus_unique_marci_7"	"+3"
+			}	
+			"lifesteal_pct"		
+			{
+				"value"							"15 20 25 30"
+				"special_bonus_unique_marci_4"	"+15"
+			}	
+			"bonus_damage"
+			{
+				"value"							"20 40 60 80"
+				"special_bonus_unique_marci_5"	"+40"
+			}	
+		}
+	}
+	
+"marci_unleash_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_marci/hero_marci"
+		"AbilityTextureName"			"marci_unleash"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityCooldown"				"70 60 50"
+		"AbilityManaCost"				"100 150 200"
+
+		"AbilityValues"
+		{
+			"duration"						"10"
+			"charges_per_flurry"
+			{
+				"value"							"3 4 5"
+				"special_bonus_unique_marci_8"	"+2"
+			}	
+			"flurry_bonus_attack_speed"		"700 975 1325"
+			"time_between_flurries"			"1.5"
+			"pulse_radius"					"400"
+			"pulse_debuff_duration"			"2.0"
+			"pulse_damage"					
+			{
+				"value"							"80 160 240"
+				"special_bonus_unique_marci_6"	"+80"
+			}	
+			"pulse_move_slow_pct"			"30.0"
+			"pulse_attack_slow_pct"			"60.0 80.0 100.0"
+			"max_time_window_per_hit"		"1.0"
+			"bonus_movespeed"				"15"
+			"recovery_fixed_attack_rate"	"2.0"
+		}
+	}	
+
+	
+	
+	
+	
+	"special_bonus_unique_marci_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_marci_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_marci_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

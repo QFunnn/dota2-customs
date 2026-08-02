@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lina_laguna_blade_lua"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_DEAD | DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"lina_laguna_blade"
+		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"3"
+		
+		"precache"
+		{
+				"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+				"particle"	"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+		}
+		
+		"AbilityCastRange"				"850"
+		"AbilityCastPoint"				"0.45"
+		"AbilityCooldown"				"80 70 60"
+		"AbilityManaCost"				"300 600 900"
+
+		"AbilityValues"
+		{
+			"radius"				"500"
+			"jump_count"			"0"
+			"jump_delay"			"0.25"
+			"count"					"3"
+			"damage"
+			{
+				"value"					"600 1200 1800"
+				"LinkedSpecialBonus"	"special_bonus_lina_7"
+			}	
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_arc_lightning_datadriven"
+				"Target"		"TARGET"
+			}
+		
+			"FireSound"
+			{
+				"EffectName"	"Ability.LagunaBladeImpact"
+				"Target"		"CASTER"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_lina/lina_laguna_blade_lua/lina_laguna_blade_lua"
+				"Function"		"NewInstance"
+				"particle"		"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_arc_lightning_datadriven"
+			{
+				"IsHidden"	"1"
+		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_lina/lina_laguna_blade_lua/lina_laguna_blade_lua"
+						"Function"		"LightningJump"
+						"particle"		"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"special_bonus_unique_muerta_4"
+	{
+		"BaseClass"                     "special_bonus_base"                                                        
+		"AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"muerta_pierce_the_veil_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_muerta/muerta_pierce_the_veil_lua/muerta_pierce_the_veil_lua"
+		"AbilityTextureName"			"muerta_pierce_the_veil"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCooldown"				"90 80 70"
+		"AbilityManaCost"				"150 250 350"
+
+		"AbilityValues"
+		{
+			"duration"							"3 4 5"
+			"transform_duration"				"0.35"
+			"self_magical_resist_reduction"
+			{
+				"value"							"100"
+				"special_bonus_unique_muerta_4"	"-100"
+			}
+			"modelscale"						"30"
+			"bonus_damage"						"50 75 100"
+		}
+	}
+}

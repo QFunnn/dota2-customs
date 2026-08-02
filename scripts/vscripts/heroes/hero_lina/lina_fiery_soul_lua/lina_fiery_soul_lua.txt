@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lina_fiery_soul_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lina/lina_fiery_soul_lua/lina_fiery_soul_lua"
+		"AbilityTextureName"			"lina_fiery_soul"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityValues"
+		{
+			"fiery_soul_attack_speed_bonus"	
+			{
+				"value"						"10 20 30 40"
+				"LinkedSpecialBonus"		"special_bonus_lina_4"
+			}
+			"fiery_soul_move_speed_bonus"	
+			{
+				"value"						"1 2 3 4"
+				"LinkedSpecialBonus"		"special_bonus_lina_4"
+				"LinkedSpecialBonusField"	"value2"
+			}
+			"fiery_soul_max_stacks"			"4"
+			"fiery_soul_stack_duration"		"10"
+		}
+	}
+}

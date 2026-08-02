@@ -1,0 +1,450 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.SSRoot
+{
+	height: 100%;
+	width: 100%;
+}
+
+.SSPanel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 1060px;
+	height: 780px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#120000), to(#0a0000));
+	border: 2px solid rgba(160, 20, 20, 0.5);
+	border-radius: 10px;
+	overflow: clip;
+	opacity: 0.0;
+	transform: scale3d(0.92, 0.92, 1.0);
+	transition: opacity 0.25s ease 0s, transform 0.25s ease 0s;
+}
+
+.SSContent
+{
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+}
+
+.SSPanel.open_panel
+{
+	visibility: visible;
+	opacity: 1.0;
+	transform: scale3d(1.0, 1.0, 1.0);
+}
+
+.SSHeader
+{
+	flow-children: right;
+	width: 100%;
+	height: 75px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(120, 5, 5, 0.7)), to(rgba(30, 0, 0, 0.3)));
+	border-bottom: 2px solid rgba(180, 20, 20, 0.5);
+	padding: 0px 12px;
+}
+
+.SSHeaderTitle
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding-top: 14px;
+}
+
+.SSTitle
+{
+	horizontal-align: center;
+	color: #cc1111;
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: 8px;
+	text-align: center;
+	text-shadow: 0px 0px 20px rgba(255, 30, 30, 0.8);
+}
+
+.SSSubTitle
+{
+	horizontal-align: center;
+	color: rgba(200, 140, 140, 0.7);
+	font-size: 16px;
+	letter-spacing: 3px;
+	text-align: center;
+}
+
+.SSClose
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	background-color: rgba(80, 10, 10, 0.6);
+	border: 2px solid rgba(160, 30, 30, 0.6);
+	border-radius: 6px;
+	transition: transform 0.15s ease 0s;
+}
+
+.SSClose:hover
+{
+	background-color: rgba(180, 20, 20, 0.5);
+	border-color: rgba(255, 60, 60, 0.8);
+	transform: scale3d(1.1, 1.1, 1.0);
+	sound: "ui_select_arrow";
+}
+
+.SSClose:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.SSCloseLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #cc4444;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.SSDivider
+{
+	width: 88%;
+	height: 1px;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0,0,0,0)), color-stop(0.2, rgba(180, 20, 20, 0.5)), color-stop(0.5, rgba(220, 30, 30, 0.9)), color-stop(0.8, rgba(180, 20, 20, 0.5)), to(rgba(0,0,0,0)) );
+}
+
+.SSGrid
+{
+	flow-children: down;
+	width: 100%;
+	padding: 22px 0px;
+	height: fill-parent-flow(1);
+}
+
+.SSSkinRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 12px;
+}
+
+.SkinCard
+{
+	flow-children: down;
+	width: 190px;
+	height: 300px;
+	margin: 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e0404), to(#0d0000));
+	border: 1px solid rgba(140, 20, 20, 0.4);
+	border-radius: 8px;
+	overflow: clip;
+	transition: transform 0.15s ease 0s, border-color 0.15s ease 0s;
+}
+
+.SkinCard:hover
+{
+	transform: scale3d(1.04, 1.04, 1.0);
+	border-color: rgba(220, 40, 40, 0.8);
+	sound: "ui_select_arrow";
+}
+
+.SkinCardPortrait
+{
+	width: 190px;
+	height: 205px;
+	background-color: #150303;
+	overflow: clip;
+}
+
+.SkinCardImg
+{
+	width: 190px;
+	height: 205px;
+}
+
+.SkinCardIconsBar
+{
+	flow-children: right;
+	width: 190px;
+	height: 48px;
+	vertical-align: bottom;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.8)));
+}
+
+.SkinCardAttackIcon
+{
+	width: 43px;
+	height: 48px;
+	vertical-align: center;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	opacity: 0.9;
+	background-color: rgba(0, 0, 0, 1);
+	padding: 3px;
+	border: 3px solid rgba(140, 20, 20, 1);
+	border-radius: 2px;
+}
+
+.SkinCardIconSpacer
+{
+	width: fill-parent-flow(1);
+}
+
+.SkinCardAbilityIcon
+{
+	width: 43px;
+	height: 48px;
+	vertical-align: center;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	border: 3px solid rgba(140, 20, 20, 1);
+	background-color: rgba(0, 0, 0, 1);
+	border-radius: 2px;
+}
+
+.SkinCardAbilityIcon:hover
+{
+	brightness: 1.3;
+	border-color: rgba(255, 80, 80, 0.9);
+}
+
+.SkinCardBottom
+{
+	flow-children: down;
+	width: 100%;
+	height: fill-parent-flow(1);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0d0000), to(#1a0404));
+	padding: 6px 8px;
+}
+
+.SkinCardName
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #e8c8c8;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px rgba(255, 80, 80, 0.5);
+	width: 100%;
+	margin-bottom: 3px;
+	text-overflow: shrink;
+}
+
+.SkinCardTimer
+{
+	horizontal-align: center;
+	text-align: center;
+	color: rgba(180, 180, 130, 0.8);
+	font-size: 10px;
+	width: 100%;
+	margin-bottom: 4px;
+	text-overflow: shrink;
+}
+
+.SkinCardBtn
+{
+	horizontal-align: center;
+	width: 158px;
+	height: 28px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a0a0a), to(#3a0505));
+	border: 1px solid rgba(200, 30, 30, 0.6);
+	border-radius: 4px;
+	transition: brightness 0.1s ease 0s;
+}
+
+.SkinCardBtn:hover
+{
+	brightness: 1.5;
+	border-color: rgba(255, 60, 60, 0.9);
+	sound: "ui_select_arrow";
+}
+
+.SkinCardBtn:active
+{
+	brightness: 0.8;
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.SkinCardBtn.owned
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a3a6a), to(#0f2040));
+	border-color: rgba(60, 120, 220, 0.6);
+}
+
+.SkinCardBtn.owned:hover
+{
+	border-color: rgba(80, 160, 255, 0.9);
+}
+
+.SkinCardBtn.equipped
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0a3a0a), to(#052505));
+	border-color: rgba(40, 200, 40, 0.6);
+}
+
+.SkinCardBtn.equipped:hover
+{
+	border-color: rgba(60, 255, 60, 0.9);
+}
+
+.SkinCardBtnLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffaaaa;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+.SkinCardBtn.owned .SkinCardBtnLabel
+{
+	color: #aaccff;
+}
+
+.SkinCardBtn.equipped .SkinCardBtnLabel
+{
+	color: #aaffaa;
+}
+
+.SSModal
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 1060px;
+	height: 780px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.SSModalBox
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	width: 400px;
+	height: 240px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e0404), to(#0a0000));
+	border: 2px solid rgba(180, 20, 20, 0.7);
+	border-radius: 10px;
+	padding: 20px 24px;
+}
+
+.SSModalSpacer
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+.SSModalTitle
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #cc1111;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-shadow: 0px 0px 10px rgba(255, 30, 30, 0.6);
+}
+
+.SSModalSkinName
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #e8c8c8;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.SSModalPrice
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.SSModalPriceIcon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	margin-right: 6px;
+}
+
+.SSModalPriceLabel
+{
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.SSModalDuration
+{
+	horizontal-align: center;
+	text-align: center;
+	color: rgba(180, 180, 130, 0.8);
+	font-size: 11px;
+	margin-bottom: 14px;
+}
+
+.SSModalButtons
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.SSModalBtn
+{
+	width: 140px;
+	height: 32px;
+	border-radius: 5px;
+	margin: 0px 8px;
+	transition: brightness 0.1s ease 0s;
+}
+
+.SSModalBtn:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+}
+
+.SSModalBtn:active
+{
+	brightness: 0.8;
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.SSModalBuyBtn
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a0a0a), to(#3a0505));
+	border: 1px solid rgba(200, 30, 30, 0.7);
+}
+
+.SSModalCancelBtn
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2a2a), to(#1a1a1a));
+	border: 1px solid rgba(100, 100, 100, 0.5);
+}
+
+.SSModalBtnLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e8c8c8;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+}

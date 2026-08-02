@@ -1,0 +1,1536 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.inventory-content-head
+{
+	width: 100%;
+	height: 35px;
+	min-height: 48px;
+	flow-children: right;
+	margin: 2px 0 0 0;
+	margin-bottom: 0;
+	border-bottom: 1px solid rgba(60, 80, 110, 0.4);
+	z-index: 10;
+}
+
+.inventory-tabs
+{
+	flow-children: right;
+	vertical-align: bottom;
+	overflow: scroll squish;
+	width: fill-parent-flow(1);
+}
+
+.inventory-tabs HorizontalScrollBar
+{
+	visibility: collapse;
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.inventory-tabs HorizontalScrollBar .ScrollThumb,.inventory-tabs HorizontalScrollBar .HorizontalScrollThumb
+{
+	visibility: collapse;
+	opacity: 0;
+}
+
+.inventory-tab
+{
+	height: 38px;
+	padding: 8px 24px;
+	margin-right: 6px;
+	border-radius: 6px 6px 0 0;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	opacity: 0.7;
+	transition-property: opacity, border-color, box-shadow;
+	transition-duration: 0.15s;
+}
+
+.inventory-tab:hover
+{
+	opacity: 0.85;
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	sound: "ui_select_arrow";
+}
+
+.inventory-tab--active
+{
+	opacity: 1;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-left: 3px solid #64b5f6;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-tab:active
+{
+	opacity: 0.95;
+	border-color: rgba(60, 80, 110, 0.4);
+	box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.inventory-tab:disabled,.inventory-tab.Disabled
+{
+	opacity: 0.4;
+	border-color: rgba(60, 80, 110, 0.25);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inventory-tab:disabled:hover,.inventory-tab.Disabled:hover
+{
+	opacity: 0.4;
+	border-color: rgba(60, 80, 110, 0.25);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inventory-tab-label
+{
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+	transition-property: color;
+	transition-duration: 0.15s;
+}
+
+.inventory-tab:hover .inventory-tab-label
+{
+	color: #e5e0c5;
+}
+
+.inventory-tab--active .inventory-tab-label
+{
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.8);
+}
+
+.inventory-tab:active .inventory-tab-label
+{
+	color: #e5e0c5;
+}
+
+.inventory-tab:disabled .inventory-tab-label,.inventory-tab.Disabled .inventory-tab-label
+{
+	color: #b0bfc9;
+}
+
+.inventory-tab:disabled:hover .inventory-tab-label,.inventory-tab.Disabled:hover .inventory-tab-label
+{
+	color: #b0bfc9;
+}
+
+.inventory-tab--active:hover
+{
+	opacity: 1;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-left: 3px solid #64b5f6;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-tab--active:hover .inventory-tab-label
+{
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.8);
+}
+
+.inventory-bulk-actions
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-bottom: 4px;
+}
+
+.inventory-btn-sell-all,.inventory-btn-claim-all
+{
+	height: 32px;
+	padding: 6px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	transition-property: border-color, box-shadow;
+	transition-duration: 0.12s;
+}
+
+.inventory-btn-claim-all
+{
+	margin-left: 6px;
+}
+
+.inventory-btn-sell-all
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	flow-children: right;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-btn-sell-all:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.inventory-btn-sell-all:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.inventory-btn-sell-all:disabled,.inventory-btn-sell-all.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(120, 100, 70, 0.6)), to(rgba(80, 60, 40, 0.65)));
+	border-color: rgba(150, 120, 80, 0.3);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.4);
+	opacity: 0.6;
+}
+
+.inventory-btn-sell-all:disabled:hover,.inventory-btn-sell-all.Disabled:hover
+{
+	border-color: rgba(150, 120, 80, 0.3);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.inventory-btn-sell-all .inventory-btn-sell-all-label,.inventory-btn-claim-all .inventory-btn-sell-all-label
+{
+	font-size: 14px;
+	color: #e5e0c5;
+	margin-right: 2px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-btn-sell-all.inventory-btn-sell-all--amounts-only .inventory-btn-sell-all-label
+{
+	visibility: collapse;
+	width: 0;
+	margin-right: 0;
+}
+
+.inventory-btn-sell-all-currency
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 6px;
+	padding: 0;
+	background-color: transparent;
+	border-radius: 0;
+	border: 0 solid transparent;
+	box-shadow: none;
+}
+
+.inventory-btn-sell-all-currency:first-child
+{
+	margin-left: 0;
+}
+
+.inventory-btn-sell-all-val
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 4px;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-btn-sell-all-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.inventory-btn-claim-all
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-btn-claim-all:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.inventory-btn-claim-all:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.inventory-btn-claim-all:disabled,.inventory-btn-claim-all.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(14, 32, 22, 0.92)), to(rgba(8, 20, 14, 0.95)));
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	opacity: 0.7;
+	brightness: 0.75;
+}
+
+.inventory-btn-claim-all:disabled:hover,.inventory-btn-claim-all.Disabled:hover
+{
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	brightness: 0.75;
+}
+
+.inventory-btn-claim-all:disabled .inventory-btn-sell-all-label,.inventory-btn-claim-all.Disabled .inventory-btn-sell-all-label
+{
+	color: rgba(120, 140, 130, 0.6);
+}
+
+.inventory-body
+{
+	z-index: 1;
+	width: 100%;
+	height: fill-parent-flow(1);
+	max-height: 400px;
+	overflow: squish scroll;
+	padding: 0;
+	background-color: transparent;
+	border: 0 solid transparent;
+	border-radius: 0;
+	box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-tab-panel
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.inventory-empty-message
+{
+	width: 100%;
+	padding: 48px 24px;
+	margin-top: 32px;
+	font-size: 15px;
+	color: #b0bfc9;
+	text-align: center;
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-panel
+{
+	width: 100%;
+	flow-children: down;
+	padding: 10px;
+	height: 360px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	horizontal-align: left;
+	vertical-align: top;
+	x: 0px;
+	y: 190px;
+}
+
+.inventory-list
+{
+	width: 100%;
+	flow-children: down;
+	padding: 4px 0;
+	margin: 0px;
+}
+
+.inventory-list > Panel,.claimed-list > Panel
+{
+	width: 100%;
+	height: fit-children;
+}
+
+.inventory-item-row
+{
+	width: 100%;
+	height: 70px;
+	margin: 0px;
+	padding: 6px 12px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-item-row:first-child
+{
+	margin-top: 0px;
+}
+
+.inventory-item-row:not(:first-child)
+{
+	margin-top: 8px;
+}
+
+.inventory-item-row:active
+{
+	brightness: 0.95;
+	border-color: rgba(60, 80, 110, 0.5);
+}
+
+.item-card--aaa
+{
+	width: 100%;
+	height: 72px;
+	min-height: 72px;
+	padding: 10px 14px 10px 14px;
+	margin-top: 8px;
+	border-radius: 8px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card--aaa:first-child
+{
+	margin-top: 0;
+}
+
+.item-card--aaa:not(:first-child)
+{
+	margin-top: 8px;
+}
+
+.item-card--aaa:hover
+{
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-aaa-icon-socket
+{
+	width: 52px;
+	height: 52px;
+	min-width: 52px;
+	min-height: 52px;
+	margin-right: 14px;
+	border-radius: 6px;
+	padding: 4px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-aaa-icon-socket:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.item-card-aaa-icon
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+}
+
+.item-card-aaa-info
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+	min-width: 120px;
+	vertical-align: center;
+	margin-right: 12px;
+	overflow: squish;
+}
+
+.item-card-aaa-name
+{
+	width: 100%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: left;
+	margin-bottom: 4px;
+	overflow: squish;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px black;
+}
+
+.item-card-aaa-time
+{
+	width: 100%;
+	font-size: 11px;
+	color: #b0bfc9;
+	text-align: left;
+}
+
+.item-card-aaa-actions
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fit-children;
+	horizontal-align: right;
+}
+
+.item-card-aaa-price-chip
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 6px 10px;
+	margin-right: 8px;
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.3);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-aaa-price-value
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 8px;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.item-card-aaa-price-icon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+}
+
+.item-card-aaa-btn-sell,.item-card-aaa-btn-claim
+{
+	width: fit-children;
+	height: fit-children;
+	min-width: 44px;
+	max-width: 110px;
+	min-height: 32px;
+	max-height: 36px;
+	padding: 6px 10px;
+	margin-right: 6px;
+	border-radius: 4px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	transition-property: border-color, box-shadow;
+	transition-duration: 0.12s;
+}
+
+.item-card-aaa-btn-sell
+{
+	min-width: 72px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-aaa-btn-sell:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.item-card-aaa-btn-sell:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.item-card-aaa-btn-claim
+{
+	margin-right: 0;
+	min-width: 36px;
+	max-width: 40px;
+	padding: 6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-aaa-btn-claim:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.item-card-aaa-btn-claim:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.item-card--aaa .item-card-aaa-btn-claim:disabled,.item-card--aaa .item-card-aaa-btn-claim.Disabled,.item-card-aaa-btn-claim:disabled,.item-card-aaa-btn-claim.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(14, 32, 22, 0.92)), to(rgba(8, 20, 14, 0.95)));
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	opacity: 0.65;
+	brightness: 0.65;
+}
+
+.item-card--aaa .item-card-aaa-btn-claim:disabled:hover,.item-card--aaa .item-card-aaa-btn-claim.Disabled:hover,.item-card-aaa-btn-claim:disabled:hover,.item-card-aaa-btn-claim.Disabled:hover
+{
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	brightness: 0.65;
+}
+
+.item-card-aaa-btn-sell .inventory-btn-price,.item-card-aaa-btn-claim .inventory-btn-label
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+}
+
+.item-card--aaa .item-card-aaa-btn-claim:disabled .inventory-btn-label,.item-card--aaa .item-card-aaa-btn-claim.Disabled .inventory-btn-label,.item-card-aaa-btn-claim:disabled .inventory-btn-label,.item-card-aaa-btn-claim.Disabled .inventory-btn-label
+{
+	color: rgba(100, 120, 110, 0.55);
+}
+
+.item-card-aaa-btn-sell-chip
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.item-card-aaa-btn-sell .inventory-btn-currency-icon,.item-card-aaa-btn-claim .inventory-btn-icon
+{
+	width: 20px;
+	height: 20px;
+}
+
+.item-card--aaa.inventory-item-row--claimed
+{
+	opacity: 0.92;
+}
+
+.item-card--aaa.inventory-item-row--claimed .item-card-aaa-btn-sell,.item-card--aaa.inventory-item-row--claimed .item-card-aaa-btn-claim
+{
+	visibility: collapse;
+}
+
+@keyframes 'jackpot-border-glow'
+{
+	0%
+	{
+		border-color: rgba(212, 175, 55, 0.7);
+		box-shadow: inset 0 0 20px 2px rgba(180, 50, 40, 0.4), 0 0 24px 4px rgba(212, 175, 55, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.6);
+	}
+	
+	50%
+	{
+		border-color: rgba(255, 215, 0, 0.9);
+		box-shadow: inset 0 0 28px 4px rgba(200, 60, 50, 0.35), 0 0 32px 8px rgba(255, 215, 0, 0.4), 2px 2px 8px 0px rgba(0, 0, 0, 0.6);
+	}
+	
+	100%
+	{
+		border-color: rgba(212, 175, 55, 0.7);
+		box-shadow: inset 0 0 20px 2px rgba(180, 50, 40, 0.4), 0 0 24px 4px rgba(212, 175, 55, 0.25), 2px 2px 8px 0px rgba(0, 0, 0, 0.6);
+	}
+	
+}
+
+@keyframes 'jackpot-btn-glow'
+{
+	0%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 8px 0 rgba(212, 175, 55, 0.3);
+	}
+	
+	50%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 14px 2px rgba(255, 215, 0, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 8px 0 rgba(212, 175, 55, 0.3);
+	}
+	
+}
+
+@keyframes 'jackpot-btn-claim-glow'
+{
+	0%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 8px 0 rgba(100, 180, 120, 0.3);
+	}
+	
+	50%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 14px 2px rgba(120, 220, 150, 0.5);
+	}
+	
+	100%
+	{
+		box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.5), 0 0 8px 0 rgba(100, 180, 120, 0.3);
+	}
+	
+}
+
+@keyframes 'jackpot-icon-socket-glow'
+{
+	0%
+	{
+		box-shadow: inset 0 0 4px rgba(255, 200, 150, 0.08), 0 0 12px 2px rgba(212, 175, 55, 0.2);
+	}
+	
+	50%
+	{
+		box-shadow: inset 0 0 5px rgba(255, 220, 180, 0.12), 0 0 18px 4px rgba(255, 215, 0, 0.35);
+	}
+	
+	100%
+	{
+		box-shadow: inset 0 0 4px rgba(255, 200, 150, 0.08), 0 0 12px 2px rgba(212, 175, 55, 0.2);
+	}
+	
+}
+
+.item-card--jackpot,.item-card--jackpot.BSACardItem
+{
+	width: 100%;
+	height: 76px;
+	min-height: 76px;
+	padding: 0;
+	margin-top: 8px;
+	border-radius: 8px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(90, 28, 22, 0.98)), to(rgba(50, 12, 10, 0.99)));
+	overflow: noclip;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card--jackpot:first-child
+{
+	margin-top: 0;
+}
+
+.item-card--jackpot:not(:first-child)
+{
+	margin-top: 8px;
+}
+
+.item-card--jackpot:hover
+{
+	sound: "ui_select_arrow";
+}
+
+.item-card-jackpot-glow
+{
+	width: 100%;
+	height: 76px;
+	border-radius: 8px;
+	border: 2px solid rgba(212, 175, 55, 0.5);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 16px 2px rgba(212, 175, 55, 0.2);
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(180, 50, 40, 0.22)), color-stop(0.5, rgba(212, 175, 55, 0.18)), to(rgba(180, 50, 40, 0.22)));
+	opacity: 0.9;
+	animation-name: jackpot-border-glow;
+	animation-duration: 2.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.item-card--jackpot:hover .item-card-jackpot-glow
+{
+	animation-duration: 1.8s;
+}
+
+.item-card-jackpot-inner
+{
+	width: 100%;
+	height: 76px;
+	margin-top: -76px;
+	padding: 10px 14px;
+	flow-children: right;
+	border-radius: 8px;
+	z-index: 1;
+}
+
+.item-card-jackpot-icon-socket
+{
+	width: 54px;
+	height: 54px;
+	min-width: 54px;
+	min-height: 54px;
+	margin-right: 14px;
+	border-radius: 8px;
+	padding: 4px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(212, 175, 55, 0.5);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	animation-name: jackpot-icon-socket-glow;
+	animation-duration: 2.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.item-card-jackpot-icon
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 6px;
+}
+
+.item-card-jackpot-info
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+	min-width: 120px;
+	vertical-align: center;
+	margin-right: 12px;
+	overflow: squish;
+}
+
+.item-card-jackpot-name
+{
+	width: 100%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: left;
+	margin-bottom: 4px;
+	overflow: squish;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px black;
+}
+
+.item-card-jackpot-time
+{
+	width: 100%;
+	font-size: 11px;
+	color: #b0bfc9;
+	text-align: left;
+	text-shadow: 0px 0px 4px black;
+}
+
+.item-card-jackpot-actions
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fit-children;
+	horizontal-align: right;
+}
+
+.item-card-jackpot-price-chip
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 6px 10px;
+	margin-right: 8px;
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.3);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-card-jackpot-price-value
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 8px;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.item-card-jackpot-price-icon
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+}
+
+.item-card-jackpot-btn-sell,.item-card-jackpot-btn-claim
+{
+	width: fit-children;
+	height: fit-children;
+	min-width: 44px;
+	max-width: 110px;
+	min-height: 34px;
+	max-height: 38px;
+	padding: 6px 10px;
+	margin-right: 6px;
+	border-radius: 6px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	border: 2px solid;
+	transition-property: border-color, box-shadow, brightness;
+	transition-duration: 0.15s;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.item-card-jackpot-btn-sell
+{
+	min-width: 72px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	border-color: rgba(76, 78, 175, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	animation-name: jackpot-btn-glow;
+}
+
+.item-card-jackpot-btn-sell:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.item-card-jackpot-btn-sell:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.item-card-jackpot-btn-claim
+{
+	margin-right: 0;
+	min-width: 36px;
+	max-width: 40px;
+	padding: 6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border-color: rgba(76, 175, 80, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	animation-name: jackpot-btn-claim-glow;
+}
+
+.item-card-jackpot-btn-claim:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.item-card-jackpot-btn-claim:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.item-card-jackpot-btn-claim:disabled,.item-card-jackpot-btn-claim.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(14, 32, 22, 0.92)), to(rgba(8, 20, 14, 0.95)));
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	opacity: 0.7;
+	brightness: 0.75;
+}
+
+.item-card-jackpot-btn-claim:disabled:hover,.item-card-jackpot-btn-claim.Disabled:hover
+{
+	border-color: rgba(25, 45, 32, 0.2);
+	brightness: 0.75;
+}
+
+.item-card-jackpot-btn-sell .inventory-btn-price,.item-card-jackpot-btn-claim .inventory-btn-label
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+}
+
+.item-card-jackpot-btn-claim:disabled .inventory-btn-label,.item-card-jackpot-btn-claim.Disabled .inventory-btn-label
+{
+	color: #b0bfc9;
+}
+
+.casv2-sell-cooldown,.casv2-claim-cooldown
+{
+	opacity: 0.55;
+	brightness: 0.7;
+}
+
+.casv2-sell-cooldown:hover,.casv2-claim-cooldown:hover
+{
+	brightness: 0.7;
+}
+
+.casv2-sell-cooldown:active,.casv2-claim-cooldown:active
+{
+	brightness: 0.7;
+}
+
+.item-card-jackpot-btn-sell.casv2-sell-cooldown,.item-card-jackpot-btn-claim.casv2-claim-cooldown
+{
+	opacity: 0.55;
+	brightness: 0.7;
+	animation-name: none;
+}
+
+.item-card-jackpot-btn-sell.casv2-sell-cooldown:hover,.item-card-jackpot-btn-claim.casv2-claim-cooldown:hover
+{
+	brightness: 0.7;
+}
+
+.item-card-jackpot-btn-sell.casv2-sell-cooldown:active,.item-card-jackpot-btn-claim.casv2-claim-cooldown:active
+{
+	brightness: 0.7;
+}
+
+.item-card-jackpot-btn-sell-chip
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.item-card-jackpot-btn-sell .inventory-btn-currency-icon,.item-card-jackpot-btn-claim .inventory-btn-icon
+{
+	width: 20px;
+	height: 20px;
+}
+
+.item-card--jackpot.inventory-item-row--claimed .item-card-jackpot-btn-sell,.item-card--jackpot.inventory-item-row--claimed .item-card-jackpot-btn-claim
+{
+	visibility: collapse;
+}
+
+.inventory-item-row-image-wrap
+{
+	width: 54px;
+	height: 54px;
+	vertical-align: center;
+	margin-right: 12px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	padding: 2px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-item-row-image
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 6px;
+}
+
+.inventory-item-row-info
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	margin-right: 12px;
+}
+
+.inventory-item-row-name
+{
+	width: 100%;
+	font-size: 13px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: left;
+	margin-bottom: 4px;
+	overflow: squish;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-item-row-time
+{
+	width: 100%;
+	font-size: 11px;
+	color: #b0bfc9;
+	text-align: left;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-item-row-price-chip
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fit-children;
+	padding: 6px 14px;
+	min-height: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.3);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	horizontal-align: right;
+}
+
+.inventory-item-row-price-value
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 8px;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.inventory-item-row-price-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.inventory-item-row-btns
+{
+	flow-children: right;
+	vertical-align: center;
+	width: fit-children;
+	horizontal-align: right;
+}
+
+.inventory-item-row-btns .inventory-btn-sell,.inventory-item-row-btns .inventory-btn-claim
+{
+	width: fit-children;
+	min-width: 40px;
+	padding: 8px;
+	min-height: 36px;
+	height: 36px;
+	border-radius: 6px;
+	overflow: noclip;
+	transition-property: border-color, box-shadow;
+	transition-duration: 0.15s;
+	margin-right: 6px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.inventory-item-row-btns .inventory-btn-sell
+{
+	min-width: 72px;
+}
+
+.inventory-item-row-btns .inventory-btn-claim
+{
+	margin-right: 0;
+}
+
+.inventory-item-row-btns .inventory-btn-sell
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	flow-children: right;
+}
+
+.inventory-item-row-btns .inventory-btn-sell:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.inventory-item-row-btns .inventory-btn-sell:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.inventory-item-row-btns .inventory-btn-sell:disabled,.inventory-item-row-btns .inventory-btn-sell.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(120, 100, 70, 0.6)), to(rgba(80, 60, 40, 0.65)));
+	border-color: rgba(150, 120, 80, 0.3);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.4);
+	opacity: 0.6;
+}
+
+.inventory-item-row-btns .inventory-btn-sell:disabled:hover,.inventory-item-row-btns .inventory-btn-sell.Disabled:hover
+{
+	border-color: rgba(150, 120, 80, 0.3);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.inventory-item-row-btns .inventory-btn-claim
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-item-row-btns .inventory-btn-claim:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.inventory-item-row-btns .inventory-btn-claim:active
+{
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.inventory-item-row-btns .inventory-btn-claim:disabled,.inventory-item-row-btns .inventory-btn-claim.Disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(14, 32, 22, 0.92)), to(rgba(8, 20, 14, 0.95)));
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	opacity: 0.7;
+	brightness: 0.75;
+}
+
+.inventory-item-row-btns .inventory-btn-claim:disabled:hover,.inventory-item-row-btns .inventory-btn-claim.Disabled:hover
+{
+	border-color: rgba(25, 45, 32, 0.2);
+	box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
+	brightness: 0.75;
+}
+
+.inventory-item-row-btns .inventory-btn-claim:disabled .inventory-btn-label,.inventory-item-row-btns .inventory-btn-claim.Disabled .inventory-btn-label
+{
+	color: rgba(120, 140, 130, 0.6);
+}
+
+.inventory-item-row-btns .inventory-btn-label
+{
+	font-size: 10px;
+	font-weight: bold;
+	horizontal-align: left;
+	vertical-align: center;
+	text-align: left;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.5);
+	letter-spacing: 0.3px;
+}
+
+.inventory-item-row-btns .inventory-btn-sell .inventory-btn-label
+{
+	color: #e5e0c5;
+	width: fit-children;
+}
+
+.inventory-item-row-btns .inventory-btn-claim .inventory-btn-label
+{
+	width: fit-children;
+	color: #e5e0c5;
+	text-align: left;
+}
+
+.inventory-item-row-btns .inventory-btn-icon
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 0;
+	vertical-align: center;
+	horizontal-align: center;
+	visibility: visible;
+	opacity: 1;
+}
+
+.inventory-item-row-btns .inventory-btn-sell .inventory-btn-icon
+{
+	wash-color: #e5e0c5;
+}
+
+.inventory-item-row-btns .inventory-btn-claim .inventory-btn-icon
+{
+	wash-color: #e5e0c5;
+}
+
+.inventory-item-row-btns .inventory-btn-claim
+{
+	flow-children: right;
+}
+
+.inventory-item-row-btns .inventory-btn-sell-chip
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 4px;
+	padding: 0px;
+	background-color: transparent;
+	border-radius: 0px;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+.inventory-item-row-btns .inventory-btn-price
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 4px;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+}
+
+.inventory-item-row-btns .inventory-btn-currency-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.inventory-item-row--claimed
+{
+	opacity: 0.92;
+	box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.02), 2px 2px 5px 0px rgba(0, 0, 0, 0.7);
+}
+
+.inventory-item-row--received #InvRowHistPrice
+{
+	visibility: collapse;
+}
+
+.inventory-item-row--received #InvRowHistCurrency
+{
+	visibility: collapse;
+}
+
+.inventory-item-row--received #InvRowHistCurrency.inventory-item-row-hist-received-icon
+{
+	visibility: visible;
+	wash-color: #4ade80;
+}
+
+.inventory-item-row-hist-received-icon
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+}
+
+.inventory-item-row--claimed .inventory-item-row-btns
+{
+	visibility: visible;
+}
+
+.inventory-item-row--claimed #InvRowItemButtons
+{
+	visibility: visible;
+}
+
+.inventory-item-row--claimed #InvRowItemButtons .inventory-btn-sell,.inventory-item-row--claimed #InvRowItemButtons .inventory-btn-claim
+{
+	visibility: collapse;
+}
+
+#InventoryLoadMoreContainer,#ClaimedLoadMoreContainer
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding: 4px 0px;
+	flow-children: down;
+}
+
+.load-more-items-button
+{
+	width: 200px;
+	height: 36px;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 8px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, box-shadow;
+	transition-duration: 0.15s;
+	opacity: 1;
+}
+
+.load-more-items-button:hover
+{
+	opacity: 1;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.load-more-items-button:active
+{
+	opacity: 0.95;
+	brightness: 0.9;
+	box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.06s;
+}
+
+.load-more-items-button.load-more-button--loading
+{
+	opacity: 0.7;
+	wash-color: rgba(128, 128, 128, 0.3);
+}
+
+.load-more-items-button.load-more-button--loading:hover
+{
+	border-color: rgba(60, 80, 110, 0.4);
+}
+
+.load-more-items-label
+{
+	font-size: 13px;
+	letter-spacing: 0.5px;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+	font-weight: bold;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.load-more-end-message
+{
+	font-size: 12px;
+	color: #b0bfc9;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 8px 0;
+}
+
+.custom-dropdown
+{
+	width: 100%;
+	height: fit-children;
+	z-index: 20;
+	margin-top: 145px;
+}
+
+.custom-dropdown-button
+{
+	width: 100%;
+	height: 44px;
+	padding: 0px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, box-shadow, brightness;
+	transition-duration: 0.2s;
+}
+
+.custom-dropdown-button:hover
+{
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+	brightness: 1.1;
+}
+
+.custom-dropdown-button:active
+{
+	brightness: 0.95;
+	box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.custom-dropdown-selected
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	padding: 10px 16px;
+	vertical-align: center;
+}
+
+.custom-dropdown-icon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 12px;
+	vertical-align: center;
+	wash-color: #e5e0c5;
+}
+
+.custom-dropdown-text
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	text-shadow: 0px 0px 4px black;
+}
+
+.custom-dropdown-arrow
+{
+	font-size: 14px;
+	color: #e5e0c5;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+	transition-property: transform;
+	transition-duration: 0.2s;
+}
+
+.custom-dropdown-menu
+{
+	width: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	margin-top: 0;
+	padding: 6px;
+	z-index: 30;
+}
+
+.custom-dropdown-option
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+	padding: 8px 12px;
+	background-color: transparent;
+	border: 0px solid transparent;
+	border-radius: 4px;
+	transition-property: background-color, brightness;
+	transition-duration: 0.15s;
+}
+
+.custom-dropdown-option:hover
+{
+	sound: "ui_select_arrow";
+	background-color: rgba(100, 181, 246, 0.1);
+	brightness: 1.15;
+}
+
+.custom-dropdown-option:active
+{
+	background-color: rgba(100, 181, 246, 0.15);
+	brightness: 0.9;
+}
+
+.custom-dropdown-option-icon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 12px;
+	vertical-align: center;
+	wash-color: #e5e0c5;
+}
+
+.custom-dropdown-option-text
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+}

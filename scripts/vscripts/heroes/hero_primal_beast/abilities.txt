@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	 "primal_beast_rock_throw_lua"
+    {
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/hero_primal_beast"
+		"AbilityTextureName"			"primal_beast_rock_throw"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"4"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCooldown"               "14 12 10 8"
+        "AbilityManaCost"               "70 80 90 100"
+        "AbilityCastRange"              "800"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityCastGestureSlot"        "DEFAULT"
+
+        "AbilityValues"
+        {
+            "base_damage"
+            {
+				"value"										"80 160 240 320"
+				"special_bonus_unique_primal_beast_1"   	"+80"
+			}	
+            "impact_radius"             "350"    
+            "stun_duration"             "1.5"
+        }
+    } 
+
+	"primal_beast_trample_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/hero_primal_beast"
+		"AbilityTextureName"			"primal_beast_trample"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCooldown"				"30 26 22 18"
+		"AbilityManaCost"				"90 95 100 105"
+
+		"AbilityValues"
+		{
+			"effect_radius"				"230"
+			"step_distance"				"140"
+			"base_damage"				
+            {
+				"value"										"20 40 60 80"
+				"special_bonus_unique_primal_beast_2"   	"+40"
+			}
+			"duration"
+			{
+				"value"										"5"
+				"special_bonus_unique_primal_beast_3"   	"+2"
+			}
+			"attack_damage"				
+            {
+				"value"										"60"
+				"special_bonus_unique_primal_beast_7"   	"+20"
+			}
+		}
+	}
+
+
+    "primal_beast_uproar_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/hero_primal_beast"
+		"AbilityTextureName"			"primal_beast_uproar"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"85 90 95 100"
+
+		"AbilityValues"
+		{
+			"bonus_damage"				
+			{
+				"value"										"10 15 20 25"
+				"special_bonus_unique_primal_beast_8"   	"+15"
+			}
+			"armor" 					"4 8 12 16"
+			"slow"						"5 10 15 20"
+			"duration"					"4"
+			"radius"					"500"
+		}
+	}
+
+    "primal_beast_pulverize_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_primal_beast/hero_primal_beast"
+		"AbilityTextureName"			"primal_beast_pulverize"
+		"MaxLevel"						"3"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"             	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.25"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"40 35 30"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"										"200 400 600"
+				"special_bonus_unique_primal_beast_5"   	"+300"
+			}		
+			"splash_radius"				"400"
+			"ministun"					"0.2"
+			"cast_range"				"200"
+			"duration"					"2.3"
+		}
+	}
+
+    "special_bonus_unique_primal_beast_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_primal_beast_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_primal_beast_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}
+

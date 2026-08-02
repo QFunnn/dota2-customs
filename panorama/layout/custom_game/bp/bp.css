@@ -1,0 +1,710 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height:100%;
+	width:100%;
+}
+
+#BP_open_button
+{
+	width: 35px;
+	height: 35px;
+	background-image: url("s2r://panorama/images/bp/bpopen_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left: 420px;
+	margin-top:10px;
+	tooltip-position: bottom;
+}
+
+#BP_container
+{
+	vertical-align:center;
+	horizontal-align:center;
+	height:600px;
+	width:1080px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+#BP_open_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#BP_open_button:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#CloseShopButton
+{
+	horizontal-align:right;
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+#CloseShopButton:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseShopButton:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#BP_content_top
+{
+	height:350px;
+	width:1080px;
+	vertical-align:top;
+	horizontal-align:center;
+	margin-top:23px;
+	flow-children: right;
+}
+
+#BP_content_top_left
+{
+	height:350px;
+	width:300px;
+	vertical-align:top;
+	horizontal-align:left;
+}
+
+#BP_icon
+{
+	margin-top: 30px;
+	horizontal-align: center;
+	width: 120px;
+	height:120px;
+}
+
+#BP_icon_back
+{
+	margin-top: 30px;
+	horizontal-align: center;
+	width: 120px;
+	height:120px;
+	background-image: url("s2r://panorama/images/bp/player_back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#BP_name
+{
+	margin-top: 160px;
+	horizontal-align: center;
+	width: 320px;
+	color: #e5e0c5;
+	font-size:20px;
+}
+
+#BP_name Label
+{
+	align:center center;
+}
+
+#BP_exp_icon
+{
+	margin-top: 200px;
+	height: 40px;
+	width: 240px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/bp/icon_bar_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	z-index:10;
+}
+
+#BP_icon_pr_bar
+{
+	margin-top: 215px;
+	margin-left:71px;
+	height: 11px;
+	width: 198px;
+	background-image: url("s2r://panorama/images/bp/bar_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#BP_icon_lvl
+{
+	height: 40px;
+	width: 40px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333 ), to( #000 ) );
+	border-radius: 50%;
+	border-brush: gradient( linear, 0% 100%, 0% 0%, from( #a37b42 ), color-stop( 0.38, #b17829 ), color-stop( 0.48, #be9457 ), color-stop( 0.58, #DBAB6A ), color-stop( 0.80, #daab66 ), to( #b17829 ) );
+	margin-top: 201px;
+	margin-left: 32px;
+}
+
+#BP_icon_lvl_text
+{
+	align: center center;
+	font-size: 24px;
+	color: #e5e0c5;
+}
+
+#Gold_everyday_reward
+{
+	horizontal-align: left;
+	width: 135px;
+	height: 135px;
+	margin-top: 230px;
+}
+
+#Gold_everyday_reward_image
+{
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/custom_game/ds/protection_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#Gold_everyday_reward_image:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+}
+
+#Gold_everyday_reward_text
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	color: #ffd700;
+	font-weight: bold;
+	font-size: 24px;
+	text-shadow: 0px 0px 4px black;
+	text-align: center;
+}
+
+#Gold_everyday_reward_lock
+{
+	z-index:100;
+	horizontal-align: left;
+	width:135px;
+	height: 135px;
+	vertical-align: bottom;
+	margin-bottom: 16px;
+	background-image: url("s2r://panorama/images/bp/lock_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position: center bottom;
+}
+
+#BP_content_top_right
+{
+	height:320px;
+	width: 790px;
+	margin-top: 25px;
+	margin-right:6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align:right;
+	padding:5px;
+	flow-children: right;
+	border-radius: 8px;
+}
+
+#BP_content_top_right_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	color: #e5e0c5;
+}
+
+#BP_content_bottom_container
+{
+	width: 1050px;
+	height:180px;
+	vertical-align:bottom;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#BP_content_bottom
+{
+	height: 100%;
+	flow-children: right;
+	overflow: scroll squish;
+	padding: 5px 10px 5px 10px;
+}
+
+#BP_content_bottom_back
+{
+	width: 1050px;
+	height:170px;
+	vertical-align:bottom;
+	horizontal-align: center;
+	margin-bottom: 5px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid #3a4a5a;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border-radius: 8px;
+}
+
+.pass_content
+{
+	width: 150px;
+	height: 150px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top: 8px;
+	flow-children:down;
+}
+
+#ScrollThumb
+{
+	background-color: #3a4a5a;
+	margin-top:6px;
+}
+
+.free_bp
+{
+	width: 150px;
+	height: 150px;
+	margin:5px 0 5px 0px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: #00000080 4px 4px 8px 0px;
+	border-radius: 6px;
+}
+
+.free_bp:hover
+{
+	brightness: 1.8;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+#pass_content_level_simple,#pass_content_level_gold
+{
+	horizontal-align:left;
+	vertical-align:top;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 24px;
+	margin: 2px;
+	text-shadow: black 0px 2px 2px 0;
+}
+
+.pass_content_image_lock
+{
+	z-index:100;
+	horizontal-align:center;
+	vertical-align: center;
+	width: 90px;
+	height: 80px;
+	background-image: url("s2r://panorama/images/bp/lock_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.pass_content_image_simple_back
+{
+	horizontal-align:right;
+	vertical-align:bottom;
+	width: 124px;
+	height: 88px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	background-color: rgba(0, 0, 0, 0.3);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	z-index:10;
+}
+
+.pass_content_image_simple,.pass_content_image_simple_image
+{
+	horizontal-align:center;
+	vertical-align:bottom;
+	width: 116px;
+	height: 88px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
+}
+
+@keyframes 'fizzy2'
+{
+	0%
+	{
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 6px rgba(100, 181, 246, 0.6);
+	}
+	
+}
+
+@keyframes 'fizzy'
+{
+	0%
+	{
+		box-shadow: 0 0 6px #ffd700;
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 6px #ffd700;
+	}
+	
+}
+
+.pass_content_back_gold
+{
+	animation-name: fizzy;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.pass_content_back_simple
+{
+	animation-name: fizzy2;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.Player_quest
+{
+	height:300px;
+	width: 240px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid #3a4a5a;
+	margin:5px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: #00000080 4px 4px 8px 0px;
+	border-radius: 6px;
+}
+
+.Player_quest:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+#Player_quest_image
+{
+	width: 120px;
+	height:120px;
+	background-image: url("s2r://panorama/images/bp/quests/spray_quest_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align:center;
+	margin: 30px;
+}
+
+#Player_quest_image_back
+{
+	width: 120px;
+	height:120px;
+	background-color: rgba(0, 0, 0, 0.3);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align:center;
+	margin: 30px;
+}
+
+#Player_quest_image_desc
+{
+	horizontal-align:center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 18px;
+	text-shadow: black 0px 2px 2px 0;
+	margin: 5px;
+	margin-top: 170px;
+	text-align: center;
+}
+
+#Player_quest_image_reward
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin: 15px;
+	flow-children: right;
+	color: #ffd700;
+}
+
+#Player_quest_image_progress
+{
+	horizontal-align:center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 18px;
+	text-shadow: black 0px 2px 2px 0;
+	margin: 5px;
+	margin-top: 230px;
+}
+
+#BuyBP
+{
+	horizontal-align: right;
+	width: 160px;
+	height: 50px;
+	vertical-align: bottom;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-bottom: 5px;
+	margin-right: 10px;
+}
+
+#BuyBP_text
+{
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 16px;
+	text-overflow: shrink;
+}
+
+#BuyBP:hover
+{
+	brightness: 1.4;
+	sound: "ui_select_arrow";
+}
+
+.BuyControl
+{
+	vertical-align:center;
+	horizontal-align:center;
+	width:400px;
+	height:280px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+}
+
+#item_buy_label
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top:20px;
+	width: 380px;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+	line-height:24px;
+}
+
+#item_buy_label2
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top:55px;
+	width: 380px;
+	color: #b0bfc9;
+	text-align: center;
+	font-weight: bold;
+	font-size:16px;
+	letter-spacing: 1px;
+}
+
+#don_button
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 30px;
+	margin-bottom: 60px;
+}
+
+#rp_button
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 30px;
+	margin-bottom: 60px;
+}
+
+.buy_button
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 40px;
+	width: 150px;
+	flow-children: right;
+}
+
+.buy_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.DNMoneyLogoBuy
+{
+	vertical-align:center;
+	height:30px;
+	width:30px;
+	margin-left:10px;
+}
+
+.DNMoneyLabel
+{
+	color: #ffd700;
+	font-size:21px;
+	margin-left:10px;
+	vertical-align:center;
+	text-shadow: 0px 0px 4px black;
+	font-weight: bold;
+}
+
+#item_buy_image,#item_buy_image_back
+{
+	width: 106px;
+	height: 141px;
+	horizontal-align: center;
+	margin-top:20px;
+}
+
+.item_buy_image2,#item_buy_image2_back
+{
+	horizontal-align: center;
+	margin-top:40px;
+	width: 120px;
+	height: 87px;
+}
+
+#close_button
+{
+	height: 30px;
+	width: 120px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff6b6b55), to(#ff6b6b22));
+	border: 1px solid #ff6b6b;
+}
+
+.close_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#buy_text_input
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 100px;
+	margin-top: 24px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 1px solid #4a5a6a;
+	color: #ffd700;
+}
+
+#ShowReward
+{
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	padding:20px;
+}
+
+#reward_image,#reward_item_image
+{
+	horizontal-align: center;
+	vertical-align: center;
+	height: 88px;
+	width: 124px;
+}
+
+#reward_item_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.animate-show
+{
+	animation-duration: 1.3s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+	animation-name: show;
+}
+
+@keyframes 'show'
+{
+	0%
+	{
+		transform: scale3d(0, 0, 0);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+#done
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin: 20px;
+}

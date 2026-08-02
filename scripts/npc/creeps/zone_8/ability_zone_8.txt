@@ -1,0 +1,214 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_forest_quest_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_8/zone_8"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastRange"              "600"
+
+        "AbilityValues"
+        {
+            "radius"                    "600"
+            "damage"                    "15000"
+        }
+	}
+
+    "creep_untouchable_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_8/zone_8"
+		"AbilityTextureName"			"enchantress_untouchable"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"slow_attack_speed"		"1000"
+			"slow_duration"			"4"
+		}
+	}
+
+	"creep_enchant_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_8/zone_8"
+		"AbilityTextureName"			"enchantress_enchant"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"65"
+
+		"AbilityValues"
+		{
+			"duration"		            "5"
+			"slow_movement_speed"	    "60"
+			"bonus_attack_range"	    "200"
+			"bonus_damage"              "100"
+            "diff_boost_damage"			"50"
+		}
+	}
+
+    "creep_land_mines_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_8/zone_8"
+        "AbilityTextureName"            "techies_land_mines"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"				"6"
+        "AbilityCastRange"              "800"
+        
+        "AbilityValues"
+        {
+            "damage"                    "3000"
+            "diff_boost_damage"			"300"
+            "damage_radius"             "400"
+            "proximity_threshold"       "1.6"
+            "activation_delay"          "1.75"
+            "tick_interval"             "0.1"
+            "fow_radius"                "200"
+            "fow_duration"              "2"
+        }
+    }
+
+    "creep_stasis_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_8/zone_8"
+        "AbilityTextureName"            "techies_stasis_trap"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCooldown"				"7"
+        "AbilityCastRange"              "800"
+        
+        "AbilityValues"
+        {
+            "damage_radius"             "300"
+            "proximity_threshold"       "1.6"
+            "activation_delay"          "1.75"
+            "tick_interval"             "0.1"
+            "fow_radius"                "200"
+            "fow_duration"              "3"
+            "stasis_duration"           "2"
+        }
+    }
+
+    "creep_suicide_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_8/zone_8"
+        "AbilityTextureName"            "techies_suicide"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "1000"
+
+        "AbilityValues"
+        {
+            "radius"                    "400"
+            "damage"                    "5000"
+            "diff_boost_damage"			"500"
+            "silence_duration"          "3.0"
+            "hp_threshold"              "25"
+        }
+    }
+
+    "creep_cast_damage_immune_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"keeper_of_the_light_illuminate"
+		"ScriptFile"					"abilities/creeps/zone_8/zone_8"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"10"
+		
+		"AbilityValues"
+		{
+			"duration" 				"6"	
+		}
+	}
+
+    "creep_treant_seed_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"furion_sprout"
+		"ScriptFile"					"abilities/creeps/zone_8/zone_8"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCastRange"				"460"
+		"AbilityCooldown"				"10"
+		
+		"AbilityValues"
+		{
+            "radius"                "400"
+			"duration" 				"3"	
+			"tick" 					"0.5"	
+			"damage" 				"1500"
+            "diff_boost_damage"		"150"
+		}
+	}
+
+    "creep_overgrowth_lua"
+    {
+		"BaseClass"						    "ability_lua"
+		"ScriptFile"					    "abilities/creeps/zone_8/zone_8"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"        
+        "SpellDispellableType"              "SPELL_DISPELLABLE_YES"
+        "AbilitySound"                      "Hero_Treant.Overgrowth.Cast"
+        "AbilityCastPoint"                  "0.5"
+        "AbilityCastAnimation"              "ACT_DOTA_CAST_ABILITY_5"
+        "AbilityDraftUltScepterAbility"     "treant_overgrowth"
+        "AbilityManaCost"                   "200"
+        "AbilityCastRange"				    "400"
+        "AbilityCooldown"                   "18"
+        "AbilityValues"
+        {
+			"duration"                      "3"
+			"radius"                        "1000"
+			"damage"                        "2000"
+            "diff_boost_damage"		        "200"
+        }
+    }
+
+    "treant_invis"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"abilities/creeps/zone_8/zone_8"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"				"phantom_assassin_blur"
+	}	
+}

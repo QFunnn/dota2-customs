@@ -1,0 +1,562 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.InventoryButtonHud
+{
+	width: 57px;
+	height: 57px;
+	vertical-align: bottom;
+	margin-bottom: 29px;
+	background-image: url("s2r://panorama/images/topbar/armory_icon_off_png.vtex");
+	background-size: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	border: 1px solid black;
+	transition-property: brightness;
+	transition-duration: 0.25s;
+	margin-left:6px;
+}
+
+.InventoryButtonHud:hover
+{
+	opacity: 1;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), color-stop( .1, #000000), to( #25282a ) );
+	background-image: url("s2r://panorama/images/topbar/armory_icon_on_png.vtex");
+}
+
+.CloseInventory
+{
+	opacity: 0;
+}
+
+.InventoryPanel
+{
+	width: 600px;
+	height: 710px;
+	margin-bottom: 100px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	align: center center;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+#container
+{
+	width:100%;
+	height: 100%;
+	margin-top: 20px;
+	flow-children: down;
+}
+
+#CloseButtonIcon
+{
+	horizontal-align:right;
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
+	z-index: 100;
+}
+
+#CloseButtonIcon:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseButtonIcon:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.InventorySlots
+{
+	width: 485px;
+	vertical-align: bottom;
+	margin: 5px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.inventory_slot
+{
+	width: 45px;
+	height: 45px;
+	margin: 1px;
+	tooltip-position: bottom;
+	background-color: #0f1a2a;
+	border: 2px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.dragImage
+{
+	width: 45px;
+	height: 45px;
+}
+
+.InventoryMain
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.InventoryHeaderSlots
+{
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+.InventoryHeaderSlotsLabel
+{
+	font-size: 26px;
+	align: center center;
+	font-weight: semi-bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+}
+
+.EquipMain
+{
+	height: 500px;
+	width:95%;
+	horizontal-align: center;
+}
+
+.EquipMainHeader
+{
+	horizontal-align: center;
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+.EquipMainHeaderLabel
+{
+	font-size: 26px;
+	align: center center;
+	font-weight: semi-bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+}
+
+.HeroModelPanel
+{
+	width: 200px;
+	height: 300px;
+	border: 1px solid #3a4a5a;
+}
+
+.hero_model
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HideInventory
+{
+	visibility: collapse;
+}
+
+#QuipDescriptionPanel
+{
+	flow-children: down;
+	height: 100%;
+}
+
+#QuipDescription
+{
+	height: 100%;
+	flow-children: down;
+	horizontal-align: left;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	width: 220px;
+	overflow: clip scroll;
+	z-index:100;
+	padding: 5px;
+}
+
+#DustPanel
+{
+	flow-children: right;
+}
+
+#DustPanelImage
+{
+	vertical-align:center;
+	width: 40px;
+	height: 40px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#DustPaneLabel
+{
+	vertical-align: center;
+	color: #ffd700;
+}
+
+.font_desr
+{
+	font-size: 15px;
+	color: #99ff99;
+	padding-right: 4px;
+}
+
+.QuipCenter
+{
+	height: 100%;
+	flow-children: right;
+	horizontal-align: right;
+	margin-bottom: 20px;
+}
+
+.ItemsColumn
+{
+	width: 350px;
+	height: 100%;
+	margin-right: 20px;
+	background-image: url("s2r://panorama/images/hero_back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 110%;
+}
+
+.equip_slot_main
+{
+	height: 80px;
+	margin: 5px;
+}
+
+.equip_slot_label
+{
+	horizontal-align: center;
+	font-weight: semi-bold;
+	color: #e5e0c5;
+	font-size: 14px;
+}
+
+.equip_slot
+{
+	width: 65px;
+	height: 65px;
+	background-color: #0f1a2a;
+	horizontal-align: center;
+	margin-top: 17px;
+	border: 2px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.equip_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.inventory_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.upgrade_inventory
+{
+	width: 45px;
+	height: 45px;
+	background-color: #000000;
+	background-image: url("s2r://panorama/images/control_icons/plus_png.vtex");
+	background-position: 50% 50%;
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+	margin: 1px;
+	border: 1px solid #3a4a5a;
+}
+
+#head
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-left:90px;
+}
+
+#armor
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 115px;
+	margin-left:90px;
+}
+
+#legs
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 115px;
+	margin-left:90px;
+}
+
+#boots
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-top: 240px;
+	margin-left:90px;
+}
+
+#weapon
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-bottom: 80px;
+	margin-left:40px;
+}
+
+#shield
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 140px;
+}
+
+#hr
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 3px;
+	margin: 2px 0;
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 45%, from(white), to(#fff0));
+}
+
+#item_reward_panel_image
+{
+	horizontal-align: center;
+	height: 120px;
+	width: 120px;
+}
+
+#InventoryDust
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	width: 50px;
+	height: 50px;
+	background-color: #0f1a2a;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#item_reward_panel
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.content
+{
+	vertical-align: center;
+	width: 250px;
+	margin: 5px;
+	flow-children: down;
+	background-color: #1a2a3a;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+#MainInfo
+{
+	vertical-align: center;
+	width: 100%;
+	flow-children: down;
+}
+
+#TooltipName
+{
+	width: 100%;
+	font-size: 17px;
+	text-overflow: shrink;
+	padding: 0px 9px;
+	margin: 5px 0;
+	text-align:center;
+	font-weight: bold;
+	color: #e5e0c5;
+}
+
+#TooltipImage
+{
+	width: 120px;
+	height: width-percentage(100%);
+	margin-bottom: 16px;
+	horizontal-align: center;
+	align: center top;
+	box-shadow: fill #000000aa 0px 0px 2px 2px;
+	pre-transform-scale2d: 1;
+	border: 2px solid #3a4a5a;
+	wash-color: #899aa944;
+	saturation: 0.9;
+}
+
+#BaseAttribute
+{
+	width: 100%;
+	padding: 4px 9px;
+	text-align: center;
+	color: #ffd700;
+	font-size: 17px;
+	font-weight: bold;
+	opacity: 0.5;
+}
+
+#BonusSourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+	margin: 0 10px;
+}
+
+#BonusAttribute
+{
+	width: 100%;
+	padding: 0px 9px;
+	flow-children: down;
+	opacity: 0.5;
+}
+
+#BonusAttribute > Label:first-child
+{
+	margin-top: 4px;
+}
+
+#BonusAttribute > Label:last-child
+{
+	margin-bottom: 4px;
+}
+
+.bonus_label
+{
+	width: 100%;
+	text-align: center;
+	color: #00f704;
+	font-size: 16px;
+	line-height: 1.2;
+}
+
+.equipped_item_shadow_level_1
+{
+	box-shadow: inset #b0c3d9d0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_2
+{
+	box-shadow: inset #b0c3d9c9 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_3
+{
+	box-shadow: inset #5e97d9c5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_4
+{
+	box-shadow: inset #5e97d9cb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_5
+{
+	box-shadow: inset #4b69ffd5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_6
+{
+	box-shadow: inset #4b69ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_7
+{
+	box-shadow: inset #8747ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_8
+{
+	box-shadow: inset #8747ffd0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_9
+{
+	box-shadow: inset #d32ce6cc 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_10
+{
+	box-shadow: inset #e4ae39de 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_11
+{
+	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+
+#DescrSourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+	margin: 0 10px;
+}
+
+#Descr
+{
+	width: 100%;
+	padding: 4px 9px;
+	text-align: center;
+	color: red;
+	font-size: 15px;
+	text-overflow: shrink;
+	opacity: 0.5;
+}
+
+.AutoDismantling
+{
+	horizontal-align:right;
+}
+
+.AutoDismantlingToggle Label
+{
+	vertical-align: center;
+	color: #e5e0c5;
+}

@@ -1,0 +1,189 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"templar_assassin_refraction_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_templar_assassin/hero_templar_assassin"
+		"AbilityTextureName"			"templar_assassin_refraction"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_TemplarAssassin.Refraction"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"100"
+		"AbilityValues"
+		{
+			"instances"					
+			{
+				"value"						                "5 6 7 8"
+				"special_bonus_unique_templar_assassin_5"	"+8"
+			}
+			"bonus_damage"				
+            {
+				"value"						                "25 50 75 100"
+				"special_bonus_unique_templar_assassin_2"	"+50"
+			}
+			"damage_threshold"			"5"
+			"duration"					
+            {
+				"value"						                "8"
+				"special_bonus_unique_templar_assassin_1"	"+8"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_REFRACTION"
+	}
+
+    "templar_assassin_meld_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_templar_assassin/hero_templar_assassin"
+		"AbilityTextureName"			"templar_assassin_meld"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_TemplarAssassin.Meld"
+		"AbilityCooldown"				"10 8 6 4"
+
+		"AbilityValues"
+		{
+			"bonus_damage"				
+            {
+				"value"						                "50 100 150 200"
+				"special_bonus_unique_templar_assassin_3"	"+100"
+			}
+			"bonus_armor"
+			{
+				"value"						                "3 4 5 6"
+				"special_bonus_unique_templar_assassin_4"   "+4"
+			}
+			"duration"					"3"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+    "templar_assassin_psi_blades_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_templar_assassin/hero_templar_assassin"
+		"AbilityTextureName"			"templar_assassin_psi_blades"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"bonus_attack_range"		"60 120 180 240"
+			"attack_spill_range"		"500 550 600 650"
+			"attack_spill_width"		"90"		
+			"attack_spill_pct"
+			{
+				"value"						                "50"
+				"special_bonus_unique_templar_assassin_7"	"+25"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}	
+
+    "templar_assassin_trap_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_templar_assassin/hero_templar_assassin"
+		"AbilityTextureName"			"templar_assassin_psionic_trap"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_TemplarAssassin.Trap"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+        "LinkedAbility"					"templar_assassin_trap_lua_teleport"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"slow"						"30"
+			"duration"					"300"
+			"damage"					
+            {
+                "value"						                "150 300 450"
+                "special_bonus_unique_templar_assassin_6"	"+150"
+            }
+			"trap_radius"				"200"
+			"slow_duration"				"5"
+		}
+	}
+	
+	"templar_assassin_trap_lua_teleport"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_templar_assassin/hero_templar_assassin"
+		"AbilityTextureName"			"templar_assassin_trap_teleport"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"				"10"
+        "LinkedAbility"					"templar_assassin_trap_lua"
+	}
+
+
+   "special_bonus_unique_templar_assassin_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_templar_assassin_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_templar_assassin_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

@@ -1,0 +1,171 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"clinkz_strafe_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_clinkz/hero_clinkz"
+		"AbilityTextureName"			"clinkz_strafe"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"80 85 90 95"	
+
+		"AbilityValues"
+		{
+			"range"						"150"
+			"bonus_as"					
+            {
+				"value"					            "40 80 120 160"
+				"special_bonus_unique_clinkz_4"	    "+40"
+			}	
+			"duration"					
+			{
+				"value"					            "3"
+				"special_bonus_unique_clinkz_1"	    "+2"
+			}	
+		}
+	}
+
+    "clinkz_searing_arrows_lua" 
+	{
+		"BaseClass"                         "ability_lua"
+		"ScriptFile"						"heroes/hero_clinkz/hero_clinkz"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"             "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"                 "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"                "clinkz_searing_arrows"
+		"AbilityCastAnimation"              "ACT_DOTA_ATTACK"
+		"AbilityManaCost"                   "5"
+
+		"AbilityValues"
+		{
+			"bonus_damage"               
+			{
+				"value"					            "25 50 75 100"   
+				"special_bonus_unique_clinkz_3"	    "+50"
+			}	
+		}
+	}
+
+    "clinkz_skeleton_walk_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_clinkz/hero_clinkz"
+		"AbilityTextureName"			"clinkz_wind_walk"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCooldown"				"20 16 12 8"
+		"AbilityManaCost"				"50 60 70 80"	
+
+		"AbilityValues"
+		{
+			"bonus_ms"					
+            {
+				"value"					            "10 15 20 25"
+				"special_bonus_unique_clinkz_1"	    "+15"
+			}	
+			"duration"					"5 10 15 20"
+		}
+	}
+
+    "clinkz_ult_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_clinkz/hero_clinkz"
+		"AbilityTextureName"			"clinkz_burning_army"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityValues"
+		{
+			"count"							
+			{
+				"value"					            "7 5 3"
+				"special_bonus_unique_clinkz_8"	    "-1"
+			}		
+			"duration"						
+            {
+				"value"					            "3 4 5"
+				"special_bonus_unique_clinkz_5"	    "+2"
+			}
+			"archers"
+            {
+				"value"					            "3 4 5"
+				"special_bonus_unique_clinkz_6"	    "+2"
+			}
+		}
+	}
+
+    "special_bonus_unique_clinkz_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_clinkz_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_clinkz_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+
+
+
+
+
+
+
+}

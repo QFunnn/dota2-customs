@@ -1,0 +1,124 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "boss_bristleback_sand_shell_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityTextureName"            "bristleback_quill_spray"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastRange"              "700"
+
+        "AbilityValues"
+        {
+            "armor_per_stack"           "3"
+            "diff_boost_additional"		"1"
+            "max_stacks"                "10"
+            "duration"                  "5"
+            "radius"                    "700"
+            "nova_damage"               "4000"
+            "diff_boost_damage"		    "400"
+        }
+    }
+
+    "boss_bristleback_sand_mirage_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityTextureName"            "aerialis_mirage_distortion"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "12"
+        "AbilityCastRange"              "600"
+
+        "AbilityValues"
+        {
+            "evasion_chance"        "100"
+            "reflect_radius"        "600"
+            "duration"              "4"
+        }
+    }
+
+    "boss_bristleback_goo_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityTextureName"            "nayadzar_veil"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "10"
+
+        "AbilityValues"
+        {
+            "radius"                    "400"
+            "duration"                  "10"
+            "slow"                      "40"
+            "dis_arm"                   "4"
+            "diff_boost_additional"		"1"
+        }
+    }
+
+    "boss_bristleback_summon_swarm"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityTextureName"            "weaver_the_swarm"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastPoint"              "0.5"
+        "AbilityCooldown"               "14"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "beetle_count"              "8"
+            "duration"                  "10"
+            "armor_reduction"           "3"
+        }
+    }
+
+    "boss_bristleback_summon_swarm_passive"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilityValues"
+        {
+            "armor_reduction"           "2"
+        }
+    }
+
+    "boss_bristleback_hairball_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/bristleback/bristleback"
+        "AbilityTextureName"            "bristleback_hairball"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastRange"              "700"
+        "AbilityCastPoint"              "0.1"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+            "radius"                    "400"
+            "count"                     "3"
+            "projectile_speed"          "900"
+            "damage"                    "4000"
+            "diff_boost_damage"		    "400"
+        }
+    }
+}

@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"dragon_2_skill"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon/dragon_2_skill/dragon_2_skill"
+		"AbilityTextureName"			"dk_2"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_DEAD"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"AbilityValues"
+		{
+			"mag_resist" 			
+			{
+				"value"					"8 10 12 14"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_1"
+			}
+			"duration"
+			{
+				"value"					"2"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_8"
+			}
+			"damage"				
+			{
+				"value"					"45 60 75 90"
+				"LinkedSpecialBonus"	"special_bonus_dragon_knight_5"
+			}
+		}
+	}
+}

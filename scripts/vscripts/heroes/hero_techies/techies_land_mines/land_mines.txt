@@ -1,0 +1,36 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "techies_land_mines_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"				"techies_land_mines"
+		"ScriptFile"						"heroes/hero_techies/techies_land_mines/techies_land_mines.lua"
+		"AbilityCastRange"					"300"
+		
+		"AbilityCooldown"					"14 12 10 8"
+        "MaxLevel"						    "4"
+		"AbilityManaCost"					"80 90 100 110"
+
+		"AbilityValues"
+	{
+		"damage"	"100 200 300 400"
+			"small_radius"	"300"
+			"activation_time"	"1.0"
+	}
+	}
+}

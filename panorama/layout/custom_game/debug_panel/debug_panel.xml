@@ -1,0 +1,125 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/debug_panel/debug_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/debug_panel/debug_panel.vjs_c" />
+	</scripts>
+	<Panel class="DebugRoot" hittest="false">
+		<Button id="MainToggle" class="ButtonBevel" onactivate="Open()">
+			<Label text="DEBUG" />
+		</Button>
+		<Panel id="DebugPanel" class="Hidden">
+			<Panel class="Container">
+				<Label class="Header" text="DEBUG PANEL" />
+				<Panel class="Section">
+					<Label text="Выбранный юнит:" />
+					<Button id="SelectorBtn" class="DropdownCustom" onactivate="ShowCreepPool()">
+						<Label id="CreateUnitName" text="Нажми для выбора" />
+					</Button>
+				</Panel>
+				<Label text="Команда:" style="font-size: 16px; color: #999; margin-bottom: 4px;" />
+				<Panel class="TeamSelector">
+					<Button id="TeamGood" class="TeamBtn" onactivate="SelectTeam(2)">
+						<Label text="Radiant" />
+					</Button>
+					<Button id="TeamNeutral" class="TeamBtn Selected" onactivate="SelectTeam(4)">
+						<Label text="Neutral" />
+					</Button>
+				</Panel>
+				<Button id="SpawnBtn" class="ButtonBevel Green" onactivate="CreateUnitButton()">
+					<Label text="СОЗДАТЬ" />
+				</Button>
+			</Panel>
+			<Panel class="Divider" />
+			<Panel class="Container">
+				<Label class="Header" text="Hero Control" />
+				<Panel style="flow-children: down; horizontal-align: center; width: 100%;">
+					<Button class="ButtonBevel" style="width: 100%; margin-bottom: 10px;" onactivate="QuickSpawnItems(&apos;phys&apos;)">
+						<Label text="ПРЕДМЕТЫ (ФИЗ)" style="color: #ff6347;" />
+					</Button>
+					<Button class="ButtonBevel" style="width: 100%; margin-bottom: 10px;" onactivate="QuickSpawnItems(&apos;magic&apos;)">
+						<Label text="ПРЕДМЕТЫ (МАГ)" style="color: #00ced1;" />
+					</Button>
+					<Button class="ButtonBevel" style="width: 100%; margin-bottom: 10px;" onactivate="QuickSpawnItems(&apos;clear&apos;)">
+						<Label text="ОЧИСТИТЬ" style="color: #00d11c;" />
+					</Button>
+				</Panel>
+				<Panel style="flow-children: right; horizontal-align: center;">
+					<Button id="LevelUpBtn" class="ButtonBevel" style="width: 180px; margin-right: 10px;" onactivate="UpHero()">
+						<Label text="LEVEL MAX" />
+					</Button>
+					<Button id="LevelUpPlusBtn" class="ButtonBevel" style="width: 60px;" onactivate="lvlup1()">
+						<Label text="+1" />
+					</Button>
+				</Panel>
+			</Panel>
+			<Panel class="Divider" />
+			<Panel class="Container">
+				<Label class="Header" text="ITEM CREATOR" />
+				<Panel class="Section">
+					<Label text="ID игрока (SteamID64):" />
+					<TextEntry id="PlayerIDInput" class="IDInput" textmode="numeric" placeholder="76561198..." />
+					<Label id="IDErrorLabel" class="ErrorText Hidden" text="Ошибка: ID должен состоять из 17 цифр!" />
+				</Panel>
+				<Button id="CreateItem" class="ButtonBevel Green" onactivate="CreateCustomItem()">
+					<Label text="ВЫДАТЬ ПРЕДМЕТ" />
+				</Button>
+				<Panel class="Section">
+					<Label text="Тип предмета:" />
+					<Button class="DropdownCustom" onactivate="ShowSelectionPool(&apos;item_type&apos;, $(&apos;#ItemTypeName&apos;))">
+						<Label id="ItemTypeName" text="BOOTS" technicalName="boots" />
+					</Button>
+				</Panel>
+				<Panel class="Section">
+					<Label text="Сет:" />
+					<Button class="DropdownCustom" onactivate="ShowSelectionPool(&apos;set_type&apos;, $(&apos;#ItemSetName&apos;))">
+						<Label id="ItemSetName" text="SET_1" technicalName="set_1" />
+					</Button>
+				</Panel>
+				<Panel class="Section">
+					<Label text="Уровень предмета (1-11):" />
+					<Button id="LevelSelector" class="DropdownCustom" onactivate="ShowSelectionPool(&apos;item_level&apos;, $(&apos;#ItemLevelValue&apos;))">
+						<Label id="ItemLevelValue" text="1" technicalName="1" />
+					</Button>
+				</Panel>
+				<Panel class="Section">
+					<Label text="Атрибуты (макс. 5):" />
+					<Panel id="AttributesContainer" />
+					<Button id="AddAttributeBtn" class="ButtonBevel Blue" onactivate="AddAttributeRow()" style="margin-top: 5px;">
+						<Label text="+ ДОБАВИТЬ АТРИБУТ" />
+					</Button>
+				</Panel>
+				<Button id="CreateItem" class="ButtonBevel Green" onactivate="CreateCustomItem()">
+					<Label text="ВЫДАТЬ ПРЕДМЕТ" />
+				</Button>
+				<Button id="ClearItem" class="ButtonBevel" onactivate="ResetItemCreator()">
+					<Label text="ОЧИСТИТЬ ВСЕ" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="CreepPool" class="Hidden">
+			<Label class="Header" text="ВЫБОР КРИПА" />
+			<Panel id="CreepListScroll" hittest="true" />
+		</Panel>
+		<Panel id="SelectionPool" class="Hidden">
+			<Label id="SelectionHeader" class="Header" text="ВЫБОР" />
+			<Panel id="SelectionListScroll" hittest="true" />
+			<Button class="ButtonBevel" onactivate="$(&apos;#SelectionPool&apos;).AddClass(&apos;Hidden&apos;);" style="horizontal-align: center; width: 100%;">
+				<Label text="ЗАКРЫТЬ" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,202 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"lua_dark_seer_vacuum"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dark_seer/hero_dark_seer.lua"
+		"AbilityTextureName"			"dark_seer_vacuum"			
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Dark_Seer.Vacuum"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"20 16 12 8"
+		"AbilityManaCost"				"60 90 120 150"
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"duration"
+			{
+				"value"					"3"
+				"special_bonus_unique_dark_seer_1"   "+1"
+			}
+			"damage"					
+			{
+				"value"					"100 150 200 250"
+				"special_bonus_unique_dark_seer_3"   "+100"
+			}
+			"slow"						"15 20 25 30"
+			"miss"						"15 20 25 30"
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	
+	
+"lua_dark_seer_ion_shell"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dark_seer/hero_dark_seer.lua"
+		"AbilityTextureName"			"dark_seer_ion_shell"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Dark_Seer.Ion_Shield_Start"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"100 110 120 130"
+		"AbilityValues"
+		{
+			"radius"					"250"
+			"damage_per_second"
+			{
+				"value"					"25 50 75 100"
+				"special_bonus_unique_dark_seer_5"   "+50"
+			}
+			"duration"					"20"
+			"proton_explosion_radius"	"400"
+			"proton_damage_pct"
+			{
+				"value"					"200"
+			}
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+
+"lua_dark_seer_surge"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dark_seer/hero_dark_seer.lua"
+		"AbilityTextureName"			"dark_seer_surge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"  
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Dark_Seer.Surge"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"19 16 13 10"
+		"AbilityManaCost"				"50"
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"					"4"
+				"special_bonus_unique_dark_seer_2"   "+2"
+			}
+			"speed_boost"			"25"
+			"radius"				"250"
+			"damage"
+			{
+				"value"					"50 100 150 200"
+				"special_bonus_unique_dark_seer_4"   "+150"
+			}
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	
+
+"lua_dark_seer_wall_of_replica"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dark_seer/hero_dark_seer.lua"
+		"AbilityTextureName"			"dark_seer_wall_of_replica"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Dark_Seer.Wall_of_Replica_Start"
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"				"55 50 45"
+		"AbilityManaCost"				"125 250 375"
+		"AbilityValues"
+		{
+			"duration"					"10.0"
+			"damage"					
+			{
+				"value"					"100 200 300"
+				"special_bonus_unique_dark_seer_7"   "+250"
+			}
+			"interval"					"1"
+			"rg"						"600"
+			"wh"						"100"
+			"dis" 						"250"
+			"wh2" 						"200"
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+	}
+	
+	"special_bonus_unique_dark_seer_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_dark_seer_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dark_seer_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

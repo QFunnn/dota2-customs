@@ -1,0 +1,190 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+LinkLuaModifier(
+	"modifier_item_disperser_custom_lua_1",
+	"items/custom_items/item_disperser_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
+
+item_disperser_custom_lua_1 = item_disperser_custom_lua_1 or class({})
+item_disperser_custom_lua_2 = item_disperser_custom_lua_1 or class({})
+item_disperser_custom_lua_3 = item_disperser_custom_lua_1 or class({})
+
+function item_disperser_custom_lua_1:GetIntrinsicModifierName()
+	return "modifier_item_disperser_custom_lua_1"
+end
+
+function item_disperser_custom_lua_1:GetAOERadius()
+	return self:GetSpecialValueFor("radius")
+end
+
+function item_disperser_custom_lua_1:OnSpellStart()
+	if not IsServer() then
+		return
+	end
+	local point = self:GetCursorPosition()
+	local radius = self:GetSpecialValueFor("radius")
+	local enemies = FindUnitsInRadius(
+		self:GetCaster():GetTeamNumber(),
+		point,
+		nil,
+		radius,
+		DOTA_UNIT_TARGET_TEAM_BOTH,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		0,
+		FIND_ANY_ORDER,
+		false
+	)
+	for _, enemy in pairs(enemies) do
+		self:OnTarget(enemy)
+	end
+end
+
+function item_disperser_custom_lua_1:OnTarget(target)
+	if not IsServer() then
+		return
+	end
+	if target:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+		target:Purge(false, true, false, false, false)
+		target:AddNewModifier(
+			self:GetCaster(),
+			self,
+			"modifier_disperser_movespeed_buff",
+			{ duration = self:GetSpecialValueFor("ally_effect_duration") }
+		)
+	else
+		if target:TriggerSpellAbsorb(self) then
+			return
+		end
+		self:GetCaster():EmitSound("DOTA_Item.DiffusalBlade.Activate")
+		target:EmitSound("DOTA_Item.DiffusalBlade.Target")
+		target:AddNewModifier(
+			self:GetCaster(),
+			self,
+			"modifier_item_diffusal_blade_slow",
+			{ duration = self:GetSpecialValueFor("enemy_effect_duration") }
+		)
+		-- if not target:IsHero() then
+		-- target:AddNewModifier(self:GetCaster(), self, "modifier_rooted", {duration = self:GetSpecialValueFor("purge_root_duration")})
+		-- end
+	end
+end
+
+modifier_item_disperser_custom_lua_1 = class({})
+
+function modifier_item_disperser_custom_lua_1:IsHidden()
+	return true
+end
+function modifier_item_disperser_custom_lua_1:IsPurgable()
+	return false
+end
+function modifier_item_disperser_custom_lua_1:IsPurgeException()
+	return false
+end
+function modifier_item_disperser_custom_lua_1:RemoveOnDeath()
+	return false
+end
+function modifier_item_disperser_custom_lua_1:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+function modifier_item_disperser_custom_lua_1:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+	}
+end
+
+function modifier_item_disperser_custom_lua_1:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.bonus_agility = self.ability:GetSpecialValueFor("bonus_agility")
+	self.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
+	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.burn_radius = self.ability:GetSpecialValueFor("burn_radius")
+	self.feedback_mana_burn = self.ability:GetSpecialValueFor("feedback_mana_burn")
+	self.damage_per_burn = self.ability:GetSpecialValueFor("damage_per_burn")
+	self.feedback_mana_burn_illusion_melee = self.ability:GetSpecialValueFor("feedback_mana_burn_illusion_melee")
+end
+
+function modifier_item_disperser_custom_lua_1:GetModifierBonusStats_Agility()
+	return self.bonus_agility
+end
+
+function modifier_item_disperser_custom_lua_1:GetModifierBonusStats_Intellect()
+	return self.bonus_intellect
+end
+
+function modifier_item_disperser_custom_lua_1:GetModifierPreAttack_BonusDamage()
+	return self.bonus_damage
+end
+
+function modifier_item_disperser_custom_lua_1:OnAttackLanded(params)
+	if params.attacker ~= self.parent then
+		return
+	end
+	if params.no_attack_cooldown then
+		return
+	end
+	if self.parent:PassivesDisabled() then
+		return
+	end
+
+	local target_n = params.target
+	if self.parent:FindAllModifiersByName("modifier_item_disperser_custom_lua_1")[1] ~= self then
+		return
+	end
+
+	local enemies = FindUnitsInRadius(
+		params.attacker:GetTeamNumber(),
+		target_n:GetAbsOrigin(),
+		target_n,
+		self.burn_radius,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE,
+		FIND_ANY_ORDER,
+		false
+	)
+	for i = 1, #enemies do
+		local target = enemies[i]
+		local manaBurn = self.feedback_mana_burn
+		local manaDamage = self.damage_per_burn
+		local feedback_mana_burn_illusion = self.feedback_mana_burn_illusion_melee
+		local damageTable = {}
+		damageTable.attacker = self.parent
+		damageTable.victim = target
+		damageTable.damage_type = DAMAGE_TYPE_PHYSICAL
+		damageTable.damage_flags = DOTA_DAMAGE_FLAG_DONT_DISPLAY_DAMAGE_IF_SOURCE_HIDDEN
+		damageTable.ability = self.ability
+		if not target:IsMagicImmune() then
+			if target:GetMana() >= manaBurn then
+				damageTable.damage = manaBurn * manaDamage
+				if not self.parent:IsIllusion() then
+					target:Script_ReduceMana(manaBurn, self.ability)
+				else
+					target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
+					damageTable.damage = feedback_mana_burn_illusion * manaDamage
+				end
+			else
+				damageTable.damage = target:GetMana() * manaDamage
+				if not self.parent:IsIllusion() then
+					target:Script_ReduceMana(manaBurn, self.ability)
+				else
+					target:Script_ReduceMana(feedback_mana_burn_illusion, self.ability)
+				end
+			end
+			ApplyDamage(damageTable)
+		end
+	end
+end

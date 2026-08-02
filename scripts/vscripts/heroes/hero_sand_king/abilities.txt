@@ -1,0 +1,184 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"sand_stun"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sand_king/hero_sand_king"
+		"AbilityTextureName"			"sandking_epicenter"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityCooldown"				"14 13 12 11"
+		"AbilityManaCost"				"110 120 130 140"
+
+		"AbilityValues"
+		{
+			"stun_duration"				"1.0 1.25 1.5 1.75"
+			"stomp_damage"				
+			{
+				"value"					"100 150 200 250"
+				"special_bonus_unique_sand_king_3"   "+150"
+			}
+			"radius"					
+			{
+				"value"					"315"
+				"special_bonus_unique_sand_king_2"   "+135"
+			}
+		}
+	}
+	
+"sand_king_sand_storm_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sand_king/hero_sand_king"
+		"AbilityTextureName"			"sandking_sand_storm"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0"
+		"AbilityChannelTime"			"30"
+
+		"AbilityCooldown"				"35 30 25 20"
+		"AbilityManaCost"				"100 150 200 250"
+
+		"AbilityValues"
+		{
+			"duration"					"15"
+			"damage"
+			{
+				"value"					"20 40 60 80"
+				"special_bonus_unique_sand_king_5"   "+40"
+			}
+			"radius"					"400"
+		}
+	}	
+	
+"sand_caustic"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sand_king/hero_sand_king"
+		"AbilityTextureName"			"sandking_caustic_finale"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"radius"					"250"
+			"damage"					
+			{
+				"value"					"20 40 60 80"
+				"special_bonus_unique_sand_king_1"   "+40"
+			}
+			"duration"					"3"
+		}
+	}
+	
+"sandking_custom_trembling_waves"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sand_king/hero_sand_king"
+		"AbilityTextureName"			"sand_ult"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		
+		"AbilityCooldown"				"7 5 3"
+		"AbilityCastRange"				"400"
+		
+		"AbilityValues"
+		{
+			"damage"					"100 150 200"
+			"str_damage"
+			{
+				"value"					"25"
+				"special_bonus_unique_sand_king_7"   "+15"
+			}
+			"radius"					"400"
+		}
+	}
+	
+
+	"special_bonus_unique_sand_king_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_sand_king_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_sand_king_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

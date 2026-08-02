@@ -1,0 +1,525 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height: 100%;
+	width: 100%;
+}
+
+#openDiscount
+{
+	width: 35px;
+	height: 35px;
+	margin-left: 160px;
+	margin-top: 10px;
+	tooltip-position: bottom;
+	background-image: url("s2r://panorama/images/discount_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#openDiscount:hover
+{
+	brightness: 1.8;
+}
+
+#openDiscount:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+#DiscountPanel
+{
+	width: 1000px;
+	height: 810px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid #3a4a5a;
+	border-radius: 12px;
+	padding: 5px;
+	overflow: clip;
+}
+
+#DiscountHeader
+{
+	width: 100%;
+	height: 46px;
+}
+
+#DiscountTop
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#e5e0c5), to(#b17829));
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-family: titleFont;
+	text-shadow: 0px 0px 8px 2.0 #000000;
+	font-size: 30px;
+}
+
+#DiscountContent
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 46px;
+}
+
+#CloseDiscount,#close_buy
+{
+	horizontal-align: right;
+	vertical-align: top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
+}
+
+#CloseDiscount:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#CloseDiscount:hover,#close_buy:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+.SectionLabel
+{
+	horizontal-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#e5c87a), to(#b17829));
+	letter-spacing: 3px;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 13px;
+	text-shadow: 0px 0px 6px rgba(177, 120, 41, 0.8);
+	text-align: center;
+	text-transform: uppercase;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+#SectionDivider
+{
+	horizontal-align: center;
+	width: 97%;
+	height: 1px;
+	margin-top: 8px;
+	margin-bottom: 2px;
+	background-color: rgba(177, 120, 41, 0.35);
+}
+
+#DiscountContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+#ExpContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 4px;
+}
+
+.OfferCard
+{
+	vertical-align: top;
+	height: 350px;
+	width: 225px;
+	margin: 4px;
+	padding: 10px;
+	flow-children: down;
+	background-color: rgba(8, 18, 32, 0.6);
+	border: 1px solid rgba(58, 74, 90, 0.6);
+	border-radius: 8px;
+	transition: border-color 0.15s ease 0s;
+}
+
+.OfferCard:hover
+{
+	border-color: rgba(100, 181, 246, 0.85);
+	box-shadow: fill rgba(100, 181, 246, 0.08) 0px 0px 18px 0px;
+}
+
+#leftImage
+{
+	height: 155px;
+	width: 155px;
+	horizontal-align: center;
+	margin: 10px 0px;
+	background-image: url("s2r://panorama/images/set_discount_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+#middleImage
+{
+	height: 155px;
+	width: 155px;
+	horizontal-align: center;
+	margin: 10px 0px;
+	background-image: url("s2r://panorama/images/bless_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+#rightImage
+{
+	height: 155px;
+	width: 155px;
+	horizontal-align: center;
+	margin: 10px 0px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+#boostImage
+{
+	height: 155px;
+	width: 155px;
+	horizontal-align: center;
+	margin: 6px 0px;
+	background-image: url("s2r://panorama/images/boost_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+.CardTitle
+{
+	horizontal-align: center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-family: titleFont;
+	text-shadow: 0px 0px 4px black;
+	font-size: 14px;
+	max-width: 205px;
+	text-align: center;
+	min-height: 34px;
+}
+
+.CardSpacer
+{
+	height: fill-parent-flow(1.0);
+}
+
+.CommonBadge
+{
+	horizontal-align: center;
+	color: #e5ded5;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 12px;
+	text-shadow: 0px 0px 8px rgba(212, 197, 189, 0.9);
+	letter-spacing: 2px;
+	margin-top: 2px;
+	margin-bottom: 4px;
+}
+
+.NormalBadge
+{
+	horizontal-align: center;
+	color: #d8b993;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 12px;
+	text-shadow: 0px 0px 8px rgba(188, 108, 71, 0.9);
+	letter-spacing: 2px;
+	margin-top: 2px;
+	margin-bottom: 4px;
+}
+
+.BestBadge
+{
+	horizontal-align: center;
+	color: #ce93d8;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 12px;
+	text-shadow: 0px 0px 8px rgba(171, 71, 188, 0.9);
+	letter-spacing: 2px;
+	margin-top: 2px;
+	margin-bottom: 4px;
+}
+
+.CardPrice
+{
+	horizontal-align: center;
+	flow-children: right;
+	height: 26px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	padding: 0px 10px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border: 1px solid rgba(255, 215, 0, 0.25);
+	border-radius: 13px;
+	vertical-align: bottom;
+}
+
+.BoostPrice
+{
+	border-color: rgba(255, 180, 50, 0.5);
+}
+
+.CoinIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 5px;
+}
+
+.PriceText
+{
+	vertical-align: center;
+	color: #ffd700;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 15px;
+	text-shadow: 0px 0px 5px rgba(255, 160, 0, 0.7);
+}
+
+.CardButton
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	height: 30px;
+	width: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 4px;
+	margin-top: 8px;
+	box-shadow: fill #000000aa 0px 0px 4px 0px;
+}
+
+.CardButton:hover
+{
+	brightness: 1.45;
+	sound: "ui_select_arrow";
+}
+
+.BestButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ab47bc), to(#6a1b9a));
+}
+
+.NormalButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ffa726), to(#e65100));
+}
+
+.ButtonLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #ffffff;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 16px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.ExpCard
+{
+	vertical-align: top;
+	height: 290px;
+	width: 250px;
+	margin: 10px;
+	padding: 10px;
+	flow-children: down;
+	background-color: rgba(8, 15, 38, 0.65);
+	border: 1px solid rgba(66, 100, 180, 0.55);
+	border-radius: 8px;
+	transition: border-color 0.15s ease 0s;
+}
+
+.ExpCard:hover
+{
+	border-color: rgba(120, 170, 255, 0.85);
+	box-shadow: fill rgba(66, 120, 220, 0.12) 0px 0px 18px 0px;
+}
+
+.ExpCardCommon
+{
+	border-color: rgba(40, 255, 69, 0.55);
+	background-color: rgba(5, 35, 5, 0.65);
+}
+
+.ExpCardCommon:hover
+{
+	border-color: rgba(80, 255, 89, 0.95);
+	box-shadow: fill rgba(40, 255, 58, 0.15) 0px 0px 20px 0px;
+}
+
+.ExpCardNormal
+{
+	border-color: rgba(255, 160, 40, 0.55);
+	background-color: rgba(35, 20, 5, 0.65);
+}
+
+.ExpCardNormal:hover
+{
+	border-color: rgba(255, 200, 80, 0.95);
+	box-shadow: fill rgba(255, 170, 40, 0.15) 0px 0px 20px 0px;
+}
+
+.ExpCardBest
+{
+	border-color: rgba(171, 71, 188, 0.65);
+	background-color: rgba(28, 8, 40, 0.65);
+}
+
+.ExpCardBest:hover
+{
+	border-color: rgba(206, 147, 216, 0.95);
+	box-shadow: fill rgba(171, 71, 188, 0.15) 0px 0px 20px 0px;
+}
+
+#exp1Image,#exp2Image,#exp3Image
+{
+	height: 70px;
+	width: 70px;
+	horizontal-align: center;
+	margin: 6px 0px;
+	background-image: url("s2r://panorama/images/exp_500_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
+.ExpAmount
+{
+	horizontal-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#90caf9), to(#42a5f5));
+	font-weight: bold;
+	font-family: titleFont;
+	font-size: 26px;
+	text-shadow: 0px 0px 10px rgba(66, 165, 245, 0.7);
+	letter-spacing: 1px;
+	text-align: center;
+	margin-bottom: 4px;
+	max-width: 240px;
+	text-overflow: shrink;
+}
+
+.very_rare_item_effect
+{
+	width: 100%;
+	height: 100%;
+	wash-color: #64b5f6;
+	margin-top: 0px;
+	transform: scale3d(1.2, 1.8, 1) translateY(0px);
+	hue-rotation: 0deg;
+	overflow: clip;
+	opacity: 0.2;
+}
+
+.BuyControl
+{
+	vertical-align: center;
+	horizontal-align: center;
+	width: 300px;
+	height: 280px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1e2e40), to(#0f1a2a));
+	border: 2px solid #4a5a7a;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.95);
+	border-radius: 12px;
+}
+
+#BuyContent
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 37px;
+}
+
+#item_buy_image
+{
+	horizontal-align: center;
+	width: 110px;
+	height: 110px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: fill rgba(100, 181, 246, 0.06) 0px 0px 20px 0px;
+}
+
+.buy_content
+{
+	horizontal-align: center;
+	height: 46px;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+.buy_image
+{
+	width: 32px;
+	height: 28px;
+	vertical-align: center;
+}
+
+.buy_label,.buy_button_label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #ffd700;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-family: titleFont;
+	text-shadow: 0px 0px 4px black;
+	font-size: 18px;
+	text-align: center;
+}
+
+.buy_button
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	height: 40px;
+	width: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	margin: 12px;
+}
+
+.buy_button:hover
+{
+	brightness: 1.5;
+	sound: "ui_select_arrow";
+}

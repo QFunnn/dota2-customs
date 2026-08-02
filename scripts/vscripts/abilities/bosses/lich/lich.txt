@@ -1,0 +1,108 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"boss_lich_frost_blast_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lich/lich"
+		"AbilityTextureName"			"lich_frost_nova"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"7.0"
+		"AbilityManaCost"				"125"
+
+		"AbilityValues"
+		{
+			"radius"					"200"
+			"slow_movement_speed"		"30"
+			"slow_attack_speed"			"30"
+			"aoe_damage"				"500"
+			"diff_boost_damage"     	"50"
+			"duration"					"4"
+		}
+	}
+	
+"boss_lich_chain_frost_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/lich/lich"
+		"AbilityTextureName"			"lich_chain_frost"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"300"
+
+		"AbilityValues"
+		{
+			"damage"					"450"
+			"diff_boost_damage"     	"100"
+			"jumps"						"100"
+			"jump_range"				"700"
+			"slow_movement_speed"		"30"
+			"slow_attack_speed"			"30"
+			"slow_duration"				"2"
+			"projectile_speed"			"1300"
+			"vision_radius"				"800"		
+		}
+	}
+
+	"boss_lich_ice_aura" 
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/lich/lich"
+        "AbilityTextureName"            "boss_lich_ice_aura"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "800"
+
+        "AbilityValues"
+        {
+			"max_distance"					"800"
+			"min_distance"					"250"
+			"hp_regen_max"				    "90"
+			"hp_regen_min"				    "10"
+			"duration"			        	"3"
+		}
+    }
+
+	"boss_lich_pull_enemy" 
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/lich/lich"
+        "AbilityTextureName"            "boss_lich_pull_enemy"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"              "700"
+		"AbilityCooldown"				"9"
+
+        "AbilityValues"
+        {
+			"radius"					"700"
+			"speed"						"150"
+			"duration"			        "2"
+		}
+    }
+
+}

@@ -1,0 +1,159 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_sand_corpse_eater_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "600"
+        
+        "AbilityValues"
+        {
+            "radius"                    "600"
+            "heal_pct"                  "20"
+            "attr_steal_pct"            "20"
+            "model_scale_inc"           "10"
+        }
+    }
+
+    "creep_sand_pack_call_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "500"
+        "AbilityCooldown"               "10"
+
+        "AbilityValues"
+        {
+            "hp_threshold_pct"          "30"
+            "radius"                    "500"
+            "bonus_speed_pct"           "20"
+            "bonus_attack_speed"        "20"
+            "duration"                  "7"
+        }
+    }
+
+    "creep_sand_toss_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+		"AbilityTextureName"			"tiny_toss"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"7"
+		"AbilityManaCost"				"90"
+
+		"AbilityValues"
+		{
+            "find_radius"               "800"
+			"duration"				    "1.3"
+			"radius"				    "300"
+			"toss_damage"			    "3000"
+            "diff_boost_damage"			"300"
+		}
+	}	
+
+    "creep_sand_impale_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"			"nyx_assassin_impale"
+        "AbilityCooldown"               "4"
+        
+        "AbilityValues"
+        {
+            "radius"                    "1000"
+            "impale_damage"             "2500"
+            "diff_boost_damage"			"250"
+            "stun_duration"             "0.6"
+            "width"                     "125"
+        }
+    }
+
+    "creep_sand_shift_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"			"sand_king_sand_storm"
+        "AbilityCooldown"               "5"
+        
+        "AbilityValues"
+        {
+            "hp_threshold"              "50"
+            "radius"                    "800"
+            "speed"                     "300"
+        }
+    }
+
+    "creep_sand_shimmer_aura_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityTextureName"			"sand_king_sand_storm"
+        "AbilityCastRange"              "600"
+        
+        "AbilityValues"
+        {
+            "radius"                    "600"
+            "evasion_chance"            "30"
+        }
+    }
+
+    "creep_sand_illusion_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "outgoing_damage"           "25"
+            "incoming_damage"           "400"
+            "diff_boost_damage"			"5"
+            "blind_duration"            "3.0"
+            "blind_radius"              "400"
+        }
+    }
+
+    "all_reduction_aura"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_7/zone_7"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "nevermore_dark_lord"
+        "AbilityCastRange"              "900"
+        
+        "AbilityValues"
+        {
+            "reduction"                 "25"
+            "diff_boost_damage"     	"2" 
+            "presence_radius"           "900"
+        }
+    }
+}

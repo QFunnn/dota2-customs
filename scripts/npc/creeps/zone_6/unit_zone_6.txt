@@ -1,0 +1,234 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{
+    "npc_dota_zone_6_unit_1"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/darkreef/blob/darkreef_blob_02_small.vmdl"
+		"SoundSet"					"Hero_Venomancer"
+		"Level"						"1"
+		"ModelScale" 				"1.4"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_blob_jump_lua"
+		"Ability2"					"creep_blob_die_spawn_lua"
+		"Ability3"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"30"
+		"MagicalResistance"			"15"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"400"
+		"AttackDamageMax"			"500"
+		"AttackRate"				"0.5"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"150"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"160"
+
+		// "BountyXP"					"60"
+	
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+
+		"StatusHealth"				"3500"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"1000"
+		"StatusManaRegen"			"30"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"Creature"
+		{	
+			"EquippedItems"
+			{
+				"PowerTreads"
+				{
+					"Item"					"item_guardian_greaves_lua2"
+				}
+			}
+		}
+	}	
+	
+	"npc_dota_zone_6_unit_2"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/neutral_creeps/n_creep_tadpole_c/n_creep_tadpole_c.vmdl"
+		"SoundSet"					"Hero_Venomancer"
+		"Level"						"1"
+		"ModelScale" 				"0.4"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_blob_mana_burn_lua"
+
+		"ArmorPhysical"				"15"
+		"MagicalResistance"			"40"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"400"
+		"AttackDamageMax"			"500"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"150"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"160"
+	
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+
+		"StatusHealth"				"1500"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"7000"
+		"StatusManaRegen"			"210"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}		
+	
+	"npc_dota_zone_6_unit_3"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/morphling/morphling.vmdl"
+		"BaseClass"					"npc_dota_creature"											
+		"SoundSet"					"Hero_Morphling"							
+		"ModelScale"				"0.7"
+		"Level"						"1"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_waveform_lua"		
+		"Ability2"					"neutral_spell_immunity"
+		"Ability3"					"creep_water_heal"
+
+		"ArmorPhysical"				"15"			
+		"MagicalResistance"			"0"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"350"		
+		"AttackDamageMax"			"450"		
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0.60"			
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"850"		
+		"AttackRange"				"610"
+		"ProjectileModel"			"particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		"ProjectileSpeed"			"1300"
+
+		// "BountyXP"					"65"		
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"60"
+		"HealthBarOffset"			"240"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+		"MovementTurnRate"			"0.7"		
+
+		"StatusHealth"				"4500"		
+		"StatusHealthRegen"			"10"		
+		"StatusMana"				"1000"			
+		"StatusManaRegen"			"30"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VisionDaytimeRange"		"900"		
+		"VisionNighttimeRange"		"900"		
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"desol"
+				{
+					"Item"					"item_desolator_lua2"
+				}	
+			}
+		}
+	}
+
+	"npc_dota_zone_6_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/darkreef/gaoler/darkreef_gaoler.vmdl"
+		"SoundSet"					"Hero_Venomancer"
+		"Level"						"1"
+		"ModelScale" 				"1.4"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_torrent_lua"
+		"Ability2"					"creep_undercurrent_lua"
+		"Ability3"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"50"
+		"MagicalResistance"			"0"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"400"
+		"AttackDamageMax"			"500"
+		"AttackRate"				"0.5"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"150"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"160"
+
+		// "BountyXP"					"90"
+	
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+
+		"StatusHealth"				"5500"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"1000"
+		"StatusManaRegen"			"30"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"Creature"
+		{	
+			"EquippedItems"
+			{
+				"vlad"
+				{
+					"Item"					"item_heart_lua1"
+				}
+			}
+		}
+	}
+}

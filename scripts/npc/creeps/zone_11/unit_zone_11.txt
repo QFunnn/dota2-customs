@@ -1,0 +1,350 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{	
+    "npc_dota_zone_11_unit_1"
+	{
+		"vscripts"					"ai/ai_creeps.lua"			
+		"Model"						"models/heroes/phoenix/phoenix_bird.vmdl"
+		"SoundSet"					"Hero_Phoenix"
+		"BaseClass"					"npc_dota_creature"
+		"ModelScale" 				"1.2"
+		"HasInventory"				"1"
+		
+		"Ability1"					"creep_sun_nova_lua"
+		"Ability2"					"creep_telekines_lua"		
+		"Ability4"					"necronomicon_warrior_sight"		
+		
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"45"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"700"
+		"AttackDamageMax"			"800"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"	
+		"AttackAcquisitionRange"	"900"		
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_phoenix/phoenix_base_attack.vpcf"
+		"ProjectileSpeed"			"1100"
+		
+		"RingRadius"				"70"
+		"HealthBarOffset"			"315"
+
+		// "BountyXP"					"250"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"340"	
+	
+		"StatusHealth"				"20000"		
+		"StatusHealthRegen"			"200"		
+		"StatusMana"				"2000"			
+		"StatusManaRegen"			"60"				 
+		
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"DisableResistance"			"100.0"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "9525"}
+				"Wearable2" {"ItemDef" "9524"}
+				"Wearable3" {"ItemDef" "9523"}
+			}
+			"EquippedItems"
+			{
+				"PowerTreads"
+				{
+					"Item"					"item_veil_of_discord_lua3"
+				}
+				"PowerTreads"
+				{
+					"Item"					"item_guardian_greaves_lua3"
+				}
+				"PowerTreads"
+				{
+					"Item"					"item_shivas_guard_lua3"
+				}
+			}
+		}
+	}	
+	
+    "npc_dota_zone_11_unit_2"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/enigma/enigma.vmdl"
+		"SoundSet"					"Hero_Enigma"
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"4"
+		"ModelScale" 				"1"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_black_hole_lua"			
+		"Ability2"					"creep_dispersion_lua"				
+		"Ability3"					"creep_midnight_lua"
+		"Ability4"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"20"			
+		"MagicalResistance"         "20"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"700"		
+		"AttackDamageMax"			"700"		
+		"AttackRate"				"0.7"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"1200"		
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
+		"ProjectileSpeed"			"900"
+     
+		"RingRadius"				"70"
+		"HealthBarOffset"			"215"
+
+		// "BountyXP"					"300"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"			
+		"MovementTurnRate"			"1"		
+		
+		"StatusHealth"				"25000"		
+		"StatusHealthRegen"			"50"		
+		"StatusMana"				"8000"			
+		"StatusManaRegen"			"240"			 
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"PowerTreads"
+					{
+						"Item"					"item_black_king_bar_lua2"
+					}
+				"blink"
+					{
+						"Item"					"item_heart_lua1"
+					}
+				"blink"
+					{
+						"Item"					"item_octarine_core_lua2"
+					}
+                "blink"
+					{
+						"Item"					"item_shivas_guard_lua2"
+					}
+			}
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "12332"}
+				"Wearable2" {"ItemDef" "12331"}
+				"Wearable3" {"ItemDef" "12330"}
+				"Wearable4" {"ItemDef" "12329"}
+			}		
+		}
+	}
+	
+    "npc_dota_zone_11_unit_3"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/zeus/zeus_arcana.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"      			"Hero_zuus"
+		"Level"						"100"
+		"ModelScale" 				"1.2"
+		"HasInventory"				"1"
+		"CanBeDominated"			"0"
+
+		"Ability1"					"creep_lighting_bolt_lua"
+		"Ability2"					"creep_thundergods_wrath_lua"
+
+		"ArmorPhysical"				"20"
+		"MagicalResistance"			"45"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"800"
+		"AttackDamageMax"			"800"
+		"AttackRate"				"0.7"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"700"
+        "AttackRange"      			"480"
+        "ProjectileModel"       	"particles/units/heroes/hero_zuus/zuus_base_attack.vpcf"
+        "ProjectileSpeed"       	"1100"
+
+		"RingRadius"				"20"
+		"HealthBarOffset"			"140"
+
+		// "BountyXP"					"240"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+
+		"StatusHealth"				"30000"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"4750"
+		"StatusManaRegen"			"142.5"
+		
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+			{
+			"EquippedItems"
+			{
+			"item_bfury_lua1"
+				{
+					"Item"					"item_mjollnir_lua3"
+				}	
+			"item_bfury_lua1"
+				{
+					"Item"					"item_bloodstone_lua3"
+				}
+			"item_bfury_lua1"
+				{
+					"Item"					"item_guardian_greaves_lua3"
+				}					
+			}
+		}
+	}
+	
+    "npc_dota_zone_11_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/disruptor/disruptor.vmdl"
+		"SoundSet"					"Hero_Disruptor"
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"4"
+		"ModelScale" 				"1"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_thunder_strike_lua"			
+		"Ability2"					"creep_glimpse_to_caster_lua"				
+		"Ability3"					"creep_static_storm_lua"
+		"Ability4"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"20"			
+		"MagicalResistance"         "20"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"600"		
+		"AttackDamageMax"			"600"		
+		"AttackRate"				"0.8"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"1000"		
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_disruptor/disruptor_base_attack.vpcf"
+		"ProjectileSpeed"			"1200"
+     
+		"RingRadius"				"70"
+		"HealthBarOffset"			"215"
+
+		// "BountyXP"					"300"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"550"			
+		"MovementTurnRate"			"1"		
+		
+		"StatusHealth"				"23000"		
+		"StatusHealthRegen"			"50"		
+		"StatusMana"				"3550"			
+		"StatusManaRegen"			"106.5"			 
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"Shivas"
+				{
+					"Item"					"item_shivas_guard_lua1"
+				}
+				"mkb"
+				{
+					"Item"					"item_monkey_king_bar_lua1"
+				}
+				"item_mael"
+				{
+					"Item"					"item_skadi_lua1"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "8460"}
+				"Wearable2" {"ItemDef" "8462"}
+				"Wearable3" {"ItemDef" "8463"}
+				"Wearable4" {"ItemDef" "8465"}
+				"Wearable5" {"ItemDef" "8466"}
+				"Wearable6" {"ItemDef" "8467"}
+			}		
+		}
+	}
+
+	"npc_dota_zone_11_unit_5"
+    {                                       
+        "Model"                     "models/heroes/phoenix/phoenix_egg.vmdl"
+        "BaseClass"                 "npc_dota_creature"
+        "SoundSet"                  "Phoenix_Sun"
+        "Level"                     "0"
+        "ModelScale"                "1"
+        "wearable"                  "630"
+
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageMin"           "0"
+        "AttackDamageMax"           "0" 
+        "AttackRate"                "1.0"
+        "AttackAnimationPoint"      "0.0"
+        "AttackAcquisitionRange"    "0"
+        "AttackRange"               "0"
+        "ProjectileModel"           ""
+        "ProjectileSpeed"           "0"
+
+        "HealthBarOffset"           "450"       
+        "RingRadius"                "85"                        
+        "BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+
+        // "BountyXP"                  "250"
+
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+        "MovementSpeed"             "0"
+
+        "StatusHealth"              "100"
+        "StatusHealthRegen"         "0.0"
+		
+        "VisionDaytimeRange"        "1800"
+        "VisionNighttimeRange"      "800"
+        "TeamName"                  "DOTA_TEAM_NEUTRALS"
+        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    }
+}

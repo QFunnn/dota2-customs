@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"alchemist_acid_spray_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_acid_spray_lua/alchemist_acid_spray_lua"
+		"AbilityTextureName"			"alchemist_acid_spray"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"500"
+
+		"AbilityCooldown"				"22 20 18 16"
+		"AbilityManaCost"				"130 140 150 160"
+
+		"AbilityValues"
+		{
+			"radius"				"500"
+			"duration"				"10"
+			"damage"				"20 30 40 50"
+			"armor_reduction"		
+			{
+				"value"					"2 4 6 8"
+				"LinkedSpecialBonus"	"special_bonus_alchemist_agi2"
+			}		
+			"tick_rate"				"1.0"
+		}
+	}
+}

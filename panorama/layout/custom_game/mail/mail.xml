@@ -1,0 +1,51 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/mail/mail.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/mail/mail.js" />
+	</scripts>
+	<snippets>
+		<snippet name="mail_button">
+			<Panel id="Mail" class="Mail">
+				<Label id="Mail_Label" text="" />
+				<Panel id="MailDecr" class="MailDecr">
+					<Label id="mailfrom" class="MailDescLabel" text="" />
+					<Label id="maildate" class="MailDescLabel" text="" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="mail_desc">
+			<Panel id="RightSide">
+				<Label id="MailTitle" text="" />
+				<Label id="MailText" html="true" text="" />
+				<Panel id="RightSideItems" />
+				<Panel id="RightSideButton">
+					<Label id="MailButton" text="#take_mail" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel id="MailPanel" hittest="false">
+			<Label id="MailTop" text="#mail" />
+			<Panel id="CloseMail" class="CloseMail" onmouseactivate="closeButton()" />
+			<Panel id="MailContainer">
+				<Panel id="LeftSide" />
+				<Panel id="LeftSideBack" hittest="false" />
+				<Panel id="RightSide" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

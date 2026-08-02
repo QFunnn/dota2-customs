@@ -1,0 +1,56 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/team_select/team_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList">
+				<Panel id="TeamsListGroup">
+					<Panel id="TeamListHeader" />
+					<Panel id="TeamsListRoot" />
+				</Panel>
+			</Panel>
+			<Panel id="GameAndPlayersRoot">
+				<Panel id="GameInfoPanel">
+					<Panel id="CustomGameModeName" />
+					<Panel id="MapInfo" />
+					<Panel id="StartGameCountdownTimer">
+						<Image id="TimerBg" src="s2r://panorama/images/status_icons/timer_background_psd.vtex" />
+						<Image id="TimerRing" src="s2r://panorama/images/status_icons/timer_ring_psd.vtex" />
+						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+						<Panel id="TimerLabelBox" />
+					</Panel>
+				</Panel>
+				<Panel id="UnassignedPlayerPanel">
+					<Panel id="UnassignedPlayersHeader" />
+					<Panel id="UnassignedPlayersDivider" />
+					<Panel id="UnassignedPlayersContainer" />
+				</Panel>
+				<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+					<Label text="#custom_game_team_select_lock_start" />
+				</Button>
+				<Button id="CancelAndUnlockButton" class="PlayButton">
+					<Label text="#custom_game_team_select_cancel_unlock" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

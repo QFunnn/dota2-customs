@@ -1,0 +1,132 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"boss_necro_firestorm"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/final/final"
+		"AbilityTextureName"			"necro_firestorm"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.6"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"radius"						"1400"
+			"wave_duration"					"7"
+			"wave_count"					"6"
+			"wave_damage"					"1500"
+			"diff_boost_damage"		    	"150"
+			"wave_interval"					"1"
+			"burn_damage"					"250"
+			"diff_boost_additional"		    "50"
+			"burn_interval"					"1"
+			"burn_duration"					"2"
+		}
+	}
+	
+	"boss_necro_poison_raze" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/final/final"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"	
+		"AbilityTextureName"     	"poison_raze"
+		"AbilityCooldown"			"16"
+		"AbilityManaCost"			"300"
+		"AbilityValues"
+		{
+			"damage" 				"2500"
+			"diff_boost_damage"		"250"
+		}
+	}	
+	
+	"boss_necro_spike"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"necro_spike"
+		"AbilityCooldown"				"24"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"						"3000"
+			"diff_boost_damage"				"300"
+			"interval"						"0.4"
+			"range"							"900"
+			"duration"						"4"
+			"delay"							"0.7"
+			"damage_radius"					"225"
+		}
+	}	
+	
+	"boss_necro_blast"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"            "necro_blast"
+		"AbilityValues"
+		{
+			"interval"		        	"5"
+			"radius"		        	"1000"
+			"damage"					"2000"
+			"diff_boost_damage"			"200"
+			"damage_radius"				"300"
+		}
+	}	
+	
+	"boss_necro_glimps"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"            "necro_glimps"
+		"AbilityCooldown"           	"11"
+		"AbilityManaCost"			"200"
+	}	
+	
+	"boss_necro_passive"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"		            "abilities/bosses/final/final"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "necro_passive"
+		"AbilityValues"
+		{
+			"interval"		        "10"
+		}
+	}	
+
+	"boss_necro_spawn_lua" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/final/final"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"        "spawn_lua"
+		"AbilityCooldown"			"20"
+		"AbilityManaCost"			"400"
+	}	
+}

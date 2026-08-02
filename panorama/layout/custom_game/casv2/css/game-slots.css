@@ -1,0 +1,626 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.game-slots
+{
+	height: 85%;
+	max-height: 85%;
+	flow-children: down;
+	overflow: noclip;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-bottom: 40px;
+}
+
+.slots-container
+{
+	height: 340px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: top;
+	padding: 10px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	z-index: 1;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slot-card
+{
+	width: 210px;
+	height: 320px;
+	flow-children: none;
+	background-image: url("s2r://panorama/images/custom_game/casv2/back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	overflow: clip;
+	z-index: 2;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, border-width, box-shadow, brightness, pre-transform-scale2d;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-card.spinning
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.35), 0 2px 8px rgba(0, 0, 0, 0.3);
+	animation-name: slot_spinning_pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'slot_spinning_pulse'
+{
+	0%
+	{
+		border-color: rgba(100, 181, 246, 0.5);
+		box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+	50%
+	{
+		border-color: rgba(100, 181, 246, 0.75);
+		box-shadow: 0px 0px 16px rgba(100, 181, 246, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+	100%
+	{
+		border-color: rgba(100, 181, 246, 0.5);
+		box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+}
+
+.slot-card.spinning .slot-item-filler
+{
+	blur: gaussian(3.0);
+}
+
+.slot-blur-overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.3)), color-stop(0.15, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.85, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.3)));
+	z-index: 5;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	border-radius: 24px;
+}
+
+.slot-card.spinning .slot-blur-overlay
+{
+	opacity: 1;
+}
+
+.slot-animation-container
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	overflow: clip;
+	z-index: 1;
+}
+
+.slot-item
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	opacity: 1;
+	brightness: 1.0;
+	transition-property: opacity, brightness, pre-transform-scale2d;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.slot-item-main
+{
+	vertical-align: center;
+	z-index: 2;
+}
+
+.slot-card:not(.spinning) .slot-item-main
+{
+	brightness: 1.1;
+}
+
+.slot-card.winning .slot-item-main
+{
+	brightness: 1.2;
+	pre-transform-scale2d: 1.05;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.6s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-card.winning
+{
+	border-color: rgba(255, 215, 0, 0.9);
+	border-width: 4px;
+	box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5), 0px 0px 8px rgba(137, 226, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+	animation-name: pulse_win;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'pulse_win'
+{
+	0%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 1.5;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+}
+
+.slot-card.slot-stopped-flash
+{
+	brightness: 2.0;
+	pre-transform-scale2d: 1.08;
+	box-shadow: 0px 0px 24px rgba(255, 215, 0, 0.6), 0px 0px 8px rgba(137, 226, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+	transition-property: brightness, pre-transform-scale2d, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.slot-card.anticipation
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.3;
+	border-color: rgba(100, 181, 246, 0.6);
+	border-width: 3px;
+	box-shadow: 0px 0px 20px rgba(100, 181, 246, 0.4), 0 4px 20px rgba(0, 0, 0, 0.5);
+	transition-property: pre-transform-scale2d, brightness, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-item-filler
+{
+	opacity: 1;
+	width: 120px;
+	height: 100px;
+	horizontal-align: center;
+	brightness: 1.0;
+}
+
+.slot-item-wrapper
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 190px;
+	height: 160px;
+	vertical-align: top;
+}
+
+.slot-item-wrapper .slot-item
+{
+	width: 120px;
+	height: 100px;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+Label.slot-item-label
+{
+	font-size: 30px;
+	font-weight: bold;
+	color: #e5e0c5;
+	horizontal-align: center;
+	vertical-align: top;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 8px;
+	margin-bottom: 0px;
+	opacity: 1;
+	transition-property: opacity, color, font-size, brightness;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	white-space: nowrap;
+	text-overflow: shrink;
+	height: 45px;
+	width: 100%;
+	font-family: defaultFont;
+	overflow: clip;
+	padding: 4px 6px;
+	brightness: 2.0;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.slot-item-wrapper Label.slot-item-label
+{
+	font-size: 30px;
+	font-weight: bold;
+	color: #e5e0c5;
+	horizontal-align: center;
+	vertical-align: top;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	margin-top: 8px;
+	margin-bottom: 0px;
+	opacity: 1;
+	transition-property: opacity, color, font-size, brightness;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	white-space: nowrap;
+	text-overflow: shrink;
+	height: 45px;
+	width: 100%;
+	font-family: defaultFont;
+	padding: 4px 6px;
+	brightness: 2.0;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.slot-card.spinning .slot-item-label-filler
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+Label.slot-item-label-filler,.slot-item-wrapper Label.slot-item-label-filler
+{
+	opacity: 0.4;
+	font-size: 20px;
+	color: #b0bfc9;
+	brightness: 0.8;
+}
+
+.slot-item-wrapper Label.slot-item-label:not(.slot-item-label-filler)
+{
+	font-size: 34px;
+	color: #e5e0c5;
+	brightness: 2.2;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.6);
+}
+
+.slot-card.spinning .slot-item-filler
+{
+	opacity: 1;
+	brightness: 1.0;
+}
+
+.game-slots
+{
+	height: 85%;
+	max-height: 85%;
+	flow-children: down;
+	overflow: noclip;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-bottom: 40px;
+}
+
+.slots-container
+{
+	height: 340px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: top;
+	padding: 10px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	z-index: 1;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slot-card
+{
+	width: 210px;
+	height: 320px;
+	flow-children: none;
+	background-image: url("s2r://panorama/images/custom_game/casv2/back_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	overflow: clip;
+	z-index: 2;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition-property: border-color, border-width, box-shadow, brightness, pre-transform-scale2d;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-card.spinning
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.35), 0 2px 8px rgba(0, 0, 0, 0.3);
+	animation-name: slot_spinning_pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'slot_spinning_pulse'
+{
+	0%
+	{
+		border-color: rgba(100, 181, 246, 0.5);
+		box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+	50%
+	{
+		border-color: rgba(100, 181, 246, 0.75);
+		box-shadow: 0px 0px 16px rgba(100, 181, 246, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+	100%
+	{
+		border-color: rgba(100, 181, 246, 0.5);
+		box-shadow: 0px 0px 12px rgba(100, 181, 246, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+	
+}
+
+.slot-card.spinning .slot-item-filler
+{
+	blur: gaussian(3.0);
+}
+
+.slot-blur-overlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.3)), color-stop(0.15, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.85, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.3)));
+	z-index: 5;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	border-radius: 24px;
+}
+
+.slot-card.spinning .slot-blur-overlay
+{
+	opacity: 1;
+}
+
+.slot-animation-container
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	overflow: clip;
+	z-index: 1;
+}
+
+.slot-item
+{
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+	opacity: 1;
+	brightness: 1.0;
+	transition-property: opacity, brightness, pre-transform-scale2d;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.slot-item-main
+{
+	vertical-align: center;
+	z-index: 2;
+}
+
+.slot-card:not(.spinning) .slot-item-main
+{
+	brightness: 1.1;
+}
+
+.slot-card.winning .slot-item-main
+{
+	brightness: 1.2;
+	pre-transform-scale2d: 1.05;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.6s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-card.winning
+{
+	border-color: rgba(255, 215, 0, 0.9);
+	border-width: 4px;
+	box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5), 0px 0px 8px rgba(137, 226, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+	animation-name: pulse_win;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes 'pulse_win'
+{
+	0%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 1.5;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+}
+
+.slot-card.slot-stopped-flash
+{
+	brightness: 2.0;
+	pre-transform-scale2d: 1.08;
+	box-shadow: 0px 0px 24px rgba(255, 215, 0, 0.6), 0px 0px 8px rgba(137, 226, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+	transition-property: brightness, pre-transform-scale2d, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.slot-card.anticipation
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.3;
+	border-color: rgba(100, 181, 246, 0.6);
+	border-width: 3px;
+	box-shadow: 0px 0px 20px rgba(100, 181, 246, 0.4), 0 4px 20px rgba(0, 0, 0, 0.5);
+	transition-property: pre-transform-scale2d, brightness, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.slot-item-filler
+{
+	opacity: 1;
+	width: 120px;
+	height: 100px;
+	horizontal-align: center;
+	brightness: 1.0;
+}
+
+.slot-item-wrapper
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 190px;
+	height: 160px;
+	vertical-align: top;
+}
+
+.slot-item-wrapper .slot-item
+{
+	width: 120px;
+	height: 100px;
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+Label.slot-item-label
+{
+	font-size: 30px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: top;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 8px;
+	margin-bottom: 0px;
+	opacity: 1;
+	transition-property: opacity, color, font-size, brightness;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	white-space: nowrap;
+	text-overflow: shrink;
+	width: 100%;
+	height: 45px;
+	font-family: defaultFont;
+	overflow: clip;
+	padding: 4px 6px;
+	brightness: 2.0;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.slot-item-wrapper Label.slot-item-label
+{
+	font-size: 30px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: top;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	margin-top: 8px;
+	margin-bottom: 0px;
+	opacity: 1;
+	transition-property: opacity, color, font-size, brightness;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	white-space: nowrap;
+	text-overflow: shrink;
+	width: 100%;
+	height: 45px;
+	font-family: defaultFont;
+	overflow: clip;
+	padding: 4px 6px;
+	brightness: 2.0;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.slot-card.spinning .slot-item-label-filler
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+Label.slot-item-label-filler,.slot-item-wrapper Label.slot-item-label-filler
+{
+	opacity: 0.4;
+	font-size: 20px;
+	color: #b0bfc9;
+	brightness: 0.8;
+}
+
+.slot-item-wrapper Label.slot-item-label:not(.slot-item-label-filler)
+{
+	font-size: 34px;
+	color: #e5e0c5;
+	brightness: 2.2;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.6);
+}
+
+.slot-card.spinning .slot-item-filler
+{
+	opacity: 1;
+	brightness: 1.0;
+}

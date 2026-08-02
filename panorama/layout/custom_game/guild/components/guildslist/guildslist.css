@@ -1,0 +1,707 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.root > .main-layer > .guilds-list
+{
+	align: center center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+}
+
+.root > .main-layer > .guilds-list,.root > .top-layer > .blank > .guilds-list
+{
+	width: 1150px;
+	flow-children: down;
+}
+
+.root > .main-layer > .guilds-list > .header,.root > .top-layer > .blank > .guilds-list > .header
+{
+	width: 100%;
+	padding: 12px 12px 12px 16px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .header > .icon,.root > .top-layer > .blank > .guilds-list > .header > .icon
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	img-shadow: 0 0 8px 1.5 rgba(100, 181, 246, 0.6);
+}
+
+.root > .main-layer > .guilds-list > .header > .label,.root > .top-layer > .blank > .guilds-list > .header > .label
+{
+	vertical-align: center;
+	margin-left: 12px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .header > .close,.root > .top-layer > .blank > .guilds-list > .header > .close
+{
+	horizontal-align: right;
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .header > .close:hover,.root > .top-layer > .blank > .guilds-list > .header > .close:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.root > .main-layer > .guilds-list > .header > .close:hover > .icon,.root > .top-layer > .blank > .guilds-list > .header > .close:hover > .icon
+{
+	background-color: #ff6b6b;
+}
+
+.root > .main-layer > .guilds-list > .header > .close > .icon,.root > .top-layer > .blank > .guilds-list > .header > .close > .icon
+{
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	opacity-mask: url("s2r://panorama/images/control_icons/close_png.vtex");
+	opacity-mask-scale: 70%;
+	opacity-mask-position: 0% 0%;
+}
+
+.root > .main-layer > .guilds-list > .line,.root > .top-layer > .blank > .guilds-list > .line
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+}
+
+.root > .main-layer > .guilds-list > .filters,.root > .top-layer > .blank > .guilds-list > .filters
+{
+	z-index: 1;
+	width: 100%;
+	padding: 20px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .filters > .update,.root > .top-layer > .blank > .guilds-list > .filters > .update
+{
+	vertical-align: center;
+	width: 120px;
+	height: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.3)), to(rgba(74, 144, 226, 0.2)));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	border-radius: 8px;
+}
+
+.root > .main-layer > .guilds-list > .filters > .update:hover,.root > .top-layer > .blank > .guilds-list > .filters > .update:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.5)), to(rgba(74, 144, 226, 0.4)));
+	border-color: rgba(100, 181, 246, 0.8);
+}
+
+.root > .main-layer > .guilds-list > .filters > .update > .label,.root > .top-layer > .blank > .guilds-list > .filters > .update > .label
+{
+	align: center center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .filters > .search,.root > .top-layer > .blank > .guilds-list > .filters > .search
+{
+	width: fill-parent-flow(1);
+	height: 40px;
+	margin-left: 12px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .filters > .search > .text-entry,.root > .top-layer > .blank > .guilds-list > .filters > .search > .text-entry
+{
+	vertical-align: center;
+	width: 100%;
+	height: 100%;
+	padding: 4px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(25, 41, 57)), to(rgb(22, 38, 53)));
+	border: 2px solid;
+	border-color: #4a5a7a;
+	border-radius: 10px;
+}
+
+.root > .main-layer > .guilds-list > .filters > .search > .text-entry.focused,.root > .top-layer > .blank > .guilds-list > .filters > .search > .text-entry.focused
+{
+	border-color: rgb(138.9132653061, 154.137755102, 184.5867346939);
+}
+
+.root > .main-layer > .guilds-list > .filters > .search > .text-entry > .icon,.root > .top-layer > .blank > .guilds-list > .filters > .search > .text-entry > .icon
+{
+	vertical-align: center;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 6px 8px 6px 6px;
+}
+
+.root > .main-layer > .guilds-list > .filters > .search > .text-entry > .input,.root > .top-layer > .blank > .guilds-list > .filters > .search > .text-entry > .input
+{
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .filters > .search > .text-entry > .max-chars,.root > .top-layer > .blank > .guilds-list > .filters > .search > .text-entry > .max-chars
+{
+	vertical-align: center;
+	width: 20px;
+	margin-left: 12px;
+	margin-right: 8px;
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked,.root > .main-layer > .guilds-list > .filters > .not-full,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked,.root > .top-layer > .blank > .guilds-list > .filters > .not-full
+{
+	vertical-align: center;
+	width: fit-children;
+	height: 100%;
+	margin-left: 12px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked.checked > .box > .filler,.root > .main-layer > .guilds-list > .filters > .not-full.checked > .box > .filler,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked.checked > .box > .filler,.root > .top-layer > .blank > .guilds-list > .filters > .not-full.checked > .box > .filler
+{
+	background-color: #eee;
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked:hover > .box,.root > .main-layer > .guilds-list > .filters > .not-full:hover > .box,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked:hover > .box,.root > .top-layer > .blank > .guilds-list > .filters > .not-full:hover > .box
+{
+	border-color: rgb(80, 110, 130);
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked > .box,.root > .main-layer > .guilds-list > .filters > .not-full > .box,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked > .box,.root > .top-layer > .blank > .guilds-list > .filters > .not-full > .box
+{
+	vertical-align: center;
+	width: 28px;
+	height: 28px;
+	margin: 3px 0px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(20, 30, 45)), to(rgb(15, 22, 35)));
+	border: 1px solid rgba(60, 80, 110, 0.8);
+	border-radius: 4px;
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked > .box > .filler,.root > .main-layer > .guilds-list > .filters > .not-full > .box > .filler,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked > .box > .filler,.root > .top-layer > .blank > .guilds-list > .filters > .not-full > .box > .filler
+{
+	width: 100%;
+	height: 100%;
+	margin: 4px;
+}
+
+.root > .main-layer > .guilds-list > .filters > .not-locked > .label,.root > .main-layer > .guilds-list > .filters > .not-full > .label,.root > .top-layer > .blank > .guilds-list > .filters > .not-locked > .label,.root > .top-layer > .blank > .guilds-list > .filters > .not-full > .label
+{
+	vertical-align: center;
+	margin-left: 8px;
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.root > .main-layer > .guilds-list > .list,.root > .top-layer > .blank > .guilds-list > .list
+{
+	width: 100%;
+	height: 600px;
+	padding: 16px 20px 8px 20px;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.root > .main-layer > .guilds-list > .list > #VerticalScrollBar,.root > .top-layer > .blank > .guilds-list > .list > #VerticalScrollBar
+{
+	height: 94%;
+	margin-top: 3%;
+}
+
+.root > .main-layer > .guilds-list > .list > .loading,.root > .top-layer > .blank > .guilds-list > .list > .loading
+{
+	width: 100%;
+	height: 100%;
+}
+
+.root > .main-layer > .guilds-list > .list > .loading > .inner,.root > .top-layer > .blank > .guilds-list > .list > .loading > .inner
+{
+	align: center center;
+	width: 50px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	animation-name: loading-animation;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.root > .main-layer > .guilds-list > .list > .empty,.root > .top-layer > .blank > .guilds-list > .list > .empty
+{
+	width: 100%;
+	height: 100%;
+}
+
+.root > .main-layer > .guilds-list > .list > .empty > .label,.root > .top-layer > .blank > .guilds-list > .list > .empty > .label
+{
+	align: center center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild,.root > .top-layer > .blank > .guilds-list > .list > .guild
+{
+	width: 33.25%;
+	margin-bottom: 8px;
+	padding-top: 4px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner
+{
+	width: 100%;
+	padding: 20px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 12px;
+	transition: transform 0.2s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	transform: translateY(-4px);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar
+{
+	width: 72px;
+	height: 72px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .inner,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .inner
+{
+	width: 64px;
+	height: 64px;
+	border: 2px solid rgba(100, 181, 246, 0.4);
+	border-radius: 10px;
+	box-shadow: hollow 0 0 6px rgba(100, 181, 246, 0.2);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .inner:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .inner:hover
+{
+	border-color: rgba(100, 181, 246, 0.8);
+	box-shadow: hollow 0 0 8px rgba(100, 181, 246, 0.7);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal
+{
+	ignore-parent-flow: true;
+	align: right bottom;
+	width: 28px;
+	height: 28px;
+	margin-right: 4px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-1,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-1
+{
+	img-shadow: 0px 0px 8px 2 rgba(255, 193, 7, 0.8);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-2,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-2
+{
+	img-shadow: 0px 0px 8px 2 rgba(169, 169, 169, 0.8);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-3,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .avatar > .medal.place-3
+{
+	img-shadow: 0px 0px 8px 2 rgba(184, 115, 51, 0.8);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked
+{
+	width: fill-parent-flow(1);
+	margin-left: 4px;
+	flow-children: down;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked > .name,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked > .name
+{
+	margin-top: 2px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked
+{
+	margin-top: 4px;
+	padding: 4px 10px;
+	flow-children: right;
+	background-color: rgba(255, 107, 107, 0.2);
+	border: 1px solid rgba(255, 107, 107, 0.4);
+	border-radius: 6px;
+	transition: transform 0.3s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked:hover
+{
+	transform: translateY(-2px);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked > .icon,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked > .icon
+{
+	vertical-align: center;
+	width: 14px;
+	height: 14px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .header > .name-locked > .locked > .label
+{
+	vertical-align: center;
+	margin-left: 4px;
+	text-align: center;
+	color: #ff6b6b;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details
+{
+	width: 100%;
+	margin-top: 12px;
+	padding: 12px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.6)), to(rgba(20, 30, 45, 0.5)));
+	border: 1px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition: transform 0.3s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details:hover
+{
+	transform: translateY(-2px);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details > .line,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details > .line
+{
+	width: 100%;
+	height: 1px;
+	margin: 8px 0;
+	background-color: #3a4a5a;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details > .detail,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details > .detail
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details > .detail > .icon,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details > .detail > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details > .detail > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details > .detail > .label
+{
+	vertical-align: center;
+	margin-left: 6px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .details > .detail > .value,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .details > .detail > .value
+{
+	align: right center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description
+{
+	width: 100%;
+	margin-top: 12px;
+	padding: 6px 10px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(30, 50, 70, 0.4)), to(rgba(20, 35, 50, 0.3)));
+	border: 1px solid rgba(100, 120, 150, 0.3);
+	border-left: 3px solid rgba(100, 181, 246, 0.5);
+	border-radius: 10px;
+	transition: transform 0.3s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description:hover
+{
+	transform: translateY(-2px);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description > .header,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description > .header
+{
+	width: 100%;
+	margin-bottom: 6px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description > .header > .icon,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description > .header > .icon
+{
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description > .header > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description > .header > .label
+{
+	vertical-align: center;
+	height: 16px;
+	margin-left: 6px;
+	color: #64b5f6;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description > .line,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description > .line
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .description > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .description > .label
+{
+	margin-top: 8px;
+	margin-bottom: 2px;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+	line-height: 1.26;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader
+{
+	width: 100%;
+	margin-top: 12px;
+	padding: 8px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.15)), to(rgba(255, 193, 7, 0.1)));
+	border: 1px solid rgba(255, 215, 0, 0.4);
+	border-radius: 8px;
+	border-left-width: 3px;
+	box-shadow: hollow 0 0 6px rgba(255, 215, 0, 0.1);
+	transition: transform 0.3s ease 0s;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader:hover,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader:hover
+{
+	transform: translateY(-2px);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .header,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .header > .icon,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .header > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	img-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .header > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .header > .label
+{
+	vertical-align: center;
+	margin-left: 6px;
+	color: #ffd700;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .line,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .line
+{
+	width: 100%;
+	height: 1px;
+	margin: 8px 0;
+	background-color: rgba(255, 215, 0, 0.2);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .player,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .player
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .player > .avatar,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .player > .avatar
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	border: 2px solid rgba(255, 215, 0, 0.4);
+	border-radius: 6px;
+	box-shadow: hollow 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .leader > .player > .name,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .leader > .player > .name
+{
+	vertical-align: center;
+	margin-left: 10px;
+	padding-right: 8px;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .line,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .line
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 12px;
+	background-color: #3a4a5a;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .join,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .join
+{
+	width: 100%;
+	margin-top: 12px;
+	padding: 12px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.3)), to(rgba(74, 144, 226, 0.2)));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	border-radius: 8px;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .join:hover:not(:disabled),.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .join:hover:not(:disabled)
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.5)), to(rgba(74, 144, 226, 0.4)));
+	border-color: rgba(100, 181, 246, 0.8);
+	box-shadow: hollow 0 0px 12px rgba(100, 181, 246, 0.4);
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .join > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .join > .label
+{
+	horizontal-align: center;
+	color: #64b5f6;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .join.disabled,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .join.disabled
+{
+	background-color: rgba(60, 80, 110, 0.3);
+	border-color: rgba(60, 80, 110, 0.4);
+	opacity: 0.6;
+}
+
+.root > .main-layer > .guilds-list > .list > .guild > .inner > .join.disabled > .label,.root > .top-layer > .blank > .guilds-list > .list > .guild > .inner > .join.disabled > .label
+{
+	color: #8A9BA8;
+}
+
+.root > .main-layer > .guilds-list > .footer,.root > .top-layer > .blank > .guilds-list > .footer
+{
+	width: 100%;
+	padding: 12px;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create,.root > .top-layer > .blank > .guilds-list > .footer > .create
+{
+	horizontal-align: right;
+	width: 240px;
+	padding: 4px 8px 6px 8px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 8px;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create:disabled,.root > .top-layer > .blank > .guilds-list > .footer > .create:disabled
+{
+	opacity: 0.5;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create:hover:not(:disabled),.root > .top-layer > .blank > .guilds-list > .footer > .create:hover:not(:disabled)
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.8)), to(rgba(56, 142, 60, 0.7)));
+	border-color: rgba(76, 175, 80, 0.8);
+	box-shadow: hollow 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+.root > .main-layer > .guilds-list > .footer > .create:hover:not(:disabled) > .label,.root > .top-layer > .blank > .guilds-list > .footer > .create:hover:not(:disabled) > .label
+{
+	color: #ffffff;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create > .label,.root > .top-layer > .blank > .guilds-list > .footer > .create > .label
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create > .price,.root > .top-layer > .blank > .guilds-list > .footer > .create > .price
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	flow-children: right;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create > .price > .icon,.root > .top-layer > .blank > .guilds-list > .footer > .create > .price > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+}
+
+.root > .main-layer > .guilds-list > .footer > .create > .price > .label,.root > .top-layer > .blank > .guilds-list > .footer > .create > .price > .label
+{
+	vertical-align: center;
+	margin-left: 4px;
+	text-align: center;
+	color: #ffd700;
+	font-size: 17px;
+	font-weight: bold;
+}

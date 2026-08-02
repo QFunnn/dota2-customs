@@ -1,0 +1,230 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/battlepass/battlepass.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/battlepass/battlepass.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="quest_content">
+			<Panel class="Player_quest">
+				<Panel id="Player_quest_image" />
+				<Panel id="Player_quest_image_back" />
+				<Panel id="quest_lock_icon" class="pass_content_image_lock" style="horizontal-align: center; margin-top: 8px; width: 60px; height: 60px; z-index: 100;" />
+				<Label id="Player_quest_image_desc" text="2" />
+				<Label id="Player_quest_image_progress" text="2/100" />
+				<Panel class="Player_quest_image_reward" id="Player_quest_image_reward">
+					<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+					<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
+				</Panel>
+				<Image id="done" src="s2r://panorama/images/bp/done_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="pass_container">
+			<Panel class="pass_content">
+				<Panel class="free_bp" id="free_bp" hittest="false">
+					<Panel class="pass_content_image_lock" id="pass_content_image_lock" />
+					<DOTAItemImage id="pass_content_image_simple" class="pass_content_image_simple" hittest="true" itemname="item_armor_aura" />
+					<Image id="pass_content_image_simple_image" class="pass_content_image_simple" src="" />
+					<Label class="pass_content_level_simple" id="pass_content_level_simple" text="1" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false">
+		<Panel id="BP_container" hittest="false">
+			<Panel id="CloseShopButton" onmouseactivate="close()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseShopButton&apos;)" onmouseout="TipsOut()" />
+			<Panel id="BP_main">
+				<Panel id="BP_header">
+					<Panel id="BP_content_top_left">
+						<DOTAAvatarImage id="BP_icon" steamid="76561198820264777" />
+						<Panel id="BP_icon_back" />
+						<DOTAUserName id="BP_name" steamid="76561198820264777" />
+					</Panel>
+					<Panel id="BP_header_info">
+						<Panel id="BP_progress_labels_row">
+							<Label id="BP_progress_title" text="#bp_progress" />
+							<Label id="BP_level_label" text="#bp_level" />
+							<Label id="BP_exp_text" text="" />
+						</Panel>
+						<Panel id="BP_progress_bar_section">
+							<Panel class="BP_exp_icon" id="BP_exp_icon" />
+							<Panel id="BP_icon_pr_bar" />
+						</Panel>
+						<Panel id="BP_daily_row">
+							<Panel id="Gold_everyday_reward" onmouseover="TipsOut()" onmouseout="TipsOut()">
+								<Image id="Gold_everyday_reward_image" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+								<Label id="Gold_everyday_reward_text" text="+0" />
+							</Panel>
+							<Panel id="BP_daily_buttons">
+								<Panel id="BuyLevels" onmouseactivate="buyLevels()">
+									<Label id="BuyLevels_text" text="#buy_levels" />
+								</Panel>
+								<Panel id="BuyBP">
+									<Label id="BuyBP_text" text="#buy_bp" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="BP_rewards_content">
+					<Panel id="BP_content_bottom_container" hittest="false">
+						<Panel id="BP_content_bottom" />
+						<Panel id="BP_content_bottom_back" hittest="false" />
+					</Panel>
+				</Panel>
+				<Panel id="BP_quest_tabs_row" style="flow-children: right; horizontal-align: center; margin-top: 8px;">
+					<Panel class="BP_tab BP_tab_active" id="BP_quest_tab_daily" onmouseactivate="switchQuestTab(&apos;daily&apos;)">
+						<Label class="BP_tab_label" text="#bp_daily_quests" />
+					</Panel>
+					<Panel class="BP_tab" id="BP_quest_tab_weekly" onmouseactivate="switchQuestTab(&apos;weekly&apos;)">
+						<Label class="BP_tab_label" text="#bp_weekly_quests" />
+					</Panel>
+				</Panel>
+				<Panel id="BP_daily_quests_section" style="horizontal-align: center;">
+					<Panel id="BP_daily_quests_container" style="flow-children: right; horizontal-align: center;" />
+				</Panel>
+				<Panel id="BP_weekly_quests_section" style="horizontal-align: center;">
+					<Panel id="BP_weekly_quests_container" style="flow-children: right; horizontal-align: center;" />
+				</Panel>
+				<Panel id="BP_timer_row">
+					<Label id="BP_season_name" text="" />
+					<Label id="BP_timer_label" text="#bp_loading" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="ShowReward">
+			<Image id="reward_image" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+			<DOTAItemImage id="reward_item_image" hittest="true" itemname="item_armor_aura" />
+			<Label id="reward_item_label" html="true" text="22131" />
+		</Panel>
+		<Panel id="PassSelectModal">
+			<Label id="PassSelect_title" text="#bp_select_pass" />
+			<Label id="PassSelect_subtitle" text="#bp_select_subtitle" />
+			<Panel id="PassSelect_cards">
+				<Panel class="pass_select_card" id="PassCard_std">
+					<Label class="pass_card_title" text="#bp_tier_standard" />
+					<Panel class="pass_card_features">
+						<Label class="pass_card_feature" text="#bp_std_feature_1" />
+						<Label class="pass_card_feature" text="#bp_std_feature_2" />
+						<Label class="pass_card_feature" text="#bp_std_feature_3" />
+						<Label class="pass_card_feature" text="#bp_std_feature_4" />
+					</Panel>
+					<Panel class="pass_card_divider" />
+					<Panel class="pass_card_buy_row">
+						<Panel class="pass_card_pay_btn pass_card_pay_gems" id="PassCard_std_gems_btn" onmouseactivate="buy(&apos;standard&apos;,&apos;gems&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_std_price_gems" text="100" />
+							</Panel>
+						</Panel>
+						<Panel class="pass_card_pay_btn pass_card_pay_rp" id="PassCard_std_rp_btn" onmouseactivate="buy(&apos;standard&apos;,&apos;rp&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_std_price_rp" text="10000" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="pass_select_card pass_card_premium" id="PassCard_prem">
+					<Label class="pass_card_title" text="#bp_tier_premium" />
+					<Panel class="pass_card_features">
+						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_1" />
+						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_2" />
+						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_3" />
+						<Label class="pass_card_feature pass_card_feature_prem" text="#bp_prem_feature_4" />
+					</Panel>
+					<Panel class="pass_card_divider" />
+					<Panel class="pass_card_buy_row">
+						<Panel class="pass_card_pay_btn pass_card_pay_gems pass_card_pay_gems_prem" id="PassCard_prem_gems_btn" onmouseactivate="buy(&apos;premium&apos;,&apos;gems&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_prem_price_gems" text="150" />
+							</Panel>
+						</Panel>
+						<Panel class="pass_card_pay_btn pass_card_pay_rp pass_card_pay_rp_prem" id="PassCard_prem_rp_btn" onmouseactivate="buy(&apos;premium&apos;,&apos;rp&apos;)">
+							<Panel class="pass_card_pay_inner">
+								<Image class="pass_card_pay_icon" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+								<Label class="pass_card_pay_price" id="PassCard_prem_price_rp" text="15000" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="PassSelect_close_btn" onmouseactivate="passSelectClose()">
+				<Label id="PassSelect_close_label" text="#bp_cancel" />
+			</Panel>
+		</Panel>
+		<Panel id="BuyLevelsModal">
+			<Label id="BuyLevels_modal_title" text="#buy_levels" />
+			<Label id="BuyLevels_modal_subtitle" text="#bp_buy_levels_subtitle" />
+			<Panel id="BuyLevels_cards">
+				<Panel class="level_pack_card" id="LevelPack_10" onmouseactivate="buyLevelPack(10)">
+					<Label class="level_pack_amount" text="+10" />
+					<Label class="level_pack_label" text="#bp_levels_suffix" />
+					<Panel class="level_pack_price_row">
+						<Image class="level_pack_price_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+						<Label class="level_pack_price_val" text="100" />
+					</Panel>
+					<Panel class="level_pack_divider" />
+					<Panel class="level_pack_btn">
+						<Label class="level_pack_btn_label" text="#bp_buy_btn" />
+					</Panel>
+				</Panel>
+				<Panel class="level_pack_card level_pack_card_mid" id="LevelPack_25" onmouseactivate="buyLevelPack(25)">
+					<Label class="level_pack_amount" text="+25" />
+					<Label class="level_pack_label" text="#bp_levels_suffix" />
+					<Panel class="level_pack_price_row">
+						<Image class="level_pack_price_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+						<Label class="level_pack_price_val" text="200" />
+					</Panel>
+					<Panel class="level_pack_divider" />
+					<Panel class="level_pack_btn">
+						<Label class="level_pack_btn_label" text="#bp_buy_btn" />
+					</Panel>
+				</Panel>
+				<Panel class="level_pack_card" id="LevelPack_50" onmouseactivate="buyLevelPack(50)">
+					<Label class="level_pack_amount" text="+50" />
+					<Label class="level_pack_label" text="#bp_levels_suffix" />
+					<Panel class="level_pack_price_row">
+						<Image class="level_pack_price_icon" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+						<Label class="level_pack_price_val" text="400" />
+					</Panel>
+					<Panel class="level_pack_divider" />
+					<Panel class="level_pack_btn">
+						<Label class="level_pack_btn_label" text="#bp_buy_btn" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="BuyLevels_close_btn" onmouseactivate="buyLevelsClose()">
+				<Label id="BuyLevels_close_label" text="#bp_cancel" />
+			</Panel>
+		</Panel>
+		<Panel class="BuyControl" id="BuyControl">
+			<Label id="item_buy_label" html="true" text="#accept_buy_bp" />
+			<Label id="item_buy_label2" html="true" text="#accept_buy_bp_desc" />
+			<Panel class="buy_button" id="don_button" onmouseactivate="buy(&apos;coins&apos;)">
+				<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+				<Label class="DNMoneyLabel" id="DNMoneyLabel" text="100" html="true" />
+			</Panel>
+			<Panel class="buy_button" id="rp_button" onmouseactivate="buy(&apos;rp&apos;)">
+				<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+				<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="5000" html="true" />
+			</Panel>
+			<Panel class="buy_button" id="close_button" onmouseactivate="buy_control_close()">
+				<Label class="close_button_label" id="close_button_label" text="#close" html="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

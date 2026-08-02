@@ -1,0 +1,140 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_blob_jump_lua"
+    {
+		"BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_IDLE_RARE"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.5"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+			"radius"                   	"225"
+			"stun_duration"            	"1.1"
+			"land_damage"              	"1500"
+			"diff_boost_damage"			"150"
+        }
+    }
+
+	"creep_blob_die_spawn_lua"
+	{
+		"BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "spawn"
+        "ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"500"
+
+		"AbilityValues"
+        {
+			"radius"                   	"500"
+			"duration"            		"5"
+			"miss"              		"75"
+			"count"						"4"
+        }
+	}
+
+	"creep_blob_mana_burn_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityValues"
+		{
+			"mana_per_hit"              "50"
+			"damage_per_burn"           "1"
+		}
+	}
+
+	"creep_waveform_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"              "1000"
+		"AbilityCooldown"               "11"
+		"AbilityManaCost"               "100"
+
+		"AbilityValues"
+		{
+			"speed"             		"1250"
+			"width"             		"200"
+			"damage"            		"2000"
+			"diff_boost_damage"			"200"
+		}
+	}
+
+	"creep_water_heal"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityValues"
+		{
+			"regen_per_stack"           "0.3"
+			"attackspeed_per_stack"     "1"
+			"hp_threshold_pct"          "90"
+		}
+	}	
+
+    "creep_torrent_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"             "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"            "kunkka_torrent"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.4"
+        "AbilityCooldown"               "7"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+			"delay"                 "1.6"
+			"radius"                "225"
+			"damage"                "3000"
+			"diff_boost_damage"		"300"
+			"stun_duration"         "1.6"
+        }
+    }
+
+	"creep_undercurrent_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_6/zone_6"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            ""
+		"AbilityCastRange"              "600"
+		
+		"AbilityValues"
+		{
+			"radius"                	"600"
+			"turn_rate_slow"        	"80"
+			"resistance"      			"20"
+		}
+	}
+
+}

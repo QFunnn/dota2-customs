@@ -1,0 +1,181 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"spectre_step"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/hero_spectre"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"spectre_spectral_dagger"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"90"	
+
+		"AbilityValues"
+		{
+			"attackspeed_bonus"		
+			{
+				"value"								"20 40 60 80"
+				"special_bonus_unique_spectre_3"	"+30"
+			}	
+			"duration"				
+            {
+				"value"								"5"
+				"special_bonus_unique_spectre_2"	"+3"
+			}
+            "damage"
+            {
+				"value"								"50 100 150 200"
+				"special_bonus_unique_spectre_1"	"+50"
+			}                              	
+		}
+	}
+
+    "spectre_desolate_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/hero_spectre"
+		"AbilityTextureName"			"spectre_desolate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+		"AbilityValues"
+		{
+			"bonus_damage"
+			{
+				"value"								"5 10 15 20"
+				"special_bonus_unique_spectre_5"	"+10"
+			}	
+		}
+	}
+
+    "spectre_dispersion_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_spectre/hero_spectre"
+		"AbilityTextureName"            "spectre_dispersion"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"500"
+
+		"AbilityValues"
+		{
+            "radius"                                "500"
+			"damage_reflection_pct"			
+			{
+				"value"								"6 12 18 24"
+				"special_bonus_unique_spectre_6"	"+12"
+			}
+			"damage_release_interval"				"5"
+		}
+	}
+
+    "spectre_haunt_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spectre/hero_spectre"
+		"AbilityTextureName"			"spectre_haunt"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"LinkedAbility"					"spectre_reality_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"				"0.15"
+		"AbilityCooldown"				"70 60 50"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"illusion_duration"	                        "20 30 40"
+            "illusion_outgoing_damage"	                
+            {
+				"value"								"60 70 80"
+				"special_bonus_unique_spectre_7"	"+20"
+			}
+            "illusion_incoming_damage"	                "100"
+            "count"
+            {
+				"value"								"1"
+				"special_bonus_unique_spectre_8"	"+1"
+			}                                          
+		}
+	}
+	
+	"spectre_reality_lua"
+    {
+        "BaseClass"                 "ability_lua"
+        "ScriptFile"                "heroes/hero_spectre/hero_spectre"
+        "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"        "spectre_reality"
+        "LinkedAbility"              "spectre_haunt_lua"
+    }
+
+    "special_bonus_unique_spectre_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_spectre_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_spectre_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+
+}

@@ -1,0 +1,857 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.TradeWindowRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TradeMainPanel
+{
+	width: 1450px;
+	height: 850px;
+	align: center center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-size: 100% 100%;
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+	flow-children: down;
+}
+
+#TradeHeader
+{
+	width: 100%;
+	height: 72px;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-bottom: 1px solid #3a4a5a;
+	flow-children: right;
+	padding: 0 30px;
+}
+
+.TabButtons
+{
+	flow-children: right;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.TabBtn .RadioBox
+{
+	visibility: collapse;
+}
+
+.TabBtn
+{
+	height: 100%;
+	min-width: 180px;
+	border-bottom: 4px solid transparent;
+	transition-property: background-color, border-bottom;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.TabBtn:hover Label
+{
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px rgba(137, 226, 255, 0.5);
+}
+
+.TabBtn:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.6)), to(rgba(20, 30, 45, 0.5)));
+}
+
+.TabBtn Label
+{
+	align: center center;
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+}
+
+.CloseButton
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 70%;
+	background-position: center;
+	horizontal-align: right;
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	wash-color: none;
+}
+
+.CloseButton:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#TradeBody
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+}
+
+.SubPage
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	flow-children: right;
+}
+
+.SubPage.visible
+{
+	visibility: visible;
+}
+
+#MarketSidebar
+{
+	width: 320px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	flow-children: down;
+	padding: 20px;
+	border-right: 1px solid #3a4a5a;
+}
+
+.SidebarHeader
+{
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-bottom: 12px;
+	text-transform: uppercase;
+	horizontal-align: center;
+}
+
+.CategoryList
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 24px;
+}
+
+.tab_sort
+{
+	width: 100%;
+	padding: 10px 15px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.6)), to(rgba(20, 30, 45, 0.5)));
+	border: 1px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	transition: transform 0.3s ease 0s;
+}
+
+.tab_sort:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.tab_text
+{
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.selected
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+}
+
+.selected_tab
+{
+	border-bottom: 4px solid rgba(100, 181, 246, 0.6);
+	background-size: 100% 100%;
+}
+
+#MarketContent
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+}
+
+.ItemsGrid,.content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	padding: 20px;
+}
+
+.content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	align: center center;
+	padding: 10px;
+	padding-left: 30px;
+}
+
+.ItemCardContainer
+{
+	width: 155px;
+	margin: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	flow-children: down;
+	transition: transform 0.2s ease 0s;
+}
+
+.ItemCardContainer:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	transform: translateY(-4px);
+}
+
+.ItemImage
+{
+	width: 120px;
+	height: 100px;
+	align: center top;
+	margin: 5px;
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ItemInfo
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ItemName
+{
+	font-size: 16px;
+	color: #e1e1e1;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+}
+
+.SellerAvatar
+{
+	width: 32px;
+	height: 32px;
+	margin-top: 4px;
+	horizontal-align: center;
+}
+
+.DateLabel
+{
+	font-size: 12px;
+	color: white;
+	width: 100%;
+	text-align: center;
+}
+
+.PriceArea
+{
+	width: 100%;
+	vertical-align: bottom;
+}
+
+.BuyButton
+{
+	width: 100%;
+	margin: 5px;
+	flow-children: down;
+	padding: 4px 0;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 4px;
+}
+
+.BuyButton:hover
+{
+	brightness: 1.6;
+}
+
+.PriceRow
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.GoldIcon
+{
+	width: 14px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16.png");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.PriceText
+{
+	color: #ffd700;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 4px;
+	margin-right: 6px;
+	text-shadow: 0px 0px 4px black;
+	vertical-align: center;
+}
+
+.LabelBuyText
+{
+	color: #e5e0c5;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	horizontal-align: center;
+}
+
+ToggleButton .TickBox,CycleButton .TickBox,DOTASettingsCheckbox .TickBox,.CheckBox .TickBox
+{
+	background-image: none;
+	background-color: none;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+ToggleButton:hover .TickBox,CycleButton:hover .TickBox,DOTASettingsCheckbox:hover .TickBox,.CheckBox:hover .TickBox
+{
+	background-image: none;
+	background-color: none;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+ToggleButton:selected .TickBox,CycleButton:selected .TickBox,DOTASettingsCheckbox:selected .TickBox,.CheckBox:selected .TickBox
+{
+	background-image: none;
+	background-color: none;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+ToggleButton:focus .TickBox,.CheckBox:focus .TickBox
+{
+	background-image: none;
+	background-color: none;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+.CheckBox
+{
+	margin: 4px;
+	width: 28px;
+	height: 28px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(20, 30, 45)), to(rgb(15, 22, 35)));
+	border: 1px solid rgba(60, 80, 110, 0.8);
+	border-radius: 4px;
+	transition-property: background-color, border, box-shadow, brightness;
+	transition-duration: 0.1s;
+}
+
+.CheckBox:hover
+{
+	border-color: rgb(80, 110, 130);
+}
+
+ToggleButton:selected .TickBox,CycleButton:selected .TickBox,DOTASettingsCheckbox:selected .TickBox,.CheckBox:selected .TickBox
+{
+	background-image: none;
+	background-color: white;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+
+.LoadingOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	visibility: collapse;
+}
+
+.FilterScroll
+{
+	width: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.FilterSubTitle
+{
+	color: #e5e0c5;
+	font-size: 14px;
+	margin-top: 15px;
+	text-transform: uppercase;
+}
+
+.FilterRow
+{
+	flow-children: right;
+	width: 100%;
+}
+
+.StatsGrid
+{
+	flow-children: right-wrap;
+	width: 100%;
+}
+
+#trade_panel_sell
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+	padding: 20px;
+}
+
+.InventoryGrid
+{
+	width: 562px;
+	height: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(60, 80, 110, 0.3);
+	border-radius: 8px;
+}
+
+.inventory_slot
+{
+	width: 82px;
+	height: 82px;
+	margin: 4px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(60, 80, 110, 0.3);
+	border-radius: 4px;
+	transition-property: border, background-color, transform;
+	transition-duration: 0.1s;
+}
+
+.inventory_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.5);
+	background-color: rgba(40, 60, 80, 0.3);
+	transform: scale3d(1.05, 1.05, 1.0);
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 95%;
+}
+
+.sell_snippet_root
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.SellActionArea
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+	margin-left: 20px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.sell_item_panel
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+}
+
+.sell_item_panel_name
+{
+	width: 100%;
+	text-align: center;
+	font-size: 26px;
+	color: #e5e0c5;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: -8px;
+	margin-bottom: 30px;
+}
+
+.sell_item_panel_image
+{
+	width: 120px;
+	height: 120px;
+	horizontal-align: center;
+	z-index: 2;
+}
+
+.sell_item_panel_image_back
+{
+	width: 160px;
+	height: 160px;
+	horizontal-align: center;
+	margin-top: -140px;
+	z-index: 1;
+	opacity: 0.3;
+}
+
+.sell_item_panel_base
+{
+	width: 100%;
+	text-align: center;
+	color: #ffd700;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+#SourceValueLine
+{
+	width: 100%;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0.1);
+	margin: 10px 0;
+}
+
+.sell_item_panel_bonus
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.bonus_label
+{
+	color: #99ff99;
+	horizontal-align:center;
+}
+
+.sell_item_panel_desc
+{
+	width: 100%;
+	flow-children: down;
+	padding: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(15, 26, 42, 0.9)));
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+	vertical-align: bottom;
+	margin-top: 10px;
+}
+
+#buy_text_input
+{
+	width: 50%;
+	height: 34px;
+	background-color: rgba(0, 0, 0, 0.9);
+	border: 1px solid #4a5a6a;
+	border-radius: 4px;
+	color: #ffd700;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 4px;
+	horizontal-align: center;
+	transition-property: border, box-shadow;
+	transition-duration: 0.2s;
+}
+
+#buy_text_input:focus
+{
+	border: 1px solid #5aa2ff;
+	box-shadow: fill #5aa2ff11 0px 0px 12px 0px;
+}
+
+#sell_item_panel_input_hint
+{
+	width: 100%;
+	text-align: center;
+	color: #b0bfc9;
+	font-size: 14px;
+	margin-top: 6px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+#sell_item_panel_input_hint.input_hint_error
+{
+	color: #e05050;
+}
+
+#sell_item_panel_price
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+#sell_item_panel_price_image
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin-left: 10px;
+}
+
+#sell_item_panel_price_label,#sell_item_panel_price_label_desc
+{
+	font-size: 28px;
+	color: #ffd700;
+	font-weight: bold;
+	vertical-align: center;
+	text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+}
+
+#sell_item_panel_desc_button
+{
+	width: 100%;
+	height: 64px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	box-shadow: fill rgba(0, 0, 0, 0.4) 0px -2px 4px 0px inset;
+	transition-property: brightness, transform;
+	transition-duration: 0.1s;
+}
+
+#sell_item_panel_desc_button:hover
+{
+	brightness: 1.6;
+	transform: scale3d(1.01, 1.01, 1.0);
+}
+
+#sell_item_panel_desc_button:active
+{
+	brightness: 0.8;
+	transform: scale3d(0.99, 0.99, 1.0);
+}
+
+#sell_item_panel_desc_button.sell_button_disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#333333));
+	brightness: 0.6;
+}
+
+#sell_item_panel_desc_button.sell_button_disabled:hover
+{
+	brightness: 0.6;
+	transform: none;
+}
+
+#sell_item_panel_desc_button #sell_item_panel_desc_button_label
+{
+	align: center center;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 0px;
+}
+
+#sell_item_panel_desc_loading
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	visibility: collapse;
+}
+
+#trade_panel_order
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#trade_panel_order_container
+{
+	overflow: scroll;
+}
+
+#trade_panel_order_container > #VerticalScrollBar
+{
+	width: 0px;
+}
+
+.OrderStats
+{
+	width: 100%;
+	flow-children: right;
+	padding: 10px 20px;
+	background-color: rgba(0, 0, 0, 0.4);
+	margin-bottom: 5px;
+}
+
+.OrderStats Label
+{
+	color: #e1e1e1;
+	font-size: 20px;
+	margin-right: 40px;
+	text-transform: uppercase;
+}
+
+.trade_panel_element
+{
+	width: 218px;
+	margin: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	flow-children: down;
+	transition: transform 0.2s ease 0s;
+}
+
+.trade_panel_element:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	transform: translateY(-4px);
+}
+
+#trade_panel_element_image
+{
+	width: 120px;
+	height: 120px;
+	horizontal-align: center;
+	margin-top: 5px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#trade_panel_element_item_name
+{
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	margin-top: 5px;
+}
+
+#trade_panel_element_item_seller
+{
+	padding: 0 4px;
+	white-space: nowrap;
+}
+
+#name_data
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+#name_data_label
+{
+	font-size: 14px;
+	color: #b8b8b8;
+	horizontal-align: center;
+}
+
+#trade_panel_element_item_price
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+}
+
+#trade_panel_element_item_price_image
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16.png");
+	background-size: contain;
+}
+
+.trade_panel_element_item_price_count
+{
+	color: #f39c12;
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+.trade_panel_element_items_orders_sold,.trade_panel_element_items_orders_expired,.trade_panel_element_items_orders_active
+{
+	width: 100%;
+	flow-children: down;
+	padding: 5px 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	vertical-align: bottom;
+}
+
+.trade_panel_element_items_orders_expired_btn,.trade_panel_element_items_orders_active_btn
+{
+	width: 100%;
+	height: 32px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 1px solid rgba(53, 163, 22, 0.1);
+	margin-top: 5px;
+}
+
+.trade_panel_element_items_orders_expired_btn:hover,.trade_panel_element_items_orders_active_btn:hover
+{
+	brightness: 1.5;
+}
+
+.trade_panel_element_items_orders_sold Label
+{
+	color: #2ecc71;
+	horizontal-align: center;
+	font-weight: bold;
+}
+
+.trade_panel_element_items_orders_active_label
+{
+	color: #3498db;
+	horizontal-align: center;
+}
+
+.trade_panel_element_items_orders_expired_label
+{
+	color: #e67e22;
+	horizontal-align: center;
+}
+
+.trade_panel_element_items_orders_active_btn_label,.trade_panel_element_items_orders_expired_btn_label
+{
+	color: white;
+	horizontal-align: center;
+	vertical-align: center;
+	text-transform: uppercase;
+	font-size: 15px;
+}

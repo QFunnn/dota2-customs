@@ -1,0 +1,225 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#PlayerTipButton
+{
+	background-color: gradient(linear, 50% 0%, 50% 100%, from(#423621), to(#1a1e22));
+	border-top: 1px solid #76716b;
+	border-left: 1px solid #5c5750;
+	border-right: 1px solid #392f1b;
+	border-bottom: 1px solid #0d1115;
+	margin-left: 6px;
+	margin-top: 70px;
+	overflow: clip;
+	width: 56px;
+	height: 20px;
+	min-width: 0px;
+	min-height: 0px;
+	horizontal-align: center;
+	flow-children: right;
+	opacity: 0;
+	transition-property: brightness;
+	transition-duration: 0.06s;
+	transition-timing-function: ease-out;
+	box-shadow: #feb300 0px 0px 5px -1px;
+	brightness: 1.0;
+}
+
+#PlayerTipButton:hover
+{
+	brightness: 2;
+}
+
+#PlayerTipButton.OnCooldown,#PlayerTipButton.NoActiveTip
+{
+	brightness: 0.3;
+}
+
+#PlayerTipButton.OnCooldown:hover,#PlayerTipButton.NoActiveTip:hover
+{
+	brightness: 0.4;
+}
+
+.AltPressed #PlayerTipButton
+{
+	opacity: 1;
+}
+
+#PlayerTipButton .TipText
+{
+	width: 100%;
+	font-size: 15px;
+	text-shadow: 2px 2px 4px black;
+	letter-spacing: 2px;
+	font-family: defaultFont;
+	vertical-align: center;
+	text-align: center;
+	margin-bottom: 5px;
+	color: #feb300;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#PlayerTipButton.OnCooldown .TipText
+{
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+#PlayerTipToastsContainer
+{
+	margin-top: 220px;
+	horizontal-align: right;
+	height: fit-children;
+	transition-property: transform;
+	transition-timing-function: ease-out;
+	transition-duration: 0.51s;
+	flow-children: up;
+	height: 448px;
+	overflow: noclip;
+}
+
+#PlayerTipToastContainer
+{
+	background-color: gradient(linear, 50% 0%, 50% 100%, from(#242424), to(#0f0f0f));
+	border-left: 2px solid #444444;
+	border-top: 2px solid #444444;
+	border-bottom: 2px solid #444444;
+	background-size: cover;
+	height: 115px;
+	width: 325px;
+	margin-bottom: 5px;
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+	opacity: 0.0;
+	transform: translateX(198px);
+	horizontal-align: right;
+	transition-property: position, opacity, transform;
+	transition-duration: 0.3s;
+}
+
+#PlayerTipToastContainer.IsVisisble
+{
+	opacity: 1.0;
+	transform: none;
+}
+
+#PlayerTipToastContainer .SourceHeroContainer,#PlayerTipToastContainer .TargetHeroContainer
+{
+	width: 82px;
+	height: 100%;
+	flow-children: down;
+}
+
+#PlayerTipToastContainer .SourceHeroContainer
+{
+	margin-left: 20.5px;
+}
+
+#PlayerTipToastContainer .TargetHeroContainer
+{
+	margin-left: 10px;
+}
+
+#PlayerTipToastContainer .SourceHeroContainer .TipHeroImage,#PlayerTipToastContainer .TargetHeroContainer .TipHeroImage
+{
+	width: 82px;
+	height: 44.2px;
+	margin-top: 25px;
+	box-shadow: #feb300 0px 0px 5px -1px;
+}
+
+#PlayerTipToastContainer .SourceHeroContainer .TipHeroLabel,#PlayerTipToastContainer .TargetHeroContainer .TipHeroLabel
+{
+	text-overflow: ellipsis;
+	font-size: 16px;
+	color: #e7ddcb;
+	margin-top: 5px;
+	horizontal-align: middle;
+	text-shadow: 0px 0px 3px 1 #b77528bb;
+	width: 100%;
+	text-align: center;
+}
+
+#PlayerTipToastContainer .TipTextContainer
+{
+	margin-left: 10px;
+	width: 100px;
+	height: 100%;
+	flow-children: down;
+}
+
+#PlayerTipToastContainer .TipTextContainer .TipImage
+{
+	width: 64px;
+	height: 64px;
+	margin-top: 13px;
+	horizontal-align: center;
+}
+
+#PlayerTipToastContainer .TipTextContainer .TipLabel
+{
+	margin-top: 4px;
+	margin-left: 3px;
+	horizontal-align: middle;
+	text-align: center;
+	color: #dedede;
+	text-transform: uppercase;
+	font-size: 17px;
+}
+
+#QuickSelectTipMenu
+{
+	width: 204px;
+	max-height: 124px;
+	background-image: url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: repeat;
+	background-size: 100%;
+}
+
+#QuickSelectTipMenuInner
+{
+	width: 100%;
+	height: fit-children;
+	padding-bottom: 3px;
+	flow-children: right-wrap;
+	overflow: clip scroll;
+}
+
+.SelectTipButton
+{
+	width: 64px;
+	height: 46px;
+	margin-top: 3px;
+	margin-left: 3px;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	border: 0.6px solid black;
+	brightness: 0.9;
+}
+
+.SelectTipButton > Image
+{
+	padding: 1px;
+	width: 100%;
+	height: 100%;
+}
+
+.SelectTipButton:hover
+{
+	brightness: 1.5;
+}
+
+.ScrollThumb
+{
+	visibility: collapse;
+}

@@ -1,0 +1,216 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+	"dado_storm_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/hero_dado"
+		"AbilityTextureName"			"blast"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityManaCost"				"80 100 120 140"
+		
+		"AbilityValues"
+		{
+			"jump_count"			
+			{
+				"value"							"2 3 4 5"
+				"special_bonus_unique_dado_1"	"+3"
+			}
+			"radius"				"475"
+			"jump_delay"			"0.15"
+			"dmg"
+			{
+				"value"							"4 8 12 16"
+				"special_bonus_unique_dado_5"	"+8"
+			}
+		}
+	}
+	
+	"dado_tp_in"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/hero_dado"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"portal"
+		"AbilityCastRange"				"700"
+		"LinkedAbility"					"dado_tp_out"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"150"		
+
+		"AbilityValues"
+		{
+			"dur"						"60 120 180 240"
+			"mana"					
+			{
+				"value"							"200 400 600 800"
+				"special_bonus_unique_dado_2"	"+400"
+			}	
+		}
+	}
+	
+	"dado_tp_out"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dado/hero_dado"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"portal2"
+		"AbilityCastRange"				"100"
+		"MaxLevel"						"1"
+		"LinkedAbility"					"dado_tp_in"
+		"AbilityManaCost"				"150"		
+		"AbilityCooldown"				"5"
+	}
+			
+ 	"dado_ampl"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                   	"heroes/hero_dado/hero_dado"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" 			"backpas"
+		"AbilityValues"
+		{
+			"attack_spill"
+			{
+				"value"							"0.1 0.2 0.3 0.4"
+				"special_bonus_unique_dado_8"	"+0.3"
+			}	
+			"attack_life"
+			{
+				"value"							"8 7 6 5"
+				"special_bonus_unique_dado_3"	"-3"
+			}			
+		}
+    }
+
+	"dado_passive"
+	{
+		"BaseClass"             "ability_lua"
+		"ScriptFile"            "heroes/hero_dado/hero_dado"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    "passi"
+		"MaxLevel"				"1"
+		
+		"AbilityValues"
+		{
+			"range"    			"200"
+		}
+	}
+
+	"dado_field"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"heroes/hero_dado/hero_dado"
+		"AbilityTextureName" 					"ul"
+		"AbilityType"							"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"					"SPELL_DISPELLABLE_YES"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"						"0.3"
+		"AbilityCastRange"						"700"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityValues"
+		{
+			"AbilityCharges"
+			{
+				"value"                         "1"
+				"special_bonus_unique_dado_6"   "+2"
+			}
+			"AbilityChargeRestoreTime"
+			{
+				"value"                         "90"
+				"special_bonus_unique_dado_7"   "-45"
+			}			
+			"radius"							"50"
+			"dot_interval"						"0.2"
+			"dot_damage"
+			{
+				"value"							"30 60 90"
+				"special_bonus_unique_dado_4"	"+60"
+			}	
+			"duration"							"5"
+			"maxradius"							"400"
+			"dot_damage_max"				
+			{
+				"value"							"90 180 270"
+				"special_bonus_unique_dado_4"	"+180"
+			}	
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+	}
+
+
+	"special_bonus_unique_dado_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_dado_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dado_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

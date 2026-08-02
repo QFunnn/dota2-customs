@@ -1,0 +1,72 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"techies_remote_mines_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"techies_remote_mines"
+		"ScriptFile"					"heroes/hero_techies/techies_remote_mines/spell_remote_mines.lua"
+		"AbilityCastPoint"				"1.0"
+		"FightRecapLevel"				"0"
+		"AbilityCooldown"				"8 6 4"
+		"AbilityManaCost"				"100 140 180"
+		"MaxLevel"						"3"
+
+
+		"AbilityValues"
+	{
+		"damage"	"400 500 600"
+			"radius"	"425"		
+			"duration"	"120 240 360"
+			"cast_range_tooltip"	"500"				
+			"damage_scepter"	"450 600 750"
+			"vision_radius"	"500"
+			"vision_duration"	"3.0"
+	}
+	}
+"techies_remote_mines_self_detonate_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"FightRecapLevel"				"0"
+		"AbilityCastRange"				"0"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"techies_remote_mines_self_detonate"
+		"ScriptFile"					"heroes/hero_techies/techies_remote_mines/spell_remote_mines.lua"
+
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	}
+"techies_focused_detonate_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityTextureName"			"techies_focused_detonate"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"ScriptFile"					"heroes/hero_techies/techies_remote_mines/spell_remote_mines.lua"
+
+		"AbilityValues"
+	{
+		"radius"	"400"
+	}
+	}
+}

@@ -1,0 +1,190 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"abaddon_mist_coil_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/hero_abaddon"
+		"AbilityTextureName"			"abaddon_death_coil"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.25"
+
+		"AbilityCooldown"				"6.5 6.0 5.5 5.0"
+		"AbilityManaCost"				"50 55 60 65"
+
+		"AbilityValues"
+		{		
+			"self_damage"
+			{
+				"value"								"40"
+			}
+			"damage"
+			{
+				"value"								"100 150 200 250"
+				"special_bonus_unique_abaddon_lua_3"	"+100"
+			}	
+			"missile_speed"			"1600"
+		}
+	}
+
+"abaddon_aphotic_shield_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/hero_abaddon"
+		"AbilityTextureName"			"abaddon_aphotic_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Abaddon.AphoticShield.Cast"
+		
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.4"
+		
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityManaCost"				"95 110 125 140"
+
+		"AbilityValues"
+		{
+			"duration"				"10"
+			"damage_absorb"
+			{
+				"value"								"100 200 300 400"
+				"special_bonus_unique_abaddon_lua_4"	"+300"
+			}	
+			"radius"				"500"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	
+"abaddon_curse_of_avernus_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/hero_abaddon"
+		"AbilityTextureName"			"abaddon_frostmourne"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		
+		"AbilityValues"
+		{
+			"duration"					"3"
+			"movement_speed"			"10 15 20 25"
+			"hit_count"
+			{
+				"value"								"4"
+				"special_bonus_unique_abaddon_lua_5"	"-1"
+			}	
+			"lifesteal"					
+			{
+				"value"								"15 30 45 60"
+				"special_bonus_unique_abaddon_lua_1"	"15"
+			}	
+			"bonus_as"					
+			{
+				"value"								"15 30 45 60"
+				"special_bonus_unique_abaddon_lua_2"	"15"
+			}	
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}	
+	
+"abaddon_borrowed_time_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/hero_abaddon"
+		"AbilityTextureName"			"abaddon_borrowed_time"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Abaddon.BorrowedTime"
+
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastGestureSlot"		"ABSOLUTE"
+
+		"AbilityCooldown"				"50 45 40"
+
+		"AbilityValues"
+		{
+			"hp_threshold"				"400"
+			"duration"
+			{
+				"value"								"4 5 6"
+				"special_bonus_unique_abaddon_lua_6"	"+1"
+			}	
+		}
+	}
+
+	"special_bonus_unique_abaddon_lua_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_abaddon_lua_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_abaddon_lua_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

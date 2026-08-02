@@ -1,0 +1,58 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/player_booster_service.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/order_confirmation_hud.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/order_confirmation_hud.js" />
+	</scripts>
+	<Panel class="root2" hittest="false" style="height: 100%; width: 100%;">
+		<Panel class="order-confirmation-overlay" id="order_confirmation_overlay">
+			<Panel class="order-confirmation-modal">
+				<Panel class="confirmation-header">
+					<Label class="confirmation-title" text="ПОДТВЕРЖДЕНИЕ ЗАКАЗА" />
+				</Panel>
+				<Panel class="confirmation-content">
+					<Panel class="booster-info-section">
+						<DOTAAvatarImage id="confirmation_avatar" class="confirmation-avatar" steamid="76561198146952643" />
+						<Panel class="booster-info-text">
+							<DOTAUserName id="confirmation_booster_name" class="confirmation-booster-name" steamid="76561198146952643" />
+							<Label id="confirmation_booster_stats" class="confirmation-booster-stats" text="&lt;font color=&apos;#00FF00&apos;&gt;42 заказов&lt;/font&gt; выполнено" html="true" />
+						</Panel>
+					</Panel>
+					<Label class="confirmation-message" text="Деньги будут заморожены. Исполнитель получит их только в случае победы в игре. В случае лива одного из участников сделки или проигрыша деньги будут возвращены." />
+					<Panel class="order-details-section">
+						<Panel class="order-detail-row">
+							<Label class="order-detail-label" text="Сложность:" />
+							<Label id="confirmation_difficulty" class="order-detail-value" text="20" />
+						</Panel>
+						<Panel class="order-detail-row total-row">
+							<Label class="order-detail-label" text="Цена:" />
+							<Label id="confirmation_total" class="order-detail-value total-amount" text="100" />
+						</Panel>
+					</Panel>
+					<Panel class="confirmation-actions">
+						<Button class="button reject-button" id="reject_order_button">
+							<Label class="button-text" text="ОТКЛОНИТЬ" />
+						</Button>
+						<Button class="button confirm-order-button" id="confirm_order_button">
+							<Label class="button-text" text="ПОДТВЕРДИТЬ" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

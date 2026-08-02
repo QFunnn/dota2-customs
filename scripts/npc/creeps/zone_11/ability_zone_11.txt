@@ -1,0 +1,189 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_sun_nova_lua"
+    {
+        "BaseClass"           			"ability_lua"
+        "ScriptFile"					"abilities/creeps/zone_11/zone_11"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "AbilityTextureName"            "phoenix_super_nova"
+        "AbilityCooldown"               "18"
+        "AbilityCastRange"				"900"
+        "AbilityValues"
+        {
+            "duration_sun"					"5"
+            "max_attack"				    "15"
+            "hp_start"                      "25"
+            "aura_radius"				    "800"
+            "damage_per_sec"			    "2000"
+            "diff_boost_damage"             "200"
+            "cast_range"				    "900"
+            "stun_duration"				    "2"
+        }	
+    }	
+        
+    "creep_telekines_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"abilities/creeps/zone_11/zone_11"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"			"rubick_telekinesis"
+        "AbilityCooldown"				"15"
+        "AbilityCastRange"				"700"
+
+        "AbilityValues"
+        {
+            "damage"					"1500"
+            "diff_boost_damage"         "150"
+            "duration"					"3"
+            "range"						"750"
+            "fall_animation"			"0.2"
+            "lift_animation"			"0.2"
+            "max_height"				"325"
+            "ally_cooldown"				"0.5"
+        }
+    }
+
+    "creep_black_hole_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+        "AbilityTextureName"            "enigma_black_hole"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "30"
+        "AbilityManaCost"               "300"
+
+        "AbilityValues"
+        {
+            "duration"              "4.0"
+            "radius"                "420"
+            "damage_per_tick"       "1000"
+            "diff_boost_damage"     "100"
+        }
+    }
+
+    "creep_lighting_bolt_lua"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"            "zuus_lightning_bolt"
+        "AbilityCastPoint"              "0.4"
+        "AbilityCooldown"               "6"
+
+        "AbilityValues"
+        {
+            "bolt_count"                "5"
+            "range_step"                "150"
+            "radius_per_bolt"           "200"
+            "damage"                    "2500"
+            "diff_boost_damage"         "250"
+            "stun_duration"             "0.2"
+            "spread_angle"              "60"
+        }
+    }
+
+    "creep_thundergods_wrath_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"            "zuus_thundergods_wrath"
+		"AbilitySound"                  "Hero_Zuus.GodsWrath"
+		"AbilityCastPoint"              "0.4"
+		"AbilityCooldown"               "20"
+		"AbilityManaCost"				"300"
+		"AbilityCastRange"				"600"
+
+		"AbilityValues"
+		{
+			"damage"                    "2500"
+            "diff_boost_damage"         "250"
+            "radius"                    "1000"
+		}
+	}
+
+    "creep_thunder_strike_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+        "AbilityTextureName"            "disruptor_thunder_strike"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "600"
+        "AbilityCooldown"               "9"
+        "AbilityManaCost"               "130"
+
+        "AbilityValues"
+        {
+            "duration"              "5"
+            "strike_interval"       "1"
+            "radius"                "300"
+            "damage"                "2000"
+            "diff_boost_damage"     "200"
+        }
+    }
+
+    "creep_glimpse_to_caster_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+        "AbilityTextureName"            "disruptor_glimpse"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCastRange"              "1000"
+        "AbilityCooldown"               "15"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+            "travel_time"               "1.5"
+        }
+    }
+
+    "creep_static_storm_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_11/zone_11"
+        "AbilityTextureName"            "disruptor_static_storm"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"              "500"
+        "AbilityCooldown"               "25"
+        "AbilityManaCost"               "125"
+
+        "AbilityValues"
+        {
+            "radius"                "450"
+            "duration"              "5"
+            "damage_max"            "1500"
+            "diff_boost_damage"     "150"
+        }
+    }
+
+}

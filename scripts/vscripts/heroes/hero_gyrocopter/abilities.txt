@@ -1,0 +1,182 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"gyrocopter_rocket_barrage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/hero_gyrocopter"
+		"AbilityTextureName"			"gyrocopter_rocket_barrage"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityCooldown"				"8 7 6 5"
+		"AbilityDuration"				"3"
+		"AbilityManaCost"				"60 70 80 90"
+		"AbilityCastRange"				"700"
+		
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"rockets_per_second"		
+			{
+				"value"					                "10"
+				"special_bonus_unique_gyrocopter_6"		"+10"
+            }
+			"rocket_damage"				
+			{
+				"value"					                "10 15 20 25"
+				"special_bonus_unique_gyrocopter_2"		"+10"
+            }
+			"ballistic_duration"		"3"
+			"sniping_speed"				"2400"
+			"sniping_distance"			"700"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}	
+
+	"gyrocopter_homing_missile_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/hero_gyrocopter"
+		"AbilityTextureName"			"gyrocopter_homing_missile"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"18 15 12 9"
+		"AbilityManaCost"				"90 100 110 120"
+		
+		"AbilityValues"
+		{
+			"launch_radius"				"700"
+			"slow_radius"				"250"
+			"speed"						"500"
+			"damage"					
+			{
+				"value"					                "80 160 240 320"
+				"special_bonus_unique_gyrocopter_1"		"+80"
+            }
+			"stun_duration"				"1.0 1.5 2.0 2.5"
+		}
+	}
+
+	"gyrocopter_flak_cannon_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/hero_gyrocopter"
+		"AbilityTextureName"			"gyrocopter_flak_cannon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Gyrocopter.FlackCannon"
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"50 70 90 110"
+		"AbilityDuration"				"10"
+						
+		"AbilityValues"
+		{
+			"radius"						"900"
+			"max_attacks"					
+			{
+				"value"					                "4 5 6 7"
+				"special_bonus_unique_gyrocopter_5"		"+3"
+            }
+			"projectile_speed"				"800"
+			"fire_rate"						"0.9"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+	"gyrocopter_call_down_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyrocopter/hero_gyrocopter"
+		"AbilityTextureName"			"gyrocopter_call_down"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Gyrocopter.CallDown.Fire"
+		"AbilityCastRange"				"700"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"55 50 45"
+		"AbilityManaCost"				"125 125 125"
+		
+		"AbilityValues"
+		{
+			"slow_duration_first"		"2"
+			"slow_duration_second"		"3"
+			"damage_first"				"250 350 450"
+			"damage_second"				"350 450 550"
+			"slow_first"				"30"
+			"slow_second"				"60"
+			"radius"					"500"
+			"missile_delay_tooltip"		"2"
+		}
+	}
+
+    "special_bonus_unique_gyrocopter_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_gyrocopter_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_gyrocopter_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

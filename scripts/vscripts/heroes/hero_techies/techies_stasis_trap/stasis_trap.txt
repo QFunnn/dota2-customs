@@ -1,0 +1,40 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"techies_stasis_trap_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"				"techies_stasis_trap"
+		"ScriptFile"						"heroes/hero_techies/techies_stasis_trap/stasis_trap.lua"
+        "MaxLevel"						    "4"
+
+		"AbilityCastRange"					"300"
+		"AbilityCastPoint"					"0.2"	
+		"AbilityCooldown"					"14 12 10 8"
+		"AbilityManaCost"					"80"
+
+		"AbilityValues"
+	{
+		"radius"	"300"
+			"activation_delay"	"1"
+			"explosion_delay"	"1"
+			"root_duration"	"1.5"
+			"debuff_armor"	"2 3 4 5"
+			"debuff_resist"	"4 6 8 10"
+	}
+	}
+}

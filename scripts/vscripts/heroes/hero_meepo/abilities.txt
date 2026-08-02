@@ -1,0 +1,194 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "meepo_earthbind_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_meepo/hero_meepo"
+		"AbilityTextureName"			"meepo_earthbind"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.6"
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+        {
+            "radius"                    "650"
+            "duration"	                "1.5 2.0 2.5 3.0"
+            "net_speed"	                "1500"
+            "damage"
+            {
+				"value"					         "40 80 120 160"
+				"special_bonus_unique_meepo_1"    "+40"
+			}
+            "bonus_atr_damage"
+            {
+				"value"					         "10 15 20 25"
+				"special_bonus_unique_meepo_4"    "+15"
+			}
+            "bonus_other_spell_damage"
+            {
+				"value"					         "10 15 20 25"
+				"special_bonus_unique_meepo_3"    "+15"
+			}
+        }
+	}
+
+	"meepo_poof_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_meepo/hero_meepo"
+		"AbilityTextureName"			"meepo_poof"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"12 9 6 3"
+		"AbilityManaCost"				"80"
+
+		"AbilityValues"
+        {
+            "poof_range"	            "600"
+            "damage_radius"	            "300"
+            "damage"	                
+            {
+				"value"					         "75 150 225 300"
+				"special_bonus_unique_meepo_2"    "+100"
+			}
+            "bonus_atr_damage"
+            {
+				"value"					         "10 15 20 25"
+				"special_bonus_unique_meepo_6"    "+15"
+			}
+        }
+	}
+
+    "meepo_ransack_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_meepo/hero_meepo"
+        "AbilityTextureName"			"meepo_ransack"
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+        "AbilityValues"
+        {
+            "steal"	                    
+            {
+                "value"					        "10 20 30 40"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "bonus_atr_damage"
+            {
+				"value"					            "10 15 20 25"
+				"special_bonus_unique_meepo_5"      "+15"
+                "CalculateSpellDamageTooltip"       "0"
+			}
+            "count"                     "10"
+            "as"                        "3 5 7 9"
+            "duration"                  "10"
+        }
+    }
+
+    "meepo_king_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_meepo/hero_meepo"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityType"					"ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"			"meepo"
+        "AbilityCastAnimation"			"ACT_INVALID"
+        "AbilityCooldown"				"80 70 60"
+		"AbilityManaCost"				"100 200 300"
+
+        "AbilityValues"
+        {
+            "bonus_exp"	                "5 10 15"
+            "bonus_dmg"
+            {
+				"value"					         "15 25 35"
+				"special_bonus_unique_meepo_7"    "+15"
+			}
+            "bonus_all"	                
+            {
+				"value"					         "10 20 30"
+				"special_bonus_unique_meepo_8"    "+10"
+			}
+            "model_multiplier"	        "20 35 50"
+            "duration"                  "5 8 11"
+            "disarm"                    "5 10 15"
+        }
+    }
+
+
+
+
+
+
+
+
+    "special_bonus_unique_meepo_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_meepo_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_meepo_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

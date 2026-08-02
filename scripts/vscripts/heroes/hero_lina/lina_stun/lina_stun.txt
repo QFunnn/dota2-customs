@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"lina_stun"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lina/lina_stun/lina_stun"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"lina_light_strike_array"	
+		"MaxLevel"						"4"
+
+		"AbilityCooldown"				"10"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.4"
+		"AbilityManaCost"				"100 130 160 190"
+
+		"AbilityValues"
+		{
+			"damage"				
+			{
+				"value"					"80 120 160 200"
+				"LinkedSpecialBonus"	"special_bonus_lina_2"
+			}
+			"distance"				"800"
+			"radius"				"225"
+			"points"
+			{
+				"value"					"1"
+				"LinkedSpecialBonus"	"special_bonus_lina_6"
+			}
+			"duration"				"1.0"
+			"delay"					"0.3"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}	

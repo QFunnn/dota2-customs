@@ -1,0 +1,141 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "boss_tiny_shifting_quake_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/tiny/tiny"
+        "AbilityTextureName"            "sandking_epicenter"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityManaCost"               "300"
+        "AbilityCooldown"               "20"
+        "AbilityCastPoint"              "0.6"
+        "AbilityCastRange"              "1000"
+
+        "AbilityValues"
+        {
+            "damage"                    "1000"
+            "diff_boost_damage"         "150"
+            "distance"                  "1000"
+            "radius"                    "350"
+            "points"                    "5"
+            "duration"                  "1.0"
+            "interval"                  "0.3"
+            "delay"                     "0.5"
+        }
+    }
+
+	"boss_tiny_gavnina_lua"
+	{
+		"AbilityTextureName"     		"tusk_snowball"
+	  	"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/bosses/tiny/tiny"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityCooldown"               "16"
+        "AbilityCastRange"              "600"
+		
+		"AbilityValues"
+		{
+			"delay"				    "1.3"
+			"area_of_effect"		"175"
+			"damage"			    "1000"
+            "diff_boost_damage"     "150"
+			"radius"				"600"
+			"interval"				"0.5"
+		}	
+	}
+
+    "boss_tiny_stone_wall_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"					"abilities/bosses/tiny/tiny"
+        "AbilityTextureName"			"geocron_stone_wall"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+        "AbilityCooldown"               "12"
+        "AbilityCastRange"              "800"
+        
+        "AbilityValues"
+        {
+            "radius"                    "800"
+            "duration"                  "5"    
+            "count"                     "8"
+            "damage"			        "1000"
+            "diff_boost_damage"         "150"
+            "stun_duration"             "1"
+        }
+    }
+
+    "boss_tiny_stone_spire_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/tiny/tiny"
+        "AbilityTextureName"            "skeletal"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "50"
+        "AbilityCastRange"              "500"
+
+        "AbilityValues"
+        {
+            "duration"                  "20"
+            "spawn_distance"            "500"
+            "count"                     "4"
+        }
+    }
+
+    "boss_tiny_shifting_quake_minion_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/tiny/tiny"
+        "AbilityTextureName"            "earthshaker_aftershock"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "400"
+        
+        "AbilityValues"
+        {
+            "interval"                  "2.0"
+            "radius"                    "400"
+            "damage"                    "1500"
+            "diff_boost_damage"         "150"
+            "duration"                  "0.25"
+            "distance"                  "100"
+        }
+    }
+
+    "boss_tiny_stone_sweep_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/tiny/tiny"
+        "AbilityTextureName"            "geocron_stone_sweep"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.5"
+        "AbilityCooldown"               "12"
+
+        "AbilityValues"
+        {
+            "radius"                "600"
+            "damage_multiplier"     "350"
+            "bonus_armor"           "30"
+            "duration"              "3"
+        }
+    }
+}

@@ -1,0 +1,112 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/bp/bp.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/bp/bp.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="creeps_container">
+			<Panel class="Creep_Puck_Panel" />
+		</snippet>
+		<snippet name="achievement_content">
+			<Panel class="BP_content_top_right_cart">
+				<Image class="pass_cart_image_progress" id="pass_cart_image_progress" src="s2r://" />
+				<Image class="pass_cart_image_quest" id="pass_cart_image_quest" src="" />
+				<Image class="pass_cart_image_quest_back" id="pass_cart_image_quest_back" src="" />
+				<Label class="pass_cart_label" id="pass_cart_label" text="pidor" />
+				<Label class="pass_cart_label_progress" id="pass_cart_label_progress" text="ssssss" />
+				<Panel class="pass_cart_panel_progress_back" />
+				<Panel class="pass_cart_panel_progress" id="pass_cart_panel_progress" />
+				<Panel class="pass_cart_panel_reward">
+					<Label class="pass_cart_panel_reward_label" id="pass_cart_panel_reward_label" text="300" />
+					<Image class="pass_cart_panel_reward_image" id="pass_cart_panel_reward_image" src="s2r://" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="quest_content">
+			<Panel class="Player_quest">
+				<Panel id="Player_quest_image" />
+				<Panel id="Player_quest_image_back" />
+				<Label id="Player_quest_image_desc" text="2" />
+				<Label id="Player_quest_image_progress" text="2/100" />
+				<Panel class="Player_quest_image_reward" id="Player_quest_image_reward">
+					<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+					<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
+				</Panel>
+				<Image id="done" src="s2r://panorama/images/bp/done_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="pass_container">
+			<Panel class="pass_content">
+				<Panel class="free_bp" id="free_bp" hittest="false">
+					<Panel class="pass_content_image_lock" id="pass_content_image_lock" />
+					<DOTAItemImage id="pass_content_image_simple" class="pass_content_image_simple" hittest="true" itemname="item_armor_aura" />
+					<Image id="pass_content_image_simple_image" class="pass_content_image_simple" src="" />
+					<Label class="pass_content_level_simple" id="pass_content_level_simple" text="1" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false">
+		<Panel id="BP_container" hittest="false">
+			<Panel id="CloseShopButton" onmouseactivate="close()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseShopButton&apos;)" onmouseout="TipsOut()" />
+			<Panel id="BP_content_top">
+				<Panel id="BP_content_top_left">
+					<DOTAAvatarImage id="BP_icon" steamid="76561198820264777" />
+					<Panel id="BP_icon_back" />
+					<DOTAUserName id="BP_name" steamid="76561198820264777" />
+					<Panel class="BP_exp_icon" id="BP_exp_icon" />
+					<Panel id="BP_icon_lvl">
+						<Label id="BP_icon_lvl_text" text="2" />
+					</Panel>
+					<Panel id="BP_icon_pr_bar" />
+					<Panel id="Gold_everyday_reward">
+						<Image id="Gold_everyday_reward_image" src="" />
+						<Label id="Gold_everyday_reward_text" text="+237" />
+					</Panel>
+					<Panel class="Gold_everyday_reward_lock" id="Gold_everyday_reward_lock" />
+					<Panel id="BuyBP" onmouseactivate="buy_control()">
+						<Label id="BuyBP_text" text="#buy_bp" />
+					</Panel>
+				</Panel>
+				<Panel id="BP_content_top_right" />
+			</Panel>
+			<Panel id="BP_content_bottom_container" hittest="false">
+				<Panel id="BP_content_bottom" />
+				<Panel id="BP_content_bottom_back" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="ShowReward">
+			<Image id="reward_image" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+			<DOTAItemImage id="reward_item_image" hittest="true" itemname="item_armor_aura" />
+			<Label id="reward_item_label" html="true" text="22131" />
+		</Panel>
+		<Panel class="BuyControl" id="BuyControl">
+			<Label id="item_buy_label" html="true" text="#accept_buy_bp" />
+			<Label id="item_buy_label2" html="true" text="#accept_buy_bp_desc" />
+			<Panel class="buy_button" id="don_button" onmouseactivate="buy(&apos;coins&apos;)">
+				<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+				<Label class="DNMoneyLabel" id="DNMoneyLabel" text="100" html="true" />
+			</Panel>
+			<Panel class="buy_button" id="rp_button" onmouseactivate="buy(&apos;rp&apos;)">
+				<Image class="DNMoneyLogoBuy" src="s2r://panorama/images/custom_game/ds/protection_png.vtex" />
+				<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="5000" html="true" />
+			</Panel>
+			<Panel class="buy_button" id="close_button" onmouseactivate="buy_control_close()">
+				<Label class="close_button_label" id="close_button_label" text="#close" html="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>
