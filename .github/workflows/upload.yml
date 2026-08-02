@@ -91,6 +91,14 @@ jobs:
           chmod +x "$HOME/s2v/Source2Viewer-CLI"
           echo "S2V=$HOME/s2v/Source2Viewer-CLI" >> "$GITHUB_ENV"
 
+      - name: Install StyLua
+        if: ${{ matrix.mod.disable_format != true }}
+        uses: JohnnyMorganz/stylua-action@v5
+        with:
+          token: ${{ github.token }}
+          version: 2.5.2
+          args: "false"
+
       - name: Process custom
         uses: nick-fields/retry@v4
         with:
@@ -106,3 +114,4 @@ jobs:
           BRANCH: ${{ matrix.mod.branch_name }}
           WATERMARK: ${{ needs.prepare.outputs.watermark }}
           DECRYPT_SCRIPT: ${{ matrix.mod.decrypt_script }}
+          DISABLE_FORMAT: ${{ matrix.mod.disable_format || false }}
