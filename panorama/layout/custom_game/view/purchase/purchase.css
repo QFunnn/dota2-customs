@@ -1,0 +1,1042 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+.com-mouse-style
+{
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	sound: "ui_friends_slide_out";
+	transition-property: brightness, saturation;
+	transition-timing-function: ease-in-out;
+}
+
+.com-mouse-style:hover
+{
+	brightness: 1.4;
+}
+
+.com-mouse-style:disabled
+{
+	saturation: 0;
+}
+
+.com-mouse-style:active
+{
+	pre-transform-scale2d: 0.98;
+}
+
+.com-mouse-style2
+{
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	sound: "ui_friends_slide_out";
+	transition-property: brightness, saturation;
+	transition-timing-function: ease-in-out;
+}
+
+.com-mouse-style2:hover
+{
+	brightness: 1.1;
+}
+
+.com-mouse-style2:disabled
+{
+	saturation: 0;
+}
+
+.com-mouse-style2:active
+{
+	pre-transform-scale2d: 0.98;
+}
+
+.com-ani
+{
+	animation-name: twinkle;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: 3;
+}
+
+.normal
+{
+	font-size: 16px;
+	color: #eeeeee;
+}
+
+VerticalScrollBar
+{
+	background-position: center;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+VerticalScrollBar .ScrollThumb
+{
+	background-color: #313131;
+}
+
+VerticalScrollBar .ScrollThumb:hover
+{
+	brightness: 1.2;
+}
+
+HorizontalScrollBar
+{
+	background-position: center;
+	background-size: 100% 3px;
+	background-repeat: no-repeat;
+	height: 3px;
+}
+
+HorizontalScrollBar .ScrollThumb
+{
+	background-color: #313131;
+}
+
+HorizontalScrollBar .ScrollThumb:hover
+{
+	brightness: 1.2;
+}
+
+.hide-vertical-scroll VerticalScrollBar
+{
+	background-image: none;
+	width: 0;
+}
+
+.hide-vertical-scroll VerticalScrollBar .ScrollThumb
+{
+	width: 0;
+	background-color: none;
+	background-image: none;
+}
+
+.hide-vertical-scroll VerticalScrollBar .ScrollThumb:hover
+{
+	background-color: none;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar
+{
+	background-image: none;
+	height: 0;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar .ScrollThumb
+{
+	background-color: none;
+	background-image: none;
+	height: 0;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar .ScrollThumb:hover
+{
+	background-color: none;
+}
+
+.loadingAnimation
+{
+	align: center center;
+	flow-children: right;
+	padding-right: 5px;
+}
+
+.loadingAnimation Label
+{
+	width: 8px;
+	height: 8px;
+	opacity: 0;
+	border-radius: 50%;
+	margin-left: 5px;
+	animation-name: loading;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+.loadingAnimation .loading1
+{
+	animation-delay: 0.2s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading2
+{
+	animation-delay: 0.4s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading3
+{
+	animation-delay: 0.6s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading4
+{
+	animation-delay: 0.8s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading5
+{
+	animation-delay: 1s;
+	background-color: #1c1c1c;
+}
+
+@keyframes 'loading'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	50%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.com-bless-item
+{
+	width: 46px;
+	height: 46px;
+}
+
+.com-bless-item .bless-icon
+{
+	width: 96%;
+	height: 96%;
+	align: center center;
+}
+
+.bless-qua-3
+{
+	color: #ff910a;
+}
+
+.bless-qua-2
+{
+	color: #b518ff;
+}
+
+.bless-qua-1
+{
+	color: #4197ff;
+}
+
+.common-text-button
+{
+	width: 210px;
+	height: 50px;
+	background-color: gradient(linear, 0% 0%, 0% 90%, from(#060e15), to(#224c63));
+	border: 2px solid rgba(116, 255, 250, 0.2);
+	background-size: 100%;
+}
+
+.common-text-button .label
+{
+	font-size: 26px;
+	text-align: center;
+	color: #eaeaea;
+	align: center center;
+}
+
+.common-text-button.gray
+{
+	border: 2px solid #2a3439;
+	background-color: none;
+	background-image: url("s2r://");
+}
+
+.com-player-avatar
+{
+	width: 32px;
+	height: 32px;
+}
+
+.com-player-item-line
+{
+	width: 100%;
+	height: 2px;
+	overflow: noclip;
+	ignore-parent-flow: true;
+	background-size: 100%;
+	background-image: url("s2r://");
+}
+
+.com-abilities-container
+{
+	flow-children: right;
+}
+
+.com-close-btn
+{
+	width: 30px;
+	height: 30px;
+	background-size: 100%;
+	background-image: url("s2r://");
+}
+
+.player-info-container
+{
+	width: 122px;
+	margin-left: 6.5px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.player-info-container .com-player-name
+{
+	font-size: 17px;
+	text-align: left;
+	color: #a3a3a3;
+	letter-spacing: 0.83px;
+}
+
+.player-info-container .com-player-name.is-local-player
+{
+	color: #e1c337;
+}
+
+.player-info-container .com-player-hero-name
+{
+	font-size: 15px;
+	text-align: left;
+	color: #666663;
+	letter-spacing: 0.75px;
+}
+
+.com-hero-abilities-container
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.com-hero-ahs
+{
+	width: 36px;
+	height: 36px;
+	margin: 0 3px;
+	wash-color: #708d9f;
+	img-shadow: 0px 4px 8px black;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/spellicons/aghsicon_psd.vtex");
+}
+
+.com-hero-talent
+{
+	width: 36px;
+	height: 36px;
+	margin: 0 3px;
+	wash-color: #708d9f;
+	img-shadow: 0px 4px 8px black;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/spellicons/statbranch_psd.vtex");
+}
+
+.com-hero-name-and-type
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.com-hero-name-and-type .hero-attribute-primary
+{
+	margin-right: 17px;
+}
+
+.com-hero-name-and-type .com-player-hero-name
+{
+	font-size: 38px;
+	text-align: center;
+	color: #ededed;
+	letter-spacing: 6.75px;
+	vertical-align: center;
+}
+
+.com-hero-image
+{
+	width: 28px;
+	height: width-percentage(100%);
+}
+
+.com-hero-attribute-primary
+{
+	width: 33px;
+	height: 33px;
+	vertical-align: center;
+	background-size: 100% 100%;
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_STRENGTH
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_strength_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_AGILITY
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_agility_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_INTELLECT
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_ALL
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/mini_primary_attribute_icon_all_psd.vtex");
+}
+
+.custom-hero-scene-panel
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.custom-hero-scene-panel .scene-panel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/hero_model_preview_mask_loadout_psd.vtex");
+}
+
+.com-bless-content
+{
+	width: 520px;
+	flow-children: right-wrap;
+	overflow: clip scroll;
+}
+
+.com-bless-content .com-bless-item
+{
+	margin: 6px;
+}
+
+.com-bless-name
+{
+	font-size: 18px;
+	font-family: defaultFont;
+}
+
+.connect-state-container
+{
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.connect-state-container.show
+{
+	opacity: 1;
+}
+
+.connect-state-container.hide
+{
+	opacity: 0;
+}
+
+.connect-state-container .state-text
+{
+	color: #1eda33;
+	font-size: 16px;
+	height: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 3 #000000;
+}
+
+.connect-state-container .state-text.state-4
+{
+	color: red;
+}
+
+.top-bar-mask
+{
+	width: 66px;
+	height: 36px;
+	margin-top: 4px;
+	vertical-align: top;
+	z-index: 10;
+}
+
+.top-bar-mask .abilityList
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.top-bar-mask .abilityList.show
+{
+	opacity: 1;
+}
+
+.top-bar-mask .abilityList .dotaImage1
+{
+	height: 50%;
+	width: height-percentage(100%);
+	border: 1px solid rgba(0, 0, 0, 0.9);
+	align: center bottom;
+	margin-right: 50%;
+}
+
+.top-bar-mask .abilityList .dotaImage2
+{
+	height: 50%;
+	width: height-percentage(100%);
+	border: 1px solid rgba(0, 0, 0, 0.9);
+	align: center bottom;
+	margin-left: 50%;
+}
+
+.top-bar-mask .disconnect-mask
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	background-color: #aa000050;
+}
+
+.top-bar-mask .disconnect-mask.show
+{
+	opacity: 1;
+}
+
+.top-bar-mask .connect-state-container
+{
+	vertical-align: bottom;
+}
+
+.exit-game-alert
+{
+	width: 1251px;
+	height: 741px;
+	flow-children: down;
+	align: center center;
+	background-size: 100% 100%;
+	background-image: url("s2r://panorama/images/hud/exit_game_alert/exit_game_alert_bg_png.vtex");
+	background-color: #181818cc;
+	border-radius: 4px;
+	box-shadow: #00000055 0px 0px 2px 2px;
+}
+
+.exit-game-alert.show
+{
+	opacity: 1;
+}
+
+.exit-game-alert.hide
+{
+	opacity: 0;
+}
+
+.exit-game-alert .common-close-btn
+{
+	margin-top: 38px;
+	margin-right: 34px;
+	ignore-parent-flow: true;
+}
+
+.exit-game-alert .exit-game-title
+{
+	font-size: 45px;
+	align: center top;
+	margin-top: 64px;
+	color: #8d7c5d;
+}
+
+.exit-game-alert .exit-game-sub-title
+{
+	width: 90%;
+	margin-top: 50px;
+	margin-left: 73px;
+	color: #ae8b5c;
+	font-size: 30px;
+}
+
+.exit-game-alert .exit-game-tips-container
+{
+	width: 90%;
+	height: 42%;
+	margin-top: 29.25px;
+	margin-left: 73px;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.exit-game-alert .exit-game-tips-container .exit-game-tip
+{
+	color: #ff6b6b;
+	font-size: 22px;
+	line-height: 30px;
+}
+
+.exit-game-alert .exit-game-tips-container .exit-game-tip.eng
+{
+	font-size: 20px;
+}
+
+.exit-game-alert .exit-game-btns
+{
+	ignore-parent-flow: true;
+	align: center bottom;
+	margin-bottom: 108px;
+	flow-children: right;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn
+{
+	width: 156px;
+	height: 38px;
+	margin: 0 41px;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn.cancel
+{
+	height: 36px;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn .btn-text
+{
+	align: center center;
+}
+
+.exit-game-alert .exit-button
+{
+	width: 237.6px;
+	height: 64.35px;
+	margin: 0 60px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/common/button/432_b_png.vtex");
+}
+
+.exit-game-alert .exit-button.cancel
+{
+	background-image: url("s2r://panorama/images/common/button/432_g_png.vtex");
+}
+
+.exit-game-alert .exit-button.cancel .exit-button-label
+{
+	align: center center;
+	color: #ae8b5c;
+}
+
+.exit-game-alert .exit-button .exit-button-label
+{
+	align: center center;
+	color: #8c8888;
+	font-size: 22px;
+}
+
+.exit-game-alert .exit-game-score-tips
+{
+	ignore-parent-flow: true;
+	align: center bottom;
+	font-size: 18px;
+	color: #ae8b5c;
+	margin-bottom: 43px;
+}
+
+.com-red-dot
+{
+	width: 10px;
+	height: 10px;
+	align: right top;
+	border-radius: 50%;
+	background-color: #8d2f2f;
+	ignore-parent-flow: true;
+}
+
+.purchasePanel
+{
+	width: 100%;
+	height: 100%;
+	ui-scale: 75% 75% 100%;
+	z-index: 99999;
+}
+
+.purchase-panel-wrapper
+{
+	width: 100%;
+	height: 100%;
+}
+
+.purchase-panel
+{
+	width: 1284px;
+	height: 792px;
+	align: center center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/img_pop_s_png.vtex");
+}
+
+.purchase-panel .purchase-close-btn
+{
+	width: 40px;
+	height: 40px;
+	align: right top;
+	margin-top: 43px;
+	margin-right: 48px;
+	transition: brightness 0.2s ease-in 0s;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/btn_pop_s_close_png.vtex");
+}
+
+.purchase-panel .purchase-close-btn:hover
+{
+	brightness: 1.5;
+	transform: scale3d(1, 1, 1);
+}
+
+.purchase-panel .purchase-close-btn:active
+{
+	brightness: 1.3;
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.purchase-panel .purchase-title
+{
+	horizontal-align: center;
+	margin-top: 46px;
+	font-size: 36px;
+	color: #c09553;
+	font-weight: black;
+}
+
+.purchase-panel .purchase-preview-desc
+{
+	width: 878px;
+	height: 58px;
+	position: 0 158px 0;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/img_item_name_bg_png.vtex");
+}
+
+.purchase-panel .purchase-preview-desc .title
+{
+	font-size: 36px;
+	text-align: center;
+	color: #322a2a;
+	position: 43px 0 0;
+	align: left center;
+}
+
+.purchase-panel .purchase-preview-desc .name
+{
+	font-size: 36px;
+	text-align: center;
+	color: #e5e5e5;
+	align: center center;
+}
+
+.purchase-panel .purchase-preview-desc .price
+{
+	margin-left: 61px;
+	font-size: 36px;
+	font-weight: bold;
+	text-align: center;
+	color: #f86d66;
+	margin-right: 43px;
+	align: right center;
+}
+
+.purchase-panel .purchase-buy-info
+{
+	width: 100%;
+	height: 100%;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment
+{
+	width: 100%;
+	height: 100%;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .goods-item
+{
+	margin-top: 290px;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .goods-item .bg,.purchase-panel .purchase-buy-info .game-currency-payment .goods-item .icon,.purchase-panel .purchase-buy-info .game-currency-payment .goods-item .shadow
+{
+	width: 123px;
+	height: 172px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .goods-item .text-count
+{
+	font-size: 34px;
+	color: #ffffff;
+	margin-right: 12px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .count-limit
+{
+	color: #6e6362;
+	font-size: 26px;
+	text-align: center;
+	margin-top: 233px;
+	letter-spacing: 1.3px;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container
+{
+	position: 0 497px 0;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .purchase-slider-container
+{
+	width: 812px;
+	height: 126px;
+	background-color: #f4eee7;
+	border: 2px solid #dbd8d0;
+	border-radius: 0px 50px 0px 50px;
+	box-shadow: rgba(226, 221, 209, 0.82) 0px 0px 2px 1px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .purchase-slider-container .buy-count
+{
+	width: 206px;
+	height: 36px;
+	margin-top: 11px;
+	horizontal-align: center;
+	background-color: #e4ddd6;
+	border-radius: 16px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .purchase-slider-container .buy-count .count
+{
+	font-size: 32px;
+	color: #705b5d;
+	align: center center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .purchase-slider-container .purchase-slider
+{
+	margin-top: 46px;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .purchase-slider-container .count-limit
+{
+	horizontal-align: center;
+	margin-top: 60px;
+	font-size: 28px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .game-currency-adjust-container .game-currency-adjust-container-shadow
+{
+	width: 812px;
+	height: 126px;
+	margin-top: 10px;
+	margin-left: 4px;
+	border-radius: 0px 50px 0px 50px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button
+{
+	position: 230px 643px 0;
+	transition: brightness 0.2s ease-in 0s;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button:hover,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button:hover
+{
+	brightness: 1.5;
+	transform: scale3d(1, 1, 1);
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button:active,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button:active
+{
+	brightness: 1.3;
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button:active,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button:active
+{
+	sound: "";
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button .btn,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button .btn,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-cancel-button .shadow,.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button .shadow
+{
+	width: 280px;
+	height: 98px;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button
+{
+	position: 772px 643px 0;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button .btn .currency-icon
+{
+	width: 43.05px;
+	height: 60.2px;
+	margin-left: 80px;
+	vertical-align: center;
+}
+
+.purchase-panel .purchase-buy-info .game-currency-payment .purchase-buy-button .btn .text
+{
+	margin-left: 140px;
+	horizontal-align: left;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment
+{
+	height: 540px;
+	position: 0 251px 0;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-title
+{
+	font-size: 38px;
+	text-align: center;
+	color: #6e6362;
+	horizontal-align: center;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .other-payment
+{
+	font-size: 28px;
+	color: #78b374;
+	transition: brightness 0.2s ease-in 0s;
+	horizontal-align: right;
+	position: 0 464px 0;
+	text-decoration: underline;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .other-payment:hover
+{
+	brightness: 1.5;
+	transform: scale3d(1, 1, 1);
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .other-payment:active
+{
+	brightness: 1.3;
+	transform: scale3d(0.97, 0.97, 1);
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .purchase-unreceived-btn
+{
+	font-size: 24px;
+	color: #b5acab;
+	position: 0 464px 0;
+	text-decoration: underline;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container
+{
+	width: 1088px;
+	height: 360px;
+	margin-top: 50px;
+	horizontal-align: center;
+	flow-children: right;
+	padding: 0 84px;
+	margin-top: 65px;
+	padding-left: 240px;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container
+{
+	margin: 0 8px;
+	border-radius: 5px;
+	flow-children: down;
+	vertical-align: center;
+	margin: 0 33px;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .code-bg
+{
+	border-radius: 8px;
+	background-color: #ffffff;
+	border: 2px solid #c6c3bd;
+	flow-children: down;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .qr-code
+{
+	width: 237px;
+	height: 237px;
+	align: center center;
+	border-radius: 3px;
+	border: 2px solid #c6c3bd;
+	background-color: #ffffff;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .qr-code:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .qr-code .toggle-payment
+{
+	width: 96px;
+	height: 96px;
+	align: center center;
+	background-image: url("s2r://");
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .payment-icon
+{
+	width: 164px;
+	height: 50px;
+	margin-top: 8px;
+	border-radius: 3px;
+	align: center center;
+	background-size: 100%;
+	margin-top: 15px;
+	margin-bottom: 7px;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .payment-icon.alipay-icon
+{
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/img_alipay_png.vtex");
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .payment-icon.wechatpay-icon
+{
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/img_wechat_png.vtex");
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .qr-container .payment-icon.paypal-icon
+{
+	background-image: url("s2r://panorama/images/extra_game/store_panel/purchase/img_paypal_png.vtex");
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .use-text
+{
+	width: 500px;
+	text-overflow: noclip;
+	color: black;
+	line-height: 30px;
+	text-decoration: underline;
+}
+
+.purchase-panel .purchase-buy-info .cash-payment .cash-payment-container .use-text:active
+{
+	pre-transform-scale2d: 0.9;
+}

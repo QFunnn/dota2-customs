@@ -1,0 +1,391 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 19.2.0.0 - https://valveresourceformat.github.io */
+
+#debug_panel
+{
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+}
+
+.ControlPanel
+{
+	width: 480px;
+	transform: translateY(0px);
+	align: left bottom;
+	transition-property: background-color, transform;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.ControlPanel .toggle-dock
+{
+	width: 40px;
+	height: 30px;
+	margin-top: 2px;
+	align: right top;
+	border-radius: 12px 12px 0 0;
+	background-color: #181818cc;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png_png.vtex");
+	background-position: center center;
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+}
+
+.Minimized .ControlPanel
+{
+	transform: translateY(700px);
+}
+
+.Minimized .ControlPanel .toggle-dock
+{
+	visibility: collapse;
+}
+
+.dock-right .ControlPanel
+{
+	align: right bottom;
+}
+
+.dock-right .ControlPanel .toggle-dock
+{
+	align: left top;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png_png.vtex");
+}
+
+#ControlPanelSlideThumb
+{
+	width: 96px;
+	height: 32px;
+	background-color: #181818cc;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	box-shadow: #00000055 0px 0px 2px 2px;
+	horizontal-align: left;
+	margin-left: 100px;
+}
+
+#ControlPanelSlideThumb:hover
+{
+	background-color: #383838cc;
+}
+
+.BtnDescContainer
+{
+	align: left top;
+	width: 100%;
+	height: 30px;
+}
+
+.BtnDescContainer .BtnDescLabel
+{
+	align: left center;
+	font-size: 15px;
+}
+
+.ControlPanelContainer
+{
+	width: 100%;
+	height: 700px;
+	margin-top: 32px;
+	background-color: #181818dd;
+	border: 2px solid #222222;
+	box-shadow: #000000aa 0px 0px 2px 2px;
+}
+
+.ControlPanelContainer .ButtonGroupContainer
+{
+	flow-children: down;
+	overflow: clip scroll;
+	width: 100%;
+	height: 100%;
+	margin-top: 20px;
+}
+
+.ControlPanelContainer .ButtonGroupContainer .ButtonContainer
+{
+	width: 100%;
+	margin-top: 10px;
+	flow-children: right-wrap;
+}
+
+.SelectChessContainer
+{
+	align: center top;
+	margin-top: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 2px 2px;
+	border: 2px solid #32383677;
+	opacity: 0;
+	transform: translateY(-60px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+}
+
+.SelectChessContainer.Show
+{
+	opacity: 0.8;
+	transform: translateY(0px);
+	background-color: #fff;
+}
+
+#ChessPicker
+{
+	flow-children: down;
+	width: 864px;
+	height: 620px;
+}
+
+#ChessPickerHeader
+{
+	flow-children: right;
+	width: 100%;
+	background-color: #00000077;
+	padding: 8px 12px 8px 12px;
+}
+
+#SelectChessInfo
+{
+	height: 100%;
+	flow-children: right;
+}
+
+#SelectChessNumber
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #ffffff;
+}
+
+#SelectChessName
+{
+	vertical-align: center;
+	width: 40px;
+	text-overflow: shrink;
+}
+
+.DebugButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333333), to(#444444));
+	height: 32px;
+	width: 150px;
+	margin: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: #444444;
+	border-left-color: #494949;
+	border-bottom-color: #111111;
+	border-right-color: #404040;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+	visibility: visible;
+}
+
+.DebugButton .DebugButtonLabel
+{
+	width: 100%;
+	font-size: 15;
+	color: #ffffff;
+	align: left center;
+	margin-left: 6px;
+}
+
+.DebugButton .DebugEntry
+{
+	width: 35%;
+	height: 100%;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	visibility: collapse;
+}
+
+.DebugButton.TextEntryBtn .DebugButtonLabel
+{
+	width: 60%;
+}
+
+.DebugButton.TextEntryBtn .DebugEntry
+{
+	visibility: visible;
+}
+
+.DebugButton.Hidden
+{
+	visibility: collapse;
+}
+
+.DebugButton.Choose
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333333), to(#888888));
+}
+
+.DebugButton:hover
+{
+	background-color: #666666;
+}
+
+.DebugButton:active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#444444), to(#999999));
+	pre-transform-scale2d: 0.99, 0.97;
+}
+
+#CancelButton
+{
+	background-image: url("s2r://panorama/images/control_icons/gear_return_png_png.vtex");
+	background-size: 100%;
+	margin-right: 28px;
+	horizontal-align: left;
+	width: 32px;
+	height: 32px;
+}
+
+#SelectAbilityContainer
+{
+	align: center top;
+	margin-top: 200px;
+	background-color: #000c;
+	opacity: 0;
+	transform: translateY(-60px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+}
+
+#SelectAbilityContainer.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#SelectionChoice
+{
+	text-align: left;
+	text-overflow: shrink;
+	font-size: 22px;
+	color: #bfd2ee;
+	vertical-align: middle;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.SearchBox
+{
+	flow-children: right;
+	width: 300px;
+	background-color: black;
+}
+
+.SearchBox TextEntry
+{
+	width: fill-parent-flow(1);
+	border: 0px solid transparent;
+	background-color: none;
+}
+
+.SearchBox TextEntry #PlaceholderText
+{
+	margin-top: 2px;
+	color: #8a8a8a;
+}
+
+.SearchBox Button
+{
+	background-image: url("s2r://panorama/images/control_icons/icon_search_png_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 27px;
+	height: 27px;
+	margin: 0px 8px;
+	vertical-align: middle;
+	wash-color: #4f4f4f;
+	transition-property: wash-color;
+	transition-duration: 0.1s;
+}
+
+.SearchBox Button:hover
+{
+	wash-color: #cccccc;
+}
+
+.SearchBox Button:active
+{
+	wash-color: #ffffff;
+}
+
+.CommonDialogContainer
+{
+	align: center top;
+	margin-top: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 0px 0px 2px 2px;
+	border: 2px solid #32383677;
+	opacity: 0;
+	transform: translateY(-60px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+}
+
+.CommonDialogContainer VerticalScrollBar
+{
+	background-image: none;
+	background-color: #00000050;
+}
+
+.CommonDialogContainer VerticalScrollBar .ScrollThumb
+{
+	background-color: #333333;
+}
+
+.CommonDialogContainer VerticalScrollBar .ScrollThumb:hover
+{
+	background-color: #666666;
+}
+
+.CommonDialogContainer.Show
+{
+	opacity: 0.8;
+	transform: translateY(0px);
+}
+
+#CommonDialog
+{
+	flow-children: down;
+	width: 864px;
+	height: 620px;
+}
+
+#CommonDialogHeader
+{
+	flow-children: right;
+	width: 100%;
+	background-color: #00000077;
+	padding: 8px 12px 8px 12px;
+}
+
+#CommonDialogHeader .BtnDescContainer
+{
+	margin-left: 100px;
+	height: 40px;
+}
+
+#SelectList
+{
+	width: 100%;
+	overflow: squish scroll;
+	padding: 16px 8px 0px 16px;
+	flow-children: right-wrap;
+}
