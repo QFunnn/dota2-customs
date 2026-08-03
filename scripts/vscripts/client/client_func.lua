@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -181,7 +181,32 @@ function ClientFunc.prototype._OnClientGameEvent(self, keys)
 	if not keys.data then
 		return
 	end
-	local dataArr = __TS__StringSplit(keys.data, "&")
+	local raw = keys.data
+	local targetPlayerId
+	if string.sub(raw, 1, 1) == "@" then
+		local secondAt = 0
+		do
+			local i = 2
+			while i <= #raw do
+				if string.sub(raw, i, i) == "@" then
+					secondAt = i
+					break
+				end
+				i = i + 1
+			end
+		end
+		if secondAt > 0 then
+			targetPlayerId = tonumber(string.sub(raw, 2, secondAt - 1))
+			raw = string.sub(raw, secondAt + 1)
+		end
+	end
+	if targetPlayerId ~= nil and targetPlayerId ~= -1 and targetPlayerId ~= GetLocalPlayerID() then
+		return
+	end
+	if not raw or raw == "" then
+		return
+	end
+	local dataArr = __TS__StringSplit(raw, "&")
 	for ____, str in ipairs(dataArr) do
 		self:_HandleSingleData(str)
 	end
