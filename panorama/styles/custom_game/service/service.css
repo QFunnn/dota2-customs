@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -4955,6 +4955,31 @@
 	text-shadow: 1px 1px 2px 1 #000;
 }
 
+.PackPokemonItem > .Body > .TotalLevel
+{
+	vertical-align: bottom;
+	min-width: 20px;
+	height: 20px;
+	padding: 0px 2px;
+	margin-left: 4px;
+	margin-bottom: 8px;
+	border: 1px solid #fff;
+	border-top-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-brush: gradient(linear, 30% 100%, 80% 0%, from(#cccccc), color-stop(0.08, #e4e4e4), color-stop(0.38, #f3f3f3), color-stop(0.68, #b4b4b4), color-stop(0.8, #6e6e6e), to(#616161));
+	box-shadow: #000000d0 0px 2px 6px 3;
+}
+
+.PackPokemonItem > .Body > .TotalLevel > .TotalLevelLabel
+{
+	align: center center;
+	font-size: 16px;
+	color: gradient(linear, 30% 100%, 80% 0%, from(#cccccc), color-stop(0.08, #e4e4e4), color-stop(0.38, #f3f3f3), color-stop(0.68, #b4b4b4), color-stop(0.8, #6e6e6e), to(#616161));
+	color: #fff;
+	text-align: center;
+	text-shadow: 0px 2px 12px black;
+}
+
 .PackPokemonItem > .Body > .Wear > .WearLabel
 {
 	position: -4px 10px 0;
@@ -7288,7 +7313,9 @@
 
 #PokemonTooltipHeader > .PotentialLeft
 {
-	align: right bottom;
+	vertical-align: bottom;
+	margin-left: 110px;
+	margin-bottom: 3px;
 }
 
 #PokemonTooltipHeader > .PotentialLeft > Label
@@ -7304,7 +7331,7 @@
 {
 	align: right bottom;
 	margin-right: 10px;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 #PokemonTooltipHeader > .Score > Label
@@ -25992,6 +26019,76 @@ VerticalScrollBar > .ScrollThumb:hover
 	margin-left: 5px;
 }
 
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential
+{
+	height: fit-children;
+	flow-children: down;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .Content
+{
+	height: 48px;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .Content > .Desc
+{
+	width: 100%;
+	margin-right: 12px;
+	text-overflow: shrink;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup
+{
+	width: 100%;
+	flow-children: down;
+	height: 1px;
+	opacity: 0;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup.Show
+{
+	height: fit-children;
+	opacity: 1;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup > .InputBox
+{
+	height: 50px;
+	width: 100%;
+	flow-children: right;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup > .InputBox > .Title
+{
+	width: 120px;
+	vertical-align: center;
+	background-color: #00000000;
+	color: baseText;
+	font-size: 18px;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup > .InputBox > TextEntry
+{
+	width: 120px;
+	vertical-align: center;
+	border-radius: 18px;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .Potential > .InputGroup > .InputBox > TextEntry > Label
+{
+	text-overflow: shrink;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .PokemonId
+{
+	flow-children: down;
+}
+
+.TradeQueryPanel > .Body > .Base .PokemonCondition > .PokemonId > .PokemonList
+{
+	flow-children: down;
+}
+
 .TradeQueryPanel > .Body > .AffixCondition
 {
 	height: 100%;
@@ -26171,6 +26268,66 @@ VerticalScrollBar > .ScrollThumb:hover
 {
 	opacity: 1;
 	height: fit-children;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential
+{
+	height: fit-children;
+	flow-children: down;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .Content
+{
+	height: 48px;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .Content > .Desc
+{
+	width: 100%;
+	margin-right: 12px;
+	text-overflow: shrink;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup
+{
+	width: 100%;
+	flow-children: down;
+	height: 1px;
+	opacity: 0;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup.Show
+{
+	height: fit-children;
+	opacity: 1;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup > .InputBox
+{
+	height: 50px;
+	width: 100%;
+	flow-children: right;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup > .InputBox > .Title
+{
+	width: 120px;
+	vertical-align: center;
+	background-color: #00000000;
+	color: baseText;
+	font-size: 18px;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup > .InputBox > TextEntry
+{
+	width: 120px;
+	vertical-align: center;
+	border-radius: 18px;
+}
+
+.TradeQueryPanel > .Body > .Search > .Body > .PokemonCondition > .Potential > .InputGroup > .InputBox > TextEntry > Label
+{
+	text-overflow: shrink;
 }
 
 .TradeQueryPanel > .Body > .Detail

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -8901,6 +8901,11 @@ var global = this;
         createElement("Label", {
           text: "伤害打印"
         }, _el$63);
+        const _el$65 = createElement("Panel", {}, _el$24),
+        _el$66 = createElement("ToggleButton", {}, _el$65);
+        createElement("Label", {
+          text: "调试攻击"
+        }, _el$66);
       setProp(_el$22, "className", "Category Spread");
       setProp(_el$23, "className", "CategoryHeader");
       setProp(_el$23, "onactivate", p => {
@@ -9005,6 +9010,13 @@ var global = this;
           cmd: `-print_dmg ${p.IsSelected() ? 1 : 0}`
         });
       });
+      setProp(_el$65, "className", "Row");
+      setProp(_el$66, "className", "CategoryButton LeftButton");
+      setProp(_el$66, "onactivate", p => {
+        GameEvents.SendCustomGameEventToServer('debug_cmd', {
+          cmd: `-test_atk ${p.IsSelected() ? 1 : 0}`
+        });
+      });
       effect(_p$ => {
         const _v$ = (_a = GameUI['__Debug__LastUnit']) !== null && _a !== void 0 ? _a : '单位名',
           _v$2 = (_b = GameUI['__Debug__LastUnit']) !== null && _b !== void 0 ? _b : '',
@@ -9023,150 +9035,150 @@ var global = this;
   }
   function ItemBox() {
     return (() => {
-      const _el$65 = createElement("Panel", {}, null),
-        _el$66 = createElement("Label", {
+      const _el$68 = createElement("Panel", {}, null),
+        _el$69 = createElement("Label", {
           text: "道具"
-        }, _el$65),
-        _el$67 = createElement("Panel", {}, _el$65),
-        _el$68 = createElement("Panel", {}, _el$67),
-        _el$69 = createElement("Button", {}, _el$68);
-        createElement("Label", {
-          text: "清除掉落物"
-        }, _el$69);
-        const _el$71 = createElement("Panel", {}, _el$67),
+        }, _el$68),
+        _el$70 = createElement("Panel", {}, _el$68),
+        _el$71 = createElement("Panel", {}, _el$70),
         _el$72 = createElement("Button", {}, _el$71);
         createElement("Label", {
-          text: "消耗品"
+          text: "清除掉落物"
         }, _el$72);
-        const _el$74 = createElement("Panel", {}, _el$67),
+        const _el$74 = createElement("Panel", {}, _el$70),
         _el$75 = createElement("Button", {}, _el$74);
         createElement("Label", {
-          text: "黑市商品"
+          text: "消耗品"
         }, _el$75);
-        const _el$77 = createElement("Panel", {}, _el$67),
+        const _el$77 = createElement("Panel", {}, _el$70),
         _el$78 = createElement("Button", {}, _el$77);
         createElement("Label", {
-          text: "卡牌"
+          text: "黑市商品"
         }, _el$78);
-        const _el$80 = createElement("Panel", {}, _el$67),
+        const _el$80 = createElement("Panel", {}, _el$70),
         _el$81 = createElement("Button", {}, _el$80);
         createElement("Label", {
-          text: "宝物"
+          text: "卡牌"
         }, _el$81);
-        const _el$83 = createElement("Panel", {}, _el$67),
+        const _el$83 = createElement("Panel", {}, _el$70),
         _el$84 = createElement("Button", {}, _el$83);
         createElement("Label", {
-          text: "局内装备"
+          text: "宝物"
         }, _el$84);
-        const _el$86 = createElement("Panel", {}, _el$67),
-        _el$87 = createElement("TextEntry", {
+        const _el$86 = createElement("Panel", {}, _el$70),
+        _el$87 = createElement("Button", {}, _el$86);
+        createElement("Label", {
+          text: "局内装备"
+        }, _el$87);
+        const _el$89 = createElement("Panel", {}, _el$70),
+        _el$90 = createElement("TextEntry", {
           textmode: "normal",
           placeholder: '10000',
           multiline: false,
           text: '10000'
-        }, _el$86),
-        _el$88 = createElement("Button", {}, _el$86);
+        }, _el$89),
+        _el$91 = createElement("Button", {}, _el$89);
         createElement("Label", {
           text: "金币"
-        }, _el$88);
-        const _el$90 = createElement("Button", {}, _el$86);
+        }, _el$91);
+        const _el$93 = createElement("Button", {}, _el$89);
         createElement("Label", {
           text: "木材"
-        }, _el$90);
-        const _el$92 = createElement("Button", {}, _el$86);
+        }, _el$93);
+        const _el$95 = createElement("Button", {}, _el$89);
         createElement("Label", {
           text: "杀敌"
-        }, _el$92);
-      setProp(_el$65, "className", "Category Spread");
-      setProp(_el$66, "className", "CategoryHeader");
-      setProp(_el$66, "onactivate", p => {
+        }, _el$95);
+      setProp(_el$68, "className", "Category Spread");
+      setProp(_el$69, "className", "CategoryHeader");
+      setProp(_el$69, "onactivate", p => {
         var _a;
         (_a = p === null || p === void 0 ? void 0 : p.GetParent()) === null || _a === void 0 ? void 0 : _a.ToggleClass('Spread');
       });
-      setProp(_el$67, "className", "CategoryButtonContainer");
-      setProp(_el$68, "className", "Row");
-      setProp(_el$69, "className", "CategoryButton LeftButton");
-      setProp(_el$69, "onactivate", () => {
+      setProp(_el$70, "className", "CategoryButtonContainer");
+      setProp(_el$71, "className", "Row");
+      setProp(_el$72, "className", "CategoryButton LeftButton");
+      setProp(_el$72, "onactivate", () => {
         GameEvents.SendCustomGameEventToServer('debug_cmd', {
           cmd: '-clrdrop'
         });
       });
-      setProp(_el$71, "className", "Row");
-      setProp(_el$72, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
-      setProp(_el$72, "onactivate", () => {
-        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'consumable');
-      });
       setProp(_el$74, "className", "Row");
       setProp(_el$75, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
       setProp(_el$75, "onactivate", () => {
-        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'shopitem');
+        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'consumable');
       });
       setProp(_el$77, "className", "Row");
       setProp(_el$78, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
       setProp(_el$78, "onactivate", () => {
-        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'card');
+        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'shopitem');
       });
       setProp(_el$80, "className", "Row");
       setProp(_el$81, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
       setProp(_el$81, "onactivate", () => {
-        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'relic');
+        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'card');
       });
       setProp(_el$83, "className", "Row");
       setProp(_el$84, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
       setProp(_el$84, "onactivate", () => {
+        EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'relic');
+      });
+      setProp(_el$86, "className", "Row");
+      setProp(_el$87, "className", "CategoryButton LeftButton CategoryPickerArrowButton");
+      setProp(_el$87, "onactivate", () => {
         EventManager.Fire('ON_DEBUG_SELECTION_ACTION', 'game_item');
       });
-      setProp(_el$86, "className", "Row ResourceRow");
-      setProp(_el$86, "style", {
+      setProp(_el$89, "className", "Row ResourceRow");
+      setProp(_el$89, "style", {
         flowChildren: 'right-wrap'
       });
-      setProp(_el$87, "style", {
+      setProp(_el$90, "style", {
         width: '100%',
         height: '30px',
         marginBottom: '3px'
       });
-      setProp(_el$88, "className", "CategoryButton LeftButton");
-      setProp(_el$88, "style", {
+      setProp(_el$91, "className", "CategoryButton LeftButton");
+      setProp(_el$91, "style", {
         width: '31%'
       });
-      setProp(_el$88, "onactivate", p => {
+      setProp(_el$91, "onactivate", p => {
         var _a;
         GameEvents.SendCustomGameEventToServer('debug_cmd', {
           cmd: `-res_gold ${((_a = p === null || p === void 0 ? void 0 : p.GetParent()) === null || _a === void 0 ? void 0 : _a.GetChild(0)).text}`
         });
       });
-      setProp(_el$90, "className", "CategoryButton LeftButton");
-      setProp(_el$90, "style", {
+      setProp(_el$93, "className", "CategoryButton LeftButton");
+      setProp(_el$93, "style", {
         width: '32%'
       });
-      setProp(_el$90, "onactivate", p => {
+      setProp(_el$93, "onactivate", p => {
         var _a;
         GameEvents.SendCustomGameEventToServer('debug_cmd', {
           cmd: `-res_wood ${((_a = p === null || p === void 0 ? void 0 : p.GetParent()) === null || _a === void 0 ? void 0 : _a.GetChild(0)).text}`
         });
       });
-      setProp(_el$92, "className", "CategoryButton LeftButton");
-      setProp(_el$92, "style", {
+      setProp(_el$95, "className", "CategoryButton LeftButton");
+      setProp(_el$95, "style", {
         width: '32%'
       });
-      setProp(_el$92, "onactivate", p => {
+      setProp(_el$95, "onactivate", p => {
         var _a;
         GameEvents.SendCustomGameEventToServer('debug_cmd', {
           cmd: `-res_kill ${((_a = p === null || p === void 0 ? void 0 : p.GetParent()) === null || _a === void 0 ? void 0 : _a.GetChild(0)).text}`
         });
       });
-      return _el$65;
+      return _el$68;
     })();
   }
   function ItemSelectionBox(props) {
     const getter = PropsGetter(props);
     return (() => {
-      const _el$94 = createElement("Panel", {
+      const _el$97 = createElement("Panel", {
         id: "ItemSelectionBox",
         hittest: false
       }, null);
-      setProp(_el$94, "className", "SelectionBox");
-      insert(_el$94, () => Object.keys(ItemsKv).filter(k => {
+      setProp(_el$97, "className", "SelectionBox");
+      insert(_el$97, () => Object.keys(ItemsKv).filter(k => {
         var _a;
         return String((_a = ItemsKv[k]['id']) !== null && _a !== void 0 ? _a : '').substring(0, 3) == '112';
       }).sort((a, b) => ItemsKv[a]['id'] - ItemsKv[b]['id']).map(sName => {
@@ -9176,9 +9188,9 @@ var global = this;
           sLocalizeName = sName;
         }
         return (() => {
-          const _el$95 = createElement("Panel", {}, null);
-          setProp(_el$95, "className", "ItemOption");
-          insert(_el$95, createComponent(Yzy_ItemImage, {
+          const _el$98 = createElement("Panel", {}, null);
+          setProp(_el$98, "className", "ItemOption");
+          insert(_el$98, createComponent(Yzy_ItemImage, {
             name: sName,
             get rarity() {
               return (_a = ItemsKv[sName]) === null || _a === void 0 ? void 0 : _a['Rarity'];
@@ -9197,7 +9209,7 @@ var global = this;
               });
             }
           }), null);
-          insert(_el$95, createComponent(Yzy_ItemName, {
+          insert(_el$98, createComponent(Yzy_ItemName, {
             name: sName,
             get rarity() {
               return (_b = ItemsKv[sName]) === null || _b === void 0 ? void 0 : _b['Rarity'];
@@ -9206,21 +9218,21 @@ var global = this;
               return getter.bLocal() ? sName : sLocalizeName;
             }
           }), null);
-          return _el$95;
+          return _el$98;
         })();
       }));
-      return _el$94;
+      return _el$97;
     })();
   }
   function ConsumableSelectionBox(props) {
     const getter = PropsGetter(props);
     return (() => {
-      const _el$96 = createElement("Panel", {
+      const _el$99 = createElement("Panel", {
         id: "ConsumableSelectionBox",
         hittest: false
       }, null);
-      setProp(_el$96, "className", "SelectionBox");
-      insert(_el$96, () => Object.keys(ItemsKv).filter(k => {
+      setProp(_el$99, "className", "SelectionBox");
+      insert(_el$99, () => Object.keys(ItemsKv).filter(k => {
         return String(ItemsKv[k]['id']).substring(0, 3) == '108' && ItemsKv[k]['ItemLabel'] == 'consumable';
       }).sort((a, b) => {
         var _a, _b;
@@ -9228,11 +9240,11 @@ var global = this;
       }).map(sName => {
         const tKv = ItemsKv[sName];
         return (() => {
-          const _el$97 = createElement("Panel", {}, null),
-            _el$98 = createElement("Panel", {}, _el$97);
-          setProp(_el$97, "className", "AbilityOption");
-          setProp(_el$98, "className", "ConsumableImagePanel");
-          insert(_el$98, createComponent(GameplayItem, {
+          const _el$100 = createElement("Panel", {}, null),
+            _el$101 = createElement("Panel", {}, _el$100);
+          setProp(_el$100, "className", "AbilityOption");
+          setProp(_el$101, "className", "ConsumableImagePanel");
+          insert(_el$101, createComponent(GameplayItem, {
             get item_id() {
               return tKv['id'];
             },
@@ -9242,28 +9254,28 @@ var global = this;
               });
             }
           }));
-          insert(_el$97, createComponent(Yzy_ItemName, {
+          insert(_el$100, createComponent(Yzy_ItemName, {
             name: sName,
             text: '#DOTA_TOOLTIP_ability_' + sName,
             get rarity() {
               return tKv['Rarity'];
             }
           }), null);
-          return _el$97;
+          return _el$100;
         })();
       }));
-      return _el$96;
+      return _el$99;
     })();
   }
   function ShopItemSelectionBox(props) {
     const getter = PropsGetter(props);
     return (() => {
-      const _el$99 = createElement("Panel", {
+      const _el$102 = createElement("Panel", {
         id: "ShopItemSelectionBox",
         hittest: false
       }, null);
-      setProp(_el$99, "className", "SelectionBox");
-      insert(_el$99, () => Object.keys(AbilitiesKv).filter(k => {
+      setProp(_el$102, "className", "SelectionBox");
+      insert(_el$102, () => Object.keys(AbilitiesKv).filter(k => {
         return String(AbilitiesKv[k]['id']).substring(0, 3) == '109';
       }).sort((a, b) => {
         var _a, _b;
@@ -9272,11 +9284,11 @@ var global = this;
         const tKv = AbilitiesKv[sName];
         if (tKv['Enable'] != 1) return [];
         return (() => {
-          const _el$100 = createElement("Panel", {}, null),
-            _el$101 = createElement("Panel", {}, _el$100);
-          setProp(_el$100, "className", "AbilityOption");
-          setProp(_el$101, "className", "ShopItemImagePanel");
-          insert(_el$101, createComponent(Yzy_ItemImage, {
+          const _el$103 = createElement("Panel", {}, null),
+            _el$104 = createElement("Panel", {}, _el$103);
+          setProp(_el$103, "className", "AbilityOption");
+          setProp(_el$104, "className", "ShopItemImagePanel");
+          insert(_el$104, createComponent(Yzy_ItemImage, {
             name: sName,
             get rarity() {
               return tKv['Rarity'];
@@ -9299,13 +9311,13 @@ var global = this;
               });
             }
           }));
-          insert(_el$100, createComponent(Yzy_ItemName, {
+          insert(_el$103, createComponent(Yzy_ItemName, {
             name: sName
           }), null);
-          return _el$100;
+          return _el$103;
         })();
       }));
-      return _el$99;
+      return _el$102;
     })();
   }
   function CardSelectionBox(props) {
@@ -9313,12 +9325,12 @@ var global = this;
     const [getCardSelected] = useNetEventTable(t => t, 'card', () => "selected_" + getter_iLocalPlayer());
     const [getCardDevour] = useNetEventTable(t => t, 'card', () => 'devour_' + getter_iLocalPlayer());
     return (() => {
-      const _el$102 = createElement("Panel", {
+      const _el$105 = createElement("Panel", {
         id: "CardSelectionBox",
         hittest: false
       }, null);
-      setProp(_el$102, "className", "SelectionBox");
-      insert(_el$102, () => Object.keys(AbilitiesKv).filter(k => {
+      setProp(_el$105, "className", "SelectionBox");
+      insert(_el$105, () => Object.keys(AbilitiesKv).filter(k => {
         return String(AbilitiesKv[k]['id']).substring(0, 3) == '110';
       }).sort((a, b) => {
         var _a, _b;
@@ -9340,8 +9352,8 @@ var global = this;
           return false;
         };
         return (() => {
-          const _el$103 = createElement("Panel", {}, null);
-          insert(_el$103, createComponent(Yzy_ItemImage, {
+          const _el$106 = createElement("Panel", {}, null);
+          insert(_el$106, createComponent(Yzy_ItemImage, {
             name: sName,
             onmouseover: p => {
               ShowTooltip(p, 'card_tooltip', {
@@ -9356,28 +9368,28 @@ var global = this;
               });
             }
           }), null);
-          insert(_el$103, createComponent(Yzy_ItemName, {
+          insert(_el$106, createComponent(Yzy_ItemName, {
             name: sName
           }), null);
-          effect(_$p => setProp(_el$103, "className", classNames('AbilityOption', {
+          effect(_$p => setProp(_el$106, "className", classNames('AbilityOption', {
             'HasCard': getHasCard()
           }), _$p));
-          return _el$103;
+          return _el$106;
         })();
       }));
-      return _el$102;
+      return _el$105;
     })();
   }
   function RelicSelectionBox(props) {
     PropsGetter(props);
     const [getSelected] = useNetEventTable(t => t, 'relic', () => "selected_" + getter_iLocalPlayer());
     return (() => {
-      const _el$104 = createElement("Panel", {
+      const _el$107 = createElement("Panel", {
         id: "RelicSelectionBox",
         hittest: false
       }, null);
-      setProp(_el$104, "className", "SelectionBox");
-      insert(_el$104, () => Object.keys(AbilitiesKv).filter(k => {
+      setProp(_el$107, "className", "SelectionBox");
+      insert(_el$107, () => Object.keys(AbilitiesKv).filter(k => {
         return String(AbilitiesKv[k]['id']).substring(0, 3) == '113';
       }).sort((a, b) => {
         var _a, _b;
@@ -9399,10 +9411,10 @@ var global = this;
           return false;
         };
         return (() => {
-          const _el$105 = createElement("Panel", {}, null),
-            _el$106 = createElement("Panel", {}, _el$105);
-          setProp(_el$106, "className", "RelicImagePanel");
-          insert(_el$106, createComponent(Yzy_ItemImage, {
+          const _el$108 = createElement("Panel", {}, null),
+            _el$109 = createElement("Panel", {}, _el$108);
+          setProp(_el$109, "className", "RelicImagePanel");
+          insert(_el$109, createComponent(Yzy_ItemImage, {
             name: sName,
             get rarity() {
               return tKv['Rarity'];
@@ -9426,16 +9438,16 @@ var global = this;
               });
             }
           }));
-          insert(_el$105, createComponent(Yzy_ItemName, {
+          insert(_el$108, createComponent(Yzy_ItemName, {
             name: sName
           }), null);
-          effect(_$p => setProp(_el$105, "className", classNames('AbilityOption', {
+          effect(_$p => setProp(_el$108, "className", classNames('AbilityOption', {
             'Has': getHas()
           }), _$p));
-          return _el$105;
+          return _el$108;
         })();
       }));
-      return _el$104;
+      return _el$107;
     })();
   }
   function UnitAttributePanel(props) {
@@ -9450,18 +9462,18 @@ var global = this;
       });
     });
     return (() => {
-      const _el$107 = createElement("Panel", {
+      const _el$110 = createElement("Panel", {
         id: "UnitAttributePanel"
       }, null);
-      insert(_el$107, createComponent(Show, {
+      insert(_el$110, createComponent(Show, {
         get when() {
           return isShow();
         },
         get children() {
-          const _el$108 = createElement("Panel", {
+          const _el$111 = createElement("Panel", {
             id: "SwitchContentBox"
           }, null);
-          insert(_el$108, createComponent(TabContents, {
+          insert(_el$111, createComponent(TabContents, {
             tabid: "UnitAttributeCtrl",
             "class": "UnitAttributeCtrl",
             group: "UnitAttribute",
@@ -9474,7 +9486,7 @@ var global = this;
               });
             }
           }), null);
-          insert(_el$108, createComponent(TabContents, {
+          insert(_el$111, createComponent(TabContents, {
             tabid: "UnitBuffAttributesBtn",
             group: "UnitAttribute",
             get children() {
@@ -9485,11 +9497,11 @@ var global = this;
               });
             }
           }), null);
-          return _el$108;
+          return _el$111;
         }
       }));
-      effect(_$p => setProp(_el$107, "visible", isShow(), _$p));
-      return _el$107;
+      effect(_$p => setProp(_el$110, "visible", isShow(), _$p));
+      return _el$110;
     })();
   }
   function GetAttributeId(attribute) {
@@ -9503,30 +9515,30 @@ var global = this;
   function AttributeCtrlBox(props) {
     const [getSearchText, setSearchText] = createSignal('');
     return (() => {
-      const _el$109 = createElement("Panel", {
+      const _el$112 = createElement("Panel", {
           id: "AttributeCtrlBox",
           hittest: false
         }, null),
-        _el$110 = createElement("Panel", {
+        _el$113 = createElement("Panel", {
           id: "AttributeCtrlBoxHeader"
-        }, _el$109);
+        }, _el$112);
         createElement("Label", {
           text: "搜索"
-        }, _el$110);
-        const _el$112 = createElement("TextEntry", {
+        }, _el$113);
+        const _el$115 = createElement("TextEntry", {
           placeholder: "支持名称、ID、本地化名称",
           get text() {
             return getSearchText();
           }
-        }, _el$110),
-        _el$113 = createElement("Panel", {
+        }, _el$113),
+        _el$116 = createElement("Panel", {
           id: "AttributeCtrlBoxContent",
           hittest: false
-        }, _el$109);
-      setProp(_el$112, "ontextentrychange", p => {
+        }, _el$112);
+      setProp(_el$115, "ontextentrychange", p => {
         setSearchText(p.text.toLowerCase());
       });
-      insert(_el$113, () => Object.keys(AttributeCfg).map((sName, i) => {
+      insert(_el$116, () => Object.keys(AttributeCfg).map((sName, i) => {
         let sLocalizeName = '#' + sName;
         if ($.Localize(sLocalizeName) != sLocalizeName) {
           sLocalizeName = $.Localize(sLocalizeName);
@@ -9578,8 +9590,8 @@ var global = this;
           }
         });
       }));
-      effect(_$p => setProp(_el$112, "text", getSearchText(), _$p));
-      return _el$109;
+      effect(_$p => setProp(_el$115, "text", getSearchText(), _$p));
+      return _el$112;
     })();
   }
   function AttributeCtrlSon(props) {
@@ -9609,47 +9621,47 @@ var global = this;
       StopTimer(iTimerID);
     });
     return (() => {
-      const _el$114 = createElement("Panel", {
+      const _el$117 = createElement("Panel", {
           get style() {
             return {
               marginLeft: `${props.hAttribute.hParent == undefined ? 0 : 32}px`
             };
           }
         }, null),
-        _el$115 = createElement("Panel", {
+        _el$118 = createElement("Panel", {
           onactivate: bHasSon ? () => {
             setOpen(!isOpen());
           } : undefined
-        }, _el$114),
-        _el$117 = createElement("Panel", {}, _el$115),
-        _el$118 = createElement("Image", {
+        }, _el$117),
+        _el$120 = createElement("Panel", {}, _el$118),
+        _el$121 = createElement("Image", {
           id: "OpenStateImg",
           src: "s2r://panorama/images/control_icons/arrow_solid_right_png.vtex"
-        }, _el$117),
-        _el$119 = createElement("Label", {
+        }, _el$120),
+        _el$122 = createElement("Label", {
           id: "AttributeName",
           html: true,
           get text() {
             return `${props.sName}${props.attributeID ? ' — ' + $.Localize('#' + props.attributeID) : ''}`;
           }
-        }, _el$117),
-        _el$120 = createElement("Label", {
+        }, _el$120),
+        _el$123 = createElement("Label", {
           id: "AttributeVal",
           get text() {
             return (_a = getVal()) !== null && _a !== void 0 ? _a : '';
           }
-        }, _el$117);
-      setProp(_el$115, "className", "Body");
-      setProp(_el$115, "onactivate", bHasSon ? () => {
+        }, _el$120);
+      setProp(_el$118, "className", "Body");
+      setProp(_el$118, "onactivate", bHasSon ? () => {
         setOpen(!isOpen());
       } : undefined);
-      insert(_el$115, createComponent(Show, {
+      insert(_el$118, createComponent(Show, {
         when: bCanModify,
         get children() {
-          const _el$116 = createElement("Button", {
+          const _el$119 = createElement("Button", {
             id: "AttributeInfoButton"
           }, null);
-          setProp(_el$116, "onmouseover", p => {
+          setProp(_el$119, "onmouseover", p => {
             let s = '';
             props.hAttribute.Data(props.getEntID()).map(({
               k,
@@ -9679,29 +9691,29 @@ var global = this;
               });
             }
           });
-          setProp(_el$116, "onmouseout", p => {
+          setProp(_el$119, "onmouseout", p => {
             HideTooltip();
           });
-          return _el$116;
+          return _el$119;
         }
-      }), _el$117);
-      setProp(_el$117, "className", "Header");
-      setProp(_el$117, "onmouseover", p => {
+      }), _el$120);
+      setProp(_el$120, "className", "Header");
+      setProp(_el$120, "onmouseover", p => {
         if (props.attributeID) {
           $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize('#' + props.attributeID) + ' - ' + props.attributeID);
         }
       });
-      setProp(_el$117, "onmouseout", p => {
+      setProp(_el$120, "onmouseout", p => {
         $.DispatchEvent("DOTAHideTextTooltip", p);
       });
-      setProp(_el$118, "visible", bHasSon);
-      insert(_el$115, createComponent(Show, {
+      setProp(_el$121, "visible", bHasSon);
+      insert(_el$118, createComponent(Show, {
         when: bCanModify,
         get children() {
-          const _el$121 = createElement("Panel", {
+          const _el$124 = createElement("Panel", {
               id: "Modifier"
             }, null),
-            _el$122 = createElement("TextEntry", {
+            _el$125 = createElement("TextEntry", {
               multiline: false,
               get textmode() {
                 return isNumber() ? 'numeric' : 'normal';
@@ -9710,8 +9722,8 @@ var global = this;
               get text() {
                 return (_c = (_b = getValModifier()) === null || _b === void 0 ? void 0 : _b.toString()) !== null && _c !== void 0 ? _c : '';
               }
-            }, _el$121);
-          setProp(_el$122, "ontextentrychange", p => {
+            }, _el$124);
+          setProp(_el$125, "ontextentrychange", p => {
             if (isNumber() && p.text != '' && Number.isNaN(parseFloat(p.text))) return;
             GameEvents.SendCustomGameEventToServer('debug_cmd', {
               cmd: `-sx ${JSON.stringify({
@@ -9724,25 +9736,25 @@ var global = this;
           effect(_p$ => {
             const _v$4 = isNumber() ? 'numeric' : 'normal',
               _v$5 = (_c = (_b = getValModifier()) === null || _b === void 0 ? void 0 : _b.toString()) !== null && _c !== void 0 ? _c : '';
-            _v$4 !== _p$._v$4 && (_p$._v$4 = setProp(_el$122, "textmode", _v$4, _p$._v$4));
-            _v$5 !== _p$._v$5 && (_p$._v$5 = setProp(_el$122, "text", _v$5, _p$._v$5));
+            _v$4 !== _p$._v$4 && (_p$._v$4 = setProp(_el$125, "textmode", _v$4, _p$._v$4));
+            _v$5 !== _p$._v$5 && (_p$._v$5 = setProp(_el$125, "text", _v$5, _p$._v$5));
             return _p$;
           }, {
             _v$4: undefined,
             _v$5: undefined
           });
-          return _el$121;
+          return _el$124;
         }
       }), null);
-      insert(_el$114, createComponent(Show, {
+      insert(_el$117, createComponent(Show, {
         get when() {
           return bHasSon && isOpen();
         },
         get children() {
-          const _el$123 = createElement("Panel", {
+          const _el$126 = createElement("Panel", {
             id: "SonBox"
           }, null);
-          insert(_el$123, () => Object.keys(tSon).map((sName, i) => {
+          insert(_el$126, () => Object.keys(tSon).map((sName, i) => {
             return createComponent(AttributeCtrlSon, {
               get hAttribute() {
                 return tSon[sName];
@@ -9756,7 +9768,7 @@ var global = this;
               }
             });
           }));
-          return _el$123;
+          return _el$126;
         }
       }), null);
       effect(_p$ => {
@@ -9770,10 +9782,10 @@ var global = this;
           },
           _v$8 = `${props.sName}${props.attributeID ? ' — ' + $.Localize('#' + props.attributeID) : ''}`,
           _v$9 = (_a = getVal()) !== null && _a !== void 0 ? _a : '';
-        _v$6 !== _p$._v$6 && (_p$._v$6 = setProp(_el$114, "className", _v$6, _p$._v$6));
-        _v$7 !== _p$._v$7 && (_p$._v$7 = setProp(_el$114, "style", _v$7, _p$._v$7));
-        _v$8 !== _p$._v$8 && (_p$._v$8 = setProp(_el$119, "text", _v$8, _p$._v$8));
-        _v$9 !== _p$._v$9 && (_p$._v$9 = setProp(_el$120, "text", _v$9, _p$._v$9));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = setProp(_el$117, "className", _v$6, _p$._v$6));
+        _v$7 !== _p$._v$7 && (_p$._v$7 = setProp(_el$117, "style", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = setProp(_el$122, "text", _v$8, _p$._v$8));
+        _v$9 !== _p$._v$9 && (_p$._v$9 = setProp(_el$123, "text", _v$9, _p$._v$9));
         return _p$;
       }, {
         _v$6: undefined,
@@ -9781,7 +9793,7 @@ var global = this;
         _v$8: undefined,
         _v$9: undefined
       });
-      return _el$114;
+      return _el$117;
     })();
   }
   function UnitBuffAttributes(props) {
@@ -9805,10 +9817,10 @@ var global = this;
       StopTimer(iTimerID);
     });
     return (() => {
-      const _el$124 = createElement("Panel", {
+      const _el$127 = createElement("Panel", {
         id: "UnitBuffAttributes"
       }, null);
-      insert(_el$124, createComponent(Index, {
+      insert(_el$127, createComponent(Index, {
         get each() {
           return tPolymers();
         },
@@ -9817,29 +9829,29 @@ var global = this;
           if (hPlm == undefined) return [];
           const tAttributes = hPlm.GetCustomAttributes();
           return (() => {
-            const _el$125 = createElement("Panel", {}, null),
-              _el$126 = createElement("Label", {
+            const _el$128 = createElement("Panel", {}, null),
+              _el$129 = createElement("Label", {
                 id: "Title",
                 get text() {
                   return `${getPolymerData().name}(${getPolymerData().id})`;
                 }
-              }, _el$125),
-              _el$127 = createElement("Panel", {
+              }, _el$128),
+              _el$130 = createElement("Panel", {
                 id: "AttributeBox"
-              }, _el$125);
-            insert(_el$127, () => Object.keys(tAttributes).map((sAttributeID, i) => {
+              }, _el$128);
+            insert(_el$130, () => Object.keys(tAttributes).map((sAttributeID, i) => {
               const val = tAttributes[sAttributeID];
               let sVal = typeof val == 'number' ? tAttributes[sAttributeID].toFixed(2) : String(val);
               return (() => {
-                const _el$128 = createElement("Label", {
+                const _el$131 = createElement("Label", {
                   get text() {
                     return `${sAttributeID} ${SpanText(sVal, 'Val')}`;
                   },
                   html: true
                 }, null);
-                setProp(_el$128, "className", "AttributeLabel");
-                effect(_$p => setProp(_el$128, "text", `${sAttributeID} ${SpanText(sVal, 'Val')}`, _$p));
-                return _el$128;
+                setProp(_el$131, "className", "AttributeLabel");
+                effect(_$p => setProp(_el$131, "text", `${sAttributeID} ${SpanText(sVal, 'Val')}`, _$p));
+                return _el$131;
               })();
             }));
             effect(_p$ => {
@@ -9847,47 +9859,47 @@ var global = this;
                   'Debuff': hPlm.IsDebuff()
                 }),
                 _v$1 = `${getPolymerData().name}(${getPolymerData().id})`;
-              _v$0 !== _p$._v$0 && (_p$._v$0 = setProp(_el$125, "className", _v$0, _p$._v$0));
-              _v$1 !== _p$._v$1 && (_p$._v$1 = setProp(_el$126, "text", _v$1, _p$._v$1));
+              _v$0 !== _p$._v$0 && (_p$._v$0 = setProp(_el$128, "className", _v$0, _p$._v$0));
+              _v$1 !== _p$._v$1 && (_p$._v$1 = setProp(_el$129, "text", _v$1, _p$._v$1));
               return _p$;
             }, {
               _v$0: undefined,
               _v$1: undefined
             });
-            return _el$125;
+            return _el$128;
           })();
         }
       }), null);
-      insert(_el$124, createComponent(Index, {
+      insert(_el$127, createComponent(Index, {
         get each() {
           return tBuffs();
         },
         children: (getBuff, i) => {
           const tAttributes = getBuff().GetCustomAttributes();
           return (() => {
-            const _el$129 = createElement("Panel", {}, null),
-              _el$130 = createElement("Label", {
+            const _el$132 = createElement("Panel", {}, null),
+              _el$133 = createElement("Label", {
                 id: "Title",
                 get text() {
                   return `${getBuff().GetName()}(${getBuff().GetSerialNumber()})`;
                 }
-              }, _el$129),
-              _el$131 = createElement("Panel", {
+              }, _el$132),
+              _el$134 = createElement("Panel", {
                 id: "AttributeBox"
-              }, _el$129);
-            insert(_el$131, () => Object.keys(tAttributes).map(sAttributeID => {
+              }, _el$132);
+            insert(_el$134, () => Object.keys(tAttributes).map(sAttributeID => {
               const val = tAttributes[sAttributeID];
               let sVal = typeof val == 'number' ? tAttributes[sAttributeID].toFixed(2) : String(val);
               return (() => {
-                const _el$132 = createElement("Label", {
+                const _el$135 = createElement("Label", {
                   get text() {
                     return `${sAttributeID} ${SpanText(sVal, 'Val')}`;
                   },
                   html: true
                 }, null);
-                setProp(_el$132, "className", "AttributeLabel");
-                effect(_$p => setProp(_el$132, "text", `${sAttributeID} ${SpanText(sVal, 'Val')}`, _$p));
-                return _el$132;
+                setProp(_el$135, "className", "AttributeLabel");
+                effect(_$p => setProp(_el$135, "text", `${sAttributeID} ${SpanText(sVal, 'Val')}`, _$p));
+                return _el$135;
               })();
             }));
             effect(_p$ => {
@@ -9895,18 +9907,18 @@ var global = this;
                   'Debuff': getBuff().IsDebuff()
                 }),
                 _v$11 = `${getBuff().GetName()}(${getBuff().GetSerialNumber()})`;
-              _v$10 !== _p$._v$10 && (_p$._v$10 = setProp(_el$129, "className", _v$10, _p$._v$10));
-              _v$11 !== _p$._v$11 && (_p$._v$11 = setProp(_el$130, "text", _v$11, _p$._v$11));
+              _v$10 !== _p$._v$10 && (_p$._v$10 = setProp(_el$132, "className", _v$10, _p$._v$10));
+              _v$11 !== _p$._v$11 && (_p$._v$11 = setProp(_el$133, "text", _v$11, _p$._v$11));
               return _p$;
             }, {
               _v$10: undefined,
               _v$11: undefined
             });
-            return _el$129;
+            return _el$132;
           })();
         }
       }), null);
-      return _el$124;
+      return _el$127;
     })();
   }
   function DummyOverHead() {
@@ -9915,11 +9927,11 @@ var global = this;
       return t;
     }, 'dummy', 'demo_dummy');
     return (() => {
-      const _el$133 = createElement("Panel", {
+      const _el$136 = createElement("Panel", {
         id: "DummyOverHead",
         hittest: false
       }, null);
-      insert(_el$133, createComponent(Index, {
+      insert(_el$136, createComponent(Index, {
         get each() {
           return Object.keys((_a = getDummy()) !== null && _a !== void 0 ? _a : []);
         },
@@ -9931,7 +9943,7 @@ var global = this;
           });
         }
       }));
-      return _el$133;
+      return _el$136;
     })();
   }
   function DummyBar({
@@ -10080,98 +10092,95 @@ var global = this;
       });
     }
     return (() => {
-      const _el$134 = createElement("Panel", {
+      const _el$137 = createElement("Panel", {
           id: "DummyBar",
           hittest: false,
           onmouseout: HideTooltip
         }, null),
-        _el$135 = createElement("Panel", {
+        _el$138 = createElement("Panel", {
           id: "Bar"
-        }, _el$134),
-        _el$136 = createElement("Panel", {
+        }, _el$137),
+        _el$139 = createElement("Panel", {
           id: "HealthProgress"
-        }, _el$135);
+        }, _el$138);
         createElement("Panel", {
           id: "HealthProgress_Loss"
-        }, _el$136);
+        }, _el$139);
         createElement("Panel", {
           id: "HealthProgress_Left"
-        }, _el$136);
-        const _el$139 = createElement("Panel", {
+        }, _el$139);
+        const _el$142 = createElement("Panel", {
           id: "TestRecord"
-        }, _el$134),
-        _el$140 = createElement("ProgressBar", {
+        }, _el$137),
+        _el$143 = createElement("ProgressBar", {
           id: "TestRecordCountdownBar",
           value: 0
-        }, _el$139),
-        _el$141 = createElement("Panel", {}, _el$139),
-        _el$142 = createElement("Label", {
+        }, _el$142),
+        _el$144 = createElement("Panel", {}, _el$142),
+        _el$145 = createElement("Label", {
           text: "总伤害"
-        }, _el$141),
-        _el$143 = createElement("Label", {
+        }, _el$144),
+        _el$146 = createElement("Label", {
           text: "{s:total_damage}",
           get dialogVariables() {
             return {
               total_damage: FormatNumber(getTotalDamage())
             };
           }
-        }, _el$141),
-        _el$144 = createElement("Panel", {}, _el$139),
-        _el$145 = createElement("Label", {
-          text: "DPS："
         }, _el$144),
-        _el$146 = createElement("Label", {
+        _el$147 = createElement("Panel", {}, _el$142),
+        _el$148 = createElement("Label", {
+          text: "DPS："
+        }, _el$147),
+        _el$149 = createElement("Label", {
           text: "{s:dps}",
           get dialogVariables() {
             return {
               dps: FormatNumber(getDps())
             };
           }
-        }, _el$144),
-        _el$147 = createElement("Panel", {}, _el$139),
-        _el$148 = createElement("Label", {
-          text: "最后一次伤害"
         }, _el$147),
-        _el$149 = createElement("Label", {
+        _el$150 = createElement("Panel", {}, _el$142),
+        _el$151 = createElement("Label", {
+          text: "最后一次伤害"
+        }, _el$150),
+        _el$152 = createElement("Label", {
           text: "{s:last_damage}",
           get dialogVariables() {
             return {
               last_damage: FormatNumber(getLastDamage())
             };
           }
-        }, _el$147),
-        _el$150 = createElement("Panel", {}, _el$139),
-        _el$151 = createElement("Label", {
-          text: "伤害次数"
         }, _el$150),
-        _el$152 = createElement("Label", {
+        _el$153 = createElement("Panel", {}, _el$142),
+        _el$154 = createElement("Label", {
+          text: "伤害次数"
+        }, _el$153),
+        _el$155 = createElement("Label", {
           text: "{s:count}",
           get dialogVariables() {
             return {
               count: FormatNumber(getCount())
             };
           }
-        }, _el$150);
+        }, _el$153);
       const _ref$2 = ref;
-      typeof _ref$2 === "function" ? use(_ref$2, _el$134) : ref = _el$134;
-      setProp(_el$134, "onmouseover", p => {});
-      setProp(_el$134, "onmouseout", HideTooltip);
-      insert(_el$134, (() => {
-        const _el$153 = createElement("Panel", {
+      typeof _ref$2 === "function" ? use(_ref$2, _el$137) : ref = _el$137;
+      setProp(_el$137, "onmouseover", p => {});
+      setProp(_el$137, "onmouseout", HideTooltip);
+      insert(_el$137, (() => {
+        const _el$156 = createElement("Panel", {
             id: "UnitName"
           }, null),
-          _el$154 = createElement("Panel", {}, _el$153);
-        setProp(_el$153, "onactivate", () => {});
-        setProp(_el$154, "className", "BG");
-        return _el$153;
-      })(), _el$135);
+          _el$157 = createElement("Panel", {}, _el$156);
+        setProp(_el$156, "onactivate", () => {});
+        setProp(_el$157, "className", "BG");
+        return _el$156;
+      })(), _el$138);
       const _ref$3 = refHealthProgress;
-      typeof _ref$3 === "function" ? use(_ref$3, _el$136) : refHealthProgress = _el$136;
+      typeof _ref$3 === "function" ? use(_ref$3, _el$139) : refHealthProgress = _el$139;
       const _ref$4 = refCountDownBar;
-      typeof _ref$4 === "function" ? use(_ref$4, _el$140) : refCountDownBar = _el$140;
-      setProp(_el$141, "className", "TestRecordRow");
-      setProp(_el$142, "className", "TestRecordRowLeft");
-      setProp(_el$143, "className", "TestRecordRowRight");
+      typeof _ref$4 === "function" ? use(_ref$4, _el$143) : refCountDownBar = _el$143;
       setProp(_el$144, "className", "TestRecordRow");
       setProp(_el$145, "className", "TestRecordRowLeft");
       setProp(_el$146, "className", "TestRecordRowRight");
@@ -10181,6 +10190,9 @@ var global = this;
       setProp(_el$150, "className", "TestRecordRow");
       setProp(_el$151, "className", "TestRecordRowLeft");
       setProp(_el$152, "className", "TestRecordRowRight");
+      setProp(_el$153, "className", "TestRecordRow");
+      setProp(_el$154, "className", "TestRecordRowLeft");
+      setProp(_el$155, "className", "TestRecordRowRight");
       effect(_p$ => {
         const _v$12 = {
             total_damage: FormatNumber(getTotalDamage())
@@ -10194,10 +10206,10 @@ var global = this;
           _v$15 = {
             count: FormatNumber(getCount())
           };
-        _v$12 !== _p$._v$12 && (_p$._v$12 = setProp(_el$143, "dialogVariables", _v$12, _p$._v$12));
-        _v$13 !== _p$._v$13 && (_p$._v$13 = setProp(_el$146, "dialogVariables", _v$13, _p$._v$13));
-        _v$14 !== _p$._v$14 && (_p$._v$14 = setProp(_el$149, "dialogVariables", _v$14, _p$._v$14));
-        _v$15 !== _p$._v$15 && (_p$._v$15 = setProp(_el$152, "dialogVariables", _v$15, _p$._v$15));
+        _v$12 !== _p$._v$12 && (_p$._v$12 = setProp(_el$146, "dialogVariables", _v$12, _p$._v$12));
+        _v$13 !== _p$._v$13 && (_p$._v$13 = setProp(_el$149, "dialogVariables", _v$13, _p$._v$13));
+        _v$14 !== _p$._v$14 && (_p$._v$14 = setProp(_el$152, "dialogVariables", _v$14, _p$._v$14));
+        _v$15 !== _p$._v$15 && (_p$._v$15 = setProp(_el$155, "dialogVariables", _v$15, _p$._v$15));
         return _p$;
       }, {
         _v$12: undefined,
@@ -10205,7 +10217,7 @@ var global = this;
         _v$14: undefined,
         _v$15: undefined
       });
-      return _el$134;
+      return _el$137;
     })();
   }
   print(NetEventData.GetTableValue('tower', 'unit_data'));

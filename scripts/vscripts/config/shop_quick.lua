@@ -3,9 +3,9 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
 
-return decrypt("2233e455678002025fea4fd60702918e408aafa97b15b5dcc9f0fc79d5c2afd863e0e9a6f95885c1b8cf047426d6297a62e2bbe6909c0583b52ef3248a1f65c67dc01f6ca72935cb714d1ce5d37f06e6d3799b3fbe5c34f59abaf7f044fb64be","a43d4d36606b81c645bd0f9806428585",'config/shop_quick.lua',getfenv(1),true)
+return decrypt("ee43ca331cc393a2283cd091177844b03f6bfaf9de395c041498faab3ccdd1fc99ec4ce3aea0162ff52b1313c46db633d0bf3fc39358eb5f4c808c4be4063fce91e3fcdf2935c934137ec4b06ec79ff6f2f0bc2cb6eedbb6a0e76b6afe8f906f","cce474e73ef0a675e1e8ddf2de42ce71",'config/shop_quick.lua',getfenv(1),true)

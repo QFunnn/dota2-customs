@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -4609,7 +4609,7 @@ var global = this;
     const [getDifficult, setDifficult] = createSignal(1);
     const [getSubDifficult, setSubDifficult] = createSignal(0);
     const getCurMaxDifficult = 20;
-    const getCurMaxDifficultMolten = 23;
+    const getCurMaxDifficultMolten = 24;
     const [getUnlockDifficult] = useNetEventTable(t => {
       const i = t || 1;
       if (i >= getCurMaxDifficult + 1) {
@@ -4672,9 +4672,6 @@ var global = this;
         return Number(b.id) - Number(a.id);
       });
       return res;
-    });
-    createEffect(() => {
-      $.Msg('getPlayerRewards: ', getPlayerRewards());
     });
     const getPlayerList = createMemo(() => {
       const list = [];
@@ -13908,9 +13905,11 @@ var global = this;
           GameEvents.SendCustomGameEventToServer('OnCardGiveUpSelect', {});
         });
         setProp(_el$8, "onactivate", p => {
-          var _a, _b, _c;
+          var _a, _b, _c, _d;
           if ((getCardFreeRefreshCount() || 0) <= 0) {
-            const iRefreshCost = Math.min((((_a = CfgGetter_settings_common()) === null || _a === void 0 ? void 0 : _a['CardSelectionRefreshBaseCost']) || 0) + (getCardRefreshCount() || 0) * (((_b = CfgGetter_settings_common()) === null || _b === void 0 ? void 0 : _b['CardSelectionRefreshPerCost']) || 0), ((_c = CfgGetter_settings_common()) === null || _c === void 0 ? void 0 : _c['CardSelectionRefreshMaxCost']) || 0);
+            const iReduceCost = ((_a = getReduceCost()) === null || _a === void 0 ? void 0 : _a['refresh_card_cost']) || 0;
+            let iRefreshCost = Math.min((((_b = CfgGetter_settings_common()) === null || _b === void 0 ? void 0 : _b['CardSelectionRefreshBaseCost']) || 0) + (getCardRefreshCount() || 0) * (((_c = CfgGetter_settings_common()) === null || _c === void 0 ? void 0 : _c['CardSelectionRefreshPerCost']) || 0), ((_d = CfgGetter_settings_common()) === null || _d === void 0 ? void 0 : _d['CardSelectionRefreshMaxCost']) || 0);
+            iRefreshCost = iRefreshCost - iReduceCost;
             if (iRefreshCost > GetRes("wood", getter_iLocalPlayer())) return ErrorMsg(`error_not_enough_${"wood"}`);
           }
           GameEvents.SendCustomGameEventToServer('OnCardRefresh', {});

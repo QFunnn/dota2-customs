@@ -3,9 +3,9 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
 
-return decrypt("d8811ee6808689637a43709884dfe6d503296cc2fd72e76be05bcc9c37cb89d70d362189300e7a8f4fd5c1e194dc79218aea24e771a697059f44d61b587540de108f00fc86ab2a530c065eaf892c7a17d9a666164fedec5aa365658c5f5dee7131080eebdd3a3b8dd5282dccebaccf7e8d27d1afd1aa16b38441d6715022e3b1e6905e1ae678ddd0a97e41995f1bf0af527bd6cb4ba03ad5477ef5c7afecca604d177ab05d44bc7aaf894903be4bc4e9","dacadc41120d7b5826bc9dc0ecaa154d",'config/privilege_follow_item.lua',getfenv(1),true)
+return decrypt("714a5c5ddb05ddca27d9328a7b0c8c5aae7b544209eb7b17ab46dfe4833cc19d13269b431c7890b8b4ab8117c77b49bc5b0d3f74b385a664a3f896fe9c3ce3881e6715478c28ab79669450d4321596c7983928a00ac0c0b53665aff3beea97ebaf28ed87abdc64b77a4aca8748092ed53a703cd99d1add29029b14fc5c3cc164a60a2ea466e2f2a34985f101b1ccb4b02173c2914c98042e6fee6d2302edfc99ac7783719886c4e121b677c357d5d75c","dd2162b600824eb1cc57c9b91153b5c1",'config/privilege_follow_item.lua',getfenv(1),true)

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -4110,6 +4110,16 @@ var global = this;
       }
       return false;
     });
+    const getTotalLevel = () => {
+      var _a, _b, _c, _d;
+      let iTotal = 0;
+      for (const affix of (_b = (_a = getData()) === null || _a === void 0 ? void 0 : _a.affix) !== null && _b !== void 0 ? _b : []) {
+        if (((_c = affix.c) !== null && _c !== void 0 ? _c : 0) < 3) {
+          iTotal += (_d = affix.l) !== null && _d !== void 0 ? _d : 1;
+        }
+      }
+      return iTotal;
+    };
     return (() => {
       const _el$53 = createElement("Panel", mergeProps(props, {
           get ["class"]() {
@@ -4129,7 +4139,16 @@ var global = this;
           },
           scaling: "stretch-to-fit-x-preserve-aspect",
           hittest: false
-        }, _el$55);
+        }, _el$55),
+        _el$59 = createElement("Panel", {
+          "class": "TotalLevel"
+        }, _el$55),
+        _el$60 = createElement("Label", {
+          "class": "TotalLevelLabel",
+          get text() {
+            return getTotalLevel();
+          }
+        }, _el$59);
       spread(_el$53, mergeProps(props, {
         get ["class"]() {
           return classNames("PackPokemonItem", 'Rarity_' + getRarity());
@@ -4172,7 +4191,7 @@ var global = this;
             type: "icon_equip_lock"
           });
         }
-      }), null);
+      }), _el$59);
       insert(_el$55, createComponent(Show, {
         get when() {
           return getIsSystemLock();
@@ -4183,7 +4202,7 @@ var global = this;
             type: "icon_system_lock"
           });
         }
-      }), null);
+      }), _el$59);
       insert(_el$55, createComponent(Show, {
         get when() {
           return getIsNew();
@@ -4194,7 +4213,7 @@ var global = this;
             type: "icon_new"
           });
         }
-      }), null);
+      }), _el$59);
       insert(_el$55, createComponent(Show, {
         get when() {
           return getPotentialLeft() > 0;
@@ -4212,30 +4231,39 @@ var global = this;
           effect(_$p => setProp(_el$58, "text", String(getPotentialLeft()), _$p));
           return _el$57;
         }
-      }), null);
+      }), _el$59);
       insert(_el$55, createComponent(Show, {
         get when() {
           return getHasWear() && !local.hide_wear_icon;
         },
         get children() {
-          const _el$59 = createElement("Panel", {
+          const _el$61 = createElement("Panel", {
               "class": "Wear",
               hittest: false
             }, null),
-            _el$60 = createElement("Label", {
+            _el$62 = createElement("Label", {
               "class": "WearLabel",
               text: `#ServicePokemonHasWear`
-            }, _el$59);
-          insert(_el$59, createComponent(Yzy_Icon, {
+            }, _el$61);
+          insert(_el$61, createComponent(Yzy_Icon, {
             "class": "BG",
             type: "icon_equip_wear",
             hittest: false
-          }), _el$60);
-          setProp(_el$60, "text", `#ServicePokemonHasWear`);
-          return _el$59;
+          }), _el$62);
+          setProp(_el$62, "text", `#ServicePokemonHasWear`);
+          return _el$61;
         }
       }), null);
-      effect(_$p => setProp(_el$56, "src", getImage(), _$p));
+      effect(_p$ => {
+        const _v$5 = getImage(),
+          _v$6 = getTotalLevel();
+        _v$5 !== _p$._v$5 && (_p$._v$5 = setProp(_el$56, "src", _v$5, _p$._v$5));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = setProp(_el$60, "text", _v$6, _p$._v$6));
+        return _p$;
+      }, {
+        _v$5: undefined,
+        _v$6: undefined
+      });
       return _el$53;
     })();
   }
@@ -4487,6 +4515,10 @@ var global = this;
     var _a, _b;
     const getData = () => props.data;
     const getRarity = () => GetPokemonRarity(getData());
+    const getBindCount = () => {
+      var _a, _b;
+      return (_b = (_a = getData()) === null || _a === void 0 ? void 0 : _a.bind) !== null && _b !== void 0 ? _b : 0;
+    };
     const getPotentialLeft = () => {
       var _a, _b, _c, _d, _e, _f;
       let iPotentialLeft = ((_b = (_a = getData()) === null || _a === void 0 ? void 0 : _a.potential_max) !== null && _b !== void 0 ? _b : 0) - ((_d = (_c = getData()) === null || _c === void 0 ? void 0 : _c.potential) !== null && _d !== void 0 ? _d : 0);
@@ -4502,16 +4534,6 @@ var global = this;
         return getData().score;
       }
       return CalcPokemonScore(getData());
-    };
-    const getTotalLevel = () => {
-      var _a, _b, _c, _d;
-      let iTotal = 0;
-      for (const affix of (_b = (_a = getData()) === null || _a === void 0 ? void 0 : _a.affix) !== null && _b !== void 0 ? _b : []) {
-        if (((_c = affix.c) !== null && _c !== void 0 ? _c : 0) < 3) {
-          iTotal += (_d = affix.l) !== null && _d !== void 0 ? _d : 1;
-        }
-      }
-      return iTotal;
     };
     return (() => {
       const _el$6 = createElement("Panel", {
@@ -4549,11 +4571,8 @@ var global = this;
             return getScore();
           }
         }, _el$11),
-        _el$13 = createElement("Label", {
-          "class": "TotalLevel",
-          get text() {
-            return getTotalLevel();
-          }
+        _el$13 = createElement("Panel", {
+          "class": "RightTopBox"
         }, _el$6);
       insert(_el$9, createComponent(PackPokemonItem, {
         data: getData,
@@ -4571,21 +4590,38 @@ var global = this;
       insert(_el$11, createComponent(Yzy_Icon, {
         type: "icon_score"
       }), _el$12);
+      insert(_el$13, createComponent(Show, {
+        get when() {
+          return getBindCount() > 0;
+        },
+        get children() {
+          const _el$14 = createElement("Label", {
+            "class": "Bind",
+            get text() {
+              return ReplaceTextVariable('#EquipBind', {
+                'val': getBindCount()
+              });
+            },
+            html: true
+          }, null);
+          effect(_$p => setProp(_el$14, "text", ReplaceTextVariable('#EquipBind', {
+            'val': getBindCount()
+          }), _$p));
+          return _el$14;
+        }
+      }));
       effect(_p$ => {
         const _v$ = classNames('TooltipHeader', `Rarity_${getRarity()}`),
           _v$2 = ReplaceTextVariable(`#PokemonPotentialLeft`, getPotentialLeft()),
-          _v$3 = getScore(),
-          _v$4 = getTotalLevel();
+          _v$3 = getScore();
         _v$ !== _p$._v$ && (_p$._v$ = setProp(_el$6, "class", _v$, _p$._v$));
         _v$2 !== _p$._v$2 && (_p$._v$2 = setProp(_el$1, "text", _v$2, _p$._v$2));
         _v$3 !== _p$._v$3 && (_p$._v$3 = setProp(_el$12, "text", _v$3, _p$._v$3));
-        _v$4 !== _p$._v$4 && (_p$._v$4 = setProp(_el$13, "text", _v$4, _p$._v$4));
         return _p$;
       }, {
         _v$: undefined,
         _v$2: undefined,
-        _v$3: undefined,
-        _v$4: undefined
+        _v$3: undefined
       });
       return _el$6;
     })();
@@ -4613,13 +4649,13 @@ var global = this;
       return ((_b = (_a = getData()) === null || _a === void 0 ? void 0 : _a.affix) !== null && _b !== void 0 ? _b : []).filter(affix => affix.c == 3);
     });
     return (() => {
-      const _el$14 = createElement("Panel", {
+      const _el$15 = createElement("Panel", {
         id: "PokemonTooltipAffix",
         get ["class"]() {
           return classNames('TooltipAffix', `Rarity_${getRarity()}`);
         }
       }, null);
-      insert(_el$14, createComponent(Index, {
+      insert(_el$15, createComponent(Index, {
         get each() {
           return Object.entries(getAffixGroup());
         },
@@ -4627,32 +4663,32 @@ var global = this;
           const getAffixType = () => getValue()[0];
           const getAffixList = () => getValue()[1];
           return (() => {
-            const _el$21 = createElement("Panel", {
+            const _el$22 = createElement("Panel", {
                 get id() {
                   return 'Part_' + getAffixType();
                 },
                 "class": "AffixGroup"
               }, null),
-              _el$22 = createElement("Panel", {
+              _el$23 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
-              }, _el$21);
+              }, _el$22);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$22);
+              }, _el$23);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$22);
-              const _el$25 = createElement("Label", {
+              }, _el$23);
+              const _el$26 = createElement("Label", {
                 get text() {
                   return `#AffixTitle_${getAffixType()}`;
                 },
                 hittest: false
-              }, _el$22),
-              _el$26 = createElement("Panel", {
+              }, _el$23),
+              _el$27 = createElement("Panel", {
                 "class": "Body"
-              }, _el$21);
-            insert(_el$26, createComponent(Index, {
+              }, _el$22);
+            insert(_el$27, createComponent(Index, {
               get each() {
                 return getAffixList().sort((a, b) => b.l - a.l);
               },
@@ -4675,47 +4711,47 @@ var global = this;
               })
             }));
             effect(_p$ => {
-              const _v$5 = 'Part_' + getAffixType(),
-                _v$6 = `#AffixTitle_${getAffixType()}`;
-              _v$5 !== _p$._v$5 && (_p$._v$5 = setProp(_el$21, "id", _v$5, _p$._v$5));
-              _v$6 !== _p$._v$6 && (_p$._v$6 = setProp(_el$25, "text", _v$6, _p$._v$6));
+              const _v$4 = 'Part_' + getAffixType(),
+                _v$5 = `#AffixTitle_${getAffixType()}`;
+              _v$4 !== _p$._v$4 && (_p$._v$4 = setProp(_el$22, "id", _v$4, _p$._v$4));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = setProp(_el$26, "text", _v$5, _p$._v$5));
               return _p$;
             }, {
-              _v$5: undefined,
-              _v$6: undefined
+              _v$4: undefined,
+              _v$5: undefined
             });
-            return _el$21;
+            return _el$22;
           })();
         }
       }), null);
-      insert(_el$14, createComponent(Show, {
+      insert(_el$15, createComponent(Show, {
         get when() {
           return getRsnc().length > 0;
         },
         get children() {
-          const _el$15 = createElement("Panel", {
+          const _el$16 = createElement("Panel", {
               id: "Part3",
               "class": "AffixGroup"
             }, null),
-            _el$16 = createElement("Panel", {
+            _el$17 = createElement("Panel", {
               "class": "Title",
               hittest: false
-            }, _el$15);
+            }, _el$16);
             createElement("Panel", {
               "class": "BG"
-            }, _el$16);
+            }, _el$17);
             createElement("Panel", {
               "class": "Line"
-            }, _el$16);
-            const _el$19 = createElement("Label", {
+            }, _el$17);
+            const _el$20 = createElement("Label", {
               text: `#AffixTitle_3`,
               hittest: false
-            }, _el$16),
-            _el$20 = createElement("Panel", {
+            }, _el$17),
+            _el$21 = createElement("Panel", {
               "class": "Body"
-            }, _el$15);
-          setProp(_el$19, "text", `#AffixTitle_3`);
-          insert(_el$20, createComponent(Index, {
+            }, _el$16);
+          setProp(_el$20, "text", `#AffixTitle_3`);
+          insert(_el$21, createComponent(Index, {
             get each() {
               return getRsnc().sort((a, b) => a.idx - b.idx);
             },
@@ -4725,11 +4761,11 @@ var global = this;
               }
             })
           }));
-          return _el$15;
+          return _el$16;
         }
       }), null);
-      effect(_$p => setProp(_el$14, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
-      return _el$14;
+      effect(_$p => setProp(_el$15, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
+      return _el$15;
     })();
   }
   function PokemonTooltipRsncRow(props) {
@@ -4756,7 +4792,7 @@ var global = this;
       return tValues;
     };
     return (() => {
-      const _el$27 = createElement("Panel", {
+      const _el$28 = createElement("Panel", {
           get id() {
             return 'EquipTooltipRsncRow_' + props.affix.idx;
           },
@@ -4770,32 +4806,32 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$28 = createElement("Label", {
+        _el$29 = createElement("Label", {
           id: "Description",
           get text() {
             return '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
           },
           html: true
-        }, _el$27);
+        }, _el$28);
       effect(_p$ => {
-        const _v$7 = 'EquipTooltipRsncRow_' + props.affix.idx,
-          _v$8 = classNames('EquipTooltipRsncRow', {
+        const _v$6 = 'EquipTooltipRsncRow_' + props.affix.idx,
+          _v$7 = classNames('EquipTooltipRsncRow', {
             'Red': false
           }),
-          _v$9 = props.onload,
-          _v$0 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
-        _v$7 !== _p$._v$7 && (_p$._v$7 = setProp(_el$27, "id", _v$7, _p$._v$7));
-        _v$8 !== _p$._v$8 && (_p$._v$8 = setProp(_el$27, "class", _v$8, _p$._v$8));
-        _v$9 !== _p$._v$9 && (_p$._v$9 = setProp(_el$27, "onload", _v$9, _p$._v$9));
-        _v$0 !== _p$._v$0 && (_p$._v$0 = setProp(_el$28, "text", _v$0, _p$._v$0));
+          _v$8 = props.onload,
+          _v$9 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = setProp(_el$28, "id", _v$6, _p$._v$6));
+        _v$7 !== _p$._v$7 && (_p$._v$7 = setProp(_el$28, "class", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = setProp(_el$28, "onload", _v$8, _p$._v$8));
+        _v$9 !== _p$._v$9 && (_p$._v$9 = setProp(_el$29, "text", _v$9, _p$._v$9));
         return _p$;
       }, {
+        _v$6: undefined,
         _v$7: undefined,
         _v$8: undefined,
-        _v$9: undefined,
-        _v$0: undefined
+        _v$9: undefined
       });
-      return _el$27;
+      return _el$28;
     })();
   }
   function PokemonTooltipAffixRow(props) {
@@ -4888,7 +4924,7 @@ var global = this;
       return ValRangeStr(props.affix.a, down, NumFixRatio(down + (up - down) * getRedLimit() * 0.01, ratio));
     };
     return (() => {
-      const _el$29 = createElement("Panel", {
+      const _el$30 = createElement("Panel", {
           get ["class"]() {
             return classNames('EquipTooltipAffixRow', {
               'PokemonPY': (_c = (_b = (_a = props.pokemon_py_result) === null || _a === void 0 ? void 0 : _a.call(props)) === null || _b === void 0 ? void 0 : _b.includes(props.affix.idx)) !== null && _c !== void 0 ? _c : false
@@ -4898,12 +4934,12 @@ var global = this;
         }, null);
         createElement("Panel", {
           "class": "BG"
-        }, _el$29);
-        const _el$31 = createElement("Panel", {
+        }, _el$30);
+        const _el$32 = createElement("Panel", {
           "class": "EquipTooltipAffixRowBase",
           hittest: false
-        }, _el$29),
-        _el$32 = createElement("Label", {
+        }, _el$30),
+        _el$33 = createElement("Label", {
           id: "Level",
           get ["class"]() {
             return 'Rarity_' + getLevelRarity();
@@ -4911,15 +4947,15 @@ var global = this;
           get text() {
             return getLevel();
           }
-        }, _el$31),
-        _el$33 = createElement("Label", {
+        }, _el$32),
+        _el$34 = createElement("Label", {
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$31);
-      insert(_el$31, createComponent(Show, {
+        }, _el$32);
+      insert(_el$32, createComponent(Show, {
         get when() {
           return !getIsHide();
         },
@@ -4936,39 +4972,39 @@ var global = this;
             },
             get children() {
               return [(() => {
-                const _el$34 = createElement("Label", {
+                const _el$35 = createElement("Label", {
                   id: "Value",
                   html: true,
                   get text() {
                     return getValStr();
                   }
                 }, null);
-                effect(_$p => setProp(_el$34, "text", getValStr(), _$p));
-                return _el$34;
+                effect(_$p => setProp(_el$35, "text", getValStr(), _$p));
+                return _el$35;
               })(), (() => {
-                const _el$35 = createElement("Label", {
+                const _el$36 = createElement("Label", {
                   id: "Range",
                   html: true,
                   get text() {
                     return getRangeStr();
                   }
                 }, null);
-                effect(_$p => setProp(_el$35, "text", getRangeStr(), _$p));
-                return _el$35;
+                effect(_$p => setProp(_el$36, "text", getRangeStr(), _$p));
+                return _el$36;
               })(), createComponent(Show, {
                 get when() {
                   return getBonus() != 0;
                 },
                 get children() {
-                  const _el$36 = createElement("Label", {
+                  const _el$37 = createElement("Label", {
                     id: "Bonus",
                     html: true,
                     get text() {
                       return getBonusStr();
                     }
                   }, null);
-                  effect(_$p => setProp(_el$36, "text", getBonusStr(), _$p));
-                  return _el$36;
+                  effect(_$p => setProp(_el$37, "text", getBonusStr(), _$p));
+                  return _el$37;
                 }
               })];
             }
@@ -4977,43 +5013,43 @@ var global = this;
               return getter_bAltDown();
             },
             get children() {
-              const _el$37 = createElement("Label", {
+              const _el$38 = createElement("Label", {
                 id: "Total",
                 html: true,
                 get text() {
                   return getTotalStr();
                 }
               }, null);
-              effect(_$p => setProp(_el$37, "text", getTotalStr(), _$p));
-              return _el$37;
+              effect(_$p => setProp(_el$38, "text", getTotalStr(), _$p));
+              return _el$38;
             }
           })];
         }
       }), null);
       effect(_p$ => {
-        const _v$1 = classNames('EquipTooltipAffixRow', {
+        const _v$0 = classNames('EquipTooltipAffixRow', {
             'PokemonPY': (_c = (_b = (_a = props.pokemon_py_result) === null || _a === void 0 ? void 0 : _a.call(props)) === null || _b === void 0 ? void 0 : _b.includes(props.affix.idx)) !== null && _c !== void 0 ? _c : false
           }),
-          _v$10 = {
+          _v$1 = {
             'IsHide': getIsHide()
           },
-          _v$11 = 'Rarity_' + getLevelRarity(),
-          _v$12 = getLevel(),
-          _v$13 = '#' + props.affix.a;
-        _v$1 !== _p$._v$1 && (_p$._v$1 = setProp(_el$29, "class", _v$1, _p$._v$1));
-        _v$10 !== _p$._v$10 && (_p$._v$10 = setProp(_el$31, "classList", _v$10, _p$._v$10));
-        _v$11 !== _p$._v$11 && (_p$._v$11 = setProp(_el$32, "class", _v$11, _p$._v$11));
-        _v$12 !== _p$._v$12 && (_p$._v$12 = setProp(_el$32, "text", _v$12, _p$._v$12));
-        _v$13 !== _p$._v$13 && (_p$._v$13 = setProp(_el$33, "text", _v$13, _p$._v$13));
+          _v$10 = 'Rarity_' + getLevelRarity(),
+          _v$11 = getLevel(),
+          _v$12 = '#' + props.affix.a;
+        _v$0 !== _p$._v$0 && (_p$._v$0 = setProp(_el$30, "class", _v$0, _p$._v$0));
+        _v$1 !== _p$._v$1 && (_p$._v$1 = setProp(_el$32, "classList", _v$1, _p$._v$1));
+        _v$10 !== _p$._v$10 && (_p$._v$10 = setProp(_el$33, "class", _v$10, _p$._v$10));
+        _v$11 !== _p$._v$11 && (_p$._v$11 = setProp(_el$33, "text", _v$11, _p$._v$11));
+        _v$12 !== _p$._v$12 && (_p$._v$12 = setProp(_el$34, "text", _v$12, _p$._v$12));
         return _p$;
       }, {
+        _v$0: undefined,
         _v$1: undefined,
         _v$10: undefined,
         _v$11: undefined,
-        _v$12: undefined,
-        _v$13: undefined
+        _v$12: undefined
       });
-      return _el$29;
+      return _el$30;
     })();
   }
   function CalcPokemonScore(tPokemon) {
@@ -5063,13 +5099,13 @@ var global = this;
     };
     props.part_level = (_a = props.part_level) !== null && _a !== void 0 ? _a : getPartLevel;
     return (() => {
-      const _el$39 = createElement("Panel", {
+      const _el$40 = createElement("Panel", {
         id: "EquipInfoTooltip",
         hittest: false
       }, null);
-      insert(_el$39, createComponent(EquipTooltipHeader, props), null);
-      insert(_el$39, createComponent(EquipTooltipAffix, props), null);
-      return _el$39;
+      insert(_el$40, createComponent(EquipTooltipHeader, props), null);
+      insert(_el$40, createComponent(EquipTooltipAffix, props), null);
+      return _el$40;
     })();
   }
   function EquipTooltipHeader(props) {
@@ -5098,36 +5134,36 @@ var global = this;
       return CalcEquipScore(getData());
     };
     return (() => {
-      const _el$40 = createElement("Panel", {
+      const _el$41 = createElement("Panel", {
           id: "EquipTooltipHeader",
           get ["class"]() {
             return classNames('TooltipHeader', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$41 = createElement("Panel", {
+        _el$42 = createElement("Panel", {
           "class": "BGPanel"
-        }, _el$40);
+        }, _el$41);
         createElement("Panel", {
           "class": "BG2"
-        }, _el$41);
-        const _el$43 = createElement("Panel", {
+        }, _el$42);
+        const _el$44 = createElement("Panel", {
           "class": "Image"
-        }, _el$40),
-        _el$44 = createElement("Panel", {
-          "class": "Line"
-        }, _el$40),
+        }, _el$41),
         _el$45 = createElement("Panel", {
+          "class": "Line"
+        }, _el$41),
+        _el$46 = createElement("Panel", {
           "class": "Score"
-        }, _el$40),
-        _el$46 = createElement("Label", {
+        }, _el$41),
+        _el$47 = createElement("Label", {
           get text() {
             return getScore();
           }
-        }, _el$45);
-      insert(_el$43, createComponent(PackEquipItem, {
+        }, _el$46);
+      insert(_el$44, createComponent(PackEquipItem, {
         data: getData
       }));
-      insert(_el$40, createComponent(Yzy_Label, {
+      insert(_el$41, createComponent(Yzy_Label, {
         "class": "Name",
         get rarity() {
           return getRarity();
@@ -5135,21 +5171,21 @@ var global = this;
         get text() {
           return `#EquipInfoTitle_${getPart()}_${getClass()}`;
         }
-      }), _el$44);
-      insert(_el$45, createComponent(Yzy_Icon, {
+      }), _el$45);
+      insert(_el$46, createComponent(Yzy_Icon, {
         type: "icon_score"
-      }), _el$46);
+      }), _el$47);
       effect(_p$ => {
-        const _v$14 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
-          _v$15 = getScore();
-        _v$14 !== _p$._v$14 && (_p$._v$14 = setProp(_el$40, "class", _v$14, _p$._v$14));
-        _v$15 !== _p$._v$15 && (_p$._v$15 = setProp(_el$46, "text", _v$15, _p$._v$15));
+        const _v$13 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
+          _v$14 = getScore();
+        _v$13 !== _p$._v$13 && (_p$._v$13 = setProp(_el$41, "class", _v$13, _p$._v$13));
+        _v$14 !== _p$._v$14 && (_p$._v$14 = setProp(_el$47, "text", _v$14, _p$._v$14));
         return _p$;
       }, {
-        _v$14: undefined,
-        _v$15: undefined
+        _v$13: undefined,
+        _v$14: undefined
       });
-      return _el$40;
+      return _el$41;
     })();
   }
   function EquipTooltipAffix(props) {
@@ -5219,7 +5255,7 @@ var global = this;
                       ScreenPanel.CreateOnPanel({
                         'pTarget': pAffix,
                         'content': () => (() => {
-                          const _el$47 = createElement("DOTAParticleScenePanel", {
+                          const _el$48 = createElement("DOTAParticleScenePanel", {
                             id: "Equip_SlashFX",
                             hittest: false,
                             get style() {
@@ -5237,12 +5273,12 @@ var global = this;
                             lookAt: "0 0 30",
                             fov: "40"
                           }, null);
-                          effect(_$p => setProp(_el$47, "style", {
+                          effect(_$p => setProp(_el$48, "style", {
                             'transform': (() => {
                               if (RandomInt(0, 1) == 1) return `translateX(20px) translateY(15px) rotateZ(${RandomInt(6, 18)}deg)`;else return `translateX(-20px) translateY(15px) rotateZ(${RandomInt(186, 198)}deg)`;
                             })()
                           }, _$p));
-                          return _el$47;
+                          return _el$48;
                         })(),
                         'fDuration': 1.5
                       });
@@ -5320,7 +5356,7 @@ var global = this;
                           ScreenPanel.CreateOnPanel({
                             'pTarget': pAffix,
                             'content': () => (() => {
-                              const _el$49 = createElement("DOTAParticleScenePanel", {
+                              const _el$50 = createElement("DOTAParticleScenePanel", {
                                 id: "Equip_SlashFX",
                                 hittest: false,
                                 get style() {
@@ -5338,12 +5374,12 @@ var global = this;
                                 lookAt: "0 0 30",
                                 fov: "40"
                               }, null);
-                              effect(_$p => setProp(_el$49, "style", {
+                              effect(_$p => setProp(_el$50, "style", {
                                 'transform': (() => {
                                   if (RandomInt(0, 1) == 1) return `translateX(20px) translateY(15px) rotateZ(${RandomInt(6, 18)}deg)`;else return `translateX(-20px) translateY(15px) rotateZ(${RandomInt(186, 198)}deg)`;
                                 })()
                               }, _$p));
-                              return _el$49;
+                              return _el$50;
                             })(),
                             'fDuration': 1.5
                           });
@@ -5412,7 +5448,7 @@ var global = this;
                           ScreenPanel.CreateOnPanel({
                             'pTarget': pAffix,
                             'content': () => (() => {
-                              const _el$51 = createElement("DOTAParticleScenePanel", {
+                              const _el$52 = createElement("DOTAParticleScenePanel", {
                                 id: "Equip_SlashFX",
                                 hittest: false,
                                 get style() {
@@ -5430,12 +5466,12 @@ var global = this;
                                 lookAt: "0 0 30",
                                 fov: "40"
                               }, null);
-                              effect(_$p => setProp(_el$51, "style", {
+                              effect(_$p => setProp(_el$52, "style", {
                                 'transform': (() => {
                                   if (RandomInt(0, 1) == 1) return `translateX(20px) translateY(15px) rotateZ(${RandomInt(6, 18)}deg)`;else return `translateX(-20px) translateY(15px) rotateZ(${RandomInt(186, 198)}deg)`;
                                 })()
                               }, _$p));
-                              return _el$51;
+                              return _el$52;
                             })(),
                             'fDuration': 1.5
                           });
@@ -5507,19 +5543,19 @@ var global = this;
       });
     }
     return (() => {
-      const _el$53 = createElement("Panel", {
+      const _el$54 = createElement("Panel", {
           id: "EquipTooltipAffix",
           get ["class"]() {
             return classNames('TooltipAffix', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$54 = createElement("Panel", {
+        _el$55 = createElement("Panel", {
           id: "Part3",
           "class": "AffixGroup"
-        }, _el$53);
+        }, _el$54);
       const _ref$ = ref;
-      typeof _ref$ === "function" ? use(_ref$, _el$53) : ref = _el$53;
-      insert(_el$53, createComponent(Index, {
+      typeof _ref$ === "function" ? use(_ref$, _el$54) : ref = _el$54;
+      insert(_el$54, createComponent(Index, {
         get each() {
           return Object.entries(getAffixGroup());
         },
@@ -5527,32 +5563,32 @@ var global = this;
           const getAffixType = () => getValue()[0];
           const getAffix = () => getValue()[1];
           return (() => {
-            const _el$60 = createElement("Panel", {
+            const _el$61 = createElement("Panel", {
                 get id() {
                   return 'Part_' + getAffixType();
                 },
                 "class": "AffixGroup"
               }, null),
-              _el$61 = createElement("Panel", {
+              _el$62 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
-              }, _el$60);
+              }, _el$61);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$61);
+              }, _el$62);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$61);
-              const _el$64 = createElement("Label", {
+              }, _el$62);
+              const _el$65 = createElement("Label", {
                 get text() {
                   return `#AffixTitle_${getAffixType()}`;
                 },
                 hittest: false
-              }, _el$61),
-              _el$65 = createElement("Panel", {
+              }, _el$62),
+              _el$66 = createElement("Panel", {
                 "class": "Body"
-              }, _el$60);
-            insert(_el$65, createComponent(Index, {
+              }, _el$61);
+            insert(_el$66, createComponent(Index, {
               get each() {
                 return getAffix().sort((a, b) => b.l - a.l);
               },
@@ -5608,46 +5644,46 @@ var global = this;
               }
             }));
             effect(_p$ => {
-              const _v$16 = 'Part_' + getAffixType(),
-                _v$17 = `#AffixTitle_${getAffixType()}`;
-              _v$16 !== _p$._v$16 && (_p$._v$16 = setProp(_el$60, "id", _v$16, _p$._v$16));
-              _v$17 !== _p$._v$17 && (_p$._v$17 = setProp(_el$64, "text", _v$17, _p$._v$17));
+              const _v$15 = 'Part_' + getAffixType(),
+                _v$16 = `#AffixTitle_${getAffixType()}`;
+              _v$15 !== _p$._v$15 && (_p$._v$15 = setProp(_el$61, "id", _v$15, _p$._v$15));
+              _v$16 !== _p$._v$16 && (_p$._v$16 = setProp(_el$65, "text", _v$16, _p$._v$16));
               return _p$;
             }, {
-              _v$16: undefined,
-              _v$17: undefined
+              _v$15: undefined,
+              _v$16: undefined
             });
-            return _el$60;
+            return _el$61;
           })();
         }
-      }), _el$54);
-      insert(_el$54, createComponent(Show, {
+      }), _el$55);
+      insert(_el$55, createComponent(Show, {
         get when() {
           return getTitleShow();
         },
         get children() {
           return [(() => {
-            const _el$55 = createElement("Panel", {
+            const _el$56 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
               }, null);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$55);
+              }, _el$56);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$55);
-              const _el$58 = createElement("Label", {
+              }, _el$56);
+              const _el$59 = createElement("Label", {
                 text: `#AffixTitle_3`,
                 hittest: false
-              }, _el$55);
-            setProp(_el$58, "text", `#AffixTitle_3`);
-            return _el$55;
+              }, _el$56);
+            setProp(_el$59, "text", `#AffixTitle_3`);
+            return _el$56;
           })(), (() => {
-            const _el$59 = createElement("Panel", {
+            const _el$60 = createElement("Panel", {
               "class": "Body"
             }, null);
-            insert(_el$59, createComponent(Show, {
+            insert(_el$60, createComponent(Show, {
               get when() {
                 return getRsnc().length > 0;
               },
@@ -5666,12 +5702,12 @@ var global = this;
                 });
               }
             }));
-            return _el$59;
+            return _el$60;
           })()];
         }
       }));
-      effect(_$p => setProp(_el$53, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
-      return _el$53;
+      effect(_$p => setProp(_el$54, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
+      return _el$54;
     })();
   }
   function EquipTooltipCompare(params) {
@@ -5735,226 +5771,226 @@ var global = this;
     const CompareAffixPanel = params2 => {
       const [local, props] = splitProps(params2, ['affixCompare', 'affixPart']);
       return (() => {
-        const _el$67 = createElement("Panel", {
+        const _el$68 = createElement("Panel", {
             get id() {
               return "Part_" + local.affixPart;
             },
             "class": "AffixGroup"
           }, null),
-          _el$68 = createElement("Panel", {
+          _el$69 = createElement("Panel", {
             "class": "Title",
             hittest: false
-          }, _el$67);
+          }, _el$68);
           createElement("Panel", {
             "class": "BG"
-          }, _el$68);
+          }, _el$69);
           createElement("Panel", {
             "class": "Line"
-          }, _el$68);
-          const _el$71 = createElement("Label", {
+          }, _el$69);
+          const _el$72 = createElement("Label", {
             get text() {
               return `#AffixTitle_${local.affixPart}`;
             },
             hittest: false
-          }, _el$68),
-          _el$72 = createElement("Panel", {
+          }, _el$69),
+          _el$73 = createElement("Panel", {
             "class": "Body"
-          }, _el$67);
-        insert(_el$72, createComponent(Index, {
+          }, _el$68);
+        insert(_el$73, createComponent(Index, {
           get each() {
             return local.affixCompare.increase;
           },
           children: affix => {
             return (() => {
-              const _el$73 = createElement("Panel", {
+              const _el$74 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Increase EquipTooltipAffixRow"
                 }, null),
-                _el$74 = createElement("Panel", {
+                _el$75 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$73),
-                _el$75 = createElement("Label", {
+                }, _el$74),
+                _el$76 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$74),
-                _el$76 = createElement("Label", {
+                }, _el$75),
+                _el$77 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$74);
-              setProp(_el$75, "className", "Name");
-              setProp(_el$76, "className", "Value");
+                }, _el$75);
+              setProp(_el$76, "className", "Name");
+              setProp(_el$77, "className", "Value");
               effect(_p$ => {
-                const _v$20 = $.Localize('#' + affix().a.toString()),
-                  _v$21 = GreenText(affix().v);
-                _v$20 !== _p$._v$20 && (_p$._v$20 = setProp(_el$75, "text", _v$20, _p$._v$20));
-                _v$21 !== _p$._v$21 && (_p$._v$21 = setProp(_el$76, "text", _v$21, _p$._v$21));
+                const _v$19 = $.Localize('#' + affix().a.toString()),
+                  _v$20 = GreenText(affix().v);
+                _v$19 !== _p$._v$19 && (_p$._v$19 = setProp(_el$76, "text", _v$19, _p$._v$19));
+                _v$20 !== _p$._v$20 && (_p$._v$20 = setProp(_el$77, "text", _v$20, _p$._v$20));
                 return _p$;
               }, {
-                _v$20: undefined,
-                _v$21: undefined
+                _v$19: undefined,
+                _v$20: undefined
               });
-              return _el$73;
+              return _el$74;
             })();
           }
         }), null);
-        insert(_el$72, createComponent(Index, {
+        insert(_el$73, createComponent(Index, {
           get each() {
             return local.affixCompare.gain;
           },
           children: affix => {
             return (() => {
-              const _el$77 = createElement("Panel", {
+              const _el$78 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Gain EquipTooltipAffixRow"
                 }, null),
-                _el$78 = createElement("Panel", {
+                _el$79 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$77),
-                _el$79 = createElement("Label", {
+                }, _el$78),
+                _el$80 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$78),
-                _el$80 = createElement("Label", {
+                }, _el$79),
+                _el$81 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$78);
-              setProp(_el$79, "className", "Name");
-              setProp(_el$80, "className", "Value");
+                }, _el$79);
+              setProp(_el$80, "className", "Name");
+              setProp(_el$81, "className", "Value");
               effect(_p$ => {
-                const _v$22 = $.Localize('#' + affix().a.toString()),
-                  _v$23 = GreenText(affix().v);
-                _v$22 !== _p$._v$22 && (_p$._v$22 = setProp(_el$79, "text", _v$22, _p$._v$22));
-                _v$23 !== _p$._v$23 && (_p$._v$23 = setProp(_el$80, "text", _v$23, _p$._v$23));
+                const _v$21 = $.Localize('#' + affix().a.toString()),
+                  _v$22 = GreenText(affix().v);
+                _v$21 !== _p$._v$21 && (_p$._v$21 = setProp(_el$80, "text", _v$21, _p$._v$21));
+                _v$22 !== _p$._v$22 && (_p$._v$22 = setProp(_el$81, "text", _v$22, _p$._v$22));
                 return _p$;
               }, {
-                _v$22: undefined,
-                _v$23: undefined
+                _v$21: undefined,
+                _v$22: undefined
               });
-              return _el$77;
+              return _el$78;
             })();
           }
         }), null);
-        insert(_el$72, createComponent(Index, {
+        insert(_el$73, createComponent(Index, {
           get each() {
             return local.affixCompare.decrease;
           },
           children: affix => {
             return (() => {
-              const _el$81 = createElement("Panel", {
+              const _el$82 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Decrease EquipTooltipAffixRow"
                 }, null),
-                _el$82 = createElement("Panel", {
+                _el$83 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$81),
-                _el$83 = createElement("Label", {
+                }, _el$82),
+                _el$84 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$82),
-                _el$84 = createElement("Label", {
+                }, _el$83),
+                _el$85 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$82);
-              setProp(_el$83, "className", "Name");
-              setProp(_el$84, "className", "Value");
+                }, _el$83);
+              setProp(_el$84, "className", "Name");
+              setProp(_el$85, "className", "Value");
               effect(_p$ => {
-                const _v$24 = $.Localize('#' + affix().a.toString()),
-                  _v$25 = RedText(affix().v);
-                _v$24 !== _p$._v$24 && (_p$._v$24 = setProp(_el$83, "text", _v$24, _p$._v$24));
-                _v$25 !== _p$._v$25 && (_p$._v$25 = setProp(_el$84, "text", _v$25, _p$._v$25));
+                const _v$23 = $.Localize('#' + affix().a.toString()),
+                  _v$24 = RedText(affix().v);
+                _v$23 !== _p$._v$23 && (_p$._v$23 = setProp(_el$84, "text", _v$23, _p$._v$23));
+                _v$24 !== _p$._v$24 && (_p$._v$24 = setProp(_el$85, "text", _v$24, _p$._v$24));
                 return _p$;
               }, {
-                _v$24: undefined,
-                _v$25: undefined
+                _v$23: undefined,
+                _v$24: undefined
               });
-              return _el$81;
+              return _el$82;
             })();
           }
         }), null);
-        insert(_el$72, createComponent(Index, {
+        insert(_el$73, createComponent(Index, {
           get each() {
             return local.affixCompare.loss;
           },
           children: affix => {
             return (() => {
-              const _el$85 = createElement("Panel", {
+              const _el$86 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Loss EquipTooltipAffixRow"
                 }, null),
-                _el$86 = createElement("Panel", {
+                _el$87 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$85),
-                _el$87 = createElement("Label", {
+                }, _el$86),
+                _el$88 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$86),
-                _el$88 = createElement("Label", {
+                }, _el$87),
+                _el$89 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$86);
-              setProp(_el$87, "className", "Name");
-              setProp(_el$88, "className", "Value");
+                }, _el$87);
+              setProp(_el$88, "className", "Name");
+              setProp(_el$89, "className", "Value");
               effect(_p$ => {
-                const _v$26 = $.Localize('#' + affix().a.toString()),
-                  _v$27 = RedText(affix().v);
-                _v$26 !== _p$._v$26 && (_p$._v$26 = setProp(_el$87, "text", _v$26, _p$._v$26));
-                _v$27 !== _p$._v$27 && (_p$._v$27 = setProp(_el$88, "text", _v$27, _p$._v$27));
+                const _v$25 = $.Localize('#' + affix().a.toString()),
+                  _v$26 = RedText(affix().v);
+                _v$25 !== _p$._v$25 && (_p$._v$25 = setProp(_el$88, "text", _v$25, _p$._v$25));
+                _v$26 !== _p$._v$26 && (_p$._v$26 = setProp(_el$89, "text", _v$26, _p$._v$26));
                 return _p$;
               }, {
-                _v$26: undefined,
-                _v$27: undefined
+                _v$25: undefined,
+                _v$26: undefined
               });
-              return _el$85;
+              return _el$86;
             })();
           }
         }), null);
         effect(_p$ => {
-          const _v$18 = "Part_" + local.affixPart,
-            _v$19 = `#AffixTitle_${local.affixPart}`;
-          _v$18 !== _p$._v$18 && (_p$._v$18 = setProp(_el$67, "id", _v$18, _p$._v$18));
-          _v$19 !== _p$._v$19 && (_p$._v$19 = setProp(_el$71, "text", _v$19, _p$._v$19));
+          const _v$17 = "Part_" + local.affixPart,
+            _v$18 = `#AffixTitle_${local.affixPart}`;
+          _v$17 !== _p$._v$17 && (_p$._v$17 = setProp(_el$68, "id", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = setProp(_el$72, "text", _v$18, _p$._v$18));
           return _p$;
         }, {
-          _v$18: undefined,
-          _v$19: undefined
+          _v$17: undefined,
+          _v$18: undefined
         });
-        return _el$67;
+        return _el$68;
       })();
     };
     return (() => {
-      const _el$89 = createElement("Panel", {
+      const _el$90 = createElement("Panel", {
         id: "EquipTooltipAffix",
         "class": "EquipTooltipCompare"
       }, null);
-      insert(_el$89, createComponent(CompareAffixPanel, {
+      insert(_el$90, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getBaseAffix();
         },
         affixPart: 1
       }), null);
-      insert(_el$89, createComponent(CompareAffixPanel, {
+      insert(_el$90, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getAdvAffix();
         },
         affixPart: 2
       }), null);
-      return _el$89;
+      return _el$90;
     })();
   }
   function AncientTooltipCompare(params) {
@@ -6027,226 +6063,226 @@ var global = this;
     const CompareAffixPanel = params2 => {
       const [local2] = splitProps(params2, ['affixCompare', 'affixPart']);
       return (() => {
-        const _el$90 = createElement("Panel", {
+        const _el$91 = createElement("Panel", {
             get id() {
               return "Part_" + local2.affixPart;
             },
             "class": "AffixGroup"
           }, null),
-          _el$91 = createElement("Panel", {
+          _el$92 = createElement("Panel", {
             "class": "Title",
             hittest: false
-          }, _el$90);
+          }, _el$91);
           createElement("Panel", {
             "class": "BG"
-          }, _el$91);
+          }, _el$92);
           createElement("Panel", {
             "class": "Line"
-          }, _el$91);
-          const _el$94 = createElement("Label", {
+          }, _el$92);
+          const _el$95 = createElement("Label", {
             get text() {
               return `#AffixTitle_${local2.affixPart}`;
             },
             hittest: false
-          }, _el$91),
-          _el$95 = createElement("Panel", {
+          }, _el$92),
+          _el$96 = createElement("Panel", {
             "class": "Body"
-          }, _el$90);
-        insert(_el$95, createComponent(Index, {
+          }, _el$91);
+        insert(_el$96, createComponent(Index, {
           get each() {
             return local2.affixCompare.increase;
           },
           children: affix => {
             return (() => {
-              const _el$96 = createElement("Panel", {
+              const _el$97 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Increase EquipTooltipAffixRow"
                 }, null),
-                _el$97 = createElement("Panel", {
+                _el$98 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$96),
-                _el$98 = createElement("Label", {
+                }, _el$97),
+                _el$99 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$97),
-                _el$99 = createElement("Label", {
+                }, _el$98),
+                _el$100 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$97);
-              setProp(_el$98, "className", "Name");
-              setProp(_el$99, "className", "Value");
+                }, _el$98);
+              setProp(_el$99, "className", "Name");
+              setProp(_el$100, "className", "Value");
               effect(_p$ => {
-                const _v$30 = $.Localize('#' + affix().a.toString()),
-                  _v$31 = GreenText(affix().v);
-                _v$30 !== _p$._v$30 && (_p$._v$30 = setProp(_el$98, "text", _v$30, _p$._v$30));
-                _v$31 !== _p$._v$31 && (_p$._v$31 = setProp(_el$99, "text", _v$31, _p$._v$31));
+                const _v$29 = $.Localize('#' + affix().a.toString()),
+                  _v$30 = GreenText(affix().v);
+                _v$29 !== _p$._v$29 && (_p$._v$29 = setProp(_el$99, "text", _v$29, _p$._v$29));
+                _v$30 !== _p$._v$30 && (_p$._v$30 = setProp(_el$100, "text", _v$30, _p$._v$30));
                 return _p$;
               }, {
-                _v$30: undefined,
-                _v$31: undefined
+                _v$29: undefined,
+                _v$30: undefined
               });
-              return _el$96;
+              return _el$97;
             })();
           }
         }), null);
-        insert(_el$95, createComponent(Index, {
+        insert(_el$96, createComponent(Index, {
           get each() {
             return local2.affixCompare.gain;
           },
           children: affix => {
             return (() => {
-              const _el$100 = createElement("Panel", {
+              const _el$101 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Gain EquipTooltipAffixRow"
                 }, null),
-                _el$101 = createElement("Panel", {
+                _el$102 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$100),
-                _el$102 = createElement("Label", {
+                }, _el$101),
+                _el$103 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$101),
-                _el$103 = createElement("Label", {
+                }, _el$102),
+                _el$104 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$101);
-              setProp(_el$102, "className", "Name");
-              setProp(_el$103, "className", "Value");
+                }, _el$102);
+              setProp(_el$103, "className", "Name");
+              setProp(_el$104, "className", "Value");
               effect(_p$ => {
-                const _v$32 = $.Localize('#' + affix().a.toString()),
-                  _v$33 = GreenText(affix().v);
-                _v$32 !== _p$._v$32 && (_p$._v$32 = setProp(_el$102, "text", _v$32, _p$._v$32));
-                _v$33 !== _p$._v$33 && (_p$._v$33 = setProp(_el$103, "text", _v$33, _p$._v$33));
+                const _v$31 = $.Localize('#' + affix().a.toString()),
+                  _v$32 = GreenText(affix().v);
+                _v$31 !== _p$._v$31 && (_p$._v$31 = setProp(_el$103, "text", _v$31, _p$._v$31));
+                _v$32 !== _p$._v$32 && (_p$._v$32 = setProp(_el$104, "text", _v$32, _p$._v$32));
                 return _p$;
               }, {
-                _v$32: undefined,
-                _v$33: undefined
+                _v$31: undefined,
+                _v$32: undefined
               });
-              return _el$100;
+              return _el$101;
             })();
           }
         }), null);
-        insert(_el$95, createComponent(Index, {
+        insert(_el$96, createComponent(Index, {
           get each() {
             return local2.affixCompare.decrease;
           },
           children: affix => {
             return (() => {
-              const _el$104 = createElement("Panel", {
+              const _el$105 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Decrease EquipTooltipAffixRow"
                 }, null),
-                _el$105 = createElement("Panel", {
+                _el$106 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$104),
-                _el$106 = createElement("Label", {
+                }, _el$105),
+                _el$107 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$105),
-                _el$107 = createElement("Label", {
+                }, _el$106),
+                _el$108 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$105);
-              setProp(_el$106, "className", "Name");
-              setProp(_el$107, "className", "Value");
+                }, _el$106);
+              setProp(_el$107, "className", "Name");
+              setProp(_el$108, "className", "Value");
               effect(_p$ => {
-                const _v$34 = $.Localize('#' + affix().a.toString()),
-                  _v$35 = RedText(affix().v);
-                _v$34 !== _p$._v$34 && (_p$._v$34 = setProp(_el$106, "text", _v$34, _p$._v$34));
-                _v$35 !== _p$._v$35 && (_p$._v$35 = setProp(_el$107, "text", _v$35, _p$._v$35));
+                const _v$33 = $.Localize('#' + affix().a.toString()),
+                  _v$34 = RedText(affix().v);
+                _v$33 !== _p$._v$33 && (_p$._v$33 = setProp(_el$107, "text", _v$33, _p$._v$33));
+                _v$34 !== _p$._v$34 && (_p$._v$34 = setProp(_el$108, "text", _v$34, _p$._v$34));
                 return _p$;
               }, {
-                _v$34: undefined,
-                _v$35: undefined
+                _v$33: undefined,
+                _v$34: undefined
               });
-              return _el$104;
+              return _el$105;
             })();
           }
         }), null);
-        insert(_el$95, createComponent(Index, {
+        insert(_el$96, createComponent(Index, {
           get each() {
             return local2.affixCompare.loss;
           },
           children: affix => {
             return (() => {
-              const _el$108 = createElement("Panel", {
+              const _el$109 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Loss EquipTooltipAffixRow"
                 }, null),
-                _el$109 = createElement("Panel", {
+                _el$110 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$108),
-                _el$110 = createElement("Label", {
+                }, _el$109),
+                _el$111 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$109),
-                _el$111 = createElement("Label", {
+                }, _el$110),
+                _el$112 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$109);
-              setProp(_el$110, "className", "Name");
-              setProp(_el$111, "className", "Value");
+                }, _el$110);
+              setProp(_el$111, "className", "Name");
+              setProp(_el$112, "className", "Value");
               effect(_p$ => {
-                const _v$36 = $.Localize('#' + affix().a.toString()),
-                  _v$37 = RedText(affix().v);
-                _v$36 !== _p$._v$36 && (_p$._v$36 = setProp(_el$110, "text", _v$36, _p$._v$36));
-                _v$37 !== _p$._v$37 && (_p$._v$37 = setProp(_el$111, "text", _v$37, _p$._v$37));
+                const _v$35 = $.Localize('#' + affix().a.toString()),
+                  _v$36 = RedText(affix().v);
+                _v$35 !== _p$._v$35 && (_p$._v$35 = setProp(_el$111, "text", _v$35, _p$._v$35));
+                _v$36 !== _p$._v$36 && (_p$._v$36 = setProp(_el$112, "text", _v$36, _p$._v$36));
                 return _p$;
               }, {
-                _v$36: undefined,
-                _v$37: undefined
+                _v$35: undefined,
+                _v$36: undefined
               });
-              return _el$108;
+              return _el$109;
             })();
           }
         }), null);
         effect(_p$ => {
-          const _v$28 = "Part_" + local2.affixPart,
-            _v$29 = `#AffixTitle_${local2.affixPart}`;
-          _v$28 !== _p$._v$28 && (_p$._v$28 = setProp(_el$90, "id", _v$28, _p$._v$28));
-          _v$29 !== _p$._v$29 && (_p$._v$29 = setProp(_el$94, "text", _v$29, _p$._v$29));
+          const _v$27 = "Part_" + local2.affixPart,
+            _v$28 = `#AffixTitle_${local2.affixPart}`;
+          _v$27 !== _p$._v$27 && (_p$._v$27 = setProp(_el$91, "id", _v$27, _p$._v$27));
+          _v$28 !== _p$._v$28 && (_p$._v$28 = setProp(_el$95, "text", _v$28, _p$._v$28));
           return _p$;
         }, {
-          _v$28: undefined,
-          _v$29: undefined
+          _v$27: undefined,
+          _v$28: undefined
         });
-        return _el$90;
+        return _el$91;
       })();
     };
     return (() => {
-      const _el$112 = createElement("Panel", {
+      const _el$113 = createElement("Panel", {
         id: "AncientTooltipAffix",
         "class": "EquipTooltipCompare"
       }, null);
-      insert(_el$112, createComponent(CompareAffixPanel, {
+      insert(_el$113, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getBaseAffix();
         },
         affixPart: 1
       }), null);
-      insert(_el$112, createComponent(CompareAffixPanel, {
+      insert(_el$113, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getAdvAffix();
         },
         affixPart: 2
       }), null);
-      return _el$112;
+      return _el$113;
     })();
   }
   function HolyTooltipCompare(params) {
@@ -6328,226 +6364,226 @@ var global = this;
     const CompareAffixPanel = params2 => {
       const [local2] = splitProps(params2, ['affixCompare', 'affixPart']);
       return (() => {
-        const _el$113 = createElement("Panel", {
+        const _el$114 = createElement("Panel", {
             get id() {
               return "Part_" + local2.affixPart;
             },
             "class": "AffixGroup"
           }, null),
-          _el$114 = createElement("Panel", {
+          _el$115 = createElement("Panel", {
             "class": "Title",
             hittest: false
-          }, _el$113);
+          }, _el$114);
           createElement("Panel", {
             "class": "BG"
-          }, _el$114);
+          }, _el$115);
           createElement("Panel", {
             "class": "Line"
-          }, _el$114);
-          const _el$117 = createElement("Label", {
+          }, _el$115);
+          const _el$118 = createElement("Label", {
             get text() {
               return `#AffixTitle_${local2.affixPart}`;
             },
             hittest: false
-          }, _el$114),
-          _el$118 = createElement("Panel", {
+          }, _el$115),
+          _el$119 = createElement("Panel", {
             "class": "Body"
-          }, _el$113);
-        insert(_el$118, createComponent(Index, {
+          }, _el$114);
+        insert(_el$119, createComponent(Index, {
           get each() {
             return local2.affixCompare.increase;
           },
           children: affix => {
             return (() => {
-              const _el$119 = createElement("Panel", {
+              const _el$120 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Increase EquipTooltipAffixRow"
                 }, null),
-                _el$120 = createElement("Panel", {
+                _el$121 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$119),
-                _el$121 = createElement("Label", {
+                }, _el$120),
+                _el$122 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$120),
-                _el$122 = createElement("Label", {
+                }, _el$121),
+                _el$123 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$120);
-              setProp(_el$121, "className", "Name");
-              setProp(_el$122, "className", "Value");
+                }, _el$121);
+              setProp(_el$122, "className", "Name");
+              setProp(_el$123, "className", "Value");
               effect(_p$ => {
-                const _v$40 = $.Localize('#' + affix().a.toString()),
-                  _v$41 = GreenText(affix().v);
-                _v$40 !== _p$._v$40 && (_p$._v$40 = setProp(_el$121, "text", _v$40, _p$._v$40));
-                _v$41 !== _p$._v$41 && (_p$._v$41 = setProp(_el$122, "text", _v$41, _p$._v$41));
+                const _v$39 = $.Localize('#' + affix().a.toString()),
+                  _v$40 = GreenText(affix().v);
+                _v$39 !== _p$._v$39 && (_p$._v$39 = setProp(_el$122, "text", _v$39, _p$._v$39));
+                _v$40 !== _p$._v$40 && (_p$._v$40 = setProp(_el$123, "text", _v$40, _p$._v$40));
                 return _p$;
               }, {
-                _v$40: undefined,
-                _v$41: undefined
+                _v$39: undefined,
+                _v$40: undefined
               });
-              return _el$119;
+              return _el$120;
             })();
           }
         }), null);
-        insert(_el$118, createComponent(Index, {
+        insert(_el$119, createComponent(Index, {
           get each() {
             return local2.affixCompare.gain;
           },
           children: affix => {
             return (() => {
-              const _el$123 = createElement("Panel", {
+              const _el$124 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Gain EquipTooltipAffixRow"
                 }, null),
-                _el$124 = createElement("Panel", {
+                _el$125 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$123),
-                _el$125 = createElement("Label", {
+                }, _el$124),
+                _el$126 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$124),
-                _el$126 = createElement("Label", {
+                }, _el$125),
+                _el$127 = createElement("Label", {
                   get text() {
                     return GreenText(affix().v);
                   },
                   html: true
-                }, _el$124);
-              setProp(_el$125, "className", "Name");
-              setProp(_el$126, "className", "Value");
+                }, _el$125);
+              setProp(_el$126, "className", "Name");
+              setProp(_el$127, "className", "Value");
               effect(_p$ => {
-                const _v$42 = $.Localize('#' + affix().a.toString()),
-                  _v$43 = GreenText(affix().v);
-                _v$42 !== _p$._v$42 && (_p$._v$42 = setProp(_el$125, "text", _v$42, _p$._v$42));
-                _v$43 !== _p$._v$43 && (_p$._v$43 = setProp(_el$126, "text", _v$43, _p$._v$43));
+                const _v$41 = $.Localize('#' + affix().a.toString()),
+                  _v$42 = GreenText(affix().v);
+                _v$41 !== _p$._v$41 && (_p$._v$41 = setProp(_el$126, "text", _v$41, _p$._v$41));
+                _v$42 !== _p$._v$42 && (_p$._v$42 = setProp(_el$127, "text", _v$42, _p$._v$42));
                 return _p$;
               }, {
-                _v$42: undefined,
-                _v$43: undefined
+                _v$41: undefined,
+                _v$42: undefined
               });
-              return _el$123;
+              return _el$124;
             })();
           }
         }), null);
-        insert(_el$118, createComponent(Index, {
+        insert(_el$119, createComponent(Index, {
           get each() {
             return local2.affixCompare.decrease;
           },
           children: affix => {
             return (() => {
-              const _el$127 = createElement("Panel", {
+              const _el$128 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Decrease EquipTooltipAffixRow"
                 }, null),
-                _el$128 = createElement("Panel", {
+                _el$129 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$127),
-                _el$129 = createElement("Label", {
+                }, _el$128),
+                _el$130 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$128),
-                _el$130 = createElement("Label", {
+                }, _el$129),
+                _el$131 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$128);
-              setProp(_el$129, "className", "Name");
-              setProp(_el$130, "className", "Value");
+                }, _el$129);
+              setProp(_el$130, "className", "Name");
+              setProp(_el$131, "className", "Value");
               effect(_p$ => {
-                const _v$44 = $.Localize('#' + affix().a.toString()),
-                  _v$45 = RedText(affix().v);
-                _v$44 !== _p$._v$44 && (_p$._v$44 = setProp(_el$129, "text", _v$44, _p$._v$44));
-                _v$45 !== _p$._v$45 && (_p$._v$45 = setProp(_el$130, "text", _v$45, _p$._v$45));
+                const _v$43 = $.Localize('#' + affix().a.toString()),
+                  _v$44 = RedText(affix().v);
+                _v$43 !== _p$._v$43 && (_p$._v$43 = setProp(_el$130, "text", _v$43, _p$._v$43));
+                _v$44 !== _p$._v$44 && (_p$._v$44 = setProp(_el$131, "text", _v$44, _p$._v$44));
                 return _p$;
               }, {
-                _v$44: undefined,
-                _v$45: undefined
+                _v$43: undefined,
+                _v$44: undefined
               });
-              return _el$127;
+              return _el$128;
             })();
           }
         }), null);
-        insert(_el$118, createComponent(Index, {
+        insert(_el$119, createComponent(Index, {
           get each() {
             return local2.affixCompare.loss;
           },
           children: affix => {
             return (() => {
-              const _el$131 = createElement("Panel", {
+              const _el$132 = createElement("Panel", {
                   id: "EquipTooltipCompareAffixRow",
                   "class": "Loss EquipTooltipAffixRow"
                 }, null),
-                _el$132 = createElement("Panel", {
+                _el$133 = createElement("Panel", {
                   "class": "Yzy_Attribute"
-                }, _el$131),
-                _el$133 = createElement("Label", {
+                }, _el$132),
+                _el$134 = createElement("Label", {
                   get text() {
                     return $.Localize('#' + affix().a.toString());
                   },
                   html: true
-                }, _el$132),
-                _el$134 = createElement("Label", {
+                }, _el$133),
+                _el$135 = createElement("Label", {
                   get text() {
                     return RedText(affix().v);
                   },
                   html: true
-                }, _el$132);
-              setProp(_el$133, "className", "Name");
-              setProp(_el$134, "className", "Value");
+                }, _el$133);
+              setProp(_el$134, "className", "Name");
+              setProp(_el$135, "className", "Value");
               effect(_p$ => {
-                const _v$46 = $.Localize('#' + affix().a.toString()),
-                  _v$47 = RedText(affix().v);
-                _v$46 !== _p$._v$46 && (_p$._v$46 = setProp(_el$133, "text", _v$46, _p$._v$46));
-                _v$47 !== _p$._v$47 && (_p$._v$47 = setProp(_el$134, "text", _v$47, _p$._v$47));
+                const _v$45 = $.Localize('#' + affix().a.toString()),
+                  _v$46 = RedText(affix().v);
+                _v$45 !== _p$._v$45 && (_p$._v$45 = setProp(_el$134, "text", _v$45, _p$._v$45));
+                _v$46 !== _p$._v$46 && (_p$._v$46 = setProp(_el$135, "text", _v$46, _p$._v$46));
                 return _p$;
               }, {
-                _v$46: undefined,
-                _v$47: undefined
+                _v$45: undefined,
+                _v$46: undefined
               });
-              return _el$131;
+              return _el$132;
             })();
           }
         }), null);
         effect(_p$ => {
-          const _v$38 = "Part_" + local2.affixPart,
-            _v$39 = `#AffixTitle_${local2.affixPart}`;
-          _v$38 !== _p$._v$38 && (_p$._v$38 = setProp(_el$113, "id", _v$38, _p$._v$38));
-          _v$39 !== _p$._v$39 && (_p$._v$39 = setProp(_el$117, "text", _v$39, _p$._v$39));
+          const _v$37 = "Part_" + local2.affixPart,
+            _v$38 = `#AffixTitle_${local2.affixPart}`;
+          _v$37 !== _p$._v$37 && (_p$._v$37 = setProp(_el$114, "id", _v$37, _p$._v$37));
+          _v$38 !== _p$._v$38 && (_p$._v$38 = setProp(_el$118, "text", _v$38, _p$._v$38));
           return _p$;
         }, {
-          _v$38: undefined,
-          _v$39: undefined
+          _v$37: undefined,
+          _v$38: undefined
         });
-        return _el$113;
+        return _el$114;
       })();
     };
     return (() => {
-      const _el$135 = createElement("Panel", {
+      const _el$136 = createElement("Panel", {
         id: "HolyTooltipAffix",
         "class": "EquipTooltipCompare"
       }, null);
-      insert(_el$135, createComponent(CompareAffixPanel, {
+      insert(_el$136, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getBaseAffix();
         },
         affixPart: 1
       }), null);
-      insert(_el$135, createComponent(CompareAffixPanel, {
+      insert(_el$136, createComponent(CompareAffixPanel, {
         get affixCompare() {
           return getAdvAffix();
         },
         affixPart: 2
       }), null);
-      return _el$135;
+      return _el$136;
     })();
   }
   function EquipTooltipAffixRow(props) {
@@ -6568,7 +6604,7 @@ var global = this;
     };
     const getIsInsertLock = () => props.insert_lock_idx != undefined && getInsertLockMaxCount() > 0;
     return (() => {
-      const _el$136 = createElement("Panel", {
+      const _el$137 = createElement("Panel", {
           get onload() {
             return props.onload;
           },
@@ -6584,8 +6620,8 @@ var global = this;
         }, null);
         createElement("Panel", {
           "class": "BG"
-        }, _el$136);
-      insert(_el$136, createComponent(Show, {
+        }, _el$137);
+      insert(_el$137, createComponent(Show, {
         get when() {
           return getIsInsertLock();
         },
@@ -6605,7 +6641,7 @@ var global = this;
               }
             });
             return (() => {
-              const _el$139 = createElement("ToggleButton", {
+              const _el$140 = createElement("ToggleButton", {
                 get hittest() {
                   return ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0;
                 },
@@ -6615,8 +6651,8 @@ var global = this;
                 }
               }, null);
               const _ref$2 = ref;
-              typeof _ref$2 === "function" ? use(_ref$2, _el$139) : ref = _el$139;
-              setProp(_el$139, "onselect", p => {
+              typeof _ref$2 === "function" ? use(_ref$2, _el$140) : ref = _el$140;
+              setProp(_el$140, "onselect", p => {
                 if (getIsLock()) return;
                 if (getIsDisableSelect()) {
                   p.checked = false;
@@ -6626,7 +6662,7 @@ var global = this;
                 t.push(props.affix.idx);
                 setLockIdx(t);
               });
-              setProp(_el$139, "ondeselect", p => {
+              setProp(_el$140, "ondeselect", p => {
                 const t = [...getLockIdx()];
                 const i = t.indexOf(props.affix.idx);
                 if (i != -1) {
@@ -6635,28 +6671,28 @@ var global = this;
                 }
               });
               effect(_p$ => {
-                const _v$51 = ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0,
-                  _v$52 = {
+                const _v$50 = ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0,
+                  _v$51 = {
                     'DisableSelect': getIsDisableSelect()
                   },
-                  _v$53 = getIsLock();
-                _v$51 !== _p$._v$51 && (_p$._v$51 = setProp(_el$139, "hittest", _v$51, _p$._v$51));
-                _v$52 !== _p$._v$52 && (_p$._v$52 = setProp(_el$139, "classList", _v$52, _p$._v$52));
-                _v$53 !== _p$._v$53 && (_p$._v$53 = setProp(_el$139, "selected", _v$53, _p$._v$53));
+                  _v$52 = getIsLock();
+                _v$50 !== _p$._v$50 && (_p$._v$50 = setProp(_el$140, "hittest", _v$50, _p$._v$50));
+                _v$51 !== _p$._v$51 && (_p$._v$51 = setProp(_el$140, "classList", _v$51, _p$._v$51));
+                _v$52 !== _p$._v$52 && (_p$._v$52 = setProp(_el$140, "selected", _v$52, _p$._v$52));
                 return _p$;
               }, {
+                _v$50: undefined,
                 _v$51: undefined,
-                _v$52: undefined,
-                _v$53: undefined
+                _v$52: undefined
               });
-              return _el$139;
+              return _el$140;
             })();
           }, createElement("Panel", {
             id: "ExtractInsertAffix"
           }, null)];
         }
       }), null);
-      insert(_el$136, createComponent(Show, {
+      insert(_el$137, createComponent(Show, {
         get when() {
           return getIsExtractLock();
         },
@@ -6679,7 +6715,7 @@ var global = this;
             }
           });
           return (() => {
-            const _el$140 = createElement("ToggleButton", {
+            const _el$141 = createElement("ToggleButton", {
               get hittest() {
                 return ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0;
               },
@@ -6689,8 +6725,8 @@ var global = this;
               }
             }, null);
             const _ref$3 = ref;
-            typeof _ref$3 === "function" ? use(_ref$3, _el$140) : ref = _el$140;
-            setProp(_el$140, "onselect", p => {
+            typeof _ref$3 === "function" ? use(_ref$3, _el$141) : ref = _el$141;
+            setProp(_el$141, "onselect", p => {
               if (getIsLock()) return;
               if (getIsDisableSelect()) {
                 p.checked = false;
@@ -6700,7 +6736,7 @@ var global = this;
               t.push(props.affix.idx);
               setLockIdx(t);
             });
-            setProp(_el$140, "ondeselect", p => {
+            setProp(_el$141, "ondeselect", p => {
               const t = [...getLockIdx()];
               const i = t.indexOf(props.affix.idx);
               if (i != -1) {
@@ -6709,41 +6745,41 @@ var global = this;
               }
             });
             effect(_p$ => {
-              const _v$54 = ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0,
-                _v$55 = {
+              const _v$53 = ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0,
+                _v$54 = {
                   'DisableSelect': getIsDisableSelect()
                 },
-                _v$56 = getIsLock();
-              _v$54 !== _p$._v$54 && (_p$._v$54 = setProp(_el$140, "hittest", _v$54, _p$._v$54));
-              _v$55 !== _p$._v$55 && (_p$._v$55 = setProp(_el$140, "classList", _v$55, _p$._v$55));
-              _v$56 !== _p$._v$56 && (_p$._v$56 = setProp(_el$140, "selected", _v$56, _p$._v$56));
+                _v$55 = getIsLock();
+              _v$53 !== _p$._v$53 && (_p$._v$53 = setProp(_el$141, "hittest", _v$53, _p$._v$53));
+              _v$54 !== _p$._v$54 && (_p$._v$54 = setProp(_el$141, "classList", _v$54, _p$._v$54));
+              _v$55 !== _p$._v$55 && (_p$._v$55 = setProp(_el$141, "selected", _v$55, _p$._v$55));
               return _p$;
             }, {
+              _v$53: undefined,
               _v$54: undefined,
-              _v$55: undefined,
-              _v$56: undefined
+              _v$55: undefined
             });
-            return _el$140;
+            return _el$141;
           })();
         }
       }), null);
-      insert(_el$136, createComponent(EquipTooltipAffixRowBase, props), null);
+      insert(_el$137, createComponent(EquipTooltipAffixRowBase, props), null);
       effect(_p$ => {
-        const _v$48 = props.onload,
-          _v$49 = "EquipTooltipAffixRow_" + getIdx(),
-          _v$50 = classNames("EquipTooltipAffixRow", "EquipTooltipAffixRow_" + getIdx(), props.className, {
+        const _v$47 = props.onload,
+          _v$48 = "EquipTooltipAffixRow_" + getIdx(),
+          _v$49 = classNames("EquipTooltipAffixRow", "EquipTooltipAffixRow_" + getIdx(), props.className, {
             'HasLock': getIsExtractLock() || getIsInsertLock()
           });
-        _v$48 !== _p$._v$48 && (_p$._v$48 = setProp(_el$136, "onload", _v$48, _p$._v$48));
-        _v$49 !== _p$._v$49 && (_p$._v$49 = setProp(_el$136, "id", _v$49, _p$._v$49));
-        _v$50 !== _p$._v$50 && (_p$._v$50 = setProp(_el$136, "class", _v$50, _p$._v$50));
+        _v$47 !== _p$._v$47 && (_p$._v$47 = setProp(_el$137, "onload", _v$47, _p$._v$47));
+        _v$48 !== _p$._v$48 && (_p$._v$48 = setProp(_el$137, "id", _v$48, _p$._v$48));
+        _v$49 !== _p$._v$49 && (_p$._v$49 = setProp(_el$137, "class", _v$49, _p$._v$49));
         return _p$;
       }, {
+        _v$47: undefined,
         _v$48: undefined,
-        _v$49: undefined,
-        _v$50: undefined
+        _v$49: undefined
       });
-      return _el$136;
+      return _el$137;
     })();
   }
   function EquipTooltipAffixRowBase(props) {
@@ -6800,7 +6836,7 @@ var global = this;
       return iRarity;
     };
     return (() => {
-      const _el$141 = createElement("Panel", {
+      const _el$142 = createElement("Panel", {
           get ["class"]() {
             return classNames('EquipTooltipAffixRowBase', {
               'Red': getIsRed()
@@ -6808,7 +6844,7 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$142 = createElement("Label", {
+        _el$143 = createElement("Label", {
           id: "Level",
           get ["class"]() {
             return 'Rarity_' + getLevelRarity();
@@ -6816,45 +6852,45 @@ var global = this;
           get text() {
             return getLevel();
           }
-        }, _el$141),
-        _el$143 = createElement("Label", {
+        }, _el$142),
+        _el$144 = createElement("Label", {
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$141);
-      insert(_el$141, createComponent(Show, {
+        }, _el$142);
+      insert(_el$142, createComponent(Show, {
         get when() {
           return memo(() => !!!getter_bAltDown())() && (props.inset_parent ? props.inset_parent.IsValid() : true);
         },
         get children() {
           return [(() => {
-            const _el$144 = createElement("Label", {
+            const _el$145 = createElement("Label", {
               id: "Value",
               html: true,
               get text() {
                 return getValStr();
               }
             }, null);
-            effect(_$p => setProp(_el$144, "text", getValStr(), _$p));
-            return _el$144;
+            effect(_$p => setProp(_el$145, "text", getValStr(), _$p));
+            return _el$145;
           })(), (() => {
-            const _el$145 = createElement("Label", {
+            const _el$146 = createElement("Label", {
               id: "Range",
               html: true,
               get text() {
                 return getRangeStr();
               }
             }, null);
-            effect(_$p => setProp(_el$145, "text", getRangeStr(), _$p));
-            return _el$145;
+            effect(_$p => setProp(_el$146, "text", getRangeStr(), _$p));
+            return _el$146;
           })(), createComponent(Show, {
             get when() {
               return memo(() => ((_b = (_a = props === null || props === void 0 ? void 0 : props.part_level) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) > 0)() && (props.inset_parent ? props.inset_parent.IsValid() : true);
             },
             get children() {
-              const _el$146 = createElement("Label", {
+              const _el$147 = createElement("Label", {
                 hittest: false,
                 id: "Bonus",
                 html: true,
@@ -6862,47 +6898,47 @@ var global = this;
                   return getBonusStr();
                 }
               }, null);
-              effect(_$p => setProp(_el$146, "text", getBonusStr(), _$p));
-              return _el$146;
+              effect(_$p => setProp(_el$147, "text", getBonusStr(), _$p));
+              return _el$147;
             }
           })];
         }
       }), null);
-      insert(_el$141, createComponent(Show, {
+      insert(_el$142, createComponent(Show, {
         get when() {
           return memo(() => !!getter_bAltDown())() && (props.inset_parent ? props.inset_parent.IsValid() : true);
         },
         get children() {
-          const _el$147 = createElement("Label", {
+          const _el$148 = createElement("Label", {
             id: "Total",
             html: true,
             get text() {
               return getTotalStr();
             }
           }, null);
-          effect(_$p => setProp(_el$147, "text", getTotalStr(), _$p));
-          return _el$147;
+          effect(_$p => setProp(_el$148, "text", getTotalStr(), _$p));
+          return _el$148;
         }
       }), null);
       effect(_p$ => {
-        const _v$57 = classNames('EquipTooltipAffixRowBase', {
+        const _v$56 = classNames('EquipTooltipAffixRowBase', {
             'Red': getIsRed()
           }),
-          _v$58 = 'Rarity_' + getLevelRarity(),
-          _v$59 = getLevel(),
-          _v$60 = '#' + props.affix.a;
-        _v$57 !== _p$._v$57 && (_p$._v$57 = setProp(_el$141, "class", _v$57, _p$._v$57));
-        _v$58 !== _p$._v$58 && (_p$._v$58 = setProp(_el$142, "class", _v$58, _p$._v$58));
-        _v$59 !== _p$._v$59 && (_p$._v$59 = setProp(_el$142, "text", _v$59, _p$._v$59));
-        _v$60 !== _p$._v$60 && (_p$._v$60 = setProp(_el$143, "text", _v$60, _p$._v$60));
+          _v$57 = 'Rarity_' + getLevelRarity(),
+          _v$58 = getLevel(),
+          _v$59 = '#' + props.affix.a;
+        _v$56 !== _p$._v$56 && (_p$._v$56 = setProp(_el$142, "class", _v$56, _p$._v$56));
+        _v$57 !== _p$._v$57 && (_p$._v$57 = setProp(_el$143, "class", _v$57, _p$._v$57));
+        _v$58 !== _p$._v$58 && (_p$._v$58 = setProp(_el$143, "text", _v$58, _p$._v$58));
+        _v$59 !== _p$._v$59 && (_p$._v$59 = setProp(_el$144, "text", _v$59, _p$._v$59));
         return _p$;
       }, {
+        _v$56: undefined,
         _v$57: undefined,
         _v$58: undefined,
-        _v$59: undefined,
-        _v$60: undefined
+        _v$59: undefined
       });
-      return _el$141;
+      return _el$142;
     })();
   }
   function EquipTooltipRsncRow(props) {
@@ -6929,7 +6965,7 @@ var global = this;
       return tValues;
     };
     return (() => {
-      const _el$148 = createElement("Panel", {
+      const _el$149 = createElement("Panel", {
           get id() {
             return 'EquipTooltipRsncRow_' + props.affix.idx;
           },
@@ -6943,43 +6979,43 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$149 = createElement("Label", {
+        _el$150 = createElement("Label", {
           id: "Description",
           get text() {
             return '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
           },
           html: true
-        }, _el$148);
+        }, _el$149);
       effect(_p$ => {
-        const _v$61 = 'EquipTooltipRsncRow_' + props.affix.idx,
-          _v$62 = classNames('EquipTooltipRsncRow', {
+        const _v$60 = 'EquipTooltipRsncRow_' + props.affix.idx,
+          _v$61 = classNames('EquipTooltipRsncRow', {
             'Red': getIsRed()
           }),
-          _v$63 = props.onload,
-          _v$64 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
-        _v$61 !== _p$._v$61 && (_p$._v$61 = setProp(_el$148, "id", _v$61, _p$._v$61));
-        _v$62 !== _p$._v$62 && (_p$._v$62 = setProp(_el$148, "class", _v$62, _p$._v$62));
-        _v$63 !== _p$._v$63 && (_p$._v$63 = setProp(_el$148, "onload", _v$63, _p$._v$63));
-        _v$64 !== _p$._v$64 && (_p$._v$64 = setProp(_el$149, "text", _v$64, _p$._v$64));
+          _v$62 = props.onload,
+          _v$63 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
+        _v$60 !== _p$._v$60 && (_p$._v$60 = setProp(_el$149, "id", _v$60, _p$._v$60));
+        _v$61 !== _p$._v$61 && (_p$._v$61 = setProp(_el$149, "class", _v$61, _p$._v$61));
+        _v$62 !== _p$._v$62 && (_p$._v$62 = setProp(_el$149, "onload", _v$62, _p$._v$62));
+        _v$63 !== _p$._v$63 && (_p$._v$63 = setProp(_el$150, "text", _v$63, _p$._v$63));
         return _p$;
       }, {
+        _v$60: undefined,
         _v$61: undefined,
         _v$62: undefined,
-        _v$63: undefined,
-        _v$64: undefined
+        _v$63: undefined
       });
-      return _el$148;
+      return _el$149;
     })();
   }
   function ExtractInfoTooltip(props) {
     return (() => {
-      const _el$150 = createElement("Panel", {
+      const _el$151 = createElement("Panel", {
         id: "ExtractInfoTooltip",
         hittest: false
       }, null);
-      insert(_el$150, createComponent(ExtractTooltipHeader, props), null);
-      insert(_el$150, createComponent(ExtractTooltipAffix, props), null);
-      return _el$150;
+      insert(_el$151, createComponent(ExtractTooltipHeader, props), null);
+      insert(_el$151, createComponent(ExtractTooltipAffix, props), null);
+      return _el$151;
     })();
   }
   function ExtractTooltipHeader(props) {
@@ -7018,36 +7054,36 @@ var global = this;
       return CalcEquipScore(getData());
     };
     return (() => {
-      const _el$151 = createElement("Panel", {
+      const _el$152 = createElement("Panel", {
           id: "ExtractTooltipHeader",
           get ["class"]() {
             return classNames('TooltipHeader', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$152 = createElement("Panel", {
+        _el$153 = createElement("Panel", {
           "class": "BGPanel"
-        }, _el$151);
+        }, _el$152);
         createElement("Panel", {
           "class": "BG2"
-        }, _el$152);
-        const _el$154 = createElement("Panel", {
+        }, _el$153);
+        const _el$155 = createElement("Panel", {
           "class": "Image"
-        }, _el$151),
-        _el$155 = createElement("Panel", {
+        }, _el$152),
+        _el$156 = createElement("Panel", {
           "class": "RightTopBox"
-        }, _el$151),
-        _el$157 = createElement("Panel", {
+        }, _el$152),
+        _el$158 = createElement("Panel", {
           "class": "Score"
-        }, _el$151),
-        _el$158 = createElement("Label", {
+        }, _el$152),
+        _el$159 = createElement("Label", {
           get text() {
             return getScore();
           }
-        }, _el$157);
-      insert(_el$154, createComponent(PackExtractItem, {
+        }, _el$158);
+      insert(_el$155, createComponent(PackExtractItem, {
         data: getData
       }));
-      insert(_el$151, createComponent(Yzy_Label, {
+      insert(_el$152, createComponent(Yzy_Label, {
         "class": "Name",
         get rarity() {
           return getRarity();
@@ -7055,13 +7091,13 @@ var global = this;
         get text() {
           return getName();
         }
-      }), _el$155);
-      insert(_el$155, createComponent(Show, {
+      }), _el$156);
+      insert(_el$156, createComponent(Show, {
         get when() {
           return getBind() > 0;
         },
         get children() {
-          const _el$156 = createElement("Label", {
+          const _el$157 = createElement("Label", {
             "class": "Bind",
             get text() {
               return ReplaceTextVariable('#EquipBind', {
@@ -7070,26 +7106,26 @@ var global = this;
             },
             html: true
           }, null);
-          effect(_$p => setProp(_el$156, "text", ReplaceTextVariable('#EquipBind', {
+          effect(_$p => setProp(_el$157, "text", ReplaceTextVariable('#EquipBind', {
             'val': getBind()
           }), _$p));
-          return _el$156;
+          return _el$157;
         }
       }));
-      insert(_el$157, createComponent(Yzy_Icon, {
+      insert(_el$158, createComponent(Yzy_Icon, {
         type: "icon_score"
-      }), _el$158);
+      }), _el$159);
       effect(_p$ => {
-        const _v$65 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
-          _v$66 = getScore();
-        _v$65 !== _p$._v$65 && (_p$._v$65 = setProp(_el$151, "class", _v$65, _p$._v$65));
-        _v$66 !== _p$._v$66 && (_p$._v$66 = setProp(_el$158, "text", _v$66, _p$._v$66));
+        const _v$64 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
+          _v$65 = getScore();
+        _v$64 !== _p$._v$64 && (_p$._v$64 = setProp(_el$152, "class", _v$64, _p$._v$64));
+        _v$65 !== _p$._v$65 && (_p$._v$65 = setProp(_el$159, "text", _v$65, _p$._v$65));
         return _p$;
       }, {
-        _v$65: undefined,
-        _v$66: undefined
+        _v$64: undefined,
+        _v$65: undefined
       });
-      return _el$151;
+      return _el$152;
     })();
   }
   function ExtractTooltipAffix(props) {
@@ -7128,15 +7164,15 @@ var global = this;
       return tAffix;
     });
     return (() => {
-      const _el$159 = createElement("Panel", {
+      const _el$160 = createElement("Panel", {
         id: "ExtractTooltipAffix",
         get ["class"]() {
           return classNames('TooltipAffix', `Rarity_${getRarity()}`);
         }
       }, null);
       const _ref$4 = ref;
-      typeof _ref$4 === "function" ? use(_ref$4, _el$159) : ref = _el$159;
-      insert(_el$159, createComponent(Index, {
+      typeof _ref$4 === "function" ? use(_ref$4, _el$160) : ref = _el$160;
+      insert(_el$160, createComponent(Index, {
         get each() {
           return Object.entries(getAffixGroup());
         },
@@ -7144,32 +7180,32 @@ var global = this;
           const getAffixType = () => getValue()[0];
           const getAffix = () => getValue()[1];
           return (() => {
-            const _el$167 = createElement("Panel", {
+            const _el$168 = createElement("Panel", {
                 get id() {
                   return 'Part_' + getAffixType();
                 },
                 "class": "AffixGroup"
               }, null),
-              _el$168 = createElement("Panel", {
+              _el$169 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
-              }, _el$167);
+              }, _el$168);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$168);
+              }, _el$169);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$168);
-              const _el$171 = createElement("Label", {
+              }, _el$169);
+              const _el$172 = createElement("Label", {
                 get text() {
                   return `#AffixTitle_${getAffixType()}`;
                 },
                 hittest: false
-              }, _el$168),
-              _el$172 = createElement("Panel", {
+              }, _el$169),
+              _el$173 = createElement("Panel", {
                 "class": "Body"
-              }, _el$167);
-            insert(_el$172, createComponent(Index, {
+              }, _el$168);
+            insert(_el$173, createComponent(Index, {
               get each() {
                 return getAffix().sort((a, b) => b.l - a.l);
               },
@@ -7206,46 +7242,46 @@ var global = this;
               }
             }));
             effect(_p$ => {
-              const _v$67 = 'Part_' + getAffixType(),
-                _v$68 = `#AffixTitle_${getAffixType()}`;
-              _v$67 !== _p$._v$67 && (_p$._v$67 = setProp(_el$167, "id", _v$67, _p$._v$67));
-              _v$68 !== _p$._v$68 && (_p$._v$68 = setProp(_el$171, "text", _v$68, _p$._v$68));
+              const _v$66 = 'Part_' + getAffixType(),
+                _v$67 = `#AffixTitle_${getAffixType()}`;
+              _v$66 !== _p$._v$66 && (_p$._v$66 = setProp(_el$168, "id", _v$66, _p$._v$66));
+              _v$67 !== _p$._v$67 && (_p$._v$67 = setProp(_el$172, "text", _v$67, _p$._v$67));
               return _p$;
             }, {
-              _v$67: undefined,
-              _v$68: undefined
+              _v$66: undefined,
+              _v$67: undefined
             });
-            return _el$167;
+            return _el$168;
           })();
         }
       }), null);
-      insert(_el$159, createComponent(Show, {
+      insert(_el$160, createComponent(Show, {
         get when() {
           return getRsnc().length > 0;
         },
         get children() {
-          const _el$160 = createElement("Panel", {
+          const _el$161 = createElement("Panel", {
               id: "Part3",
               "class": "AffixGroup"
             }, null),
-            _el$161 = createElement("Panel", {
+            _el$162 = createElement("Panel", {
               "class": "Title",
               hittest: false
-            }, _el$160);
+            }, _el$161);
             createElement("Panel", {
               "class": "BG"
-            }, _el$161);
+            }, _el$162);
             createElement("Panel", {
               "class": "Line"
-            }, _el$161);
+            }, _el$162);
             createElement("Label", {
               text: '#AffixTitle_3',
               hittest: false
-            }, _el$161);
-            const _el$165 = createElement("Panel", {
+            }, _el$162);
+            const _el$166 = createElement("Panel", {
               "class": "Body"
-            }, _el$160);
-          insert(_el$165, createComponent(Index, {
+            }, _el$161);
+          insert(_el$166, createComponent(Index, {
             get each() {
               return getRsnc().sort((a, b) => a.idx - b.idx);
             },
@@ -7257,10 +7293,10 @@ var global = this;
               });
             }
           }));
-          return _el$160;
+          return _el$161;
         }
       }), null);
-      insert(_el$159, createComponent(Show, {
+      insert(_el$160, createComponent(Show, {
         get when() {
           return getAffix().length <= 0;
         },
@@ -7272,15 +7308,15 @@ var global = this;
           }, null);
         }
       }), null);
-      effect(_$p => setProp(_el$159, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
-      return _el$159;
+      effect(_$p => setProp(_el$160, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
+      return _el$160;
     })();
   }
   function ExtractTooltipAffixRow(props) {
     const getAffix = () => props.affix;
     const getIdx = () => getAffix().idx;
     return (() => {
-      const _el$174 = createElement("Panel", {
+      const _el$175 = createElement("Panel", {
           get onload() {
             return props.onload;
           },
@@ -7294,22 +7330,22 @@ var global = this;
         }, null);
         createElement("Panel", {
           "class": "BG"
-        }, _el$174);
-      insert(_el$174, createComponent(ExtractTooltipAffixRowBase, props), null);
+        }, _el$175);
+      insert(_el$175, createComponent(ExtractTooltipAffixRowBase, props), null);
       effect(_p$ => {
-        const _v$69 = props.onload,
-          _v$70 = "ExtractTooltipAffixRow_" + getIdx(),
-          _v$71 = classNames("ExtractTooltipAffixRow", "ExtractTooltipAffixRow_" + getIdx(), props.className);
-        _v$69 !== _p$._v$69 && (_p$._v$69 = setProp(_el$174, "onload", _v$69, _p$._v$69));
-        _v$70 !== _p$._v$70 && (_p$._v$70 = setProp(_el$174, "id", _v$70, _p$._v$70));
-        _v$71 !== _p$._v$71 && (_p$._v$71 = setProp(_el$174, "class", _v$71, _p$._v$71));
+        const _v$68 = props.onload,
+          _v$69 = "ExtractTooltipAffixRow_" + getIdx(),
+          _v$70 = classNames("ExtractTooltipAffixRow", "ExtractTooltipAffixRow_" + getIdx(), props.className);
+        _v$68 !== _p$._v$68 && (_p$._v$68 = setProp(_el$175, "onload", _v$68, _p$._v$68));
+        _v$69 !== _p$._v$69 && (_p$._v$69 = setProp(_el$175, "id", _v$69, _p$._v$69));
+        _v$70 !== _p$._v$70 && (_p$._v$70 = setProp(_el$175, "class", _v$70, _p$._v$70));
         return _p$;
       }, {
+        _v$68: undefined,
         _v$69: undefined,
-        _v$70: undefined,
-        _v$71: undefined
+        _v$70: undefined
       });
-      return _el$174;
+      return _el$175;
     })();
   }
   function ExtractTooltipAffixRowBase(props) {
@@ -7349,7 +7385,7 @@ var global = this;
       return iRarity;
     };
     return (() => {
-      const _el$176 = createElement("Panel", {
+      const _el$177 = createElement("Panel", {
           get ["class"]() {
             return classNames('ExtractTooltipAffixRowBase', {
               'Red': getIsRed()
@@ -7357,7 +7393,7 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$177 = createElement("Label", {
+        _el$178 = createElement("Label", {
           id: "Level",
           get ["class"]() {
             return 'Rarity_' + getLevelRarity();
@@ -7365,53 +7401,53 @@ var global = this;
           get text() {
             return getLevel();
           }
-        }, _el$176),
-        _el$178 = createElement("Label", {
+        }, _el$177),
+        _el$179 = createElement("Label", {
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$176),
-        _el$179 = createElement("Label", {
+        }, _el$177),
+        _el$180 = createElement("Label", {
           id: "Value",
           html: true,
           get text() {
             return getValStr();
           }
-        }, _el$176),
-        _el$180 = createElement("Label", {
+        }, _el$177),
+        _el$181 = createElement("Label", {
           id: "Range",
           html: true,
           get text() {
             return getRangeStr();
           }
-        }, _el$176);
+        }, _el$177);
       effect(_p$ => {
-        const _v$72 = classNames('ExtractTooltipAffixRowBase', {
+        const _v$71 = classNames('ExtractTooltipAffixRowBase', {
             'Red': getIsRed()
           }),
-          _v$73 = 'Rarity_' + getLevelRarity(),
-          _v$74 = getLevel(),
-          _v$75 = '#' + props.affix.a,
-          _v$76 = getValStr(),
-          _v$77 = getRangeStr();
-        _v$72 !== _p$._v$72 && (_p$._v$72 = setProp(_el$176, "class", _v$72, _p$._v$72));
-        _v$73 !== _p$._v$73 && (_p$._v$73 = setProp(_el$177, "class", _v$73, _p$._v$73));
-        _v$74 !== _p$._v$74 && (_p$._v$74 = setProp(_el$177, "text", _v$74, _p$._v$74));
-        _v$75 !== _p$._v$75 && (_p$._v$75 = setProp(_el$178, "text", _v$75, _p$._v$75));
-        _v$76 !== _p$._v$76 && (_p$._v$76 = setProp(_el$179, "text", _v$76, _p$._v$76));
-        _v$77 !== _p$._v$77 && (_p$._v$77 = setProp(_el$180, "text", _v$77, _p$._v$77));
+          _v$72 = 'Rarity_' + getLevelRarity(),
+          _v$73 = getLevel(),
+          _v$74 = '#' + props.affix.a,
+          _v$75 = getValStr(),
+          _v$76 = getRangeStr();
+        _v$71 !== _p$._v$71 && (_p$._v$71 = setProp(_el$177, "class", _v$71, _p$._v$71));
+        _v$72 !== _p$._v$72 && (_p$._v$72 = setProp(_el$178, "class", _v$72, _p$._v$72));
+        _v$73 !== _p$._v$73 && (_p$._v$73 = setProp(_el$178, "text", _v$73, _p$._v$73));
+        _v$74 !== _p$._v$74 && (_p$._v$74 = setProp(_el$179, "text", _v$74, _p$._v$74));
+        _v$75 !== _p$._v$75 && (_p$._v$75 = setProp(_el$180, "text", _v$75, _p$._v$75));
+        _v$76 !== _p$._v$76 && (_p$._v$76 = setProp(_el$181, "text", _v$76, _p$._v$76));
         return _p$;
       }, {
+        _v$71: undefined,
         _v$72: undefined,
         _v$73: undefined,
         _v$74: undefined,
         _v$75: undefined,
-        _v$76: undefined,
-        _v$77: undefined
+        _v$76: undefined
       });
-      return _el$176;
+      return _el$177;
     })();
   }
   function ExtractTooltipRsncRow(props) {
@@ -7438,7 +7474,7 @@ var global = this;
       return tValues;
     };
     return (() => {
-      const _el$181 = createElement("Panel", {
+      const _el$182 = createElement("Panel", {
           get id() {
             return 'ExtractTooltipRsncRow_' + props.affix.idx;
           },
@@ -7452,46 +7488,46 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$182 = createElement("Label", {
+        _el$183 = createElement("Label", {
           id: "Description",
           get text() {
             return '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
           },
           html: true
-        }, _el$181);
+        }, _el$182);
       effect(_p$ => {
-        const _v$78 = 'ExtractTooltipRsncRow_' + props.affix.idx,
-          _v$79 = classNames('ExtractTooltipRsncRow', {
+        const _v$77 = 'ExtractTooltipRsncRow_' + props.affix.idx,
+          _v$78 = classNames('ExtractTooltipRsncRow', {
             'Red': getIsRed()
           }),
-          _v$80 = props.onload,
-          _v$81 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
-        _v$78 !== _p$._v$78 && (_p$._v$78 = setProp(_el$181, "id", _v$78, _p$._v$78));
-        _v$79 !== _p$._v$79 && (_p$._v$79 = setProp(_el$181, "class", _v$79, _p$._v$79));
-        _v$80 !== _p$._v$80 && (_p$._v$80 = setProp(_el$181, "onload", _v$80, _p$._v$80));
-        _v$81 !== _p$._v$81 && (_p$._v$81 = setProp(_el$182, "text", _v$81, _p$._v$81));
+          _v$79 = props.onload,
+          _v$80 = '[' + $.Localize(getTitle()) + '] ' + ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
+        _v$77 !== _p$._v$77 && (_p$._v$77 = setProp(_el$182, "id", _v$77, _p$._v$77));
+        _v$78 !== _p$._v$78 && (_p$._v$78 = setProp(_el$182, "class", _v$78, _p$._v$78));
+        _v$79 !== _p$._v$79 && (_p$._v$79 = setProp(_el$182, "onload", _v$79, _p$._v$79));
+        _v$80 !== _p$._v$80 && (_p$._v$80 = setProp(_el$183, "text", _v$80, _p$._v$80));
         return _p$;
       }, {
+        _v$77: undefined,
         _v$78: undefined,
         _v$79: undefined,
-        _v$80: undefined,
-        _v$81: undefined
+        _v$80: undefined
       });
-      return _el$181;
+      return _el$182;
     })();
   }
   function HolyInfoTooltip(props) {
     return (() => {
-      const _el$183 = createElement("Panel", {
+      const _el$184 = createElement("Panel", {
         id: "HolyInfoTooltip",
         hittest: false
       }, null);
-      insert(_el$183, createComponent(HolyTooltipHeader, {
+      insert(_el$184, createComponent(HolyTooltipHeader, {
         get data() {
           return props.data;
         }
       }), null);
-      insert(_el$183, createComponent(HolyTooltipAffix, {
+      insert(_el$184, createComponent(HolyTooltipAffix, {
         get data() {
           return props.data;
         },
@@ -7499,7 +7535,7 @@ var global = this;
           return props.wear_suit;
         }
       }), null);
-      return _el$183;
+      return _el$184;
     })();
   }
   function HolyTooltipSuit(props) {
@@ -7531,85 +7567,85 @@ var global = this;
       return (_d = ((_b = (_a = props.wear_suit) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : {})[(_c = getSuit()) !== null && _c !== void 0 ? _c : 0]) !== null && _d !== void 0 ? _d : 0;
     };
     return (() => {
-      const _el$184 = createElement("Panel", {
+      const _el$185 = createElement("Panel", {
           id: "HolyTooltipSuit",
           "class": "HolyTooltipSuit AffixGroup"
         }, null),
-        _el$185 = createElement("Panel", {
+        _el$186 = createElement("Panel", {
           "class": "Title",
           hittest: false
-        }, _el$184);
+        }, _el$185);
         createElement("Panel", {
           "class": "BG"
-        }, _el$185);
+        }, _el$186);
         createElement("Panel", {
           "class": "Line"
-        }, _el$185);
+        }, _el$186);
         createElement("Label", {
           "class": "Title",
           text: '#HolySuitTitle',
           hittest: false
-        }, _el$185);
-        const _el$189 = createElement("Label", {
+        }, _el$186);
+        const _el$190 = createElement("Label", {
           "class": "SuitEffect",
           html: true,
           get text() {
             return `#${getSuit()}`;
           }
-        }, _el$184),
-        _el$190 = createElement("Panel", {
+        }, _el$185),
+        _el$191 = createElement("Panel", {
           "class": "Body"
-        }, _el$184);
-      insert(_el$190, createComponent(Index, {
+        }, _el$185);
+      insert(_el$191, createComponent(Index, {
         get each() {
           return getSuitCountData();
         },
         children: suitCfg => {
           return (() => {
-            const _el$191 = createElement("Panel", {
+            const _el$192 = createElement("Panel", {
                 "class": "SuitItem"
               }, null),
-              _el$192 = createElement("Label", {
+              _el$193 = createElement("Label", {
                 "class": "SuitNum",
                 get text() {
                   return `${getHasSuitCount()}/${suitCfg().suitNum}`;
                 }
-              }, _el$191);
-            insert(_el$191, createComponent(Yzy_Attribute, {
+              }, _el$192);
+            insert(_el$192, createComponent(Yzy_Attribute, {
               get id() {
                 return suitCfg().effect.toString();
               },
               val: 1
             }), null);
             effect(_p$ => {
-              const _v$84 = {
+              const _v$83 = {
                   'NotActive': getHasSuitCount() < suitCfg().suitNum
                 },
-                _v$85 = `${getHasSuitCount()}/${suitCfg().suitNum}`;
-              _v$84 !== _p$._v$84 && (_p$._v$84 = setProp(_el$191, "classList", _v$84, _p$._v$84));
-              _v$85 !== _p$._v$85 && (_p$._v$85 = setProp(_el$192, "text", _v$85, _p$._v$85));
+                _v$84 = `${getHasSuitCount()}/${suitCfg().suitNum}`;
+              _v$83 !== _p$._v$83 && (_p$._v$83 = setProp(_el$192, "classList", _v$83, _p$._v$83));
+              _v$84 !== _p$._v$84 && (_p$._v$84 = setProp(_el$193, "text", _v$84, _p$._v$84));
               return _p$;
             }, {
-              _v$84: undefined,
-              _v$85: undefined
+              _v$83: undefined,
+              _v$84: undefined
             });
-            return _el$191;
+            return _el$192;
           })();
         }
       }));
       effect(_p$ => {
-        const _v$82 = {
+        const _v$81 = {
             'Active': Object.values(getSuitCountData()).length > 0
           },
-          _v$83 = `#${getSuit()}`;
-        _v$82 !== _p$._v$82 && (_p$._v$82 = setProp(_el$184, "classList", _v$82, _p$._v$82));
-        _v$83 !== _p$._v$83 && (_p$._v$83 = setProp(_el$189, "text", _v$83, _p$._v$83));
+          _v$82 = `#${getSuit()}`;
+        _v$81 !== _p$._v$81 && (_p$._v$81 = setProp(_el$185, "classList", _v$81, _p$._v$81));
+        _v$82 !== _p$._v$82 && (_p$._v$82 = setProp(_el$190, "text", _v$82, _p$._v$82));
         return _p$;
       }, {
-        _v$82: undefined,
-        _v$83: undefined
+        _v$81: undefined,
+        _v$82: undefined
       });
-      return _el$184;
+      return _el$185;
     })();
   }
   function HolyTooltipHeader(props) {
@@ -7697,67 +7733,67 @@ var global = this;
     };
     const getStrengthen = () => getBaseStrengthen() + getAttr10600527Val();
     return (() => {
-      const _el$193 = createElement("Panel", {
+      const _el$194 = createElement("Panel", {
           id: "HolyTooltipHeader",
           get ["class"]() {
             return classNames('TooltipHeader', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$194 = createElement("Panel", {
+        _el$195 = createElement("Panel", {
           "class": "BGPanel"
-        }, _el$193);
+        }, _el$194);
         createElement("Panel", {
           "class": "BG2"
-        }, _el$194);
-        const _el$196 = createElement("Panel", {
+        }, _el$195);
+        const _el$197 = createElement("Panel", {
           "class": "Image"
-        }, _el$193),
-        _el$197 = createElement("Panel", {
-          "class": "Name"
-        }, _el$193),
+        }, _el$194),
         _el$198 = createElement("Panel", {
+          "class": "Name"
+        }, _el$194),
+        _el$199 = createElement("Panel", {
           "class": "Taigu"
-        }, _el$197);
+        }, _el$198);
         createElement("Panel", {
           "class": "Line"
-        }, _el$193);
-        const _el$200 = createElement("Panel", {
+        }, _el$194);
+        const _el$201 = createElement("Panel", {
           "class": "RightTopBox"
-        }, _el$193),
-        _el$202 = createElement("Label", {
+        }, _el$194),
+        _el$203 = createElement("Label", {
           "class": "Class",
           get text() {
             return ReplaceTextVariable('#HolyClassValue', getClass());
           },
           html: true
-        }, _el$193),
-        _el$203 = createElement("Label", {
+        }, _el$194),
+        _el$204 = createElement("Label", {
           "class": "Strength",
           get text() {
             return ReplaceTextVariable('#HolyStrengthValue', `${getAttr10600527Val() > 0 ? getBaseStrengthen() + '+' + getAttr10600527Val() : getStrengthen()}`);
           },
           html: true
-        }, _el$193),
-        _el$204 = createElement("Panel", {
+        }, _el$194),
+        _el$205 = createElement("Panel", {
           "class": "TransLock"
-        }, _el$193);
+        }, _el$194);
         createElement("Label", {
           text: '#HolyTransLock',
           html: true
-        }, _el$204);
-        const _el$206 = createElement("Panel", {
+        }, _el$205);
+        const _el$207 = createElement("Panel", {
           "class": "Score"
-        }, _el$193),
-        _el$207 = createElement("Label", {
+        }, _el$194),
+        _el$208 = createElement("Label", {
           get text() {
             return getScore();
           }
-        }, _el$206);
-      insert(_el$196, createComponent(PackHolyItem, {
+        }, _el$207);
+      insert(_el$197, createComponent(PackHolyItem, {
         data: () => getData(),
         noTooltip: true
       }));
-      insert(_el$197, createComponent(Yzy_Label, {
+      insert(_el$198, createComponent(Yzy_Label, {
         "class": "Name",
         get rarity() {
           return getRarity();
@@ -7765,8 +7801,8 @@ var global = this;
         get text() {
           return `#HolyInfoTitle_${getPart()}_${getRarity()}`;
         }
-      }), _el$198);
-      insert(_el$198, createComponent(Index, {
+      }), _el$199);
+      insert(_el$199, createComponent(Index, {
         get each() {
           return Array.from({
             length: getTaiguCount()
@@ -7778,12 +7814,12 @@ var global = this;
           }, null);
         }
       }));
-      insert(_el$200, createComponent(Show, {
+      insert(_el$201, createComponent(Show, {
         get when() {
           return getBind() > 0;
         },
         get children() {
-          const _el$201 = createElement("Label", {
+          const _el$202 = createElement("Label", {
             "class": "Bind",
             get text() {
               return ReplaceTextVariable('#EquipBind', {
@@ -7792,45 +7828,45 @@ var global = this;
             },
             html: true
           }, null);
-          effect(_$p => setProp(_el$201, "text", ReplaceTextVariable('#EquipBind', {
+          effect(_$p => setProp(_el$202, "text", ReplaceTextVariable('#EquipBind', {
             'val': getBind()
           }), _$p));
-          return _el$201;
+          return _el$202;
         }
       }));
-      insert(_el$206, createComponent(Yzy_Icon, {
+      insert(_el$207, createComponent(Yzy_Icon, {
         type: "icon_score"
-      }), _el$207);
+      }), _el$208);
       effect(_p$ => {
-        const _v$86 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
-          _v$87 = classNames('Rarity_' + getRarity()),
-          _v$88 = ReplaceTextVariable('#HolyClassValue', getClass()),
-          _v$89 = {
+        const _v$85 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
+          _v$86 = classNames('Rarity_' + getRarity()),
+          _v$87 = ReplaceTextVariable('#HolyClassValue', getClass()),
+          _v$88 = {
             ['show']: getStrengthen() > 0
           },
-          _v$90 = ReplaceTextVariable('#HolyStrengthValue', `${getAttr10600527Val() > 0 ? getBaseStrengthen() + '+' + getAttr10600527Val() : getStrengthen()}`),
-          _v$91 = {
+          _v$89 = ReplaceTextVariable('#HolyStrengthValue', `${getAttr10600527Val() > 0 ? getBaseStrengthen() + '+' + getAttr10600527Val() : getStrengthen()}`),
+          _v$90 = {
             'Active': getTransLock()
           },
-          _v$92 = getScore();
-        _v$86 !== _p$._v$86 && (_p$._v$86 = setProp(_el$193, "class", _v$86, _p$._v$86));
-        _v$87 !== _p$._v$87 && (_p$._v$87 = setProp(_el$197, "className", _v$87, _p$._v$87));
-        _v$88 !== _p$._v$88 && (_p$._v$88 = setProp(_el$202, "text", _v$88, _p$._v$88));
-        _v$89 !== _p$._v$89 && (_p$._v$89 = setProp(_el$203, "classList", _v$89, _p$._v$89));
-        _v$90 !== _p$._v$90 && (_p$._v$90 = setProp(_el$203, "text", _v$90, _p$._v$90));
-        _v$91 !== _p$._v$91 && (_p$._v$91 = setProp(_el$204, "classList", _v$91, _p$._v$91));
-        _v$92 !== _p$._v$92 && (_p$._v$92 = setProp(_el$207, "text", _v$92, _p$._v$92));
+          _v$91 = getScore();
+        _v$85 !== _p$._v$85 && (_p$._v$85 = setProp(_el$194, "class", _v$85, _p$._v$85));
+        _v$86 !== _p$._v$86 && (_p$._v$86 = setProp(_el$198, "className", _v$86, _p$._v$86));
+        _v$87 !== _p$._v$87 && (_p$._v$87 = setProp(_el$203, "text", _v$87, _p$._v$87));
+        _v$88 !== _p$._v$88 && (_p$._v$88 = setProp(_el$204, "classList", _v$88, _p$._v$88));
+        _v$89 !== _p$._v$89 && (_p$._v$89 = setProp(_el$204, "text", _v$89, _p$._v$89));
+        _v$90 !== _p$._v$90 && (_p$._v$90 = setProp(_el$205, "classList", _v$90, _p$._v$90));
+        _v$91 !== _p$._v$91 && (_p$._v$91 = setProp(_el$208, "text", _v$91, _p$._v$91));
         return _p$;
       }, {
+        _v$85: undefined,
         _v$86: undefined,
         _v$87: undefined,
         _v$88: undefined,
         _v$89: undefined,
         _v$90: undefined,
-        _v$91: undefined,
-        _v$92: undefined
+        _v$91: undefined
       });
-      return _el$193;
+      return _el$194;
     })();
   }
   function HolyTooltipAffix(props) {
@@ -7907,13 +7943,13 @@ var global = this;
       return tAffixGroup;
     });
     return (() => {
-      const _el$209 = createElement("Panel", {
+      const _el$210 = createElement("Panel", {
         id: "HolyTooltipAffix",
         get ["class"]() {
           return classNames('TooltipAffix', `Rarity_${getRarity()}`);
         }
       }, null);
-      insert(_el$209, createComponent(Index, {
+      insert(_el$210, createComponent(Index, {
         get each() {
           return Object.entries(getAffixGroup());
         },
@@ -7921,32 +7957,32 @@ var global = this;
           const getAffixType = () => getValue()[0];
           const getAffixList = () => getValue()[1];
           return (() => {
-            const _el$210 = createElement("Panel", {
+            const _el$211 = createElement("Panel", {
                 get id() {
                   return 'Part_' + getAffixType();
                 },
                 "class": "AffixGroup"
               }, null),
-              _el$211 = createElement("Panel", {
+              _el$212 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
-              }, _el$210);
+              }, _el$211);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$211);
+              }, _el$212);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$211);
-              const _el$214 = createElement("Label", {
+              }, _el$212);
+              const _el$215 = createElement("Label", {
                 get text() {
                   return `#AffixTitle_${getAffixType()}`;
                 },
                 hittest: false
-              }, _el$211),
-              _el$215 = createElement("Panel", {
+              }, _el$212),
+              _el$216 = createElement("Panel", {
                 "class": "Body"
-              }, _el$210);
-            insert(_el$215, createComponent(Index, {
+              }, _el$211);
+            insert(_el$216, createComponent(Index, {
               get each() {
                 return getAffixList().sort((a, b) => b.l - a.l);
               },
@@ -7984,20 +8020,20 @@ var global = this;
               }
             }));
             effect(_p$ => {
-              const _v$93 = 'Part_' + getAffixType(),
-                _v$94 = `#AffixTitle_${getAffixType()}`;
-              _v$93 !== _p$._v$93 && (_p$._v$93 = setProp(_el$210, "id", _v$93, _p$._v$93));
-              _v$94 !== _p$._v$94 && (_p$._v$94 = setProp(_el$214, "text", _v$94, _p$._v$94));
+              const _v$92 = 'Part_' + getAffixType(),
+                _v$93 = `#AffixTitle_${getAffixType()}`;
+              _v$92 !== _p$._v$92 && (_p$._v$92 = setProp(_el$211, "id", _v$92, _p$._v$92));
+              _v$93 !== _p$._v$93 && (_p$._v$93 = setProp(_el$215, "text", _v$93, _p$._v$93));
               return _p$;
             }, {
-              _v$93: undefined,
-              _v$94: undefined
+              _v$92: undefined,
+              _v$93: undefined
             });
-            return _el$210;
+            return _el$211;
           })();
         }
       }), null);
-      insert(_el$209, (() => {
+      insert(_el$210, (() => {
         const _c$ = memo(() => !!!props.onlyPart2);
         return () => _c$() && createComponent(HolyTooltipSuit, {
           get data() {
@@ -8008,8 +8044,8 @@ var global = this;
           }
         });
       })(), null);
-      effect(_$p => setProp(_el$209, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
-      return _el$209;
+      effect(_$p => setProp(_el$210, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
+      return _el$210;
     })();
   }
   function HolyTooltipAffixRow(props) {
@@ -8024,7 +8060,7 @@ var global = this;
       return ((_a = props.affix.trans) !== null && _a !== void 0 ? _a : []).length > 0 || !!props.affix.fin;
     };
     return (() => {
-      const _el$216 = createElement("Panel", {
+      const _el$217 = createElement("Panel", {
           get id() {
             return "HolyTooltipAffixRow_" + getIdx();
           },
@@ -8037,8 +8073,8 @@ var global = this;
         }, null);
         createElement("Panel", {
           "class": "BG"
-        }, _el$216);
-      insert(_el$216, createComponent(Show, {
+        }, _el$217);
+      insert(_el$217, createComponent(Show, {
         get when() {
           return getIsRecastLock();
         },
@@ -8058,7 +8094,7 @@ var global = this;
             }
           });
           return (() => {
-            const _el$218 = createElement("ToggleButton", {
+            const _el$219 = createElement("ToggleButton", {
               get hittest() {
                 return memo(() => ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0)() && !getIsAffixUnselectable();
               },
@@ -8068,8 +8104,8 @@ var global = this;
               }
             }, null);
             const _ref$5 = ref;
-            typeof _ref$5 === "function" ? use(_ref$5, _el$218) : ref = _el$218;
-            setProp(_el$218, "onselect", p => {
+            typeof _ref$5 === "function" ? use(_ref$5, _el$219) : ref = _el$219;
+            setProp(_el$219, "onselect", p => {
               if (getIsLock()) return;
               if (getIsDisableSelect()) {
                 p.checked = false;
@@ -8079,7 +8115,7 @@ var global = this;
               t.push(props.affix.idx);
               setLockIdx(t);
             });
-            setProp(_el$218, "ondeselect", p => {
+            setProp(_el$219, "ondeselect", p => {
               const t = [...getLockIdx()];
               const i = t.indexOf(props.affix.idx);
               if (i != -1) {
@@ -8088,25 +8124,25 @@ var global = this;
               }
             });
             effect(_p$ => {
-              const _v$97 = memo(() => ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0)() && !getIsAffixUnselectable(),
-                _v$98 = {
+              const _v$96 = memo(() => ((_b = (_a = props.operate_state) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) == 0)() && !getIsAffixUnselectable(),
+                _v$97 = {
                   'DisableSelect': getIsDisableSelect()
                 },
-                _v$99 = getIsLock();
-              _v$97 !== _p$._v$97 && (_p$._v$97 = setProp(_el$218, "hittest", _v$97, _p$._v$97));
-              _v$98 !== _p$._v$98 && (_p$._v$98 = setProp(_el$218, "classList", _v$98, _p$._v$98));
-              _v$99 !== _p$._v$99 && (_p$._v$99 = setProp(_el$218, "selected", _v$99, _p$._v$99));
+                _v$98 = getIsLock();
+              _v$96 !== _p$._v$96 && (_p$._v$96 = setProp(_el$219, "hittest", _v$96, _p$._v$96));
+              _v$97 !== _p$._v$97 && (_p$._v$97 = setProp(_el$219, "classList", _v$97, _p$._v$97));
+              _v$98 !== _p$._v$98 && (_p$._v$98 = setProp(_el$219, "selected", _v$98, _p$._v$98));
               return _p$;
             }, {
+              _v$96: undefined,
               _v$97: undefined,
-              _v$98: undefined,
-              _v$99: undefined
+              _v$98: undefined
             });
-            return _el$218;
+            return _el$219;
           })();
         }
       }), null);
-      insert(_el$216, createComponent(HolyTooltipAffixRowBase, {
+      insert(_el$217, createComponent(HolyTooltipAffixRowBase, {
         get affix() {
           return props.affix;
         },
@@ -8121,18 +8157,18 @@ var global = this;
         }
       }), null);
       effect(_p$ => {
-        const _v$95 = "HolyTooltipAffixRow_" + getIdx(),
-          _v$96 = classNames("HolyTooltipAffixRow", props.className, {
+        const _v$94 = "HolyTooltipAffixRow_" + getIdx(),
+          _v$95 = classNames("HolyTooltipAffixRow", props.className, {
             'HasLock': getIsRecastLock()
           });
-        _v$95 !== _p$._v$95 && (_p$._v$95 = setProp(_el$216, "id", _v$95, _p$._v$95));
-        _v$96 !== _p$._v$96 && (_p$._v$96 = setProp(_el$216, "class", _v$96, _p$._v$96));
+        _v$94 !== _p$._v$94 && (_p$._v$94 = setProp(_el$217, "id", _v$94, _p$._v$94));
+        _v$95 !== _p$._v$95 && (_p$._v$95 = setProp(_el$217, "class", _v$95, _p$._v$95));
         return _p$;
       }, {
-        _v$95: undefined,
-        _v$96: undefined
+        _v$94: undefined,
+        _v$95: undefined
       });
-      return _el$216;
+      return _el$217;
     })();
   }
   function HolyTooltipAffixRowBase(props) {
@@ -8215,77 +8251,77 @@ var global = this;
       return ValRangeStr(props.affix.a, getEffect().value_down, NumFixRatio(getEffect().value_up, getEffect().ratio));
     });
     return (() => {
-      const _el$219 = createElement("Panel", {
+      const _el$220 = createElement("Panel", {
           get ["class"]() {
             return classNames('HolyTooltipAffixRowBase');
           },
           hittest: false
         }, null),
-        _el$220 = createElement("Panel", {
+        _el$221 = createElement("Panel", {
           "class": "Icon"
-        }, _el$219);
+        }, _el$220);
         createElement("Panel", {
           "class": "filler"
-        }, _el$220);
+        }, _el$221);
         createElement("Panel", {
           "class": "IconTrans"
-        }, _el$220);
+        }, _el$221);
         createElement("Panel", {
           "class": "IconFinal"
-        }, _el$220);
+        }, _el$221);
         createElement("Panel", {
           "class": "IconTaigu"
-        }, _el$220);
-        const _el$225 = createElement("Label", {
+        }, _el$221);
+        const _el$226 = createElement("Label", {
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$219),
-        _el$226 = createElement("Label", {
+        }, _el$220),
+        _el$227 = createElement("Label", {
           id: "Value",
           html: true,
           get text() {
             return getTotalValStr();
           }
-        }, _el$219),
-        _el$227 = createElement("Label", {
+        }, _el$220),
+        _el$228 = createElement("Label", {
           id: "Range",
           html: true,
           get text() {
             return getRangeStr();
           }
-        }, _el$219);
+        }, _el$220);
       effect(_p$ => {
-        const _v$100 = classNames('HolyTooltipAffixRowBase'),
+        const _v$99 = classNames('HolyTooltipAffixRowBase'),
+          _v$100 = {
+            [getState()]: true,
+            'trans': getIsTrans()
+          },
           _v$101 = {
             [getState()]: true,
             'trans': getIsTrans()
           },
-          _v$102 = {
-            [getState()]: true,
-            'trans': getIsTrans()
-          },
-          _v$103 = '#' + props.affix.a,
-          _v$104 = getTotalValStr(),
-          _v$105 = getRangeStr();
-        _v$100 !== _p$._v$100 && (_p$._v$100 = setProp(_el$219, "class", _v$100, _p$._v$100));
-        _v$101 !== _p$._v$101 && (_p$._v$101 = setProp(_el$219, "classList", _v$101, _p$._v$101));
-        _v$102 !== _p$._v$102 && (_p$._v$102 = setProp(_el$220, "classList", _v$102, _p$._v$102));
-        _v$103 !== _p$._v$103 && (_p$._v$103 = setProp(_el$225, "text", _v$103, _p$._v$103));
-        _v$104 !== _p$._v$104 && (_p$._v$104 = setProp(_el$226, "text", _v$104, _p$._v$104));
-        _v$105 !== _p$._v$105 && (_p$._v$105 = setProp(_el$227, "text", _v$105, _p$._v$105));
+          _v$102 = '#' + props.affix.a,
+          _v$103 = getTotalValStr(),
+          _v$104 = getRangeStr();
+        _v$99 !== _p$._v$99 && (_p$._v$99 = setProp(_el$220, "class", _v$99, _p$._v$99));
+        _v$100 !== _p$._v$100 && (_p$._v$100 = setProp(_el$220, "classList", _v$100, _p$._v$100));
+        _v$101 !== _p$._v$101 && (_p$._v$101 = setProp(_el$221, "classList", _v$101, _p$._v$101));
+        _v$102 !== _p$._v$102 && (_p$._v$102 = setProp(_el$226, "text", _v$102, _p$._v$102));
+        _v$103 !== _p$._v$103 && (_p$._v$103 = setProp(_el$227, "text", _v$103, _p$._v$103));
+        _v$104 !== _p$._v$104 && (_p$._v$104 = setProp(_el$228, "text", _v$104, _p$._v$104));
         return _p$;
       }, {
+        _v$99: undefined,
         _v$100: undefined,
         _v$101: undefined,
         _v$102: undefined,
         _v$103: undefined,
-        _v$104: undefined,
-        _v$105: undefined
+        _v$104: undefined
       });
-      return _el$219;
+      return _el$220;
     })();
   }
   function CalcHolyScore(tHoly) {
@@ -8362,12 +8398,12 @@ var global = this;
   }
   function GemInfoTooltip(props) {
     return (() => {
-      const _el$228 = createElement("Panel", {
+      const _el$229 = createElement("Panel", {
         id: "GemInfoTooltip"
       }, null);
-      insert(_el$228, createComponent(GemTooltipHeader, props), null);
-      insert(_el$228, createComponent(GemTooltipAffix, props), null);
-      return _el$228;
+      insert(_el$229, createComponent(GemTooltipHeader, props), null);
+      insert(_el$229, createComponent(GemTooltipAffix, props), null);
+      return _el$229;
     })();
   }
   function GemTooltipHeader(props) {
@@ -8377,25 +8413,25 @@ var global = this;
       return (_a = getData().rarity) !== null && _a !== void 0 ? _a : 1;
     };
     return (() => {
-      const _el$229 = createElement("Panel", {
+      const _el$230 = createElement("Panel", {
           id: 'GemTooltipHeader',
           get ["class"]() {
             return classNames('TooltipHeader', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$230 = createElement("Panel", {
+        _el$231 = createElement("Panel", {
           "class": "BGPanel"
-        }, _el$229);
+        }, _el$230);
         createElement("Panel", {
           "class": "BG2"
-        }, _el$230);
-        const _el$232 = createElement("Panel", {
+        }, _el$231);
+        const _el$233 = createElement("Panel", {
           "class": "Image"
-        }, _el$229);
-      insert(_el$232, createComponent(PackGemItem, {
+        }, _el$230);
+      insert(_el$233, createComponent(PackGemItem, {
         data: getData
       }));
-      insert(_el$229, createComponent(Yzy_Label, {
+      insert(_el$230, createComponent(Yzy_Label, {
         "class": "Name",
         get rarity() {
           return getRarity();
@@ -8404,8 +8440,8 @@ var global = this;
           return `#GemInfoTitle_${getRarity()}`;
         }
       }), null);
-      effect(_$p => setProp(_el$229, "class", classNames('TooltipHeader', `Rarity_${getRarity()}`), _$p));
-      return _el$229;
+      effect(_$p => setProp(_el$230, "class", classNames('TooltipHeader', `Rarity_${getRarity()}`), _$p));
+      return _el$230;
     })();
   }
   function GemTooltipAffix(props) {
@@ -8422,27 +8458,27 @@ var global = this;
       });
     });
     return (() => {
-      const _el$233 = createElement("Panel", {
+      const _el$234 = createElement("Panel", {
           "class": "GemTooltipAffix"
         }, null),
-        _el$234 = createElement("Panel", {
+        _el$235 = createElement("Panel", {
           "class": "Title",
           hittest: false
-        }, _el$233);
+        }, _el$234);
         createElement("Panel", {
           "class": "BG"
-        }, _el$234);
+        }, _el$235);
         createElement("Panel", {
           "class": "Line"
-        }, _el$234);
+        }, _el$235);
         createElement("Label", {
           text: '#AffixTitle_1',
           hittest: false
-        }, _el$234);
-        const _el$238 = createElement("Panel", {
+        }, _el$235);
+        const _el$239 = createElement("Panel", {
           "class": "Body"
-        }, _el$233);
-      insert(_el$238, createComponent(Index, {
+        }, _el$234);
+      insert(_el$239, createComponent(Index, {
         get each() {
           return getAffix();
         },
@@ -8453,10 +8489,10 @@ var global = this;
             return (_a = getAffix().a) === null || _a === void 0 ? void 0 : _a.toString().startsWith('118');
           };
           return (() => {
-            const _el$239 = createElement("Panel", {
+            const _el$240 = createElement("Panel", {
               "class": "GemTooltipAffixRowParent"
             }, null);
-            insert(_el$239, createComponent(Show, {
+            insert(_el$240, createComponent(Show, {
               get when() {
                 return getIsPrivilege();
               },
@@ -8480,11 +8516,11 @@ var global = this;
                 });
               }
             }));
-            return _el$239;
+            return _el$240;
           })();
         }
       }));
-      return _el$233;
+      return _el$234;
     })();
   }
   function GemTooltipAffixRow(props) {
@@ -8502,26 +8538,26 @@ var global = this;
     const getValStr = () => AttrVal2Str(props.affix.a, getVal(), getEffect().ratio);
     const getTotalStr = () => AttrVal2Str(props.affix.a, getVal(), getEffect().ratio);
     return (() => {
-      const _el$240 = createElement("Panel", {
+      const _el$241 = createElement("Panel", {
           get ["class"]() {
             return classNames("GemTooltipAffixRow");
           },
           hittest: false
         }, null),
-        _el$241 = createElement("Label", {
+        _el$242 = createElement("Label", {
           hittest: false,
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$240);
-      insert(_el$240, createComponent(Show, {
+        }, _el$241);
+      insert(_el$241, createComponent(Show, {
         get when() {
           return !isAltDown();
         },
         get children() {
-          const _el$242 = createElement("Label", {
+          const _el$243 = createElement("Label", {
             hittest: false,
             id: "Value",
             html: true,
@@ -8529,16 +8565,16 @@ var global = this;
               return getValStr();
             }
           }, null);
-          effect(_$p => setProp(_el$242, "text", getValStr(), _$p));
-          return _el$242;
+          effect(_$p => setProp(_el$243, "text", getValStr(), _$p));
+          return _el$243;
         }
       }), null);
-      insert(_el$240, createComponent(Show, {
+      insert(_el$241, createComponent(Show, {
         get when() {
           return isAltDown();
         },
         get children() {
-          const _el$243 = createElement("Label", {
+          const _el$244 = createElement("Label", {
             hittest: false,
             id: "Total",
             html: true,
@@ -8546,21 +8582,21 @@ var global = this;
               return getTotalStr();
             }
           }, null);
-          effect(_$p => setProp(_el$243, "text", getTotalStr(), _$p));
-          return _el$243;
+          effect(_$p => setProp(_el$244, "text", getTotalStr(), _$p));
+          return _el$244;
         }
       }), null);
       effect(_p$ => {
-        const _v$106 = classNames("GemTooltipAffixRow"),
-          _v$107 = '#' + props.affix.a;
-        _v$106 !== _p$._v$106 && (_p$._v$106 = setProp(_el$240, "class", _v$106, _p$._v$106));
-        _v$107 !== _p$._v$107 && (_p$._v$107 = setProp(_el$241, "text", _v$107, _p$._v$107));
+        const _v$105 = classNames("GemTooltipAffixRow"),
+          _v$106 = '#' + props.affix.a;
+        _v$105 !== _p$._v$105 && (_p$._v$105 = setProp(_el$241, "class", _v$105, _p$._v$105));
+        _v$106 !== _p$._v$106 && (_p$._v$106 = setProp(_el$242, "text", _v$106, _p$._v$106));
         return _p$;
       }, {
-        _v$106: undefined,
-        _v$107: undefined
+        _v$105: undefined,
+        _v$106: undefined
       });
-      return _el$240;
+      return _el$241;
     })();
   }
   function AncientInfoTooltip(props) {
@@ -8706,17 +8742,17 @@ var global = this;
       return tAffix;
     });
     return (() => {
-      const _el$244 = createElement("Panel", {
+      const _el$245 = createElement("Panel", {
         id: "AncientInfoTooltip",
         hittest: false
       }, null);
-      insert(_el$244, createComponent(AncientTooltipHeader, props), null);
-      insert(_el$244, createComponent(AncientTooltipAffix, mergeProps(props, {
+      insert(_el$245, createComponent(AncientTooltipHeader, props), null);
+      insert(_el$245, createComponent(AncientTooltipAffix, mergeProps(props, {
         get rsnc_map_idx() {
           return getRsncMapAffixIDX();
         }
       })), null);
-      return _el$244;
+      return _el$245;
     })();
   }
   function AncientTooltipHeader(props) {
@@ -8779,28 +8815,28 @@ var global = this;
       return CalcAncientScore(getData());
     };
     return (() => {
-      const _el$245 = createElement("Panel", {
+      const _el$246 = createElement("Panel", {
           id: "AncientTooltipHeader",
           get ["class"]() {
             return classNames('TooltipHeader', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$246 = createElement("Panel", {
+        _el$247 = createElement("Panel", {
           "class": "BGPanel"
-        }, _el$245);
+        }, _el$246);
         createElement("Panel", {
           "class": "BG2"
-        }, _el$246);
-        const _el$248 = createElement("Panel", {
+        }, _el$247);
+        const _el$249 = createElement("Panel", {
           "class": "Image"
-        }, _el$245),
-        _el$249 = createElement("Panel", {
-          "class": "Line"
-        }, _el$245),
+        }, _el$246),
         _el$250 = createElement("Panel", {
+          "class": "Line"
+        }, _el$246),
+        _el$251 = createElement("Panel", {
           "class": "RightTopBox"
-        }, _el$245),
-        _el$252 = createElement("Label", {
+        }, _el$246),
+        _el$253 = createElement("Label", {
           "class": "JuniorLabel",
           html: true,
           get text() {
@@ -8809,8 +8845,8 @@ var global = this;
               v1: getJuniorExtractCount()
             });
           }
-        }, _el$250),
-        _el$253 = createElement("Label", {
+        }, _el$251),
+        _el$254 = createElement("Label", {
           "class": "SeniorLabel",
           html: true,
           get text() {
@@ -8819,19 +8855,19 @@ var global = this;
               v1: getSeniorExtractCount()
             });
           }
-        }, _el$250),
-        _el$254 = createElement("Panel", {
+        }, _el$251),
+        _el$255 = createElement("Panel", {
           "class": "Score"
-        }, _el$245),
-        _el$255 = createElement("Label", {
+        }, _el$246),
+        _el$256 = createElement("Label", {
           get text() {
             return getScore();
           }
-        }, _el$254);
-      insert(_el$248, createComponent(PackAncientItem, {
+        }, _el$255);
+      insert(_el$249, createComponent(PackAncientItem, {
         data: getData
       }));
-      insert(_el$245, createComponent(Yzy_Label, {
+      insert(_el$246, createComponent(Yzy_Label, {
         "class": "Name",
         get rarity() {
           return getRarity();
@@ -8839,13 +8875,13 @@ var global = this;
         get text() {
           return `#AncientInfoTitle_${getPart()}_${getClass()}`;
         }
-      }), _el$249);
-      insert(_el$250, createComponent(Show, {
+      }), _el$250);
+      insert(_el$251, createComponent(Show, {
         get when() {
           return getBind() > 0;
         },
         get children() {
-          const _el$251 = createElement("Label", {
+          const _el$252 = createElement("Label", {
             "class": "Bind",
             get text() {
               return ReplaceTextVariable('#EquipBind', {
@@ -8854,38 +8890,38 @@ var global = this;
             },
             html: true
           }, null);
-          effect(_$p => setProp(_el$251, "text", ReplaceTextVariable('#EquipBind', {
+          effect(_$p => setProp(_el$252, "text", ReplaceTextVariable('#EquipBind', {
             'val': getBind()
           }), _$p));
-          return _el$251;
+          return _el$252;
         }
-      }), _el$252);
-      insert(_el$254, createComponent(Yzy_Icon, {
+      }), _el$253);
+      insert(_el$255, createComponent(Yzy_Icon, {
         type: "icon_score"
-      }), _el$255);
+      }), _el$256);
       effect(_p$ => {
-        const _v$108 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
-          _v$109 = ReplaceTextVariable('#ServiceJuniorCount', {
+        const _v$107 = classNames('TooltipHeader', `Rarity_${getRarity()}`),
+          _v$108 = ReplaceTextVariable('#ServiceJuniorCount', {
             v: getJuniorCount(),
             v1: getJuniorExtractCount()
           }),
-          _v$110 = ReplaceTextVariable('#ServiceSeniorCount', {
+          _v$109 = ReplaceTextVariable('#ServiceSeniorCount', {
             v: getSeniorCount(),
             v1: getSeniorExtractCount()
           }),
-          _v$111 = getScore();
-        _v$108 !== _p$._v$108 && (_p$._v$108 = setProp(_el$245, "class", _v$108, _p$._v$108));
-        _v$109 !== _p$._v$109 && (_p$._v$109 = setProp(_el$252, "text", _v$109, _p$._v$109));
-        _v$110 !== _p$._v$110 && (_p$._v$110 = setProp(_el$253, "text", _v$110, _p$._v$110));
-        _v$111 !== _p$._v$111 && (_p$._v$111 = setProp(_el$255, "text", _v$111, _p$._v$111));
+          _v$110 = getScore();
+        _v$107 !== _p$._v$107 && (_p$._v$107 = setProp(_el$246, "class", _v$107, _p$._v$107));
+        _v$108 !== _p$._v$108 && (_p$._v$108 = setProp(_el$253, "text", _v$108, _p$._v$108));
+        _v$109 !== _p$._v$109 && (_p$._v$109 = setProp(_el$254, "text", _v$109, _p$._v$109));
+        _v$110 !== _p$._v$110 && (_p$._v$110 = setProp(_el$256, "text", _v$110, _p$._v$110));
         return _p$;
       }, {
+        _v$107: undefined,
         _v$108: undefined,
         _v$109: undefined,
-        _v$110: undefined,
-        _v$111: undefined
+        _v$110: undefined
       });
-      return _el$245;
+      return _el$246;
     })();
   }
   function AncientTooltipAffix(props) {
@@ -8922,19 +8958,19 @@ var global = this;
     });
     const [getTitleShow, setTitleShow] = createSignal(getRsnc().length > 0);
     return (() => {
-      const _el$256 = createElement("Panel", {
+      const _el$257 = createElement("Panel", {
           id: "AncientTooltipAffix",
           get ["class"]() {
             return classNames('TooltipAffix', `Rarity_${getRarity()}`);
           }
         }, null),
-        _el$257 = createElement("Panel", {
+        _el$258 = createElement("Panel", {
           id: "Part3",
           "class": "AffixGroup"
-        }, _el$256);
+        }, _el$257);
       const _ref$6 = ref;
-      typeof _ref$6 === "function" ? use(_ref$6, _el$256) : ref = _el$256;
-      insert(_el$256, createComponent(Index, {
+      typeof _ref$6 === "function" ? use(_ref$6, _el$257) : ref = _el$257;
+      insert(_el$257, createComponent(Index, {
         get each() {
           return Object.entries(getAffixGroup());
         },
@@ -8942,32 +8978,32 @@ var global = this;
           const getAffixType = () => getValue()[0];
           const getAffix = () => getValue()[1];
           return (() => {
-            const _el$263 = createElement("Panel", {
+            const _el$264 = createElement("Panel", {
                 get id() {
                   return 'Part_' + getAffixType();
                 },
                 "class": "AffixGroup"
               }, null),
-              _el$264 = createElement("Panel", {
+              _el$265 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
-              }, _el$263);
+              }, _el$264);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$264);
+              }, _el$265);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$264);
-              const _el$267 = createElement("Label", {
+              }, _el$265);
+              const _el$268 = createElement("Label", {
                 get text() {
                   return `#AffixTitle_${getAffixType()}`;
                 },
                 hittest: false
-              }, _el$264),
-              _el$268 = createElement("Panel", {
+              }, _el$265),
+              _el$269 = createElement("Panel", {
                 "class": "Body"
-              }, _el$263);
-            insert(_el$268, createComponent(Index, {
+              }, _el$264);
+            insert(_el$269, createComponent(Index, {
               get each() {
                 return getAffix().sort((a, b) => b.l - a.l);
               },
@@ -9006,46 +9042,46 @@ var global = this;
               }
             }));
             effect(_p$ => {
-              const _v$112 = 'Part_' + getAffixType(),
-                _v$113 = `#AffixTitle_${getAffixType()}`;
-              _v$112 !== _p$._v$112 && (_p$._v$112 = setProp(_el$263, "id", _v$112, _p$._v$112));
-              _v$113 !== _p$._v$113 && (_p$._v$113 = setProp(_el$267, "text", _v$113, _p$._v$113));
+              const _v$111 = 'Part_' + getAffixType(),
+                _v$112 = `#AffixTitle_${getAffixType()}`;
+              _v$111 !== _p$._v$111 && (_p$._v$111 = setProp(_el$264, "id", _v$111, _p$._v$111));
+              _v$112 !== _p$._v$112 && (_p$._v$112 = setProp(_el$268, "text", _v$112, _p$._v$112));
               return _p$;
             }, {
-              _v$112: undefined,
-              _v$113: undefined
+              _v$111: undefined,
+              _v$112: undefined
             });
-            return _el$263;
+            return _el$264;
           })();
         }
-      }), _el$257);
-      insert(_el$257, createComponent(Show, {
+      }), _el$258);
+      insert(_el$258, createComponent(Show, {
         get when() {
           return getTitleShow();
         },
         get children() {
           return [(() => {
-            const _el$258 = createElement("Panel", {
+            const _el$259 = createElement("Panel", {
                 "class": "Title",
                 hittest: false
               }, null);
               createElement("Panel", {
                 "class": "BG"
-              }, _el$258);
+              }, _el$259);
               createElement("Panel", {
                 "class": "Line"
-              }, _el$258);
-              const _el$261 = createElement("Label", {
+              }, _el$259);
+              const _el$262 = createElement("Label", {
                 text: `#AffixTitle_3`,
                 hittest: false
-              }, _el$258);
-            setProp(_el$261, "text", `#AffixTitle_3`);
-            return _el$258;
+              }, _el$259);
+            setProp(_el$262, "text", `#AffixTitle_3`);
+            return _el$259;
           })(), (() => {
-            const _el$262 = createElement("Panel", {
+            const _el$263 = createElement("Panel", {
               "class": "Body"
             }, null);
-            insert(_el$262, createComponent(Show, {
+            insert(_el$263, createComponent(Show, {
               get when() {
                 return getRsnc().length > 0;
               },
@@ -9067,12 +9103,12 @@ var global = this;
                 });
               }
             }));
-            return _el$262;
+            return _el$263;
           })()];
         }
       }));
-      effect(_$p => setProp(_el$256, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
-      return _el$256;
+      effect(_$p => setProp(_el$257, "class", classNames('TooltipAffix', `Rarity_${getRarity()}`), _$p));
+      return _el$257;
     })();
   }
   function AncientTooltipAffixRow(props) {
@@ -9083,7 +9119,7 @@ var global = this;
       return props.ancient_remark_select != undefined && ((_b = (_a = props.ancient_remark_select_count) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) > 0 && (((_d = (_c = props.ancient_remark_select_affix_type) === null || _c === void 0 ? void 0 : _c.call(props)) !== null && _d !== void 0 ? _d : 0) == 0 || props.ancient_remark_select_affix_type() == props.affix.c);
     };
     return (() => {
-      const _el$269 = createElement("Panel", {
+      const _el$270 = createElement("Panel", {
           get onload() {
             return props.onload;
           },
@@ -9099,8 +9135,8 @@ var global = this;
         }, null);
         createElement("Panel", {
           "class": "BG"
-        }, _el$269);
-      insert(_el$269, createComponent(Show, {
+        }, _el$270);
+      insert(_el$270, createComponent(Show, {
         get when() {
           return isHasAncientSelection();
         },
@@ -9118,7 +9154,7 @@ var global = this;
             }
           });
           return (() => {
-            const _el$271 = createElement("ToggleButton", {
+            const _el$272 = createElement("ToggleButton", {
               hittest: true,
               "class": "InfoAffixSelection AncientSelect",
               get selected() {
@@ -9126,8 +9162,8 @@ var global = this;
               }
             }, null);
             const _ref$7 = ref;
-            typeof _ref$7 === "function" ? use(_ref$7, _el$271) : ref = _el$271;
-            setProp(_el$271, "onselect", p => {
+            typeof _ref$7 === "function" ? use(_ref$7, _el$272) : ref = _el$272;
+            setProp(_el$272, "onselect", p => {
               if (isSelected()) return;
               if (isDisableSelect()) {
                 p.checked = false;
@@ -9137,7 +9173,7 @@ var global = this;
               t.push(props.affix.idx);
               setLock(t);
             });
-            setProp(_el$271, "ondeselect", p => {
+            setProp(_el$272, "ondeselect", p => {
               const t = [...getLock()];
               const i = t.indexOf(props.affix.idx);
               if (i != -1) {
@@ -9146,38 +9182,38 @@ var global = this;
               }
             });
             effect(_p$ => {
-              const _v$117 = {
+              const _v$116 = {
                   'DisableSelect': isDisableSelect()
                 },
-                _v$118 = isSelected();
-              _v$117 !== _p$._v$117 && (_p$._v$117 = setProp(_el$271, "classList", _v$117, _p$._v$117));
-              _v$118 !== _p$._v$118 && (_p$._v$118 = setProp(_el$271, "selected", _v$118, _p$._v$118));
+                _v$117 = isSelected();
+              _v$116 !== _p$._v$116 && (_p$._v$116 = setProp(_el$272, "classList", _v$116, _p$._v$116));
+              _v$117 !== _p$._v$117 && (_p$._v$117 = setProp(_el$272, "selected", _v$117, _p$._v$117));
               return _p$;
             }, {
-              _v$117: undefined,
-              _v$118: undefined
+              _v$116: undefined,
+              _v$117: undefined
             });
-            return _el$271;
+            return _el$272;
           })();
         }
       }), null);
-      insert(_el$269, createComponent(AncientTooltipAffixRowBase, props), null);
+      insert(_el$270, createComponent(AncientTooltipAffixRowBase, props), null);
       effect(_p$ => {
-        const _v$114 = props.onload,
-          _v$115 = "AncientTooltipAffixRow_" + getIdx(),
-          _v$116 = classNames("AncientTooltipAffixRow", "AncientTooltipAffixRow_" + getIdx(), props.className, {
+        const _v$113 = props.onload,
+          _v$114 = "AncientTooltipAffixRow_" + getIdx(),
+          _v$115 = classNames("AncientTooltipAffixRow", "AncientTooltipAffixRow_" + getIdx(), props.className, {
             "HasSelected": isHasAncientSelection()
           });
-        _v$114 !== _p$._v$114 && (_p$._v$114 = setProp(_el$269, "onload", _v$114, _p$._v$114));
-        _v$115 !== _p$._v$115 && (_p$._v$115 = setProp(_el$269, "id", _v$115, _p$._v$115));
-        _v$116 !== _p$._v$116 && (_p$._v$116 = setProp(_el$269, "class", _v$116, _p$._v$116));
+        _v$113 !== _p$._v$113 && (_p$._v$113 = setProp(_el$270, "onload", _v$113, _p$._v$113));
+        _v$114 !== _p$._v$114 && (_p$._v$114 = setProp(_el$270, "id", _v$114, _p$._v$114));
+        _v$115 !== _p$._v$115 && (_p$._v$115 = setProp(_el$270, "class", _v$115, _p$._v$115));
         return _p$;
       }, {
+        _v$113: undefined,
         _v$114: undefined,
-        _v$115: undefined,
-        _v$116: undefined
+        _v$115: undefined
       });
-      return _el$269;
+      return _el$270;
     })();
   }
   function AncientTooltipAffixRowBase(props) {
@@ -9246,7 +9282,7 @@ var global = this;
       return iRarity;
     };
     return (() => {
-      const _el$272 = createElement("Panel", {
+      const _el$273 = createElement("Panel", {
           get ["class"]() {
             return classNames('AncientTooltipAffixRowBase', {
               'Red': getIsRed()
@@ -9254,7 +9290,7 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$273 = createElement("Label", {
+        _el$274 = createElement("Label", {
           id: "Level",
           get ["class"]() {
             return 'Rarity_' + getLevelRarity();
@@ -9262,45 +9298,45 @@ var global = this;
           get text() {
             return getLevel();
           }
-        }, _el$272),
-        _el$274 = createElement("Label", {
+        }, _el$273),
+        _el$275 = createElement("Label", {
           id: "Affix",
           html: true,
           get text() {
             return '#' + props.affix.a;
           }
-        }, _el$272);
-      insert(_el$272, createComponent(Show, {
+        }, _el$273);
+      insert(_el$273, createComponent(Show, {
         get when() {
           return memo(() => !!!getter_bAltDown())() && (props.inset_parent ? props.inset_parent.IsValid() : true);
         },
         get children() {
           return [(() => {
-            const _el$275 = createElement("Label", {
+            const _el$276 = createElement("Label", {
               id: "Value",
               html: true,
               get text() {
                 return getValStr();
               }
             }, null);
-            effect(_$p => setProp(_el$275, "text", getValStr(), _$p));
-            return _el$275;
+            effect(_$p => setProp(_el$276, "text", getValStr(), _$p));
+            return _el$276;
           })(), (() => {
-            const _el$276 = createElement("Label", {
+            const _el$277 = createElement("Label", {
               id: "Range",
               html: true,
               get text() {
                 return getRangeStr();
               }
             }, null);
-            effect(_$p => setProp(_el$276, "text", getRangeStr(), _$p));
-            return _el$276;
+            effect(_$p => setProp(_el$277, "text", getRangeStr(), _$p));
+            return _el$277;
           })(), createComponent(Show, {
             get when() {
               return memo(() => ((_b = (_a = props === null || props === void 0 ? void 0 : props.part_level) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0) > 0)() && (props.inset_parent ? props.inset_parent.IsValid() : true);
             },
             get children() {
-              const _el$277 = createElement("Label", {
+              const _el$278 = createElement("Label", {
                 hittest: false,
                 id: "Bonus",
                 html: true,
@@ -9308,15 +9344,15 @@ var global = this;
                   return getBonusStr();
                 }
               }, null);
-              effect(_$p => setProp(_el$277, "text", getBonusStr(), _$p));
-              return _el$277;
+              effect(_$p => setProp(_el$278, "text", getBonusStr(), _$p));
+              return _el$278;
             }
           }), createComponent(Show, {
             get when() {
               return getRsncVal() > 0;
             },
             get children() {
-              const _el$278 = createElement("Label", {
+              const _el$279 = createElement("Label", {
                 hittest: false,
                 id: "Rsnc",
                 "class": "Abc",
@@ -9325,47 +9361,47 @@ var global = this;
                   return getRsncStr();
                 }
               }, null);
-              effect(_$p => setProp(_el$278, "text", getRsncStr(), _$p));
-              return _el$278;
+              effect(_$p => setProp(_el$279, "text", getRsncStr(), _$p));
+              return _el$279;
             }
           })];
         }
       }), null);
-      insert(_el$272, createComponent(Show, {
+      insert(_el$273, createComponent(Show, {
         get when() {
           return memo(() => !!getter_bAltDown())() && (props.inset_parent ? props.inset_parent.IsValid() : true);
         },
         get children() {
-          const _el$279 = createElement("Label", {
+          const _el$280 = createElement("Label", {
             id: "Total",
             html: true,
             get text() {
               return getTotalStr();
             }
           }, null);
-          effect(_$p => setProp(_el$279, "text", getTotalStr(), _$p));
-          return _el$279;
+          effect(_$p => setProp(_el$280, "text", getTotalStr(), _$p));
+          return _el$280;
         }
       }), null);
       effect(_p$ => {
-        const _v$119 = classNames('AncientTooltipAffixRowBase', {
+        const _v$118 = classNames('AncientTooltipAffixRowBase', {
             'Red': getIsRed()
           }),
-          _v$120 = 'Rarity_' + getLevelRarity(),
-          _v$121 = getLevel(),
-          _v$122 = '#' + props.affix.a;
-        _v$119 !== _p$._v$119 && (_p$._v$119 = setProp(_el$272, "class", _v$119, _p$._v$119));
-        _v$120 !== _p$._v$120 && (_p$._v$120 = setProp(_el$273, "class", _v$120, _p$._v$120));
-        _v$121 !== _p$._v$121 && (_p$._v$121 = setProp(_el$273, "text", _v$121, _p$._v$121));
-        _v$122 !== _p$._v$122 && (_p$._v$122 = setProp(_el$274, "text", _v$122, _p$._v$122));
+          _v$119 = 'Rarity_' + getLevelRarity(),
+          _v$120 = getLevel(),
+          _v$121 = '#' + props.affix.a;
+        _v$118 !== _p$._v$118 && (_p$._v$118 = setProp(_el$273, "class", _v$118, _p$._v$118));
+        _v$119 !== _p$._v$119 && (_p$._v$119 = setProp(_el$274, "class", _v$119, _p$._v$119));
+        _v$120 !== _p$._v$120 && (_p$._v$120 = setProp(_el$274, "text", _v$120, _p$._v$120));
+        _v$121 !== _p$._v$121 && (_p$._v$121 = setProp(_el$275, "text", _v$121, _p$._v$121));
         return _p$;
       }, {
+        _v$118: undefined,
         _v$119: undefined,
         _v$120: undefined,
-        _v$121: undefined,
-        _v$122: undefined
+        _v$121: undefined
       });
-      return _el$272;
+      return _el$273;
     })();
   }
   function AncientTooltipRsncRow(props) {
@@ -9405,7 +9441,7 @@ var global = this;
       return (_d = tMap[String(key)]) !== null && _d !== void 0 ? _d : 0;
     };
     return (() => {
-      const _el$280 = createElement("Panel", {
+      const _el$281 = createElement("Panel", {
           get id() {
             return 'AncientTooltipRsncRow_' + props.affix.idx;
           },
@@ -9420,19 +9456,19 @@ var global = this;
           },
           hittest: false
         }, null),
-        _el$281 = createElement("Label", {
+        _el$282 = createElement("Label", {
           id: "Description",
           get text() {
             return ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
           },
           html: true
-        }, _el$280);
-      insert(_el$280, createComponent(Show, {
+        }, _el$281);
+      insert(_el$281, createComponent(Show, {
         get when() {
           return !IsAncientRsncLock(props.affix, (_d = (_c = props === null || props === void 0 ? void 0 : props.part_level) === null || _c === void 0 ? void 0 : _c.call(props)) !== null && _d !== void 0 ? _d : 0);
         },
         get children() {
-          const _el$282 = createElement("Label", {
+          const _el$283 = createElement("Label", {
             id: "TipDescription",
             get text() {
               return ReplaceTextVariable(`#ServiceAncientEnhanceCondition`, {
@@ -9441,32 +9477,32 @@ var global = this;
             },
             html: true
           }, null);
-          effect(_$p => setProp(_el$282, "text", ReplaceTextVariable(`#ServiceAncientEnhanceCondition`, {
+          effect(_$p => setProp(_el$283, "text", ReplaceTextVariable(`#ServiceAncientEnhanceCondition`, {
             val: getEnhanceCondition()
           }), _$p));
-          return _el$282;
+          return _el$283;
         }
       }), null);
       effect(_p$ => {
-        const _v$123 = 'AncientTooltipRsncRow_' + props.affix.idx,
-          _v$124 = classNames('AncientTooltipRsncRow', {
+        const _v$122 = 'AncientTooltipRsncRow_' + props.affix.idx,
+          _v$123 = classNames('AncientTooltipRsncRow', {
             'Red': getIsRed(),
             'RsncDisabled': !IsAncientRsncLock(props.affix, (_b = (_a = props === null || props === void 0 ? void 0 : props.part_level) === null || _a === void 0 ? void 0 : _a.call(props)) !== null && _b !== void 0 ? _b : 0)
           }),
-          _v$125 = props.onload,
-          _v$126 = ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
-        _v$123 !== _p$._v$123 && (_p$._v$123 = setProp(_el$280, "id", _v$123, _p$._v$123));
-        _v$124 !== _p$._v$124 && (_p$._v$124 = setProp(_el$280, "class", _v$124, _p$._v$124));
-        _v$125 !== _p$._v$125 && (_p$._v$125 = setProp(_el$280, "onload", _v$125, _p$._v$125));
-        _v$126 !== _p$._v$126 && (_p$._v$126 = setProp(_el$281, "text", _v$126, _p$._v$126));
+          _v$124 = props.onload,
+          _v$125 = ReplaceTextVariable(`${getTitle()}_Description`, getValues(props.affix));
+        _v$122 !== _p$._v$122 && (_p$._v$122 = setProp(_el$281, "id", _v$122, _p$._v$122));
+        _v$123 !== _p$._v$123 && (_p$._v$123 = setProp(_el$281, "class", _v$123, _p$._v$123));
+        _v$124 !== _p$._v$124 && (_p$._v$124 = setProp(_el$281, "onload", _v$124, _p$._v$124));
+        _v$125 !== _p$._v$125 && (_p$._v$125 = setProp(_el$282, "text", _v$125, _p$._v$125));
         return _p$;
       }, {
+        _v$122: undefined,
         _v$123: undefined,
         _v$124: undefined,
-        _v$125: undefined,
-        _v$126: undefined
+        _v$125: undefined
       });
-      return _el$280;
+      return _el$281;
     })();
   }
   function CalcAncientEffectCoefficient(affix) {
