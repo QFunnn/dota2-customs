@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -3440,6 +3440,7 @@ function dota1x6:initiate_player(player, is_bot)
 	player.disable_quest = 0
 	player.disable_tips = 0
 	player.wavealert_hide = 0
+	player.small_talents = 0
 	player.hide_pet_names = 0
 	player.pet_state = 0
 	player.subscribed = 0

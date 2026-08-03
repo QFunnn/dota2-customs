@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -51,6 +51,7 @@ end
 
 function CDOTA_BaseNPC:InitTalent(skill_name)
 	local playerID = self:GetId()
+	local hero_name = self:GetUnitName()
 
 	local skill_data = nil
 	local group = nil
@@ -124,6 +125,35 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 		player_table.chosen_skill_name = skill_data["skill_icon"]
 		player_table.legendary_talent = skill_name
 		player_table.legendary_skill_name = self:GetTalentValue(skill_name, "skill_name", true)
+
+		if active_talents[hero_name] then
+			local result_table = {}
+			for talent, data in pairs(active_talents[hero_name]) do
+				for _, key in pairs({ "alt_talent", "alt_talent2" }) do
+					local alt_talent = self:GetTalentValue(talent, key, true)
+					if alt_talent ~= 0 then
+						local alt_table = {}
+						if type(alt_talent) == "table" then
+							alt_table = alt_talent
+						else
+							table.insert(alt_table, alt_talent)
+						end
+						for _, check_talent in pairs(alt_table) do
+							if check_talent == skill_name then
+								table.insert(result_table, talent)
+							end
+						end
+					end
+				end
+			end
+			if #result_table > 0 then
+				CustomGameEventManager:Send_ServerToPlayer(
+					PlayerResource:GetPlayer(playerID),
+					"ShowAltTalents",
+					{ talent = skill_name, alt_talents = result_table }
+				)
+			end
+		end
 
 		dota1x6:UpdatePlayersTable(self:GetTeamNumber())
 		CustomGameEventManager:Send_ServerToPlayer(
@@ -289,7 +319,6 @@ function CDOTA_BaseNPC:ProcTrigger(talent)
 		end
 		if type(banned_talent) == "table" then
 			for _, talent in pairs(banned_talent) do
-				print(talent)
 				self.banned_talents[talent] = true
 			end
 		else
@@ -453,7 +482,16 @@ function CDOTA_BaseNPC:GetTalentValue(name, property, ignore_level)
 		return 0
 	end
 
-	if ignore_level and ignore_level == true and (type(value) ~= "table" or property == "banned_talent") then
+	if
+		ignore_level
+		and ignore_level == true
+		and (
+			type(value) ~= "table"
+			or property == "banned_talent"
+			or property == "alt_talent"
+			or property == "alt_talent2"
+		)
+	then
 		return value
 	end
 

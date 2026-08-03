@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1375,11 +1375,12 @@ function dota1x6:ReconnectFilter(pid)
 
 		if player_table:HasModifier("modifier_end_choise") then
 			CustomGameEventManager:Send_ServerToPlayer(player, "show_choise", {
-				choise = player_table.choise_table[1],
-				mods = player_table.choise_table[4],
-				hasup = player_table.choise_table[3],
-				alert = player_table.choise_table[2],
-				refresh = player_table.choise_table[5],
+				choise = player_table.choise_table.content,
+				mods = player_table.choise_table.mod_stacks,
+				hasup = player_table.choise_table.gray,
+				alert = player_table.choise_table.alert,
+				refresh = player_table.choise_table.refresh,
+				rarity = player_table.choise_table.rarity,
 			})
 		end
 	end)

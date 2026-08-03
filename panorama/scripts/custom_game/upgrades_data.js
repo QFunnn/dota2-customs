@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -639,48 +639,52 @@ Game.roundPlus = (x, n) =>
 
 }
 
+Game.CheckAltTalent = (hero, text, name, force_talent) =>
+{
+	let result = text
+	for (let add of ["", "2"])
+	{
+		if (Game.GetTalentValue(name, "alt_talent" + add) == undefined)
+			continue
 
-Game.ShowTalentValues = (text, name, level, all_levels, legendary, no_color, no_tags) => 
+		let alt_talent = Game.GetTalentValue(name, "alt_talent" + add)
+		let found = false
+
+		let alt_table = {1: alt_talent}
+		if (typeof alt_talent == "object")
+			alt_table = alt_talent
+
+		for (var j in alt_table)
+		{
+			let allow = force_talent == undefined ? Game.HasTalent(hero, alt_table[j]) : (force_talent == alt_table[j])
+			if (allow)
+			{	
+				let key = text + "_alt" + add
+				let new_text = $.Localize(key)
+				if (key != new_text)
+				{
+					found = true
+					result = new_text
+					break
+				}
+			}
+		}
+		if (found)
+			break
+	}
+	
+	return $.Localize(result)
+}
+
+
+Game.ShowTalentValues = (text, name, level, all_levels, legendary, no_color, no_tags, force_alt) => 
 {
 	let talent_text = $.Localize(text)
 	let hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID()))
 
 	if (hero != undefined)
-	{
-		if (Game.GetTalentValue(name, "alt_talent") != undefined)
-		{	
-			let alt_talent = Game.GetTalentValue(name, "alt_talent")
-
-			let alt_table = {1: alt_talent}
-			if (typeof alt_talent == "object")
-				alt_table = alt_talent
-
-
-    		for (var i in alt_table)
-    		{
-				if (Game.HasTalent(hero, alt_table[i]))
-				{	
-
-					let key = text + "_alt"
-					let new_text = $.Localize(key)
-					if (key != new_text)
-					{
-						talent_text = new_text
-						break
-					}
-				}
-			}
-		}
-		if (Game.GetTalentValue(name, "alt_talent2") != undefined)
-		{
-			if (Game.HasTalent(hero, Game.GetTalentValue(name, "alt_talent2")))
-			{
-				let key = text + "_alt2"
-				let new_text = $.Localize(key)
-				if (key != new_text)
-					talent_text = new_text
-			}
-		}
+	{	
+		talent_text = Game.CheckAltTalent(hero, text, name, force_alt)
 	}
 
     let values_array = Game.GetValuesArray(talent_text)

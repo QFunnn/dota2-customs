@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -46,6 +46,7 @@
 {
 	width: 100%;
 	height: 100%;
+	z-index: 90;
 }
 
 .PickEvent
@@ -143,4 +144,195 @@
 	width: 100%;
 	height: 100%;
 	text-align: left;
+}
+
+.AltTalentPanel
+{
+	align: left top;
+	margin-top: 280px;
+}
+
+.AltTalentPanel_main
+{
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-right: 3px solid #000;
+	border-color: #c46610;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0d0600), to(#2e1702));
+	flow-children: down;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	width: 450px;
+}
+
+.AltTalentPanel_main_shadow
+{
+	box-shadow: fill black 0px 0px 17px -3px;
+}
+
+.AltTalentPanel_main_open
+{
+	animation-name: LeftEventOpen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.AltTalentPanel_main_close
+{
+	animation-name: LeftEventClose;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'LeftEventOpen'
+{
+	0%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'LeftEventClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( -100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+#AltTalentPanel_top
+{
+	height: 80px;
+	width: 100%;
+	border-brush: gradient( radial, 50% 75%, 0% 0%, 55% 60%, from( white ), to( #fff0 ) );
+	border-bottom: 1px solid #ffdda2;
+	flow-children: left;
+	padding-right: 20px;
+}
+
+#AltTalentPanel_content
+{
+	width: 100%;
+	flow-children: down;
+	padding-bottom: 6px;
+}
+
+#AltTalentPanel_legendary_icon
+{
+	vertical-align: center;
+	width: 54px;
+	height: 54px;
+	border-radius: 2px;
+	border: 1px solid #c46610;
+	box-shadow: fill #b86e2b 0px 0px 9px -3px;
+}
+
+#AltTalentPanel_top_text
+{
+	height: 100%;
+	width: 100%;
+	flow-children: down;
+}
+
+#AltTalentPanel_top_label
+{
+	height: 50%;
+	align: center center;
+}
+
+#AltTalentPanel_spell_name
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from( #ffdda2 ), to( #bb7837 ) );
+	text-shadow: 2px 2px 5px black;
+	font-size: 30px;
+	margin-top: 10px;
+	text-overflow: shrink;
+	align: center center;
+	text-align: center;
+}
+
+#AltTalentPanel_header_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from( #999 ), to( #eee ) );
+	text-shadow: 2px 2px 4px black;
+	font-size: 20px;
+	align: center center;
+	text-align: center;
+}
+
+#AltTalentPanel_talent
+{
+	width: 100%;
+	flow-children: left;
+	min-height: 60px;
+	padding-right: 20px;
+}
+
+.AltTalentPanel_talent_border
+{
+	border-brush: gradient( radial, 50% 65%, 0% 0%, 55% 60%, from( #fff7 ), to( #fff0 ) );
+	border-bottom: 1px solid #ffdda2;
+}
+
+.AltTalentPanel_talent_icon
+{
+	vertical-align: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 2px;
+	margin-right: 9px;
+	border: 1px solid #c46610;
+	box-shadow: fill #b86e2b 0px 0px 9px -3px;
+}
+
+.AltTalentPanel_talent_icon_blue
+{
+	border: 1px solid #215fc4;
+	box-shadow: fill #549ad5 0px 0px 11px -3px;
+}
+
+.AltTalentPanel_talent_icon_purple
+{
+	border: 1px solid #9134dc;
+	box-shadow: fill #884bd3 0px 0px 13px -3px;
+}
+
+#AltTalentPanel_talent_label
+{
+	width: 100%;
+	padding: 12px 20px;
+	align: center center;
+}
+
+#AltTalentPanel_talent_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: #bbb;
+	font-size: 16px;
+	align: center top;
+	text-shadow: 0px 0px 6px 1 black;
+	text-align: center;
 }

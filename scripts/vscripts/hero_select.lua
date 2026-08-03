@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -49,7 +49,6 @@ DUO_BANNED = {
 
 NO_BANNED_HEROES = {
 	"npc_dota_hero_jakiro",
-	"npc_dota_hero_monkey_king",
 	"npc_dota_hero_muerta",
 	"npc_dota_hero_furion",
 	"npc_dota_hero_pangolier",

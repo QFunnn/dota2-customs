@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1091,6 +1091,7 @@ table.insert(steamIDs, 5)
 					disable_quest = savedSubData and savedSubData.disable_quest or player_data.subData.disable_quest,
 					disable_tips = savedSubData and savedSubData.disable_tips or player_data.subData.disable_tips,
 					wavealert_hide = savedSubData and savedSubData.wavealert_hide or player_data.subData.wavealert_hide,
+					small_talents = savedSubData and savedSubData.small_talents or player_data.subData.small_talents,
 					pet_id = savedSubData and savedSubData.pet_id or player_data.subData.pet_id,
 					used_quest_reward = savedSubData and savedSubData.used_quest_reward
 						or player_data.subData.used_quest_reward,

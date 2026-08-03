@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -15,7 +15,7 @@
 	width: 100%;
 	height: 100%;
 	ui-scale: 98%;
-	z-index: 5;
+	z-index: 91;
 }
 
 @keyframes 'CardBlurGray'
@@ -363,46 +363,9 @@
 	
 }
 
-.ClosePanel
-{
-	width: 200px;
-	height: 120px;
-	align: center bottom;
-	margin-bottom: 200px;
-}
-
-.ClosePanel_open
-{
-	animation-name: ButtonAnimationOpen;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	animation-direction: reverse;
-}
-
-.ClosePanel_close
-{
-	animation-name: ButtonAnimationClose;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	animation-direction: reverse;
-}
-
 .card_hidden_button
 {
 	opacity: 0;
-}
-
-.CloseButton
-{
-	border-radius: 4px;
-	align: center top;
-	width: 192px;
-	height: 54px;
-	background-image: url("s2r://panorama/images/custom_game/close_button_png.vtex");
-	background-repeat: no-repeat;
-	box-shadow: fill red 0px 0px 12px -5px;
 }
 
 .RefreshButton
@@ -417,18 +380,6 @@
 }
 
 .refresh_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 4 black;
-	font-size: 28px;
-	align: center center;
-	margin-top: 10%;
-	text-align: center;
-}
-
-.close_text
 {
 	font-family: defaultFont;
 	font-weight: bold;
@@ -510,7 +461,7 @@
 	background-size: contain;
 }
 
-.text
+.main_text
 {
 	font-family: defaultFont;
 	font-weight: bold;
@@ -629,9 +580,11 @@
 
 .talent_cd
 {
+	align: right bottom;
+	margin-bottom: 7px;
+	margin-right: 6px;
 	padding: 4px 8px;
 	flow-children: left;
-	margin-bottom: 3px;
 }
 
 .talent_cd_icon
@@ -652,7 +605,7 @@
 	font-size: 24px;
 	text-shadow: 0px 0px 5px 4.0 #000000;
 	font-family: Radiance;
-	margin-right: 5px;
+	margin-left: 5px;
 	margin-top: 1px;
 }
 
@@ -788,7 +741,7 @@
 	margin-top: 3px;
 }
 
-.ability_icon
+#ability_icon
 {
 	width: 100%;
 	height: 100%;
@@ -879,4 +832,623 @@
 {
 	wash-color: #555;
 	saturation: 0.9;
+}
+
+#ChoiseSmallMode
+{
+	align: right center;
+}
+
+.ChoiseSmallPanel
+{
+	flow-children: down;
+	width: 535px;
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+
+.ChoiseSmallPanel_open
+{
+	animation-name: SmallPanelOpen;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.ChoiseSmallPanel_close
+{
+	animation-name: SmallPanelClose;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.ChoiseSmallPanel_close_selected
+{
+	animation-name: SmallPanelCloseSelected;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'SmallPanelOpen'
+{
+	0%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'SmallPanelClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 100%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'SmallPanelCloseSelected'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 5%, 0, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'SmallBlurGray'
+{
+	0%
+	{
+		box-shadow: fill #ccc 0px 0px 8px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ccc 0px 0px 14px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ccc 0px 0px 8px -3px;
+	}
+	
+}
+
+@keyframes 'SmallBlurBlue'
+{
+	0%
+	{
+		box-shadow: fill #5094f0 0px 0px 8px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #5094f0 0px 0px 14px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #5094f0 0px 0px 8px -3px;
+	}
+	
+}
+
+@keyframes 'SmallBlurPurple'
+{
+	0%
+	{
+		box-shadow: fill #7458c6 0px 0px 8px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #7458c6 0px 0px 14px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #7458c6 0px 0px 8px -3px;
+	}
+	
+}
+
+.ChoiseSmallTop
+{
+	width: 515px;
+	height: 60px;
+	horizontal-align: right;
+	border-bottom: 1px solid #000;
+	border-left: 3px solid #000;
+	border-top: 1px solid #000;
+	border-color: #c46610;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	transform: translate3d( 15px, 0, 0px );
+}
+
+.ChoiseSmallTop_shadow
+{
+	box-shadow: fill black 0px 0px 21px -3px;
+}
+
+.ChoiseSmallTop_blue
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#00050d), to(#031126));
+	border-color: #6b9ded;
+}
+
+.ChoiseSmallTop_purple
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#0e011a), to(#170327));
+	border-color: #7044ac;
+}
+
+.ChoiseSmallTop_gray
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#000), to(#222));
+	border-color: #999;
+}
+
+.ChoiseSmallTop_orange
+{
+	border-color: #c46610;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0d0600), to(#2e1702));
+}
+
+.ChoiseSmallTop_header_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from( #999 ), to( #eee ) );
+	text-shadow: 2px 2px 4px black;
+	font-size: 28px;
+	align: center center;
+	text-align: center;
+	margin-left: 0px;
+}
+
+.ChoiseSmallTop_header_left
+{
+	align: left center;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.ChoiseSmallTop_header_text_blue
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from( #7495b6 ), to( #d3e3f3 ) );
+}
+
+.ChoiseSmallTop_header_text_purple
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from( #9f89d7 ), to( #cbbcef ) );
+}
+
+.ChoiseSmallTop_header_text_orange
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from( #ffdda2 ), to( #bb7837 ) );
+}
+
+#ChoiseSmallContent
+{
+	width: 100%;
+	flow-children: down;
+	padding-bottom: 6px;
+}
+
+.SmallCardPanel
+{
+	horizontal-align: right;
+	width: 100%;
+	margin: 1px 0px;
+	transition-property: transform, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	transform: translate3d( 15px, 0, 0px );
+}
+
+.SmallCardPanel:hover
+{
+	brightness: 1.6;
+	transform: translate3d( 0px, 0, 0px );
+}
+
+.SmallBodyanel
+{
+	min-height: 120px;
+	width: 515px;
+	horizontal-align: right;
+	padding: 0px 25px;
+	padding-right: 45px;
+	margin: 3px 0px;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 2px solid #000;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	flow-children: right;
+	box-shadow: fill black 0px 0px 21px -3px;
+}
+
+.SmallBodyanel_blue
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#00050d), to(#041735));
+	border-color: #6b9ded;
+}
+
+.SmallBodyanel_purple
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#0e011a), to(#200337));
+	border-color: #7954cb;
+}
+
+.SmallBodyanel_gray
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#000), to(#232323));
+	border-color: #aaa;
+}
+
+.SmallBodyanel_orange
+{
+	border-color: #c46610;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0d0600), to(#2e1702));
+}
+
+#SmallIcon_parent
+{
+	height: 100%;
+	width: 100px;
+}
+
+.SmallText_vertical
+{
+	width: 100%;
+	vertical-align: center;
+	flow-children: down;
+}
+
+#SmallText_parent
+{
+	width: 100%;
+	vertical-align: center;
+}
+
+.SmallIcon_base
+{
+	box-shadow: black 2px 2px 16px -3px;
+	border: 1px solid #555;
+	align: center center;
+	border-radius: 2px;
+}
+
+.SmallIcon_base_blue
+{
+	border-color: #285eb5;
+}
+
+.SmallIcon_base_purple
+{
+	border-color: #7044ac;
+}
+
+.SmallIcon_hero
+{
+	width: 100px;
+	height: 56.3px;
+}
+
+.SmallIcon_item
+{
+	width: 75.9px;
+	height: 55px;
+}
+
+.SmallIcon_spell
+{
+	width: 70px;
+	height: 70px;
+}
+
+.Small_main_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: #ddd;
+	text-shadow: 1px 1px 2px 4 black;
+	padding: 20px 0px;
+	z-index: 2;
+	align: center center;
+	text-align: center;
+	margin-left: 15px;
+}
+
+.Small_stack_text
+{
+	font-size: 19px;
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 4 black;
+	z-index: 2;
+	align: left bottom;
+	text-align: center;
+	margin-bottom: 3px;
+	margin-left: -15px;
+	ignore-parent-flow: true;
+}
+
+.ChoiseSmallCardInfo
+{
+	width: 186px;
+	height: 40px;
+	align: right center;
+	margin-right: 25px;
+}
+
+.SmallPickrate_panel
+{
+	z-index: 9;
+	width: 60px;
+	height: 30px;
+	margin-top: 2px;
+	margin-left: 4px;
+	align: left top;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 90% 90%, from( #401507 ), to( #643121 ) );
+}
+
+.SmallPickrate_text
+{
+	align: center center;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	font-size: 20px;
+	text-shadow: 0px 0px 5px 2.0 #000000;
+	font-family: Radiance;
+	margin-left: 3px;
+}
+
+.ChoiseSmallTalenCd
+{
+	padding: 4px 8px;
+	flow-children: left;
+	margin-top: 0px;
+	align: right bottom;
+	margin-top: -16px;
+	margin-bottom: 2px;
+	margin-right: -10px;
+}
+
+.ChoiseSmallTalenCdIcon
+{
+	width: 22px;
+	height: 22px;
+	align: center center;
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+	background-size: contain;
+	brightness: 1.5;
+}
+
+.ChoiseSmallTalenCdText
+{
+	align: left center;
+	font-weight: semi-bold;
+	color: #d9d9d9;
+	font-size: 19px;
+	text-shadow: 0px 0px 5px 4.0 #000000;
+	font-family: Radiance;
+	margin-left: 5px;
+	margin-top: 1px;
+}
+
+.ChoiseSmallBahser
+{
+	width: 29px;
+	height: 29px;
+	border: 1px solid #777;
+	box-shadow: black 0px 0px 7px -2px;
+	border-radius: 2px;
+	margin-top: 52px;
+	margin-right: 8px;
+	align: right center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/basher_png.vtex");
+	z-index: 999;
+}
+
+.ChoiseSmallBahser_hero
+{
+	margin-top: 56px;
+	margin-right: 0px;
+}
+
+.ChoiseSmall_perma
+{
+	font-family: Radiance;
+	color: #ddd;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 4 black;
+	margin-top: -4px;
+	margin-bottom: 10px;
+	text-align: center;
+	align: center center;
+	font-size: 21px;
+}
+
+.ClosePanelSmall
+{
+	padding: 8px;
+	flow-children: right;
+	horizontal-align: center;
+	margin-left: 60px;
+	ui-scale: 85%;
+}
+
+.ClosePanel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	padding: 8px;
+	margin-bottom: 300px;
+	flow-children: right;
+}
+
+.ClosePanel_open
+{
+	animation-name: ButtonAnimationOpen;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.ClosePanel_close
+{
+	animation-name: ButtonAnimationClose;
+	animation-duration: 0.52s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+}
+
+.ButtonStyle
+{
+	width: 180px;
+	height: 40px;
+	horizontal-align: left;
+	border-radius: 4px;
+	transition-property: transform, pre-transform-scale2d;
+	transition-duration: 0.05s;
+}
+
+.ButtonStyle_refresh
+{
+	background-color: gradient( linear, 0% 0%, 90% 90%, from( #0b150c ), to( #152416 ) );
+	border: 1px solid #73db77;
+	margin-right: 15px;
+}
+
+.ButtonStyle_close
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a2a2a ), to( #181818 ) );
+	border: 1px solid #aaa;
+}
+
+.ButtonStyle_Big
+{
+	margin-bottom: 10px;
+}
+
+.SmallRefreshBlur
+{
+	animation-name: SmallBlurRefresh;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+}
+
+.SmallRefreshBlurHide
+{
+	animation-name: SmallBlurRefreshHide;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.ButtonStyle:hover
+{
+	brightness: 1.4;
+	pre-transform-scale2d: 1.03;
+}
+
+.ButtonText
+{
+	align: center center;
+	font-weight: bold;
+	font-size: 21px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
+	letter-spacing: 1.5px;
+	text-shadow: 0px 0px 5px 3 #000000;
+	font-family: Radiance;
+	text-transform: uppercase;
+}
+
+.ButtonText_refresh
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #95ca8e ), to( #cffbd1 ) );
+}
+
+@keyframes 'SmallBlurRefresh'
+{
+	0%
+	{
+		box-shadow: fill #4cd351 0px 0px 7px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #4cd351 0px 0px 12px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #4cd351 0px 0px 7px -3px;
+	}
+	
+}
+
+@keyframes 'EffectBlurClose'
+{
+	0%
+	{
+		box-shadow: fill #aaa 0px 0px 7px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #aaa 0px 0px 10px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #aaa 0px 0px 7px -3px;
+	}
+	
+}
+
+@keyframes 'SmallBlurRefreshHide'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
 }

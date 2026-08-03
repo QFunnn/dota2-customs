@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -598,10 +598,16 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 			after_legen = after_legen,
 			perma_info = perma_info,
 			alert = legendary_info,
+			rarity = upgrade:GetRarityName(rarity),
 		})
 
-		player_table.choise_table =
-			{ player_table.choise, false, player_table:HasTalent("modifier_up_graypoints"), mod_stacks, refresh }
+		player_table.choise_table = {}
+		player_table.choise_table.content = player_table.choise
+		player_table.choise_table.alert = false
+		player_table.choise_table.gray = player_table:HasTalent("modifier_up_graypoints")
+		player_table.choise_table.mod_stacks = mod_stacks
+		player_table.choise_table.refresh = refresh
+		player_table.choise_table.rarity = upgrade:GetRarityName(rarity)
 	else
 		local kv = {}
 		kv.PlayerID = player:GetId()

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -127,6 +127,8 @@ function dota1x6:ChangeSettings(data)
 	elseif type == 7 then
 		local state = player_table.wavealert_hide
 		player_table.wavealert_hide = state == 0 and 1 or 0
+	elseif type == 8 then
+		player_table.small_talents = data.override or 0
 	end
 
 	if player then
@@ -136,9 +138,20 @@ function dota1x6:ChangeSettings(data)
 		player.hide_pet_names = player_table.hide_pet_names
 		player.pet_state = player_table.pet_state
 		player.wavealert_hide = player_table.wavealert_hide
+		player.small_talents = player_table.small_talents
 	end
 
 	CustomNetTables:SetTableValue("sub_data", tostring(id), player_table)
+
+	if type == 8 then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(id),
+			"ReturnViewTalent",
+			{ state = player_table.small_talents }
+		)
+		return
+	end
+
 	dota1x6:SendSettingsChange({ PlayerID = id })
 end
 
@@ -162,6 +175,7 @@ function dota1x6:SendSettingsChange(data)
 	result_table.hide_pet_names = sub_data.hide_pet_names
 	result_table.pet_movement = sub_data.pet_state
 	result_table.wavealert_hide = sub_data.wavealert_hide
+	result_table.small_talents = sub_data.small_talents
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "SendSettingsChange", result_table)
 end
