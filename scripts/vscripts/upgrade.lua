@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
+  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -413,16 +413,24 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		player_table:AddNewModifier(player_table, nil, "modifier_end_choise", { duration = duration })
 	end
 
+	local global_rarity = upgrade:GetRarityName(rarity)
+	local is_reward = 0
+
 	player_table.choise = {}
 
 	local legendary_info = false
 
 	if patrol_name then
 		player_table.choise = upgrade:GetPatrol(patrol_name)
+		is_reward = 1
+		global_rarity = patrol_name == "patrol_1" and "blue" or "purple"
 	elseif rarity == 13 then
 		player_table.choise = upgrade:GetAlchemistItems(player)
+		is_reward = 1
+		global_rarity = "purple"
 	elseif rarity == 14 or rarity == 15 then
 		player_table.choise = upgrade:GetBroodScepter(player, rarity)
+		global_rarity = rarity == 14 and "blue" or "purple"
 	elseif rarity == 10 then
 		player_table.choise = { "modifier_lownet_gold", "modifier_lownet_blue", "modifier_lownet_purple" }
 	elseif rarity == 4 then
@@ -592,13 +600,13 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player:GetId()), "show_choise", {
 			choise = player_table.choise,
 			mods = mod_stacks,
-			legendary = l,
 			hasup = player_table:HasTalent("modifier_up_graypoints"),
 			refresh = refresh,
 			after_legen = after_legen,
 			perma_info = perma_info,
 			alert = legendary_info,
-			rarity = upgrade:GetRarityName(rarity),
+			rarity = global_rarity,
+			is_reward = is_reward,
 		})
 
 		player_table.choise_table = {}
@@ -607,7 +615,8 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		player_table.choise_table.gray = player_table:HasTalent("modifier_up_graypoints")
 		player_table.choise_table.mod_stacks = mod_stacks
 		player_table.choise_table.refresh = refresh
-		player_table.choise_table.rarity = upgrade:GetRarityName(rarity)
+		player_table.choise_table.rarity = global_rarity
+		player_table.choise_table.is_reward = is_reward
 	else
 		local kv = {}
 		kv.PlayerID = player:GetId()

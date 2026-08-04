@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
+  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1381,6 +1381,7 @@ function dota1x6:ReconnectFilter(pid)
 				alert = player_table.choise_table.alert,
 				refresh = player_table.choise_table.refresh,
 				rarity = player_table.choise_table.rarity,
+				is_reward = player_table.choise_table.is_reward,
 			})
 		end
 	end)

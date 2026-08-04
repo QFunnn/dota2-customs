@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
+  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -138,6 +138,7 @@ function OnShow(kv, change_view)
     var after_legen = kv.after_legen
     var perma_info = kv.perma_info
     var global_rarity = kv.rarity
+    var is_reward = kv.is_reward
 
     if (save_mode)
     {
@@ -197,7 +198,7 @@ function OnShow(kv, change_view)
         let header_text = $.CreatePanel("Label", small_top, "ChoiseSmallTop_header_text")
         header_text.AddClass("ChoiseSmallTop_header_text")
         header_text.AddClass("ChoiseSmallTop_header_text_" + global_rarity)
-        header_text.text = $.Localize("#ChoiseSmallHeader")
+        header_text.text = $.Localize(is_reward == 1 ? "#ChoiseSmallHeaderReward" : "#ChoiseSmallHeader")
 
         small_content = $.CreatePanel("Panel", small_panel, "ChoiseSmallContent")
     }

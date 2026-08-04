@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 22:18:26 UTC
+  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -799,7 +799,7 @@ function CDOTA_BaseNPC:WallKnock(center, radius, height, inside, extra_dist)
 	ParticleManager:ReleaseParticleIndex(attack_particle)
 
 	local mod = self:FindModifierByName("modifier_pangolier_gyroshell_custom")
-	if mod then
+	if mod and self:CheckCd("pangolier_crash", 1) then
 		mod:Crash()
 		return
 	end
