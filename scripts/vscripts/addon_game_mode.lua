@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-05 05:42:45 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1284,7 +1284,7 @@ function respawn_heroes()
 				local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
 				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] or 0
 				_G.RewardPoints[nPlayerID] = _G.RewardPoints[nPlayerID] + 1
-				rules:show({ PlayerID = nPlayerID })
+				acc:show({ PlayerID = nPlayerID })
 				if not hero:IsAlive() then
 					local point = hero:GetAbsOrigin()
 					local hRelay = Entities:FindByName(nil, "logic_teleport")
