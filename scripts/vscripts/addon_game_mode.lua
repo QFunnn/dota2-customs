@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-05 05:42:45 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -3654,11 +3654,7 @@ function dota1x6:initiate_player(player, is_bot)
 				and player_data.unrankedStats.matchCountTotal <= (RANKED_GAME_COUNT + 2)
 				and player_data.matchCount < RANKED_GAME_COUNT_TOTAL
 			then
-				CustomGameEventManager:Send_ServerToPlayer(
-					PlayerResource:GetPlayer(id),
-					"report_alert",
-					{ type = 3, count = player_data.unrankedStats.matchCountTotal, max = RANKED_GAME_COUNT }
-				)
+				--CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), 'report_alert',  {type = 3, count = player_data.unrankedStats.matchCountTotal, max = RANKED_GAME_COUNT})
 			end
 		end)
 	end

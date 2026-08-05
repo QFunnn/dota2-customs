@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-05 05:42:45 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -461,8 +461,8 @@ _G.MAX_LEAVE = 3
 _G.UNRANKED_DAMAGE_PENALTY = 20
 _G.UNRANKED_RATING_PENALTY = 800
 _G.MAX_REPORTS = 4
-_G.RANKED_GAME_COUNT = 25
-_G.RANKED_GAME_COUNT_TOTAL = 75
+_G.RANKED_GAME_COUNT = 0 --доступ к ранкеду 25 игр в анранкеде
+_G.RANKED_GAME_COUNT_TOTAL = 0 --доступ к ранкеду 75 игр на аккаунте
 _G.RANKED_DAMAGE_BONUS = 15
 _G.MAX_FREE_BUILDS = 15
 _G.FREE_BUILDS_MAX_GAMES = 25

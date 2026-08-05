@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-05 05:42:45 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2563,6 +2563,49 @@ function CDOTA_BaseNPC:EndNoDraw(mod)
 	if hex_checking then
 		hex_checking:RemoveException(mod)
 	end
+end
+
+DoCleaveAttack_old = DoCleaveAttack
+function DoCleaveAttack(attacker, target, ability, damage, start_w, end_w, cleave_radius, effect)
+	local caster_pos = attacker:GetAbsOrigin()
+	local target_pos = target:GetAbsOrigin()
+	local start_width = start_w
+	local end_width = end_w
+
+	local direction = (target_pos - caster_pos):Normalized()
+	direction.z = 0
+
+	local damageTable = {
+		damage_type = DAMAGE_TYPE_PHYSICAL,
+		attacker = attacker,
+		ability = ability,
+		damage = damage,
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+	}
+
+	for _, unit in pairs(attacker:FindTargets(cleave_radius)) do
+		if unit ~= target then
+			local unit_pos = unit:GetAbsOrigin()
+			local v_to_unit = unit_pos - caster_pos
+			v_to_unit.z = 0
+
+			local dist_along_cone = v_to_unit:Dot(direction)
+
+			if dist_along_cone > 0 and dist_along_cone <= cleave_radius then
+				local progress = dist_along_cone / cleave_radius
+				local current_max_width = (start_width + (end_width - start_width) * progress)
+
+				local ortho_dist = (v_to_unit - direction * dist_along_cone):Length2D()
+
+				if ortho_dist <= current_max_width then
+					damageTable.victim = unit
+					DoDamage(damageTable)
+				end
+			end
+		end
+	end
+
+	DoCleaveAttack_old(attacker, target, ability, 0, start_width, end_width, cleave_radius, effect)
 end
 
 CDOTA_BaseNPC_Hero.GetIntellect_old = CDOTA_BaseNPC_Hero.GetIntellect
