@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-05 19:52:08 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13241,7 +13241,6 @@ function SendHTTP(url, callback, fail_callback)
 	end
 	local req = CreateHTTPRequestScriptVM('GET', url)
 	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
-
 	req:Send(function(res)
 		if res.StatusCode ~= 200 or not res.Body then
 			if fail_callback ~= nil then
@@ -24219,7 +24218,7 @@ end
 function ItemJixiezhixin(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
-	local draw_type = keys.draw_type
+	local ability = keys.ability:GetAbilityName()
 
 	if caster:HasAbility('summon_hero') == false or caster:FindAbilityByName('summon_hero'):IsCooldownReady() == false then
 		return
@@ -24230,28 +24229,15 @@ function ItemJixiezhixin(keys)
 		PATTACH_ABSORIGIN_FOLLOW, false, caster, 5)
 	EmitSoundOn("item.jixiezhixin.open.new", caster)
 	ItemSpendCharge(keys)
-	if draw_type ~= nil then
+	if ability == 'item_jixiezhixin_gold' then
 		--这里的false不表示不解锁，是表示是使用物品强制重抽的
-		Draw5ChessAndShow(team_id, false, draw_type)
-		if keys.token ~= nil then
-			AddItemPlus(caster, keys.token, 0.1)
-		end
+		Draw5ChessAndShow(team_id, false, 1)
+		AddItemPlus(caster, "item_gold_token", 0.1)
 		Timers:CreateTimer(0.2, function()
 			UpdateMyMoney(caster:GetTeam())
 		end)
-
-		--第二次机会
-		-- if caster:HasModifier('modifier_item_second_chance') and RandomInt(1,100) < 40 then
-		-- 	caster:AddItemByName('item_jixiezhixin_gold')
-		-- 	PlayItemMultiCastParticle(caster)
-		-- end
 	else
 		Draw5ChessAndShow(team_id, false, -1)
-		--第二次机会
-		-- if caster:HasModifier('modifier_item_second_chance') and RandomInt(1,100) < 40 then
-		-- 	caster:AddItemByName('item_jixiezhixin')
-		-- 	PlayItemMultiCastParticle(caster)
-		-- end
 	end
 end
 
@@ -27236,7 +27222,7 @@ function DAC:OnPlayerChat(keys)
 	end
 
 
-	if (tokens[1] == '-crab' or tokens[1] == '-chess') and _G.myself == true then
+	if (tokens[1] == '-crab' or tokens[1] == '-chess') and _G.myself == true and _G.is_tester_mode == true then
 		combat('TEST CODE: +CHESSES')
 		if tokens[2] ~= nil and tokens[3] == nil then
 			_G.next_crab = 'chess_' .. tokens[2]
@@ -27261,14 +27247,6 @@ function DAC:OnPlayerChat(keys)
 				u_index = u_index + 1
 			end
 			_G.next_crab = nil
-		end
-	end
-	if (tokens[1] == '-c') and _G.myself == true then
-		combat('TEST CODE: +CHESSES')
-		local u_index = 2
-		while tokens[u_index] ~= nil and u_index <= 9 do
-			CreateChessInHandAsync(hero, tokens[u_index], nil, nil, function(x) end)
-			u_index = u_index + 1
 		end
 	end
 
@@ -27335,7 +27313,7 @@ function DAC:OnPlayerChat(keys)
 	if (tokens[1] == "-choose" or tokens[1] == '-round') and _G.myself == true then
 		DAC:OnTesterBoxChooseRound({ round = tonumber(tokens[2]) })
 	end
-	if (tokens[1] == '-mana' or tokens[1] == '-money') and _G.myself == true then
+	if (tokens[1] == '-mana' or tokens[1] == '-money') and _G.myself == true and _G.is_tester_mode == true then
 		DAC:OnTesterBoxGiveMoney({ PlayerID = hero:GetPlayerID(), money = tonumber(tokens[2] or 100) })
 	end
 	if tokens[1] == '-exp' and _G.myself == true then
@@ -34233,7 +34211,7 @@ function DAC:OnTesterBoxChooseRound(keys)
 end
 
 function DAC:OnTesterBoxGiveMoney(keys)
-	if _G.playing_player_count >= 8 or _G.is_tester_mode ~= true then
+	if _G.playing_player_count >= 8 or _G.is_tester_mode ~= true or _G.myself ~= true then
 		return
 	end
 	local hero = PlayerId2Hero(keys.PlayerID)
@@ -34325,7 +34303,7 @@ function DAC:OnTesterCourierNoDamage(keys)
 end
 
 function DAC:OnTesterBoxGiveChess(keys)
-	if _G.playing_player_count >= 8 or _G.is_tester_mode ~= true then
+	if _G.playing_player_count >= 8 or _G.is_tester_mode ~= true or _G.myself ~= true then
 		return
 	end
 	local hero = PlayerId2Hero(keys.PlayerID)
