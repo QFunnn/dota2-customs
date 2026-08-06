@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-06 21:23:18 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13,6 +13,11 @@ require("configs/talents_list")
 if WodaTalents == nil then
 	_G.WodaTalents = class({})
 	WodaTalents.playerstalents = {}
+	WodaTalents.ATTRIBUTE_NAMES = {
+		[1] = "str",
+		[2] = "agi",
+		[3] = "int",
+	}
 	WodaTalents.line_level_info = {
 		[1] = 0,
 		[2] = 4,
@@ -128,22 +133,32 @@ function WodaTalents:talent_learn(params)
 	if params.PlayerID == nil then
 		return
 	end
-	if params.attribute == "talantpoints" then
+	local player_id = params.PlayerID
+	local player_talents = WodaTalents.playerstalents[player_id]
+	if player_talents == nil then
 		return
 	end
-	local player_id = params.PlayerID
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 	if hero == nil then
 		return
 	end
-	local talent_name = params.talentname
 	local hero_name = hero:GetUnitName()
+	-- Данные таланта берем из конфига, а не из того, что прислал клиент
+	local info = WodaTalents:GetTalentInfo(params.talentname, hero_name)
+	if info == nil or info.attribute == nil then
+		return
+	end
+	local talent_name = info.name
+	local line_requirement = WodaTalents.line_level_info[info.line]
+	if line_requirement == nil then
+		return
+	end
 	-- Проверка на плохую связь талантов
 	if LockedTalents[hero_name] then
 		if LockedTalents[hero_name][talent_name] then
 			local is_avialable = true
 			for _, talent_checkout in pairs(LockedTalents[hero_name][talent_name]) do
-				if WodaTalents.playerstalents[player_id][talent_checkout] then
+				if player_talents[talent_checkout] then
 					is_avialable = false
 					break
 				end
@@ -153,14 +168,16 @@ function WodaTalents:talent_learn(params)
 			end
 		end
 	end
-	-- Имеет ли этот талант герой
-	if WodaTalents:FindTalent(talent_name, hero_name) then
+	-- Проверка сколько нужно талантов в ветке, чтобы прокачаться дальше
+	if (tonumber(player_talents[info.attribute]) or 0) < line_requirement then
 		return
 	end
-	-- Проверка сколько нужно талантов в ветке, чтобы прокачаться дальше
-	local talent_branch = WodaTalents:GetTalentBranch(talent_name, hero_name)
-	if (WodaTalents.playerstalents[player_id][params.attribute] or 0) < WodaTalents.line_level_info[talent_branch] then
-		return
+	-- Прокачан ли талант, от которого зависит этот
+	if info.require_name then
+		local require_talent = player_talents[info.require_name]
+		if type(require_talent) ~= "table" or (tonumber(require_talent["level"]) or 0) < (info.require_level or 0) then
+			return
+		end
 	end
 	-- Перезарядка на прочивание таланта
 	if hero.cooldown_talents then
@@ -170,36 +187,30 @@ function WodaTalents:talent_learn(params)
 	Timers:CreateTimer(0.2, function()
 		hero.cooldown_talents = nil
 	end)
-	-- Создание таблицы таланта
-	if WodaTalents.playerstalents[player_id][talent_name] == nil then
-		WodaTalents.playerstalents[player_id][talent_name] = {}
-	end
 	-- Есть ли уже уровень таланта, если он максимальный, то не идем дальше
-	if WodaTalents.playerstalents[player_id][talent_name]["level"] then
-		if
-			tonumber(WodaTalents.playerstalents[player_id][talent_name]["level"])
-			>= WodaTalents:FindTalentMaxLevel(talent_name, hero_name)
-		then
-			return
-		end
+	local talent_table = player_talents[talent_name]
+	local talent_level = 0
+	if type(talent_table) == "table" then
+		talent_level = tonumber(talent_table["level"]) or 0
+	end
+	if talent_level >= info.max_level then
+		return
 	end
 	-- Какое количество поинтов у игрока
-	if WodaTalents.playerstalents[player_id]["talantpoints"] ~= nil then
-		if tonumber(WodaTalents.playerstalents[player_id]["talantpoints"]) <= 0 then
-			return
-		end
+	if (tonumber(player_talents["talantpoints"]) or 0) <= 0 then
+		return
+	end
+	-- Создание таблицы таланта
+	if type(talent_table) ~= "table" then
+		talent_table = {}
+		player_talents[talent_name] = talent_table
 	end
 	-- Прокачивание таланта
-	WodaTalents.playerstalents[player_id][talent_name]["level"] = (
-		WodaTalents.playerstalents[player_id][talent_name]["level"] or 0
-	) + 1
-	WodaTalents.playerstalents[player_id][params.attribute] = (
-		WodaTalents.playerstalents[player_id][params.attribute] or 0
-	) + 1
-	WodaTalents.playerstalents[player_id]["talantpoints"] = (WodaTalents.playerstalents[player_id]["talantpoints"] or 0)
-		- 1
+	talent_table["level"] = talent_level + 1
+	player_talents[info.attribute] = (tonumber(player_talents[info.attribute]) or 0) + 1
+	player_talents["talantpoints"] = (tonumber(player_talents["talantpoints"]) or 0) - 1
 	-- Сохранение визуала
-	CustomTables:SetTableValue("playerstalents", tostring(player_id), WodaTalents.playerstalents[player_id])
+	CustomTables:SetTableValue("playerstalents", tostring(player_id), player_talents)
 	-- Добавление модификатора
 
 	if not hero.talents_timers_list then
@@ -229,55 +240,37 @@ function WodaTalents:talent_learn(params)
 	end
 
 	-- Квесты на талант
-	if params.attribute == "str" then
+	if info.attribute == "str" then
 		player_system:PlayerQuestProgress(player_id, 15, 1)
 		player_system:PlayerQuestProgress(player_id, 16, 1)
-	elseif params.attribute == "agi" then
+	elseif info.attribute == "agi" then
 		player_system:PlayerQuestProgress(player_id, 37, 1)
 		player_system:PlayerQuestProgress(player_id, 38, 1)
-	elseif params.attribute == "int" then
+	elseif info.attribute == "int" then
 		player_system:PlayerQuestProgress(player_id, 59, 1)
 		player_system:PlayerQuestProgress(player_id, 60, 1)
 	end
 end
 
-function WodaTalents:FindTalentMaxLevel(ftalent, fhero)
-	for attribute, attribute_skilltable in pairs(_G.herotalents[tostring(fhero)]) do
-		for line, line_skilltable in pairs(attribute_skilltable) do
-			for talent_number, talent_info in pairs(line_skilltable) do
-				if not string.find(talent_info[1], "empty") then
-					if talent_info[1] == tostring(ftalent) then
-						return talent_info[3]
-					end
-				end
-			end
-		end
+function WodaTalents:GetTalentInfo(ftalent, fhero)
+	local hero_tree = _G.herotalents[tostring(fhero)]
+	if hero_tree == nil then
+		return nil
 	end
-	return 0
-end
-
-function WodaTalents:FindTalent(ftalent, fhero)
-	for attribute, attribute_skilltable in pairs(_G.herotalents[tostring(fhero)]) do
-		for line, line_skilltable in pairs(attribute_skilltable) do
-			for talent_number, talent_info in pairs(line_skilltable) do
+	local talent_name = tostring(ftalent)
+	for attribute_index, attribute_skilltable in ipairs(hero_tree) do
+		for line, line_skilltable in ipairs(attribute_skilltable) do
+			for talent_number, talent_info in ipairs(line_skilltable) do
 				if not string.find(talent_info[1], "empty") then
-					if talent_info[1] == tostring(ftalent) then
-						return false
-					end
-				end
-			end
-		end
-	end
-	return true
-end
-
-function WodaTalents:GetTalentBranch(ftalent, fhero)
-	for attribute, attribute_skilltable in pairs(_G.herotalents[tostring(fhero)]) do
-		for line, line_skilltable in pairs(attribute_skilltable) do
-			for talent_number, talent_info in pairs(line_skilltable) do
-				if not string.find(talent_info[1], "empty") then
-					if talent_info[1] == tostring(ftalent) then
-						return line
+					if talent_info[1] == talent_name then
+						return {
+							name = talent_info[1],
+							attribute = WodaTalents.ATTRIBUTE_NAMES[attribute_index],
+							line = line,
+							max_level = tonumber(talent_info[3]) or 0,
+							require_name = talent_info[5] and talent_info[5][1] or nil,
+							require_level = talent_info[5] and tonumber(talent_info[5][2]) or nil,
+						}
 					end
 				end
 			end

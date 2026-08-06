@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-06 21:23:18 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -341,6 +341,10 @@ function modifier_spirit_breaker_charge_of_darkness_custom:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
+	if self.finished then
+		self:Destroy()
+		return
+	end
 	self:UpdateHorizontalMotionCustom(self:GetParent(), 0.01)
 end
 
@@ -352,6 +356,7 @@ function modifier_spirit_breaker_charge_of_darkness_custom:UpdateHorizontalMotio
 	direction.z = 0
 	direction = direction:Normalized()
 	if dist < self.min_dist then
+		self.finished = true
 		self:OnPreDestroy()
 		self:Destroy()
 		return

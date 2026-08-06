@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-06 21:23:18 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -26,6 +26,7 @@ if player_system == nil then
 	_G.HEROES_LIST_CUSTOM = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 	player_system.site_url = "data.world-of-dota.com"
 	player_system.PLAYERS_GLOBAL_INFORMATION = {}
+	player_system.TIP_COOLDOWNS = {}
 	player_system.data_base_connected = true
 	player_system.SOUNDS_INFO = LoadKeyValues("scripts/chat_wheel_heroes.txt")["hero_messages"]
 	player_system.HEROES_VOTES_DATA = {}
@@ -3359,11 +3360,33 @@ function player_system:PlayerTip(keys)
 	end
 
 	local id_caster = keys.PlayerID
-	local id_target = keys.player_id_tip
-	local secret_key = keys.secret_key
+	local id_target = tonumber(keys.player_id_tip)
+
+	if id_target == nil then
+		return
+	end
+	id_target = math.floor(id_target)
+
+	if not PlayerResource:IsValidPlayerID(id_caster) then
+		return
+	end
+	if not PlayerResource:IsValidPlayerID(id_target) then
+		return
+	end
+
+	local game_time = GameRules:GetGameTime()
+	local ready_time = player_system.TIP_COOLDOWNS[id_caster]
+
+	if ready_time and game_time < ready_time then
+		return
+	end
+	player_system.TIP_COOLDOWNS[id_caster] = game_time + cooldown
 
 	if player_system.PLAYERS_GLOBAL_INFORMATION[id_caster] then
-		if #player_system.PLAYERS_GLOBAL_INFORMATION[id_caster].tips > 0 then
+		if
+			player_system.PLAYERS_GLOBAL_INFORMATION[id_caster].tips
+			and #player_system.PLAYERS_GLOBAL_INFORMATION[id_caster].tips > 0
+		then
 			local tips = player_system.PLAYERS_GLOBAL_INFORMATION[id_caster].tips
 			CustomGameEventManager:Send_ServerToAllClients(
 				"TipPlayerNotification",

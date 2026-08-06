@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-06 21:23:18 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -359,9 +359,11 @@ function modifier_spirit_breaker_greater_bash_custom:Bash(target, double, caster
 			IsStun = true,
 		}
 	)
-	arc:SetEndCallback(function()
-		FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
-	end)
+	if arc and not arc:IsNull() then
+		arc:SetEndCallback(function()
+			FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
+		end)
+	end
 
 	local damge_movespeed = self.damage
 

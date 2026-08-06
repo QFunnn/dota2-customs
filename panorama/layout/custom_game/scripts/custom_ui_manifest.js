@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-04 05:43:48 UTC
+  ~ build 9d26fbd · 2026-08-06 21:23:18 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -189,3 +189,9 @@ function ClientSound(data)
 {
 	Game.EmitSound(data.sound)
 }
+
+let pShop = FindDotaHudElement("GridBasicItems");
+pShop.RemoveAndDeleteChildren();
+
+let pShop2 = FindDotaHudElement("GridUpgradeItems");
+pShop2.RemoveAndDeleteChildren();
