@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-05 19:52:08 UTC
+  ~ build 9d26fbd · 2026-08-06 05:45:25 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -37,7 +37,7 @@ GameEvents.Subscribe("ban_chess", OnBanChess);
 GameEvents.Subscribe("unban_chess", OnUnBanChess);
 GameEvents.Subscribe("dota_player_update_selected_unit", ForceSingleSelection);
 GameEvents.Subscribe("show_cursor_hero_icon", OnShowCursorHeroIcon);
-GameEvents.Subscribe("show_combinable_item", OnShowCombinableItem);
+// GameEvents.Subscribe("show_combinable_item", OnShowCombinableItem);
 GameEvents.Subscribe("toggle_is_click_select", OnToggleIsClickSelect);
 GameEvents.Subscribe("show_drodo_courier_buff", OnShowDrodoCourierBuff);
 GameEvents.Subscribe("show_lua_ping", OnShowLuaPing);
@@ -5022,81 +5022,81 @@ function OnMsg(data) {
     $.Msg(data);
 }
 
-function OnShowCombinableItem(keys) {
-    var items = keys.items;
-    var unit_index = keys.unit_index;
-    var is_empty = true;
-    $('#panel_combinable_box_inner').RemoveAndDeleteChildren();
-    $('#panel_combinable_box_topright').RemoveAndDeleteChildren();
+// function OnShowCombinableItem(keys) {
+//     var items = keys.items;
+//     var unit_index = keys.unit_index;
+//     var is_empty = true;
+//     $('#panel_combinable_box_inner').RemoveAndDeleteChildren();
+//     $('#panel_combinable_box_topright').RemoveAndDeleteChildren();
 
-    // 终止棋子快速移动状态
-    GameEvents.SendCustomGameEventToServer("cancel_pick_chess_position", { player_id: Game.GetLocalPlayerID() });
-    hide_cursor_hero();
+//     // 终止棋子快速移动状态
+//     GameEvents.SendCustomGameEventToServer("cancel_pick_chess_position", { player_id: Game.GetLocalPlayerID() });
+//     hide_cursor_hero();
 
-    // 显示右上角的当前操作对象
-    var panel = $('#panel_combinable_box_topright');
-    if (panel) {
-        if (unit_index && keys.base_unit_name) {
-            // 棋子：显示小头像
-            $.CreatePanel('DOTAHeroImage', panel, undefined, {
-                heroname: CHESS_2_HERO[keys.base_unit_name],
-                heroimagestyle: 'icon',
-            });
-        }
-        else if (keys.onduty_hero) {
-            // 信使：显示图片
-            $.CreatePanel('Image', panel, undefined, {
-                src: 'file://{images}/custom_game/skaters/' + keys.onduty_hero + '.png',
-            });
-        }
-    }
+//     // 显示右上角的当前操作对象
+//     var panel = $('#panel_combinable_box_topright');
+//     if (panel) {
+//         if (unit_index && keys.base_unit_name) {
+//             // 棋子：显示小头像
+//             $.CreatePanel('DOTAHeroImage', panel, undefined, {
+//                 heroname: CHESS_2_HERO[keys.base_unit_name],
+//                 heroimagestyle: 'icon',
+//             });
+//         }
+//         else if (keys.onduty_hero) {
+//             // 信使：显示图片
+//             $.CreatePanel('Image', panel, undefined, {
+//                 src: 'file://{images}/custom_game/skaters/' + keys.onduty_hero + '.png',
+//             });
+//         }
+//     }
 
-    // 显示每一个物品
-    var panel = $('#panel_combinable_box_inner');
-    for (var i in items) {
-        var item = items[i];
-        if (item) {
-            if (!unit_index) {
-                unit_index = -1;
-            }
-            var panel_loot = $.CreatePanel('Panel', panel, undefined, {
-                class: 'panel_loot',
-                onactivate: 'OnClickCombinableItem("' + item + '",' + unit_index + ')',
-            });
+//     // 显示每一个物品
+//     var panel = $('#panel_combinable_box_inner');
+//     for (var i in items) {
+//         var item = items[i];
+//         if (item) {
+//             if (!unit_index) {
+//                 unit_index = -1;
+//             }
+//             var panel_loot = $.CreatePanel('Panel', panel, undefined, {
+//                 class: 'panel_loot',
+//                 onactivate: 'OnClickCombinableItem("' + item + '",' + unit_index + ')',
+//             });
 
-            $.CreatePanel('DOTAItemImage', panel_loot, undefined, {
-                itemname: item,
-            });
-            is_empty = false;
-        }
-    }
-    if (!is_empty) {
-        $('#panel_combinable_box').SetHasClass('invisible', false);
-        $('#panel_combinable_box').style['opacity'] = '1';
-        $('#panel_combinable_box').style['transform'] = 'scale3d( 1, 1, 1)';
-        $('#panel_combinable_box').SetFocus();
-    }
-    else {
-        OnMima({ text: "text_mima_no_combinable_item", key: CLIENT_KEY });
-        $('#panel_combinable_box').SetHasClass('invisible', true);
-        $('#panel_combinable_box').style['opacity'] = '0';
-        $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
-    }
-}
-function OnHideCombinableItem() {
-    $('#panel_combinable_box').SetHasClass('invisible', true);
-    $('#panel_combinable_box').style['opacity'] = '0';
-    $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
-}
-function OnClickCombinableItem(item_name, unit_index) {
-    GameEvents.SendCustomGameEventToServer("request_combine_item", {
-        item: item_name,
-        unit_index: unit_index,
-    });
-    $('#panel_combinable_box').SetHasClass('invisible', true);
-    $('#panel_combinable_box').style['opacity'] = '0';
-    $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
-}
+//             $.CreatePanel('DOTAItemImage', panel_loot, undefined, {
+//                 itemname: item,
+//             });
+//             is_empty = false;
+//         }
+//     }
+//     if (!is_empty) {
+//         $('#panel_combinable_box').SetHasClass('invisible', false);
+//         $('#panel_combinable_box').style['opacity'] = '1';
+//         $('#panel_combinable_box').style['transform'] = 'scale3d( 1, 1, 1)';
+//         $('#panel_combinable_box').SetFocus();
+//     }
+//     else {
+//         OnMima({ text: "text_mima_no_combinable_item", key: CLIENT_KEY });
+//         $('#panel_combinable_box').SetHasClass('invisible', true);
+//         $('#panel_combinable_box').style['opacity'] = '0';
+//         $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
+//     }
+// }
+// function OnHideCombinableItem() {
+//     $('#panel_combinable_box').SetHasClass('invisible', true);
+//     $('#panel_combinable_box').style['opacity'] = '0';
+//     $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
+// }
+// function OnClickCombinableItem(item_name, unit_index) {
+//     GameEvents.SendCustomGameEventToServer("request_combine_item", {
+//         item: item_name,
+//         unit_index: unit_index,
+//     });
+//     $('#panel_combinable_box').SetHasClass('invisible', true);
+//     $('#panel_combinable_box').style['opacity'] = '0';
+//     $('#panel_combinable_box').style['transform'] = 'scale3d( 0.01, 0.01, 0.01)';
+// }
 
 function GetPlayerCount() {
     var count = 0;

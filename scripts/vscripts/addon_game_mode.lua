@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-05 19:52:08 UTC
+  ~ build 9d26fbd · 2026-08-06 05:45:25 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -388,9 +388,9 @@ function DAC:InitGameMode()
 	CustomGameEventManager:RegisterListener("request_show_emotion_bubble", Dynamic_Wrap(DAC, "RequestShowEmotionBubble"))
 	CustomGameEventManager:RegisterListener("set_courier_table", Dynamic_Wrap(DAC, "SetCourierAsyncTable"))
 	CustomGameEventManager:RegisterListener("set_player_show_buff_list", Dynamic_Wrap(DAC, "SetPlayerShowBuffList"))
-	CustomGameEventManager:RegisterListener("request_find_combinable_item",
-		Dynamic_Wrap(DAC, "RequestFindCombinableItem"))
-	CustomGameEventManager:RegisterListener("request_combine_item", Dynamic_Wrap(DAC, "RequestCombineItem"))
+	-- CustomGameEventManager:RegisterListener("request_find_combinable_item",
+	-- 	Dynamic_Wrap(DAC, "RequestFindCombinableItem"))
+	-- CustomGameEventManager:RegisterListener("request_combine_item", Dynamic_Wrap(DAC, "RequestCombineItem"))
 	CustomGameEventManager:RegisterListener("gg_simida", Dynamic_Wrap(DAC, "GGSimida"))
 	CustomGameEventManager:RegisterListener("courier_tp", Dynamic_Wrap(DAC, "OnCourierTP"))
 	CustomGameEventManager:RegisterListener("request_update_user_info", Dynamic_Wrap(DAC, "GetAllPlayerInfoFromServer"))
@@ -14747,6 +14747,7 @@ end
 function SummonHero(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
+	-- prt('SummonHero')
 	caster.chesslock = false
 	AMHC:CreateNumberEffect(caster, 2, 3, AMHC.MSG_MISS, { 80, 80, 255 }, 3)
 	AMHC:CreateParticle("particles/econ/items/antimage/antimage_ti7/antimage_blink_start_ti7_ribbon_bright.vpcf",
@@ -24180,7 +24181,6 @@ end
 function ItemZhishizhishu(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
-	local draw_type = keys.draw_type
 	local lv = caster:GetLevel()
 	ItemSpendCharge(keys)
 	--第二次机会
@@ -24219,6 +24219,7 @@ function ItemJixiezhixin(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
 	local ability = keys.ability:GetAbilityName()
+	-- prt('ItemJixiezhixin')
 
 	if caster:HasAbility('summon_hero') == false or caster:FindAbilityByName('summon_hero'):IsCooldownReady() == false then
 		return
@@ -27891,6 +27892,7 @@ function DAC:OnRefreshChess(keys)
 	local player_team = _G.playerid2team[keys.PlayerID]
 	local hero = _G.teamid2hero[player_team]
 	local reroll = keys.reroll
+	-- prt('OnRefreshChess')
 
 	if player_team ~= keys.team or IsUnitExist(hero) == false then
 		return
@@ -28380,6 +28382,7 @@ function DAC:OnRequestChooseLoot(keys)
 	local target_item = keys.target_item_name
 	local player_id = keys.PlayerID
 	local loot_index = keys.loot_index
+	-- prt('OnRequestChooseLoot')
 
 	local hero = PlayerId2Hero(player_id)
 
@@ -33119,48 +33122,48 @@ function SummonAnInferno(warlock)
 	end
 end
 
-function DAC:RequestFindCombinableItem(keys)
-	local player_id = keys.PlayerID
-	local unit_index = keys.unit_index
-	local hero = PlayerId2Hero(player_id)
-	if unit_index then
-		hero = EntIndexToHScript(unit_index)
-	end
-	if hero == nil then
-		return
-	end
-	if hero:IsHero() == false then
-		if (GetTime().phase == GAME_PHASE_BATTLE and hero.hand_index == nil) or (GetTime().phase == GAME_PHASE_PREPARE and GetTime().left < 2 and hero.hand_index == nil) then
-			CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "mima", {
-				key = GetClientKey(hero:GetTeam()),
-				text = "text_mima_cannot_delete_battle_chess"
-			})
-			EmitSoundOn("General.CastFail_NoMana", PlayerId2Hero(player_id))
-			return
-		end
-	end
-	local items = FindCombinableItemByCourier(hero)
+-- function DAC:RequestFindCombinableItem(keys)
+-- 	local player_id = keys.PlayerID
+-- 	local unit_index = keys.unit_index
+-- 	local hero = PlayerId2Hero(player_id)
+-- 	if unit_index then
+-- 		hero = EntIndexToHScript(unit_index)
+-- 	end
+-- 	if hero == nil then
+-- 		return
+-- 	end
+-- 	if hero:IsHero() == false then
+-- 		if (GetTime().phase == GAME_PHASE_BATTLE and hero.hand_index == nil) or (GetTime().phase == GAME_PHASE_PREPARE and GetTime().left < 2 and hero.hand_index == nil) then
+-- 			CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "mima", {
+-- 				key = GetClientKey(hero:GetTeam()),
+-- 				text = "text_mima_cannot_delete_battle_chess"
+-- 			})
+-- 			EmitSoundOn("General.CastFail_NoMana", PlayerId2Hero(player_id))
+-- 			return
+-- 		end
+-- 	end
+-- 	local items = FindCombinableItemByCourier(hero)
 
-	--展示给UI，可供选择、点击
-	if hero:IsHero() == false then
-		--棋子
-		CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "show_combinable_item", {
-			key = GetClientKey(hero:GetTeam()),
-			items = items,
-			unit_index = unit_index,
-			unit_name = hero:GetUnitName(),
-			base_unit_name = GetUnitBaseName(hero),
-		})
-	else
-		--信使
-		CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "show_combinable_item", {
-			key = GetClientKey(hero:GetTeam()),
-			items = items,
-			unit_index = unit_index,
-			onduty_hero = hero.onduty_hero,
-		})
-	end
-end
+-- 	--展示给UI，可供选择、点击
+-- 	if hero:IsHero() == false then
+-- 		--棋子
+-- 		CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "show_combinable_item", {
+-- 			key = GetClientKey(hero:GetTeam()),
+-- 			items = items,
+-- 			unit_index = unit_index,
+-- 			unit_name = hero:GetUnitName(),
+-- 			base_unit_name = GetUnitBaseName(hero),
+-- 		})
+-- 	else
+-- 		--信使
+-- 		CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "show_combinable_item", {
+-- 			key = GetClientKey(hero:GetTeam()),
+-- 			items = items,
+-- 			unit_index = unit_index,
+-- 			onduty_hero = hero.onduty_hero,
+-- 		})
+-- 	end
+-- end
 
 --如果给unit添加more_item_table这些装备，unit能多合成什么物品？
 function FindMoreItemsByUnitAndTable(unit, more_item_table)
@@ -33270,20 +33273,20 @@ function FindCombinableItem(item_table_now)
 	return item_table_combined
 end
 
-function DAC:RequestCombineItem(keys)
-	local player_id = keys.PlayerID
-	local unit_index = keys.unit_index
-	local hero = PlayerId2Hero(player_id)
-	if unit_index and unit_index > 0 then
-		hero = EntIndexToHScript(unit_index)
-	end
-	if hero == nil then
-		return
-	end
-	local item = keys.item
+-- function DAC:RequestCombineItem(keys)
+-- 	local player_id = keys.PlayerID
+-- 	local unit_index = keys.unit_index
+-- 	local hero = PlayerId2Hero(player_id)
+-- 	if unit_index and unit_index > 0 then
+-- 		hero = EntIndexToHScript(unit_index)
+-- 	end
+-- 	if hero == nil then
+-- 		return
+-- 	end
+-- 	local item = keys.item
 
-	CombineItem(hero, item)
-end
+-- 	CombineItem(hero, item)
+-- end
 
 function CombineItem(hero, item)
 	local target_item = item
@@ -40816,6 +40819,7 @@ function ItemRmWheelOfWonder(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local p = (keys.target_points or {})[1]
+	-- prt('ItemRmWheelOfWonder')
 	
 	--支持点目标选取
 	if not target then
