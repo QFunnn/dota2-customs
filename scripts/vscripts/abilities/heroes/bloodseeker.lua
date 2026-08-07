@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -547,7 +547,7 @@ function s.prototype.OnIntervalThink(self)
 		end
 		v:DealDamage(x, self:GetAbility(), self.damage + y, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE)
 		if self:PRD(self.silent_chance) then
-			AddSilence(x, v, self:GetAbility(), self.silent_duration)
+			AddSilence(v, x, self:GetAbility(), self.silent_duration)
 		end
 	end
 end

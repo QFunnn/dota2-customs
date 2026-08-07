@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -153,6 +153,12 @@ const CourierTitle = props => {
       return KeyValues.CosmeticsKv[local.oid].resource;
     }
   };
+  const src = () => {
+    if ($.BImageFileExists(`file://{images}/custom_game/overhead/${local.oid}.png`)) {
+      return `file://{images}/custom_game/overhead/${local.oid}.png`;
+    }
+    return `file://{images}/custom_game/cosmetics_items/${local.oid}.png`;
+  };
   return libs.createComponent(EOM_Panel.EOM_Panel, libs.mergeProps(() => EOM_Panel.EOMProps(others, {
     className: libs.classNames("CourierTitle", "ID" + local.oid)
   }), {
@@ -160,7 +166,7 @@ const CourierTitle = props => {
       return [libs.createComponent(GenericPanel.CImage, {
         id: "CourierTitleBG",
         get src() {
-          return `file://{images}/custom_game/overhead/${local.oid}.png`;
+          return src();
         }
       }), libs.createComponent(GenericPanel.CLabel, {
         id: "CourierTitleLabel",

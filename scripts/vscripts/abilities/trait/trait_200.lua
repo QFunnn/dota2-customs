@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -52,92 +52,110 @@ f(
 		["43"] = 36,
 		["44"] = 37,
 		["45"] = 38,
-		["47"] = 34,
-		["48"] = 42,
+		["46"] = 39,
+		["48"] = 34,
 		["49"] = 43,
 		["50"] = 44,
-		["51"] = 44,
-		["52"] = 44,
-		["53"] = 43,
-		["54"] = 45,
-		["55"] = 45,
-		["56"] = 45,
-		["57"] = 43,
-		["58"] = 43,
-		["59"] = 42,
-		["60"] = 49,
+		["51"] = 45,
+		["52"] = 45,
+		["53"] = 45,
+		["54"] = 44,
+		["55"] = 46,
+		["56"] = 46,
+		["57"] = 46,
+		["58"] = 44,
+		["59"] = 44,
+		["60"] = 43,
 		["61"] = 50,
 		["62"] = 51,
-		["63"] = 51,
-		["64"] = 51,
-		["65"] = 51,
-		["66"] = 51,
-		["67"] = 51,
-		["68"] = 49,
-		["69"] = 54,
+		["63"] = 52,
+		["64"] = 52,
+		["65"] = 52,
+		["66"] = 52,
+		["67"] = 52,
+		["68"] = 52,
+		["69"] = 50,
 		["70"] = 55,
-		["72"] = 55,
-		["74"] = 55,
+		["71"] = 56,
+		["73"] = 56,
 		["75"] = 56,
-		["77"] = 54,
-		["78"] = 60,
+		["76"] = 57,
+		["78"] = 55,
 		["79"] = 61,
 		["80"] = 62,
 		["81"] = 63,
 		["82"] = 64,
-		["84"] = 60,
-		["85"] = 68,
+		["83"] = 65,
+		["85"] = 61,
 		["86"] = 69,
-		["89"] = 70,
+		["87"] = 70,
 		["90"] = 71,
 		["91"] = 72,
 		["92"] = 73,
 		["93"] = 74,
-		["94"] = 74,
-		["97"] = 68,
-		["98"] = 20,
-		["99"] = 13,
-		["100"] = 13,
-		["101"] = 13,
-		["102"] = 13,
-		["103"] = 13,
-		["104"] = 13,
-		["105"] = 13,
-		["106"] = 20,
-		["108"] = 20,
-		["110"] = 80,
-		["111"] = 88,
-		["112"] = 80,
-		["113"] = 88,
+		["94"] = 75,
+		["95"] = 76,
+		["96"] = 77,
+		["97"] = 78,
+		["98"] = 79,
+		["102"] = 69,
+		["103"] = 85,
+		["104"] = 86,
+		["105"] = 87,
+		["106"] = 88,
+		["109"] = 89,
+		["111"] = 89,
+		["112"] = 89,
+		["113"] = 89,
 		["114"] = 92,
-		["115"] = 93,
-		["116"] = 94,
-		["117"] = 92,
-		["118"] = 97,
-		["119"] = 98,
-		["120"] = 99,
-		["121"] = 99,
-		["122"] = 98,
-		["123"] = 97,
-		["124"] = 103,
-		["125"] = 104,
-		["126"] = 104,
-		["129"] = 105,
-		["130"] = 105,
-		["131"] = 106,
-		["134"] = 107,
-		["135"] = 103,
-		["136"] = 88,
-		["137"] = 80,
-		["138"] = 80,
-		["139"] = 80,
-		["140"] = 80,
-		["141"] = 80,
-		["142"] = 80,
-		["143"] = 80,
-		["144"] = 80,
-		["145"] = 88,
-		["147"] = 88,
+		["115"] = 92,
+		["116"] = 92,
+		["117"] = 89,
+		["118"] = 89,
+		["120"] = 85,
+		["121"] = 20,
+		["122"] = 13,
+		["123"] = 13,
+		["124"] = 13,
+		["125"] = 13,
+		["126"] = 13,
+		["127"] = 13,
+		["128"] = 13,
+		["129"] = 20,
+		["131"] = 20,
+		["133"] = 98,
+		["134"] = 106,
+		["135"] = 98,
+		["136"] = 106,
+		["137"] = 110,
+		["138"] = 111,
+		["139"] = 112,
+		["140"] = 110,
+		["141"] = 115,
+		["142"] = 116,
+		["143"] = 117,
+		["144"] = 117,
+		["145"] = 116,
+		["146"] = 115,
+		["147"] = 121,
+		["148"] = 122,
+		["149"] = 122,
+		["152"] = 123,
+		["153"] = 123,
+		["154"] = 124,
+		["157"] = 125,
+		["158"] = 121,
+		["159"] = 106,
+		["160"] = 98,
+		["161"] = 98,
+		["162"] = 98,
+		["163"] = 98,
+		["164"] = 98,
+		["165"] = 98,
+		["166"] = 98,
+		["167"] = 98,
+		["168"] = 106,
+		["170"] = 106,
 	}
 )
 local g = {}
@@ -175,6 +193,7 @@ function o.prototype.OnCreated(self)
 		self.strikeCount = 0
 		self.rewarded = false
 		self:SetStackCount(0)
+		self:UpdateProgressDisplay()
 	end
 end
 function o.prototype.EDeclareEvents(self)
@@ -208,12 +227,31 @@ function o.prototype.AddProgress(self, t)
 		return
 	end
 	self:SetStackCount(self:GetStackCount() + t)
+	self:UpdateProgressDisplay()
 	if self.targetProgress > 0 and self:GetStackCount() >= self.targetProgress then
 		self.rewarded = true
 		local u = PlayerData:getHero(self:GetParent():GetPlayerOwnerID())
-		if u ~= nil then
-			u:addItemForPlayer(self.equipmentName)
+		if u then
+			local v = u:exchangeItem(self.equipmentName, 1)
+			if not v then
+				u:addItemForPlayer(self.equipmentName)
+			end
 		end
+	end
+end
+function o.prototype.UpdateProgressDisplay(self)
+	local w = self:GetParent():GetPlayerOwnerID()
+	local x = self:GetAbility()
+	if not IsServer() or not x or w < 0 or self.targetProgress <= 0 then
+		return
+	end
+	local y = PlayerData:getplayerData(w)
+	if y ~= nil then
+		y:modifyArtifactExtraStringData(
+			x:entindex(),
+			"trait_task_progress",
+			(tostring(math.min(self:GetStackCount(), self.targetProgress)) .. "/") .. tostring(self.targetProgress)
+		)
 	end
 end
 o = e(
@@ -225,29 +263,29 @@ o = e(
 )
 g.modifier_trait_200 = o
 g.modifier_trait_200_battle = c()
-local v = g.modifier_trait_200_battle
-v.name = "modifier_trait_200_battle"
-d(v, l)
-function v.prototype.GetAbilitySpecialValue(self)
+local z = g.modifier_trait_200_battle
+z.name = "modifier_trait_200_battle"
+d(z, l)
+function z.prototype.GetAbilitySpecialValue(self)
 	self.attackCount = self:GetAbilitySpecialValueFor("attack_count")
 	self.attackProgress = self:GetAbilitySpecialValueFor("attack_progress")
 end
-function v.prototype.EDeclareEvents(self)
+function z.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ABILITY_FULLY_CAST] = { self:GetParent(), -1 } }
 end
-function v.prototype.OnCustomAbilityFullyCast(self, p)
-	local w = p.ability
-	if (w and w:GetAbilityName()) ~= "monkey_king_ult" then
+function z.prototype.OnCustomAbilityFullyCast(self, p)
+	local A = p.ability
+	if (A and A:GetAbilityName()) ~= "monkey_king_ult" then
 		return
 	end
-	local x = self:GetCaster()
-	local y = x and x:FindModifierByName("modifier_trait_200")
-	if not IsValid(y) then
+	local B = self:GetCaster()
+	local C = B and B:FindModifierByName("modifier_trait_200")
+	if not IsValid(C) then
 		return
 	end
-	y:OnMonkeyKingUlt(self.attackCount, self.attackProgress)
+	C:OnMonkeyKingUlt(self.attackCount, self.attackProgress)
 end
-v = e(
+z = e(
 	{
 		m(
 			a,
@@ -261,7 +299,7 @@ v = e(
 			}
 		),
 	},
-	v
+	z
 )
-g.modifier_trait_200_battle = v
+g.modifier_trait_200_battle = z
 return g

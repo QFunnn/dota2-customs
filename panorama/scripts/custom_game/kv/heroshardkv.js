@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1131,7 +1131,7 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"Hero": "bloodseeker",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/bloodseeker",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",

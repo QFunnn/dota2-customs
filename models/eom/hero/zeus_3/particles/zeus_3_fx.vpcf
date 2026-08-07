@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -16,11 +16,36 @@
 	[
 		{
 			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attack_backpack"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attack_backpack1"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
 			m_previewState = 
 			{
 				m_previewModel = "models/eom/hero/zeus_3/zeus_3.vmdl"
 				m_sequenceName = "zeus_3_idle"
 				m_hitboxSetName = "default"
+				m_flPlaybackSpeed = 0.0
 			}
 		},
 	]
@@ -52,6 +77,12 @@
 		},
 		{
 			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_tail_fx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_backpack_fx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_backpack_fx1.vpcf"
 		},
 	]
 }

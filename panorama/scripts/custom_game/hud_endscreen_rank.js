@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -78,41 +78,46 @@ if (!isSpectator()) {
         id: "AchievementNoticeCard",
         get children() {
           return [libs.createComponent(EOM_Panel.EOM_Panel, {
-            id: "AchievementNoticeList",
-            scroll: "x",
+            id: "AchievementNoticeShowcase",
             get children() {
-              return libs.createComponent(libs.For, {
-                get each() {
-                  return props.achievements;
-                },
-                children: achievement => libs.createComponent(EOM_Panel.EOM_Panel, {
-                  get className() {
-                    return libs.classNames("AchievementNoticeCardItem", {
-                      red: achievement.quality == 4,
-                      blue: achievement.quality == 2,
-                      green: achievement.quality == 1,
-                      gold: achievement.quality == 3
-                    });
-                  },
-                  get children() {
-                    return [libs.createComponent(EOM_Panel.EOM_Panel, {
-                      className: "AchievementNoticeCardImage",
-                      get backgroundImage() {
-                        return `url('file://{images}/custom_game/achievement/${achievement.iconType}.png')`;
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                id: "AchievementNoticeList",
+                scroll: "x",
+                get children() {
+                  return libs.createComponent(libs.For, {
+                    get each() {
+                      return props.achievements;
+                    },
+                    children: achievement => libs.createComponent(EOM_Panel.EOM_Panel, {
+                      get className() {
+                        return libs.classNames("AchievementNoticeCardItem", {
+                          red: achievement.quality == 4,
+                          blue: achievement.quality == 2,
+                          green: achievement.quality == 1,
+                          gold: achievement.quality == 3
+                        });
+                      },
+                      get children() {
+                        return [libs.createComponent(EOM_Panel.EOM_Panel, {
+                          className: "AchievementNoticeCardImage",
+                          get backgroundImage() {
+                            return `url('file://{images}/custom_game/achievement/${achievement.iconType}.png')`;
+                          }
+                        }), libs.createComponent(EOM_Label.EOM_Label, {
+                          className: "AchievementNoticeCardName",
+                          get text() {
+                            return `#${achievement.iconType}_achievement`;
+                          }
+                        }), libs.createComponent(EOM_Label.EOM_Label, {
+                          className: "AchievementNoticeCardScore",
+                          get text() {
+                            return $.Localize("#achievement_score") + achievement.score;
+                          }
+                        })];
                       }
-                    }), libs.createComponent(EOM_Label.EOM_Label, {
-                      className: "AchievementNoticeCardName",
-                      get text() {
-                        return `#${achievement.iconType}_achievement`;
-                      }
-                    }), libs.createComponent(EOM_Label.EOM_Label, {
-                      className: "AchievementNoticeCardScore",
-                      get text() {
-                        return $.Localize("#achievement_score") + achievement.score;
-                      }
-                    })];
-                  }
-                })
+                    })
+                  });
+                }
               });
             }
           }), libs.createComponent(EOM_Label.EOM_Label, {

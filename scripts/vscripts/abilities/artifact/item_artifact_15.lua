@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -49,23 +49,23 @@ f(
 		["38"] = 33,
 		["39"] = 34,
 		["40"] = 35,
-		["41"] = 35,
-		["42"] = 35,
-		["43"] = 35,
-		["44"] = 36,
-		["45"] = 36,
-		["46"] = 36,
-		["47"] = 36,
-		["48"] = 36,
-		["49"] = 37,
-		["50"] = 37,
-		["51"] = 37,
-		["52"] = 37,
-		["53"] = 37,
-		["54"] = 37,
-		["55"] = 37,
-		["57"] = 32,
-		["58"] = 20,
+		["41"] = 36,
+		["42"] = 37,
+		["43"] = 38,
+		["44"] = 38,
+		["45"] = 38,
+		["46"] = 38,
+		["47"] = 38,
+		["48"] = 39,
+		["49"] = 39,
+		["50"] = 39,
+		["51"] = 39,
+		["52"] = 39,
+		["53"] = 39,
+		["54"] = 39,
+		["56"] = 32,
+		["57"] = 20,
+		["58"] = 11,
 		["59"] = 11,
 		["60"] = 11,
 		["61"] = 11,
@@ -74,9 +74,8 @@ f(
 		["64"] = 11,
 		["65"] = 11,
 		["66"] = 11,
-		["67"] = 11,
-		["68"] = 20,
-		["70"] = 20,
+		["67"] = 20,
+		["69"] = 20,
 	}
 )
 local g = {}
@@ -108,10 +107,11 @@ function o.prototype.EDeclareEvents(self)
 end
 function o.prototype.OnRoundStart(self, p)
 	local q = self:GetParent()
-	if PlayerData:isAlivePlayer(q:GetPlayerOwnerID()) and q:GetHealth() < self.threshold then
-		PlayerData:modifyHealth(q:GetPlayerOwnerID(), self.hp_regen)
-		PlayerData:getplayerData(q:GetPlayerOwnerID())
-			:modifyArtifactExtraData(self:GetAbility():entindex(), "bonus_health", self.hp_regen)
+	local r = q:GetPlayerOwnerID()
+	local s = PlayerData:getplayerData(r)
+	if PlayerData:isAlivePlayer(r) and s and s.health < self.threshold then
+		PlayerData:modifyHealth(r, self.hp_regen)
+		s:modifyArtifactExtraData(self:GetAbility():entindex(), "bonus_health", self.hp_regen)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, q, self.hp_regen, q:GetPlayerOwner())
 	end
 end

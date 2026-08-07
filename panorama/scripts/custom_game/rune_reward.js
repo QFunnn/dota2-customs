@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -44,6 +44,40 @@ function Update() {
   if (pTooltipPanel.IsValid()) {
     $.Schedule(Game.GetGameFrameTime(), Update);
   }
+}
+function Trait172BoughtTips({
+  playerID
+}) {
+  if (playerID == -1) return null;
+  const playerData = CustomNetTables.GetTableValue("player_data", playerID.toString());
+  const attributeList = Object.entries(playerData?.forgeAttributes ?? {}).filter(([, value]) => value > 0).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
+  if (attributeList.length == 0) return null;
+  return libs.createComponent(EOM_Panel.EOM_Panel, {
+    className: "ForgeAttributeTooltipList",
+    flowChildren: "down",
+    get children() {
+      return [libs.createElement("Label", {
+        "class": "ForgeAttributeTooltipTitle",
+        text: "已选择锻体加成"
+      }, null), libs.memo(() => attributeList.map(([attributeName, value]) => (() => {
+        const _el$2 = libs.createElement("Panel", {
+            "class": "ForgeAttributeTooltipRow"
+          }, null),
+          _el$3 = libs.createElement("Label", {
+            "class": "ForgeAttributeTooltipName",
+            html: true,
+            text: "#dota_tooltip_item_variable_" + attributeName
+          }, _el$2),
+          _el$4 = libs.createElement("Label", {
+            "class": "ForgeAttributeTooltipValue",
+            text: "+" + value
+          }, _el$2);
+        libs.setProp(_el$3, "text", "#dota_tooltip_item_variable_" + attributeName);
+        libs.setProp(_el$4, "text", "+" + value);
+        return _el$2;
+      })()))];
+    }
+  });
 }
 function TooltipContents({
   playerID,
@@ -218,7 +252,9 @@ function TooltipContents({
                     level: trait1_lv
                   });
                 }
-              }), libs.memo(() => (() => {
+              }), libs.memo(() => trait1 == "trait_172" && libs.createComponent(Trait172BoughtTips, {
+                playerID: playerID
+              })), libs.memo(() => (() => {
                 let arr1 = Object.keys(abilityExtraDataList["1"]);
                 if (arr1.length > 0) {
                   return Object.keys(abilityExtraDataList["1"]).map((key, index) => {
@@ -411,7 +447,9 @@ function TooltipContents({
                     level: trait2_lv
                   });
                 }
-              }), libs.memo(() => (() => {
+              }), libs.memo(() => trait2 == "trait_172" && libs.createComponent(Trait172BoughtTips, {
+                playerID: playerID
+              })), libs.memo(() => (() => {
                 let arr2 = Object.keys(abilityExtraDataList["2"]);
                 if (arr2.length > 0) {
                   return Object.keys(abilityExtraDataList["2"]).map((key, index) => {
@@ -700,12 +738,12 @@ const AbilityKeyWordContainer = props => {
           flowChildren: "right",
           get children() {
             return [(() => {
-              const _el$ = libs.createElement("DOTAAbilityImage", {
+              const _el$5 = libs.createElement("DOTAAbilityImage", {
                 abilityname: abilityName
               }, null);
-              libs.setProp(_el$, "className", "SectAbilityImage");
-              libs.setProp(_el$, "abilityname", abilityName);
-              return _el$;
+              libs.setProp(_el$5, "className", "SectAbilityImage");
+              libs.setProp(_el$5, "abilityname", abilityName);
+              return _el$5;
             })(), libs.createComponent(EOM_Panel.EOM_Panel, {
               flowChildren: "down",
               marginLeft: "8px",
@@ -789,11 +827,11 @@ const AbilityKeyWordContainer = props => {
                         return libs.memo(() => itemKV?.Repeat == undefined)() && itemname.indexOf("item_artifact_") != -1;
                       },
                       get children() {
-                        const _el$2 = libs.createElement("Label", {
+                        const _el$6 = libs.createElement("Label", {
                           text: "#DOTA_SHOP_CATEGORY_UNIQUES"
                         }, null);
-                        libs.setProp(_el$2, "className", "AbilityType");
-                        return _el$2;
+                        libs.setProp(_el$6, "className", "AbilityType");
+                        return _el$6;
                       }
                     })];
                   }

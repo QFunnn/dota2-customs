@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -43,107 +43,142 @@ k(
 		["32"] = 125,
 		["33"] = 118,
 		["34"] = 125,
-		["36"] = 125,
-		["37"] = 127,
-		["38"] = 129,
-		["39"] = 118,
-		["40"] = 131,
-		["41"] = 132,
-		["42"] = 131,
-		["43"] = 139,
-		["44"] = 140,
-		["47"] = 141,
-		["48"] = 143,
-		["49"] = 144,
-		["50"] = 146,
-		["51"] = 147,
-		["54"] = 148,
-		["55"] = 149,
-		["56"] = 150,
-		["59"] = 152,
-		["60"] = 153,
-		["61"] = 154,
-		["62"] = 155,
-		["63"] = 156,
-		["65"] = 157,
-		["66"] = 158,
-		["67"] = 158,
-		["69"] = 159,
-		["70"] = 159,
-		["72"] = 159,
-		["73"] = 160,
-		["74"] = 160,
-		["76"] = 161,
-		["77"] = 162,
-		["78"] = 163,
-		["79"] = 163,
-		["84"] = 167,
-		["85"] = 167,
-		["86"] = 167,
+		["35"] = 126,
+		["36"] = 127,
+		["37"] = 128,
+		["38"] = 128,
+		["39"] = 127,
+		["40"] = 126,
+		["41"] = 131,
+		["42"] = 132,
+		["45"] = 133,
+		["46"] = 134,
+		["47"] = 134,
+		["48"] = 134,
+		["49"] = 134,
+		["50"] = 134,
+		["51"] = 134,
+		["52"] = 131,
+		["53"] = 125,
+		["54"] = 118,
+		["55"] = 118,
+		["56"] = 118,
+		["57"] = 118,
+		["58"] = 118,
+		["59"] = 118,
+		["60"] = 118,
+		["61"] = 125,
+		["63"] = 125,
+		["64"] = 138,
+		["65"] = 145,
+		["66"] = 138,
+		["67"] = 145,
+		["69"] = 145,
+		["70"] = 147,
+		["71"] = 149,
+		["72"] = 138,
+		["73"] = 151,
+		["74"] = 152,
+		["75"] = 151,
+		["76"] = 159,
+		["77"] = 160,
+		["80"] = 161,
+		["83"] = 162,
+		["84"] = 164,
+		["85"] = 165,
+		["86"] = 166,
 		["87"] = 167,
-		["89"] = 167,
-		["90"] = 167,
-		["92"] = 167,
-		["93"] = 167,
-		["94"] = 167,
-		["95"] = 168,
-		["98"] = 170,
-		["99"] = 171,
-		["102"] = 172,
-		["103"] = 173,
-		["106"] = 174,
-		["107"] = 175,
-		["108"] = 176,
-		["109"] = 177,
-		["111"] = 178,
-		["112"] = 179,
-		["113"] = 179,
-		["115"] = 180,
-		["116"] = 181,
-		["117"] = 182,
-		["121"] = 186,
+		["90"] = 169,
+		["91"] = 170,
+		["94"] = 171,
+		["95"] = 172,
+		["96"] = 173,
+		["99"] = 174,
+		["102"] = 176,
+		["103"] = 177,
+		["104"] = 178,
+		["105"] = 179,
+		["106"] = 180,
+		["108"] = 181,
+		["109"] = 182,
+		["110"] = 182,
+		["112"] = 183,
+		["113"] = 183,
+		["115"] = 183,
+		["116"] = 184,
+		["117"] = 184,
+		["119"] = 185,
+		["120"] = 186,
+		["121"] = 187,
 		["122"] = 187,
-		["123"] = 139,
-		["124"] = 190,
-		["125"] = 191,
-		["128"] = 192,
-		["129"] = 193,
-		["130"] = 194,
-		["131"] = 195,
-		["132"] = 200,
-		["133"] = 190,
-		["134"] = 207,
-		["135"] = 208,
-		["138"] = 209,
-		["139"] = 210,
-		["142"] = 211,
-		["143"] = 207,
-		["144"] = 214,
-		["145"] = 215,
-		["146"] = 215,
-		["148"] = 214,
-		["149"] = 218,
-		["150"] = 219,
-		["153"] = 220,
-		["154"] = 221,
-		["155"] = 222,
-		["157"] = 224,
-		["158"] = 225,
-		["159"] = 226,
-		["160"] = 227,
-		["161"] = 228,
-		["162"] = 229,
-		["163"] = 218,
-		["164"] = 125,
-		["165"] = 118,
-		["166"] = 118,
-		["167"] = 118,
-		["168"] = 118,
-		["169"] = 118,
-		["170"] = 118,
-		["171"] = 118,
-		["172"] = 125,
-		["174"] = 125,
+		["127"] = 191,
+		["128"] = 191,
+		["129"] = 191,
+		["130"] = 191,
+		["132"] = 191,
+		["133"] = 191,
+		["135"] = 191,
+		["136"] = 191,
+		["137"] = 191,
+		["138"] = 192,
+		["141"] = 194,
+		["142"] = 195,
+		["145"] = 196,
+		["146"] = 197,
+		["149"] = 198,
+		["150"] = 199,
+		["151"] = 200,
+		["152"] = 201,
+		["154"] = 202,
+		["155"] = 203,
+		["156"] = 203,
+		["158"] = 204,
+		["159"] = 205,
+		["160"] = 206,
+		["164"] = 210,
+		["165"] = 211,
+		["166"] = 159,
+		["167"] = 214,
+		["168"] = 215,
+		["171"] = 216,
+		["174"] = 217,
+		["175"] = 218,
+		["176"] = 219,
+		["177"] = 220,
+		["178"] = 225,
+		["179"] = 214,
+		["180"] = 232,
+		["181"] = 233,
+		["184"] = 234,
+		["185"] = 235,
+		["188"] = 236,
+		["189"] = 232,
+		["190"] = 239,
+		["191"] = 240,
+		["192"] = 240,
+		["194"] = 239,
+		["195"] = 243,
+		["196"] = 244,
+		["199"] = 245,
+		["200"] = 246,
+		["201"] = 247,
+		["203"] = 249,
+		["204"] = 250,
+		["205"] = 251,
+		["206"] = 252,
+		["207"] = 253,
+		["208"] = 254,
+		["209"] = 243,
+		["210"] = 145,
+		["211"] = 138,
+		["212"] = 138,
+		["213"] = 138,
+		["214"] = 138,
+		["215"] = 138,
+		["216"] = 138,
+		["217"] = 138,
+		["218"] = 145,
+		["220"] = 145,
 	}
 )
 local l = {}
@@ -166,141 +201,15 @@ l.modifier_trait_185 = c()
 local t = l.modifier_trait_185
 t.name = "modifier_trait_185"
 d(t, q)
-function t.prototype.____constructor(self, ...)
-	q.prototype.____constructor(self, ...)
-	self.suppressedAbilities = {}
-	self.suppressedCardCount = 0
-end
 function t.prototype.EDeclareEvents(self)
-	return {
-		[EOMModifierEvents.MODIFIER_EVENT_ON_CONFIRM_BATTLE] = { -1, -1 },
-		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
-		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { -1, -1 },
-	}
+	return { [EOMModifierEvents.MODIFIER_EVENT_ON_TRAIT_INIT] = { self:GetParent(), -1 } }
 end
-function t.prototype.OnConfirmBattle(self, u)
-	if not IsServer() or u.isNeutral then
+function t.prototype.OnTraitInit(self, u)
+	if u.hero:IsCustomIllusion() then
 		return
 	end
-	self:RestoreEnemyAbilities()
-	local v = self:GetParent()
-	local w = v:GetPlayerOwnerID()
-	local x = PlayerData:getEnemyPlayerID(w)
-	if x == nil or x < 0 then
-		return
-	end
-	local y = PlayerData:getHero(x)
-	local z = PlayerData:getplayerData(x)
-	if not y or not z then
-		return
-	end
-	local A = AbilityShop:GetRecommendSectByHeroName(z.heroName)
-	local B = A == "sect_none" and {} or f(A, "|")
-	local C = y:getAbilityUpgradeData(true, true)
-	local D = {}
-	for E in pairs(C) do
-		do
-			local F = KeyValues.AbilityUpgradesKvs[E]
-			local G = C[E]
-			local H = G and G.level or 0
-			local I
-			if F ~= nil then
-				I = F.rarity
-			end
-			local J = I
-			if not F or H <= 0 or J ~= "n" and J ~= "r" or type(F.sect) ~= "string" then
-				goto K
-			end
-			for L, M in ipairs(f(F.sect, "|")) do
-				D[M] = D[M] or {}
-				local N = D[M]
-				N[#N + 1] = E
-			end
-		end
-		::K::
-	end
-	local O = h(AbilityShop.pickList, function(L, M)
-		local P = not g(B, M)
-		if P then
-			local Q = D[M]
-			P = (Q and #Q or 0) > 0
-		end
-		return P
-	end)
-	if #O <= 0 then
-		return
-	end
-	local M = GetRandomElement(O)
-	if M == nil then
-		return
-	end
-	local R = D[M]
-	if not R then
-		return
-	end
-	self.suppressedEnemy = y
-	self.suppressedSect = M
-	self.suppressedCardCount = 0
-	for L, E in ipairs(R) do
-		do
-			local S = C[E]
-			if not S then
-				goto T
-			end
-			self.suppressedCardCount = self.suppressedCardCount + (S.level or 0)
-			self.suppressedAbilities[E] = deepcopy(S)
-			i(C, E)
-		end
-		::T::
-	end
-	y:refreshAbility(true)
-	y:syncAbilityData()
-end
-function t.prototype.OnBattleStart(self)
-	if not IsServer() or not self.suppressedEnemy or not self.suppressedSect or self.suppressedCardCount <= 0 then
-		return
-	end
-	local w = self:GetParent():GetPlayerOwnerID()
-	local x = self.suppressedEnemy.playerID
-	local U = "DOTA_Tooltip_ability_" .. self.suppressedSect
-	Notification:combatToPlayer(
-		w,
-		{ message = "notify_trait_185", string_sect_name = U, int_count = self.suppressedCardCount }
-	)
-	Notification:combatToPlayer(
-		x,
-		{ message = "notify_trait_185_enemy", string_sect_name = U, int_count = self.suppressedCardCount }
-	)
-end
-function t.prototype.OnBattleEnd(self, u)
-	if not IsServer() then
-		return
-	end
-	local w = self:GetParent():GetPlayerOwnerID()
-	if u.winPlayerID ~= w and u.losePlayerID ~= w then
-		return
-	end
-	self:RestoreEnemyAbilities()
-end
-function t.prototype.OnDestroy(self)
-	if IsServer() then
-		self:RestoreEnemyAbilities()
-	end
-end
-function t.prototype.RestoreEnemyAbilities(self)
-	if not self.suppressedEnemy then
-		return
-	end
-	local C = self.suppressedEnemy:getAbilityUpgradeData(true, true)
-	for L, E in ipairs(j(self.suppressedAbilities)) do
-		C[E] = self.suppressedAbilities[E]
-	end
-	self.suppressedEnemy:refreshAbility(true)
-	self.suppressedEnemy:syncAbilityData()
-	self.suppressedEnemy = nil
-	self.suppressedAbilities = {}
-	self.suppressedSect = nil
-	self.suppressedCardCount = 0
+	u.hero:RemoveModifierByName("modifier_trait_185_buff")
+	u.hero:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_trait_185_buff", {})
 end
 t = e(
 	{ r(
@@ -310,4 +219,165 @@ t = e(
 	t
 )
 l.modifier_trait_185 = t
+l.modifier_trait_185_buff = c()
+local v = l.modifier_trait_185_buff
+v.name = "modifier_trait_185_buff"
+d(v, q)
+function v.prototype.____constructor(self, ...)
+	q.prototype.____constructor(self, ...)
+	self.suppressedAbilities = {}
+	self.suppressedCardCount = 0
+end
+function v.prototype.EDeclareEvents(self)
+	return {
+		[EOMModifierEvents.MODIFIER_EVENT_ON_CONFIRM_BATTLE] = { -1, -1 },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { -1, -1 },
+	}
+end
+function v.prototype.OnConfirmBattle(self, u)
+	if not IsServer() or u.isNeutral then
+		return
+	end
+	if self:GetParent():IsCustomIllusion() then
+		return
+	end
+	self:RestoreEnemyAbilities()
+	local w = self:GetParent()
+	local x = w:GetPlayerOwnerID()
+	local y = w:GetEnemy()
+	if not IsValid(y) or y:IsNeutral() then
+		return
+	end
+	local z = PlayerData:getEnemyPlayerID(x)
+	if z == nil or z < 0 then
+		return
+	end
+	local A = PlayerData:getHero(z)
+	local B = PlayerData:getplayerData(z)
+	if not A or not B then
+		return
+	end
+	if A:isIllusion(y) or y:IsCustomIllusion() then
+		return
+	end
+	local C = AbilityShop:GetRecommendSectByHeroName(B.heroName)
+	local D = C == "sect_none" and {} or f(C, "|")
+	local E = A:getAbilityUpgradeData(true, true)
+	local F = {}
+	for G in pairs(E) do
+		do
+			local H = KeyValues.AbilityUpgradesKvs[G]
+			local I = E[G]
+			local J = I and I.level or 0
+			local K
+			if H ~= nil then
+				K = H.rarity
+			end
+			local L = K
+			if not H or J <= 0 or L ~= "n" and L ~= "r" or type(H.sect) ~= "string" then
+				goto M
+			end
+			for N, O in ipairs(f(H.sect, "|")) do
+				F[O] = F[O] or {}
+				local P = F[O]
+				P[#P + 1] = G
+			end
+		end
+		::M::
+	end
+	local Q = h(AbilityShop.pickList, function(N, O)
+		local R = not g(D, O)
+		if R then
+			local S = F[O]
+			R = (S and #S or 0) > 0
+		end
+		return R
+	end)
+	if #Q <= 0 then
+		return
+	end
+	local O = GetRandomElement(Q)
+	if O == nil then
+		return
+	end
+	local T = F[O]
+	if not T then
+		return
+	end
+	self.suppressedEnemy = A
+	self.suppressedSect = O
+	self.suppressedCardCount = 0
+	for N, G in ipairs(T) do
+		do
+			local U = E[G]
+			if not U then
+				goto V
+			end
+			self.suppressedCardCount = self.suppressedCardCount + (U.level or 0)
+			self.suppressedAbilities[G] = deepcopy(U)
+			i(E, G)
+		end
+		::V::
+	end
+	A:refreshAbility(true)
+	A:syncAbilityData()
+end
+function v.prototype.OnBattleStart(self)
+	if not IsServer() or self:GetParent():IsCustomIllusion() then
+		return
+	end
+	if not self.suppressedEnemy or not self.suppressedSect or self.suppressedCardCount <= 0 then
+		return
+	end
+	local x = self:GetParent():GetPlayerOwnerID()
+	local z = self.suppressedEnemy.playerID
+	local W = "DOTA_Tooltip_ability_" .. self.suppressedSect
+	Notification:combatToPlayer(
+		x,
+		{ message = "notify_trait_185", string_sect_name = W, int_count = self.suppressedCardCount }
+	)
+	Notification:combatToPlayer(
+		z,
+		{ message = "notify_trait_185_enemy", string_sect_name = W, int_count = self.suppressedCardCount }
+	)
+end
+function v.prototype.OnBattleEnd(self, u)
+	if not IsServer() then
+		return
+	end
+	local x = self:GetParent():GetPlayerOwnerID()
+	if u.winPlayerID ~= x and u.losePlayerID ~= x then
+		return
+	end
+	self:RestoreEnemyAbilities()
+end
+function v.prototype.OnDestroy(self)
+	if IsServer() then
+		self:RestoreEnemyAbilities()
+	end
+end
+function v.prototype.RestoreEnemyAbilities(self)
+	if not self.suppressedEnemy then
+		return
+	end
+	local E = self.suppressedEnemy:getAbilityUpgradeData(true, true)
+	for N, G in ipairs(j(self.suppressedAbilities)) do
+		E[G] = self.suppressedAbilities[G]
+	end
+	self.suppressedEnemy:refreshAbility(true)
+	self.suppressedEnemy:syncAbilityData()
+	self.suppressedEnemy = nil
+	self.suppressedAbilities = {}
+	self.suppressedSect = nil
+	self.suppressedCardCount = 0
+end
+v = e(
+	{ r(
+		a,
+		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
+	) },
+	v
+)
+l.modifier_trait_185_buff = v
 return l

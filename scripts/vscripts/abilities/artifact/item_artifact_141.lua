@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -55,58 +55,58 @@ j(
 		["46"] = 24,
 		["49"] = 25,
 		["50"] = 26,
-		["51"] = 26,
-		["52"] = 26,
-		["53"] = 26,
-		["54"] = 26,
-		["55"] = 26,
-		["56"] = 26,
-		["57"] = 26,
-		["58"] = 31,
-		["59"] = 32,
-		["60"] = 33,
-		["63"] = 36,
-		["64"] = 37,
-		["65"] = 38,
-		["66"] = 38,
-		["67"] = 39,
-		["68"] = 39,
-		["70"] = 40,
-		["71"] = 40,
-		["72"] = 40,
-		["73"] = 40,
-		["74"] = 41,
-		["75"] = 42,
-		["76"] = 43,
-		["77"] = 44,
-		["80"] = 47,
-		["81"] = 48,
-		["82"] = 49,
-		["83"] = 50,
-		["84"] = 50,
-		["85"] = 50,
-		["86"] = 50,
-		["87"] = 50,
-		["88"] = 50,
-		["89"] = 50,
-		["90"] = 50,
-		["93"] = 57,
+		["51"] = 27,
+		["54"] = 30,
+		["55"] = 31,
+		["56"] = 32,
+		["57"] = 32,
+		["58"] = 33,
+		["59"] = 33,
+		["61"] = 34,
+		["62"] = 34,
+		["63"] = 34,
+		["64"] = 34,
+		["65"] = 35,
+		["66"] = 36,
+		["67"] = 37,
+		["68"] = 38,
+		["71"] = 41,
+		["72"] = 42,
+		["73"] = 43,
+		["74"] = 44,
+		["75"] = 45,
+		["76"] = 45,
+		["77"] = 45,
+		["78"] = 45,
+		["79"] = 45,
+		["80"] = 45,
+		["81"] = 45,
+		["82"] = 45,
+		["85"] = 52,
+		["86"] = 53,
+		["87"] = 53,
+		["88"] = 53,
+		["89"] = 53,
+		["90"] = 53,
+		["91"] = 53,
+		["92"] = 53,
+		["93"] = 53,
 		["94"] = 58,
-		["95"] = 58,
-		["96"] = 58,
-		["97"] = 58,
-		["98"] = 58,
-		["99"] = 58,
-		["100"] = 58,
-		["101"] = 58,
-		["102"] = 63,
-		["103"] = 63,
-		["104"] = 63,
-		["105"] = 63,
-		["106"] = 63,
-		["107"] = 18,
-		["108"] = 8,
-		["109"] = 7,
+		["95"] = 59,
+		["96"] = 59,
+		["97"] = 59,
+		["98"] = 59,
+		["99"] = 59,
+		["100"] = 59,
+		["101"] = 59,
+		["102"] = 59,
+		["103"] = 64,
+		["104"] = 64,
+		["105"] = 64,
+		["106"] = 64,
+		["107"] = 64,
+		["108"] = 18,
+		["109"] = 8,
 		["110"] = 7,
 		["111"] = 7,
 		["112"] = 7,
@@ -114,8 +114,9 @@ j(
 		["114"] = 7,
 		["115"] = 7,
 		["116"] = 7,
-		["117"] = 8,
-		["119"] = 8,
+		["117"] = 7,
+		["118"] = 8,
+		["120"] = 8,
 	}
 )
 local k = {}
@@ -153,15 +154,6 @@ function s.prototype.OnBattleEnd(self, t)
 	if not v then
 		return
 	end
-	PlayerData:modifyGold(t.winPlayerID, self.gold)
-	Notification:combatToPlayer(
-		t.winPlayerID,
-		{
-			message = "notify_bonus_gold",
-			string_itemname_artifact = "DOTA_Tooltip_ability_" .. v:GetAbilityName(),
-			int_gold = self.gold,
-		}
-	)
 	local w = PlayerData:getHero(t.winPlayerID)
 	local x = PlayerData:getHero(u)
 	if not w or not x then
@@ -185,17 +177,27 @@ function s.prototype.OnBattleEnd(self, t)
 	end
 	local I = GetRandomElement(F)
 	if not I or x:getAbilityUpgradeLevel(I) >= 5 then
-		PlayerData:modifyGold(u, self.gold)
+		local J = 100
+		PlayerData:modifyGold(u, J)
 		Notification:combatToPlayer(
 			u,
 			{
 				message = "notify_bonus_gold",
 				string_itemname_artifact = "DOTA_Tooltip_ability_" .. v:GetAbilityName(),
-				int_gold = self.gold,
+				int_gold = J,
 			}
 		)
 		return
 	end
+	PlayerData:modifyGold(t.winPlayerID, self.gold)
+	Notification:combatToPlayer(
+		t.winPlayerID,
+		{
+			message = "notify_bonus_gold",
+			string_itemname_artifact = "DOTA_Tooltip_ability_" .. v:GetAbilityName(),
+			int_gold = self.gold,
+		}
+	)
 	x:learnAbility(I, true)
 	Notification:combatToPlayer(
 		u,

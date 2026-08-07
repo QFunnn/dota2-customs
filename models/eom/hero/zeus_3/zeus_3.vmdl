@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -60,6 +60,51 @@
 						parent_bone = "Bip001_L_Hand"
 						relative_origin = [ 8.399998, 0.000008, 0.0 ]
 						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_backpack"
+						ignore_rotation = false
+						parent_bone = "Bone021_mirrored_"
+						relative_origin = [ 6.0, -0.000008, -0.000008 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_backpack1"
+						ignore_rotation = false
+						parent_bone = "Bone021"
+						relative_origin = [ 6.0, 0.0, -0.000008 ]
+						relative_angles = [ -0.000001, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_backpack2"
+						ignore_rotation = false
+						parent_bone = "Bone008"
+						relative_origin = [ 6.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_backpack3"
+						ignore_rotation = false
+						parent_bone = "Bone008"
+						relative_origin = [ 6.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attack_backpack4"
+						ignore_rotation = false
+						parent_bone = "Bip001_Spine2"
+						relative_origin = [ 15.0, -15.735249, 0.000015 ]
+						relative_angles = [ -0.000004, 24.599991, 0.000003 ]
 						weight = 1.0
 					},
 				]
@@ -172,6 +217,43 @@
 						hidden = false
 						activity_name = "ACT_DOTA_IDLE"
 						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+								event_frame = 264
+								event_keys = 
+								{
+									name = resource:"models/eom/hero/zeus_3/particles/zeus_3_idle_fx1.vpcf"
+									detach_from_owner = false
+									always_run = false
+									aggregate = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									config = "preview"
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+								event_frame = 345
+								event_keys = 
+								{
+									name = resource:"models/eom/hero/zeus_3/particles/zeus_3_idle_fx2.vpcf"
+									detach_from_owner = false
+									always_run = false
+									aggregate = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									config = "preview"
+								}
+							},
+						]
 					},
 					{
 						_class = "AnimFile"

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -3580,6 +3580,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			},
 			"attackspeed_reduce": 20,
 			"state_resistance": 4,
+			"max_stack": 6,
 		},
 	},
 	"tiny_ult": {
@@ -4475,9 +4476,9 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			},
 			"silent_chance": 30,
 			"silent_duration": 1,
-			"reply_pct": 50,
+			"reply_pct": 100,
 			"reply_max": {
-				"value": 100,
+				"value": 50,
 				"bloodseeker_talent_2": "heal_limit_bonus",
 				"bloodseeker_talent_5": "limit_bonus",
 			},
@@ -14813,6 +14814,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityTextureName": "rune_reward",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"Round": 1,
+		"CustomGainGold": 150,
 		"CustomRefresh": 5,
 		"AppearCondition": "hero,monkey_king",
 		"Type": 2,
@@ -16053,7 +16055,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"Hero": "bloodseeker",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/bloodseeker",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",

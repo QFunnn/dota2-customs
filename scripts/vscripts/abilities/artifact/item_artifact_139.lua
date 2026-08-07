@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -51,18 +51,30 @@ f(
 		["42"] = 19,
 		["45"] = 20,
 		["46"] = 21,
-		["47"] = 16,
-		["48"] = 8,
-		["49"] = 7,
-		["50"] = 7,
-		["51"] = 7,
-		["52"] = 7,
-		["53"] = 7,
-		["54"] = 7,
-		["55"] = 7,
-		["56"] = 7,
-		["57"] = 8,
-		["59"] = 8,
+		["47"] = 22,
+		["48"] = 22,
+		["49"] = 22,
+		["50"] = 22,
+		["51"] = 22,
+		["52"] = 23,
+		["53"] = 23,
+		["54"] = 23,
+		["55"] = 23,
+		["56"] = 23,
+		["57"] = 23,
+		["58"] = 23,
+		["59"] = 16,
+		["60"] = 8,
+		["61"] = 7,
+		["62"] = 7,
+		["63"] = 7,
+		["64"] = 7,
+		["65"] = 7,
+		["66"] = 7,
+		["67"] = 7,
+		["68"] = 7,
+		["69"] = 8,
+		["71"] = 8,
 	}
 )
 local g = {}
@@ -105,8 +117,11 @@ function o.prototype.OnBattleEnd(self, p)
 	if q == nil then
 		return
 	end
-	PlayerData:modifyHealth(q, -self.health, true)
 	PlayerData:modifyHealth(p.winPlayerID, self.health, true)
+	local r = self:GetParent()
+	PlayerData:getplayerData(p.winPlayerID)
+		:modifyArtifactExtraData(self:GetAbility():entindex(), "bonus_health", self.health)
+	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, r, self.health, r:GetPlayerOwner())
 end
 o = e(
 	{

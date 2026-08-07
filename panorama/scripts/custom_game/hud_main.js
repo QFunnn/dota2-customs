@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -8299,7 +8299,7 @@ const CosmeticBottomLayout = () => {
                                     },
                                     onactivate: () => {
                                       setSelectedOid(cosmeticTag(), oid());
-                                      if (hid() != -1) {
+                                      if (!isLock(oid()) && hid() != -1) {
                                         callAction('ornament_equip', {
                                           hid: hid(),
                                           oid: oid(),
