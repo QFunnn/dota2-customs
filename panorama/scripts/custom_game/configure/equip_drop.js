@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -134,7 +134,7 @@ GameUI.CustomUIConfig().equip_drop = {
 		diff: 13,
 		round: 1,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:78|3:227|4:162|5:89|6:15|7:3",
+		equip_rarity: "1:0|2:9|3:16|4:83|5:82|6:18|7:28",
 		chance: 100,
 		drop_base: 170,
 		drop_num: 2.4
@@ -144,7 +144,7 @@ GameUI.CustomUIConfig().equip_drop = {
 		diff: 14,
 		round: 1,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:78|3:242|4:173|5:95|6:17|7:4",
+		equip_rarity: "1:0|2:9|3:15|4:80|5:80|6:20|7:32",
 		chance: 100,
 		drop_base: 175,
 		drop_num: 2.5
@@ -734,20 +734,20 @@ GameUI.CustomUIConfig().equip_drop = {
 		diff: 13,
 		round: 2,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:75|3:219|4:157|5:86|6:30|7:7",
+		equip_rarity: "1:0|2:8|3:13|4:65|5:65|6:36|7:49",
 		chance: 100,
 		drop_base: 210,
-		drop_num: 2.4
+		drop_num: 2.85
 	},
 	"74": {
 		id: 74,
 		diff: 14,
 		round: 2,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:76|3:233|4:166|5:92|6:34|7:8",
+		equip_rarity: "1:0|2:7|3:12|4:63|5:62|6:39|7:53",
 		chance: 100,
 		drop_base: 215,
-		drop_num: 2.5
+		drop_num: 2.95
 	},
 	"75": {
 		id: 75,
@@ -1334,7 +1334,7 @@ GameUI.CustomUIConfig().equip_drop = {
 		diff: 13,
 		round: 3,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:70|3:204|4:146|5:80|6:60|7:14",
+		equip_rarity: "1:0|2:5|3:8|4:33|5:33|6:66|7:91",
 		chance: 100,
 		drop_base: 220,
 		drop_num: 3.4
@@ -1344,7 +1344,7 @@ GameUI.CustomUIConfig().equip_drop = {
 		diff: 14,
 		round: 3,
 		drop_pool: "BOSS",
-		equip_rarity: "1:100|2:70|3:216|4:154|5:85|6:68|7:16",
+		equip_rarity: "1:0|2:4|3:8|4:30|5:30|6:69|7:95",
 		chance: 100,
 		drop_base: 225,
 		drop_num: 3.5
@@ -1809,4 +1809,4 @@ GameUI.CustomUIConfig().equip_drop = {
 		drop_base: 100,
 		drop_num: 1
 	}
-};
+};

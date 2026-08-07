@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -22,6 +22,7 @@ var RecycleView = require('./RecycleView.js');
 var server_dungeon_key = require('./server_dungeon_key.js');
 require('./EOM_Countdown.js');
 require('./equipment_utils.js');
+require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 
 const HERO_OFFSET_Y$1 = -50;

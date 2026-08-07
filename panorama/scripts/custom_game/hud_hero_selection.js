@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -37,7 +37,7 @@ const HeroSelection = () => {
   }, playerID);
   const hero_selection = solid_utils.createPlayerNetDataSignal("common", "hero_selection");
   const playerAccountLevel = service_netdata_helper.usePlayerAccountLevel("hero_level");
-  const heroNames = Object.keys(KeyValues.heroes);
+  const heroNames = Object.keys(KeyValues.heroes).sort((a, b) => (KeyValues.heroes[b].SortOrder ?? 0) - (KeyValues.heroes[a].SortOrder ?? 0));
   const [previewHeroName, setPreviewHeroName] = libs.createSignal(heroNames[0]);
   libs.createEffect(libs.on(player_key_values, () => {
     const lastSelectedHero = GetPlayerConfig("select_hero");
@@ -314,6 +314,7 @@ const HeroSelection = () => {
             return index() == 0 ? "0px" : "26px";
           },
           onactivate: () => {
+            GameUI.CustomUIConfig().PlayerTypeReport(`hero_selection|card|${heroName}`);
             setPreviewHeroName(heroName);
           }
         });

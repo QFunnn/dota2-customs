@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13,12 +13,13 @@
 var libs = require('./libs.js');
 var equip_details = require('./equip_details.js');
 var equipment_utils = require('./equipment_utils.js');
-var server_equipment = require('./server_equipment.js');
 require('./EOM_Loading.js');
 require('./solid_utils.js');
 require('./attribute_formatter.js');
+require('./server_equipment.js');
 require('./drawing_attr_row.js');
 require('./Player.js');
+require('./service_netdata_helper.js');
 require('./EOM_Button.js');
 require('./EOM_TextEntry.js');
 
@@ -157,7 +158,6 @@ function ServerGemDetail(props) {
       _el$8 = libs.createElement("Panel", {
         id: "Bottom"
       }, _el$);
-    libs.insert(_el$2, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(gemProps)), _el$3);
     libs.insert(_el$3, libs.createComponent(libs.Show, {
       get when() {
         return gemProps().main_entry_data.length > 0;

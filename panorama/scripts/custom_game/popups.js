@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1115,6 +1115,15 @@ const CHINESE_SOURCE_OPTIONS = [{
 }, {
   id: "zh_dota_daily_rhythm",
   localization: "#Community_Survey_Source_ZH_17"
+}, {
+  id: "zh_murong_ruolan",
+  localization: "#Community_Survey_Source_ZH_19"
+}, {
+  id: "zh_liu_dadu_dota2",
+  localization: "#Community_Survey_Source_ZH_20"
+}, {
+  id: "zh_xinsheng_dota2",
+  localization: "#Community_Survey_Source_ZH_21"
 }];
 const INTERNATIONAL_SOURCE_OPTIONS = [{
   id: "arcade_browse",
@@ -1324,8 +1333,10 @@ function Popup_CommunitySurvey(props) {
         },
         children: column => (() => {
           const _el$20 = libs.createElement("Panel", {
-            "class": "SurveyOptionColumn"
+            "class": "SurveyOptionColumn VerticalScrollStyle",
+            scroll: "y"
           }, null);
+          libs.setProp(_el$20, "scroll", "y");
           libs.insert(_el$20, libs.createComponent(libs.For, {
             each: column,
             children: option => libs.createComponent(EOM_Button.EOM_BaseButton, {
@@ -1458,17 +1469,23 @@ function Popup_CommunitySurvey(props) {
 
 Object.values(KeyValues.equip_class_setting).map(setting => setting.need_level);
 function Popup_EquipmentCapacityDialog(props) {
+  const capacityType = () => props.capacityType ?? "equipment";
   const capacityLimit = () => props.limit ?? 400;
   const playerCounters = solid_utils.createServiceNetData("player_counters", {});
-  const equipmentCount = () => playerCounters()?.equipment_count?.count ?? props.count ?? 0;
-  const isFull = () => props.full === true || props.full === 1 || equipmentCount() >= capacityLimit();
+  const capacityCount = () => playerCounters()?.[capacityType() === "gem" ? "gem_count" : "equipment_count"]?.count ?? props.count ?? 0;
+  const isFull = () => props.full === true || props.full === 1 || capacityCount() >= capacityLimit();
+  const title = () => capacityType() === "gem" ? GetLocalization(isFull() ? "#Equipment_GemCapacityTipTitle2" : "#Equipment_GemCapacityTipTitle") : GetLocalization(isFull() ? "#Equipment_EquipmentTipTitle2" : "#Equipment_EquipmentTipTitle");
+  const contentToken = () => capacityType() === "gem" ? "#Equipment_GemCapacityTipContent" : "#Equipment_EquipmentTipContent";
   const onConfirm = () => {
     ClosePopup(props.PopupID);
     if (isFull()) {
       JumpToMenu({
         window_name: "equipment",
         menu: "EquipmentTab_break",
-        force: true
+        force: true,
+        data: {
+          itemTab: capacityType()
+        }
       });
     }
   };
@@ -1481,7 +1498,7 @@ function Popup_EquipmentCapacityDialog(props) {
       return props.group;
     },
     get title() {
-      return GetLocalization(isFull() ? "#Equipment_EquipmentTipTitle2" : "#Equipment_EquipmentTipTitle");
+      return title();
     },
     size: "normal",
     get children() {
@@ -1492,8 +1509,8 @@ function Popup_EquipmentCapacityDialog(props) {
         _el$2 = libs.createElement("Label", {
           id: "CapacityTipContent",
           get text() {
-            return LocalizeWithVars("#Equipment_EquipmentTipContent", {
-              count: equipmentCount(),
+            return LocalizeWithVars(contentToken(), {
+              count: capacityCount(),
               limit: capacityLimit()
             });
           },
@@ -1511,8 +1528,8 @@ function Popup_EquipmentCapacityDialog(props) {
         },
         onactivate: onConfirm
       }));
-      libs.effect(_$p => libs.setProp(_el$2, "text", LocalizeWithVars("#Equipment_EquipmentTipContent", {
-        count: equipmentCount(),
+      libs.effect(_$p => libs.setProp(_el$2, "text", LocalizeWithVars(contentToken(), {
+        count: capacityCount(),
         limit: capacityLimit()
       }), _$p));
       return _el$;
@@ -2201,12 +2218,18 @@ function Popup_ReviveCoinDialog(props) {
   const sendChoice = use => {
     if (resolved) return;
     resolved = true;
+    if (use === 1) {
+      GameUI.CustomUIConfig().ReportClick("revive_coin", "dialog|use");
+    }
     GameEvents.SendCustomGameEventToServer("revive_coin_choice", {
       use,
       requestId: props.requestId
     });
     ClosePopup(props.PopupID);
   };
+  libs.onMount(() => {
+    GameUI.CustomUIConfig().ReportClick("revive_coin", "dialog|show");
+  });
   libs.createEffect(() => {
     const timer = setInterval(() => {
       const r = remaining() - 1;

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -543,6 +543,7 @@ return {
 		"models/eom/enemy/boss_axe/boss_axe.vmdl",
 		"models/eom/enemy/boss_bloodseeker/boss_bloodseeker.vmdl",
 		"models/eom/enemy/boss_earth_shaker/boss_earth_shaker.vmdl",
+		"models/eom/enemy/boss_golem/boss_golem.vmdl",
 		"models/eom/enemy/boss_grimstroke/boss_grimstroke.vmdl",
 		"models/eom/enemy/boss_jakiro/boss_jakiro.vmdl",
 		"models/eom/enemy/boss_lion/boss_lion.vmdl",

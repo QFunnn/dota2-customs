@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -111,6 +111,7 @@ GameUI.CustomUIConfig().npc_heroes_custom = {
 		"Name": "索尔莎",
 		"NickName": "日蚀女巫",
 		"IsHero": 1,
+		"SortOrder": 1,
 		"DisableWearables": 1,
 		"BaseClass": "npc_dota_hero",
 		"HeroID": 226,

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -172,6 +172,12 @@ const CAPACITY_TIP_CONFIG = [{
   title: "#Equipment_EquipmentTipTitle",
   fullTitle: "#Equipment_EquipmentTipTitle2",
   content: "#Equipment_EquipmentTipContent"
+}, {
+  type: "gem",
+  counterKey: "gem_count",
+  title: "#Equipment_GemCapacityTipTitle",
+  fullTitle: "#Equipment_GemCapacityTipTitle2",
+  content: "#Equipment_GemCapacityTipContent"
 }, {
   type: "drawing",
   counterKey: "drawing_count",

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -61,23 +61,22 @@ function Spawn(self, d)
 	table.insert(l, m)
 	local n = table.insert
 	local o = l
-	local p = camera
-	local q = k.PortraitPosition
-	local r = k.PortraitAngles
-	local s = k.PortraitFOV
-	local t = k.PortraitFar
-	if t == nil then
-		t = f.cameras.default.PortraitFar
+	local p = k.PortraitPosition
+	local q = k.PortraitAngles
+	local r = k.PortraitFOV
+	local s = k.PortraitFar
+	if s == nil then
+		s = f.cameras.default.PortraitFar
 	end
 	n(
 		o,
 		{
 			classname = "point_camera",
-			targetname = p,
-			origin = q,
-			angles = r,
-			fov = s,
-			ZFar = t,
+			targetname = camera,
+			origin = p,
+			angles = q,
+			fov = r,
+			ZFar = s,
 			ZNear = 4,
 			UseScreenAspectRatio = 0,
 			aspectRatio = 0,
@@ -96,95 +95,95 @@ function Spawn(self, d)
 			dac_dof_tilt_to_ground = 0.75,
 		}
 	)
-	local u = StringToVector
-	local v = h.PortraitSpecularDirection
-	if v == nil then
-		v = f.PortraitSpecularDirection
+	local t = StringToVector
+	local u = h.PortraitSpecularDirection
+	if u == nil then
+		u = f.PortraitSpecularDirection
 	end
-	local w = u(v) or vec3_zero
-	local x = VectorToAngles(w)
-	local y = StringToVector
-	local z = h.PortraitAmbientDirection
-	if z == nil then
-		z = f.PortraitAmbientDirection
+	local v = t(u) or vec3_zero
+	local w = VectorToAngles(v)
+	local x = StringToVector
+	local y = h.PortraitAmbientDirection
+	if y == nil then
+		y = f.PortraitAmbientDirection
 	end
-	local A = y(z) or vec3_zero
-	local B = VectorToAngles(A)
-	local C = table.insert
-	local D = l
-	local E = h.PortraitLightPosition
+	local z = x(y) or vec3_zero
+	local A = VectorToAngles(z)
+	local B = table.insert
+	local C = l
+	local D = h.PortraitLightPosition
+	if D == nil then
+		D = f.PortraitLightPosition
+	end
+	local E = h.PortraitLightAngles
 	if E == nil then
-		E = f.PortraitLightPosition
+		E = f.PortraitLightAngles
 	end
-	local F = h.PortraitLightAngles
+	local F = h.PortraitLightFOV
 	if F == nil then
-		F = f.PortraitLightAngles
+		F = f.PortraitLightFOV
 	end
-	local G = h.PortraitLightFOV
+	local G = h.PortraitLightDistance
 	if G == nil then
-		G = f.PortraitLightFOV
+		G = f.PortraitLightDistance
 	end
-	local H = h.PortraitLightDistance
+	local H = h.PortraitLightColor
 	if H == nil then
-		H = f.PortraitLightDistance
+		H = f.PortraitLightColor
 	end
-	local I = h.PortraitLightColor
+	local I = h.PortraitShadowColor
 	if I == nil then
-		I = f.PortraitLightColor
+		I = f.PortraitShadowColor
 	end
-	local J = h.PortraitShadowColor
+	local J = h.PortraitShadowScale
 	if J == nil then
-		J = f.PortraitShadowColor
+		J = f.PortraitShadowScale
 	end
-	local K = h.PortraitShadowScale
+	local K = h.PortraitAmbientColor
 	if K == nil then
-		K = f.PortraitShadowScale
+		K = f.PortraitAmbientColor
 	end
-	local L = h.PortraitAmbientColor
+	local L = h.PortraitAmbientScale
 	if L == nil then
-		L = f.PortraitAmbientColor
+		L = f.PortraitAmbientScale
 	end
-	local M = h.PortraitAmbientScale
+	local M = h.PortraitSpecularColor
 	if M == nil then
-		M = f.PortraitAmbientScale
+		M = f.PortraitSpecularColor
 	end
-	local N = h.PortraitSpecularColor
+	local N = h.PortraitSpecularPower
 	if N == nil then
-		N = f.PortraitSpecularColor
+		N = f.PortraitSpecularPower
 	end
-	local O = h.PortraitSpecularPower
-	if O == nil then
-		O = f.PortraitSpecularPower
+	local O = w
+	local P = h.PortraitLightScale
+	if P == nil then
+		P = f.PortraitLightScale
 	end
-	local P = x
-	local Q = h.PortraitLightScale
+	local Q = h.PortraitGroundShadowScale
 	if Q == nil then
-		Q = f.PortraitLightScale
+		Q = f.PortraitGroundShadowScale
 	end
-	local R = h.PortraitGroundShadowScale
-	if R == nil then
-		R = f.PortraitGroundShadowScale
-	end
-	C(
-		D,
+	B(
+		C,
 		{
 			classname = "env_global_light",
 			targetname = "portrait_light",
-			origin = E,
-			angles = F,
-			fov = G,
-			nearz = H,
-			Color = I,
-			ambientcolor2 = J,
-			ambientscale2 = K,
-			ambientcolor1 = L,
-			ambientscale1 = M,
-			specularcolor = N,
-			specularpower = O,
-			specularangles = P,
-			lightscale = Q,
-			groundscale = R,
-			ambientangles = B,
+			origin = D,
+			angles = E,
+			fov = F,
+			nearz = G,
+			Color = H,
+			ambientcolor2 = I,
+			ambientscale2 = J,
+			ambientcolor1 = K,
+			ambientscale1 = L,
+			specularcolor = M,
+			specularpower = N,
+			specularangles = O,
+			lightscale = P,
+			groundscale = Q,
+			ambientangles = A,
 		}
 	)
 	SpawnEntityListFromTableSynchronous(l)

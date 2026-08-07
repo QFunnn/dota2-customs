@@ -3,79 +3,83 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
 
 local a = "scene/courier"
 data = Client:GetSceneEntityData("courier")
-courierID = tostring(data and data.id or "")
+local b = tostring
+local c = data and data.id
+if c == nil then
+	c = ""
+end
+courierID = b(c)
 scale = toFiniteNumber(data and data.scale, 1)
 camera = "camera_1"
-function Spawn(self, b)
-	local c = KeyValues.units[courierID]
-	if c == nil then
+function Spawn(self, d)
+	local e = KeyValues.units[courierID]
+	if e == nil then
 		return
 	end
-	local d = c.Model
-	local e = KeyValues.portrait_full_body_loadout.default_courier
-	local f = KeyValues.portrait_full_body_loadout[d]
-	if f == nil then
-		f = e
-	end
-	local g = f
-	if g == nil then
-		return
-	end
-	local h = g.cameras[camera]
+	local f = e.Model
+	local g = KeyValues.portrait_full_body_loadout.default_courier
+	local h = KeyValues.portrait_full_body_loadout[f]
 	if h == nil then
-		h = g.cameras.default
+		h = g
 	end
 	local i = h
 	if i == nil then
-		i = g.cameras.Default
-	end
-	local j = i
-	if not j then
 		return
 	end
-	local k = {}
-	local l = {
+	local j = i.cameras[camera]
+	if j == nil then
+		j = i.cameras.default
+	end
+	local k = j
+	if k == nil then
+		k = i.cameras.Default
+	end
+	local l = k
+	if not l then
+		return
+	end
+	local m = {}
+	local n = {
 		parentname = "root",
 		targetname = "courier",
 		classname = "prop_dynamic",
 		origin = "0 0 0",
 		angles = "0 0 0",
 		scales = (((tostring(scale) .. " ") .. tostring(scale)) .. " ") .. tostring(scale),
-		model = d,
+		model = f,
 		rendertocubemaps = "1",
 		lightmapstatic = "1",
-		skin = tostring(c.Skin),
+		skin = tostring(e.Skin),
 		add_modifier = "",
 		StartingAnim = "ACT_DOTA_IDLE",
 		StartingAnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
 	}
-	table.insert(k, l)
-	local m = table.insert
-	local n = k
-	local o = camera
-	local p = j.PortraitPosition
-	local q = j.PortraitAngles
-	local r = j.PortraitFOV
-	local s = j.PortraitFar
-	if s == nil then
-		s = e.cameras.default.PortraitFar
+	table.insert(m, n)
+	local o = table.insert
+	local p = m
+	local q = l.PortraitPosition
+	local r = l.PortraitAngles
+	local s = l.PortraitFOV
+	local t = l.PortraitFar
+	if t == nil then
+		t = g.cameras.default.PortraitFar
 	end
-	m(
-		n,
+	o(
+		p,
 		{
 			classname = "point_camera",
-			targetname = o,
-			origin = p,
-			angles = q,
-			fov = r,
-			ZFar = s,
+			targetname = camera,
+			origin = q,
+			angles = r,
+			fov = s,
+			ZFar = t,
 			ZNear = 4,
 			UseScreenAspectRatio = 0,
 			aspectRatio = 0,
@@ -94,96 +98,96 @@ function Spawn(self, b)
 			dac_dof_tilt_to_ground = 0.75,
 		}
 	)
-	local t = StringToVector
-	local u = g.PortraitSpecularDirection
-	if u == nil then
-		u = e.PortraitSpecularDirection
+	local u = StringToVector
+	local v = i.PortraitSpecularDirection
+	if v == nil then
+		v = g.PortraitSpecularDirection
 	end
-	local v = t(u) or vec3_zero
-	local w = VectorToAngles(v)
-	local x = StringToVector
-	local y = g.PortraitAmbientDirection
-	if y == nil then
-		y = e.PortraitAmbientDirection
+	local w = u(v) or vec3_zero
+	local x = VectorToAngles(w)
+	local y = StringToVector
+	local z = i.PortraitAmbientDirection
+	if z == nil then
+		z = g.PortraitAmbientDirection
 	end
-	local z = x(y) or vec3_zero
-	local A = VectorToAngles(z)
-	local B = table.insert
-	local C = k
-	local D = g.PortraitLightPosition
-	if D == nil then
-		D = e.PortraitLightPosition
-	end
-	local E = g.PortraitLightAngles
+	local A = y(z) or vec3_zero
+	local B = VectorToAngles(A)
+	local C = table.insert
+	local D = m
+	local E = i.PortraitLightPosition
 	if E == nil then
-		E = e.PortraitLightAngles
+		E = g.PortraitLightPosition
 	end
-	local F = g.PortraitLightFOV
+	local F = i.PortraitLightAngles
 	if F == nil then
-		F = e.PortraitLightFOV
+		F = g.PortraitLightAngles
 	end
-	local G = g.PortraitLightDistance
+	local G = i.PortraitLightFOV
 	if G == nil then
-		G = e.PortraitLightDistance
+		G = g.PortraitLightFOV
 	end
-	local H = g.PortraitLightColor
+	local H = i.PortraitLightDistance
 	if H == nil then
-		H = e.PortraitLightColor
+		H = g.PortraitLightDistance
 	end
-	local I = g.PortraitShadowColor
+	local I = i.PortraitLightColor
 	if I == nil then
-		I = e.PortraitShadowColor
+		I = g.PortraitLightColor
 	end
-	local J = g.PortraitShadowScale
+	local J = i.PortraitShadowColor
 	if J == nil then
-		J = e.PortraitShadowScale
+		J = g.PortraitShadowColor
 	end
-	local K = g.PortraitAmbientColor
+	local K = i.PortraitShadowScale
 	if K == nil then
-		K = e.PortraitAmbientColor
+		K = g.PortraitShadowScale
 	end
-	local L = g.PortraitAmbientScale
+	local L = i.PortraitAmbientColor
 	if L == nil then
-		L = e.PortraitAmbientScale
+		L = g.PortraitAmbientColor
 	end
-	local M = g.PortraitSpecularColor
+	local M = i.PortraitAmbientScale
 	if M == nil then
-		M = e.PortraitSpecularColor
+		M = g.PortraitAmbientScale
 	end
-	local N = g.PortraitSpecularPower
+	local N = i.PortraitSpecularColor
 	if N == nil then
-		N = e.PortraitSpecularPower
+		N = g.PortraitSpecularColor
 	end
-	local O = w
-	local P = g.PortraitLightScale
-	if P == nil then
-		P = e.PortraitLightScale
+	local O = i.PortraitSpecularPower
+	if O == nil then
+		O = g.PortraitSpecularPower
 	end
-	local Q = g.PortraitGroundShadowScale
+	local P = x
+	local Q = i.PortraitLightScale
 	if Q == nil then
-		Q = e.PortraitGroundShadowScale
+		Q = g.PortraitLightScale
 	end
-	B(
-		C,
+	local R = i.PortraitGroundShadowScale
+	if R == nil then
+		R = g.PortraitGroundShadowScale
+	end
+	C(
+		D,
 		{
 			classname = "env_global_light",
 			targetname = "portrait_light",
-			origin = D,
-			angles = E,
-			fov = F,
-			nearz = G,
-			Color = H,
-			ambientcolor2 = I,
-			ambientscale2 = J,
-			ambientcolor1 = K,
-			ambientscale1 = L,
-			specularcolor = M,
-			specularpower = N,
-			specularangles = O,
-			lightscale = P,
-			groundscale = Q,
-			ambientangles = A,
+			origin = E,
+			angles = F,
+			fov = G,
+			nearz = H,
+			Color = I,
+			ambientcolor2 = J,
+			ambientscale2 = K,
+			ambientcolor1 = L,
+			ambientscale1 = M,
+			specularcolor = N,
+			specularpower = O,
+			specularangles = P,
+			lightscale = Q,
+			groundscale = R,
+			ambientangles = B,
 		}
 	)
-	SpawnEntityListFromTableSynchronous(k)
+	SpawnEntityListFromTableSynchronous(m)
 end

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -18,68 +18,72 @@ if e == nil then
 	e = ""
 end
 unitName = e
-camera = data and data.camera or "camera_1"
-function Spawn(self, f)
-	local g = KeyValues.units[unitName] ~= nil
-	local h = KeyValues.heroes[unitName] ~= nil
-	local i = KeyValues.units[unitName]
-	if i == nil then
-		i = KeyValues.heroes[unitName]
-	end
-	local j = i
+local f = data and data.camera
+if f == nil then
+	f = "camera_1"
+end
+camera = f
+function Spawn(self, g)
+	local h = KeyValues.units[unitName] ~= nil
+	local i = KeyValues.heroes[unitName] ~= nil
+	local j = KeyValues.units[unitName]
 	if j == nil then
+		j = KeyValues.heroes[unitName]
+	end
+	local k = j
+	if k == nil then
 		return
 	end
-	if g == false and h == false then
+	if h == false and i == false then
 		return
 	end
-	local k = KeyValues.portrait_full_body_loadout.default_entity_replacement
-	local l = KeyValues.portrait_full_body_loadout[unitName]
-	if l == nil then
-		l = k
-	end
-	local m = l
+	local l = KeyValues.portrait_full_body_loadout.default_entity_replacement
+	local m = KeyValues.portrait_full_body_loadout[unitName]
 	if m == nil then
+		m = l
+	end
+	local n = m
+	if n == nil then
 		return
 	end
-	local n = m.cameras[camera]
-	if n == nil then
-		n = m.cameras.default
-	end
-	local o = n
+	local o = n.cameras[camera]
 	if o == nil then
-		o = m.cameras.Default
+		o = n.cameras.default
 	end
 	local p = o
-	if not p then
+	if p == nil then
+		p = n.cameras.Default
+	end
+	local q = p
+	if not q then
 		return
 	end
-	if j.Model2D == nil and j.Model == nil then
+	if k.Model2D == nil and k.Model == nil then
 		return
 	end
-	local q = {}
-	local r = j.Model2D
-	if r == nil then
-		r = j.Model
+	local r = {}
+	local s = k.Model2D
+	if s == nil then
+		s = k.Model
 	end
-	local s = {
+	local t = {
 		parentname = "root",
 		classname = "prop_dynamic",
 		origin = "0 0 0",
 		angles = "0 0 0",
 		scales = "1 1 1",
-		model = r,
+		model = s,
 		StartingAnim = KeyValues.portrait_full_body_loadout.DefaultActivity,
 		add_modifier = "",
 	}
-	if g then
-		s = {
+	if h then
+		t = {
 			parentname = "root",
 			classname = "portrait_world_unit",
 			origin = "0 0 0",
 			angles = "0 0 0",
 			scales = "1 1 1",
-			model = j.Model,
+			model = k.Model,
 			EnableAutoStyles = 0,
 			suppress_intro_effects = 1,
 			spawn_background_models = 0,
@@ -108,60 +112,59 @@ function Spawn(self, f)
 			style_index7 = 0,
 			rendercolor = "255 255 255",
 		}
-		local t
-		if j ~= nil then
-			t = j.Creature
-		end
 		local u
-		if t ~= nil then
-			u = t.AttachWearables
+		if k ~= nil then
+			u = k.Creature
 		end
-		local v = u
-		if v ~= nil then
-			local w = c(v)
-			d(w, function(x, y, z)
-				local A = toFiniteNumber(y, 0)
+		local v
+		if u ~= nil then
+			v = u.AttachWearables
+		end
+		local w = v
+		if w ~= nil then
+			local x = c(w)
+			d(x, function(y, z, A)
 				local B = toFiniteNumber(z, 0)
-				return A - B
+				local C = toFiniteNumber(A, 0)
+				return B - C
 			end)
-			local C = 0
+			local D = 0
 			do
-				local D = 0
-				while D < #w do
+				local E = 0
+				while E < #x do
 					do
-						local E = v[w[D + 1]]
-						if E == nil then
-							goto F
+						local F = w[x[E + 1]]
+						if F == nil then
+							goto G
 						end
-						local G = E.ItemDef
-						if G == nil or G == "" then
-							goto F
+						local H = F.ItemDef
+						if H == nil or H == "" then
+							goto G
 						end
-						s["item_def" .. tostring(C)] = tostring(G)
-						C = C + 1
+						t["item_def" .. tostring(D)] = tostring(H)
+						D = D + 1
 					end
-					::F::
-					D = D + 1
+					::G::
+					E = E + 1
 				end
 			end
 		end
 	end
-	table.insert(q, s)
-	local H = table.insert
-	local I = q
-	local J = camera
-	local K = p.PortraitPosition
-	local L = p.PortraitAngles
-	local M = p.PortraitFOV
-	local N = p.PortraitFar
+	table.insert(r, t)
+	local I = table.insert
+	local J = r
+	local K = q.PortraitPosition
+	local L = q.PortraitAngles
+	local M = q.PortraitFOV
+	local N = q.PortraitFar
 	if N == nil then
-		N = k.cameras.default.PortraitFar
+		N = l.cameras.default.PortraitFar
 	end
-	H(
-		I,
+	I(
+		J,
 		{
 			classname = "point_camera",
-			targetname = J,
+			targetname = camera,
 			origin = K,
 			angles = L,
 			fov = M,
@@ -185,73 +188,73 @@ function Spawn(self, f)
 		}
 	)
 	local O = StringToVector
-	local P = m.PortraitSpecularDirection
+	local P = n.PortraitSpecularDirection
 	if P == nil then
-		P = k.PortraitSpecularDirection
+		P = l.PortraitSpecularDirection
 	end
 	local Q = O(P) or vec3_zero
 	local R = VectorToAngles(Q)
 	local S = StringToVector
-	local T = m.PortraitAmbientDirection
+	local T = n.PortraitAmbientDirection
 	if T == nil then
-		T = k.PortraitAmbientDirection
+		T = l.PortraitAmbientDirection
 	end
 	local U = S(T) or vec3_zero
 	local V = VectorToAngles(U)
 	local W = table.insert
-	local X = q
-	local Y = m.PortraitLightPosition
+	local X = r
+	local Y = n.PortraitLightPosition
 	if Y == nil then
-		Y = k.PortraitLightPosition
+		Y = l.PortraitLightPosition
 	end
-	local Z = m.PortraitLightAngles
+	local Z = n.PortraitLightAngles
 	if Z == nil then
-		Z = k.PortraitLightAngles
+		Z = l.PortraitLightAngles
 	end
-	local _ = m.PortraitLightFOV
+	local _ = n.PortraitLightFOV
 	if _ == nil then
-		_ = k.PortraitLightFOV
+		_ = l.PortraitLightFOV
 	end
-	local a0 = m.PortraitLightDistance
+	local a0 = n.PortraitLightDistance
 	if a0 == nil then
-		a0 = k.PortraitLightDistance
+		a0 = l.PortraitLightDistance
 	end
-	local a1 = m.PortraitLightColor
+	local a1 = n.PortraitLightColor
 	if a1 == nil then
-		a1 = k.PortraitLightColor
+		a1 = l.PortraitLightColor
 	end
-	local a2 = m.PortraitShadowColor
+	local a2 = n.PortraitShadowColor
 	if a2 == nil then
-		a2 = k.PortraitShadowColor
+		a2 = l.PortraitShadowColor
 	end
-	local a3 = m.PortraitShadowScale
+	local a3 = n.PortraitShadowScale
 	if a3 == nil then
-		a3 = k.PortraitShadowScale
+		a3 = l.PortraitShadowScale
 	end
-	local a4 = m.PortraitAmbientColor
+	local a4 = n.PortraitAmbientColor
 	if a4 == nil then
-		a4 = k.PortraitAmbientColor
+		a4 = l.PortraitAmbientColor
 	end
-	local a5 = m.PortraitAmbientScale
+	local a5 = n.PortraitAmbientScale
 	if a5 == nil then
-		a5 = k.PortraitAmbientScale
+		a5 = l.PortraitAmbientScale
 	end
-	local a6 = m.PortraitSpecularColor
+	local a6 = n.PortraitSpecularColor
 	if a6 == nil then
-		a6 = k.PortraitSpecularColor
+		a6 = l.PortraitSpecularColor
 	end
-	local a7 = m.PortraitSpecularPower
+	local a7 = n.PortraitSpecularPower
 	if a7 == nil then
-		a7 = k.PortraitSpecularPower
+		a7 = l.PortraitSpecularPower
 	end
 	local a8 = R
-	local a9 = m.PortraitLightScale
+	local a9 = n.PortraitLightScale
 	if a9 == nil then
-		a9 = k.PortraitLightScale
+		a9 = l.PortraitLightScale
 	end
-	local aa = m.PortraitGroundShadowScale
+	local aa = n.PortraitGroundShadowScale
 	if aa == nil then
-		aa = k.PortraitGroundShadowScale
+		aa = l.PortraitGroundShadowScale
 	end
 	W(
 		X,
@@ -275,5 +278,5 @@ function Spawn(self, f)
 			ambientangles = V,
 		}
 	)
-	SpawnEntityListFromTableSynchronous(q)
+	SpawnEntityListFromTableSynchronous(r)
 end

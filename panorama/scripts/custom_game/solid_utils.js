@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -110,7 +110,7 @@ function createDefaultedServiceAccessor(sharedData, defaultVar) {
     return value == undefined ? defaultVar : value;
   };
 }
-function createToggleWindowSignal(windowName, state) {
+function createToggleWindowSignal(windowName, state, options) {
   const [value, setter] = libs.createSignal(state ?? false);
   libs.onMount(() => {
     let id = useClientSideEvent("custom_ui_toggle_windows", eventData => {
@@ -120,7 +120,7 @@ function createToggleWindowSignal(windowName, state) {
         } else {
           setter(eventData.state == 1 || eventData.state === true);
         }
-      } else {
+      } else if (!options?.ignoreOtherWindows) {
         setter(false);
       }
     });

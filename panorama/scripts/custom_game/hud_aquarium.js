@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -12,13 +12,14 @@
 
 var libs = require('./libs.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
+var EOM_Loading = require('./EOM_Loading.js');
 var EOM_Button = require('./EOM_Button.js');
 var EOM_DropDown = require('./EOM_DropDown.js');
 var EOM_SearchBox = require('./EOM_SearchBox.js');
 var Player = require('./Player.js');
+var service_netdata_helper = require('./service_netdata_helper.js');
 var StoreItem = require('./StoreItem.js');
 var solid_utils = require('./solid_utils.js');
-require('./service_netdata_helper.js');
 require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
@@ -399,6 +400,17 @@ class AquariumFishPool {
 const PANEL_FALL_DOWN_DURATION = 0.85;
 const PANEL_FOLD_UP_DURATION = 0.38;
 const FISH_PRICE_TOKEN_ID = 110003;
+const DEFAULT_AVATAR_BORDER_ID = "1710000";
+const DEFAULT_PLAYER_FISH_DATA = {
+  aquarium_level: 0,
+  equipment_level: 0,
+  rod_level: 0,
+  fish_bait: 0,
+  fish_hooks: [],
+  fish_courier_ids: [],
+  times: 1,
+  auto_switch_tools: false
+};
 const aquariumRarityTabs = [{
   label: "#FishingBag_Filter_All",
   filter: "all"
@@ -433,6 +445,15 @@ const getFishLocalizedName = fishItemID => {
     return "";
   }
   return GetLocalization(`Normal_${fishItemID}`, "");
+};
+const getPlayerAvatarBorderID = cosmeticEquips => {
+  for (const equip of Object.values(cosmeticEquips ?? {})) {
+    const cosmeticID = String(equip.cosmetic_id);
+    if (KeyValues.info_item_cosmetic[cosmeticID]?.type == COSMETIC_TYPE.BORDER) {
+      return cosmeticID;
+    }
+  }
+  return DEFAULT_AVATAR_BORDER_ID;
 };
 const normalizeSearchKeyword = keyword => keyword.trim().toLowerCase();
 const getFishActualLengthValue = (fishItemID, weight) => {
@@ -482,24 +503,48 @@ const getAquariumSlotUpgradeCost = level => {
     amount
   };
 };
-const Aquarium = () => {
+const Aquarium = props => {
   const aquariumFishPool = new AquariumFishPool();
   const [sceneReady, setSceneReady] = libs.createSignal(false);
   const [playerIdleGameFishes, setPlayerIdleGameFishes] = libs.createSignal({});
+  const [playerIdleGameFishData, setPlayerIdleGameFishData] = libs.createSignal(DEFAULT_PLAYER_FISH_DATA);
   libs.createSignal(1);
   libs.createSignal(10);
   const player_tokens = solid_utils.createServiceNetData("player_tokens", {});
-  const player_idle_game_fish_data = solid_utils.createServiceNetData("player_idle_game_fish_data", {
-    aquarium_level: 0,
-    equipment_level: 0,
-    rod_level: 0,
-    fish_bait: 0,
-    fish_hooks: [],
-    fish_courier_ids: [],
-    times: 1,
-    auto_switch_tools: false
+  const localPlayerID = Players.GetLocalPlayer();
+  const localSteamID = libs.createMemo(() => service_netdata_helper.getPlayerSteamID({
+    playerID: localPlayerID
+  }));
+  const requestedSteamID = libs.createMemo(() => service_netdata_helper.getPlayerSteamID({
+    playerID: props.playerID,
+    steamID: props.steamID,
+    steam64ID: props.steam64ID
+  }));
+  const hasRequestedTarget = libs.createMemo(() => props.playerID != undefined || props.steamID != undefined || props.steam64ID != undefined);
+  const requestedPlayerID = libs.createMemo(() => {
+    const allPlayerIDs = Game.GetAllPlayerIDs();
+    if (props.playerID != undefined && allPlayerIDs.includes(props.playerID)) {
+      return props.playerID;
+    }
+    const steamID = requestedSteamID();
+    if (steamID == undefined) return undefined;
+    return allPlayerIDs.find(playerID => service_netdata_helper.getPlayerSteamID({
+      playerID
+    }) == steamID);
   });
-  const [selectedID, setSelectedID] = libs.createSignal(Players.GetLocalPlayer());
+  const initialSelectedID = requestedPlayerID() ?? (hasRequestedTarget() ? undefined : localPlayerID);
+  const [selectedID, setSelectedID] = libs.createSignal(initialSelectedID);
+  const selectedSteamID = libs.createMemo(() => {
+    const playerID = selectedID();
+    return playerID == undefined ? requestedSteamID() : service_netdata_helper.getPlayerSteamID({
+      playerID
+    });
+  });
+  const isRemoteVisit = libs.createMemo(() => selectedID() == undefined && selectedSteamID() != undefined);
+  const canManageAquarium = libs.createMemo(() => selectedID() == localPlayerID || selectedSteamID() != undefined && selectedSteamID() == localSteamID());
+  const remotePlayerInfo = service_netdata_helper.GetPlayerInfo({
+    steamID: () => isRemoteVisit() ? selectedSteamID() : undefined
+  });
   const [levelPanelState, setLevelPanelState] = libs.createSignal("showing");
   const [managerPanelState, setManagerPanelState] = libs.createSignal("hidden");
   const [managerSearchKeyword, setManagerSearchKeyword] = libs.createSignal("");
@@ -515,6 +560,13 @@ const Aquarium = () => {
       panelScheduleID = undefined;
     }
   };
+  let requestedTargetKey = "";
+  libs.createEffect(() => {
+    const nextTargetKey = `${hasRequestedTarget()}:${requestedPlayerID() ?? "remote"}:${requestedSteamID() ?? ""}`;
+    if (nextTargetKey == requestedTargetKey) return;
+    requestedTargetKey = nextTargetKey;
+    setSelectedID(requestedPlayerID() ?? (hasRequestedTarget() ? undefined : localPlayerID));
+  });
   const setPanelState = (panel, state) => {
     if (panel === "level") {
       setLevelPanelState(state);
@@ -523,6 +575,9 @@ const Aquarium = () => {
     setManagerPanelState(state);
   };
   const switchAquariumPanel = targetPanel => {
+    if (targetPanel == "manager" && !canManageAquarium()) {
+      return;
+    }
     Game.EmitSound("UI.ChainFallDown");
     const currentPanel = managerPanelState() !== "hidden" ? "manager" : "level";
     if (currentPanel === targetPanel || panelScheduleID !== undefined) {
@@ -539,7 +594,14 @@ const Aquarium = () => {
       });
     });
   };
+  libs.createEffect(() => {
+    if (canManageAquarium()) return;
+    cancelPanelSchedule();
+    setManagerPanelState("hidden");
+    setLevelPanelState("shown");
+  });
   const managerFishList = libs.createMemo(() => {
+    if (!canManageAquarium()) return [];
     const fishes = Object.values(playerIdleGameFishes());
     return fishes;
   });
@@ -566,7 +628,7 @@ const Aquarium = () => {
     }
     return count;
   });
-  const property_system = solid_utils.createPlayerPropertyData(selectedID);
+  const property_system = solid_utils.createPlayerPropertyData(() => selectedID() ?? localPlayerID);
   const aquariumSlotLimit = libs.createMemo(() => {
     return toFiniteNumber(Float(property_system().aquarium_slot), 0) + toFiniteNumber(CustomUIConfig.idle_game_setting.aquarium_slot.value);
   });
@@ -628,7 +690,6 @@ const Aquarium = () => {
     });
     return fishes;
   });
-  const canManageAquarium = libs.createMemo(() => selectedID() === Players.GetLocalPlayer());
   const managerRarityIndex = libs.createMemo(() => {
     const currentFilter = managerRarity();
     for (let i = 0; i < aquariumRarityTabs.length; i++) {
@@ -652,8 +713,11 @@ const Aquarium = () => {
     limit: String(aquariumSlotLimit()),
     total: String(managerFishList().length)
   }));
-  const aquariumUnlockSlotCost = libs.createMemo(() => getAquariumSlotUpgradeCost(player_idle_game_fish_data().aquarium_level));
+  const aquariumUnlockSlotCost = libs.createMemo(() => getAquariumSlotUpgradeCost(playerIdleGameFishData().aquarium_level));
   const canUnlockAquariumSlot = libs.createMemo(() => {
+    if (!canManageAquarium()) {
+      return false;
+    }
     const unlockCost = aquariumUnlockSlotCost();
     if (unlockCost === undefined) {
       return false;
@@ -674,16 +738,36 @@ const Aquarium = () => {
   };
   libs.createEffect(() => {
     const playerID = selectedID();
+    if (playerID == undefined) {
+      const steamID = selectedSteamID();
+      const playerInfoData = remotePlayerInfo.data();
+      if (steamID == undefined || playerInfoData?.steamID != steamID) {
+        setPlayerIdleGameFishes({});
+        setPlayerIdleGameFishData(DEFAULT_PLAYER_FISH_DATA);
+        return;
+      }
+      setPlayerIdleGameFishes(playerInfoData.player_idle_game_fishes ?? {});
+      setPlayerIdleGameFishData(playerInfoData.player_idle_game_fish_data ?? DEFAULT_PLAYER_FISH_DATA);
+      return;
+    }
     const updateIdleGameFishes = data => {
       const nextIdleGameFishes = data ?? {};
       setPlayerIdleGameFishes(nextIdleGameFishes);
     };
+    const updateIdleGameFishData = data => {
+      setPlayerIdleGameFishData(data ?? DEFAULT_PLAYER_FISH_DATA);
+    };
     updateIdleGameFishes(getServiceNetData("player_idle_game_fishes", playerID) ?? {});
-    const listenerID = useServiceNetData("player_idle_game_fishes", data => {
+    updateIdleGameFishData(getServiceNetData("player_idle_game_fish_data", playerID));
+    const fishesListenerID = useServiceNetData("player_idle_game_fishes", data => {
       updateIdleGameFishes(data ?? {});
     }, playerID);
+    const fishDataListenerID = useServiceNetData("player_idle_game_fish_data", data => {
+      updateIdleGameFishData(data);
+    }, playerID);
     libs.onCleanup(() => {
-      CustomNetTables.UnsubscribeNetTableListener(listenerID);
+      CustomNetTables.UnsubscribeNetTableListener(fishesListenerID);
+      CustomNetTables.UnsubscribeNetTableListener(fishDataListenerID);
     });
   });
   libs.createEffect(() => {
@@ -710,7 +794,11 @@ const Aquarium = () => {
   return (() => {
     const _el$ = libs.createElement("Panel", {
         id: "Aquarium",
-        "class": "AquariumRoot"
+        get ["class"]() {
+          return libs.classNames("AquariumRoot", {
+            ReadOnly: !canManageAquarium()
+          });
+        }
       }, null),
       _el$2 = libs.createElement("Panel", {
         id: "AquariumSceneBox"
@@ -828,21 +916,21 @@ const Aquarium = () => {
         return aquariumUnlockSlotCost();
       },
       children: cost => (() => {
-        const _el$35 = libs.createElement("Panel", {
+        const _el$39 = libs.createElement("Panel", {
             id: "AquariumUnlockSlotCost"
           }, null),
-          _el$36 = libs.createElement("Label", {
+          _el$40 = libs.createElement("Label", {
             get text() {
               return String(cost().amount);
             }
-          }, _el$35);
-        libs.insert(_el$35, libs.createComponent(Player.CurrencyIcon, {
+          }, _el$39);
+        libs.insert(_el$39, libs.createComponent(Player.CurrencyIcon, {
           get tokenID() {
             return cost().tokenID;
           }
-        }), _el$36);
-        libs.effect(_$p => libs.setProp(_el$36, "text", String(cost().amount), _$p));
-        return _el$35;
+        }), _el$40);
+        libs.effect(_$p => libs.setProp(_el$40, "text", String(cost().amount), _$p));
+        return _el$39;
       })()
     }), _el$12);
     libs.insert(_el$1, libs.createComponent(EOM_Button.EOM_Button, {
@@ -852,18 +940,27 @@ const Aquarium = () => {
       },
       size: "Small",
       text: "#Aquarium_UnlockSlot",
-      onactivate: self => CallAction("/v1/idle_game/levelup_aquarium", {
-        target_level: player_idle_game_fish_data().aquarium_level + 1
-      })
+      onactivate: () => {
+        if (!canManageAquarium()) return;
+        CallAction("/v1/idle_game/levelup_aquarium", {
+          target_level: playerIdleGameFishData().aquarium_level + 1
+        });
+      }
     }), _el$12);
     libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_BaseButton, {
       "class": "AquariumAction",
+      get enabled() {
+        return canManageAquarium();
+      },
       tooltip: "#FishingBag",
-      onactivate: () => JumpToMenu({
-        window_name: "fishingitem",
-        menu: "FishingBag",
-        force: true
-      }),
+      onactivate: () => {
+        if (!canManageAquarium()) return;
+        JumpToMenu({
+          window_name: "fishingitem",
+          menu: "FishingBag",
+          force: true
+        });
+      },
       get children() {
         return libs.createElement("Image", {
           id: "FishBag"
@@ -872,12 +969,18 @@ const Aquarium = () => {
     }), null);
     libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_BaseButton, {
       "class": "AquariumAction",
+      get enabled() {
+        return canManageAquarium();
+      },
       tooltip: "#Aquarium_GotoFish",
-      onactivate: () => JumpToMenu({
-        window_name: "fishingitem",
-        menu: "Collection_Menu_fish",
-        force: true
-      }),
+      onactivate: () => {
+        if (!canManageAquarium()) return;
+        JumpToMenu({
+          window_name: "fishingitem",
+          menu: "Collection_Menu_fish",
+          force: true
+        });
+      },
       get children() {
         return libs.createElement("Image", {
           id: "FishBook"
@@ -886,6 +989,9 @@ const Aquarium = () => {
     }), null);
     libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_BaseButton, {
       "class": "AquariumAction",
+      get enabled() {
+        return canManageAquarium();
+      },
       tooltip: "#Aquarium_Manager",
       onactivate: () => switchAquariumPanel("manager"),
       get children() {
@@ -921,13 +1027,13 @@ const Aquarium = () => {
         return libs.createComponent(libs.For, {
           each: aquariumRarityTabs,
           children: tab => (() => {
-            const _el$37 = libs.createElement("Label", {
+            const _el$41 = libs.createElement("Label", {
               get text() {
                 return tab.label;
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$37, "text", tab.label, _$p));
-            return _el$37;
+            libs.effect(_$p => libs.setProp(_el$41, "text", tab.label, _$p));
+            return _el$41;
           })()
         });
       }
@@ -959,52 +1065,52 @@ const Aquarium = () => {
         return managerVisibleFishList();
       },
       children: fishData => (() => {
-        const _el$38 = libs.createElement("Panel", {
+        const _el$42 = libs.createElement("Panel", {
             get ["class"]() {
               return libs.classNames("AquariumManagerFishCard", `Rarity${GetServiceItemRarity(fishData.fish_item_id ?? "420000")}`, {
                 Showing: fishData.show === true
               });
             }
           }, null),
-          _el$39 = libs.createElement("Label", {
+          _el$43 = libs.createElement("Label", {
             "class": "AquariumManagerFishName",
             get text() {
               return getFishLocalizedName(fishData.fish_item_id);
             }
-          }, _el$38),
-          _el$40 = libs.createElement("Panel", {
+          }, _el$42),
+          _el$44 = libs.createElement("Panel", {
             "class": "AquariumManagerFishIconWrap"
-          }, _el$38),
-          _el$41 = libs.createElement("Panel", {
+          }, _el$42),
+          _el$45 = libs.createElement("Panel", {
             "class": "AquariumManagerFishMetaRow"
-          }, _el$38),
-          _el$42 = libs.createElement("Label", {
+          }, _el$42),
+          _el$46 = libs.createElement("Label", {
             "class": "AquariumManagerFishMeta",
             get text() {
               return formatFishLength(fishData.fish_item_id, fishData.weight);
             }
-          }, _el$41);
+          }, _el$45);
           libs.createElement("Label", {
             "class": "AquariumManagerFishMeta Divider",
             text: "·"
-          }, _el$41);
-          const _el$44 = libs.createElement("Label", {
+          }, _el$45);
+          const _el$48 = libs.createElement("Label", {
             "class": "AquariumManagerFishMeta Price",
             get text() {
               return String(getFishSellPriceValue(fishData.price));
             }
-          }, _el$41);
-        libs.insert(_el$40, libs.createComponent(StoreItem.StoreItemImage, {
+          }, _el$45);
+        libs.insert(_el$44, libs.createComponent(StoreItem.StoreItemImage, {
           hittest: false,
           "class": "AquariumManagerFishIcon",
           get itemid() {
             return fishData.fish_item_id ?? "420000";
           }
         }));
-        libs.insert(_el$41, libs.createComponent(Player.CurrencyIcon, {
+        libs.insert(_el$45, libs.createComponent(Player.CurrencyIcon, {
           tokenID: 110003
         }), null);
-        libs.insert(_el$38, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        libs.insert(_el$42, libs.createComponent(EOM_Button.EOM_BaseButton, {
           get ["class"]() {
             return libs.classNames("AquariumManagerToggleButton", {
               Danger: fishData.show === true,
@@ -1016,34 +1122,34 @@ const Aquarium = () => {
           },
           onactivate: self => toggleFishShowState(fishData.id, fishData.show !== true, self),
           get children() {
-            const _el$45 = libs.createElement("Label", {
+            const _el$49 = libs.createElement("Label", {
               get text() {
                 return fishData.show === true ? "#Aquarium_ManagerUnShow" : "#Aquarium_ManagerShow";
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$45, "text", fishData.show === true ? "#Aquarium_ManagerUnShow" : "#Aquarium_ManagerShow", _$p));
-            return _el$45;
+            libs.effect(_$p => libs.setProp(_el$49, "text", fishData.show === true ? "#Aquarium_ManagerUnShow" : "#Aquarium_ManagerShow", _$p));
+            return _el$49;
           }
         }), null);
         libs.effect(_p$ => {
-          const _v$8 = libs.classNames("AquariumManagerFishCard", `Rarity${GetServiceItemRarity(fishData.fish_item_id ?? "420000")}`, {
+          const _v$0 = libs.classNames("AquariumManagerFishCard", `Rarity${GetServiceItemRarity(fishData.fish_item_id ?? "420000")}`, {
               Showing: fishData.show === true
             }),
-            _v$9 = getFishLocalizedName(fishData.fish_item_id),
-            _v$0 = formatFishLength(fishData.fish_item_id, fishData.weight),
-            _v$1 = String(getFishSellPriceValue(fishData.price));
-          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$38, "class", _v$8, _p$._v$8));
-          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$39, "text", _v$9, _p$._v$9));
-          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$42, "text", _v$0, _p$._v$0));
-          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$44, "text", _v$1, _p$._v$1));
+            _v$1 = getFishLocalizedName(fishData.fish_item_id),
+            _v$10 = formatFishLength(fishData.fish_item_id, fishData.weight),
+            _v$11 = String(getFishSellPriceValue(fishData.price));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$42, "class", _v$0, _p$._v$0));
+          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$43, "text", _v$1, _p$._v$1));
+          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$46, "text", _v$10, _p$._v$10));
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$48, "text", _v$11, _p$._v$11));
           return _p$;
         }, {
-          _v$8: undefined,
-          _v$9: undefined,
           _v$0: undefined,
-          _v$1: undefined
+          _v$1: undefined,
+          _v$10: undefined,
+          _v$11: undefined
         });
-        return _el$38;
+        return _el$42;
       })()
     }), null);
     libs.insert(_el$27, libs.createComponent(libs.Show, {
@@ -1057,52 +1163,108 @@ const Aquarium = () => {
         }, null);
       }
     }), null);
-    libs.insert(_el$33, libs.createComponent(libs.For, {
-      get each() {
-        return Game.GetAllPlayerIDs();
+    libs.insert(_el$33, libs.createComponent(libs.Show, {
+      get when() {
+        return isRemoteVisit();
       },
-      children: playerID => libs.createComponent(EOM_Button.EOM_BaseButton, {
-        get ["class"]() {
-          return libs.classNames("AquariumVisitorItem", {
-            Selected: selectedID() === playerID
-          });
-        },
-        onactivate: () => setSelectedID(playerID),
-        get children() {
-          return [libs.createElement("Image", {
-            "class": "SelectedIcon"
-          }, null), libs.createElement("Image", {
-            "class": "SelectedIcon Right"
-          }, null), libs.createElement("Image", {
-            "class": "SelectedUnderline"
-          }, null), libs.createComponent(Player.PlayerAvatar, {
-            playerid: playerID
-          }), libs.createComponent(Player.PlayerName, {
-            get steamid() {
-              return Game.GetPlayerInfo(playerID)?.player_steamid ?? "-1";
+      get fallback() {
+        return libs.createComponent(libs.For, {
+          get each() {
+            return Game.GetAllPlayerIDs();
+          },
+          children: playerID => libs.createComponent(EOM_Button.EOM_BaseButton, {
+            get ["class"]() {
+              return libs.classNames("AquariumVisitorItem", {
+                Selected: selectedID() === playerID
+              });
+            },
+            onactivate: () => setSelectedID(playerID),
+            get children() {
+              return [libs.createElement("Image", {
+                "class": "SelectedIcon"
+              }, null), libs.createElement("Image", {
+                "class": "SelectedIcon Right"
+              }, null), libs.createElement("Image", {
+                "class": "SelectedUnderline"
+              }, null), libs.createComponent(Player.PlayerAvatar, {
+                playerid: playerID,
+                get borderid() {
+                  return getPlayerAvatarBorderID(getServiceNetData("player_cosmetic_equips", playerID));
+                }
+              }), libs.createComponent(Player.PlayerName, {
+                get steamid() {
+                  return Game.GetPlayerInfo(playerID)?.player_steamid ?? "-1";
+                }
+              })];
             }
-          })];
-        }
-      })
+          })
+        });
+      },
+      get children() {
+        const _el$34 = libs.createElement("Panel", {
+            "class": "AquariumVisitorItem Selected",
+            hittest: false
+          }, null);
+          libs.createElement("Image", {
+            "class": "SelectedIcon"
+          }, _el$34);
+          libs.createElement("Image", {
+            "class": "SelectedIcon Right"
+          }, _el$34);
+          libs.createElement("Image", {
+            "class": "SelectedUnderline"
+          }, _el$34);
+        libs.insert(_el$34, libs.createComponent(Player.PlayerAvatar, {
+          get accountid() {
+            return selectedSteamID();
+          },
+          get borderid() {
+            return getPlayerAvatarBorderID(remotePlayerInfo.data()?.player_cosmetic_equips);
+          }
+        }), null);
+        libs.insert(_el$34, libs.createComponent(Player.PlayerName, {
+          get accountid() {
+            return selectedSteamID();
+          }
+        }), null);
+        return _el$34;
+      }
     }));
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return libs.memo(() => !!isRemoteVisit())() && remotePlayerInfo.loading();
+      },
+      get children() {
+        return libs.createComponent(EOM_Loading.EOM_Loading, {
+          align: "center center",
+          type: "PointSpin"
+        });
+      }
+    }), null);
     libs.insert(_el$, libs.createComponent(EOM_Button.EOM_CloseButton, {
       onactivate: handleClose
     }), null);
     libs.effect(_p$ => {
-      const _v$ = libs.classNames("AquariumChainPanel", `State_${levelPanelState()}`),
-        _v$2 = levelPanelState() !== "hidden",
-        _v$3 = managerFooterVars(),
-        _v$4 = libs.classNames("AquariumChainPanel", `State_${managerPanelState()}`),
-        _v$5 = managerPanelState() !== "hidden",
-        _v$6 = managerFooterVars(),
-        _v$7 = Game.GetAllPlayerIDs().length > 1;
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$1, "class", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$1, "visible", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$11, "vars", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$16, "class", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$16, "visible", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$30, "vars", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$31, "visible", _v$7, _p$._v$7));
+      const _v$ = libs.classNames("AquariumRoot", {
+          ReadOnly: !canManageAquarium()
+        }),
+        _v$2 = libs.classNames("AquariumChainPanel", `State_${levelPanelState()}`),
+        _v$3 = levelPanelState() !== "hidden",
+        _v$4 = !isRemoteVisit(),
+        _v$5 = managerFooterVars(),
+        _v$6 = libs.classNames("AquariumChainPanel", `State_${managerPanelState()}`),
+        _v$7 = managerPanelState() !== "hidden",
+        _v$8 = managerFooterVars(),
+        _v$9 = isRemoteVisit() || Game.GetAllPlayerIDs().length > 1;
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$1, "class", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$1, "visible", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$11, "visible", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$11, "vars", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$16, "class", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$16, "visible", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$30, "vars", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$31, "visible", _v$9, _p$._v$9));
       return _p$;
     }, {
       _v$: undefined,
@@ -1111,7 +1273,9 @@ const Aquarium = () => {
       _v$4: undefined,
       _v$5: undefined,
       _v$6: undefined,
-      _v$7: undefined
+      _v$7: undefined,
+      _v$8: undefined,
+      _v$9: undefined
     });
     return _el$;
   })();
@@ -1122,8 +1286,21 @@ const MENU_LIST = {
 };
 const {
   show,
-  menuName
+  menuName,
+  jumpInfo
 } = EOM_MenuLayout.createMenuLayout("aquarium", () => MENU_LIST);
+const targetPlayerID = libs.createMemo(() => {
+  const playerID = jumpInfo()?.data?.playerID;
+  return typeof playerID == "number" ? playerID : undefined;
+});
+const targetSteamID = libs.createMemo(() => {
+  const steamID = jumpInfo()?.data?.steamID;
+  return typeof steamID == "number" || typeof steamID == "string" ? steamID : undefined;
+});
+const targetSteam64ID = libs.createMemo(() => {
+  const steam64ID = jumpInfo()?.data?.steam64ID;
+  return typeof steam64ID == "number" || typeof steam64ID == "string" ? steam64ID : undefined;
+});
 function AquariumRoot() {
   libs.createEffect(() => {
     print("aquarium show:", show(), "menuName:", menuName());
@@ -1133,7 +1310,17 @@ function AquariumRoot() {
       return show();
     },
     get children() {
-      return libs.createComponent(Aquarium, {});
+      return libs.createComponent(Aquarium, {
+        get playerID() {
+          return targetPlayerID();
+        },
+        get steamID() {
+          return targetSteamID();
+        },
+        get steam64ID() {
+          return targetSteam64ID();
+        }
+      });
     }
   });
 }

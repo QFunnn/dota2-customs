@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -511,8 +511,14 @@
 #ItemsRoot #PartFilter .PartTab #PartIcon
 {
 	align: center center;
-	ui-scale: 35%;
+	width: 45px;
+	height: 45px;
 	wash-color: #686868;
+}
+
+#ItemsRoot #PartFilter.Gem .PartTab
+{
+	height: 78px;
 }
 
 #ItemsRoot #BtnsContainer
@@ -546,6 +552,7 @@
 #FilterWindow
 {
 	width: 100%;
+	height: 100%;
 	flow-children: down;
 	padding: 26px 22px;
 	animation-name: OpacityShow, SlideInBottomSlow;
@@ -611,6 +618,105 @@
 #FilterWindow #MythTextFilter
 {
 	margin-top: 11px;
+}
+
+#FilterWindow #GemFilterContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#FilterWindow #GemSubEntryFilterTitle
+{
+	width: 100%;
+	height: 38px;
+	margin-top: 12px;
+	flow-children: right;
+}
+
+#FilterWindow #GemSubEntryFilterTitle .Separator
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+}
+
+#FilterWindow #GemSubEntryFilterTitle Label
+{
+	margin: 0px 12px;
+	vertical-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	color: #D8C89E;
+}
+
+#FilterWindow #GemSubEntryFilterList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 6px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow
+{
+	width: 100%;
+	height: 28px;
+	flow-children: right;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 17px;
+	color: #C9BFA8;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode
+{
+	width: 188px;
+	height: 100%;
+	flow-children: right;
+	horizontal-align: right;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode Label
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeButton
+{
+	height: 100%;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeButton Label
+{
+	color: #766F69;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeButton.Selected Label
+{
+	color: #F1E7D0;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeButton.include.Selected Label
+{
+	color: #86C985;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeButton.exclude.Selected Label
+{
+	color: #DD7770;
+}
+
+#FilterWindow #GemSubEntryFilterList .GemSubEntryFilterRow .GemSubEntryMode .GemSubEntryModeSeparator
+{
+	margin: 0px 2px;
+	color: #766F69;
 }
 
 #AttributesSummaryContainer
@@ -1088,6 +1194,7 @@
 	text-align: center;
 	font-size: 20px;
 	color: #DDB192;
+	text-overflow: shrink;
 }
 
 #EquipForge #LeftArea .ComsumeItem
@@ -5450,6 +5557,7 @@
 
 .EquipmentCommonBtn Label
 {
+	text-align: center;
 	align: center center;
 	font-size: 18px;
 	color: #FDEFC8;
@@ -5485,6 +5593,7 @@
 
 .EquipSeparator Label
 {
+	text-align: center;
 	max-width: 100px;
 	margin: 0px 13px;
 	font-size: 20px;
@@ -5563,6 +5672,17 @@
 	padding: 5px 0px;
 	horizontal-align: center;
 	flow-children: down;
+}
+
+.Language_english .AttrContainer .AttrItem,.Language_russian .AttrContainer .AttrItem
+{
+	height: 45px;
+}
+
+.Language_english .AttrContainer .AttrItem #AttributeName,.Language_russian .AttrContainer .AttrItem #AttributeName
+{
+	max-width: 200px;
+	max-height: 40px;
 }
 
 .AttrContainer .AttrItem
@@ -8356,6 +8476,9 @@
 #EquipmentPartLevelUpRoot #PartLevelDetail #PartLevelCore #PartLevelCompare .NextLevel
 {
 	color: #61C441;
+	max-width: 150px;
+	text-overflow: shrink;
+	text-align: center;
 }
 
 #EquipmentPartLevelUpRoot #PartLevelDetail #PartLevelCore #PartLevelCompare .LevelArrow

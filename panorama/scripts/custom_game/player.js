@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -12,6 +12,7 @@
 
 var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
+var service_netdata_helper = require('./service_netdata_helper.js');
 var EOM_Button = require('./EOM_Button.js');
 var EOM_TextEntry = require('./EOM_TextEntry.js');
 
@@ -71,22 +72,41 @@ const EOM_Currency = props => {
 };
 
 const DEFAULT_AVATAR_BORDER_ID = "1710000";
+function getEquippedAvatarBorderID(cosmeticEquips) {
+  for (const equip of Object.values(cosmeticEquips ?? {})) {
+    const cosmeticID = String(equip.cosmetic_id);
+    if (KeyValues.info_item_cosmetic[cosmeticID]?.type == COSMETIC_TYPE.BORDER) {
+      return cosmeticID;
+    }
+  }
+  return undefined;
+}
 const PlayerAvatar = props => {
   const [local, other] = libs.splitProps(props, ["playerid", "steamid", "accountid", "borderid", "classList"]);
   const player_cosmetic_equips = solid_utils.createServiceNetData("player_cosmetic_equips", {});
+  const cachedPlayerInfo = service_netdata_helper.GetPlayerInfoCache({
+    playerID: () => local.playerid,
+    steamID: () => local.accountid,
+    steam64ID: () => local.steamid
+  });
+  const localPlayerSteamID = libs.createMemo(() => CustomUIConfig.PlayerManager.ResolveSteamID({
+    playerID: Players.GetLocalPlayer()
+  }));
+  const isLocalPlayer = libs.createMemo(() => {
+    if (local.playerid != undefined) return local.playerid == Players.GetLocalPlayer();
+    const targetSteamID = cachedPlayerInfo.steamID();
+    return targetSteamID != undefined && targetSteamID == localPlayerSteamID();
+  });
   let avatarImage;
   const borderID = libs.createMemo(() => {
     if (local.borderid != undefined) {
       return String(local.borderid);
     }
-    const equips = player_cosmetic_equips();
-    for (const equip of Object.values(equips)) {
-      const cosmeticKV = KeyValues.info_item_cosmetic[String(equip.cosmetic_id)];
-      if (cosmeticKV != undefined && cosmeticKV.type == COSMETIC_TYPE.BORDER) {
-        return String(equip.cosmetic_id);
-      }
+    const cachedBorderID = getEquippedAvatarBorderID(cachedPlayerInfo.data()?.player_cosmetic_equips);
+    if (isLocalPlayer()) {
+      return getEquippedAvatarBorderID(player_cosmetic_equips()) ?? cachedBorderID ?? DEFAULT_AVATAR_BORDER_ID;
     }
-    return DEFAULT_AVATAR_BORDER_ID;
+    return cachedBorderID ?? DEFAULT_AVATAR_BORDER_ID;
   });
   const steamid = libs.createMemo(() => {
     if (local.steamid != undefined) {

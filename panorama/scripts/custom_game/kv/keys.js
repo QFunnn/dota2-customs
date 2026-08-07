@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13,7 +13,7 @@ GameUI.CustomUIConfig().keys = {
 		"Note": "怪物迅速",
 		"Description": "怪物攻速和移速提高%speed_pct%%",
 		"AbilityValues": {
-			"speed_pct": "8 16 24 32 40 48 56 64 72 80 88 96 104 112 120 128 136 144 152 160"
+			"speed_pct": "5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100"
 		}
 	},
 	"key_debuff_2": {

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -103,6 +103,22 @@ function formatClearTime(totalTime) {
   }
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
+function openPlayerInfo(rankData, playerID, self = false) {
+  const playerExtraData = getPlayerExtraData(rankData, playerID);
+  if (playerID == "" || playerExtraData?.invalid_name == "1" || playerExtraData?.is_robot == "1") {
+    return;
+  }
+  const localAccountID = Steam_64_3(Game.GetLocalPlayerInfo().player_steamid);
+  const steamID = self && (getPlayerIDs(rankData).length == 1 || playerID == localAccountID) ? localAccountID : playerID;
+  JumpToMenu({
+    window_name: "book",
+    menu: "PlayerInfo_Menu",
+    force: true,
+    data: {
+      steamID
+    }
+  });
+}
 function CommonMatchLeaderboard(props) {
   const [page, setPage] = libs.createSignal(1);
   const [loading, setLoading] = libs.createSignal(false);
@@ -144,7 +160,6 @@ function CommonMatchLeaderboard(props) {
       start: (requestedPage - 1) * PAGE_SIZE + 1,
       end: requestedPage * PAGE_SIZE
     }, result => {
-      $.Msg("leaderboard raw:", leaderboardPageKey, JSON.stringify(result));
       const isLatestPageRequest = lastRequestTimes[leaderboardPageKey] == requestTime;
       if (result?.code == 0) {
         const leaderboardDatas = result.data?.leaderboard_datas ?? [];
@@ -285,15 +300,16 @@ function CommonMatchLeaderboard(props) {
             rankData: rank
           })
         }), null);
-        libs.insert(_el$2, (() => {
-          const _c$ = libs.memo(() => displaySelfRank() != undefined);
-          return () => _c$() ? libs.createComponent(RankRow, {
-            get rankData() {
-              return displaySelfRank();
-            },
+        libs.insert(_el$2, libs.createComponent(libs.Show, {
+          get when() {
+            return displaySelfRank();
+          },
+          keyed: true,
+          children: rankData => libs.createComponent(RankRow, {
+            rankData: rankData,
             self: true
-          }) : undefined;
-        })(), null);
+          })
+        }), null);
         libs.insert(_el$, libs.createComponent(PageControl, {
           get page() {
             return page();
@@ -395,42 +411,48 @@ function TopRankCard(props) {
   return (() => {
     const _el$12 = libs.createElement("Panel", {}, null),
       _el$13 = libs.createElement("Panel", {
-        "class": "AvatarItemContainer"
+        get ["class"]() {
+          return libs.classNames("TitleContainer");
+        }
       }, _el$12),
       _el$14 = libs.createElement("Panel", {
+        "class": "AvatarItemContainer"
+      }, _el$12),
+      _el$15 = libs.createElement("Panel", {
         "class": "TopRankNameContainer"
       }, _el$12);
       libs.createElement("Panel", {
         "class": "RankBG"
       }, _el$12);
-    libs.insert(_el$12, (() => {
-      const _c$2 = libs.memo(() => title() == "");
-      return () => _c$2() ? undefined : libs.createComponent(Player.PlayerTitle, {
+    libs.insert(_el$13, (() => {
+      const _c$ = libs.memo(() => title() == "");
+      return () => _c$() ? undefined : libs.createComponent(Player.PlayerTitle, {
         "class": "Preview_AVATAR_NAME",
         get titleid() {
           return title();
         }
       });
-    })(), _el$13);
-    libs.insert(_el$13, libs.createComponent(libs.For, {
+    })());
+    libs.insert(_el$14, libs.createComponent(libs.For, {
       get each() {
         return playerIDs();
       },
       children: playerID => (() => {
-        const _el$16 = libs.createElement("Panel", {
+        const _el$17 = libs.createElement("Panel", {
           "class": "TopRankAvatarRoot"
         }, null);
-        libs.insert(_el$16, libs.createComponent(LeaderboardAvatar, {
+        libs.insert(_el$17, libs.createComponent(LeaderboardAvatar, {
           get rankData() {
             return props.rankData;
           },
           playerID: playerID,
-          "class": "TopRankAvatar"
+          "class": "TopRankAvatar",
+          onactivate: () => openPlayerInfo(props.rankData, playerID)
         }));
-        return _el$16;
+        return _el$17;
       })()
     }));
-    libs.insert(_el$14, libs.createComponent(libs.Show, {
+    libs.insert(_el$15, libs.createComponent(libs.Show, {
       get when() {
         return props.rankData != undefined;
       },
@@ -444,9 +466,18 @@ function TopRankCard(props) {
         return playerName();
       }
     }));
-    libs.effect(_$p => libs.setProp(_el$12, "className", libs.classNames("TopRankCard", "Rank" + props.rank, `PlayerCount${playerIDs().length}`, {
-      Multiple: isMultiple()
-    }), _$p));
+    libs.effect(_p$ => {
+      const _v$7 = libs.classNames("TopRankCard", "Rank" + props.rank, `PlayerCount${playerIDs().length}`, {
+          Multiple: isMultiple()
+        }),
+        _v$8 = libs.classNames("TitleContainer");
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$12, "className", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$13, "class", _v$8, _p$._v$8));
+      return _p$;
+    }, {
+      _v$7: undefined,
+      _v$8: undefined
+    });
     return _el$12;
   })();
 }
@@ -486,7 +517,7 @@ function LeaderboardAvatar(props) {
           return accountID();
         }
       }), (() => {
-        const _el$18 = libs.createElement("Panel", {
+        const _el$19 = libs.createElement("Panel", {
           "class": "TipsArea",
           width: "100%",
           height: "100%",
@@ -494,19 +525,19 @@ function LeaderboardAvatar(props) {
             return props.onactivate;
           }
         }, null);
-        libs.setProp(_el$18, "width", "100%");
-        libs.setProp(_el$18, "height", "100%");
+        libs.setProp(_el$19, "width", "100%");
+        libs.setProp(_el$19, "height", "100%");
         libs.effect(_p$ => {
-          const _v$7 = playerInfoTooltip(),
-            _v$8 = props.onactivate;
-          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$18, "customTooltip", _v$7, _p$._v$7));
-          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$18, "onactivate", _v$8, _p$._v$8));
+          const _v$9 = playerInfoTooltip(),
+            _v$0 = props.onactivate;
+          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$19, "customTooltip", _v$9, _p$._v$9));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$19, "onactivate", _v$0, _p$._v$0));
           return _p$;
         }, {
-          _v$7: undefined,
-          _v$8: undefined
+          _v$9: undefined,
+          _v$0: undefined
         });
-        return _el$18;
+        return _el$19;
       })()];
     }
   });
@@ -521,21 +552,6 @@ function RankRow(props) {
   const hasRank = () => rankData().rank > 0 && playerIDs().length > 0;
   const localAccountID = libs.createMemo(() => Steam_64_3(Game.GetLocalPlayerInfo().player_steamid));
   const nameAccountID = libs.createMemo(() => props.self && (playerIDs().length == 1 || playerID() == localAccountID()) ? localAccountID() : playerID());
-  const openPlayerInfo = playerID => {
-    const playerExtraData = getPlayerExtraData(rankData(), playerID);
-    if (playerID == "" || playerExtraData?.invalid_name == "1" || playerExtraData?.is_robot == "1") {
-      return;
-    }
-    const steamID = props.self && (playerIDs().length == 1 || playerID == localAccountID()) ? localAccountID() : playerID;
-    JumpToMenu({
-      window_name: "book",
-      menu: "PlayerInfo_Menu",
-      force: true,
-      data: {
-        steamID
-      }
-    });
-  };
   const playerName = () => {
     if (nameAccountID() == "") {
       return libs.createElement("Label", {
@@ -545,14 +561,14 @@ function RankRow(props) {
     }
     if (invalidName()) {
       return (() => {
-        const _el$20 = libs.createElement("Label", {
+        const _el$21 = libs.createElement("Label", {
           "class": "RankPlayerName",
           get text() {
             return GetLocalization("#Rank_AnonymousPlayer");
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$20, "text", GetLocalization("#Rank_AnonymousPlayer"), _$p));
-        return _el$20;
+        libs.effect(_$p => libs.setProp(_el$21, "text", GetLocalization("#Rank_AnonymousPlayer"), _$p));
+        return _el$21;
       })();
     }
     return libs.createComponent(Player.PlayerName, {
@@ -563,62 +579,62 @@ function RankRow(props) {
     });
   };
   return (() => {
-    const _el$21 = libs.createElement("Panel", {}, null),
-      _el$22 = libs.createElement("Panel", {
-        "class": "RankCol RankNumber"
-      }, _el$21),
+    const _el$22 = libs.createElement("Panel", {}, null),
       _el$23 = libs.createElement("Panel", {
-        id: "RankIcon"
+        "class": "RankCol RankNumber"
       }, _el$22),
       _el$24 = libs.createElement("Panel", {
-        "class": "RankCol RankPlayer"
-      }, _el$21),
+        id: "RankIcon"
+      }, _el$23),
       _el$25 = libs.createElement("Panel", {
-        "class": "RankAvatarList"
-      }, _el$24),
+        "class": "RankCol RankPlayer"
+      }, _el$22),
       _el$26 = libs.createElement("Panel", {
-        "class": "RankCol UseHero"
-      }, _el$21),
+        "class": "RankAvatarList"
+      }, _el$25),
       _el$27 = libs.createElement("Panel", {
-        "class": "RankHeroList"
-      }, _el$26),
+        "class": "RankCol UseHero"
+      }, _el$22),
       _el$28 = libs.createElement("Panel", {
+        "class": "RankHeroList"
+      }, _el$27),
+      _el$29 = libs.createElement("Panel", {
         "class": "RankCol RankGroup"
-      }, _el$21),
-      _el$29 = libs.createElement("Label", {
+      }, _el$22),
+      _el$30 = libs.createElement("Label", {
         get text() {
           return libs.memo(() => rankData().diff > 0)() ? GetLocalization("DiffSelection_DiffName" + rankData().diff) : "-";
         }
-      }, _el$28),
-      _el$30 = libs.createElement("Panel", {
+      }, _el$29),
+      _el$31 = libs.createElement("Panel", {
         "class": "RankCol RankScore"
-      }, _el$21),
-      _el$31 = libs.createElement("Label", {
+      }, _el$22),
+      _el$32 = libs.createElement("Label", {
         get text() {
           return formatClearTime(rankData().totalTime);
         }
-      }, _el$30);
-    libs.insert(_el$23, (() => {
-      const _c$3 = libs.memo(() => !!(rankData().rank >= 1 && rankData().rank <= 3));
-      return () => _c$3() ? undefined : (() => {
-        const _el$32 = libs.createElement("Label", {
+      }, _el$31);
+    libs.insert(_el$24, (() => {
+      const _c$2 = libs.memo(() => !!(rankData().rank >= 1 && rankData().rank <= 3));
+      return () => _c$2() ? undefined : (() => {
+        const _el$33 = libs.createElement("Label", {
           get text() {
             return libs.memo(() => !!hasRank())() ? rankData().rank : "-";
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$32, "text", libs.memo(() => !!hasRank())() ? rankData().rank : "-", _$p));
-        return _el$32;
+        libs.effect(_$p => libs.setProp(_el$33, "text", libs.memo(() => !!hasRank())() ? rankData().rank : "-", _$p));
+        return _el$33;
       })();
     })());
-    libs.insert(_el$25, libs.createComponent(libs.For, {
+    libs.insert(_el$26, libs.createComponent(libs.For, {
       get each() {
         return playerIDs();
       },
       children: playerID => (() => {
-        const _el$33 = libs.createElement("Panel", {
+        const _el$34 = libs.createElement("Panel", {
           "class": "AvatarRoot"
         }, null);
-        libs.insert(_el$33, libs.createComponent(LeaderboardAvatar, {
+        libs.insert(_el$34, libs.createComponent(LeaderboardAvatar, {
           get rankData() {
             return rankData();
           },
@@ -627,85 +643,85 @@ function RankRow(props) {
           get self() {
             return props.self;
           },
-          onactivate: () => openPlayerInfo(playerID)
+          onactivate: () => openPlayerInfo(rankData(), playerID, props.self)
         }));
-        return _el$33;
+        return _el$34;
       })()
     }));
-    libs.insert(_el$24, playerName, null);
-    libs.insert(_el$27, libs.createComponent(libs.For, {
+    libs.insert(_el$25, playerName, null);
+    libs.insert(_el$28, libs.createComponent(libs.For, {
       get each() {
         return playerIDs().filter(playerID => getPlayerHeroID(rankData(), playerID) > 0);
       },
       children: playerID => (() => {
-        const _el$34 = libs.createElement("Image", {
+        const _el$35 = libs.createElement("Image", {
           "class": "RankHeroImage",
           get src() {
             return `s2r://panorama/images/heroes/icons/${GetHeroNameByHeroID(getPlayerHeroID(rankData(), playerID))}_png.vtex`;
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$34, "src", `s2r://panorama/images/heroes/icons/${GetHeroNameByHeroID(getPlayerHeroID(rankData(), playerID))}_png.vtex`, _$p));
-        return _el$34;
+        libs.effect(_$p => libs.setProp(_el$35, "src", `s2r://panorama/images/heroes/icons/${GetHeroNameByHeroID(getPlayerHeroID(rankData(), playerID))}_png.vtex`, _$p));
+        return _el$35;
       })()
     }));
     libs.effect(_p$ => {
-      const _v$9 = libs.classNames("RankRow", "Rank" + rankData().rank, `PlayerCount${playerIDs().length}`, {
+      const _v$1 = libs.classNames("RankRow", "Rank" + rankData().rank, `PlayerCount${playerIDs().length}`, {
           Self: props.self,
           Multiple: isMultiple()
         }),
-        _v$0 = libs.memo(() => rankData().diff > 0)() ? GetLocalization("DiffSelection_DiffName" + rankData().diff) : "-",
-        _v$1 = formatClearTime(rankData().totalTime);
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$21, "className", _v$9, _p$._v$9));
-      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "text", _v$0, _p$._v$0));
-      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$31, "text", _v$1, _p$._v$1));
+        _v$10 = libs.memo(() => rankData().diff > 0)() ? GetLocalization("DiffSelection_DiffName" + rankData().diff) : "-",
+        _v$11 = formatClearTime(rankData().totalTime);
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$22, "className", _v$1, _p$._v$1));
+      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$30, "text", _v$10, _p$._v$10));
+      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$32, "text", _v$11, _p$._v$11));
       return _p$;
     }, {
-      _v$9: undefined,
-      _v$0: undefined,
-      _v$1: undefined
+      _v$1: undefined,
+      _v$10: undefined,
+      _v$11: undefined
     });
-    return _el$21;
+    return _el$22;
   })();
 }
 function EmptyRankList(props) {
   return (() => {
-    const _el$35 = libs.createElement("Panel", {
+    const _el$36 = libs.createElement("Panel", {
         id: "EmptyRankList"
       }, null),
-      _el$36 = libs.createElement("Label", {
+      _el$37 = libs.createElement("Label", {
         get text() {
           return GetLocalization("#Rank_Empty");
         }
-      }, _el$35);
+      }, _el$36);
     libs.effect(_p$ => {
-      const _v$10 = props.visible,
-        _v$11 = GetLocalization("#Rank_Empty");
-      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$35, "visible", _v$10, _p$._v$10));
-      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$36, "text", _v$11, _p$._v$11));
+      const _v$12 = props.visible,
+        _v$13 = GetLocalization("#Rank_Empty");
+      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$36, "visible", _v$12, _p$._v$12));
+      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$37, "text", _v$13, _p$._v$13));
       return _p$;
     }, {
-      _v$10: undefined,
-      _v$11: undefined
+      _v$12: undefined,
+      _v$13: undefined
     });
-    return _el$35;
+    return _el$36;
   })();
 }
 function PageControl(props) {
   return (() => {
-    const _el$37 = libs.createElement("Panel", {
+    const _el$38 = libs.createElement("Panel", {
         id: "RankPageControl"
       }, null),
-      _el$38 = libs.createElement("Panel", {
+      _el$39 = libs.createElement("Panel", {
         "class": "PageContainer"
-      }, _el$37);
-    libs.insert(_el$37, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      }, _el$38);
+    libs.insert(_el$38, libs.createComponent(EOM_Button.EOM_BaseButton, {
       get enabled() {
         return props.page > 1;
       },
       onactivate: () => props.setPage(props.page - 1),
       className: "PageLeft"
-    }), _el$38);
-    libs.insert(_el$38, libs.createComponent(libs.For, {
+    }), _el$39);
+    libs.insert(_el$39, libs.createComponent(libs.For, {
       each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       children: page => libs.createComponent(EOM_Button.EOM_BaseButton, {
         onactivate: () => props.setPage(page),
@@ -715,22 +731,22 @@ function PageControl(props) {
           });
         },
         get children() {
-          const _el$39 = libs.createElement("Label", {
+          const _el$40 = libs.createElement("Label", {
             text: page
           }, null);
-          libs.setProp(_el$39, "text", page);
-          return _el$39;
+          libs.setProp(_el$40, "text", page);
+          return _el$40;
         }
       })
     }));
-    libs.insert(_el$37, libs.createComponent(EOM_Button.EOM_BaseButton, {
+    libs.insert(_el$38, libs.createComponent(EOM_Button.EOM_BaseButton, {
       get enabled() {
         return props.page < MAX_PAGE;
       },
       onactivate: () => props.setPage(props.page + 1),
       className: "PageRight"
     }), null);
-    return _el$37;
+    return _el$38;
   })();
 }
 

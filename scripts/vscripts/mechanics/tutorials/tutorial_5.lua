@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -66,6 +66,8 @@ function i.prototype.ShowNextTips(self)
 	local s = self.tips[self.index + 1]
 	if not s or not self.upperConfig[s] then
 		GameModeTutorial:SendCameraFollowHero()
+		local j = self:GetRoom()
+		j:OpenGates()
 		return
 	end
 	local t = self.upperConfig[s]

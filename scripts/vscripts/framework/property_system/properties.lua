@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -467,193 +467,223 @@ PropertyFunction.MAGICAL_DAMAGE_BOOST = 626
 PropertyFunction[PropertyFunction.MAGICAL_DAMAGE_BOOST] = "MAGICAL_DAMAGE_BOOST"
 PropertyFunction.PHYSICAL_DAMAGE_BOOST = 627
 PropertyFunction[PropertyFunction.PHYSICAL_DAMAGE_BOOST] = "PHYSICAL_DAMAGE_BOOST"
-PropertyFunction.ATTACK_BONUS_PER_LEVEL = 628
-PropertyFunction[PropertyFunction.ATTACK_BONUS_PER_LEVEL] = "ATTACK_BONUS_PER_LEVEL"
-PropertyFunction.CRIT_DAMAGE_BONUS_PER_LEVEL = 629
-PropertyFunction[PropertyFunction.CRIT_DAMAGE_BONUS_PER_LEVEL] = "CRIT_DAMAGE_BONUS_PER_LEVEL"
-PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL = 630
-PropertyFunction[PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL] = "SKILL_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL = 631
-PropertyFunction[PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL] = "ULTIMATE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL = 632
-PropertyFunction[PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL] = "ATTACK_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.PHYSICAL_DAMAGE_BOOST_PER_LEVEL = 633
+PropertyFunction.DAMAGE_BOOST_PER_LEVEL = 628
+PropertyFunction[PropertyFunction.DAMAGE_BOOST_PER_LEVEL] = "DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.PHYSICAL_DAMAGE_BOOST_PER_LEVEL = 629
 PropertyFunction[PropertyFunction.PHYSICAL_DAMAGE_BOOST_PER_LEVEL] = "PHYSICAL_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.MAGICAL_DAMAGE_BOOST_PER_LEVEL = 634
+PropertyFunction.MAGICAL_DAMAGE_BOOST_PER_LEVEL = 630
 PropertyFunction[PropertyFunction.MAGICAL_DAMAGE_BOOST_PER_LEVEL] = "MAGICAL_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.MELEE_HERO_DAMAGE_BOOST_PER_LEVEL = 635
-PropertyFunction[PropertyFunction.MELEE_HERO_DAMAGE_BOOST_PER_LEVEL] = "MELEE_HERO_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.RANGER_HERO_DAMAGE_BOOST_PER_LEVEL = 636
-PropertyFunction[PropertyFunction.RANGER_HERO_DAMAGE_BOOST_PER_LEVEL] = "RANGER_HERO_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.RAGE_GAIN_PERCENT_PER_SKILL = 637
+PropertyFunction.RAGE_GAIN_PERCENT_PER_SKILL = 631
 PropertyFunction[PropertyFunction.RAGE_GAIN_PERCENT_PER_SKILL] = "RAGE_GAIN_PERCENT_PER_SKILL"
-PropertyFunction.BONUS_FROST_DAMAGE = 638
+PropertyFunction.BONUS_FROST_DAMAGE = 632
 PropertyFunction[PropertyFunction.BONUS_FROST_DAMAGE] = "BONUS_FROST_DAMAGE"
-PropertyFunction.BONUS_POISON_DAMAGE = 639
+PropertyFunction.BONUS_POISON_DAMAGE = 633
 PropertyFunction[PropertyFunction.BONUS_POISON_DAMAGE] = "BONUS_POISON_DAMAGE"
-PropertyFunction.BONUS_LIGHTNING_DAMAGE = 640
+PropertyFunction.BONUS_LIGHTNING_DAMAGE = 634
 PropertyFunction[PropertyFunction.BONUS_LIGHTNING_DAMAGE] = "BONUS_LIGHTNING_DAMAGE"
-PropertyFunction.BONUS_BLEED_DAMAGE = 641
+PropertyFunction.BONUS_BLEED_DAMAGE = 635
 PropertyFunction[PropertyFunction.BONUS_BLEED_DAMAGE] = "BONUS_BLEED_DAMAGE"
-PropertyFunction.HP_REGEN_PER_ENCOUNTER = 642
+PropertyFunction.HP_REGEN_PER_ENCOUNTER = 636
 PropertyFunction[PropertyFunction.HP_REGEN_PER_ENCOUNTER] = "HP_REGEN_PER_ENCOUNTER"
-PropertyFunction.MANA_REGEN_PER_ENCOUNTER = 643
+PropertyFunction.MANA_REGEN_PER_ENCOUNTER = 637
 PropertyFunction[PropertyFunction.MANA_REGEN_PER_ENCOUNTER] = "MANA_REGEN_PER_ENCOUNTER"
-PropertyFunction.ELEMENTAL_DAMAGE = 644
+PropertyFunction.ELEMENTAL_DAMAGE = 638
 PropertyFunction[PropertyFunction.ELEMENTAL_DAMAGE] = "ELEMENTAL_DAMAGE"
-PropertyFunction.PHYSICAL_ARMOR = 645
+PropertyFunction.PHYSICAL_ARMOR = 639
 PropertyFunction[PropertyFunction.PHYSICAL_ARMOR] = "PHYSICAL_ARMOR"
-PropertyFunction.HP_REGEN_ON_KILL = 646
+PropertyFunction.HP_REGEN_ON_KILL = 640
 PropertyFunction[PropertyFunction.HP_REGEN_ON_KILL] = "HP_REGEN_ON_KILL"
-PropertyFunction.ATTACK_SPEED_BOOST = 647
+PropertyFunction.ATTACK_SPEED_BOOST = 641
 PropertyFunction[PropertyFunction.ATTACK_SPEED_BOOST] = "ATTACK_SPEED_BOOST"
-PropertyFunction.DAMAGE_INTENSITY = 648
+PropertyFunction.DAMAGE_INTENSITY = 642
 PropertyFunction[PropertyFunction.DAMAGE_INTENSITY] = "DAMAGE_INTENSITY"
-PropertyFunction.DAMAGE_INTENSITY_BOOST = 649
+PropertyFunction.DAMAGE_INTENSITY_BOOST = 643
 PropertyFunction[PropertyFunction.DAMAGE_INTENSITY_BOOST] = "DAMAGE_INTENSITY_BOOST"
-PropertyFunction.DEFENSE_INTENSITY = 650
+PropertyFunction.DEFENSE_INTENSITY = 644
 PropertyFunction[PropertyFunction.DEFENSE_INTENSITY] = "DEFENSE_INTENSITY"
-PropertyFunction.DEFENSE_INTENSITY_BOOST = 651
+PropertyFunction.DEFENSE_INTENSITY_BOOST = 645
 PropertyFunction[PropertyFunction.DEFENSE_INTENSITY_BOOST] = "DEFENSE_INTENSITY_BOOST"
-PropertyFunction.HERO_DAMAGE_BOOST = 652
+PropertyFunction.HERO_DAMAGE_BOOST = 646
 PropertyFunction[PropertyFunction.HERO_DAMAGE_BOOST] = "HERO_DAMAGE_BOOST"
-PropertyFunction.DAMAGE_BOOST_MULT = 653
+PropertyFunction.DAMAGE_BOOST_MULT = 647
 PropertyFunction[PropertyFunction.DAMAGE_BOOST_MULT] = "DAMAGE_BOOST_MULT"
-PropertyFunction.LIGHTNING_CLOUD_DAMAGE = 654
+PropertyFunction.LIGHTNING_CLOUD_DAMAGE = 648
 PropertyFunction[PropertyFunction.LIGHTNING_CLOUD_DAMAGE] = "LIGHTNING_CLOUD_DAMAGE"
-PropertyFunction.LIGHTNING_CLOUD_DURATION = 655
+PropertyFunction.LIGHTNING_CLOUD_DURATION = 649
 PropertyFunction[PropertyFunction.LIGHTNING_CLOUD_DURATION] = "LIGHTNING_CLOUD_DURATION"
-PropertyFunction.LIGHTNING_CLOUD_HIT_COUNT = 656
+PropertyFunction.LIGHTNING_CLOUD_HIT_COUNT = 650
 PropertyFunction[PropertyFunction.LIGHTNING_CLOUD_HIT_COUNT] = "LIGHTNING_CLOUD_HIT_COUNT"
-PropertyFunction.IDLE_POWER_RECOVER = 657
+PropertyFunction.IDLE_POWER_RECOVER = 651
 PropertyFunction[PropertyFunction.IDLE_POWER_RECOVER] = "IDLE_POWER_RECOVER"
-PropertyFunction.IDLE_MAX_POWER = 658
+PropertyFunction.IDLE_MAX_POWER = 652
 PropertyFunction[PropertyFunction.IDLE_MAX_POWER] = "IDLE_MAX_POWER"
-PropertyFunction.IDLE_MAX_POWER_PCT = 659
+PropertyFunction.IDLE_MAX_POWER_PCT = 653
 PropertyFunction[PropertyFunction.IDLE_MAX_POWER_PCT] = "IDLE_MAX_POWER_PCT"
-PropertyFunction.IDLE_POWER_COST_INC_PCT = 660
+PropertyFunction.IDLE_POWER_COST_INC_PCT = 654
 PropertyFunction[PropertyFunction.IDLE_POWER_COST_INC_PCT] = "IDLE_POWER_COST_INC_PCT"
-PropertyFunction.IDLE_POWER_COST_REDUCE_PCT = 661
+PropertyFunction.IDLE_POWER_COST_REDUCE_PCT = 655
 PropertyFunction[PropertyFunction.IDLE_POWER_COST_REDUCE_PCT] = "IDLE_POWER_COST_REDUCE_PCT"
-PropertyFunction.IDLE_FISH_TOTAL_PROFIT = 662
+PropertyFunction.IDLE_FISH_TOTAL_PROFIT = 656
 PropertyFunction[PropertyFunction.IDLE_FISH_TOTAL_PROFIT] = "IDLE_FISH_TOTAL_PROFIT"
-PropertyFunction.IDLE_FISH_TOTAL_PROFIT_PCT = 663
+PropertyFunction.IDLE_FISH_TOTAL_PROFIT_PCT = 657
 PropertyFunction[PropertyFunction.IDLE_FISH_TOTAL_PROFIT_PCT] = "IDLE_FISH_TOTAL_PROFIT_PCT"
-PropertyFunction.IDLE_FISH_NORMALBOX_CHANCE = 664
+PropertyFunction.IDLE_FISH_NORMALBOX_CHANCE = 658
 PropertyFunction[PropertyFunction.IDLE_FISH_NORMALBOX_CHANCE] = "IDLE_FISH_NORMALBOX_CHANCE"
-PropertyFunction.IDLE_FISH_GOLDBOX_CHANCE = 665
+PropertyFunction.IDLE_FISH_GOLDBOX_CHANCE = 659
 PropertyFunction[PropertyFunction.IDLE_FISH_GOLDBOX_CHANCE] = "IDLE_FISH_GOLDBOX_CHANCE"
-PropertyFunction.IDLE_FISH_BOX_PROFIT_PCT = 666
+PropertyFunction.IDLE_FISH_BOX_PROFIT_PCT = 660
 PropertyFunction[PropertyFunction.IDLE_FISH_BOX_PROFIT_PCT] = "IDLE_FISH_BOX_PROFIT_PCT"
-PropertyFunction.ABILITY_UPGRADE_COUNT = 667
+PropertyFunction.ABILITY_UPGRADE_COUNT = 661
 PropertyFunction[PropertyFunction.ABILITY_UPGRADE_COUNT] = "ABILITY_UPGRADE_COUNT"
-PropertyFunction.IDLE_FISH_RAINBOW_CHANCE = 668
+PropertyFunction.IDLE_FISH_RAINBOW_CHANCE = 662
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW_CHANCE] = "IDLE_FISH_RAINBOW_CHANCE"
-PropertyFunction.IDLE_FISH_RAINBOW1_CHANCE = 669
+PropertyFunction.IDLE_FISH_RAINBOW1_CHANCE = 663
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW1_CHANCE] = "IDLE_FISH_RAINBOW1_CHANCE"
-PropertyFunction.IDLE_FISH_RAINBOW2_CHANCE = 670
+PropertyFunction.IDLE_FISH_RAINBOW2_CHANCE = 664
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW2_CHANCE] = "IDLE_FISH_RAINBOW2_CHANCE"
-PropertyFunction.IDLE_FISH_RAINBOW3_CHANCE = 671
+PropertyFunction.IDLE_FISH_RAINBOW3_CHANCE = 665
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW3_CHANCE] = "IDLE_FISH_RAINBOW3_CHANCE"
-PropertyFunction.IDLE_FISH_RAINBOW4_CHANCE = 672
+PropertyFunction.IDLE_FISH_RAINBOW4_CHANCE = 666
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW4_CHANCE] = "IDLE_FISH_RAINBOW4_CHANCE"
-PropertyFunction.IDLE_FISH_RAINBOW5_CHANCE = 673
+PropertyFunction.IDLE_FISH_RAINBOW5_CHANCE = 667
 PropertyFunction[PropertyFunction.IDLE_FISH_RAINBOW5_CHANCE] = "IDLE_FISH_RAINBOW5_CHANCE"
-PropertyFunction.IDLE_FISH_CHANCE = 674
+PropertyFunction.IDLE_FISH_CHANCE = 668
 PropertyFunction[PropertyFunction.IDLE_FISH_CHANCE] = "IDLE_FISH_CHANCE"
-PropertyFunction.IDLE_FISH_NUM = 675
+PropertyFunction.IDLE_FISH_NUM = 669
 PropertyFunction[PropertyFunction.IDLE_FISH_NUM] = "IDLE_FISH_NUM"
-PropertyFunction.IDLE_FISH_NUM_PCT = 676
+PropertyFunction.IDLE_FISH_NUM_PCT = 670
 PropertyFunction[PropertyFunction.IDLE_FISH_NUM_PCT] = "IDLE_FISH_NUM_PCT"
-PropertyFunction.IDLE_FISH_CRIT_CHANCE = 677
+PropertyFunction.IDLE_FISH_CRIT_CHANCE = 671
 PropertyFunction[PropertyFunction.IDLE_FISH_CRIT_CHANCE] = "IDLE_FISH_CRIT_CHANCE"
-PropertyFunction.IDLE_FISH_CRIT_NUM = 678
+PropertyFunction.IDLE_FISH_CRIT_NUM = 672
 PropertyFunction[PropertyFunction.IDLE_FISH_CRIT_NUM] = "IDLE_FISH_CRIT_NUM"
-PropertyFunction.IDLE_FISH_LUCKY_NUM = 679
+PropertyFunction.IDLE_FISH_LUCKY_NUM = 673
 PropertyFunction[PropertyFunction.IDLE_FISH_LUCKY_NUM] = "IDLE_FISH_LUCKY_NUM"
-PropertyFunction.IDLE_FISH_EFFICIENCY = 680
+PropertyFunction.IDLE_FISH_EFFICIENCY = 674
 PropertyFunction[PropertyFunction.IDLE_FISH_EFFICIENCY] = "IDLE_FISH_EFFICIENCY"
-PropertyFunction.IDLE_FISH_INTERACTION_PCT = 681
+PropertyFunction.IDLE_FISH_INTERACTION_PCT = 675
 PropertyFunction[PropertyFunction.IDLE_FISH_INTERACTION_PCT] = "IDLE_FISH_INTERACTION_PCT"
-PropertyFunction.IDLE_FISH_ESCAPE_SPEED_PCT = 682
+PropertyFunction.IDLE_FISH_ESCAPE_SPEED_PCT = 676
 PropertyFunction[PropertyFunction.IDLE_FISH_ESCAPE_SPEED_PCT] = "IDLE_FISH_ESCAPE_SPEED_PCT"
-PropertyFunction.IDLE_FISH_WAIT_TIME_REDUCE_PCT = 683
+PropertyFunction.IDLE_FISH_WAIT_TIME_REDUCE_PCT = 677
 PropertyFunction[PropertyFunction.IDLE_FISH_WAIT_TIME_REDUCE_PCT] = "IDLE_FISH_WAIT_TIME_REDUCE_PCT"
-PropertyFunction.IDLE_FISH_COURIER_SLOT = 684
+PropertyFunction.IDLE_FISH_COURIER_SLOT = 678
 PropertyFunction[PropertyFunction.IDLE_FISH_COURIER_SLOT] = "IDLE_FISH_COURIER_SLOT"
-PropertyFunction.AQUARIUM_SLOT = 685
+PropertyFunction.AQUARIUM_SLOT = 679
 PropertyFunction[PropertyFunction.AQUARIUM_SLOT] = "AQUARIUM_SLOT"
-PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST2 = 686
+PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST2 = 680
 PropertyFunction[PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST2] = "HOLY_SHIELD_DAMAGE_BOOST2"
-PropertyFunction.BLADE_SWORD_BOOST2 = 687
+PropertyFunction.BLADE_SWORD_BOOST2 = 681
 PropertyFunction[PropertyFunction.BLADE_SWORD_BOOST2] = "BLADE_SWORD_BOOST2"
-PropertyFunction.DASH_DISTANCE = 688
+PropertyFunction.DASH_DISTANCE = 682
 PropertyFunction[PropertyFunction.DASH_DISTANCE] = "DASH_DISTANCE"
-PropertyFunction.MOVE_DISTANCE_EFFICIENCY = 689
+PropertyFunction.MOVE_DISTANCE_EFFICIENCY = 683
 PropertyFunction[PropertyFunction.MOVE_DISTANCE_EFFICIENCY] = "MOVE_DISTANCE_EFFICIENCY"
-PropertyFunction.EXPLORE_PROFIT_110005_PCT = 690
+PropertyFunction.EXPLORE_PROFIT_110005_PCT = 684
 PropertyFunction[PropertyFunction.EXPLORE_PROFIT_110005_PCT] = "EXPLORE_PROFIT_110005_PCT"
-PropertyFunction.RESOURCE_PROFIT_STONE_PCT = 691
+PropertyFunction.RESOURCE_PROFIT_STONE_PCT = 685
 PropertyFunction[PropertyFunction.RESOURCE_PROFIT_STONE_PCT] = "RESOURCE_PROFIT_STONE_PCT"
-PropertyFunction.RESOURCE_PROFIT_FORGE_PCT = 692
+PropertyFunction.RESOURCE_PROFIT_FORGE_PCT = 686
 PropertyFunction[PropertyFunction.RESOURCE_PROFIT_FORGE_PCT] = "RESOURCE_PROFIT_FORGE_PCT"
-PropertyFunction.RESOURCE_PROFIT_TALENT_PCT = 693
+PropertyFunction.RESOURCE_PROFIT_TALENT_PCT = 687
 PropertyFunction[PropertyFunction.RESOURCE_PROFIT_TALENT_PCT] = "RESOURCE_PROFIT_TALENT_PCT"
-PropertyFunction.RESOURCE_PROFIT_210001_PCT = 694
+PropertyFunction.RESOURCE_PROFIT_210001_PCT = 688
 PropertyFunction[PropertyFunction.RESOURCE_PROFIT_210001_PCT] = "RESOURCE_PROFIT_210001_PCT"
-PropertyFunction.LIGHTNING_DAMAGE_BOOST2 = 695
+PropertyFunction.LIGHTNING_DAMAGE_BOOST2 = 689
 PropertyFunction[PropertyFunction.LIGHTNING_DAMAGE_BOOST2] = "LIGHTNING_DAMAGE_BOOST2"
-PropertyFunction.POISON_DAMAGE_BOOST2 = 696
+PropertyFunction.POISON_DAMAGE_BOOST2 = 690
 PropertyFunction[PropertyFunction.POISON_DAMAGE_BOOST2] = "POISON_DAMAGE_BOOST2"
-PropertyFunction.FREEZE_DAMAGE_BOOST2 = 697
+PropertyFunction.FREEZE_DAMAGE_BOOST2 = 691
 PropertyFunction[PropertyFunction.FREEZE_DAMAGE_BOOST2] = "FREEZE_DAMAGE_BOOST2"
-PropertyFunction.BLEED_DAMAGE_BOOST2 = 698
+PropertyFunction.BLEED_DAMAGE_BOOST2 = 692
 PropertyFunction[PropertyFunction.BLEED_DAMAGE_BOOST2] = "BLEED_DAMAGE_BOOST2"
-PropertyFunction.HOLY_SUIT_EFFECT_BOOST = 699
+PropertyFunction.HOLY_SUIT_EFFECT_BOOST = 693
 PropertyFunction[PropertyFunction.HOLY_SUIT_EFFECT_BOOST] = "HOLY_SUIT_EFFECT_BOOST"
-PropertyFunction.ZEUS_SUIT_EFFECT_BOOST = 700
+PropertyFunction.ZEUS_SUIT_EFFECT_BOOST = 694
 PropertyFunction[PropertyFunction.ZEUS_SUIT_EFFECT_BOOST] = "ZEUS_SUIT_EFFECT_BOOST"
-PropertyFunction.ICE_SUIT_EFFECT_BOOST = 701
+PropertyFunction.ICE_SUIT_EFFECT_BOOST = 695
 PropertyFunction[PropertyFunction.ICE_SUIT_EFFECT_BOOST] = "ICE_SUIT_EFFECT_BOOST"
-PropertyFunction.POISON_SUIT_EFFECT_BOOST = 702
+PropertyFunction.POISON_SUIT_EFFECT_BOOST = 696
 PropertyFunction[PropertyFunction.POISON_SUIT_EFFECT_BOOST] = "POISON_SUIT_EFFECT_BOOST"
-PropertyFunction.BLEED_SUIT_EFFECT_BOOST = 703
+PropertyFunction.BLEED_SUIT_EFFECT_BOOST = 697
 PropertyFunction[PropertyFunction.BLEED_SUIT_EFFECT_BOOST] = "BLEED_SUIT_EFFECT_BOOST"
-PropertyFunction.CRIT_SUIT_EFFECT_BOOST = 704
+PropertyFunction.CRIT_SUIT_EFFECT_BOOST = 698
 PropertyFunction[PropertyFunction.CRIT_SUIT_EFFECT_BOOST] = "CRIT_SUIT_EFFECT_BOOST"
-PropertyFunction.WIND_SUIT_EFFECT_BOOST = 705
+PropertyFunction.WIND_SUIT_EFFECT_BOOST = 699
 PropertyFunction[PropertyFunction.WIND_SUIT_EFFECT_BOOST] = "WIND_SUIT_EFFECT_BOOST"
-PropertyFunction.REVIVE_MAX = 706
+PropertyFunction.REVIVE_MAX = 700
 PropertyFunction[PropertyFunction.REVIVE_MAX] = "REVIVE_MAX"
-PropertyFunction.IN_GAME_BLESS_REFRESH_MAX = 707
+PropertyFunction.IN_GAME_BLESS_REFRESH_MAX = 701
 PropertyFunction[PropertyFunction.IN_GAME_BLESS_REFRESH_MAX] = "IN_GAME_BLESS_REFRESH_MAX"
-PropertyFunction.IN_GAME_ABILITY_UPGRADE_MAX = 708
+PropertyFunction.IN_GAME_ABILITY_UPGRADE_MAX = 702
 PropertyFunction[PropertyFunction.IN_GAME_ABILITY_UPGRADE_MAX] = "IN_GAME_ABILITY_UPGRADE_MAX"
-PropertyFunction.GEM_DROP_PCT = 709
+PropertyFunction.GEM_DROP_PCT = 703
 PropertyFunction[PropertyFunction.GEM_DROP_PCT] = "GEM_DROP_PCT"
-PropertyFunction.GEM_DROP_NUM_PCT = 710
+PropertyFunction.GEM_DROP_NUM_PCT = 704
 PropertyFunction[PropertyFunction.GEM_DROP_NUM_PCT] = "GEM_DROP_NUM_PCT"
-PropertyFunction.GEM_EXTRA_DROP_BASE = 711
+PropertyFunction.GEM_EXTRA_DROP_BASE = 705
 PropertyFunction[PropertyFunction.GEM_EXTRA_DROP_BASE] = "GEM_EXTRA_DROP_BASE"
-PropertyFunction.TOTAL_DROP_NUM_PCT = 712
+PropertyFunction.TOTAL_DROP_NUM_PCT = 706
 PropertyFunction[PropertyFunction.TOTAL_DROP_NUM_PCT] = "TOTAL_DROP_NUM_PCT"
-PropertyFunction.REFINE_INC_PCT = 713
+PropertyFunction.REFINE_INC_PCT = 707
 PropertyFunction[PropertyFunction.REFINE_INC_PCT] = "REFINE_INC_PCT"
-PropertyFunction.ABYSSAL_FREE = 714
+PropertyFunction.ABYSSAL_FREE = 708
 PropertyFunction[PropertyFunction.ABYSSAL_FREE] = "ABYSSAL_FREE"
-PropertyFunction.DRAWING_DROP_CHANCE = 715
+PropertyFunction.DRAWING_DROP_CHANCE = 709
 PropertyFunction[PropertyFunction.DRAWING_DROP_CHANCE] = "DRAWING_DROP_CHANCE"
-PropertyFunction.EXPLORE_EXTRA_CHANCE = 716
+PropertyFunction.GEM_ROLL_CHANCE = 710
+PropertyFunction[PropertyFunction.GEM_ROLL_CHANCE] = "GEM_ROLL_CHANCE"
+PropertyFunction.EXPLORE_EXTRA_CHANCE = 711
 PropertyFunction[PropertyFunction.EXPLORE_EXTRA_CHANCE] = "EXPLORE_EXTRA_CHANCE"
-PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT = 717
+PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT = 712
 PropertyFunction[PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT] = "EXPLORE_EXTRA_PROFIT_PCT"
-PropertyFunction.RUNE_RARITY_CHANCE = 718
+PropertyFunction.RUNE_RARITY_CHANCE = 713
 PropertyFunction[PropertyFunction.RUNE_RARITY_CHANCE] = "RUNE_RARITY_CHANCE"
-PropertyFunction.RUNE_DEVOUR_LOCK = 719
+PropertyFunction.RUNE_DEVOUR_LOCK = 714
 PropertyFunction[PropertyFunction.RUNE_DEVOUR_LOCK] = "RUNE_DEVOUR_LOCK"
-PropertyFunction.EXPLORE_LIMIT = 720
+PropertyFunction.EXPLORE_LIMIT = 715
 PropertyFunction[PropertyFunction.EXPLORE_LIMIT] = "EXPLORE_LIMIT"
-PropertyFunction.LAST = 721
+PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL = 716
+PropertyFunction[PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL] = "ATTACK_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL = 717
+PropertyFunction[PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL] = "SPELL_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL = 718
+PropertyFunction[PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL] = "SKILL_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL = 719
+PropertyFunction[PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL] = "DODGE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL = 720
+PropertyFunction[PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL] = "DEFENSE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL = 721
+PropertyFunction[PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL] = "ULTIMATE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL = 722
+PropertyFunction[PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL] = "LIGHTNING_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL = 723
+PropertyFunction[PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL] = "FREEZE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL = 724
+PropertyFunction[PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL] = "POISON_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL = 725
+PropertyFunction[PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL] = "BLEED_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL = 726
+PropertyFunction[PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL] = "BLADE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL = 727
+PropertyFunction[PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL] = "HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL = 728
+PropertyFunction[PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL] = "RING_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL = 729
+PropertyFunction[PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL] = "SPLASH_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL = 730
+PropertyFunction[PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL] = "MELEE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL = 731
+PropertyFunction[PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL] = "RANGED_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL = 732
+PropertyFunction[PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL] = "ELITE_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL = 733
+PropertyFunction[PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL] = "BOSS_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL = 734
+PropertyFunction[PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL] = "BARRIER_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL = 735
+PropertyFunction[PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL] = "BACKSTAB_DAMAGE_BOOST_PER_LEVEL"
+PropertyFunction.LAST = 736
 PropertyFunction[PropertyFunction.LAST] = "LAST"
 PROPERTY_MAP = {
 	health = PropertyFunction.HEALTH,
@@ -884,15 +914,9 @@ PROPERTY_MAP = {
 	damage_boost = PropertyFunction.DAMAGE_BOOST,
 	magical_damage_boost = PropertyFunction.MAGICAL_DAMAGE_BOOST,
 	physical_damage_boost = PropertyFunction.PHYSICAL_DAMAGE_BOOST,
-	attack_bonus_per_level = PropertyFunction.ATTACK_BONUS_PER_LEVEL,
-	crit_damage_bonus_per_level = PropertyFunction.CRIT_DAMAGE_BONUS_PER_LEVEL,
-	skill_damage_boost_per_level = PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL,
-	ultimate_damage_boost_per_level = PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL,
-	attack_damage_boost_per_level = PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL,
+	damage_boost_per_level = PropertyFunction.DAMAGE_BOOST_PER_LEVEL,
 	physical_damage_boost_per_level = PropertyFunction.PHYSICAL_DAMAGE_BOOST_PER_LEVEL,
 	magical_damage_boost_per_level = PropertyFunction.MAGICAL_DAMAGE_BOOST_PER_LEVEL,
-	melee_hero_damage_boost_per_level = PropertyFunction.MELEE_HERO_DAMAGE_BOOST_PER_LEVEL,
-	ranger_hero_damage_boost_per_level = PropertyFunction.RANGER_HERO_DAMAGE_BOOST_PER_LEVEL,
 	rage_gain_percent_per_skill = PropertyFunction.RAGE_GAIN_PERCENT_PER_SKILL,
 	bonus_frost_damage = PropertyFunction.BONUS_FROST_DAMAGE,
 	bonus_poison_damage = PropertyFunction.BONUS_POISON_DAMAGE,
@@ -972,11 +996,32 @@ PROPERTY_MAP = {
 	refine_inc_pct = PropertyFunction.REFINE_INC_PCT,
 	abyssal_free = PropertyFunction.ABYSSAL_FREE,
 	drawing_drop_chance = PropertyFunction.DRAWING_DROP_CHANCE,
+	gem_roll_change = PropertyFunction.GEM_ROLL_CHANCE,
 	explore_extra_chance = PropertyFunction.EXPLORE_EXTRA_CHANCE,
 	explore_extra_profit_pct = PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT,
 	rune_rarity_chance = PropertyFunction.RUNE_RARITY_CHANCE,
 	rune_devour_lock = PropertyFunction.RUNE_DEVOUR_LOCK,
 	explore_limit = PropertyFunction.EXPLORE_LIMIT,
+	attack_damage_boost_per_level = PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL,
+	spell_damage_boost_per_level = PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL,
+	skill_damage_boost_per_level = PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL,
+	dodge_damage_boost_per_level = PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL,
+	defense_damage_boost_per_level = PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL,
+	ultimate_damage_boost_per_level = PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL,
+	lightning_damage_boost_per_level = PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL,
+	freeze_damage_boost_per_level = PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL,
+	poison_damage_boost_per_level = PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL,
+	bleed_damage_boost_per_level = PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL,
+	blade_damage_boost_per_level = PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL,
+	holy_shield_damage_boost_per_level = PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL,
+	ring_damage_boost_per_level = PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL,
+	splash_damage_boost_per_level = PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL,
+	melee_damage_boost_per_level = PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL,
+	ranged_damage_boost_per_level = PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL,
+	elite_damage_boost_per_level = PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL,
+	boss_damage_boost_per_level = PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL,
+	barrier_damage_boost_per_level = PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL,
+	backstab_damage_boost_per_level = PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL,
 }
 PROPERTY_MAP_REVERSE = {}
 for b, c in pairs(PROPERTY_MAP) do
@@ -2620,49 +2665,13 @@ PropertySystem:RegisterProperty({
 	enableCache = false,
 })
 PropertySystem:RegisterProperty({
-	id = "attack_bonus_per_level",
+	id = "damage_boost_per_level",
 	scope = PropertyScope.UNIT,
 	valueType = PropertyValueType.NUMBER,
 	aggregation = AggregationStrategy.SUM,
 	enableCache = false,
 	event_name = "hero_level_up",
-	event_link_id = "attack",
-})
-PropertySystem:RegisterProperty({
-	id = "crit_damage_bonus_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "crit_damage",
-})
-PropertySystem:RegisterProperty({
-	id = "skill_damage_boost_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "skill_damage_boost",
-})
-PropertySystem:RegisterProperty({
-	id = "ultimate_damage_boost_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "ultimate_damage_boost",
-})
-PropertySystem:RegisterProperty({
-	id = "attack_damage_boost_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "attack_damage_boost",
+	event_link_id = "damage_boost",
 })
 PropertySystem:RegisterProperty({
 	id = "physical_damage_boost_per_level",
@@ -2681,24 +2690,6 @@ PropertySystem:RegisterProperty({
 	enableCache = false,
 	event_name = "hero_level_up",
 	event_link_id = "magical_damage_boost",
-})
-PropertySystem:RegisterProperty({
-	id = "melee_hero_damage_boost_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "melee_hero_damage_boost",
-})
-PropertySystem:RegisterProperty({
-	id = "ranger_hero_damage_boost_per_level",
-	scope = PropertyScope.UNIT,
-	valueType = PropertyValueType.NUMBER,
-	aggregation = AggregationStrategy.SUM,
-	enableCache = false,
-	event_name = "hero_level_up",
-	event_link_id = "ranger_hero_damage_boost",
 })
 PropertySystem:RegisterProperty({
 	id = "rage_gain_percent_per_skill",
@@ -3260,6 +3251,13 @@ PropertySystem:RegisterProperty({
 	enableCache = false,
 })
 PropertySystem:RegisterProperty({
+	id = "gem_roll_change",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.PERCENTAGE,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
 	id = "explore_extra_chance",
 	scope = PropertyScope.PLAYER,
 	valueType = PropertyValueType.PERCENTAGE,
@@ -3293,6 +3291,186 @@ PropertySystem:RegisterProperty({
 	valueType = PropertyValueType.NUMBER,
 	aggregation = AggregationStrategy.SUM,
 	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "attack_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "attack_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "spell_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "spell_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "skill_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "skill_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "dodge_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "dodge_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "defense_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "defense_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "ultimate_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "ultimate_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "lightning_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "lightning_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "freeze_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "freeze_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "poison_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "poison_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "bleed_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "bleed_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "blade_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "blade_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "holy_shield_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "holy_shield_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "ring_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "ring_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "splash_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "splash_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "melee_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "melee_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "ranged_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "ranged_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "elite_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "elite_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "boss_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "boss_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "barrier_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "barrier_damage_boost",
+})
+PropertySystem:RegisterProperty({
+	id = "backstab_damage_boost_per_level",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+	event_name = "hero_level_up",
+	event_link_id = "backstab_damage_boost",
 })
 function GetHealth(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "health", e)
@@ -3936,32 +4114,14 @@ end
 function GetPhysicalDamageBoost(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "physical_damage_boost", e)
 end
-function GetAttackBonusPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "attack_bonus_per_level", e)
-end
-function GetCritDamageBonusPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "crit_damage_bonus_per_level", e)
-end
-function GetSkillDamageBoostPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "skill_damage_boost_per_level", e)
-end
-function GetUltimateDamageBoostPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "ultimate_damage_boost_per_level", e)
-end
-function GetAttackDamageBoostPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "attack_damage_boost_per_level", e)
+function GetDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "damage_boost_per_level", e)
 end
 function GetPhysicalDamageBoostPerLevel(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "physical_damage_boost_per_level", e)
 end
 function GetMagicalDamageBoostPerLevel(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "magical_damage_boost_per_level", e)
-end
-function GetMeleeHeroDamageBoostPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "melee_hero_damage_boost_per_level", e)
-end
-function GetRangerHeroDamageBoostPerLevel(d, e)
-	return PropertySystem:GetPropertyValue(d:entindex(), "ranger_hero_damage_boost_per_level", e)
 end
 function GetHpRegenPerEncounter(f, e)
 	return PropertySystem:GetPropertyValue(f, "hp_regen_per_encounter", e)
@@ -4077,6 +4237,9 @@ end
 function GetDrawingDropChance(f, e)
 	return PropertySystem:GetPropertyValue(f, "drawing_drop_chance", e)
 end
+function GetGemRollChance(f, e)
+	return PropertySystem:GetPropertyValue(f, "gem_roll_change", e)
+end
 function GetExploreExtraChance(f, e)
 	return PropertySystem:GetPropertyValue(f, "explore_extra_chance", e)
 end
@@ -4091,6 +4254,66 @@ function GetRuneDevourLock(f, e)
 end
 function GetExploreLimit(f, e)
 	return PropertySystem:GetPropertyValue(f, "explore_limit", e)
+end
+function GetAttackDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "attack_damage_boost_per_level", e)
+end
+function GetSpellDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "spell_damage_boost_per_level", e)
+end
+function GetSkillDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "skill_damage_boost_per_level", e)
+end
+function GetDodgeDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "dodge_damage_boost_per_level", e)
+end
+function GetDefenseDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "defense_damage_boost_per_level", e)
+end
+function GetUltimateDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "ultimate_damage_boost_per_level", e)
+end
+function GetLightningDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "lightning_damage_boost_per_level", e)
+end
+function GetFreezeDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "freeze_damage_boost_per_level", e)
+end
+function GetPoisonDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "poison_damage_boost_per_level", e)
+end
+function GetBleedDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "bleed_damage_boost_per_level", e)
+end
+function GetBladeDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "blade_damage_boost_per_level", e)
+end
+function GetHolyShieldDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "holy_shield_damage_boost_per_level", e)
+end
+function GetRingDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "ring_damage_boost_per_level", e)
+end
+function GetSplashDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "splash_damage_boost_per_level", e)
+end
+function GetMeleeDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "melee_damage_boost_per_level", e)
+end
+function GetRangedDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "ranged_damage_boost_per_level", e)
+end
+function GetEliteDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "elite_damage_boost_per_level", e)
+end
+function GetBossDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "boss_damage_boost_per_level", e)
+end
+function GetBarrierDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "barrier_damage_boost_per_level", e)
+end
+function GetBackstabDamageBoostPerLevel(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "backstab_damage_boost_per_level", e)
 end
 PROPERTY_FUNCTION_MAP = {
 	health = GetHealth,
@@ -4307,15 +4530,9 @@ PROPERTY_FUNCTION_MAP = {
 	damage_boost = GetDamageBoost,
 	magical_damage_boost = GetMagicalDamageBoost,
 	physical_damage_boost = GetPhysicalDamageBoost,
-	attack_bonus_per_level = GetAttackBonusPerLevel,
-	crit_damage_bonus_per_level = GetCritDamageBonusPerLevel,
-	skill_damage_boost_per_level = GetSkillDamageBoostPerLevel,
-	ultimate_damage_boost_per_level = GetUltimateDamageBoostPerLevel,
-	attack_damage_boost_per_level = GetAttackDamageBoostPerLevel,
+	damage_boost_per_level = GetDamageBoostPerLevel,
 	physical_damage_boost_per_level = GetPhysicalDamageBoostPerLevel,
 	magical_damage_boost_per_level = GetMagicalDamageBoostPerLevel,
-	melee_hero_damage_boost_per_level = GetMeleeHeroDamageBoostPerLevel,
-	ranger_hero_damage_boost_per_level = GetRangerHeroDamageBoostPerLevel,
 	hp_regen_per_encounter = GetHpRegenPerEncounter,
 	mana_regen_per_encounter = GetManaRegenPerEncounter,
 	damage_intensity = GetDamageIntensity,
@@ -4354,9 +4571,30 @@ PROPERTY_FUNCTION_MAP = {
 	refine_inc_pct = GetRefineIncPct,
 	abyssal_free = GetAbyssalFree,
 	drawing_drop_chance = GetDrawingDropChance,
+	gem_roll_change = GetGemRollChance,
 	explore_extra_chance = GetExploreExtraChance,
 	explore_extra_profit_pct = GetExploreExtraProfitPct,
 	rune_rarity_chance = GetRuneRarityChance,
 	rune_devour_lock = GetRuneDevourLock,
 	explore_limit = GetExploreLimit,
+	attack_damage_boost_per_level = GetAttackDamageBoostPerLevel,
+	spell_damage_boost_per_level = GetSpellDamageBoostPerLevel,
+	skill_damage_boost_per_level = GetSkillDamageBoostPerLevel,
+	dodge_damage_boost_per_level = GetDodgeDamageBoostPerLevel,
+	defense_damage_boost_per_level = GetDefenseDamageBoostPerLevel,
+	ultimate_damage_boost_per_level = GetUltimateDamageBoostPerLevel,
+	lightning_damage_boost_per_level = GetLightningDamageBoostPerLevel,
+	freeze_damage_boost_per_level = GetFreezeDamageBoostPerLevel,
+	poison_damage_boost_per_level = GetPoisonDamageBoostPerLevel,
+	bleed_damage_boost_per_level = GetBleedDamageBoostPerLevel,
+	blade_damage_boost_per_level = GetBladeDamageBoostPerLevel,
+	holy_shield_damage_boost_per_level = GetHolyShieldDamageBoostPerLevel,
+	ring_damage_boost_per_level = GetRingDamageBoostPerLevel,
+	splash_damage_boost_per_level = GetSplashDamageBoostPerLevel,
+	melee_damage_boost_per_level = GetMeleeDamageBoostPerLevel,
+	ranged_damage_boost_per_level = GetRangedDamageBoostPerLevel,
+	elite_damage_boost_per_level = GetEliteDamageBoostPerLevel,
+	boss_damage_boost_per_level = GetBossDamageBoostPerLevel,
+	barrier_damage_boost_per_level = GetBarrierDamageBoostPerLevel,
+	backstab_damage_boost_per_level = GetBackstabDamageBoostPerLevel,
 }

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -825,7 +825,7 @@ function EquipSuitList(props) {
   })();
 }
 function EquipmentAttrRow(props) {
-  const info = libs.createMemo(() => GetAttrRowInfo(props.data, props.attributNameColor, props.showAttributeRange));
+  const info = libs.createMemo(() => GetAttrRowInfo(props.data, props.attributNameColor, props.showAttributeRange, props.hideZeroBaseValue));
   const isUp = () => {
     if (!props.compareMap) return undefined;
     const compareValue = props.compareMap[props.data.id];
@@ -891,7 +891,7 @@ function EquipmentAttrRow(props) {
     return _el$63;
   })();
 }
-function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange = true) {
+function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange = true, hideZeroBaseValue = false) {
   const id = data.id;
   const kv = KeyValues.equip_entry[id];
   const info = attribute_formatter.formatAttributeDisplay(data, {
@@ -901,7 +901,8 @@ function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange 
       value_max: kv?.value_max
     },
     attributeNameColor: attributNameColor,
-    showAttributeRange
+    showAttributeRange,
+    hideZeroBaseValue
   });
   return {
     text: info.valueText,

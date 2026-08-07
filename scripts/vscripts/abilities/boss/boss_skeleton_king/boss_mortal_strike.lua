@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -34,43 +34,45 @@ function m.prototype.OnSpellStart(self)
 	n:SetForwardVector(q)
 	n:StartGesture(ACT_DOTA_TELEPORT_END)
 	n:KnockBack(-q, s, 0, 0.6, function(o)
-		n:SetAbsOrigin(o)
-		local t = n:GetHullRadius() + 50
-		local u = FindEnemiesInRadius(n, o, t)
-		for v, w in ipairs(u) do
-			w:KnockBack(CalcDirection2D(w, o), t - CalcDistance(w, o), 0, 0.1)
+		FindClearSpaceForUnit(n, o, true)
+		local t = n:GetAbsOrigin()
+		local u = n:GetHullRadius() + 50
+		local v = FindEnemiesInRadius(n, t, u)
+		for w, x in ipairs(v) do
+			x:KnockBack(CalcDirection2D(x, t), u - CalcDistance(x, t), 0, 0.1)
 		end
 	end)
 	n:EmitSound("skeleton_king_skel_arc_attack_12")
 	self:StartThink(0.9, "landed", function()
 		self:CircleWarning(o, 350, 0.56)
 		n:StartGesture(ACT_DOTA_CAST_ABILITY_3)
-		n:Dash(q, p + s - 300, 150, 0.56, function(x)
-			n:SetAbsOrigin(x)
-			local t = n:GetHullRadius() + 50
-			local u = FindEnemiesInRadius(n, x, t)
-			for v, w in ipairs(u) do
-				w:KnockBack(CalcDirection2D(w, x), t - CalcDistance(w, x), 0, 0.1)
+		n:Dash(q, p + s - 300, 150, 0.56, function(y)
+			FindClearSpaceForUnit(n, y, true)
+			local z = n:GetAbsOrigin()
+			local u = n:GetHullRadius() + 50
+			local v = FindEnemiesInRadius(n, z, u)
+			for w, x in ipairs(v) do
+				x:KnockBack(CalcDirection2D(x, z), u - CalcDistance(x, z), 0, 0.1)
 			end
-			local y = FindEnemiesInRadius(n, o, 350)
-			for v, w in ipairs(y) do
-				n:DealDamage(w, nil, r)
+			local A = FindEnemiesInRadius(n, o, 350)
+			for w, x in ipairs(A) do
+				n:DealDamage(x, nil, r)
 			end
-			local z = n:GetAbsOrigin() + n:GetForwardVector() * 200 + Vector(0, 0, 50)
-			local A = ParticleManager:CreateParticle(
+			local B = n:GetAbsOrigin() + n:GetForwardVector() * 200 + Vector(0, 0, 50)
+			local C = ParticleManager:CreateParticle(
 				"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_weapon_blur_critical.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil
 			)
-			ParticleManager:SetParticleControlTransformForward(A, 0, z, n:GetForwardVector())
-			ParticleManager:ReleaseParticleIndex(A)
-			local B = ParticleManager:CreateParticle(
+			ParticleManager:SetParticleControlTransformForward(C, 0, B, n:GetForwardVector())
+			ParticleManager:ReleaseParticleIndex(C)
+			local D = ParticleManager:CreateParticle(
 				"particles/econ/items/centaur/centaur_ti6/centaur_ti6_warstomp.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil
 			)
-			ParticleManager:SetParticleControl(B, 0, o)
-			ParticleManager:SetParticleControl(B, 1, Vector(350, 0, 0))
+			ParticleManager:SetParticleControl(D, 0, o)
+			ParticleManager:SetParticleControl(D, 1, Vector(350, 0, 0))
 			n:EmitSound("Hero_SkeletonKing.CriticalStrike.TI8")
 			n:EmitSound("n_creep_Thunderlizard_Big.Stomp")
 			self:SummonShadowRaze()
@@ -81,44 +83,44 @@ function m.prototype.OnSpellStart(self)
 end
 function m.prototype.SummonShadowRaze(self)
 	local n = self:GetCaster()
-	local C = n:GetAbsOrigin()
-	local D = self:GetSpecialValueFor("raze_damage")
-	local E = {}
-	Bullet:SplitAction(n:GetForwardVector(), 8, 360 / 8, function(v, q, F)
-		local o = C + q * RandomInt(400, 900)
-		E[#E + 1] = o
-		local G = ParticleManager:CreateParticle("particles/warning/circular.vpcf", PATTACH_WORLDORIGIN, n)
-		ParticleManager:SetParticleControl(G, 0, o)
-		ParticleManager:SetParticleControl(G, 1, o)
-		ParticleManager:SetParticleControl(G, 2, Vector(200, 1, 0))
+	local E = n:GetAbsOrigin()
+	local F = self:GetSpecialValueFor("raze_damage")
+	local G = {}
+	Bullet:SplitAction(n:GetForwardVector(), 8, 360 / 8, function(w, q, H)
+		local o = E + q * RandomInt(400, 900)
+		G[#G + 1] = o
+		local I = ParticleManager:CreateParticle("particles/warning/circular.vpcf", PATTACH_WORLDORIGIN, n)
+		ParticleManager:SetParticleControl(I, 0, o)
+		ParticleManager:SetParticleControl(I, 1, o)
+		ParticleManager:SetParticleControl(I, 2, Vector(200, 1, 0))
 	end)
 	self:StartThink(1, "shadow_raze", function()
-		for v, o in ipairs(E) do
-			local y = FindEnemiesInRadius(n, o, 200)
-			for v, w in ipairs(y) do
-				n:DealDamage(w, nil, D)
+		for w, o in ipairs(G) do
+			local A = FindEnemiesInRadius(n, o, 200)
+			for w, x in ipairs(A) do
+				n:DealDamage(x, nil, F)
 			end
-			local B = ParticleManager:CreateParticle(
+			local D = ParticleManager:CreateParticle(
 				"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil
 			)
-			ParticleManager:SetParticleControl(B, 0, o)
-			ParticleManager:ReleaseParticleIndex(B)
+			ParticleManager:SetParticleControl(D, 0, o)
+			ParticleManager:ReleaseParticleIndex(D)
 		end
 		n:EmitSound("Hero_Nevermore.Shadowraze")
 		return -1
 	end)
 end
 m = e({ l(nil) }, m)
-local H = c()
-H.name = "modifier_boss_mortal_strike"
-d(H, h)
-H = e(
+local J = c()
+J.name = "modifier_boss_mortal_strike"
+d(J, h)
+J = e(
 	{ i(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	H
+	J
 )
 return f

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -99,11 +99,14 @@ function s.prototype.OpenAdventure(self, n, o, v)
 				local A = Interaction:RegisterInteract(z, InteractType.NPC, 200, function(m, B, C)
 					self:EnterBattle(u, C)
 				end, 99999999)
-				if A ~= -1 then
-					Interaction:UpdateInteract(A, { tooltip = x.tooltip, icon = x.icon })
-					local D = self.entranceInteractIds
-					D[#D + 1] = A
+				if A == -1 then
+					self:error((("创建冒险入口交互失败 type=" .. u) .. " npc=") .. x.npcName)
+					z:SafeRemoveUnit()
+					goto w
 				end
+				Interaction:UpdateInteract(A, { tooltip = x.tooltip, icon = x.icon })
+				local D = self.entranceInteractIds
+				D[#D + 1] = A
 				Npc:AddNpc(z:entindex(), x.npcKey)
 				local E = self.entranceNpcs
 				E[#E + 1] = z
@@ -159,6 +162,7 @@ function s.prototype.EnterBattle(self, u, G)
 	local J = TeamRequestManager:Request({
 		requestType = H.requestType,
 		requesterPlayerId = G,
+		successPolicy = "any",
 		onSuccess = function(m, K)
 			self:StartBattle(u, K)
 		end,
@@ -168,6 +172,12 @@ function s.prototype.EnterBattle(self, u, G)
 		return false
 	end
 	return true
+end
+function s.prototype.IsAdventureRequired(self, u)
+	return self.openedAdventureTypes[u] == true
+end
+function s.prototype.IsAdventureCompleted(self, u)
+	return self:GetAdventureRuntime(u).state == "completed"
 end
 function s.prototype.ExitBattle(self, u, C)
 	local I = self:GetAdventureRuntime(u)

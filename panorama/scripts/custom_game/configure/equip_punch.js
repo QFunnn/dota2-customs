@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -14,41 +14,41 @@ GameUI.CustomUIConfig().equip_punch = {
 		class: 10,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:20"
+		cost: "120008:500|120009:100|120010:100"
 	},
 	"2": {
 		id: 2,
 		class: 11,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:30"
+		cost: "120008:600|120009:120|120010:120"
 	},
 	"3": {
 		id: 3,
 		class: 12,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:40"
+		cost: "120008:700|120009:140|120010:140"
 	},
 	"4": {
 		id: 4,
 		class: 13,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:50"
+		cost: "120008:800|120009:160|120010:160"
 	},
 	"5": {
 		id: 5,
 		class: 14,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:60"
+		cost: "120008:900|120009:180|120010:180"
 	},
 	"6": {
 		id: 6,
 		class: 15,
 		rarity: 7,
 		punch_num: 1,
-		cost: "120009:70"
+		cost: "120008:1000|120009:200|120010:200"
 	}
-};
+};

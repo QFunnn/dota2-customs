@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -113,8 +113,8 @@ GameUI.CustomUIConfig().activity_data = {
 	"1001": {
 		activity_id: 1001,
 		type: 10,
-		start_time: 1784822400,
-		end_time: 1786032000,
+		start_time: 1786032000,
+		end_time: 1787846400,
 		show: 1,
 		sort: 24,
 		name: "mining",

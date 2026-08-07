@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -3755,52 +3755,50 @@ function Dice() {
   return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
     id: "SubMenu_dice",
     get children() {
-      return [libs.createElement("Image", {
-        id: "DiceBG"
-      }, null), (() => {
-        const _el$28 = libs.createElement("Panel", {
+      return [(() => {
+        const _el$27 = libs.createElement("Panel", {
             id: "DiceTopRight"
           }, null),
-          _el$29 = libs.createElement("Panel", {
+          _el$28 = libs.createElement("Panel", {
             id: "DiceTopTitle"
-          }, _el$28),
-          _el$30 = libs.createElement("Image", {
+          }, _el$27),
+          _el$29 = libs.createElement("Image", {
             id: "DiceTopTitleIcon",
             get ["class"]() {
               return logoLang();
             }
-          }, _el$29),
-          _el$31 = libs.createElement("Image", {
+          }, _el$28),
+          _el$30 = libs.createElement("Image", {
             id: "DiceTopTitleTooltipIcon",
             get ["class"]() {
               return logoLang();
             }
-          }, _el$29),
-          _el$32 = libs.createElement("Panel", {
+          }, _el$28),
+          _el$31 = libs.createElement("Panel", {
             id: "DiceTopSubTitle"
-          }, _el$28);
+          }, _el$27);
           libs.createElement("Image", {
             id: "DiceTopSubTitleBG"
-          }, _el$32);
-          const _el$34 = libs.createElement("Panel", {
+          }, _el$31);
+          const _el$33 = libs.createElement("Panel", {
             id: "DiceActivityTask"
-          }, _el$28);
+          }, _el$27);
           libs.createElement("Image", {
             id: "DiceActivityTaskBG"
-          }, _el$34);
-          const _el$36 = libs.createElement("Panel", {
+          }, _el$33);
+          const _el$35 = libs.createElement("Panel", {
             id: "DiceActivityTaskContent",
             scroll: "y"
-          }, _el$34);
-        libs.insert(_el$32, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          }, _el$33);
+        libs.insert(_el$31, libs.createComponent(EOM_Countdown.EOM_Countdown, {
           icon: true,
           text: "#ActivityDice_TimeLimit",
           get endTime() {
             return activityData().end_time;
           }
         }), null);
-        libs.setProp(_el$36, "scroll", "y");
-        libs.insert(_el$36, libs.createComponent(DiceTaskGroup, {
+        libs.setProp(_el$35, "scroll", "y");
+        libs.insert(_el$35, libs.createComponent(DiceTaskGroup, {
           taskType: 7,
           get tasks() {
             return diceTasksByType()[7];
@@ -3810,7 +3808,7 @@ function Dice() {
           },
           onClaim: receiveDiceTaskReward
         }), null);
-        libs.insert(_el$36, libs.createComponent(libs.Show, {
+        libs.insert(_el$35, libs.createComponent(libs.Show, {
           get when() {
             return shouldShowDiceTaskGroup(diceTasksByType()[6]);
           },
@@ -3831,38 +3829,38 @@ function Dice() {
           const _v$0 = logoLang(),
             _v$1 = logoLang(),
             _v$10 = GetLocalization("#ActivityDice_TitleTooltip");
-          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$30, "class", _v$0, _p$._v$0));
-          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$31, "class", _v$1, _p$._v$1));
-          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$31, "tooltip_text", _v$10, _p$._v$10));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "class", _v$0, _p$._v$0));
+          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$30, "class", _v$1, _p$._v$1));
+          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$30, "tooltip_text", _v$10, _p$._v$10));
           return _p$;
         }, {
           _v$0: undefined,
           _v$1: undefined,
           _v$10: undefined
         });
-        return _el$28;
+        return _el$27;
       })(), (() => {
-        const _el$37 = libs.createElement("Panel", {
+        const _el$36 = libs.createElement("Panel", {
             id: "DiceGameContainer"
           }, null),
-          _el$38 = libs.createElement("Panel", {
+          _el$37 = libs.createElement("Panel", {
             id: "DiceGameBoardLocation"
-          }, _el$37);
+          }, _el$36);
           libs.createElement("Image", {
             id: "DiceGameBoardBG"
-          }, _el$38);
-          const _el$40 = libs.createElement("Panel", {
+          }, _el$37);
+          const _el$39 = libs.createElement("Panel", {
             id: "DiceGamePieceLayerRotated"
-          }, _el$38),
-          _el$41 = libs.createElement("Panel", {
+          }, _el$37),
+          _el$40 = libs.createElement("Panel", {
             id: "DiceGamePieceGrid"
-          }, _el$40),
-          _el$42 = libs.createElement("Panel", {
+          }, _el$39),
+          _el$41 = libs.createElement("Panel", {
             id: "DiceGamePlayerLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$40),
-          _el$43 = libs.createElement("Panel", {
+          }, _el$39),
+          _el$42 = libs.createElement("Panel", {
             id: "DiceEventLayer",
             "class": "DiceLayer",
             get style() {
@@ -3872,14 +3870,14 @@ function Dice() {
             },
             hittest: false,
             hittestchildren: false
-          }, _el$38);
+          }, _el$37);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$43);
+          }, _el$42);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$43);
-          const _el$46 = libs.createElement("Image", {
+          }, _el$42);
+          const _el$45 = libs.createElement("Image", {
             id: "DiceEventHeadIcon",
             get ["class"]() {
               return libs.classNames({
@@ -3887,145 +3885,145 @@ function Dice() {
                 DiceEventBadEvent: diceEventLayerType() == "bad"
               });
             }
-          }, _el$43),
-          _el$47 = libs.createElement("Panel", {
+          }, _el$42),
+          _el$46 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$43),
-          _el$48 = libs.createElement("Panel", {
+          }, _el$42),
+          _el$47 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$47),
-          _el$49 = libs.createElement("Label", {
+          }, _el$46),
+          _el$48 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return diceEventLayerTitle();
             }
-          }, _el$48),
-          _el$50 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
           }, _el$47),
-          _el$51 = libs.createElement("Label", {
+          _el$49 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$46),
+          _el$50 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return diceEventLayerDescription();
             }
-          }, _el$50),
-          _el$52 = libs.createElement("Panel", {
+          }, _el$49),
+          _el$51 = libs.createElement("Panel", {
             id: "DiceMultiRollPointLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$38);
+          }, _el$37);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$52);
+          }, _el$51);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$52);
-          const _el$55 = libs.createElement("Panel", {
+          }, _el$51);
+          const _el$54 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$52),
-          _el$56 = libs.createElement("Panel", {
+          }, _el$51),
+          _el$55 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$55),
-          _el$57 = libs.createElement("Label", {
+          }, _el$54),
+          _el$56 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollPointTitle");
             }
-          }, _el$56),
-          _el$58 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
           }, _el$55),
-          _el$59 = libs.createElement("Label", {
+          _el$57 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$54),
+          _el$58 = libs.createElement("Label", {
             id: "DiceMultiRollPointValue",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollPointValue()}`;
             }
-          }, _el$58),
-          _el$60 = libs.createElement("Label", {
+          }, _el$57),
+          _el$59 = libs.createElement("Label", {
             id: "DiceMultiRollPointProgress",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollCurrentIndex()}/${multiRollTotalCount()}`;
             }
-          }, _el$58),
-          _el$61 = libs.createElement("Panel", {
+          }, _el$57),
+          _el$60 = libs.createElement("Panel", {
             id: "DiceMultiBoxPreviewLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: true
-          }, _el$38);
+          }, _el$37);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$61);
+          }, _el$60);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$61);
-          const _el$64 = libs.createElement("Panel", {
+          }, _el$60);
+          const _el$63 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$61),
-          _el$65 = libs.createElement("Panel", {
+          }, _el$60),
+          _el$64 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$64),
-          _el$66 = libs.createElement("Label", {
+          }, _el$63),
+          _el$65 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewTitle");
             }
-          }, _el$65),
-          _el$67 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
           }, _el$64),
-          _el$68 = libs.createElement("Label", {
+          _el$66 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$63),
+          _el$67 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewContent");
             }
-          }, _el$67),
-          _el$69 = libs.createElement("Panel", {
+          }, _el$66),
+          _el$68 = libs.createElement("Panel", {
             "class": "DiceTaskReward"
-          }, _el$67);
+          }, _el$66);
           libs.createElement("Image", {
             "class": "DiceTaskRewardBG"
-          }, _el$69);
-          const _el$71 = libs.createElement("Label", {
+          }, _el$68);
+          const _el$70 = libs.createElement("Label", {
             "class": "DiceTaskRewardValue",
             get text() {
               return boxPreviewReward()?.amounts ?? 0;
             }
-          }, _el$69),
-          _el$72 = libs.createElement("Panel", {
+          }, _el$68),
+          _el$71 = libs.createElement("Panel", {
             id: "DiceMultiRollSummaryLayer",
             "class": "DiceLayer",
             hittest: true,
             hittestchildren: true
-          }, _el$38);
+          }, _el$37);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$72);
+          }, _el$71);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$72);
-          const _el$75 = libs.createElement("Panel", {
+          }, _el$71);
+          const _el$74 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$72),
-          _el$76 = libs.createElement("Panel", {
+          }, _el$71),
+          _el$75 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$75),
-          _el$77 = libs.createElement("Label", {
+          }, _el$74),
+          _el$76 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollSummaryTitle");
             }
-          }, _el$76),
-          _el$78 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
           }, _el$75),
-          _el$79 = libs.createElement("Panel", {
+          _el$77 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$74),
+          _el$78 = libs.createElement("Panel", {
             id: "DiceGameOperation"
-          }, _el$37),
-          _el$80 = libs.createElement("Panel", {
+          }, _el$36),
+          _el$79 = libs.createElement("Panel", {
             id: "DiceGamePlayerEventContainer",
             get hittest() {
               return hasPlayerEvent();
@@ -4033,64 +4031,64 @@ function Dice() {
             get hittestchildren() {
               return hasPlayerEvent();
             }
-          }, _el$79),
-          _el$81 = libs.createElement("Label", {
+          }, _el$78),
+          _el$80 = libs.createElement("Label", {
             id: "DiceGamePlayerEventTitle",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEventTitle");
             }
-          }, _el$80),
-          _el$82 = libs.createElement("Panel", {
+          }, _el$79),
+          _el$81 = libs.createElement("Panel", {
             id: "DiceGamePlayerEventContent"
-          }, _el$80),
-          _el$83 = libs.createElement("Panel", {
+          }, _el$79),
+          _el$82 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItem"
-          }, _el$82);
+          }, _el$81);
           libs.createElement("Image", {
             id: "DiceGamePlayerEventBG"
-          }, _el$83);
-          const _el$85 = libs.createElement("Panel", {
+          }, _el$82);
+          const _el$84 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItemContent"
-          }, _el$83),
-          _el$86 = libs.createElement("Label", {
+          }, _el$82),
+          _el$85 = libs.createElement("Label", {
             "class": "DiceGamePlayerEventDesc",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEvent_RewardNextSlot");
             }
-          }, _el$85),
-          _el$88 = libs.createElement("Panel", {
+          }, _el$84),
+          _el$87 = libs.createElement("Panel", {
             id: "DiceGameRollButtonContainer"
-          }, _el$79),
-          _el$89 = libs.createElement("Panel", {
+          }, _el$78),
+          _el$88 = libs.createElement("Panel", {
             id: "DiceGameCostInfo"
-          }, _el$88);
+          }, _el$87);
           libs.createElement("Image", {
             id: "DiceGameCostInfoBG"
-          }, _el$89);
-          const _el$91 = libs.createElement("Panel", {
+          }, _el$88);
+          const _el$90 = libs.createElement("Panel", {
             id: "DiceGameCostInfoContent"
-          }, _el$89),
-          _el$92 = libs.createElement("Label", {
+          }, _el$88),
+          _el$91 = libs.createElement("Label", {
             id: "DiceGameCostValue",
             text: `x${DICE_ROLL_ONCE_TIMES}`
-          }, _el$91);
-        libs.insert(_el$41, libs.createComponent(libs.For, {
+          }, _el$90);
+        libs.insert(_el$40, libs.createComponent(libs.For, {
           each: DICE_BOARD_LAYOUT_ROWS,
           children: (row, index) => (() => {
-            const _el$99 = libs.createElement("Panel", {
+            const _el$98 = libs.createElement("Panel", {
               get ["class"]() {
                 return `DiceGamePieceRow DiceGamePieceRow_${index()}`;
               }
             }, null);
-            libs.insert(_el$99, libs.createComponent(libs.For, {
+            libs.insert(_el$98, libs.createComponent(libs.For, {
               each: row,
               children: piece => {
                 const tileConfig = () => piece.shouldRenderPiece ? tileConfigMap()[piece.slotID] ?? DEFAULT_TILE_CONFIG : DEFAULT_TILE_CONFIG;
                 return (() => {
-                  const _el$100 = libs.createElement("Panel", {
+                  const _el$99 = libs.createElement("Panel", {
                     "class": "DiceGamePieceCell"
                   }, null);
-                  libs.insert(_el$100, (() => {
+                  libs.insert(_el$99, (() => {
                     const _c$ = libs.memo(() => !!piece.shouldRenderPiece);
                     return () => _c$() ? libs.createComponent(DiceGamePiece, {
                       get id() {
@@ -4122,7 +4120,7 @@ function Dice() {
                       }
                     }) : libs.createComponent(DiceGamePiecePlaceholder, {});
                   })());
-                  libs.effect(_$p => libs.setProp(_el$100, "customTooltip", piece.shouldRenderPiece ? (() => {
+                  libs.effect(_$p => libs.setProp(_el$99, "customTooltip", piece.shouldRenderPiece ? (() => {
                     const tooltipData = getDiceSlotTooltipData(ACTIVITY_DICE_ID$3, piece.slotID, activitySlotData()[piece.slotID]);
                     if (tooltipData == undefined) {
                       return undefined;
@@ -4143,15 +4141,15 @@ function Dice() {
                       ...definedTooltipParams
                     };
                   })() : undefined, _$p));
-                  return _el$100;
+                  return _el$99;
                 })();
               }
             }));
-            libs.effect(_$p => libs.setProp(_el$99, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
-            return _el$99;
+            libs.effect(_$p => libs.setProp(_el$98, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
+            return _el$98;
           })()
         }));
-        libs.insert(_el$42, libs.createComponent(DiceGamePlayerPiece, {
+        libs.insert(_el$41, libs.createComponent(DiceGamePlayerPiece, {
           get position() {
             return playerPiecePosition();
           },
@@ -4174,58 +4172,58 @@ function Dice() {
             return playerJump.SequenceFrame;
           }
         }));
-        libs.insert(_el$38, libs.createComponent(DiceGameDiceCube, {
+        libs.insert(_el$37, libs.createComponent(DiceGameDiceCube, {
           get visible() {
             return isDiceVisible();
           },
           get SequenceFrame() {
             return diceSequence.SequenceFrame;
           }
-        }), _el$43);
-        libs.insert(_el$69, libs.createComponent(StoreItem.StoreItemImage, {
+        }), _el$42);
+        libs.insert(_el$68, libs.createComponent(StoreItem.StoreItemImage, {
           "class": "DiceTaskRewardIcon",
           get itemid() {
             return boxPreviewReward()?.item_id ?? 1800008;
           }
-        }), _el$71);
-        libs.insert(_el$78, libs.createComponent(libs.For, {
+        }), _el$70);
+        libs.insert(_el$77, libs.createComponent(libs.For, {
           get each() {
             return multiRollSummaryItems();
           },
           children: summaryText => (() => {
-            const _el$101 = libs.createElement("Label", {
+            const _el$100 = libs.createElement("Label", {
               "class": "DiceLayerContentDesc",
               text: summaryText
             }, null);
-            libs.setProp(_el$101, "text", summaryText);
-            return _el$101;
+            libs.setProp(_el$100, "text", summaryText);
+            return _el$100;
           })()
         }));
-        libs.insert(_el$85, libs.createComponent(libs.Show, {
+        libs.insert(_el$84, libs.createComponent(libs.Show, {
           get when() {
             return nextSlotExtraExp() > 1;
           },
           get children() {
-            const _el$87 = libs.createElement("Label", {
+            const _el$86 = libs.createElement("Label", {
               "class": "DiceGamePlayerEventValue",
               get text() {
                 return `x${nextSlotExtraExp()}`;
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$87, "text", `x${nextSlotExtraExp()}`, _$p));
-            return _el$87;
+            libs.effect(_$p => libs.setProp(_el$86, "text", `x${nextSlotExtraExp()}`, _$p));
+            return _el$86;
           }
         }), null);
-        libs.insert(_el$91, libs.createComponent(StoreItem.StoreItemImage, {
+        libs.insert(_el$90, libs.createComponent(StoreItem.StoreItemImage, {
           get itemid() {
             return diceTicketID();
           },
           get src() {
             return STOREITEMIMAGE_SRCPATH[diceTicketID()];
           }
-        }), _el$92);
-        libs.setProp(_el$92, "text", `x${DICE_ROLL_ONCE_TIMES}`);
-        libs.insert(_el$88, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        }), _el$91);
+        libs.setProp(_el$91, "text", `x${DICE_ROLL_ONCE_TIMES}`);
+        libs.insert(_el$87, libs.createComponent(EOM_Button.EOM_BaseButton, {
           id: "DiceGameRollButton",
           "class": "DiceGameActionButton",
           get enabled() {
@@ -4241,7 +4239,7 @@ function Dice() {
             }, null)];
           }
         }), null);
-        libs.insert(_el$79, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        libs.insert(_el$78, libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "DiceGameRollMiniButton",
           get enabled() {
             return !isRollBusy();
@@ -4251,18 +4249,18 @@ function Dice() {
             return [libs.createElement("Image", {
               "class": "DiceGameRollMiniButtonBG"
             }, null), (() => {
-              const _el$96 = libs.createElement("Label", {
+              const _el$95 = libs.createElement("Label", {
                 "class": "DiceGameRollMiniButtonText",
                 get text() {
                   return `x${diceRoll10ButtonTimes()}`;
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$96, "text", `x${diceRoll10ButtonTimes()}`, _$p));
-              return _el$96;
+              libs.effect(_$p => libs.setProp(_el$95, "text", `x${diceRoll10ButtonTimes()}`, _$p));
+              return _el$95;
             })()];
           }
         }), null);
-        libs.insert(_el$79, libs.createComponent(libs.Show, {
+        libs.insert(_el$78, libs.createComponent(libs.Show, {
           get when() {
             return isExecutingDiceEvents();
           },
@@ -4314,27 +4312,27 @@ function Dice() {
             _v$31 = {
               NotEnough: !hasEnoughDiceTicket(DICE_ROLL_ONCE_TIMES)
             };
-          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$43, "visible", _v$11, _p$._v$11));
-          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$43, "style", _v$12, _p$._v$12));
-          _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$46, "class", _v$13, _p$._v$13));
-          _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$49, "text", _v$14, _p$._v$14));
-          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$51, "text", _v$15, _p$._v$15));
-          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$52, "visible", _v$16, _p$._v$16));
-          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$57, "text", _v$17, _p$._v$17));
-          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$59, "text", _v$18, _p$._v$18));
-          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$60, "text", _v$19, _p$._v$19));
-          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$61, "visible", _v$20, _p$._v$20));
-          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$66, "text", _v$21, _p$._v$21));
-          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$68, "text", _v$22, _p$._v$22));
-          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$71, "text", _v$23, _p$._v$23));
-          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$72, "visible", _v$24, _p$._v$24));
-          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$77, "text", _v$25, _p$._v$25));
-          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$80, "classList", _v$26, _p$._v$26));
-          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$80, "hittest", _v$27, _p$._v$27));
-          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$80, "hittestchildren", _v$28, _p$._v$28));
-          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$81, "text", _v$29, _p$._v$29));
-          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$86, "text", _v$30, _p$._v$30));
-          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$92, "classList", _v$31, _p$._v$31));
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$42, "visible", _v$11, _p$._v$11));
+          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$42, "style", _v$12, _p$._v$12));
+          _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$45, "class", _v$13, _p$._v$13));
+          _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$48, "text", _v$14, _p$._v$14));
+          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$50, "text", _v$15, _p$._v$15));
+          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$51, "visible", _v$16, _p$._v$16));
+          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$56, "text", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$58, "text", _v$18, _p$._v$18));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$59, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$60, "visible", _v$20, _p$._v$20));
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$65, "text", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$67, "text", _v$22, _p$._v$22));
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$70, "text", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$71, "visible", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$76, "text", _v$25, _p$._v$25));
+          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$79, "classList", _v$26, _p$._v$26));
+          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$79, "hittest", _v$27, _p$._v$27));
+          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$79, "hittestchildren", _v$28, _p$._v$28));
+          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$80, "text", _v$29, _p$._v$29));
+          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$85, "text", _v$30, _p$._v$30));
+          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$91, "classList", _v$31, _p$._v$31));
           return _p$;
         }, {
           _v$11: undefined,
@@ -4359,7 +4357,7 @@ function Dice() {
           _v$30: undefined,
           _v$31: undefined
         });
-        return _el$37;
+        return _el$36;
       })()];
     }
   });

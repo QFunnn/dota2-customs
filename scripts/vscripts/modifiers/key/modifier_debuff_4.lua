@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -24,20 +24,27 @@ d(k, h)
 function k.prototype.OnCreated(self, l)
 	self.level = l.level
 	if IsServer() then
-		self:StartIntervalThink(2)
+		self:StartHealInterval()
 	end
 end
 function k.prototype.OnRefresh(self, l)
 	self.level = l.level
+	if IsServer() then
+		self:StartHealInterval()
+	end
+end
+function k.prototype.StartHealInterval(self)
+	local m = KeyValues:GetKvAbilityValue(KeyValues.keys, "key_debuff_4", "cd", self.level)
+	self:StartIntervalThink(m > 0 and m or -1)
 end
 function k.prototype.OnIntervalThink(self)
-	local m = self:GetParent()
-	if not IsValid(m) or not m:IsAlive() then
+	local n = self:GetParent()
+	if not IsValid(n) or not n:IsAlive() then
 		return
 	end
-	local n = KeyValues:GetKvAbilityValue(KeyValues.keys, "key_debuff_4", "heal_pct", self.level)
-	if n > 0 then
-		m:Heal(m:GetMaxHealth() * n * 0.01, nil)
+	local o = KeyValues:GetKvAbilityValue(KeyValues.keys, "key_debuff_4", "heal_pct", self.level)
+	if o > 0 then
+		n:Heal(n:GetMaxHealth() * o * 0.01, nil)
 	end
 end
 e({ i(nil) }, k.prototype, "level", nil)

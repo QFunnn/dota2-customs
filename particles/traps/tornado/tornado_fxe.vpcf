@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -161,10 +161,11 @@
 		},
 		{
 			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 255, 219, 209 ]
+			m_ColorFade = [ 255, 92, 46 ]
 			m_flFadeStartTime = 0.5
 		},
 		{
@@ -173,16 +174,13 @@
 		},
 		{
 			_class = "C_OP_OscillateScalar"
-			m_RateMin = 25.0
-			m_RateMax = 45.0
+			m_RateMin = 15.0
+			m_RateMax = 25.0
 			m_FrequencyMin = 3.0
 			m_FrequencyMax = 3.0
 			m_nField = 3
 			m_flEndTime_min = 99999.0
 			m_flEndTime_max = 99999.0
-		},
-		{
-			_class = "C_OP_FadeOutSimple"
 		},
 	]
 	m_Renderers = 
@@ -346,6 +344,7 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
+			m_bDisableZBuffering = true
 		},
 		{
 			_class = "C_OP_RenderRopes"
@@ -600,6 +599,7 @@
 				}
 			}
 			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_bDisableZBuffering = true
 		},
 	]
 }

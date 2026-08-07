@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -12,217 +12,181 @@ GameUI.CustomUIConfig().gem_entry_main = {
 	"1400001": {
 		id: 1400001,
 		rarity: 5,
-		entry_id: "attack_damage_proc",
-		weight: 0,
-		min: 1,
-		max: 2,
-		ratio: 1
+		entry_id: "attack_damage_boost",
+		name: "攻击伤害增幅[b]",
+		weight: 100,
+		min: 1.2,
+		max: 6,
+		ratio: 2
 	},
 	"1400002": {
 		id: 1400002,
 		rarity: 5,
-		entry_id: "spell_damage_proc",
-		weight: 0,
-		min: 1,
-		max: 2,
-		ratio: 1
+		entry_id: "spell_damage_boost",
+		name: "技能伤害增幅[b]",
+		weight: 100,
+		min: 1.2,
+		max: 6,
+		ratio: 2
 	},
 	"1400003": {
 		id: 1400003,
 		rarity: 5,
-		entry_id: "buff_duration",
-		weight: 50,
+		entry_id: "skill_damage_boost",
+		name: "特技技能增幅[b]",
+		weight: 100,
 		min: 2,
-		max: 6,
+		max: 10,
 		ratio: 2
 	},
 	"1400004": {
 		id: 1400004,
 		rarity: 5,
-		entry_id: "debuff_duration",
-		weight: 50,
+		entry_id: "ultimate_damage_boost",
+		name: "绝招伤害增幅[b]",
+		weight: 100,
 		min: 2,
-		max: 6,
+		max: 10,
 		ratio: 2
 	},
 	"1400005": {
 		id: 1400005,
 		rarity: 5,
-		entry_id: "break_drop_chance",
-		weight: 150,
-		min: 3,
-		max: 8,
+		entry_id: "dodge_damage_boost",
+		name: "冲刺技能增幅[b]",
+		weight: 100,
+		min: 2,
+		max: 10,
 		ratio: 2
 	},
 	"1400006": {
 		id: 1400006,
 		rarity: 5,
-		entry_id: "per_encounter_attack_amplify",
-		weight: 0,
-		min: 1,
-		max: 2,
-		ratio: 2
-	},
-	"1400007": {
-		id: 1400007,
-		rarity: 5,
-		entry_id: "per_encounter_attack_damage_amplify",
+		entry_id: "defense_damage_boost",
+		name: "防御技能增幅[b]",
 		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400008": {
-		id: 1400008,
-		rarity: 5,
-		entry_id: "per_encounter_skill_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400009": {
-		id: 1400009,
-		rarity: 5,
-		entry_id: "per_encounter_ultimate_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400010": {
-		id: 1400010,
-		rarity: 5,
-		entry_id: "per_encounter_physical_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400011": {
-		id: 1400011,
-		rarity: 5,
-		entry_id: "per_encounter_magical_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400012": {
-		id: 1400012,
-		rarity: 5,
-		entry_id: "per_encounter_melee_hero_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400013": {
-		id: 1400013,
-		rarity: 5,
-		entry_id: "per_encounter_ranger_hero_damage_amplify",
-		weight: 100,
-		min: 0.1,
-		max: 1,
-		ratio: 2
-	},
-	"1400014": {
-		id: 1400014,
-		rarity: 5,
-		entry_id: "per_encounter_crit_damage",
-		weight: 100,
-		min: 0.1,
-		max: 1,
+		min: 2,
+		max: 10,
 		ratio: 2
 	},
 	"1401001": {
 		id: 1401001,
 		rarity: 6,
-		entry_id: "privilege_gem_001",
+		entry_id: "attack_damage_boost",
+		name: "攻击伤害增幅[b]",
 		weight: 100,
-		min: 1,
-		max: 4,
-		ratio: 1
+		min: 1.2,
+		max: 6,
+		ratio: 2
 	},
 	"1401002": {
 		id: 1401002,
 		rarity: 6,
-		entry_id: "privilege_gem_002",
+		entry_id: "spell_damage_boost",
+		name: "技能伤害增幅[b]",
 		weight: 100,
-		min: 0.5,
-		max: 2,
+		min: 1.2,
+		max: 6,
 		ratio: 2
 	},
 	"1401003": {
 		id: 1401003,
 		rarity: 6,
-		entry_id: "privilege_gem_003",
+		entry_id: "skill_damage_boost",
+		name: "特技技能增幅[b]",
 		weight: 100,
 		min: 2,
-		max: 7,
-		ratio: 1
+		max: 10,
+		ratio: 2
 	},
 	"1401004": {
 		id: 1401004,
 		rarity: 6,
-		entry_id: "privilege_gem_004",
+		entry_id: "ultimate_damage_boost",
+		name: "绝招伤害增幅[b]",
 		weight: 100,
-		min: 10,
-		max: 40,
-		ratio: 0
+		min: 2,
+		max: 10,
+		ratio: 2
 	},
 	"1401005": {
 		id: 1401005,
 		rarity: 6,
-		entry_id: "privilege_gem_005",
+		entry_id: "dodge_damage_boost",
+		name: "冲刺技能增幅[b]",
 		weight: 100,
-		min: 8,
-		max: 16,
-		ratio: 1
+		min: 2,
+		max: 10,
+		ratio: 2
 	},
 	"1401006": {
 		id: 1401006,
 		rarity: 6,
-		entry_id: "privilege_gem_006",
+		entry_id: "defense_damage_boost",
+		name: "防御技能增幅[b]",
 		weight: 100,
 		min: 2,
-		max: 8,
-		ratio: 1
+		max: 10,
+		ratio: 2
 	},
 	"1401007": {
 		id: 1401007,
 		rarity: 6,
-		entry_id: "privilege_gem_007",
-		weight: 100,
-		min: 5,
-		max: 20,
-		ratio: 1
+		entry_id: "attack_damage_boost_per_level",
+		name: "升级获得攻击伤害增幅[b]",
+		weight: 50,
+		min: 0.3,
+		max: 1.5,
+		ratio: 2
 	},
 	"1401008": {
 		id: 1401008,
 		rarity: 6,
-		entry_id: "privilege_gem_008",
-		weight: 100,
-		min: 5,
-		max: 20,
-		ratio: 1
+		entry_id: "spell_damage_boost_per_level",
+		name: "升级获得技能伤害增幅[b]",
+		weight: 50,
+		min: 0.3,
+		max: 1.5,
+		ratio: 2
 	},
 	"1401009": {
 		id: 1401009,
 		rarity: 6,
-		entry_id: "privilege_gem_009",
-		weight: 100,
-		min: 1,
-		max: 4,
+		entry_id: "skill_damage_boost_per_level",
+		name: "升级获得特技技能增幅[b]",
+		weight: 50,
+		min: 0.5,
+		max: 2.5,
 		ratio: 2
 	},
 	"1401010": {
 		id: 1401010,
 		rarity: 6,
-		entry_id: "privilege_gem_010",
-		weight: 100,
-		min: 8,
-		max: 25,
-		ratio: 1
+		entry_id: "ultimate_damage_boost_per_level",
+		name: "升级获得绝招技能增幅[b]",
+		weight: 50,
+		min: 0.5,
+		max: 2.5,
+		ratio: 2
+	},
+	"1401011": {
+		id: 1401011,
+		rarity: 6,
+		entry_id: "dodge_damage_boost_per_level",
+		name: "升级获得冲刺技能增幅[b]",
+		weight: 50,
+		min: 0.5,
+		max: 2.5,
+		ratio: 2
+	},
+	"1401012": {
+		id: 1401012,
+		rarity: 6,
+		entry_id: "defense_damage_boost_per_level",
+		name: "升级获得防御伤害增幅[b]",
+		weight: 50,
+		min: 0.5,
+		max: 2.5,
+		ratio: 2
 	}
-};
+};

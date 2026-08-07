@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -650,7 +650,7 @@ function hideStoreItemTooltip(panel, tooltip) {
   if (tooltip == undefined) return;
   HideCustomTooltip(panel, tooltip.name);
 }
-function getStoreItemImageTooltipData(itemID, image, player_collections) {
+function GetStoreItemImageTooltipData(itemID, image, player_collections = () => ({})) {
   if (isWeaponItem(itemID)) {
     return getWeaponTooltipData(itemID);
   }
@@ -704,7 +704,7 @@ const StoreItemImage = props => {
       return getSrcPath("store_items/" + local.itemid + ".png");
     }
   });
-  const customTooltip = libs.createMemo(() => local.hideTips ? undefined : getStoreItemImageTooltipData(local.itemid, src(), player_collections));
+  const customTooltip = libs.createMemo(() => local.hideTips ? undefined : GetStoreItemImageTooltipData(local.itemid, src(), player_collections));
   return (() => {
     const _el$21 = libs.createElement("Image", libs.mergeProps$1(other, {
       get src() {
@@ -888,6 +888,7 @@ const StoreItemCard = props => {
 };
 
 exports.EOM_ImageNumber = EOM_ImageNumber;
+exports.GetStoreItemImageTooltipData = GetStoreItemImageTooltipData;
 exports.StoreItem = StoreItem;
 exports.StoreItemBlock = StoreItemBlock;
 exports.StoreItemCard = StoreItemCard;

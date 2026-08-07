@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -75,6 +75,7 @@ function k.prototype.Request(self, m)
 		startTime = r,
 		endTime = r + s,
 		state = "pending",
+		successPolicy = m.successPolicy or "all",
 		onSuccess = m.onSuccess,
 		onFailed = m.onFailed,
 	}
@@ -110,7 +111,7 @@ function k.prototype.OnTeamRequestResponse(self, u)
 	end
 	local w = u.result == "accepted" and "Ready" or "Rejected"
 	self.currentRequest.playerResponses[u.PlayerID] = w
-	local x = self:IsAllReady()
+	local x = self:IsSuccessConditionMet()
 	local y = self:HasRejected()
 	self:print(
 		(
@@ -123,15 +124,19 @@ function k.prototype.OnTeamRequestResponse(self, u)
 									(
 										(
 											(
-												(self.logPrefix .. " request response type=")
-												.. self.currentRequest.requestType
-											) .. " requestId="
-										) .. self.currentRequest.requestId
-									) .. " player="
-								) .. tostring(u.PlayerID)
-							) .. " response="
-						) .. w
-					) .. " allReady="
+												(
+													(
+														(self.logPrefix .. " request response type=")
+														.. self.currentRequest.requestType
+													) .. " requestId="
+												) .. self.currentRequest.requestId
+											) .. " player="
+										) .. tostring(u.PlayerID)
+									) .. " response="
+								) .. w
+							) .. " successPolicy="
+						) .. self.currentRequest.successPolicy
+					) .. " successConditionMet="
 				) .. tostring(x)
 			) .. " hasRejected="
 		) .. tostring(y)
@@ -249,6 +254,25 @@ function k.prototype.IsAllReady(self)
 		end
 	end
 	return true
+end
+function k.prototype.IsSuccessConditionMet(self)
+	if self.currentRequest == nil then
+		return false
+	end
+	if self.currentRequest.successPolicy ~= "any" then
+		return self:IsAllReady()
+	end
+	do
+		local q = 0
+		while q < #self.currentRequest.invitedPlayerIds do
+			local E = self.currentRequest.invitedPlayerIds[q + 1]
+			if self.currentRequest.playerResponses[E] == "Ready" then
+				return true
+			end
+			q = q + 1
+		end
+	end
+	return false
 end
 function k.prototype.HasRejected(self)
 	if self.currentRequest == nil then

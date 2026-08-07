@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1526,7 +1526,7 @@ var BOSS_SHRINK_OUTSIDE_DAMAGE_PCT = 5;
 /** Boss缩圈伤害tick */
 var BOSS_SHRINK_TICK_INTERVAL = 1;
 /** 最大难度 */
-var MAX_DIFFICULTY = 12;
+var MAX_DIFFICULTY = 14;
 /**最大装备数量 */
 var EQUIP_MAX_COUNT = 400;
 /** 商店物品数量 */
@@ -2108,43 +2108,11 @@ function LocalizeWithVars(token, variables) {
 
 // ========== request.js ==========
 function ServerRequest(event, data, func, timeout, timeoutCallback) {
-	let index = "-1";
-	if (typeof func === "function") {
-		index = `${Players.GetLocalPlayer()}_${CustomUIConfig._Request_QueueIndex++}`;
-		CustomUIConfig._Request_Table[index] = func;
-	}
-	timeout = timeout ?? 30;
-	GameEvents.SendCustomEventToServer("server_request_event", {
-		event: event,
-		data: JSON.stringify(data),
-		queueIndex: index
-	});
-	let scheduleID = $.Schedule(timeout, function () {
-		if (typeof timeoutCallback == "function") {
-			timeoutCallback();
-		}
-		GameEvents.SendCustomEventToServer("cancel_server_request_event", {
-			queueIndex: index
-		});
-		delete CustomUIConfig._Request_Table[index];
-		delete CustomUIConfig._Request_Timeout_Table[index];
-	});
-	CustomUIConfig._Request_Timeout_Table[index] = scheduleID;
-	return index;
+	return CustomUIConfig.ServerRequest(event, data, func, timeout, timeoutCallback);
 }
 
 function CancelRequest(index) {
-	if (CustomUIConfig._Request_Table[index] != undefined) {
-		let scheduleID = CustomUIConfig._Request_Timeout_Table[index];
-		if (scheduleID != undefined) {
-			$.CancelScheduled(scheduleID);
-			delete CustomUIConfig._Request_Timeout_Table[index];
-		}
-		GameEvents.SendCustomEventToServer("cancel_server_request_event", {
-			queueIndex: index
-		});
-		delete CustomUIConfig._Request_Table[index];
-	}
+	CustomUIConfig.CancelServerRequest(index);
 }
 
 function ClientRequest(event, data) {
@@ -3364,15 +3332,9 @@ var PROPERTY_LIST = [
     "damage_boost",
     "magical_damage_boost",
     "physical_damage_boost",
-    "attack_bonus_per_level",
-    "crit_damage_bonus_per_level",
-    "skill_damage_boost_per_level",
-    "ultimate_damage_boost_per_level",
-    "attack_damage_boost_per_level",
+    "damage_boost_per_level",
     "physical_damage_boost_per_level",
     "magical_damage_boost_per_level",
-    "melee_hero_damage_boost_per_level",
-    "ranger_hero_damage_boost_per_level",
     "rage_gain_percent_per_skill",
     "bonus_frost_damage",
     "bonus_poison_damage",
@@ -3452,11 +3414,32 @@ var PROPERTY_LIST = [
     "refine_inc_pct",
     "abyssal_free",
     "drawing_drop_chance",
+    "gem_roll_change",
     "explore_extra_chance",
     "explore_extra_profit_pct",
     "rune_rarity_chance",
     "rune_devour_lock",
     "explore_limit",
+    "attack_damage_boost_per_level",
+    "spell_damage_boost_per_level",
+    "skill_damage_boost_per_level",
+    "dodge_damage_boost_per_level",
+    "defense_damage_boost_per_level",
+    "ultimate_damage_boost_per_level",
+    "lightning_damage_boost_per_level",
+    "freeze_damage_boost_per_level",
+    "poison_damage_boost_per_level",
+    "bleed_damage_boost_per_level",
+    "blade_damage_boost_per_level",
+    "holy_shield_damage_boost_per_level",
+    "ring_damage_boost_per_level",
+    "splash_damage_boost_per_level",
+    "melee_damage_boost_per_level",
+    "ranged_damage_boost_per_level",
+    "elite_damage_boost_per_level",
+    "boss_damage_boost_per_level",
+    "barrier_damage_boost_per_level",
+    "backstab_damage_boost_per_level",
 ];
 var PROPERTY_TAGS = {
     split_count: ["Split"],

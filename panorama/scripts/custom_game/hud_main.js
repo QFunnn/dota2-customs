@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -3363,6 +3363,7 @@ const TopBar = () => {
     return difficultySelection()?.resolvedDifficulty ?? 1;
   });
   const boss_round = solid_utils.createNetDataSignal("common", "values");
+  const battleGemState = solid_utils.createNetDataSignal("common", "battle_gem_state");
   const labelText = libs.createMemo(() => {
     if (gameState()?.state === "GameState_Dungeon") {
       const zoneIndex = toFiniteNumber(boss_round()?.zone_index, 0);
@@ -3376,12 +3377,16 @@ const TopBar = () => {
   const state = libs.createMemo(() => {
     return gameState()?.state ?? "None";
   });
-  const [bossEntIdx, setBossEntIdx] = libs.createSignal(-1);
+  const [dungeonBossEntIdx, setDungeonBossEntIdx] = libs.createSignal(-1);
   const [bossHealth, setBossHealth] = libs.createSignal(0);
   const [bossMaxHealth, setBossMaxHealth] = libs.createSignal(1);
   const [bossShrinkTimer, setBossShrinkTimer] = libs.createSignal(0);
   let bossShrinkTimerID;
-  const isBossRound = () => Entities.IsValidEntity(bossEntIdx()) && toFiniteNumber(boss_round()?.boss_round, -1) == 1;
+  const battleGemBossEntIdx = () => toFiniteNumber(battleGemState()?.bossEntIndex, -1);
+  const isDungeonBossRound = () => Entities.IsValidEntity(dungeonBossEntIdx()) && toFiniteNumber(boss_round()?.boss_round, -1) == 1;
+  const isBattleGemBossRound = () => battleGemState()?.isRunning === true && Entities.IsValidEntity(battleGemBossEntIdx());
+  const isBossRound = () => isDungeonBossRound() || isBattleGemBossRound();
+  const activeBossEntIdx = () => isBattleGemBossRound() ? battleGemBossEntIdx() : dungeonBossEntIdx();
   const getBossDisplayedHealth = entIndex => {
     const logicalHealth = CustomNetTables.GetTableValue("large_number_health", String(entIndex));
     if (logicalHealth != undefined) {
@@ -3410,7 +3415,7 @@ const TopBar = () => {
   const bossShrinkTime = libs.createMemo(() => toFiniteNumber(boss_round()?.boss_shrink_time, 0));
   const bossShrinkState = libs.createMemo(() => {
     const shrinkTime = bossShrinkTime();
-    const visible = isBossRound() && shrinkTime > 0;
+    const visible = isDungeonBossRound() && shrinkTime > 0;
     const active = visible && Game.GetGameTime() >= shrinkTime;
     const displaySeconds = visible ? Math.max(0, bossShrinkTimer()) : 0;
     const timer = displaySeconds;
@@ -3431,13 +3436,17 @@ const TopBar = () => {
       if (boss_round()?.boss_round == 1) {
         for (const ent of Entities.GetAllEntitiesByClassname("npc_dota_creature")) {
           if (Entities.GetUnitLabel(ent).startsWith("boss")) {
-            setBossEntIdx(ent);
+            setDungeonBossEntIdx(ent);
             break;
           }
         }
       }
       libs.batch(() => {
-        const health = getBossDisplayedHealth(bossEntIdx());
+        const bossEntIdx = activeBossEntIdx();
+        const health = Entities.IsValidEntity(bossEntIdx) ? getBossDisplayedHealth(bossEntIdx) : {
+          current: 0,
+          maximum: 1
+        };
         setBossHealth(health.current);
         setBossMaxHealth(health.maximum);
       });
@@ -3448,7 +3457,7 @@ const TopBar = () => {
   });
   libs.createEffect(libs.on(() => toFiniteNumber(boss_round()?.boss_round, 0), bossRound => {
     if (bossRound !== 1) {
-      setBossEntIdx(-1);
+      setDungeonBossEntIdx(-1);
       setBossShrinkTimer(0);
       setBossHealth(0);
       setBossMaxHealth(1);
@@ -3495,7 +3504,8 @@ const TopBar = () => {
         id: "TopBar",
         get ["class"]() {
           return libs.classNames({
-            BossRound: isBossRound()
+            BossRound: isBossRound(),
+            BattleGemBoss: isBattleGemBossRound()
           }, state());
         }
       }, null),
@@ -3563,7 +3573,8 @@ const TopBar = () => {
     }), _el$6);
     libs.effect(_p$ => {
       const _v$ = libs.classNames({
-          BossRound: isBossRound()
+          BossRound: isBossRound(),
+          BattleGemBoss: isBattleGemBossRound()
         }, state()),
         _v$2 = labelText(),
         _v$3 = bossHealth() / bossMaxHealth() * 100 + "%",
@@ -4501,6 +4512,7 @@ const UpgradeSelectionAll = () => {
 };
 
 function HudMain() {
+  ReportPing();
   const dungeon_loading = solid_utils.createPlayerNetDataSignal("common", "dungeon_loading", {
     state: false
   });
@@ -4551,6 +4563,7 @@ function HudMain() {
   });
   const player_key_values = solid_utils.createServiceNetData("player_key_values", {});
   let gameModeActive = false;
+  let previousGameState;
   const getCameraDistanceSetting = () => {
     const data = player_key_values();
     const settingName = gameModeActive ? "Setting_BattleCameraDistance" : "Setting_BaseCameraDistance";
@@ -4580,14 +4593,61 @@ function HudMain() {
     CustomUIConfig.Camera.SetCameraComfortFollowOptions(getCameraComfortDeadZoneRadiusSetting(), getCameraComfortHalfLifeSetting() / 1000);
   };
   useNetDataKey("common", "game_state", data => {
-    gameModeActive = data?.state === "GameState_Dungeon";
+    const currentGameState = data?.state;
+    gameModeActive = currentGameState === "GameState_Dungeon";
     applyCameraDistanceSetting();
+    if (currentGameState === "GameState_Prepare" && previousGameState !== currentGameState) {
+      const partySize = Game.GetAllPlayerIDs().length;
+      GameUI.CustomUIConfig().PlayerTypeReport(`login|party_${partySize}`);
+    }
+    previousGameState = currentGameState;
   });
   libs.createEffect(libs.on(player_key_values, () => {
     applyCameraDistanceSetting();
     applyCameraFollowModeSetting();
     applyCameraComfortFollowSetting();
   }));
+}
+function ReportPing() {
+  const pingSamples = [];
+  let pingSchedule;
+  let pingRequest;
+  let pingReportDisposed = false;
+  const schedulePingSample = () => {
+    if (pingReportDisposed || pingSamples.length >= 5) return;
+    pingSchedule = $.Schedule(1, measurePing);
+  };
+  const measurePing = () => {
+    pingSchedule = undefined;
+    const startTime = Date.now();
+    pingRequest = ServerRequest("measure_ping", {}, () => {
+      pingRequest = undefined;
+      if (pingReportDisposed) return;
+      const receiveTime = Date.now();
+      const ping = receiveTime - startTime;
+      pingSamples.push(ping);
+      if (pingSamples.length >= 5) {
+        pingSamples.sort((a, b) => a - b);
+        const medianPing = pingSamples[Math.floor(pingSamples.length / 2)];
+        GameUI.CustomUIConfig().ReportClick("ping", `${medianPing}ms`);
+        return;
+      }
+      schedulePingSample();
+    }, 5, () => {
+      pingRequest = undefined;
+      schedulePingSample();
+    });
+  };
+  schedulePingSample();
+  libs.onCleanup(() => {
+    pingReportDisposed = true;
+    if (pingSchedule !== undefined) {
+      $.CancelScheduled(pingSchedule);
+    }
+    if (pingRequest !== undefined) {
+      CancelRequest(pingRequest);
+    }
+  });
 }
 (function () {
   GameEvents.Subscribe("toggle_window_tag", data => {

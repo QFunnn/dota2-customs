@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -19,14 +19,14 @@ GameUI.CustomUIConfig().drawing_entry_main = {
 	"2": {
 		entry_main_name: "2",
 		entry_main_type: "drawing_1",
-		weight: 50,
+		weight: 40,
 		value_1: 2,
 		value_2: 80
 	},
 	"3": {
 		entry_main_name: "3",
 		entry_main_type: "drawing_1",
-		weight: 25,
+		weight: 20,
 		value_1: 3,
 		value_2: 70
 	},
@@ -71,4 +71,4 @@ GameUI.CustomUIConfig().drawing_entry_main = {
 		value_1: 1,
 		select: "chaos_entry_ids"
 	}
-};
+};

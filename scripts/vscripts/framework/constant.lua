@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -193,6 +193,6 @@ BOSS_SHRINK_START_RADIUS = 3000
 BOSS_SHRINK_RADIUS_PER_SECOND = 60
 BOSS_SHRINK_OUTSIDE_DAMAGE_PCT = 5
 BOSS_SHRINK_TICK_INTERVAL = 1
-MAX_DIFFICULTY = 12
+MAX_DIFFICULTY = 14
 EQUIP_MAX_COUNT = 400
 SHOP_ITEM_COUNT = 5

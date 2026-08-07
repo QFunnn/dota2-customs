@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13,8 +13,6 @@
 var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
 
-const PLAYER_INFO_CACHE_INTERVAL = 180;
-const EQUIPMENT_SIMPLIFY_KEYS = ["id", "equipment_item_id", "level", "remaining_potential", "total_potential", "locked", "in_equip_suit", "ability_entry_data", "inlay_gems_data", "in_check"];
 function parseJSONSafe(jsonString, defaultValue) {
   if (!jsonString || jsonString === "null" || jsonString === "undefined") {
     return defaultValue;
@@ -196,223 +194,69 @@ function resolveMaybeAccessor(value) {
   }
   return value;
 }
-function normalizeSteamID(raw) {
-  if (raw == undefined) return undefined;
-  const text = String(raw);
-  if (!/^\d+$/.test(text)) return undefined;
-  const value = Number(text);
-  return value > 0 ? value : undefined;
-}
-function normalizeSteam64ID(raw) {
-  if (raw == undefined) return undefined;
-  return normalizeSteamID(Steam_64_3(String(raw)));
-}
 function getPlayerSteamID(props) {
-  const directSteamID = normalizeSteamID(resolveMaybeAccessor(props.steamID));
-  if (directSteamID != undefined) return directSteamID;
-  const steam64ID = normalizeSteam64ID(resolveMaybeAccessor(props.steam64ID));
-  if (steam64ID != undefined) return steam64ID;
-  const playerID = resolveMaybeAccessor(props.playerID);
-  if (playerID == undefined) return undefined;
-  const playerSteam64ID = Game.GetPlayerInfo(playerID)?.player_steamid;
-  return normalizeSteam64ID(playerSteam64ID);
-}
-function reconstructByKey(data, key) {
-  const result = {};
-  if (data == undefined) return result;
-  for (const value of Object.values(data)) {
-    if (value == undefined || typeof value !== "object") continue;
-    const id = value[key];
-    if (id == undefined) continue;
-    result[String(id)] = value;
-  }
-  return result;
-}
-function reconstructByCombineKey(data, keys) {
-  const result = {};
-  if (data == undefined) return result;
-  for (const value of Object.values(data)) {
-    if (value == undefined || typeof value !== "object") continue;
-    const id = keys.map(key => value[key]).join("-");
-    if (id == "") continue;
-    result[id] = value;
-  }
-  return result;
-}
-function normalizeShowRoomData(data) {
-  const result = {};
-  if (data == undefined) return result;
-  for (const value of Object.values(data)) {
-    if (value == undefined || typeof value !== "object") continue;
-    const showType = value.show_type;
-    const slot = value.slot;
-    if (showType == undefined || slot == undefined) continue;
-    const key = `${showType}-${slot}`;
-    if (value.id === 0) {
-      result[key] = "nil";
-      continue;
-    }
-    let parsed = {};
-    if (typeof value.details === "string") {
-      const decoded = JSON.parseSafe(value.details);
-      parsed = Array.isArray(decoded) ? decoded[0] ?? {} : decoded ?? {};
-    } else if (value[showType] != undefined) {
-      parsed = value[showType];
-    }
-    result[key] = {
-      show_type: showType,
-      slot,
-      id: value.id,
-      [showType]: parsed
-    };
-  }
-  return result;
-}
-function extractShowRoomData(data) {
-  if (data?.player_show_rooms != undefined) return data.player_show_rooms;
-  if (data?.show_room != undefined) return data.show_room;
-  if (data?.show_rooms != undefined) return data.show_rooms;
-  if (data == undefined || typeof data !== "object") return undefined;
-  const rows = Object.values(data).filter(value => {
-    return value != undefined && typeof value === "object" && value.show_type != undefined && value.slot != undefined;
-  });
-  return rows.length > 0 ? rows : undefined;
-}
-function normalizeEquipments(data) {
-  const result = {};
-  if (data == undefined) return result;
-  for (const value of Object.values(data)) {
-    if (value == undefined) continue;
-    if (value == "nil") continue;
-    if (Array.isArray(value)) {
-      const id = value[0];
-      if (id != undefined) {
-        result[String(id)] = value;
-      }
-      continue;
-    }
-    if (typeof value !== "object") continue;
-    const id = value.id;
-    if (id == undefined) continue;
-    result[String(id)] = EQUIPMENT_SIMPLIFY_KEYS.map(key => value[key]);
-  }
-  return result;
-}
-function normalizePlayerInfoData(rawData, steamID) {
-  const data = rawData ?? {};
-  const showRoomData = extractShowRoomData(data);
-  return {
-    ...data,
-    steamID,
-    player_account_levels: data.player_account_levels != undefined ? reconstructByKey(data.player_account_levels, "account_type") : data.player_account_levels,
-    player_heroes: data.player_heroes != undefined ? reconstructByKey(data.player_heroes, "hero_id") : data.player_heroes,
-    player_achievements: data.player_achievements != undefined ? reconstructByKey(data.player_achievements, "task_id") : data.player_achievements,
-    player_cosmetic_equips: data.player_cosmetic_equips != undefined ? reconstructByCombineKey(data.player_cosmetic_equips, ["hero_id", "slot_id"]) : data.player_cosmetic_equips,
-    player_idle_game_fishes: data.player_idle_game_fishes != undefined ? reconstructByKey(data.player_idle_game_fishes, "id") : data.player_idle_game_fishes,
-    player_weapons: data.player_weapons != undefined ? reconstructByKey(data.player_weapons, "weapon_id") : data.player_weapons,
-    player_couriers: data.player_couriers != undefined ? reconstructByKey(data.player_couriers, "courier_id") : data.player_couriers,
-    player_equipments: data.player_equipments != undefined ? normalizeEquipments(data.player_equipments) : data.player_equipments,
-    player_counters: data.player_counters != undefined ? reconstructByKey(data.player_counters, "counter_type") : data.player_counters,
-    player_show_rooms: normalizeShowRoomData(showRoomData ?? {})
-  };
-}
-function notifyPlayerInfoCache(entry) {
-  for (const listener of entry.listeners) {
-    listener();
-  }
-}
-function requestPlayerInfo(steamID, force = false) {
-  CustomUIConfig.PlayerInfoCache ??= {};
-  const now = Game.Time();
-  const entry = CustomUIConfig.PlayerInfoCache[steamID] ??= {
-    lastFetchTime: -PLAYER_INFO_CACHE_INTERVAL,
-    requesting: false,
-    listeners: []
-  };
-  if (!force && entry.data != undefined && entry.lastFetchTime + PLAYER_INFO_CACHE_INTERVAL > now) {
-    notifyPlayerInfoCache(entry);
-    return;
-  }
-  if (entry.requesting) {
-    notifyPlayerInfoCache(entry);
-    return;
-  }
-  entry.requesting = true;
-  notifyPlayerInfoCache(entry);
-  ServerRequest("get_player_info", {
-    steamID
-  }, result => {
-    entry.requesting = false;
-    if ((result.code == 0 || result.code == 200) && result.data != undefined) {
-      const resultSteamID = normalizeSteamID(result.steamID) ?? steamID;
-      const resultEntry = CustomUIConfig.PlayerInfoCache[resultSteamID] ??= entry;
-      resultEntry.data = normalizePlayerInfoData(result.data, resultSteamID);
-      resultEntry.lastFetchTime = Game.Time();
-      resultEntry.requesting = false;
-      notifyPlayerInfoCache(resultEntry);
-      if (resultSteamID !== steamID) {
-        notifyPlayerInfoCache(entry);
-      }
-      return;
-    }
-    notifyPlayerInfoCache(entry);
-  }, undefined, () => {
-    entry.requesting = false;
-    notifyPlayerInfoCache(entry);
+  return CustomUIConfig.PlayerManager.ResolveSteamID({
+    steamID: resolveMaybeAccessor(props.steamID),
+    steam64ID: resolveMaybeAccessor(props.steam64ID),
+    playerID: resolveMaybeAccessor(props.playerID)
   });
 }
-function GetPlayerInfo(props) {
-  CustomUIConfig.PlayerInfoCache ??= {};
+function createPlayerInfoAccessor(props, requestData) {
   const [steamID, setSteamID] = libs.createSignal();
-  const [data, setData] = libs.createSignal();
-  const [loading, setLoading] = libs.createSignal(false);
-  const applyEntry = targetSteamID => {
-    const entry = targetSteamID != undefined ? CustomUIConfig.PlayerInfoCache[targetSteamID] : undefined;
-    setData(entry?.data);
-    setLoading(targetSteamID != undefined && entry?.data == undefined && entry?.requesting == true);
+  const [snapshot, setSnapshot] = libs.createSignal();
+  const applySnapshot = targetSteamID => {
+    setSnapshot(CustomUIConfig.PlayerManager.GetSnapshot(targetSteamID));
   };
   libs.createEffect(() => {
     const targetSteamID = getPlayerSteamID(props);
     setSteamID(targetSteamID);
     if (targetSteamID == undefined) {
-      setData(undefined);
-      setLoading(false);
+      setSnapshot(undefined);
       return;
     }
-    const entry = CustomUIConfig.PlayerInfoCache[targetSteamID] ??= {
-      lastFetchTime: -PLAYER_INFO_CACHE_INTERVAL,
-      requesting: false,
-      listeners: []
-    };
-    const listener = () => {
-      if (steamID() === targetSteamID) {
-        applyEntry(targetSteamID);
-      }
-    };
-    entry.listeners.push(listener);
-    libs.onCleanup(() => {
-      const index = entry.listeners.indexOf(listener);
-      if (index >= 0) {
-        entry.listeners.splice(index, 1);
+    const unsubscribe = CustomUIConfig.PlayerManager.Subscribe(targetSteamID, () => {
+      if (steamID() == targetSteamID) {
+        applySnapshot(targetSteamID);
       }
     });
-    applyEntry(targetSteamID);
-    requestPlayerInfo(targetSteamID);
+    libs.onCleanup(unsubscribe);
+    applySnapshot(targetSteamID);
+    if (requestData) {
+      CustomUIConfig.PlayerManager.EnsurePlayerInfo(targetSteamID);
+    }
   });
   return {
-    data,
-    loading,
+    data: () => snapshot()?.data,
     steamID,
+    snapshot
+  };
+}
+function GetPlayerInfoCache(props) {
+  const playerInfo = createPlayerInfoAccessor(props, false);
+  return {
+    data: playerInfo.data,
+    steamID: playerInfo.steamID
+  };
+}
+function GetPlayerInfo(props) {
+  const playerInfo = createPlayerInfoAccessor(props, true);
+  return {
+    data: playerInfo.data,
+    loading: () => playerInfo.snapshot()?.status == "loading",
+    refreshing: () => playerInfo.snapshot()?.status == "refreshing",
+    error: () => playerInfo.snapshot()?.error,
+    steamID: playerInfo.steamID,
     refresh: () => {
-      const targetSteamID = steamID();
+      const targetSteamID = playerInfo.steamID();
       if (targetSteamID != undefined) {
-        requestPlayerInfo(targetSteamID, true);
+        CustomUIConfig.PlayerManager.RefreshPlayerInfo(targetSteamID);
       }
     }
   };
 }
 
 exports.GetPlayerInfo = GetPlayerInfo;
+exports.GetPlayerInfoCache = GetPlayerInfoCache;
 exports.getCourierCategories = getCourierCategories;
 exports.getPlayerSteamID = getPlayerSteamID;
 exports.getShopItemDisplayCost = getShopItemDisplayCost;

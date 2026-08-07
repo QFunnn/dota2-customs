@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -20,6 +20,7 @@ var Player = require('./Player.js');
 var portraitsFullBodyLoadout = require('./portraitsFullBodyLoadout.js');
 var equipment_utils = require('./equipment_utils.js');
 require('./EOM_Countdown.js');
+require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 
 const localizeAbilityName = name => {
@@ -149,8 +150,10 @@ const buildDamageSourceItems = (sources, blessings, artifacts, heroIndex) => {
 
 const DEFAULT_HERO_NAME = "npc_dota_hero_vexis";
 const ABYSSAL_REWARD_COST_TOKEN_ID = 110011;
+const ABYSSAL_REWARD_KEY_PRODUCT_ID = 800020;
 const ABYSSAL_REWARD_COST_COUNT = 1;
 const ABYSSAL_DAILY_FREE_REWARD_LIMIT = 3;
+const ABYSSAL_MENU_BAR_HIDE_KEY = "abyssal_endscreen";
 const ABYSSAL_BOX_Open_FLASH_PARTICLE = "particles/ui/game/ui_game_box_open_fx.vpcf";
 const ABYSSAL_BOX_NORMAL_PARTICLE = "particles/ui/game/ui_game_box_select_fx.vpcf";
 const ABYSSAL_REWARD_PREVIEW_REVEAL_INTERVAL = 0.1;
@@ -322,22 +325,17 @@ const AbyssalRewardsPreviewPanel = props => {
         hittest: true
       }, null),
       _el$0 = libs.createElement("Panel", {
-        id: "RewardsPreviewList",
-        scroll: "y"
+        id: "RewardsPreviewViewport"
       }, _el$9),
       _el$1 = libs.createElement("Panel", {
-        id: "RewardsPreviewBottom",
-        hittest: true,
-        get onactivate() {
-          return props.onClose;
-        }
+        id: "RewardsPreviewList",
+        scroll: "y"
+      }, _el$0),
+      _el$10 = libs.createElement("Panel", {
+        id: "RewardsPreviewBottom"
       }, _el$9);
-      libs.createElement("Label", {
-        text: "#AbyssalEndScreen_RewardsPreviewClose",
-        hittest: false
-      }, _el$1);
-    libs.setProp(_el$0, "scroll", "y");
-    libs.insert(_el$0, libs.createComponent(libs.For, {
+    libs.setProp(_el$1, "scroll", "y");
+    libs.insert(_el$1, libs.createComponent(libs.For, {
       get each() {
         return [...props.rewards].sort((a, b) => (b.rarity ?? 0) - (a.rarity ?? 0));
       },
@@ -348,7 +346,18 @@ const AbyssalRewardsPreviewPanel = props => {
         }
       })
     }));
-    libs.effect(_$p => libs.setProp(_el$1, "onactivate", props.onClose, _$p));
+    libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_Button, {
+      id: "RewardsPreviewConfirmButton",
+      color: "Confirm",
+      get text() {
+        return libs.memo(() => !!props.isSummaryWaiting)() ? LocalizeWithVars("#AbyssalEndScreen_RewardsPreviewConfirmWait", {
+          coolTime: props.summaryWaitRemaining
+        }) : GetLocalization("#AbyssalEndScreen_RewardsPreviewConfirm");
+      },
+      get onactivate() {
+        return props.onClose;
+      }
+    }));
     return _el$9;
   })();
 };
@@ -361,7 +370,23 @@ const AbyssalRewardsBoxPanel = props => {
   const isFree = libs.createMemo(() => remainingFreeRewardCount() > 0);
   const abyssalRewardKeyCount = libs.createMemo(() => playerTokens()?.[String(ABYSSAL_REWARD_COST_TOKEN_ID)]?.amounts ?? 0);
   const hasEnoughAbyssalRewardKey = libs.createMemo(() => abyssalRewardKeyCount() >= ABYSSAL_REWARD_COST_COUNT);
-  const claimDisabled = () => props.claimState != "idle" || !props.settled || !isFree() && !hasEnoughAbyssalRewardKey();
+  const needsPurchase = libs.createMemo(() => !isFree() && !hasEnoughAbyssalRewardKey());
+  const claimDisabled = () => props.claimState != "idle" || !props.settled;
+  const claimButtonText = () => GetLocalization(!props.settled ? "#AbyssalEndScreen_SummaryInSettle" : needsPurchase() ? "#AbyssalEndScreen_ClaimButtonPurchase" : "#AbyssalEndScreen_FreeClaimButton");
+  const handleClaimActivate = () => {
+    if (claimDisabled()) {
+      return;
+    }
+    if (needsPurchase()) {
+      ClientSideEvent("directly_purchase", {
+        itemid: ABYSSAL_REWARD_KEY_PRODUCT_ID,
+        buy_count: 1,
+        source: "abyssal_summary"
+      });
+      return;
+    }
+    props.onClaim();
+  };
   libs.createEffect(libs.on(() => props.rewardsVisible, async visible => {
     if (!visible) {
       return;
@@ -455,7 +480,11 @@ const AbyssalRewardsBoxPanel = props => {
     libs.insert(_el$17, libs.createComponent(EOM_Button.EOM_Button, {
       id: "RewardsCancelButton",
       color: "Cancel",
-      text: "#AbyssalEndScreen_RewardsBoxClose",
+      get text() {
+        return libs.memo(() => !!props.isSummaryWaiting)() ? LocalizeWithVars("#AbyssalEndScreen_RewardsBoxCloseWait", {
+          coolTime: props.summaryWaitRemaining
+        }) : GetLocalization("#AbyssalEndScreen_RewardsBoxClose");
+      },
       get onactivate() {
         return props.onCancel;
       }
@@ -529,16 +558,16 @@ const AbyssalRewardsBoxPanel = props => {
     }), null);
     libs.insert(_el$18, libs.createComponent(EOM_Button.EOM_Button, {
       id: "RewardsFreeClaimButton",
-      color: "Green",
+      get color() {
+        return needsPurchase() ? "Gold" : "Green";
+      },
       get enabled() {
         return !claimDisabled();
       },
       get text() {
-        return props.settled ? "#AbyssalEndScreen_FreeClaimButton" : "#AbyssalEndScreen_SummaryInSettle";
+        return claimButtonText();
       },
-      get onactivate() {
-        return props.onClaim;
-      }
+      onactivate: handleClaimActivate
     }), null);
     return _el$11;
   })();
@@ -605,6 +634,12 @@ const AbyssalRewardsPanel = props => {
           get rewards() {
             return props.rewards;
           },
+          get isSummaryWaiting() {
+            return props.isSummaryWaiting;
+          },
+          get summaryWaitRemaining() {
+            return props.summaryWaitRemaining;
+          },
           get onClose() {
             return props.onPreviewClose;
           }
@@ -628,6 +663,12 @@ const AbyssalRewardsPanel = props => {
           },
           get settled() {
             return props.settled;
+          },
+          get isSummaryWaiting() {
+            return props.isSummaryWaiting;
+          },
+          get summaryWaitRemaining() {
+            return props.summaryWaitRemaining;
           },
           get onCancel() {
             return props.onCancel;
@@ -735,7 +776,6 @@ const AbyssalSummary = props => {
     }];
   });
   const skillDamageTotal = libs.createMemo(() => activeBattle()?.skill_damage_total ?? 0);
-  const isWaitingForPlayers = libs.createMemo(() => settle_info().end_by_custom === true && settle_info().end_time < 0);
   const isCountDownActive = libs.createMemo(() => settle_info().end_by_custom === false && countDown() > 0);
   const damageSources = libs.createMemo(() => {
     const sources = activeBattle()?.ability_damage_sources ?? [];
@@ -973,7 +1013,11 @@ const AbyssalSummary = props => {
       }, _el$91),
       _el$96 = libs.createElement("Label", {
         id: "SummaryWaitTips",
-        text: "#AbyssalEndScreen_SummaryWaitTips"
+        get text() {
+          return LocalizeWithVars("#AbyssalEndScreen_SummaryWaitTips", {
+            coolTime: props.summaryWaitRemaining
+          });
+        }
       }, _el$40);
     libs.setProp(_el$46, "tooltip_text", "#AbyssalEndScreen_RewardsInfoIconTooltip");
     libs.insert(_el$51, libs.createComponent(solid_utils.DynamicKey, {
@@ -1123,23 +1167,23 @@ const AbyssalSummary = props => {
         libs.setProp(_el$100, "flowChildren", "right");
         libs.setProp(_el$103, "class", `StatValue`);
         libs.effect(_p$ => {
-          const _v$15 = "StatRowImg img" + idx(),
-            _v$16 = metric.label,
-            _v$17 = metric.vars,
-            _v$18 = metric.value,
-            _v$19 = metric.vars;
-          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$101, "class", _v$15, _p$._v$15));
-          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$102, "text", _v$16, _p$._v$16));
-          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$102, "vars", _v$17, _p$._v$17));
-          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$103, "text", _v$18, _p$._v$18));
-          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$103, "vars", _v$19, _p$._v$19));
+          const _v$16 = "StatRowImg img" + idx(),
+            _v$17 = metric.label,
+            _v$18 = metric.vars,
+            _v$19 = metric.value,
+            _v$20 = metric.vars;
+          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$101, "class", _v$16, _p$._v$16));
+          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$102, "text", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$102, "vars", _v$18, _p$._v$18));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$103, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$103, "vars", _v$20, _p$._v$20));
           return _p$;
         }, {
-          _v$15: undefined,
           _v$16: undefined,
           _v$17: undefined,
           _v$18: undefined,
-          _v$19: undefined
+          _v$19: undefined,
+          _v$20: undefined
         });
         return _el$99;
       })()]
@@ -1166,14 +1210,14 @@ const AbyssalSummary = props => {
           }, _el$104);
         libs.setProp(_el$104, "class", `MetricCard`);
         libs.effect(_p$ => {
-          const _v$20 = metric.label,
-            _v$21 = metric.value;
-          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$105, "text", _v$20, _p$._v$20));
-          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$106, "text", _v$21, _p$._v$21));
+          const _v$21 = metric.label,
+            _v$22 = metric.value;
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$105, "text", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$106, "text", _v$22, _p$._v$22));
           return _p$;
         }, {
-          _v$20: undefined,
-          _v$21: undefined
+          _v$21: undefined,
+          _v$22: undefined
         });
         return _el$104;
       })(), (() => {
@@ -1214,16 +1258,16 @@ const AbyssalSummary = props => {
           item: item
         }), _el$109);
         libs.effect(_p$ => {
-          const _v$22 = {
+          const _v$23 = {
               width: item.ratio > 0 ? `${Math.max(8, Math.round(item.ratio * 100))}%` : "0%"
             },
-            _v$23 = FormatNumber(item.value);
-          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$110, "style", _v$22, _p$._v$22));
-          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$111, "text", _v$23, _p$._v$23));
+            _v$24 = FormatNumber(item.value);
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$110, "style", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$111, "text", _v$24, _p$._v$24));
           return _p$;
         }, {
-          _v$22: undefined,
-          _v$23: undefined
+          _v$23: undefined,
+          _v$24: undefined
         });
         return _el$108;
       })()
@@ -1245,19 +1289,24 @@ const AbyssalSummary = props => {
         _v$11 = summaryScore(),
         _v$12 = mvpSteamID(),
         _v$13 = FormatNumber(skillDamageTotal()),
-        _v$14 = isWaitingForPlayers();
+        _v$14 = props.isSummaryWaiting && props.summaryWaitRemaining > 0,
+        _v$15 = LocalizeWithVars("#AbyssalEndScreen_SummaryWaitTips", {
+          coolTime: props.summaryWaitRemaining
+        });
       _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$45, "text", _v$10, _p$._v$10));
       _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$50, "text", _v$11, _p$._v$11));
       _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$59, "steamid", _v$12, _p$._v$12));
       _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$94, "text", _v$13, _p$._v$13));
       _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$96, "visible", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$96, "text", _v$15, _p$._v$15));
       return _p$;
     }, {
       _v$10: undefined,
       _v$11: undefined,
       _v$12: undefined,
       _v$13: undefined,
-      _v$14: undefined
+      _v$14: undefined,
+      _v$15: undefined
     });
     return _el$40;
   })();
@@ -1265,21 +1314,29 @@ const AbyssalSummary = props => {
 const Abyssal = () => {
   const gameState = solid_utils.createNetDataSignal("common", "game_state");
   const lastEndScreenMeta = solid_utils.createNetDataSignal("common", "last_end_screen_meta");
+  const abyssalSettleInfo = solid_utils.createNetDataSignal("common", "abyssal_settle_info");
   const lastAbyssalSummary = solid_utils.createPlayerNetDataSignal("player_data", "last_abyssal_end_summary");
   const lastAbyssalRewardPreview = solid_utils.createPlayerNetDataSignal("player_data", "last_abyssal_reward_preview");
   const [view, setView] = libs.createSignal("rewards");
   const [claimState, setClaimState] = libs.createSignal("idle");
   const [claimParticleTrigger, setClaimParticleTrigger] = libs.createSignal(0);
   const [introStage, setIntroStage] = libs.createSignal();
+  const [summaryWaitRemaining, setSummaryWaitRemaining] = libs.createSignal(0);
   let receivedTimer;
   let previewTimer;
+  let summaryWaitTimer;
   let abyssalMedalIntroSchedule;
   let abyssalMedalMovingSchedule;
   let abyssalSummaryEnteringSchedule;
   let abyssalSummaryVisibleSchedule;
   const snapshotID = libs.createMemo(() => lastEndScreenMeta()?.mode == "abyssal" ? lastEndScreenMeta()?.snapshot_id : undefined);
   const abyssalVictory = libs.createMemo(() => lastEndScreenMeta()?.result == "victory");
-  libs.createMemo(() => gameState()?.state == "GameState_Settle" && lastEndScreenMeta()?.mode == "abyssal");
+  const isAbyssalSettling = libs.createMemo(() => gameState()?.state == "GameState_Settle" && lastEndScreenMeta()?.mode == "abyssal");
+  const activeAbyssalSettleInfo = libs.createMemo(() => {
+    const info = abyssalSettleInfo();
+    return snapshotID() != undefined && info?.snapshot_id == snapshotID() ? info : undefined;
+  });
+  const isSummaryWaiting = libs.createMemo(() => activeAbyssalSettleInfo()?.state == "waiting_participants");
   const activeSummary = libs.createMemo(() => {
     const snapshot = lastAbyssalSummary();
     return snapshotID() != undefined && snapshot?.snapshot_id == snapshotID() ? snapshot : undefined;
@@ -1307,6 +1364,12 @@ const Abyssal = () => {
   const clearClaimRevealTimers = () => {
     clearReceivedTimer();
     clearPreviewTimer();
+  };
+  const clearSummaryWaitTimer = () => {
+    if (summaryWaitTimer != undefined) {
+      clearInterval(summaryWaitTimer);
+      summaryWaitTimer = undefined;
+    }
   };
   const clearAbyssalIntroTimers = () => {
     if (abyssalMedalIntroSchedule != undefined) {
@@ -1351,12 +1414,41 @@ const Abyssal = () => {
     setClaimParticleTrigger(0);
     setView("summary");
   };
+  libs.createEffect(libs.on(isAbyssalSettling, settling => {
+    ClientSideEvent("set_menu_bar_visible", {
+      key: ABYSSAL_MENU_BAR_HIDE_KEY,
+      hide: settling
+    });
+  }));
   libs.createEffect(libs.on(snapshotID, () => {
     clearClaimRevealTimers();
     setView("rewards");
     setClaimState("idle");
     setClaimParticleTrigger(0);
     replayAbyssalIntro();
+  }));
+  libs.createEffect(libs.on(() => isSummaryWaiting() ? activeAbyssalSettleInfo()?.wait_end_time ?? -1 : -1, endTime => {
+    clearSummaryWaitTimer();
+    if (endTime < 0) {
+      setSummaryWaitRemaining(0);
+      return;
+    }
+    const updateSummaryWaitRemaining = () => {
+      const remaining = Math.max(0, Math.ceil(endTime - Game.GetGameTime()));
+      setSummaryWaitRemaining(remaining);
+      if (remaining <= 0) {
+        clearSummaryWaitTimer();
+      }
+    };
+    updateSummaryWaitRemaining();
+    if (endTime > Game.GetGameTime()) {
+      summaryWaitTimer = setInterval(updateSummaryWaitRemaining, 100);
+    }
+  }));
+  libs.createEffect(libs.on(() => activeAbyssalSettleInfo()?.state == "all_summary_ready" && isAbyssalSettling() && view() != "summary", shouldShowSummary => {
+    if (shouldShowSummary) {
+      showSummary();
+    }
   }));
   libs.createEffect(libs.on(view, currentView => {
     if (currentView == "summary") {
@@ -1392,8 +1484,13 @@ const Abyssal = () => {
   });
   libs.onCleanup(() => {
     clearClaimRevealTimers();
+    clearSummaryWaitTimer();
     clearAbyssalIntroTimers();
     GameEvents.Unsubscribe(claimFailedListener);
+    ClientSideEvent("set_menu_bar_visible", {
+      key: ABYSSAL_MENU_BAR_HIDE_KEY,
+      hide: false
+    });
   });
   const claimRewards = () => {
     if (claimState() != "idle" || !isAbyssalSettled()) {
@@ -1460,6 +1557,12 @@ const Abyssal = () => {
           get rewards() {
             return previewRewards();
           },
+          get isSummaryWaiting() {
+            return isSummaryWaiting();
+          },
+          get summaryWaitRemaining() {
+            return summaryWaitRemaining();
+          },
           onCancel: showSummary,
           onClaim: claimRewards,
           onPreviewClose: showSummary
@@ -1474,24 +1577,30 @@ const Abyssal = () => {
         return libs.createComponent(AbyssalSummary, {
           get showItems() {
             return introStage() == "summary_visible";
+          },
+          get isSummaryWaiting() {
+            return isSummaryWaiting();
+          },
+          get summaryWaitRemaining() {
+            return summaryWaitRemaining();
           }
         });
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$24 = libs.classNames(abyssalVictory() ? "AbyssalVictory" : "AbyssalDefeat", {
+      const _v$25 = libs.classNames(abyssalVictory() ? "AbyssalVictory" : "AbyssalDefeat", {
           AbyssalStageMedalIntro: introStage() == "medal_intro",
           AbyssalStageMedalMoving: introStage() == "medal_moving",
           AbyssalStageSummaryEntering: introStage() == "summary_entering",
           AbyssalStageSummaryVisible: introStage() == "summary_visible"
         }),
-        _v$25 = introStage() == "summary_visible";
-      _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$112, "class", _v$24, _p$._v$24));
-      _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$115, "hittest", _v$25, _p$._v$25));
+        _v$26 = introStage() == "summary_visible";
+      _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$112, "class", _v$25, _p$._v$25));
+      _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$115, "hittest", _v$26, _p$._v$26));
       return _p$;
     }, {
-      _v$24: undefined,
-      _v$25: undefined
+      _v$25: undefined,
+      _v$26: undefined
     });
     return _el$112;
   })();
@@ -2210,7 +2319,9 @@ const EndScreen = () => {
   const loginState = solid_utils.createNetDataSignal("common", "login_state", {});
   const lastEndScreenMeta = solid_utils.createNetDataSignal("common", "last_end_screen_meta");
   const playerCounters = solid_utils.createServiceNetData("player_counters", {});
-  const [show, setShow] = solid_utils.createToggleWindowSignal("MenuButton_endscreen", gameState()?.state == "GameState_Settle");
+  const [show, setShow] = solid_utils.createToggleWindowSignal("MenuButton_endscreen", gameState()?.state == "GameState_Settle", {
+    ignoreOtherWindows: true
+  });
   const summaryMode = libs.createMemo(() => lastEndScreenMeta()?.mode);
   const questionnaireCompleted = libs.createMemo(() => {
     return toFiniteNumber(playerCounters()[QUESTIONNAIRE_COMPLETED_COUNTER]?.count, 0) > 0;

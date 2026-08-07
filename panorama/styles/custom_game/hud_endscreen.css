@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1285,7 +1285,8 @@
 {
 	width: 940px;
 	height: 650px;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	z-index: 2;
 	opacity: 0;
 	pre-transform-scale2d: 0.65;
@@ -1301,7 +1302,8 @@
 {
 	width: 940px;
 	height: 650px;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_text_en_png.vtex");
 	background-size: 100%;
 	transition-property: width, height;
@@ -1346,7 +1348,8 @@
 #AbyssalSummary #AbyssalRewardsPanel #BottomParticle
 {
 	ignore-parent-flow: true;
-	align: center bottom;
+	horizontal-align: center;
+	vertical-align: bottom;
 	width: 100%;
 	height: 100%;
 	y: 540px;
@@ -1379,12 +1382,20 @@
 	vertical-align: center;
 }
 
-#AbyssalSummary #RewardsPreviewList
+#AbyssalSummary #RewardsPreviewViewport
 {
 	width: 100%;
 	height: fill-parent-flow(1);
 	margin-top: 22px;
 	margin-bottom: 26px;
+	overflow: clip;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#AbyssalSummary #RewardsPreviewList
+{
+	width: 100%;
+	height: 100%;
 	flow-children: right-wrap;
 	horizontal-align: center;
 	vertical-align: center;
@@ -1392,30 +1403,8 @@
 
 #AbyssalSummary #RewardsPreviewBottom
 {
-	width: 430px;
-	height: 54px;
 	horizontal-align: center;
 	vertical-align: bottom;
-}
-
-#AbyssalSummary #RewardsPreviewBottom Label
-{
-	horizontal-align: center;
-	vertical-align: center;
-	font-size: 24px;
-	color: #D6584D;
-	text-shadow: 0px 1px 3px 2 #000000;
-}
-
-#AbyssalSummary #RewardsPreviewBottom:hover
-{
-	brightness: 1.45;
-}
-
-#AbyssalSummary #RewardsPreviewBottom:active
-{
-	brightness: 0.75;
-	transform: translateY(1px);
 }
 
 #AbyssalSummary #RewardsHeaderContainer
@@ -1520,7 +1509,8 @@
 	margin-top: 70px;
 	width: 980px;
 	height: 980px;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 }
 
 #AbyssalSummary .RewardBoxItem .RewardBoxNormalParticle
@@ -1528,7 +1518,8 @@
 	margin-top: 70px;
 	width: 980px;
 	height: 980px;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 }
 
 #AbyssalSummary .RewardBoxItem .RewardBoxNormalParticle
@@ -1597,7 +1588,8 @@
 {
 	width: 78%;
 	height: 78%;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	z-index: 2;
 }
 
@@ -1605,7 +1597,8 @@
 {
 	width: 205%;
 	height: 175%;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	overflow: noclip;
 	z-index: 3;
 }
@@ -1614,7 +1607,8 @@
 {
 	width: 270%;
 	height: width-percentage(95%);
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	overflow: noclip;
 	opacity: 0;
 	z-index: 4;
@@ -1706,7 +1700,8 @@
 {
 	width: 78%;
 	height: 78%;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 }
 
 #AbyssalSummary .AbyssalSummaryRewardItem.Rarity1 .SummaryRewardBG
@@ -1760,7 +1755,8 @@
 #AbyssalSummary #AbyssalSummaryStage #Certificate
 {
 	opacity: 1;
-	align: center center;
+	horizontal-align: center;
+	vertical-align: center;
 	width: 1500px;
 	height: 100%;
 	z-index: 1;
@@ -1829,7 +1825,8 @@
 
 #AbyssalSummary #AbyssalSummaryStage #Certificate #HalfHero
 {
-	align: right center;
+	horizontal-align: right;
+	vertical-align: center;
 	x: 500px;
 	y: 120px;
 	height: 1000px;
@@ -1845,7 +1842,8 @@
 
 #AbyssalSummary #AbyssalSummaryStage #Certificate #MvpInfo
 {
-	align: center top;
+	horizontal-align: center;
+	vertical-align: top;
 	flow-children: down;
 	y: -50px;
 }
@@ -2223,14 +2221,16 @@
 
 #AbyssalSummary #AbyssalSummaryStage #Certificate .StatValue
 {
-	align: right center;
+	horizontal-align: right;
+	vertical-align: center;
 	color: #BFAA82;
 	font-size: 16px;
 }
 
 #AbyssalSummary #AbyssalSummaryStage #Certificate .DamageTotal
 {
-	align: right center;
+	horizontal-align: right;
+	vertical-align: center;
 	font-size: 22px;
 	font-weight: bold;
 	color: #BFAA82;
@@ -2400,7 +2400,8 @@
 
 #AbyssalSummary #AbyssalSummaryStage #CountDown,#AbyssalSummary #AbyssalSummaryStage #SummaryWaitTips
 {
-	align: center bottom;
+	horizontal-align: center;
+	vertical-align: bottom;
 	margin-bottom: 45px;
 }
 

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1104,7 +1104,7 @@ GameUI.CustomUIConfig().info_shop_product = {
 		start_time: 1628579580,
 		end_time: 0,
 		limit_type: 4,
-		limit_count: 100,
+		limit_count: 150,
 		use_purchased_num: 0,
 		overseas_originprice: 0,
 		overseas_realprice: 0,
@@ -2012,10 +2012,13 @@ GameUI.CustomUIConfig().info_shop_product = {
 	},
 	"800151": {
 		id: 800151,
-		name: "宝石副本行动点数+2",
+		name: "遗迹副本行动点数+2",
+		items: {
+			"110008": 1
+		},
 		pay_type: 110001,
-		origin_price: 20,
-		real_price: 20,
+		origin_price: 30,
+		real_price: 30,
 		discount: 0,
 		tag: "Hidden",
 		hide: 1,

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -100,10 +100,22 @@
 	background-size: 470px 240px;
 }
 
+#Slot1 .CosmeticImage
+{
+	width: 256px;
+	height: 256px;
+}
+
 #Slot1 .ModelContainer
 {
 	width: 400px;
 	height: 400px;
+}
+
+#Slot1 .ModelContainer.Cosmetic
+{
+	width: 350px;
+	height: 350px;
 }
 
 #Slot1 .ModelContainer.Courier
@@ -127,6 +139,12 @@
 	y: -135px;
 	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_png.vtex");
 	background-size: 192px 128px;
+}
+
+#Slot2 .CosmeticImage
+{
+	width: 160px;
+	height: 160px;
 }
 
 #Slot2 .ModelContainer
@@ -160,6 +178,12 @@
 	height: 430px;
 }
 
+#Slot3 .CosmeticImage
+{
+	width: 220px;
+	height: 220px;
+}
+
 #Slot3 #Border
 {
 	width: 299px;
@@ -172,6 +196,12 @@
 {
 	width: 320px;
 	height: 320px;
+}
+
+#Slot3 .ModelContainer.Cosmetic
+{
+	width: 280px;
+	height: 280px;
 }
 
 #Slot3 .ModelContainer.Courier
@@ -191,6 +221,12 @@
 	height: 430px;
 }
 
+#Slot4 .CosmeticImage
+{
+	width: 220px;
+	height: 220px;
+}
+
 #Slot4 #Border
 {
 	width: 299px;
@@ -203,6 +239,12 @@
 {
 	width: 320px;
 	height: 320px;
+}
+
+#Slot4 .ModelContainer.Cosmetic
+{
+	width: 280px;
+	height: 280px;
 }
 
 #Slot4 .ModelContainer.Courier
@@ -219,6 +261,12 @@
 	y: -135px;
 	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_png.vtex");
 	background-size: 192px 128px;
+}
+
+#Slot5 .CosmeticImage
+{
+	width: 160px;
+	height: 160px;
 }
 
 #Slot5 .ModelContainer
@@ -299,10 +347,15 @@
 	height: 300px;
 }
 
-.ModelContainer .PortraitsCourier,.ModelContainer .Weapon3DPreview
+.ModelContainer .PortraitsCourier,.ModelContainer .Weapon3DPreview,.ModelContainer .CosmeticImage
 {
 	width: 100%;
 	height: 100%;
+}
+
+.ModelContainer .CosmeticImage
+{
+	align: center center;
 }
 
 .ModelContainer .EquipmentIcon
@@ -606,7 +659,7 @@
 	margin-top: 29px;
 }
 
-.ShowRoomFullDetail .ShowRoomFullDetailModel .Weapon3DPreview,.ShowRoomFullDetail .ShowRoomFullDetailModel .PortraitsCourier,.ShowRoomFullDetail .ShowRoomFullDetailModel .EquipmentIcon
+.ShowRoomFullDetail .ShowRoomFullDetailModel .Weapon3DPreview,.ShowRoomFullDetail .ShowRoomFullDetailModel .PortraitsCourier,.ShowRoomFullDetail .ShowRoomFullDetailModel .CosmeticImage,.ShowRoomFullDetail .ShowRoomFullDetailModel .EquipmentIcon
 {
 	width: 100%;
 	height: 100%;
@@ -655,6 +708,46 @@
 .ShowRoomFullDetail .ShowRoomFullDetailModel.equipment .EquipmentIcon
 {
 	background-image: none;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel.cosmetic .CosmeticImage
+{
+	align: center center;
+	width: 256px;
+	height: 256px;
+}
+
+.ShowRoomFullDetail.cosmetic .ShowRoomFullDetailClose
+{
+	margin-top: 20px;
+}
+
+.ShowRoomFullDetail .ShowRoomCosmeticEffectList
+{
+	width: 1145px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill.cosmetic
+{
+	flow-children: down;
+	max-height: 120px;
+	margin-bottom: 6px;
+	padding: 8px 80px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill.cosmetic .ShowRoomFullDetailSkillText
+{
+	horizontal-align: center;
+}
+
+.ShowRoomFullDetail .ShowRoomCosmeticEffectTitle
+{
+	horizontal-align: center;
+	font-size: 18px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 5 #000000;
 }
 
 .ShowRoomFullDetail .ShowRoomFullDetailSkillText

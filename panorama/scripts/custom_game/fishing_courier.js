@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -17,6 +17,7 @@ require('./solid_utils.js');
 require('./EOM_Countdown.js');
 require('./EOM_Button.js');
 require('./Player.js');
+require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./equipment_utils.js');
 

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var server_dungeon_key = require('./server_dungeon_key.js');
 var solid_utils = require('./solid_utils.js');
 var abyss_hud_shared = require('./abyss_hud_shared.js');
 
@@ -47,6 +48,7 @@ const BattleGemFinishedSummary = props => {
 };
 const HUDBattleGem = () => {
   const battleGemState = solid_utils.createNetDataSignal("common", "battle_gem_state");
+  const difficultyKey = solid_utils.createNetDataSignal("common", "difficulty_key");
   const now = abyss_hud_shared.createGameTimeSignal(100);
   const isVisible = libs.createMemo(() => {
     const state = battleGemState();
@@ -153,6 +155,31 @@ const HUDBattleGem = () => {
       },
       get level() {
         return levelText();
+      }
+    }), null);
+    libs.insert(_el$4, libs.createComponent(libs.Show, {
+      get when() {
+        return difficultyKey();
+      },
+      get children() {
+        const _el$13 = libs.createElement("Panel", {
+            id: "BattleGemDungeonKeyDock"
+          }, null);
+          libs.createElement("DOTAParticleScenePanel", {
+            id: "BattleGemDungeonKeyDockParticle",
+            particleName: "particles/generic_gameplay/rune/wishing_pool_exite.vpcf",
+            cameraOrigin: "0 0 300",
+            fov: 40,
+            lookAt: "0 0 0",
+            hittest: false,
+            squarePixels: true
+          }, _el$13);
+        libs.insert(_el$13, libs.createComponent(server_dungeon_key.DungeonKey, {
+          get data() {
+            return difficultyKey().key_data;
+          }
+        }), null);
+        return _el$13;
       }
     }), null);
     libs.effect(_p$ => {

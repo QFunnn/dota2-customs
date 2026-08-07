@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -43,7 +43,7 @@ function j.prototype.Activate(self)
 			ArrayRemove(self.enemyList, o)
 			if #self.enemyList == 0 and self.task_key then
 				GameModeTutorial:FinishTutorialTask(self.task_key)
-				if self.task_key == "tutorial_4_3" then
+				if self.task_key == "tutorial_4_1" then
 					self:GetRoom():OpenGates()
 					return
 				end

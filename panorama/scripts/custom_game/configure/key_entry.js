@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -41,8 +41,16 @@ GameUI.CustomUIConfig().key_entry = {
 		value_max: 5,
 		ratio: 1
 	},
-	debuff_1: {
+	gem_roll_change: {
 		id: 5,
+		entry_type: 1,
+		entry_name: "gem_roll_change",
+		value_min: 0.5,
+		value_max: 5,
+		ratio: 1
+	},
+	debuff_1: {
+		id: 6,
 		entry_type: 2,
 		entry_name: "debuff_1",
 		value_min: 0,
@@ -50,7 +58,7 @@ GameUI.CustomUIConfig().key_entry = {
 		ratio: 0
 	},
 	debuff_4: {
-		id: 6,
+		id: 7,
 		entry_type: 2,
 		entry_name: "debuff_4",
 		value_min: 0,

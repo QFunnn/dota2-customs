@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1878,7 +1878,33 @@ const HandbookAbilityUpgrade = () => {
   });
 };
 
+const SHOW_ROOM_SETTING_KEY = "SHOMROOM_TABLES";
+const SHOW_ROOM_SETTING_READ_KEYS = [SHOW_ROOM_SETTING_KEY, "SHOWROOM_TABLES"];
+const SHOW_ROOM_DISPLAY_TYPES = ["weapon", "equipment", "courier", "cosmetic"];
+const DEFAULT_SHOW_ROOM_DISPLAY_TYPES = ["weapon", "equipment", "courier"];
+const getShowRoomSettingValue = keyValues => {
+  for (const key of SHOW_ROOM_SETTING_READ_KEYS) {
+    const value = keyValues[key]?.value;
+    if (value != undefined) return value;
+  }
+  return undefined;
+};
+const parseShowRoomDisplayTypes = value => {
+  const parsed = value == undefined ? undefined : JSON.parseSafe(value);
+  if (!Array.isArray(parsed)) return [...DEFAULT_SHOW_ROOM_DISPLAY_TYPES];
+  const result = parsed.filter((type, index) => {
+    return SHOW_ROOM_DISPLAY_TYPES.includes(type) && parsed.indexOf(type) == index;
+  });
+  return result.length == 3 ? result : [...DEFAULT_SHOW_ROOM_DISPLAY_TYPES];
+};
+
 const MATCH_RECORDS_CACHE_INTERVAL = 300;
+const SHOW_ROOM_TYPE_LOCALIZATION = {
+  weapon: "#WeaponShowRoom_Menu",
+  equipment: "#EquipmentShowRoom_Menu",
+  courier: "#CourierShowRoom_Menu",
+  cosmetic: "#CosmeticShowRoom_Menu"
+};
 const matchRecordsLastFetchTimeByUID = {};
 const matchRecordsCacheByUID = {};
 const getFishStarCount = weight => {
@@ -1956,6 +1982,7 @@ const PlayerInfoContent = props => {
   const playerUID = libs.createMemo(() => playerInfo.steamID() ?? service_netdata_helper.getPlayerSteamID({
     playerID: props.playerID
   }));
+  const localPlayerKeyValues = solid_utils.createServiceNetData("player_key_values", {});
   const briefMatchData = libs.createMemo(() => playerInfoData().player_common_match_data);
   const briefCommonData = libs.createMemo(() => playerInfoData().player_common_data);
   const playerHeroes = libs.createMemo(() => playerInfoData().player_heroes ?? {});
@@ -1990,6 +2017,11 @@ const PlayerInfoContent = props => {
     if (!data?.courier) return undefined;
     return data.courier;
   });
+  const showRoomCosmetic = libs.createMemo(() => {
+    const data = showRoomData()?.["cosmetic-1"];
+    if (data?.id == undefined) return undefined;
+    return KeyValues.info_item_cosmetic[String(data.id)];
+  });
   const showRoomWeaponTooltip = () => {
     const weapon = showRoomWeapon();
     if (weapon?.weapon_id == undefined) return undefined;
@@ -2013,6 +2045,12 @@ const PlayerInfoContent = props => {
       name: "courier_info",
       courier_id: courier.courier_id
     };
+  };
+  const showRoomCosmeticTooltip = () => {
+    const cosmetic = showRoomCosmetic();
+    if (cosmetic?.id == undefined) return undefined;
+    const image = getSrcPath(`store_items/${cosmetic.id}.png`);
+    return StoreItem.GetStoreItemImageTooltipData(cosmetic.id, image);
   };
   const highestRarityFish = libs.createMemo(() => {
     const fishes = Object.values(playerFishes());
@@ -2137,154 +2175,399 @@ const PlayerInfoContent = props => {
       artifact: parseItemNames(latest.artifact).slice(0, 3)
     };
   });
+  const playerCosmeticID = slot => {
+    const cosmeticID = playerCosmeticEquips()[`0-${slot}`]?.cosmetic_id;
+    return cosmeticID != undefined && cosmeticID > 0 ? String(cosmeticID) : undefined;
+  };
+  const borderCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.BORDER) ?? "1710000");
+  const isLocalPlayer = libs.createMemo(() => {
+    if (props.playerID != undefined) {
+      return props.playerID == Players.GetLocalPlayer();
+    }
+    const targetSteamID = playerUID();
+    const localSteamID = service_netdata_helper.getPlayerSteamID({
+      playerID: Players.GetLocalPlayer()
+    });
+    return targetSteamID != undefined && localSteamID != undefined && targetSteamID == localSteamID;
+  });
+  const storedShowRoomDisplayTypes = libs.createMemo(() => {
+    const keyValues = isLocalPlayer() ? localPlayerKeyValues() : playerInfoData().player_key_values ?? {};
+    return parseShowRoomDisplayTypes(getShowRoomSettingValue(keyValues));
+  });
+  const [showRoomSettingOpen, setShowRoomSettingOpen] = libs.createSignal(false);
+  const [showRoomSettingSaving, setShowRoomSettingSaving] = libs.createSignal(false);
+  const [showRoomSettingTypes, setShowRoomSettingTypes] = libs.createSignal();
+  const showRoomDisplayTypes = libs.createMemo(() => showRoomSettingTypes() ?? storedShowRoomDisplayTypes());
+  let showRoomSettingInitialValue = "";
+  let showRoomSettingSelectionOrder = [];
+  const openShowRoomSetting = () => {
+    if (showRoomSettingOpen() || showRoomSettingSaving()) return;
+    const types = [...showRoomDisplayTypes()];
+    showRoomSettingInitialValue = JSON.stringify(types);
+    showRoomSettingSelectionOrder = types;
+    setShowRoomSettingTypes(types);
+    setShowRoomSettingOpen(true);
+  };
+  const selectShowRoomSettingType = type => {
+    if (!showRoomSettingOpen()) return;
+    if (showRoomSettingSelectionOrder.includes(type)) {
+      const unselectedType = SHOW_ROOM_DISPLAY_TYPES.find(item => !showRoomSettingSelectionOrder.includes(item));
+      if (unselectedType == undefined) return;
+      showRoomSettingSelectionOrder = [...showRoomSettingSelectionOrder.filter(item => item != type), unselectedType];
+    } else {
+      showRoomSettingSelectionOrder = [...showRoomSettingSelectionOrder.slice(1), type];
+    }
+    setShowRoomSettingTypes(SHOW_ROOM_DISPLAY_TYPES.filter(item => showRoomSettingSelectionOrder.includes(item)));
+  };
+  const closeShowRoomSetting = () => {
+    if (!showRoomSettingOpen()) return;
+    setShowRoomSettingOpen(false);
+    const nextTypes = showRoomSettingTypes() ?? storedShowRoomDisplayTypes();
+    const value = JSON.stringify(nextTypes);
+    if (value == showRoomSettingInitialValue) {
+      return;
+    }
+    setShowRoomSettingSaving(true);
+    const restoreInitialTypes = () => {
+      setShowRoomSettingTypes(parseShowRoomDisplayTypes(showRoomSettingInitialValue));
+      setShowRoomSettingSaving(false);
+      playerInfo.refresh();
+    };
+    CallActionRequest("/v1/key/save", {
+      type: "setting",
+      key: SHOW_ROOM_SETTING_KEY,
+      value
+    }, result => {
+      setShowRoomSettingSaving(false);
+      if (result.code != 0 && result.code != 200) {
+        setShowRoomSettingTypes(parseShowRoomDisplayTypes(showRoomSettingInitialValue));
+        ErrorMessage(result.message ?? "");
+      }
+      playerInfo.refresh();
+    }, restoreInitialTypes, false);
+  };
+  libs.onCleanup(closeShowRoomSetting);
+  const openAquarium = () => JumpToMenu({
+    window_name: "aquarium",
+    menu: "Aquarium_Menu",
+    force: true,
+    data: {
+      playerID: props.playerID,
+      steamID: playerUID()
+    }
+  });
+  const openFishingItem = () => {
+    if (!isLocalPlayer()) return;
+    JumpToMenu({
+      window_name: "fishingitem",
+      menu: "FishingItem",
+      force: true
+    });
+  };
+  const openShowRoom = menu => {
+    JumpToMenu({
+      window_name: "show_room",
+      menu,
+      force: true,
+      data: {
+        playerID: props.playerID,
+        steamID: playerUID()
+      }
+    });
+  };
+  const ShowRoomDisplayItem = itemProps => {
+    switch (itemProps.type) {
+      case "weapon":
+        return libs.createComponent(DisplayItemComp, {
+          get title() {
+            return GetLocalization("#Weapon_Menu");
+          },
+          get rarity() {
+            return libs.memo(() => showRoomWeapon()?.weapon_id != undefined)() ? KeyValues.weapon[showRoomWeapon().weapon_id]?.rarity : undefined;
+          },
+          get name() {
+            return libs.memo(() => showRoomWeapon()?.weapon_id != undefined)() ? GetLocalization(String(showRoomWeapon().weapon_id)) : undefined;
+          },
+          get customTooltip() {
+            return showRoomWeaponTooltip();
+          },
+          onactivate: () => openShowRoom("WeaponShowRoom_Menu"),
+          get children() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return showRoomWeapon()?.weapon_id != undefined;
+              },
+              get children() {
+                return libs.createComponent(solid_utils.DynamicKey, {
+                  key: showRoomWeapon,
+                  children: data => libs.createComponent(weapon3DPreview.Weapon3DPreview, {
+                    "class": "WeaponScenePreview",
+                    get model() {
+                      return KeyValues.weapon[data.weapon_id].model;
+                    },
+                    get defaultConfig() {
+                      return KeyValues.weapon[data.weapon_id].hero;
+                    }
+                  })
+                });
+              }
+            });
+          }
+        });
+      case "equipment":
+        return libs.createComponent(DisplayItemComp, {
+          get title() {
+            return GetLocalization("#PlayerInfo_Equipment");
+          },
+          get rarity() {
+            return showRoomEquipment()?.rarity;
+          },
+          get name() {
+            return libs.memo(() => showRoomEquipment()?.equipment_item_id != undefined)() ? GetLocalization(String(showRoomEquipment().equipment_item_id)) : undefined;
+          },
+          get customTooltip() {
+            return showRoomEquipmentTooltip();
+          },
+          onactivate: () => openShowRoom("EquipmentShowRoom_Menu"),
+          get children() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return showRoomEquipment()?.equipment_item_id != undefined;
+              },
+              get children() {
+                return libs.createComponent(server_equipment.EquipmentIcon, {
+                  get equipment_item_id() {
+                    return showRoomEquipment().equipment_item_id;
+                  },
+                  get rarity() {
+                    return showRoomEquipment().rarity;
+                  }
+                });
+              }
+            });
+          }
+        });
+      case "courier":
+        return libs.createComponent(DisplayItemComp, {
+          get title() {
+            return GetLocalization("#Courier_Menu");
+          },
+          get rarity() {
+            return libs.memo(() => showRoomCourier()?.courier_id != undefined)() ? KeyValues.service_courier[showRoomCourier().courier_id]?.quality : undefined;
+          },
+          get name() {
+            return libs.memo(() => showRoomCourier()?.courier_id != undefined)() ? GetLocalization(String(showRoomCourier().courier_id)) : undefined;
+          },
+          get customTooltip() {
+            return showRoomCourierTooltip();
+          },
+          onactivate: () => openShowRoom("CourierShowRoom_Menu"),
+          get children() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return showRoomCourier();
+              },
+              get children() {
+                return libs.createComponent(solid_utils.DynamicKey, {
+                  key: showRoomCourier,
+                  children: data => libs.createComponent(StoreItem.StoreItemImage, {
+                    get itemid() {
+                      return data.courier_id;
+                    }
+                  })
+                });
+              }
+            });
+          }
+        });
+      case "cosmetic":
+        return libs.createComponent(DisplayItemComp, {
+          get title() {
+            return GetLocalization("#CosmeticShowRoom_Menu");
+          },
+          get rarity() {
+            return Number(showRoomCosmetic()?.rarity) || undefined;
+          },
+          get name() {
+            return libs.memo(() => showRoomCosmetic()?.id != undefined)() ? GetLocalization(String(showRoomCosmetic().id)) : undefined;
+          },
+          get customTooltip() {
+            return showRoomCosmeticTooltip();
+          },
+          onactivate: () => openShowRoom("CosmeticShowRoom_Menu"),
+          get children() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return showRoomCosmetic()?.id != undefined;
+              },
+              get children() {
+                return libs.createComponent(solid_utils.DynamicKey, {
+                  key: showRoomCosmetic,
+                  children: cosmetic => (() => {
+                    const _el$ = libs.createElement("Image", {
+                      "class": "CosmeticImage",
+                      get src() {
+                        return getSrcPath(`store_items/${cosmetic.id}.png`);
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$, "src", getSrcPath(`store_items/${cosmetic.id}.png`), _$p));
+                    return _el$;
+                  })()
+                });
+              }
+            });
+          }
+        });
+    }
+  };
   return (() => {
-    const _el$ = libs.createElement("Panel", {
+    const _el$2 = libs.createElement("Panel", {
         id: "CenterBlock"
       }, null),
-      _el$2 = libs.createElement("Panel", {
-        id: "LeftArea"
-      }, _el$),
       _el$3 = libs.createElement("Panel", {
-        id: "TopInfo"
+        id: "LeftArea"
       }, _el$2),
       _el$4 = libs.createElement("Panel", {
-        id: "TitleAndLv"
+        id: "TopInfo"
       }, _el$3),
       _el$5 = libs.createElement("Panel", {
-        "class": "Title"
+        id: "TitleAndLv"
       }, _el$4),
       _el$6 = libs.createElement("Panel", {
-        "class": "HeroLevelMain"
-      }, _el$4),
+        "class": "Title"
+      }, _el$5),
       _el$7 = libs.createElement("Panel", {
+        "class": "HeroLevelMain"
+      }, _el$5),
+      _el$8 = libs.createElement("Panel", {
         id: "LvContainer"
-      }, _el$6),
-      _el$8 = libs.createElement("Label", {
+      }, _el$7),
+      _el$9 = libs.createElement("Label", {
         "class": "Lv",
         get text() {
           return "Lv." + accountLvData().level;
         }
-      }, _el$7),
-      _el$9 = libs.createElement("Panel", {
-        id: "ProgressContainer"
-      }, _el$6),
+      }, _el$8),
       _el$0 = libs.createElement("Panel", {
+        id: "ProgressContainer"
+      }, _el$7),
+      _el$1 = libs.createElement("Panel", {
         id: "HeroLevelProgressBar"
-      }, _el$9);
+      }, _el$0);
       libs.createElement("Panel", {
         id: "ProgressBarBG"
-      }, _el$0);
-      const _el$10 = libs.createElement("Panel", {
+      }, _el$1);
+      const _el$11 = libs.createElement("Panel", {
         id: "ProgressBar",
         get width() {
           return progressPercent();
         }
-      }, _el$0),
-      _el$11 = libs.createElement("Label", {
+      }, _el$1),
+      _el$12 = libs.createElement("Label", {
         id: "ProgressLabel",
         get text() {
           return `${accountLvData().extra_exp}/${maxExpText()}`;
         }
-      }, _el$9),
-      _el$12 = libs.createElement("Panel", {
+      }, _el$0),
+      _el$13 = libs.createElement("Panel", {
         id: "MedalList"
-      }, _el$3);
+      }, _el$4);
       libs.createElement("Panel", {
         "class": "Medal"
-      }, _el$12);
+      }, _el$13);
       libs.createElement("Panel", {
         "class": "Medal"
-      }, _el$12);
+      }, _el$13);
       libs.createElement("Panel", {
         "class": "Medal"
-      }, _el$12);
-      const _el$16 = libs.createElement("Label", {
+      }, _el$13);
+      const _el$17 = libs.createElement("Label", {
         id: "SteamID",
         get text() {
           return playerUID() ?? "";
         }
-      }, _el$3),
-      _el$17 = libs.createElement("Panel", {
-        id: "HeroCards"
-      }, _el$2),
+      }, _el$4),
       _el$18 = libs.createElement("Panel", {
-        id: "InfoStat"
-      }, _el$2),
+        id: "HeroCards"
+      }, _el$3),
       _el$19 = libs.createElement("Panel", {
-        "class": "SettlementInfo"
-      }, _el$2),
+        id: "InfoStat"
+      }, _el$3),
       _el$20 = libs.createElement("Panel", {
+        "class": "SettlementInfo"
+      }, _el$3),
+      _el$21 = libs.createElement("Panel", {
         id: "Title"
-      }, _el$19);
+      }, _el$20);
       libs.createElement("Label", {
         "class": "Row Row1",
         text: "#PlayerInfo_BattleResult"
-      }, _el$20);
+      }, _el$21);
       libs.createElement("Label", {
         "class": "Row Row2",
         text: "#PlayerInfo_UsedHero"
-      }, _el$20);
+      }, _el$21);
       libs.createElement("Label", {
         "class": "Row Row3",
         text: "#PlayerInfo_Difficulty"
-      }, _el$20);
+      }, _el$21);
       libs.createElement("Label", {
         "class": "Row Row4",
         text: "#PlayerInfo_Blessing"
-      }, _el$20);
+      }, _el$21);
       libs.createElement("Label", {
         "class": "Row Row5",
         text: "#PlayerInfo_Artifact"
-      }, _el$20);
-      const _el$26 = libs.createElement("Panel", {
+      }, _el$21);
+      const _el$27 = libs.createElement("Panel", {
         "class": "SettlementDesc"
-      }, _el$19),
-      _el$27 = libs.createElement("Label", {
+      }, _el$20),
+      _el$28 = libs.createElement("Label", {
         get ["class"]() {
           return libs.classNames("Row Row1", settlementInfo().ret);
         },
         get text() {
           return settlementInfo().ret;
         }
-      }, _el$26),
-      _el$28 = libs.createElement("Panel", {
+      }, _el$27),
+      _el$29 = libs.createElement("Panel", {
         "class": "Row Row2"
-      }, _el$26),
-      _el$29 = libs.createElement("Label", {
+      }, _el$27),
+      _el$30 = libs.createElement("Label", {
         "class": "Row Row3",
         get text() {
           return settlementInfo().diff;
         }
-      }, _el$26),
-      _el$30 = libs.createElement("Panel", {
-        "class": "Row Row4"
-      }, _el$26),
+      }, _el$27),
       _el$31 = libs.createElement("Panel", {
-        horizontalAlign: "center",
-        flowChildren: "right"
-      }, _el$30),
+        "class": "Row Row4"
+      }, _el$27),
       _el$32 = libs.createElement("Panel", {
-        "class": "Row Row5"
-      }, _el$26),
-      _el$33 = libs.createElement("Panel", {
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$32),
+      }, _el$31),
+      _el$33 = libs.createElement("Panel", {
+        "class": "Row Row5"
+      }, _el$27),
       _el$34 = libs.createElement("Panel", {
-        id: "RightArea"
-      }, _el$),
+        horizontalAlign: "center",
+        flowChildren: "right"
+      }, _el$33),
       _el$35 = libs.createElement("Panel", {
+        id: "RightArea"
+      }, _el$2),
+      _el$36 = libs.createElement("Panel", {
         marginTop: "32px",
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$34),
-      _el$37 = libs.createElement("Panel", {
+      }, _el$35),
+      _el$41 = libs.createElement("Panel", {
         "class": "Row2",
         marginTop: "25px",
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$34);
-    libs.insert(_el$3, libs.createComponent(libs.Show, {
+      }, _el$35);
+    libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return playerUID();
       },
@@ -2292,11 +2575,14 @@ const PlayerInfoContent = props => {
         return libs.createComponent(Player.PlayerAvatar, {
           get accountid() {
             return playerUID();
+          },
+          get borderid() {
+            return borderCosmeticID();
           }
         });
       }
-    }), _el$4);
-    libs.insert(_el$5, libs.createComponent(libs.Show, {
+    }), _el$5);
+    libs.insert(_el$6, libs.createComponent(libs.Show, {
       get when() {
         return titleCosmeticID() != "";
       },
@@ -2309,13 +2595,13 @@ const PlayerInfoContent = props => {
         });
       }
     }));
-    libs.insert(_el$7, libs.createComponent(Player.PlayerName, {
+    libs.insert(_el$8, libs.createComponent(Player.PlayerName, {
       id: "PlayerName",
       get accountid() {
         return playerUID();
       }
     }), null);
-    libs.insert(_el$3, libs.createComponent(libs.Show, {
+    libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return props.playerID == Players.GetLocalPlayer();
       },
@@ -2328,30 +2614,30 @@ const PlayerInfoContent = props => {
         });
       }
     }), null);
-    libs.insert(_el$2, libs.createComponent(TitleComp, {
+    libs.insert(_el$3, libs.createComponent(TitleComp, {
       text: "#PlayerInfo_HeroSoul",
       marginTop: "15px"
-    }), _el$17);
-    libs.insert(_el$17, libs.createComponent(libs.For, {
+    }), _el$18);
+    libs.insert(_el$18, libs.createComponent(libs.For, {
       get each() {
         return heroCards();
       },
       children: (data, i) => {
         return (() => {
-          const _el$38 = libs.createElement("Panel", {
+          const _el$42 = libs.createElement("Panel", {
               "class": "HeroCardItem"
             }, null),
-            _el$39 = libs.createElement("Label", {
+            _el$43 = libs.createElement("Label", {
               "class": "Lv",
               get text() {
                 return data.lv;
               }
-            }, _el$38);
-          libs.insert(_el$38, libs.createComponent(hero_card.HeroCard, {
+            }, _el$42);
+          libs.insert(_el$42, libs.createComponent(hero_card.HeroCard, {
             get heroName() {
               return data.hero;
             }
-          }), _el$39);
+          }), _el$43);
           libs.effect(_p$ => {
             const _v$8 = {
                 name: "hero_info",
@@ -2360,68 +2646,68 @@ const PlayerInfoContent = props => {
                 show_next_soul: 0
               },
               _v$9 = data.lv;
-            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$38, "customTooltip", _v$8, _p$._v$8));
-            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$39, "text", _v$9, _p$._v$9));
+            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$42, "customTooltip", _v$8, _p$._v$8));
+            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "text", _v$9, _p$._v$9));
             return _p$;
           }, {
             _v$8: undefined,
             _v$9: undefined
           });
-          return _el$38;
+          return _el$42;
         })();
       }
     }));
-    libs.insert(_el$2, libs.createComponent(TitleComp, {
+    libs.insert(_el$3, libs.createComponent(TitleComp, {
       text: "#PlayerInfo_PersonalData",
       marginTop: "31px"
-    }), _el$18);
-    libs.insert(_el$18, libs.createComponent(libs.For, {
+    }), _el$19);
+    libs.insert(_el$19, libs.createComponent(libs.For, {
       get each() {
         return statInfos();
       },
       children: (data, i) => {
         return (() => {
-          const _el$40 = libs.createElement("Panel", {
+          const _el$44 = libs.createElement("Panel", {
               get ["class"]() {
                 return "StatItem " + data.type;
               }
             }, null),
-            _el$41 = libs.createElement("Panel", {
+            _el$45 = libs.createElement("Panel", {
               width: "100%",
               height: "45px"
-            }, _el$40),
-            _el$42 = libs.createElement("Label", {
+            }, _el$44),
+            _el$46 = libs.createElement("Label", {
               "class": "StatTitle",
               get text() {
                 return data.title;
               }
-            }, _el$41),
-            _el$43 = libs.createElement("Label", {
+            }, _el$45),
+            _el$47 = libs.createElement("Label", {
               "class": "StatValue",
               get text() {
                 return data.text;
               }
-            }, _el$40);
-          libs.setProp(_el$41, "width", "100%");
-          libs.setProp(_el$41, "height", "45px");
+            }, _el$44);
+          libs.setProp(_el$45, "width", "100%");
+          libs.setProp(_el$45, "height", "45px");
           libs.effect(_p$ => {
             const _v$0 = "StatItem " + data.type,
               _v$1 = data.title,
               _v$10 = data.text;
-            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$40, "class", _v$0, _p$._v$0));
-            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$42, "text", _v$1, _p$._v$1));
-            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$43, "text", _v$10, _p$._v$10));
+            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "class", _v$0, _p$._v$0));
+            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$46, "text", _v$1, _p$._v$1));
+            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$47, "text", _v$10, _p$._v$10));
             return _p$;
           }, {
             _v$0: undefined,
             _v$1: undefined,
             _v$10: undefined
           });
-          return _el$40;
+          return _el$44;
         })();
       }
     }));
-    libs.insert(_el$2, libs.createComponent(TitleComp, {
+    libs.insert(_el$3, libs.createComponent(TitleComp, {
       "class": "CombatLogTitle",
       text: "#PlayerInfo_CombatLog",
       marginTop: "41px",
@@ -2432,16 +2718,16 @@ const PlayerInfoContent = props => {
           });
         } : undefined;
       }
-    }), _el$19);
-    libs.insert(_el$28, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+    }), _el$20);
+    libs.insert(_el$29, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
       get heroname() {
         return settlementInfo().hero;
       },
       heroimagestyle: "icon"
     }));
-    libs.setProp(_el$31, "horizontalAlign", "center");
-    libs.setProp(_el$31, "flowChildren", "right");
-    libs.insert(_el$31, libs.createComponent(libs.For, {
+    libs.setProp(_el$32, "horizontalAlign", "center");
+    libs.setProp(_el$32, "flowChildren", "right");
+    libs.insert(_el$32, libs.createComponent(libs.For, {
       get each() {
         return settlementInfo().bless;
       },
@@ -2452,9 +2738,9 @@ const PlayerInfoContent = props => {
         });
       }
     }));
-    libs.setProp(_el$33, "horizontalAlign", "center");
-    libs.setProp(_el$33, "flowChildren", "right");
-    libs.insert(_el$33, libs.createComponent(libs.For, {
+    libs.setProp(_el$34, "horizontalAlign", "center");
+    libs.setProp(_el$34, "flowChildren", "right");
+    libs.insert(_el$34, libs.createComponent(libs.For, {
       get each() {
         return settlementInfo().artifact;
       },
@@ -2465,21 +2751,17 @@ const PlayerInfoContent = props => {
         });
       }
     }));
-    libs.insert(_el$34, libs.createComponent(TitleComp, {
+    libs.insert(_el$35, libs.createComponent(TitleComp, {
       "class": "ArrowTitle",
       text: "#Aquarium",
       type: "Large",
-      onactivate: () => JumpToMenu({
-        window_name: "aquarium",
-        menu: "Aquarium_Menu",
-        force: true
-      }),
+      onactivate: openAquarium,
       tooltip_text: "#PlayerInfo_Tips1"
-    }), _el$35);
-    libs.setProp(_el$35, "marginTop", "32px");
-    libs.setProp(_el$35, "horizontalAlign", "center");
-    libs.setProp(_el$35, "flowChildren", "right");
-    libs.insert(_el$35, libs.createComponent(DisplayItemComp, {
+    }), _el$36);
+    libs.setProp(_el$36, "marginTop", "32px");
+    libs.setProp(_el$36, "horizontalAlign", "center");
+    libs.setProp(_el$36, "flowChildren", "right");
+    libs.insert(_el$36, libs.createComponent(DisplayItemComp, {
       title: "#PlayerInfo_RareFish",
       get rarity() {
         return GetServiceItemRarity(highestRarityFish()?.fish_item_id);
@@ -2487,6 +2769,7 @@ const PlayerInfoContent = props => {
       get name() {
         return libs.memo(() => highestRarityFish()?.fish_item_id != undefined)() ? "#Normal_" + highestRarityFish().fish_item_id : undefined;
       },
+      onactivate: openAquarium,
       get children() {
         return libs.createComponent(libs.Show, {
           get when() {
@@ -2498,26 +2781,26 @@ const PlayerInfoContent = props => {
                 return Number(highestRarityFish().fish_item_id);
               }
             }), (() => {
-              const _el$36 = libs.createElement("Panel", {
+              const _el$37 = libs.createElement("Panel", {
                 "class": "FishStarList"
               }, null);
-              libs.insert(_el$36, libs.createComponent(libs.For, {
+              libs.insert(_el$37, libs.createComponent(libs.For, {
                 each: [1, 2, 3, 4, 5],
                 children: idx => (() => {
-                  const _el$44 = libs.createElement("Image", {
+                  const _el$48 = libs.createElement("Image", {
                     "class": "FishStarIcon"
                   }, null);
-                  libs.effect(_$p => libs.setProp(_el$44, "visible", fishStarCount() >= idx, _$p));
-                  return _el$44;
+                  libs.effect(_$p => libs.setProp(_el$48, "visible", fishStarCount() >= idx, _$p));
+                  return _el$48;
                 })()
               }));
-              return _el$36;
+              return _el$37;
             })()];
           }
         });
       }
     }), null);
-    libs.insert(_el$35, libs.createComponent(DisplayItemComp, {
+    libs.insert(_el$36, libs.createComponent(DisplayItemComp, {
       title: "#PlayerInfo_FishingGear",
       get rarity() {
         return KeyValues.idle_game_fish_rod[String(currentRodLevel())]?.rarity;
@@ -2530,6 +2813,9 @@ const PlayerInfoContent = props => {
           name: "fish_rod_info",
           item_id: currentRodLevel()
         } : undefined;
+      },
+      get onactivate() {
+        return isLocalPlayer() ? openFishingItem : undefined;
       },
       get children() {
         return libs.createComponent(libs.Show, {
@@ -2547,117 +2833,87 @@ const PlayerInfoContent = props => {
         });
       }
     }), null);
-    libs.insert(_el$34, libs.createComponent(TitleComp, {
+    libs.insert(_el$35, libs.createComponent(TitleComp, {
       "class": "ArrowTitle",
-      text: "#PlayerInfo_ShowRoom",
+      get text() {
+        return GetLocalization("#PlayerInfo_ShowRoom");
+      },
       type: "Large",
       marginTop: "37px",
-      tooltip_text: "#PlayerInfo_Tips2",
-      onactivate: () => {
-        JumpToMenu({
-          window_name: "show_room",
-          force: true,
-          data: {
-            playerID: props.playerID,
-            steamID: playerUID()
-          }
-        });
-      }
-    }), _el$37);
-    libs.setProp(_el$37, "marginTop", "25px");
-    libs.setProp(_el$37, "horizontalAlign", "center");
-    libs.setProp(_el$37, "flowChildren", "right");
-    libs.insert(_el$37, libs.createComponent(DisplayItemComp, {
-      title: "#Weapon_Menu",
-      get rarity() {
-        return libs.memo(() => showRoomWeapon()?.weapon_id != undefined)() ? KeyValues.weapon[showRoomWeapon().weapon_id]?.rarity : undefined;
+      get tooltip_text() {
+        return GetLocalization("#PlayerInfo_Tips2");
       },
-      get name() {
-        return libs.memo(() => showRoomWeapon()?.weapon_id != undefined)() ? GetLocalization(String(showRoomWeapon().weapon_id)) : undefined;
+      get setting() {
+        return isLocalPlayer() ? openShowRoomSetting : undefined;
       },
-      get customTooltip() {
-        return showRoomWeaponTooltip();
+      onactivate: () => openShowRoom()
+    }), _el$41);
+    libs.insert(_el$35, libs.createComponent(libs.Show, {
+      get when() {
+        return libs.memo(() => !!isLocalPlayer())() && showRoomSettingOpen();
       },
       get children() {
-        return libs.createComponent(libs.Show, {
-          get when() {
-            return showRoomWeapon()?.weapon_id != undefined;
-          },
-          get children() {
-            return libs.createComponent(solid_utils.DynamicKey, {
-              key: showRoomWeapon,
-              children: data => libs.createComponent(weapon3DPreview.Weapon3DPreview, {
-                "class": "WeaponScenePreview",
-                get model() {
-                  return KeyValues.weapon[data.weapon_id].model;
+        return [libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "ShowRoomSettingDismiss",
+          onactivate: closeShowRoomSetting
+        }), (() => {
+          const _el$38 = libs.createElement("Panel", {
+              "class": "ShowRoomSettingDropdown"
+            }, null);
+            libs.createElement("Panel", {
+              id: "DropdownBG"
+            }, _el$38);
+            const _el$40 = libs.createElement("Panel", {
+              "class": "DropdownContainer"
+            }, _el$38);
+          libs.insert(_el$40, libs.createComponent(libs.For, {
+            each: SHOW_ROOM_DISPLAY_TYPES,
+            children: type => {
+              const selected = () => showRoomDisplayTypes().includes(type);
+              return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                get ["class"]() {
+                  return libs.classNames("ShowRoomSettingOption", {
+                    Selected: selected()
+                  });
                 },
-                get defaultConfig() {
-                  return KeyValues.weapon[data.weapon_id].hero;
+                onactivate: () => selectShowRoomSettingType(type),
+                get children() {
+                  return [(() => {
+                    const _el$49 = libs.createElement("Panel", {
+                        "class": "ShowRoomSettingCheckBox"
+                      }, null);
+                      libs.createElement("Panel", {
+                        "class": "ShowRoomSettingCheckMark"
+                      }, _el$49);
+                    return _el$49;
+                  })(), (() => {
+                    const _el$51 = libs.createElement("Label", {
+                      get text() {
+                        return GetLocalization(SHOW_ROOM_TYPE_LOCALIZATION[type]);
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$51, "text", GetLocalization(SHOW_ROOM_TYPE_LOCALIZATION[type]), _$p));
+                    return _el$51;
+                  })()];
                 }
-              })
-            });
-          }
-        });
+              });
+            }
+          }));
+          return _el$38;
+        })()];
       }
-    }), null);
-    libs.insert(_el$37, libs.createComponent(DisplayItemComp, {
-      title: "#PlayerInfo_Equipment",
-      get rarity() {
-        return showRoomEquipment()?.rarity;
+    }), _el$41);
+    libs.setProp(_el$41, "marginTop", "25px");
+    libs.setProp(_el$41, "horizontalAlign", "center");
+    libs.setProp(_el$41, "flowChildren", "right");
+    libs.insert(_el$41, libs.createComponent(libs.For, {
+      get each() {
+        return showRoomDisplayTypes();
       },
-      get name() {
-        return libs.memo(() => showRoomEquipment()?.equipment_item_id != undefined)() ? GetLocalization(String(showRoomEquipment().equipment_item_id)) : undefined;
-      },
-      get customTooltip() {
-        return showRoomEquipmentTooltip();
-      },
-      get children() {
-        return libs.createComponent(libs.Show, {
-          get when() {
-            return showRoomEquipment()?.equipment_item_id != undefined;
-          },
-          get children() {
-            return libs.createComponent(server_equipment.EquipmentIcon, {
-              get equipment_item_id() {
-                return showRoomEquipment().equipment_item_id;
-              },
-              get rarity() {
-                return showRoomEquipment().rarity;
-              }
-            });
-          }
-        });
-      }
-    }), null);
-    libs.insert(_el$37, libs.createComponent(DisplayItemComp, {
-      title: "#Courier_Menu",
-      get rarity() {
-        return libs.memo(() => showRoomCourier()?.courier_id != undefined)() ? KeyValues.service_courier[showRoomCourier().courier_id]?.quality : undefined;
-      },
-      get name() {
-        return libs.memo(() => showRoomCourier()?.courier_id != undefined)() ? GetLocalization(String(showRoomCourier().courier_id)) : undefined;
-      },
-      get customTooltip() {
-        return showRoomCourierTooltip();
-      },
-      get children() {
-        return libs.createComponent(libs.Show, {
-          get when() {
-            return showRoomCourier();
-          },
-          get children() {
-            return libs.createComponent(solid_utils.DynamicKey, {
-              key: showRoomCourier,
-              children: data => libs.createComponent(StoreItem.StoreItemImage, {
-                get itemid() {
-                  return data.courier_id;
-                }
-              })
-            });
-          }
-        });
-      }
-    }), null);
+      children: type => libs.createComponent(ShowRoomDisplayItem, {
+        type: type
+      })
+    }));
     libs.effect(_p$ => {
       const _v$ = "Lv." + accountLvData().level,
         _v$2 = progressPercent(),
@@ -2666,13 +2922,13 @@ const PlayerInfoContent = props => {
         _v$5 = libs.classNames("Row Row1", settlementInfo().ret),
         _v$6 = settlementInfo().ret,
         _v$7 = settlementInfo().diff;
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$8, "text", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$10, "width", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$11, "text", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$16, "text", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$27, "class", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$27, "text", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$29, "text", _v$7, _p$._v$7));
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$9, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$11, "width", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$12, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$17, "text", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$28, "class", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$28, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$30, "text", _v$7, _p$._v$7));
       return _p$;
     }, {
       _v$: undefined,
@@ -2683,89 +2939,128 @@ const PlayerInfoContent = props => {
       _v$6: undefined,
       _v$7: undefined
     });
-    return _el$;
+    return _el$2;
   })();
 };
 const DisplayItemComp = props => {
   const resolvedChildren = libs.children(() => libs.untrack(() => props.children));
   return (() => {
-    const _el$45 = libs.createElement("Panel", {
+    const _el$52 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames("DisplayItemComp", {
-            IsEmpty: props.name == undefined
+            IsEmpty: props.name == undefined,
+            CanClick: props.onactivate != undefined
           });
         }
       }, null),
-      _el$46 = libs.createElement("Label", {
+      _el$53 = libs.createElement("Label", {
         "class": "Title",
         get text() {
           return props.title;
         }
-      }, _el$45);
+      }, _el$52);
       libs.createElement("Panel", {
         "class": "SegmentLine"
-      }, _el$45);
-      const _el$48 = libs.createElement("Panel", {
+      }, _el$52);
+      const _el$55 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames("Frame", props.rarity ? `Rarity${props.rarity}` : undefined);
         }
-      }, _el$45),
-      _el$49 = libs.createElement("Label", {
+      }, _el$52),
+      _el$56 = libs.createElement("Label", {
         "class": "ItemName",
         get text() {
           return props.name;
         }
-      }, _el$45);
-    libs.insert(_el$48, resolvedChildren);
+      }, _el$52);
+    libs.insert(_el$55, resolvedChildren);
+    libs.insert(_el$52, libs.createComponent(libs.Show, {
+      get when() {
+        return props.onactivate != undefined;
+      },
+      get children() {
+        const _el$57 = libs.createElement("Panel", {
+          "class": "ClickLayer",
+          get onactivate() {
+            return props.onactivate;
+          }
+        }, null);
+        libs.effect(_p$ => {
+          const _v$11 = props.onactivate,
+            _v$12 = props.customTooltip;
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$57, "onactivate", _v$11, _p$._v$11));
+          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$57, "customTooltip", _v$12, _p$._v$12));
+          return _p$;
+        }, {
+          _v$11: undefined,
+          _v$12: undefined
+        });
+        return _el$57;
+      }
+    }), null);
     libs.effect(_p$ => {
-      const _v$11 = libs.classNames("DisplayItemComp", {
-          IsEmpty: props.name == undefined
+      const _v$13 = libs.classNames("DisplayItemComp", {
+          IsEmpty: props.name == undefined,
+          CanClick: props.onactivate != undefined
         }),
-        _v$12 = props.title,
-        _v$13 = libs.classNames("Frame", props.rarity ? `Rarity${props.rarity}` : undefined),
-        _v$14 = props.customTooltip,
-        _v$15 = props.name;
-      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$45, "class", _v$11, _p$._v$11));
-      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$46, "text", _v$12, _p$._v$12));
-      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$48, "class", _v$13, _p$._v$13));
-      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$48, "customTooltip", _v$14, _p$._v$14));
-      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$49, "text", _v$15, _p$._v$15));
+        _v$14 = props.title,
+        _v$15 = libs.classNames("Frame", props.rarity ? `Rarity${props.rarity}` : undefined),
+        _v$16 = props.customTooltip,
+        _v$17 = props.name;
+      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$52, "class", _v$13, _p$._v$13));
+      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$53, "text", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$55, "class", _v$15, _p$._v$15));
+      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$55, "customTooltip", _v$16, _p$._v$16));
+      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$56, "text", _v$17, _p$._v$17));
       return _p$;
     }, {
-      _v$11: undefined,
-      _v$12: undefined,
       _v$13: undefined,
       _v$14: undefined,
-      _v$15: undefined
+      _v$15: undefined,
+      _v$16: undefined,
+      _v$17: undefined
     });
-    return _el$45;
+    return _el$52;
   })();
 };
 const TitleComp = props => {
-  const [local, other] = libs.splitProps(props, ["text", "class", "type"]);
+  const [local, other] = libs.splitProps(props, ["text", "class", "type", "setting"]);
   return (() => {
-    const _el$50 = libs.createElement("Panel", libs.mergeProps$1({
+    const _el$58 = libs.createElement("Panel", libs.mergeProps$1({
         get ["class"]() {
           return libs.classNames({
             CanClick: props.onactivate != undefined
           }, "TitleComp", local.type, local.class);
         }
       }, other), null),
-      _el$51 = libs.createElement("Label", {
+      _el$59 = libs.createElement("Label", {
         "class": "TitleLabel",
         get text() {
           return local.text;
         }
-      }, _el$50);
-    libs.spread(_el$50, libs.mergeProps$1({
+      }, _el$58);
+    libs.spread(_el$58, libs.mergeProps$1({
       get ["class"]() {
         return libs.classNames({
           CanClick: props.onactivate != undefined
         }, "TitleComp", local.type, local.class);
       }
     }, other), true);
-    libs.effect(_$p => libs.setProp(_el$51, "text", local.text, _$p));
-    return _el$50;
+    libs.insert(_el$58, libs.createComponent(libs.Show, {
+      get when() {
+        return local.setting;
+      },
+      get children() {
+        return libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "EditIcon",
+          get onactivate() {
+            return local.setting;
+          }
+        });
+      }
+    }), null);
+    libs.effect(_$p => libs.setProp(_el$59, "text", local.text, _$p));
+    return _el$58;
   })();
 };
 

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -287,7 +287,6 @@ const TutorialSetting = props => {
                           margin: "20px 0"
                         },
                         onactivate: () => {
-                          GameUI.CustomUIConfig().ReportClick("newbie", "tutorial|move_keyboard");
                           setMoveMode(MOVE_MODE_KEYBOARD);
                           setSelectingIndex(0);
                         },
@@ -465,7 +464,6 @@ const TutorialSetting = props => {
                           margin: "20px 0"
                         },
                         onactivate: () => {
-                          GameUI.CustomUIConfig().ReportClick("newbie", "tutorial|move_keyboard");
                           setMoveMode(MOVE_MODE_KEYBOARD);
                           setSelectingIndex(0);
                         },
@@ -613,7 +611,6 @@ const TutorialSetting = props => {
                           margin: "20px 0"
                         },
                         onactivate: () => {
-                          GameUI.CustomUIConfig().ReportClick("newbie", "tutorial|move_mouse");
                           setMoveMode(mouseMode());
                           setSelectingIndex(1);
                         },
@@ -793,6 +790,7 @@ const TutorialSetting = props => {
                   color: "Green",
                   text: "#Popup_Button_Confirm",
                   onactivate: self => {
+                    GameUI.CustomUIConfig().ReportClick("newbie", moveMode() == MOVE_MODE_KEYBOARD ? "tutorial|move_keyboard" : "tutorial|move_mouse");
                     GameUI.CustomUIConfig().ReportClick("newbie", "tutorial|next_1");
                     let p = self.GetParent();
                     let count = p?.GetChildCount() ?? 0;

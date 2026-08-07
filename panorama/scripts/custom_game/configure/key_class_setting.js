@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -26,5 +26,17 @@ GameUI.CustomUIConfig().key_class_setting = {
 		intensity_bonus: 0.8,
 		main_bonus: 0.4,
 		main_weight: "0|0|100|80|80|60|60|40|30|15|5"
+	},
+	"4": {
+		key_class: 4,
+		intensity_bonus: 1,
+		main_bonus: 0.6,
+		main_weight: "0|0|0|100|80|60|60|40|30|15|5"
+	},
+	"5": {
+		key_class: 5,
+		intensity_bonus: 1.2,
+		main_bonus: 0.8,
+		main_weight: "0|0|0|0|60|60|60|40|30|15|5"
 	}
-};
+};

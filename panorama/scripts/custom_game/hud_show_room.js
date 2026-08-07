@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -56,6 +56,7 @@ const getListedItemIds = (showType, showRoomData) => {
 };
 
 const STAR_LEVELS = [1, 2, 3, 4, 5, 6];
+const SHOW_ROOM_COSMETIC_TYPES = [COSMETIC_TYPE.HEAD, COSMETIC_TYPE.SHOULDER, COSMETIC_TYPE.BACK, COSMETIC_TYPE.TAIL, COSMETIC_TYPE.WING, COSMETIC_TYPE.MISC];
 const EQUIP_PART_ICON = {
   0: "icon_zb_01.png",
   1: "icon_zb_03.png",
@@ -79,7 +80,8 @@ const findListedSlot = (showType, id, showRoomData) => {
 const MENU_LIST = {
   WeaponShowRoom_Menu: [],
   EquipmentShowRoom_Menu: [],
-  CourierShowRoom_Menu: []
+  CourierShowRoom_Menu: [],
+  CosmeticShowRoom_Menu: []
 };
 const {
   LayoutMenu,
@@ -860,41 +862,178 @@ const EquipmentShowRoomFullDetail = props => {
     return _el$39;
   })();
 };
+const CosmeticShowRoomFullDetail = props => {
+  const cosmeticId = libs.createMemo(() => props.slotData()?.id ?? 0);
+  const cosmeticData = libs.createMemo(() => KeyValues.info_item_cosmetic[String(cosmeticId())]);
+  const specialEffects = libs.createMemo(() => {
+    return String(cosmeticData()?.effect ?? "").split("|").filter(Boolean).map(effect => GetPrivilegeDesc(effect)).filter(Boolean);
+  });
+  const specialEffectText = libs.createMemo(() => {
+    const effects = specialEffects();
+    return effects.length > 0 ? effects.join("<br>") : GetLocalization("#ShowRoom_CosmeticNoSpecialEffect");
+  });
+  const attributeText = libs.createMemo(() => {
+    return Object.entries(cosmeticData()?.attribute ?? {}).map(([attribute, value]) => GetPropertyLocalization(attribute, Number(value))).filter(Boolean).join("<br>");
+  });
+  return (() => {
+    const _el$48 = libs.createElement("Panel", {
+        "class": "ShowRoomFullDetail cosmetic"
+      }, null),
+      _el$49 = libs.createElement("Label", {
+        get ["class"]() {
+          return "ShowRoomFullDetailName Rarity" + (cosmeticData()?.rarity ?? 0);
+        },
+        get text() {
+          return GetLocalization("#" + cosmeticId());
+        }
+      }, _el$48),
+      _el$50 = libs.createElement("Panel", {
+        "class": "ShowRoomFullDetailModel cosmetic"
+      }, _el$48),
+      _el$51 = libs.createElement("Panel", {
+        "class": "ShowRoomCosmeticEffectList"
+      }, _el$48),
+      _el$52 = libs.createElement("Panel", {
+        "class": "ShowRoomFullDetailSkill cosmetic"
+      }, _el$51),
+      _el$54 = libs.createElement("Label", {
+        "class": "ShowRoomFullDetailSkillText",
+        html: true,
+        get text() {
+          return specialEffectText();
+        }
+      }, _el$52);
+    libs.insert(_el$50, libs.createComponent(solid_utils.DynamicKey, {
+      key: cosmeticId,
+      children: id => libs.createComponent(libs.Show, {
+        when: id,
+        get children() {
+          const _el$59 = libs.createElement("Image", {
+            "class": "CosmeticImage",
+            get src() {
+              return getSrcPath(`store_items/${id}.png`);
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$59, "src", getSrcPath(`store_items/${id}.png`), _$p));
+          return _el$59;
+        }
+      })
+    }));
+    libs.insert(_el$52, libs.createComponent(libs.Show, {
+      get when() {
+        return specialEffects().length > 0;
+      },
+      get children() {
+        const _el$53 = libs.createElement("Label", {
+          "class": "ShowRoomCosmeticEffectTitle",
+          get text() {
+            return GetLocalization("#ShowRoom_CosmeticSpecialEffect");
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$53, "text", GetLocalization("#ShowRoom_CosmeticSpecialEffect"), _$p));
+        return _el$53;
+      }
+    }), _el$54);
+    libs.insert(_el$51, libs.createComponent(libs.Show, {
+      get when() {
+        return attributeText() != "";
+      },
+      get children() {
+        const _el$55 = libs.createElement("Panel", {
+            "class": "ShowRoomFullDetailSkill cosmetic"
+          }, null),
+          _el$56 = libs.createElement("Label", {
+            "class": "ShowRoomCosmeticEffectTitle",
+            get text() {
+              return GetLocalization("#ShowRoom_CosmeticAttributeEffect");
+            }
+          }, _el$55),
+          _el$57 = libs.createElement("Label", {
+            "class": "ShowRoomFullDetailSkillText",
+            html: true,
+            get text() {
+              return attributeText();
+            }
+          }, _el$55);
+        libs.effect(_p$ => {
+          const _v$19 = GetLocalization("#ShowRoom_CosmeticAttributeEffect"),
+            _v$20 = attributeText();
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$56, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$57, "text", _v$20, _p$._v$20));
+          return _p$;
+        }, {
+          _v$19: undefined,
+          _v$20: undefined
+        });
+        return _el$55;
+      }
+    }), null);
+    libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      "class": "ShowRoomFullDetailClose",
+      get onactivate() {
+        return props.close;
+      },
+      get children() {
+        const _el$58 = libs.createElement("Label", {
+          get text() {
+            return GetLocalization("#ShowRoom_ClickToClose");
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$58, "text", GetLocalization("#ShowRoom_ClickToClose"), _$p));
+        return _el$58;
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$21 = "ShowRoomFullDetailName Rarity" + (cosmeticData()?.rarity ?? 0),
+        _v$22 = GetLocalization("#" + cosmeticId()),
+        _v$23 = specialEffectText();
+      _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$49, "class", _v$21, _p$._v$21));
+      _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$49, "text", _v$22, _p$._v$22));
+      _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$54, "text", _v$23, _p$._v$23));
+      return _p$;
+    }, {
+      _v$21: undefined,
+      _v$22: undefined,
+      _v$23: undefined
+    });
+    return _el$48;
+  })();
+};
 const CourierAbilityItem = props => {
   const abilityValues = libs.createMemo(() => {
     const kv = KeyValues.courier_abilities[props.abilityName];
     return kv?.AbilityValues ?? {};
   });
   return (() => {
-    const _el$48 = libs.createElement("Panel", {
+    const _el$60 = libs.createElement("Panel", {
         "class": "CourierAbilityItem"
       }, null),
-      _el$49 = libs.createElement("Panel", {
+      _el$61 = libs.createElement("Panel", {
         "class": "CourierAbilityName"
-      }, _el$48);
+      }, _el$60);
       libs.createElement("Panel", {
         "class": "AbilityNameDecorLeft"
-      }, _el$49);
-      const _el$51 = libs.createElement("Label", {
+      }, _el$61);
+      const _el$63 = libs.createElement("Label", {
         "class": "CourierAbilityLabel",
         get text() {
           return "#courier_ability_" + props.type;
         }
-      }, _el$49);
+      }, _el$61);
       libs.createElement("Panel", {
         "class": "AbilityNameDecorRight"
-      }, _el$49);
-      const _el$53 = libs.createElement("Panel", {
+      }, _el$61);
+      const _el$65 = libs.createElement("Panel", {
         "class": "CourierAbilityDesc"
-      }, _el$48),
-      _el$54 = libs.createElement("DOTAAbilityImage", {
+      }, _el$60),
+      _el$66 = libs.createElement("DOTAAbilityImage", {
         "class": "CourierAbilityIcon",
         get abilityname() {
           return props.abilityName;
         },
         showtooltip: false
-      }, _el$53),
-      _el$55 = libs.createElement("Label", {
+      }, _el$65),
+      _el$67 = libs.createElement("Label", {
         "class": "CourierAbilityText",
         html: true,
         get text() {
@@ -902,58 +1041,58 @@ const CourierAbilityItem = props => {
             level: props.abilityLevel
           });
         }
-      }, _el$53);
+      }, _el$65);
     libs.effect(_p$ => {
-      const _v$19 = "#courier_ability_" + props.type,
-        _v$20 = props.abilityName,
-        _v$21 = getKeyValueDescription(GetLocalization("#DOTA_Tooltip_ability_" + props.abilityName + "_Description", ""), abilityValues(), {
+      const _v$24 = "#courier_ability_" + props.type,
+        _v$25 = props.abilityName,
+        _v$26 = getKeyValueDescription(GetLocalization("#DOTA_Tooltip_ability_" + props.abilityName + "_Description", ""), abilityValues(), {
           level: props.abilityLevel
         });
-      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$51, "text", _v$19, _p$._v$19));
-      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$54, "abilityname", _v$20, _p$._v$20));
-      _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$55, "text", _v$21, _p$._v$21));
+      _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$63, "text", _v$24, _p$._v$24));
+      _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$66, "abilityname", _v$25, _p$._v$25));
+      _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$67, "text", _v$26, _p$._v$26));
       return _p$;
     }, {
-      _v$19: undefined,
-      _v$20: undefined,
-      _v$21: undefined
+      _v$24: undefined,
+      _v$25: undefined,
+      _v$26: undefined
     });
-    return _el$48;
+    return _el$60;
   })();
 };
 const CourierFishExploreItem = props => {
   const abilityInfo = libs.createMemo(() => getCourierFishExploreInfo(props.fish_skill, props.explore_skill));
   const titleKey = libs.createMemo(() => getCourierFishExploreTitleKey(abilityInfo().type));
   return (() => {
-    const _el$56 = libs.createElement("Panel", {
+    const _el$68 = libs.createElement("Panel", {
         "class": "CourierAbilityItem"
       }, null),
-      _el$57 = libs.createElement("Panel", {
+      _el$69 = libs.createElement("Panel", {
         "class": "CourierAbilityName"
-      }, _el$56);
+      }, _el$68);
       libs.createElement("Panel", {
         "class": "AbilityNameDecorLeft"
-      }, _el$57);
-      const _el$59 = libs.createElement("Label", {
+      }, _el$69);
+      const _el$71 = libs.createElement("Label", {
         "class": "CourierAbilityLabel",
         get text() {
           return titleKey();
         }
-      }, _el$57);
+      }, _el$69);
       libs.createElement("Panel", {
         "class": "AbilityNameDecorRight"
-      }, _el$57);
-      const _el$61 = libs.createElement("Panel", {
+      }, _el$69);
+      const _el$73 = libs.createElement("Panel", {
         "class": "CourierAbilityDesc"
-      }, _el$56),
-      _el$62 = libs.createElement("Label", {
+      }, _el$68),
+      _el$74 = libs.createElement("Label", {
         "class": "CourierAbilityText",
         html: true,
         get text() {
           return abilityInfo().txt;
         }
-      }, _el$61);
-    libs.insert(_el$61, libs.createComponent(libs.Show, {
+      }, _el$73);
+    libs.insert(_el$73, libs.createComponent(libs.Show, {
       get when() {
         return abilityInfo().item != undefined;
       },
@@ -969,16 +1108,16 @@ const CourierFishExploreItem = props => {
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$22 = titleKey(),
-        _v$23 = abilityInfo().txt;
-      _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$59, "text", _v$22, _p$._v$22));
-      _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$62, "text", _v$23, _p$._v$23));
+      const _v$27 = titleKey(),
+        _v$28 = abilityInfo().txt;
+      _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$71, "text", _v$27, _p$._v$27));
+      _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$74, "text", _v$28, _p$._v$28));
       return _p$;
     }, {
-      _v$22: undefined,
-      _v$23: undefined
+      _v$27: undefined,
+      _v$28: undefined
     });
-    return _el$56;
+    return _el$68;
   })();
 };
 const WeaponItemDetail = props => {
@@ -1023,46 +1162,46 @@ const WeaponItemDetail = props => {
   });
   const activeStar = libs.createMemo(() => hoverWeaponServiceData()?.star ?? 0);
   return (() => {
-    const _el$63 = libs.createElement("Panel", {
+    const _el$75 = libs.createElement("Panel", {
       id: "ItemDesc",
       "class": "VerticalScrollStyle"
     }, null);
-    libs.insert(_el$63, libs.createComponent(libs.Show, {
+    libs.insert(_el$75, libs.createComponent(libs.Show, {
       get when() {
         return props.hoverItemID();
       },
       get children() {
         return [(() => {
-          const _el$64 = libs.createElement("Label", {
+          const _el$76 = libs.createElement("Label", {
             id: "ItemDescName",
             get text() {
               return "#" + props.hoverItemID();
             }
           }, null);
           libs.effect(_p$ => {
-            const _v$24 = "Rarity" + (hoverWeaponData()?.rarity ?? 0),
-              _v$25 = "#" + props.hoverItemID();
-            _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$64, "className", _v$24, _p$._v$24));
-            _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$64, "text", _v$25, _p$._v$25));
+            const _v$29 = "Rarity" + (hoverWeaponData()?.rarity ?? 0),
+              _v$30 = "#" + props.hoverItemID();
+            _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$76, "className", _v$29, _p$._v$29));
+            _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$76, "text", _v$30, _p$._v$30));
             return _p$;
           }, {
-            _v$24: undefined,
-            _v$25: undefined
+            _v$29: undefined,
+            _v$30: undefined
           });
-          return _el$64;
+          return _el$76;
         })(), (() => {
-          const _el$65 = libs.createElement("Panel", {
+          const _el$77 = libs.createElement("Panel", {
               id: "ItemDescSkill"
             }, null),
-            _el$66 = libs.createElement("Label", {
+            _el$78 = libs.createElement("Label", {
               id: "ItemDescSkillText",
               html: true,
               get text() {
                 return weaponSkillDesc();
               }
-            }, _el$65);
-          libs.effect(_$p => libs.setProp(_el$66, "text", weaponSkillDesc(), _$p));
-          return _el$65;
+            }, _el$77);
+          libs.effect(_$p => libs.setProp(_el$78, "text", weaponSkillDesc(), _$p));
+          return _el$77;
         })(), libs.createComponent(StarEffectRows, {
           rows: weaponEffectList,
           activeStar: activeStar,
@@ -1070,7 +1209,7 @@ const WeaponItemDetail = props => {
         })];
       }
     }));
-    return _el$63;
+    return _el$75;
   })();
 };
 const CourierItemDetail = props => {
@@ -1113,33 +1252,33 @@ const CourierItemDetail = props => {
   });
   const activeStar = libs.createMemo(() => hoverCourierServiceData()?.star ?? 0);
   return (() => {
-    const _el$67 = libs.createElement("Panel", {
+    const _el$79 = libs.createElement("Panel", {
       id: "ItemDesc",
       "class": "VerticalScrollStyle"
     }, null);
-    libs.insert(_el$67, libs.createComponent(libs.Show, {
+    libs.insert(_el$79, libs.createComponent(libs.Show, {
       get when() {
         return props.hoverItemID();
       },
       get children() {
         return [(() => {
-          const _el$68 = libs.createElement("Label", {
+          const _el$80 = libs.createElement("Label", {
             id: "ItemDescName",
             get text() {
               return "#" + props.hoverItemID();
             }
           }, null);
           libs.effect(_p$ => {
-            const _v$26 = "Rarity" + (hoverCourierData()?.quality ?? 0),
-              _v$27 = "#" + props.hoverItemID();
-            _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$68, "className", _v$26, _p$._v$26));
-            _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$68, "text", _v$27, _p$._v$27));
+            const _v$31 = "Rarity" + (hoverCourierData()?.quality ?? 0),
+              _v$32 = "#" + props.hoverItemID();
+            _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$80, "className", _v$31, _p$._v$31));
+            _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$80, "text", _v$32, _p$._v$32));
             return _p$;
           }, {
-            _v$26: undefined,
-            _v$27: undefined
+            _v$31: undefined,
+            _v$32: undefined
           });
-          return _el$68;
+          return _el$80;
         })(), libs.createComponent(libs.Show, {
           get when() {
             return courierAbility() != undefined;
@@ -1175,7 +1314,7 @@ const CourierItemDetail = props => {
         })];
       }
     }));
-    return _el$67;
+    return _el$79;
   })();
 };
 const ShowRoomContent = () => {
@@ -1282,7 +1421,7 @@ const ShowRoomContent = () => {
     const currentShowType = showType();
     const isListed = listedItemIds().has(item.id);
     if (isListed) {
-      menus[GetLocalization("#ShowRoom_Unlist", "下架")] = () => {
+      menus[GetLocalization("#ShowRoom_Unlist")] = () => {
         for (let i = 1; i <= SLOT_NUMBERS.length; i++) {
           const data = showRoomData()?.[`${currentShowType}-${i}`];
           if (data && data.id === item.id) {
@@ -1294,7 +1433,7 @@ const ShowRoomContent = () => {
     } else {
       const emptySlot = findNextEmptySlot(currentShowType, showRoomData);
       if (emptySlot !== undefined) {
-        menus[GetLocalization("#ShowRoom_List", "上架")] = () => {
+        menus[GetLocalization("#ShowRoom_List")] = () => {
           requestUpdateShowRoomSlot(currentShowType, emptySlot, item.id);
         };
       }
@@ -1378,22 +1517,22 @@ const ShowRoomContent = () => {
         },
         get children() {
           return [(() => {
-            const _el$69 = libs.createElement("Panel", {
+            const _el$81 = libs.createElement("Panel", {
                 id: "ShowRoom"
               }, null),
-              _el$75 = libs.createElement("Panel", {
+              _el$87 = libs.createElement("Panel", {
                 "class": "SlotContainer"
-              }, _el$69);
-            libs.insert(_el$69, libs.createComponent(libs.Show, {
+              }, _el$81);
+            libs.insert(_el$81, libs.createComponent(libs.Show, {
               get when() {
                 return !isEditing();
               },
               get children() {
                 return [(() => {
-                  const _el$70 = libs.createElement("Panel", {
+                  const _el$82 = libs.createElement("Panel", {
                     id: "RightTopBtns"
                   }, null);
-                  libs.insert(_el$70, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  libs.insert(_el$82, libs.createComponent(EOM_Button.EOM_BaseButton, {
                     "class": "RightTopBtn LikeBtn",
                     get enabled() {
                       return !canEdit();
@@ -1401,36 +1540,36 @@ const ShowRoomContent = () => {
                     onactivate: () => onLike(),
                     get children() {
                       return [(() => {
-                        const _el$71 = libs.createElement("Panel", {
+                        const _el$83 = libs.createElement("Panel", {
                             "class": "IconFrame"
                           }, null);
                           libs.createElement("Panel", {
                             "class": "Icon"
-                          }, _el$71);
-                        return _el$71;
+                          }, _el$83);
+                        return _el$83;
                       })(), (() => {
-                        const _el$73 = libs.createElement("Label", {
+                        const _el$85 = libs.createElement("Label", {
                           "class": "NumLabel",
                           get text() {
                             return String(likeCount());
                           }
                         }, null);
-                        libs.effect(_$p => libs.setProp(_el$73, "text", String(likeCount()), _$p));
-                        return _el$73;
+                        libs.effect(_$p => libs.setProp(_el$85, "text", String(likeCount()), _$p));
+                        return _el$85;
                       })()];
                     }
                   }));
-                  return _el$70;
+                  return _el$82;
                 })(), (() => {
-                  const _el$74 = libs.createElement("Panel", {
+                  const _el$86 = libs.createElement("Panel", {
                     "class": "Info"
                   }, null);
-                  libs.setProp(_el$74, "tooltip_text", "#ShowRoom_Tips1");
-                  return _el$74;
+                  libs.setProp(_el$86, "tooltip_text", "#ShowRoom_Tips1");
+                  return _el$86;
                 })()];
               }
-            }), _el$75);
-            libs.insert(_el$75, libs.createComponent(libs.For, {
+            }), _el$87);
+            libs.insert(_el$87, libs.createComponent(libs.For, {
               each: SLOT_NUMBERS,
               children: slotNum => {
                 const slotData = () => showRoomData()?.[`${showType()}-${slotNum}`];
@@ -1446,30 +1585,30 @@ const ShowRoomContent = () => {
                   openSlotDetail(slotNum);
                 };
                 return (() => {
-                  const _el$82 = libs.createElement("Panel", {
+                  const _el$94 = libs.createElement("Panel", {
                       id: "Slot" + slotNum,
                       "class": "ShowRoomSlot"
                     }, null),
-                    _el$83 = libs.createElement("Panel", {
+                    _el$95 = libs.createElement("Panel", {
                       id: "Border"
-                    }, _el$82);
-                  libs.setProp(_el$82, "id", "Slot" + slotNum);
-                  libs.setProp(_el$82, "ondblclick", () => {
+                    }, _el$94);
+                  libs.setProp(_el$94, "id", "Slot" + slotNum);
+                  libs.setProp(_el$94, "ondblclick", () => {
                     openSlotDetail(slotNum);
                   });
-                  libs.setProp(_el$82, "onDragEnter", (p, draggedPanel) => {
+                  libs.setProp(_el$94, "onDragEnter", (p, draggedPanel) => {
                     if (!canEdit()) return;
                     if (LoadData(draggedPanel, "showRoomItem")) {
                       setDropHoverSlot(slotNum);
                     }
                   });
-                  libs.setProp(_el$82, "onDragLeave", () => {
+                  libs.setProp(_el$94, "onDragLeave", () => {
                     if (!canEdit()) return;
                     if (dropHoverSlot() === slotNum) {
                       setDropHoverSlot(undefined);
                     }
                   });
-                  libs.setProp(_el$82, "onDragDrop", (p, draggedPanel) => {
+                  libs.setProp(_el$94, "onDragDrop", (p, draggedPanel) => {
                     if (!canEdit()) return;
                     setDropHoverSlot(undefined);
                     const itemId = LoadData(draggedPanel, "showRoomItem");
@@ -1478,37 +1617,37 @@ const ShowRoomContent = () => {
                       assignItemToSlot(showType(), slotNum, itemId, showRoomData, sourceSlot);
                     }
                   });
-                  libs.setProp(_el$82, "onDragStart", (panel, dragCallbacks) => {
+                  libs.setProp(_el$94, "onDragStart", (panel, dragCallbacks) => {
                     if (!isEditing() || bRequesting() || !canEdit()) return;
                     const item = getSlotItem(slotData());
                     if (!item) return;
                     return startItemDrag(item, panel, dragCallbacks, slotNum);
                   });
-                  libs.setProp(_el$82, "onDragEnd", (panel, draggedPanel) => {
+                  libs.setProp(_el$94, "onDragEnd", (panel, draggedPanel) => {
                     endItemDrag(draggedPanel);
                   });
-                  libs.setProp(_el$82, "oncontextmenu", () => {
+                  libs.setProp(_el$94, "oncontextmenu", () => {
                     if (bRequesting() || !canEdit() || isEmpty()) return;
                     requestUpdateShowRoomSlot(showType(), slotNum, 0);
                   });
-                  libs.setProp(_el$82, "onactivate", onSlotActivate);
-                  libs.insert(_el$82, libs.createComponent(libs.Show, {
+                  libs.setProp(_el$94, "onactivate", onSlotActivate);
+                  libs.insert(_el$94, libs.createComponent(libs.Show, {
                     get when() {
                       return !isEmpty();
                     },
                     get children() {
                       return currentConfig().renderSlotItem(slotData);
                     }
-                  }), _el$83);
-                  libs.effect(_$p => libs.setProp(_el$82, "classList", {
+                  }), _el$95);
+                  libs.effect(_$p => libs.setProp(_el$94, "classList", {
                     Filled: !isEmpty(),
                     potential_drop_target: dropHoverSlot() === slotNum
                   }, _$p));
-                  return _el$82;
+                  return _el$94;
                 })();
               }
             }));
-            libs.insert(_el$69, libs.createComponent(libs.Show, {
+            libs.insert(_el$81, libs.createComponent(libs.Show, {
               get when() {
                 return libs.memo(() => !!!isEditing())() && canEdit();
               },
@@ -1518,13 +1657,13 @@ const ShowRoomContent = () => {
                   onactivate: () => setIsEditing(true),
                   get children() {
                     return [(() => {
-                      const _el$76 = libs.createElement("Panel", {
+                      const _el$88 = libs.createElement("Panel", {
                           "class": "IconFrame"
                         }, null);
                         libs.createElement("Panel", {
                           "class": "Icon"
-                        }, _el$76);
-                      return _el$76;
+                        }, _el$88);
+                      return _el$88;
                     })(), libs.createElement("Label", {
                       text: "#ShowRoom_Edit"
                     }, null)];
@@ -1532,22 +1671,22 @@ const ShowRoomContent = () => {
                 });
               }
             }), null);
-            libs.insert(_el$69, libs.createComponent(libs.Show, {
+            libs.insert(_el$81, libs.createComponent(libs.Show, {
               get when() {
                 return libs.memo(() => !!isEditing())() && canEdit();
               },
               get children() {
-                const _el$79 = libs.createElement("Panel", {
+                const _el$91 = libs.createElement("Panel", {
                     id: "ShowRoomRight"
                   }, null),
-                  _el$80 = libs.createElement("Panel", {
+                  _el$92 = libs.createElement("Panel", {
                     flowChildren: "right"
-                  }, _el$79),
-                  _el$81 = libs.createElement("Panel", {
+                  }, _el$91),
+                  _el$93 = libs.createElement("Panel", {
                     "class": "ItemListContainer"
-                  }, _el$80);
-                libs.setProp(_el$80, "flowChildren", "right");
-                libs.insert(_el$81, libs.createComponent(RecycleView.RecycleView, {
+                  }, _el$92);
+                libs.setProp(_el$92, "flowChildren", "right");
+                libs.insert(_el$93, libs.createComponent(RecycleView.RecycleView, {
                   id: "ShowRoomGrid",
                   get input() {
                     return currentConfig().itemList;
@@ -1560,25 +1699,25 @@ const ShowRoomContent = () => {
                   children: data => {
                     const item = libs.createMemo(() => data());
                     return (() => {
-                      const _el$84 = libs.createElement("Panel", {
+                      const _el$96 = libs.createElement("Panel", {
                         "class": "GridItem"
                       }, null);
-                      libs.setProp(_el$84, "onmouseover", () => setHoverItemID(item()?.id));
-                      libs.setProp(_el$84, "onDragStart", (panel, dragCallbacks) => {
+                      libs.setProp(_el$96, "onmouseover", () => setHoverItemID(item()?.id));
+                      libs.setProp(_el$96, "onDragStart", (panel, dragCallbacks) => {
                         if (!canEdit()) return;
                         const currentItem = item();
                         if (!currentItem) return;
                         return startItemDrag(currentItem, panel, dragCallbacks);
                       });
-                      libs.setProp(_el$84, "onDragEnd", (panel, draggedPanel) => {
+                      libs.setProp(_el$96, "onDragEnd", (panel, draggedPanel) => {
                         endItemDrag(draggedPanel);
                       });
-                      libs.setProp(_el$84, "oncontextmenu", p => {
+                      libs.setProp(_el$96, "oncontextmenu", p => {
                         const currentItem = item();
                         if (currentItem) onItemContextMenu(p, currentItem);
                       });
-                      libs.insert(_el$84, () => renderStoreItemBlock(item()), null);
-                      libs.insert(_el$84, libs.createComponent(libs.Show, {
+                      libs.insert(_el$96, () => renderStoreItemBlock(item()), null);
+                      libs.insert(_el$96, libs.createComponent(libs.Show, {
                         get when() {
                           return listedItemIds().has(item()?.id);
                         },
@@ -1588,37 +1727,37 @@ const ShowRoomContent = () => {
                           }, null);
                         }
                       }), null);
-                      libs.effect(_$p => libs.setProp(_el$84, "classList", {
+                      libs.effect(_$p => libs.setProp(_el$96, "classList", {
                         dragging_from: isDragging() === item()?.key,
                         StarGridItem: item()?.type === "courier" || item()?.type === "weapon"
                       }, _$p));
-                      return _el$84;
+                      return _el$96;
                     })();
                   }
                 }));
-                libs.insert(_el$80, () => currentConfig().renderExtraRightPanel?.(), null);
-                libs.insert(_el$79, libs.createComponent(EOM_Button.EOM_Button, {
+                libs.insert(_el$92, () => currentConfig().renderExtraRightPanel?.(), null);
+                libs.insert(_el$91, libs.createComponent(EOM_Button.EOM_Button, {
                   "class": "CancelBtn",
                   uiScale: "90%",
                   text: "#ShowRoom_Confirm",
                   onactivate: () => setIsEditing(false)
                 }), null);
-                return _el$79;
+                return _el$91;
               }
             }), null);
             libs.effect(_p$ => {
-              const _v$28 = !detailVisible(),
-                _v$29 = {
+              const _v$33 = !detailVisible(),
+                _v$34 = {
                   editing: isEditing()
                 };
-              _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$69, "visible", _v$28, _p$._v$28));
-              _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$69, "classList", _v$29, _p$._v$29));
+              _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$81, "visible", _v$33, _p$._v$33));
+              _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$81, "classList", _v$34, _p$._v$34));
               return _p$;
             }, {
-              _v$28: undefined,
-              _v$29: undefined
+              _v$33: undefined,
+              _v$34: undefined
             });
-            return _el$69;
+            return _el$81;
           })(), libs.createComponent(libs.Show, {
             get when() {
               return detailVisible();
@@ -1642,6 +1781,7 @@ let playerInfoData = () => ({});
 let showRoomData = () => ({});
 let playerWeapons = () => ({});
 let playerCouriers = () => ({});
+let playerCosmetics = () => ({});
 let rawPlayerEquipments = () => ({});
 let playerCounters = () => ({});
 let partFilter = () => 0;
@@ -1649,6 +1789,7 @@ let setPartFilter = () => 0;
 let playerEquipments = () => ({});
 let weaponItemList = () => [];
 let courierItemList = () => [];
+let cosmeticItemList = () => [];
 let allEquipmentItemList = () => [];
 let equipmentItemList = () => [];
 let currentConfig = () => undefined;
@@ -1691,6 +1832,7 @@ function createShowRoomPageState() {
   showRoomData = libs.createMemo(() => playerInfoData().player_show_rooms ?? {});
   playerWeapons = solid_utils.createServiceNetData("player_weapons", {});
   playerCouriers = solid_utils.createServiceNetData("player_couriers", {});
+  playerCosmetics = solid_utils.createServiceNetData("player_cosmetics", {});
   rawPlayerEquipments = solid_utils.createServiceNetData("player_equipments", {});
   playerCounters = libs.createMemo(() => playerInfoData().player_counters ?? {});
   [partFilter, setPartFilter] = libs.createSignal(0);
@@ -1725,6 +1867,23 @@ function createShowRoomPageState() {
       data: v
     })).sort((a, b) => compareShowRoomCollectionItems(a, b, listedItemIds, item => toFiniteNumber(KeyValues.service_courier[item.id]?.quality, 0), item => getShowRoomItemCreationTime(item, showRoomData)));
   });
+  cosmeticItemList = libs.createMemo(() => {
+    return Object.values(KeyValues.info_item_cosmetic).filter(cosmeticData => {
+      return SHOW_ROOM_COSMETIC_TYPES.includes(cosmeticData.type) && cosmeticData.model != undefined && (cosmeticData.hide !== 1 || Game.IsInToolsMode()) && (cosmeticData.default === 1 || playerCosmetics()[String(cosmeticData.id)] != undefined);
+    }).map(cosmeticData => {
+      const id = cosmeticData.id;
+      const serviceData = playerCosmetics()[String(id)] ?? {
+        cosmetic_id: id,
+        permanent: 1
+      };
+      return {
+        key: String(id),
+        type: "cosmetic",
+        id,
+        data: serviceData
+      };
+    }).sort((a, b) => multiCompare(toFiniteNumber(KeyValues.info_item_cosmetic[String(b.id)]?.rarity, 0) - toFiniteNumber(KeyValues.info_item_cosmetic[String(a.id)]?.rarity, 0), a.id - b.id));
+  });
   allEquipmentItemList = libs.createMemo(() => {
     return Object.entries(playerEquipments()).filter(([_, v]) => v).map(([key, v]) => ({
       key,
@@ -1744,6 +1903,8 @@ function createShowRoomPageState() {
         return equipmentConfig;
       case "CourierShowRoom_Menu":
         return courierConfig;
+      case "CosmeticShowRoom_Menu":
+        return cosmeticConfig;
       case "WeaponShowRoom_Menu":
       default:
         return weaponConfig;
@@ -1775,10 +1936,10 @@ const weaponConfig = {
   renderSlotItem: slotData => {
     const weaponId = libs.createMemo(() => slotData()?.weapon?.weapon_id ?? slotData()?.id ?? 0);
     return (() => {
-      const _el$86 = libs.createElement("Panel", {
+      const _el$98 = libs.createElement("Panel", {
         "class": "ModelContainer"
       }, null);
-      libs.insert(_el$86, libs.createComponent(solid_utils.DynamicKey, {
+      libs.insert(_el$98, libs.createComponent(solid_utils.DynamicKey, {
         key: weaponId,
         children: wid => libs.createComponent(libs.Show, {
           when: wid,
@@ -1794,7 +1955,7 @@ const weaponConfig = {
           }
         })
       }));
-      return _el$86;
+      return _el$98;
     })();
   },
   renderItemDetail: hoverItemID => libs.createComponent(WeaponItemDetail, {
@@ -1820,10 +1981,10 @@ const courierConfig = {
   renderSlotItem: slotData => {
     const courierId = libs.createMemo(() => slotData()?.courier?.courier_id ?? slotData()?.id ?? 0);
     return (() => {
-      const _el$87 = libs.createElement("Panel", {
+      const _el$99 = libs.createElement("Panel", {
         "class": "ModelContainer Courier"
       }, null);
-      libs.insert(_el$87, libs.createComponent(solid_utils.DynamicKey, {
+      libs.insert(_el$99, libs.createComponent(solid_utils.DynamicKey, {
         key: courierId,
         children: cid => libs.createComponent(libs.Show, {
           when: cid,
@@ -1835,7 +1996,7 @@ const courierConfig = {
           }
         })
       }));
-      return _el$87;
+      return _el$99;
     })();
   },
   renderItemDetail: hoverItemID => libs.createComponent(CourierItemDetail, {
@@ -1853,10 +2014,10 @@ const courierConfig = {
 const EquipmentShowRoomStoreItem = props => {
   const level = libs.createMemo(() => props.item?.data?.level ?? 0);
   return (() => {
-    const _el$88 = libs.createElement("Panel", {
+    const _el$100 = libs.createElement("Panel", {
       "class": "ShowRoomEquipmentStoreItem"
     }, null);
-    libs.insert(_el$88, libs.createComponent(StoreItem.StoreItemBlock, {
+    libs.insert(_el$100, libs.createComponent(StoreItem.StoreItemBlock, {
       get item_id() {
         return libs.memo(() => !!props.item)() ? getItemDisplayId(props.item) : 0;
       },
@@ -1867,22 +2028,22 @@ const EquipmentShowRoomStoreItem = props => {
         return props.hideTips;
       }
     }), null);
-    libs.insert(_el$88, libs.createComponent(libs.Show, {
+    libs.insert(_el$100, libs.createComponent(libs.Show, {
       get when() {
         return level() > 0;
       },
       get children() {
-        const _el$89 = libs.createElement("Label", {
+        const _el$101 = libs.createElement("Label", {
           id: "LevelLabel",
           get text() {
             return "+" + level();
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$89, "text", "+" + level(), _$p));
-        return _el$89;
+        libs.effect(_$p => libs.setProp(_el$101, "text", "+" + level(), _$p));
+        return _el$101;
       }
     }), null);
-    return _el$88;
+    return _el$100;
   })();
 };
 const equipmentConfig = {
@@ -1891,11 +2052,19 @@ const equipmentConfig = {
   renderSlotItem: slotData => {
     const equipmentData = libs.createMemo(() => getShowRoomEquipmentData(slotData()));
     const equipItemId = libs.createMemo(() => equipmentData()?.equipment_item_id ?? 0);
+    const showRoomEquipmentTooltip = () => {
+      const equipment = equipmentData();
+      if (equipment?.equipment_item_id == undefined) return undefined;
+      return {
+        name: "server_equip",
+        data: JSON.stringify(equipment)
+      };
+    };
     return (() => {
-      const _el$90 = libs.createElement("Panel", {
+      const _el$102 = libs.createElement("Panel", {
         "class": "ModelContainer"
       }, null);
-      libs.insert(_el$90, libs.createComponent(solid_utils.DynamicKey, {
+      libs.insert(_el$102, libs.createComponent(solid_utils.DynamicKey, {
         key: equipItemId,
         children: itemId => libs.createComponent(libs.Show, {
           when: itemId,
@@ -1909,7 +2078,8 @@ const equipmentConfig = {
           }
         })
       }));
-      return _el$90;
+      libs.effect(_$p => libs.setProp(_el$102, "customTooltip", showRoomEquipmentTooltip(), _$p));
+      return _el$102;
     })();
   },
   renderStoreItemBlock: item => libs.createComponent(EquipmentShowRoomStoreItem, {
@@ -1920,16 +2090,16 @@ const equipmentConfig = {
     close: close
   }),
   renderExtraRightPanel: () => (() => {
-    const _el$91 = libs.createElement("Panel", {
+    const _el$103 = libs.createElement("Panel", {
       id: "PartFilter"
     }, null);
-    libs.insert(_el$91, libs.createComponent(libs.For, {
+    libs.insert(_el$103, libs.createComponent(libs.For, {
       get each() {
         return [0, ...equipment_utils.EQUIP_PARTS];
       },
       children: part => {
         return (() => {
-          const _el$92 = libs.createElement("Button", {
+          const _el$104 = libs.createElement("Button", {
               get id() {
                 return part.toString();
               },
@@ -1937,32 +2107,72 @@ const equipmentConfig = {
                 return "PartTab" + (partFilter() === part ? " Selected" : "");
               }
             }, null),
-            _el$93 = libs.createElement("Image", {
+            _el$105 = libs.createElement("Image", {
               id: "PartIcon",
               get src() {
                 return getSrcPath(`conv/icon/${EQUIP_PART_ICON[part]}`);
               }
-            }, _el$92);
-          libs.setProp(_el$92, "onactivate", () => setPartFilter(part));
+            }, _el$104);
+          libs.setProp(_el$104, "onactivate", () => setPartFilter(part));
           libs.effect(_p$ => {
-            const _v$30 = part.toString(),
-              _v$31 = "PartTab" + (partFilter() === part ? " Selected" : ""),
-              _v$32 = getSrcPath(`conv/icon/${EQUIP_PART_ICON[part]}`);
-            _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$92, "id", _v$30, _p$._v$30));
-            _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$92, "class", _v$31, _p$._v$31));
-            _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$93, "src", _v$32, _p$._v$32));
+            const _v$35 = part.toString(),
+              _v$36 = "PartTab" + (partFilter() === part ? " Selected" : ""),
+              _v$37 = getSrcPath(`conv/icon/${EQUIP_PART_ICON[part]}`);
+            _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$104, "id", _v$35, _p$._v$35));
+            _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$104, "class", _v$36, _p$._v$36));
+            _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$105, "src", _v$37, _p$._v$37));
             return _p$;
           }, {
-            _v$30: undefined,
-            _v$31: undefined,
-            _v$32: undefined
+            _v$35: undefined,
+            _v$36: undefined,
+            _v$37: undefined
           });
-          return _el$92;
+          return _el$104;
         })();
       }
     }));
-    return _el$91;
+    return _el$103;
   })()
+};
+const cosmeticConfig = {
+  showType: "cosmetic",
+  itemList: () => cosmeticItemList(),
+  renderSlotItem: slotData => {
+    const cosmeticId = libs.createMemo(() => slotData()?.id ?? 0);
+    const cosmeticTooltip = libs.createMemo(() => {
+      const id = cosmeticId();
+      if (!id) return undefined;
+      const image = getSrcPath(`store_items/${id}.png`);
+      return StoreItem.GetStoreItemImageTooltipData(id, image);
+    });
+    return (() => {
+      const _el$106 = libs.createElement("Panel", {
+        "class": "ModelContainer Cosmetic"
+      }, null);
+      libs.insert(_el$106, libs.createComponent(solid_utils.DynamicKey, {
+        key: cosmeticId,
+        children: id => libs.createComponent(libs.Show, {
+          when: id,
+          get children() {
+            const _el$107 = libs.createElement("Image", {
+              "class": "CosmeticImage",
+              get src() {
+                return getSrcPath(`store_items/${id}.png`);
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$107, "src", getSrcPath(`store_items/${id}.png`), _$p));
+            return _el$107;
+          }
+        })
+      }));
+      libs.effect(_$p => libs.setProp(_el$106, "customTooltip", cosmeticTooltip(), _$p));
+      return _el$106;
+    })();
+  },
+  renderFullDetail: (slotData, close) => libs.createComponent(CosmeticShowRoomFullDetail, {
+    slotData: slotData,
+    close: close
+  })
 };
 function ShowRoomRoot() {
   return libs.createComponent(libs.Show, {

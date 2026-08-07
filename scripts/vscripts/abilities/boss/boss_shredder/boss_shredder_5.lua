@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -66,6 +66,12 @@ function n.prototype.OnSpellStart(self)
 		angularVelocity = 90,
 		bounce = 99,
 		OnBulletThink = function(q, r)
+			if not GridNav:IsValidPosition(q) or GridNav:IsNearbyTree(q, o:GetHullRadius(), true) then
+				Bullet:DestroyBulletByID(r.__projIndex)
+				o:RemoveModifierByName("modifier_boss_shredder_5_buff")
+				FindClearSpaceForUnit(o, o:GetAbsOrigin(), true)
+				return
+			end
 			local s = CalcDirection2D(p:GetAbsOrigin(), o)
 			local t = VectorToAngles(s).y
 			local u = AngleDiff(t, o:GetLocalAngles().y)
@@ -75,6 +81,11 @@ function n.prototype.OnSpellStart(self)
 			o:SetForwardVector(AnglesToVector(o:GetLocalAngles()))
 			o:FaceTowards(o:GetAbsOrigin() + o:GetForwardVector())
 			o:SetAbsOrigin(q)
+		end,
+		OnBulletDestroy = function()
+			if IsValid(o) and o:IsAlive() then
+				FindClearSpaceForUnit(o, o:GetAbsOrigin(), true)
+			end
 		end,
 	})
 end

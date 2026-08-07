@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -87,6 +87,15 @@ function ReportCommunity(detail) {
 function FormatDate(value) {
   if (typeof value != "string" || value == "") return "";
   return value.slice(0, 10);
+}
+function SortCommunityItems(items) {
+  return [...items].sort((a, b) => {
+    const priorityDifference = (b.priority ?? 0) - (a.priority ?? 0);
+    if (priorityDifference != 0) return priorityDifference;
+    const aPublishedAt = Date.parse(a.publishedAt ?? "") || 0;
+    const bPublishedAt = Date.parse(b.publishedAt ?? "") || 0;
+    return bPublishedAt - aPublishedAt;
+  });
 }
 function BannerCarousel(props) {
   const [bannerIndex, setBannerIndex] = libs.createSignal(0);
@@ -291,8 +300,11 @@ const Community = () => {
   };
   updateFeedbackCooldown();
   const guideContents = libs.createMemo(() => {
-    return selectedGuideTag() == undefined ? homeData()?.homeContents ?? [] : categoryContents();
+    const contents = selectedGuideTag() == undefined ? homeData()?.homeContents ?? [] : categoryContents();
+    return SortCommunityItems(contents);
   });
+  const banners = libs.createMemo(() => SortCommunityItems(homeData()?.banners ?? []));
+  const notices = libs.createMemo(() => SortCommunityItems(homeData()?.notices ?? []));
   const guideLoading = libs.createMemo(() => {
     return selectedGuideTag() == undefined ? homeLoading() && guideContents().length == 0 : categoryLoading();
   });
@@ -624,7 +636,7 @@ const Community = () => {
     libs.setProp(_el$0, "flowChildren", "right");
     libs.insert(_el$0, libs.createComponent(BannerCarousel, {
       get banners() {
-        return homeData()?.banners ?? [];
+        return banners();
       },
       get loading() {
         return homeLoading();
@@ -694,7 +706,7 @@ const Community = () => {
     libs.setProp(_el$22, "scroll", "y");
     libs.insert(_el$22, libs.createComponent(libs.For, {
       get each() {
-        return homeData()?.notices ?? [];
+        return notices();
       },
       children: (notice, index) => (() => {
         const _el$49 = libs.createElement("Panel", {
@@ -739,7 +751,7 @@ const Community = () => {
     }), null);
     libs.insert(_el$22, libs.createComponent(libs.Show, {
       get when() {
-        return (homeData()?.notices.length ?? 0) == 0;
+        return notices().length == 0;
       },
       get children() {
         const _el$23 = libs.createElement("Label", {

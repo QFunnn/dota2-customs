@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -64,10 +64,6 @@ function t.prototype.OnStackCountChanged(self, u)
 end
 function t.prototype.EventListener(self)
 	return {
-		dungeon_room_start = function()
-			self:SetStackCount(0)
-			self:RemoveDamageBoost()
-		end,
 		damage_event = function(v, w)
 			local x = self:GetParent()
 			if

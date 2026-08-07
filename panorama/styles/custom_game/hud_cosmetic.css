@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2834,7 +2834,8 @@
 {
 	horizontal-align: center;
 	margin-top: 18px;
-	width: 60%;
+	width: 376px;
+	height: 70px;
 }
 
 #Cosmetic #CosmeticContent #AccessOwnerName .AccessOwnerParticle
@@ -2843,14 +2844,15 @@
 	height: 100%;
 	align: center center;
 	overflow: noclip;
-	opacity: 0.5;
+	opacity: 0.2;
 }
 
 #Cosmetic #CosmeticContent #AccessOwnerName #AccessSignature
 {
+	vertical-align: center;
 	horizontal-align: center;
 	font-size: 24px;
-	color: gradient(linear, 53% 100%, 47% 0%, from(#CABBA2), color-stop(0.11645508, #CABBA2), color-stop(0.94604492, #BDA67B), to(#BDA67B));
+	color: gradient(linear, 0% 0%, 100% 100%, from(#dbd6cd), to(#f3d6a1));
 	text-shadow: 0px 0px 4px #EE5F00;
 }
 
@@ -4217,6 +4219,7 @@
 {
 	width: 65px;
 	text-overflow: shrink;
+	color: #E6D4A4;
 }
 
 #PlayerInfo #LeftArea .SettlementInfo .Row4
@@ -4421,10 +4424,16 @@
 #PlayerInfo #TopInfo .EditIcon
 {
 	align: right bottom;
-	width: 20px;
-	height: 20px;
+}
+
+#PlayerInfo .EditIcon
+{
+	width: 50px;
+	height: 50px;
 	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_edit_png.vtex");
-	background-size: 100%;
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 #PlayerInfo #RightArea
@@ -4497,6 +4506,12 @@
 	text-shadow: 1px 1px 3px #000000;
 }
 
+#PlayerInfo .TitleComp .EditIcon
+{
+	align: right center;
+	margin-right: 10px;
+}
+
 #PlayerInfo .TitleComp.CombatLogTitle .TitleLabel
 {
 	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_glass_icon_png.vtex");
@@ -4515,10 +4530,148 @@
 	background-repeat: no-repeat;
 }
 
+#PlayerInfo .ShowRoomTitleRow
+{
+	horizontal-align: center;
+	width: 750px;
+	height: 50px;
+	overflow: noclip;
+}
+
+#PlayerInfo .ShowRoomTitleRow .TitleComp
+{
+	margin-top: 0px;
+}
+
+#PlayerInfo .ShowRoomSettingButton
+{
+	align: right center;
+	width: 34px;
+	height: 34px;
+	margin-right: 24px;
+	background-image: url("s2r://panorama/images/control_icons/gear_png.vtex");
+	background-size: 100%;
+	wash-color: #D2B777;
+}
+
+#PlayerInfo .ShowRoomSettingButton:hover
+{
+	brightness: 1.5;
+}
+
+#PlayerInfo .ShowRoomSettingDismiss
+{
+	align: center center;
+	width: 3840px;
+	height: 2160px;
+	ignore-parent-flow: true;
+	z-index: 100;
+}
+
+#PlayerInfo .ShowRoomSettingDropdown
+{
+	align: right top;
+	width: 190px;
+	margin-top: 436px;
+	margin-right: 26px;
+	ignore-parent-flow: true;
+	z-index: 101;
+}
+
+#PlayerInfo .ShowRoomSettingDropdown #DropdownBG
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/conv/common/conv_dropdown_list_png.vtex");
+	border-width: 5px 5px 5px 5px;
+	border-image-slice: 5px 5px 5px 5px;
+	border-image-repeat: stretch;
+	background-color: #181613;
+}
+
+#PlayerInfo .DropdownContainer
+{
+	align: center center;
+	flow-children: down;
+	padding: 8px 0px;
+}
+
+#PlayerInfo .ShowRoomSettingOption
+{
+	width: 178px;
+	height: 38px;
+	flow-children: right;
+}
+
+#PlayerInfo .ShowRoomSettingOption:hover
+{
+	background-color: #2B271F;
+}
+
+#PlayerInfo .ShowRoomSettingOption Label
+{
+	vertical-align: center;
+	margin-left: 10px;
+	font-size: 19px;
+	color: #A39A7D;
+}
+
+#PlayerInfo .ShowRoomSettingOption .ShowRoomSettingCheckBox
+{
+	vertical-align: center;
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerInfo .ShowRoomSettingOption .ShowRoomSettingCheckMark
+{
+	align: center center;
+	width: 30px;
+	height: 20px;
+	opacity: 0;
+	overflow: noclip;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerInfo .ShowRoomSettingOption.Selected Label
+{
+	color: #E4D5AA;
+}
+
+#PlayerInfo .ShowRoomSettingOption.Selected .ShowRoomSettingCheckMark
+{
+	opacity: 1;
+}
+
 #PlayerInfo .DisplayItemComp
 {
 	flow-children: down;
 	margin: 0px 45px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#PlayerInfo .DisplayItemComp.CanClick:hover
+{
+	brightness: 1.2;
+}
+
+#PlayerInfo .DisplayItemComp.CanClick:active
+{
+	brightness: 0.6;
+	sound: "ui_generic_button_click";
+}
+
+#PlayerInfo .DisplayItemComp .ClickLayer
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
 }
 
 #PlayerInfo .DisplayItemComp.IsEmpty .ItemName
@@ -4645,6 +4798,13 @@
 	width: 168px;
 	height: 168px;
 	background-image: none;
+}
+
+#PlayerInfo .CosmeticImage
+{
+	align: center center;
+	width: 168px;
+	height: 168px;
 }
 
 .EOM_FilterChip

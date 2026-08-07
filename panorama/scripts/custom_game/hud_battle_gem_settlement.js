@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -14,9 +14,11 @@ var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
 var EOM_Button = require('./EOM_Button.js');
+var Player = require('./Player.js');
 var server_equipment = require('./server_equipment.js');
 require('./service_netdata_helper.js');
 require('./EOM_RedMark.js');
+require('./EOM_TextEntry.js');
 
 const GRID_CELL_WIDTH = 108;
 const GRID_CELL_HEIGHT = 78;
@@ -26,6 +28,8 @@ const GRID_CELL_SLOT_HEIGHT = GRID_CELL_HEIGHT + GRID_CELL_PADDING * 2;
 const ACTION_PIPS_WIDTH = 337;
 const ACTION_PIP_MAX_SIZE = 40;
 const REWARD_ITEM_SIZE = 88;
+const TOWER_ACTION_PRODUCT_ID = "800151";
+const TOWER_ACTION_ITEM_COUNT = 1;
 const GRID_CELL_CONTAINER_STYLE = {
   padding: `${GRID_CELL_PADDING}px`
 };
@@ -41,7 +45,6 @@ const REWARD_ITEM_STYLE = {
   width: `${REWARD_ITEM_SIZE}px`,
   height: `${REWARD_ITEM_SIZE}px`
 };
-const SPECIAL_GRID_TYPES = new Set(["cell_move_3", "gem_all_lvup", "anycell", "double_cell"]);
 const EMPTY_RESOURCE_STATE = {
   essence: 0,
   material: 0
@@ -53,12 +56,49 @@ const EMPTY_PREVIEW_STATE = {
 };
 const GemSettlementHud = () => {
   const towerRewardsPreview = solid_utils.createServiceNetData("player_tower_rewards_preview", EMPTY_PREVIEW_STATE);
+  const playerTokens = solid_utils.createServiceNetData("player_tokens", {});
   const battleGemState = solid_utils.createNetDataSignal("common", "battle_gem_state");
   const [actions, setActions] = libs.createSignal([]);
   const [hoveredGridType, setHoveredGridType] = libs.createSignal();
   let receiveRewardsLocked = false;
   const previewData = libs.createMemo(() => towerRewardsPreview());
   const parsedPreview = libs.createMemo(() => ParseTowerPreview(previewData()));
+  const buyActionsConfig = libs.createMemo(() => ParseBuyActionsConfig(KeyValues.gem_setting.buy_actions?.value));
+  const buyActionsCurrencyTokens = libs.createMemo(() => {
+    const itemID = buyActionsConfig()?.itemID;
+    return itemID === undefined || itemID === 110001 ? [110001] : [110001, itemID];
+  });
+  const towerActionProduct = libs.createMemo(() => KeyValues.info_shop_product[TOWER_ACTION_PRODUCT_ID]);
+  const localPlayerID = Players.GetLocalPlayer();
+  const isBuyingActions = libs.createMemo(() => (battleGemState()?.actionPurchasingPlayerIds ?? []).includes(localPlayerID));
+  const hasBoughtActions = libs.createMemo(() => (battleGemState()?.actionPurchasedPlayerIds ?? []).includes(localPlayerID));
+  const hasEnoughActionItem = libs.createMemo(() => {
+    const config = buyActionsConfig();
+    if (config === undefined) {
+      return false;
+    }
+    return (playerTokens()[String(config.itemID)]?.amounts ?? 0) >= TOWER_ACTION_ITEM_COUNT;
+  });
+  const buyActionsCost = libs.createMemo(() => {
+    const config = buyActionsConfig();
+    if (config === undefined) {
+      return undefined;
+    }
+    if (hasEnoughActionItem()) {
+      return {
+        itemID: config.itemID,
+        amount: TOWER_ACTION_ITEM_COUNT
+      };
+    }
+    const product = towerActionProduct();
+    if (product === undefined) {
+      return undefined;
+    }
+    return {
+      itemID: product.pay_type,
+      amount: product.real_price
+    };
+  });
   libs.createEffect(() => {
     previewData();
     setActions([]);
@@ -163,7 +203,7 @@ const GemSettlementHud = () => {
   });
   const actionPipStyle = libs.createMemo(() => {
     const count = actionPips().length;
-    const size = count > 0 ? Math.min(ACTION_PIP_MAX_SIZE, ACTION_PIPS_WIDTH / count) : ACTION_PIP_MAX_SIZE;
+    const size = count > 0 ? Math.max(1, Math.min(ACTION_PIP_MAX_SIZE, Math.floor((ACTION_PIPS_WIDTH - 5) / count))) : ACTION_PIP_MAX_SIZE;
     return {
       width: `${size}px`,
       height: `${size}px`
@@ -176,14 +216,19 @@ const GemSettlementHud = () => {
     }
     return GetLocalization("#BattleGemGridHintDefault");
   });
-  const specialStatus = libs.createMemo(() => {
-    const preview = parsedPreview();
+  const specialStatuses = libs.createMemo(() => {
     const result = simulation();
-    if (preview === undefined || result === undefined) {
-      return undefined;
+    if (result === undefined) {
+      return [];
     }
-    const gridType = preview.grid[result.currentPosition.row]?.[result.currentPosition.column]?.grid_type ?? "";
-    return SPECIAL_GRID_TYPES.has(gridType) ? gridType : undefined;
+    const list = [];
+    for (let i = 0; i < result.anyCellChance; i++) {
+      list.push("anycell");
+    }
+    for (let i = 0; i < result.doubleRewardsChance; i++) {
+      list.push("double_cell");
+    }
+    return list;
   });
   const activatedEffects = libs.createMemo(() => {
     const preview = parsedPreview();
@@ -254,6 +299,8 @@ const GemSettlementHud = () => {
   });
   const onCellActivate = (row, column) => {
     const preview = parsedPreview();
+    const cell = preview?.grid[row]?.[column];
+    print(`[BattleGemSettlement] BattleGemGridCell clicked row=${row} column=${column} gridType=${cell?.grid_type ?? "unknown"}`);
     if (preview === undefined || !IsInsideBoard(preview.grid, row, column)) {
       return;
     }
@@ -295,6 +342,16 @@ const GemSettlementHud = () => {
       })))
     });
   };
+  const onBuyActions = () => {
+    const config = buyActionsConfig();
+    if (config === undefined || hasBoughtActions() || isBuyingActions()) {
+      return;
+    }
+    GameEvents.SendCustomGameEventToServer("battle_gem_buy_actions", {
+      buy_product: !hasEnoughActionItem()
+    });
+  };
+  print("BattleGemSettlement");
   return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout, {
     id: "BattleGemSettlementRoot",
     name: "MenuButton_battle_gem_settlement",
@@ -304,6 +361,14 @@ const GemSettlementHud = () => {
     },
     renderOnShow: true,
     hittest: false,
+    get backgroundChildren() {
+      return libs.createComponent(Player.CurrencyGroup, {
+        currencyType: "top",
+        get tokens() {
+          return buyActionsCurrencyTokens();
+        }
+      });
+    },
     get children() {
       const _el$ = libs.createElement("Panel", {
           id: "BattleGemSettlementScreen",
@@ -319,8 +384,11 @@ const GemSettlementHud = () => {
         libs.createElement("Image", {
           "class": "BattleGemSettlementTitleLine"
         }, _el$3);
-        libs.createElement("Image", {
-          id: "BattleGemSettlementTitleText"
+        const _el$5 = libs.createElement("Image", {
+          id: "BattleGemSettlementTitleText",
+          get ["class"]() {
+            return `Language_${Language()}`;
+          }
         }, _el$3);
         libs.createElement("Image", {
           "class": "BattleGemSettlementTitleLine Reversed"
@@ -358,130 +426,130 @@ const GemSettlementHud = () => {
             return actionSummaryText();
           }
         }, _el$10),
-        _el$13 = libs.createElement("Panel", {
+        _el$18 = libs.createElement("Panel", {
           "class": "BattleGemInfoBlock"
         }, _el$8),
-        _el$14 = libs.createElement("Panel", {
+        _el$19 = libs.createElement("Panel", {
           "class": "BattleGemSectionHeader"
-        }, _el$13);
+        }, _el$18);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine"
-        }, _el$14);
-        const _el$16 = libs.createElement("Label", {
+        }, _el$19);
+        const _el$21 = libs.createElement("Label", {
           "class": "BattleGemSectionTitle",
           get text() {
             return GetLocalization("#BattleGemSpecialStatus");
           }
-        }, _el$14);
+        }, _el$19);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine Reversed"
-        }, _el$14);
-        const _el$18 = libs.createElement("Panel", {
+        }, _el$19);
+        const _el$23 = libs.createElement("Panel", {
           "class": "BattleGemStatusList"
-        }, _el$13),
-        _el$22 = libs.createElement("Panel", {
+        }, _el$18),
+        _el$24 = libs.createElement("Panel", {
           "class": "BattleGemInfoBlock"
         }, _el$8),
-        _el$23 = libs.createElement("Panel", {
+        _el$25 = libs.createElement("Panel", {
           "class": "BattleGemSectionHeader"
-        }, _el$22);
+        }, _el$24);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine"
-        }, _el$23);
-        const _el$25 = libs.createElement("Label", {
+        }, _el$25);
+        const _el$27 = libs.createElement("Label", {
           "class": "BattleGemSectionTitle",
           get text() {
             return GetLocalization("#BattleGemActivatedEffects");
           }
-        }, _el$23);
+        }, _el$25);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine Reversed"
-        }, _el$23);
-        const _el$27 = libs.createElement("Panel", {
+        }, _el$25);
+        const _el$29 = libs.createElement("Panel", {
           "class": "BattleGemStatusList ActivatedEffects"
-        }, _el$22),
-        _el$28 = libs.createElement("Panel", {
+        }, _el$24),
+        _el$30 = libs.createElement("Panel", {
           id: "BattleGemGridPanel"
         }, _el$7),
-        _el$29 = libs.createElement("Panel", {
+        _el$31 = libs.createElement("Panel", {
           id: "BattleGemGridContainer"
-        }, _el$28),
-        _el$30 = libs.createElement("Panel", {
+        }, _el$30),
+        _el$32 = libs.createElement("Panel", {
           id: "BattleGemGridRows",
           get style() {
             return gridBoxStyle();
           }
-        }, _el$29),
-        _el$31 = libs.createElement("Panel", {
+        }, _el$31),
+        _el$33 = libs.createElement("Panel", {
           id: "BattleGemGridPathOverlay",
           get style() {
             return gridBoxStyle();
           },
           hittest: false
-        }, _el$29),
-        _el$32 = libs.createElement("Label", {
+        }, _el$31),
+        _el$34 = libs.createElement("Label", {
           id: "BattleGemGridHint",
           get text() {
             return gridHintText();
           }
-        }, _el$28),
-        _el$33 = libs.createElement("Panel", {
+        }, _el$30),
+        _el$35 = libs.createElement("Panel", {
           id: "BattleGemSidePanel"
         }, _el$7),
-        _el$34 = libs.createElement("Panel", {
+        _el$36 = libs.createElement("Panel", {
           "class": "BattleGemResourceBlock"
-        }, _el$33),
-        _el$35 = libs.createElement("Panel", {
+        }, _el$35),
+        _el$37 = libs.createElement("Panel", {
           "class": "BattleGemSectionHeader"
-        }, _el$34);
+        }, _el$36);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine"
-        }, _el$35);
-        const _el$37 = libs.createElement("Label", {
+        }, _el$37);
+        const _el$39 = libs.createElement("Label", {
           "class": "BattleGemSectionTitle",
           get text() {
             return GetLocalization("#BattleGemResourceTitle");
           }
-        }, _el$35);
+        }, _el$37);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine Reversed"
-        }, _el$35);
-        const _el$39 = libs.createElement("Panel", {
+        }, _el$37);
+        const _el$41 = libs.createElement("Panel", {
           "class": "BattleGemResourceList"
-        }, _el$34),
-        _el$40 = libs.createElement("Panel", {
+        }, _el$36),
+        _el$42 = libs.createElement("Panel", {
           "class": "BattleGemRewardBlock"
-        }, _el$33),
-        _el$41 = libs.createElement("Panel", {
+        }, _el$35),
+        _el$43 = libs.createElement("Panel", {
           "class": "BattleGemSectionHeader"
-        }, _el$40);
+        }, _el$42);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine"
-        }, _el$41);
-        const _el$43 = libs.createElement("Label", {
+        }, _el$43);
+        const _el$45 = libs.createElement("Label", {
           "class": "BattleGemSectionTitle",
           get text() {
             return GetLocalization("#BattleGemRewardTitle");
           }
-        }, _el$41);
+        }, _el$43);
         libs.createElement("Image", {
           "class": "BattleGemSectionTitleLine Reversed"
-        }, _el$41);
-        const _el$45 = libs.createElement("Panel", {
+        }, _el$43);
+        const _el$47 = libs.createElement("Panel", {
           id: "BattleGemRewardList",
           "class": "VerticalScrollStyle",
           scroll: "y"
-        }, _el$40),
-        _el$46 = libs.createElement("Panel", {
+        }, _el$42),
+        _el$48 = libs.createElement("Panel", {
           id: "BattleGemSettlementButtons"
-        }, _el$33);
+        }, _el$35);
       libs.setProp(_el$0, "style", ACTION_PIPS_STYLE);
       libs.insert(_el$1, libs.createComponent(libs.For, {
         get each() {
           return actionPips();
         },
         children: state => (() => {
-          const _el$47 = libs.createElement("Panel", {
+          const _el$49 = libs.createElement("Panel", {
             get ["class"]() {
               return libs.classNames("BattleGemActionPip", state === "used" ? "Used" : "Available");
             },
@@ -490,106 +558,154 @@ const GemSettlementHud = () => {
             }
           }, null);
           libs.effect(_p$ => {
-            const _v$10 = libs.classNames("BattleGemActionPip", state === "used" ? "Used" : "Available"),
-              _v$11 = actionPipStyle();
-            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$47, "class", _v$10, _p$._v$10));
-            _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$47, "style", _v$11, _p$._v$11));
+            const _v$12 = libs.classNames("BattleGemActionPip", state === "used" ? "Used" : "Available"),
+              _v$13 = actionPipStyle();
+            _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$49, "class", _v$12, _p$._v$12));
+            _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$49, "style", _v$13, _p$._v$13));
             return _p$;
           }, {
-            _v$10: undefined,
-            _v$11: undefined
+            _v$12: undefined,
+            _v$13: undefined
           });
-          return _el$47;
+          return _el$49;
         })()
       }));
-      libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_BaseButton, {
-        id: "BattleGemActionAddButton"
-      }), null);
-      libs.insert(_el$18, libs.createComponent(libs.Show, {
+      libs.insert(_el$8, libs.createComponent(libs.Show, {
         get when() {
-          return specialStatus() !== undefined;
+          return libs.memo(() => !!(!hasBoughtActions() && buyActionsConfig() !== undefined))() && buyActionsCost() !== undefined;
         },
         get children() {
-          const _el$19 = libs.createElement("Panel", {
+          return libs.createComponent(EOM_Button.EOM_Button, {
+            id: "BattleGemActionAddButton",
+            color: "Cancel",
+            get loading() {
+              return isBuyingActions();
+            },
+            onactivate: onBuyActions,
+            get children() {
+              const _el$13 = libs.createElement("Panel", {
+                  "class": "BattleGemActionAddContent",
+                  hittest: false
+                }, null),
+                _el$14 = libs.createElement("Label", {
+                  "class": "BattleGemActionAddText",
+                  get text() {
+                    return LocalizeWithVars("#BattleGemActionAdd", {
+                      action_count: buyActionsConfig().actionCount
+                    });
+                  }
+                }, _el$13),
+                _el$15 = libs.createElement("Panel", {
+                  "class": "BattleGemActionAddCost",
+                  hittest: false
+                }, _el$13),
+                _el$16 = libs.createElement("Image", {
+                  "class": "BattleGemActionAddMoonIcon",
+                  get src() {
+                    return `file://{images}/custom_game/tokens/${buyActionsCost().itemID}.png`;
+                  }
+                }, _el$15),
+                _el$17 = libs.createElement("Label", {
+                  "class": "BattleGemActionAddCostText",
+                  get text() {
+                    return buyActionsCost().amount;
+                  }
+                }, _el$15);
+              libs.effect(_p$ => {
+                const _v$ = LocalizeWithVars("#BattleGemActionAdd", {
+                    action_count: buyActionsConfig().actionCount
+                  }),
+                  _v$2 = `file://{images}/custom_game/tokens/${buyActionsCost().itemID}.png`,
+                  _v$3 = buyActionsCost().amount;
+                _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$14, "text", _v$, _p$._v$));
+                _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$16, "src", _v$2, _p$._v$2));
+                _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$17, "text", _v$3, _p$._v$3));
+                return _p$;
+              }, {
+                _v$: undefined,
+                _v$2: undefined,
+                _v$3: undefined
+              });
+              return _el$13;
+            }
+          });
+        }
+      }), _el$18);
+      libs.insert(_el$23, libs.createComponent(libs.For, {
+        get each() {
+          return specialStatuses();
+        },
+        children: status => (() => {
+          const _el$50 = libs.createElement("Panel", {
               "class": "BattleGemStatusItem"
             }, null),
-            _el$20 = libs.createElement("Image", {
+            _el$51 = libs.createElement("Image", {
               "class": "BattleGemStatusIcon",
-              get src() {
-                return `file://{images}/custom_game/g1_gem/icon/${specialStatus()}.png`;
-              }
-            }, _el$19),
-            _el$21 = libs.createElement("Label", {
+              src: `file://{images}/custom_game/g1_gem/icon_s/${status}.png`
+            }, _el$50),
+            _el$52 = libs.createElement("Label", {
               "class": "BattleGemStatusText",
               get text() {
-                return GetLocalization(`#${specialStatus()}`);
+                return GetLocalization(`#${status}`);
               }
-            }, _el$19);
-          libs.effect(_p$ => {
-            const _v$ = `file://{images}/custom_game/g1_gem/icon/${specialStatus()}.png`,
-              _v$2 = GetLocalization(`#${specialStatus()}`);
-            _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$20, "src", _v$, _p$._v$));
-            _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$21, "text", _v$2, _p$._v$2));
-            return _p$;
-          }, {
-            _v$: undefined,
-            _v$2: undefined
-          });
-          return _el$19;
-        }
+            }, _el$50);
+          libs.setProp(_el$51, "src", `file://{images}/custom_game/g1_gem/icon_s/${status}.png`);
+          libs.effect(_$p => libs.setProp(_el$52, "text", GetLocalization(`#${status}`), _$p));
+          return _el$50;
+        })()
       }));
-      libs.insert(_el$27, libs.createComponent(libs.For, {
+      libs.insert(_el$29, libs.createComponent(libs.For, {
         get each() {
           return activatedEffects();
         },
         children: effect => (() => {
-          const _el$48 = libs.createElement("Panel", {
+          const _el$53 = libs.createElement("Panel", {
               "class": "BattleGemStatusItem"
             }, null),
-            _el$49 = libs.createElement("Image", {
+            _el$54 = libs.createElement("Image", {
               "class": "BattleGemStatusIcon",
               get src() {
-                return `file://{images}/custom_game/g1_gem/icon/${effect.gridType}.png`;
+                return `file://{images}/custom_game/g1_gem/icon_s/${effect.gridType}.png`;
               }
-            }, _el$48),
-            _el$50 = libs.createElement("Label", {
+            }, _el$53),
+            _el$55 = libs.createElement("Label", {
               "class": "BattleGemStatusText",
               get text() {
                 return GetLocalization(`#${effect.gridType}`);
               }
-            }, _el$48),
-            _el$51 = libs.createElement("Label", {
+            }, _el$53),
+            _el$56 = libs.createElement("Label", {
               "class": "BattleGemStatusCount",
               get text() {
                 return `x ${effect.count}`;
               }
-            }, _el$48);
+            }, _el$53);
           libs.effect(_p$ => {
-            const _v$12 = `file://{images}/custom_game/g1_gem/icon/${effect.gridType}.png`,
-              _v$13 = GetLocalization(`#${effect.gridType}`),
-              _v$14 = `x ${effect.count}`;
-            _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$49, "src", _v$12, _p$._v$12));
-            _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$50, "text", _v$13, _p$._v$13));
-            _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$51, "text", _v$14, _p$._v$14));
+            const _v$14 = `file://{images}/custom_game/g1_gem/icon_s/${effect.gridType}.png`,
+              _v$15 = GetLocalization(`#${effect.gridType}`),
+              _v$16 = `x ${effect.count}`;
+            _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$54, "src", _v$14, _p$._v$14));
+            _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$55, "text", _v$15, _p$._v$15));
+            _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$56, "text", _v$16, _p$._v$16));
             return _p$;
           }, {
-            _v$12: undefined,
-            _v$13: undefined,
-            _v$14: undefined
+            _v$14: undefined,
+            _v$15: undefined,
+            _v$16: undefined
           });
-          return _el$48;
+          return _el$53;
         })()
       }));
-      libs.setProp(_el$29, "oncontextmenu", onGridContextMenu);
-      libs.insert(_el$30, libs.createComponent(libs.For, {
+      libs.setProp(_el$31, "oncontextmenu", onGridContextMenu);
+      libs.insert(_el$32, libs.createComponent(libs.For, {
         get each() {
           return gridRows();
         },
         children: (rowData, rowIndex) => (() => {
-          const _el$52 = libs.createElement("Panel", {
+          const _el$57 = libs.createElement("Panel", {
             "class": "BattleGemGridRow"
           }, null);
-          libs.insert(_el$52, libs.createComponent(libs.For, {
+          libs.insert(_el$57, libs.createComponent(libs.For, {
             each: rowData,
             children: (cell, columnIndex) => {
               const row = rowIndex();
@@ -627,7 +743,7 @@ const GemSettlementHud = () => {
                 onmouseout: () => setHoveredGridType(undefined),
                 onactivate: () => onCellActivate(row, column),
                 get children() {
-                  const _el$53 = libs.createElement("Panel", {
+                  const _el$58 = libs.createElement("Panel", {
                       get ["class"]() {
                         return libs.classNames("BattleGemGridCell", `Rarity-${rarity}`, {
                           Origin: isOrigin,
@@ -642,76 +758,76 @@ const GemSettlementHud = () => {
                     libs.createElement("Panel", {
                       "class": "BattleGemGridCellSelection",
                       hittest: false
-                    }, _el$53);
-                  libs.setProp(_el$53, "style", GRID_CELL_STYLE);
-                  libs.insert(_el$53, libs.createComponent(libs.Show, {
+                    }, _el$58);
+                  libs.setProp(_el$58, "style", GRID_CELL_STYLE);
+                  libs.insert(_el$58, libs.createComponent(libs.Show, {
                     get when() {
                       return visitedOrder() > 0;
                     },
                     get children() {
-                      const _el$55 = libs.createElement("Panel", {
+                      const _el$60 = libs.createElement("Panel", {
                           "class": "BattleGemGridCellOrder"
                         }, null),
-                        _el$56 = libs.createElement("Label", {
+                        _el$61 = libs.createElement("Label", {
                           get text() {
                             return String(visitedOrder());
                           }
-                        }, _el$55);
-                      libs.effect(_$p => libs.setProp(_el$56, "text", String(visitedOrder()), _$p));
-                      return _el$55;
+                        }, _el$60);
+                      libs.effect(_$p => libs.setProp(_el$61, "text", String(visitedOrder()), _$p));
+                      return _el$60;
                     }
                   }), null);
-                  libs.insert(_el$53, libs.createComponent(libs.Show, {
+                  libs.insert(_el$58, libs.createComponent(libs.Show, {
                     when: isOrigin,
                     get fallback() {
                       return (() => {
-                        const _el$59 = libs.createElement("Panel", {
+                        const _el$64 = libs.createElement("Panel", {
                             "class": "BattleGemGridCellContent"
                           }, null),
-                          _el$61 = libs.createElement("Label", {
+                          _el$66 = libs.createElement("Label", {
                             "class": "BattleGemGridCellName",
                             get text() {
                               return GetLocalization(`#${cell.grid_type}`);
                             }
-                          }, _el$59);
-                        libs.insert(_el$59, libs.createComponent(libs.Show, {
+                          }, _el$64);
+                        libs.insert(_el$64, libs.createComponent(libs.Show, {
                           get when() {
                             return cell.grid_type !== "";
                           },
                           get children() {
-                            const _el$60 = libs.createElement("Image", {
+                            const _el$65 = libs.createElement("Image", {
                               "class": "BattleGemGridCellIcon",
                               get src() {
                                 return `file://{images}/custom_game/g1_gem/icon/${cell.grid_type}.png`;
                               }
                             }, null);
-                            libs.effect(_$p => libs.setProp(_el$60, "src", `file://{images}/custom_game/g1_gem/icon/${cell.grid_type}.png`, _$p));
-                            return _el$60;
+                            libs.effect(_$p => libs.setProp(_el$65, "src", `file://{images}/custom_game/g1_gem/icon/${cell.grid_type}.png`, _$p));
+                            return _el$65;
                           }
-                        }), _el$61);
-                        libs.effect(_$p => libs.setProp(_el$61, "text", GetLocalization(`#${cell.grid_type}`), _$p));
-                        return _el$59;
+                        }), _el$66);
+                        libs.effect(_$p => libs.setProp(_el$66, "text", GetLocalization(`#${cell.grid_type}`), _$p));
+                        return _el$64;
                       })();
                     },
                     get children() {
-                      const _el$57 = libs.createElement("Panel", {
+                      const _el$62 = libs.createElement("Panel", {
                           "class": "BattleGemGridCellContent"
                         }, null),
-                        _el$58 = libs.createElement("Label", {
+                        _el$63 = libs.createElement("Label", {
                           "class": "BattleGemGridCellName",
                           verticalAlign: "center",
                           marginBottom: "0px",
                           get text() {
                             return GetLocalization("#ORIGIN_LABEL");
                           }
-                        }, _el$57);
-                      libs.setProp(_el$58, "verticalAlign", "center");
-                      libs.setProp(_el$58, "marginBottom", "0px");
-                      libs.effect(_$p => libs.setProp(_el$58, "text", GetLocalization("#ORIGIN_LABEL"), _$p));
-                      return _el$57;
+                        }, _el$62);
+                      libs.setProp(_el$63, "verticalAlign", "center");
+                      libs.setProp(_el$63, "marginBottom", "0px");
+                      libs.effect(_$p => libs.setProp(_el$63, "text", GetLocalization("#ORIGIN_LABEL"), _$p));
+                      return _el$62;
                     }
                   }), null);
-                  libs.effect(_$p => libs.setProp(_el$53, "class", libs.classNames("BattleGemGridCell", `Rarity-${rarity}`, {
+                  libs.effect(_$p => libs.setProp(_el$58, "class", libs.classNames("BattleGemGridCell", `Rarity-${rarity}`, {
                     Origin: isOrigin,
                     Visited: cellState().isVisited,
                     Current: cellState().isCurrent,
@@ -719,20 +835,20 @@ const GemSettlementHud = () => {
                     Unreachable: !isOrigin && !cellState().isVisited && !cellState().isReachable,
                     TeleportTarget: cellState().isTeleportTarget
                   }), _$p));
-                  return _el$53;
+                  return _el$58;
                 }
               });
             }
           }));
-          return _el$52;
+          return _el$57;
         })()
       }));
-      libs.insert(_el$31, libs.createComponent(libs.For, {
+      libs.insert(_el$33, libs.createComponent(libs.For, {
         get each() {
           return pathSegments();
         },
         children: segment => (() => {
-          const _el$62 = libs.createElement("Panel", {
+          const _el$67 = libs.createElement("Panel", {
             "class": "BattleGemPathSegment",
             get style() {
               return {
@@ -743,74 +859,74 @@ const GemSettlementHud = () => {
               };
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$62, "style", {
+          libs.effect(_$p => libs.setProp(_el$67, "style", {
             x: `${segment.x}px`,
             y: `${segment.y}px`,
             width: `${segment.length}px`,
             transform: `rotateZ(${segment.angle}deg)`
           }, _$p));
-          return _el$62;
+          return _el$67;
         })()
       }));
-      libs.insert(_el$39, libs.createComponent(libs.For, {
+      libs.insert(_el$41, libs.createComponent(libs.For, {
         get each() {
           return resourceItems();
         },
         children: item => (() => {
-          const _el$63 = libs.createElement("Panel", {
+          const _el$68 = libs.createElement("Panel", {
               "class": "BattleGemResourceItem"
             }, null),
-            _el$64 = libs.createElement("Panel", {
+            _el$69 = libs.createElement("Panel", {
               "class": "BattleGemResourceItemTop"
-            }, _el$63),
-            _el$65 = libs.createElement("Image", {
+            }, _el$68),
+            _el$70 = libs.createElement("Image", {
               "class": "BattleGemResourceIcon",
               get src() {
                 return getSrcPath(`store_items/${item.itemID}.png`);
               }
-            }, _el$64),
-            _el$66 = libs.createElement("Label", {
+            }, _el$69),
+            _el$71 = libs.createElement("Label", {
               "class": "BattleGemResourceName",
               get text() {
                 return GetLocalization(item.itemID);
               }
-            }, _el$64),
-            _el$67 = libs.createElement("Label", {
+            }, _el$69),
+            _el$72 = libs.createElement("Label", {
               "class": "BattleGemResourceCount",
               get text() {
                 return String(item.count);
               }
-            }, _el$64);
+            }, _el$69);
             libs.createElement("Image", {
               "class": "BattleGemResourceDivider"
-            }, _el$63);
+            }, _el$68);
           libs.effect(_p$ => {
-            const _v$15 = getSrcPath(`store_items/${item.itemID}.png`),
-              _v$16 = GetLocalization(item.itemID),
-              _v$17 = String(item.count);
-            _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$65, "src", _v$15, _p$._v$15));
-            _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$66, "text", _v$16, _p$._v$16));
-            _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$67, "text", _v$17, _p$._v$17));
+            const _v$17 = getSrcPath(`store_items/${item.itemID}.png`),
+              _v$18 = GetLocalization(item.itemID),
+              _v$19 = String(item.count);
+            _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$70, "src", _v$17, _p$._v$17));
+            _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$71, "text", _v$18, _p$._v$18));
+            _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$72, "text", _v$19, _p$._v$19));
             return _p$;
           }, {
-            _v$15: undefined,
-            _v$16: undefined,
-            _v$17: undefined
+            _v$17: undefined,
+            _v$18: undefined,
+            _v$19: undefined
           });
-          return _el$63;
+          return _el$68;
         })()
       }));
-      libs.setProp(_el$45, "scroll", "y");
-      libs.insert(_el$45, libs.createComponent(libs.For, {
+      libs.setProp(_el$47, "scroll", "y");
+      libs.insert(_el$47, libs.createComponent(libs.For, {
         get each() {
           return gemPreviewItems();
         },
         children: preview => (() => {
-          const _el$69 = libs.createElement("Panel", {
+          const _el$74 = libs.createElement("Panel", {
             "class": "BattleGemRewardItem"
           }, null);
-          libs.setProp(_el$69, "style", REWARD_ITEM_STYLE);
-          libs.insert(_el$69, (() => {
+          libs.setProp(_el$74, "style", REWARD_ITEM_STYLE);
+          libs.insert(_el$74, (() => {
             const _c$ = libs.memo(() => preview.type === "perfect");
             return () => _c$() ? libs.createComponent(PerfectGemWithTooltip, {
               preview: preview
@@ -823,10 +939,10 @@ const GemSettlementHud = () => {
               }
             });
           })());
-          return _el$69;
+          return _el$74;
         })()
       }));
-      libs.insert(_el$46, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_Button, {
         id: "BattleGemConfirmButton",
         get enabled() {
           return canConfirm();
@@ -836,7 +952,7 @@ const GemSettlementHud = () => {
         },
         onactivate: onReceiveRewards
       }), null);
-      libs.insert(_el$46, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_Button, {
         id: "BattleGemResetButton",
         color: "Cancel",
         get text() {
@@ -845,27 +961,28 @@ const GemSettlementHud = () => {
         onactivate: () => setActions([])
       }), null);
       libs.effect(_p$ => {
-        const _v$3 = GetLocalization("#BattleGemAction"),
-          _v$4 = actionSummaryText(),
-          _v$5 = GetLocalization("#BattleGemSpecialStatus"),
-          _v$6 = GetLocalization("#BattleGemActivatedEffects"),
-          _v$7 = gridBoxStyle(),
-          _v$8 = gridBoxStyle(),
-          _v$9 = gridHintText(),
-          _v$0 = GetLocalization("#BattleGemResourceTitle"),
-          _v$1 = GetLocalization("#BattleGemRewardTitle");
-        _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$11, "text", _v$3, _p$._v$3));
-        _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$12, "text", _v$4, _p$._v$4));
-        _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$16, "text", _v$5, _p$._v$5));
-        _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$25, "text", _v$6, _p$._v$6));
-        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$30, "style", _v$7, _p$._v$7));
-        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$31, "style", _v$8, _p$._v$8));
-        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$32, "text", _v$9, _p$._v$9));
-        _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$37, "text", _v$0, _p$._v$0));
-        _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$43, "text", _v$1, _p$._v$1));
+        const _v$4 = `Language_${Language()}`,
+          _v$5 = GetLocalization("#BattleGemAction"),
+          _v$6 = actionSummaryText(),
+          _v$7 = GetLocalization("#BattleGemSpecialStatus"),
+          _v$8 = GetLocalization("#BattleGemActivatedEffects"),
+          _v$9 = gridBoxStyle(),
+          _v$0 = gridBoxStyle(),
+          _v$1 = gridHintText(),
+          _v$10 = GetLocalization("#BattleGemResourceTitle"),
+          _v$11 = GetLocalization("#BattleGemRewardTitle");
+        _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$5, "class", _v$4, _p$._v$4));
+        _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$11, "text", _v$5, _p$._v$5));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$12, "text", _v$6, _p$._v$6));
+        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$21, "text", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$27, "text", _v$8, _p$._v$8));
+        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$32, "style", _v$9, _p$._v$9));
+        _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$33, "style", _v$0, _p$._v$0));
+        _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$34, "text", _v$1, _p$._v$1));
+        _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$39, "text", _v$10, _p$._v$10));
+        _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$45, "text", _v$11, _p$._v$11));
         return _p$;
       }, {
-        _v$3: undefined,
         _v$4: undefined,
         _v$5: undefined,
         _v$6: undefined,
@@ -873,7 +990,9 @@ const GemSettlementHud = () => {
         _v$8: undefined,
         _v$9: undefined,
         _v$0: undefined,
-        _v$1: undefined
+        _v$1: undefined,
+        _v$10: undefined,
+        _v$11: undefined
       });
       return _el$;
     }
@@ -881,67 +1000,83 @@ const GemSettlementHud = () => {
 };
 function PerfectGemWithTooltip(props) {
   return (() => {
-    const _el$70 = libs.createElement("Panel", {
+    const _el$75 = libs.createElement("Panel", {
       "class": "PerfectGemWithTooltip",
       hittestchildren: false
     }, null);
-    libs.setProp(_el$70, "onmouseover", panel => {
+    libs.setProp(_el$75, "onmouseover", panel => {
       ShowCustomTooltip(panel, "server_gem", {
         id1: "",
         id2: "",
         embedded_gem_data: props.preview.embeddedGemData
       });
     });
-    libs.setProp(_el$70, "onmouseout", panel => {
+    libs.setProp(_el$75, "onmouseout", panel => {
       HideCustomTooltip(panel, "server_gem");
     });
-    libs.insert(_el$70, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(() => props.preview.gem)));
-    return _el$70;
+    libs.insert(_el$75, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(() => props.preview.gem)));
+    return _el$75;
   })();
 }
 function FakeGem(props) {
   return (() => {
-    const _el$71 = libs.createElement("Panel", {
+    const _el$76 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames("FakeGem", `Rarity${props.rarity}`);
         },
         hittestchildren: false
       }, null),
-      _el$72 = libs.createElement("Image", {
+      _el$77 = libs.createElement("Image", {
         "class": "FakeGemIcon",
         get src() {
           return `file://{images}/custom_game/g1_gem/gem_rarity_${props.rarity}.png`;
         }
-      }, _el$71),
-      _el$73 = libs.createElement("Label", {
+      }, _el$76),
+      _el$78 = libs.createElement("Label", {
         "class": "FakeGemCount",
         get text() {
           return String(props.count);
         }
-      }, _el$71);
-    libs.setProp(_el$71, "onmouseover", panel => {
+      }, _el$76);
+    libs.setProp(_el$76, "onmouseover", panel => {
       ShowCustomTooltip(panel, "text", {
         text: GetLocalization(`#gem_rarity_tip_${props.rarity}`)
       });
     });
-    libs.setProp(_el$71, "onmouseout", panel => {
+    libs.setProp(_el$76, "onmouseout", panel => {
       HideCustomTooltip(panel, "text");
     });
     libs.effect(_p$ => {
-      const _v$18 = libs.classNames("FakeGem", `Rarity${props.rarity}`),
-        _v$19 = `file://{images}/custom_game/g1_gem/gem_rarity_${props.rarity}.png`,
-        _v$20 = String(props.count);
-      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$71, "class", _v$18, _p$._v$18));
-      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$72, "src", _v$19, _p$._v$19));
-      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$73, "text", _v$20, _p$._v$20));
+      const _v$20 = libs.classNames("FakeGem", `Rarity${props.rarity}`),
+        _v$21 = `file://{images}/custom_game/g1_gem/gem_rarity_${props.rarity}.png`,
+        _v$22 = String(props.count);
+      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$76, "class", _v$20, _p$._v$20));
+      _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$77, "src", _v$21, _p$._v$21));
+      _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$78, "text", _v$22, _p$._v$22));
       return _p$;
     }, {
-      _v$18: undefined,
-      _v$19: undefined,
-      _v$20: undefined
+      _v$20: undefined,
+      _v$21: undefined,
+      _v$22: undefined
     });
-    return _el$71;
+    return _el$76;
   })();
+}
+function ParseBuyActionsConfig(raw) {
+  if (raw === undefined) {
+    return undefined;
+  }
+  const [actionCountText, itemCostText] = raw.split("|");
+  const [itemIDText] = (itemCostText ?? "").split(":");
+  const actionCount = Number(actionCountText);
+  const itemID = Number(itemIDText);
+  if (!Number.isFinite(actionCount) || actionCount <= 0 || !Number.isFinite(itemID) || itemID <= 0) {
+    return undefined;
+  }
+  return {
+    actionCount: Math.trunc(actionCount),
+    itemID: Math.trunc(itemID)
+  };
 }
 function ParseTowerPreview(raw) {
   if (raw === undefined || raw.preview === undefined || raw.preview === "") {
@@ -1049,8 +1184,8 @@ function ReceiveCellReward(preview, row, column, rate, totalActions, result, gem
       result.remainingActionChance += 3 * rate;
       result.doubleRewardsChance += 2 * rate;
       return;
-    case "item_120011_200":
-      result.resources.essence += 200 * rate;
+    case "item_120011_70":
+      result.resources.essence += 70 * rate;
       return;
     case "gem_all_lvup":
       result.allGemRarityUp = true;
@@ -1068,7 +1203,7 @@ function ReceiveCellReward(preview, row, column, rate, totalActions, result, gem
     case "gem_per_cell_1":
       gemCounts[6] = (gemCounts[6] ?? 0) + Math.floor(totalActions / 3) * rate;
       return;
-    case "item_120012_1":
+    case "item_120014_1":
       result.resources.material += 1 * rate;
       return;
     case "gem_per_cell_2":
@@ -1099,8 +1234,8 @@ function ReceiveCellReward(preview, row, column, rate, totalActions, result, gem
     case "cell_move_2":
       result.remainingActionChance += 2 * rate;
       return;
-    case "item_120011_50":
-      result.resources.essence += 50 * rate;
+    case "item_120011_30":
+      result.resources.essence += 30 * rate;
       return;
     case "anycell":
       result.anyCellChance += 1 * rate;

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -46,7 +46,6 @@ GameUI.CustomUIConfig().game_setting = {
 		value: "901011:1|901021:1|901031:1|901041:1|901051:1|901061:1|901071:1|901081:1"
 	},
 	adventure_lock: {
-		key: "adventure_lock",
-		value: "gem"
+		key: "adventure_lock"
 	}
 };

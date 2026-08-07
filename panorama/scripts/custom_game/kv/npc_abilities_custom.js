@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2873,6 +2873,112 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 			}
 		}
 	},
+	"boss_gem_1": {
+		"Note": "震荡波",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/boss/boss_gem/boss_gem_1",
+		"AbilityTextureName": "magnataur_shockwave_alt",
+		"MaxLevel": 2,
+		"AnimationIgnoresModelScale": 1,
+		"AbilityCastAnimation": "ACT_SCRIPT_CUSTOM_2",
+		"AbilityCastRange": 1500,
+		"AbilityCastPoint": 1.4,
+		"AbilityCooldown": "12 20",
+		"AbilityStartCooldown": 8,
+		"AbilityValues": {
+			"count": "1 3",
+			"speed": 800,
+			"movespeed_pct": 40,
+			"duration": 2,
+			"damage": {
+				"value": 0,
+				"+attack": 1
+			}
+		},
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+		"AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+		"AbilityDamageType": "DAMAGE_TYPE_MAGICAL"
+	},
+	"boss_gem_2": {
+		"Note": "攻击1",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/boss/boss_axe/boss_axe_2",
+		"AbilityTextureName": "axe_culling_blade",
+		"MaxLevel": 1,
+		"AnimationIgnoresModelScale": 1,
+		"AbilityCastAnimation": "ACT_SCRIPT_CUSTOM_3",
+		"AbilityCastRange": 1200,
+		"AbilityCastPoint": 1,
+		"AbilityCooldown": 8,
+		"AbilityStartCooldown": 5,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+		"AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HEROES_AND_CREEPS",
+		"AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+		"AbilityValues": {
+			"damage": {
+				"value": 0,
+				"+attack": 2
+			},
+			"radius": 800
+		}
+	},
+	"boss_gem_3": {
+		"Note": "冲刺跳劈",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/boss/boss_axe/boss_axe_3",
+		"AbilityTextureName": "axe_berserkers_call",
+		"MaxLevel": 1,
+		"AnimationIgnoresModelScale": 1,
+		"AbilityCastAnimation": "ACT_SCRIPT_CUSTOM_7",
+		"AbilityCastRange": 1500,
+		"AbilityCastPoint": 1.2,
+		"AbilityCooldown": 12,
+		"AbilityStartCooldown": 8,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+		"AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HEROES_AND_CREEPS",
+		"AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+		"AbilityValues": {
+			"count": 1,
+			"speed": 800,
+			"movespeed_pct": 40,
+			"duration": 2,
+			"damage": {
+				"value": 0,
+				"+attack": 1
+			}
+		}
+	},
+	"boss_gem_4": {
+		"Note": "连续跳劈",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/boss/boss_axe/boss_axe_4",
+		"AbilityTextureName": "axe_berserkers_call",
+		"MaxLevel": 1,
+		"AnimationIgnoresModelScale": 1,
+		"AbilityCastAnimation": "ACT_SCRIPT_CUSTOM_5",
+		"AbilityCastRange": 1000,
+		"AbilityCastPoint": 0.6,
+		"AbilityCooldown": 0,
+		"AbilityStartCooldown": 0,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+		"AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HEROES_AND_CREEPS",
+		"AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+		"AbilityValues": {
+			"damage": {
+				"value": 0,
+				"+attack": 2
+			},
+			"wave_damage": {
+				"value": 0,
+				"+attack": 1
+			},
+			"radius": 300
+		}
+	},
 	"skeleton_spear_attack": {
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/attack/skeleton_spear_attack",
@@ -3138,7 +3244,7 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 	},
 	"courier_600019": {
 		"Name": "特技增伤",
-		"Description": "利用<HotkeyOnly|Skill/>特技技能击中一个敌人都会提升自身%damage_up_pct%%所有伤害[x]，最多%max_stack%层。每场遭遇战重置",
+		"Description": "利用<HotkeyOnly|Skill/>特技技能击中一个敌人都会提升自身%damage_up_pct%%所有伤害[x]，最多%max_stack%层。",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/courier/courier_600019",
 		"AbilityTextureName": "phantom_assassin/persona/phantom_assassin_phantom_strike_persona1",
