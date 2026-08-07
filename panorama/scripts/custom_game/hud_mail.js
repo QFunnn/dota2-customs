@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -17,10 +17,11 @@ var EOM_Countdown = require('./EOM_Countdown.js');
 var EOM_Button = require('./EOM_Button.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
 var GenericPanel = require('./GenericPanel.js');
+var MenuMarkIcon = require('./MenuMarkIcon.js');
 var ProductItem = require('./ProductItem.js');
+var red_point_utils = require('./red_point_utils.js');
 require('./EOM_Label.js');
 require('./EOM_Icon.js');
-require('./MenuMarkIcon.js');
 require('./ProductImage.js');
 
 if (!isSpectator()) {
@@ -70,10 +71,10 @@ if (!isSpectator()) {
       step
     });
     if (step == 9) {
-      setMailPreviewIndex(undefined);
+      setMailPreviewMid(undefined);
     }
   };
-  const [mailPreviewIndex, setMailPreviewIndex] = libs.createSignal();
+  const [mailPreviewMid, setMailPreviewMid] = libs.createSignal();
   const Mail = () => {
     const [show, setShow] = libs.createSignal(false);
     const [category, setCategory] = libs.createStore({
@@ -81,15 +82,14 @@ if (!isSpectator()) {
     });
     const [mailList, setMailList] = libs.createSignal([]);
     const [filter, setFilter] = libs.createSignal("mail_all");
+    const [redPoints, setRedPoints] = libs.createSignal(getClientGlobalData("red_points") ?? []);
     libs.createEffect(() => {
       if (show()) {
         callAction("mail_list", {});
       }
     });
     const mailPreview = libs.createMemo(() => {
-      if (mailPreviewIndex() != undefined) {
-        return mailList()[mailPreviewIndex()];
-      }
+      return mailList().find(mailData => mailData.mid == mailPreviewMid());
     });
     libs.onMount(() => {
       const eventId = useToggleWindow("MenuButton_mail", show, setShow);
@@ -107,8 +107,13 @@ if (!isSpectator()) {
           data[mid].mtype = data[mid].mtype ?? 0;
         }
         setCategory(nameList);
-        setMailList(Object.values(data).sort((a, b) => multiCompare(a.step - b.step, b.mid - a.mid)));
+        const nextMailList = Object.values(data).sort((a, b) => multiCompare(a.step - b.step, b.mid - a.mid));
+        setMailList(nextMailList);
+        setMailPreviewMid(currentMid => {
+          return nextMailList.some(mailData => mailData.mid == currentMid) ? currentMid : nextMailList[0]?.mid;
+        });
       }, Players.GetLocalPlayer()));
+      gameEventIDList.push(useClientGlobalData("red_points", setRedPoints));
       return () => {
         for (const id of gameEventIDList) {
           GameEvents.Unsubscribe(id);
@@ -123,6 +128,7 @@ if (!isSpectator()) {
       name: "MenuButton_mail",
       get children() {
         return [libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Menu, {
+          menuName: "mail",
           menuList: category,
           onToggleMenu: (menu, menu2) => {
             setFilter(menu);
@@ -139,27 +145,26 @@ if (!isSpectator()) {
                   className: "MailBox MailList",
                   scroll: "y",
                   get children() {
-                    return libs.createComponent(libs.Index, {
+                    return libs.createComponent(libs.For, {
                       get each() {
                         return mailList();
                       },
-                      children: (mailData, i) => {
-                        return libs.createComponent(libs.Show, {
-                          get when() {
-                            return filter() == "mail_all" || filter() == mailData()?.category;
-                          },
-                          get children() {
-                            return libs.createComponent(MailRow, {
-                              get mailData() {
-                                return mailData();
-                              },
-                              callback: () => {
-                                setMailPreviewIndex(i);
-                              }
-                            });
-                          }
-                        });
-                      }
+                      children: mailData => libs.createComponent(libs.Show, {
+                        get when() {
+                          return filter() == "mail_all" || filter() == mailData.category;
+                        },
+                        get children() {
+                          return libs.createComponent(MailRow, {
+                            mailData: mailData,
+                            get hasRedPoint() {
+                              return red_point_utils.hasRedPoint(redPoints(), "mail", mailData.category, mailData.mid);
+                            },
+                            callback: () => {
+                              setMailPreviewMid(mailData.mid);
+                            }
+                          });
+                        }
+                      })
                     });
                   }
                 }), libs.createComponent(EOM_Panel.EOM_Panel, {
@@ -305,7 +310,10 @@ if (!isSpectator()) {
   const MailRow = props => {
     return (() => {
       const _el$ = libs.createElement("RadioButton", {
-          group: "MailRow"
+          group: "MailRow",
+          get selected() {
+            return mailPreviewMid() == props.mailData.mid;
+          }
         }, null),
         _el$2 = libs.createElement("Image", {}, _el$);
       libs.setProp(_el$, "className", "MailRow");
@@ -327,14 +335,11 @@ if (!isSpectator()) {
           return getSubTitle(props.mailData);
         }
       }), null);
-      libs.insert(_el$, libs.createComponent(libs.Show, {
-        get when() {
-          return props.mailData.step == 0;
-        },
-        get children() {
-          const _el$3 = libs.createElement("Image", {}, null);
-          libs.setProp(_el$3, "className", "MailUnRead");
-          return _el$3;
+      libs.insert(_el$, libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+        type: "default",
+        hittest: false,
+        get visible() {
+          return props.hasRedPoint;
         }
       }), null);
       libs.insert(_el$, libs.createComponent(libs.Show, {
@@ -342,9 +347,9 @@ if (!isSpectator()) {
           return props.mailData.step == 2;
         },
         get children() {
-          const _el$4 = libs.createElement("Image", {}, null);
-          libs.setProp(_el$4, "className", "MailReadIcon");
-          return _el$4;
+          const _el$3 = libs.createElement("Image", {}, null);
+          libs.setProp(_el$3, "className", "MailReadIcon");
+          return _el$3;
         }
       }), null);
       libs.insert(_el$, libs.createComponent(EOM_Countdown.EOM_Countdown, {
@@ -354,9 +359,18 @@ if (!isSpectator()) {
         },
         text: "#mail_timeout"
       }), null);
-      libs.effect(_$p => libs.setProp(_el$2, "className", libs.classNames("MailIcon", props.mailData.category, {
-        Open: props.mailData.step > 1
-      }), _$p));
+      libs.effect(_p$ => {
+        const _v$ = mailPreviewMid() == props.mailData.mid,
+          _v$2 = libs.classNames("MailIcon", props.mailData.category, {
+            Open: props.mailData.step > 1
+          });
+        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "selected", _v$, _p$._v$));
+        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$2, "className", _v$2, _p$._v$2));
+        return _p$;
+      }, {
+        _v$: undefined,
+        _v$2: undefined
+      });
       return _el$;
     })();
   };

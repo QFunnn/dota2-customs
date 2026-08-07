@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -28,6 +28,7 @@ var Player = require('./Player.js');
 var RankTierIcon = require('./RankTierIcon.js');
 var game_utils = require('./game_utils.js');
 require('./EOM_Countdown.js');
+require('./red_point_utils.js');
 require('./netdata_utils.js');
 
 if (!isSpectator()) {

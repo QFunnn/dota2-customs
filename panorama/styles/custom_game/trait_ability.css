@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2695,6 +2695,20 @@
 	margin-bottom: 0px;
 }
 
+.TreasureAbilityImage
+{
+	margin: 2px 4px;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_icon_item_png.vtex");
+	background-size: 100%;
+}
+
+.TreasureAbilityImage.Type_2
+{
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_icon_power_png.vtex");
+}
+
 .EOM_TooltipHeader
 {
 	padding: 6px 10px 4px 2px;
@@ -2712,13 +2726,22 @@
 {
 	width: 100%;
 	flow-children: down;
-	background-color: #10233a99;
-	margin-bottom: 6px;
+	background-color: #10233a66;
 }
 
 .RuneReward #RuneAbilityTitle
 {
 	background-color: #1c294c;
+}
+
+.RuneReward #RuneAbilityTitle.TitleTreasureType_1
+{
+	background-color: gradient(linear, 0 0, 100% 0, from(#6156ad66), to(#40387566));
+}
+
+.RuneReward #RuneAbilityTitle.TitleTreasureType_2
+{
+	background-color: gradient(linear, 0 0, 100% 0, from(#a54e3c66), to(#68241666));
 }
 
 .RuneReward .SectRow.RuneReward
@@ -2752,7 +2775,7 @@
 
 #CityNameHeader
 {
-	margin-left: 32px;
+	margin-left: 6px;
 	vertical-align: center;
 	font-size: 20px;
 	color: #ffffff;

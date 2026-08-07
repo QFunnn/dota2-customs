@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -34,6 +34,7 @@ require('./Heroes.js');
 require('./profile_info.js');
 require('./EOM_Icon.js');
 require('./MenuMarkIcon.js');
+require('./red_point_utils.js');
 require('./StoreItemImage.js');
 
 $.Language().toLowerCase();

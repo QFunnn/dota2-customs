@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -42,17 +42,18 @@ c(
 		["29"] = 27,
 		["30"] = 28,
 		["31"] = 29,
-		["32"] = 31,
+		["32"] = 30,
 		["33"] = 32,
 		["34"] = 33,
 		["35"] = 34,
 		["36"] = 35,
 		["37"] = 36,
 		["38"] = 37,
-		["40"] = 39,
+		["39"] = 38,
 		["41"] = 40,
 		["42"] = 41,
 		["43"] = 42,
+		["44"] = 43,
 	}
 )
 if IsServer() then
@@ -68,6 +69,7 @@ if IsServer() then
 	require("mechanics.game_state")
 	require("mechanics.player_data")
 	require("mechanics.ability_shop")
+	require("mechanics.forge")
 	require("mechanics.projectile")
 	require("mechanics.log")
 	require("mechanics.match")

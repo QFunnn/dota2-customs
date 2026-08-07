@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -19,7 +19,7 @@ let dateNow = Math.floor(Date.now() / 1000);
 var T11LinkageEnable = false;
 var T12LinkageEnable = false;
 var C1LinkageEnable = true;
-var loadingScreenSeason = 3; // 3 | 4 | 5 | 6 | 7 | 8 | 9
+var loadingScreenSeason = 4; // 3 | 4 | 5 | 6 | 7 | 8 | 9
 var PayType;
 (function (PayType) {
 	PayType[(PayType['MONEY'] = 0)] = 'MONEY';
@@ -184,13 +184,15 @@ function getHeroTalentDescription(talentName, entIndex) {
 }
 
 /** 获取流派技能说明 */
-function getSectDescription(abilityUpgradeID, level, onlyShowNowLevel = true) {
+function getSectDescription(abilityUpgradeID, level, onlyShowNowLevel = true, playerID) {
 	const abilityKV = GameUI.CustomUIConfig().AbilityUpgradesKv[abilityUpgradeID];
 	let str = $.Localize('#DOTA_Tooltip_ability_mechanics_' + abilityUpgradeID + '_description');
 	str = replaceAll(str);
 	str = getKeyValueDescription(abilityKV?.AbilityValues ?? {}, str, {
 		level,
 		onlyShowNowLevel: onlyShowNowLevel,
+		abilityUpgradeID,
+		playerID,
 	});
 	return str;
 }
@@ -559,7 +561,43 @@ function IsCasualMode() {
 function IsCompetitionBanRune() {
 	return GetMapName() == 'tournament_map' && true;
 }
-/** 获取具体的数值 */
+/**
+ * 获取指定玩家对流派技能 AbilityValue 的数值强化。
+ *
+ * 服务端会把缓存结果写入 ability_upgrades_result：
+ * [special value type][ability ID][special value name][operator]。
+ */
+function getAbilityUpgradeSpecialValue(playerID, abilityUpgradeID, specialValueName) {
+	if (playerID == undefined || playerID < 0 || abilityUpgradeID == undefined || specialValueName == undefined) {
+		return {
+			add: 0,
+			mul: 0,
+		};
+	}
+
+	const netData = CustomNetTables.GetTableValue('ability_upgrades_result', String(playerID));
+	if (netData?.json == undefined) {
+		return {
+			add: 0,
+			mul: 0,
+		};
+	}
+
+	try {
+		const cachedResult = JSON.parse(netData.json);
+		const specialValueData = cachedResult?.[0]?.[abilityUpgradeID]?.[specialValueName];
+		return {
+			add: Number(specialValueData?.[0] ?? 0),
+			mul: Number(specialValueData?.[1] ?? 0),
+		};
+	} catch (error) {
+		return {
+			add: 0,
+			mul: 0,
+		};
+	}
+}
+
 function GetAbilityValue(valueData, params = {}, onlyValue = false) {
 	if (valueData == undefined) {
 		return 0;
@@ -568,6 +606,8 @@ function GetAbilityValue(valueData, params = {}, onlyValue = false) {
 	let entIndex = params.entIndex;
 	let onlyShowNowLevel = params.onlyShowNowLevel;
 	let hasPct = params.hasPct ?? false;
+	let abilityUpgradeID = params.abilityUpgradeID;
+	let playerID = params.playerID ?? Players.GetLocalPlayer();
 	let pctSymbol = hasPct ? '%' : '';
 
 	let baseValueString = '';
@@ -664,6 +704,14 @@ function GetAbilityValue(valueData, params = {}, onlyValue = false) {
 				}
 			}
 		}
+		if (abilityUpgradeID != undefined) {
+			const upgradeValue = getAbilityUpgradeSpecialValue(playerID, abilityUpgradeID, params.specialValueName);
+			if (upgradeValue.add != 0 || upgradeValue.mul != 0) {
+				_baseValue = _baseValue.map((value) => {
+					return Round((value + upgradeValue.add) * (1 + upgradeValue.mul * 0.01) * digitalNum) / digitalNum;
+				});
+			}
+		}
 		if (onlyValue && onlyShowNowLevel) {
 			return _baseValue[currentLevel] ?? _baseValue[0] ?? 0;
 		}
@@ -708,6 +756,9 @@ function getKeyValueDescription(abilityValues, description, params = {}) {
 			level,
 			onlyShowNowLevel,
 			hasPct: iResultPS != -1,
+			abilityUpgradeID: params.abilityUpgradeID,
+			playerID: params.playerID,
+			specialValueName: valueName,
 		});
 		description = description.replace(blockPS, `<span class='${spanClass}'>${v}</span>`);
 		description = description.replace(block, `<span class='${spanClass}'>${v}</span>`);
@@ -901,6 +952,12 @@ function getGameState() {
 function getGameStateType() {
 	const net = CustomNetTables.GetTableValue('common', 'game_state');
 	return net?.type ?? 'normal';
+}
+function IsCeasefireState(game_state) {
+	if (game_state == "GameState_ExtraBattlePrepare" || game_state == "GameState_ConfirmBattle" || game_state == "GameState_Battle" || game_state == "GameState_ConfirmNeutral" || game_state == "GameState_Neutral" || game_state == "GameState_BattleEnd") {
+		return false;
+	}
+	return true;
 }
 
 // 获取对战信息
@@ -1343,29 +1400,29 @@ function isNameBan(playerID) {
 	}
 	return false;
 }
-function clickNewMark(info, pSelf) {
-	if (pSelf?.IsValid()) {
-		if (!LoadData(pSelf, 'click_new_mark')) {
-			SaveData(pSelf, 'click_new_mark', true);
-			$.Schedule(1, () => {
-				if (pSelf?.IsValid()) {
-					SaveData(pSelf, 'click_new_mark', undefined);
-				}
-			});
-			GameEvents.SendCustomEventToServer('click_new_mark', {
-				menu: info.menu,
-				tag: info.tag,
-				benchmark: info.benchmark,
-			});
-		}
-	} else {
-		GameEvents.SendCustomEventToServer('click_new_mark', {
-			menu: info.menu,
-			tag: info.tag,
-			benchmark: info.benchmark,
-		});
-	}
-}
+// function clickNewMark(info, pSelf) {
+// 	if (pSelf?.IsValid()) {
+// 		if (!LoadData(pSelf, 'click_new_mark')) {
+// 			SaveData(pSelf, 'click_new_mark', true);
+// 			$.Schedule(1, () => {
+// 				if (pSelf?.IsValid()) {
+// 					SaveData(pSelf, 'click_new_mark', undefined);
+// 				}
+// 			});
+// 			GameEvents.SendCustomEventToServer('click_new_mark', {
+// 				menu: info.menu,
+// 				tag: info.tag,
+// 				benchmark: info.benchmark,
+// 			});
+// 		}
+// 	} else {
+// 		GameEvents.SendCustomEventToServer('click_new_mark', {
+// 			menu: info.menu,
+// 			tag: info.tag,
+// 			benchmark: info.benchmark,
+// 		});
+// 	}
+// }
 // function clickNewMark(menuName, tagName, benchmark) {
 // 	if (menuName == undefined) {
 // 		return;
@@ -1730,4 +1787,4 @@ const NormalizeTabText = (text) => {
 	text = text.replace(/，/g, ', ');
 	text = text.replace(/。/g, '。 ');
 	return text;
-};
+};

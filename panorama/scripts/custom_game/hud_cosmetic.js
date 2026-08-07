@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -32,6 +32,7 @@ require('./WinStreak.js');
 require('./Heroes.js');
 require('./profile_info.js');
 require('./MenuMarkIcon.js');
+require('./red_point_utils.js');
 require('./EOM_Portrait.js');
 require('./SectIcon.js');
 
@@ -318,6 +319,7 @@ if (!isSpectator()) {
     });
     const [tag, setTag] = libs.createSignal("CosmeticTag_hero");
     const [sec_tag, setSecTag] = libs.createSignal(OrnamentType.HERO_SKIN);
+    setClientGlobalData("menu_bar_cosmetic_tabs", Object.keys(COSMETIC_MENU_LIST));
     const selectedTagType = () => sec_tag() % 100;
     libs.createEffect(() => {
       if (tag() != "CosmeticTag_battle") {
@@ -513,6 +515,13 @@ if (!isSpectator()) {
     libs.onMount(() => {
       let gameEventIDList = [];
       gameEventIDList.push(useToggleWindow('MenuButton_cosmetics', show, setShow));
+      gameEventIDList.push(useClientSideEvent("menu_bar_cosmetic_tab", data => {
+        if (data.tag && COSMETIC_MENU_LIST[data.tag] != undefined) {
+          setTag(data.tag);
+          const firstSlot = COSMETIC_MENU_LIST[data.tag][0];
+          setSecTag(data.tag == "CosmeticTag_coloring" ? firstSlot + 100 : firstSlot);
+        }
+      }));
       gameEventIDList.push(useClientSideEvent('cosmetic_jump_tag', data => {
         if (data.type) {
           let jumpFilterTag = -1;

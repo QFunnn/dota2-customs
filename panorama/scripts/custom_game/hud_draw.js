@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -33,6 +33,7 @@ require('./WinStreak.js');
 require('./Heroes.js');
 require('./profile_info.js');
 require('./MenuMarkIcon.js');
+require('./red_point_utils.js');
 require('./ProductImage.js');
 
 const _addHidden = p => {
@@ -947,15 +948,22 @@ const ActivityDrawButton = props => {
 if (!isSpectator()) {
   let fFlipTime = 0.5;
   const language = $.Language().toLowerCase();
-  const ActivityPoolBlackList = [99100001, 99100003, 99100004, 99100005, 99100006, 99100007, 99100008, 99100009];
+  const isActivityPoolBlackListed = pool => {
+    return pool.toString().startsWith('991');
+  };
+  const isGoldCourierPool = pool => {
+    return pool.drop.startsWith('courier_pool_gold_');
+  };
+  const isMoonPool = pool => {
+    return pool.bid == 2000002;
+  };
+  const isActivityPool = pool => {
+    return pool.bid == 2000003;
+  };
   const ActivityPoolExchangeTag = {
     [99100002]: "qingtian"
   };
   const RedActivityPoolList = [99100002, 91000078];
-  const TiedPrizePoolList = [91000002, 91000077, 91000078, 91000079, 91000080, 91000082, 91000083, 91000084, 91000085, 91000086, 91000087, 91000088, 91000089, 91000092, 91000094, 91000095, 91000097];
-  const GoldCourierPoolList = [91000014, 91000125, 91000126, 91000127, 91000128, 91000129, 91000130];
-  const MoonPoolList = [91000081, 91000082, 91000084, 91000085, 91000087, 91000088];
-  const ActivityPoolList = [91000075, 91000080, 91000083, 91000086];
   const [show, setShow] = libs.createSignal(false);
   const [selectedIndex, setSelectedIndex] = libs.createSignal(0);
   const [exchangeShow, setExchangeShow] = libs.createSignal(false);
@@ -964,6 +972,11 @@ if (!isSpectator()) {
   const [isToolMode, setIsToolMode] = libs.createSignal((CustomNetTables.GetTableValue("common", "settings")?.is_in_tools_mode ?? 0) == 1);
   const [info_box_pool_data, setInfoBoxPoolData] = libs.createSignal();
   const [cardPoolList, setCardPoolList] = libs.createSignal([]);
+  const GoldCourierPoolList = {
+    includes: poolID => {
+      return cardPoolList().some(pool => pool.pool == poolID && isGoldCourierPool(pool));
+    }
+  };
   libs.createEffect(() => {
     const pool_list = [];
     const static_info_box_pool_data = info_box_pool_data();
@@ -983,6 +996,9 @@ if (!isSpectator()) {
         const nEndTime = Number(endTime);
         const nStartTime = Number(startTime);
         if (bid != -1 && (nStartTime == 0 || timeStamp >= Number(nStartTime)) && (nEndTime == 0 || timeStamp < Number(endTime))) {
+          if (isActivityPoolBlackListed(pool)) {
+            return;
+          }
           if (type == "910") {
             pool_list.push({
               pool,
@@ -994,18 +1010,6 @@ if (!isSpectator()) {
               open_luck,
               drop,
               type: "normal"
-            });
-          } else if (type == "991" && !ActivityPoolBlackList.includes(data.pool)) {
-            pool_list.push({
-              pool,
-              name,
-              bid,
-              currency,
-              endTime,
-              orderby,
-              open_luck,
-              drop,
-              type: "activity"
             });
           }
         }
@@ -1035,6 +1039,10 @@ if (!isSpectator()) {
     }
   }));
   libs.createEffect(libs.on(cardPoolList, card_pool_list => {
+    setClientGlobalData("menu_bar_draw_pools", card_pool_list.map(pool => ({
+      id: pool.pool,
+      label: pool.pool.toString()
+    })), true);
     if (card_pool_list.length == 0) {
       setSelectedIndex(0);
       return;
@@ -1061,9 +1069,8 @@ if (!isSpectator()) {
         if (index != -1) {
           setSelectedIndex(index);
         } else if (data.pid == 91000001) {
-          for (let index = GoldCourierPoolList.length - 1; index >= 0; index--) {
-            index = poolList.indexOf(GoldCourierPoolList[index]);
-            if (index != -1) {
+          for (let index = cardPoolList().length - 1; index >= 0; index--) {
+            if (isGoldCourierPool(cardPoolList()[index])) {
               setSelectedIndex(index);
               break;
             }
@@ -1137,6 +1144,21 @@ if (!isSpectator()) {
     const [storeItemData, setStoreItemData] = libs.createSignal([]);
     const [purchased_product, setPurchasedProduct] = libs.createSignal({});
     const [info_box_content, setInfoBoxContent] = libs.createSignal();
+    const isTiedPrizePool = pool => {
+      if (!isMoonPool(pool) && !isActivityPool(pool)) {
+        return false;
+      }
+      let ssrCount = 0;
+      for (const reward of info_box_content()?.[pool.drop] ?? []) {
+        if (reward.rarity == 'ssr') {
+          ssrCount++;
+          if (ssrCount >= 2) {
+            return true;
+          }
+        }
+      }
+      return false;
+    };
     const storeItemDataSorted = () => {
       return storeItemData().sort((a, b) => {
         let atop = a.id == exchangeTopId() ? 0 : 1;
@@ -1319,9 +1341,6 @@ if (!isSpectator()) {
     });
     const cardPool = () => cardPoolList()[selectedIndex()];
     const selectedCardPoolType = () => cardPool()?.type ?? "none";
-    libs.createEffect(() => {
-      console.log("cardPool", cardPool()?.pool, cardPool()?.endTime);
-    });
     let centerContentRef;
     let PoolListRef;
     let CurrencyGroupRef;
@@ -1907,10 +1926,10 @@ if (!isSpectator()) {
                           },
                           get className() {
                             return libs.classNames("Pool" + cardPool().pool, {
-                              TiedPrize: TiedPrizePoolList.includes(cardPool().pool),
-                              GoldCourierPool: GoldCourierPoolList.includes(cardPool().pool),
-                              MoonPool: MoonPoolList.includes(cardPool().pool),
-                              ActivityPool: ActivityPoolList.includes(cardPool().pool)
+                              TiedPrize: isTiedPrizePool(cardPool()),
+                              GoldCourierPool: isGoldCourierPool(cardPool()),
+                              MoonPool: isMoonPool(cardPool()),
+                              ActivityPool: isActivityPool(cardPool())
                             });
                           },
                           get children() {
@@ -2778,9 +2797,9 @@ if (!isSpectator()) {
         }
       }), null);
       libs.effect(_$p => libs.setProp(_el$35, "className", libs.classNames("CardPoolTab", "Bid" + props.pool.pool, {
-        MoonPool: MoonPoolList.includes(props.pool.pool),
-        GoldPool: GoldCourierPoolList.includes(props.pool.pool),
-        ActivityPool: ActivityPoolList.includes(props.pool.pool),
+        MoonPool: isMoonPool(props.pool),
+        GoldPool: isGoldCourierPool(props.pool),
+        ActivityPool: isActivityPool(props.pool),
         RedPool: RedActivityPoolList.includes(props.pool.pool)
       }), _$p));
       return _el$35;

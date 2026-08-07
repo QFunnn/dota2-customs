@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -19,158 +19,98 @@ var EOM_Label = require('./EOM_Label.js');
 var EOM_Button = require('./EOM_Button.js');
 var GenericPanel = require('./GenericPanel.js');
 var MenuMarkIcon = require('./MenuMarkIcon.js');
+var red_point_utils = require('./red_point_utils.js');
 
 const [selectName, setSelectName] = libs.createSignal("");
 const [paymentOpen, setPaymentOpen] = libs.createSignal(false);
-const [markInfo, setMarkInfo] = libs.createStore({});
-const [markNewInfo, setMarkNewInfo] = libs.createStore({});
-if (!isSpectator()) {
-  const updateNewMarkInfo = data => {
-    if (data) {
-      libs.batch(() => {
-        for (const mid in data) {
-          const state = data[mid];
-          const kv = KeyValues.NewMarkInfoKv[mid];
-          if (kv != undefined && kv.menu_button != undefined) {
-            if (state && markNewInfo[kv.menu_button] === undefined) {
-              setMarkNewInfo(kv.menu_button, kv.type);
-            } else if (!state && markNewInfo[kv.menu_button]) {
-              setMarkNewInfo(kv.menu_button, null);
-            }
-          }
-        }
-      });
-    }
-  };
-  libs.onMount(() => {
-    let netTableIDList = [];
-    let gameEventIDList = [];
-    netTableIDList.push(useServiceNetTable("player_new_mark", data => {
-      updateNewMarkInfo(data);
-    }, Players.GetLocalPlayer()));
-    gameEventIDList.push(useClientSideEvent("create_new_mark_info", data => {
-      updateNewMarkInfo(data);
-    }));
-    libs.onCleanup(() => {
-      gameEventIDList.forEach(id => GameEvents.Unsubscribe(id));
-      netTableIDList.forEach(id => CustomNetTables.UnsubscribeNetTableListener(id));
-    });
-  });
-  {
-    const [purchased_product, setPurchasedProduct] = libs.createSignal();
-    const [customEventData, setCustomEventData] = libs.createSignal();
-    const [playerOrnament, setPlayerOrnament] = libs.createSignal();
-    const [player_hero, setPlayerHero] = libs.createSignal();
-    const [storeItemData, setStoreItemData] = libs.createSignal();
-    const date_now = Math.floor(Date.now() / 1000);
-    const [initedMark, setInitedMark] = libs.createSignal(false);
-    libs.createEffect(() => {
-      if (initedMark()) return;
-      const current_purchased_product = purchased_product();
-      const current_customEventData = customEventData();
-      const current_player_hero = player_hero();
-      const current_playerOrnament = playerOrnament();
-      const current_storeItemData = storeItemData();
-      if (current_purchased_product != undefined && current_customEventData != undefined && current_player_hero != undefined && current_playerOrnament != undefined && current_storeItemData != undefined) {
-        setInitedMark(true);
-        const filteredStoreMids = [];
-        const storeMids = {};
-        const validMids = Object.keys(KeyValues.NewMarkInfoKv).filter(id => KeyValues.NewMarkInfoKv[id]?.hidden != 1);
-        validMids.forEach(mid => {
-          const kv = KeyValues.NewMarkInfoKv[mid];
-          if (kv) {
-            if (kv.benchmark && kv.benchmark.toString().startsWith("990")) {
-              storeMids[Number(kv.benchmark)] = mid;
-            }
-          }
-        });
-        for (const tag in current_storeItemData) {
-          current_storeItemData[tag].forEach(data => {
-            if (storeMids[data.id] != undefined) {
-              const purchased_num = current_purchased_product[data.id] ?? 0;
-              const owned = getCosmeticByStoreItem(data, current_playerOrnament) || getHerobyStoreItem(data, current_player_hero);
-              if (!(data.status == 1 && (data.limit_type == 1 ? finiteNumber(purchased_num) < data.limit_count : true) && !owned)) {
-                filteredStoreMids.push(storeMids[data.id]);
-              }
-            }
-          });
-        }
-        let mids = validMids.filter(id => !filteredStoreMids.includes(id));
-        if (current_customEventData && current_customEventData.custom_events) {
-          const arr = current_customEventData.custom_events;
-          arr.forEach(info => {
-            let index = mids.indexOf(info.custom_event_id);
-            if (index > -1) {
-              const kv = KeyValues.NewMarkInfoKv[info.custom_event_id];
-              if (kv != undefined) {
-                let remove = false;
-                let time = finiteNumber(Number(kv.time), 0);
-                let diffDays = dateDiff(info.update_time, date_now);
-                if (time == -1) {
-                  remove = true;
-                } else if (diffDays < time) {
-                  remove = true;
-                }
-                if (remove) {
-                  mids.splice(index, 1);
-                }
-              }
-            }
-          });
-        }
-        if (mids.length > 0) {
-          GameEvents.SendCustomEventToServer("init_player_new_mark", {
-            data: mids
-          });
-          const netTableData = getServiceNetTable("player_new_mark", Players.GetLocalPlayer());
-          const data = {};
-          mids.forEach(id => {
-            if (netTableData?.[id] == false) {
-              return;
-            }
-            data[id] = true;
-          });
-          clientSideEvent("create_new_mark_info", data);
-        }
-      }
-    });
-    libs.onMount(() => {
-      let gameEventIDList = [];
-      gameEventIDList.push(useNetData('player_ornament', data => {
-        setPlayerOrnament(data);
-      }, Players.GetLocalPlayer()));
-      gameEventIDList.push(useNetData("info_shop_product_group_by_tag", data => {
-        setStoreItemData(data);
-      }));
-      gameEventIDList.push(useNetData('player_hero', data => {
-        setPlayerHero(data);
-      }, Players.GetLocalPlayer()));
-      gameEventIDList.push(useNetData("player_purchased_products", data => {
-        setPurchasedProduct(data.purchased_products);
-      }, Players.GetLocalPlayer()));
-      gameEventIDList.push(useNetData("player_custom_event", data => {
-        setCustomEventData(data ?? {
-          custom_events: []
-        });
-      }, Players.GetLocalPlayer()));
-      libs.createEffect(() => {
-        if (initedMark()) {
-          gameEventIDList.forEach(id => GameEvents.Unsubscribe(id));
-          gameEventIDList = [];
-          setPurchasedProduct();
-          setCustomEventData();
-          setPlayerOrnament();
-          setPlayerHero();
-          setStoreItemData();
-        }
-      });
-      libs.onCleanup(() => {
-        gameEventIDList.forEach(id => GameEvents.Unsubscribe(id));
-      });
-    });
-  }
-}
+const [redPoints, setRedPoints] = libs.createSignal(getClientGlobalData("red_points") ?? []);
 const MenuBar = () => {
+  const [dropdownItems, setDropdownItems] = libs.createSignal([]);
+  const [storeTags, setStoreTags] = libs.createSignal(getClientGlobalData("menu_bar_store_tabs") ?? []);
+  const [drawPools, setDrawPools] = libs.createSignal(getClientGlobalData("menu_bar_draw_pools") ?? []);
+  const [activityTabs, setActivityTabs] = libs.createSignal(getClientGlobalData("menu_bar_activity_tabs") ?? []);
+  const [cosmeticTabs, setCosmeticTabs] = libs.createSignal(getClientGlobalData("menu_bar_cosmetic_tabs") ?? []);
+  const [profileTabs, setProfileTabs] = libs.createSignal(getClientGlobalData("menu_bar_profile_tabs") ?? []);
+  let dropContainer;
+  let dropTargetPanel;
+  const hideDropDown = () => {
+    if (!dropContainer?.IsValid()) return;
+    dropTargetPanel?.RemoveClass('ShowDropDown');
+    dropContainer.RemoveClass('Show');
+  };
+  const showDropDown = (panel, name) => {
+    if (!dropContainer?.IsValid()) return;
+    const dropdownMenus = {
+      store: () => storeTags().map(tag => ({
+        label: tag,
+        action: () => clientSideEvent("toggle_store_tag", {
+          menu: tag
+        }),
+        redPoint: () => red_point_utils.hasRedPoint(redPoints(), "store", tag)
+      })),
+      draw: () => drawPools().map(pool => ({
+        label: pool.label,
+        action: () => {
+          ToggleWindows("MenuButton_draw", true);
+          clientSideEvent("switchDrawPool", {
+            pid: pool.id
+          });
+        }
+      })),
+      activity: () => activityTabs().map(tag => ({
+        label: tag,
+        action: () => {
+          ToggleWindows("MenuButton_activity", true);
+          clientSideEvent("switchActivityTag", {
+            id: tag
+          });
+        },
+        redPoint: () => red_point_utils.hasRedPoint(redPoints(), "activity", tag)
+      })),
+      cosmetics: () => cosmeticTabs().map(tag => ({
+        label: tag,
+        action: () => {
+          ToggleWindows("MenuButton_cosmetics", true);
+          clientSideEvent("menu_bar_cosmetic_tab", {
+            tag
+          });
+        }
+      })),
+      profile: () => profileTabs().map(tag => ({
+        label: tag,
+        action: () => {
+          GameUI.SetProfilePlayerId(Players.GetLocalPlayer());
+          ToggleWindows("MenuButton_profile", true);
+          clientSideEvent("menu_bar_profile_tab", {
+            tag
+          });
+        }
+      }))
+    };
+    if (panel != undefined) {
+      if (name == undefined || dropdownMenus[name] == undefined) {
+        hideDropDown();
+        return;
+      }
+      const items = dropdownMenus[name]();
+      if (items.length == 0) {
+        hideDropDown();
+        return;
+      }
+      const position = panel.GetPositionWithinWindow();
+      const dropX = position.x / dropContainer.actualuiscale_x - 80 + 23;
+      dropContainer.SetPositionInPixels(Math.max(0, dropX), 0, 0);
+      const marginTop = dropContainer.FindChild('MarginTop');
+      if (marginTop?.IsValid()) {
+        marginTop.style.transform = `translateX(${Math.min(0, dropX)}px)`;
+      }
+      setDropdownItems(items);
+      dropTargetPanel?.RemoveClass('ShowDropDown');
+      dropTargetPanel = panel;
+    }
+    dropTargetPanel?.AddClass('ShowDropDown');
+    dropContainer.AddClass('Show');
+  };
   const [bubbleActivityID, setBubbleActivityID] = libs.createSignal();
   const [seen, setSeen] = libs.createSignal(false);
   const [hidenBubble, setHidenBubble] = libs.createSignal(false);
@@ -232,6 +172,22 @@ const MenuBar = () => {
   libs.onMount(() => {
     let gameEventListeners = [];
     let NetTableListenerList = [];
+    gameEventListeners.push(useClientGlobalData("menu_bar_store_tabs", data => {
+      setStoreTags(data);
+    }));
+    gameEventListeners.push(useClientGlobalData("menu_bar_draw_pools", data => {
+      setDrawPools(data);
+    }));
+    gameEventListeners.push(useClientGlobalData("menu_bar_activity_tabs", data => {
+      setActivityTabs(data);
+    }));
+    gameEventListeners.push(useClientGlobalData("menu_bar_cosmetic_tabs", data => {
+      setCosmeticTabs(data);
+    }));
+    gameEventListeners.push(useClientGlobalData("menu_bar_profile_tabs", data => {
+      setProfileTabs(data);
+    }));
+    gameEventListeners.push(useClientGlobalData("red_points", setRedPoints));
     gameEventListeners.push(GameEvents.Subscribe("custom_ui_toggle_windows", eventData => {
       const name = eventData.window_name.replace("MenuButton_", "");
       if (eventData.state == undefined) {
@@ -249,31 +205,12 @@ const MenuBar = () => {
       }
     }));
     if (!isSpectator()) {
-      gameEventListeners.push(useClientSideEvent("poficiency_reward_state", data => {
-        setMarkInfo("hero", data?.state ?? false);
-      }));
       gameEventListeners.push(useNetData("open_payment", data => {
         setPaymentOpen(data.open);
-      }, Players.GetLocalPlayer()));
-      gameEventListeners.push(useNetData("mark_info", data => {
-        if (data) {
-          for (const menu in data) {
-            setMarkInfo(menu, data[menu]);
-          }
-        }
       }, Players.GetLocalPlayer()));
       NetTableListenerList.push(useNetTableKeyHasDefaultValue("common", "game_state", data => {
         setGameState(data);
       }));
-      let login_activity_data_list = [1001];
-      gameEventListeners.push(useNetData("login_activity_data", data => {
-        let hasReward = Object.values(data).some(activityData => {
-          return login_activity_data_list.includes(activityData.activity_id) && activityData.active == true && Object.values(activityData.rewards).some(v => v == 0);
-        });
-        if (hasReward) {
-          setMarkInfo("activity", true);
-        }
-      }, Players.GetLocalPlayer()));
       gameEventListeners.push(GameEvents.Subscribe("custom_ui_toggle_windows", eventData => {
         if (eventData.state && eventData.state == 1) {
           if (eventData.window_name == "MenuButton_activity") {
@@ -300,11 +237,6 @@ const MenuBar = () => {
           }
         }
       }));
-      NetTableListenerList.push(useServiceNetTable("player_medal", data => {
-        if ((data?.now_medal ?? 0) <= 200) {
-          setMarkInfo("handbook", true);
-        }
-      }, Players.GetLocalPlayer()));
     }
     libs.onCleanup(() => {
       for (const id of gameEventListeners) {
@@ -336,7 +268,9 @@ const MenuBar = () => {
       },
       get children() {
         return [libs.createComponent(MenuButton, {
-          name: "setting"
+          name: "setting",
+          onDropDown: showDropDown,
+          onHideDropDown: hideDropDown
         }), libs.createComponent(MenuButton, {
           name: "rank"
         }), libs.createComponent(MenuButton, {
@@ -347,24 +281,34 @@ const MenuBar = () => {
           },
           get children() {
             return [libs.createComponent(MenuButton, {
-              name: "store"
+              name: "store",
+              onDropDown: showDropDown,
+              onHideDropDown: hideDropDown
             }), libs.createComponent(MenuButton, {
               name: "ladderpass"
             }), libs.createComponent(MenuButton, {
-              name: "draw"
+              name: "draw",
+              onDropDown: showDropDown,
+              onHideDropDown: hideDropDown
             })];
           }
         }), libs.createComponent(MenuButton, {
           name: "activity",
+          onDropDown: showDropDown,
+          onHideDropDown: hideDropDown,
           onload: self => {
             updateActivityBubbleX();
           }
         }), libs.createComponent(MenuButton, {
           name: "hero"
         }), libs.createComponent(MenuButton, {
-          name: "cosmetics"
+          name: "cosmetics",
+          onDropDown: showDropDown,
+          onHideDropDown: hideDropDown
         }), libs.createComponent(MenuButton, {
-          name: "profile"
+          name: "profile",
+          onDropDown: showDropDown,
+          onHideDropDown: hideDropDown
         }), libs.createComponent(MenuButton, {
           name: "backpack"
         })];
@@ -379,10 +323,59 @@ const MenuBar = () => {
     return _el$;
   })(), (() => {
     const _el$2 = libs.createElement("Panel", {
+        id: "DropContainer",
+        hittest: false
+      }, null),
+      _el$3 = libs.createElement("Panel", {
+        id: "MarginTop",
+        hittest: true
+      }, _el$2),
+      _el$4 = libs.createElement("Panel", {
+        id: "DropMain"
+      }, _el$2);
+    const _ref$ = dropContainer;
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$2) : dropContainer = _el$2;
+    libs.setProp(_el$3, "onmouseover", () => showDropDown());
+    libs.setProp(_el$3, "onmouseout", hideDropDown);
+    libs.setProp(_el$4, "onmouseover", () => showDropDown());
+    libs.setProp(_el$4, "onmouseout", hideDropDown);
+    libs.insert(_el$4, libs.createComponent(libs.For, {
+      get each() {
+        return dropdownItems();
+      },
+      children: item => libs.createComponent(EOM_Button.EOM_BaseButton, {
+        className: "DropdownItem",
+        onactivate: () => {
+          item.action();
+          hideDropDown();
+        },
+        get children() {
+          return [libs.createComponent(EOM_Label.EOM_Label, {
+            get text() {
+              return `#${item.label}`;
+            }
+          }), libs.createComponent(libs.Show, {
+            get when() {
+              return item.redPoint?.();
+            },
+            get children() {
+              return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+                className: "DropdownRedPoint",
+                type: "default",
+                hittest: false
+              });
+            }
+          })];
+        }
+      })
+    }));
+    return _el$2;
+  })(), (() => {
+    const _el$5 = libs.createElement("Panel", {
       id: "MenuBarExtraBar",
       hittest: false
     }, null);
-    libs.insert(_el$2, libs.createComponent(libs.Show, {
+    libs.insert(_el$5, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!(showActivityBubble() && bubbleActivityID() != undefined))() && !seen();
       },
@@ -503,30 +496,12 @@ const MenuBar = () => {
         });
       }
     }));
-    return _el$2;
+    return _el$5;
   })()];
 };
 const MenuButton = props => {
-  const [local, other] = libs.splitProps(props, ["name"]);
+  const [local, other] = libs.splitProps(props, ["name", "onDropDown", "onHideDropDown"]);
   const selected = () => selectName() == local.name;
-  const marktype = () => {
-    if (markInfo[local.name] ?? false) {
-      return "default";
-    }
-    if (markNewInfo[local.name] ?? false) {
-      return markNewInfo[local.name];
-    }
-  };
-  libs.onMount(() => {
-    const id = GameEvents.Subscribe("custom_ui_exclamation", event => {
-      if (event.name == props.name) {
-        setMarkInfo(local.name, true);
-      }
-    });
-    libs.onCleanup(() => {
-      GameEvents.Unsubscribe(id);
-    });
-  });
   return libs.createComponent(EOM_Button.EOM_BaseButton, libs.mergeProps({
     get id() {
       return "MenuButton_" + local.name;
@@ -539,21 +514,12 @@ const MenuButton = props => {
         window_name: "MenuButton_" + local.name,
         state: selected() ? 0 : 1
       });
-      if (local.name != "mail") {
-        setMarkInfo(local.name, false);
-      }
-      if (markNewInfo[local.name]) {
-        setMarkNewInfo({
-          [local.name]: null
-        });
-        clickNewMark({
-          menu: local.name
-        }, self);
-      }
       if (local.name == "profile") {
         GameUI.SetProfilePlayerId(Players.GetLocalPlayer());
       }
-    }
+    },
+    onmouseover: self => local.onDropDown?.(self, local.name),
+    onmouseout: () => local.onHideDropDown?.()
   }, other, {
     get children() {
       return [libs.createComponent(GenericPanel.CImage, {
@@ -579,13 +545,12 @@ const MenuButton = props => {
         }
       }), libs.createComponent(libs.Show, {
         get when() {
-          return marktype() != undefined;
+          return libs.memo(() => !!local.name)() && red_point_utils.hasRedPoint(redPoints(), local.name);
         },
         get children() {
           return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
-            get type() {
-              return marktype();
-            }
+            type: "default",
+            hittest: false
           });
         }
       })];

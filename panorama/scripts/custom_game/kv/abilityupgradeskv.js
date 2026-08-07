@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -184,7 +184,7 @@ GameUI.CustomUIConfig().AbilityUpgradesKv = {
 		},
 	},
 	"13": {
-		"Note": "战时狂热",
+		"Note": "嗜血打击",
 		"Texture": "troll_warlord/immortal/troll_warlord_berserkers_rage_active",
 		"type": "gain",
 		"sect": "sect_attack",
@@ -195,7 +195,7 @@ GameUI.CustomUIConfig().AbilityUpgradesKv = {
 		"MaxLevel": 3,
 		"AbilityValues": {
 			"r_13_attack": "4 8 16",
-			"r_13_max": "20 40 80",
+			"r_13_max_stack": 5,
 		},
 	},
 	"14": {
@@ -213,7 +213,7 @@ GameUI.CustomUIConfig().AbilityUpgradesKv = {
 		},
 	},
 	"15": {
-		"Note": "精神振奋",
+		"Note": "热血战魂",
 		"Texture": "troll_warlord_fervor",
 		"type": "gain",
 		"sect": "sect_attack",
@@ -226,6 +226,7 @@ GameUI.CustomUIConfig().AbilityUpgradesKv = {
 			"r_15_interval": 1,
 			"r_15_attackspeed": 10,
 			"r_15_max": "30 60 120",
+			"r_15_max_stack": "3 6 12",
 		},
 	},
 	"16": {
@@ -1169,7 +1170,7 @@ GameUI.CustomUIConfig().AbilityUpgradesKv = {
 		"cost": 100,
 		"MaxLevel": 5,
 		"AbilityValues": {
-			"n_85_chance": "8 16 24 36 48",
+			"n_85_chance": "16 24 32 40 52",
 		},
 	},
 	"86": {

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -217,7 +217,7 @@ function o.prototype.OnAbilityBuy(self, p)
 	local s = self:GetParent()
 	if IsValid(s) then
 		local q = s:GetPlayerOwnerID()
-		local t = p.cost * self.reduce * 0.01
+		local t = self.reduce
 		PlayerData:modifyGold(q, t)
 		Notification:combatToPlayer(
 			q,

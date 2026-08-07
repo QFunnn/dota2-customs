@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1866,11 +1866,6 @@ function useToggleWindow(windowName, value, setter) {
 		}
 	});
 }
-
-function __SubscribeNetTableKey(tableName, onEvent) {
-	return CustomUIConfig.__NETTABLE_LISTENER_HUB__.subscribe(tableName, onEvent);
-}
-
 /** 网表，但是套的netdata的定义，因为是json所以会保留array */
 function useServiceNetTable(tableName, callback, playerID) {
 	if (playerID == -1) {
@@ -1883,7 +1878,7 @@ function useServiceNetTable(tableName, callback, playerID) {
 				callback(data, id);
 			}
 		}
-		return __SubscribeNetTableKey("service", (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
 			if (new RegExp(`^${tableName}\\d+$`).test(key)) {
 				const data = JSON.parse(value.data);
 				const id = finiteNumber(Number(key.match(/\d+$/)?.[0]), -1);
@@ -1897,7 +1892,7 @@ function useServiceNetTable(tableName, callback, playerID) {
 			const data = JSON.parse(cache.data);
 			callback(data);
 		}
-		return __SubscribeNetTableKey("service", (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
 			if (key == tableKey) {
 				const data = JSON.parse(value.data);
 				callback(data);
@@ -1910,7 +1905,7 @@ function useServiceNetTable(tableName, callback, playerID) {
 			const data = JSON.parse(cache.data);
 			callback(data);
 		}
-		return __SubscribeNetTableKey("service", (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
 			if (key == tableKey) {
 				const data = JSON.parse(value.data);
 				callback(data);
@@ -1954,7 +1949,7 @@ function useNetTableKeyHasDefaultValue(tableName, tableKey, callback) {
 	return useNetTableKey(tableName, tableKey, callback);
 }
 function useNetTableKey(tableName, tableKey, callback) {
-	return __SubscribeNetTableKey(tableName, (key, value) => {
+	return CustomNetTables.SubscribeNetTableListener(tableName, (tableName, key, value) => {
 		if (key == tableKey) {
 			callback(value);
 		}
@@ -2133,7 +2128,7 @@ function useSyncDataKey(tableName, tableKey, callback, playerID) {
 				}
 			}
 		}
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (new RegExp(`^${tableKey}\\d+$`).test(key)) {
 				const id = finiteNumber(Number(key.match(/\d+$/)?.[0]), -1);
 				if (value.data == "") {
@@ -2155,7 +2150,7 @@ function useSyncDataKey(tableName, tableKey, callback, playerID) {
 				callback(data);
 			}
 		}
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (key == realKey) {
 				if (value.data == "") {
 					callback(undefined);
@@ -2175,7 +2170,7 @@ function useSyncDataKey(tableName, tableKey, callback, playerID) {
 				callback(data);
 			}
 		}
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (key == tableKey) {
 				if (value.data == "") {
 					callback(undefined);
@@ -2190,7 +2185,7 @@ function useSyncDataKey(tableName, tableKey, callback, playerID) {
 /** 网表，因为是json所以会保留array */
 function ListenSyncDataKey(tableName, tableKey, callback, playerID) {
 	if (playerID == -1) {
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (new RegExp(`^${tableKey}\\d+$`).test(key)) {
 				const data = JSON.parseSafe(value.data);
 				const id = finiteNumber(Number(key.match(/\d+$/)?.[0]), -1);
@@ -2199,14 +2194,14 @@ function ListenSyncDataKey(tableName, tableKey, callback, playerID) {
 		});
 	} else if (typeof playerID == "number") {
 		const realKey = tableKey + playerID.toString();
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (key == realKey) {
 				const data = JSON.parseSafe(value.data);
 				callback(data);
 			}
 		});
 	} else {
-		return __SubscribeNetTableKey(tableName, (key, value) => {
+		return CustomNetTables.SubscribeNetTableListener(tableName, (_, key, value) => {
 			if (key == tableKey) {
 				const data = JSON.parseSafe(value.data);
 				callback(data);

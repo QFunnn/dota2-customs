@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -551,315 +551,322 @@ f(
 		["636"] = 659,
 		["637"] = 660,
 		["638"] = 661,
+		["639"] = 662,
 		["640"] = 663,
+		["641"] = 664,
 		["642"] = 665,
-		["643"] = 665,
-		["644"] = 665,
-		["645"] = 665,
-		["646"] = 667,
+		["644"] = 667,
+		["646"] = 669,
+		["647"] = 669,
 		["648"] = 669,
-		["649"] = 656,
-		["650"] = 685,
-		["651"] = 686,
-		["654"] = 689,
-		["657"] = 692,
-		["658"] = 693,
-		["659"] = 694,
-		["660"] = 695,
-		["661"] = 696,
-		["663"] = 696,
-		["667"] = 685,
-		["668"] = 701,
-		["669"] = 702,
-		["670"] = 703,
+		["649"] = 669,
+		["651"] = 671,
+		["653"] = 673,
+		["654"] = 656,
+		["655"] = 675,
+		["656"] = 676,
+		["657"] = 675,
+		["658"] = 692,
+		["659"] = 693,
+		["662"] = 696,
+		["665"] = 699,
+		["666"] = 700,
+		["667"] = 701,
+		["668"] = 702,
+		["669"] = 703,
 		["671"] = 703,
-		["672"] = 703,
-		["673"] = 703,
-		["674"] = 703,
-		["675"] = 703,
-		["676"] = 701,
-		["677"] = 245,
-		["678"] = 237,
-		["679"] = 237,
-		["680"] = 237,
-		["681"] = 237,
-		["682"] = 237,
-		["683"] = 237,
-		["684"] = 237,
-		["685"] = 237,
-		["686"] = 245,
-		["688"] = 245,
-		["690"] = 708,
-		["691"] = 716,
-		["692"] = 708,
-		["693"] = 716,
-		["695"] = 716,
-		["696"] = 726,
-		["697"] = 727,
-		["698"] = 708,
-		["699"] = 728,
-		["700"] = 729,
-		["701"] = 730,
-		["702"] = 731,
-		["703"] = 732,
+		["675"] = 692,
+		["676"] = 708,
+		["677"] = 709,
+		["678"] = 710,
+		["679"] = 710,
+		["680"] = 710,
+		["681"] = 710,
+		["682"] = 710,
+		["683"] = 710,
+		["684"] = 708,
+		["685"] = 245,
+		["686"] = 237,
+		["687"] = 237,
+		["688"] = 237,
+		["689"] = 237,
+		["690"] = 237,
+		["691"] = 237,
+		["692"] = 237,
+		["693"] = 237,
+		["694"] = 245,
+		["696"] = 245,
+		["698"] = 715,
+		["699"] = 723,
+		["700"] = 715,
+		["701"] = 723,
+		["703"] = 723,
 		["704"] = 733,
 		["705"] = 734,
-		["706"] = 735,
-		["707"] = 736,
-		["708"] = 728,
-		["709"] = 739,
-		["710"] = 740,
-		["711"] = 741,
-		["712"] = 742,
-		["713"] = 743,
-		["714"] = 744,
-		["715"] = 746,
-		["716"] = 748,
-		["717"] = 748,
-		["718"] = 749,
-		["719"] = 749,
+		["706"] = 715,
+		["707"] = 735,
+		["708"] = 736,
+		["709"] = 737,
+		["710"] = 738,
+		["711"] = 739,
+		["712"] = 740,
+		["713"] = 741,
+		["714"] = 742,
+		["715"] = 743,
+		["716"] = 735,
+		["717"] = 746,
+		["718"] = 747,
+		["719"] = 748,
 		["720"] = 749,
-		["721"] = 749,
+		["721"] = 750,
+		["722"] = 751,
 		["723"] = 753,
 		["724"] = 755,
 		["725"] = 755,
 		["726"] = 756,
-		["727"] = 757,
-		["728"] = 758,
-		["730"] = 762,
-		["731"] = 764,
-		["732"] = 764,
-		["733"] = 765,
-		["734"] = 766,
-		["735"] = 767,
-		["737"] = 770,
-		["738"] = 771,
-		["740"] = 773,
-		["741"] = 774,
-		["742"] = 775,
-		["743"] = 776,
-		["744"] = 777,
-		["745"] = 778,
-		["747"] = 739,
-		["748"] = 781,
-		["749"] = 782,
-		["750"] = 783,
-		["752"] = 781,
-		["753"] = 786,
-		["754"] = 787,
-		["755"] = 788,
+		["727"] = 756,
+		["728"] = 756,
+		["729"] = 756,
+		["731"] = 760,
+		["732"] = 762,
+		["733"] = 762,
+		["734"] = 763,
+		["735"] = 764,
+		["736"] = 765,
+		["738"] = 769,
+		["739"] = 771,
+		["740"] = 771,
+		["741"] = 772,
+		["742"] = 773,
+		["743"] = 774,
+		["745"] = 777,
+		["746"] = 778,
+		["748"] = 780,
+		["749"] = 781,
+		["750"] = 782,
+		["751"] = 783,
+		["752"] = 784,
+		["753"] = 785,
+		["755"] = 746,
 		["756"] = 788,
-		["757"] = 788,
-		["758"] = 788,
-		["759"] = 789,
-		["760"] = 790,
-		["761"] = 791,
-		["762"] = 792,
-		["763"] = 793,
-		["765"] = 796,
-		["766"] = 796,
+		["757"] = 789,
+		["758"] = 790,
+		["760"] = 788,
+		["761"] = 793,
+		["762"] = 794,
+		["763"] = 795,
+		["764"] = 795,
+		["765"] = 795,
+		["766"] = 795,
 		["767"] = 796,
-		["768"] = 796,
-		["770"] = 786,
-		["771"] = 799,
-		["772"] = 800,
-		["773"] = 799,
-		["774"] = 805,
-		["775"] = 806,
-		["776"] = 805,
-		["777"] = 808,
-		["778"] = 810,
-		["779"] = 808,
-		["780"] = 716,
-		["781"] = 708,
-		["782"] = 708,
-		["783"] = 708,
-		["784"] = 708,
-		["785"] = 708,
-		["786"] = 708,
-		["787"] = 708,
-		["788"] = 716,
-		["790"] = 716,
-		["792"] = 816,
-		["793"] = 824,
-		["794"] = 816,
-		["795"] = 824,
-		["796"] = 826,
-		["797"] = 827,
-		["798"] = 826,
-		["799"] = 829,
-		["800"] = 830,
+		["768"] = 797,
+		["769"] = 798,
+		["770"] = 799,
+		["771"] = 800,
+		["773"] = 803,
+		["774"] = 803,
+		["775"] = 803,
+		["776"] = 803,
+		["778"] = 793,
+		["779"] = 806,
+		["780"] = 807,
+		["781"] = 806,
+		["782"] = 812,
+		["783"] = 813,
+		["784"] = 812,
+		["785"] = 815,
+		["786"] = 817,
+		["787"] = 815,
+		["788"] = 723,
+		["789"] = 715,
+		["790"] = 715,
+		["791"] = 715,
+		["792"] = 715,
+		["793"] = 715,
+		["794"] = 715,
+		["795"] = 715,
+		["796"] = 723,
+		["798"] = 723,
+		["800"] = 823,
 		["801"] = 831,
-		["803"] = 829,
-		["804"] = 834,
-		["805"] = 835,
-		["806"] = 836,
-		["808"] = 834,
-		["809"] = 839,
-		["810"] = 840,
-		["811"] = 839,
-		["812"] = 844,
-		["813"] = 845,
-		["814"] = 844,
-		["815"] = 824,
-		["816"] = 816,
-		["817"] = 816,
-		["818"] = 816,
-		["819"] = 816,
-		["820"] = 816,
-		["821"] = 816,
-		["822"] = 816,
-		["823"] = 816,
-		["824"] = 824,
-		["826"] = 824,
-		["828"] = 850,
-		["829"] = 858,
-		["830"] = 850,
-		["831"] = 858,
-		["832"] = 860,
-		["833"] = 861,
-		["834"] = 860,
-		["835"] = 863,
-		["836"] = 864,
-		["838"] = 863,
-		["839"] = 867,
-		["840"] = 868,
-		["841"] = 867,
-		["842"] = 874,
-		["843"] = 875,
-		["844"] = 874,
-		["845"] = 858,
-		["846"] = 850,
-		["847"] = 850,
-		["848"] = 850,
-		["849"] = 850,
-		["850"] = 850,
-		["851"] = 850,
-		["852"] = 850,
-		["853"] = 858,
-		["855"] = 858,
-		["857"] = 880,
-		["858"] = 888,
-		["859"] = 880,
-		["860"] = 888,
-		["861"] = 892,
-		["862"] = 893,
-		["863"] = 894,
-		["864"] = 895,
-		["865"] = 895,
+		["802"] = 823,
+		["803"] = 831,
+		["804"] = 833,
+		["805"] = 834,
+		["806"] = 833,
+		["807"] = 836,
+		["808"] = 837,
+		["809"] = 838,
+		["811"] = 836,
+		["812"] = 841,
+		["813"] = 842,
+		["814"] = 843,
+		["816"] = 841,
+		["817"] = 846,
+		["818"] = 847,
+		["819"] = 846,
+		["820"] = 851,
+		["821"] = 852,
+		["822"] = 851,
+		["823"] = 831,
+		["824"] = 823,
+		["825"] = 823,
+		["826"] = 823,
+		["827"] = 823,
+		["828"] = 823,
+		["829"] = 823,
+		["830"] = 823,
+		["831"] = 823,
+		["832"] = 831,
+		["834"] = 831,
+		["836"] = 857,
+		["837"] = 865,
+		["838"] = 857,
+		["839"] = 865,
+		["840"] = 867,
+		["841"] = 868,
+		["842"] = 867,
+		["843"] = 870,
+		["844"] = 871,
+		["846"] = 870,
+		["847"] = 874,
+		["848"] = 875,
+		["849"] = 874,
+		["850"] = 881,
+		["851"] = 882,
+		["852"] = 881,
+		["853"] = 865,
+		["854"] = 857,
+		["855"] = 857,
+		["856"] = 857,
+		["857"] = 857,
+		["858"] = 857,
+		["859"] = 857,
+		["860"] = 857,
+		["861"] = 865,
+		["863"] = 865,
+		["865"] = 887,
 		["866"] = 895,
-		["867"] = 895,
+		["867"] = 887,
 		["868"] = 895,
-		["870"] = 892,
-		["871"] = 898,
-		["872"] = 899,
-		["873"] = 900,
-		["875"] = 898,
-		["876"] = 903,
-		["877"] = 904,
-		["878"] = 905,
-		["879"] = 906,
+		["869"] = 899,
+		["870"] = 900,
+		["871"] = 901,
+		["872"] = 902,
+		["873"] = 902,
+		["874"] = 902,
+		["875"] = 902,
+		["876"] = 902,
+		["878"] = 899,
+		["879"] = 905,
 		["880"] = 906,
-		["881"] = 906,
-		["882"] = 906,
-		["883"] = 906,
-		["884"] = 906,
-		["885"] = 906,
-		["887"] = 903,
-		["888"] = 909,
-		["889"] = 910,
-		["890"] = 909,
-		["891"] = 914,
-		["892"] = 915,
-		["893"] = 914,
-		["894"] = 888,
-		["895"] = 880,
-		["896"] = 880,
-		["897"] = 880,
-		["898"] = 880,
-		["899"] = 880,
-		["900"] = 880,
-		["901"] = 880,
-		["902"] = 888,
-		["904"] = 888,
-		["906"] = 921,
-		["907"] = 932,
-		["908"] = 921,
-		["909"] = 932,
-		["911"] = 932,
-		["912"] = 940,
-		["913"] = 921,
-		["914"] = 945,
-		["915"] = 946,
-		["916"] = 947,
-		["917"] = 948,
-		["918"] = 949,
-		["919"] = 951,
-		["920"] = 952,
-		["921"] = 945,
-		["922"] = 954,
-		["923"] = 955,
-		["924"] = 955,
+		["881"] = 907,
+		["883"] = 905,
+		["884"] = 910,
+		["885"] = 911,
+		["886"] = 912,
+		["887"] = 913,
+		["888"] = 913,
+		["889"] = 913,
+		["890"] = 913,
+		["891"] = 913,
+		["892"] = 913,
+		["893"] = 913,
+		["895"] = 910,
+		["896"] = 916,
+		["897"] = 917,
+		["898"] = 916,
+		["899"] = 921,
+		["900"] = 922,
+		["901"] = 921,
+		["902"] = 895,
+		["903"] = 887,
+		["904"] = 887,
+		["905"] = 887,
+		["906"] = 887,
+		["907"] = 887,
+		["908"] = 887,
+		["909"] = 887,
+		["910"] = 895,
+		["912"] = 895,
+		["914"] = 928,
+		["915"] = 939,
+		["916"] = 928,
+		["917"] = 939,
+		["919"] = 939,
+		["920"] = 947,
+		["921"] = 928,
+		["922"] = 952,
+		["923"] = 953,
+		["924"] = 954,
 		["925"] = 955,
-		["926"] = 955,
-		["927"] = 954,
-		["928"] = 957,
-		["929"] = 958,
-		["930"] = 959,
-		["931"] = 957,
-		["932"] = 961,
+		["926"] = 956,
+		["927"] = 958,
+		["928"] = 959,
+		["929"] = 952,
+		["930"] = 961,
+		["931"] = 962,
+		["932"] = 962,
 		["933"] = 962,
-		["934"] = 963,
-		["935"] = 964,
-		["937"] = 961,
-		["938"] = 967,
-		["939"] = 968,
-		["940"] = 967,
-		["941"] = 970,
-		["942"] = 971,
-		["943"] = 972,
-		["944"] = 973,
-		["945"] = 974,
-		["948"] = 977,
-		["950"] = 970,
-		["951"] = 981,
-		["952"] = 982,
+		["934"] = 962,
+		["935"] = 961,
+		["936"] = 964,
+		["937"] = 965,
+		["938"] = 966,
+		["939"] = 964,
+		["940"] = 968,
+		["941"] = 969,
+		["942"] = 970,
+		["943"] = 971,
+		["945"] = 968,
+		["946"] = 974,
+		["947"] = 975,
+		["948"] = 974,
+		["949"] = 977,
+		["950"] = 978,
+		["951"] = 979,
+		["952"] = 980,
 		["953"] = 981,
-		["954"] = 991,
-		["955"] = 992,
-		["956"] = 991,
-		["957"] = 996,
-		["958"] = 997,
-		["959"] = 996,
-		["960"] = 932,
-		["961"] = 921,
-		["962"] = 921,
-		["963"] = 921,
-		["964"] = 921,
-		["965"] = 921,
-		["966"] = 921,
-		["967"] = 921,
-		["968"] = 921,
-		["969"] = 921,
-		["970"] = 921,
-		["971"] = 932,
-		["973"] = 932,
-		["975"] = 1001,
-		["976"] = 1008,
-		["977"] = 1001,
-		["978"] = 1008,
-		["979"] = 1009,
-		["980"] = 1009,
-		["981"] = 1008,
-		["982"] = 1001,
-		["983"] = 1001,
-		["984"] = 1001,
-		["985"] = 1001,
-		["986"] = 1001,
-		["987"] = 1001,
-		["988"] = 1001,
-		["989"] = 1008,
+		["956"] = 984,
+		["958"] = 977,
+		["959"] = 988,
+		["960"] = 989,
+		["961"] = 988,
+		["962"] = 998,
+		["963"] = 999,
+		["964"] = 998,
+		["965"] = 1003,
+		["966"] = 1004,
+		["967"] = 1003,
+		["968"] = 939,
+		["969"] = 928,
+		["970"] = 928,
+		["971"] = 928,
+		["972"] = 928,
+		["973"] = 928,
+		["974"] = 928,
+		["975"] = 928,
+		["976"] = 928,
+		["977"] = 928,
+		["978"] = 928,
+		["979"] = 939,
+		["981"] = 939,
+		["983"] = 1008,
+		["984"] = 1015,
+		["985"] = 1008,
+		["986"] = 1015,
+		["987"] = 1016,
+		["988"] = 1016,
+		["989"] = 1015,
+		["990"] = 1008,
 		["991"] = 1008,
+		["992"] = 1008,
+		["993"] = 1008,
+		["994"] = 1008,
+		["995"] = 1008,
+		["996"] = 1008,
+		["997"] = 1015,
+		["999"] = 1015,
 	}
 )
 local g = {}
@@ -1394,19 +1401,27 @@ function C.prototype.OnCustomTakeDamage(self, O)
 	self.S_custom_effect = self.S_custom_effect + y
 	self:customAbilityTrigger()
 end
-function C.prototype.EOM_GetModifierIncomingDamagePercentage(self, E)
-	if IsServer() and self.r_56_health_pct_per > 0 and self.r_56_damage > 0 then
-		local G = self:GetParent()
-		local u = 0
-		if G:HasModifier("modifier_sect_health_197_buff") then
-			u = G:GetMaxHealth()
-		else
-			u = G:GetHealthDeficit()
+function C.prototype.GetIndomitableSoulDamageReduction(self)
+	if IsServer() then
+		local P = self.r_56_health_pct_per
+		local y = self.r_56_damage
+		local Q = self.r_56_max
+		if P > 0 and y > 0 then
+			local G = self:GetParent()
+			local u = 0
+			if G:HasModifier("modifier_sect_health_197_buff") then
+				u = G:GetMaxHealth()
+			else
+				u = G:GetHealthDeficit()
+			end
+			return math.min(Q, math.floor(u / P) * y)
 		end
-		local P = math.min(self.r_56_max, math.floor(u / self.r_56_health_pct_per) * self.r_56_damage)
-		return -P
+		return 0
 	end
 	return 0
+end
+function C.prototype.EOM_GetModifierIncomingDamagePercentage(self, E)
+	return -self:GetIndomitableSoulDamageReduction()
 end
 function C.prototype.customAbilityTrigger(self)
 	if self:GetParent():IsNeutral() then
@@ -1419,9 +1434,9 @@ function C.prototype.customAbilityTrigger(self)
 		local w = math.floor(self.S_custom_effect / self.trigger_health_loss)
 		if w >= 1 then
 			self.S_custom_effect = self.S_custom_effect % self.trigger_health_loss
-			local Q = self:GetParent():GetHeroBase():getCustomAbilityEffectModifier()
-			if Q ~= nil then
-				Q:customAbilityEffect()
+			local R = self:GetParent():GetHeroBase():getCustomAbilityEffectModifier()
+			if R ~= nil then
+				R:customAbilityEffect()
 			end
 		end
 	end
@@ -1453,15 +1468,15 @@ C = e(
 )
 g.modifier_sect_health = C
 g.modifier_sect_health_buff = c()
-local R = g.modifier_sect_health_buff
-R.name = "modifier_sect_health_buff"
-d(R, l)
-function R.prototype.____constructor(self, ...)
+local S = g.modifier_sect_health_buff
+S.name = "modifier_sect_health_buff"
+d(S, l)
+function S.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.record = 0
 	self.last_value = 0
 end
-function R.prototype.GetAbilitySpecialValue(self)
+function S.prototype.GetAbilitySpecialValue(self)
 	self.n_8_health = self:GetSectSpecialValueFor("8", "n_8_health")
 	self.n_8_health_base = self:GetSectSpecialValueFor("8", "n_8_health_base")
 	self.n_24_health = self:GetSectSpecialValueFor("24", "n_24_health")
@@ -1471,103 +1486,103 @@ function R.prototype.GetAbilitySpecialValue(self)
 	self.r_57_health_pct = self:GetSectSpecialValueFor("57", "r_57_health_pct")
 	self.sr_197_health = self:GetSectSpecialValueFor("197", "sr_197_health")
 end
-function R.prototype.OnCreated(self, E)
+function S.prototype.OnCreated(self, E)
 	if IsServer() then
-		local S = self:GetParent():GetPlayerOwnerID()
-		local T = PlayerData:getHero(S)
-		local U = T and T:getAbilityData(true)
-		local V = 0
+		local T = self:GetParent():GetPlayerOwnerID()
+		local U = PlayerData:getHero(T)
+		local V = U and U:getAbilityData(true)
+		local W = 0
 		if self.n_8_health > 0 then
-			local W = U and U.sect_attack
-			local X = W and W.exp or 0
-			V = V + GetSectAttackModifiedValue(self:GetParent(), X * self.n_8_health + self.n_8_health_base)
+			local X = V and V.sect_attack
+			local Y = X and X.exp or 0
+			W = W + GetSectAttackModifiedValue(self:GetParent(), Y * self.n_8_health + self.n_8_health_base)
 		end
 		if self.n_24_health > 0 then
-			local Y = U and U.sect_evade
-			local X = Y and Y.exp or 0
-			local w = X * self.n_24_health
-			V = V + w
-			V = V + self.n_24_health_base
+			local Z = V and V.sect_evade
+			local Y = Z and Z.exp or 0
+			local w = Y * self.n_24_health
+			W = W + w
+			W = W + self.n_24_health_base
 		end
 		if self.n_39_health > 0 then
-			local Z = U and U.sect_crit
-			local X = Z and Z.exp or 0
-			local w = X * self.n_39_health
-			V = V + self.n_39_health_base
-			V = V + w
+			local _ = V and V.sect_crit
+			local Y = _ and _.exp or 0
+			local w = Y * self.n_39_health
+			W = W + self.n_39_health_base
+			W = W + w
 		end
 		if self.sr_197_health > 0 then
-			V = V + self.sr_197_health
+			W = W + self.sr_197_health
 		end
-		self.record = V
-		V = math.floor(V)
-		self.last_value = V
-		self:IncrementStackCount(V)
+		self.record = W
+		W = math.floor(W)
+		self.last_value = W
+		self:IncrementStackCount(W)
 		self:StartIntervalThink(0.25)
 		self.r_57_health_pct_modified = self.r_57_health_pct
 	end
 end
-function R.prototype.OnRefresh(self, E)
+function S.prototype.OnRefresh(self, E)
 	if IsServer() then
 		self:IncrementStackCount(E.iStackCount)
 	end
 end
-function R.prototype.OnIntervalThink(self)
+function S.prototype.OnIntervalThink(self)
 	if IsServer() then
-		local V = math.floor(GetSectHealthModifiedValue(self:GetParent(), self.record))
-		if V ~= self.last_value then
-			local _ = V - self.last_value
-			self:IncrementStackCount(_)
-			self.last_value = V
+		local W = math.floor(GetSectHealthModifiedValue(self:GetParent(), self.record))
+		if W ~= self.last_value then
+			local a0 = W - self.last_value
+			self:IncrementStackCount(a0)
+			self.last_value = W
 			self:GetParent():CalculateHealth()
 		end
 		self.r_57_health_pct_modified = GetSectHealthModifiedValue(self:GetParent(), self.r_57_health_pct)
 	end
 end
-function R.prototype.EDeclareFunctions(self)
+function S.prototype.EDeclareFunctions(self)
 	return {
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS,
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS_PERCENTAGE,
 	}
 end
-function R.prototype.EOM_GetModifierHealthBonus(self)
+function S.prototype.EOM_GetModifierHealthBonus(self)
 	return self:GetStackCount()
 end
-function R.prototype.EOM_GetModifierHealthBonusPercentage(self)
+function S.prototype.EOM_GetModifierHealthBonusPercentage(self)
 	return self.r_57_health_pct_modified
 end
-R = e(
+S = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = true, AllowIllusionDuplicate = false }
 	) },
-	R
+	S
 )
-g.modifier_sect_health_buff = R
+g.modifier_sect_health_buff = S
 g.modifier_sect_health_buff_custom = c()
-local a0 = g.modifier_sect_health_buff_custom
-a0.name = "modifier_sect_health_buff_custom"
-d(a0, l)
-function a0.prototype.GetAbilitySpecialValue(self)
+local a1 = g.modifier_sect_health_buff_custom
+a1.name = "modifier_sect_health_buff_custom"
+d(a1, l)
+function a1.prototype.GetAbilitySpecialValue(self)
 	self.trigger_value = self:GetCustomAbilityValueFor("sect_health_effect", "value")
 end
-function a0.prototype.OnCreated(self, E)
+function a1.prototype.OnCreated(self, E)
 	if IsServer() then
 		self:IncrementStackCount()
 	end
 end
-function a0.prototype.OnRefresh(self, E)
+function a1.prototype.OnRefresh(self, E)
 	if IsServer() then
 		self:IncrementStackCount()
 	end
 end
-function a0.prototype.EDeclareFunctions(self)
+function a1.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS }
 end
-function a0.prototype.EOM_GetModifierHealthBonus(self)
+function a1.prototype.EOM_GetModifierHealthBonus(self)
 	return self:GetStackCount() * self.trigger_value
 end
-a0 = e(
+a1 = e(
 	{
 		m(
 			a,
@@ -1581,51 +1596,51 @@ a0 = e(
 			}
 		),
 	},
-	a0
+	a1
 )
-g.modifier_sect_health_buff_custom = a0
+g.modifier_sect_health_buff_custom = a1
 g.modifier_sect_health_debuff = c()
-local a1 = g.modifier_sect_health_debuff
-a1.name = "modifier_sect_health_debuff"
-d(a1, l)
-function a1.prototype.GetAbilitySpecialValue(self)
+local a2 = g.modifier_sect_health_debuff
+a2.name = "modifier_sect_health_debuff"
+d(a2, l)
+function a2.prototype.GetAbilitySpecialValue(self)
 	self.n_51_gain_reduce_pct = self:GetSectSpecialValueFor("51", "n_51_gain_reduce_pct")
 end
-function a1.prototype.OnCreated(self, E)
+function a2.prototype.OnCreated(self, E)
 	if IsServer() then
 	end
 end
-function a1.prototype.EDeclareFunctions(self)
+function a2.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_SECT_GAIN_PERCENTAGE }
 end
-function a1.prototype.EOM_GetModifierHealthSectGainPercentage(self)
+function a2.prototype.EOM_GetModifierHealthSectGainPercentage(self)
 	return -self.n_51_gain_reduce_pct
 end
-a1 = e(
+a2 = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = true, AllowIllusionDuplicate = false }
 	) },
-	a1
+	a2
 )
-g.modifier_sect_health_debuff = a1
+g.modifier_sect_health_debuff = a2
 g.modifier_sect_health_52_buff = c()
-local a2 = g.modifier_sect_health_52_buff
-a2.name = "modifier_sect_health_52_buff"
-d(a2, l)
-function a2.prototype.GetAbilitySpecialValue(self)
+local a3 = g.modifier_sect_health_52_buff
+a3.name = "modifier_sect_health_52_buff"
+d(a3, l)
+function a3.prototype.GetAbilitySpecialValue(self)
 	self.n_52_restore = self:GetSectSpecialValueFor("52", "n_52_restore")
 	if IsServer() then
 		self.trait_135_enable =
 			AbilityUpgrades:HasAbilityMechanicsUpgrade(self:GetParent():GetPlayerOwnerID(), "sect_health", "trait_135")
 	end
 end
-function a2.prototype.OnCreated(self, E)
+function a3.prototype.OnCreated(self, E)
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
 end
-function a2.prototype.OnIntervalThink(self)
+function a3.prototype.OnIntervalThink(self)
 	if IsServer() then
 		local u = (self.trait_135_enable or self:GetParent():HasModifier("modifier_sect_health_197_buff"))
 				and self:GetParent():GetMaxHealth()
@@ -1635,29 +1650,29 @@ function a2.prototype.OnIntervalThink(self)
 		)
 	end
 end
-function a2.prototype.EDeclareFunctions(self)
+function a3.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ULTI_POWER }
 end
-function a2.prototype.EOM_GetModifierUltiPower(self)
+function a3.prototype.EOM_GetModifierUltiPower(self)
 	return self:GetStackCount()
 end
-a2 = e(
+a3 = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = true, AllowIllusionDuplicate = false }
 	) },
-	a2
+	a3
 )
-g.modifier_sect_health_52_buff = a2
+g.modifier_sect_health_52_buff = a3
 g.modifier_sect_health_153_buff = c()
-local a3 = g.modifier_sect_health_153_buff
-a3.name = "modifier_sect_health_153_buff"
-d(a3, l)
-function a3.prototype.____constructor(self, ...)
+local a4 = g.modifier_sect_health_153_buff
+a4.name = "modifier_sect_health_153_buff"
+d(a4, l)
+function a4.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.record = 0
 end
-function a3.prototype.GetAbilitySpecialValue(self)
+function a4.prototype.GetAbilitySpecialValue(self)
 	self.trait_135_tick = self:GetAbilitySpecialValueFor("bonus_tick")
 	self.interval_reduce = self:GetAbilitySpecialValueFor("interval_reduce")
 	self.sr_153_health_pct = self:GetSectSpecialValueFor("153", "sr_153_health_pct")
@@ -1665,26 +1680,26 @@ function a3.prototype.GetAbilitySpecialValue(self)
 	self.sr_153_interval = self:GetSectHealthIntervalBonus(self:GetSectSpecialValueFor("153", "sr_153_interval"))
 	self.sr_153_max = self:GetSectSpecialValueFor("153", "sr_153_max")
 end
-function a3.prototype.GetSectHealthIntervalBonus(self, N)
+function a4.prototype.GetSectHealthIntervalBonus(self, N)
 	return math.max(
 		0.05,
 		N + self.trait_135_tick - self.interval_reduce - GetPropertySectHealthIntervalBonus(self.parent)
 	)
 end
-function a3.prototype.UpdateSectHealthIntervalBonus(self)
+function a4.prototype.UpdateSectHealthIntervalBonus(self)
 	self.sr_153_interval = self:GetSectHealthIntervalBonus(self:GetSectSpecialValueFor("153", "sr_153_interval"))
 	self:StartIntervalThink(self:get153Interval())
 end
-function a3.prototype.OnCreated(self, E)
+function a4.prototype.OnCreated(self, E)
 	if IsServer() then
 		self.target = self:GetParent():GetEnemy()
 		self:StartIntervalThink(self:get153Interval())
 	end
 end
-function a3.prototype.get153Interval(self)
+function a4.prototype.get153Interval(self)
 	return self.sr_153_interval
 end
-function a3.prototype.OnIntervalThink(self)
+function a4.prototype.OnIntervalThink(self)
 	if IsServer() then
 		local q = self:GetParent()
 		if not IsInjurable(self.target, q) then
@@ -1694,16 +1709,16 @@ function a3.prototype.OnIntervalThink(self)
 		self.ability:TriggerByName("153")
 	end
 end
-function a3.prototype.EDeclareEvents(self)
+function a4.prototype.EDeclareEvents(self)
 	return {}
 end
-function a3.prototype.EDeclareFunctions(self)
+function a4.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS }
 end
-function a3.prototype.EOM_GetModifierHealthBonus(self)
+function a4.prototype.EOM_GetModifierHealthBonus(self)
 	return self:GetStackCount() * self.sr_153_health_per
 end
-a3 = e(
+a4 = e(
 	{
 		m(
 			a,
@@ -1719,20 +1734,20 @@ a3 = e(
 			}
 		),
 	},
-	a3
+	a4
 )
-g.modifier_sect_health_153_buff = a3
+g.modifier_sect_health_153_buff = a4
 g.modifier_sect_health_197_buff = c()
-local a4 = g.modifier_sect_health_197_buff
-a4.name = "modifier_sect_health_197_buff"
-d(a4, l)
-function a4.prototype.OnCreated(self, E) end
-a4 = e(
+local a5 = g.modifier_sect_health_197_buff
+a5.name = "modifier_sect_health_197_buff"
+d(a5, l)
+function a5.prototype.OnCreated(self, E) end
+a5 = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	a4
+	a5
 )
-g.modifier_sect_health_197_buff = a4
+g.modifier_sect_health_197_buff = a5
 return g

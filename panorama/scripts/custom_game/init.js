@@ -3,105 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
 
 'use strict';
-
-// ---------------- NetTable centralized listener ----------------
-// init.js is loaded once by custom_ui_manifest. Keep the shared listener hub
-// here so loading common.js in another HUD context cannot reset other HUDs.
-(function InitNetTableListenerHub() {
-	if (GameUI.CustomUIConfig().__NETTABLE_LISTENER_INIT_DONE__) {
-		return;
-	}
-	const customUIConfig = GameUI.CustomUIConfig();
-	customUIConfig.__NETTABLE_LISTENER_INIT_DONE__ = true;
-	const previousHub = customUIConfig.__NETTABLE_LISTENER_HUB__;
-	const nativeAPI = customUIConfig.__NETTABLE_NATIVE_API__ ?? {
-		subscribe: previousHub?.rawSubscribe ?? CustomNetTables.SubscribeNetTableListener.bind(CustomNetTables),
-		unsubscribe: previousHub?.rawUnsubscribe ?? CustomNetTables.UnsubscribeNetTableListener.bind(CustomNetTables),
-	};
-	customUIConfig.__NETTABLE_NATIVE_API__ = nativeAPI;
-	customUIConfig.__NETTABLE_LISTENER_NEXT_ID__ ??= 1000000000;
-
-	if (previousHub?.dispose) {
-		previousHub.dispose();
-	} else if (previousHub?.tables) {
-		// Compatibility cleanup for the previous Hub implementation.
-		for (const tableName in previousHub.tables) {
-			const tableState = previousHub.tables[tableName];
-			if (tableState && tableState.realListenerID != -1) {
-				nativeAPI.unsubscribe(tableState.realListenerID);
-			}
-		}
-	}
-
-	const tables = {};
-	const idToTable = {};
-
-	function subscribe(tableName, callback) {
-		let table = tables[tableName];
-		if (!table) {
-			table = {
-				listenerID: -1,
-				callbacks: {},
-			};
-			table.listenerID = nativeAPI.subscribe(tableName, (_tableName, key, value) => {
-				for (const id in table.callbacks) {
-					table.callbacks[id](key, value);
-				}
-			});
-			tables[tableName] = table;
-		}
-
-		const id = ++customUIConfig.__NETTABLE_LISTENER_NEXT_ID__;
-		table.callbacks[id] = callback;
-		idToTable[id] = tableName;
-		return id;
-	}
-
-	function unsubscribe(id) {
-		const tableName = idToTable[id];
-		if (tableName == undefined) {
-			return false;
-		}
-
-		delete idToTable[id];
-		const table = tables[tableName];
-		if (!table) {
-			return true;
-		}
-
-		delete table.callbacks[id];
-		if (Object.keys(table.callbacks).length == 0) {
-			nativeAPI.unsubscribe(table.listenerID);
-			delete tables[tableName];
-		}
-		return true;
-	}
-
-	function dispose() {
-		for (const tableName in tables) {
-			nativeAPI.unsubscribe(tables[tableName].listenerID);
-			delete tables[tableName];
-		}
-		for (const id in idToTable) {
-			delete idToTable[id];
-		}
-	}
-
-	const hub = { subscribe, unsubscribe, dispose };
-	customUIConfig.__NETTABLE_LISTENER_HUB__ = hub;
-	CustomNetTables.UnsubscribeNetTableListener = function (id) {
-		if (unsubscribe(id)) {
-			return;
-		}
-		return nativeAPI.unsubscribe(id);
-	};
-})();
 
 // request相关
 if (GameUI.CustomUIConfig()._Request_QueueIndex == undefined) {

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -192,7 +192,8 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
-			"stack": 20,
+			"chance": 15,
+			"damage_pct": 50,
 		},
 	},
 	"skywrath_mage_shard": {
@@ -1124,6 +1125,18 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
 			"upgrade_point": 1,
+		},
+	},
+	"bloodseeker_shard": {
+		"Hero": "bloodseeker",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/bloodseeker",
+		"ShardLevel": 2,
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"regen_health_pct": 50,
 		},
 	},
 };

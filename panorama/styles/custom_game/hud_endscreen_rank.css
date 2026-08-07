@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2909,6 +2909,11 @@
 	flow-children: down;
 }
 
+#RankAndRewards.RankMatch
+{
+	padding-top: 78px;
+}
+
 #RankAndRewards #RankInfo
 {
 	width: 100%;
@@ -2916,15 +2921,9 @@
 	z-index: 1;
 }
 
-#RankAndRewards #RankLabels
+#RankAndRewards #RankTitle
 {
-	margin-top: 70px;
-	margin-left: 230px;
-	flow-children: down;
-}
-
-#RankAndRewards #RankLabels #RankTitle
-{
+	margin-top: 60px;
 	height: 64px;
 	vertical-align: center;
 	font-size: 60px;
@@ -2933,7 +2932,7 @@
 	text-shadow: 0px 1px 2px 2 rgba(8, 8, 33, 0.82);
 }
 
-#RankAndRewards #RankLabels #EncouragementText
+#RankAndRewards #EncouragementText
 {
 	margin-top: 8px;
 	height: 32px;
@@ -2944,13 +2943,13 @@
 	text-shadow: 0px 1px 2px 2 rgba(8, 8, 33, 0.82);
 }
 
-#RankAndRewards #RankLabels #EncouragementText.english
+#RankAndRewards #EncouragementText.english
 {
 	vertical-align: center;
 	font-size: 18px;
 }
 
-#RankAndRewards #RankLabels #EncouragementText.russian
+#RankAndRewards #EncouragementText.russian
 {
 	vertical-align: center;
 	font-size: 16px;
@@ -2979,6 +2978,12 @@
 	font-size: 100px;
 	color: #FFFFFF;
 	text-shadow: 0px 0px 8px 8 rgba(15, 7, 43, 0.74);
+}
+
+#RankAndRewards #RankLabels
+{
+	margin-left: 230px;
+	flow-children: down;
 }
 
 #RankAndRewards #Medal
@@ -3226,22 +3231,38 @@
 
 #PlayerRankScore
 {
-	align: right top;
-	margin-top: 50px;
-	margin-right: 54px;
+	flow-children: right;
+	margin-bottom: 20px;
+}
+
+#PlayerRankScore #RankRightInfo
+{
+	height: 100%;
+	flow-children: down;
+}
+
+#PlayerRankScore #RankRightBottomInfo
+{
+	flow-children: right;
+}
+
+#PlayerRankScore #RankScoreInfo
+{
+	height: 100%;
 	flow-children: down;
 }
 
 #PlayerRankScore .RankTierIcon
 {
 	horizontal-align: center;
-	ui-scale: 105%;
+	ui-scale: 90%;
 }
 
 #PlayerRankScore #RankScoreMedal
 {
+	flow-children: right;
 	x: 20px;
-	horizontal-align: center;
+	vertical-align: center;
 }
 
 #PlayerRankScore #RankScoreMedal .EOM_Icon
@@ -3253,7 +3274,7 @@
 #PlayerRankScore #RankScoreMedal #RankScoreMedalInfo
 {
 	vertical-align: center;
-	margin-left: 20px;
+	margin-left: -20px;
 	min-width: 100px;
 	height: 26px;
 	background-color: gradient(linear, 0% 0%, 100% 0%, from(#000000), to(#00000033));
@@ -3272,11 +3293,32 @@
 	text-shadow: 0px 1px 2px 2 rgba(8, 8, 33, 0.82);
 }
 
+#PlayerRankScore #RankScoreMedal #ModifyScore
+{
+	margin-left: 4px;
+	vertical-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	font-size: 14px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 rgba(15, 7, 43, 0.74);
+}
+
+#PlayerRankScore #RankScoreMedal #ModifyScore.Up
+{
+	color: #f4e34c;
+}
+
+#PlayerRankScore #RankScoreMedal #ModifyScore.Down
+{
+	color: #ff6262;
+}
+
 #PlayerRankScore #RankScoreProgressBar
 {
 	vertical-align: center;
 	z-index: -1;
-	margin-left: 25px;
+	margin-left: -25px;
 	width: 150px;
 	height: 24px;
 	border-radius: 4px;
@@ -3362,7 +3404,6 @@
 {
 	height: 52px;
 	min-width: 52px;
-	margin-left: 160px;
 	vertical-align: center;
 	flow-children: right;
 }
@@ -3376,6 +3417,7 @@
 
 #PlayerRankScore #RankAlarm
 {
+	ui-scale: 80%;
 	horizontal-align: center;
 	height: 50px;
 	width: fit-children;
@@ -3409,8 +3451,8 @@
 
 #PlayerRankScore .PeakScore
 {
+	ui-scale: 80%;
 	flow-children: none;
-	horizontal-align: center;
 }
 
 #PlayerRankScore .PeakScore.NoRankScore
@@ -3419,12 +3461,17 @@
 	margin-right: 60px;
 }
 
+#PlayerRankScore .PeakScore.NoRankScore .PeakScoreLabel
+{
+	width: 150px;
+}
+
 #PlayerRankScore .PeakScore .PeakScoreLabel
 {
 	margin-left: 24px;
 	flow-children: right;
 	vertical-align: center;
-	width: 150px;
+	width: 100px;
 	height: 32px;
 	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.1, #00000088), color-stop(0.8, #00000088), to(#00000000));
 }
@@ -4135,4 +4182,284 @@
 	font-size: 24px;
 	color: #f7f4a5;
 	text-shadow: 0px 1px 3px 3 rgba(8, 8, 33, 0.82);
+}
+
+#WeeklyRankInfo
+{
+	align: right top;
+	margin-top: 70px;
+	margin-right: 80px;
+	flow-children: down;
+}
+
+#WeeklyRankInfo #WeeklyMatchTitleLabel
+{
+	horizontal-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	color: gradient(linear, 0 0, 0 100%, from(#63A6FC), to(#D7E4FE));
+	text-shadow: 0 0px 4px 3 #000000;
+	margin-bottom: -20px;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow
+{
+	margin: 2px 0;
+	max-width: 200px;
+	min-width: 150px;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow .title
+{
+	width: 70px;
+	text-align: center;
+	margin-right: 10px;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow .info
+{
+	font-size: 18px;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow .info.nowscore
+{
+	font-family: Reaver;
+	font-weight: bold;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow .score
+{
+	margin-left: 4px;
+	font-family: Reaver;
+	font-size: 16px;
+	color: #f4e34c;
+	font-weight: bold;
+}
+
+#WeeklyRankInfo .WeeklyInfoRow Label
+{
+	text-overflow: shrink;
+	vertical-align: center;
+	font-size: 20px;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 1 rgba(8, 8, 33, 0.82);
+}
+
+#WeeklyRankInfo .WeeklyArrow
+{
+	vertical-align: center;
+	width: 14px;
+	height: 22px;
+	background-size: 100%;
+}
+
+#WeeklyRankInfo .WeeklyArrow.Up
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_arrow_up_png.vtex");
+}
+
+#WeeklyRankInfo .WeeklyArrow.Down
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_arrow_down_png.vtex");
+}
+
+#WeeklyRankInfo #WeeklyMatchDetailButton
+{
+	margin-top: 10px;
+	horizontal-align: center;
+}
+
+#WeeklyRankInfo #WeeklyMatchDetailButton Label
+{
+	font-size: 18px;
+	color: #f8e7bc;
+	text-shadow: 0px 0px 2px 1 #316999;
+	text-decoration: underline;
+}
+
+#WeeklyRankInfo .RankTierName
+{
+	width: 112px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_frame_txt_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+#WeeklyRankInfo .RankTierName Label
+{
+	align: center center;
+	font-size: 20px;
+	color: gradient(linear, 0 0, 0 100%, from(#C2DDFF), to(#F5F8FF));
+}
+
+.WeeklyRankIcon
+{
+	margin-top: 20px;
+	width: 232px;
+	height: 210px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 256px 256px;
+}
+
+.WeeklyRankIcon.Tier1
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_1_png.vtex");
+}
+
+.WeeklyRankIcon.Tier2
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_2_png.vtex");
+}
+
+.WeeklyRankIcon.Tier3
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_3_png.vtex");
+}
+
+.WeeklyRankIcon.Tier4
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_4_png.vtex");
+}
+
+.WeeklyRankIcon.Tier5
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_5_png.vtex");
+}
+
+.WeeklyRankIcon.Tier6
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_6_png.vtex");
+}
+
+#AchievementNotice
+{
+	width: 100%;
+	height: 100%;
+	x: 0px;
+	y: 0px;
+	z-index: 200;
+}
+
+#AchievementNoticeBackdrop
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+}
+
+#AchievementNoticeCard
+{
+	align: center center;
+	width: 100%;
+	height: 520px;
+	padding: 24px 28px 24px 28px;
+	flow-children: down;
+	background-color: #00000000;
+}
+
+#AchievementNoticeTitle
+{
+	horizontal-align: center;
+	margin-top: 20px;
+	font-size: 32px;
+	font-weight: bold;
+	color: #ffe6a8;
+	text-shadow: 0px 2px 4px 2 #000000;
+}
+
+#AchievementNoticeList
+{
+	width: fit-children;
+	max-width: 100%;
+	height: 340px;
+	margin-top: 8px;
+	flow-children: right;
+	horizontal-align: center;
+	padding: 0px 8px;
+}
+
+.AchievementNoticeCardItem
+{
+	width: 258px;
+	height: 314px;
+	margin: 8px 10px;
+	background-size: 100%;
+	flow-children: down;
+}
+
+.AchievementNoticeCardItem.red
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_red_png.vtex");
+}
+
+.AchievementNoticeCardItem.blue
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_blue_png.vtex");
+}
+
+.AchievementNoticeCardItem.green
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_green_png.vtex");
+}
+
+.AchievementNoticeCardItem.gold
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_gold_png.vtex");
+}
+
+.AchievementNoticeCardImage
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	margin-left: 2px;
+	width: 180px;
+	height: 180px;
+	background-size: 100%;
+}
+
+.AchievementNoticeCardName
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 22px;
+	font-size: 24px;
+	color: #92b1e4;
+	text-shadow: 0px 0px 2px 2 #000000;
+	text-overflow: shrink;
+}
+
+.AchievementNoticeCardScore
+{
+	horizontal-align: center;
+	text-align: center;
+	margin-top: 19px;
+	font-size: 20px;
+	color: #92b1e4;
+	text-overflow: shrink;
+}
+
+#AchievementNoticeConfirm
+{
+	horizontal-align: center;
+	width: 190px;
+	height: 52px;
+	margin-top: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#477fbe), to(#285183));
+	border: 1px solid #9fc8ff;
+	box-shadow: #00000066 0px 2px 4px 0px;
+}
+
+#AchievementNoticeConfirm:hover
+{
+	brightness: 1.2;
+}
+
+#AchievementNoticeConfirm Label
+{
+	align: center center;
+	font-size: 22px;
+	color: #ffffff;
 }

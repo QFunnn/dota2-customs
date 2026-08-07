@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -428,6 +428,491 @@ const InteractiveItemButton = props => {
   });
 };
 
+const language = $.Language().toLowerCase();
+const getSlotTypeIcon = type => {
+  switch (type) {
+    case 'gold':
+      return getSrcPath('treasure_shop/s14_icon_coin.png');
+    case 'equipment':
+      return getSrcPath('treasure_shop/s14_icon_equip.png');
+    case 'ability':
+      return getSrcPath('treasure_shop/s14_icon_card.png');
+    case 'artifact':
+      return getSrcPath('treasure_shop/s14_icon_item.png');
+    case 'rune':
+      return getSrcPath('treasure_shop/s14_icon_power.png');
+  }
+};
+const Treasure = () => {
+  let hotKeyCacheList = [];
+  const isHotKeyValid = key => {
+    if (hotKeyCacheList.includes(key)) return false;
+    hotKeyCacheList.push(key);
+    $.Schedule(0.03, () => {
+      let index = hotKeyCacheList.indexOf(key);
+      if (index != -1) {
+        hotKeyCacheList.splice(index, 1);
+      }
+    });
+    return true;
+  };
+  const [data, setData] = libs.createSignal();
+  const hasTreasureBingo = libs.createMemo(() => {
+    const displaySlots = data()?.package?.displaySlots ?? [];
+    let yellowCardCount = 0;
+    for (let index = 0; index < displaySlots.length; index++) {
+      if (displaySlots[index].uiRarity == 'yellow') {
+        yellowCardCount++;
+      }
+    }
+    return yellowCardCount >= 2;
+  });
+  libs.createEffect(libs.on(data, v => {
+    const cards = $("#TreasurePackageRewards");
+    let refresh_slot = v?.refresh_slot ?? -1;
+    if (refresh_slot == -2) {
+      return;
+    }
+    if (cards?.IsValid()) {
+      for (let index = 0; index < cards.GetChildCount(); index++) {
+        if (refresh_slot == -1 || index == refresh_slot) {
+          const card = cards.GetChild(index);
+          if (card?.IsValid()) {
+            card.TriggerClass("Animation");
+          }
+        }
+      }
+    }
+  }));
+  const [sectData, setSectData] = libs.createSignal(CustomNetTables.GetTableValue('sect_data', `ability_upgrade_${Players.GetLocalPlayer()}`) ?? {});
+  const receiveTreasure = () => GameEvents.SendCustomEventToServer('select_treasure', {});
+  let refreshEnable = true;
+  const refreshTreasure = () => {
+    if (!refreshEnable) return;
+    if (player_gold() < (data()?.refresh_cost ?? 10)) {
+      ErrorMessage("#dota_hud_error_not_enough_gold");
+      return;
+    }
+    refreshEnable = false;
+    $.Schedule(0.2, () => {
+      refreshEnable = true;
+    });
+    GameEvents.SendCustomEventToServer('refresh_treasure', {});
+  };
+  const player_data = netdata_utils.createNetTable("player_data", Players.GetLocalPlayer().toString());
+  const player_gold = () => player_data()?.gold ?? 0;
+  libs.onMount(() => {
+    const listener = useSyncDataKey('common', 'treasure', setData, Players.GetLocalPlayer());
+    const id = useClientSideEvent("listener_Hotkey", data => {
+      if (isSpectator()) return;
+      if (data && typeof data.event == "string") {
+        if (!isHotKeyValid(data.event)) return;
+        switch (data.event) {
+          case "refresh_ability_shop":
+            refreshTreasure();
+            break;
+        }
+      }
+    });
+    const sectListener = useNetTableKeyHasDefaultValue('sect_data', `ability_upgrade_${Players.GetLocalPlayer()}`, setSectData);
+    libs.onCleanup(() => {
+      GameEvents.Unsubscribe(id);
+      CustomNetTables.UnsubscribeNetTableListener(listener);
+      CustomNetTables.UnsubscribeNetTableListener(sectListener);
+    });
+  });
+  return libs.createComponent(EOM_Panel.EOM_Panel, {
+    id: "TreasureWindow",
+    className: language,
+    hittest: false,
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Panel", {
+            id: "TreasureBox"
+          }, null);
+          libs.createElement("Panel", {
+            id: "TreasureBoxBG"
+          }, _el$);
+        libs.insert(_el$, libs.createComponent(EOM_Panel.EOM_Panel, {
+          id: "TreasurePackages",
+          get children() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return data()?.package;
+              },
+              get children() {
+                return libs.createComponent(TreasurePackageCard, {
+                  get ["package"]() {
+                    return data()?.package;
+                  },
+                  get sectData() {
+                    return sectData();
+                  },
+                  onactivate: receiveTreasure,
+                  get hasTreasureBingo() {
+                    return hasTreasureBingo();
+                  }
+                });
+              }
+            });
+          }
+        }), null);
+        libs.insert(_el$, libs.createComponent(libs.Show, {
+          get when() {
+            return hasTreasureBingo();
+          },
+          get children() {
+            return libs.createElement("DOTAParticleScenePanel", {
+              id: "TreasureBingo",
+              particleName: "particles/eom/ui/ui_fx/ui_fx_mysterious_shop/ui_fx_mysterious_shop_01_flash_fx.vpcf",
+              squarePixels: true,
+              cameraOrigin: "0 0 600",
+              lookAt: "0 0 0",
+              fov: 34.8,
+              hittest: false,
+              particleonly: true
+            }, null);
+          }
+        }), null);
+        return _el$;
+      })(), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "TreasureActions",
+        flowChildren: "right",
+        get children() {
+          return [libs.createComponent(EOM_Button.EOM_BaseButton, {
+            className: "TreasureActionButton",
+            onactivate: refreshTreasure,
+            get enabled() {
+              return data()?.enable == true;
+            },
+            tooltip: "#Refresh",
+            get children() {
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                align: "left center",
+                marginLeft: '60px',
+                get children() {
+                  return [libs.createElement("Image", {
+                    id: "RefreshIcon",
+                    "class": "ActionImage"
+                  }, null), (() => {
+                    const _el$5 = libs.createElement("Panel", {
+                        id: "CostContainer"
+                      }, null);
+                      libs.createElement("Image", {
+                        id: "GoldIcon"
+                      }, _el$5);
+                    libs.insert(_el$5, libs.createComponent(GenericPanel.CLabel, {
+                      get classList() {
+                        return {
+                          NotEnough: player_gold() < (data()?.refresh_cost ?? 10)
+                        };
+                      },
+                      get text() {
+                        return data()?.refresh_cost ?? '10';
+                      }
+                    }), null);
+                    return _el$5;
+                  })()];
+                }
+              });
+            }
+          }), libs.createComponent(EOM_Button.EOM_BaseButton, {
+            className: "TreasureActionButton Confirm",
+            tooltip: "#TreasureAccept",
+            get enabled() {
+              return data()?.enable == true;
+            },
+            onactivate: receiveTreasure,
+            get children() {
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                align: "left center",
+                marginLeft: '60px',
+                get children() {
+                  return [libs.createElement("Image", {
+                    id: "PrepareIcon",
+                    "class": "ActionImage"
+                  }, null), libs.createComponent(GenericPanel.CLabel, {
+                    className: "CostLabel Confirm",
+                    text: "#Popup_Button_Confirm"
+                  })];
+                }
+              });
+            }
+          })];
+        }
+      })];
+    }
+  });
+};
+const TreasurePackageCard = props => (() => {
+  const _el$8 = libs.createElement("Panel", {}, null);
+  libs.setProp(_el$8, "className", "TreasurePackage");
+  libs.insert(_el$8, libs.createComponent(EOM_Panel.EOM_Panel, {
+    id: "TreasurePackageRewards",
+    get children() {
+      return libs.createComponent(libs.For, {
+        get each() {
+          return Object.values(props.package.displaySlots);
+        },
+        children: slot => libs.createComponent(TreasureSlotCard, {
+          slot: slot,
+          get sectData() {
+            return props.sectData;
+          },
+          get special() {
+            return props.package.special;
+          },
+          get hasTreasureBingo() {
+            return props.hasTreasureBingo;
+          }
+        })
+      });
+    }
+  }));
+  return _el$8;
+})();
+const TreasureAbilityReward = props => {
+  const abilities = () => props.slot.abilities ?? [props.slot.ability];
+  const isMaxList = libs.createMemo(() => {
+    const cached = {};
+    return abilities().flatMap((abilityID, index) => {
+      const level = cached[abilityID] ?? props.sectData[abilityID]?.level ?? 0;
+      cached[abilityID] = level + 1;
+      return level >= (KeyValues.AbilityUpgradesKv[abilityID]?.MaxLevel ?? 0) ? [index] : [];
+    });
+  });
+  return libs.createComponent(EOM_Panel.EOM_Panel, {
+    className: "TreasureRewardButtonMain",
+    get customTooltip() {
+      return {
+        name: 'roshan_reward',
+        ability_list: JSON.stringify(abilities()),
+        playerID: Players.GetLocalPlayer()
+      };
+    },
+    get children() {
+      return libs.createComponent(EOM_Panel.EOM_Panel, {
+        className: "TreasureRewardAbilityList",
+        get children() {
+          return libs.createComponent(libs.For, {
+            get each() {
+              return abilities();
+            },
+            children: (abilityID, index) => {
+              const sects = () => KeyValues.AbilityUpgradesKv[abilityID]?.sect?.split('|') ?? [];
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                get className() {
+                  return libs.classNames('TreasureRewardAbility', KeyValues.AbilityUpgradesKv[abilityID]?.rarity ?? props.slot.rarity, {
+                    isMaxLv: isMaxList().includes(index())
+                  });
+                },
+                get children() {
+                  return [libs.createComponent(SectAbility.SectAbilityImage, {
+                    sectAbilityID: abilityID
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "TreasureSectContainer",
+                    get children() {
+                      return libs.createComponent(libs.For, {
+                        get each() {
+                          return sects();
+                        },
+                        children: sectName => libs.createComponent(SectIcon.SectIcon, {
+                          sectName: sectName
+                        })
+                      });
+                    }
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "TreasureRewardAbilityMax"
+                  })];
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+};
+const TreasureGoldReward = props => libs.createComponent(EOM_Panel.EOM_Panel, {
+  className: "TreasureRewardButtonMain",
+  get children() {
+    return libs.createComponent(EOM_Panel.EOM_Panel, {
+      className: "TreasureRewardGold",
+      get children() {
+        return [libs.createComponent(EOM_Icon.EOM_Icon, {
+          size: "24",
+          get src() {
+            return getSrcPath('icon/icon_gold_bevel_psd.png');
+          }
+        }), libs.createComponent(EOM_Label.EOM_Label, {
+          get text() {
+            return `${props.amount}`;
+          }
+        })];
+      }
+    });
+  }
+});
+const TreasureSpecialReward = props => {
+  const name = () => props.slot.type == 'rune' ? props.slot.trait : props.slot.item;
+  const description = () => props.slot.type == 'equipment' ? getItemDescription(props.slot.item) : getAbilityDescription(name());
+  const noDescription = () => props.slot.type == 'equipment';
+  return libs.createComponent(EOM_Panel.EOM_Panel, {
+    get className() {
+      return libs.classNames('TreasureSpecialReward', `Type_${props.slot.type}`, {
+        noDescription: noDescription()
+      });
+    },
+    onmouseover: self => {
+      if (props.slot.type == 'equipment') {
+        ShowCustomTooltip(self, "equipment", {
+          itemname: props.slot.item,
+          showOverrideWarning: 0
+        });
+      } else if (props.slot.type == 'artifact' || props.slot.type == 'rune') {
+        let name = props.slot.type == 'artifact' ? props.slot.item : props.slot.trait;
+        if (hasKeyWord($.Localize("#DOTA_Tooltip_ability_" + name + "_description"))) {
+          ShowCustomTooltip(self, "keyword_list", {
+            keyword_list: JSON.stringify(getKeyWordList($.Localize("#DOTA_Tooltip_ability_" + name + "_description")))
+          });
+        }
+      }
+    },
+    onmouseout: self => {
+      HideCustomTooltip(self, "equipment");
+      HideCustomTooltip(self, "trait_ability");
+      HideCustomTooltip(self, "keyword_list");
+    },
+    get children() {
+      return [libs.createComponent(EOM_Panel.EOM_Panel, {
+        className: "TreasureSpecialIcon",
+        get children() {
+          return libs.createComponent(libs.Switch, {
+            get children() {
+              return libs.createComponent(libs.Match, {
+                get when() {
+                  return props.slot.type == 'equipment';
+                },
+                get children() {
+                  return libs.createComponent(ItemImage.ItemImage, {
+                    className: "TreasureSpecialItemImage",
+                    get itemName() {
+                      return props.slot.item;
+                    },
+                    showtooltip: false
+                  });
+                }
+              });
+            }
+          });
+        }
+      }), libs.createComponent(EOM_Label.EOM_Label, {
+        className: "TreasureSpecialName",
+        html: true,
+        get text() {
+          return `#DOTA_Tooltip_ability_${name()}`;
+        }
+      }), libs.createComponent(libs.Show, {
+        get when() {
+          return !noDescription();
+        },
+        get children() {
+          return [(() => {
+            const _el$9 = libs.createElement("Image", {}, null);
+            libs.setProp(_el$9, "className", 'TreasureSpecialTitleLine');
+            return _el$9;
+          })(), (() => {
+            const _el$0 = libs.createElement("Panel", {}, null);
+            libs.setProp(_el$0, "className", "TreasureSpecialDescription");
+            libs.insert(_el$0, libs.createComponent(EOM_Label.EOM_Label, {
+              html: true,
+              get text() {
+                return description();
+              }
+            }));
+            return _el$0;
+          })()];
+        }
+      })];
+    }
+  });
+};
+const TreasureSlotCard = props => libs.createComponent(EOM_Panel.EOM_Panel, {
+  get className() {
+    return libs.classNames('TreasureSlotCard', `Type_${props.slot.type}`, {
+      special: props.special
+    });
+  },
+  get children() {
+    return [libs.createComponent(libs.Show, {
+      get when() {
+        return props.hasTreasureBingo;
+      },
+      get children() {
+        return libs.createElement("DOTAParticleScenePanel", {
+          id: "TreasureCardBingo",
+          particleName: "particles/eom/ui/ui_fx/ui_fx_mysterious_shop/ui_fx_mysterious_shop_01_fx.vpcf",
+          squarePixels: true,
+          cameraOrigin: "0 0 150",
+          lookAt: "0 0 0",
+          fov: 35,
+          hittest: false,
+          particleonly: true
+        }, null);
+      }
+    }), (() => {
+      const _el$10 = libs.createElement("Image", {
+        "class": "TreasureSlotTypeIcon",
+        get src() {
+          return getSlotTypeIcon(props.slot.type);
+        }
+      }, null);
+      libs.effect(_$p => libs.setProp(_el$10, "src", getSlotTypeIcon(props.slot.type), _$p));
+      return _el$10;
+    })(), libs.createComponent(libs.Switch, {
+      get children() {
+        return [libs.createComponent(libs.Match, {
+          get when() {
+            return props.slot.type == 'ability';
+          },
+          get children() {
+            return libs.createComponent(TreasureAbilityReward, {
+              get slot() {
+                return props.slot;
+              },
+              get sectData() {
+                return props.sectData;
+              }
+            });
+          }
+        }), libs.createComponent(libs.Match, {
+          get when() {
+            return props.slot.type == 'equipment' || props.slot.type == 'artifact' || props.slot.type == 'rune';
+          },
+          get children() {
+            return libs.createComponent(TreasureSpecialReward, {
+              get slot() {
+                return props.slot;
+              }
+            });
+          }
+        }), libs.createComponent(libs.Match, {
+          get when() {
+            return props.slot.type == 'gold';
+          },
+          get children() {
+            return libs.createComponent(TreasureGoldReward, {
+              get amount() {
+                return props.slot.amount;
+              }
+            });
+          }
+        })];
+      }
+    })];
+  }
+});
+
 const [_INTERACT_ABILITY_COOLDOWN, setInteractAbilityCooldown] = libs.createSignal(false);
 const [gameStateName, setGameStateName] = libs.createSignal(getGameState());
 const [showStore, setShowStore] = libs.createSignal(true);
@@ -684,6 +1169,7 @@ const BottomBar = () => {
     }
   }));
   const [triggerRecord, setTriggerRecord] = libs.createSignal("");
+  const [customAbilityPopupOpen, setCustomAbilityPopupOpen] = libs.createSignal(false);
   const aiHost = () => {
     return localPlayerData()?.ai_host == 1;
   };
@@ -723,9 +1209,11 @@ const BottomBar = () => {
     });
   });
   const [greevilData, setGreevilData] = libs.createSignal();
+  const [treasureData, setTreasureData] = libs.createSignal(getSyncDataKey("common", "treasure", Players.GetLocalPlayer()));
   const showGreevilShopButton = () => greevilData()?.shop_enabled == true;
   libs.onMount(() => {
     const listenerIDList = [];
+    listenerIDList.push(useSyncDataKey("common", "treasure", setTreasureData, Players.GetLocalPlayer()));
     listenerIDList.push(useSyncDataKey("common", "greevil_data", data => {
       if (data?.shop_enabled && !greevilData()?.shop_enabled) {
         setShowStore(false);
@@ -848,6 +1336,11 @@ const BottomBar = () => {
         setTriggerRecord("");
       }
     }));
+    GameEventListenerIDList.push(GameEvents.Subscribe("client_side_event", eventData => {
+      if (eventData.event_name == "close_popup" && eventData.event_data?.PopupID == "CustomAbility") {
+        setCustomAbilityPopupOpen(false);
+      }
+    }));
     libs.onCleanup(() => {
       listenerIDList.forEach(id => {
         CustomNetTables.UnsubscribeNetTableListener(id);
@@ -863,10 +1356,19 @@ const BottomBar = () => {
     } else if (gameState == "GameState_Trait") {
       if (!playerGameOver()) {
         setShowStore(false);
-        setSelectionMode('custom_ability');
+        if (getGameplayModuleState("mergeability")) {
+          showPopup("CustomAbility", {
+            PopupID: "CustomAbility"
+          });
+          setCustomAbilityPopupOpen(true);
+        } else {
+          setSelectionMode('custom_ability');
+        }
       }
     } else if (gameState == "GameState_None") {
       setSelectionMode(undefined);
+      closePopup("CustomAbility");
+      setCustomAbilityPopupOpen(false);
       setOpenTipShop(false);
       setTipShopFinish(false);
       setShowGreevilShop(false);
@@ -909,7 +1411,7 @@ const BottomBar = () => {
     }
   }, 0.3);
   libs.createEffect(libs.on([showRuneReward, runeRewardPopupState, gameStateName], () => {
-    if (showRuneReward() && !runeRewardPopupState() && isCeasefireState(gameStateName())) {
+    if (showRuneReward() && !runeRewardPopupState() && IsCeasefireState(gameStateName())) {
       rookieV2_trait_button.open();
     } else {
       rookieV2_trait_button.close();
@@ -931,6 +1433,7 @@ const BottomBar = () => {
       rookieV2_talent.close();
     }
   }));
+  const TreasureLayoutShow = () => gameStateName() == 'GameState_Treasure' && treasureData()?.package != undefined && !treasureData()?.selected;
   libs.createEffect(() => {
     const id = CustomNetTables.SubscribeNetTableListener("common", function (_, k, v) {
       if (k === "ban_list") {
@@ -1112,6 +1615,13 @@ const BottomBar = () => {
                   }
                 }), libs.createComponent(libs.Match, {
                   get when() {
+                    return TreasureLayoutShow();
+                  },
+                  get children() {
+                    return libs.createComponent(Treasure, {});
+                  }
+                }), libs.createComponent(libs.Match, {
+                  get when() {
                     return libs.memo(() => specialSelectionData() != undefined)() && !playerGameOver();
                   },
                   get children() {
@@ -1122,7 +1632,7 @@ const BottomBar = () => {
                   }
                 }), libs.createComponent(libs.Match, {
                   get when() {
-                    return selectionMode() == 'custom_ability';
+                    return libs.memo(() => selectionMode() == 'custom_ability')() && !getGameplayModuleState("mergeability");
                   },
                   get children() {
                     return libs.createComponent(CustomAbilitySelect, {});
@@ -1261,47 +1771,54 @@ const BottomBar = () => {
                   })];
                 }
               });
-            })()), libs.createComponent(EOM_Button.EOM_BaseButton, {
-              id: "GreevilEnergyLabel",
-              get ["class"]() {
-                return libs.classNames({
-                  Closed: !showGreevilShopButton()
-                });
-              },
-              onactivate: () => {
-                if (!showGreevilShopButton()) return;
-                clientSideEvent("toggle_greevil_shop", {});
-              },
-              onmouseover: self => {
-                if (!showGreevilShopButton()) {
-                  $.DispatchEvent("DOTAShowTextTooltip", self, "#GreevilShopTips");
-                }
-              },
-              onmouseout: self => {
-                $.DispatchEvent("DOTAHideTextTooltip", self);
+            })()), libs.createComponent(libs.Show, {
+              get when() {
+                return showGreevilShopButton();
               },
               get children() {
-                return [(() => {
-                  const _el$4 = libs.createElement("Image", {
-                    id: "GreevilEnergyLabelBG"
-                  }, null);
-                  libs.effect(_$p => libs.setProp(_el$4, "classList", {
-                    enable: showGreevilShop()
-                  }, _$p));
-                  return _el$4;
-                })(), libs.createComponent(EOM_Panel.EOM_Panel, {
-                  flowChildren: "right",
-                  align: "center center",
+                return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  id: "GreevilEnergyLabel",
+                  get ["class"]() {
+                    return libs.classNames({
+                      Closed: !showGreevilShopButton()
+                    });
+                  },
+                  onactivate: () => {
+                    if (!showGreevilShopButton()) return;
+                    clientSideEvent("toggle_greevil_shop", {});
+                  },
+                  onmouseover: self => {
+                    if (!showGreevilShopButton()) {
+                      $.DispatchEvent("DOTAShowTextTooltip", self, "#GreevilShopTips");
+                    }
+                  },
+                  onmouseout: self => {
+                    $.DispatchEvent("DOTAHideTextTooltip", self);
+                  },
                   get children() {
-                    return [libs.createElement("Image", {
-                      id: "GreevilEnergyIcon"
-                    }, null), libs.createComponent(GenericPanel.CLabel, {
-                      get text() {
-                        return playerGreevilEnergy();
+                    return [(() => {
+                      const _el$4 = libs.createElement("Image", {
+                        id: "GreevilEnergyLabelBG"
+                      }, null);
+                      libs.effect(_$p => libs.setProp(_el$4, "classList", {
+                        enable: showGreevilShop()
+                      }, _$p));
+                      return _el$4;
+                    })(), libs.createComponent(EOM_Panel.EOM_Panel, {
+                      flowChildren: "right",
+                      align: "center center",
+                      get children() {
+                        return [libs.createElement("Image", {
+                          id: "GreevilEnergyIcon"
+                        }, null), libs.createComponent(GenericPanel.CLabel, {
+                          get text() {
+                            return playerGreevilEnergy();
+                          }
+                        })];
                       }
                     })];
                   }
-                })];
+                });
               }
             }), libs.createComponent(EOM_Button.EOM_BaseButton, {
               id: "TalentActive",
@@ -1337,7 +1854,21 @@ const BottomBar = () => {
                   Show: traitRound() != -1 && round$1() >= traitRound()
                 });
               },
-              onactivate: () => setSelectionMode(selectionMode() == 'custom_ability' ? undefined : 'custom_ability'),
+              onactivate: () => {
+                if (getGameplayModuleState("mergeability")) {
+                  if (customAbilityPopupOpen()) {
+                    closePopup("CustomAbility");
+                    setCustomAbilityPopupOpen(false);
+                  } else {
+                    showPopup("CustomAbility", {
+                      PopupID: "CustomAbility"
+                    });
+                    setCustomAbilityPopupOpen(true);
+                  }
+                } else {
+                  setSelectionMode(selectionMode() == 'custom_ability' ? undefined : 'custom_ability');
+                }
+              },
               get children() {
                 return [libs.createComponent(GenericPanel.CLabel, {
                   id: "Desc",
@@ -1695,6 +2226,8 @@ const SpecialSelection = props => {
             return KeyValues.AbilityUpgradesKv[name] != undefined;
           } else if (_type == "ability_upgrades_mechenics") {
             return KeyValues.AbilityUpgradesMechenicsKv[name] != undefined;
+          } else if (_type == "forge_attribute" || _type == "trait_reward") {
+            return true;
           }
           return KeyValues.ItemsKv[name] != undefined;
         };
@@ -1713,8 +2246,8 @@ const SpecialSelection = props => {
               get fallback() {
                 return libs.createComponent(ShopSpecialCard.ShopSpecialCard, {
                   ref(r$) {
-                    const _ref$4 = cardRef;
-                    typeof _ref$4 === "function" ? _ref$4(r$) : cardRef = r$;
+                    const _ref$6 = cardRef;
+                    typeof _ref$6 === "function" ? _ref$6(r$) : cardRef = r$;
                   },
                   id: `Card${index}`,
                   get type() {
@@ -1797,6 +2330,44 @@ const SpecialSelection = props => {
                       }
                     });
                   }
+                }), libs.createComponent(libs.Match, {
+                  get when() {
+                    return type() == "forge_attribute";
+                  },
+                  get children() {
+                    return libs.createComponent(ForgeAttributeCard, {
+                      ref(r$) {
+                        const _ref$4 = cardRef;
+                        typeof _ref$4 === "function" ? _ref$4(r$) : cardRef = r$;
+                      },
+                      id: `Card${index}`,
+                      get name() {
+                        return selectionName();
+                      },
+                      onClick: () => {
+                        specialSelect(type(), selectionName());
+                      }
+                    });
+                  }
+                }), libs.createComponent(libs.Match, {
+                  get when() {
+                    return type() == "trait_reward";
+                  },
+                  get children() {
+                    return libs.createComponent(TraitRewardCard, {
+                      ref(r$) {
+                        const _ref$5 = cardRef;
+                        typeof _ref$5 === "function" ? _ref$5(r$) : cardRef = r$;
+                      },
+                      id: `Card${index}`,
+                      get name() {
+                        return selectionName();
+                      },
+                      onClick: () => {
+                        specialSelect(type(), selectionName());
+                      }
+                    });
+                  }
                 })];
               }
             });
@@ -1855,6 +2426,124 @@ const SpecialSelection = props => {
     }), _$p));
     return _el$14;
   })();
+};
+const TRAIT_REWARD_CARD_INFO = {
+  trait_162_gold: {
+    title: "DOTA_Tooltip_trait_162_reward_gold",
+    description: "DOTA_Tooltip_trait_162_reward_gold_description",
+    itemName: "item_hand_of_midas"
+  },
+  trait_162_health: {
+    title: "DOTA_Tooltip_trait_162_reward_health",
+    description: "DOTA_Tooltip_trait_162_reward_health_description",
+    itemName: "item_heart"
+  },
+  trait_162_abilities: {
+    title: "DOTA_Tooltip_trait_162_reward_abilities",
+    description: "DOTA_Tooltip_trait_162_reward_abilities_description",
+    itemName: "item_tome_of_knowledge"
+  }
+};
+const TraitRewardCard = props => {
+  const info = () => TRAIT_REWARD_CARD_INFO[props.name];
+  const traitValues = () => {
+    const values = KeyValues.AbilitiesKv.trait_162?.AbilityValues ?? {};
+    return {
+      ...values,
+      ability_count: Number(values.ability_count) > 0 ? values.ability_count : 7
+    };
+  };
+  const description = () => getKeyValueDescription(traitValues(), $.Localize("#" + info().description), {
+    onlyShowNowLevel: false
+  });
+  return libs.createComponent(EOM_Button.EOM_BaseButton, {
+    get id() {
+      return props.id;
+    },
+    ref(r$) {
+      const _ref$7 = props.ref;
+      typeof _ref$7 === "function" ? _ref$7(r$) : props.ref = r$;
+    },
+    className: "ShopSpecialCard trait_reward",
+    get onactivate() {
+      return props.onClick;
+    },
+    get children() {
+      return [libs.createComponent(EOM_Image.EOM_Image, {
+        id: "ShopCardBG"
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "SectImageContainer",
+        width: "88px",
+        height: "64px",
+        horizontalAlign: "center",
+        marginTop: "65px",
+        get children() {
+          const _el$17 = libs.createElement("DOTAItemImage", {
+            get itemname() {
+              return info().itemName;
+            },
+            showtooltip: false
+          }, null);
+          libs.setProp(_el$17, "className", "Equipment");
+          libs.effect(_$p => libs.setProp(_el$17, "itemname", info().itemName, _$p));
+          return _el$17;
+        }
+      }), libs.createComponent(EOM_Label.EOM_Label, {
+        html: true,
+        id: "ItemNameSpecial",
+        get text() {
+          return "#" + info().title;
+        }
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "SpecialDescriptionContainer",
+        get children() {
+          return libs.createComponent(EOM_Label.EOM_Label, {
+            html: true,
+            id: "SpecialDescription",
+            get text() {
+              return description();
+            }
+          });
+        }
+      })];
+    }
+  });
+};
+const ForgeAttributeCard = props => {
+  const value = () => CustomNetTables.GetTableValue("common", "constant")?.FORGE_ATTRIBUTE_VALUES?.[props.name] ?? 0;
+  return libs.createComponent(EOM_Button.EOM_BaseButton, {
+    get id() {
+      return props.id;
+    },
+    ref(r$) {
+      const _ref$8 = props.ref;
+      typeof _ref$8 === "function" ? _ref$8(r$) : props.ref = r$;
+    },
+    className: "ForgeAttributeCard ShopSpecialCard",
+    get onactivate() {
+      return props.onClick;
+    },
+    get children() {
+      return [libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "ForgeAttributeGlow",
+        hittest: false
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "ForgeAttributeIcon",
+        hittest: false
+      }), libs.createComponent(EOM_Label.EOM_Label, {
+        id: "ForgeAttributeName",
+        html: true,
+        get text() {
+          return "#dota_tooltip_item_variable_" + props.name;
+        }
+      }), libs.createComponent(GenericPanel.CLabel, {
+        id: "ForgeAttributeValue",
+        get text() {
+          return "+" + value();
+        }
+      })];
+    }
+  });
 };
 const GREEVIL_SKILLS = ["greevil_1", "greevil_2", "greevil_3", "greevil_4"];
 const GreevilSkillSelectPanel = props => {
@@ -1921,7 +2610,7 @@ const GreevilSkillSelectPanel = props => {
                   className: "Greevil3D",
                   hittest: false,
                   get children() {
-                    const _el$18 = libs.createElement("DOTAScenePanel", {
+                    const _el$19 = libs.createElement("DOTAScenePanel", {
                       get map() {
                         return "full_body/" + option.name;
                       },
@@ -1936,8 +2625,8 @@ const GreevilSkillSelectPanel = props => {
                       particleonly: false,
                       hittest: false
                     }, null);
-                    libs.effect(_$p => libs.setProp(_el$18, "map", "full_body/" + option.name, _$p));
-                    return _el$18;
+                    libs.effect(_$p => libs.setProp(_el$19, "map", "full_body/" + option.name, _$p));
+                    return _el$19;
                   }
                 }), libs.createElement("DOTAParticleScenePanel", {
                   id: "GreevilBorderParticle1",
@@ -1949,13 +2638,13 @@ const GreevilSkillSelectPanel = props => {
                   hittest: false,
                   particleonly: true
                 }, null), (() => {
-                  const _el$20 = libs.createElement("Panel", {
+                  const _el$21 = libs.createElement("Panel", {
                       hittest: false
                     }, null),
-                    _el$21 = libs.createElement("Panel", {}, _el$20);
-                  libs.setProp(_el$20, "className", "GreevilSkillCardMain");
-                  libs.setProp(_el$21, "className", "GreevilSkillCardBG");
-                  libs.insert(_el$20, libs.createComponent(EOM_Panel.EOM_Panel, {
+                    _el$22 = libs.createElement("Panel", {}, _el$21);
+                  libs.setProp(_el$21, "className", "GreevilSkillCardMain");
+                  libs.setProp(_el$22, "className", "GreevilSkillCardBG");
+                  libs.insert(_el$21, libs.createComponent(EOM_Panel.EOM_Panel, {
                     className: "SkillTitle",
                     hittest: false,
                     get children() {
@@ -1967,7 +2656,7 @@ const GreevilSkillSelectPanel = props => {
                       });
                     }
                   }), null);
-                  libs.insert(_el$20, libs.createComponent(EOM_Panel.EOM_Panel, {
+                  libs.insert(_el$21, libs.createComponent(EOM_Panel.EOM_Panel, {
                     className: "SkillDescription",
                     get customTooltip() {
                       return libs.memo(() => option.keywords.length > 0)() ? {
@@ -1984,7 +2673,7 @@ const GreevilSkillSelectPanel = props => {
                       });
                     }
                   }), null);
-                  return _el$20;
+                  return _el$21;
                 })(), libs.createElement("DOTAParticleScenePanel", {
                   id: "GreevilBorderParticle2",
                   particleName: "particles/ui/greevil_bubble_bg.vpcf",
@@ -2093,13 +2782,13 @@ const TalentSelection = props => {
     });
   });
   return (() => {
-    const _el$23 = libs.createElement("Panel", {
+    const _el$24 = libs.createElement("Panel", {
       id: "TalentSelectionList"
     }, null);
-    libs.insert(_el$23, libs.createComponent(EOM_Panel.EOM_Panel, {
+    libs.insert(_el$24, libs.createComponent(EOM_Panel.EOM_Panel, {
       width: "148px"
     }), null);
-    libs.insert(_el$23, libs.createComponent(libs.Index, {
+    libs.insert(_el$24, libs.createComponent(libs.Index, {
       get each() {
         return talentSelection();
       },
@@ -2118,8 +2807,8 @@ const TalentSelection = props => {
         }));
         return libs.createComponent(TalentCard, {
           ref(r$) {
-            const _ref$5 = talentRef;
-            typeof _ref$5 === "function" ? _ref$5(r$) : talentRef = r$;
+            const _ref$9 = talentRef;
+            typeof _ref$9 === "function" ? _ref$9(r$) : talentRef = r$;
           },
           index: index,
           get name() {
@@ -2139,7 +2828,7 @@ const TalentSelection = props => {
         });
       }
     }), null);
-    libs.insert(_el$23, libs.createComponent(EOM_Button.EOM_BaseButton, {
+    libs.insert(_el$24, libs.createComponent(EOM_Button.EOM_BaseButton, {
       className: "ShopAction",
       marginTop: "175px",
       onactivate: self => {
@@ -2156,10 +2845,10 @@ const TalentSelection = props => {
         })];
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$23, "className", libs.classNames({
+    libs.effect(_$p => libs.setProp(_el$24, "className", libs.classNames({
       SelectCount2: talentSelection().length == 2
     }), _$p));
-    return _el$23;
+    return _el$24;
   })();
 };
 const TalentCard = props => {
@@ -2365,6 +3054,12 @@ const useShopButtonStore = () => {
     runeRefreshDisable
   };
 };
+const triggerTrait172ShopCardAnimation = () => {
+  const trait172Card = $("#Trait172AttributeSlot")?.FindChild("GreevilShopCard");
+  if (trait172Card?.IsValid() && trait172Card.BHasClass("ShopCard")) {
+    trait172Card.TriggerClass("ShopCard");
+  }
+};
 const useShopDataStore = () => {
   const [cardStoreList, setCardStoreList] = libs.createSignal([]);
   const setCardStore = (index, data, willRefresh) => {
@@ -2507,6 +3202,21 @@ const Shop = props => {
     cardNum,
     freeState
   } = useShopDataStore();
+  const [trait172Slot, setTrait172Slot] = libs.createSignal();
+  libs.onMount(() => {
+    const listener = useNetTableKeyHasDefaultValue("trait_172_shop", "player_" + Players.GetLocalPlayer(), data => {
+      if (!data?.slot) {
+        setTrait172Slot(undefined);
+        return;
+      }
+      setTrait172Slot({
+        ...data.slot,
+        soldOut: data.sold_out == 1
+      });
+      $.Schedule(0, triggerTrait172ShopCardAnimation);
+    });
+    libs.onCleanup(() => CustomNetTables.UnsubscribeNetTableListener(listener));
+  });
   const shopCardSuggesting = game_utils.CreateTeammateSuggestActionSignal(TeamSuggestAction.ShopCard, 5);
   const cardEffectSuggesting = game_utils.CreateTeammateSuggestActionSignal(TeamSuggestAction.CardEffect, 5);
   const isRookie = abilityName => {
@@ -2797,17 +3507,17 @@ const Shop = props => {
     }
   }));
   return (() => {
-    const _el$25 = libs.createElement("Panel", {
+    const _el$26 = libs.createElement("Panel", {
         id: "AbilityShopList"
       }, null);
       libs.createElement("Panel", {
         id: "AbilityShopBlank"
-      }, _el$25);
-    libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
+      }, _el$26);
+    libs.insert(_el$26, libs.createComponent(EOM_Panel.EOM_Panel, {
       id: "ShopCardList",
       flowChildren: "right",
       get className() {
-        return "CardLength" + cardNum();
+        return "CardLength" + (cardNum() + (trait172Slot() ? 1 : 0));
       },
       get children() {
         return [libs.createComponent(libs.Index, {
@@ -2863,8 +3573,8 @@ const Shop = props => {
                 return [libs.createComponent(ShopSpecialCard.ShopAbilityCard, {
                   className: "ShopLayoutCard",
                   ref(r$) {
-                    const _ref$6 = ref;
-                    typeof _ref$6 === "function" ? _ref$6(r$) : ref = r$;
+                    const _ref$0 = ref;
+                    typeof _ref$0 === "function" ? _ref$0(r$) : ref = r$;
                   },
                   id: `Card${i}`,
                   sect_rookie: self => {
@@ -2948,6 +3658,45 @@ const Shop = props => {
           }
         }), libs.createComponent(libs.Show, {
           get when() {
+            return trait172Slot();
+          },
+          children: slot => libs.createComponent(EOM_Panel.EOM_Panel, {
+            id: "Trait172AttributeSlot",
+            get children() {
+              return libs.createComponent(ShopEffectCard.GreevilShopCard, {
+                className: "ShopLayoutCard ShopCard",
+                get Id() {
+                  return Number(slot().id);
+                },
+                type: "attribute",
+                get rarity() {
+                  return slot().rarity;
+                },
+                get value() {
+                  return slot().value;
+                },
+                get special() {
+                  return slot().special;
+                },
+                get cost() {
+                  return slot().cost;
+                },
+                currency: "gold",
+                appearance: "artifact_attribute",
+                get soldOut() {
+                  return slot().soldOut;
+                },
+                get playerGreevilEnergy() {
+                  return playerGold();
+                },
+                onactivate: () => {
+                  if (!slot().soldOut) GameEvents.SendCustomEventToServer("buy_trait_172_attribute", {});
+                }
+              });
+            }
+          })
+        }), libs.createComponent(libs.Show, {
+          get when() {
             return getGameplayModuleState("card_effect");
           },
           get children() {
@@ -3004,7 +3753,7 @@ const Shop = props => {
         })];
       }
     }), null);
-    libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
+    libs.insert(_el$26, libs.createComponent(EOM_Panel.EOM_Panel, {
       id: "ShopActionList",
       get children() {
         return (() => {
@@ -3043,21 +3792,21 @@ const Shop = props => {
                     id: "RefreshIcon",
                     "class": "ActionImage"
                   }, null), (() => {
-                    const _el$36 = libs.createElement("Panel", {
+                    const _el$37 = libs.createElement("Panel", {
                         id: "CostContainer"
                       }, null);
                       libs.createElement("Image", {
                         id: "GoldIcon"
-                      }, _el$36);
-                    libs.insert(_el$36, libs.createComponent(GenericPanel.CLabel, {
+                      }, _el$37);
+                    libs.insert(_el$37, libs.createComponent(GenericPanel.CLabel, {
                       get text() {
                         return libs.memo(() => !!hasFreeRefresh())() ? "#Free" : refreshGoldCost();
                       }
                     }), null);
-                    libs.effect(_$p => libs.setProp(_el$36, "className", libs.classNames({
+                    libs.effect(_$p => libs.setProp(_el$37, "className", libs.classNames({
                       Warning: !refreshEnable() || playerGold() < refreshGoldCost() && !hasFreeRefresh()
                     }), _$p));
-                    return _el$36;
+                    return _el$37;
                   })()];
                 }
               });
@@ -3093,22 +3842,22 @@ const Shop = props => {
                     "class": "ActionImage",
                     hittest: false
                   }, null), (() => {
-                    const _el$28 = libs.createElement("Panel", {
+                    const _el$29 = libs.createElement("Panel", {
                         id: "CostContainer",
                         hittest: false
                       }, null);
                       libs.createElement("Image", {
                         id: "GoldIcon"
-                      }, _el$28);
-                    libs.insert(_el$28, libs.createComponent(GenericPanel.CLabel, {
+                      }, _el$29);
+                    libs.insert(_el$29, libs.createComponent(GenericPanel.CLabel, {
                       get text() {
                         return libs.memo(() => !!hasFreeRefresh())() ? "#Free" : refreshGoldCost();
                       }
                     }), null);
-                    libs.effect(_$p => libs.setProp(_el$28, "className", libs.classNames({
+                    libs.effect(_$p => libs.setProp(_el$29, "className", libs.classNames({
                       Warning: !refreshEnable() || playerGold() < refreshGoldCost() && !hasFreeRefresh()
                     }), _$p));
-                    return _el$28;
+                    return _el$29;
                   })(), libs.createComponent(EOM_Panel.EOM_Panel, {
                     id: "RefreshTooltipBlock",
                     get tooltip() {
@@ -3170,21 +3919,21 @@ const Shop = props => {
                 id: "RandomIcon",
                 "class": "ActionImage"
               }, null), (() => {
-                const _el$31 = libs.createElement("Panel", {
+                const _el$32 = libs.createElement("Panel", {
                     id: "CostContainer"
                   }, null);
                   libs.createElement("Image", {
                     id: "GoldIcon"
-                  }, _el$31);
-                libs.insert(_el$31, libs.createComponent(GenericPanel.CLabel, {
+                  }, _el$32);
+                libs.insert(_el$32, libs.createComponent(GenericPanel.CLabel, {
                   get text() {
                     return randomGoldCost();
                   }
                 }), null);
-                libs.effect(_$p => libs.setProp(_el$31, "className", libs.classNames({
+                libs.effect(_$p => libs.setProp(_el$32, "className", libs.classNames({
                   Warning: !randomEnable() || playerGold() < refreshGoldCost()
                 }), _$p));
-                return _el$31;
+                return _el$32;
               })()];
             }
           }), libs.createComponent(EOM_Button.EOM_BaseButton, {
@@ -3271,10 +4020,10 @@ const Shop = props => {
         })();
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$25, "className", libs.classNames({
+    libs.effect(_$p => libs.setProp(_el$26, "className", libs.classNames({
       Show: shopShow()
     }), _$p));
-    return _el$25;
+    return _el$26;
   })();
 };
 const getBattleInfoData = ({
@@ -3346,19 +4095,13 @@ const getItemList = entIndex => {
   if (entIndex == undefined || entIndex == -1) {
     return items;
   }
-  for (let slot = 0; slot < 6; slot++) {
+  for (let slot = 0; slot < 8; slot++) {
     const itemIndex = Entities.GetItemInSlot(entIndex, slot);
     if (itemIndex && itemIndex != -1) {
       items[slot] = Abilities.GetAbilityName(itemIndex);
     }
   }
   return items;
-};
-const isCeasefireState = game_state => {
-  if (game_state == "GameState_ExtraBattlePrepare" || game_state == "GameState_ConfirmBattle" || game_state == "GameState_Battle" || game_state == "GameState_ConfirmNeutral" || game_state == "GameState_Neutral" || game_state == "GameState_BattleEnd") {
-    return false;
-  }
-  return true;
 };
 const usePlayerBanner = direction => {
   const localPlayerID = Players.GetLocalPlayer();
@@ -3467,10 +4210,12 @@ const usePlayerBanner = direction => {
       });
     }
   }));
+  const [treasureAmounts, setTreasureAmounts] = libs.createSignal(0);
   libs.createEffect(libs.on(playerID, _playerID => {
     setLevel(getPlayerData(playerID(), "heroLevel") ?? 1);
     setSteamID(getPlayerData(playerID(), "steamID") ?? "");
     setTraitLv(getTraitLv());
+    setTreasureAmounts(Object.values(getPlayerData(playerID(), "treasure") ?? {}).length);
     setShardUnlocked(getPlayerData(playerID(), "shardState") == 1);
     setShardPurchasable(getPlayerData(playerID(), "shardPurchasable") == 1);
   }));
@@ -3481,7 +4226,7 @@ const usePlayerBanner = direction => {
     const viewingPlayerID = watchingPlayerInfo.player_id;
     const viewingIllusion = watchingPlayerInfo.is_illusion == 1;
     const current_newBattleInfo = newBattleInfo();
-    if (isCeasefireState(game_state())) {
+    if (IsCeasefireState(game_state())) {
       if (direction == "Right") {
         setPlayerID(viewingPlayerID);
         setEntIndex(getPlayerData(viewingPlayerID, "heroEntIndex") ?? -1);
@@ -3581,7 +4326,7 @@ const usePlayerBanner = direction => {
               setWatchingPlayerInfo("is_illusion", playerData.viewPlayerInfo.is_illusion);
             }
           }
-          if (isCeasefireState(game_state())) {
+          if (IsCeasefireState(game_state())) {
             if (key == String(playerID())) {
               if (playerData.heroEntIndex && entIndex() != playerData.heroEntIndex) {
                 setEntIndex(playerData.heroEntIndex ?? -1);
@@ -3593,13 +4338,14 @@ const usePlayerBanner = direction => {
                 setSteamID(playerData.steamID);
               }
               setShardUnlocked(playerData.shardState == 1);
+              setTreasureAmounts(Object.values(playerData.treasure).length);
               setShardPurchasable(playerData.shardPurchasable == 1);
               setTraitLv(getTraitLv(playerData));
             }
           }
         });
       } else {
-        if (isCeasefireState(game_state()) && direction == "Right") {
+        if (IsCeasefireState(game_state()) && direction == "Right") {
           if (key == watchingPlayerInfo.player_id) {
             if (playerData.heroEntIndex && entIndex() != playerData.heroEntIndex) {
               setEntIndex(playerData.heroEntIndex ?? -1);
@@ -3645,7 +4391,8 @@ const usePlayerBanner = direction => {
     shardUnlocked,
     shardCost,
     shardPurchasable,
-    game_state
+    game_state,
+    treasureAmounts
   };
 };
 const PlayerBanner = props => {
@@ -3667,7 +4414,8 @@ const PlayerBanner = props => {
     shardUnlocked,
     shardCost,
     shardPurchasable,
-    game_state
+    game_state,
+    treasureAmounts
   } = usePlayerBanner(props.direction);
   let sHotkey = Game.GetKeybindForCommand(DOTAKeybindCommand_t.DOTA_KEYBIND_CHAT_WHEEL);
   const isNeutral = () => {
@@ -3760,20 +4508,20 @@ const PlayerBanner = props => {
     return selfEnt != -1 && selfEnt == entIndex();
   };
   return (() => {
-    const _el$38 = libs.createElement("Panel", {
+    const _el$39 = libs.createElement("Panel", {
         hittest: false
       }, null),
-      _el$42 = libs.createElement("Image", {
+      _el$43 = libs.createElement("Image", {
         hittest: false
-      }, _el$38),
-      _el$46 = libs.createElement("Image", {
+      }, _el$39),
+      _el$47 = libs.createElement("Image", {
         id: "PortraitBorder",
         hittest: false
-      }, _el$38),
-      _el$55 = libs.createElement("Panel", {
+      }, _el$39),
+      _el$56 = libs.createElement("Panel", {
         id: "AbilityList"
-      }, _el$38);
-    libs.insert(_el$38, libs.createComponent(libs.Show, {
+      }, _el$39);
+    libs.insert(_el$39, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!!isNeutral())() && show();
       },
@@ -3781,10 +4529,10 @@ const PlayerBanner = props => {
         return [libs.createComponent(libs.Switch, {
           get fallback() {
             return (() => {
-              const _el$56 = libs.createElement("Panel", {
+              const _el$57 = libs.createElement("Panel", {
                 id: "ShardContainer"
               }, null);
-              libs.insert(_el$56, libs.createComponent(EOM_Button.EOM_BaseButton, {
+              libs.insert(_el$57, libs.createComponent(EOM_Button.EOM_BaseButton, {
                 id: "ShardUnlockButton",
                 get classList() {
                   return {
@@ -3832,7 +4580,7 @@ const PlayerBanner = props => {
                   })];
                 }
               }));
-              return _el$56;
+              return _el$57;
             })();
           },
           get children() {
@@ -3847,10 +4595,10 @@ const PlayerBanner = props => {
                     return [libs.createComponent(EOM_Panel.EOM_Panel, {
                       id: "TraitAndShardBG"
                     }), (() => {
-                      const _el$39 = libs.createElement("Panel", {
+                      const _el$40 = libs.createElement("Panel", {
                         id: "MixedTraitContainer"
                       }, null);
-                      libs.insert(_el$39, libs.createComponent(EOM_Image.EOM_Image, {
+                      libs.insert(_el$40, libs.createComponent(EOM_Image.EOM_Image, {
                         get ["class"]() {
                           return libs.classNames("RuneRewardIcon", "LV" + trait_lv());
                         },
@@ -3861,12 +4609,12 @@ const PlayerBanner = props => {
                           };
                         }
                       }));
-                      return _el$39;
+                      return _el$40;
                     })(), (() => {
-                      const _el$40 = libs.createElement("Panel", {
+                      const _el$41 = libs.createElement("Panel", {
                         id: "MixedShardContainer"
                       }, null);
-                      libs.insert(_el$40, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                      libs.insert(_el$41, libs.createComponent(EOM_Button.EOM_BaseButton, {
                         id: "ShardUnlockButton",
                         get classList() {
                           return {
@@ -3914,7 +4662,7 @@ const PlayerBanner = props => {
                           })];
                         }
                       }));
-                      return _el$40;
+                      return _el$41;
                     })()];
                   }
                 });
@@ -3940,6 +4688,32 @@ const PlayerBanner = props => {
                   id: "CardBG"
                 }), libs.createComponent(EOM_Image.EOM_Image, {
                   id: "CardImage"
+                })];
+              }
+            });
+          }
+        }), libs.createComponent(libs.Show, {
+          get when() {
+            return getGameplayModuleState("treasure");
+          },
+          get children() {
+            return libs.createComponent(EOM_Panel.EOM_Panel, {
+              id: "CardEffectContainer",
+              get customTooltip() {
+                return {
+                  name: "treasure_list",
+                  player_id: playerID()
+                };
+              },
+              get children() {
+                return [libs.createComponent(EOM_Image.EOM_Image, {
+                  id: "CardBG"
+                }), libs.createComponent(EOM_Image.EOM_Image, {
+                  get className() {
+                    return libs.classNames("TreasureIcon", {
+                      Owned: treasureAmounts() > 0
+                    });
+                  }
                 })];
               }
             });
@@ -4004,9 +4778,9 @@ const PlayerBanner = props => {
           }
         })];
       }
-    }), _el$42);
-    libs.setProp(_el$42, "className", "PlayerInfoBG");
-    libs.insert(_el$38, libs.createComponent(EOM_XP.EOM_XP, {
+    }), _el$43);
+    libs.setProp(_el$43, "className", "PlayerInfoBG");
+    libs.insert(_el$39, libs.createComponent(EOM_XP.EOM_XP, {
       get level() {
         return _level();
       },
@@ -4023,8 +4797,8 @@ const PlayerBanner = props => {
       onmouseout: self => {
         $.DispatchEvent("DOTAHideTitleTextTooltip", self);
       }
-    }), _el$46);
-    libs.insert(_el$38, libs.createComponent(libs.Show, {
+    }), _el$47);
+    libs.insert(_el$39, libs.createComponent(libs.Show, {
       get when() {
         return isNeutral();
       },
@@ -4040,17 +4814,17 @@ const PlayerBanner = props => {
         }
       }),
       get children() {
-        const _el$43 = libs.createElement("Panel", {}, null);
-        libs.setProp(_el$43, "className", "PlayerName");
-        libs.insert(_el$43, libs.createComponent(GenericPanel.CLabel, {
+        const _el$44 = libs.createElement("Panel", {}, null);
+        libs.setProp(_el$44, "className", "PlayerName");
+        libs.insert(_el$44, libs.createComponent(GenericPanel.CLabel, {
           get text() {
             return `#${heroName()}`;
           }
         }));
-        return _el$43;
+        return _el$44;
       }
-    }), _el$46);
-    libs.insert(_el$38, libs.createComponent(EOM_Panel.EOM_Panel, {
+    }), _el$47);
+    libs.insert(_el$39, libs.createComponent(EOM_Panel.EOM_Panel, {
       className: "PlayerBannerPortraitContainer",
       get children() {
         return [libs.createComponent(HeroPortrait.HeroPortrait, {
@@ -4067,13 +4841,13 @@ const PlayerBanner = props => {
             return playerID();
           }
         }), (() => {
-          const _el$44 = libs.createElement("Panel", {
+          const _el$45 = libs.createElement("Panel", {
             id: "TagList",
             dialogVariables: {
               sect_name: ""
             }
           }, null);
-          libs.setProp(_el$44, "onmouseover", self => {
+          libs.setProp(_el$45, "onmouseover", self => {
             let sects = sectList();
             if (sects.length > 0) {
               let tooltip = "";
@@ -4089,32 +4863,32 @@ const PlayerBanner = props => {
               }
             }
           });
-          libs.setProp(_el$44, "onmouseout", self => {
+          libs.setProp(_el$45, "onmouseout", self => {
             $.DispatchEvent("DOTAHideTitleTextTooltip", self);
           });
-          libs.setProp(_el$44, "dialogVariables", {
+          libs.setProp(_el$45, "dialogVariables", {
             sect_name: ""
           });
-          libs.insert(_el$44, libs.createComponent(libs.For, {
+          libs.insert(_el$45, libs.createComponent(libs.For, {
             get each() {
               return sectList();
             },
             children: (sectName, index) => {
               return (() => {
-                const _el$57 = libs.createElement("Panel", {}, null),
-                  _el$58 = libs.createElement("Image", {}, _el$57);
-                libs.insert(_el$57, libs.createComponent(SectIcon.SectIcon, {
+                const _el$58 = libs.createElement("Panel", {}, null),
+                  _el$59 = libs.createElement("Image", {}, _el$58);
+                libs.insert(_el$58, libs.createComponent(SectIcon.SectIcon, {
                   width: "42px",
                   height: "42px",
                   marginBottom: "-5px",
                   sectName: sectName
-                }), _el$58);
-                libs.setProp(_el$58, "className", "Suggest");
-                return _el$57;
+                }), _el$59);
+                libs.setProp(_el$59, "className", "Suggest");
+                return _el$58;
               })();
             }
           }));
-          return _el$44;
+          return _el$45;
         })(), libs.createComponent(libs.Show, {
           get when() {
             return itemList().length > 0;
@@ -4199,8 +4973,8 @@ const PlayerBanner = props => {
           }
         })];
       }
-    }), _el$46);
-    libs.insert(_el$38, (() => {
+    }), _el$47);
+    libs.insert(_el$39, (() => {
       const _c$ = libs.memo(() => !!!isSpectator());
       return () => _c$() && libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "ActionList",
@@ -4230,8 +5004,8 @@ const PlayerBanner = props => {
           })];
         }
       });
-    })(), _el$55);
-    libs.insert(_el$38, libs.createComponent(EOM_Panel.EOM_Panel, {
+    })(), _el$56);
+    libs.insert(_el$39, libs.createComponent(EOM_Panel.EOM_Panel, {
       id: "AttributeList",
       get customTooltip() {
         return {
@@ -4259,57 +5033,57 @@ const PlayerBanner = props => {
       },
       get children() {
         return [(() => {
-          const _el$47 = libs.createElement("Panel", {}, null),
-            _el$48 = libs.createElement("Image", {}, _el$47);
-          libs.setProp(_el$47, "className", "AttributeRow");
-          libs.setProp(_el$48, "className", "AttributeIcon Attack");
-          libs.insert(_el$47, libs.createComponent(GenericPanel.CLabel, {
+          const _el$48 = libs.createElement("Panel", {}, null),
+            _el$49 = libs.createElement("Image", {}, _el$48);
+          libs.setProp(_el$48, "className", "AttributeRow");
+          libs.setProp(_el$49, "className", "AttributeIcon Attack");
+          libs.insert(_el$48, libs.createComponent(GenericPanel.CLabel, {
             className: "AttributeValue",
             get text() {
               return attribute().Attack;
             }
           }), null);
-          return _el$47;
+          return _el$48;
         })(), (() => {
-          const _el$49 = libs.createElement("Panel", {}, null),
-            _el$50 = libs.createElement("Image", {}, _el$49);
-          libs.setProp(_el$49, "className", "AttributeRow");
-          libs.setProp(_el$50, "className", "AttributeIcon AttackSpeed");
-          libs.insert(_el$49, libs.createComponent(GenericPanel.CLabel, {
+          const _el$50 = libs.createElement("Panel", {}, null),
+            _el$51 = libs.createElement("Image", {}, _el$50);
+          libs.setProp(_el$50, "className", "AttributeRow");
+          libs.setProp(_el$51, "className", "AttributeIcon AttackSpeed");
+          libs.insert(_el$50, libs.createComponent(GenericPanel.CLabel, {
             className: "AttributeValue",
             get text() {
               return attribute().Attackspeed;
             }
           }), null);
-          return _el$49;
+          return _el$50;
         })(), (() => {
-          const _el$51 = libs.createElement("Panel", {}, null),
-            _el$52 = libs.createElement("Image", {}, _el$51);
-          libs.setProp(_el$51, "className", "AttributeRow");
-          libs.setProp(_el$52, "className", "AttributeIcon Crit");
-          libs.insert(_el$51, libs.createComponent(GenericPanel.CLabel, {
+          const _el$52 = libs.createElement("Panel", {}, null),
+            _el$53 = libs.createElement("Image", {}, _el$52);
+          libs.setProp(_el$52, "className", "AttributeRow");
+          libs.setProp(_el$53, "className", "AttributeIcon Crit");
+          libs.insert(_el$52, libs.createComponent(GenericPanel.CLabel, {
             className: "AttributeValue",
             get text() {
               return attribute().Critical;
             }
           }), null);
-          return _el$51;
+          return _el$52;
         })(), (() => {
-          const _el$53 = libs.createElement("Panel", {}, null),
-            _el$54 = libs.createElement("Image", {}, _el$53);
-          libs.setProp(_el$53, "className", "AttributeRow");
-          libs.setProp(_el$54, "className", "AttributeIcon Evade");
-          libs.insert(_el$53, libs.createComponent(GenericPanel.CLabel, {
+          const _el$54 = libs.createElement("Panel", {}, null),
+            _el$55 = libs.createElement("Image", {}, _el$54);
+          libs.setProp(_el$54, "className", "AttributeRow");
+          libs.setProp(_el$55, "className", "AttributeIcon Evade");
+          libs.insert(_el$54, libs.createComponent(GenericPanel.CLabel, {
             className: "AttributeValue",
             get text() {
               return attribute().Evasion;
             }
           }), null);
-          return _el$53;
+          return _el$54;
         })()];
       }
-    }), _el$55);
-    libs.insert(_el$55, libs.createComponent(AbilityImage.AbilityImage, {
+    }), _el$56);
+    libs.insert(_el$56, libs.createComponent(AbilityImage.AbilityImage, {
       get abilityName() {
         return ultiAbility();
       },
@@ -4323,7 +5097,7 @@ const PlayerBanner = props => {
         return ultiAbilityIndex();
       }
     }), null);
-    libs.insert(_el$55, libs.createComponent(AbilityImage.AbilityImage, {
+    libs.insert(_el$56, libs.createComponent(AbilityImage.AbilityImage, {
       get abilityName() {
         return talentAbility();
       },
@@ -4337,7 +5111,7 @@ const PlayerBanner = props => {
         return talentAbilityIndex();
       }
     }), null);
-    libs.insert(_el$38, libs.createComponent(libs.Show, {
+    libs.insert(_el$39, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!getGameplayModuleState("greevil"))() && !isNeutral();
       },
@@ -4361,10 +5135,10 @@ const PlayerBanner = props => {
         });
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$38, "className", libs.classNames("PlayerInfo", props.direction, {
+    libs.effect(_$p => libs.setProp(_el$39, "className", libs.classNames("PlayerInfo", props.direction, {
       Show: show() && gameStateName() != "GameState_GreevilEgg"
     }), _$p));
-    return _el$38;
+    return _el$39;
   })();
 };
 const [show_interactive_abilities, setShowInteractiveAbilities] = libs.createSignal(false);
@@ -4566,14 +5340,14 @@ const GreevilShop = props => {
                     },
                     onactivate: onRefresh,
                     get children() {
-                      const _el$60 = libs.createElement("Panel", {
+                      const _el$61 = libs.createElement("Panel", {
                         id: "GreevilShopRefreshBtnWrap"
                       }, null);
-                      libs.insert(_el$60, libs.createComponent(GenericPanel.CLabel, {
+                      libs.insert(_el$61, libs.createComponent(GenericPanel.CLabel, {
                         id: "GreevilShopRefreshText",
                         text: "#Refresh"
                       }), null);
-                      libs.insert(_el$60, libs.createComponent(EOM_Panel.EOM_Panel, {
+                      libs.insert(_el$61, libs.createComponent(EOM_Panel.EOM_Panel, {
                         id: "GreevilShopRefreshCost",
                         get children() {
                           return [libs.createElement("Image", {
@@ -4584,7 +5358,7 @@ const GreevilShop = props => {
                           })];
                         }
                       }), null);
-                      return _el$60;
+                      return _el$61;
                     }
                   }), libs.createComponent(EOM_Icon.EOM_Icon, {
                     id: "GreevilShopRefreshRuleInfo",
@@ -4677,15 +5451,15 @@ const CustomAbilitySelect = () => {
     });
   });
   return (() => {
-    const _el$62 = libs.createElement("Panel", {
+    const _el$63 = libs.createElement("Panel", {
         id: "CustomAbilitySelect",
         hittest: false
       }, null),
-      _el$63 = libs.createElement("Panel", {
+      _el$64 = libs.createElement("Panel", {
         id: "SectList",
         hittest: false
-      }, _el$62);
-    libs.insert(_el$63, libs.createComponent(EOM_Panel.EOM_Panel, {
+      }, _el$63);
+    libs.insert(_el$64, libs.createComponent(EOM_Panel.EOM_Panel, {
       flowChildren: "right",
       align: "center center",
       hittest: false,
@@ -4734,7 +5508,7 @@ const CustomAbilitySelect = () => {
         });
       }
     }));
-    libs.insert(_el$62, libs.createComponent(EOM_Panel.EOM_Panel, {
+    libs.insert(_el$63, libs.createComponent(EOM_Panel.EOM_Panel, {
       flowChildren: "right",
       horizontalAlign: "center",
       hittest: false,
@@ -4752,13 +5526,13 @@ const CustomAbilitySelect = () => {
           },
           get children() {
             return [(() => {
-              const _el$64 = libs.createElement("Panel", {
+              const _el$65 = libs.createElement("Panel", {
                   "class": "Slot"
                 }, null);
                 libs.createElement("Image", {
                   "class": "Add"
-                }, _el$64);
-              libs.insert(_el$64, libs.createComponent(libs.Show, {
+                }, _el$65);
+              libs.insert(_el$65, libs.createComponent(libs.Show, {
                 get when() {
                   return sectMergeData()?.trigger != undefined;
                 },
@@ -4774,31 +5548,31 @@ const CustomAbilitySelect = () => {
                   });
                 }
               }), null);
-              return _el$64;
+              return _el$65;
             })(), libs.createComponent(libs.Show, {
               get when() {
                 return libs.memo(() => sectMergeData()?.trigger != undefined)() && sectMergeData()?.trigger != "";
               },
               get children() {
-                const _el$66 = libs.createElement("Label", {
+                const _el$67 = libs.createElement("Label", {
                   "class": "Name",
                   get text() {
                     return "#DOTA_Tooltip_ability_" + sectMergeData()?.trigger;
                   }
                 }, null);
-                libs.effect(_$p => libs.setProp(_el$66, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.trigger, _$p));
-                return _el$66;
+                libs.effect(_$p => libs.setProp(_el$67, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.trigger, _$p));
+                return _el$67;
               }
             }), (() => {
-              const _el$67 = libs.createElement("Label", {
+              const _el$68 = libs.createElement("Label", {
                 html: true,
                 "class": "Desc",
                 get text() {
                   return libs.memo(() => !!(sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc();
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$67, "text", libs.memo(() => !!(sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc(), _$p));
-              return _el$67;
+              libs.effect(_$p => libs.setProp(_el$68, "text", libs.memo(() => !!(sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc(), _$p));
+              return _el$68;
             })()];
           }
         }), libs.createElement("Image", {
@@ -4815,13 +5589,13 @@ const CustomAbilitySelect = () => {
           },
           get children() {
             return [(() => {
-              const _el$69 = libs.createElement("Panel", {
+              const _el$70 = libs.createElement("Panel", {
                   "class": "Slot"
                 }, null);
                 libs.createElement("Image", {
                   "class": "Add"
-                }, _el$69);
-              libs.insert(_el$69, libs.createComponent(libs.Show, {
+                }, _el$70);
+              libs.insert(_el$70, libs.createComponent(libs.Show, {
                 get when() {
                   return sectMergeData()?.effect != undefined;
                 },
@@ -4837,31 +5611,31 @@ const CustomAbilitySelect = () => {
                   });
                 }
               }), null);
-              return _el$69;
+              return _el$70;
             })(), libs.createComponent(libs.Show, {
               get when() {
                 return libs.memo(() => sectMergeData()?.effect != undefined)() && sectMergeData()?.effect != "";
               },
               get children() {
-                const _el$71 = libs.createElement("Label", {
+                const _el$72 = libs.createElement("Label", {
                   "class": "Name",
                   get text() {
                     return "#DOTA_Tooltip_ability_" + sectMergeData()?.effect;
                   }
                 }, null);
-                libs.effect(_$p => libs.setProp(_el$71, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.effect, _$p));
-                return _el$71;
+                libs.effect(_$p => libs.setProp(_el$72, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.effect, _$p));
+                return _el$72;
               }
             }), (() => {
-              const _el$72 = libs.createElement("Label", {
+              const _el$73 = libs.createElement("Label", {
                 html: true,
                 "class": "Desc",
                 get text() {
                   return libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == ""))() ? "#WaitTrait" : effectDesc();
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$72, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == ""))() ? "#WaitTrait" : effectDesc(), _$p));
-              return _el$72;
+              libs.effect(_$p => libs.setProp(_el$73, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == ""))() ? "#WaitTrait" : effectDesc(), _$p));
+              return _el$73;
             })()];
           }
         }), libs.createElement("Image", {
@@ -4870,50 +5644,50 @@ const CustomAbilitySelect = () => {
         }, null), libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "TraitCard",
           ref(r$) {
-            const _ref$7 = resultCard;
-            typeof _ref$7 === "function" ? _ref$7(r$) : resultCard = r$;
+            const _ref$1 = resultCard;
+            typeof _ref$1 === "function" ? _ref$1(r$) : resultCard = r$;
           },
           onactivate: () => setSelectionMode(undefined),
           get children() {
             return [(() => {
-              const _el$74 = libs.createElement("Panel", {
+              const _el$75 = libs.createElement("Panel", {
                   "class": "ResultSlot"
                 }, null);
                 libs.createElement("Image", {
                   "class": "Wait"
-                }, _el$74);
-                const _el$76 = libs.createElement("Image", {
+                }, _el$75);
+                const _el$77 = libs.createElement("Image", {
                   get src() {
                     return `file://{images}/spellicons/${KeyValues.CustomAbilitiesKv[sectMergeData()?.effect + "_effect"]?.AbilityTextureName}.png`;
                   }
-                }, _el$74);
-              libs.setProp(_el$76, "className", "DOTAAbilityImage");
-              libs.effect(_$p => libs.setProp(_el$76, "src", `file://{images}/spellicons/${KeyValues.CustomAbilitiesKv[sectMergeData()?.effect + "_effect"]?.AbilityTextureName}.png`, _$p));
-              return _el$74;
+                }, _el$75);
+              libs.setProp(_el$77, "className", "DOTAAbilityImage");
+              libs.effect(_$p => libs.setProp(_el$77, "src", `file://{images}/spellicons/${KeyValues.CustomAbilitiesKv[sectMergeData()?.effect + "_effect"]?.AbilityTextureName}.png`, _$p));
+              return _el$75;
             })(), libs.createComponent(libs.Show, {
               get when() {
                 return libs.memo(() => !!(sectMergeData()?.effect != undefined && sectMergeData()?.effect != "" && sectMergeData()?.trigger != undefined))() && sectMergeData()?.trigger != "";
               },
               get children() {
-                const _el$77 = libs.createElement("Label", {
+                const _el$78 = libs.createElement("Label", {
                   "class": "Name ResultName",
                   get text() {
                     return `#DOTA_Tooltip_ability_${sectMergeData()?.effect}_result`;
                   }
                 }, null);
-                libs.effect(_$p => libs.setProp(_el$77, "text", `#DOTA_Tooltip_ability_${sectMergeData()?.effect}_result`, _$p));
-                return _el$77;
+                libs.effect(_$p => libs.setProp(_el$78, "text", `#DOTA_Tooltip_ability_${sectMergeData()?.effect}_result`, _$p));
+                return _el$78;
               }
             }), (() => {
-              const _el$78 = libs.createElement("Label", {
+              const _el$79 = libs.createElement("Label", {
                 "class": "Desc",
                 html: true,
                 get text() {
                   return libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == "" || sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc() + ", " + effectDesc();
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$78, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == "" || sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc() + ", " + effectDesc(), _$p));
-              return _el$78;
+              libs.effect(_$p => libs.setProp(_el$79, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == "" || sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc() + ", " + effectDesc(), _$p));
+              return _el$79;
             })()];
           }
         }), libs.createComponent(EOM_Button.EOM_BaseButton, {
@@ -4934,7 +5708,7 @@ const CustomAbilitySelect = () => {
         })];
       }
     }), null);
-    return _el$62;
+    return _el$63;
   })();
 };
 const RoshanReward = () => {
@@ -4989,7 +5763,7 @@ const RoshanReward = () => {
     }
   });
   return [(() => {
-    const _el$80 = libs.createElement("DOTAParticleScenePanel", {
+    const _el$81 = libs.createElement("DOTAParticleScenePanel", {
       hittest: false,
       id: "RoshanSelectingParticle",
       particleName: "particles/gameplay/ui_roshan_selecting.vpcf",
@@ -4997,10 +5771,10 @@ const RoshanReward = () => {
       lookAt: "0 0 0",
       fov: 15
     }, null);
-    libs.effect(_$p => libs.setProp(_el$80, "classList", {
+    libs.effect(_$p => libs.setProp(_el$81, "classList", {
       Show: canPick()
     }, _$p));
-    return _el$80;
+    return _el$81;
   })(), libs.createComponent(EOM_Panel.EOM_Panel, {
     get className() {
       return libs.classNames("RoshanRewardMain", {
@@ -7893,11 +8667,10 @@ const abilityIsTrait$1 = () => {
   if (selectAbility$1() == "") {
     return false;
   }
-  const strArr = selectAbility$1().split("_");
-  if (strArr[0] == "trait") {
-    return true;
+  if (KeyValues.treasure_abilities[selectAbility$1()] == undefined && KeyValues.TraitKv[selectAbility$1()] == undefined) {
+    return false;
   }
-  return false;
+  return true;
 };
 function CanMoveCamera() {
   if (isSpectator()) {
@@ -8066,15 +8839,19 @@ const [takeDamages, setTakeDamages] = libs.createStore((() => {
   });
   return damages;
 })());
+const getPlayerDamageBonus = playerID => {
+  const artifactList = Object.values(CustomNetTables.GetTableValue("common", "artifact_list_" + playerID) ?? {});
+  return artifactList.reduce((bonus, itemName) => bonus + Number(KeyValues.ItemsKv[itemName]?.AbilityValues?.player_damage_bonus ?? 0), 0);
+};
 libs.createEffect(() => {
   let _all_player_data = all_player_data;
   let _battle_data = battle_data();
   libs.batch(() => {
     if (_battle_data) {
       for (const data of Object.values(_battle_data)) {
-        setTakeDamages(data.mainPlayer.PlayerID, _all_player_data[data.customerPlayer.PlayerID].damage ?? 0);
+        setTakeDamages(data.mainPlayer.PlayerID, (_all_player_data[data.customerPlayer.PlayerID].damage ?? 0) + getPlayerDamageBonus(data.mainPlayer.PlayerID));
         if (data.customerPlayer.illusion != 1) {
-          setTakeDamages(data.customerPlayer.PlayerID, _all_player_data[data.mainPlayer.PlayerID].damage ?? 0);
+          setTakeDamages(data.customerPlayer.PlayerID, (_all_player_data[data.mainPlayer.PlayerID].damage ?? 0) + getPlayerDamageBonus(data.customerPlayer.PlayerID));
         }
       }
     }
@@ -9320,27 +10097,18 @@ const NewPlayerRow = props => {
         return libs.memo(() => !!(showPlayerSelectButton() && selectAbility$1() != ""))() && props.index == selectAbilityImgIndex();
       },
       get children() {
-        return [libs.createComponent(libs.Show, {
+        return libs.createComponent(libs.Show, {
           get when() {
             return abilityIsTrait$1();
           },
-          get children() {
-            return libs.createComponent(EOM_Image.EOM_Image, {
+          get fallback() {
+            return libs.createComponent(ItemImage.ItemImage, {
               id: "ButtonLeftImg",
-              get backgroundImage() {
-                return getImagePath("rune/rune_reward_icon.png");
+              get itemName() {
+                return selectAbility$1();
               },
-              onmouseover: self => {
-                $.DispatchEvent("DOTAShowTitleTextTooltip", self, "#DOTA_Tooltip_ability_" + selectAbility$1(), getAbilityDescription(selectAbility$1(), 1, undefined));
-              },
-              onmouseout: self => {
-                $.DispatchEvent("DOTAHideTitleTextTooltip", self);
-              }
+              showtooltip: true
             });
-          }
-        }), libs.createComponent(libs.Show, {
-          get when() {
-            return !abilityIsTrait$1();
           },
           get children() {
             const _el$0 = libs.createElement("DOTAAbilityImage", {
@@ -9348,12 +10116,21 @@ const NewPlayerRow = props => {
               get abilityname() {
                 return selectAbility$1();
               },
-              showtooltip: true
+              showtooltip: false
             }, null);
+            libs.setProp(_el$0, "onmouseover", self => {
+              ShowCustomTooltip(self, "trait_ability", {
+                ability_name: selectAbility$1(),
+                playerID: localPlayerID
+              });
+            });
+            libs.setProp(_el$0, "onmouseout", self => {
+              HideCustomTooltip(self, "trait_ability");
+            });
             libs.effect(_$p => libs.setProp(_el$0, "abilityname", selectAbility$1(), _$p));
             return _el$0;
           }
-        })];
+        });
       }
     }), _el$1);
     libs.insert(_el$1, libs.createComponent(EOM_Panel.EOM_Panel, {
@@ -9456,45 +10233,54 @@ const [round, setRound] = libs.createSignal(CustomNetTables.GetTableValue("commo
 (() => {
   GameEvents.Subscribe("client_side_event", eventData => {
     if (eventData.event_name == "emoji_dialog" || eventData.event_name == "hero_emoji_dialog") {
-      let data = JSON.parse(eventData.event_data);
+      let data;
+      try {
+        data = JSON.parse(eventData.event_data);
+      } catch (error) {}
+      if (!data) {
+        return;
+      }
       let playerID = data.playerID;
-      const emojiData = playerEmoji?.[playerID];
-      if (emojiData != undefined) {
-        if (emojiData.timer != undefined) {
-          $.CancelScheduled(emojiData.timer);
-        }
-        let timer = undefined;
-        if (data.index == 16) {
-          timer = $.Schedule(6, () => {
-            let timer = playerEmoji?.[playerID].timer;
-            if (timer != undefined) {
-              setPlayerEmoji(playerID, pre => {
-                return {
-                  emoji_index: undefined,
-                  timer: undefined
-                };
-              });
-            }
+      let index = data.index;
+      if (index != undefined && playerID != undefined) {
+        const emojiData = playerEmoji?.[playerID];
+        if (emojiData != undefined) {
+          if (emojiData.timer != undefined) {
+            $.CancelScheduled(emojiData.timer);
+          }
+          let timer = undefined;
+          if (index == 16) {
+            timer = $.Schedule(6, () => {
+              let timer = playerEmoji?.[playerID].timer;
+              if (timer != undefined) {
+                setPlayerEmoji(playerID, pre => {
+                  return {
+                    emoji_index: undefined,
+                    timer: undefined
+                  };
+                });
+              }
+            });
+          } else {
+            timer = $.Schedule(3, () => {
+              let timer = playerEmoji?.[playerID].timer;
+              if (timer != undefined) {
+                setPlayerEmoji(playerID, pre => {
+                  return {
+                    emoji_index: undefined,
+                    timer: undefined
+                  };
+                });
+              }
+            });
+          }
+          setPlayerEmoji(playerID, pre => {
+            return {
+              emoji_index: index.toString(),
+              timer: timer
+            };
           });
-        } else {
-          timer = $.Schedule(3, () => {
-            let timer = playerEmoji?.[playerID].timer;
-            if (timer != undefined) {
-              setPlayerEmoji(playerID, pre => {
-                return {
-                  emoji_index: undefined,
-                  timer: undefined
-                };
-              });
-            }
-          });
         }
-        setPlayerEmoji(playerID, pre => {
-          return {
-            emoji_index: data.index.toString(),
-            timer: timer
-          };
-        });
       }
     }
   });
@@ -9526,15 +10312,14 @@ const [round, setRound] = libs.createSignal(CustomNetTables.GetTableValue("commo
 const [sectSelection, setSectSelection] = libs.createSignal();
 libs.createSignal(true);
 const [selectAbility, setSelectAbility] = libs.createSignal("");
-const abilityIsTrait = () => {
-  if (selectAbility() == "") {
+const abilityIsTrait = ability => {
+  if (ability == "") {
     return false;
   }
-  const strArr = selectAbility().split("_");
-  if (strArr[0] == "trait") {
-    return true;
+  if (KeyValues.treasure_abilities[ability] == undefined && KeyValues.TraitKv[ability] == undefined) {
+    return false;
   }
-  return false;
+  return true;
 };
 let tip4 = true;
 function SectList() {
@@ -9552,12 +10337,16 @@ function SectList() {
   });
   const [cityEffect, setCityEffect] = libs.createSignal();
   let sectDataKey = () => "sect_data_" + localPlayerID;
+  let sectOrderKey = () => "sect_order_" + localPlayerID;
   let sectModifiersKey = () => "sect_modifiers_" + localPlayerID;
   let showID = () => Players.GetLocalPlayer();
   if (isSpectator()) {
     showID = () => GameUI.GetSpectatorViewingInfo()?.player_id ?? Players.GetLocalPlayer();
     sectDataKey = libs.createMemo(() => {
       return "sect_data_" + (GameUI.GetSpectatorViewingInfo()?.player_id ?? localPlayerID);
+    });
+    sectOrderKey = libs.createMemo(() => {
+      return "sect_order_" + (GameUI.GetSpectatorViewingInfo()?.player_id ?? localPlayerID);
     });
     sectModifiersKey = libs.createMemo(() => {
       return "sect_modifiers_" + (GameUI.GetSpectatorViewingInfo()?.player_id ?? localPlayerID);
@@ -9590,6 +10379,9 @@ function SectList() {
     sectDataKey = libs.createMemo(() => {
       return "sect_data_" + showID();
     });
+    sectOrderKey = libs.createMemo(() => {
+      return "sect_order_" + showID();
+    });
     sectModifiersKey = libs.createMemo(() => {
       return "sect_modifiers_" + showID();
     });
@@ -9614,9 +10406,11 @@ function SectList() {
   }
   const [bannedSect, setBannedSect] = libs.createSignal();
   const [sectData, setSectData] = libs.createSignal(CustomNetTables.GetTableValue("sect_data", sectDataKey()) ?? {});
+  const [sectOrder, setSectOrder] = libs.createSignal(Object.values(CustomNetTables.GetTableValue("sect_data", sectOrderKey()) ?? {}));
   const [sectModifiers, setSectModifiers] = libs.createSignal(CustomNetTables.GetTableValue("sect_data", sectModifiersKey()) ?? {});
   libs.createEffect(() => {
     setSectData(CustomNetTables.GetTableValue("sect_data", sectDataKey()) ?? {});
+    setSectOrder(Object.values(CustomNetTables.GetTableValue("sect_data", sectOrderKey()) ?? {}));
     setSectModifiers(CustomNetTables.GetTableValue("sect_data", sectModifiersKey()) ?? {});
   });
   libs.onMount(() => {
@@ -9645,6 +10439,8 @@ function SectList() {
     netTableIDs.push(CustomNetTables.SubscribeNetTableListener("sect_data", (_, key, value) => {
       if (key == sectDataKey()) {
         setSectData(value);
+      } else if (key == sectOrderKey()) {
+        setSectOrder(Object.values(value));
       } else if (key == sectModifiersKey()) {
         setSectModifiers(value);
       }
@@ -9695,6 +10491,7 @@ function SectList() {
     }
   }));
   const sectListSorted = () => {
+    if (sectOrder().length > 0) return sectOrder();
     return pickList().sort((a, b) => multiCompare((sectData()?.[b]?.exp ?? 0) - (sectData()?.[a]?.exp ?? 0), (sectData()?.[b]?.level ?? 0) - (sectData()?.[a]?.level ?? 0)));
   };
   libs.createEffect(() => {
@@ -9789,6 +10586,57 @@ function SectList() {
                 onmouseout: self => {
                   $.DispatchEvent("DOTAHideTitleTextTooltip", self);
                 }
+              }), libs.createComponent(libs.Show, {
+                get when() {
+                  return libs.memo(() => (sectSelection()?.length ?? 0) > 0)() && selectAbility() != "";
+                },
+                get children() {
+                  const _el$ = libs.createElement("Panel", {
+                      id: "SectSelectionTitle"
+                    }, null),
+                    _el$3 = libs.createElement("Label", {
+                      id: "SectSelectionName",
+                      get text() {
+                        return "#Dota_Tooltip_ability_" + selectAbility();
+                      }
+                    }, _el$);
+                  libs.insert(_el$, libs.createComponent(libs.Show, {
+                    get when() {
+                      return abilityIsTrait(selectAbility());
+                    },
+                    get fallback() {
+                      return libs.createComponent(ItemImage.ItemImage, {
+                        id: "SectSelectionImg",
+                        get itemName() {
+                          return selectAbility();
+                        },
+                        showtooltip: true
+                      });
+                    },
+                    get children() {
+                      const _el$2 = libs.createElement("DOTAAbilityImage", {
+                        id: "SectSelectionImg",
+                        get abilityname() {
+                          return selectAbility();
+                        },
+                        showtooltip: false
+                      }, null);
+                      libs.setProp(_el$2, "onmouseover", self => {
+                        ShowCustomTooltip(self, "trait_ability", {
+                          ability_name: selectAbility(),
+                          playerID: localPlayerID
+                        });
+                      });
+                      libs.setProp(_el$2, "onmouseout", self => {
+                        HideCustomTooltip(self, "trait_ability");
+                      });
+                      libs.effect(_$p => libs.setProp(_el$2, "abilityname", selectAbility(), _$p));
+                      return _el$2;
+                    }
+                  }), _el$3);
+                  libs.effect(_$p => libs.setProp(_el$3, "text", "#Dota_Tooltip_ability_" + selectAbility(), _$p));
+                  return _el$;
+                }
               })];
             }
           }), libs.createComponent(libs.Index, {
@@ -9879,15 +10727,36 @@ const SectRow = props => {
               className: "ModifierItem",
               verticalAlign: "center",
               get children() {
-                return [(() => {
-                  const _el$6 = libs.createElement("DOTAItemImage", {
-                    itemname: key,
-                    scaling: "stretch-to-cover-preserve-aspect"
-                  }, null);
-                  libs.setProp(_el$6, "itemname", key);
-                  libs.setProp(_el$6, "className", "ModifierItemImage");
-                  return _el$6;
-                })(), libs.createComponent(GenericPanel.CLabel, {
+                return [libs.createComponent(libs.Show, {
+                  get when() {
+                    return abilityIsTrait(key);
+                  },
+                  get fallback() {
+                    return libs.createComponent(ItemImage.ItemImage, {
+                      className: "ModifierItemImage",
+                      itemName: key,
+                      showtooltip: true
+                    });
+                  },
+                  get children() {
+                    const _el$8 = libs.createElement("DOTAAbilityImage", {
+                      abilityname: key,
+                      showtooltip: false
+                    }, null);
+                    libs.setProp(_el$8, "className", "ModifierItemImage");
+                    libs.setProp(_el$8, "abilityname", key);
+                    libs.setProp(_el$8, "onmouseover", self => {
+                      ShowCustomTooltip(self, "trait_ability", {
+                        ability_name: key,
+                        playerID: Players.GetLocalPlayer()
+                      });
+                    });
+                    libs.setProp(_el$8, "onmouseout", self => {
+                      HideCustomTooltip(self, "trait_ability");
+                    });
+                    return _el$8;
+                  }
+                }), libs.createComponent(GenericPanel.CLabel, {
                   className: "ModifierItemLabel",
                   get text() {
                     return props.artifactList[key];
@@ -9918,74 +10787,34 @@ const SectRow = props => {
         }
       }), libs.createComponent(libs.Show, {
         get when() {
-          return props.showConfirm && selectAbility() != "" && props.sect_index == 0;
-        },
-        get children() {
-          return [libs.createComponent(libs.Show, {
-            get when() {
-              return abilityIsTrait();
-            },
-            get children() {
-              return libs.createComponent(EOM_Image.EOM_Image, {
-                id: "ButtonLeftImg",
-                get backgroundImage() {
-                  return getImagePath("rune/rune_reward_icon.png");
-                },
-                onmouseover: self => {
-                  $.DispatchEvent("DOTAShowTitleTextTooltip", self, "#DOTA_Tooltip_ability_" + selectAbility(), getAbilityDescription(selectAbility(), 1, undefined));
-                },
-                onmouseout: self => {
-                  $.DispatchEvent("DOTAHideTitleTextTooltip", self);
-                }
-              });
-            }
-          }), libs.createComponent(libs.Show, {
-            get when() {
-              return !abilityIsTrait();
-            },
-            get children() {
-              const _el$ = libs.createElement("DOTAAbilityImage", {
-                id: "ButtonLeftImg",
-                get abilityname() {
-                  return selectAbility();
-                },
-                showtooltip: true
-              }, null);
-              libs.effect(_$p => libs.setProp(_el$, "abilityname", selectAbility(), _$p));
-              return _el$;
-            }
-          })];
-        }
-      }), libs.createComponent(libs.Show, {
-        get when() {
           return props.exp > 0;
         },
         get children() {
-          const _el$2 = libs.createElement("Panel", {}, null),
-            _el$3 = libs.createElement("Panel", {}, _el$2),
-            _el$4 = libs.createElement("Image", {}, _el$2);
-          libs.setProp(_el$2, "className", "ExpPanel");
-          libs.setProp(_el$3, "className", "ExpProgressBG");
-          libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
+          const _el$4 = libs.createElement("Panel", {}, null),
+            _el$5 = libs.createElement("Panel", {}, _el$4),
+            _el$6 = libs.createElement("Image", {}, _el$4);
+          libs.setProp(_el$4, "className", "ExpPanel");
+          libs.setProp(_el$5, "className", "ExpProgressBG");
+          libs.insert(_el$4, libs.createComponent(EOM_Panel.EOM_Panel, {
             className: "ExpProgress",
             get width() {
               return props.level / props.maxLevel * 59 + "px";
             }
-          }), _el$4);
-          libs.setProp(_el$4, "className", "ExpShield");
-          libs.insert(_el$2, libs.createComponent(GenericPanel.CLabel, {
+          }), _el$6);
+          libs.setProp(_el$6, "className", "ExpShield");
+          libs.insert(_el$4, libs.createComponent(GenericPanel.CLabel, {
             className: "ExpLabel",
             get text() {
               return props.exp;
             }
           }), null);
-          libs.insert(_el$2, libs.createComponent(GenericPanel.CLabel, {
+          libs.insert(_el$4, libs.createComponent(GenericPanel.CLabel, {
             className: "ExpMaxLabel",
             get text() {
               return "/" + props.maxExp;
             }
           }), null);
-          return _el$2;
+          return _el$4;
         }
       }), libs.createComponent(libs.Show, {
         get when() {
@@ -10014,11 +10843,7 @@ const SectRow = props => {
 const RightTopArea = props => {
   return libs.createComponent(EOM_Panel.EOM_Panel, {
     id: "RightTopArea",
-    get classList() {
-      return {
-        HideList: props.game_state == "GameState_GreevilEgg"
-      };
-    },
+    classList: {},
     hittest: false,
     get children() {
       return [libs.createComponent(SectList, {}), libs.createComponent(ArtifactList, {})];
@@ -11010,7 +11835,7 @@ const Main = () => {
           get game_state() {
             return game_state();
           }
-        }), libs.createComponent(PlayerList, {}), libs.createComponent(TeamSuggestionIcon.TopBar, {}), libs.createComponent(DamageRank, {
+        }), libs.createComponent(PlayerList, {}), libs.createComponent(TeamSuggestionIcon.TopBar, {}), "/", libs.createComponent(DamageRank, {
           get game_state() {
             return game_state();
           }
@@ -11187,11 +12012,11 @@ const BattleMessage = () => {
     hittest: false,
     get children() {
       return [(() => {
-        const _el$4 = libs.createElement("Panel", {
+        const _el$5 = libs.createElement("Panel", {
           id: "WinStreak",
           hittest: false
         }, null);
-        libs.insert(_el$4, libs.createComponent(libs.Show, {
+        libs.insert(_el$5, libs.createComponent(libs.Show, {
           get when() {
             return winStreakData_new() != undefined;
           },
@@ -11222,7 +12047,7 @@ const BattleMessage = () => {
             });
           }
         }));
-        return _el$4;
+        return _el$5;
       })(), libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "BattleConfirm",
         hittest: false,

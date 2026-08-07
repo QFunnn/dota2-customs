@@ -1,0 +1,120 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 255, 253, 252, 150 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_bIncludeWater = true
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 512.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxi.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxa.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxo.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxn.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/pugna_1/particles/pugna_1_base_attack_end_fxk.vpcf"
+		},
+	]
+}

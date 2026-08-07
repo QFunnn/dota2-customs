@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2393,6 +2393,10 @@
 	width: 42px;
 	height: 42px;
 	align: right top;
+	animation-name: NewMarkAnim;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 
 .MenuMarkIcon.default
@@ -2425,6 +2429,46 @@
 	height: 61px;
 	background-image: url("s2r://panorama/images/custom_game/icon/s_new_largest_png.vtex");
 	background-size: 100%;
+}
+
+@keyframes 'NewMarkAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	85%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 1.25;
+	}
+	
+	95%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
 }
 
 .EOM_MenuLayout
@@ -5535,6 +5579,21 @@
 	ui-scale: 80%;
 }
 
+.OverviewPlayerRow .TreasureIcon
+{
+	align: center center;
+	width: 42px;
+	height: 42px;
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_icon_item_png.vtex");
+	background-size: 100%;
+	saturation: 0.35;
+}
+
+.OverviewPlayerRow .TreasureIcon.Owned
+{
+	saturation: 1;
+}
+
 .PlayerOverviewInfo
 {
 	width: 100%;
@@ -5650,10 +5709,38 @@
 	ui-scale: 70%;
 }
 
+.AspectRatio4x3 #ProfileAchievement
+{
+	width: 100%;
+	height: width-percentage(56.25%);
+	vertical-align: center;
+	ui-scale: 66%;
+}
+
+.AspectRatio16x10 #ProfileAchievement
+{
+	width: 100%;
+	height: width-percentage(62.5%);
+	vertical-align: center;
+	ui-scale: 84%;
+}
+
 #ProfileAchievement
 {
 	width: 100%;
 	height: 100%;
+}
+
+#ProfileAchievement #AchievementOverview
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ProfileAchievement #AchievementOverview.Hidden
+{
+	opacity: 0;
+	visibility: collapse;
 }
 
 #ProfileAchievement #AchievementSummary
@@ -5679,40 +5766,56 @@
 
 #ProfileAchievement #AchievementLevelBG #AchievementLevel
 {
-	margin-right: 22px;
+	width: 250px;
+	height: 100%;
 	align: center center;
 	text-align: center;
 	font-size: 28px;
 	color: #FFE6A8;
 	text-shadow: 0px 0px 2px 2 #000000;
+	text-overflow: shrink;
+}
+
+#ProfileAchievement #AchievementLevelRewardButton
+{
+	horizontal-align: center;
+	margin-top: 20px;
+	width: 180px;
+	height: 46px;
 }
 
 #ProfileAchievement .StatLabel
 {
+	width: 100%;
 	horizontal-align: center;
 	text-align: center;
-	margin-top: 95px;
+	margin-top: 90px;
 	font-size: 28px;
 	color: #829CE6;
+	text-overflow: shrink;
 }
 
 #ProfileAchievement .StatValue
 {
+	width: 100%;
 	horizontal-align: center;
 	text-align: center;
 	margin-top: 4px;
 	font-size: 28px;
 	color: #FFE6A8;
 	text-shadow: 0px 0px 2px 2 #000000;
+	text-overflow: shrink;
 }
 
 #ProfileAchievement .RankLabel
 {
+	width: 100%;
 	horizontal-align: center;
 	text-align: center;
 	margin-top: 25px;
 	font-size: 24px;
 	color: #829CE6;
+	text-overflow: shrink;
 }
 
 #ProfileAchievement .StatValue.Rank
@@ -5732,28 +5835,70 @@
 {
 	horizontal-align: center;
 	align: center center;
+	flow-children: right;
 	width: 280px;
 	height: 42px;
 	margin-top: 18px;
+	padding-left: 38px;
+	padding-right: 38px;
 	background-image: url("s2r://panorama/images/custom_game/profile/achievement/list_bg_png.vtex");
 	background-size: 100%;
 }
 
+#ProfileAchievement .RarityRowBG #IconGreen
+{
+	width: 32px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/icon_green_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#ProfileAchievement .RarityRowBG #IconBlue
+{
+	width: 32px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/icon_blue_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#ProfileAchievement .RarityRowBG #IconGold
+{
+	width: 32px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/icon_gold_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#ProfileAchievement .RarityRowBG #IconRed
+{
+	width: 32px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/icon_red_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
 #ProfileAchievement .RarityRowBG .RarityLabel
 {
-	horizontal-align: center;
+	width: fill-parent-flow(1);
+	min-width: 0px;
 	vertical-align: center;
-	margin-right: 40px;
+	margin-left: 12px;
+	margin-right: 12px;
 	font-size: 24px;
 	color: #A0B6F3;
 	text-shadow: 0px 0px 2px 2 #000000;
+	text-overflow: shrink;
 }
 
 #ProfileAchievement .RarityRowBG .RarityCount
 {
-	horizontal-align: center;
+	width: fit-children;
 	vertical-align: center;
-	margin-left: 120px;
+	text-align: right;
 	font-size: 24px;
 	color: #A0B6F3;
 	text-shadow: 0px 0px 2px 2 #000000;
@@ -5800,7 +5945,7 @@
 
 #ProfileAchievement #CategoryDivider
 {
-	width: 1154px;
+	width: 68%;
 	height: 2px;
 	margin-top: -5px;
 	background-image: url("s2r://panorama/images/custom_game/profile/achievement/line_png.vtex");
@@ -5809,7 +5954,7 @@
 
 #ProfileAchievement #AchievementCardList
 {
-	width: 1132px;
+	width: 67%;
 	height: fill-parent-flow(1);
 	margin-top: 12px;
 	margin-left: 8px;
@@ -5823,26 +5968,54 @@
 	width: 258px;
 	height: 314px;
 	margin: 8px;
-	background-image: url("s2r://");
 	background-size: 100%;
 	flow-children: down;
+}
+
+#ProfileAchievement .AchievementCard.incomplete .AchievementCardDisabledOverlay
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/transparent_png.vtex");
+	background-size: 100%;
+}
+
+#ProfileAchievement .AchievementCard.red
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_red_png.vtex");
+}
+
+#ProfileAchievement .AchievementCard.blue
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_blue_png.vtex");
+}
+
+#ProfileAchievement .AchievementCard.green
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_green_png.vtex");
+}
+
+#ProfileAchievement .AchievementCard.gold
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/bg_gold_png.vtex");
 }
 
 #ProfileAchievement .AchievementCard .AchievementCardImage
 {
 	horizontal-align: center;
 	margin-top: 30px;
-	width: 176px;
-	height: 187px;
-	background-color: #ffffff22;
-	border: 1px solid #ffffff33;
+	margin-left: 2px;
+	width: 180px;
+	height: 180px;
 }
 
 #ProfileAchievement .AchievementCard .AchievementCardName
 {
 	horizontal-align: center;
 	text-align: center;
-	margin-top: 16px;
+	margin-top: 22px;
 	font-size: 24px;
 	color: #92B1E4;
 	text-shadow: 0px 0px 2px 2 #000000;
@@ -5852,7 +6025,7 @@
 {
 	horizontal-align: center;
 	text-align: center;
-	margin-top: 12px;
+	margin-top: 19px;
 	font-size: 20px;
 	color: #92B1E4;
 }
@@ -5868,19 +6041,31 @@
 #ProfileAchievement #DetailBackButton
 {
 	width: 146px;
-	height: 63px;
-	background-color: #ffffff22;
-	border: 1px solid #ffffff33;
-	margin-left: 8px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/y2_buttom_return_png.vtex");
+	background-size: 100%;
+	margin-left: 16px;
 	margin-bottom: 24px;
 }
 
-#ProfileAchievement #DetailBackButton #DetailBackLabel
+#ProfileAchievement #DetailBackButton #icon
 {
-	align: center center;
-	text-align: center;
-	font-size: 18px;
-	color: #C4DEFB;
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/y2_return_png.vtex");
+	background-size: 100%;
+	width: 42px;
+	height: 24px;
+	vertical-align: center;
+	margin-left: 10px;
+	margin-bottom: 3px;
+}
+
+#ProfileAchievement #DetailBackButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-left: 55px;
+	font-size: 20px;
+	color: #FFFFFF;
 }
 
 #ProfileAchievement #DetailCardRow
@@ -5907,19 +6092,20 @@
 	margin: 0;
 }
 
-#ProfileAchievement #DetailArrow1,#ProfileAchievement #DetailArrow2
+#ProfileAchievement .DetailArrow
 {
-	width: 39px;
+	width: 40px;
 	height: 48px;
 	vertical-align: center;
 	margin-left: 30px;
 	margin-bottom: 30px;
-	background-color: #ffffff22;
-	border: 1px solid #ffffff33;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement/arrow_png.vtex");
+	background-size: 100%;
 }
 
 #ProfileAchievement .DetailStageCondition
 {
+	width: 258px;
 	horizontal-align: center;
 	text-align: center;
 	margin-top: 10px;
@@ -5927,26 +6113,709 @@
 	color: #CAD8EF;
 }
 
-.AspectRatio4x3 #ProfileAchievement
+#ProfileAchievement .AchievementRewardButton
 {
-	width: 100%;
-	height: width-percentage(56.25%);
-	vertical-align: center;
-	ui-scale: 66%;
+	horizontal-align: center;
+	margin-top: 10px;
+	width: 120px;
+	height: 40px;
 }
 
-.AspectRatio16x10 #ProfileAchievement
+#ProfileAchievement .AchievementRewardState
 {
-	width: 100%;
-	height: width-percentage(62.5%);
-	vertical-align: center;
-	ui-scale: 84%;
+	color: #FFE6A8;
 }
 
 #ProfileJourney
 {
 	width: 100%;
 	height: 100%;
+}
+
+#ProfileJourney #JourneyMap
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/bg_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+#ProfileJourney #JourneyMap.LastGroup
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/bg_last_png.vtex");
+}
+
+#ProfileJourney #JourneyMap.LastGroup #JourneyRoad
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/road_last_png.vtex");
+}
+
+#ProfileJourney #JourneyMap.LastGroup .JourneySlot1,#ProfileJourney #JourneyMap.LastGroup .JourneyPlayersSlot1
+{
+	x: 21%;
+	y: 48%;
+}
+
+#ProfileJourney #JourneyMap.LastGroup .JourneySlot2,#ProfileJourney #JourneyMap.LastGroup .JourneyPlayersSlot2
+{
+	x: 43%;
+	y: 41.5%;
+}
+
+#ProfileJourney #JourneyMap.LastGroup .JourneySlot3,#ProfileJourney #JourneyMap.LastGroup .JourneyPlayersSlot3
+{
+	x: 64%;
+	y: 58%;
+}
+
+#ProfileJourney #JourneyMap.LastGroup .JourneySlot4,#ProfileJourney #JourneyMap.LastGroup .JourneyPlayersSlot4
+{
+	x: 79%;
+	y: 51%;
+}
+
+#ProfileJourney #JourneyRewardTrack
+{
+	width: 100%;
+	height: 160px;
+	vertical-align: bottom;
+	padding-left: 96px;
+	margin-bottom: 40px;
+	z-index: 50;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll
+{
+	width: 75%;
+	height: 160px;
+	overflow: squish scroll;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll > HorizontalScrollBar
+{
+	width: 0px;
+	opacity: 0;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll #JourneyRewardContent
+{
+	min-width: 100%;
+	width: fit-children;
+	height: 160px;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll #JourneyRewardContent #JourneyRewardRail
+{
+	height: 8px;
+	y: 83px;
+	overflow: clip;
+	z-index: 1;
+	background-color: #000000;
+	border: 1px solid #5c4a28;
+	box-shadow: 0px 1px 4px #000000;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll #JourneyRewardContent #JourneyRewardRail #JourneyRewardProgress
+{
+	height: 100%;
+	z-index: 2;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff8f34), color-stop(0.75, #eda931), to(#ffde78));
+	box-shadow: 0px 0px 5px #ffd86d88;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyRewardScroll #JourneyRewardContent #JourneyRewardLevels
+{
+	width: fit-children;
+	height: 160px;
+	flow-children: right;
+	z-index: 3;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox
+{
+	width: 200px;
+	height: 92px;
+	margin-top: 62px;
+	overflow: noclip;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):hover .JourneyBoxImage,#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):hover .JourneyBoxCheck
+{
+	brightness: 2;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):active
+{
+	brightness: 1;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):active .JourneyBoxImage,#ProfileJourney #JourneyRewardTrack .JourneyLevelBox:not(:disabled):active .JourneyBoxCheck
+{
+	brightness: 0.5;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyRewardSegment
+{
+	width: 100%;
+	height: 5px;
+	y: 20px;
+	z-index: 1;
+	background-color: #080808;
+	border-top: 1px solid #443518;
+	border-bottom: 1px solid #443518;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyRewardSegment.Last
+{
+	width: 50%;
+	x: 0px;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyRewardSegment.Reached
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff8f34), color-stop(0.75, #eda931), to(#ffde78));
+	border-top-color: #d8a83e;
+	border-bottom-color: #d8a83e;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyBoxImage
+{
+	width: 64px;
+	height: 50px;
+	horizontal-align: center;
+	tooltip-position: top;
+	z-index: 2;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/box_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyBoxCheck
+{
+	width: 38px;
+	height: 34px;
+	horizontal-align: center;
+	y: 8px;
+	z-index: 3;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/conv_check_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox .JourneyBoxLevel
+{
+	width: 100%;
+	y: 58px;
+	text-align: center;
+	font-size: 20px;
+	color: #ffffff;
+	text-shadow: 0px 2px 3px 2 #000000;
+	z-index: 2;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox.Received .JourneyBoxImage
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/box_received_png.vtex");
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox.Available
+{
+	brightness: 1;
+}
+
+#ProfileJourney #JourneyRewardTrack .JourneyLevelBox.Available .JourneyBoxImage
+{
+	brightness: 1.2;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyReceiveAll
+{
+	width: 232px;
+	height: 66px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 60px;
+	margin-top: 30px;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyReceiveAll Label
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 2px 3px 2 #5e3706;
+}
+
+#ProfileJourney #JourneyRewardTrack #JourneyReceiveAll.Disabled
+{
+	brightness: 0.45;
+	saturation: 0.2;
+}
+
+#ProfileJourney #JourneyRoad
+{
+	width: 100%;
+	height: 21%;
+	y: 48%;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/road_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney .JourneyPlayers
+{
+	width: 220px;
+	height: 158px;
+	overflow: noclip;
+	z-index: 20;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyAvatarSlot
+{
+	width: 44px;
+	height: 44px;
+	background-color: #172332cc;
+	border: 1px solid #d9bc73;
+	box-shadow: 0px 1px 4px 1px #000000aa;
+	z-index: 2;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyAvatarSlot.Featured
+{
+	width: 64px;
+	height: 64px;
+	z-index: 5;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyAvatarSlot.Self
+{
+	padding: 3px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/highlight_box_png.vtex");
+	background-size: 100% 100%;
+	border: 0px;
+	z-index: 8;
+	animation-name: JourneySelfHighlightPulse;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyAvatarSlot .JourneyAvatar
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyAvatarSlot .JourneySelfLabel
+{
+	width: 70px;
+	x: -13px;
+	y: -23px;
+	text-align: center;
+	font-size: 18px;
+	color: #ffdf6a;
+	text-shadow: 0px 2px 3px 2 #6a2100;
+	overflow: noclip;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot1
+{
+	x: 72px;
+	y: 92px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot2
+{
+	x: 6px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot3
+{
+	x: 58px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot4
+{
+	x: 110px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot5
+{
+	x: 162px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot6
+{
+	x: 28px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot7
+{
+	x: 80px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot8
+{
+	x: 132px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot9
+{
+	x: 20px;
+	y: 92px;
+}
+
+#ProfileJourney .JourneyPlayers .AvatarSlot10
+{
+	x: 144px;
+	y: 92px;
+}
+
+#ProfileJourney .JourneyPlayers .JourneyFeaturedName
+{
+	width: 190px;
+	height: 28px;
+	x: 8px;
+	y: 70px;
+	padding: 1px 8px;
+	z-index: 10;
+	text-align: center;
+	font-size: 20px;
+	color: #ffffff;
+	text-shadow: 0px 2px 2px 2 #000000;
+	text-overflow: shrink;
+}
+
+#ProfileJourney .JourneyPlayersSlot1
+{
+	x: 21%;
+	y: 46%;
+	margin-left: -55px;
+	margin-top: -168px;
+}
+
+#ProfileJourney .JourneyPlayersSlot2
+{
+	x: 43%;
+	y: 38%;
+	margin-left: -55px;
+	margin-top: -168px;
+}
+
+#ProfileJourney .JourneyPlayersSlot3
+{
+	x: 64%;
+	y: 58%;
+	margin-left: -55px;
+	margin-top: -168px;
+}
+
+#ProfileJourney .JourneyPlayersSlot4
+{
+	x: 82%;
+	y: 40%;
+	margin-left: -55px;
+	margin-top: -168px;
+}
+
+#ProfileJourney #JourneyTitle
+{
+	x: 3%;
+	y: 12%;
+	width: 480px;
+	height: 150px;
+}
+
+#ProfileJourney #JourneyTitle #JourneyTitleBG
+{
+	width: 376px;
+	height: 40px;
+	y: 102px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/title_bg_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney #JourneyTitle #JourneyTitleImage
+{
+	width: 480px;
+	height: 102px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/title_cn_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney #JourneyTitle.english #JourneyTitleImage
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/title_en_png.vtex");
+}
+
+#ProfileJourney #JourneyTitle.russian #JourneyTitleImage
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/title_ru_png.vtex");
+}
+
+#ProfileJourney #JourneyTitle #JourneyInfo
+{
+	x: 392px;
+	y: 12px;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/info_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney #JourneyTitle #JourneyDescription
+{
+	x: 26px;
+	y: 108px;
+	width: 320px;
+	text-align: center;
+	font-size: 22px;
+	color: #f5ddb0;
+	text-shadow: 0px 2px 3px 2 #000000;
+}
+
+#ProfileJourney .JourneyMilestone
+{
+	width: 100px;
+	height: 134px;
+	overflow: noclip;
+	z-index: 2;
+}
+
+#ProfileJourney .JourneyMilestone.Current
+{
+	brightness: 1.25;
+}
+
+#ProfileJourney .JourneyMilestone.Current .JourneyFlag
+{
+	brightness: 1.12;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyFlag
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/flag_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ProfileJourney .JourneyMilestone:hover .JourneyFlag
+{
+	brightness: 1.35;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyLevelLabel,#ProfileJourney .JourneyMilestone .JourneyLevelValue
+{
+	width: 100%;
+	text-align: center;
+	color: #e8f7ff;
+	text-shadow: 0px 2px 3px 2 #183c65;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyLevelLabel
+{
+	y: 23px;
+	font-size: 24px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyLevelValue
+{
+	y: 56px;
+	font-size: 32px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers
+{
+	width: 220px;
+	height: 158px;
+	align: center top;
+	y: -168px;
+	overflow: noclip;
+	z-index: 5;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot
+{
+	width: 44px;
+	height: 44px;
+	background-color: #172332cc;
+	border: 1px solid #d9bc73;
+	box-shadow: 0px 1px 4px 1px #000000aa;
+	z-index: 2;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot.Empty
+{
+	wash-color: #78818b;
+	opacity: 0.35;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot.Featured
+{
+	width: 64px;
+	height: 64px;
+	z-index: 5;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot.Self
+{
+	padding: 3px;
+	background-image: url("s2r://panorama/images/custom_game/profile/achievement_road/highlight_box_png.vtex");
+	background-size: 100% 100%;
+	border: 0px;
+	overflow: noclip;
+	z-index: 8;
+	animation-name: JourneySelfHighlightPulse;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot .JourneyAvatar
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyAvatarSlot .JourneySelfLabel
+{
+	width: 70px;
+	x: -13px;
+	y: -23px;
+	text-align: center;
+	font-size: 18px;
+	color: #ffdf6a;
+	text-shadow: 0px 2px 3px 2 #6a2100;
+	overflow: noclip;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot1
+{
+	x: 78px;
+	y: 88px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot2
+{
+	x: 6px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot3
+{
+	x: 58px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot4
+{
+	x: 110px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot5
+{
+	x: 144px;
+	y: 0px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot6
+{
+	x: 28px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot7
+{
+	x: 74px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot8
+{
+	x: 120px;
+	y: 44px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot9
+{
+	x: 28px;
+	y: 88px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .AvatarSlot10
+{
+	x: 120px;
+	y: 88px;
+}
+
+#ProfileJourney .JourneyMilestone .JourneyPlayers .JourneyFeaturedName
+{
+	width: 190px;
+	height: 28px;
+	x: 0px;
+	y: 70px;
+	padding: 1px 8px;
+	z-index: 10;
+	text-align: center;
+	font-size: 20px;
+	color: #ffffff;
+	text-shadow: 0px 2px 2px 2 #000000;
+	text-overflow: shrink;
+}
+
+#ProfileJourney .JourneySlot1
+{
+	x: 21%;
+	y: 46%;
+}
+
+#ProfileJourney .JourneySlot2
+{
+	x: 43%;
+	y: 38%;
+}
+
+#ProfileJourney .JourneySlot3
+{
+	x: 64%;
+	y: 58%;
+}
+
+#ProfileJourney .JourneySlot4
+{
+	x: 82%;
+	y: 40%;
+}
+
+@keyframes 'JourneySelfHighlightPulse'
+{
+	0%
+	{
+		brightness: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.35;
+	}
+	
+	100%
+	{
+		brightness: 1;
+	}
+	
 }
 
 .EOM_Portrait
@@ -7003,6 +7872,863 @@
 	font-family: Adobe Heiti Std;
 }
 
+.ProductImage
+{
+	width: 200px;
+	height: 200px;
+}
+
+.ProductImage .ProductCount
+{
+	align: right bottom;
+	color: white;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	font-size: 30px;
+	text-shadow: 0px 0px 4px 4 #000000;
+}
+
+.AspectRatio4x3 #WeeklyMatchWindow
+{
+	width: 100%;
+	height: width-percentage(56.25%);
+	vertical-align: center;
+	ui-scale: 66%;
+}
+
+.AspectRatio16x10 #WeeklyMatchWindow
+{
+	width: 100%;
+	height: width-percentage(62.5%);
+	vertical-align: center;
+	ui-scale: 84%;
+}
+
+#WeeklyMatchWindow
+{
+	width: 100%;
+	height: 100%;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitle
+{
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitle .EOM_Countdown
+{
+	align: center bottom;
+	margin-bottom: 8px;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitle .EOM_Countdown Label
+{
+	text-align: center;
+	font-size: 20px;
+	color: #FFFFFF;
+	text-shadow: 0 0 2px 1 #000000;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitle #CountdownEnd
+{
+	align: center bottom;
+	margin-bottom: 8px;
+	text-align: center;
+	font-size: 20px;
+	color: #FFFFFF;
+	text-shadow: 0 0 2px 1 #000000;
+}
+
+#WeeklyMatchWindow #TitleBG
+{
+	margin: 20px 0;
+	width: 1628px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_line_title_big_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .SeparatorLine
+{
+	margin: 8px 0;
+	horizontal-align: center;
+	width: 262px;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_line_divider_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow #SelfRankTitle
+{
+	margin-top: 40px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#WeeklyMatchWindow #SelfRankTitle Label
+{
+	width: 150px;
+	height: 24px;
+	text-align: center;
+	font-size: 24px;
+	color: #FFFFFF;
+	text-overflow: shrink;
+}
+
+#WeeklyMatchWindow .RankTierName
+{
+	width: 112px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_frame_txt_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow .RankTierName Label
+{
+	align: center center;
+	font-size: 20px;
+	color: gradient(linear, 0 0, 0 100%, from(#C2DDFF), to(#F5F8FF));
+}
+
+#WeeklyMatchWindow .TitleDecorate
+{
+	vertical-align: center;
+	width: 68px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_line_title_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .TitleDecorate.right
+{
+	transform: rotateY(180deg);
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitleContent
+{
+	padding-left: 30px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitleContent .EOM_Icon
+{
+	wash-color: #a1c3fd;
+	margin-left: 6px;
+	transition-duration: 0.1s;
+	transition-property: brightness;
+	brightness: 1;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitleContent .EOM_Icon:hover
+{
+	brightness: 1.5;
+}
+
+#WeeklyMatchWindow #WeeklyMatchTitleLabel
+{
+	text-align: center;
+	font-size: 50px;
+	color: gradient(linear, 0 0, 0 100%, from(#63A6FC), to(#D7E4FE));
+	text-shadow: 0 -1px 4px 2 #02328b;
+}
+
+#WeeklyMatchWindow #WeeklyMatchMain
+{
+	margin-top: 90px;
+	width: 100%;
+	height: 100%;
+}
+
+#WeeklyMatchWindow #SelfBrief
+{
+	horizontal-align: center;
+	x: -636px;
+	width: 380px;
+	height: 728px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_img_flag_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+}
+
+#WeeklyMatchWindow #SelfBrief .WeeklyRankIcon
+{
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow #SelfName
+{
+	margin-top: 96px;
+	horizontal-align: center;
+	width: 266px;
+	height: 22px;
+}
+
+#WeeklyMatchWindow #SelfName .EOM_UserName
+{
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow #SelfName .EOM_UserName Label
+{
+	text-align: center;
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow #SelfName Label
+{
+	text-align: center;
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow #SelfAvatar
+{
+	width: 132px;
+	height: 132px;
+	margin-top: 12px;
+	margin-bottom: 4px;
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow .BriefInfoRow
+{
+	horizontal-align: center;
+	width: 242px;
+}
+
+#WeeklyMatchWindow .BriefInfoRow Label
+{
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow .BriefInfoRow .left_info
+{
+	text-align: center;
+	width: 40%;
+}
+
+#WeeklyMatchWindow .BriefInfoRow .right_info
+{
+	margin-right: 10px;
+	text-align: right;
+	width: 40%;
+	horizontal-align: right;
+}
+
+#WeeklyMatchWindow #WeeklyMatchGroupInfo
+{
+	margin-top: 16px;
+	horizontal-align: center;
+	width: 880px;
+	height: 100%;
+	background-color: #000e2988;
+	margin-bottom: 34px;
+}
+
+#WeeklyMatchWindow .GroupInfoCenterLabel
+{
+	align: center center;
+	y: -30px;
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow #WeeklyMatchRightInfo
+{
+	margin-top: 16px;
+	x: 646px;
+	horizontal-align: center;
+	width: 380px;
+	height: 100%;
+	flow-children: down;
+}
+
+#WeeklyMatchWindow #GroupTitleRow
+{
+	width: 100%;
+	height: 36px;
+	padding: 0 4px;
+	flow-children: right;
+	background-color: #26295d;
+	border: 2px solid #2d3192;
+}
+
+#WeeklyMatchWindow #GroupTitleRow Label
+{
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow .RankColumn
+{
+	vertical-align: center;
+}
+
+#WeeklyMatchWindow .RankColumn Label
+{
+	font-size: 20px;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+#WeeklyMatchWindow .RankColumn.1
+{
+	width: 130px;
+}
+
+#WeeklyMatchWindow .RankColumn.2
+{
+	width: 274px;
+}
+
+#WeeklyMatchWindow .RankColumn.2 Label
+{
+	horizontal-align: left;
+}
+
+#WeeklyMatchWindow .RankColumn.3
+{
+	width: 176px;
+}
+
+#WeeklyMatchWindow .RankColumn.4
+{
+	width: 130px;
+}
+
+#WeeklyMatchWindow .RankColumn.5
+{
+	horizontal-align: right;
+	width: 154px;
+}
+
+#WeeklyMatchWindow .RankColumn Label
+{
+	horizontal-align: center;
+}
+
+#WeeklyMatchWindow #GroupList
+{
+	margin-top: 36px;
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 4px 7px;
+	margin-bottom: 60px;
+}
+
+#WeeklyMatchWindow #GroupList .VerticalScrollBar
+{
+	margin: 6px 2px 6px 0;
+}
+
+#WeeklyMatchWindow #GroupBottomButtons
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 60px;
+	background-color: #272a5e;
+	border: 2px solid #303494;
+	flow-children: right;
+}
+
+#WeeklyMatchWindow #GroupBottomButtons .EOM_Button
+{
+	width: 100px;
+	height: 50px;
+}
+
+#WeeklyMatchWindow #GroupBottomButtons .EOM_Button Label
+{
+	font-size: 16px;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow
+{
+	width: 866px;
+	height: 64px;
+	margin-bottom: 4px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_list_rank_2_png.vtex");
+	background-size: 100%;
+	border: 1px solid #496d9b55;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow.up
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_list_rank_1_png.vtex");
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow.down
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_list_rank_3_png.vtex");
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .RankColumn
+{
+	height: 100%;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .RankBackground
+{
+	align: center center;
+	width: 50px;
+	height: 44px;
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .RankNumber
+{
+	align: center center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #dcecff;
+	text-shadow: 0 1px 3px 2 #000000;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow.Rank1 .RankBackground
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_icon_rank_1_png.vtex");
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow.Rank2 .RankBackground
+{
+	width: 46px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_icon_rank_2_png.vtex");
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow.Rank3 .RankBackground
+{
+	width: 42px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_icon_rank_3_png.vtex");
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow Label
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .StatusLabel
+{
+	font-size: 20px;
+	color: #7DA8FF;
+	text-shadow: 0 0 2px 1 #00143b88;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .StatusLabel.StatusUp
+{
+	color: gradient(linear, 0 0, 0 100%, from(#FFE58F), to(#FFF7DC));
+	text-shadow: 0 0 2px 2 #72570088;
+}
+
+#WeeklyMatchWindow .WeeklyMatchRankRow .StatusLabel.StatusDown
+{
+	color: #9A9A9A;
+	text-shadow: 0 0 2px 1 #00000088;
+}
+
+#WeeklyMatchWindow .PlayerColumn
+{
+	flow-children: right;
+}
+
+#WeeklyMatchWindow .MemberAvatar
+{
+	width: 64px;
+	height: 64px;
+	margin-left: 20px;
+	vertical-align: center;
+}
+
+#WeeklyMatchWindow .MemberName
+{
+	width: 186px;
+	height: 28px;
+	margin-left: 12px;
+	vertical-align: center;
+}
+
+#WeeklyMatchWindow .MemberName Label
+{
+	font-size: 20px;
+	color: #f4f8ff;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+#WeeklyMatchWindow #WeeklyMatchCenterInfo
+{
+	width: fill-parent-flow(1);
+}
+
+#WeeklyMatchWindow #WeeklyMatchReward
+{
+	width: 100%;
+	height: 458px;
+	background-color: #000e2988;
+	flow-children: down;
+}
+
+#WeeklyMatchWindow #WeeklyMatchScoreRule
+{
+	margin-top: 26px;
+	width: 100%;
+	height: 316px;
+	background-color: #000e2988;
+	flow-children: down;
+}
+
+#WeeklyMatchWindow .WeeklyRightTitle
+{
+	width: 100%;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_frame_title_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .WeeklyRightTitle Label
+{
+	align: center center;
+	text-align: center;
+	font-size: 22px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow #RankWrap
+{
+	width: 100%;
+	height: 210px;
+	margin: 0 10px;
+}
+
+#WeeklyMatchWindow #RankWrap .WeeklyRankIcon
+{
+	align: center center;
+}
+
+#WeeklyMatchWindow #RankWrap .WeeklyRankIcon.Leaving,#WeeklyMatchWindow #RankWrap .WeeklyRankIcon.Entering
+{
+	animation-duration: 0.15s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#WeeklyMatchWindow #RankWrap.DirectionNext .WeeklyRankIcon.Leaving
+{
+	animation-name: WeeklyMatchTierExitLeft;
+}
+
+#WeeklyMatchWindow #RankWrap.DirectionNext .WeeklyRankIcon.Entering
+{
+	animation-name: WeeklyMatchTierEnterRight;
+}
+
+#WeeklyMatchWindow #RankWrap.DirectionPrevious .WeeklyRankIcon.Leaving
+{
+	animation-name: WeeklyMatchTierExitRight;
+}
+
+#WeeklyMatchWindow #RankWrap.DirectionPrevious .WeeklyRankIcon.Entering
+{
+	animation-name: WeeklyMatchTierEnterLeft;
+}
+
+#WeeklyMatchWindow #RankWrap .ArrowButton
+{
+	vertical-align: center;
+	width: 26px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_btn_arrow_left_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow #RankWrap .ArrowButton.right
+{
+	horizontal-align: right;
+	transform: rotateY(180deg);
+}
+
+#WeeklyMatchWindow #RankTierDots
+{
+	height: 18px;
+	margin-top: -8px;
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 8px;
+}
+
+#WeeklyMatchWindow #RankTierDots .RankTierDot
+{
+	width: 8px;
+	height: 8px;
+	margin: 0 5px;
+	vertical-align: center;
+	border-radius: 50%;
+	background-color: #7e91b8;
+	opacity: 0.7;
+	transition-property: width, height, background-color, opacity, box-shadow;
+	transition-duration: 0.15s;
+	box-shadow: 0 0 0px 0 #8eb4ffcc;
+}
+
+#WeeklyMatchWindow #RankTierDots .RankTierDot.Selected
+{
+	width: 10px;
+	height: 10px;
+	background-color: #8eb4ff;
+	opacity: 1;
+	box-shadow: 0 0 3px 0 #8eb4ff88;
+}
+
+#WeeklyMatchWindow #RewardList
+{
+	align: center bottom;
+	flow-children: right;
+	margin-bottom: 42px;
+}
+
+#WeeklyMatchWindow .RewardItem
+{
+	width: 112px;
+	height: 106px;
+	margin: 0 2px;
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/cosmetic_card_0_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .RewardItem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/cosmetic_card_1_png.vtex");
+}
+
+#WeeklyMatchWindow .RewardItem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/cosmetic_card_2_png.vtex");
+}
+
+#WeeklyMatchWindow .RewardItem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/cosmetic_card_3_png.vtex");
+}
+
+#WeeklyMatchWindow .RewardItem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/cosmetics/cosmetic_card_4_png.vtex");
+}
+
+#WeeklyMatchWindow .RewardItem .ProductImage
+{
+	align: center center;
+	width: height-percentage(100%);
+	height: 100%;
+	margin-bottom: 24px;
+}
+
+#WeeklyMatchWindow .RewardItem .ProductImage Label
+{
+	margin: 0;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+
+#WeeklyMatchWindow .RewardItem .ProductImage.Special_1
+{
+	margin-bottom: 0px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/01_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .RewardItem .ProductImage.Special_2
+{
+	margin-bottom: 0px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/02_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .RewardItem .RewardItemName
+{
+	height: 24px;
+	align: center bottom;
+	font-size: 16px;
+	color: #dcecff;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#WeeklyMatchWindow .Special_Tag
+{
+	align: right top;
+	ui-scale: 80%;
+	width: 92px;
+	height: 70px;
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/tag_en_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow .Special_Tag.schinese
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/tag_png.vtex");
+}
+
+#WeeklyMatchWindow .Special_Tag.russian
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/tag_ru_png.vtex");
+}
+
+#WeeklyMatchWindow #ScoreRuleContent
+{
+	width: 100%;
+	horizontal-align: center;
+	margin-top: 22px;
+	flow-children: down;
+}
+
+#WeeklyMatchWindow #ScoreRuleContent .ScoreRuleLine .ScoreRulePoint
+{
+	vertical-align: center;
+	width: 38px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/c4/anim_button_point_png.vtex");
+	background-size: 100%;
+}
+
+#WeeklyMatchWindow #ScoreRuleContent .ScoreRuleLine.short
+{
+	margin-top: 10px;
+}
+
+#WeeklyMatchWindow #ScoreRuleContent .ScoreRuleLine.short Label
+{
+	font-size: 18px;
+	color: #ff9191;
+}
+
+#WeeklyMatchWindow #ScoreRuleContent Label
+{
+	margin-left: 40px;
+	font-size: 18px;
+	color: #FFFFFF;
+	vertical-align: center;
+}
+
+@keyframes 'WeeklyMatchTierExitLeft'
+{
+	0%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'WeeklyMatchTierEnterRight'
+{
+	0%
+	{
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'WeeklyMatchTierExitRight'
+{
+	0%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'WeeklyMatchTierEnterLeft'
+{
+	0%
+	{
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+}
+
+.WeeklyRankIcon
+{
+	width: 232px;
+	height: 210px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 256px 256px;
+}
+
+.WeeklyRankIcon.small
+{
+	width: 150px;
+	height: 135px;
+	background-size: 100%;
+	background-size: 150px 150px;
+}
+
+.WeeklyRankIcon.Tier1
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_1_png.vtex");
+}
+
+.WeeklyRankIcon.Tier2
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_2_png.vtex");
+}
+
+.WeeklyRankIcon.Tier3
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_3_png.vtex");
+}
+
+.WeeklyRankIcon.Tier4
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_4_png.vtex");
+}
+
+.WeeklyRankIcon.Tier5
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_5_png.vtex");
+}
+
+.WeeklyRankIcon.Tier6
+{
+	background-image: url("s2r://panorama/images/custom_game/weekly_rank_icon/icon_6_png.vtex");
+}
+
 .CustomHudRoot
 {
 	width: 100%;
@@ -7013,6 +8739,41 @@
 #ProfileTag_SelfInfo
 {
 	padding-top: 152px;
+}
+
+#ProfileTag_Achievement.GloryRoad
+{
+	padding-top: 0px;
+}
+
+#ProfileTag_Achievement .ProfileAchievementSubPage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ProfileTag_Achievement .ProfileAchievementSubPage.Hidden
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.EOM_MenuLayout
+{
+	background-color: #000000;
+}
+
+.EOM_MenuLayout.ProfileTag_WeeklyMatch #EOM_MenuLayoutBG
+{
+	background-image: url("s2r://panorama/images/custom_game/profile/week_match/r2_bg_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout #EOM_MenuLayoutBG
+{
+	transition-property: background-image;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
 }
 
 #CosmeticJump

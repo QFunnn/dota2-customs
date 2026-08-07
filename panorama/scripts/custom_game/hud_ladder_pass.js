@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -27,8 +27,10 @@ var MenuMarkIcon = require('./MenuMarkIcon.js');
 var Player = require('./Player.js');
 var ProductImage = require('./ProductImage.js');
 var ProductItem = require('./ProductItem.js');
+var red_point_utils = require('./red_point_utils.js');
 var netdata_utils = require('./netdata_utils.js');
 var game_utils = require('./game_utils.js');
+var battle_pass_config = require('./battle_pass_config.js');
 require('./CourierTitle.js');
 require('./EOM_PortraitFullBody.js');
 require('./WinStreak.js');
@@ -42,38 +44,6 @@ if (!isSpectator()) {
   const bpPlusStoreID = 9900286;
   const bpRushStoreID = 9900287;
   const bpExpStoreID = 9900288;
-  const BP_SEASON_CONFIG = {
-    [11]: {
-      plus: 9900407,
-      rush: 9900408,
-      exp: 9900409,
-      preview: 5100008
-    },
-    [10]: {
-      plus: 9900404,
-      rush: 9900405,
-      exp: 9900406,
-      preview: 5100041
-    },
-    [9]: {
-      plus: 9900401,
-      rush: 9900402,
-      exp: 9900403,
-      preview: 5100032
-    },
-    [8]: {
-      plus: 9900286,
-      rush: 9900287,
-      exp: 9900288,
-      preview: 5100022
-    },
-    [7]: {
-      plus: 9900281,
-      rush: 9900282,
-      exp: 9900283,
-      preview: 5100008
-    }
-  };
   const language = $.Language().toLowerCase();
   const season = game_utils.GetBattlePassSeason();
   const [grandRewardIndex, setGrandRewardIndex] = libs.createSignal(10);
@@ -107,49 +77,15 @@ if (!isSpectator()) {
     });
   };
   let previewTimer = -1;
-  let rewardWarned = false;
-  const [taskRewardWarn, setTaskRewardWarn] = libs.createSignal(false);
-  let taskRewardRecord = [];
+  libs.createSignal(false);
   const [ladderTask, setLadderTask] = libs.createSignal({});
-  function updateTaskRewardWarn() {
-    const config = ladderTask();
-    const progress = getNetDataCache("bp_task_progresses", Players.GetLocalPlayer());
-    const timeNow = Date.now() / 1000;
-    let flag = false;
-    if (config && progress) {
-      for (const taskid in progress) {
-        const _progress = progress[taskid];
-        if (config[_progress.task_id]) {
-          if (timeNow >= _progress.start_time) {
-            const target = config[_progress.task_id]?.target?.split("|").map(v => Number(v)) ?? [1, 2, 3];
-            if (!target) continue;
-            const progress = _progress.progress ?? 0;
-            const step = target.findIndex(v => progress < v);
-            const effectiveStep = step === -1 ? target.length : step;
-            if (effectiveStep > (_progress.receive_progress ?? 0)) {
-              if (!taskRewardRecord.includes(taskid)) {
-                taskRewardRecord.push(taskid);
-                flag = true;
-              }
-            }
-          }
-        }
-      }
-    }
-    if (flag) {
-      GameEvents.SendEventClientSide("custom_ui_exclamation", {
-        name: "ladderpass"
-      });
-      setTaskRewardWarn(true);
-    }
-  }
   const [previewData, setPreviewData] = libs.createSignal({
-    id: BP_SEASON_CONFIG[season()].preview ?? 5100022,
+    id: battle_pass_config.BP_SEASON_CONFIG[season()]?.preview ?? 5100022,
     plus: true
   });
   libs.createEffect(libs.on(season, v => {
     setPreviewData({
-      id: BP_SEASON_CONFIG[v].preview ?? 5100022,
+      id: battle_pass_config.BP_SEASON_CONFIG[v]?.preview ?? 5100022,
       plus: true
     });
   }));
@@ -163,7 +99,6 @@ if (!isSpectator()) {
     return "";
   };
   const [showPlusReward, setShowPlusReward] = libs.createSignal(false);
-  const [seasonRewardMark, setSeasonRewardMark] = libs.createSignal();
   const [playerBPInfo, setPlayerBPInfo] = libs.createSignal({
     season: season(),
     level: 1,
@@ -183,30 +118,9 @@ if (!isSpectator()) {
       }
     }
   }, Players.GetLocalPlayer(), [season]);
-  const updateNewMarkInfo = data => {
-    if (data) {
-      for (const mid in data) {
-        const state = data[mid];
-        const kv = KeyValues.NewMarkInfoKv[mid];
-        if (kv != undefined) {
-          if (kv.menu_button == "ladderpass" && kv.tag_id != undefined) {
-            if (kv.tag_id == "SeasonReward" && state && seasonRewardMark() === undefined) {
-              setSeasonRewardMark(kv.type);
-            }
-          }
-        }
-      }
-    }
-  };
   libs.onMount(() => {
     let gameEventIDList = [];
     let NetTableIDList = [];
-    NetTableIDList.push(useServiceNetTable("player_new_mark", data => {
-      updateNewMarkInfo(data);
-    }, Players.GetLocalPlayer()));
-    gameEventIDList.push(useClientSideEvent("create_new_mark_info", data => {
-      updateNewMarkInfo(data);
-    }));
     libs.onCleanup(() => {
       gameEventIDList.forEach(id => GameEvents.Unsubscribe(id));
       NetTableIDList.forEach(id => CustomNetTables.UnsubscribeNetTableListener(id));
@@ -249,6 +163,7 @@ if (!isSpectator()) {
     });
     const [bpLevelExp, setBpLevelExp] = libs.createSignal([]);
     const [receivedList, setReceivedList] = libs.createSignal({});
+    const [redPoints, setRedPoints] = libs.createSignal(getClientGlobalData("red_points") ?? []);
     const seasonDigits = libs.createMemo(() => String(season() - 1).split(""));
     const [purchased_product, setPurchasedProduct] = libs.createSignal({});
     libs.createEffect(libs.on(season, _season => {
@@ -327,9 +242,8 @@ if (!isSpectator()) {
         }
         setLadderTask(rebuild);
       }));
-      eventIDList.push(useNetData("bp_task_progresses", data => {
-        updateTaskRewardWarn();
-      }, Players.GetLocalPlayer()));
+      eventIDList.push(useNetData("bp_task_progresses", () => {}, Players.GetLocalPlayer()));
+      eventIDList.push(useClientGlobalData("red_points", setRedPoints));
       eventIDList.push(useNetData("info_bp_task", data => {}));
       eventIDList.push(useNetData("bp_task_progresses", data => {}, Players.GetLocalPlayer()));
       return () => {
@@ -388,18 +302,6 @@ if (!isSpectator()) {
       }
       setRewardCount(count);
     });
-    libs.createEffect(libs.on(rewardCount, v => {
-      if (v == 0) {
-        rewardWarned = false;
-      } else {
-        if (!show() && !rewardWarned) {
-          rewardWarned = true;
-          GameEvents.SendEventClientSide("custom_ui_exclamation", {
-            name: "ladderpass"
-          });
-        }
-      }
-    }));
     const expNeed = () => {
       return bpLevelExp()[playerBPInfo().level] ?? bpLevelExp()[10001] ?? 100;
     };
@@ -585,11 +487,10 @@ if (!isSpectator()) {
                     showPopup("RankTask", {
                       season: season()
                     });
-                    setTaskRewardWarn(false);
                   }
                 }), libs.createComponent(libs.Show, {
                   get when() {
-                    return taskRewardWarn();
+                    return red_point_utils.hasRedPoint(redPoints(), "ladderpass", "task");
                   },
                   get children() {
                     return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
@@ -720,7 +621,7 @@ if (!isSpectator()) {
                           id: "ExpAdd",
                           onactivate: () => {
                             clientSideEvent("directly_purchase", {
-                              itemid: BP_SEASON_CONFIG[season()]?.exp ?? bpExpStoreID
+                              itemid: battle_pass_config.BP_SEASON_CONFIG[season()]?.exp ?? bpExpStoreID
                             });
                           }
                         }), _el$7);
@@ -741,35 +642,11 @@ if (!isSpectator()) {
                         className: language,
                         info: "#RewardInfo",
                         tooltip: "#RewardInfoDetail",
-                        get children() {
-                          return libs.createComponent(libs.Show, {
-                            get when() {
-                              return seasonRewardMark();
-                            },
-                            get children() {
-                              return libs.createComponent(EOM_Panel.EOM_Panel, {
-                                width: "100%",
-                                height: "100%",
-                                onmouseover: self => {
-                                  if (seasonRewardMark()) {
-                                    setSeasonRewardMark(null);
-                                    clickNewMark({
-                                      menu: "ladderpass",
-                                      tag: "SeasonReward"
-                                    }, self);
-                                  }
-                                },
-                                get children() {
-                                  return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
-                                    hittest: false,
-                                    get type() {
-                                      return seasonRewardMark();
-                                    }
-                                  });
-                                }
-                              });
-                            }
-                          });
+                        get dialogVariables() {
+                          return {
+                            now: season() - 1,
+                            next: season()
+                          };
                         }
                       });
                     }
@@ -802,7 +679,7 @@ if (!isSpectator()) {
                                     },
                                     onactivate: () => {
                                       clientSideEvent("directly_purchase", {
-                                        itemid: BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID
+                                        itemid: battle_pass_config.BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID
                                       });
                                     }
                                   }), libs.createComponent(EOM_Button.EOM_BaseButton, {
@@ -824,14 +701,29 @@ if (!isSpectator()) {
                                 }
                               });
                             }
-                          }), libs.createComponent(EOM_Button.EOM_Button, {
+                          }), libs.createComponent(EOM_Panel.EOM_Panel, {
                             get visible() {
                               return rewardCount() > 0;
                             },
                             verticalAlign: "bottom",
-                            color: "Blue",
-                            text: "#HUD_BP_5",
-                            onactivate: () => receiveAllReward()
+                            get children() {
+                              return [libs.createComponent(EOM_Button.EOM_Button, {
+                                verticalAlign: "bottom",
+                                color: "Blue",
+                                text: "#HUD_BP_5",
+                                onactivate: () => receiveAllReward()
+                              }), libs.createComponent(libs.Show, {
+                                get when() {
+                                  return red_point_utils.hasRedPoint(redPoints(), "ladderpass", "reward");
+                                },
+                                get children() {
+                                  return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+                                    type: "default",
+                                    hittest: false
+                                  });
+                                }
+                              })];
+                            }
                           })];
                         }
                       }), libs.createComponent(EOM_Panel.EOM_Panel, {
@@ -839,7 +731,7 @@ if (!isSpectator()) {
                         get children() {
                           return libs.createComponent(libs.Show, {
                             get when() {
-                              return (() => purchased_product()[BP_SEASON_CONFIG[season()]?.rush ?? bpRushStoreID] == undefined)();
+                              return (() => purchased_product()[battle_pass_config.BP_SEASON_CONFIG[season()]?.rush ?? bpRushStoreID] == undefined)();
                             },
                             get children() {
                               return libs.createComponent(EOM_Panel.EOM_Panel, {
@@ -856,7 +748,7 @@ if (!isSpectator()) {
                                     text: "#LadderPass_RushPack",
                                     onactivate: () => {
                                       clientSideEvent("directly_purchase", {
-                                        itemid: BP_SEASON_CONFIG[season()]?.rush ?? bpRushStoreID
+                                        itemid: battle_pass_config.BP_SEASON_CONFIG[season()]?.rush ?? bpRushStoreID
                                       });
                                     }
                                   }), libs.createComponent(EOM_Label.EOM_Label, {
@@ -951,6 +843,9 @@ if (!isSpectator()) {
                             },
                             get receive_owned() {
                               return libs.memo(() => !!isInfiniteLevel(rewardData().level))() ? infiniteInfo().receive : receivedList()[rewardData().level + "-" + rewardData().plus + "-" + playerBPInfo().season]?.receive_owned ?? false;
+                            },
+                            get redPoint() {
+                              return libs.memo(() => !!isInfiniteLevel(rewardData().level))() ? red_point_utils.hasRedPoint(redPoints(), "ladderpass", "reward") : red_point_utils.hasRedPoint(redPoints(), "ladderpass", "reward", rewardData().level, rewardData().plus);
                             }
                           });
                         }
@@ -995,6 +890,9 @@ if (!isSpectator()) {
                             },
                             get receive_owned() {
                               return receivedList()[grandRewardData().level + "-" + grandRewardData().plus + "-" + playerBPInfo().season]?.receive_owned ?? false;
+                            },
+                            get redPoint() {
+                              return red_point_utils.hasRedPoint(redPoints(), "ladderpass", "reward", grandRewardData().level, grandRewardData().plus);
                             }
                           });
                         }
@@ -1193,6 +1091,16 @@ if (!isSpectator()) {
               id: "Receive",
               hittest: false
             }, null);
+          }
+        }), libs.createComponent(libs.Show, {
+          get when() {
+            return props.redPoint;
+          },
+          get children() {
+            return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+              type: "default",
+              hittest: false
+            });
           }
         }), libs.createComponent(EOM_Panel.EOM_Panel, {
           id: "RewardProgress",
@@ -1484,7 +1392,7 @@ if (!isSpectator()) {
             horizontalAlign: "center",
             onactivate: () => {
               clientSideEvent("directly_purchase", {
-                itemid: BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID
+                itemid: battle_pass_config.BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID
               });
             }
           }), null);

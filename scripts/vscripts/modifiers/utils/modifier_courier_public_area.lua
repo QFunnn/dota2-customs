@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -231,7 +231,7 @@ function k.prototype.____constructor(self, ...)
 	self.willHide = false
 	self.distance = 100
 	self.inited = false
-	self.init_time = 0.5
+	self.init_time = 0.05
 end
 function k.prototype.OnCreated(self, l)
 	if IsServer() then

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -36,6 +36,7 @@ var RankTierIcon = require('./RankTierIcon.js');
 var EOM_ProgressBar = require('./EOM_ProgressBar.js');
 var ScoreBoardTabButtons = require('./ScoreBoardTabButtons.js');
 var game_utils = require('./game_utils.js');
+var red_point_utils = require('./red_point_utils.js');
 require('./CourierTitle.js');
 require('./WinStreak.js');
 require('./Heroes.js');
@@ -13571,6 +13572,8 @@ const Activity_StarryTreasure3 = props => {
   const [endtime, setEndtime] = libs.createSignal(1730217600);
   const [rewardList, setRewardList] = libs.createSignal([]);
   const [ornamentList, setOrnamentList] = libs.createSignal([]);
+  const [redPoints, setRedPoints] = libs.createSignal(getClientGlobalData("red_points") ?? []);
+  const [activityTags, setActivityTags] = libs.createSignal(getClientGlobalData("activity_tag_list") ?? {});
   libs.createEffect(() => {
     let shop_data = activityShopData();
     let reward_list = rewardList();
@@ -13683,6 +13686,8 @@ const Activity_StarryTreasure3 = props => {
         });
       }
     }));
+    gameEventIDList.push(useClientGlobalData("red_points", setRedPoints));
+    gameEventIDList.push(useClientGlobalData("activity_tag_list", setActivityTags));
     libs.onCleanup(() => {
       gameEventIDList.forEach(id => GameEvents.Unsubscribe(id));
     });
@@ -13699,6 +13704,71 @@ const Activity_StarryTreasure3 = props => {
     }
     return list;
   });
+  const currentRewardListStart = libs.createMemo(() => currentList()[0]);
+  const [displayRewardListStart, setDisplayRewardListStart] = libs.createSignal();
+  const [rewardListAnimating, setRewardListAnimating] = libs.createSignal(false);
+  const [rewardListSliding, setRewardListSliding] = libs.createSignal(false);
+  const displayList = libs.createMemo(() => {
+    const start = displayRewardListStart();
+    if (start == undefined) {
+      return currentList();
+    }
+    const max = rewardList().length;
+    const count = rewardListAnimating() ? maxShowAmount + 1 : maxShowAmount;
+    const end = Math.min(start + count, max);
+    const list = [];
+    for (let index = start; index < end; index++) {
+      list.push(index);
+    }
+    return list;
+  });
+  let previousRewardListStart;
+  let rewardListAnimationStartTimer;
+  let rewardListAnimationTimer;
+  libs.createEffect(libs.on(currentRewardListStart, currentStart => {
+    if (currentStart == undefined) {
+      previousRewardListStart = undefined;
+      setDisplayRewardListStart(undefined);
+      return;
+    }
+    if (previousRewardListStart != undefined && currentStart > previousRewardListStart) {
+      setRewardListAnimating(true);
+      setDisplayRewardListStart(previousRewardListStart);
+      if (rewardListAnimationStartTimer != undefined) {
+        $.CancelScheduled(rewardListAnimationStartTimer);
+      }
+      rewardListAnimationStartTimer = $.Schedule(0, () => {
+        setRewardListSliding(true);
+        rewardListAnimationStartTimer = undefined;
+      });
+      if (rewardListAnimationTimer != undefined) {
+        $.CancelScheduled(rewardListAnimationTimer);
+      }
+      rewardListAnimationTimer = $.Schedule(0.3, () => {
+        libs.batch(() => {
+          setRewardListSliding(false);
+          setDisplayRewardListStart(currentStart);
+          setRewardListAnimating(false);
+        });
+        rewardListAnimationTimer = undefined;
+      });
+    } else {
+      setDisplayRewardListStart(currentStart);
+    }
+    previousRewardListStart = currentStart;
+  }));
+  libs.onCleanup(() => {
+    if (rewardListAnimationStartTimer != undefined) {
+      $.CancelScheduled(rewardListAnimationStartTimer);
+    }
+    if (rewardListAnimationTimer != undefined) {
+      $.CancelScheduled(rewardListAnimationTimer);
+    }
+  });
+  const hasFreeRewardRedPoint = (reward, stage) => {
+    const tab = activityTags()[activity_id];
+    return reward?.product_id == 0 && tab != undefined && red_point_utils.hasRedPoint(redPoints(), "activity", tab, "starry_treasure", stage);
+  };
   let cooldowning = false;
   return libs.createComponent(EOM_Panel.EOM_Panel, {
     get className() {
@@ -13769,169 +13839,181 @@ const Activity_StarryTreasure3 = props => {
                 className: "StarryRewardTitleArrow Right"
               })];
             }
-          }), libs.createComponent(EOM_Panel.EOM_Panel, {
-            id: "RewardList",
-            get children() {
-              return libs.createComponent(libs.Show, {
-                get when() {
-                  return currentList().length > 0;
-                },
-                get children() {
-                  return libs.createComponent(libs.Index, {
-                    get each() {
-                      return currentList();
-                    },
-                    children: (listIndex, i) => {
-                      const rewardData = () => {
-                        return rewardList()[listIndex()];
-                      };
-                      const productInfo = () => {
-                        if ((rewardData()?.product_id ?? 0) != 0 && activityShopData()[rewardData().product_id.toString()] != undefined) {
-                          const storeData = activityShopData()[rewardData().product_id.toString()];
-                          if (storeData.items && storeData.items.length > 1) {
-                            storeData.items = storeData.items.filter(v => v.item_id != activityProgress());
-                          }
-                          return storeData;
-                        }
-                      };
-                      const storeItems = libs.createMemo(() => {
-                        let result = {
-                          storeItemInfo: undefined,
-                          cosmeticID: undefined
+          }), (() => {
+            const _el$ = libs.createElement("Panel", {
+              id: "RewardListContainer"
+            }, null);
+            libs.insert(_el$, libs.createComponent(EOM_Panel.EOM_Panel, {
+              id: "RewardList",
+              get hittestchildren() {
+                return !rewardListAnimating();
+              },
+              get children() {
+                return libs.createComponent(libs.Show, {
+                  get when() {
+                    return displayList().length > 0;
+                  },
+                  get children() {
+                    return libs.createComponent(libs.For, {
+                      get each() {
+                        return displayList();
+                      },
+                      children: (listIndex, i) => {
+                        const rewardData = () => {
+                          return rewardList()[listIndex];
                         };
-                        let itemData = productInfo();
-                        if (itemData != undefined) {
-                          itemData.items = itemData.items.filter(data => {
-                            return data.item_id != activityProgress();
+                        const productInfo = () => {
+                          if ((rewardData()?.product_id ?? 0) != 0 && activityShopData()[rewardData().product_id.toString()] != undefined) {
+                            const storeData = activityShopData()[rewardData().product_id.toString()];
+                            if (storeData.items && storeData.items.length > 1) {
+                              storeData.items = storeData.items.filter(v => v.item_id != activityProgress());
+                            }
+                            return storeData;
+                          }
+                        };
+                        const storeItems = libs.createMemo(() => {
+                          let result = {
+                            storeItemInfo: undefined,
+                            cosmeticID: undefined
+                          };
+                          let itemData = productInfo();
+                          if (itemData != undefined) {
+                            itemData.items = itemData.items.filter(data => {
+                              return data.item_id != activityProgress();
+                            });
+                            for (const v of itemData.items) {
+                              if (KeyValues.CosmeticsKv[v.item_id]) {
+                                result.cosmeticID = v.item_id;
+                                break;
+                              }
+                            }
+                            result.storeItemInfo = StoreItem.getStoreItemProps({
+                              itemData: itemData,
+                              playerOrnament: playerOrnament()
+                            });
+                            return result;
+                          }
+                          return result;
+                        });
+                        const storeItemInfo = () => storeItems().storeItemInfo;
+                        const cosmeticID = () => storeItems().cosmeticID;
+                        const discount = () => {
+                          let info = storeItemInfo();
+                          if (info == undefined) return;
+                          let res = "";
+                          info.labels?.concat().filter((data, index) => {
+                            if (data.type == "discount") {
+                              res = data.label;
+                            }
                           });
-                          for (const v of itemData.items) {
-                            if (KeyValues.CosmeticsKv[v.item_id]) {
-                              result.cosmeticID = v.item_id;
-                              break;
+                          return res;
+                        };
+                        const buttonInfo = () => {
+                          if (productInfo() != undefined) {
+                            const buttonData = getActivityButtonData(productInfo());
+                            return buttonData;
+                          }
+                        };
+                        const enabled = () => {
+                          return progress() == listIndex;
+                        };
+                        const productID = () => {
+                          return (rewardData()?.product_id ?? 0) != 0 ? rewardData()?.product_id.toString() : rewardData()?.item_id;
+                        };
+                        const type = () => {
+                          if (progress() == listIndex) {
+                            return "golden";
+                          } else if (productID()) {
+                            let index = ornamentList().indexOf(Number(productID()));
+                            if (index != -1 && index != ornamentList().length - 1) {
+                              return "purple";
                             }
                           }
-                          result.storeItemInfo = StoreItem.getStoreItemProps({
-                            itemData: itemData,
-                            playerOrnament: playerOrnament()
-                          });
-                          return result;
-                        }
-                        return result;
-                      });
-                      const storeItemInfo = () => storeItems().storeItemInfo;
-                      const cosmeticID = () => storeItems().cosmeticID;
-                      const discount = () => {
-                        let info = storeItemInfo();
-                        if (info == undefined) return;
-                        let res = "";
-                        info.labels?.concat().filter((data, index) => {
-                          if (data.type == "discount") {
-                            res = data.label;
+                          return "normal";
+                        };
+                        return libs.createComponent(StarryTreasureReward, {
+                          get type() {
+                            return type();
+                          },
+                          get index() {
+                            return i() - (rewardListSliding() ? 1 : 0);
+                          },
+                          get discount() {
+                            return discount();
+                          },
+                          rewardId: listIndex + 1,
+                          get rewardData() {
+                            return rewardData();
+                          },
+                          get buttonInfo() {
+                            return buttonInfo();
+                          },
+                          get product_id() {
+                            return productID();
+                          },
+                          get cosmetic_id() {
+                            return cosmeticID();
+                          },
+                          get owned() {
+                            return storeItemInfo()?.owned;
+                          },
+                          get className() {
+                            return libs.classNames({
+                              Light: enabled(),
+                              Received: progress() > listIndex
+                            });
+                          },
+                          get received() {
+                            return progress() > listIndex;
+                          },
+                          get buttonEnable() {
+                            return enabled();
+                          },
+                          get redPoint() {
+                            return hasFreeRewardRedPoint(rewardData(), listIndex);
+                          },
+                          onUnlock: () => {
+                            if (cooldowning) return;
+                            cooldowning = true;
+                            $.Schedule(0.2, () => {
+                              cooldowning = false;
+                            });
+                            if (progress() < listIndex) {
+                              ErrorMessage("error_unlock_previously_received_reward");
+                            } else if (productInfo() == undefined) {
+                              callAction("starry_receive_reward", {
+                                activity_id: activity_id,
+                                reward_id: listIndex + 1
+                              });
+                            } else {
+                              showPopup("StoreBuyItem", {
+                                itemData: productInfo(),
+                                group: "StoreBuyItem"
+                              });
+                            }
                           }
                         });
-                        return res;
-                      };
-                      const buttonInfo = () => {
-                        if (productInfo() != undefined) {
-                          const buttonData = getActivityButtonData(productInfo());
-                          return buttonData;
-                        }
-                      };
-                      const enabled = () => {
-                        return progress() == listIndex();
-                      };
-                      const productID = () => {
-                        return (rewardData()?.product_id ?? 0) != 0 ? rewardData()?.product_id.toString() : rewardData()?.item_id;
-                      };
-                      const type = () => {
-                        if (progress() == listIndex()) {
-                          return "golden";
-                        } else if (productID()) {
-                          let index = ornamentList().indexOf(Number(productID()));
-                          if (index != -1 && index != ornamentList().length - 1) {
-                            return "purple";
-                          }
-                        }
-                        return "normal";
-                      };
-                      return libs.createComponent(StarryTreasureReward, {
-                        get type() {
-                          return type();
-                        },
-                        index: i,
-                        get discount() {
-                          return discount();
-                        },
-                        get rewardId() {
-                          return listIndex() + 1;
-                        },
-                        get rewardData() {
-                          return rewardData();
-                        },
-                        get buttonInfo() {
-                          return buttonInfo();
-                        },
-                        get product_id() {
-                          return productID();
-                        },
-                        get cosmetic_id() {
-                          return cosmeticID();
-                        },
-                        get owned() {
-                          return storeItemInfo()?.owned;
-                        },
-                        get className() {
-                          return libs.classNames({
-                            Light: enabled(),
-                            Received: progress() > listIndex()
-                          });
-                        },
-                        get received() {
-                          return progress() > listIndex();
-                        },
-                        get buttonEnable() {
-                          return enabled();
-                        },
-                        onUnlock: () => {
-                          if (cooldowning) return;
-                          cooldowning = true;
-                          $.Schedule(0.2, () => {
-                            cooldowning = false;
-                          });
-                          if (progress() < listIndex()) {
-                            ErrorMessage("error_unlock_previously_received_reward");
-                          } else if (productInfo() == undefined) {
-                            callAction("starry_receive_reward", {
-                              activity_id: activity_id,
-                              reward_id: listIndex() + 1
-                            });
-                          } else {
-                            showPopup("StoreBuyItem", {
-                              itemData: productInfo(),
-                              group: "StoreBuyItem"
-                            });
-                          }
-                        }
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                      }
+                    });
+                  }
+                });
+              }
+            }));
+            return _el$;
+          })(), libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "RewardRowBG",
             get children() {
               return libs.createComponent(EOM_Panel.EOM_Panel, {
                 id: "RewardRow",
                 get children() {
-                  return libs.createComponent(libs.Index, {
+                  return libs.createComponent(libs.For, {
                     get each() {
-                      return currentList();
+                      return displayList();
                     },
                     children: (listIndex, i) => {
                       return libs.createComponent(EOM_Panel.EOM_Panel, {
                         get className() {
-                          return libs.classNames("StarryTreasureRewardArrow", "Index" + i);
+                          return libs.classNames("StarryTreasureRewardArrow", "Index" + (i() - (rewardListSliding() ? 1 : 0)));
                         }
                       });
                     }
@@ -14055,10 +14137,11 @@ const StarryTreasureReward = props => {
   const merged = libs.mergeProps$1({
     type: "normal",
     buttonEnable: false,
+    redPoint: false,
     received: false,
     owned: false
   }, props);
-  const [local, others] = libs.splitProps(merged, ["rewardData", "product_id", "discount", "onUnlock", "index", "rewardId", "type", "buttonInfo", "limitInfo", "buttonEnable", "received", "cosmetic_id", "owned", "children"]);
+  const [local, others] = libs.splitProps(merged, ["rewardData", "product_id", "discount", "onUnlock", "index", "rewardId", "type", "buttonInfo", "limitInfo", "buttonEnable", "redPoint", "received", "cosmetic_id", "owned", "children"]);
   const resolved = libs.children(() => local.children);
   const productID = () => props.product_id;
   const cosmeticData = libs.createMemo(() => {
@@ -14204,47 +14287,61 @@ const StarryTreasureReward = props => {
             }
           }), libs.memo(() => resolved())];
         }
-      }), libs.createComponent(libs.Switch, {
-        fallback: () => libs.createComponent(EOM_Button.EOM_Button, {
-          id: "RewardButton",
-          text: "#Free",
-          enabled: true,
-          onactivate: () => {
-            merged.onUnlock();
-          }
-        }),
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "RewardButtonContainer",
         get children() {
-          return [libs.createComponent(libs.Match, {
-            get when() {
-              return local.received;
-            },
+          return libs.createComponent(libs.Switch, {
+            fallback: () => [libs.createComponent(EOM_Button.EOM_Button, {
+              id: "RewardButton",
+              text: "#Free",
+              enabled: true,
+              onactivate: () => {
+                merged.onUnlock();
+              }
+            }), libs.createComponent(libs.Show, {
+              get when() {
+                return local.redPoint;
+              },
+              get children() {
+                return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+                  hittest: false
+                });
+              }
+            })],
             get children() {
-              return libs.createComponent(EOM_Button.EOM_Button, {
-                id: "RewardButton",
-                text: "#activity_receive",
-                enabled: false
-              });
-            }
-          }), libs.createComponent(libs.Match, {
-            get when() {
-              return merged.buttonInfo != undefined;
-            },
-            get children() {
-              return libs.createComponent(EOM_Button.EOM_Button, {
-                enabled: true,
-                id: "RewardButton",
-                get text() {
-                  return merged.buttonInfo.text ?? "";
+              return [libs.createComponent(libs.Match, {
+                get when() {
+                  return local.received;
                 },
-                get icon() {
-                  return merged.buttonInfo?.icon;
-                },
-                onactivate: () => {
-                  merged.onUnlock();
+                get children() {
+                  return libs.createComponent(EOM_Button.EOM_Button, {
+                    id: "RewardButton",
+                    text: "#activity_receive",
+                    enabled: false
+                  });
                 }
-              });
+              }), libs.createComponent(libs.Match, {
+                get when() {
+                  return merged.buttonInfo != undefined;
+                },
+                get children() {
+                  return libs.createComponent(EOM_Button.EOM_Button, {
+                    enabled: true,
+                    id: "RewardButton",
+                    get text() {
+                      return merged.buttonInfo.text ?? "";
+                    },
+                    get icon() {
+                      return merged.buttonInfo?.icon;
+                    },
+                    onactivate: () => {
+                      merged.onUnlock();
+                    }
+                  });
+                }
+              })];
             }
-          })];
+          });
         }
       })];
     }
@@ -14398,14 +14495,14 @@ const StarryTreasureExhcangeItem = props => {
           return props.free;
         },
         get children() {
-          const _el$ = libs.createElement("Image", {
+          const _el$2 = libs.createElement("Image", {
             id: "freeIcon",
             get ["class"]() {
               return $.Language().toLowerCase();
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$, "class", $.Language().toLowerCase(), _$p));
-          return _el$;
+          libs.effect(_$p => libs.setProp(_el$2, "class", $.Language().toLowerCase(), _$p));
+          return _el$2;
         }
       }), libs.createElement("Image", {
         id: "previewIcon"
@@ -14454,32 +14551,32 @@ const PreviewPage = props => {
     }
   });
   return (() => {
-    const _el$3 = libs.createElement("Panel", {
+    const _el$4 = libs.createElement("Panel", {
         id: "PreviewPanel"
       }, null),
-      _el$4 = libs.createElement("Panel", {
-        id: "PreviewContainer"
-      }, _el$3),
       _el$5 = libs.createElement("Panel", {
-        id: "PreviewList"
+        id: "PreviewContainer"
       }, _el$4),
       _el$6 = libs.createElement("Panel", {
-        id: "PreviewContent"
+        id: "PreviewList"
       }, _el$5),
       _el$7 = libs.createElement("Panel", {
+        id: "PreviewContent"
+      }, _el$6),
+      _el$8 = libs.createElement("Panel", {
         id: "PackName"
-      }, _el$6);
+      }, _el$7);
       libs.createElement("Image", {
         id: "Divider"
-      }, _el$6);
-      const _el$0 = libs.createElement("Panel", {
+      }, _el$7);
+      const _el$1 = libs.createElement("Panel", {
         id: "PreviewPreview"
-      }, _el$4),
-      _el$1 = libs.createElement("Panel", {
+      }, _el$5),
+      _el$10 = libs.createElement("Panel", {
         id: "CosmeticDesc"
-      }, _el$0);
-    libs.setProp(_el$5, "onactivate", () => {});
-    libs.insert(_el$5, libs.createComponent(EOM_Panel.EOM_Panel, {
+      }, _el$1);
+    libs.setProp(_el$6, "onactivate", () => {});
+    libs.insert(_el$6, libs.createComponent(EOM_Panel.EOM_Panel, {
       id: "PreviewListTitle",
       get children() {
         return [libs.createComponent(GenericPanel.CLabel, {
@@ -14491,19 +14588,19 @@ const PreviewPage = props => {
           }
         })];
       }
-    }), _el$6);
-    libs.insert(_el$7, libs.createComponent(GenericPanel.CLabel, {
+    }), _el$7);
+    libs.insert(_el$8, libs.createComponent(GenericPanel.CLabel, {
       get text() {
         return "#" + previewID();
       }
     }));
-    libs.insert(_el$6, libs.createComponent(GenericPanel.CLabel, {
+    libs.insert(_el$7, libs.createComponent(GenericPanel.CLabel, {
       id: "PackDesc",
       get text() {
         return "#" + previewID() + "_description";
       }
     }), null);
-    libs.insert(_el$6, libs.createComponent(EOM_Panel.EOM_Panel, {
+    libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
       flowChildren: "right",
       horizontalAlign: "center",
       get children() {
@@ -14557,7 +14654,7 @@ const PreviewPage = props => {
         });
       }
     }), null);
-    libs.insert(_el$0, libs.createComponent(libs.Switch, {
+    libs.insert(_el$1, libs.createComponent(libs.Switch, {
       get children() {
         return [libs.createComponent(libs.Match, {
           get when() {
@@ -14591,26 +14688,26 @@ const PreviewPage = props => {
           }
         })];
       }
-    }), _el$1);
-    libs.insert(_el$1, libs.createComponent(GenericPanel.CLabel, {
+    }), _el$10);
+    libs.insert(_el$10, libs.createComponent(GenericPanel.CLabel, {
       id: "CosmeticName",
       get text() {
         return '#' + previewID();
       }
     }), null);
-    libs.insert(_el$1, libs.createComponent(EOM_Separator.EOM_Separator, {
+    libs.insert(_el$10, libs.createComponent(EOM_Separator.EOM_Separator, {
       size: "short"
     }), null);
-    libs.insert(_el$1, libs.createComponent(GenericPanel.CLabel, {
+    libs.insert(_el$10, libs.createComponent(GenericPanel.CLabel, {
       id: "CosmeticAccess",
       get text() {
         return GetCosmeticAccessDescription(previewID());
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$3, "className", libs.classNames({
+    libs.effect(_$p => libs.setProp(_el$4, "className", libs.classNames({
       Show: previewID() != -1
     }), _$p));
-    return _el$3;
+    return _el$4;
   })();
 };
 const ExchangePage = props => {
@@ -14660,7 +14757,14 @@ const ExchangePage = props => {
     }));
     gameEventIDList.push(useNetData("info_shop_product_group_by_tag", data => {
       const result = data?.["DeepSea_1"] ?? [];
+      let itemHasCosmetic = item => {
+        if (item.title == 3) return false;
+        return item?.items?.[0] && KeyValues.CosmeticsKv?.[item.items[0].item_id.toString()] != undefined;
+      };
       result.sort((a, b) => {
+        if (itemHasCosmetic(a) && itemHasCosmetic(b)) {
+          return b.order_by - a.order_by;
+        }
         return a.order_by - b.order_by;
       });
       setStoreItemData(result);
@@ -14686,25 +14790,25 @@ const ExchangePage = props => {
     onactivate: () => {},
     get children() {
       return [(() => {
-        const _el$10 = libs.createElement("Panel", {
+        const _el$11 = libs.createElement("Panel", {
           id: "TopBarBG"
         }, null);
-        libs.insert(_el$10, libs.createComponent(Player.CurrencyGroup, {
+        libs.insert(_el$11, libs.createComponent(Player.CurrencyGroup, {
           get tokens() {
             return [props.exchange_token];
           }
         }));
-        return _el$10;
+        return _el$11;
       })(), libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "StarryExchangeContainer",
         onactivate: () => props.onClose(),
         get children() {
           return [(() => {
-            const _el$11 = libs.createElement("Panel", {
+            const _el$12 = libs.createElement("Panel", {
               id: "StarryExchangeList"
             }, null);
-            libs.setProp(_el$11, "onactivate", () => {});
-            libs.insert(_el$11, libs.createComponent(EOM_Panel.EOM_Panel, {
+            libs.setProp(_el$12, "onactivate", () => {});
+            libs.insert(_el$12, libs.createComponent(EOM_Panel.EOM_Panel, {
               id: "StarryExchangeListTitle",
               get children() {
                 return [libs.createComponent(GenericPanel.CLabel, {
@@ -14717,7 +14821,7 @@ const ExchangePage = props => {
                 })];
               }
             }), null);
-            libs.insert(_el$11, libs.createComponent(EOM_Panel.EOM_Panel, {
+            libs.insert(_el$12, libs.createComponent(EOM_Panel.EOM_Panel, {
               id: "StarryExchangeItemList",
               flowChildren: "right-wrap",
               scroll: "y",
@@ -14882,12 +14986,12 @@ const ExchangePage = props => {
                 });
               }
             }), null);
-            return _el$11;
+            return _el$12;
           })(), (() => {
-            const _el$12 = libs.createElement("Panel", {
+            const _el$13 = libs.createElement("Panel", {
               id: "StarryExchangePreview"
             }, null);
-            libs.insert(_el$12, libs.createComponent(libs.Show, {
+            libs.insert(_el$13, libs.createComponent(libs.Show, {
               get when() {
                 return previewInfo().cid != -1;
               },
@@ -14916,25 +15020,25 @@ const ExchangePage = props => {
                     });
                   }
                 }), (() => {
-                  const _el$13 = libs.createElement("Panel", {
+                  const _el$14 = libs.createElement("Panel", {
                     id: "CosmeticDesc"
                   }, null);
-                  libs.insert(_el$13, libs.createComponent(GenericPanel.CLabel, {
+                  libs.insert(_el$14, libs.createComponent(GenericPanel.CLabel, {
                     id: "CosmeticName",
                     get text() {
                       return '#' + previewInfo().cid;
                     }
                   }), null);
-                  libs.insert(_el$13, libs.createComponent(EOM_Separator.EOM_Separator, {
+                  libs.insert(_el$14, libs.createComponent(EOM_Separator.EOM_Separator, {
                     size: "short"
                   }), null);
-                  libs.insert(_el$13, libs.createComponent(GenericPanel.CLabel, {
+                  libs.insert(_el$14, libs.createComponent(GenericPanel.CLabel, {
                     id: "CosmeticAccess",
                     get text() {
                       return GetCosmeticAccessDescription(previewInfo().cid);
                     }
                   }), null);
-                  return _el$13;
+                  return _el$14;
                 })(), libs.createComponent(libs.Show, {
                   get when() {
                     return previewInfo().cid.toString().slice(0, 3) == "531";
@@ -14955,7 +15059,7 @@ const ExchangePage = props => {
                 })];
               }
             }));
-            return _el$12;
+            return _el$13;
           })()];
         }
       })];
@@ -15016,18 +15120,15 @@ if (!isSpectator()) {
     ["Activity_GuoqingLogin"]: 53,
     ["Activity_Doctor"]: 56,
     ["Activity_LuckyTurntable"]: 60,
-    ["Activity_tutu3"]: 63,
     ["Activity_nezha51"]: 76,
     ["Activity_Dai"]: 77,
     ["Activity_meiji"]: 78,
     ["Activity_nianshou"]: 79,
     ["Activity_NewPlayer2"]: 84,
     ["Activity_Anniversary2"]: 90,
-    ["Activity_tutu1"]: 91,
     ["Activity_DragonBoat"]: 98,
     ["Activity_BountyCompetition"]: 99,
     ["Activity_StarryTreasure"]: 98,
-    ["Activity_tutu2"]: 108,
     ["Activity_NewPlayerCheck"]: 109,
     ["Activity_caijue"]: 110,
     ["Activity_26WuYiTurntable"]: 111,
@@ -15036,7 +15137,12 @@ if (!isSpectator()) {
     ["Activity_miao"]: 114,
     ["Activity_StarryTreasure2"]: 116,
     ["Activity_LuckCheck"]: 117,
-    ["Activity_C4C1"]: 215
+    ["Activity_C4C1"]: 119,
+    ["Activity_tutu2"]: 120,
+    ["Activity_tutu1"]: 120,
+    ["Activity_tutu"]: 120,
+    ["Activity_tutu3"]: 120,
+    ["Activity_emo"]: 121
   };
   const language = $.Language();
   const [show, setShow] = libs.createSignal(false);
@@ -15097,6 +15203,7 @@ if (!isSpectator()) {
           }
         });
       }
+      setClientGlobalData("menu_bar_activity_tabs", Object.keys(list), true);
       return list;
     });
     const [seleted_menu2, setSelectedMenu2] = libs.createSignal();
@@ -15552,13 +15659,24 @@ if (!isSpectator()) {
   const ActivityMenuContent = props => {
     if (props.activity_id) {
       const activityIDList = Array.isArray(props.activity_id) ? props.activity_id : [props.activity_id];
-      activityIDList.forEach(activityID => {
-        callAction("activity_data", {
-          activity_id: activityID
-        });
-      });
+      activityIDList.forEach(activityID => callAction("activity_data", {
+        activity_id: activityID
+      }));
     }
     const render_on_show = () => props.renderOnShow != undefined ? props.renderOnShow : true;
+    if (props.activity_id != undefined) {
+      if (typeof props.activity_id == "number") {
+        setClientGlobalData("activity_tag_list", {
+          [props.activity_id]: props.menu_name
+        });
+      } else if (props.activity_id.length > 0) {
+        let list = {};
+        props.activity_id.forEach(activityID => {
+          list[activityID] = props.menu_name;
+        });
+        setClientGlobalData("activity_tag_list", list);
+      }
+    }
     return libs.createComponent(libs.Show, {
       get when() {
         return !render_on_show() || seleted_menu() == props.menu_name;

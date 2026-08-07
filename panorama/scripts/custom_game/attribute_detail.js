@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -24,34 +24,62 @@ function TooltipContents(props) {
   let {
     entIndex
   } = props;
-  let unitStates = GetUnitStates(entIndex) ?? {};
-  const attribute = {
-    Attack: Round(unitStates.Attack ?? 0),
-    Attackspeed: Round(Entities.GetAttacksPerSecond(entIndex) ?? 0, 2),
-    Critical: Round(unitStates.Critical ?? 0),
-    CriticalDamage: Round(unitStates.CriticalDamage ?? 0),
-    Evasion: Round(unitStates.Evasion ?? 0),
-    EvasionReduce: Round(unitStates.EvasionReduce ?? 0),
-    Power: Round(unitStates.Power ?? 0),
-    PhysicalReduce: Math.min(100, -Round(unitStates.PhysicalReduce ?? 0)),
-    MagicalReduce: Math.min(100, -Round(unitStates.MagicalReduce ?? 0)),
-    PhysicalDamage: Round(unitStates.PhysicalDamage ?? 0),
-    MagicalDamage: Round(unitStates.MagicalDamage ?? 0),
-    StateResistance: Math.min(100, Round(unitStates.StateResistance ?? 0)),
-    ManaRegen: Round(unitStates.ManaRegen ?? 0),
-    Shield: Round(unitStates.Shield ?? 0),
-    Injury: Round(unitStates.Injury ?? 0),
-    Fury: Round(unitStates.Fury ?? 0),
-    Ice: Round(unitStates.Ice ?? 0),
-    Poison: Round(unitStates.Poison ?? 0),
-    FuryPct: Round(unitStates.FuryPct ?? 0),
-    IcePct: Round(unitStates.IcePct ?? 0),
-    Regen: Round(unitStates.Regen ?? 0),
-    RegenPct: Round(unitStates.RegenPct ?? 0),
-    WispInterval: Round(unitStates.WispInterval ?? 0, 2),
-    ChaosDamage: Round(unitStates.ChaosDamage ?? 0),
-    Chaos: Round(unitStates.Chaos ?? 0)
+  const [unitStates, setUnitStates] = libs.createSignal();
+  let retryTimer;
+  let retryCount = 0;
+  const loadUnitStates = () => {
+    if (!Entities.IsValidEntity(entIndex)) {
+      if (retryCount++ < 20) {
+        retryTimer = $.Schedule(0.03, loadUnitStates);
+      }
+      return;
+    }
+    const data = GetUnitStates(entIndex);
+    const attack = Entities.GetAttackDamage(entIndex) ?? 0;
+    if (data != undefined && (data.Attack > 0 || attack <= 0)) {
+      setUnitStates(data);
+      return;
+    }
+    if (retryCount++ < 20) {
+      retryTimer = $.Schedule(0.03, loadUnitStates);
+    }
   };
+  loadUnitStates();
+  libs.onCleanup(() => {
+    if (retryTimer != undefined) {
+      $.CancelScheduled(retryTimer);
+    }
+  });
+  const attribute = libs.createMemo(() => {
+    const states = unitStates() ?? {};
+    return {
+      Attack: Round(states.Attack ?? 0),
+      Attackspeed: Round(Entities.GetAttacksPerSecond(entIndex) ?? 0, 2),
+      Critical: Round(states.Critical ?? 0),
+      CriticalDamage: Round(states.CriticalDamage ?? 0),
+      Evasion: Round(states.Evasion ?? 0),
+      EvasionReduce: Round(states.EvasionReduce ?? 0),
+      Power: Round(states.Power ?? 0),
+      PhysicalReduce: Math.min(100, -Round(states.PhysicalReduce ?? 0)),
+      MagicalReduce: Math.min(100, -Round(states.MagicalReduce ?? 0)),
+      PhysicalDamage: Round(states.PhysicalDamage ?? 0),
+      MagicalDamage: Round(states.MagicalDamage ?? 0),
+      StateResistance: Math.min(100, Round(states.StateResistance ?? 0)),
+      ManaRegen: Round(states.ManaRegen ?? 0),
+      Shield: Round(states.Shield ?? 0),
+      Injury: Round(states.Injury ?? 0),
+      Fury: Round(states.Fury ?? 0),
+      Ice: Round(states.Ice ?? 0),
+      Poison: Round(states.Poison ?? 0),
+      FuryPct: Round(states.FuryPct ?? 0),
+      IcePct: Round(states.IcePct ?? 0),
+      Regen: Round(states.Regen ?? 0),
+      RegenPct: Round(states.RegenPct ?? 0),
+      WispInterval: Round(states.WispInterval ?? 0, 2),
+      ChaosDamage: Round(states.ChaosDamage ?? 0),
+      Chaos: Round(states.Chaos ?? 0)
+    };
+  });
   return libs.createComponent(EOM_Tooltip.EOM_Tooltip, {
     flowChildren: "down",
     get children() {
@@ -62,13 +90,13 @@ function TooltipContents(props) {
         libs.insert(_el$, libs.createComponent(AttributeRow, {
           name: "#Attribute_Attack",
           get value() {
-            return attribute.Attack;
+            return attribute().Attack;
           }
         }), null);
         libs.insert(_el$, libs.createComponent(AttributeRow, {
           name: "#Attribute_Attackspeed",
           get value() {
-            return attribute.Attackspeed;
+            return attribute().Attackspeed;
           }
         }), null);
         return _el$;
@@ -79,13 +107,13 @@ function TooltipContents(props) {
         libs.insert(_el$2, libs.createComponent(AttributeRow, {
           name: "#Attribute_CritChance",
           get value() {
-            return attribute.Critical + "%";
+            return attribute().Critical + "%";
           }
         }), null);
         libs.insert(_el$2, libs.createComponent(AttributeRow, {
           name: "#Attribute_CritDamage",
           get value() {
-            return attribute.CriticalDamage + "%";
+            return attribute().CriticalDamage + "%";
           }
         }), null);
         return _el$2;
@@ -96,13 +124,13 @@ function TooltipContents(props) {
         libs.insert(_el$3, libs.createComponent(AttributeRow, {
           name: "#Attribute_Evasion",
           get value() {
-            return attribute.Evasion + "%";
+            return attribute().Evasion + "%";
           }
         }), null);
         libs.insert(_el$3, libs.createComponent(AttributeRow, {
           name: "#Attribute_EvasionReduce",
           get value() {
-            return attribute.EvasionReduce + "%";
+            return attribute().EvasionReduce + "%";
           }
         }), null);
         return _el$3;
@@ -113,13 +141,13 @@ function TooltipContents(props) {
         libs.insert(_el$4, libs.createComponent(AttributeRow, {
           name: "#dota_ability_variable_ulti",
           get value() {
-            return attribute.Power + "%";
+            return attribute().Power + "%";
           }
         }), null);
         libs.insert(_el$4, libs.createComponent(AttributeRow, {
           name: "#Attribute_ManaRegen",
           get value() {
-            return attribute.ManaRegen;
+            return attribute().ManaRegen;
           }
         }), null);
         return _el$4;
@@ -130,13 +158,13 @@ function TooltipContents(props) {
         libs.insert(_el$5, libs.createComponent(AttributeRow, {
           name: "#Attribute_PhysicalDamage",
           get value() {
-            return attribute.PhysicalDamage + "%";
+            return attribute().PhysicalDamage + "%";
           }
         }), null);
         libs.insert(_el$5, libs.createComponent(AttributeRow, {
           name: "#Attribute_MagicalDamage",
           get value() {
-            return attribute.MagicalDamage + "%";
+            return attribute().MagicalDamage + "%";
           }
         }), null);
         return _el$5;
@@ -147,13 +175,13 @@ function TooltipContents(props) {
         libs.insert(_el$6, libs.createComponent(AttributeRow, {
           name: "#Attribute_PhysicalReduce",
           get value() {
-            return attribute.PhysicalReduce + "%";
+            return attribute().PhysicalReduce + "%";
           }
         }), null);
         libs.insert(_el$6, libs.createComponent(AttributeRow, {
           name: "#Attribute_MagicalReduce",
           get value() {
-            return attribute.MagicalReduce + "%";
+            return attribute().MagicalReduce + "%";
           }
         }), null);
         return _el$6;
@@ -164,13 +192,13 @@ function TooltipContents(props) {
         libs.insert(_el$7, libs.createComponent(AttributeRow, {
           name: "#Attribute_WispInterval",
           get value() {
-            return attribute.WispInterval;
+            return attribute().WispInterval;
           }
         }), null);
         libs.insert(_el$7, libs.createComponent(AttributeRow, {
           name: "#Attribute_Poison",
           get value() {
-            return attribute.Poison;
+            return attribute().Poison;
           }
         }), null);
         return _el$7;
@@ -181,13 +209,13 @@ function TooltipContents(props) {
         libs.insert(_el$8, libs.createComponent(AttributeRow, {
           name: "#Attribute_Shield",
           get value() {
-            return attribute.Shield;
+            return attribute().Shield;
           }
         }), null);
         libs.insert(_el$8, libs.createComponent(AttributeRow, {
           name: "#Attribute_Injury",
           get value() {
-            return attribute.Injury;
+            return attribute().Injury;
           }
         }), null);
         return _el$8;
@@ -198,13 +226,13 @@ function TooltipContents(props) {
         libs.insert(_el$9, libs.createComponent(AttributeRow, {
           name: "#Attribute_Fury",
           get value() {
-            return attribute.FuryPct + "% + " + attribute.Fury;
+            return attribute().FuryPct + "% + " + attribute().Fury;
           }
         }), null);
         libs.insert(_el$9, libs.createComponent(AttributeRow, {
           name: "#Attribute_Ice",
           get value() {
-            return attribute.IcePct + "% + " + attribute.Ice;
+            return attribute().IcePct + "% + " + attribute().Ice;
           }
         }), null);
         return _el$9;
@@ -215,13 +243,13 @@ function TooltipContents(props) {
         libs.insert(_el$0, libs.createComponent(AttributeRow, {
           name: "#Attribute_HealAmplify",
           get value() {
-            return attribute.RegenPct + "%";
+            return attribute().RegenPct + "%";
           }
         }), null);
         libs.insert(_el$0, libs.createComponent(AttributeRow, {
           name: "#Attribute_Regen",
           get value() {
-            return attribute.Regen;
+            return attribute().Regen;
           }
         }), null);
         return _el$0;
@@ -232,13 +260,13 @@ function TooltipContents(props) {
         libs.insert(_el$1, libs.createComponent(AttributeRow, {
           name: "#Attribute_ChaosBonusDamage",
           get value() {
-            return attribute.ChaosDamage;
+            return attribute().ChaosDamage;
           }
         }), null);
         libs.insert(_el$1, libs.createComponent(AttributeRow, {
           name: "#Attribute_Chaos",
           get value() {
-            return attribute.Chaos;
+            return attribute().Chaos;
           }
         }), null);
         return _el$1;
@@ -249,7 +277,7 @@ function TooltipContents(props) {
         libs.insert(_el$10, libs.createComponent(AttributeRow, {
           name: "#Attribute_StateResistance",
           get value() {
-            return attribute.StateResistance + "%";
+            return attribute().StateResistance + "%";
           }
         }));
         return _el$10;

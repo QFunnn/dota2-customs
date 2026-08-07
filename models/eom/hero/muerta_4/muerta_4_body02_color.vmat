@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 "Layer0"
 {
 	"shader"	"hero.vfx"
+	"F_DETAIL"	"1"
 	"F_MASKS_1"	"1"
 	"F_MASKS_2"	"1"
 	"F_RENDER_BACKFACES"	"1"
@@ -25,7 +26,9 @@
 	"g_flCloakRefractAmount"	"0.1"
 	"g_flCubeMapScalar"	"2"
 	"g_flDetail2BlendFactor"	"0"
-	"g_flDetailTexCoordRotation"	"0"
+	"g_flDetailBlendFactor"	"1"
+	"g_flDetailBlendToFull"	"0"
+	"g_flDetailTexCoordRotation"	"90"
 	"g_flDiffuseModulationAmount"	"1"
 	"g_flEnvMapBlendToFull"	"0"
 	"g_flFresnelModulatesAlpha"	"0"
@@ -41,9 +44,10 @@
 	"g_flTexCoordRotation"	"0"
 	"g_vBloomColor"	"[1.000000 1.000000 1.000000 0.000000]"
 	"g_vCloakColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
-	"g_vDetail2ColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetail1ColorTint"	"[0.039216 0.211765 0.227451 0.000000]"
+	"g_vDetail2ColorTint"	"[0.000000 0.074510 0.521569 0.000000]"
 	"g_vDetailTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
-	"g_vDetailTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"g_vDetailTexCoordScale"	"[7.000000 0.700000 0.000000 0.000000]"
 	"g_vRimLightColor"	"[0.000000 0.964706 1.000000 0.000000]"
 	"g_vSpecularColor"	"[1.000000 1.000000 1.000000 0.000000]"
 	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
@@ -53,13 +57,14 @@
 	"TextureColor"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color.png"
 	"TextureTranslucency"	"models/eom/hero/muerta_4/tex/muerta_4_body02_242d25eb_trans.png"
 	"TextureCubeMap"	"materials/models/cubemaps/glossy_broad_cube.png"
+	"TextureDetail"	"materials/models/heroes/void_spirit/void_spirit_detail.png"
 	"TextureDetail2"	"materials/default/default_detail2.tga"
 	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
 	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_d9279d65-G.png"
 	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_d9279d65-B.png"
-	"TextureDetailMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_metalnessmask.png"
-	"TextureDiffuseWarpMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_17dbb43_diffusemask.png"
-	"TextureMetalnessMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_metalnessmask_17dbb43_metalnessmask.png"
+	"TextureDetailMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color_mask.png"
+	"TextureDiffuseWarpMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color_mask_db8ff05_diffusemask.png"
+	"TextureMetalnessMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color_mask_db8ff05_metalnessmask.png"
 	"TextureSpecularMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_metalnessmask.png"
 	"TextureTintByBaseMask"	"models/eom/hero/muerta_4/tex/muerta_4_body02_e7158b7b_basetintmask.png"
 	"TextureSpecularExponent"	"models/eom/hero/muerta_4/tex/muerta_4_body02_e7158b7b_specexp.png"
@@ -68,10 +73,19 @@
 	{
 		"g_tColor"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color_png_242d25eb.vtex"
 		"g_tCubeMap"	"materials/models/cubemaps/glossy_broad_cube_tga_efb6836f.vtex"
+		"g_tDetail"	"materials/models/heroes/void_spirit/void_spirit_detail_psd_a0b16d57.vtex"
 		"g_tDetail2"	"materials/default/default_detail2_tga_70788555.vtex"
 		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_d9279d65.vtex"
-		"g_tMasks1"	"models/eom/hero/muerta_4/tex/muerta_4_body02_metalnessmask_png_17dbb43.vtex"
+		"g_tMasks1"	"models/eom/hero/muerta_4/tex/muerta_4_body02_color_mask_png_db8ff05.vtex"
 		"g_tMasks2"	"models/eom/hero/muerta_4/tex/muerta_4_body02_metalnessmask_png_e7158b7b.vtex"
 		"g_tNormal"	"models/eom/hero/muerta_4/tex/muerta_4_body02_normal_png_ff25233.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_vDetailTexCoordOffset"	"return float2(0,.25)*time();"
+	}
+	"Attributes"
+	{
+		"PreviewModel"	"models/eom/hero/muerta_4/muerta_4.vmdl"
 	}
 }

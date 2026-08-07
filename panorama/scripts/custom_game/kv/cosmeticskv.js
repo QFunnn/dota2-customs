@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -718,7 +718,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "models/eom/hero/witch_1/warlock_1.vmdl",
 	},
 	"5100072": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "26年7月版本【恶魔魅惑】末日使者皮肤",
 		"rarity": 4,
@@ -2604,7 +2603,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "models/items/courier/chocobo/chocobo.vmdl",
 	},
 	"5203056": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "S10赛季奖励卡池卡池投放【晴儿】信使皮肤",
 		"rarity": 2,
@@ -2915,7 +2913,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "models/eom/hero/antimage_1/particles/antimage_1_fx_wenzhang_01.vpcf",
 	},
 	"5210030": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月祈愿【绵羊粉粉】末日使者周身特效",
 		"rarity": 3,
@@ -3332,7 +3329,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "models/eom/hero/antimage_1/particles/antimage_1_fx_dandao_01.vpcf",
 	},
 	"5230045": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月祈愿末日使者攻击特效【自爆绵羊】",
 		"rarity": 3,
@@ -4529,7 +4525,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "models/eom/hero/antimage_1/particles/antimage_1_fx_chuansong_02.vpcf.vpcf",
 	},
 	"5410032": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月祈愿【恶魔流光】末日使者传送特效",
 		"rarity": 3,
@@ -4859,7 +4854,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "particles/eom/ui/ui_fx/ui_fx_bastet_1_01.vpcf",
 	},
 	"5420039": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月幻梦【恶魔之击】末日使者击杀播报",
 		"rarity": 2,
@@ -5253,7 +5247,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"resource": "particles/eom/ui/ui_fx/ui_fx_lycan_1_01.vpcf",
 	},
 	"5440039": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月【恶魔连斩】末日使者胜播",
 		"rarity": 2,
@@ -8971,7 +8964,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000077,
 	},
 	"5510541": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【准备】末日使者表情",
 		"rarity": 1,
@@ -8981,7 +8973,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510542": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【无语】末日使者表情",
 		"rarity": 1,
@@ -8991,7 +8982,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510543": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【难过】末日使者表情",
 		"rarity": 1,
@@ -9001,7 +8991,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510544": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【得意】末日使者表情",
 		"rarity": 2,
@@ -9011,7 +9000,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510545": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【嘲讽】末日使者表情",
 		"rarity": 2,
@@ -9021,7 +9009,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510546": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【不可阻挡】末日使者表情",
 		"rarity": 3,
@@ -9031,7 +9018,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"hero": 3000057,
 	},
 	"5510547": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "260130【不过如此】末日使者表情",
 		"rarity": 3,
@@ -10315,7 +10301,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "miao",
 	},
 	"5710085": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "7月幻梦【魅惑】恶魔头像框",
 		"rarity": 3,
@@ -10690,7 +10675,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "miao",
 	},
 	"5720043": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "【恶魔城堡】恶魔名片背景",
 		"rarity": 2,

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -51,7 +51,7 @@ const GreevilShopCard = props => {
     playerGreevilEnergy: 0,
     mirror: false
   }, props);
-  const [local, others] = libs.splitProps(merged, ["children", "Id", "type", "value", "rarity", "mirror", "playerGreevilEnergy", "onClick", "onactivate", "cost", "special"]);
+  const [local, others] = libs.splitProps(merged, ["children", "Id", "type", "value", "rarity", "mirror", "playerGreevilEnergy", "currency", "appearance", "soldOut", "onClick", "onactivate", "cost", "special"]);
   const playerGreevilEnergy = () => local.playerGreevilEnergy;
   const cost = () => local.cost;
   const energyNotEnough = () => playerGreevilEnergy() < cost();
@@ -183,8 +183,9 @@ const GreevilShopCard = props => {
   let buttonRef;
   let isHovering = false;
   const handleActivate = self => {
+    if (local.soldOut) return;
     if (cost() != -1 && energyNotEnough()) {
-      ErrorMessage("#error_enough_greevil_energy");
+      ErrorMessage(local.currency == 'gold' ? "#dota_hud_error_not_enough_gold" : "#error_enough_greevil_energy");
       return;
     }
     local.onactivate?.(self);
@@ -224,7 +225,9 @@ const GreevilShopCard = props => {
     get classList() {
       return {
         [`Rarity${rarity()}`]: true,
-        NotEnough: cost() != -1 && energyNotEnough()
+        ArtifactAttribute: local.appearance == 'artifact_attribute',
+        SoldOut: local.soldOut || cost() == -1,
+        NotEnough: local.appearance != 'artifact_attribute' && cost() != -1 && energyNotEnough()
       };
     },
     ref(r$) {
@@ -316,6 +319,15 @@ const GreevilShopCard = props => {
         return _el$5;
       })(), libs.createComponent(libs.Show, {
         get when() {
+          return local.appearance == 'artifact_attribute' && local.soldOut;
+        },
+        get children() {
+          return libs.createComponent(EOM_Image.EOM_Image, {
+            id: "SoldOutBanner"
+          });
+        }
+      }), libs.createComponent(libs.Show, {
+        get when() {
           return libs.memo(() => cost() > 0)() && !greevilGift();
         },
         get children() {
@@ -332,7 +344,12 @@ const GreevilShopCard = props => {
                 align: "center center",
                 get children() {
                   return [libs.createComponent(EOM_Image.EOM_Image, {
-                    id: "EnergyIcon"
+                    id: "EnergyIcon",
+                    get classList() {
+                      return {
+                        Gold: local.currency == 'gold'
+                      };
+                    }
                   }), libs.createComponent(GenericPanel.CLabel, {
                     get text() {
                       return cost();

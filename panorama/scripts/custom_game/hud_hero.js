@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -36,6 +36,7 @@ var TalentTree = require('./TalentTree.js');
 var netdata_utils = require('./netdata_utils.js');
 var HeroRoleCard = require('./HeroRoleCard.js');
 require('./EOM_Countdown.js');
+require('./red_point_utils.js');
 require('./ProductImage.js');
 require('./EOM_Portrait.js');
 
@@ -67,7 +68,6 @@ if (!isSpectator()) {
     }
     return false;
   };
-  const [heroCollectionMark, setHeroCollectionMark] = libs.createSignal();
   const [showDetail, setShowDetail] = libs.createSignal(false);
   const [proficiencyLevelValues, setProficiencyLevelValues] = libs.createSignal([]);
   const Hero = () => {
@@ -180,25 +180,6 @@ if (!isSpectator()) {
     }, _heroMedalLevel => {
       updateHeroProficiencyRewardState();
     }));
-    const updateNewMarkInfo = data => {
-      if (data) {
-        for (const mid in data) {
-          const state = data[mid];
-          const kv = KeyValues.NewMarkInfoKv[mid];
-          if (kv != undefined) {
-            if (kv.menu_button == "hero") {
-              if (kv.tag_id == "Main") {
-                if (kv.benchmark == "hero_collection") {
-                  if (state && heroCollectionMark() === undefined) {
-                    setHeroCollectionMark(kv.type);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    };
     libs.onMount(() => {
       const eventId = useToggleWindow('MenuButton_hero', show, setShow);
       libs.onCleanup(() => GameEvents.Unsubscribe(eventId));
@@ -245,12 +226,6 @@ if (!isSpectator()) {
       }));
       gameEventIDList.push(useNetData("info_hero_medal_rewards", data => {
         updateHeroProficiencyRewardState();
-      }));
-      NetTableIDList.push(useServiceNetTable("player_new_mark", data => {
-        updateNewMarkInfo(data);
-      }, Players.GetLocalPlayer()));
-      gameEventIDList.push(useClientSideEvent("create_new_mark_info", data => {
-        updateNewMarkInfo(data);
       }));
       NetTableIDList.push(useServiceNetTable("player_hero_medal_level", data => {
         setHeroMedalLevel(data);
@@ -957,33 +932,14 @@ if (!isSpectator()) {
                   }
                 }), libs.createComponent(EOM_Panel.EOM_Panel, {
                   get children() {
-                    return [libs.createComponent(EOM_Button.EOM_Button, {
+                    return libs.createComponent(EOM_Button.EOM_Button, {
                       id: "HeroCollectionButton",
                       color: "Blue",
                       text: "#HeroCollection",
                       onactivate: () => {
                         setHeroCollectionShow(true);
-                        if (heroCollectionMark()) {
-                          setHeroCollectionMark(null);
-                          clickNewMark({
-                            menu: "hero",
-                            tag: "Main",
-                            benchmark: "hero_collection"
-                          });
-                        }
                       }
-                    }), libs.createComponent(libs.Show, {
-                      get when() {
-                        return heroCollectionMark() != undefined;
-                      },
-                      get children() {
-                        return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
-                          get type() {
-                            return heroCollectionMark();
-                          }
-                        });
-                      }
-                    })];
+                    });
                   }
                 })];
               }

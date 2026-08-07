@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -14,6 +14,7 @@ var libs = require('./libs.js');
 var EOM_Panel = require('./EOM_Panel.js');
 var EOM_Icon = require('./EOM_Icon.js');
 var EOM_Label = require('./EOM_Label.js');
+var Heroes = require('./Heroes.js');
 
 const RuneRewardCard = props => {
   const [local, others] = libs.splitProps(props, ["trait", "children"]);
@@ -27,6 +28,12 @@ const RuneRewardCard = props => {
   };
   const refreshCount = () => {
     return kv()?.CustomRefresh ?? 0;
+  };
+  const heroName = () => {
+    const condition = kv()?.AppearCondition;
+    if (typeof condition !== "string") return undefined;
+    const [type, name] = condition.split(",");
+    return type === "hero" ? name : undefined;
   };
   const goldText = () => {
     if (gold() == 0) {
@@ -48,7 +55,9 @@ const RuneRewardCard = props => {
   };
   return libs.createComponent(EOM_Panel.EOM_Panel, libs.mergeProps(() => EOM_Panel.EOMProps(others), {
     get className() {
-      return libs.classNames("RuneRewardCard", $.Language().toLowerCase());
+      return libs.classNames("RuneRewardCard", $.Language().toLowerCase(), {
+        LongDescription: local.trait === "trait_182"
+      });
     },
     get customTooltip() {
       return libs.memo(() => !!hasKeyWord($.Localize("#DOTA_Tooltip_ability_" + local.trait + "_description")))() ? {
@@ -68,10 +77,30 @@ const RuneRewardCard = props => {
             lookAt: "0 0 0",
             cameraOrigin: "0 0 250",
             fov: 24
-          }, null), libs.createComponent(EOM_Label.EOM_Label, {
-            id: "RuneRewardTitle",
-            get text() {
-              return "#DOTA_Tooltip_ability_" + local.trait;
+          }, null), libs.createComponent(libs.Show, {
+            get when() {
+              return heroName();
+            },
+            get fallback() {
+              return libs.createComponent(EOM_Label.EOM_Label, {
+                id: "RuneRewardTitle",
+                get text() {
+                  return "#DOTA_Tooltip_ability_" + local.trait;
+                }
+              });
+            },
+            get children() {
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                id: "RuneRewardHeroImageContainer",
+                get children() {
+                  return libs.createComponent(Heroes.HeroImage, {
+                    get hero_name() {
+                      return heroName();
+                    },
+                    type: "default"
+                  });
+                }
+              });
             }
           }), libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "ExtraInfoRow",

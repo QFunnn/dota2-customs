@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2582,6 +2582,106 @@
 	animation-name: PopOutCard;
 }
 
+#GreevilShopCard.ArtifactAttribute
+{
+	width: 236px;
+	height: 392px;
+	margin: 0px 4px;
+	overflow: noclip;
+	animation-name: none;
+	transition-property: brightness;
+	transition-duration: 0.12s;
+}
+
+#GreevilShopCard.ArtifactAttribute.ShopCard
+{
+	animation-name: PopOutCard;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
+#GreevilShopCard.ArtifactAttribute:hover
+{
+	brightness: 1.45;
+}
+
+#GreevilShopCard.ArtifactAttribute #BG
+{
+	width: 280px;
+	height: 360px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+#GreevilShopCard.ArtifactAttribute #ItemBG
+{
+	margin-top: 58px;
+	width: 86px;
+	height: 86px;
+	background-color: #130d18;
+	border: 2px solid #d09cffcc;
+	box-shadow: #000000cc 0px 0px 8px 1px;
+}
+
+#GreevilShopCard.ArtifactAttribute #ItemBG #ItemBGImage
+{
+	visibility: collapse;
+}
+
+#GreevilShopCard.ArtifactAttribute #ItemBG .TypeIcon
+{
+	width: 72px;
+	height: 72px;
+}
+
+#GreevilShopCard.ArtifactAttribute #ValueLabel
+{
+	align: center top;
+	margin-top: 170px;
+	width: 190px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #f0cde5;
+	text-shadow: 0px 0px 3px 2px #270b1e;
+}
+
+#GreevilShopCard.ArtifactAttribute #CostContainer
+{
+	width: 200px;
+	height: 44px;
+	align: center top;
+	margin: 348px 0px 0px 0px;
+	background-image: url("s2r://panorama/images/custom_game/card/s_price_bg_png.vtex");
+	background-size: 100%;
+}
+
+#GreevilShopCard.ArtifactAttribute #CostContainer #EnergyIcon
+{
+	width: 20px;
+	height: 20px;
+}
+
+#GreevilShopCard.ArtifactAttribute #CostContainer Label
+{
+	font-size: 21px;
+	font-weight: bold;
+}
+
+#GreevilShopCard.ArtifactAttribute #SoldOutBanner
+{
+	margin-top: 108px;
+	width: 130px;
+	height: 78px;
+	margin-right: 38px;
+	z-index: 10;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/store/new/sold_out_png.vtex");
+	background-size: 100%;
+	animation-name: SoldOut;
+	animation-duration: 0.2s;
+}
+
 #GreevilShopCard.Rarity1 #BG
 {
 	background-image: url("s2r://panorama/images/custom_game/greevil_shop/t6_card_r1_png.vtex");
@@ -2632,6 +2732,11 @@
 	hue-rotation: 140deg;
 	saturation: 1.5;
 	brightness: 1.2;
+}
+
+#GreevilShopCard.ArtifactAttribute #BG
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/card_purple_png.vtex");
 }
 
 #GreevilShopCard #BG
@@ -2759,8 +2864,14 @@
 {
 	width: 24px;
 	height: 24px;
+	margin-top: 5px;
 	background-image: url("s2r://panorama/images/custom_game/greevil_shop/energy_icon_png.vtex");
 	background-size: 100%;
+}
+
+#GreevilShopCard #CostContainer #EnergyIcon.Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/icon/gold_icon_png.vtex");
 }
 
 #GreevilShopCard #CostContainer Label
@@ -2775,14 +2886,14 @@
 {
 	horizontal-align: center;
 	margin-top: 20px;
-	color: #ff7f7f;
+	color: #ff0000;
 	font-size: 14px;
 	text-shadow: 0px 0px 4px 1 #000000cc;
 }
 
 #GreevilShopCard #CostContainer.goldNotEnough Label
 {
-	color: #ff8f8f;
+	color: #ff0000;
 }
 
 #GreevilShopCard.NotEnough
@@ -3421,6 +3532,33 @@
 	vertical-align: center;
 }
 
+.HeroImage
+{
+	width: 128px;
+	height: 72px;
+	background-size: 100%;
+}
+
+.HeroImage #CustomHeroImage
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.HeroImage.selection
+{
+	width: 142px;
+	height: 188px;
+}
+
+.HeroIcon
+{
+	width: 32px;
+	height: 32px;
+	background-size: 100%;
+}
+
 .RuneRewardCard
 {
 	flow-children: down;
@@ -3439,6 +3577,21 @@
 .RuneRewardCard.schinese #RuneRewardCardMain #RuneRewardDescription
 {
 	margin-top: 178px;
+}
+
+.RuneRewardCard.LongDescription #ExtraInfoRow
+{
+	margin-top: 140px;
+}
+
+.RuneRewardCard.LongDescription #RuneRewardCardMain #RuneRewardDescription
+{
+	margin-top: 148px;
+	margin-bottom: 4px;
+	width: 200px;
+	padding: 0;
+	font-size: 15px;
+	text-overflow: clip;
 }
 
 .RuneRewardCard #ExtraInfoRow
@@ -3562,6 +3715,22 @@
 	font-size: 20px;
 	color: #FFFFFF;
 	text-shadow: 0px 0px 2px 2px #2E412E;
+}
+
+.RuneRewardCard #RuneRewardCardMain #RuneRewardHeroImageContainer
+{
+	width: 72px;
+	height: 40px;
+	margin-top: 112px;
+	align: center top;
+	border: 1px solid #d3b37a;
+	box-shadow: 0px 0px 3px 1px #000000;
+}
+
+.RuneRewardCard #RuneRewardCardMain #RuneRewardHeroImageContainer .HeroImage
+{
+	width: 100%;
+	height: 100%;
 }
 
 .RuneRewardCard #RuneRewardCardMain #RuneRewardDescription
@@ -4506,6 +4675,121 @@
 	flow-children: down;
 	margin-top: 10px;
 	width: 100%;
+}
+
+#HandBook #HandBookTreasureContainer
+{
+	width: 100%;
+	height: 100%;
+	padding: 12px 18px 40px;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureList
+{
+	width: 100%;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureGroup
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 14px;
+	background-color: #0000004d;
+	border: 1px solid #65788d;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureGroupTitle
+{
+	width: 100%;
+	padding: 6px 10px;
+	margin-bottom: 6px;
+	font-size: 26px;
+	font-weight: bold;
+	color: #fff4cc;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#795127cc), to(#2c1b0f00));
+	text-shadow: 0px 1px 3px 3 #000000;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureCards
+{
+	width: 100%;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureCard
+{
+	margin: 2px 4px;
+	width: 246px;
+	height: 292px;
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_img_card_pup_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, transform;
+	transition-duration: 0.12s;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureCard.Type_artifact
+{
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_img_card_pup_png.vtex");
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureCard.Type_rune
+{
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_img_card_red_png.vtex");
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureCard:hover
+{
+	brightness: 1.35;
+	transform: translateY(-3px);
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureTypeIcon
+{
+	align: center top;
+	width: 98px;
+	height: 98px;
+	margin-top: 14px;
+}
+
+#HandBook #HandBookTreasureContainer .TreasureSpecialTitleLine
+{
+	horizontal-align: center;
+	z-index: -1;
+	margin-top: 124px;
+	width: 168px;
+	height: 46px;
+	background-image: url("s2r://panorama/images/custom_game/treasure_shop/s14_title_png.vtex");
+	background-size: 100%;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureName
+{
+	align: center top;
+	width: 170px;
+	margin-top: 140px;
+	font-size: 18px;
+	color: #fff4cc;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 3 #000000;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureDescription
+{
+	align: center top;
+	width: 200px;
+	height: 100%;
+	margin-bottom: 16px;
+	margin-top: 175px;
+}
+
+#HandBook #HandBookTreasureContainer .HandBookTreasureDescription Label
+{
+	horizontal-align: center;
+	font-size: 16px;
+	color: #d7e3f7;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #000000;
 }
 
 #HandBook #HandBookFAQContainer

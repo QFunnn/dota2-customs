@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -48,9 +48,9 @@ f(
 		["37"] = 32,
 		["38"] = 33,
 		["39"] = 34,
-		["40"] = 32,
-		["41"] = 20,
-		["42"] = 11,
+		["40"] = 35,
+		["41"] = 32,
+		["42"] = 20,
 		["43"] = 11,
 		["44"] = 11,
 		["45"] = 11,
@@ -59,8 +59,9 @@ f(
 		["48"] = 11,
 		["49"] = 11,
 		["50"] = 11,
-		["51"] = 20,
-		["53"] = 20,
+		["51"] = 11,
+		["52"] = 20,
+		["54"] = 20,
 	}
 )
 local g = {}
@@ -92,7 +93,8 @@ function o.prototype.EDeclareFunctions(self)
 end
 function o.prototype.EOM_GetModifierHealthBonus(self, p)
 	local q = self:GetParent()
-	return self.level_hp * PlayerData:getHero(q:GetPlayerOwnerID()):getLevel()
+	local r = PlayerData:getHero(q:GetPlayerOwnerID())
+	return self.level_hp * (r and r:getLevel() or 0)
 end
 o = e(
 	{

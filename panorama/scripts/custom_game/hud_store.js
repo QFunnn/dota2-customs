@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -25,6 +25,7 @@ var GenericPanel = require('./GenericPanel.js');
 var Player = require('./Player.js');
 var ProductImage = require('./ProductImage.js');
 var ProductItem = require('./ProductItem.js');
+var red_point_utils = require('./red_point_utils.js');
 var netdata_utils = require('./netdata_utils.js');
 var game_utils = require('./game_utils.js');
 var StoreItem = require('./StoreItem.js');
@@ -333,29 +334,7 @@ function Selection(props) {
   });
 }
 
-const SHOP_TAG_LIST = ["Must", "Cosmetics", "MoonShop", "ActiveStar", "GoldShop", "Resource"];
-const SHOP_ACTIVITY_TAG = {
-  ["DeepSea"]: true,
-  ["Return"]: true,
-  ["Yearlegion"]: true,
-  ["Tutu_2"]: true,
-  ["Tutu_3"]: true,
-  ["anniversary"]: true,
-  ["nezha51"]: true,
-  ["LabourDay25"]: true,
-  ["duanwu"]: true,
-  ["suolong"]: true,
-  ["dai"]: true,
-  ["meijue"]: true,
-  ["qingtian"]: true,
-  ["meiji"]: true,
-  ["nianshou"]: true,
-  ["samo"]: true,
-  ["caijue"]: true,
-  ["linji"]: true,
-  ["miao"]: true,
-  ["emo"]: true
-};
+const SHOP_TAG_LIST = ["Must", "Cosmetics", "MoonShop", "ActiveStar", "GoldShop", "Resource", "VIP"];
 if (!isSpectator()) {
   const heroCasualOnlyList = [];
   for (const key in KeyValues.UnitsCommonKv) {
@@ -430,35 +409,10 @@ if (!isSpectator()) {
         }
       }
     }
-    if (self?.IsValid()) {
-      if (!LoadData(self, "check_store_new_mark")) {
-        SaveData(self, "check_store_new_mark", true);
-        $.Schedule(1, () => {
-          SaveData(self, "check_store_new_mark", undefined);
-        });
-        GameEvents.SendCustomEventToServer("check_store_new_mark", {
-          id: id.toString()
-        });
-      }
-    } else {
+    {
       GameEvents.SendCustomEventToServer("check_store_new_mark", {
         id: id.toString()
       });
-    }
-  };
-  const updateNewMarkInfo = data => {
-    if (data) {
-      for (const mid in data) {
-        const state = data[mid];
-        if (state) {
-          const kv = KeyValues.NewMarkInfoKv[mid];
-          if (kv != undefined) {
-            if (kv.menu_button == "store" && kv.tag_id != undefined && Number(kv.benchmark) != undefined) {
-              setMarkNewInfo_Custom(kv.tag_id, kv.benchmark, kv.type);
-            }
-          }
-        }
-      }
     }
   };
   let directlyPurchaseEvents = [];
@@ -562,12 +516,6 @@ if (!isSpectator()) {
         directlyPurchaseEvents.push(event);
       }
     }));
-    netTableIDList.push(useServiceNetTable("player_new_mark", data => {
-      updateNewMarkInfo(data);
-    }, Players.GetLocalPlayer()));
-    gameEventIDList.push(useClientSideEvent("create_new_mark_info", data => {
-      updateNewMarkInfo(data);
-    }));
     gameEventIDList.push(useNetData("login_activity_data", data => {
       if (data["1002"] != undefined) {
         if ((data["1002"]?.active ?? false) == false) ;
@@ -622,7 +570,7 @@ if (!isSpectator()) {
     const stepProductDataList = {};
     for (const tag in data) {
       data[tag].forEach(storeItem => {
-        if (SHOP_ACTIVITY_TAG[tag]) {
+        if (!SHOP_TAG_LIST.includes(tag)) {
           return;
         }
         if (!isToolMode && $.Localize("#" + storeItem.id) == "#" + storeItem.id) {
@@ -719,6 +667,7 @@ if (!isSpectator()) {
     };
     const [menuList, setMenuList] = libs.createSignal({});
     const [playerOrnament, setPlayerOrnament] = libs.createSignal({});
+    const [redPoints, setRedPoints] = libs.createSignal(getClientGlobalData("red_points") ?? []);
     libs.createEffect(libs.on(purchased_product, () => {
       const cache = getNetDataCache("info_shop_product_group_by_tag");
       if (cache) {
@@ -739,7 +688,7 @@ if (!isSpectator()) {
         if (isInBlackList) {
           return tag != "Resource";
         }
-        return true;
+        return SHOP_TAG_LIST.includes(tag);
       }).sort((a, b) => {
         const aIndex = SHOP_TAG_LIST.indexOf(a);
         const bIndex = SHOP_TAG_LIST.indexOf(b);
@@ -761,6 +710,9 @@ if (!isSpectator()) {
       });
       setMenuList(list);
       setMenuKeys(Object.keys(list));
+    }));
+    libs.createEffect(libs.on(menuList, list => {
+      setClientGlobalData("menu_bar_store_tabs", Object.keys(list), true);
     }));
     libs.createEffect(libs.on(isToolMode, _isToolMode => {
       const cache = getNetDataCache("info_shop_product_group_by_tag");
@@ -809,6 +761,7 @@ if (!isSpectator()) {
       gameEventIDList.push(useNetData("open_payment", data => {
         setPaymentOpen(data.open);
       }, Players.GetLocalPlayer()));
+      gameEventIDList.push(useClientGlobalData("red_points", setRedPoints));
       NetTableIDList.push(useNetTableKey("common", "settings", data => {
         setIsToolMode(data.is_in_tools_mode == 1);
       }));
@@ -838,7 +791,8 @@ if (!isSpectator()) {
       setPackItemCount,
       player_token,
       packItemIsSkinDebris,
-      player_vip
+      player_vip,
+      redPoints
     };
   };
   const getCosmeticItemProps = ({
@@ -944,7 +898,8 @@ if (!isSpectator()) {
       setPackItemCount,
       player_token,
       player_vip,
-      packItemIsSkinDebris
+      packItemIsSkinDebris,
+      redPoints
     } = useStoreData();
     const [battlePassSkinsList, setBattlePassSkinsList] = libs.createSignal([]);
     const [bpSeason, setBpSeason] = libs.createSignal({
@@ -1038,6 +993,9 @@ if (!isSpectator()) {
                         },
                         get player_hero() {
                           return player_hero();
+                        },
+                        get redPoints() {
+                          return redPoints();
                         }
                       });
                     default:
@@ -1085,13 +1043,11 @@ if (!isSpectator()) {
                               return itemList();
                             },
                             children: (data, index) => {
-                              const newMark = () => markNewInfo[tag]?.[data.id];
                               return libs.createComponent(EOM_Panel.EOM_Panel, {
                                 get children() {
                                   return [libs.createComponent(StoreItem.StoreItem, libs.mergeProps({
-                                    checkNewMark: checkNewMark,
                                     get markType() {
-                                      return newMark();
+                                      return red_point_utils.hasRedPoint(redPoints(), "store", tag, data.id) ? "default" : undefined;
                                     }
                                   }, () => StoreItem.getStoreItemProps({
                                     itemData: data,
@@ -1166,9 +1122,7 @@ if (!isSpectator()) {
                                 },
                                 children: (id, i) => {
                                   const mark = () => KeyValues.CosmeticsKv[id()]?.mark;
-                                  return libs.createComponent(StoreItem.StoreItem, libs.mergeProps({
-                                    checkNewMark: checkNewMark
-                                  }, () => getCosmeticItemProps({
+                                  return libs.createComponent(StoreItem.StoreItem, libs.mergeProps(() => getCosmeticItemProps({
                                     item_id: id(),
                                     end_time: bpSeason().end_time,
                                     playerOrnament: playerOrnament(),
@@ -1980,7 +1934,6 @@ if (!isSpectator()) {
         })
       };
     };
-    const newMark = id => markNewInfo["Must"]?.[id] == undefined ? undefined : markNewInfo["Must"][id];
     const language = $.Language().toLowerCase();
     const defaultSortOrderby = {
       [9900508]: 124,
@@ -2106,9 +2059,8 @@ if (!isSpectator()) {
                 return "big";
               });
               return (libs.createComponent(StoreItem.SpecialItem, libs.mergeProps({
-                  checkNewMark: checkNewMark,
                   get markType() {
-                    return newMark(id());
+                    return red_point_utils.hasRedPoint(props.redPoints, "store", "Must", id()) ? "default" : undefined;
                   }
                 }, () => getProp(id(), size())))
               );

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2094,6 +2094,10 @@
 	width: 42px;
 	height: 42px;
 	align: right top;
+	animation-name: NewMarkAnim;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 
 .MenuMarkIcon.default
@@ -2128,6 +2132,46 @@
 	background-size: 100%;
 }
 
+@keyframes 'NewMarkAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	85%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 1.25;
+	}
+	
+	95%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+}
+
 .CustomHudRoot
 {
 	width: 100%;
@@ -2147,11 +2191,86 @@
 	flow-children: right;
 }
 
+#MenuBar .MenuMarkIcon
+{
+	ui-scale: 70%;
+	x: 6px;
+}
+
 #MenuBarExtraBar
 {
 	margin: 5px;
 	margin-top: 60px;
 	width: 100%;
+}
+
+#DropContainer
+{
+	width: 160px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.1s;
+	transform: translateY(-5px);
+	flow-children: down;
+	overflow: noclip;
+	padding: 6px;
+}
+
+#DropContainer.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#DropContainer #MarginTop
+{
+	height: 60px;
+	width: 46px;
+	horizontal-align: center;
+}
+
+#DropContainer #DropMain
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0px -20px;
+	background-image: url("s2r://panorama/images/custom_game/tooltip/tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/tooltip/tip_3_png.vtex");
+	border-radius: 6px;
+	border-width: 20px;
+	border-image-slice: 20px;
+	border-image-repeat: stretch;
+	box-shadow: 0 0 3px 0px #000000cc;
+}
+
+#DropContainer .DropdownItem
+{
+	width: 100%;
+	height: 38px;
+}
+
+#DropContainer .DropdownItem .DropdownRedPoint.MenuMarkIcon
+{
+	width: 24px;
+	height: 24px;
+	margin: 4px;
+}
+
+#DropContainer .DropdownItem Label
+{
+	margin-left: 30px;
+	margin-right: 30px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	text-overflow: shrink;
+	color: #9CC0E8;
+	text-shadow: 0px 0px 2px 3 #000000;
+}
+
+#DropContainer .DropdownItem:hover Label
+{
+	color: #DFF1FE;
 }
 
 .ActivityBubble
@@ -2352,30 +2471,24 @@
 	opacity: 1;
 }
 
-.EOM_BaseButton.Selected,.EOM_BaseButton:hover
+.EOM_BaseButton.Selected,.EOM_BaseButton.ShowDropDown,.EOM_BaseButton:hover
 {
 	brightness: 1;
 }
 
-.EOM_BaseButton.Selected .Front,.EOM_BaseButton:hover .Front
+.EOM_BaseButton.Selected .Front,.EOM_BaseButton.ShowDropDown .Front,.EOM_BaseButton:hover .Front
 {
 	opacity: 0;
 }
 
-.EOM_BaseButton.Selected .Hover,.EOM_BaseButton:hover .Hover
+.EOM_BaseButton.Selected .Hover,.EOM_BaseButton.ShowDropDown .Hover,.EOM_BaseButton:hover .Hover
 {
 	opacity: 1;
 }
 
-.EOM_BaseButton.Selected .MenuLabel,.EOM_BaseButton:hover .MenuLabel
+.EOM_BaseButton.Selected .MenuLabel,.EOM_BaseButton.ShowDropDown .MenuLabel,.EOM_BaseButton:hover .MenuLabel
 {
 	color: #DFF1FE;
-}
-
-.EOM_BaseButton .MenuMarkIcon
-{
-	align: right top;
-	transform: translateX(10px) translateY(-6px);
 }
 
 .EOM_BaseButton .Mark
@@ -2628,11 +2741,86 @@
 	flow-children: right;
 }
 
+#MenuBar .MenuMarkIcon
+{
+	ui-scale: 70%;
+	x: 6px;
+}
+
 #MenuBarExtraBar
 {
 	margin: 5px;
 	margin-top: 60px;
 	width: 100%;
+}
+
+#DropContainer
+{
+	width: 160px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.1s;
+	transform: translateY(-5px);
+	flow-children: down;
+	overflow: noclip;
+	padding: 6px;
+}
+
+#DropContainer.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#DropContainer #MarginTop
+{
+	height: 60px;
+	width: 46px;
+	horizontal-align: center;
+}
+
+#DropContainer #DropMain
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0px -20px;
+	background-image: url("s2r://panorama/images/custom_game/tooltip/tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/tooltip/tip_3_png.vtex");
+	border-radius: 6px;
+	border-width: 20px;
+	border-image-slice: 20px;
+	border-image-repeat: stretch;
+	box-shadow: 0 0 3px 0px #000000cc;
+}
+
+#DropContainer .DropdownItem
+{
+	width: 100%;
+	height: 38px;
+}
+
+#DropContainer .DropdownItem .DropdownRedPoint.MenuMarkIcon
+{
+	width: 24px;
+	height: 24px;
+	margin: 4px;
+}
+
+#DropContainer .DropdownItem Label
+{
+	margin-left: 30px;
+	margin-right: 30px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	text-overflow: shrink;
+	color: #9CC0E8;
+	text-shadow: 0px 0px 2px 3 #000000;
+}
+
+#DropContainer .DropdownItem:hover Label
+{
+	color: #DFF1FE;
 }
 
 .ActivityBubble
@@ -2833,30 +3021,24 @@
 	opacity: 1;
 }
 
-.EOM_BaseButton.Selected,.EOM_BaseButton:hover
+.EOM_BaseButton.Selected,.EOM_BaseButton.ShowDropDown,.EOM_BaseButton:hover
 {
 	brightness: 1;
 }
 
-.EOM_BaseButton.Selected .Front,.EOM_BaseButton:hover .Front
+.EOM_BaseButton.Selected .Front,.EOM_BaseButton.ShowDropDown .Front,.EOM_BaseButton:hover .Front
 {
 	opacity: 0;
 }
 
-.EOM_BaseButton.Selected .Hover,.EOM_BaseButton:hover .Hover
+.EOM_BaseButton.Selected .Hover,.EOM_BaseButton.ShowDropDown .Hover,.EOM_BaseButton:hover .Hover
 {
 	opacity: 1;
 }
 
-.EOM_BaseButton.Selected .MenuLabel,.EOM_BaseButton:hover .MenuLabel
+.EOM_BaseButton.Selected .MenuLabel,.EOM_BaseButton.ShowDropDown .MenuLabel,.EOM_BaseButton:hover .MenuLabel
 {
 	color: #DFF1FE;
-}
-
-.EOM_BaseButton .MenuMarkIcon
-{
-	align: right top;
-	transform: translateX(10px) translateY(-6px);
 }
 
 .EOM_BaseButton .Mark

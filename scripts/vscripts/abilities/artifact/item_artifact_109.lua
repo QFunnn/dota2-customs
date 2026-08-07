@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -40,45 +40,54 @@ f(
 		["29"] = 19,
 		["30"] = 22,
 		["31"] = 23,
-		["32"] = 24,
-		["33"] = 22,
 		["34"] = 26,
 		["35"] = 27,
-		["36"] = 26,
-		["37"] = 32,
-		["38"] = 33,
-		["39"] = 34,
-		["40"] = 35,
-		["41"] = 36,
-		["42"] = 37,
-		["43"] = 38,
-		["44"] = 38,
-		["45"] = 38,
+		["36"] = 28,
+		["37"] = 29,
+		["39"] = 27,
+		["40"] = 32,
+		["41"] = 22,
+		["42"] = 34,
+		["43"] = 35,
+		["44"] = 36,
+		["45"] = 34,
 		["46"] = 38,
-		["47"] = 38,
+		["47"] = 39,
 		["48"] = 38,
-		["49"] = 38,
-		["50"] = 38,
-		["51"] = 43,
-		["52"] = 43,
-		["53"] = 43,
-		["54"] = 43,
-		["55"] = 43,
-		["56"] = 32,
-		["57"] = 45,
-		["58"] = 46,
-		["59"] = 45,
-		["60"] = 19,
-		["61"] = 11,
-		["62"] = 11,
-		["63"] = 11,
-		["64"] = 11,
-		["65"] = 11,
-		["66"] = 11,
-		["67"] = 11,
-		["68"] = 11,
-		["69"] = 19,
-		["71"] = 19,
+		["49"] = 44,
+		["50"] = 45,
+		["51"] = 46,
+		["52"] = 47,
+		["53"] = 48,
+		["54"] = 49,
+		["55"] = 50,
+		["56"] = 50,
+		["57"] = 50,
+		["58"] = 50,
+		["59"] = 50,
+		["60"] = 50,
+		["61"] = 50,
+		["62"] = 50,
+		["63"] = 55,
+		["64"] = 55,
+		["65"] = 55,
+		["66"] = 55,
+		["67"] = 55,
+		["68"] = 44,
+		["69"] = 57,
+		["70"] = 58,
+		["71"] = 57,
+		["72"] = 19,
+		["73"] = 11,
+		["74"] = 11,
+		["75"] = 11,
+		["76"] = 11,
+		["77"] = 11,
+		["78"] = 11,
+		["79"] = 11,
+		["80"] = 11,
+		["81"] = 19,
+		["83"] = 19,
 	}
 )
 local g = {}
@@ -101,6 +110,18 @@ g.modifier_item_artifact_109 = c()
 local o = g.modifier_item_artifact_109
 o.name = "modifier_item_artifact_109"
 d(o, l)
+function o.prototype.OnCreated(self)
+	if not IsServer() then
+		return
+	end
+	local p = 0
+	PlayerData:eachPlayer(function(q, r, s)
+		if not PlayerData:isAlivePlayer(s) then
+			p = p + 1
+		end
+	end)
+	self:SetStackCount(p)
+end
 function o.prototype.GetAbilitySpecialValue(self)
 	self.base_gold = self:GetAbilitySpecialValueFor("base_gold")
 	self.extra_gold = self:GetAbilitySpecialValueFor("extra_gold")
@@ -111,19 +132,19 @@ function o.prototype.EDeclareEvents(self)
 		[EOMModifierEvents.MODIFIER_EVENT_ON_PLAYER_KILLED] = { -1, -1 },
 	}
 end
-function o.prototype.OnPrepare(self, p)
-	local q = self:GetParent():GetPlayerOwnerID()
-	local r = PlayerData:getplayerData(q)
-	local s = self:GetAbility()
-	local t = self.base_gold + self.extra_gold * self:GetStackCount()
-	PlayerData:modifyGold(q, t)
+function o.prototype.OnPrepare(self, t)
+	local s = self:GetParent():GetPlayerOwnerID()
+	local u = PlayerData:getplayerData(s)
+	local v = self:GetAbility()
+	local w = self.base_gold + self.extra_gold * self:GetStackCount()
+	PlayerData:modifyGold(s, w)
 	Notification:combatToPlayer(
-		q,
-		{ message = "notify_bonus_gold", string_itemname_artifact = "DOTA_Tooltip_ability_" .. s:GetAbilityName(), int_gold = t }
+		s,
+		{ message = "notify_bonus_gold", string_itemname_artifact = "DOTA_Tooltip_ability_" .. v:GetAbilityName(), int_gold = w }
 	)
-	r:modifyArtifactExtraData(s:entindex(), "bonus_gold", t)
+	u:modifyArtifactExtraData(v:entindex(), "bonus_gold", w)
 end
-function o.prototype.OnPlayerKilled(self, u)
+function o.prototype.OnPlayerKilled(self, x)
 	self:IncrementStackCount()
 end
 o = e(

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -90,7 +90,9 @@ function TooltipContents(props) {
             get children() {
               return libs.createComponent(EOM_Label.EOM_Label, {
                 id: "RoshanRewardTitle",
-                text: "#RoshanChallenge"
+                get text() {
+                  return getGameplayModuleState("treasure") ? "#GameState_Treasure" : "#RoshanChallenge";
+                }
               });
             }
           }), libs.createComponent(EOM_Panel.EOM_Panel, {

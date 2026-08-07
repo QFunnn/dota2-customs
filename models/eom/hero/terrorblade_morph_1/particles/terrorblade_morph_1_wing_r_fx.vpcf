@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -26,10 +26,6 @@
 			m_name = "preview"
 			m_drivers = 
 			[
-				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_entityName = "self"
-				},
 				{
 					m_iControlPoint = 6
 					m_iAttachType = "PATTACH_WORLDORIGIN"
@@ -52,7 +48,7 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 13.0
+				m_flLiteralValue = 6.0
 				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
@@ -114,6 +110,7 @@
 			_class = "C_INIT_InitSkinnedPositionFromCPSnapshot"
 			m_nSnapshotControlPointNumber = 6
 			m_bRandom = true
+			m_nControlPointNumber = 8
 		},
 		{
 			_class = "C_INIT_InitFloat"
@@ -273,15 +270,6 @@
 				m_bHasRandomSignFlip = true
 			}
 			m_nOutputField = 5
-		},
-		{
-			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMin = [ -10.0, -10.0, 5.0 ]
-			m_vecOutputMax = [ 10.0, 10.0, 10.0 ]
-			m_flNoiseScaleLoc = 0.34
-			m_TransformInput = 
-			{
-			}
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -1058,7 +1046,98 @@
 		},
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.1
+			m_fDrag = 
+			{
+				m_nType = "PF_TYPE_COLLECTION_AGE"
+				m_nMapType = "PF_MAP_TYPE_CURVE"
+				m_flLiteralValue = 0.1
+				m_NamedValue = ""
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_bReverseOrder = false
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_bHasRandomSignFlip = false
+				m_nRandomSeed = -1
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_nNoiseInputVectorAttribute = 0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_flNoCameraFallback = 0.0
+				m_bUseBoundsCenter = false
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_flNotchedRangeMin = 0.0
+				m_flNotchedRangeMax = 1.0
+				m_flNotchedOutputOutside = 0.0
+				m_flNotchedOutputInside = 1.0
+				m_nRoundType = "PF_ROUND_TYPE_NEAREST"
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = 
+					[
+						{
+							x = 0.0
+							y = 0.0
+							m_flSlopeIncoming = 0.8944
+							m_flSlopeOutgoing = 0.8944
+						},
+						{
+							x = 0.204684
+							y = 0.116352
+							m_flSlopeIncoming = 0.247308
+							m_flSlopeOutgoing = 0.247308
+						},
+						{
+							x = 1.0
+							y = 0.2
+							m_flSlopeIncoming = -0.0022
+							m_flSlopeOutgoing = -0.0022
+						},
+					]
+					m_tangents = 
+					[
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+					]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 1.0, 0.2 ]
+				}
+			}
 			m_Gravity = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
@@ -1323,17 +1402,19 @@
 		{
 			_class = "C_OP_PositionLock"
 			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 8
+			}
 		},
 		{
 			_class = "C_OP_FadeInSimple"
 		},
+	]
+	m_ForceGenerators = 
+	[
 		{
-			_class = "C_OP_VectorNoise"
-			m_nFieldOutput = 0
-			m_vecOutputMin = [ -3.0, -3.0, -2.0 ]
-			m_vecOutputMax = [ 3.0, 3.0, 3.0 ]
-			m_fl4NoiseScale = 0.75
-			m_bAdditive = true
+			_class = "C_OP_CurlNoiseForce"
 		},
 	]
 	m_Renderers = 

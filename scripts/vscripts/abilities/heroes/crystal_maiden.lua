@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -73,113 +73,113 @@ f(
 		["64"] = 94,
 		["65"] = 95,
 		["66"] = 96,
-		["68"] = 60,
-		["69"] = 99,
+		["67"] = 97,
+		["69"] = 60,
 		["70"] = 100,
 		["71"] = 101,
 		["72"] = 102,
-		["75"] = 99,
-		["76"] = 106,
+		["73"] = 103,
+		["76"] = 100,
 		["77"] = 107,
 		["78"] = 108,
-		["79"] = 106,
-		["80"] = 110,
+		["79"] = 109,
+		["80"] = 107,
 		["81"] = 111,
 		["82"] = 112,
-		["83"] = 112,
-		["84"] = 112,
-		["85"] = 111,
-		["86"] = 113,
-		["87"] = 113,
-		["88"] = 113,
-		["89"] = 111,
-		["90"] = 114,
-		["91"] = 114,
-		["92"] = 114,
-		["93"] = 111,
-		["94"] = 115,
-		["95"] = 115,
-		["96"] = 115,
-		["97"] = 111,
-		["98"] = 116,
-		["99"] = 116,
-		["100"] = 116,
-		["101"] = 111,
-		["102"] = 111,
-		["103"] = 110,
-		["104"] = 119,
+		["83"] = 113,
+		["84"] = 113,
+		["85"] = 113,
+		["86"] = 112,
+		["87"] = 114,
+		["88"] = 114,
+		["89"] = 114,
+		["90"] = 112,
+		["91"] = 115,
+		["92"] = 115,
+		["93"] = 115,
+		["94"] = 112,
+		["95"] = 116,
+		["96"] = 116,
+		["97"] = 116,
+		["98"] = 112,
+		["99"] = 117,
+		["100"] = 117,
+		["101"] = 117,
+		["102"] = 112,
+		["103"] = 112,
+		["104"] = 111,
 		["105"] = 120,
-		["106"] = 120,
-		["107"] = 120,
-		["108"] = 120,
-		["109"] = 120,
+		["106"] = 121,
+		["107"] = 121,
+		["108"] = 121,
+		["109"] = 121,
 		["110"] = 121,
-		["113"] = 124,
+		["111"] = 122,
 		["114"] = 125,
 		["115"] = 126,
 		["116"] = 127,
 		["117"] = 128,
-		["118"] = 128,
-		["119"] = 128,
-		["120"] = 128,
-		["121"] = 128,
-		["122"] = 128,
-		["124"] = 119,
-		["125"] = 132,
+		["118"] = 129,
+		["119"] = 129,
+		["120"] = 129,
+		["121"] = 129,
+		["122"] = 129,
+		["123"] = 129,
+		["125"] = 120,
 		["126"] = 133,
-		["129"] = 134,
+		["127"] = 134,
 		["130"] = 135,
 		["131"] = 136,
 		["132"] = 137,
-		["134"] = 132,
-		["135"] = 140,
+		["133"] = 138,
+		["135"] = 133,
 		["136"] = 141,
 		["137"] = 142,
 		["138"] = 143,
 		["139"] = 144,
 		["140"] = 145,
-		["141"] = 145,
-		["142"] = 145,
-		["143"] = 145,
-		["144"] = 145,
+		["141"] = 146,
+		["142"] = 146,
+		["143"] = 146,
+		["144"] = 146,
 		["145"] = 146,
 		["146"] = 147,
-		["147"] = 147,
-		["148"] = 147,
+		["147"] = 148,
+		["148"] = 148,
 		["149"] = 148,
 		["150"] = 149,
 		["151"] = 150,
 		["152"] = 151,
-		["153"] = 151,
-		["154"] = 151,
-		["155"] = 151,
-		["156"] = 151,
-		["157"] = 151,
-		["158"] = 151,
+		["153"] = 152,
+		["154"] = 152,
+		["155"] = 152,
+		["156"] = 152,
+		["157"] = 152,
+		["158"] = 152,
 		["159"] = 152,
 		["160"] = 153,
-		["162"] = 155,
+		["161"] = 154,
 		["163"] = 156,
-		["164"] = 156,
-		["165"] = 156,
-		["166"] = 156,
-		["167"] = 156,
-		["168"] = 156,
-		["170"] = 158,
+		["164"] = 157,
+		["165"] = 157,
+		["166"] = 157,
+		["167"] = 157,
+		["168"] = 157,
+		["169"] = 157,
 		["171"] = 159,
-		["172"] = 159,
-		["173"] = 159,
-		["174"] = 159,
-		["175"] = 159,
-		["176"] = 159,
-		["179"] = 147,
-		["180"] = 147,
-		["181"] = 140,
-		["182"] = 164,
+		["172"] = 160,
+		["173"] = 160,
+		["174"] = 160,
+		["175"] = 160,
+		["176"] = 160,
+		["177"] = 160,
+		["180"] = 148,
+		["181"] = 148,
+		["182"] = 141,
 		["183"] = 165,
-		["184"] = 164,
-		["185"] = 167,
-		["186"] = 169,
+		["184"] = 166,
+		["185"] = 165,
+		["186"] = 168,
 		["187"] = 170,
 		["188"] = 171,
 		["189"] = 172,
@@ -187,16 +187,16 @@ f(
 		["191"] = 174,
 		["192"] = 175,
 		["193"] = 176,
-		["194"] = 176,
-		["195"] = 176,
-		["196"] = 176,
-		["197"] = 176,
-		["198"] = 176,
-		["202"] = 180,
-		["205"] = 181,
+		["194"] = 177,
+		["195"] = 177,
+		["196"] = 177,
+		["197"] = 177,
+		["198"] = 177,
+		["199"] = 177,
+		["203"] = 181,
 		["206"] = 182,
-		["208"] = 167,
-		["209"] = 185,
+		["207"] = 183,
+		["209"] = 168,
 		["210"] = 186,
 		["211"] = 187,
 		["212"] = 188,
@@ -205,37 +205,37 @@ f(
 		["215"] = 191,
 		["216"] = 192,
 		["217"] = 193,
-		["221"] = 185,
-		["222"] = 198,
+		["218"] = 194,
+		["222"] = 186,
 		["223"] = 199,
 		["224"] = 200,
 		["225"] = 201,
-		["227"] = 203,
+		["226"] = 202,
 		["228"] = 204,
-		["230"] = 207,
+		["229"] = 205,
 		["231"] = 208,
 		["232"] = 209,
-		["233"] = 209,
-		["234"] = 209,
+		["233"] = 210,
+		["234"] = 210,
 		["235"] = 210,
-		["236"] = 210,
-		["237"] = 210,
-		["238"] = 210,
-		["239"] = 210,
-		["240"] = 209,
-		["241"] = 209,
-		["243"] = 214,
+		["236"] = 211,
+		["237"] = 211,
+		["238"] = 211,
+		["239"] = 211,
+		["240"] = 211,
+		["241"] = 210,
+		["242"] = 210,
 		["244"] = 215,
 		["245"] = 216,
-		["248"] = 198,
-		["249"] = 220,
+		["246"] = 217,
+		["249"] = 199,
 		["250"] = 221,
-		["251"] = 220,
-		["252"] = 225,
+		["251"] = 222,
+		["252"] = 221,
 		["253"] = 226,
-		["254"] = 225,
-		["255"] = 22,
-		["256"] = 14,
+		["254"] = 227,
+		["255"] = 226,
+		["256"] = 22,
 		["257"] = 14,
 		["258"] = 14,
 		["259"] = 14,
@@ -243,53 +243,53 @@ f(
 		["261"] = 14,
 		["262"] = 14,
 		["263"] = 14,
-		["264"] = 22,
-		["266"] = 22,
-		["268"] = 231,
+		["264"] = 14,
+		["265"] = 22,
+		["267"] = 22,
 		["269"] = 232,
-		["270"] = 231,
+		["270"] = 233,
 		["271"] = 232,
 		["272"] = 233,
 		["273"] = 234,
 		["274"] = 235,
 		["275"] = 236,
 		["276"] = 237,
-		["279"] = 238,
+		["277"] = 238,
 		["280"] = 239,
 		["281"] = 240,
 		["282"] = 241,
-		["283"] = 233,
-		["284"] = 244,
+		["283"] = 242,
+		["284"] = 234,
 		["285"] = 245,
 		["286"] = 246,
 		["287"] = 247,
 		["288"] = 248,
-		["289"] = 248,
-		["290"] = 248,
-		["291"] = 248,
+		["289"] = 249,
+		["290"] = 249,
+		["291"] = 249,
 		["292"] = 249,
-		["293"] = 249,
-		["294"] = 249,
-		["295"] = 249,
-		["296"] = 244,
-		["297"] = 251,
-		["298"] = 251,
-		["299"] = 251,
-		["301"] = 252,
+		["293"] = 250,
+		["294"] = 250,
+		["295"] = 250,
+		["296"] = 250,
+		["297"] = 245,
+		["298"] = 252,
+		["299"] = 252,
+		["300"] = 252,
 		["302"] = 253,
 		["303"] = 254,
-		["306"] = 256,
+		["304"] = 255,
 		["307"] = 257,
 		["308"] = 258,
-		["309"] = 260,
+		["309"] = 259,
 		["310"] = 261,
-		["311"] = 263,
+		["311"] = 262,
 		["312"] = 264,
 		["313"] = 265,
 		["314"] = 266,
 		["315"] = 267,
-		["316"] = 267,
-		["317"] = 267,
+		["316"] = 268,
+		["317"] = 268,
 		["318"] = 268,
 		["319"] = 269,
 		["320"] = 270,
@@ -297,53 +297,53 @@ f(
 		["322"] = 272,
 		["323"] = 273,
 		["324"] = 274,
-		["326"] = 276,
-		["328"] = 267,
-		["329"] = 267,
-		["330"] = 279,
-		["331"] = 279,
-		["332"] = 279,
+		["325"] = 275,
+		["327"] = 277,
+		["329"] = 268,
+		["330"] = 268,
+		["331"] = 280,
+		["332"] = 280,
 		["333"] = 280,
 		["334"] = 281,
 		["335"] = 282,
 		["336"] = 283,
 		["337"] = 284,
-		["339"] = 286,
+		["338"] = 285,
 		["340"] = 287,
 		["341"] = 288,
-		["344"] = 291,
+		["342"] = 289,
 		["345"] = 292,
 		["346"] = 293,
 		["347"] = 294,
-		["349"] = 296,
-		["351"] = 298,
-		["353"] = 279,
-		["354"] = 279,
-		["355"] = 251,
-		["356"] = 232,
-		["357"] = 231,
+		["348"] = 295,
+		["350"] = 297,
+		["352"] = 299,
+		["354"] = 280,
+		["355"] = 280,
+		["356"] = 252,
+		["357"] = 233,
 		["358"] = 232,
-		["360"] = 232,
-		["362"] = 306,
+		["359"] = 233,
+		["361"] = 233,
 		["363"] = 307,
-		["364"] = 306,
+		["364"] = 308,
 		["365"] = 307,
 		["366"] = 308,
 		["367"] = 309,
-		["368"] = 308,
-		["369"] = 307,
-		["370"] = 306,
+		["368"] = 310,
+		["369"] = 309,
+		["370"] = 308,
 		["371"] = 307,
-		["373"] = 307,
-		["374"] = 312,
-		["375"] = 319,
-		["376"] = 312,
-		["377"] = 319,
-		["378"] = 322,
+		["372"] = 308,
+		["374"] = 308,
+		["375"] = 313,
+		["376"] = 320,
+		["377"] = 313,
+		["378"] = 320,
 		["379"] = 323,
 		["380"] = 324,
-		["381"] = 322,
-		["382"] = 326,
+		["381"] = 325,
+		["382"] = 323,
 		["383"] = 327,
 		["384"] = 328,
 		["385"] = 329,
@@ -352,253 +352,254 @@ f(
 		["388"] = 332,
 		["389"] = 333,
 		["390"] = 334,
-		["393"] = 326,
-		["394"] = 338,
+		["391"] = 335,
+		["394"] = 327,
 		["395"] = 339,
-		["396"] = 339,
-		["397"] = 341,
-		["398"] = 341,
-		["399"] = 341,
-		["400"] = 339,
-		["401"] = 339,
-		["402"] = 338,
-		["403"] = 344,
+		["396"] = 340,
+		["397"] = 340,
+		["398"] = 342,
+		["399"] = 342,
+		["400"] = 342,
+		["401"] = 340,
+		["402"] = 340,
+		["403"] = 339,
 		["404"] = 345,
 		["405"] = 346,
-		["407"] = 344,
-		["408"] = 349,
+		["406"] = 347,
+		["408"] = 345,
 		["409"] = 350,
-		["410"] = 349,
-		["411"] = 319,
-		["412"] = 312,
-		["413"] = 312,
-		["414"] = 312,
-		["415"] = 312,
-		["416"] = 312,
-		["417"] = 312,
-		["418"] = 312,
-		["419"] = 319,
-		["421"] = 319,
-		["423"] = 355,
+		["410"] = 351,
+		["411"] = 350,
+		["412"] = 320,
+		["413"] = 313,
+		["414"] = 313,
+		["415"] = 313,
+		["416"] = 313,
+		["417"] = 313,
+		["418"] = 313,
+		["419"] = 313,
+		["420"] = 320,
+		["422"] = 320,
 		["424"] = 356,
-		["425"] = 355,
+		["425"] = 357,
 		["426"] = 356,
 		["427"] = 357,
 		["428"] = 358,
-		["429"] = 357,
-		["430"] = 356,
-		["431"] = 355,
+		["429"] = 359,
+		["430"] = 358,
+		["431"] = 357,
 		["432"] = 356,
-		["434"] = 356,
-		["435"] = 361,
-		["436"] = 368,
-		["437"] = 361,
-		["438"] = 368,
-		["439"] = 370,
+		["433"] = 357,
+		["435"] = 357,
+		["436"] = 362,
+		["437"] = 369,
+		["438"] = 362,
+		["439"] = 369,
 		["440"] = 371,
-		["441"] = 370,
-		["442"] = 373,
+		["441"] = 372,
+		["442"] = 371,
 		["443"] = 374,
 		["444"] = 375,
-		["445"] = 375,
-		["446"] = 374,
-		["447"] = 373,
-		["448"] = 378,
+		["445"] = 376,
+		["446"] = 376,
+		["447"] = 375,
+		["448"] = 374,
 		["449"] = 379,
 		["450"] = 380,
 		["451"] = 381,
-		["452"] = 381,
-		["453"] = 381,
-		["454"] = 381,
-		["455"] = 381,
-		["456"] = 381,
-		["457"] = 381,
-		["458"] = 381,
-		["459"] = 381,
-		["460"] = 381,
-		["462"] = 378,
-		["463"] = 368,
-		["464"] = 361,
-		["465"] = 361,
-		["466"] = 361,
-		["467"] = 361,
-		["468"] = 361,
-		["469"] = 361,
-		["470"] = 361,
-		["471"] = 368,
-		["473"] = 368,
-		["475"] = 387,
+		["452"] = 382,
+		["453"] = 382,
+		["454"] = 382,
+		["455"] = 382,
+		["456"] = 382,
+		["457"] = 382,
+		["458"] = 382,
+		["459"] = 382,
+		["460"] = 382,
+		["461"] = 382,
+		["463"] = 379,
+		["464"] = 369,
+		["465"] = 362,
+		["466"] = 362,
+		["467"] = 362,
+		["468"] = 362,
+		["469"] = 362,
+		["470"] = 362,
+		["471"] = 362,
+		["472"] = 369,
+		["474"] = 369,
 		["476"] = 388,
-		["477"] = 387,
+		["477"] = 389,
 		["478"] = 388,
 		["479"] = 389,
 		["480"] = 390,
-		["481"] = 389,
-		["482"] = 388,
-		["483"] = 387,
+		["481"] = 391,
+		["482"] = 390,
+		["483"] = 389,
 		["484"] = 388,
-		["486"] = 388,
-		["487"] = 393,
-		["488"] = 401,
-		["489"] = 393,
-		["490"] = 401,
-		["491"] = 403,
+		["485"] = 389,
+		["487"] = 389,
+		["488"] = 394,
+		["489"] = 402,
+		["490"] = 394,
+		["491"] = 402,
 		["492"] = 404,
-		["493"] = 403,
-		["494"] = 406,
+		["493"] = 405,
+		["494"] = 404,
 		["495"] = 407,
 		["496"] = 408,
-		["498"] = 406,
-		["499"] = 411,
+		["497"] = 409,
+		["499"] = 407,
 		["500"] = 412,
-		["501"] = 411,
-		["502"] = 416,
+		["501"] = 413,
+		["502"] = 412,
 		["503"] = 417,
-		["504"] = 416,
-		["505"] = 401,
-		["506"] = 393,
-		["507"] = 393,
-		["508"] = 393,
-		["509"] = 393,
-		["510"] = 393,
-		["511"] = 393,
-		["512"] = 393,
-		["513"] = 393,
-		["514"] = 401,
-		["516"] = 401,
-		["518"] = 422,
+		["504"] = 418,
+		["505"] = 417,
+		["506"] = 402,
+		["507"] = 394,
+		["508"] = 394,
+		["509"] = 394,
+		["510"] = 394,
+		["511"] = 394,
+		["512"] = 394,
+		["513"] = 394,
+		["514"] = 394,
+		["515"] = 402,
+		["517"] = 402,
 		["519"] = 423,
-		["520"] = 422,
+		["520"] = 424,
 		["521"] = 423,
 		["522"] = 424,
 		["523"] = 425,
-		["524"] = 424,
-		["525"] = 423,
-		["526"] = 422,
+		["524"] = 426,
+		["525"] = 425,
+		["526"] = 424,
 		["527"] = 423,
-		["529"] = 423,
-		["530"] = 428,
-		["531"] = 435,
-		["532"] = 428,
-		["533"] = 435,
-		["534"] = 438,
+		["528"] = 424,
+		["530"] = 424,
+		["531"] = 429,
+		["532"] = 436,
+		["533"] = 429,
+		["534"] = 436,
 		["535"] = 439,
 		["536"] = 440,
-		["537"] = 438,
-		["538"] = 442,
+		["537"] = 441,
+		["538"] = 439,
 		["539"] = 443,
 		["540"] = 444,
-		["541"] = 444,
-		["542"] = 443,
-		["543"] = 442,
-		["544"] = 447,
+		["541"] = 445,
+		["542"] = 445,
+		["543"] = 444,
+		["544"] = 443,
 		["545"] = 448,
 		["546"] = 449,
-		["547"] = 447,
-		["548"] = 451,
+		["547"] = 450,
+		["548"] = 448,
 		["549"] = 452,
 		["550"] = 453,
-		["551"] = 451,
-		["552"] = 455,
+		["551"] = 454,
+		["552"] = 452,
 		["553"] = 456,
-		["554"] = 455,
-		["555"] = 460,
+		["554"] = 457,
+		["555"] = 456,
 		["556"] = 461,
 		["557"] = 462,
-		["559"] = 460,
-		["560"] = 435,
-		["561"] = 428,
-		["562"] = 428,
-		["563"] = 428,
-		["564"] = 428,
-		["565"] = 428,
-		["566"] = 428,
-		["567"] = 428,
-		["568"] = 435,
-		["570"] = 435,
-		["572"] = 468,
+		["558"] = 463,
+		["560"] = 461,
+		["561"] = 436,
+		["562"] = 429,
+		["563"] = 429,
+		["564"] = 429,
+		["565"] = 429,
+		["566"] = 429,
+		["567"] = 429,
+		["568"] = 429,
+		["569"] = 436,
+		["571"] = 436,
 		["573"] = 469,
-		["574"] = 468,
+		["574"] = 470,
 		["575"] = 469,
 		["576"] = 470,
 		["577"] = 471,
-		["578"] = 470,
-		["579"] = 469,
-		["580"] = 468,
+		["578"] = 472,
+		["579"] = 471,
+		["580"] = 470,
 		["581"] = 469,
-		["583"] = 469,
-		["584"] = 474,
-		["585"] = 481,
-		["586"] = 474,
-		["587"] = 481,
-		["588"] = 485,
+		["582"] = 470,
+		["584"] = 470,
+		["585"] = 475,
+		["586"] = 482,
+		["587"] = 475,
+		["588"] = 482,
 		["589"] = 486,
 		["590"] = 487,
-		["591"] = 485,
-		["592"] = 489,
+		["591"] = 488,
+		["592"] = 486,
 		["593"] = 490,
 		["594"] = 491,
-		["595"] = 491,
-		["596"] = 490,
-		["597"] = 489,
-		["598"] = 494,
+		["595"] = 492,
+		["596"] = 492,
+		["597"] = 491,
+		["598"] = 490,
 		["599"] = 495,
 		["600"] = 496,
 		["601"] = 497,
 		["602"] = 498,
-		["604"] = 500,
+		["603"] = 499,
 		["605"] = 501,
-		["607"] = 503,
-		["610"] = 494,
-		["611"] = 481,
-		["612"] = 474,
-		["613"] = 474,
-		["614"] = 474,
-		["615"] = 474,
-		["616"] = 474,
-		["617"] = 474,
-		["618"] = 474,
-		["619"] = 481,
-		["621"] = 481,
-		["622"] = 509,
-		["623"] = 516,
-		["624"] = 509,
-		["625"] = 516,
-		["626"] = 519,
+		["606"] = 502,
+		["608"] = 504,
+		["611"] = 495,
+		["612"] = 482,
+		["613"] = 475,
+		["614"] = 475,
+		["615"] = 475,
+		["616"] = 475,
+		["617"] = 475,
+		["618"] = 475,
+		["619"] = 475,
+		["620"] = 482,
+		["622"] = 482,
+		["623"] = 510,
+		["624"] = 517,
+		["625"] = 510,
+		["626"] = 517,
 		["627"] = 520,
-		["628"] = 519,
-		["629"] = 522,
+		["628"] = 521,
+		["629"] = 520,
 		["630"] = 523,
 		["631"] = 524,
-		["632"] = 522,
-		["633"] = 526,
+		["632"] = 525,
+		["633"] = 523,
 		["634"] = 527,
 		["635"] = 528,
-		["637"] = 526,
-		["638"] = 531,
+		["636"] = 529,
+		["638"] = 527,
 		["639"] = 532,
 		["640"] = 533,
 		["641"] = 534,
-		["642"] = 534,
-		["643"] = 534,
-		["644"] = 534,
-		["646"] = 531,
-		["647"] = 537,
+		["642"] = 535,
+		["643"] = 535,
+		["644"] = 535,
+		["645"] = 535,
+		["647"] = 532,
 		["648"] = 538,
-		["649"] = 537,
-		["650"] = 542,
+		["649"] = 539,
+		["650"] = 538,
 		["651"] = 543,
-		["652"] = 542,
-		["653"] = 516,
-		["654"] = 509,
-		["655"] = 509,
-		["656"] = 509,
-		["657"] = 509,
-		["658"] = 509,
-		["659"] = 509,
-		["660"] = 509,
-		["661"] = 516,
-		["663"] = 516,
+		["652"] = 544,
+		["653"] = 543,
+		["654"] = 517,
+		["655"] = 510,
+		["656"] = 510,
+		["657"] = 510,
+		["658"] = 510,
+		["659"] = 510,
+		["660"] = 510,
+		["661"] = 510,
+		["662"] = 517,
+		["664"] = 517,
 	}
 )
 local g = {}
@@ -654,15 +655,16 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.s_attack_speed_max = self:GetAbilityTalentValue("crystal_maiden_shard", "attack_speed_max")
 	self.s_chance = self:GetAbilityTalentValue("crystal_maiden_shard", "chance")
 	self.shard_interval = self:GetAbilityTalentValue("crystal_maiden_shard", "interval")
-	self.g_mana_cost = self:GetAbilitySpecialValueFor("g_mana_cost")
-	self.g_shield = self:GetAbilitySpecialValueFor("g_shield")
+	local s = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
+	self.g_mana_cost = (s and s:GetAbilityName()) == "trait_189" and s:GetSpecialValueFor("mana_cost") or 0
+	self.g_shield = (s and s:GetAbilityName()) == "trait_189" and s:GetSpecialValueFor("shield") or 0
 	if IsServer() then
 		self.tl5_record = 0
 		self.g_mana_record = 0
 		self.mana_reply_record = 0
 	end
 end
-function r.prototype.OnCreated(self, s)
+function r.prototype.OnCreated(self, t)
 	if IsServer() then
 		if self.shard_interval > 0 then
 			self:StartIntervalThink(self.shard_interval)
@@ -682,74 +684,74 @@ function r.prototype.EDeclareEvents(self)
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
-function r.prototype.OnCustomAbilityFullyCast(self, t)
-	print(t.ability:GetManaCost(1), self.g_mana_cost, self.g_shield)
+function r.prototype.OnCustomAbilityFullyCast(self, u)
+	print(u.ability:GetManaCost(1), self.g_mana_cost, self.g_shield)
 	if self.g_mana_cost <= 0 or self.g_shield <= 0 then
 		return
 	end
-	self.g_mana_record = self.g_mana_record + t.ability:GetManaCost(1)
+	self.g_mana_record = self.g_mana_record + u.ability:GetManaCost(1)
 	if self.g_mana_record >= self.g_mana_cost then
-		local u = math.floor(self.g_mana_record / self.g_mana_cost)
+		local v = math.floor(self.g_mana_record / self.g_mana_cost)
 		self.g_mana_record = self.g_mana_record % self.g_mana_cost
-		AddShield(self:GetParent(), u * self.g_shield, "greevil_effect_1", "Ability")
+		AddShield(self:GetParent(), v * self.g_shield, "greevil_effect_1", "Ability")
 	end
 end
-function r.prototype.OnRestore(self, s)
+function r.prototype.OnRestore(self, t)
 	if self.mana_reply <= 0 then
 		return
 	end
-	self.mana_reply_record = self.mana_reply_record + s.count
+	self.mana_reply_record = self.mana_reply_record + t.count
 	if self.mana_reply_record >= self.mana_reply then
 		self.mana_reply_record = self.mana_reply_record % self.mana_reply
 		self:FrostNova()
 	end
 end
 function r.prototype.FrostNova(self)
-	local v = self:GetParent()
-	local w = v:GetEnemy()
-	EmitSoundOn("Hero_Crystal.CrystalNova", v)
-	local x = ParticleManager:CreateParticle(
+	local w = self:GetParent()
+	local x = w:GetEnemy()
+	EmitSoundOn("Hero_Crystal.CrystalNova", w)
+	local y = ParticleManager:CreateParticle(
 		"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf",
 		PATTACH_ABSORIGIN,
-		w,
-		v
+		x,
+		w
 	)
-	ParticleManager:SetParticleControl(x, 0, w:GetAbsOrigin())
-	v:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+	ParticleManager:SetParticleControl(y, 0, x:GetAbsOrigin())
+	w:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 	GameTimer(0.6, function()
-		if IsInjurable(w, v) then
-			local y = self.parent:FindAbilityByName("crystal_maiden_crystal_nova")
-			v:DealDamage(w, y, self.ice_star_damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-			AddIce(v, w, self.ice, "crystal_maiden_crystal_nova", "Ability")
+		if IsInjurable(x, w) then
+			local z = self.parent:FindAbilityByName("crystal_maiden_crystal_nova")
+			w:DealDamage(x, z, self.ice_star_damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+			AddIce(w, x, self.ice, "crystal_maiden_crystal_nova", "Ability")
 			if self:HasTalent("crystal_maiden_talent_13") then
 				AddShield(
-					v,
+					w,
 					self.tl13_damage_shield * self.ice_star_damage * 0.01,
 					"crystal_maiden_crystal_nova",
 					"Ability"
 				)
 			end
 			if self:HasTalent("crystal_maiden_talent_14") then
-				v:AddNewModifier(v, self:GetAbility(), "modifier_crystal_maiden_talent_14_buff", {})
+				w:AddNewModifier(w, self:GetAbility(), "modifier_crystal_maiden_talent_14_buff", {})
 			end
 			if self:HasTalent("crystal_maiden_talent_15") then
-				AddStun(self.parent, self.parent:GetEnemy(), y, self.tl15_stun_duration)
+				AddStun(self.parent, self.parent:GetEnemy(), z, self.tl15_stun_duration)
 			end
 		end
 	end)
 end
-function r.prototype.OnBattleEnd(self, s)
+function r.prototype.OnBattleEnd(self, t)
 	self:GetParent():RemoveModifierByName("modifier_crystal_maiden_talent_14_buff")
 end
-function r.prototype.OnIceGained(self, s)
+function r.prototype.OnIceGained(self, t)
 	if self.tl5_ice_stack > 0 then
-		self.tl5_record = self.tl5_record + s.iStackCount
+		self.tl5_record = self.tl5_record + t.iStackCount
 		if self.tl5_record >= self.tl5_ice_stack then
-			local v = self:GetParent()
-			local w = v:GetEnemy()
+			local w = self:GetParent()
+			local x = w:GetEnemy()
 			self.tl5_record = 0
-			if IsInjurable(w, v) then
-				AddStun(v, w, self:GetAbility(), self.tl5_stun_duration)
+			if IsInjurable(x, w) then
+				AddStun(w, x, self:GetAbility(), self.tl5_stun_duration)
 			end
 		end
 	end
@@ -760,43 +762,43 @@ function r.prototype.OnIceGained(self, s)
 		self:BrillianceAura()
 	end
 end
-function r.prototype.OnCustomAttackLanded(self, t)
+function r.prototype.OnCustomAttackLanded(self, u)
 	if self.s_chance > 0 and self:PRD(self.s_chance, "s_chance") then
-		local y = self:GetParent():FindAbilityByName("crystal_maiden_ult")
-		if IsValid(y) then
-			y:FreezingFieldExplosion(1)
+		local z = self:GetParent():FindAbilityByName("crystal_maiden_ult")
+		if IsValid(z) then
+			z:FreezingFieldExplosion(1)
 			if self.shard_trigger_explosion then
 				self.shard_trigger_explosion = false
 				self:StartIntervalThink(self.shard_interval)
-				y:FreezingFieldExplosion(y and y:GetExtraCount())
+				z:FreezingFieldExplosion(z and z:GetExtraCount())
 			end
 		end
 	end
 end
 function r.prototype.BrillianceAura(self)
-	local v = self:GetParent()
+	local w = self:GetParent()
 	if self.s_attack_speed == 0 then
-		Restore(v, self.mana)
+		Restore(w, self.mana)
 	else
-		local u = self:GetStackCount()
-		self:SetStackCount(math.min(u + self.s_attack_speed, self.s_attack_speed_max))
+		local v = self:GetStackCount()
+		self:SetStackCount(math.min(v + self.s_attack_speed, self.s_attack_speed_max))
 	end
-	local z = self.mana * self.wisp_heal * 0.01
+	local A = self.mana * self.wisp_heal * 0.01
 	if self.wisp_heal > 0 then
-		EachWisp(v, function(A)
-			A:Heal(z, self:GetAbility(), true)
+		EachWisp(w, function(B)
+			B:Heal(A, self:GetAbility(), true)
 		end)
 	end
 	if self.talent_11_chance > 0 then
 		if self:PRD(self.talent_11_chance, "talent_11") then
-			Heal(v, self.talent_11_heal, "crystal_maiden_talent_11", "Ability")
+			Heal(w, self.talent_11_heal, "crystal_maiden_talent_11", "Ability")
 		end
 	end
 end
 function r.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_TOTAL_PERCENTAGE }
 end
-function r.prototype.EOM_GetModifierAttackSpeedTotalPercentage(self, s)
+function r.prototype.EOM_GetModifierAttackSpeedTotalPercentage(self, t)
 	return self:GetStackCount()
 end
 r = e(
@@ -817,210 +819,210 @@ r = e(
 )
 g.modifier_crystal_maiden_talent = r
 g.crystal_maiden_ult = c()
-local B = g.crystal_maiden_ult
-B.name = "crystal_maiden_ult"
-d(B, o)
-function B.prototype.OnSpellStart(self)
-	local C = self:GetCaster()
-	C:StartGesture(ACT_DOTA_CAST_ABILITY_1)
-	local D = C:GetEnemy()
-	if not IsValid(D) then
+local C = g.crystal_maiden_ult
+C.name = "crystal_maiden_ult"
+d(C, o)
+function C.prototype.OnSpellStart(self)
+	local D = self:GetCaster()
+	D:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+	local E = D:GetEnemy()
+	if not IsValid(E) then
 		return
 	end
-	local u = self:GetSpecialValueFor("count") + self:GetTalentValue("crystal_maiden_talent_10", "base_count")
-	local E = u + self:GetExtraCount()
-	self:FreezingFieldExplosion(E)
-	C:EmitSound("hero_Crystal.freezingField.wind")
+	local v = self:GetSpecialValueFor("count") + self:GetTalentValue("crystal_maiden_talent_10", "base_count")
+	local F = v + self:GetExtraCount()
+	self:FreezingFieldExplosion(F)
+	D:EmitSound("hero_Crystal.freezingField.wind")
 end
-function B.prototype.GetExtraCount(self)
-	local C = self:GetCaster()
-	local D = C:GetEnemy()
-	local F = self:GetSpecialValueFor("bonus_max") + self:GetTalentValue("crystal_maiden_talent_10", "extra_count")
-	local G = math.max(
+function C.prototype.GetExtraCount(self)
+	local D = self:GetCaster()
+	local E = D:GetEnemy()
+	local G = self:GetSpecialValueFor("bonus_max") + self:GetTalentValue("crystal_maiden_talent_10", "extra_count")
+	local H = math.max(
 		1,
 		self:GetSpecialValueFor("bonus_per_ice") - self:GetTalentValue("crystal_maiden_talent_10", "threshold_reduce")
 	)
-	return math.min(F, math.floor(GetIce(D) / G))
+	return math.min(G, math.floor(GetIce(E) / H))
 end
-function B.prototype.FreezingFieldExplosion(self, E, H)
-	if H == nil then
-		H = 100
+function C.prototype.FreezingFieldExplosion(self, F, I)
+	if I == nil then
+		I = 100
 	end
-	local C = self:GetCaster()
-	local D = C:GetEnemy()
-	if not IsValid(D) then
+	local D = self:GetCaster()
+	local E = D:GetEnemy()
+	if not IsValid(E) then
 		return
 	end
-	local I = D:GetAbsOrigin()
-	local J = (self:GetSpecialValueFor("damage") + self:GetTalentValue("crystal_maiden_talent_1", "damage_bonus"))
-		* H
+	local J = E:GetAbsOrigin()
+	local K = (self:GetSpecialValueFor("damage") + self:GetTalentValue("crystal_maiden_talent_1", "damage_bonus"))
+		* I
 		* 0.01
-	local K = self:GetSpecialValueFor("interval")
+	local L = self:GetSpecialValueFor("interval")
 		* (1 - self:GetTalentValue("crystal_maiden_talent_2", "interval_reduce") * 0.01)
-	local L = self:GetTalentValue("crystal_maiden_talent_3", "ice_damage")
-	local M = self:GetTalentValue("crystal_maiden_talent_16", "chance")
-	local N = self:GetSpecialValueFor("count")
-	local O = K * (1 - self:GetSpecialValueFor("default_interval_pct") * 0.01)
-	local P = 0
+	local M = self:GetTalentValue("crystal_maiden_talent_3", "ice_damage")
+	local N = self:GetTalentValue("crystal_maiden_talent_16", "chance")
+	local O = self:GetSpecialValueFor("count")
+	local P = L * (1 - self:GetSpecialValueFor("default_interval_pct") * 0.01)
 	local Q = 0
+	local R = 0
 	self:GameTimer(0, function()
-		if P < E and D:IsAlive() then
-			P = P + 1
-			local R = I + RandomVector(150)
-			local S = ParticleManager:CreateParticle(
+		if Q < F and E:IsAlive() then
+			Q = Q + 1
+			local S = J + RandomVector(150)
+			local T = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil,
-				C
+				D
 			)
-			ParticleManager:SetParticleControl(S, 0, R)
-			if P <= N then
-				return O
+			ParticleManager:SetParticleControl(T, 0, S)
+			if Q <= O then
+				return P
 			end
-			return K
+			return L
 		end
 	end)
 	self:GameTimer(0.4, function()
-		if Q < E and D:IsAlive() then
-			Q = Q + 1
-			local T = J
-			if L > 0 then
-				T = T + GetIce(D) * L * 0.01
-			end
+		if R < F and E:IsAlive() then
+			R = R + 1
+			local U = K
 			if M > 0 then
-				if self:PRD(M) then
-					C:FindModifierByName("modifier_crystal_maiden_talent"):FrostNova()
+				U = U + GetIce(E) * M * 0.01
+			end
+			if N > 0 then
+				if self:PRD(N) then
+					D:FindModifierByName("modifier_crystal_maiden_talent"):FrostNova()
 				end
 			end
-			C:DealDamage(D, self, T, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-			C:EmitSound("n_creep_ice_shaman.IceBomb.Target")
-			if Q <= N then
-				return O
+			D:DealDamage(E, self, U, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+			D:EmitSound("n_creep_ice_shaman.IceBomb.Target")
+			if R <= O then
+				return P
 			end
-			return K
+			return L
 		else
-			C:StopSound("hero_Crystal.freezingField.wind")
+			D:StopSound("hero_Crystal.freezingField.wind")
 		end
 	end)
 end
-B = e({ p(nil) }, B)
-g.crystal_maiden_ult = B
+C = e({ p(nil) }, C)
+g.crystal_maiden_ult = C
 g.crystal_maiden_talent_3 = c()
-local U = g.crystal_maiden_talent_3
-U.name = "crystal_maiden_talent_3"
-d(U, i)
-function U.prototype.GetIntrinsicModifierName(self)
+local V = g.crystal_maiden_talent_3
+V.name = "crystal_maiden_talent_3"
+d(V, i)
+function V.prototype.GetIntrinsicModifierName(self)
 	return "modifier_crystal_maiden_talent_3"
 end
-U = e({ j(nil) }, U)
-g.crystal_maiden_talent_3 = U
+V = e({ j(nil) }, V)
+g.crystal_maiden_talent_3 = V
 g.modifier_crystal_maiden_talent_3 = c()
-local V = g.modifier_crystal_maiden_talent_3
-V.name = "modifier_crystal_maiden_talent_3"
-d(V, l)
-function V.prototype.GetAbilitySpecialValue(self)
+local W = g.modifier_crystal_maiden_talent_3
+W.name = "modifier_crystal_maiden_talent_3"
+d(W, l)
+function W.prototype.GetAbilitySpecialValue(self)
 	self.wisp_interval = self:GetAbilitySpecialValueFor("wisp_interval")
 	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
 end
-function V.prototype.OnIntervalThink(self)
-	local v = self:GetParent()
-	local W = self:GetAbility()
-	local X = v:GetEnemy()
-	local Y = v:FindModifierByName("modifier_sect_wisp")
-	if IsValid(X) and IsValid(Y) and type(W.FreezingFieldExplosion) == "function" then
-		local Z = Y:GetStackCount()
-		if Z > 0 then
-			W:FreezingFieldExplosion(1, self.damage_pct)
+function W.prototype.OnIntervalThink(self)
+	local w = self:GetParent()
+	local X = self:GetAbility()
+	local Y = w:GetEnemy()
+	local Z = w:FindModifierByName("modifier_sect_wisp")
+	if IsValid(Y) and IsValid(Z) and type(X.FreezingFieldExplosion) == "function" then
+		local _ = Z:GetStackCount()
+		if _ > 0 then
+			X:FreezingFieldExplosion(1, self.damage_pct)
 		end
 	end
 end
-function V.prototype.EDeclareEvents(self)
+function W.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
-function V.prototype.OnBattleStart(self, s)
+function W.prototype.OnBattleStart(self, t)
 	if self.wisp_interval > 0 then
 		self:StartIntervalThink(self.wisp_interval)
 	end
 end
-function V.prototype.OnBattleEnd(self, s)
+function W.prototype.OnBattleEnd(self, t)
 	self:StartIntervalThink(-1)
 end
-V = e(
+W = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	V
+	W
 )
-g.modifier_crystal_maiden_talent_3 = V
+g.modifier_crystal_maiden_talent_3 = W
 g.crystal_maiden_talent_6 = c()
-local _ = g.crystal_maiden_talent_6
-_.name = "crystal_maiden_talent_6"
-d(_, i)
-function _.prototype.GetIntrinsicModifierName(self)
+local a0 = g.crystal_maiden_talent_6
+a0.name = "crystal_maiden_talent_6"
+d(a0, i)
+function a0.prototype.GetIntrinsicModifierName(self)
 	return "modifier_crystal_maiden_talent_6"
 end
-_ = e({ j(nil) }, _)
-g.crystal_maiden_talent_6 = _
+a0 = e({ j(nil) }, a0)
+g.crystal_maiden_talent_6 = a0
 g.modifier_crystal_maiden_talent_6 = c()
-local a0 = g.modifier_crystal_maiden_talent_6
-a0.name = "modifier_crystal_maiden_talent_6"
-d(a0, l)
-function a0.prototype.GetAbilitySpecialValue(self)
+local a1 = g.modifier_crystal_maiden_talent_6
+a1.name = "modifier_crystal_maiden_talent_6"
+d(a1, l)
+function a1.prototype.GetAbilitySpecialValue(self)
 	self.heal_ice_loss_pct = self:GetAbilitySpecialValueFor("heal_ice_loss_pct")
 end
-function a0.prototype.EDeclareEvents(self)
+function a1.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ICE_LOSS] = { -1, self:GetParent() } }
 end
-function a0.prototype.OnIceLoss(self, s)
-	local W = self:GetAbility()
-	if IsValid(W) and W:GetLevel() > 0 then
-		local a1 = Heal
-		local a2 = self:GetParent()
-		local a3 = s.iCount * self.heal_ice_loss_pct * 0.01
-		local a4 = self:GetAbility()
-		a1(a2, a3, a4 and a4:GetAbilityName(), "Ability")
+function a1.prototype.OnIceLoss(self, t)
+	local X = self:GetAbility()
+	if IsValid(X) and X:GetLevel() > 0 then
+		local a2 = Heal
+		local a3 = self:GetParent()
+		local a4 = t.iCount * self.heal_ice_loss_pct * 0.01
+		local a5 = self:GetAbility()
+		a2(a3, a4, a5 and a5:GetAbilityName(), "Ability")
 	end
 end
-a0 = e(
+a1 = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	a0
+	a1
 )
-g.modifier_crystal_maiden_talent_6 = a0
+g.modifier_crystal_maiden_talent_6 = a1
 g.crystal_maiden_talent_8 = c()
-local a5 = g.crystal_maiden_talent_8
-a5.name = "crystal_maiden_talent_8"
-d(a5, i)
-function a5.prototype.GetIntrinsicModifierName(self)
+local a6 = g.crystal_maiden_talent_8
+a6.name = "crystal_maiden_talent_8"
+d(a6, i)
+function a6.prototype.GetIntrinsicModifierName(self)
 	return "modifier_crystal_maiden_talent_8"
 end
-a5 = e({ j(nil) }, a5)
-g.crystal_maiden_talent_8 = a5
+a6 = e({ j(nil) }, a6)
+g.crystal_maiden_talent_8 = a6
 g.modifier_crystal_maiden_talent_8 = c()
-local a6 = g.modifier_crystal_maiden_talent_8
-a6.name = "modifier_crystal_maiden_talent_8"
-d(a6, l)
-function a6.prototype.GetAbilitySpecialValue(self)
+local a7 = g.modifier_crystal_maiden_talent_8
+a7.name = "modifier_crystal_maiden_talent_8"
+d(a7, l)
+function a7.prototype.GetAbilitySpecialValue(self)
 	self.ulti_power_per_victory = self:GetAbilitySpecialValueFor("ulti_power_per_victory")
 end
-function a6.prototype.OnCreated(self, s)
+function a7.prototype.OnCreated(self, t)
 	if IsServer() then
 		self:SetStackCount(PlayerData:getTotalWin(self:GetParent():GetPlayerOwnerID()) * self.ulti_power_per_victory)
 	end
 end
-function a6.prototype.EDeclareFunctions(self)
+function a7.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ULTI_POWER }
 end
-function a6.prototype.EOM_GetModifierUltiPower(self)
+function a7.prototype.EOM_GetModifierUltiPower(self)
 	return self:GetStackCount()
 end
-a6 = e(
+a7 = e(
 	{
 		m(
 			a,
@@ -1034,121 +1036,85 @@ a6 = e(
 			}
 		),
 	},
-	a6
+	a7
 )
-g.modifier_crystal_maiden_talent_8 = a6
+g.modifier_crystal_maiden_talent_8 = a7
 g.crystal_maiden_talent_9 = c()
-local a7 = g.crystal_maiden_talent_9
-a7.name = "crystal_maiden_talent_9"
-d(a7, i)
-function a7.prototype.GetIntrinsicModifierName(self)
+local a8 = g.crystal_maiden_talent_9
+a8.name = "crystal_maiden_talent_9"
+d(a8, i)
+function a8.prototype.GetIntrinsicModifierName(self)
 	return "modifier_crystal_maiden_talent_9"
 end
-a7 = e({ j(nil) }, a7)
-g.crystal_maiden_talent_9 = a7
+a8 = e({ j(nil) }, a8)
+g.crystal_maiden_talent_9 = a8
 g.modifier_crystal_maiden_talent_9 = c()
-local a8 = g.modifier_crystal_maiden_talent_9
-a8.name = "modifier_crystal_maiden_talent_9"
-d(a8, l)
-function a8.prototype.GetAbilitySpecialValue(self)
+local a9 = g.modifier_crystal_maiden_talent_9
+a9.name = "modifier_crystal_maiden_talent_9"
+d(a9, l)
+function a9.prototype.GetAbilitySpecialValue(self)
 	self.fury_disrupt_chance = self:GetAbilitySpecialValueFor("fury_disrupt_chance")
 	self.duration = self:GetAbilitySpecialValueFor("duration")
 end
-function a8.prototype.EDeclareEvents(self)
+function a9.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ABILITY_FULLY_CAST] = { self:GetParent(), -1 } }
 end
-function a8.prototype.OnCustomAbilityFullyCast(self, t)
+function a9.prototype.OnCustomAbilityFullyCast(self, u)
 	self:SetStackCount(1)
 	self:StartIntervalThink(self.duration)
 end
-function a8.prototype.OnIntervalThink(self)
+function a9.prototype.OnIntervalThink(self)
 	self:SetStackCount(0)
 	self:StartIntervalThink(-1)
 end
-function a8.prototype.EDeclareFunctions(self)
+function a9.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_IGNORE_FURY_PERCENTAGE }
 end
-function a8.prototype.EOM_GetModifierIgnoreFuryPercent(self, s)
+function a9.prototype.EOM_GetModifierIgnoreFuryPercent(self, t)
 	if self:GetStackCount() == 1 then
 		return self.fury_disrupt_chance
 	end
 end
-a8 = e(
+a9 = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	a8
+	a9
 )
-g.modifier_crystal_maiden_talent_9 = a8
+g.modifier_crystal_maiden_talent_9 = a9
 g.crystal_maiden_talent_12 = c()
-local a9 = g.crystal_maiden_talent_12
-a9.name = "crystal_maiden_talent_12"
-d(a9, i)
-function a9.prototype.GetIntrinsicModifierName(self)
+local aa = g.crystal_maiden_talent_12
+aa.name = "crystal_maiden_talent_12"
+d(aa, i)
+function aa.prototype.GetIntrinsicModifierName(self)
 	return "modifier_crystal_maiden_talent_12"
 end
-a9 = e({ j(nil) }, a9)
-g.crystal_maiden_talent_12 = a9
+aa = e({ j(nil) }, aa)
+g.crystal_maiden_talent_12 = aa
 g.modifier_crystal_maiden_talent_12 = c()
-local aa = g.modifier_crystal_maiden_talent_12
-aa.name = "modifier_crystal_maiden_talent_12"
-d(aa, l)
-function aa.prototype.GetAbilitySpecialValue(self)
+local ab = g.modifier_crystal_maiden_talent_12
+ab.name = "modifier_crystal_maiden_talent_12"
+d(ab, l)
+function ab.prototype.GetAbilitySpecialValue(self)
 	self.talent_12_chance = self:GetAbilitySpecialValueFor("talent_12_chance")
 	self.talent_12_wisp_health = self:GetAbilitySpecialValueFor("talent_12_wisp_health")
 end
-function aa.prototype.EDeclareEvents(self)
+function ab.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ABILITY_FULLY_CAST] = { self:GetParent(), -1 } }
 end
-function aa.prototype.OnCustomAbilityFullyCast(self, t)
-	local v = self:GetParent()
+function ab.prototype.OnCustomAbilityFullyCast(self, u)
+	local w = self:GetParent()
 	if self.talent_12_wisp_health > 0 and self:PRD(self.talent_12_chance) then
-		if not v:HasAbility("sect_wisp") then
-			v:AddAbility("sect_wisp")
+		if not w:HasAbility("sect_wisp") then
+			w:AddAbility("sect_wisp")
 		end
 		if IsValid(self.wisp) and self.wisp:IsAlive() then
 			self.wisp:SetHealth(self.wisp:GetMaxHealth())
 		else
-			self.wisp = SummonWisp(v, self.talent_12_wisp_health)
+			self.wisp = SummonWisp(w, self.talent_12_wisp_health)
 		end
 	end
-end
-aa = e(
-	{ m(
-		a,
-		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
-	) },
-	aa
-)
-g.modifier_crystal_maiden_talent_12 = aa
-g.modifier_crystal_maiden_talent_14_buff = c()
-local ab = g.modifier_crystal_maiden_talent_14_buff
-ab.name = "modifier_crystal_maiden_talent_14_buff"
-d(ab, l)
-function ab.prototype.GetTexture(self)
-	return "crystal_maiden_crystal_nova"
-end
-function ab.prototype.GetAbilitySpecialValue(self)
-	self.tl14_ult_bonus = self:GetAbilityTalentValue("crystal_maiden_talent_14", "ult_bonus")
-	self.tl14_max_stack = self:GetAbilityTalentValue("crystal_maiden_talent_14", "max_stack")
-end
-function ab.prototype.OnCreated(self, s)
-	if IsServer() then
-		self:SetStackCount(self.tl14_ult_bonus)
-	end
-end
-function ab.prototype.OnRefresh(self, s)
-	if IsServer() then
-		local ac = self.tl14_max_stack * self.tl14_ult_bonus
-		self:SetStackCount(math.min(self:GetStackCount() + self.tl14_ult_bonus, ac))
-	end
-end
-function ab.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ULTI_POWER }
-end
-function ab.prototype.EOM_GetModifierUltiPower(self)
-	return self:GetStackCount()
 end
 ab = e(
 	{ m(
@@ -1157,5 +1123,41 @@ ab = e(
 	) },
 	ab
 )
-g.modifier_crystal_maiden_talent_14_buff = ab
+g.modifier_crystal_maiden_talent_12 = ab
+g.modifier_crystal_maiden_talent_14_buff = c()
+local ac = g.modifier_crystal_maiden_talent_14_buff
+ac.name = "modifier_crystal_maiden_talent_14_buff"
+d(ac, l)
+function ac.prototype.GetTexture(self)
+	return "crystal_maiden_crystal_nova"
+end
+function ac.prototype.GetAbilitySpecialValue(self)
+	self.tl14_ult_bonus = self:GetAbilityTalentValue("crystal_maiden_talent_14", "ult_bonus")
+	self.tl14_max_stack = self:GetAbilityTalentValue("crystal_maiden_talent_14", "max_stack")
+end
+function ac.prototype.OnCreated(self, t)
+	if IsServer() then
+		self:SetStackCount(self.tl14_ult_bonus)
+	end
+end
+function ac.prototype.OnRefresh(self, t)
+	if IsServer() then
+		local ad = self.tl14_max_stack * self.tl14_ult_bonus
+		self:SetStackCount(math.min(self:GetStackCount() + self.tl14_ult_bonus, ad))
+	end
+end
+function ac.prototype.EDeclareFunctions(self)
+	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ULTI_POWER }
+end
+function ac.prototype.EOM_GetModifierUltiPower(self)
+	return self:GetStackCount()
+end
+ac = e(
+	{ m(
+		a,
+		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
+	) },
+	ac
+)
+g.modifier_crystal_maiden_talent_14_buff = ac
 return g

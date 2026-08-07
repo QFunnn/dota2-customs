@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -423,21 +423,21 @@ f(
 		["465"] = 414,
 		["466"] = 415,
 		["467"] = 416,
-		["468"] = 417,
-		["469"] = 417,
-		["470"] = 417,
-		["471"] = 417,
-		["472"] = 417,
-		["473"] = 417,
-		["476"] = 413,
+		["468"] = 416,
+		["469"] = 416,
+		["470"] = 416,
+		["471"] = 416,
+		["472"] = 416,
+		["475"] = 413,
+		["476"] = 420,
 		["477"] = 421,
-		["478"] = 422,
-		["479"] = 421,
+		["478"] = 420,
+		["479"] = 426,
 		["480"] = 427,
 		["481"] = 428,
-		["482"] = 429,
-		["484"] = 427,
-		["485"] = 384,
+		["483"] = 426,
+		["484"] = 384,
+		["485"] = 375,
 		["486"] = 375,
 		["487"] = 375,
 		["488"] = 375,
@@ -446,55 +446,54 @@ f(
 		["491"] = 375,
 		["492"] = 375,
 		["493"] = 375,
-		["494"] = 375,
-		["495"] = 384,
-		["497"] = 384,
-		["499"] = 435,
-		["500"] = 443,
-		["501"] = 435,
-		["502"] = 443,
-		["504"] = 443,
-		["505"] = 446,
-		["506"] = 435,
+		["494"] = 384,
+		["496"] = 384,
+		["498"] = 434,
+		["499"] = 442,
+		["500"] = 434,
+		["501"] = 442,
+		["503"] = 442,
+		["504"] = 445,
+		["505"] = 434,
+		["506"] = 446,
 		["507"] = 447,
-		["508"] = 448,
-		["509"] = 450,
-		["510"] = 447,
+		["508"] = 449,
+		["509"] = 446,
+		["510"] = 451,
 		["511"] = 452,
 		["512"] = 453,
 		["513"] = 454,
-		["514"] = 455,
-		["515"] = 455,
-		["516"] = 455,
-		["517"] = 455,
-		["518"] = 455,
+		["514"] = 454,
+		["515"] = 454,
+		["516"] = 454,
+		["517"] = 454,
+		["518"] = 454,
 		["519"] = 455,
-		["520"] = 456,
-		["522"] = 452,
+		["521"] = 451,
+		["522"] = 458,
 		["523"] = 459,
 		["524"] = 460,
-		["525"] = 461,
-		["526"] = 461,
-		["527"] = 461,
-		["528"] = 461,
-		["529"] = 461,
+		["525"] = 460,
+		["526"] = 460,
+		["527"] = 460,
+		["528"] = 460,
+		["529"] = 460,
 		["530"] = 461,
-		["531"] = 462,
-		["533"] = 459,
+		["532"] = 458,
+		["533"] = 464,
 		["534"] = 465,
-		["535"] = 466,
-		["536"] = 465,
-		["537"] = 443,
-		["538"] = 435,
-		["539"] = 435,
-		["540"] = 435,
-		["541"] = 435,
-		["542"] = 435,
-		["543"] = 435,
-		["544"] = 435,
-		["545"] = 435,
-		["546"] = 443,
-		["548"] = 443,
+		["535"] = 464,
+		["536"] = 442,
+		["537"] = 434,
+		["538"] = 434,
+		["539"] = 434,
+		["540"] = 434,
+		["541"] = 434,
+		["542"] = 434,
+		["543"] = 434,
+		["544"] = 434,
+		["545"] = 442,
+		["547"] = 442,
 	}
 )
 local g = {}
@@ -906,8 +905,8 @@ d(U, l)
 function U.prototype.GetAbilitySpecialValue(self)
 	self.base_damage = self:GetAbilitySpecialValueFor("base_damage")
 	self.ice_damage_pct = self:GetAbilitySpecialValueFor("ice_damage_pct")
-	self.g_magic_damage = self:GetAbilityTalentValue("ancient_apparition_talent", "g_magic_damage")
-	print("base_damage", self.g_magic_damage)
+	local V = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
+	self.g_magic_damage = (V and V:GetAbilityName()) == "trait_198" and V:GetSpecialValueFor("magic_damage") or 0
 end
 function U.prototype.OnCreated(self, s)
 	if IsServer() then
@@ -922,13 +921,12 @@ end
 function U.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ATTACK_LANDED] = { self:GetParent(), -1 } }
 end
-function U.prototype.OnCustomAttackLanded(self, V)
+function U.prototype.OnCustomAttackLanded(self, W)
 	if self.g_magic_damage > 0 then
-		print(self.g_magic_damage)
-		if IsInjurable(V.attacker, V.target) then
-			V.attacker:DealDamage(
-				V.target,
-				V.attacker:FindAbilityByName("ancient_apparition_chilling_touch"),
+		if IsInjurable(W.attacker, W.target) then
+			W.attacker:DealDamage(
+				W.target,
+				W.attacker:FindAbilityByName("ancient_apparition_chilling_touch"),
 				self.g_magic_damage,
 				EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL
 			)
@@ -965,34 +963,34 @@ U = e(
 )
 g.modifier_ancient_death_mist_frost_damage = U
 g.modifier_ancient_death_mist_frost_ice = c()
-local W = g.modifier_ancient_death_mist_frost_ice
-W.name = "modifier_ancient_death_mist_frost_ice"
-d(W, l)
-function W.prototype.____constructor(self, ...)
+local X = g.modifier_ancient_death_mist_frost_ice
+X.name = "modifier_ancient_death_mist_frost_ice"
+d(X, l)
+function X.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.max_health = 0
 end
-function W.prototype.GetAbilitySpecialValue(self)
+function X.prototype.GetAbilitySpecialValue(self)
 	self.buff_ice = self:GetAbilitySpecialValueFor("buff_ice")
 	self.scar_pct = self:GetAbilityTalentValue("ancient_apparition_shard", "scar_pct")
 end
-function W.prototype.OnCreated(self, s)
+function X.prototype.OnCreated(self, s)
 	if IsServer() then
 		self.max_health = self:GetParent():GetMaxHealth()
 		AddScar(self.parent, self.parent, self:GetAbility(), self.max_health * self.scar_pct * 0.01)
 		self:IncrementStackCount()
 	end
 end
-function W.prototype.OnRefresh(self, s)
+function X.prototype.OnRefresh(self, s)
 	if IsServer() then
 		AddScar(self.parent, self.parent, self:GetAbility(), self.max_health * self.scar_pct * 0.01)
 		self:IncrementStackCount()
 	end
 end
-function W.prototype.EFunctionValues(self)
+function X.prototype.EFunctionValues(self)
 	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_ICE_PERMANENT] = self.buff_ice * self:GetStackCount() }
 end
-W = e(
+X = e(
 	{
 		m(
 			a,
@@ -1006,7 +1004,7 @@ W = e(
 			}
 		),
 	},
-	W
+	X
 )
-g.modifier_ancient_death_mist_frost_ice = W
+g.modifier_ancient_death_mist_frost_ice = X
 return g

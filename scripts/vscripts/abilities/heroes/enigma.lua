@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -20,7 +20,7 @@ local i = b.__TS__SourceMapTraceBack
 i(
 	debug.getinfo(1).short_src,
 	{
-		["11"] = 494,
+		["11"] = 517,
 		["12"] = 1,
 		["13"] = 1,
 		["14"] = 1,
@@ -30,562 +30,594 @@ i(
 		["18"] = 3,
 		["19"] = 3,
 		["20"] = 3,
-		["21"] = 6,
-		["22"] = 7,
-		["23"] = 6,
-		["24"] = 7,
-		["25"] = 8,
-		["26"] = 9,
-		["27"] = 8,
-		["28"] = 7,
-		["29"] = 6,
-		["30"] = 7,
-		["32"] = 7,
-		["33"] = 13,
-		["34"] = 21,
-		["35"] = 13,
-		["36"] = 21,
-		["38"] = 21,
-		["39"] = 22,
-		["40"] = 23,
-		["41"] = 24,
-		["42"] = 37,
-		["43"] = 38,
-		["44"] = 54,
-		["45"] = 61,
-		["46"] = 68,
-		["47"] = 78,
-		["48"] = 13,
-		["49"] = 79,
-		["50"] = 80,
-		["51"] = 79,
-		["52"] = 83,
-		["53"] = 84,
-		["54"] = 83,
-		["55"] = 87,
-		["56"] = 88,
-		["57"] = 87,
-		["58"] = 91,
-		["59"] = 92,
-		["60"] = 91,
-		["61"] = 95,
-		["62"] = 95,
+		["21"] = 5,
+		["22"] = 8,
+		["23"] = 9,
+		["24"] = 8,
+		["25"] = 9,
+		["26"] = 10,
+		["27"] = 11,
+		["28"] = 10,
+		["29"] = 9,
+		["30"] = 8,
+		["31"] = 9,
+		["33"] = 9,
+		["34"] = 15,
+		["35"] = 23,
+		["36"] = 15,
+		["37"] = 23,
+		["39"] = 23,
+		["40"] = 24,
+		["41"] = 25,
+		["42"] = 26,
+		["43"] = 40,
+		["44"] = 41,
+		["45"] = 57,
+		["46"] = 64,
+		["47"] = 71,
+		["48"] = 81,
+		["49"] = 15,
+		["50"] = 82,
+		["51"] = 83,
+		["52"] = 82,
+		["53"] = 86,
+		["54"] = 87,
+		["55"] = 86,
+		["56"] = 90,
+		["57"] = 91,
+		["58"] = 90,
+		["59"] = 94,
+		["60"] = 95,
+		["61"] = 94,
+		["62"] = 98,
 		["63"] = 99,
 		["64"] = 100,
-		["65"] = 99,
-		["66"] = 103,
-		["67"] = 105,
-		["68"] = 106,
-		["69"] = 107,
-		["70"] = 108,
-		["71"] = 109,
-		["72"] = 111,
-		["73"] = 112,
-		["74"] = 114,
-		["75"] = 115,
-		["76"] = 116,
-		["77"] = 118,
-		["78"] = 120,
-		["79"] = 121,
-		["80"] = 123,
-		["81"] = 124,
-		["82"] = 125,
-		["83"] = 126,
-		["84"] = 127,
-		["85"] = 129,
-		["86"] = 132,
-		["87"] = 133,
-		["88"] = 134,
-		["89"] = 138,
-		["90"] = 103,
-		["91"] = 140,
-		["92"] = 141,
-		["94"] = 140,
-		["95"] = 150,
-		["96"] = 151,
-		["97"] = 150,
-		["98"] = 155,
-		["99"] = 156,
-		["100"] = 155,
-		["101"] = 159,
-		["102"] = 160,
-		["103"] = 159,
-		["104"] = 167,
-		["105"] = 168,
-		["107"] = 167,
-		["108"] = 176,
-		["109"] = 177,
-		["112"] = 180,
-		["113"] = 181,
-		["114"] = 182,
-		["115"] = 183,
-		["116"] = 183,
-		["117"] = 183,
-		["118"] = 183,
-		["119"] = 184,
-		["121"] = 185,
-		["122"] = 185,
-		["123"] = 186,
-		["124"] = 185,
-		["127"] = 189,
-		["128"] = 190,
-		["129"] = 191,
-		["130"] = 191,
-		["131"] = 191,
-		["132"] = 192,
-		["133"] = 192,
-		["134"] = 192,
-		["135"] = 192,
-		["136"] = 192,
-		["137"] = 192,
-		["138"] = 192,
-		["139"] = 191,
-		["140"] = 191,
-		["142"] = 176,
-		["143"] = 196,
-		["144"] = 197,
-		["145"] = 198,
-		["146"] = 199,
-		["147"] = 200,
-		["148"] = 196,
+		["65"] = 100,
+		["66"] = 100,
+		["68"] = 100,
+		["69"] = 101,
+		["70"] = 98,
+		["71"] = 104,
+		["72"] = 104,
+		["73"] = 108,
+		["74"] = 109,
+		["75"] = 108,
+		["76"] = 112,
+		["77"] = 114,
+		["78"] = 115,
+		["79"] = 116,
+		["80"] = 117,
+		["81"] = 118,
+		["82"] = 119,
+		["83"] = 121,
+		["84"] = 122,
+		["85"] = 124,
+		["86"] = 125,
+		["87"] = 126,
+		["88"] = 128,
+		["89"] = 130,
+		["90"] = 131,
+		["91"] = 133,
+		["92"] = 134,
+		["93"] = 135,
+		["94"] = 136,
+		["95"] = 137,
+		["96"] = 139,
+		["97"] = 142,
+		["98"] = 143,
+		["99"] = 144,
+		["100"] = 148,
+		["101"] = 112,
+		["102"] = 150,
+		["103"] = 151,
+		["105"] = 150,
+		["106"] = 160,
+		["107"] = 161,
+		["108"] = 160,
+		["109"] = 165,
+		["110"] = 166,
+		["111"] = 165,
+		["112"] = 169,
+		["113"] = 170,
+		["114"] = 169,
+		["115"] = 177,
+		["116"] = 178,
+		["118"] = 177,
+		["119"] = 186,
+		["120"] = 187,
+		["123"] = 190,
+		["124"] = 191,
+		["125"] = 192,
+		["126"] = 193,
+		["127"] = 193,
+		["128"] = 193,
+		["129"] = 193,
+		["131"] = 195,
+		["132"] = 195,
+		["133"] = 196,
+		["134"] = 195,
+		["137"] = 199,
+		["138"] = 200,
+		["139"] = 201,
+		["140"] = 201,
+		["141"] = 201,
+		["142"] = 202,
+		["145"] = 203,
+		["146"] = 203,
+		["147"] = 203,
+		["148"] = 203,
 		["149"] = 203,
-		["150"] = 204,
-		["151"] = 205,
-		["152"] = 206,
-		["153"] = 207,
-		["154"] = 208,
-		["155"] = 208,
-		["156"] = 208,
-		["157"] = 208,
-		["158"] = 208,
+		["150"] = 203,
+		["151"] = 203,
+		["152"] = 205,
+		["153"] = 206,
+		["154"] = 207,
+		["155"] = 207,
+		["156"] = 207,
+		["158"] = 207,
 		["159"] = 208,
-		["160"] = 209,
-		["161"] = 209,
-		["162"] = 209,
-		["163"] = 209,
-		["164"] = 209,
-		["165"] = 209,
-		["168"] = 212,
-		["171"] = 213,
-		["172"] = 214,
-		["173"] = 215,
-		["174"] = 216,
-		["175"] = 217,
-		["176"] = 218,
-		["177"] = 218,
-		["178"] = 218,
-		["179"] = 218,
-		["180"] = 218,
-		["181"] = 218,
-		["184"] = 203,
-		["185"] = 224,
-		["186"] = 224,
-		["187"] = 224,
-		["189"] = 225,
+		["160"] = 208,
+		["161"] = 208,
+		["162"] = 208,
+		["163"] = 208,
+		["165"] = 201,
+		["166"] = 201,
+		["168"] = 186,
+		["169"] = 213,
+		["170"] = 214,
+		["171"] = 215,
+		["172"] = 216,
+		["173"] = 217,
+		["174"] = 213,
+		["175"] = 220,
+		["176"] = 221,
+		["177"] = 222,
+		["178"] = 223,
+		["179"] = 224,
+		["180"] = 225,
+		["181"] = 225,
+		["182"] = 225,
+		["183"] = 225,
+		["184"] = 225,
+		["185"] = 225,
+		["186"] = 226,
+		["187"] = 226,
+		["188"] = 226,
+		["189"] = 226,
 		["190"] = 226,
-		["191"] = 227,
-		["192"] = 228,
-		["193"] = 229,
-		["195"] = 230,
-		["196"] = 230,
-		["197"] = 231,
-		["198"] = 230,
-		["203"] = 224,
-		["204"] = 237,
-		["205"] = 237,
-		["206"] = 237,
-		["208"] = 238,
-		["211"] = 239,
-		["212"] = 240,
+		["191"] = 226,
+		["194"] = 229,
+		["197"] = 230,
+		["198"] = 231,
+		["199"] = 232,
+		["200"] = 233,
+		["201"] = 234,
+		["202"] = 235,
+		["203"] = 235,
+		["204"] = 235,
+		["205"] = 235,
+		["206"] = 235,
+		["207"] = 235,
+		["210"] = 220,
+		["211"] = 241,
+		["212"] = 241,
 		["213"] = 241,
-		["214"] = 243,
-		["215"] = 244,
-		["216"] = 245,
-		["218"] = 246,
+		["215"] = 242,
+		["216"] = 243,
+		["217"] = 244,
+		["218"] = 245,
 		["219"] = 246,
-		["220"] = 247,
 		["221"] = 247,
 		["222"] = 247,
-		["223"] = 247,
+		["223"] = 248,
 		["224"] = 247,
-		["225"] = 247,
-		["226"] = 247,
-		["227"] = 247,
-		["228"] = 247,
-		["229"] = 248,
-		["230"] = 249,
-		["231"] = 249,
-		["232"] = 246,
-		["236"] = 254,
-		["237"] = 254,
-		["238"] = 254,
-		["239"] = 254,
-		["240"] = 255,
-		["242"] = 256,
-		["243"] = 256,
-		["244"] = 257,
-		["245"] = 258,
-		["248"] = 256,
-		["251"] = 262,
-		["252"] = 263,
-		["254"] = 266,
-		["255"] = 266,
+		["229"] = 241,
+		["230"] = 254,
+		["231"] = 254,
+		["232"] = 254,
+		["234"] = 255,
+		["237"] = 256,
+		["238"] = 257,
+		["239"] = 258,
+		["240"] = 260,
+		["241"] = 261,
+		["242"] = 262,
+		["244"] = 263,
+		["245"] = 263,
+		["246"] = 264,
+		["247"] = 264,
+		["248"] = 264,
+		["249"] = 264,
+		["250"] = 264,
+		["251"] = 264,
+		["252"] = 264,
+		["253"] = 264,
+		["254"] = 264,
+		["255"] = 265,
 		["256"] = 266,
 		["257"] = 266,
-		["258"] = 266,
-		["259"] = 266,
-		["260"] = 266,
-		["261"] = 266,
-		["262"] = 266,
-		["263"] = 266,
-		["264"] = 266,
-		["265"] = 266,
-		["266"] = 266,
-		["267"] = 266,
-		["268"] = 266,
-		["269"] = 266,
-		["270"] = 266,
-		["271"] = 282,
-		["272"] = 282,
-		["273"] = 286,
-		["274"] = 237,
-		["275"] = 289,
-		["277"] = 290,
-		["278"] = 290,
-		["279"] = 291,
-		["280"] = 292,
-		["282"] = 290,
-		["285"] = 295,
-		["286"] = 296,
-		["287"] = 289,
-		["288"] = 299,
-		["290"] = 300,
-		["291"] = 300,
-		["292"] = 301,
-		["293"] = 302,
-		["294"] = 303,
-		["297"] = 300,
-		["300"] = 299,
-		["301"] = 21,
-		["302"] = 13,
-		["303"] = 13,
-		["304"] = 13,
-		["305"] = 13,
-		["306"] = 13,
-		["307"] = 13,
-		["308"] = 13,
-		["309"] = 13,
-		["310"] = 21,
-		["312"] = 21,
-		["313"] = 313,
-		["314"] = 314,
-		["315"] = 313,
-		["316"] = 314,
-		["317"] = 316,
-		["318"] = 317,
-		["319"] = 318,
-		["320"] = 319,
-		["323"] = 320,
-		["324"] = 321,
-		["325"] = 323,
-		["326"] = 324,
-		["327"] = 325,
-		["328"] = 316,
-		["329"] = 314,
-		["330"] = 313,
-		["331"] = 314,
-		["333"] = 314,
-		["335"] = 333,
-		["336"] = 342,
-		["337"] = 333,
-		["338"] = 342,
-		["339"] = 349,
-		["340"] = 350,
-		["341"] = 349,
-		["342"] = 352,
-		["343"] = 353,
-		["344"] = 354,
-		["345"] = 355,
-		["346"] = 352,
-		["347"] = 360,
-		["348"] = 361,
-		["349"] = 362,
-		["350"] = 363,
-		["351"] = 368,
-		["352"] = 369,
-		["353"] = 369,
-		["354"] = 369,
-		["355"] = 369,
-		["356"] = 369,
-		["357"] = 370,
-		["358"] = 370,
-		["359"] = 370,
-		["360"] = 370,
-		["361"] = 370,
-		["362"] = 370,
-		["363"] = 370,
-		["364"] = 370,
-		["366"] = 372,
-		["368"] = 360,
-		["369"] = 375,
-		["370"] = 376,
-		["371"] = 381,
+		["258"] = 263,
+		["262"] = 271,
+		["263"] = 271,
+		["264"] = 271,
+		["265"] = 271,
+		["266"] = 272,
+		["268"] = 273,
+		["269"] = 273,
+		["270"] = 274,
+		["271"] = 275,
+		["274"] = 273,
+		["277"] = 279,
+		["278"] = 280,
+		["280"] = 283,
+		["281"] = 283,
+		["282"] = 283,
+		["283"] = 283,
+		["284"] = 283,
+		["285"] = 283,
+		["286"] = 283,
+		["287"] = 283,
+		["288"] = 283,
+		["289"] = 283,
+		["290"] = 283,
+		["291"] = 283,
+		["292"] = 283,
+		["293"] = 283,
+		["294"] = 283,
+		["295"] = 283,
+		["296"] = 283,
+		["297"] = 299,
+		["298"] = 299,
+		["299"] = 303,
+		["300"] = 305,
+		["301"] = 306,
+		["303"] = 254,
+		["304"] = 310,
+		["306"] = 311,
+		["307"] = 311,
+		["308"] = 312,
+		["309"] = 313,
+		["311"] = 311,
+		["314"] = 316,
+		["315"] = 317,
+		["316"] = 310,
+		["317"] = 320,
+		["319"] = 321,
+		["320"] = 321,
+		["321"] = 322,
+		["322"] = 323,
+		["323"] = 324,
+		["326"] = 321,
+		["329"] = 320,
+		["330"] = 23,
+		["331"] = 15,
+		["332"] = 15,
+		["333"] = 15,
+		["334"] = 15,
+		["335"] = 15,
+		["336"] = 15,
+		["337"] = 15,
+		["338"] = 15,
+		["339"] = 23,
+		["341"] = 23,
+		["342"] = 334,
+		["343"] = 335,
+		["344"] = 334,
+		["345"] = 335,
+		["346"] = 337,
+		["347"] = 338,
+		["348"] = 339,
+		["349"] = 340,
+		["352"] = 341,
+		["353"] = 342,
+		["354"] = 343,
+		["355"] = 344,
+		["356"] = 346,
+		["357"] = 347,
+		["358"] = 348,
+		["359"] = 337,
+		["360"] = 335,
+		["361"] = 334,
+		["362"] = 335,
+		["364"] = 335,
+		["366"] = 356,
+		["367"] = 365,
+		["368"] = 356,
+		["369"] = 365,
+		["370"] = 372,
+		["371"] = 373,
+		["372"] = 372,
 		["373"] = 375,
-		["374"] = 384,
-		["375"] = 385,
-		["376"] = 385,
-		["377"] = 385,
-		["378"] = 385,
-		["379"] = 385,
+		["374"] = 376,
+		["375"] = 377,
+		["376"] = 378,
+		["377"] = 375,
+		["378"] = 383,
+		["379"] = 384,
 		["380"] = 385,
 		["381"] = 386,
-		["382"] = 387,
-		["383"] = 387,
-		["384"] = 387,
-		["385"] = 387,
-		["386"] = 387,
-		["387"] = 387,
-		["389"] = 384,
-		["390"] = 390,
-		["391"] = 391,
-		["392"] = 392,
-		["394"] = 390,
-		["395"] = 342,
-		["396"] = 333,
-		["397"] = 333,
-		["398"] = 333,
-		["399"] = 333,
-		["400"] = 333,
-		["401"] = 333,
-		["402"] = 333,
-		["403"] = 333,
-		["404"] = 333,
-		["405"] = 342,
-		["407"] = 342,
-		["409"] = 398,
-		["410"] = 406,
-		["411"] = 398,
-		["412"] = 406,
+		["382"] = 391,
+		["383"] = 392,
+		["384"] = 392,
+		["385"] = 392,
+		["386"] = 392,
+		["387"] = 392,
+		["388"] = 393,
+		["389"] = 393,
+		["390"] = 393,
+		["391"] = 393,
+		["392"] = 393,
+		["393"] = 393,
+		["394"] = 393,
+		["395"] = 393,
+		["397"] = 395,
+		["399"] = 383,
+		["400"] = 398,
+		["401"] = 399,
+		["402"] = 404,
+		["404"] = 398,
+		["405"] = 407,
+		["406"] = 408,
+		["407"] = 408,
+		["408"] = 408,
+		["409"] = 408,
+		["410"] = 408,
+		["411"] = 408,
+		["412"] = 409,
 		["413"] = 410,
-		["414"] = 411,
-		["415"] = 412,
+		["414"] = 410,
+		["415"] = 410,
 		["416"] = 410,
-		["417"] = 414,
-		["418"] = 415,
-		["419"] = 417,
-		["420"] = 418,
-		["421"] = 419,
-		["422"] = 419,
-		["423"] = 419,
-		["424"] = 419,
-		["425"] = 419,
-		["426"] = 419,
-		["428"] = 421,
-		["429"] = 422,
-		["430"] = 422,
-		["431"] = 422,
-		["432"] = 422,
-		["433"] = 422,
-		["434"] = 423,
-		["435"] = 423,
-		["436"] = 423,
-		["437"] = 423,
-		["438"] = 423,
-		["439"] = 414,
-		["440"] = 442,
-		["441"] = 443,
-		["442"] = 444,
-		["444"] = 442,
-		["445"] = 406,
-		["446"] = 398,
-		["447"] = 398,
-		["448"] = 398,
-		["449"] = 398,
-		["450"] = 398,
-		["451"] = 398,
-		["452"] = 398,
-		["453"] = 398,
-		["454"] = 406,
-		["456"] = 406,
-		["458"] = 450,
-		["459"] = 458,
-		["460"] = 450,
-		["461"] = 458,
-		["462"] = 459,
-		["463"] = 460,
-		["464"] = 461,
-		["466"] = 459,
-		["467"] = 464,
-		["468"] = 465,
-		["469"] = 465,
-		["470"] = 465,
+		["417"] = 410,
+		["418"] = 410,
+		["420"] = 407,
+		["421"] = 413,
+		["422"] = 414,
+		["423"] = 415,
+		["425"] = 413,
+		["426"] = 365,
+		["427"] = 356,
+		["428"] = 356,
+		["429"] = 356,
+		["430"] = 356,
+		["431"] = 356,
+		["432"] = 356,
+		["433"] = 356,
+		["434"] = 356,
+		["435"] = 356,
+		["436"] = 365,
+		["438"] = 365,
+		["440"] = 421,
+		["441"] = 429,
+		["442"] = 421,
+		["443"] = 429,
+		["444"] = 433,
+		["445"] = 434,
+		["446"] = 435,
+		["447"] = 433,
+		["448"] = 437,
+		["449"] = 438,
+		["450"] = 440,
+		["451"] = 441,
+		["452"] = 442,
+		["453"] = 442,
+		["454"] = 442,
+		["455"] = 442,
+		["456"] = 442,
+		["457"] = 442,
+		["459"] = 444,
+		["460"] = 445,
+		["461"] = 445,
+		["462"] = 445,
+		["463"] = 445,
+		["464"] = 445,
+		["465"] = 446,
+		["466"] = 446,
+		["467"] = 446,
+		["468"] = 446,
+		["469"] = 446,
+		["470"] = 437,
 		["471"] = 465,
-		["472"] = 465,
-		["473"] = 465,
-		["474"] = 466,
-		["475"] = 466,
-		["476"] = 466,
-		["477"] = 466,
-		["478"] = 466,
-		["479"] = 466,
-		["480"] = 464,
-		["481"] = 458,
-		["482"] = 450,
-		["483"] = 450,
-		["484"] = 450,
-		["485"] = 450,
-		["486"] = 450,
-		["487"] = 450,
-		["488"] = 450,
-		["489"] = 450,
-		["490"] = 458,
-		["492"] = 458,
-		["493"] = 473,
-		["494"] = 474,
-		["495"] = 475,
-		["498"] = 494,
-		["499"] = 494,
-		["500"] = 526,
-		["501"] = 509,
-		["502"] = 510,
-		["503"] = 511,
-		["504"] = 515,
-		["505"] = 517,
-		["506"] = 527,
-		["507"] = 528,
-		["508"] = 529,
-		["509"] = 530,
-		["510"] = 531,
-		["511"] = 532,
-		["512"] = 533,
-		["513"] = 536,
-		["514"] = 537,
-		["515"] = 538,
-		["516"] = 539,
-		["517"] = 540,
-		["518"] = 541,
-		["519"] = 526,
-		["520"] = 544,
-		["521"] = 545,
-		["524"] = 548,
-		["525"] = 548,
-		["526"] = 548,
-		["527"] = 548,
-		["528"] = 548,
-		["529"] = 548,
-		["530"] = 548,
-		["531"] = 548,
-		["532"] = 548,
-		["533"] = 548,
-		["534"] = 548,
-		["535"] = 548,
-		["536"] = 548,
-		["537"] = 560,
-		["538"] = 561,
-		["539"] = 562,
-		["540"] = 565,
-		["541"] = 566,
-		["542"] = 569,
-		["543"] = 570,
-		["544"] = 544,
-		["545"] = 573,
-		["546"] = 574,
-		["549"] = 575,
-		["550"] = 576,
-		["553"] = 579,
-		["554"] = 579,
-		["555"] = 579,
-		["556"] = 580,
-		["557"] = 581,
-		["560"] = 582,
-		["561"] = 583,
-		["564"] = 586,
-		["565"] = 579,
-		["566"] = 579,
-		["567"] = 573,
-		["568"] = 590,
-		["569"] = 592,
-		["570"] = 593,
-		["571"] = 594,
-		["572"] = 595,
-		["573"] = 598,
-		["574"] = 598,
-		["575"] = 598,
-		["576"] = 598,
-		["577"] = 598,
-		["578"] = 598,
-		["579"] = 598,
+		["472"] = 466,
+		["473"] = 467,
+		["475"] = 465,
+		["476"] = 429,
+		["477"] = 421,
+		["478"] = 421,
+		["479"] = 421,
+		["480"] = 421,
+		["481"] = 421,
+		["482"] = 421,
+		["483"] = 421,
+		["484"] = 421,
+		["485"] = 429,
+		["487"] = 429,
+		["489"] = 473,
+		["490"] = 481,
+		["491"] = 473,
+		["492"] = 481,
+		["493"] = 482,
+		["494"] = 483,
+		["495"] = 484,
+		["497"] = 482,
+		["498"] = 487,
+		["499"] = 488,
+		["500"] = 488,
+		["501"] = 488,
+		["502"] = 488,
+		["503"] = 488,
+		["504"] = 488,
+		["505"] = 489,
+		["506"] = 489,
+		["507"] = 489,
+		["508"] = 489,
+		["509"] = 489,
+		["510"] = 489,
+		["511"] = 487,
+		["512"] = 481,
+		["513"] = 473,
+		["514"] = 473,
+		["515"] = 473,
+		["516"] = 473,
+		["517"] = 473,
+		["518"] = 473,
+		["519"] = 473,
+		["520"] = 473,
+		["521"] = 481,
+		["523"] = 481,
+		["524"] = 496,
+		["525"] = 497,
+		["526"] = 498,
+		["529"] = 517,
+		["530"] = 517,
+		["531"] = 549,
+		["532"] = 532,
+		["533"] = 533,
+		["534"] = 534,
+		["535"] = 538,
+		["536"] = 540,
+		["537"] = 550,
+		["538"] = 551,
+		["539"] = 552,
+		["540"] = 553,
+		["541"] = 554,
+		["542"] = 555,
+		["543"] = 556,
+		["544"] = 559,
+		["545"] = 560,
+		["546"] = 561,
+		["547"] = 562,
+		["548"] = 563,
+		["549"] = 564,
+		["550"] = 549,
+		["551"] = 567,
+		["552"] = 568,
+		["555"] = 571,
+		["556"] = 571,
+		["557"] = 571,
+		["558"] = 571,
+		["559"] = 571,
+		["560"] = 571,
+		["561"] = 571,
+		["562"] = 571,
+		["563"] = 571,
+		["564"] = 571,
+		["565"] = 571,
+		["566"] = 571,
+		["567"] = 571,
+		["568"] = 583,
+		["569"] = 584,
+		["570"] = 585,
+		["571"] = 588,
+		["572"] = 589,
+		["573"] = 592,
+		["574"] = 593,
+		["575"] = 567,
+		["576"] = 596,
+		["577"] = 597,
 		["580"] = 598,
-		["581"] = 598,
-		["582"] = 598,
-		["583"] = 598,
-		["584"] = 598,
-		["585"] = 598,
-		["586"] = 609,
-		["588"] = 613,
-		["589"] = 614,
-		["590"] = 614,
-		["591"] = 614,
-		["592"] = 614,
-		["593"] = 614,
-		["594"] = 614,
-		["595"] = 614,
-		["596"] = 615,
-		["597"] = 616,
-		["599"] = 618,
-		["600"] = 619,
-		["601"] = 620,
-		["602"] = 621,
-		["604"] = 624,
-		["605"] = 625,
-		["606"] = 625,
-		["607"] = 625,
-		["608"] = 626,
-		["609"] = 625,
-		["610"] = 625,
-		["612"] = 629,
-		["615"] = 590,
-		["616"] = 634,
-		["617"] = 635,
-		["618"] = 634,
-		["619"] = 638,
-		["620"] = 639,
-		["623"] = 640,
-		["624"] = 643,
-		["625"] = 644,
-		["627"] = 648,
-		["628"] = 649,
-		["630"] = 651,
-		["631"] = 652,
-		["633"] = 656,
-		["634"] = 657,
-		["635"] = 657,
-		["636"] = 657,
-		["637"] = 657,
-		["638"] = 657,
-		["639"] = 657,
-		["640"] = 657,
-		["641"] = 657,
-		["642"] = 657,
-		["643"] = 657,
-		["644"] = 657,
-		["645"] = 666,
-		["646"] = 666,
-		["647"] = 666,
-		["648"] = 667,
-		["649"] = 668,
-		["651"] = 666,
-		["652"] = 666,
-		["653"] = 672,
-		["655"] = 676,
-		["656"] = 677,
-		["657"] = 678,
-		["658"] = 679,
-		["659"] = 680,
-		["660"] = 681,
-		["661"] = 682,
-		["662"] = 683,
-		["665"] = 638,
+		["581"] = 599,
+		["584"] = 602,
+		["585"] = 602,
+		["586"] = 602,
+		["587"] = 603,
+		["588"] = 604,
+		["591"] = 605,
+		["592"] = 606,
+		["595"] = 609,
+		["596"] = 602,
+		["597"] = 602,
+		["598"] = 596,
+		["599"] = 613,
+		["600"] = 614,
+		["603"] = 615,
+		["604"] = 616,
+		["605"] = 617,
+		["607"] = 619,
+		["608"] = 613,
+		["609"] = 622,
+		["610"] = 624,
+		["611"] = 625,
+		["612"] = 626,
+		["613"] = 627,
+		["614"] = 630,
+		["615"] = 630,
+		["616"] = 630,
+		["617"] = 630,
+		["618"] = 630,
+		["619"] = 630,
+		["620"] = 630,
+		["621"] = 630,
+		["622"] = 630,
+		["623"] = 630,
+		["624"] = 630,
+		["625"] = 630,
+		["626"] = 630,
+		["627"] = 641,
+		["629"] = 645,
+		["630"] = 646,
+		["631"] = 646,
+		["632"] = 646,
+		["633"] = 646,
+		["634"] = 646,
+		["635"] = 646,
+		["636"] = 646,
+		["637"] = 647,
+		["638"] = 648,
+		["640"] = 650,
+		["641"] = 651,
+		["642"] = 652,
+		["643"] = 653,
+		["645"] = 656,
+		["646"] = 657,
+		["647"] = 657,
+		["648"] = 657,
+		["649"] = 658,
+		["650"] = 657,
+		["651"] = 657,
+		["653"] = 661,
+		["656"] = 622,
+		["657"] = 666,
+		["658"] = 667,
+		["659"] = 666,
+		["660"] = 670,
+		["661"] = 671,
+		["664"] = 672,
+		["665"] = 675,
+		["666"] = 676,
+		["668"] = 680,
+		["669"] = 681,
+		["671"] = 683,
+		["672"] = 684,
+		["674"] = 688,
+		["675"] = 689,
+		["676"] = 689,
+		["677"] = 689,
+		["678"] = 689,
+		["679"] = 689,
+		["680"] = 689,
+		["681"] = 689,
+		["682"] = 689,
+		["683"] = 689,
+		["684"] = 689,
+		["685"] = 689,
+		["686"] = 698,
+		["687"] = 698,
+		["688"] = 698,
+		["689"] = 699,
+		["690"] = 700,
+		["692"] = 698,
+		["693"] = 698,
+		["694"] = 704,
+		["696"] = 708,
+		["697"] = 709,
+		["698"] = 710,
+		["699"] = 711,
+		["700"] = 712,
+		["701"] = 713,
+		["702"] = 714,
+		["703"] = 715,
+		["706"] = 670,
 	}
 )
 local j = {}
@@ -599,20 +631,21 @@ local q = o.registerEOMModifier
 local r = require("abilities.ability_ai")
 local s = r.BaseAbilityAI
 local t = r.registerAbilityAI
+local u = "enigma_ult_stun_count"
 j.enigma_talent = c()
-local u = j.enigma_talent
-u.name = "enigma_talent"
-d(u, m)
-function u.prototype.GetIntrinsicModifierName(self)
+local v = j.enigma_talent
+v.name = "enigma_talent"
+d(v, m)
+function v.prototype.GetIntrinsicModifierName(self)
 	return "modifier_enigma_talent"
 end
-u = e({ n(nil) }, u)
-j.enigma_talent = u
+v = e({ n(nil) }, v)
+j.enigma_talent = v
 j.modifier_enigma_talent = c()
-local v = j.modifier_enigma_talent
-v.name = "modifier_enigma_talent"
-d(v, p)
-function v.prototype.____constructor(self, ...)
+local w = j.modifier_enigma_talent
+w.name = "modifier_enigma_talent"
+d(w, p)
+function w.prototype.____constructor(self, ...)
 	p.prototype.____constructor(self, ...)
 	self.chaos_gained_record = 0
 	self.position_list = {}
@@ -624,26 +657,37 @@ function v.prototype.____constructor(self, ...)
 	self.t3_record = 0
 	self.can_create_ghost = true
 end
-function v.prototype.GetChaosTrigger(self)
+function w.prototype.GetChaosTrigger(self)
 	return self.chaos_trigger
 end
-function v.prototype.GetCurGhostCnt(self)
+function w.prototype.GetCurGhostCnt(self)
 	return #self.ghost_list
 end
-function v.prototype.GetAddChaosNum(self)
+function w.prototype.GetAddChaosNum(self)
 	return self.add_chaos_num + self.t5_add_ghost_chaos
 end
-function v.prototype.GetGhostMagicalIncoming(self)
+function w.prototype.GetGhostMagicalIncoming(self)
 	return self.ghost_magical_incoming
 end
-function v.prototype.GetGhostDuration(self) end
-function v.prototype.GetMaxGhostCnt(self)
+function w.prototype.GetUltStunAdd(self)
+	local x = self:GetParent():GetPlayerOwnerID()
+	local y = PlayerData:loadData(x, u)
+	if y == nil then
+		y = 0
+	end
+	local z = y
+	return math.min(self.ult_stun_add * 4, z * self.ult_stun_add)
+end
+function w.prototype.GetGhostDuration(self) end
+function w.prototype.GetMaxGhostCnt(self)
 	return 20
 end
-function v.prototype.GetAbilitySpecialValue(self)
+function w.prototype.GetAbilitySpecialValue(self)
 	self.chaos_damage_pct = self:GetAbilitySpecialValueFor("chaos_damage_pct")
 	self.neutral_add_count = self:GetAbilitySpecialValueFor("neutral_add_count")
 	self.begin_ghost_count = self:GetAbilitySpecialValueFor("begin_ghost_count")
+		+ self:GetAbilityTalentValue("enigma_talent_9", "ghost_add")
+	self.ult_stun_add = self:GetAbilitySpecialValueFor("ult_stun_add")
 	self.ghost_attack_interval = self:GetAbilitySpecialValueFor("ghost_attack_interval")
 		- self:GetAbilityTalentValue("enigma_talent_8", "attack_interval_reduce")
 	self.ghost_damage_base = self:GetAbilitySpecialValueFor("ghost_damage_base")
@@ -667,17 +711,17 @@ function v.prototype.GetAbilitySpecialValue(self)
 	self.tl6_duration = self:GetAbilityTalentValue("enigma_talent_6", "stun_duration")
 	self.shard_magic_incoming = self:GetAbilityTalentValue("enigma_shard", "magic_incoming")
 end
-function v.prototype.OnCreated(self, w)
+function w.prototype.OnCreated(self, A)
 	if IsServer() then
 	end
 end
-function v.prototype.EDeclareFunctions(self)
+function w.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_INCOMING_MAGICAL_DAMAGE_PERCENTAGE }
 end
-function v.prototype.EOM_GetModifierIncomingMagicalDamagePercentage(self)
+function w.prototype.EOM_GetModifierIncomingMagicalDamagePercentage(self)
 	return -self.shard_magic_incoming * self:GetStackCount()
 end
-function v.prototype.EDeclareEvents(self)
+function w.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
@@ -685,11 +729,11 @@ function v.prototype.EDeclareEvents(self)
 		[EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { self.parent },
 	}
 end
-function v.prototype.OnBattleStartBefore(self, w)
+function w.prototype.OnBattleStartBefore(self, A)
 	if IsServer() then
 	end
 end
-function v.prototype.OnBattleStart(self, w)
+function w.prototype.OnBattleStart(self, A)
 	if not IsServer() then
 		return
 	end
@@ -698,37 +742,48 @@ function v.prototype.OnBattleStart(self, w)
 	self.chaos_exp = PlayerData:getHero(self.parent:GetPlayerOwnerID()):getSectAbilityExp("sect_chaos")
 	self.beginGhostCount = math.max(0, math.floor((Rounds:getCurrentRound() - 1) / 5)) * self.neutral_add_count
 		+ self.begin_ghost_count
-	self.beginGhostCount = math.min(4, self.beginGhostCount)
 	do
-		local x = 0
-		while x < self.beginGhostCount do
+		local B = 0
+		while B < self.beginGhostCount do
 			self:CreateEnigmaGhost()
-			x = x + 1
+			B = B + 1
 		end
 	end
-	if GameState:getStateName() == "GameState_Neutral" and Rounds:getCurrentRound() ~= 20 then
-		local y = self.caster:GetEnemy()
+	if GameState:getStateName() == "GameState_Neutral" or GameState:getStateName() == "GameState_Treasure" then
+		local C = self.caster:GetEnemy()
 		GameTimer(0.1, function()
+			if not C:IsAlive() then
+				return
+			end
 			self.caster:DealDamage(
-				y,
+				C,
 				self:GetAbility(),
-				y:GetHealth(),
+				C:GetHealth(),
 				EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE,
 				DamageFlags.DAMAGE_FLAG_IGNORE_BLOCK + DamageFlags.DAMAGE_FLAG_IGNORE_AVOID_DAMAGE
 			)
+			if not C:IsAlive() then
+				local x = self.parent:GetPlayerOwnerID()
+				local D = PlayerData:loadData(x, u)
+				if D == nil then
+					D = 0
+				end
+				local z = D
+				PlayerData:saveData(x, u, math.min(4, z + 1))
+			end
 		end)
 	end
 end
-function v.prototype.OnBattleEnd(self, w)
+function w.prototype.OnBattleEnd(self, A)
 	self:StartIntervalThink(-1)
 	self.can_create_ghost = false
 	self:GhostDestroyAll()
 	self.position_list = {}
 end
-function v.prototype.OnCustomTakeDamage(self, z)
+function w.prototype.OnCustomTakeDamage(self, E)
 	if
 		self.tl6_base_chance > 0
-		and bit.band(z.damage_type, EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS) == EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS
+		and bit.band(E.damage_type, EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS) == EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS
 	then
 		if
 			self:PRD(
@@ -736,8 +791,8 @@ function v.prototype.OnCustomTakeDamage(self, z)
 			)
 		then
 			print("午夜凋零")
-			local y = self.parent:GetEnemy()
-			AddStun(self.parent, y, self.caster:FindAbilityByName("enigma_midnight_withering"), self.tl6_duration)
+			local C = self.parent:GetEnemy()
+			AddStun(self.parent, C, self.caster:FindAbilityByName("enigma_midnight_withering"), self.tl6_duration)
 			self.parent:AddNewModifier(
 				self.caster,
 				self:GetAbility(),
@@ -749,123 +804,126 @@ function v.prototype.OnCustomTakeDamage(self, z)
 	if self.t3_trigger_cnt <= 0 then
 		return
 	end
-	if bit.band(z.damage_type, EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS) == EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS then
+	if bit.band(E.damage_type, EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS) == EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS then
 		self.t3_record = self.t3_record + 1
-		local y = self.parent:GetEnemy()
+		local C = self.parent:GetEnemy()
 		if self.t3_record >= self.t3_trigger_cnt then
 			self.t3_record = self.t3_record - self.t3_trigger_cnt
-			y:AddNewModifier(self.caster, self:GetAbility(), "modifier_enigma_talent5", {})
+			C:AddNewModifier(self.caster, self:GetAbility(), "modifier_enigma_talent5", {})
 		end
 	end
 end
-function v.prototype.AddGhostAttackCount(self, A)
-	if A == nil then
-		A = 1
+function w.prototype.AddGhostAttackCount(self, z)
+	if z == nil then
+		z = 1
 	end
 	if self.tl1_attack_trigger > 0 then
-		self.attack_count = self.attack_count + A
+		self.attack_count = self.attack_count + z
 		if self.attack_count >= self.tl1_attack_trigger then
-			local A = math.floor(self.attack_count / self.tl1_attack_trigger) * self.tl1_count
+			local z = math.floor(self.attack_count / self.tl1_attack_trigger) * self.tl1_count
 			self.attack_count = self.attack_count % self.tl1_attack_trigger
 			do
-				local x = 0
-				while x < A do
+				local B = 0
+				while B < z do
 					self:CreateEnigmaGhost(self.tl1_attack_count)
-					x = x + 1
+					B = B + 1
 				end
 			end
 		end
 	end
 end
-function v.prototype.CreateEnigmaGhost(self, B)
-	if B == nil then
-		B = 0
+function w.prototype.CreateEnigmaGhost(self, F)
+	if F == nil then
+		F = 0
 	end
 	if not self.can_create_ghost then
 		return
 	end
-	local y = self.caster:GetEnemy()
-	local C = self.caster:GetAbsOrigin()
-	local D = y:GetAbsOrigin() - C
+	local C = self.caster:GetEnemy()
+	local G = self.caster:GetAbsOrigin()
+	local H = C:GetAbsOrigin() - G
 	if #self.position_list == 0 then
-		D.z = 0
-		D = D:Normalized()
+		H.z = 0
+		H = H:Normalized()
 		do
-			local x = 0
-			while x < self:GetMaxGhostCnt() do
-				local E = RotatePosition(vec3_zero, QAngle(0, x * 360 / self:GetMaxGhostCnt(), 0), D)
-				local F = C + E * 150
-				local G = self.position_list
-				G[#G + 1] = F
-				x = x + 1
+			local B = 0
+			while B < self:GetMaxGhostCnt() do
+				local I = RotatePosition(vec3_zero, QAngle(0, B * 360 / self:GetMaxGhostCnt(), 0), H)
+				local J = G + I * 150
+				local K = self.position_list
+				K[#K + 1] = J
+				B = B + 1
 			end
 		end
 	end
-	local H = f(self.ghost_list, function(I, J)
-		return J.index
+	local L = f(self.ghost_list, function(M, N)
+		return N.index
 	end)
-	local K = 0
+	local O = 0
 	do
-		local x = 0
-		while x < #self.position_list do
-			if not g(H, x) then
-				K = x
+		local B = 0
+		while B < #self.position_list do
+			if not g(L, B) then
+				O = B
 				break
 			end
-			x = x + 1
+			B = B + 1
 		end
 	end
 	if self:HasTalent("enigma_talent_11") then
-		B = 0
+		F = 0
 	end
-	local L = h(
+	local P = h(
 		k,
 		{
 			parent = self.caster,
-			enemy = y,
+			enemy = C,
 			buff = self,
 			ability = self:GetAbility(),
-			position = self.position_list[K + 1],
-			direction = D,
-			index = K,
+			position = self.position_list[O + 1],
+			direction = H,
+			index = O,
 			attack_interval = self.ghost_attack_interval,
 			attack_damage = self.ghost_damage_base + self.tl2_damage * self.chaos_exp,
-			attack_count = B,
+			attack_count = F,
 			chaos_damage_bonus_pct = self.chaos_damage_pct,
 			attack_mana_reply = self.tl7_mana_reply,
 		}
 	)
-	local M = self.ghost_list
-	M[#M + 1] = { ghost = L, index = K }
+	local Q = self.ghost_list
+	Q[#Q + 1] = { ghost = P, index = O }
 	self:SetStackCount(#self.ghost_list)
+	if self:HasTalent("enigma_talent_9") then
+		P:AttackImmediately()
+	end
 end
-function v.prototype.GhostDestroyAll(self)
+function w.prototype.GhostDestroyAll(self)
 	do
-		local x = #self.ghost_list - 1
-		while x >= 0 do
-			if not self.ghost_list[x + 1].ghost.disposed then
-				self.ghost_list[x + 1].ghost:dispose(true)
+		local B = #self.ghost_list - 1
+		while B >= 0 do
+			if not self.ghost_list[B + 1].ghost.disposed then
+				self.ghost_list[B + 1].ghost:dispose(true)
 			end
-			x = x - 1
+			B = B - 1
 		end
 	end
 	self.ghost_list = {}
 	self:SetStackCount(#self.ghost_list)
 end
-function v.prototype.GhostDestroy(self, N)
+function w.prototype.GhostDestroy(self, R)
 	do
-		local x = #self.ghost_list - 1
-		while x >= 0 do
-			if self.ghost_list[x + 1].index == N then
-				table.remove(self.ghost_list, x + 1)
+		local B = #self.ghost_list - 1
+		while B >= 0 do
+			if self.ghost_list[B + 1].index == R then
+				table.remove(self.ghost_list, B + 1)
 				self:SetStackCount(#self.ghost_list)
 				break
 			end
-			x = x - 1
+			B = B - 1
 		end
 	end
 end
-v = e(
+w = e(
 	{
 		q(
 			a,
@@ -879,60 +937,62 @@ v = e(
 			}
 		),
 	},
-	v
+	w
 )
-j.modifier_enigma_talent = v
+j.modifier_enigma_talent = w
 j.enigma_ult = c()
-local O = j.enigma_ult
-O.name = "enigma_ult"
-d(O, s)
-function O.prototype.OnSpellStart(self)
-	local P = self:GetCaster()
-	local y = P:GetEnemy()
-	if not IsInjurable(P, y) then
+local S = j.enigma_ult
+S.name = "enigma_ult"
+d(S, s)
+function S.prototype.OnSpellStart(self)
+	local T = self:GetCaster()
+	local C = T:GetEnemy()
+	if not IsInjurable(T, C) then
 		return
 	end
-	local Q = self:GetSpecialValueFor("stun_time") + self:GetTalentValue("enigma_talent_4", "add_ult_stun_time")
-	P:StartGestureWithFade(ACT_DOTA_CAST_ABILITY_1, 0, 0.2)
-	local R = self:GetSpecialValueFor("duration") + self:GetTalentValue("enigma_talent_4", "add_ult_duration")
-	AddStun(P, y, self, Q)
-	y:AddNewModifier(P, self, "modifier_enigma_ult", { duration = R })
+	local U = T:FindModifierByName("modifier_enigma_talent")
+	local V = IsValid(U) and U:GetUltStunAdd() or 0
+	local W = self:GetSpecialValueFor("stun_time") + self:GetTalentValue("enigma_talent_4", "add_ult_stun_time") + V
+	T:StartGestureWithFade(ACT_DOTA_CAST_ABILITY_1, 0, 0.2)
+	local X = self:GetSpecialValueFor("duration") + self:GetTalentValue("enigma_talent_4", "add_ult_duration")
+	AddStun(T, C, self, W)
+	C:AddNewModifier(T, self, "modifier_enigma_ult", { duration = X })
 end
-O = e({ t(nil) }, O)
-j.enigma_ult = O
+S = e({ t(nil) }, S)
+j.enigma_ult = S
 j.modifier_enigma_ult = c()
-local S = j.modifier_enigma_ult
-S.name = "modifier_enigma_ult"
-d(S, p)
-function S.prototype.GetChaosDamage(self)
+local Y = j.modifier_enigma_ult
+Y.name = "modifier_enigma_ult"
+d(Y, p)
+function Y.prototype.GetChaosDamage(self)
 	return self.chaos_damage
 end
-function S.prototype.GetAbilitySpecialValue(self)
+function Y.prototype.GetAbilitySpecialValue(self)
 	self.interval = self:GetAbilitySpecialValueFor("interval")
 	self.chaos_damage = self:GetAbilitySpecialValueFor("chaos_damage")
 	self.t1_add_chaos_point = self:GetAbilityTalentValue("enigma_talent_1", "add_chaos_point")
 end
-function S.prototype.OnCreated(self, w)
+function Y.prototype.OnCreated(self, A)
 	if IsServer() then
 		self:IncrementStackCount()
 		self:StartIntervalThink(self.interval)
-		local T = ParticleManager:CreateParticle(
+		local Z = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf",
 			PATTACH_ABSORIGIN,
 			self.parent
 		)
-		ParticleManager:SetParticleControl(T, 0, self.parent:GetAbsOrigin())
-		self:AddParticle(T, false, false, -1, false, false)
+		ParticleManager:SetParticleControl(Z, 0, self.parent:GetAbsOrigin())
+		self:AddParticle(Z, false, false, -1, false, false)
 	else
 		EmitSoundOn("Hero_Enigma.Black_Hole", self.parent)
 	end
 end
-function S.prototype.OnRefresh(self, w)
+function Y.prototype.OnRefresh(self, A)
 	if IsServer() then
 		self:IncrementStackCount()
 	end
 end
-function S.prototype.OnIntervalThink(self)
+function Y.prototype.OnIntervalThink(self)
 	self.caster:DealDamage(
 		self.parent,
 		self:GetAbility(),
@@ -943,12 +1003,12 @@ function S.prototype.OnIntervalThink(self)
 		AddChaos(self.caster, self.t1_add_chaos_point, self:GetAbility():GetAbilityName(), "Ability")
 	end
 end
-function S.prototype.OnDestroy(self)
+function Y.prototype.OnDestroy(self)
 	if IsClient() then
 		StopSoundOn("Hero_Enigma.Black_Hole", self.parent)
 	end
 end
-S = e(
+Y = e(
 	{
 		q(
 			a,
@@ -963,25 +1023,25 @@ S = e(
 			}
 		),
 	},
-	S
+	Y
 )
-j.modifier_enigma_ult = S
+j.modifier_enigma_ult = Y
 j.modifier_enigma_talent5 = c()
-local U = j.modifier_enigma_talent5
-U.name = "modifier_enigma_talent5"
-d(U, p)
-function U.prototype.GetAbilitySpecialValue(self)
+local _ = j.modifier_enigma_talent5
+_.name = "modifier_enigma_talent5"
+d(_, p)
+function _.prototype.GetAbilitySpecialValue(self)
 	self.base_damage = self:GetAbilityTalentValue("enigma_talent_6", "damage_base")
 	self.damage_bonus = self:GetAbilityTalentValue("enigma_talent_6", "damage_bonus_pct")
 end
-function U.prototype.OnCreated(self, w)
+function _.prototype.OnCreated(self, A)
 	if IsServer() then
-		local y = self.parent:GetEnemy()
-		local V = self.base_damage + y:GetHealth() * self.damage_bonus * 0.01
+		local C = self.parent:GetEnemy()
+		local a0 = self.base_damage + C:GetHealth() * self.damage_bonus * 0.01
 		self.parent:DealDamage(
-			y,
+			C,
 			self.caster:FindAbilityByName("enigma_midnight_withering"),
-			V,
+			a0,
 			EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL
 		)
 	end
@@ -993,12 +1053,12 @@ function U.prototype.OnCreated(self, w)
 	ParticleManager:SetParticleControl(self.fpx, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.fpx, 1, Vector(600, 0, 0))
 end
-function U.prototype.OnDestroy(self)
+function _.prototype.OnDestroy(self)
 	if IsServer() then
 		ParticleManager:DestroyParticle(self.fpx, true)
 	end
 end
-U = e(
+_ = e(
 	{
 		q(
 			a,
@@ -1012,19 +1072,19 @@ U = e(
 			}
 		),
 	},
-	U
+	_
 )
-j.modifier_enigma_talent5 = U
+j.modifier_enigma_talent5 = _
 j.modifier_enigma_talent6 = c()
-local W = j.modifier_enigma_talent6
-W.name = "modifier_enigma_talent6"
-d(W, p)
-function W.prototype.OnCreated(self, w)
+local a1 = j.modifier_enigma_talent6
+a1.name = "modifier_enigma_talent6"
+d(a1, p)
+function a1.prototype.OnCreated(self, A)
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
 end
-function W.prototype.OnIntervalThink(self)
+function a1.prototype.OnIntervalThink(self)
 	self.caster:DealDamage(
 		self.parent,
 		self.caster:FindAbilityByName("enigma_curse"),
@@ -1038,7 +1098,7 @@ function W.prototype.OnIntervalThink(self)
 		BUFF_VALUE.EnigmaCurseStun
 	)
 end
-W = e(
+a1 = e(
 	{
 		q(
 			a,
@@ -1052,32 +1112,32 @@ W = e(
 			}
 		),
 	},
-	W
+	a1
 )
-j.modifier_enigma_talent6 = W
-local X = "models/heroes/enigma/eidelon.vmdl"
-local Y = 0.5
-local Z = 0.8
+j.modifier_enigma_talent6 = a1
+local a2 = "models/heroes/enigma/eidelon.vmdl"
+local a3 = 0.5
+local a4 = 0.8
 k = c()
 k.name = "EnigmaGhost"
-function k.prototype.____constructor(self, _)
+function k.prototype.____constructor(self, a5)
 	self.attack_point = 0
 	self.attack_backswing = 0
 	self.animation_rate = 1
 	self.record_attack_count = 0
 	self.disposed = false
-	self.parent = _.parent
-	self.enemy = _.enemy
-	self.ability = _.ability
-	self.position = _.position
-	self.direction = _.direction
-	self.index = _.index
-	self.buff = _.buff
-	self.attack_interval = _.attack_interval
-	self.attack_damage = _.attack_damage
-	self.attack_count = _.attack_count
-	self.chaos_damage_bonus_pct = _.chaos_damage_bonus_pct
-	self.attack_mana_reply = _.attack_mana_reply
+	self.parent = a5.parent
+	self.enemy = a5.enemy
+	self.ability = a5.ability
+	self.position = a5.position
+	self.direction = a5.direction
+	self.index = a5.index
+	self.buff = a5.buff
+	self.attack_interval = a5.attack_interval
+	self.attack_damage = a5.attack_damage
+	self.attack_count = a5.attack_count
+	self.chaos_damage_bonus_pct = a5.chaos_damage_bonus_pct
+	self.attack_mana_reply = a5.attack_mana_reply
 	self:spawn()
 end
 function k.prototype.spawn(self)
@@ -1089,7 +1149,7 @@ function k.prototype.spawn(self)
 		{
 			origin = self.position,
 			angles = VectorToAngles(self.direction),
-			model = Wearable:getReplaceUnitModel(self.parent, X),
+			model = Wearable:getReplaceUnitModel(self.parent, a2),
 			StartingAnim = "ACT_DOTA_SPAWN",
 			StartingAnimationLoopMode = "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS",
 			DefaultAnim = "ACT_DOTA_IDLE",
@@ -1097,13 +1157,13 @@ function k.prototype.spawn(self)
 			use_animgraph = "1",
 		}
 	)
-	local a0 = ParticleManager:CreateParticle(
+	local a6 = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_enigma/enigma_demonic_conversion.vpcf",
 		PATTACH_ABSORIGIN,
 		self.ghostDummy
 	)
-	ParticleManager:SetParticleControl(a0, 0, self.position)
-	ParticleManager:ReleaseParticleIndex(a0)
+	ParticleManager:SetParticleControl(a6, 0, self.position)
+	ParticleManager:ReleaseParticleIndex(a6)
 	self.ambientParticle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_enigma/enigma_eidolon_ambient.vpcf",
 		PATTACH_CUSTOMORIGIN,
@@ -1133,17 +1193,27 @@ function k.prototype.StartShardAttack(self)
 		self:OnShardAttack()
 	end)
 end
+function k.prototype.AttackImmediately(self)
+	if self.disposed then
+		return
+	end
+	if self.attack_timer ~= nil then
+		StopTimer(self.attack_timer)
+		self.attack_timer = nil
+	end
+	self:OnShardAttack()
+end
 function k.prototype.OnShardAttack(self)
 	if self.ghostDummy and IsValid(self.ghostDummy) then
-		local a1 = self.ghostDummy
-		local a2 = self.position
-		local a3 = self.direction
+		local a7 = self.ghostDummy
+		local a8 = self.position
+		local a9 = self.direction
 		self.ghostDummy = SpawnEntityFromTableSynchronous(
 			"prop_dynamic",
 			{
-				origin = a2,
-				angles = VectorToAngles(a3),
-				model = Wearable:getReplaceUnitModel(self.parent, X),
+				origin = a8,
+				angles = VectorToAngles(a9),
+				model = Wearable:getReplaceUnitModel(self.parent, a2),
 				StartingAnim = "ACT_DOTA_ATTACK",
 				StartingAnimationLoopMode = "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS",
 				DefaultAnim = "ACT_DOTA_IDLE",
@@ -1151,13 +1221,13 @@ function k.prototype.OnShardAttack(self)
 				AnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
 			}
 		)
-		UTIL_Remove(a1)
+		UTIL_Remove(a7)
 	end
-	local V = self.attack_damage + GetChaosDamageBonus(self.parent) * self.chaos_damage_bonus_pct * 0.01
+	local a0 = self.attack_damage + GetChaosDamageBonus(self.parent) * self.chaos_damage_bonus_pct * 0.01
 	self.parent:DealDamage(
 		self.enemy,
 		self.ability,
-		V,
+		a0,
 		EOM_DAMAGE_TYPES.DAMAGE_TYPE_CHAOS,
 		DamageFlags.DAMAGE_FLAG_IGNORE_CHAOS_EXTRA
 	)
@@ -1181,7 +1251,7 @@ end
 function k.prototype.isExpired(self)
 	return GameRules:GetGameTime() >= self.expireTime
 end
-function k.prototype.dispose(self, a4)
+function k.prototype.dispose(self, aa)
 	if self.disposed then
 		return
 	end
@@ -1196,20 +1266,20 @@ function k.prototype.dispose(self, a4)
 		ParticleManager:DestroyParticle(self.attackParticle, false)
 	end
 	if self.ghostDummy and IsValid(self.ghostDummy) then
-		local a5 = SpawnEntityFromTableSynchronous(
+		local ab = SpawnEntityFromTableSynchronous(
 			"prop_dynamic",
 			{
 				origin = self.position,
 				angles = VectorToAngles(self.direction),
-				model = Wearable:getReplaceUnitModel(self.parent, X),
+				model = Wearable:getReplaceUnitModel(self.parent, a2),
 				DefaultAnim = "ACT_DOTA_DIE",
 				use_animgraph = "1",
 				AnimationLoopMode = "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS",
 			}
 		)
 		GameTimer(1, function()
-			if a5 and IsValid(a5) then
-				UTIL_Remove(a5)
+			if ab and IsValid(ab) then
+				UTIL_Remove(ab)
 			end
 		end)
 		UTIL_Remove(self.ghostDummy)
@@ -1218,10 +1288,10 @@ function k.prototype.dispose(self, a4)
 	self.ambientParticle = nil
 	self.attackParticle = nil
 	self.attack_timer = nil
-	if not a4 then
-		local a6 = self.parent:FindModifierByName("modifier_enigma_talent")
-		if a6 then
-			a6:GhostDestroy(self.index)
+	if not aa then
+		local ac = self.parent:FindModifierByName("modifier_enigma_talent")
+		if ac then
+			ac:GhostDestroy(self.index)
 		end
 	end
 end

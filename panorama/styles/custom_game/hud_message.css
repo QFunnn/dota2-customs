@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2789,9 +2789,8 @@
 {
 	margin-top: 60px;
 	horizontal-align: center;
-	flow-children: down;
 	max-height: 300px;
-	overflow: squish scroll;
+	overflow: clip clip;
 }
 
 #MessageList > VerticalScrollBar
@@ -2804,6 +2803,33 @@
 	visibility: collapse;
 }
 
+#MessageList #MessageToast
+{
+	horizontal-align: center;
+	flow-children: down;
+	overflow: noclip noclip;
+}
+
+#MessageList #MessageToast .ToastPanel
+{
+	horizontal-align: center;
+	transition-property: opacity, transform, position;
+	transition-duration: 0.15s;
+	opacity: 0;
+}
+
+#MessageList #MessageToast .ToastPanel.Collapse
+{
+	opacity: 0;
+}
+
+#MessageList #MessageToast .ToastPanel.ToastVisible
+{
+	animation-name: PopupUp;
+	animation-duration: 0.15s;
+	opacity: 1;
+}
+
 #MessageList .Message
 {
 	horizontal-align: center;
@@ -2814,11 +2840,6 @@
 	padding: 12px;
 	border-radius: 5px;
 	box-shadow: #00000055 0px 0px 4px 0px;
-	animation-name: PopupUp, FadeOut;
-	animation-duration: 0.3s, 0.3s;
-	animation-delay: 0s, 2.7s;
-	transition-property: position;
-	transition-duration: 0.1s;
 	flow-children: right;
 }
 
@@ -2864,16 +2885,51 @@
 	background-size: 100%;
 }
 
+#MessageLinesWrapper
+{
+	horizontal-align: center;
+	overflow: noclip noclip;
+}
+
+#AddItemLinesWrapper
+{
+	overflow: noclip noclip;
+}
+
+#AddItemToast
+{
+	flow-children: down;
+	overflow: noclip noclip;
+}
+
+#AddItemToast .ToastPanel
+{
+	transition-property: opacity, transform, position;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	transform: translateX(467px);
+	opacity: 0;
+	margin: 0px;
+}
+
+#AddItemToast .ToastPanel.Collapse
+{
+	transform: translateX(467px);
+	opacity: 0;
+}
+
+#AddItemToast .ToastPanel.ToastVisible
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
 #AddItemList
 {
 	align: right bottom;
 	margin-bottom: 270px;
-	flow-children: down;
-	overflow: squish scroll;
+	overflow: clip clip;
 	max-height: 600px;
-	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
-	transition-property: position;
-	transition-duration: 0.1s;
 }
 
 #AddItemList .AddItemRow
@@ -2882,8 +2938,6 @@
 	height: 103px;
 	background-image: url("s2r://panorama/images/custom_game/hud/tips_png.vtex");
 	background-size: 100%;
-	animation-name: SlideIn;
-	animation-duration: 0.15s;
 }
 
 #AddItemList .AddItemRow .CosmeticImage
@@ -2931,20 +2985,6 @@
 	text-shadow: 0px 0px 4px 5 #00000055;
 }
 
-@keyframes 'SlideIn'
-{
-	0%
-	{
-		transform: translateX(467px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
-	}
-	
-}
-
 @keyframes 'PopupUp'
 {
 	0%
@@ -2965,48 +3005,6 @@
 	100%
 	{
 		pre-transform-scale2d: 1;
-	}
-	
-}
-
-@keyframes 'FadeOut'
-{
-	0%
-	{
-		opacity: 1;
-	}
-	
-	100%
-	{
-		opacity: 0;
-	}
-	
-}
-
-@keyframes 'SlideInLeft'
-{
-	0%
-	{
-		transform: translateX(-500px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
-	}
-	
-}
-
-@keyframes 'SlideInRight'
-{
-	0%
-	{
-		transform: translateX(500px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
 	}
 	
 }
@@ -3255,6 +3253,22 @@
 	animation-name: EOM_DiamondButtonArrow;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
+}
+
+@keyframes 'AddItemRecoilOut'
+{
+	0%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(467px);
+		opacity: 0;
+	}
+	
 }
 
 .AspectRatio16x10 #AddItemList .AddItemRow
@@ -3279,9 +3293,8 @@
 {
 	margin-top: 60px;
 	horizontal-align: center;
-	flow-children: down;
 	max-height: 300px;
-	overflow: squish scroll;
+	overflow: clip clip;
 }
 
 #MessageList > VerticalScrollBar
@@ -3294,6 +3307,33 @@
 	visibility: collapse;
 }
 
+#MessageList #MessageToast
+{
+	horizontal-align: center;
+	flow-children: down;
+	overflow: noclip noclip;
+}
+
+#MessageList #MessageToast .ToastPanel
+{
+	horizontal-align: center;
+	transition-property: opacity, transform, position;
+	transition-duration: 0.15s;
+	opacity: 0;
+}
+
+#MessageList #MessageToast .ToastPanel.Collapse
+{
+	opacity: 0;
+}
+
+#MessageList #MessageToast .ToastPanel.ToastVisible
+{
+	animation-name: PopupUp;
+	animation-duration: 0.15s;
+	opacity: 1;
+}
+
 #MessageList .Message
 {
 	horizontal-align: center;
@@ -3304,11 +3344,6 @@
 	padding: 12px;
 	border-radius: 5px;
 	box-shadow: #00000055 0px 0px 4px 0px;
-	animation-name: PopupUp, FadeOut;
-	animation-duration: 0.3s, 0.3s;
-	animation-delay: 0s, 2.7s;
-	transition-property: position;
-	transition-duration: 0.1s;
 	flow-children: right;
 }
 
@@ -3354,16 +3389,51 @@
 	background-size: 100%;
 }
 
+#MessageLinesWrapper
+{
+	horizontal-align: center;
+	overflow: noclip noclip;
+}
+
+#AddItemLinesWrapper
+{
+	overflow: noclip noclip;
+}
+
+#AddItemToast
+{
+	flow-children: down;
+	overflow: noclip noclip;
+}
+
+#AddItemToast .ToastPanel
+{
+	transition-property: opacity, transform, position;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	transform: translateX(467px);
+	opacity: 0;
+	margin: 0px;
+}
+
+#AddItemToast .ToastPanel.Collapse
+{
+	transform: translateX(467px);
+	opacity: 0;
+}
+
+#AddItemToast .ToastPanel.ToastVisible
+{
+	transform: translateX(0px);
+	opacity: 1;
+}
+
 #AddItemList
 {
 	align: right bottom;
 	margin-bottom: 270px;
-	flow-children: down;
-	overflow: squish scroll;
+	overflow: clip clip;
 	max-height: 600px;
-	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
-	transition-property: position;
-	transition-duration: 0.1s;
 }
 
 #AddItemList .AddItemRow
@@ -3372,8 +3442,6 @@
 	height: 103px;
 	background-image: url("s2r://panorama/images/custom_game/hud/tips_png.vtex");
 	background-size: 100%;
-	animation-name: SlideIn;
-	animation-duration: 0.15s;
 }
 
 #AddItemList .AddItemRow .CosmeticImage
@@ -3421,20 +3489,6 @@
 	text-shadow: 0px 0px 4px 5 #00000055;
 }
 
-@keyframes 'SlideIn'
-{
-	0%
-	{
-		transform: translateX(467px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
-	}
-	
-}
-
 @keyframes 'PopupUp'
 {
 	0%
@@ -3455,48 +3509,6 @@
 	100%
 	{
 		pre-transform-scale2d: 1;
-	}
-	
-}
-
-@keyframes 'FadeOut'
-{
-	0%
-	{
-		opacity: 1;
-	}
-	
-	100%
-	{
-		opacity: 0;
-	}
-	
-}
-
-@keyframes 'SlideInLeft'
-{
-	0%
-	{
-		transform: translateX(-500px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
-	}
-	
-}
-
-@keyframes 'SlideInRight'
-{
-	0%
-	{
-		transform: translateX(500px);
-	}
-	
-	100%
-	{
-		transform: translateX(0px);
 	}
 	
 }
@@ -3745,4 +3757,20 @@
 	animation-name: EOM_DiamondButtonArrow;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
+}
+
+@keyframes 'AddItemRecoilOut'
+{
+	0%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(467px);
+		opacity: 0;
+	}
+	
 }

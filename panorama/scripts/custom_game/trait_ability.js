@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -81,6 +81,7 @@ function TooltipContents(props) {
   }
   let keywordList = getKeyWordList($.Localize("#DOTA_Tooltip_ability_" + ability_name + "_description"));
   keywordList = keywordList.sort((a, b) => Number(b.type == "Ability") - Number(a.type == "Ability"));
+  let TreasureType = KeyValues.treasure_abilities[ability_name]?.TreasureType ?? 0;
   return libs.createComponent(EOM_Panel.EOM_Panel, {
     flowChildren: "down",
     get children() {
@@ -93,23 +94,37 @@ function TooltipContents(props) {
             get children() {
               return [libs.createComponent(EOM_Tooltip.EOM_TooltipHeader, {
                 id: "RuneAbilityTitle",
+                classList: {
+                  ["TitleTreasureType_" + TreasureType]: true
+                },
                 flowChildren: "right",
                 get children() {
                   return libs.createComponent(EOM_Panel.EOM_Panel, {
                     width: "100%",
                     height: "30px",
+                    flowChildren: "right",
                     get children() {
-                      return [libs.createComponent(GenericPanel.CLabel, {
+                      return [libs.createComponent(libs.Show, {
+                        when: tag == "EX",
+                        get fallback() {
+                          return libs.createComponent(EOM_Panel.EOM_Panel, {
+                            className: "RuneLevelTag",
+                            get children() {
+                              return libs.createComponent(GenericPanel.CLabel, {
+                                text: tag
+                              });
+                            }
+                          });
+                        },
+                        get children() {
+                          const _el$ = libs.createElement("Image", {}, null);
+                          libs.effect(_$p => libs.setProp(_el$, "className", libs.classNames("TreasureAbilityImage", "Type_" + (KeyValues.treasure_abilities[ability_name]?.TreasureType ?? 1)), _$p));
+                          return _el$;
+                        }
+                      }), libs.createComponent(GenericPanel.CLabel, {
                         id: "CityNameHeader",
                         html: true,
                         text: "#DOTA_Tooltip_ability_" + ability_name
-                      }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                        className: "RuneLevelTag",
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            text: tag
-                          });
-                        }
                       })];
                     }
                   });
@@ -413,12 +428,12 @@ const AbilityKeyWordContainer = props => {
           flowChildren: "right",
           get children() {
             return [(() => {
-              const _el$ = libs.createElement("DOTAAbilityImage", {
+              const _el$2 = libs.createElement("DOTAAbilityImage", {
                 abilityname: abilityName
               }, null);
-              libs.setProp(_el$, "className", "SectAbilityImage");
-              libs.setProp(_el$, "abilityname", abilityName);
-              return _el$;
+              libs.setProp(_el$2, "className", "SectAbilityImage");
+              libs.setProp(_el$2, "abilityname", abilityName);
+              return _el$2;
             })(), libs.createComponent(EOM_Panel.EOM_Panel, {
               flowChildren: "down",
               marginLeft: "8px",
@@ -502,11 +517,11 @@ const AbilityKeyWordContainer = props => {
                         return libs.memo(() => itemKV?.Repeat == undefined)() && itemname.indexOf("item_artifact_") != -1;
                       },
                       get children() {
-                        const _el$2 = libs.createElement("Label", {
+                        const _el$3 = libs.createElement("Label", {
                           text: "#DOTA_SHOP_CATEGORY_UNIQUES"
                         }, null);
-                        libs.setProp(_el$2, "className", "AbilityType");
-                        return _el$2;
+                        libs.setProp(_el$3, "className", "AbilityType");
+                        return _el$3;
                       }
                     })];
                   }

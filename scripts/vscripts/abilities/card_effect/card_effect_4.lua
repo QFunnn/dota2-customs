@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -30,18 +30,17 @@ f(
 		["18"] = 8,
 		["19"] = 9,
 		["20"] = 10,
-		["21"] = 11,
+		["21"] = 12,
 		["22"] = 13,
-		["23"] = 14,
-		["26"] = 17,
-		["28"] = 18,
+		["25"] = 16,
+		["27"] = 17,
+		["28"] = 17,
 		["29"] = 18,
 		["30"] = 19,
 		["31"] = 20,
 		["32"] = 21,
-		["33"] = 22,
-		["35"] = 18,
-		["38"] = 4,
+		["34"] = 17,
+		["37"] = 4,
 	}
 )
 local g = {}
@@ -58,7 +57,6 @@ function j.prototype.spawn(self)
 	local n = self:getSpecialValueFor("count")
 	local o = AbilityShop:getAbilityPoolNew("sr", nil, { l.bannedSect })
 	for p, n in pairs(o.tList) do
-		m:getAbilityUpgradeLevel(tostring(p))
 		if m:getAbilityUpgradeLevel(tostring(p)) >= SECT_ABILITY_LEVEL[KeyValues.AbilityUpgradesKvs[p].rarity] then
 			e(o.tList, p)
 		end

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -22,6 +22,7 @@ var AbilityDescription = require('./AbilityDescription.js');
 var AbilityImage = require('./AbilityImage.js');
 var GenericPanel = require('./GenericPanel.js');
 var ShardAbility = require('./ShardAbility.js');
+require('./Heroes.js');
 
 const BasePopupMain = props => {
   const merged = libs.mergeProps$1({
@@ -118,6 +119,7 @@ const PopupMain_RuneReward = props => {
   } = local;
   const [gameState, setGameState] = libs.createSignal("GameState_None");
   const [runeSelection, setRuneSelection] = libs.createSignal([]);
+  const [runeRewardLoaded, setRuneRewardLoaded] = libs.createSignal(false);
   const [rewardSelection, setRewardSelection] = libs.createSignal();
   const showRuneRewardUI = () => runeSelection().length > 0;
   const canChooseRune = () => {
@@ -162,6 +164,7 @@ const PopupMain_RuneReward = props => {
       } else {
         setRuneSelection([]);
       }
+      setRuneRewardLoaded(true);
       setRewardSelection();
     }));
     netTableIDList.push(useNetTableKeyHasDefaultValue("player_data", Players.GetLocalPlayer().toString(), data => {
@@ -370,7 +373,7 @@ const PopupMain_RuneReward = props => {
                 color: "Blue",
                 text: "#Popup_Button_Confirm",
                 get enabled() {
-                  return rewardSelection() != undefined;
+                  return libs.memo(() => !!runeRewardLoaded())() && (runeSelection().length == 0 || rewardSelection() != undefined);
                 },
                 onactivate: () => {
                   if (!canChooseRune()) {

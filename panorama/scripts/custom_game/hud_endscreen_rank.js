@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -53,8 +53,134 @@ if (!isSpectator()) {
   const [scoreCardUsed, setScoreCardUsed] = libs.createSignal(false);
   const [scoreCardUsing, setScoreCardUsing] = libs.createSignal(false);
   const [showPlayerQuestionnaire, setShowPlayerQuestionnaire] = libs.createSignal(false);
+  const endScreenToNumber = (value, fallback = 0) => {
+    const result = Number(value);
+    return Number.isNaN(result) ? fallback : result;
+  };
+  const isCompletedAchievement = progress => progress.receive_progress != undefined;
+  const getCompletedAchievementIDs = progresses => {
+    const result = new Set();
+    for (const progress of Object.values(progresses ?? {})) {
+      if (isCompletedAchievement(progress)) {
+        result.add(endScreenToNumber(progress.task_id));
+      }
+    }
+    return result;
+  };
+  const AchievementNotice = props => libs.createComponent(EOM_Panel.EOM_Panel, {
+    id: "AchievementNotice",
+    onactivate: () => {},
+    get children() {
+      return [libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "AchievementNoticeBackdrop",
+        hittest: false
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "AchievementNoticeCard",
+        get children() {
+          return [libs.createComponent(EOM_Panel.EOM_Panel, {
+            id: "AchievementNoticeList",
+            scroll: "x",
+            get children() {
+              return libs.createComponent(libs.For, {
+                get each() {
+                  return props.achievements;
+                },
+                children: achievement => libs.createComponent(EOM_Panel.EOM_Panel, {
+                  get className() {
+                    return libs.classNames("AchievementNoticeCardItem", {
+                      red: achievement.quality == 4,
+                      blue: achievement.quality == 2,
+                      green: achievement.quality == 1,
+                      gold: achievement.quality == 3
+                    });
+                  },
+                  get children() {
+                    return [libs.createComponent(EOM_Panel.EOM_Panel, {
+                      className: "AchievementNoticeCardImage",
+                      get backgroundImage() {
+                        return `url('file://{images}/custom_game/achievement/${achievement.iconType}.png')`;
+                      }
+                    }), libs.createComponent(EOM_Label.EOM_Label, {
+                      className: "AchievementNoticeCardName",
+                      get text() {
+                        return `#${achievement.iconType}_achievement`;
+                      }
+                    }), libs.createComponent(EOM_Label.EOM_Label, {
+                      className: "AchievementNoticeCardScore",
+                      get text() {
+                        return $.Localize("#achievement_score") + achievement.score;
+                      }
+                    })];
+                  }
+                })
+              });
+            }
+          }), libs.createComponent(EOM_Label.EOM_Label, {
+            id: "AchievementNoticeTitle",
+            get text() {
+              return $.Localize("#achievement_unlock") + "!";
+            }
+          }), libs.createComponent(EOM_Button.EOM_BaseButton, {
+            id: "AchievementNoticeConfirm",
+            get onactivate() {
+              return props.onClose;
+            },
+            get children() {
+              return libs.createComponent(EOM_Label.EOM_Label, {
+                text: "#Popup_Button_Confirm"
+              });
+            }
+          })];
+        }
+      })];
+    }
+  });
   const EndScreen = () => {
     const playerID = Players.GetLocalPlayer();
+    let latestAchievementProgress = getNetDataCache("achievement_task_progresses", playerID);
+    let latestAchievementTaskInfo = getNetDataCache("info_achievement_task");
+    let achievementSnapshot = getCompletedAchievementIDs(latestAchievementProgress);
+    let achievementSnapshotReady = latestAchievementProgress != undefined;
+    let achievementNoticeShown = false;
+    const [achievementProgress, setAchievementProgress] = libs.createSignal(latestAchievementProgress ?? {});
+    const [achievementTaskInfo, setAchievementTaskInfo] = libs.createSignal(latestAchievementTaskInfo ?? {});
+    const [achievementNoticeList, setAchievementNoticeList] = libs.createSignal([]);
+    const [showAchievementNotice, setShowAchievementNotice] = libs.createSignal(false);
+    const tryShowAchievementNotice = () => {
+      if (!show() || achievementNoticeShown || !achievementSnapshotReady) return;
+      const achievements = [];
+      for (const progress of Object.values(achievementProgress())) {
+        const achievementID = endScreenToNumber(progress.task_id);
+        const task = achievementTaskInfo()[achievementID.toString()];
+        if (achievementID <= 0 || achievementSnapshot.has(achievementID) || !task || endScreenToNumber(task.enable) != 1 || !isCompletedAchievement(progress)) {
+          continue;
+        }
+        achievements.push({
+          achievementID,
+          iconType: endScreenToNumber(task.icon_type),
+          quality: endScreenToNumber(task.quality),
+          score: endScreenToNumber(task.score),
+          completionTime: endScreenToNumber(progress.update_time)
+        });
+      }
+      if (achievements.length > 0) {
+        achievements.sort((a, b) => a.achievementID - b.achievementID);
+        achievementNoticeShown = true;
+        setAchievementNoticeList(achievements);
+        setShowAchievementNotice(true);
+      }
+    };
+    const resetAchievementSnapshot = () => {
+      latestAchievementProgress = getNetDataCache("achievement_task_progresses", playerID);
+      latestAchievementTaskInfo = getNetDataCache("info_achievement_task");
+      achievementSnapshot = getCompletedAchievementIDs(latestAchievementProgress);
+      achievementSnapshotReady = latestAchievementProgress != undefined;
+      achievementNoticeShown = false;
+      setAchievementProgress(latestAchievementProgress ?? {});
+      setAchievementTaskInfo(latestAchievementTaskInfo ?? {});
+      setAchievementNoticeList([]);
+      setShowAchievementNotice(false);
+    };
     const [settlement_reward, setSettlementReward] = libs.createSignal({});
     const [medal_reward, setMedalReward] = libs.createSignal(-1);
     const [playerPrivilege, setPlayerPrivilege] = libs.createSignal(CustomNetTables.GetTableValue("common", "player_privilege")?.[playerID]);
@@ -92,6 +218,20 @@ if (!isSpectator()) {
     libs.onMount(() => {
       const GameEventIDs = [];
       const NetTableListenerIDs = [];
+      GameEventIDs.push(useNetData("info_achievement_task", data => {
+        latestAchievementTaskInfo = data ?? {};
+        setAchievementTaskInfo(latestAchievementTaskInfo);
+        tryShowAchievementNotice();
+      }));
+      GameEventIDs.push(useNetData("achievement_task_progresses", data => {
+        latestAchievementProgress = data ?? {};
+        if (!achievementSnapshotReady && !show()) {
+          achievementSnapshot = getCompletedAchievementIDs(latestAchievementProgress);
+          achievementSnapshotReady = true;
+        }
+        setAchievementProgress(latestAchievementProgress);
+        tryShowAchievementNotice();
+      }, playerID));
       GameEventIDs.push(useNetData("rank_score_change", data => {
         if (Object.keys(data).length > 0) {
           setSettlementScoreData(data);
@@ -169,6 +309,7 @@ if (!isSpectator()) {
       NetTableListenerIDs.push(useNetTableKey("common", "game_state", data => {
         setEnd(data.state == "GameState_End");
         if (data.state == "GameState_None") {
+          resetAchievementSnapshot();
           setShow(false);
         }
       }));
@@ -190,6 +331,7 @@ if (!isSpectator()) {
     });
     libs.createEffect(libs.on(show, _show => {
       if (_show) {
+        tryShowAchievementNotice();
         let duration = 1;
         if (end()) {
           setGradientShowClass("GameEnd");
@@ -249,7 +391,20 @@ if (!isSpectator()) {
             }
           })];
         }
-      }));
+      }), null);
+      libs.insert(_el$, libs.createComponent(libs.Show, {
+        get when() {
+          return libs.memo(() => !!gradientShow())() && showAchievementNotice();
+        },
+        get children() {
+          return libs.createComponent(AchievementNotice, {
+            get achievements() {
+              return achievementNoticeList();
+            },
+            onClose: () => setShowAchievementNotice(false)
+          });
+        }
+      }), null);
       libs.effect(_$p => libs.setProp(_el$, "className", libs.classNames("EndScreenRoot", gradientShowClass(), {
         EndScreenShow: show()
       }), _$p));
@@ -282,7 +437,6 @@ if (!isSpectator()) {
     }));
     const nowScore = () => finiteNumber(Number(props.rank_score_data?.now_rank_score));
     const originScore = () => finiteNumber(Number(props.rank_score_data?.origin_rank_score));
-    const projected = () => finiteNumber(Number(props.rank_score_data?.projected)) == 1;
     const changedScore = () => nowScore() - originScore();
     const fixedInfoModifyScore = () => {
       return changedScore();
@@ -354,9 +508,6 @@ if (!isSpectator()) {
         NetTableListenerIDs.forEach(id => CustomNetTables.UnsubscribeNetTableListener(id));
       });
     });
-    const GainMedalShow = () => {
-      return props.rank_score_data != undefined;
-    };
     const [HasNewRegressionPlayer, setHasNewRegressionPlayer] = libs.createSignal(false);
     netdata_utils.createNetDataEffect("match_new_regression_players", data => {
       if (data && (data?.new_players != undefined || data?.regression_players != undefined)) {
@@ -371,155 +522,373 @@ if (!isSpectator()) {
     if (server_time >= _time.start_time && server_time < _time.end_time) {
       PeakScoreEnable = true;
     }
+    const weeklyMatchData = netdata_utils.createPlayerNetData("weekly_league_data", Players.GetLocalPlayer());
+    const weekly_tier = () => weeklyMatchData()?.tier ?? 1;
     return (() => {
       const _el$2 = libs.createElement("Panel", {}, null);
       libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "RankAndRewards",
+        get classList() {
+          return {
+            RankMatch: showRankScore()
+          };
+        },
         get children() {
           return [libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "RankInfo",
             get children() {
-              return [libs.createComponent(EOM_Panel.EOM_Panel, {
-                get className() {
-                  return libs.classNames("RankIcon", {
-                    Higher: rank() <= 3
+              return libs.createComponent(libs.Show, {
+                get when() {
+                  return showRankScore();
+                },
+                fallback: () => [libs.createComponent(EOM_Panel.EOM_Panel, {
+                  get className() {
+                    return libs.classNames("RankIcon", {
+                      Higher: rank() <= 3
+                    });
+                  },
+                  get children() {
+                    return libs.createComponent(GenericPanel.CLabel, {
+                      get text() {
+                        return rank();
+                      }
+                    });
+                  }
+                }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                  id: "RankLabels",
+                  get children() {
+                    return [libs.createComponent(GenericPanel.CLabel, {
+                      id: "RankTitle",
+                      text: "#player_rank",
+                      get dialogVariables() {
+                        return {
+                          rank: rank()
+                        };
+                      }
+                    }), libs.createComponent(libs.Switch, {
+                      fallback: () => libs.createComponent(GenericPanel.CLabel, {
+                        id: "EncouragementText",
+                        className: sLanguage,
+                        text: "#EndScreen_PlayerEnd4",
+                        html: true
+                      }),
+                      get children() {
+                        return [libs.createComponent(libs.Match, {
+                          get when() {
+                            return rank() == 1;
+                          },
+                          get children() {
+                            return libs.createComponent(GenericPanel.CLabel, {
+                              id: "EncouragementText",
+                              className: sLanguage,
+                              text: "#EndScreen_PlayerEnd1",
+                              html: true
+                            });
+                          }
+                        }), libs.createComponent(libs.Match, {
+                          get when() {
+                            return rank() == 2;
+                          },
+                          get children() {
+                            return libs.createComponent(GenericPanel.CLabel, {
+                              id: "EncouragementText",
+                              className: sLanguage,
+                              text: "#EndScreen_PlayerEnd2",
+                              html: true
+                            });
+                          }
+                        }), libs.createComponent(libs.Match, {
+                          get when() {
+                            return rank() == 3;
+                          },
+                          get children() {
+                            return libs.createComponent(GenericPanel.CLabel, {
+                              id: "EncouragementText",
+                              className: sLanguage,
+                              text: "#EndScreen_PlayerEnd3",
+                              html: true
+                            });
+                          }
+                        })];
+                      }
+                    })];
+                  }
+                }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                  className: "GainMedalContainer",
+                  id: "Medal",
+                  get visible() {
+                    return props.medal_reward > 0;
+                  },
+                  get children() {
+                    return [libs.createComponent(EOM_Icon.EOM_Icon, {
+                      size: "128",
+                      get src() {
+                        return getSrcPath("icon/medal_larger.png");
+                      }
+                    }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                      id: "MedalAmounts",
+                      get children() {
+                        return libs.createComponent(GenericPanel.CLabel, {
+                          get text() {
+                            return `+${props.medal_reward}`;
+                          }
+                        });
+                      }
+                    })];
+                  }
+                })],
+                get children() {
+                  return libs.createComponent(EOM_Panel.EOM_Panel, {
+                    id: "PlayerRankScore",
+                    get children() {
+                      return [libs.createComponent(RankTierIcon.RankTierIcon, {
+                        get rank_score() {
+                          return rankScore();
+                        },
+                        get rank() {
+                          return leaderRank();
+                        },
+                        show_title: true,
+                        size: "300"
+                      }), (() => {
+                        const _el$3 = libs.createElement("Panel", {
+                            id: "RankRightInfo"
+                          }, null),
+                          _el$4 = libs.createElement("Panel", {
+                            id: "RankScoreInfo"
+                          }, _el$3),
+                          _el$5 = libs.createElement("Panel", {
+                            id: "RankRightBottomInfo"
+                          }, _el$4);
+                        libs.insert(_el$3, libs.createComponent(GenericPanel.CLabel, {
+                          id: "RankTitle",
+                          text: "#player_rank",
+                          get dialogVariables() {
+                            return {
+                              rank: rank()
+                            };
+                          }
+                        }), _el$4);
+                        libs.insert(_el$3, libs.createComponent(libs.Switch, {
+                          fallback: () => libs.createComponent(GenericPanel.CLabel, {
+                            id: "EncouragementText",
+                            className: sLanguage,
+                            text: "#EndScreen_PlayerEnd4",
+                            html: true
+                          }),
+                          get children() {
+                            return [libs.createComponent(libs.Match, {
+                              get when() {
+                                return rank() == 1;
+                              },
+                              get children() {
+                                return libs.createComponent(GenericPanel.CLabel, {
+                                  id: "EncouragementText",
+                                  className: sLanguage,
+                                  text: "#EndScreen_PlayerEnd1",
+                                  html: true
+                                });
+                              }
+                            }), libs.createComponent(libs.Match, {
+                              get when() {
+                                return rank() == 2;
+                              },
+                              get children() {
+                                return libs.createComponent(GenericPanel.CLabel, {
+                                  id: "EncouragementText",
+                                  className: sLanguage,
+                                  text: "#EndScreen_PlayerEnd2",
+                                  html: true
+                                });
+                              }
+                            }), libs.createComponent(libs.Match, {
+                              get when() {
+                                return rank() == 3;
+                              },
+                              get children() {
+                                return libs.createComponent(GenericPanel.CLabel, {
+                                  id: "EncouragementText",
+                                  className: sLanguage,
+                                  text: "#EndScreen_PlayerEnd3",
+                                  html: true
+                                });
+                              }
+                            })];
+                          }
+                        }), _el$4);
+                        libs.insert(_el$4, libs.createComponent(EOM_Panel.EOM_Panel, {
+                          id: "RankScoreMedal",
+                          get children() {
+                            return [libs.createComponent(EOM_Icon.EOM_Icon, {
+                              size: "48",
+                              get src() {
+                                return getSrcPath("icon/icon_rank_cup.png");
+                              }
+                            }), libs.createComponent(libs.Show, {
+                              get when() {
+                                return rankInfo().score_up == 0;
+                              },
+                              fallback: () => libs.createComponent(EOM_Panel.EOM_Panel, {
+                                id: "RankScoreProgressBar",
+                                get children() {
+                                  return [libs.createComponent(EOM_Panel.EOM_Panel, {
+                                    id: "RankScoreProgressBarUpper",
+                                    get children() {
+                                      return libs.createComponent(EOM_Panel.EOM_Panel, {
+                                        backgroundColor: "#fff",
+                                        height: "100%",
+                                        get width() {
+                                          return `${rankInfo().rela_score / Math.max(rankInfo().score_up, 1) * 100}%`;
+                                        }
+                                      });
+                                    }
+                                  }), (() => {
+                                    const _el$19 = libs.createElement("Label", {
+                                      get text() {
+                                        return `${rankInfo().rela_score}/${rankInfo().score_up}`;
+                                      }
+                                    }, null);
+                                    libs.effect(_$p => libs.setProp(_el$19, "text", `${rankInfo().rela_score}/${rankInfo().score_up}`, _$p));
+                                    return _el$19;
+                                  })()];
+                                }
+                              }),
+                              get children() {
+                                return libs.createComponent(EOM_Panel.EOM_Panel, {
+                                  id: "RankScoreMedalInfo",
+                                  get children() {
+                                    return libs.createComponent(GenericPanel.CLabel, {
+                                      get text() {
+                                        return rankInfo().rela_score;
+                                      }
+                                    });
+                                  }
+                                });
+                              }
+                            }), libs.createComponent(GenericPanel.CLabel, {
+                              id: "ModifyScore",
+                              get className() {
+                                return libs.classNames({
+                                  Up: fixedInfoModifyScore() > 0,
+                                  Down: fixedInfoModifyScore() < 0
+                                });
+                              },
+                              get text() {
+                                return libs.memo(() => fixedInfoModifyScore() == 0)() ? `-${fixedInfoModifyScore()}` : libs.memo(() => fixedInfoModifyScore() > 0)() ? `+${fixedInfoModifyScore()}` : fixedInfoModifyScore();
+                              }
+                            }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                              id: "PropEffect",
+                              get children() {
+                                return libs.createComponent(libs.Switch, {
+                                  get children() {
+                                    return [libs.createComponent(libs.Match, {
+                                      get when() {
+                                        return doubleScoreProp().length > 0;
+                                      },
+                                      get children() {
+                                        return libs.createComponent(libs.Index, {
+                                          get each() {
+                                            return doubleScoreProp();
+                                          },
+                                          children: (id, i) => libs.createComponent(ProductImage.ProductImage, {
+                                            get itemid() {
+                                              return id();
+                                            },
+                                            count: 1
+                                          })
+                                        });
+                                      }
+                                    }), libs.createComponent(libs.Match, {
+                                      get when() {
+                                        return protectedScoreProp().length > 0;
+                                      },
+                                      get children() {
+                                        return libs.createComponent(libs.Index, {
+                                          get each() {
+                                            return protectedScoreProp();
+                                          },
+                                          children: (id, i) => libs.createComponent(ProductImage.ProductImage, {
+                                            get itemid() {
+                                              return id();
+                                            },
+                                            count: 1
+                                          })
+                                        });
+                                      }
+                                    })];
+                                  }
+                                });
+                              }
+                            })];
+                          }
+                        }), _el$5);
+                        libs.insert(_el$5, libs.createComponent(libs.Show, {
+                          get when() {
+                            return rankAlarm() < 1;
+                          },
+                          get children() {
+                            return libs.createComponent(EOM_Panel.EOM_Panel, {
+                              id: "RankAlarm",
+                              tooltip_text: "#RankAlarm",
+                              get dialogVariables() {
+                                return {
+                                  value: (1 - rankAlarm()) * 100
+                                };
+                              },
+                              get children() {
+                                return [libs.createElement("Image", {
+                                  "class": "Alarm"
+                                }, null), libs.createComponent(EOM_Panel.EOM_Panel, {
+                                  id: "AlarmLabel",
+                                  get children() {
+                                    return libs.createComponent(GenericPanel.CLabel, {
+                                      text: "#RankDifference"
+                                    });
+                                  }
+                                })];
+                              }
+                            });
+                          }
+                        }), null);
+                        libs.insert(_el$5, libs.createComponent(libs.Show, {
+                          get when() {
+                            return libs.memo(() => !!isKingsRankMode())() && showPeakScore();
+                          },
+                          get children() {
+                            return libs.createComponent(EOM_Panel.EOM_Panel, {
+                              className: "PeakScore",
+                              get children() {
+                                return [libs.createComponent(EOM_Icon.EOM_Icon, {
+                                  id: "PeakScoreIcon",
+                                  get src() {
+                                    return getSrcPath("icon/peak_score_icon.png");
+                                  },
+                                  onmouseover: self => {
+                                    $.DispatchEvent("DOTAShowTitleTextTooltip", self, "#PeakScore", "#PeakScore_description");
+                                  },
+                                  onmouseout: self => {
+                                    $.DispatchEvent("DOTAHideTitleTextTooltip", self);
+                                  }
+                                }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                                  className: "PeakScoreLabel",
+                                  get children() {
+                                    return libs.createComponent(EOM_Label.EOM_Label, {
+                                      get text() {
+                                        return libs.memo(() => peakScore() == -1)() ? "???" : peakScore();
+                                      }
+                                    });
+                                  }
+                                })];
+                              }
+                            });
+                          }
+                        }), null);
+                        return _el$3;
+                      })()];
+                    }
                   });
-                },
-                get children() {
-                  return libs.createComponent(GenericPanel.CLabel, {
-                    get text() {
-                      return rank();
-                    }
-                  });
                 }
-              }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "RankLabels",
-                get children() {
-                  return [libs.createComponent(GenericPanel.CLabel, {
-                    id: "RankTitle",
-                    text: "#player_rank",
-                    get dialogVariables() {
-                      return {
-                        rank: rank()
-                      };
-                    }
-                  }), libs.createComponent(libs.Switch, {
-                    fallback: () => libs.createComponent(GenericPanel.CLabel, {
-                      id: "EncouragementText",
-                      className: sLanguage,
-                      text: "#EndScreen_PlayerEnd4",
-                      html: true
-                    }),
-                    get children() {
-                      return [libs.createComponent(libs.Match, {
-                        get when() {
-                          return rank() == 1;
-                        },
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            id: "EncouragementText",
-                            className: sLanguage,
-                            text: "#EndScreen_PlayerEnd1",
-                            html: true
-                          });
-                        }
-                      }), libs.createComponent(libs.Match, {
-                        get when() {
-                          return rank() == 2;
-                        },
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            id: "EncouragementText",
-                            className: sLanguage,
-                            text: "#EndScreen_PlayerEnd2",
-                            html: true
-                          });
-                        }
-                      }), libs.createComponent(libs.Match, {
-                        get when() {
-                          return rank() == 3;
-                        },
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            id: "EncouragementText",
-                            className: sLanguage,
-                            text: "#EndScreen_PlayerEnd3",
-                            html: true
-                          });
-                        }
-                      })];
-                    }
-                  })];
-                }
-              }), libs.memo(() => libs.memo(() => !!showRankScore())() ? libs.createComponent(EOM_Panel.EOM_Panel, {
-                className: "GainMedalContainer",
-                get visible() {
-                  return GainMedalShow();
-                },
-                get children() {
-                  return [libs.createComponent(EOM_Icon.EOM_Icon, {
-                    size: "96",
-                    get src() {
-                      return getSrcPath("icon/icon_rank_cup.png");
-                    }
-                  }), libs.createComponent(libs.Show, {
-                    get when() {
-                      return fixedInfoModifyScore() != undefined;
-                    },
-                    get children() {
-                      return [libs.createComponent(EOM_Panel.EOM_Panel, {
-                        id: "MedalAmounts",
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            get className() {
-                              return libs.classNames({
-                                Up: fixedInfoModifyScore() > 0,
-                                Down: fixedInfoModifyScore() < 0
-                              });
-                            },
-                            get text() {
-                              return libs.memo(() => fixedInfoModifyScore() == 0)() ? `-${fixedInfoModifyScore()}` : libs.memo(() => fixedInfoModifyScore() > 0)() ? `+${fixedInfoModifyScore()}` : fixedInfoModifyScore();
-                            }
-                          });
-                        }
-                      }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                        get visible() {
-                          return projected();
-                        },
-                        className: "TierProtect",
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            text: "#RankProtected"
-                          });
-                        }
-                      })];
-                    }
-                  })];
-                }
-              }) : libs.createComponent(EOM_Panel.EOM_Panel, {
-                className: "GainMedalContainer",
-                id: "Medal",
-                get visible() {
-                  return props.medal_reward > 0;
-                },
-                get children() {
-                  return [libs.createComponent(EOM_Icon.EOM_Icon, {
-                    size: "128",
-                    get src() {
-                      return getSrcPath("icon/medal_larger.png");
-                    }
-                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                    id: "MedalAmounts",
-                    get children() {
-                      return libs.createComponent(GenericPanel.CLabel, {
-                        get text() {
-                          return `+${props.medal_reward}`;
-                        }
-                      });
-                    }
-                  })];
-                }
-              }))];
+              });
             }
           }), libs.createComponent(profile_info.ProfileInfo, {
             get player_id() {
@@ -700,211 +1069,125 @@ if (!isSpectator()) {
           })];
         }
       }), null);
-      libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
-        id: "PlayerRankScore",
+      libs.insert(_el$2, libs.createComponent(libs.Show, {
+        get when() {
+          return props.rank_score_data?.weekly_now_score != undefined;
+        },
         get children() {
-          return [libs.createComponent(libs.Show, {
-            get when() {
-              return showRankScore();
-            },
+          const _el$7 = libs.createElement("Panel", {
+              id: "WeeklyRankInfo"
+            }, null);
+            libs.createElement("Label", {
+              id: "WeeklyMatchTitleLabel",
+              text: "#ProfileTag_WeeklyMatch"
+            }, _el$7);
+            const _el$9 = libs.createElement("Image", {}, _el$7),
+            _el$0 = libs.createElement("Panel", {}, _el$7),
+            _el$1 = libs.createElement("Label", {
+              get text() {
+                return "#WeeklyMatch_Tier" + weekly_tier();
+              }
+            }, _el$0);
+          libs.setProp(_el$0, "className", "RankTierName");
+          libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
+            "class": "WeeklyInfoRow",
+            flowChildren: "right",
+            horizontalAlign: "center",
             get children() {
-              return [libs.createComponent(RankTierIcon.RankTierIcon, {
-                get rank_score() {
-                  return rankScore();
+              return [libs.createElement("Label", {
+                "class": "title",
+                text: "#ProfileBadge"
+              }, null), (() => {
+                const _el$11 = libs.createElement("Label", {
+                  "class": "info nowscore",
+                  get text() {
+                    return props.rank_score_data.weekly_now_score;
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$11, "text", props.rank_score_data.weekly_now_score, _$p));
+                return _el$11;
+              })(), (() => {
+                const _el$12 = libs.createElement("Label", {
+                  "class": "score",
+                  get text() {
+                    return "+" + ((props.rank_score_data.weekly_now_score ?? 0) - (props.rank_score_data.weekly_origin_score ?? 0));
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$12, "text", "+" + ((props.rank_score_data.weekly_now_score ?? 0) - (props.rank_score_data.weekly_origin_score ?? 0)), _$p));
+                return _el$12;
+              })()];
+            }
+          }), null);
+          libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
+            "class": "WeeklyInfoRow title",
+            flowChildren: "right",
+            horizontalAlign: "center",
+            get children() {
+              return [libs.createElement("Label", {
+                "class": "title",
+                text: "#BountyListRank"
+              }, null), libs.createComponent(libs.Show, {
+                get when() {
+                  return (props.rank_score_data.weekly_now_rank ?? 0) > 0;
                 },
-                get rank() {
-                  return leaderRank();
+                get fallback() {
+                  return libs.createElement("Label", {
+                    "class": "info",
+                    text: "#WeeklyMatch_Status_Matching"
+                  }, null);
                 },
-                show_title: true,
-                size: "300"
-              }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "RankScoreMedal",
                 get children() {
-                  return [libs.createComponent(EOM_Icon.EOM_Icon, {
-                    size: "48",
-                    get src() {
-                      return getSrcPath("icon/icon_rank_cup.png");
-                    }
-                  }), libs.createComponent(libs.Show, {
-                    get when() {
-                      return rankInfo().score_up == 0;
-                    },
-                    fallback: () => libs.createComponent(EOM_Panel.EOM_Panel, {
-                      id: "RankScoreProgressBar",
-                      get children() {
-                        return [libs.createComponent(EOM_Panel.EOM_Panel, {
-                          id: "RankScoreProgressBarUpper",
-                          get children() {
-                            return libs.createComponent(EOM_Panel.EOM_Panel, {
-                              backgroundColor: "#fff",
-                              height: "100%",
-                              get width() {
-                                return `${rankInfo().rela_score / Math.max(rankInfo().score_up, 1) * 100}%`;
-                              }
-                            });
-                          }
-                        }), libs.createComponent(GenericPanel.CLabel, {
-                          get text() {
-                            return `${rankInfo().rela_score}/${rankInfo().score_up}`;
-                          }
-                        })];
+                  return [(() => {
+                    const _el$14 = libs.createElement("Label", {
+                      "class": "info",
+                      get text() {
+                        return props.rank_score_data.weekly_now_rank;
                       }
-                    }),
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$14, "text", props.rank_score_data.weekly_now_rank, _$p));
+                    return _el$14;
+                  })(), libs.createComponent(libs.Show, {
+                    get when() {
+                      return props.rank_score_data.weekly_now_rank != props.rank_score_data.weekly_origin_rank;
+                    },
                     get children() {
-                      return libs.createComponent(EOM_Panel.EOM_Panel, {
-                        id: "RankScoreMedalInfo",
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            get text() {
-                              return rankInfo().rela_score;
-                            }
-                          });
-                        }
-                      });
-                    }
-                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                    id: "PropEffect",
-                    get children() {
-                      return libs.createComponent(libs.Switch, {
-                        get children() {
-                          return [libs.createComponent(libs.Match, {
-                            get when() {
-                              return doubleScoreProp().length > 0;
-                            },
-                            get children() {
-                              return libs.createComponent(libs.Index, {
-                                get each() {
-                                  return doubleScoreProp();
-                                },
-                                children: (id, i) => libs.createComponent(ProductImage.ProductImage, {
-                                  get itemid() {
-                                    return id();
-                                  },
-                                  count: 1
-                                })
-                              });
-                            }
-                          }), libs.createComponent(libs.Match, {
-                            get when() {
-                              return protectedScoreProp().length > 0;
-                            },
-                            get children() {
-                              return libs.createComponent(libs.Index, {
-                                get each() {
-                                  return protectedScoreProp();
-                                },
-                                children: (id, i) => libs.createComponent(ProductImage.ProductImage, {
-                                  get itemid() {
-                                    return id();
-                                  },
-                                  count: 1
-                                })
-                              });
-                            }
-                          })];
-                        }
-                      });
+                      const _el$15 = libs.createElement("Image", {}, null);
+                      libs.effect(_$p => libs.setProp(_el$15, "className", libs.classNames("WeeklyArrow", {
+                        Up: props.rank_score_data.weekly_now_rank > (props.rank_score_data.weekly_origin_rank ?? 999),
+                        Down: props.rank_score_data.weekly_now_rank < (props.rank_score_data.weekly_origin_rank ?? 999)
+                      }), _$p));
+                      return _el$15;
                     }
                   })];
-                }
-              }), libs.createComponent(libs.Show, {
-                get when() {
-                  return rankAlarm() < 1;
-                },
-                get children() {
-                  return libs.createComponent(EOM_Panel.EOM_Panel, {
-                    id: "RankAlarm",
-                    tooltip_text: "#RankAlarm",
-                    get dialogVariables() {
-                      return {
-                        value: (1 - rankAlarm()) * 100
-                      };
-                    },
-                    get children() {
-                      return [libs.createElement("Image", {
-                        "class": "Alarm"
-                      }, null), libs.createComponent(EOM_Panel.EOM_Panel, {
-                        id: "AlarmLabel",
-                        get children() {
-                          return libs.createComponent(GenericPanel.CLabel, {
-                            text: "#RankDifference"
-                          });
-                        }
-                      })];
-                    }
-                  });
                 }
               })];
             }
-          }), libs.createComponent(libs.Show, {
-            get when() {
-              return libs.memo(() => !!kingsRankState())() && showPeakScore();
+          }), null);
+          libs.insert(_el$7, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            id: "WeeklyMatchDetailButton",
+            onactivate: () => {
+              ToggleWindows("MenuButton_profile", true);
+              clientSideEvent("menu_bar_profile_tab", {
+                tag: "ProfileTag_WeeklyMatch"
+              });
             },
             get children() {
-              return libs.createComponent(EOM_Panel.EOM_Panel, {
-                get className() {
-                  return libs.classNames("PeakScore", {
-                    NoRankScore: !showRankScore()
-                  });
-                },
-                get children() {
-                  return [libs.createComponent(EOM_Icon.EOM_Icon, {
-                    id: "PeakScoreIcon",
-                    get src() {
-                      return getSrcPath("bountyentry/s14_bounty_icon_large.png");
-                    },
-                    onmouseover: self => {
-                      $.DispatchEvent("DOTAShowTitleTextTooltip", self, "#BountyScore", "#BountyScore_description");
-                    },
-                    onmouseout: self => {
-                      $.DispatchEvent("DOTAHideTitleTextTooltip", self);
-                    }
-                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                    className: "PeakScoreLabel",
-                    get children() {
-                      return libs.createComponent(EOM_Label.EOM_Label, {
-                        get text() {
-                          return libs.memo(() => peakScore() == -1)() ? "???" : peakScore();
-                        }
-                      });
-                    }
-                  })];
-                }
-              });
+              return libs.createElement("Label", {
+                text: "#ShowDetail"
+              }, null);
             }
-          }), libs.createComponent(libs.Show, {
-            get when() {
-              return libs.memo(() => !!isKingsRankMode())() && showPeakScore();
-            },
-            get children() {
-              return libs.createComponent(EOM_Panel.EOM_Panel, {
-                className: "PeakScore",
-                get children() {
-                  return [libs.createComponent(EOM_Icon.EOM_Icon, {
-                    id: "PeakScoreIcon",
-                    get src() {
-                      return getSrcPath("icon/peak_score_icon.png");
-                    },
-                    onmouseover: self => {
-                      $.DispatchEvent("DOTAShowTitleTextTooltip", self, "#PeakScore", "#PeakScore_description");
-                    },
-                    onmouseout: self => {
-                      $.DispatchEvent("DOTAHideTitleTextTooltip", self);
-                    }
-                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                    className: "PeakScoreLabel",
-                    get children() {
-                      return libs.createComponent(EOM_Label.EOM_Label, {
-                        get text() {
-                          return libs.memo(() => peakScore() == -1)() ? "???" : peakScore();
-                        }
-                      });
-                    }
-                  })];
-                }
-              });
-            }
-          })];
+          }), null);
+          libs.effect(_p$ => {
+            const _v$ = libs.classNames("WeeklyRankIcon", "small", "Tier" + weekly_tier()),
+              _v$2 = "#WeeklyMatch_Tier" + weekly_tier();
+            _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$9, "className", _v$, _p$._v$));
+            _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$1, "text", _v$2, _p$._v$2));
+            return _p$;
+          }, {
+            _v$: undefined,
+            _v$2: undefined
+          });
+          return _el$7;
         }
       }), null);
       libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
@@ -1366,15 +1649,15 @@ if (!isSpectator()) {
     const currentRankScoreInfo = libs.createMemo(() => getRankInfo(currentScore()));
     const rankScore = () => changing() ? originScore() : nowScore();
     return (() => {
-      const _el$0 = libs.createElement("Panel", {}, null);
+      const _el$25 = libs.createElement("Panel", {}, null);
       const _ref$ = rankChangeRoot;
-      typeof _ref$ === "function" ? libs.use(_ref$, _el$0) : rankChangeRoot = _el$0;
-      libs.setProp(_el$0, "onactivate", () => {});
-      libs.insert(_el$0, libs.createComponent(EOM_Panel.EOM_Panel, {
+      typeof _ref$ === "function" ? libs.use(_ref$, _el$25) : rankChangeRoot = _el$25;
+      libs.setProp(_el$25, "onactivate", () => {});
+      libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "ParticleRoot",
         hittest: false
       }), null);
-      libs.insert(_el$0, libs.createComponent(RankTierIcon.RankTierIcon, {
+      libs.insert(_el$25, libs.createComponent(RankTierIcon.RankTierIcon, {
         get className() {
           return libs.classNames({
             Upgrading: upgrading()
@@ -1388,7 +1671,7 @@ if (!isSpectator()) {
         },
         show_title: true
       }), null);
-      libs.insert(_el$0, libs.createComponent(EOM_Panel.EOM_Panel, {
+      libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "RankScoreMedal",
         get children() {
           return [libs.createComponent(EOM_Icon.EOM_Icon, {
@@ -1480,7 +1763,7 @@ if (!isSpectator()) {
           })];
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(EOM_Panel.EOM_Panel, {
+      libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
         get visible() {
           return libs.memo(() => !!(projected() && !changing()))() && !upgrading();
         },
@@ -1491,7 +1774,7 @@ if (!isSpectator()) {
           });
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(EOM_Panel.EOM_Panel, {
+      libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
         get className() {
           return libs.classNames("ScoreChange");
         },
@@ -1509,7 +1792,7 @@ if (!isSpectator()) {
           });
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(libs.Show, {
+      libs.insert(_el$25, libs.createComponent(libs.Show, {
         get when() {
           return showPeakScore();
         },
@@ -1557,7 +1840,7 @@ if (!isSpectator()) {
           })];
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$25, libs.createComponent(EOM_Button.EOM_Button, {
         align: "center bottom",
         get marginRight() {
           return canUseScoreCard() ? "350px" : "0px";
@@ -1567,7 +1850,7 @@ if (!isSpectator()) {
         onactivate: () => setScoreChangeShow(false),
         text: "#Popup_Button_Confirm"
       }), null);
-      libs.insert(_el$0, libs.createComponent(libs.Show, {
+      libs.insert(_el$25, libs.createComponent(libs.Show, {
         get when() {
           return canUseScoreCard();
         },
@@ -1637,15 +1920,15 @@ if (!isSpectator()) {
           });
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(EOM_Panel.EOM_Panel, {
+      libs.insert(_el$25, libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "AnimationRoot",
         hittest: false
       }), null);
-      libs.effect(_$p => libs.setProp(_el$0, "className", libs.classNames("RankChange", {
+      libs.effect(_$p => libs.setProp(_el$25, "className", libs.classNames("RankChange", {
         EndScreenShow: scoreChangeeShow(),
         RankShow: rankShow()
       }), _$p));
-      return _el$0;
+      return _el$25;
     })();
   };
   libs.render(() => libs.createComponent(EndScreen, {}), $.GetContextPanel());

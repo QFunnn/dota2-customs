@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -43,417 +43,431 @@ h(
 		["32"] = 20,
 		["33"] = 12,
 		["34"] = 20,
-		["35"] = 33,
-		["36"] = 34,
-		["37"] = 35,
-		["38"] = 37,
-		["39"] = 39,
-		["40"] = 40,
-		["41"] = 41,
-		["42"] = 43,
-		["43"] = 44,
-		["44"] = 45,
-		["46"] = 33,
-		["47"] = 57,
-		["48"] = 58,
-		["49"] = 57,
-		["50"] = 63,
-		["51"] = 64,
-		["52"] = 65,
-		["53"] = 66,
-		["56"] = 63,
-		["57"] = 70,
-		["58"] = 71,
-		["59"] = 71,
+		["35"] = 35,
+		["36"] = 36,
+		["37"] = 37,
+		["38"] = 39,
+		["39"] = 41,
+		["40"] = 42,
+		["41"] = 43,
+		["42"] = 44,
+		["43"] = 46,
+		["44"] = 47,
+		["45"] = 48,
+		["47"] = 35,
+		["48"] = 60,
+		["49"] = 61,
+		["50"] = 60,
+		["51"] = 68,
+		["52"] = 69,
+		["53"] = 70,
+		["55"] = 68,
+		["56"] = 73,
+		["57"] = 74,
+		["58"] = 75,
 		["60"] = 73,
-		["61"] = 73,
-		["62"] = 73,
-		["63"] = 71,
-		["64"] = 74,
-		["65"] = 74,
-		["66"] = 74,
-		["67"] = 71,
-		["68"] = 71,
-		["69"] = 70,
-		["70"] = 77,
-		["71"] = 78,
-		["72"] = 79,
-		["73"] = 80,
-		["74"] = 77,
-		["75"] = 93,
-		["76"] = 94,
-		["79"] = 95,
-		["80"] = 96,
-		["81"] = 96,
-		["82"] = 96,
-		["83"] = 96,
-		["85"] = 99,
-		["86"] = 100,
-		["87"] = 101,
-		["90"] = 104,
-		["91"] = 105,
-		["92"] = 105,
-		["93"] = 105,
-		["94"] = 105,
-		["95"] = 105,
+		["61"] = 78,
+		["62"] = 79,
+		["63"] = 80,
+		["64"] = 81,
+		["65"] = 82,
+		["68"] = 78,
+		["69"] = 86,
+		["70"] = 87,
+		["71"] = 87,
+		["72"] = 89,
+		["73"] = 89,
+		["74"] = 89,
+		["75"] = 87,
+		["76"] = 90,
+		["77"] = 90,
+		["78"] = 90,
+		["79"] = 87,
+		["80"] = 91,
+		["81"] = 91,
+		["82"] = 91,
+		["83"] = 87,
+		["84"] = 87,
+		["85"] = 86,
+		["86"] = 94,
+		["87"] = 95,
+		["88"] = 97,
+		["89"] = 98,
+		["91"] = 100,
+		["92"] = 101,
+		["95"] = 94,
 		["96"] = 105,
-		["98"] = 93,
+		["97"] = 106,
+		["98"] = 107,
 		["99"] = 108,
-		["100"] = 109,
-		["101"] = 111,
-		["102"] = 112,
-		["103"] = 114,
-		["104"] = 115,
-		["106"] = 118,
-		["107"] = 119,
-		["109"] = 121,
-		["110"] = 122,
-		["111"] = 123,
-		["112"] = 123,
-		["113"] = 123,
-		["114"] = 123,
-		["115"] = 123,
-		["116"] = 123,
-		["121"] = 128,
-		["122"] = 129,
-		["125"] = 132,
-		["126"] = 133,
-		["127"] = 134,
-		["128"] = 135,
-		["129"] = 136,
-		["130"] = 136,
-		["131"] = 136,
-		["132"] = 136,
-		["133"] = 136,
-		["134"] = 136,
-		["136"] = 147,
-		["137"] = 148,
-		["138"] = 108,
-		["139"] = 150,
-		["140"] = 165,
-		["141"] = 166,
-		["142"] = 167,
-		["143"] = 169,
-		["144"] = 170,
-		["145"] = 171,
-		["147"] = 173,
-		["148"] = 174,
-		["151"] = 150,
-		["152"] = 179,
-		["153"] = 180,
-		["154"] = 181,
-		["155"] = 182,
-		["156"] = 183,
-		["158"] = 179,
-		["159"] = 20,
-		["160"] = 12,
-		["161"] = 12,
-		["162"] = 12,
-		["163"] = 12,
-		["164"] = 12,
-		["165"] = 12,
-		["166"] = 12,
-		["167"] = 12,
-		["168"] = 20,
-		["170"] = 20,
-		["171"] = 187,
-		["172"] = 195,
-		["173"] = 187,
-		["174"] = 195,
-		["175"] = 198,
-		["176"] = 199,
-		["177"] = 200,
-		["178"] = 198,
-		["179"] = 202,
-		["180"] = 203,
-		["181"] = 204,
-		["182"] = 205,
-		["183"] = 206,
-		["184"] = 206,
-		["185"] = 206,
-		["186"] = 206,
-		["187"] = 206,
-		["188"] = 206,
-		["189"] = 206,
-		["190"] = 206,
-		["191"] = 206,
-		["192"] = 207,
-		["193"] = 207,
-		["194"] = 207,
-		["195"] = 207,
-		["196"] = 207,
-		["197"] = 207,
-		["198"] = 207,
-		["199"] = 207,
-		["200"] = 207,
-		["201"] = 208,
-		["202"] = 208,
-		["203"] = 208,
-		["204"] = 208,
-		["205"] = 208,
-		["206"] = 208,
-		["207"] = 208,
-		["208"] = 208,
-		["209"] = 208,
-		["210"] = 209,
-		["211"] = 209,
-		["212"] = 209,
-		["213"] = 209,
-		["214"] = 209,
-		["215"] = 209,
-		["216"] = 209,
-		["217"] = 209,
-		["219"] = 211,
-		["221"] = 202,
-		["222"] = 214,
-		["223"] = 215,
-		["224"] = 214,
-		["225"] = 220,
-		["226"] = 221,
-		["227"] = 220,
-		["228"] = 223,
-		["229"] = 224,
-		["230"] = 223,
-		["231"] = 195,
-		["232"] = 187,
-		["233"] = 187,
-		["234"] = 187,
-		["235"] = 187,
-		["236"] = 187,
-		["237"] = 187,
-		["238"] = 187,
-		["239"] = 187,
-		["240"] = 195,
-		["242"] = 195,
-		["243"] = 230,
-		["244"] = 231,
-		["245"] = 230,
-		["246"] = 231,
-		["247"] = 232,
-		["248"] = 233,
-		["249"] = 234,
-		["250"] = 235,
-		["253"] = 238,
-		["254"] = 240,
-		["255"] = 241,
-		["256"] = 242,
-		["257"] = 243,
-		["258"] = 244,
-		["259"] = 245,
-		["260"] = 246,
-		["261"] = 246,
-		["262"] = 246,
-		["263"] = 247,
-		["264"] = 248,
-		["265"] = 249,
-		["266"] = 250,
-		["267"] = 251,
-		["268"] = 252,
-		["269"] = 253,
-		["271"] = 256,
-		["272"] = 257,
-		["274"] = 246,
-		["275"] = 246,
-		["276"] = 260,
-		["277"] = 261,
-		["278"] = 262,
-		["279"] = 232,
-		["280"] = 231,
-		["281"] = 230,
-		["282"] = 231,
-		["284"] = 231,
-		["285"] = 268,
-		["286"] = 276,
-		["287"] = 268,
-		["288"] = 276,
+		["100"] = 105,
+		["101"] = 121,
+		["102"] = 122,
+		["105"] = 123,
+		["106"] = 124,
+		["107"] = 124,
+		["108"] = 124,
+		["109"] = 124,
+		["111"] = 127,
+		["112"] = 128,
+		["113"] = 129,
+		["116"] = 132,
+		["117"] = 133,
+		["118"] = 133,
+		["119"] = 133,
+		["120"] = 133,
+		["121"] = 133,
+		["122"] = 133,
+		["124"] = 121,
+		["125"] = 136,
+		["126"] = 137,
+		["127"] = 139,
+		["128"] = 140,
+		["129"] = 142,
+		["130"] = 143,
+		["132"] = 146,
+		["133"] = 147,
+		["135"] = 149,
+		["136"] = 150,
+		["137"] = 151,
+		["138"] = 151,
+		["139"] = 151,
+		["140"] = 151,
+		["141"] = 151,
+		["142"] = 151,
+		["147"] = 156,
+		["148"] = 157,
+		["151"] = 160,
+		["152"] = 161,
+		["153"] = 162,
+		["154"] = 172,
+		["155"] = 173,
+		["156"] = 136,
+		["157"] = 175,
+		["158"] = 190,
+		["159"] = 191,
+		["160"] = 192,
+		["161"] = 194,
+		["162"] = 195,
+		["163"] = 196,
+		["165"] = 198,
+		["166"] = 199,
+		["169"] = 175,
+		["170"] = 204,
+		["171"] = 205,
+		["172"] = 206,
+		["173"] = 207,
+		["174"] = 208,
+		["176"] = 204,
+		["177"] = 20,
+		["178"] = 12,
+		["179"] = 12,
+		["180"] = 12,
+		["181"] = 12,
+		["182"] = 12,
+		["183"] = 12,
+		["184"] = 12,
+		["185"] = 12,
+		["186"] = 20,
+		["188"] = 20,
+		["189"] = 212,
+		["190"] = 220,
+		["191"] = 212,
+		["192"] = 220,
+		["193"] = 223,
+		["194"] = 224,
+		["195"] = 225,
+		["196"] = 223,
+		["197"] = 227,
+		["198"] = 228,
+		["199"] = 229,
+		["200"] = 230,
+		["201"] = 231,
+		["202"] = 231,
+		["203"] = 231,
+		["204"] = 231,
+		["205"] = 231,
+		["206"] = 231,
+		["207"] = 231,
+		["208"] = 231,
+		["209"] = 231,
+		["210"] = 232,
+		["211"] = 232,
+		["212"] = 232,
+		["213"] = 232,
+		["214"] = 232,
+		["215"] = 232,
+		["216"] = 232,
+		["217"] = 232,
+		["218"] = 232,
+		["219"] = 233,
+		["220"] = 233,
+		["221"] = 233,
+		["222"] = 233,
+		["223"] = 233,
+		["224"] = 233,
+		["225"] = 233,
+		["226"] = 233,
+		["227"] = 233,
+		["228"] = 234,
+		["229"] = 234,
+		["230"] = 234,
+		["231"] = 234,
+		["232"] = 234,
+		["233"] = 234,
+		["234"] = 234,
+		["235"] = 234,
+		["237"] = 236,
+		["239"] = 227,
+		["240"] = 239,
+		["241"] = 240,
+		["242"] = 239,
+		["243"] = 245,
+		["244"] = 246,
+		["245"] = 245,
+		["246"] = 248,
+		["247"] = 249,
+		["248"] = 248,
+		["249"] = 220,
+		["250"] = 212,
+		["251"] = 212,
+		["252"] = 212,
+		["253"] = 212,
+		["254"] = 212,
+		["255"] = 212,
+		["256"] = 212,
+		["257"] = 212,
+		["258"] = 220,
+		["260"] = 220,
+		["261"] = 255,
+		["262"] = 256,
+		["263"] = 255,
+		["264"] = 256,
+		["265"] = 257,
+		["266"] = 258,
+		["267"] = 259,
+		["268"] = 260,
+		["271"] = 263,
+		["272"] = 265,
+		["273"] = 266,
+		["274"] = 267,
+		["275"] = 268,
+		["276"] = 269,
+		["277"] = 270,
+		["278"] = 271,
+		["279"] = 271,
+		["280"] = 271,
+		["281"] = 272,
+		["282"] = 273,
+		["283"] = 274,
+		["284"] = 275,
+		["285"] = 276,
+		["286"] = 277,
+		["287"] = 278,
 		["289"] = 281,
 		["290"] = 282,
-		["291"] = 281,
-		["292"] = 284,
-		["293"] = 285,
-		["294"] = 286,
-		["295"] = 287,
+		["292"] = 271,
+		["293"] = 271,
+		["294"] = 285,
+		["295"] = 286,
 		["296"] = 287,
-		["297"] = 287,
-		["298"] = 288,
-		["299"] = 289,
-		["301"] = 287,
-		["302"] = 287,
-		["304"] = 284,
-		["305"] = 294,
-		["306"] = 295,
-		["309"] = 296,
-		["312"] = 297,
-		["313"] = 298,
-		["314"] = 299,
-		["315"] = 300,
-		["317"] = 300,
-		["319"] = 301,
-		["321"] = 303,
-		["322"] = 303,
-		["323"] = 303,
-		["324"] = 303,
-		["325"] = 303,
-		["326"] = 303,
-		["328"] = 294,
-		["329"] = 276,
-		["330"] = 268,
-		["331"] = 268,
-		["332"] = 268,
-		["333"] = 268,
-		["334"] = 268,
-		["335"] = 268,
-		["336"] = 268,
-		["337"] = 268,
-		["338"] = 276,
-		["340"] = 276,
-		["341"] = 311,
-		["342"] = 319,
-		["343"] = 311,
-		["344"] = 319,
-		["345"] = 324,
-		["346"] = 325,
-		["347"] = 324,
-		["348"] = 327,
-		["349"] = 328,
-		["350"] = 329,
-		["351"] = 330,
-		["352"] = 330,
-		["353"] = 330,
-		["354"] = 331,
-		["355"] = 332,
-		["357"] = 330,
-		["358"] = 330,
-		["360"] = 327,
-		["361"] = 337,
-		["362"] = 338,
-		["365"] = 339,
-		["366"] = 340,
-		["367"] = 341,
-		["368"] = 342,
-		["369"] = 343,
-		["371"] = 345,
-		["372"] = 345,
-		["373"] = 345,
-		["374"] = 345,
-		["375"] = 345,
-		["376"] = 345,
-		["378"] = 337,
-		["379"] = 319,
-		["380"] = 311,
-		["381"] = 311,
-		["382"] = 311,
-		["383"] = 311,
-		["384"] = 311,
-		["385"] = 311,
-		["386"] = 311,
-		["387"] = 311,
-		["388"] = 319,
-		["390"] = 319,
-		["391"] = 353,
-		["392"] = 361,
-		["393"] = 353,
-		["394"] = 361,
-		["395"] = 375,
-		["396"] = 376,
-		["397"] = 377,
-		["398"] = 378,
-		["399"] = 375,
-		["400"] = 380,
-		["401"] = 381,
-		["402"] = 382,
-		["403"] = 383,
-		["404"] = 384,
-		["405"] = 385,
-		["406"] = 386,
-		["407"] = 387,
-		["409"] = 389,
-		["411"] = 380,
-		["412"] = 392,
-		["413"] = 393,
-		["414"] = 394,
-		["415"] = 395,
-		["417"] = 392,
-		["418"] = 398,
-		["419"] = 399,
-		["420"] = 400,
-		["421"] = 401,
-		["422"] = 402,
-		["423"] = 403,
-		["424"] = 403,
-		["425"] = 403,
-		["426"] = 403,
-		["427"] = 403,
-		["428"] = 403,
-		["429"] = 404,
-		["430"] = 405,
-		["431"] = 405,
-		["432"] = 405,
-		["433"] = 405,
-		["434"] = 405,
-		["435"] = 406,
-		["436"] = 407,
-		["437"] = 407,
-		["438"] = 407,
-		["439"] = 407,
-		["440"] = 407,
-		["443"] = 398,
-		["444"] = 411,
-		["445"] = 412,
-		["446"] = 413,
-		["447"] = 414,
-		["450"] = 418,
-		["451"] = 419,
-		["452"] = 419,
-		["454"] = 425,
-		["455"] = 426,
-		["458"] = 429,
-		["461"] = 433,
-		["462"] = 434,
-		["463"] = 435,
-		["464"] = 436,
-		["465"] = 436,
-		["466"] = 436,
-		["467"] = 437,
-		["468"] = 438,
-		["469"] = 439,
-		["470"] = 440,
-		["471"] = 441,
-		["472"] = 442,
-		["474"] = 436,
-		["475"] = 436,
-		["476"] = 445,
-		["477"] = 447,
-		["478"] = 447,
-		["479"] = 447,
-		["480"] = 447,
-		["481"] = 448,
-		["482"] = 448,
-		["483"] = 448,
-		["484"] = 448,
-		["485"] = 448,
-		["486"] = 448,
-		["487"] = 448,
-		["488"] = 448,
-		["489"] = 411,
-		["490"] = 450,
-		["491"] = 451,
-		["492"] = 452,
-		["493"] = 450,
-		["494"] = 459,
-		["495"] = 460,
-		["496"] = 459,
-		["497"] = 361,
-		["498"] = 353,
-		["499"] = 353,
-		["500"] = 353,
-		["501"] = 353,
-		["502"] = 353,
-		["503"] = 353,
-		["504"] = 353,
-		["505"] = 353,
-		["506"] = 361,
-		["508"] = 361,
+		["297"] = 257,
+		["298"] = 256,
+		["299"] = 255,
+		["300"] = 256,
+		["302"] = 256,
+		["303"] = 293,
+		["304"] = 301,
+		["305"] = 293,
+		["306"] = 301,
+		["307"] = 306,
+		["308"] = 307,
+		["309"] = 306,
+		["310"] = 309,
+		["311"] = 310,
+		["312"] = 311,
+		["313"] = 312,
+		["314"] = 312,
+		["315"] = 312,
+		["316"] = 313,
+		["317"] = 314,
+		["319"] = 312,
+		["320"] = 312,
+		["322"] = 309,
+		["323"] = 319,
+		["324"] = 320,
+		["327"] = 321,
+		["330"] = 322,
+		["331"] = 323,
+		["332"] = 324,
+		["333"] = 325,
+		["335"] = 325,
+		["337"] = 326,
+		["339"] = 328,
+		["340"] = 328,
+		["341"] = 328,
+		["342"] = 328,
+		["343"] = 328,
+		["344"] = 328,
+		["346"] = 319,
+		["347"] = 301,
+		["348"] = 293,
+		["349"] = 293,
+		["350"] = 293,
+		["351"] = 293,
+		["352"] = 293,
+		["353"] = 293,
+		["354"] = 293,
+		["355"] = 293,
+		["356"] = 301,
+		["358"] = 301,
+		["359"] = 336,
+		["360"] = 344,
+		["361"] = 336,
+		["362"] = 344,
+		["363"] = 349,
+		["364"] = 350,
+		["365"] = 349,
+		["366"] = 352,
+		["367"] = 353,
+		["368"] = 354,
+		["369"] = 355,
+		["370"] = 355,
+		["371"] = 355,
+		["372"] = 356,
+		["373"] = 357,
+		["375"] = 355,
+		["376"] = 355,
+		["378"] = 352,
+		["379"] = 362,
+		["380"] = 363,
+		["383"] = 364,
+		["384"] = 365,
+		["385"] = 366,
+		["386"] = 367,
+		["387"] = 368,
+		["389"] = 370,
+		["390"] = 370,
+		["391"] = 370,
+		["392"] = 370,
+		["393"] = 370,
+		["394"] = 370,
+		["396"] = 362,
+		["397"] = 344,
+		["398"] = 336,
+		["399"] = 336,
+		["400"] = 336,
+		["401"] = 336,
+		["402"] = 336,
+		["403"] = 336,
+		["404"] = 336,
+		["405"] = 336,
+		["406"] = 344,
+		["408"] = 344,
+		["409"] = 378,
+		["410"] = 386,
+		["411"] = 378,
+		["412"] = 386,
+		["413"] = 400,
+		["414"] = 401,
+		["415"] = 402,
+		["416"] = 403,
+		["417"] = 400,
+		["418"] = 405,
+		["419"] = 406,
+		["420"] = 407,
+		["421"] = 408,
+		["422"] = 409,
+		["423"] = 410,
+		["424"] = 411,
+		["425"] = 412,
+		["427"] = 414,
+		["429"] = 405,
+		["430"] = 417,
+		["431"] = 418,
+		["432"] = 419,
+		["433"] = 420,
+		["435"] = 417,
+		["436"] = 423,
+		["437"] = 424,
+		["438"] = 425,
+		["439"] = 426,
+		["440"] = 427,
+		["441"] = 428,
+		["442"] = 428,
+		["443"] = 428,
+		["444"] = 428,
+		["445"] = 428,
+		["446"] = 428,
+		["447"] = 429,
+		["448"] = 430,
+		["449"] = 430,
+		["450"] = 430,
+		["451"] = 430,
+		["452"] = 430,
+		["453"] = 431,
+		["454"] = 432,
+		["455"] = 432,
+		["456"] = 432,
+		["457"] = 432,
+		["458"] = 432,
+		["461"] = 423,
+		["462"] = 436,
+		["463"] = 437,
+		["464"] = 438,
+		["465"] = 439,
+		["468"] = 443,
+		["469"] = 444,
+		["470"] = 444,
+		["472"] = 450,
+		["473"] = 451,
+		["476"] = 454,
+		["479"] = 458,
+		["480"] = 459,
+		["481"] = 460,
+		["482"] = 461,
+		["483"] = 461,
+		["484"] = 461,
+		["485"] = 462,
+		["486"] = 463,
+		["487"] = 464,
+		["488"] = 465,
+		["489"] = 466,
+		["490"] = 467,
+		["492"] = 461,
+		["493"] = 461,
+		["494"] = 470,
+		["495"] = 472,
+		["496"] = 472,
+		["497"] = 472,
+		["498"] = 472,
+		["499"] = 473,
+		["500"] = 473,
+		["501"] = 473,
+		["502"] = 473,
+		["503"] = 473,
+		["504"] = 473,
+		["505"] = 473,
+		["506"] = 473,
+		["507"] = 436,
+		["508"] = 475,
+		["509"] = 476,
+		["510"] = 477,
+		["511"] = 475,
+		["512"] = 484,
+		["513"] = 485,
+		["514"] = 484,
+		["515"] = 386,
+		["516"] = 378,
+		["517"] = 378,
+		["518"] = 378,
+		["519"] = 378,
+		["520"] = 378,
+		["521"] = 378,
+		["522"] = 378,
+		["523"] = 378,
+		["524"] = 386,
+		["526"] = 386,
 	}
 )
 local i = {}
@@ -484,8 +498,10 @@ function t.prototype.GetAbilitySpecialValue(self)
 		- self:GetAbilityTalentValue("kunkka_talent_5", "cooldown_reduce")
 	self.bonus_damage = self:GetAbilitySpecialValueFor("bonus_damage")
 		+ self:GetAbilityTalentValue("kunkka_talent_8", "bonus_damage")
+		+ self:GetAbilityTalentValue("kunkka_talent_10", "damage_bonus")
 	self.bonus_damage_pct = self:GetAbilitySpecialValueFor("bonus_damage_pct")
 	self.talent_7_damage_pct = self:GetAbilityTalentValue("kunkka_talent_7", "damage_pct")
+	self.talent_10_crit_bonus = self:GetAbilityTalentValue("kunkka_talent_10", "crit_bonus")
 	self.talent_3_rum_up = self:GetAbilityTalentValue("kunkka_talent_3", "rum_up")
 	self.talent_1_reduce_interval = self:GetAbilityTalentValue("kunkka_talent_1", "reduce_interval")
 	self.s_interval = self:GetAbilityTalentValue("kunkka_shard", "interval")
@@ -497,12 +513,25 @@ function t.prototype.EDeclareFunctions(self)
 	return {
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_PROCATTACK_DAMAGE_BONUS,
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACK_SOURCE_ABILITY,
+		EOMModifierFunction.EOM_MODIFIER_PROPERTY_PHYSICAL_CRITICALSTRIKE_CHANCE_BONUS,
+		EOMModifierFunction.EOM_MODIFIER_PROPERTY_MAGICAL_CRITICALSTRIKE_CHANCE,
 	}
+end
+function t.prototype.EOM_GetModifierPhysicalCriticalStrikeChanceBonus(self, u)
+	if (u and u.ability) == self:GetAbility() then
+		return self.talent_10_crit_bonus
+	end
+end
+function t.prototype.EOM_GetModifierMagicalCriticalStrikeChance(self, u)
+	if (u and u.ability) == self:GetAbility() then
+		return self.talent_10_crit_bonus
+	end
 end
 function t.prototype.EOM_GetModifierProcAttackDamageBonus(self, u)
 	if IsServer() then
-		if self.enable and IsValid(u.ability) and u.ability == self:GetAbility() then
-			return self.bonus_damage + self:GetParent():GetHealthDeficit() * self.bonus_damage_pct * 0.01
+		if self.enable and IsValid(u and u.ability) and u.ability == self:GetAbility() then
+			local v = self:GetParent():GetMaxHealth() * self.talent_7_damage_pct * 0.01
+			return self.bonus_damage + self:GetParent():GetHealthDeficit() * self.bonus_damage_pct * 0.01 + v
 		end
 	end
 end
@@ -511,7 +540,24 @@ function t.prototype.EDeclareEvents(self)
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_ATTACK_LANDED] = { self:GetParent(), -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { -1, self:GetParent() },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_CRITICAL_CALCULATED] = { self:GetParent(), -1 },
 	}
+end
+function t.prototype.OnCriticalCalculated(self, w)
+	if w.is_crit and w.ability == self:GetAbility() and self:HasTalent("kunkka_talent_10") then
+		if
+			bit.band(w.damage_flags, DamageFlags.DAMAGE_FLAG_NO_DAMAGE_INCOMING)
+			~= DamageFlags.DAMAGE_FLAG_NO_DAMAGE_INCOMING
+		then
+			w.damage_flags = w.damage_flags + DamageFlags.DAMAGE_FLAG_NO_DAMAGE_INCOMING
+		end
+		if
+			bit.band(w.damage_flags, DamageFlags.DAMAGE_FLAG_NO_EVASION_DAMAGE_INCOMING)
+			~= DamageFlags.DAMAGE_FLAG_NO_EVASION_DAMAGE_INCOMING
+		then
+			w.damage_flags = w.damage_flags + DamageFlags.DAMAGE_FLAG_NO_EVASION_DAMAGE_INCOMING
+		end
+	end
 end
 function t.prototype.OnBattleStart(self, u)
 	self.enable = false
@@ -532,13 +578,13 @@ function t.prototype.OnIntervalThink(self)
 			self.cooldown_remain = self.cooldown
 			return
 		end
-		local v = self:GetParent()
-		v:AddNewModifier(v, self:GetAbility(), "modifier_kunkka_talent_buff", {})
+		local x = self:GetParent()
+		x:AddNewModifier(x, self:GetAbility(), "modifier_kunkka_talent_buff", {})
 	end
 end
 function t.prototype.OnCustomAttackLanded(self, w)
-	local v = self:GetParent()
-	if not (self.enable and v:HasModifier("modifier_kunkka_talent_buff")) then
+	local x = self:GetParent()
+	if not (self.enable and x:HasModifier("modifier_kunkka_talent_buff")) then
 		if self.cooldown_remain > 0 then
 			if self.s_interval > 0 then
 				self.cooldown_remain = self.cooldown_remain - self.s_interval
@@ -547,46 +593,38 @@ function t.prototype.OnCustomAttackLanded(self, w)
 				self.cooldown_remain = self.cooldown_remain - -self.talent_1_reduce_interval
 			end
 			if self.cooldown_remain <= 0 then
-				local v = self:GetParent()
-				v:AddNewModifier(v, self:GetAbility(), "modifier_kunkka_talent_buff", {})
+				local x = self:GetParent()
+				x:AddNewModifier(x, self:GetAbility(), "modifier_kunkka_talent_buff", {})
 			end
 		end
 		return
 	end
-	local x = w.target
-	if not IsInjurable(v, x) then
+	local y = w.target
+	if not IsInjurable(x, y) then
 		return
 	end
-	v:RemoveModifierByName("modifier_kunkka_talent_buff")
+	x:RemoveModifierByName("modifier_kunkka_talent_buff")
 	self.enable = false
 	self.cooldown_remain = self.cooldown
-	if self.talent_7_damage_pct > 0 then
-		self:GetParent():DealDamage(
-			self:GetParent():GetEnemy(),
-			self:GetAbility(),
-			self:GetParent():GetMaxHealth() * self.talent_7_damage_pct * 0.01,
-			EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL
-		)
-	end
-	x:EmitSound("Hero_Kunkka.TidebringerDamage")
-	v:EmitSound("Hero_Kunkka.Tidebringer.Attack")
+	y:EmitSound("Hero_Kunkka.TidebringerDamage")
+	x:EmitSound("Hero_Kunkka.Tidebringer.Attack")
 end
 function t.prototype.OnCustomTakeDamage(self, w)
 	if self.talent_3_rum_up > 0 then
-		local v = self:GetParent()
-		if v:GetHealthPercent() <= self.talent_3_rum_up then
-			local y = v:FindAbilityByName("kunkka_ult")
-			if IsValid(y) then
-				v:AddNewModifier(v, y, "modifier_kunkka_ult_damage_record", {})
+		local x = self:GetParent()
+		if x:GetHealthPercent() <= self.talent_3_rum_up then
+			local z = x:FindAbilityByName("kunkka_ult")
+			if IsValid(z) then
+				x:AddNewModifier(x, z, "modifier_kunkka_ult_damage_record", {})
 			end
-		elseif v:HasModifier("modifier_kunkka_ult_damage_record") then
-			v:RemoveModifierByName("modifier_kunkka_ult_damage_record")
+		elseif x:HasModifier("modifier_kunkka_ult_damage_record") then
+			x:RemoveModifierByName("modifier_kunkka_ult_damage_record")
 		end
 	end
 end
 function t.prototype.EOM_GetModifierAttackSourceAbility(self, u)
-	local v = self:GetParent()
-	if not self.enable and v:HasModifier("modifier_kunkka_talent_buff") then
+	local x = self:GetParent()
+	if not self.enable and x:HasModifier("modifier_kunkka_talent_buff") then
 		self.enable = true
 		return self:GetAbility()
 	end
@@ -609,55 +647,55 @@ t = e(
 )
 i.modifier_kunkka_talent = t
 i.modifier_kunkka_talent_buff = c()
-local z = i.modifier_kunkka_talent_buff
-z.name = "modifier_kunkka_talent_buff"
-d(z, n)
-function z.prototype.GetAbilitySpecialValue(self)
+local A = i.modifier_kunkka_talent_buff
+A.name = "modifier_kunkka_talent_buff"
+d(A, n)
+function A.prototype.GetAbilitySpecialValue(self)
 	self.bonus_damage = self:GetAbilitySpecialValueFor("bonus_damage")
 	self.bonus_damage_pct = self:GetAbilitySpecialValueFor("bonus_damage_pct")
 end
-function z.prototype.OnCreated(self, u)
-	local v = self:GetParent()
+function A.prototype.OnCreated(self, u)
+	local x = self:GetParent()
 	if IsClient() then
-		local A = ParticleManager:CreateParticle(
+		local B = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf",
 			PATTACH_ABSORIGIN_FOLLOW,
-			v
+			x
 		)
 		ParticleManager:SetParticleControlEnt(
-			A,
+			B,
 			0,
-			v,
+			x,
 			PATTACH_POINT_FOLLOW,
 			"attach_tidebringer",
-			v:GetAbsOrigin(),
+			x:GetAbsOrigin(),
 			true
 		)
 		ParticleManager:SetParticleControlEnt(
-			A,
+			B,
 			1,
-			v,
+			x,
 			PATTACH_POINT_FOLLOW,
 			"attach_tidebringer_2",
-			v:GetAbsOrigin(),
+			x:GetAbsOrigin(),
 			true
 		)
-		ParticleManager:SetParticleControlEnt(A, 2, v, PATTACH_POINT_FOLLOW, "attach_sword", v:GetAbsOrigin(), true)
-		self:AddParticle(A, false, false, -1, false, false)
+		ParticleManager:SetParticleControlEnt(B, 2, x, PATTACH_POINT_FOLLOW, "attach_sword", x:GetAbsOrigin(), true)
+		self:AddParticle(B, false, false, -1, false, false)
 	else
-		v:EmitSound("Hero_Kunkaa.Tidebringer")
+		x:EmitSound("Hero_Kunkaa.Tidebringer")
 	end
 end
-function z.prototype.DeclareFunctions(self)
+function A.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS, MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND }
 end
-function z.prototype.GetActivityTranslationModifiers(self)
+function A.prototype.GetActivityTranslationModifiers(self)
 	return "tidebringer"
 end
-function z.prototype.GetAttackSound(self)
+function A.prototype.GetAttackSound(self)
 	return "Hero_Kunkka.Tidebringer.Attack"
 end
-z = e(
+A = e(
 	{
 		o(
 			a,
@@ -671,79 +709,79 @@ z = e(
 			}
 		),
 	},
-	z
+	A
 )
-i.modifier_kunkka_talent_buff = z
+i.modifier_kunkka_talent_buff = A
 i.kunkka_ult = c()
-local B = i.kunkka_ult
-B.name = "kunkka_ult"
-d(B, q)
-function B.prototype.OnSpellStart(self)
-	local C = self:GetCaster()
-	local x = C:GetEnemy()
-	if not IsInjurable(x, C) then
+local C = i.kunkka_ult
+C.name = "kunkka_ult"
+d(C, q)
+function C.prototype.OnSpellStart(self)
+	local D = self:GetCaster()
+	local y = D:GetEnemy()
+	if not IsInjurable(y, D) then
 		return
 	end
-	local D = self:GetSpecialValueFor("duration")
-	local E = self:GetSpecialValueFor("damage_pct") + self:GetTalentValue("kunkka_talent_2", "rum_damage_pct")
-	local F = (x:GetAbsOrigin() - C:GetAbsOrigin()):Normalized()
-	local G = x:GetAbsOrigin() + F * -400 * D
-	local A = ParticleManager:CreateParticle(
+	local E = self:GetSpecialValueFor("duration")
+	local F = self:GetSpecialValueFor("damage_pct") + self:GetTalentValue("kunkka_talent_2", "rum_damage_pct")
+	local G = (y:GetAbsOrigin() - D:GetAbsOrigin()):Normalized()
+	local H = y:GetAbsOrigin() + G * -400 * E
+	local B = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_kunkka/kunkka_ghost_ship.vpcf",
 		PATTACH_CUSTOMORIGIN,
-		C
+		D
 	)
-	ParticleManager:SetParticleControl(A, 0, G)
-	ParticleManager:SetParticleControl(A, 1, F * 400)
-	GameTimer(D, function()
-		ParticleManager:DestroyParticle(A, false)
-		if IsInjurable(C, x) then
-			local H = self:GetSpecialValueFor("damage")
-			local I = C:FindModifierByName("modifier_kunkka_ult")
-			if IsValid(I) then
-				local J = I:getTotalRecord()
-				H = H + J * E * 0.01
+	ParticleManager:SetParticleControl(B, 0, H)
+	ParticleManager:SetParticleControl(B, 1, G * 400)
+	GameTimer(E, function()
+		ParticleManager:DestroyParticle(B, false)
+		if IsInjurable(D, y) then
+			local I = self:GetSpecialValueFor("damage")
+			local J = D:FindModifierByName("modifier_kunkka_ult")
+			if IsValid(J) then
+				local K = J:getTotalRecord()
+				I = I + K * F * 0.01
 			end
-			C:DealDamage(x, self, H, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-			C:EmitSound("Ability.Ghostship.crash")
+			D:DealDamage(y, self, I, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+			D:EmitSound("Ability.Ghostship.crash")
 		end
 	end)
-	C:EmitSound("Ability.Ghostship.bell")
-	C:EmitSound("Ability.Ghostship")
-	C:AddNewModifier(C, self, "modifier_kunkka_ult_damage_record_ult", { duration = D })
+	D:EmitSound("Ability.Ghostship.bell")
+	D:EmitSound("Ability.Ghostship")
+	D:AddNewModifier(D, self, "modifier_kunkka_ult_damage_record_ult", { duration = E })
 end
-B = e({ r(nil) }, B)
-i.kunkka_ult = B
+C = e({ r(nil) }, C)
+i.kunkka_ult = C
 i.modifier_kunkka_ult_damage_record_ult = c()
-local K = i.modifier_kunkka_ult_damage_record_ult
-K.name = "modifier_kunkka_ult_damage_record_ult"
-d(K, n)
-function K.prototype.GetAbilitySpecialValue(self)
+local L = i.modifier_kunkka_ult_damage_record_ult
+L.name = "modifier_kunkka_ult_damage_record_ult"
+d(L, n)
+function L.prototype.GetAbilitySpecialValue(self)
 	self.reduce_pct = BUFF_VALUE.DrunkReduce + self:GetAbilityTalentValue("kunkka_talent_6", "rum_reduce_pct")
 end
-function K.prototype.OnCreated(self, u)
+function L.prototype.OnCreated(self, u)
 	if IsServer() then
 		self.rum_ability = self:GetParent():FindAbilityByName("rum_displayer")
-		self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_PREDAMAGE, function(L, u, M, x)
-			if x == self:GetParent() then
+		self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_PREDAMAGE, function(M, u, N, y)
+			if y == self:GetParent() then
 				self:OnPreDamage(u)
 			end
 		end)
 	end
 end
-function K.prototype.OnPreDamage(self, w)
+function L.prototype.OnPreDamage(self, w)
 	if w.ability == self.rum_ability then
 		return
 	end
 	if self:GetParent():HasModifier("modifier_kunkka_ult_damage_record") then
 		return
 	end
-	local N = math.floor(w.damage * self.reduce_pct * 0.01)
-	w.damage = w.damage - N
+	local O = math.floor(w.damage * self.reduce_pct * 0.01)
+	w.damage = w.damage - O
 	if IsValid(self.rum_modifier) and self.rum_modifier.RecordDamage ~= nil then
-		local O = self.rum_modifier
-		if O ~= nil then
-			O:RecordDamage(N)
+		local P = self.rum_modifier
+		if P ~= nil then
+			P:RecordDamage(O)
 		end
 		self.rum_modifier:SetDuration(BUFF_VALUE.DrunkDuration, true)
 	else
@@ -751,11 +789,11 @@ function K.prototype.OnPreDamage(self, w)
 			self:GetParent(),
 			self:GetAbility(),
 			"modifier_kunkka_ult",
-			{ duration = BUFF_VALUE.DrunkDuration, record_damage = N }
+			{ duration = BUFF_VALUE.DrunkDuration, record_damage = O }
 		)
 	end
 end
-K = e(
+L = e(
 	{
 		o(
 			a,
@@ -769,45 +807,45 @@ K = e(
 			}
 		),
 	},
-	K
+	L
 )
-i.modifier_kunkka_ult_damage_record_ult = K
+i.modifier_kunkka_ult_damage_record_ult = L
 i.modifier_kunkka_ult_damage_record = c()
-local P = i.modifier_kunkka_ult_damage_record
-P.name = "modifier_kunkka_ult_damage_record"
-d(P, n)
-function P.prototype.GetAbilitySpecialValue(self)
+local Q = i.modifier_kunkka_ult_damage_record
+Q.name = "modifier_kunkka_ult_damage_record"
+d(Q, n)
+function Q.prototype.GetAbilitySpecialValue(self)
 	self.reduce_pct = BUFF_VALUE.DrunkReduce + self:GetAbilityTalentValue("kunkka_talent_6", "rum_reduce_pct")
 end
-function P.prototype.OnCreated(self, u)
+function Q.prototype.OnCreated(self, u)
 	if IsServer() then
 		self.rum_ability = self:GetParent():FindAbilityByName("rum_displayer")
-		self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_PREDAMAGE, function(L, u, M, x)
-			if x == self:GetParent() then
+		self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_PREDAMAGE, function(M, u, N, y)
+			if y == self:GetParent() then
 				self:OnPreDamage(u)
 			end
 		end)
 	end
 end
-function P.prototype.OnPreDamage(self, w)
+function Q.prototype.OnPreDamage(self, w)
 	if w.ability == self.rum_ability then
 		return
 	end
-	local N = math.floor(w.damage * self.reduce_pct * 0.01)
-	w.damage = w.damage - N
+	local O = math.floor(w.damage * self.reduce_pct * 0.01)
+	w.damage = w.damage - O
 	if IsValid(self.rum_modifier) then
-		self.rum_modifier:RecordDamage(N)
+		self.rum_modifier:RecordDamage(O)
 		self.rum_modifier:SetDuration(BUFF_VALUE.DrunkDuration, true)
 	else
 		self.rum_modifier = self:GetParent():AddNewModifier(
 			self:GetParent(),
 			self:GetAbility(),
 			"modifier_kunkka_ult",
-			{ duration = BUFF_VALUE.DrunkDuration, record_damage = N }
+			{ duration = BUFF_VALUE.DrunkDuration, record_damage = O }
 		)
 	end
 end
-P = e(
+Q = e(
 	{
 		o(
 			a,
@@ -821,19 +859,19 @@ P = e(
 			}
 		),
 	},
-	P
+	Q
 )
-i.modifier_kunkka_ult_damage_record = P
+i.modifier_kunkka_ult_damage_record = Q
 i.modifier_kunkka_ult = c()
-local Q = i.modifier_kunkka_ult
-Q.name = "modifier_kunkka_ult"
-d(Q, n)
-function Q.prototype.GetAbilitySpecialValue(self)
+local R = i.modifier_kunkka_ult
+R.name = "modifier_kunkka_ult"
+d(R, n)
+function R.prototype.GetAbilitySpecialValue(self)
 	self.rum_duration = BUFF_VALUE.DrunkDuration
 	self.talent_2_interval = self:GetAbilityTalentValue("kunkka_talent_2", "interval")
 	self.talent_2_damage_pct = self:GetAbilityTalentValue("kunkka_talent_2", "damage_pct")
 end
-function Q.prototype.OnCreated(self, u)
+function R.prototype.OnCreated(self, u)
 	if IsServer() then
 		self.rum_ability = self:GetParent():FindAbilityByName("rum_displayer")
 		self.record = 0
@@ -845,44 +883,44 @@ function Q.prototype.OnCreated(self, u)
 		self:StartIntervalThink(1)
 	end
 end
-function Q.prototype.OnRefresh(self, u)
+function R.prototype.OnRefresh(self, u)
 	if IsServer() then
 		self.rum_ability = self:GetParent():FindAbilityByName("rum_displayer")
 		self:RecordDamage(u and u.record_damage or 0)
 	end
 end
-function Q.prototype.OnThink(self, R)
-	if R == "kunkka_talent_2" then
-		local v = self:GetParent()
-		local x = self:GetParent():GetEnemy()
-		if IsInjurable(v, x) and self:getTotalRecord() > 0 then
-			v:DealDamage(
-				x,
+function R.prototype.OnThink(self, S)
+	if S == "kunkka_talent_2" then
+		local x = self:GetParent()
+		local y = self:GetParent():GetEnemy()
+		if IsInjurable(x, y) and self:getTotalRecord() > 0 then
+			x:DealDamage(
+				y,
 				self:GetParent():FindAbilityByName("kunkka_talent_2"),
 				self:getTotalRecord() * self.talent_2_damage_pct * 0.01,
 				EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL
 			)
-			local A = ParticleManager:CreateParticle(
+			local B = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
-				x,
-				v
+				y,
+				x
 			)
-			ParticleManager:SetParticleControl(A, 0, x:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(A)
-			EmitSoundOnLocationWithCaster(x:GetAbsOrigin(), "Ability.Torrent", v)
+			ParticleManager:SetParticleControl(B, 0, y:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(B)
+			EmitSoundOnLocationWithCaster(y:GetAbsOrigin(), "Ability.Torrent", x)
 		end
 	end
 end
-function Q.prototype.OnIntervalThink(self)
-	local v = self:GetParent()
-	local x = v:GetEnemy()
-	if not IsInjurable(v, x) then
+function R.prototype.OnIntervalThink(self)
+	local x = self:GetParent()
+	local y = x:GetEnemy()
+	if not IsInjurable(x, y) then
 		return
 	end
 	if self.record > 0 then
-		local S = self.recordList
-		S[#S + 1] = { damage = self.record, remainDamage = self.record, time = 0 }
+		local T = self.recordList
+		T[#T + 1] = { damage = self.record, remainDamage = self.record, time = 0 }
 	else
 		if self:GetStackCount() <= 0 then
 			self:Destroy()
@@ -892,25 +930,25 @@ function Q.prototype.OnIntervalThink(self)
 		end
 	end
 	self.record = 0
-	local H = 0
-	local T = 0
-	f(self.recordList, function(U, V, W)
-		if V.remainDamage > 0 then
-			V.time = V.time + 1
-			local X = V.time == self.rum_duration and V.remainDamage or V.damage * 1 / self.rum_duration
-			V.remainDamage = V.remainDamage - X
-			T = T + V.remainDamage
-			H = H + X
+	local I = 0
+	local U = 0
+	f(self.recordList, function(V, W, X)
+		if W.remainDamage > 0 then
+			W.time = W.time + 1
+			local Y = W.time == self.rum_duration and W.remainDamage or W.damage * 1 / self.rum_duration
+			W.remainDamage = W.remainDamage - Y
+			U = U + W.remainDamage
+			I = I + Y
 		end
 	end)
-	self:SetStackCount(T)
-	self.recordList = g(self.recordList, function(U, V)
-		return V.remainDamage > 0
+	self:SetStackCount(U)
+	self.recordList = g(self.recordList, function(V, W)
+		return W.remainDamage > 0
 	end)
-	x:DealDamage(
-		v,
+	y:DealDamage(
+		x,
 		self.rum_ability,
-		H,
+		I,
 		EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE,
 		DamageFlags.DAMAGE_FLAG_NO_LETHAL
 			+ DamageFlags.DAMAGE_FLAG_REFLECTION
@@ -919,14 +957,14 @@ function Q.prototype.OnIntervalThink(self)
 		"Rum"
 	)
 end
-function Q.prototype.RecordDamage(self, H)
-	self.record = self.record + H
-	self:SetStackCount(self:GetStackCount() + H)
+function R.prototype.RecordDamage(self, I)
+	self.record = self.record + I
+	self:SetStackCount(self:GetStackCount() + I)
 end
-function Q.prototype.getTotalRecord(self)
+function R.prototype.getTotalRecord(self)
 	return self:GetStackCount()
 end
-Q = e(
+R = e(
 	{
 		o(
 			a,
@@ -940,7 +978,7 @@ Q = e(
 			}
 		),
 	},
-	Q
+	R
 )
-i.modifier_kunkka_ult = Q
+i.modifier_kunkka_ult = R
 return i

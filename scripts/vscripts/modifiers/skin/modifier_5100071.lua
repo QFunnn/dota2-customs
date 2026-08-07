@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -65,7 +65,7 @@ d(k, i)
 function k.prototype.OnCreated(self, l)
 	Wearable:registerParticleModifier(
 		self:GetParent(),
-		"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf",
+		"particles/units/heroes/hero_warlock/warlock_shadow_word_debuff.vpcf",
 		"models/eom/hero/witch_1/particles/warlock_1_fx_skill_01.vpcf"
 	)
 	Wearable:registerParticleModifier(

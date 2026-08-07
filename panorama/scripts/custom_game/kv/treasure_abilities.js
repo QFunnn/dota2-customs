@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -17,7 +17,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_1",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_2": {
@@ -28,7 +28,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_2",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_3": {
@@ -39,7 +39,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_3",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_4": {
@@ -51,7 +51,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_4",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_5": {
@@ -62,7 +62,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_5",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_6": {
@@ -74,7 +74,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_6",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_7": {
@@ -86,7 +86,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_7",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_8": {
@@ -97,7 +97,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_8",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_9": {
@@ -108,10 +108,11 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_9",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_10": {
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -119,10 +120,11 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_10",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_11": {
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -130,24 +132,24 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_11",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_12": {
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
-			"health_bonus": 400,
-			"physical_bonus_pct": 4,
-			"magic_bonus_pct": 4,
-			"physical_reduce_pct": 4,
-			"magic_reduce_pct": 4,
-			"attackspeed_bonus": 10,
-			"mana_reply_bonus": 4,
+			"health_bonus": 500,
+			"physical_bonus_pct": 5,
+			"magic_bonus_pct": 5,
+			"physical_reduce_pct": 5,
+			"magic_reduce_pct": 5,
+			"attackspeed_bonus": 15,
+			"mana_reply_bonus": 5,
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_12",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_13": {
@@ -158,7 +160,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_13",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_14": {
@@ -166,7 +168,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		"TreasureType": 2,
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_14",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_15": {
@@ -179,7 +181,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_15",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_16": {
@@ -191,7 +193,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_16",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_17": {
@@ -204,11 +206,11 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_17",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_18": {
-		"AppearStage": 0,
+		"AppearStage": 2,
 		"TreasureType": 2,
 		"AbilityValues": {
 			"attackspeed": 20,
@@ -219,7 +221,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_18",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_19": {
@@ -231,7 +233,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_19",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_20": {
@@ -242,7 +244,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_20",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_21": {
@@ -253,7 +255,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_21",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_22": {
@@ -261,11 +263,11 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		"TreasureType": 2,
 		"AbilityValues": {
 			"hp_pct": 40,
-			"count": 4,
+			"count": 3,
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_22",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_23": {
@@ -276,7 +278,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_23",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_24": {
@@ -287,7 +289,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_24",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_25": {
@@ -298,7 +300,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_25",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_26": {
@@ -310,7 +312,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_26",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_27": {
@@ -322,7 +324,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_27",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_28": {
@@ -334,7 +336,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_28",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_29": {
@@ -346,7 +348,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_29",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_30": {
@@ -358,7 +360,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_30",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_31": {
@@ -371,7 +373,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_31",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_32": {
@@ -383,7 +385,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_32",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_33": {
@@ -395,7 +397,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_33",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_34": {
@@ -407,7 +409,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_34",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_35": {
@@ -419,7 +421,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_35",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_36": {
@@ -431,7 +433,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_36",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_37": {
@@ -443,7 +445,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_37",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_38": {
@@ -454,10 +456,11 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_38",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_39": {
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -465,7 +468,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_39",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_40": {
@@ -477,7 +480,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_40",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_41": {
@@ -489,27 +492,27 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_41",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_42": {
 		"AppearStage": 2,
-		"TreasureType": 1,
+		"TreasureType": 2,
 		"AbilityValues": {
 			"health": 1,
 			"gold": 50,
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_42",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_43": {
-		"AppearStage": 0,
+		"AppearStage": 2,
 		"TreasureType": 1,
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_43",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_44": {
@@ -520,11 +523,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_44",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
 	},
 	"treasure_45": {
 		"AppearCondition": "Sect|sect_attack",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -535,11 +539,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_45",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_46": {
 		"AppearCondition": "Sect|sect_attack",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -550,11 +555,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_46",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_47": {
 		"AppearCondition": "Sect|sect_evade",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -563,11 +569,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_47",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_48": {
 		"AppearCondition": "Sect|sect_crit",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -576,11 +583,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_48",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_49": {
 		"AppearCondition": "Sect|sect_ulti",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -589,11 +597,12 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_49",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_50": {
 		"AppearCondition": "Sect|sect_poison",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -602,38 +611,41 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_50",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_51": {
 		"AppearCondition": "Sect|sect_shield",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
 			"base": 5,
 			"threshold": 40,
-			"exp_bonus": 1,
+			"exp_bonus": 2,
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_51",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_52": {
 		"AppearCondition": "Sect|sect_injury",
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
 			"base": 5,
 			"threshold": 40,
-			"exp_bonus": 1,
+			"exp_bonus": 2,
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_52",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 	"treasure_53": {
+		"PoolTag": 1,
 		"AppearStage": 0,
 		"TreasureType": 2,
 		"AbilityValues": {
@@ -642,7 +654,7 @@ GameUI.CustomUIConfig().treasure_abilities = {
 		},
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/treasures/treasure_53",
-		"AbilityTextureName": "rune_reward",
+		"AbilityTextureName": "treasure_ability",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 	},
 };

@@ -3,20 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
 
 GameUI.CustomUIConfig().CityEffectKv = {
-	"city_1": {
-		"Note": "暗黑之礁",
-		"LandType": "sunken_city",
-		"ScriptFile": "modifiers/city_effect/city_1",
-		"AbilityValues": {
-			"gold_gain": 80,
-		},
-	},
 	"city_5": {
 		"Note": "虚无奥法",
 		"LandType": "void_rift",
@@ -102,11 +94,6 @@ GameUI.CustomUIConfig().CityEffectKv = {
 			"level": 5,
 		},
 	},
-	"city_23": {
-		"Note": "肉山宝藏",
-		"LandType": "hovin_woodlands",
-		"ScriptFile": "modifiers/city_effect/city_23",
-	},
 	"city_26": {
 		"Note": "风暴地",
 		"LandType": "druidic_plateau",
@@ -170,14 +157,6 @@ GameUI.CustomUIConfig().CityEffectKv = {
 			"level": 3,
 		},
 	},
-	"city_36": {
-		"Note": "冥河馈赠",
-		"LandType": "sunken_city",
-		"ScriptFile": "modifiers/city_effect/city_36",
-		"AbilityValues": {
-			"count": 2,
-		},
-	},
 	"city_38": {
 		"Note": "异度位面",
 		"LandType": "prison_desolation",
@@ -193,6 +172,23 @@ GameUI.CustomUIConfig().CityEffectKv = {
 		"ScriptFile": "modifiers/city_effect/city_39",
 		"AbilityValues": {
 			"round": 2,
+		},
+	},
+	"city_40": {
+		"Note": "黑市狂欢",
+		"LandType": "sunken_city",
+		"ScriptFile": "modifiers/city_effect/city_40",
+		"AbilityValues": {
+			"round": 10,
+		},
+	},
+	"city_41": {
+		"Note": "军火商人",
+		"LandType": "sunken_city",
+		"ScriptFile": "modifiers/city_effect/city_41",
+		"AbilityValues": {
+			"round": 20,
+			"level": 4,
 		},
 	},
 };

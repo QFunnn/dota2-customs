@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -13,7 +13,7 @@
 var libs = require('./libs.js');
 var red_point_utils = require('./red_point_utils.js');
 var game_utils = require('./game_utils.js');
-require('./netdata_utils.js');
+var netdata_utils = require('./netdata_utils.js');
 
 const useActivityRedPointStore = () => {
   const [activities, setActivities] = libs.createSignal([]);
@@ -68,16 +68,14 @@ const useActivityRedPointStore = () => {
       const rewards = currentDeepSeaRewards?.[activity.activity_id];
       if (rewards != undefined) {
         const activityProgress = JSON.parseSafe(activity.extra_information)?.activity_progress;
-        const currentStage = currentPlayerTokens?.[activityProgress]?.num;
-        if (currentStage != undefined) {
-          let rewardIndex = 0;
-          for (const rewardID in rewards) {
-            if (rewardIndex++ == currentStage && rewards[rewardID].product_id == 0) {
-              starryTreasureRewardStage = currentStage;
-            }
-            if (rewardIndex > currentStage) {
-              break;
-            }
+        const currentStage = currentPlayerTokens?.[activityProgress]?.num ?? 0;
+        let rewardIndex = 0;
+        for (const rewardID in rewards) {
+          if (rewardIndex++ == currentStage && rewards[rewardID].product_id == 0) {
+            starryTreasureRewardStage = currentStage;
+          }
+          if (rewardIndex > currentStage) {
+            break;
           }
         }
       }
@@ -245,6 +243,7 @@ const useStoreRedPointStore = () => {
   const [playerOrnaments, setPlayerOrnaments] = libs.createSignal();
   const [playerHeroes, setPlayerHeroes] = libs.createSignal();
   const [storeTags, setStoreTags] = libs.createSignal(getClientGlobalData("menu_bar_store_tabs") ?? []);
+  const player_vip = netdata_utils.createPlayerNetData("player_vip", Players.GetLocalPlayer());
   const redPoints = libs.createMemo(() => {
     const result = [];
     const itemsByTag = storeItems();
@@ -252,6 +251,7 @@ const useStoreRedPointStore = () => {
     const ornaments = playerOrnaments();
     const heroes = playerHeroes();
     const availableTags = storeTags();
+    const playerVip = player_vip();
     if (itemsByTag == undefined || purchases == undefined || ornaments == undefined || heroes == undefined) {
       return result;
     }
@@ -260,7 +260,10 @@ const useStoreRedPointStore = () => {
         continue;
       }
       for (const item of itemsByTag[tag]) {
-        if (item.vip == 1 || item.status != 1 || item.real_price != 0) {
+        if (item.status != 1 || item.real_price != 0) {
+          continue;
+        }
+        if (playerVip?.vip_valid != 1 && item.vip == 1) {
           continue;
         }
         if (item.limit_type >= 1 && purchases[item.id] >= item.limit_count) {

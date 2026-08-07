@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -30,8 +30,8 @@ var Player = require('./Player.js');
 var backpack_item = require('./backpack_item.js');
 var EOM_Icon = require('./EOM_Icon.js');
 var StoreItemImage = require('./StoreItemImage.js');
-var HeroProficiencyIcon = require('./HeroProficiencyIcon.js');
 var SectIcon = require('./SectIcon.js');
+var HeroProficiencyIcon = require('./HeroProficiencyIcon.js');
 var HeroRoleCard = require('./HeroRoleCard.js');
 var MenuMarkIcon = require('./MenuMarkIcon.js');
 var EOM_Loading = require('./EOM_Loading.js');
@@ -41,7 +41,9 @@ var WinStreak = require('./WinStreak.js');
 var ScoreBoardTabButtons = require('./ScoreBoardTabButtons.js');
 var profile_simplify = require('./profile_simplify.js');
 var InfoButton = require('./InfoButton.js');
+var game_utils = require('./game_utils.js');
 var rookie_sect = require('./rookie_sect.js');
+var battle_pass_config = require('./battle_pass_config.js');
 var StoreItem = require('./StoreItem.js');
 var EOM_Portrait = require('./EOM_Portrait.js');
 require('./CourierTitle.js');
@@ -49,7 +51,6 @@ require('./profile_info.js');
 require('./Heroes.js');
 require('./MedalBadgeIcon.js');
 require('./RankTierIcon.js');
-require('./game_utils.js');
 
 const BasePopup = props => {
   const merged = libs.mergeProps$1({
@@ -2750,6 +2751,664 @@ const Popup_Comfirm = props => {
           })];
         }
       })];
+    }
+  });
+};
+
+const TALENT_TIERS = [{
+  col0: "SectAStat",
+  col1: "SectBStat",
+  col2: "TriggerValue"
+}, {
+  col0: "SectAStat",
+  col1: "SectBStat",
+  col2: "TriggerChance"
+}, {
+  col0: "SectAStat",
+  col1: "SectBStat",
+  col2: "SectSuppress"
+}, {
+  col0: "AwakenA",
+  col1: "AwakenB",
+  col2: "EffectBoost"
+}];
+const ALLOW_RE_SELECT = false;
+const TIER_LABELS = ["#TalentTier1", "#TalentTier2", "#TalentTier3", "#TalentTier4"];
+const COL_LABELS = [["#Talent_Col0_A", "#Talent_Col0_B", "#Talent_Col0_C"], ["#Talent_Col1_A", "#Talent_Col1_B", "#Talent_Col1_C"], ["#Talent_Col2_A", "#Talent_Col2_B", "#Talent_Col2_C"], ["#Talent_Col3_A", "#Talent_Col3_B", "#Talent_Col3_C"]];
+const CA_STATE_KEY = "_CustomAbilityState";
+function getCAState() {
+  const cfg = GameUI.CustomUIConfig();
+  if (cfg[CA_STATE_KEY] == undefined) {
+    cfg[CA_STATE_KEY] = {
+      srCardSlots: {},
+      talentSelections: [-1, -1, -1, -1]
+    };
+  }
+  return cfg[CA_STATE_KEY];
+}
+function saveCAState(state) {
+  Object.assign(getCAState(), state);
+}
+const Popup_CustomAbility = props => {
+  const localPlayerID = Players.GetLocalPlayer();
+  const canEdit = () => {
+    const state = getGameState();
+    return state == "GameState_Prepare" || state == "GameState_Trait";
+  };
+  const savedState = getCAState();
+  const [banListNet, _setBanListNet] = libs.createSignal(CustomNetTables.GetTableValue("common", "ban_list"));
+  const banList = () => Object.values(banListNet() ?? {});
+  const pickList = () => Object.keys(GameUI.CustomUIConfig().SectAbilitiesKv).filter(sectName => !banList().includes(sectName));
+  const [abilityUpgradeData, setAbilityUpgradeData] = libs.createSignal(CustomNetTables.GetTableValue("sect_data", "ability_upgrade_" + localPlayerID) ?? {});
+  const ownedSRCards = libs.createMemo(() => {
+    const upgrades = abilityUpgradeData() ?? {};
+    return Object.entries(upgrades).filter(([aid, data]) => {
+      const kv = KeyValues.AbilityUpgradesKv[aid];
+      return kv?.rarity == "sr" && (data?.level ?? 0) >= 1;
+    }).map(([aid, data]) => ({
+      aid,
+      kv: KeyValues.AbilityUpgradesKv[aid],
+      level: data.level ?? 0
+    }));
+  });
+  const onDragStart = (source, dragCallbacks) => {
+    const displayPanel = $.CreatePanel("Image", source, "DragPanel", {
+      src: "panel://" + source.id
+    });
+    dragCallbacks.displayPanel = displayPanel;
+    return true;
+  };
+  const onDragEnter = (source, draggedPanel) => {
+    return false;
+  };
+  const onDragLeave = (source, draggedPanel) => {
+    return false;
+  };
+  const onDragDrop = (source, draggedPanel) => {
+    return true;
+  };
+  const onDragEnd = (source, draggedPanel) => {
+    draggedPanel.DeleteAsync(-1);
+  };
+  const [sectMergeData, setsectMergeData] = libs.createSignal(CustomNetTables.GetTableValue("sect_data", "sect_merge_" + localPlayerID) ?? {
+    trigger: "",
+    effect: ""
+  });
+  const [srCardSlots, setSrCardSlots] = libs.createSignal(savedState.srCardSlots);
+  const [talentSelections, setTalentSelections] = libs.createSignal([...savedState.talentSelections]);
+  const currentTier = () => talentSelections().findIndex(v => v === -1);
+  const isTalentComplete = () => currentTier() === -1;
+  const onClickTalent = (tier, col) => {
+    if (isSpectator()) return;
+    if (!canEdit()) {
+      ErrorMessage("#error_only_prepare_state_can_select");
+      return;
+    }
+    const current = currentTier();
+    if (tier < current || tier > current) return;
+    if (talentSelections()[tier] !== -1 && !ALLOW_RE_SELECT) return;
+    setTalentSelections(prev => {
+      const next = [...prev];
+      next[tier] = col;
+      return next;
+    });
+    if (tier === 3) {
+      if (col === 0) {
+        GameEvents.SendCustomEventToServer("select_merge_ability", {
+          type: "trigger_awaken",
+          abilityUpgradeID: srCardSlots().trigger ?? ""
+        });
+      } else if (col === 1) {
+        GameEvents.SendCustomEventToServer("select_merge_ability", {
+          type: "effect_awaken",
+          abilityUpgradeID: srCardSlots().effect ?? ""
+        });
+      }
+    }
+  };
+  const resetTalents = () => {
+    setTalentSelections([-1, -1, -1, -1]);
+  };
+  libs.createEffect(() => {
+    saveCAState({
+      srCardSlots: srCardSlots()
+    });
+  });
+  libs.createEffect(() => {
+    saveCAState({
+      talentSelections: talentSelections()
+    });
+  });
+  const onClickSect = sectName => {
+    if (isSpectator()) return;
+    if (!canEdit()) {
+      ErrorMessage("#error_only_prepare_state_can_select");
+      return;
+    }
+    if (sectMergeData()?.trigger == "" || sectMergeData()?.trigger == undefined) {
+      GameEvents.SendCustomEventToServer("select_merge_ability", {
+        type: "trigger",
+        sectName: sectName
+      });
+      setSrCardSlots(prev => ({
+        ...prev,
+        trigger: undefined
+      }));
+    } else {
+      GameEvents.SendCustomEventToServer("select_merge_ability", {
+        type: "effect",
+        sectName: sectName
+      });
+      setSrCardSlots(prev => ({
+        ...prev,
+        effect: undefined
+      }));
+    }
+  };
+  const onClickSRCard = aid => {
+    if (isSpectator()) return;
+    if (!canEdit()) {
+      ErrorMessage("#error_only_prepare_state_can_select");
+      return;
+    }
+    const sectName = KeyValues.AbilityUpgradesKv[aid]?.sect ?? "";
+    if (sectMergeData()?.trigger == "" || sectMergeData()?.trigger == undefined) {
+      GameEvents.SendCustomEventToServer("select_merge_ability", {
+        type: "trigger",
+        sectName,
+        abilityUpgradeID: aid
+      });
+      setSrCardSlots(prev => ({
+        ...prev,
+        trigger: aid
+      }));
+      if (talentSelections()[3] === 0) {
+        GameEvents.SendCustomEventToServer("select_merge_ability", {
+          type: "trigger_awaken",
+          abilityUpgradeID: aid
+        });
+      }
+    } else {
+      GameEvents.SendCustomEventToServer("select_merge_ability", {
+        type: "effect",
+        sectName,
+        abilityUpgradeID: aid
+      });
+      setSrCardSlots(prev => ({
+        ...prev,
+        effect: aid
+      }));
+      if (talentSelections()[3] === 1) {
+        GameEvents.SendCustomEventToServer("select_merge_ability", {
+          type: "effect_awaken",
+          abilityUpgradeID: aid
+        });
+      }
+    }
+  };
+  const triggerDesc = () => getCustomAbilityDescription(sectMergeData()?.trigger + "_trigger", 1, undefined, true);
+  const effectDesc = () => getCustomAbilityDescription(sectMergeData()?.effect + "_effect", 1, undefined, true);
+  libs.onMount(() => {
+    const listenerIDList = [];
+    listenerIDList.push(useNetTableKey("sect_data", "sect_merge_" + localPlayerID, data => {
+      setsectMergeData(data);
+      if (!data.trigger) setSrCardSlots(prev => ({
+        ...prev,
+        trigger: undefined
+      }));
+      if (!data.effect) setSrCardSlots(prev => ({
+        ...prev,
+        effect: undefined
+      }));
+    }));
+    listenerIDList.push(useNetTableKeyHasDefaultValue("sect_data", "ability_upgrade_" + localPlayerID, data => {
+      setAbilityUpgradeData(data);
+    }));
+    libs.onCleanup(() => {
+      listenerIDList.forEach(id => {
+        CustomNetTables.UnsubscribeNetTableListener(id);
+      });
+    });
+  });
+  let resultCard;
+  libs.createEffect(() => {
+    if (sectMergeData()?.trigger != "" && sectMergeData()?.trigger != undefined && sectMergeData()?.effect != "" && sectMergeData()?.effect != undefined) {
+      resultCard?.TriggerClass("Show");
+    }
+  });
+  libs.createEffect(() => {
+    const id = CustomNetTables.SubscribeNetTableListener("common", function (_, k, v) {
+      if (k === "ban_list") {
+        _setBanListNet(v);
+      }
+    });
+    libs.onCleanup(() => {
+      CustomNetTables.UnsubscribeNetTableListener(id);
+    });
+  });
+  return libs.createComponent(BasePopup, {
+    get PopupID() {
+      return props.PopupID;
+    },
+    className: "Popup_CustomAbility",
+    size: "large",
+    title: "#RecordTab_Trait",
+    get children() {
+      return libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "CustomAbilitySelect",
+        flowChildren: "right",
+        get children() {
+          return [libs.createComponent(EOM_Panel.EOM_Panel, {
+            id: "SROwnedCardPanel",
+            get children() {
+              return [libs.createComponent(EOM_Label.EOM_Label, {
+                id: "SROwnedCardTitle",
+                text: "#SRCardTitle"
+              }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                id: "SROwnedCardList",
+                scroll: "y",
+                get children() {
+                  return libs.createComponent(libs.For, {
+                    get each() {
+                      return ownedSRCards();
+                    },
+                    children: card => libs.createComponent(EOM_Button.EOM_BaseButton, {
+                      "class": "SROwnedCard",
+                      onactivate: () => onClickSRCard(card.aid),
+                      get enabled() {
+                        return libs.memo(() => !!canEdit())() && !(srCardSlots().trigger == card.aid || srCardSlots().effect == card.aid);
+                      },
+                      get children() {
+                        return [libs.createComponent(EOM_Image.EOM_Image, {
+                          className: "SROwnedCardIcon",
+                          get src() {
+                            return `file://{images}/spellicons/${card.kv.Texture}.png`;
+                          }
+                        }), libs.createComponent(EOM_Label.EOM_Label, {
+                          className: "SROwnedCardName",
+                          get text() {
+                            return `#${card.aid}`;
+                          }
+                        })];
+                      }
+                    })
+                  });
+                }
+              })];
+            }
+          }), libs.createComponent(EOM_Panel.EOM_Panel, {
+            id: "CustomAbilityRight",
+            flowChildren: "down",
+            get children() {
+              return [(() => {
+                const _el$ = libs.createElement("Panel", {
+                  id: "SectList",
+                  hittest: false
+                }, null);
+                libs.insert(_el$, libs.createComponent(EOM_Panel.EOM_Panel, {
+                  flowChildren: "right",
+                  align: "center center",
+                  hittest: false,
+                  get children() {
+                    return libs.createComponent(libs.Index, {
+                      get each() {
+                        return pickList();
+                      },
+                      children: (sectName, index) => {
+                        return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                          onDragStart: onDragStart,
+                          onDragLeave: onDragLeave,
+                          onDragEnter: onDragEnter,
+                          onDragDrop: onDragDrop,
+                          onDragEnd: onDragEnd,
+                          get id() {
+                            return sectName();
+                          },
+                          get customTooltip() {
+                            return {
+                              name: "player_sect_list",
+                              sectName: sectName(),
+                              concise: 1
+                            };
+                          },
+                          tooltipPosition: "top",
+                          onactivate: () => {
+                            onClickSect(sectName());
+                          },
+                          get enabled() {
+                            return !(sectMergeData().effect == sectName() || sectMergeData().trigger == sectName());
+                          },
+                          get children() {
+                            return libs.createComponent(SectIcon.SectIcon, {
+                              large: true,
+                              active: true,
+                              get sectName() {
+                                return sectName();
+                              },
+                              width: "56px",
+                              height: "56px"
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                }));
+                return _el$;
+              })(), libs.createComponent(EOM_Panel.EOM_Panel, {
+                flowChildren: "right",
+                horizontalAlign: "center",
+                hittest: false,
+                get children() {
+                  return [libs.createComponent(EOM_Button.EOM_BaseButton, {
+                    "class": "TraitCard",
+                    onactivate: () => {
+                      if (isSpectator()) return;
+                      if (!canEdit()) {
+                        ErrorMessage("#error_only_prepare_state_can_select");
+                        return;
+                      }
+                      GameEvents.SendCustomEventToServer("select_merge_ability", {
+                        type: "trigger",
+                        sectName: ""
+                      });
+                      setSrCardSlots(prev => ({
+                        ...prev,
+                        trigger: undefined
+                      }));
+                    },
+                    get children() {
+                      return [(() => {
+                        const _el$2 = libs.createElement("Panel", {
+                            "class": "Slot"
+                          }, null);
+                          libs.createElement("Image", {
+                            "class": "Add"
+                          }, _el$2);
+                        libs.insert(_el$2, libs.createComponent(libs.Show, {
+                          get when() {
+                            return libs.memo(() => sectMergeData()?.trigger != undefined)() && sectMergeData()?.trigger != "";
+                          },
+                          get children() {
+                            return libs.createComponent(libs.Show, {
+                              get when() {
+                                return srCardSlots().trigger != undefined;
+                              },
+                              get fallback() {
+                                return libs.createComponent(SectIcon.SectIcon, {
+                                  large: true,
+                                  active: true,
+                                  get sectName() {
+                                    return sectMergeData()?.trigger ?? "";
+                                  },
+                                  width: "100px",
+                                  height: "100px"
+                                });
+                              },
+                              get children() {
+                                const _el$4 = libs.createElement("Image", {
+                                  get src() {
+                                    return `file://{images}/spellicons/${KeyValues.AbilityUpgradesKv[srCardSlots().trigger]?.Texture}.png`;
+                                  }
+                                }, null);
+                                libs.setProp(_el$4, "className", "SROwnedCardIcon");
+                                libs.effect(_$p => libs.setProp(_el$4, "src", `file://{images}/spellicons/${KeyValues.AbilityUpgradesKv[srCardSlots().trigger]?.Texture}.png`, _$p));
+                                return _el$4;
+                              }
+                            });
+                          }
+                        }), null);
+                        return _el$2;
+                      })(), libs.createComponent(libs.Show, {
+                        get when() {
+                          return libs.memo(() => sectMergeData()?.trigger != undefined)() && sectMergeData()?.trigger != "";
+                        },
+                        get children() {
+                          const _el$5 = libs.createElement("Label", {
+                            "class": "Name",
+                            get text() {
+                              return "#DOTA_Tooltip_ability_" + sectMergeData()?.trigger;
+                            }
+                          }, null);
+                          libs.effect(_$p => libs.setProp(_el$5, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.trigger, _$p));
+                          return _el$5;
+                        }
+                      }), (() => {
+                        const _el$6 = libs.createElement("Label", {
+                          html: true,
+                          "class": "Desc",
+                          get text() {
+                            return libs.memo(() => !!(sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc();
+                          }
+                        }, null);
+                        libs.effect(_$p => libs.setProp(_el$6, "text", libs.memo(() => !!(sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc(), _$p));
+                        return _el$6;
+                      })()];
+                    }
+                  }), libs.createElement("Image", {
+                    "class": "AddIcon",
+                    hittest: false
+                  }, null), libs.createComponent(EOM_Button.EOM_BaseButton, {
+                    "class": "TraitCard",
+                    onactivate: () => {
+                      if (isSpectator()) return;
+                      if (!canEdit()) {
+                        ErrorMessage("#error_only_prepare_state_can_select");
+                        return;
+                      }
+                      GameEvents.SendCustomEventToServer("select_merge_ability", {
+                        type: "effect",
+                        sectName: ""
+                      });
+                      setSrCardSlots(prev => ({
+                        ...prev,
+                        effect: undefined
+                      }));
+                    },
+                    get children() {
+                      return [(() => {
+                        const _el$8 = libs.createElement("Panel", {
+                            "class": "Slot"
+                          }, null);
+                          libs.createElement("Image", {
+                            "class": "Add"
+                          }, _el$8);
+                        libs.insert(_el$8, libs.createComponent(libs.Show, {
+                          get when() {
+                            return libs.memo(() => sectMergeData()?.effect != undefined)() && sectMergeData()?.effect != "";
+                          },
+                          get children() {
+                            return libs.createComponent(libs.Show, {
+                              get when() {
+                                return srCardSlots().effect != undefined;
+                              },
+                              get fallback() {
+                                return libs.createComponent(SectIcon.SectIcon, {
+                                  large: true,
+                                  active: true,
+                                  get sectName() {
+                                    return sectMergeData()?.effect ?? "";
+                                  },
+                                  width: "100px",
+                                  height: "100px"
+                                });
+                              },
+                              get children() {
+                                const _el$0 = libs.createElement("Image", {
+                                  get src() {
+                                    return `file://{images}/spellicons/${KeyValues.AbilityUpgradesKv[srCardSlots().effect]?.Texture}.png`;
+                                  }
+                                }, null);
+                                libs.setProp(_el$0, "className", "SROwnedCardIcon");
+                                libs.effect(_$p => libs.setProp(_el$0, "src", `file://{images}/spellicons/${KeyValues.AbilityUpgradesKv[srCardSlots().effect]?.Texture}.png`, _$p));
+                                return _el$0;
+                              }
+                            });
+                          }
+                        }), null);
+                        return _el$8;
+                      })(), libs.createComponent(libs.Show, {
+                        get when() {
+                          return libs.memo(() => sectMergeData()?.effect != undefined)() && sectMergeData()?.effect != "";
+                        },
+                        get children() {
+                          const _el$1 = libs.createElement("Label", {
+                            "class": "Name",
+                            get text() {
+                              return "#DOTA_Tooltip_ability_" + sectMergeData()?.effect;
+                            }
+                          }, null);
+                          libs.effect(_$p => libs.setProp(_el$1, "text", "#DOTA_Tooltip_ability_" + sectMergeData()?.effect, _$p));
+                          return _el$1;
+                        }
+                      }), (() => {
+                        const _el$10 = libs.createElement("Label", {
+                          html: true,
+                          "class": "Desc",
+                          get text() {
+                            return libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == ""))() ? "#WaitTrait" : effectDesc();
+                          }
+                        }, null);
+                        libs.effect(_$p => libs.setProp(_el$10, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == ""))() ? "#WaitTrait" : effectDesc(), _$p));
+                        return _el$10;
+                      })()];
+                    }
+                  }), libs.createElement("Image", {
+                    "class": "EqualIcon",
+                    hittest: false
+                  }, null), libs.createComponent(EOM_Button.EOM_BaseButton, {
+                    "class": "TraitCard",
+                    ref(r$) {
+                      const _ref$ = resultCard;
+                      typeof _ref$ === "function" ? _ref$(r$) : resultCard = r$;
+                    },
+                    onactivate: () => closePopup(props.PopupID),
+                    get children() {
+                      return [(() => {
+                        const _el$12 = libs.createElement("Panel", {
+                            "class": "ResultSlot"
+                          }, null);
+                          libs.createElement("Image", {
+                            "class": "Wait"
+                          }, _el$12);
+                          const _el$14 = libs.createElement("Image", {
+                            get src() {
+                              return `file://{images}/spellicons/${KeyValues.CustomAbilitiesKv[sectMergeData()?.effect + "_effect"]?.AbilityTextureName}.png`;
+                            }
+                          }, _el$12);
+                        libs.setProp(_el$14, "className", "DOTAAbilityImage");
+                        libs.effect(_$p => libs.setProp(_el$14, "src", `file://{images}/spellicons/${KeyValues.CustomAbilitiesKv[sectMergeData()?.effect + "_effect"]?.AbilityTextureName}.png`, _$p));
+                        return _el$12;
+                      })(), libs.createComponent(libs.Show, {
+                        get when() {
+                          return libs.memo(() => !!(sectMergeData()?.effect != undefined && sectMergeData()?.effect != "" && sectMergeData()?.trigger != undefined))() && sectMergeData()?.trigger != "";
+                        },
+                        get children() {
+                          const _el$15 = libs.createElement("Label", {
+                            "class": "Name ResultName",
+                            get text() {
+                              return `#DOTA_Tooltip_ability_${sectMergeData()?.effect}_result`;
+                            }
+                          }, null);
+                          libs.effect(_$p => libs.setProp(_el$15, "text", `#DOTA_Tooltip_ability_${sectMergeData()?.effect}_result`, _$p));
+                          return _el$15;
+                        }
+                      }), (() => {
+                        const _el$16 = libs.createElement("Label", {
+                          "class": "Desc",
+                          html: true,
+                          get text() {
+                            return libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == "" || sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc() + ", " + effectDesc();
+                          }
+                        }, null);
+                        libs.effect(_$p => libs.setProp(_el$16, "text", libs.memo(() => !!(sectMergeData()?.effect == undefined || sectMergeData()?.effect == "" || sectMergeData()?.trigger == undefined || sectMergeData()?.trigger == ""))() ? "#WaitTrait" : triggerDesc() + ", " + effectDesc(), _$p));
+                        return _el$16;
+                      })()];
+                    }
+                  })];
+                }
+              }), libs.createComponent(libs.Show, {
+                get when() {
+                  return isTalentComplete() || currentTier() >= 0;
+                },
+                get children() {
+                  return libs.createComponent(EOM_Panel.EOM_Panel, {
+                    id: "TalentGrid",
+                    flowChildren: "down",
+                    horizontalAlign: "center",
+                    get children() {
+                      return [libs.createComponent(EOM_Label.EOM_Label, {
+                        id: "TalentGridTitle",
+                        text: "#TalentTree"
+                      }), libs.createComponent(libs.For, {
+                        each: TALENT_TIERS,
+                        children: (tierDef, tier) => libs.createComponent(EOM_Panel.EOM_Panel, {
+                          "class": "TalentRow",
+                          get classList() {
+                            return {
+                              locked: tier() > currentTier()
+                            };
+                          },
+                          get children() {
+                            return [libs.createComponent(EOM_Label.EOM_Label, {
+                              "class": "TierLabel",
+                              get text() {
+                                return TIER_LABELS[tier()];
+                              }
+                            }), libs.memo(() => [0, 1, 2].map(col => {
+                              const selected = talentSelections()[tier()] === col;
+                              const selectable = canEdit() && (tier() === currentTier() || tier() < currentTier() && ALLOW_RE_SELECT);
+                              return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                                "class": "TalentNode",
+                                classList: {
+                                  selected,
+                                  selectable
+                                },
+                                onactivate: () => onClickTalent(tier(), col),
+                                enabled: selectable,
+                                get children() {
+                                  return [libs.createComponent(EOM_Label.EOM_Label, {
+                                    "class": "TalentNodeLabel",
+                                    get text() {
+                                      return COL_LABELS[tier()][col];
+                                    }
+                                  }), libs.createComponent(libs.Show, {
+                                    when: selected,
+                                    get children() {
+                                      return libs.createComponent(EOM_Image.EOM_Image, {
+                                        "class": "TalentCheck",
+                                        src: "file://{images}/custom_game/custom_ability/z4_icon_02.png"
+                                      });
+                                    }
+                                  })];
+                                }
+                              });
+                            }))];
+                          }
+                        })
+                      }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                        id: "TalentActions",
+                        flowChildren: "right",
+                        get children() {
+                          return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                            "class": "TalentActionBtn",
+                            onactivate: resetTalents,
+                            get children() {
+                              return libs.createComponent(GenericPanel.CLabel, {
+                                text: "#TalentReset"
+                              });
+                            }
+                          });
+                        }
+                      })];
+                    }
+                  });
+                }
+              })];
+            }
+          })];
+        }
+      });
     }
   });
 };
@@ -7410,6 +8069,7 @@ const Popup_RankInfo = props => {
       rankData[rankInfo.icon].max = rankInfo.num;
     }
   });
+  const season = game_utils.GetBattlePassSeason();
   return libs.createComponent(BasePopup, {
     get PopupID() {
       return local.PopupID;
@@ -7434,7 +8094,12 @@ const Popup_RankInfo = props => {
         libs.insert(_el$, libs.createComponent(GenericPanel.CLabel, {
           id: "desc",
           text: "#RankInfo_Desc",
-          html: true
+          html: true,
+          get dialogVariables() {
+            return {
+              season: season() - 1
+            };
+          }
         }), null);
         libs.insert(_el$, libs.createComponent(libs.Show, {
           get when() {
@@ -7444,9 +8109,12 @@ const Popup_RankInfo = props => {
             return libs.createComponent(InfoButton.InfoButton, {
               id: "RewardInfo",
               info: "#RewardInfo",
-              customTooltip: {
-                name: "custom_text",
-                text: "#RewardInfoDetail"
+              tooltip: "#RewardInfoDetail",
+              get dialogVariables() {
+                return {
+                  now: season() - 1,
+                  next: season()
+                };
               }
             });
           }
@@ -7660,6 +8328,16 @@ const Popup_RankTask = props => {
   const isCurrentWeek = () => {
     return weekInfo()[page()] != undefined && time() >= weekInfo()[page()].startTime;
   };
+  function canReceive(task) {
+    if (!task.target) return false;
+    const progress = task.progress ?? 0;
+    const step = task.target.findIndex(v => progress < v);
+    const effectiveStep = step === -1 ? task.target.length : step;
+    return effectiveStep > (task.receive_progress ?? 0);
+  }
+  const canReceiveInWeek = week => {
+    return taskProgress()[week]?.some(canReceive) ?? false;
+  };
   const taskData = libs.createMemo(() => {
     if (taskProgress()[page()]) {
       return taskProgress()[page()].sort((a, b) => {
@@ -7742,7 +8420,7 @@ const Popup_RankTask = props => {
         id: "TaskList",
         scroll: "y",
         horizontalAlign: "center",
-        height: "670px",
+        height: "620px",
         padding: "0px 20px",
         margin: "0px 20px",
         flowChildren: "down",
@@ -7783,73 +8461,124 @@ const Popup_RankTask = props => {
         }
       }), (() => {
         const _el$ = libs.createElement("Panel", {
-            id: "BottomBar"
-          }, null),
-          _el$2 = libs.createElement("Panel", {
-            id: "WeekAction"
-          }, _el$);
-        libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
-          get enabled() {
-            return page() != 1;
-          },
-          onactivate: () => setPage(page() - 1),
-          className: "PageButton PageLeft",
+          id: "BottomBar"
+        }, null);
+        libs.insert(_el$, libs.createComponent(EOM_Panel.EOM_Panel, {
+          align: 'center center',
+          flowChildren: 'down',
           get children() {
-            return [libs.createComponent(GenericPanel.CImage, {
-              className: "BG"
-            }), libs.createComponent(GenericPanel.CImage, {
-              className: "PageArrow"
-            })];
-          }
-        }), null);
-        libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
-          flowChildren: "down",
-          get children() {
-            return [libs.createComponent(GenericPanel.CLabel, {
-              id: "CurrentWeek",
-              text: "#CurrentWeek",
-              get vars() {
-                return {
-                  week: page()
-                };
-              }
-            }), (() => {
-              const _el$3 = libs.createElement("Panel", {
-                id: "CountDownContainer"
+            return [(() => {
+              const _el$2 = libs.createElement("Panel", {
+                id: "WeekAction"
               }, null);
-              libs.insert(_el$3, libs.createComponent(GenericPanel.CImage, {
-                className: "CountDownIcon"
-              }), null);
-              libs.insert(_el$3, libs.createComponent(libs.Show, {
-                get when() {
-                  return libs.memo(() => weekInfo()[page()] != undefined)() && isCurrentWeek();
+              libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                get enabled() {
+                  return page() != 1;
                 },
+                onactivate: () => setPage(page() - 1),
+                className: "PageButton PageLeft",
                 get children() {
-                  return libs.createComponent(EOM_Countdown.EOM_Countdown, {
-                    get endTime() {
-                      return weekInfo()[page()].endTime;
+                  return [libs.createComponent(GenericPanel.CImage, {
+                    className: "BG"
+                  }), libs.createComponent(GenericPanel.CImage, {
+                    className: "PageArrow"
+                  })];
+                }
+              }), null);
+              libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
+                flowChildren: "down",
+                get children() {
+                  return [(() => {
+                    const _el$3 = libs.createElement("Panel", {
+                      id: "CurrentWeek"
+                    }, null);
+                    libs.insert(_el$3, libs.createComponent(GenericPanel.CLabel, {
+                      text: "#CurrentWeek",
+                      get vars() {
+                        return {
+                          week: page()
+                        };
+                      }
+                    }), null);
+                    libs.insert(_el$3, libs.createComponent(libs.Show, {
+                      get when() {
+                        return canReceiveInWeek(page());
+                      },
+                      get children() {
+                        return libs.createComponent(MenuMarkIcon.MenuMarkIcon, {
+                          type: "default",
+                          hittest: false
+                        });
+                      }
+                    }), null);
+                    return _el$3;
+                  })(), (() => {
+                    const _el$4 = libs.createElement("Panel", {
+                      id: "CountDownContainer"
+                    }, null);
+                    libs.insert(_el$4, libs.createComponent(GenericPanel.CImage, {
+                      className: "CountDownIcon"
+                    }), null);
+                    libs.insert(_el$4, libs.createComponent(libs.Show, {
+                      get when() {
+                        return libs.memo(() => weekInfo()[page()] != undefined)() && isCurrentWeek();
+                      },
+                      get children() {
+                        return libs.createComponent(EOM_Countdown.EOM_Countdown, {
+                          get endTime() {
+                            return weekInfo()[page()].endTime;
+                          }
+                        });
+                      }
+                    }), null);
+                    return _el$4;
+                  })()];
+                }
+              }), null);
+              libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                get enabled() {
+                  return page() != Object.keys(weekInfo()).length;
+                },
+                onactivate: () => setPage(page() + 1),
+                className: "PageButton PageRight",
+                get children() {
+                  return [libs.createComponent(GenericPanel.CImage, {
+                    className: "BG"
+                  }), libs.createComponent(GenericPanel.CImage, {
+                    className: "PageArrow"
+                  })];
+                }
+              }), null);
+              return _el$2;
+            })(), (() => {
+              const _el$5 = libs.createElement("Panel", {
+                id: "WeekDots"
+              }, null);
+              libs.insert(_el$5, libs.createComponent(libs.For, {
+                get each() {
+                  return Object.keys(weekInfo());
+                },
+                children: week => {
+                  return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                    get className() {
+                      return libs.classNames("WeekDotBox", {
+                        Selected: page() == Number(week),
+                        Claimable: canReceiveInWeek(Number(week))
+                      });
+                    },
+                    onactivate: () => setPage(Number(week)),
+                    get children() {
+                      return libs.createElement("Panel", {
+                        "class": "WeekDot"
+                      }, null);
                     }
                   });
                 }
-              }), null);
-              return _el$3;
+              }));
+              return _el$5;
             })()];
           }
-        }), null);
-        libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
-          get enabled() {
-            return page() != Object.keys(weekInfo()).length;
-          },
-          onactivate: () => setPage(page() + 1),
-          className: "PageButton PageRight",
-          get children() {
-            return [libs.createComponent(GenericPanel.CImage, {
-              className: "BG"
-            }), libs.createComponent(GenericPanel.CImage, {
-              className: "PageArrow"
-            })];
-          }
-        }), null);
+        }));
         return _el$;
       })()];
     }
@@ -7868,11 +8597,11 @@ const TaskRow = props => {
     return props.taskData.reward[Math.min(Math.max(0, currentStep()), props.taskData.target.length - 1)];
   };
   return (() => {
-    const _el$4 = libs.createElement("Panel", {}, null),
-      _el$5 = libs.createElement("Panel", {}, _el$4),
-      _el$6 = libs.createElement("Panel", {}, _el$4);
-    libs.setProp(_el$5, "className", "StarRect");
-    libs.insert(_el$5, libs.createComponent(GenericPanel.CImage, {
+    const _el$7 = libs.createElement("Panel", {}, null),
+      _el$8 = libs.createElement("Panel", {}, _el$7),
+      _el$9 = libs.createElement("Panel", {}, _el$7);
+    libs.setProp(_el$8, "className", "StarRect");
+    libs.insert(_el$8, libs.createComponent(GenericPanel.CImage, {
       id: "Star1",
       get className() {
         return libs.classNames("TaskStar", {
@@ -7880,7 +8609,7 @@ const TaskRow = props => {
         });
       }
     }), null);
-    libs.insert(_el$5, libs.createComponent(GenericPanel.CImage, {
+    libs.insert(_el$8, libs.createComponent(GenericPanel.CImage, {
       id: "Star2",
       get className() {
         return libs.classNames("TaskStar", {
@@ -7888,7 +8617,7 @@ const TaskRow = props => {
         });
       }
     }), null);
-    libs.insert(_el$5, libs.createComponent(GenericPanel.CImage, {
+    libs.insert(_el$8, libs.createComponent(GenericPanel.CImage, {
       id: "Star3",
       get className() {
         return libs.classNames("TaskStar", {
@@ -7896,7 +8625,7 @@ const TaskRow = props => {
         });
       }
     }), null);
-    libs.insert(_el$4, libs.createComponent(EOM_Panel.EOM_Panel, {
+    libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
       marginLeft: "20px",
       verticalAlign: "center",
       flowChildren: "down",
@@ -7918,9 +8647,9 @@ const TaskRow = props => {
           }
         })];
       }
-    }), _el$6);
-    libs.setProp(_el$6, "className", "Divder");
-    libs.insert(_el$4, libs.createComponent(EOM_Panel.EOM_Panel, {
+    }), _el$9);
+    libs.setProp(_el$9, "className", "Divder");
+    libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
       flowChildren: "right",
       verticalAlign: "center",
       get children() {
@@ -7947,16 +8676,16 @@ const TaskRow = props => {
                     });
                   }
                 }), (() => {
-                  const _el$7 = libs.createElement("Panel", {
+                  const _el$0 = libs.createElement("Panel", {
                     hittest: false
                   }, null);
-                  libs.setProp(_el$7, "className", "RewardCount");
-                  libs.insert(_el$7, libs.createComponent(GenericPanel.CLabel, {
+                  libs.setProp(_el$0, "className", "RewardCount");
+                  libs.insert(_el$0, libs.createComponent(GenericPanel.CLabel, {
                     get text() {
                       return rewardList()[rewardName()];
                     }
                   }));
-                  return _el$7;
+                  return _el$0;
                 })()];
               }
             });
@@ -7964,7 +8693,7 @@ const TaskRow = props => {
         });
       }
     }), null);
-    libs.insert(_el$4, libs.createComponent(libs.Switch, {
+    libs.insert(_el$7, libs.createComponent(libs.Switch, {
       get children() {
         return [libs.createComponent(libs.Match, {
           get when() {
@@ -8023,12 +8752,12 @@ const TaskRow = props => {
         })];
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$4, "className", libs.classNames("TaskRow", {
+    libs.effect(_$p => libs.setProp(_el$7, "className", libs.classNames("TaskRow", {
       Receive: step() > (props.taskData.receive_progress ?? 0),
       Complete: false,
       Expire: false
     }), _$p));
-    return _el$4;
+    return _el$7;
   })();
 };
 
@@ -8669,181 +9398,20 @@ const StoreBuyItemContainer = props => {
     if (local.itemData?.step_purchased_num !== undefined) {
       return 1;
     }
-    if (local.itemData.id == 9900102) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
+    const season = battle_pass_config.getBattlePassSeasonByExpProduct(local.itemData.id);
+    if (season != undefined) {
+      const config = battle_pass_config.BP_SEASON_CONFIG[season];
+      const levelExpData = getNetDataCache("info_bp_level_exp") ?? [];
       let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 1 && v.level < 100) {
-          totalExp += v.exp;
+      for (let index = 0; index < levelExpData.length; index++) {
+        const levelExp = levelExpData[index];
+        if (levelExp.season == season && levelExp.level < config.maxLevel) {
+          totalExp += levelExp.exp;
         }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["1"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
       }
-      return Math.ceil((totalExp - exp) / 1000);
-    }
-    if (local.itemData.id == 9900107) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 2 && v.level < 100) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["2"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    }
-    if (local.itemData.id == 9900230) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 99 && v.level < 30) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["99"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 100);
-    }
-    if (local.itemData.id == 9900237) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 98 && v.level < 30) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["98"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 100);
-    }
-    if (local.itemData.id == 9900233) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 3 && v.level < 60) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["3"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    }
-    if (local.itemData.id == 9900250) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 4 && v.level < 60) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["4"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    }
-    if (local.itemData.id == 9900257) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 5 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["5"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900270) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 6 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["6"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900283) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 7 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["7"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900288) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 8 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["8"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900403) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 9 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["9"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900406) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 10 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["10"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
-    } else if (local.itemData.id == 9900409) {
-      const info_bp_level_exp = getNetDataCache("info_bp_level_exp") ?? [];
-      let totalExp = 0;
-      info_bp_level_exp.map(v => {
-        if (v.season == 11 && v.level < 90) {
-          totalExp += v.exp;
-        }
-      });
-      let exp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.["11"]?.totalXp ?? 0;
-      if (exp > totalExp) {
-        return 0;
-      }
-      return Math.ceil((totalExp - exp) / 200);
+      const currentExp = getNetDataCache("player_battle_passes", Players.GetLocalPlayer())?.[season]?.totalXp ?? 0;
+      if (currentExp >= totalExp) return 0;
+      return Math.ceil((totalExp - currentExp) / config.expPerPurchase);
     }
     if (local.limit_num) {
       return local.limit_num;
@@ -9942,6 +10510,7 @@ const PopupComponents = {
   HeroProficiencyInfo: Popup_HeroProficiencyInfo,
   UniversalHeroCard: Popup_UniversalHeroCard,
   Confrim: Popup_Comfirm,
+  CustomAbility: Popup_CustomAbility,
   RankNotice: Popup_RankNotice,
   ActivityTask: Popup_ActivityTask,
   CloseRookie: Popup_CloseRookie,

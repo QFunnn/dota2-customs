@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1720,6 +1720,28 @@ const OverviewPlayerRow = props => {
                 }
               })];
             }
+          }), libs.createComponent(libs.Show, {
+            get when() {
+              return getGameplayModuleState("treasure");
+            },
+            get children() {
+              return libs.createComponent(EOM_Panel.EOM_Panel, {
+                get className() {
+                  return libs.classNames("column", 14);
+                },
+                get children() {
+                  return libs.createComponent(EOM_Label.EOM_Label, {
+                    width: "84px",
+                    align: "center center",
+                    style: {
+                      textAlign: "center"
+                    },
+                    color: "#94A2B0",
+                    text: "#RuneReward_Treasure"
+                  });
+                }
+              });
+            }
           })],
           get children() {
             return (() => {
@@ -1755,6 +1777,9 @@ const OverviewPlayerRow = props => {
               };
               const runeRewardLv = () => {
                 return (playerInfo().trait == undefined ? 0 : 1) + (playerInfo().trait2 == undefined ? 0 : 1);
+              };
+              const treasureList = () => {
+                return Object.values(playerInfo().treasure);
               };
               libs.createEffect(libs.on(playerID, v => {
                 updateMuteState();
@@ -2168,6 +2193,32 @@ const OverviewPlayerRow = props => {
                       });
                     }
                   })];
+                }
+              }), libs.createComponent(libs.Show, {
+                get when() {
+                  return getGameplayModuleState("treasure");
+                },
+                get children() {
+                  return libs.createComponent(EOM_Panel.EOM_Panel, {
+                    get className() {
+                      return libs.classNames("column", 14);
+                    },
+                    get children() {
+                      return libs.createComponent(EOM_Image.EOM_Image, {
+                        get className() {
+                          return libs.classNames("TreasureIcon", {
+                            Owned: treasureList().length > 0
+                          });
+                        },
+                        get customTooltip() {
+                          return {
+                            name: "treasure_list",
+                            player_id: playerID()
+                          };
+                        }
+                      });
+                    }
+                  });
                 }
               })];
             })();
@@ -2939,9 +2990,7 @@ const MessageBox = () => {
         params.dialogVariables = dialogVariables;
         setMessages([...messages(), params]);
       }));
-      GameEvents.SendCustomEventToServer("request_messages", {
-        playerID: Players.GetLocalPlayer()
-      });
+      GameEvents.SendCustomEventToServer("request_messages", {});
     }
     libs.onCleanup(() => GameEventListenerIDs.forEach(id => GameEvents.Unsubscribe(id)));
   });

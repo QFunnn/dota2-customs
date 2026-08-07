@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -2393,6 +2393,10 @@
 	width: 42px;
 	height: 42px;
 	align: right top;
+	animation-name: NewMarkAnim;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 
 .MenuMarkIcon.default
@@ -2425,6 +2429,46 @@
 	height: 61px;
 	background-image: url("s2r://panorama/images/custom_game/icon/s_new_largest_png.vtex");
 	background-size: 100%;
+}
+
+@keyframes 'NewMarkAnim'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+	85%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 1.25;
+	}
+	
+	95%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
 }
 
 .EOM_MenuLayout
@@ -12046,14 +12090,6 @@
 	padding: 48px 0px 0px 36px;
 }
 
-.StoreItem .MenuMarkIcon
-{
-	animation-name: NewMarkAnim;
-	animation-duration: 1.5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-}
-
 .StoreItem .MenuMarkIcon.default
 {
 	margin-top: 4px;
@@ -12884,57 +12920,8 @@
 
 .SpecialItem .MenuMarkIcon
 {
-	animation-name: NewMarkAnim;
-	animation-duration: 1.5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
 	margin-top: 14px;
 	margin-right: 8px;
-}
-
-@keyframes 'NewMarkAnim'
-{
-	0%
-	{
-		pre-transform-scale2d: 1;
-		brightness: 1;
-	}
-	
-	80%
-	{
-		transform: rotateZ(0deg);
-		pre-transform-scale2d: 1;
-		brightness: 1;
-	}
-	
-	85%
-	{
-		pre-transform-scale2d: 1.1;
-		transform: rotateZ(-3deg);
-		brightness: 1.25;
-	}
-	
-	90%
-	{
-		pre-transform-scale2d: 1.2;
-		transform: rotateZ(1deg);
-		brightness: 1.5;
-	}
-	
-	95%
-	{
-		pre-transform-scale2d: 1.1;
-		transform: rotateZ(3deg);
-		brightness: 1.25;
-	}
-	
-	100%
-	{
-		pre-transform-scale2d: 1;
-		transform: rotateZ(0deg);
-		brightness: 1;
-	}
-	
 }
 
 .AspectRatio4x3 #Activity_GiftPack
@@ -22704,17 +22691,26 @@
 	background-image: url("s2r://panorama/images/custom_game/activity/starry_treasure/x3_board_02_png.vtex");
 }
 
+#Activity_StarryTreasure #RewardListContainer
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	clip: rect(0%, 100%, 100%, 8px);
+}
+
 #Activity_StarryTreasure #RewardList
 {
 	margin: 88px 82px 0 51px;
-	width: 100%;
+	width: 2543px;
 	height: 100%;
 }
 
 #Activity_StarryTreasure #RewardRowBG
 {
 	margin-top: 204px;
-	margin-left: 64px;
+	margin-left: 8px;
+	padding-left: 56px;
 	width: 100%;
 	height: 72px;
 	z-index: -1;
@@ -22805,55 +22801,82 @@
 	background-image: url("s2r://panorama/images/custom_game/activity/starry_treasure/x3_icon_04_png.vtex");
 	background-size: 100%;
 	margin-left: 15.2%;
+	transition-property: position;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.StarryTreasureRewardArrow.Index-1
+{
+	x: -310px;
 }
 
 .StarryTreasureRewardArrow.Index1
 {
-	x: 20%;
+	x: 310px;
 }
 
 .StarryTreasureRewardArrow.Index2
 {
-	x: 40%;
+	x: 620px;
 }
 
 .StarryTreasureRewardArrow.Index3
 {
-	x: 60%;
+	x: 930px;
 }
 
 .StarryTreasureRewardArrow.Index4
 {
-	x: 80%;
+	x: 1240px;
+}
+
+.StarryTreasureRewardArrow.Index5
+{
+	x: 1550px;
 }
 
 .StarryTreasureReward
 {
 	width: 212px;
 	height: 368px;
+	transition-property: position;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.StarryTreasureReward.Index-1
+{
+	x: -310px;
 }
 
 .StarryTreasureReward.Index1
 {
-	x: 20%;
+	x: 310px;
 	margin-right: 3%;
 }
 
 .StarryTreasureReward.Index2
 {
-	x: 40%;
+	x: 620px;
 	margin-right: 3%;
 }
 
 .StarryTreasureReward.Index3
 {
-	x: 60%;
+	x: 930px;
 	margin-right: 3%;
 }
 
 .StarryTreasureReward.Index4
 {
-	x: 80%;
+	x: 1240px;
+	margin-right: 3%;
+}
+
+.StarryTreasureReward.Index5
+{
+	x: 1550px;
 	margin-right: 3%;
 }
 
@@ -22988,7 +23011,6 @@
 
 .StarryTreasureReward #RewardButton
 {
-	align: center bottom;
 	width: 164px;
 	height: 48px;
 	background-image: url("s2r://panorama/images/custom_game/activity/starry_treasure/x3_button_02_png.vtex");
@@ -23005,6 +23027,11 @@
 {
 	img-shadow: 0px 0px 2px 2 black;
 	vertical-align: center;
+}
+
+.StarryTreasureReward #RewardButtonContainer
+{
+	align: center bottom;
 }
 
 .StarryTreasureReward #RepeatConvertBanner

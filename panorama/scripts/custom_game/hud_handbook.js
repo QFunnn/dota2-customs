@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -24,13 +24,15 @@ var HeroCard = require('./HeroCard.js');
 var ItemImage = require('./ItemImage.js');
 var RuneRewardCard = require('./RuneRewardCard.js');
 var SectIcon = require('./SectIcon.js');
+var netdata_utils = require('./netdata_utils.js');
 require('./EOM_Icon.js');
 require('./EOM_Portrait.js');
 require('./TalentTree.js');
+require('./Heroes.js');
 
 const HandBook = () => {
   const [show, setShow] = libs.createSignal(false);
-  const handBookList = ["Ability", "Item", "Artifact", "Greevil_Shop", "CardEffect", "TeamCard", "RuneReward", "CityEffect", "Neutral", "SectFlow", "Wiki", "FAQ"];
+  const handBookList = ["Ability", "Item", "Artifact", "Greevil_Shop", "CardEffect", "TeamCard", "RuneReward", "RuneReward_Treasure", "CityEffect", "Neutral", "SectFlow", "Wiki", "FAQ"];
   if (isGroupMode()) ;
   const [filteredList, setFilteredList] = libs.createSignal(handBookList.concat());
   const [selectedTag, setSelectedTag] = libs.createSignal(filteredList()[0]);
@@ -41,32 +43,49 @@ const HandBook = () => {
     }
   }));
   const [selectedIndex, setSelectedIndex] = libs.createSignal(1);
+  const UpdateList = () => {
+    let constant_data = CustomNetTables.GetTableValue("common", "constant");
+    let newList = handBookList.concat();
+    if (constant_data?.GAMEPLAY_MODULE_LIST) {
+      newList = newList.filter(v => {
+        if (isGroupMode()) {
+          if (v == "CardEffect") {
+            return false;
+          }
+        } else {
+          if (v == "TeamCard") {
+            return false;
+          }
+          if (v == "CardEffect" && constant_data.GAMEPLAY_MODULE_LIST.card_effect != 1) {
+            return false;
+          }
+        }
+        if (v == "RuneReward" && constant_data.GAMEPLAY_MODULE_LIST.rune_task != 1) {
+          return false;
+        }
+        if (v == "Greevil_Shop" && constant_data.GAMEPLAY_MODULE_LIST.greevil != 1) {
+          return false;
+        }
+        if (v == "RuneReward_Treasure" && constant_data.GAMEPLAY_MODULE_LIST.treasure != 1) {
+          return false;
+        }
+        return true;
+      });
+    }
+    const settings = CustomNetTables.GetTableValue("common", "settings");
+    if (!settings?.is_in_tools_mode) {
+      newList = newList.filter(v => v != "Greevil_Shop");
+    }
+    setFilteredList(newList);
+  };
+  netdata_utils.createNetTableEffect("common", "settings", () => {
+    UpdateList();
+  });
   libs.onMount(() => {
     const eventIDList = [];
     const nettableIDList = [];
     nettableIDList.push(useNetTableKeyHasDefaultValue("common", "constant", data => {
-      if (data?.GAMEPLAY_MODULE_LIST) {
-        let newList = handBookList.concat();
-        newList = newList.filter(v => {
-          if (isGroupMode()) {
-            if (v == "CardEffect") {
-              return false;
-            }
-          } else {
-            if (v == "TeamCard") {
-              return false;
-            }
-            if (v == "CardEffect" && data.GAMEPLAY_MODULE_LIST.card_effect != 1) {
-              return false;
-            }
-          }
-          if (v == "RuneReward" && data.GAMEPLAY_MODULE_LIST.rune_task != 1) {
-            return false;
-          }
-          return true;
-        });
-        setFilteredList(newList);
-      }
+      UpdateList();
     }));
     eventIDList.push(useToggleWindow("MenuButton_handbook", show, setShow));
     libs.createEffect(() => {
@@ -184,6 +203,17 @@ const HandBook = () => {
                   return libs.createComponent(HandBook_RuneReward, {
                     get show() {
                       return selectedTag() == "RuneReward";
+                    }
+                  });
+                }
+              }), libs.createComponent(libs.Show, {
+                get when() {
+                  return selectedTag() == "RuneReward_Treasure";
+                },
+                get children() {
+                  return libs.createComponent(HandBook_Treasure, {
+                    get show() {
+                      return selectedTag() == "RuneReward_Treasure";
                     }
                   });
                 }
@@ -554,7 +584,7 @@ function HandBook_Sect(props) {
       abilityUpgrades[sectName].push(abilityUpgradeID);
     }
   }
-  const is_tool = CustomNetTables.GetTableValue("common", "settings")?.is_in_tools_mode ?? false;
+  CustomNetTables.GetTableValue("common", "settings")?.is_in_tools_mode ?? false;
   const getSectSortWeight = (aid, sect_name) => {
     let weight = 10;
     const kv = KeyValues.AbilityUpgradesKv[aid];
@@ -644,12 +674,9 @@ function HandBook_Sect(props) {
                     const abilityUpgradeInfo = KeyValues.AbilityUpgradesKv[abilityUpgradeID];
                     if (abilityUpgradeInfo != undefined) {
                       const rarety = abilityUpgradeInfo.rarity || "n";
-                      const triggerable = abilityUpgradeInfo.Triggerable == 1;
                       return libs.createComponent(EOM_Button.EOM_BaseButton, {
                         get className() {
-                          return libs.classNames("HandBookContentPickerItem", {
-                            Triggerable: triggerable && is_tool
-                          });
+                          return libs.classNames("HandBookContentPickerItem", {});
                         },
                         width: "88px",
                         flowChildren: "down",
@@ -909,7 +936,7 @@ function HandBook_Artifact(props) {
   });
 }
 function HandBook_RuneReward(props) {
-  const runeRewardIDList = Object.keys(KeyValues.TraitKv).filter(v => KeyValues.TraitKv[v]?.IsHidden != 1);
+  const runeRewardIDList = Object.keys(KeyValues.TraitKv).filter(v => KeyValues.TraitKv[v]?.IsHidden != 1 && KeyValues.TraitKv[v]?.Type != 4 && !KeyValues.TraitKv[v]?.AppearCondition?.includes("trait,158"));
   const handledList = (() => {
     const list = {};
     if (runeRewardIDList && runeRewardIDList.length > 0) {
@@ -963,6 +990,126 @@ function HandBook_RuneReward(props) {
             })];
           }
         });
+      });
+    }
+  });
+}
+const getHandbookTreasureType = treasureName => {
+  return KeyValues.treasure_abilities[treasureName]?.TreasureType == '2' ? 'rune' : 'artifact';
+};
+const getHandbookTreasureTypeIcon = type => {
+  switch (type) {
+    case 'artifact':
+      return getSrcPath('treasure_shop/s14_icon_item.png');
+    case 'rune':
+      return getSrcPath('treasure_shop/s14_icon_power.png');
+  }
+};
+const getHandbookTreasureTypeTitle = type => {
+  return type == 'artifact' ? '#RuneReward_Treasure_1' : '#RuneReward_Treasure_2';
+};
+const HandBookTreasureCard = props => libs.createComponent(EOM_Panel.EOM_Panel, {
+  get className() {
+    return libs.classNames('HandBookTreasureCard', `Type_${props.type}`);
+  },
+  get customTooltip() {
+    return libs.memo(() => !!hasKeyWord($.Localize('#DOTA_Tooltip_ability_' + props.treasureName + '_description')))() ? {
+      name: 'keyword_list',
+      keyword_list: JSON.stringify(getKeyWordList($.Localize('#DOTA_Tooltip_ability_' + props.treasureName + '_description')))
+    } : undefined;
+  },
+  get children() {
+    return [(() => {
+      const _el$3 = libs.createElement("Image", {
+        "class": "HandBookTreasureTypeIcon",
+        get src() {
+          return getHandbookTreasureTypeIcon(props.type);
+        }
+      }, null);
+      libs.effect(_$p => libs.setProp(_el$3, "src", getHandbookTreasureTypeIcon(props.type), _$p));
+      return _el$3;
+    })(), libs.createComponent(EOM_Label.EOM_Label, {
+      className: "HandBookTreasureName",
+      get text() {
+        return `#DOTA_Tooltip_ability_${props.treasureName}`;
+      }
+    }), (() => {
+      const _el$4 = libs.createElement("Image", {}, null);
+      libs.setProp(_el$4, "className", "TreasureSpecialTitleLine");
+      return _el$4;
+    })(), (() => {
+      const _el$5 = libs.createElement("Panel", {}, null),
+        _el$6 = libs.createElement("Label", {
+          html: true,
+          get text() {
+            return getAbilityDescription(props.treasureName);
+          }
+        }, _el$5);
+      libs.setProp(_el$5, "className", "HandBookTreasureDescription");
+      libs.effect(_$p => libs.setProp(_el$6, "text", getAbilityDescription(props.treasureName), _$p));
+      return _el$5;
+    })()];
+  }
+});
+const HandBookTreasureGroup = props => libs.createComponent(EOM_Panel.EOM_Panel, {
+  className: "HandBookTreasureGroup",
+  get children() {
+    return [libs.createComponent(EOM_Label.EOM_Label, {
+      className: "HandBookTreasureGroupTitle",
+      get text() {
+        return getHandbookTreasureTypeTitle(props.type);
+      }
+    }), libs.createComponent(EOM_Panel.EOM_Panel, {
+      className: "HandBookTreasureCards",
+      flowChildren: "right-wrap",
+      get children() {
+        return libs.createComponent(libs.For, {
+          get each() {
+            return props.treasures;
+          },
+          children: treasureName => libs.createComponent(HandBookTreasureCard, {
+            treasureName: treasureName,
+            get type() {
+              return props.type;
+            }
+          })
+        });
+      }
+    })];
+  }
+});
+function HandBook_Treasure(props) {
+  const treasures = Object.keys(KeyValues.treasure_abilities).filter(treasureName => KeyValues.treasure_abilities[treasureName]?.BaseClass == "ability_lua").sort((a, b) => {
+    const typeA = Number(KeyValues.treasure_abilities[a]?.TreasureType ?? 0);
+    const typeB = Number(KeyValues.treasure_abilities[b]?.TreasureType ?? 0);
+    if (typeA != typeB) {
+      return typeA - typeB;
+    }
+    return Number(a.replace("treasure_", "")) - Number(b.replace("treasure_", ""));
+  });
+  const artifactTreasures = treasures.filter(treasureName => getHandbookTreasureType(treasureName) == 'artifact');
+  const runeTreasures = treasures.filter(treasureName => getHandbookTreasureType(treasureName) == 'rune');
+  return libs.createComponent(EOM_Panel.EOM_Panel, {
+    id: "HandBookTreasureContainer",
+    get className() {
+      return libs.classNames("HandBookContainer", {
+        Show: props.show
+      });
+    },
+    scroll: "y",
+    get children() {
+      return libs.createComponent(EOM_Panel.EOM_Panel, {
+        className: "HandBookTreasureList",
+        flowChildren: "down",
+        get children() {
+          return [libs.createComponent(HandBookTreasureGroup, {
+            type: "artifact",
+            treasures: artifactTreasures
+          }), libs.createComponent(HandBookTreasureGroup, {
+            type: "rune",
+            treasures: runeTreasures
+          })];
+        }
       });
     }
   });
@@ -1419,32 +1566,32 @@ function HandBook_FAQ(props) {
     get children() {
       return [...Array(GetQAACount())].map((_, index) => {
         return (() => {
-          const _el$4 = libs.createElement("Panel", {}, null),
-            _el$5 = libs.createElement("Panel", {}, _el$4),
-            _el$6 = libs.createElement("Panel", {}, _el$4);
-          libs.setProp(_el$4, "className", "HandBookFAQ");
-          libs.setProp(_el$5, "className", "FAQTitle");
-          libs.insert(_el$5, libs.createComponent(GenericPanel.CLabel, {
+          const _el$8 = libs.createElement("Panel", {}, null),
+            _el$9 = libs.createElement("Panel", {}, _el$8),
+            _el$0 = libs.createElement("Panel", {}, _el$8);
+          libs.setProp(_el$8, "className", "HandBookFAQ");
+          libs.setProp(_el$9, "className", "FAQTitle");
+          libs.insert(_el$9, libs.createComponent(GenericPanel.CLabel, {
             get text() {
               return $.Localize("#QAndA_Question_" + (index + 1));
             },
             html: true
           }));
-          libs.setProp(_el$6, "className", "FAQContent");
-          libs.insert(_el$6, libs.createComponent(EOM_Image.EOM_Image, {
+          libs.setProp(_el$0, "className", "FAQContent");
+          libs.insert(_el$0, libs.createComponent(EOM_Image.EOM_Image, {
             className: "FAQImage",
             get backgroundImage() {
               return getImagePath(`newbie/x_picture_${index + 1}.png`);
             }
           }), null);
-          libs.insert(_el$6, libs.createComponent(GenericPanel.CLabel, {
+          libs.insert(_el$0, libs.createComponent(GenericPanel.CLabel, {
             className: "FAQAnswer",
             get text() {
               return replaceEnum($.Localize("#QAndA_Answer_" + (index + 1)));
             },
             html: true
           }), null);
-          return _el$4;
+          return _el$8;
         })();
       });
     }

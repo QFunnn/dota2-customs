@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 12
@@ -454,38 +454,38 @@
 						{
 							x = 0.0
 							y = 0.0
-							m_flSlopeIncoming = 0.315897
-							m_flSlopeOutgoing = 0.315897
+							m_flSlopeIncoming = 0.451281
+							m_flSlopeOutgoing = 0.451281
 						},
 						{
 							x = 0.164802
-							y = 0.1414
-							m_flSlopeIncoming = 1.493334
-							m_flSlopeOutgoing = 1.493334
+							y = 0.202
+							m_flSlopeIncoming = 2.133334
+							m_flSlopeOutgoing = 2.133334
 						},
 						{
 							x = 0.329604
-							y = 0.559944
-							m_flSlopeIncoming = 0.485103
-							m_flSlopeOutgoing = 0.485103
+							y = 0.79992
+							m_flSlopeIncoming = 0.693004
+							m_flSlopeOutgoing = 0.693004
 						},
 						{
 							x = 0.560326
-							y = 0.492072
-							m_flSlopeIncoming = -0.323639
-							m_flSlopeOutgoing = -0.323639
+							y = 0.70296
+							m_flSlopeIncoming = -0.462342
+							m_flSlopeOutgoing = -0.462342
 						},
 						{
 							x = 0.783986
-							y = 0.412888
+							y = 0.58984
 							m_flSlopeIncoming = 0.0
 							m_flSlopeOutgoing = 0.0
 						},
 						{
 							x = 1.0
-							y = 0.4242
-							m_flSlopeIncoming = 0.054909
-							m_flSlopeOutgoing = 0.054909
+							y = 0.606
+							m_flSlopeIncoming = 0.078441
+							m_flSlopeOutgoing = 0.078441
 						},
 					]
 					m_tangents = 
@@ -516,11 +516,14 @@
 						},
 					]
 					m_vDomainMins = [ 0.0, 0.0 ]
-					m_vDomainMaxs = [ 1.0, 0.7 ]
+					m_vDomainMaxs = [ 1.0, 1.0 ]
 				}
 			}
 			m_nOutputField = 7
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_SnapshotRigidSkinToBones"
 		},
 		{
 			_class = "C_OP_SetVec"
@@ -779,29 +782,30 @@
 					m_Stops = 
 					[
 						{
-							m_flPosition = 0.05
-							m_Color = [ 89, 4, 89 ]
+							m_flPosition = 0.273902
+							m_Color = [ 33, 2, 2 ]
 						},
 						{
-							m_flPosition = 0.2
-							m_Color = [ 89, 5, 5 ]
+							m_flPosition = 0.50646
+							m_Color = [ 137, 15, 15 ]
 						},
 						{
-							m_flPosition = 0.35
-							m_Color = [ 174, 19, 19 ]
+							m_flPosition = 0.633075
+							m_Color = [ 228, 47, 19 ]
 						},
 						{
-							m_flPosition = 0.65
-							m_Color = [ 220, 133, 41 ]
+							m_flPosition = 0.744186
+							m_Color = [ 225, 106, 43 ]
+						},
+						{
+							m_flPosition = 0.883721
+							m_Color = [ 255, 213, 117 ]
 						},
 					]
 				}
 				m_vRandomMin = [ 0.0, 0.0, 0.0 ]
 				m_vRandomMax = [ 0.0, 0.0, 0.0 ]
 			}
-		},
-		{
-			_class = "C_OP_SnapshotRigidSkinToBones"
 		},
 	]
 	m_Renderers = 
@@ -987,7 +991,65 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 0.3
+				m_flLiteralValue = 0.5
+				m_NamedValue = ""
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_bReverseOrder = false
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_bHasRandomSignFlip = false
+				m_nRandomSeed = -1
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_nNoiseInputVectorAttribute = 0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_flNoCameraFallback = 0.0
+				m_bUseBoundsCenter = false
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_flNotchedRangeMin = 0.0
+				m_flNotchedRangeMax = 1.0
+				m_flNotchedOutputOutside = 0.0
+				m_flNotchedOutputInside = 1.0
+				m_nRoundType = "PF_ROUND_TYPE_NEAREST"
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+			m_flRadiusScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 1.5
 				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
@@ -1597,6 +1659,7 @@
 				m_vRandomMin = [ 0.0, 0.0, 0.0 ]
 				m_vRandomMax = [ 0.0, 0.0, 0.0 ]
 			}
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
 		},
 		{
 			_class = "C_OP_RenderRopes"
@@ -1960,13 +2023,5 @@
 			}
 		},
 	]
-	m_Children = 
-	[
-		{
-			m_ChildRef = resource:"models/eom/hero/terrorblade_morph_1/particles/terrorblade_morph_1_wing_l_02_fxa.vpcf"
-		},
-		{
-			m_ChildRef = resource:"models/eom/hero/terrorblade_morph_1/particles/terrorblade_morph_1_wing_l_02_fxb.vpcf"
-		},
-	]
+	m_Children = [  ]
 }

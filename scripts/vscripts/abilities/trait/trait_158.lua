@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -12,54 +12,89 @@ local a = "abilities/trait/trait_158"
 local b = require("lualib_bundle")
 local c = b.__TS__Class
 local d = b.__TS__ClassExtends
-local e = b.__TS__DecorateLegacy
-local f = b.__TS__SourceMapTraceBack
-f(
+local e = b.__TS__ArrayIncludes
+local f = b.__TS__ArrayFilter
+local g = b.__TS__DecorateLegacy
+local h = b.__TS__SourceMapTraceBack
+h(
 	debug.getinfo(1).short_src,
 	{
-		["8"] = 1,
-		["9"] = 1,
 		["10"] = 1,
-		["11"] = 4,
-		["12"] = 5,
+		["11"] = 1,
+		["12"] = 1,
 		["13"] = 4,
 		["14"] = 5,
-		["15"] = 6,
-		["16"] = 7,
-		["17"] = 8,
-		["18"] = 9,
-		["19"] = 10,
-		["20"] = 10,
+		["15"] = 4,
+		["16"] = 5,
+		["17"] = 6,
+		["18"] = 7,
+		["19"] = 8,
+		["20"] = 9,
 		["21"] = 10,
-		["22"] = 10,
-		["23"] = 10,
-		["24"] = 10,
-		["25"] = 10,
-		["26"] = 10,
-		["27"] = 11,
-		["29"] = 6,
-		["30"] = 5,
-		["31"] = 4,
-		["32"] = 5,
-		["34"] = 5,
+		["22"] = 11,
+		["23"] = 12,
+		["24"] = 13,
+		["25"] = 13,
+		["26"] = 13,
+		["27"] = 14,
+		["29"] = 14,
+		["33"] = 14,
+		["37"] = 14,
+		["39"] = 14,
+		["40"] = 15,
+		["41"] = 13,
+		["42"] = 13,
+		["43"] = 18,
+		["44"] = 18,
+		["45"] = 18,
+		["46"] = 18,
+		["47"] = 18,
+		["48"] = 18,
+		["49"] = 18,
+		["50"] = 18,
+		["51"] = 19,
+		["53"] = 6,
+		["54"] = 5,
+		["55"] = 4,
+		["56"] = 5,
+		["58"] = 5,
 	}
 )
-local g = {}
-local h = require("lib.dota_ts_adapter")
-local i = h.BaseAbility
-local j = h.registerAbility
-g.trait_158 = c()
-local k = g.trait_158
-k.name = "trait_158"
-d(k, i)
-function k.prototype.Spawn(self)
+local i = {}
+local j = require("lib.dota_ts_adapter")
+local k = j.BaseAbility
+local l = j.registerAbility
+i.trait_158 = c()
+local m = i.trait_158
+m.name = "trait_158"
+d(m, k)
+function m.prototype.Spawn(self)
 	if IsServer() then
-		local l = self:GetCaster()
-		local m = l:GetPlayerOwnerID()
-		local n = RuneTask:generateRandomRuneList(m, 4, RUNE_TASK_ROUNDS[2], nil, true, "158")
-		RuneTask:setRuneRewardList(m, n)
+		local n = self:GetCaster()
+		local o = n:GetPlayerOwnerID()
+		local p = PlayerData:getHero(o)
+		local q = p and p:getItemList("all") or {}
+		local r = RuneTask.runeRewardTraitList["158"] or {}
+		local s = f(r, function(t, u)
+			local v = KeyValues.TraitAbilitiesKv[u]
+			if v ~= nil then
+				v = v.AbilityValues
+			end
+			local w
+			if v ~= nil then
+				w = v.item
+			end
+			local x
+			if w ~= nil then
+				x = w.value
+			end
+			local y = x
+			return y ~= nil and e(q, y)
+		end)
+		local z = RuneTask:generateRandomRuneList(o, 4, RUNE_TASK_ROUNDS[2], s, true, "158")
+		RuneTask:setRuneRewardList(o, z)
 	end
 end
-k = e({ j(nil) }, k)
-g.trait_158 = k
-return g
+m = g({ l(nil) }, m)
+i.trait_158 = m
+return i

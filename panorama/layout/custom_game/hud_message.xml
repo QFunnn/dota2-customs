@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -20,5 +20,18 @@
 		<include src="s2r://panorama/scripts/custom_game/hud_message.vjs_c" />
 		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
 	</scripts>
-	<Panel class="CustomHudRoot" hittest="false" />
+	<Panel class="CustomHudRoot MessageRoot" hittest="false">
+		<Panel id="MessageMain" hittest="false">
+			<Panel id="MessageList" hittest="false">
+				<Panel id="MessageLinesWrapper" hittest="false">
+					<ToastManager id="MessageToast" hittest="false" toastduration="3s" maxtoastsvisible="5" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="true" />
+				</Panel>
+			</Panel>
+			<Panel id="AddItemList" hittest="false">
+				<Panel id="AddItemLinesWrapper" hittest="false">
+					<ToastManager id="AddItemToast" hittest="false" toastduration="4s" maxtoastsvisible="5" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
 </root>

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -845,7 +845,7 @@ function G.prototype.OnSpellStart(self)
 	local H = self:GetCaster()
 	if not H:HasModifier("modifier_witch_doctor_ult") then
 		H:StartGesture(ACT_DOTA_SPAWN)
-		H:EmitSound("Hero_Witchdoctor.Pick")
+		H:EmitSound("Hero_WitchDoctor.Maledict_CastFail")
 		local I = self:GetSpecialValueFor("ult_duration")
 		H:AddNewModifier(H, self, "modifier_witch_doctor_ult", { duration = I + 0.1 })
 	end

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -369,25 +369,18 @@ const PlayerAvatar = props => {
     }
     setEquippedOrnamentData(data);
   }));
-  let timer;
-  libs.createEffect(libs.on(() => local.avatar_border, _avatarBorder => {
-    if (timer != undefined) {
-      clearInterval(timer);
-      timer = undefined;
+  libs.createEffect(() => {
+    UpdateAvatarBorder();
+  });
+  const UpdateAvatarBorder = () => {
+    let border = local.avatar_border != undefined ? local.avatar_border.toString() : local.ai_host ? "5710000" : equippedAvatarBorder();
+    if (border.length != 7 || !border.startsWith("571")) {
+      border = "5710000";
     }
-    if (_avatarBorder == undefined) {
-      timer = setInterval(() => {
-        const border = local.avatar_border != undefined ? local.avatar_border.toString() : local.ai_host ? "" : equippedAvatarBorder();
-        if (border == "") {
-          setAvatarBorder("5710000");
-        } else if (avatarBorder() != border) {
-          setAvatarBorder(border);
-        }
-      }, 100);
-    } else {
-      setAvatarBorder(_avatarBorder.toString());
+    if (avatarBorder() != border) {
+      setAvatarBorder(border);
     }
-  }));
+  };
   libs.onMount(() => {
     const id = useServiceNetTable("player_equipped_ornament", (data, playerID) => {
       if (local.playerID == playerID) {
@@ -395,10 +388,6 @@ const PlayerAvatar = props => {
       }
     }, -1);
     libs.onCleanup(() => {
-      if (timer != undefined) {
-        clearInterval(timer);
-        timer = undefined;
-      }
       CustomNetTables.UnsubscribeNetTableListener(id);
     });
   });

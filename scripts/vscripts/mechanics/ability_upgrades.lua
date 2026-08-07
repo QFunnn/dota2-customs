@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -287,253 +287,254 @@ n(
 		["312"] = 307,
 		["313"] = 307,
 		["314"] = 307,
-		["315"] = 307,
-		["316"] = 305,
-		["317"] = 309,
-		["318"] = 310,
-		["319"] = 309,
-		["320"] = 315,
-		["321"] = 316,
-		["322"] = 317,
-		["323"] = 318,
-		["325"] = 320,
-		["326"] = 325,
-		["327"] = 326,
-		["329"] = 328,
-		["331"] = 330,
-		["332"] = 331,
-		["334"] = 333,
-		["335"] = 315,
-		["336"] = 336,
-		["337"] = 337,
-		["338"] = 338,
-		["339"] = 339,
-		["341"] = 341,
-		["342"] = 342,
-		["344"] = 344,
-		["345"] = 336,
-		["346"] = 347,
-		["347"] = 348,
-		["348"] = 349,
-		["349"] = 350,
-		["351"] = 352,
-		["352"] = 357,
-		["353"] = 358,
-		["355"] = 360,
-		["357"] = 362,
-		["358"] = 347,
-		["359"] = 383,
-		["360"] = 383,
-		["361"] = 383,
-		["363"] = 384,
+		["315"] = 308,
+		["316"] = 309,
+		["317"] = 305,
+		["318"] = 311,
+		["319"] = 312,
+		["320"] = 311,
+		["321"] = 317,
+		["322"] = 318,
+		["323"] = 319,
+		["324"] = 320,
+		["326"] = 322,
+		["327"] = 327,
+		["328"] = 328,
+		["330"] = 330,
+		["332"] = 332,
+		["333"] = 333,
+		["335"] = 335,
+		["336"] = 317,
+		["337"] = 338,
+		["338"] = 339,
+		["339"] = 340,
+		["340"] = 341,
+		["342"] = 343,
+		["343"] = 344,
+		["345"] = 346,
+		["346"] = 338,
+		["347"] = 349,
+		["348"] = 350,
+		["349"] = 351,
+		["350"] = 352,
+		["352"] = 354,
+		["353"] = 359,
+		["354"] = 360,
+		["356"] = 362,
+		["358"] = 364,
+		["359"] = 349,
+		["360"] = 385,
+		["361"] = 385,
+		["362"] = 385,
 		["364"] = 386,
-		["365"] = 386,
-		["367"] = 387,
-		["368"] = 387,
-		["370"] = 388,
-		["371"] = 388,
-		["373"] = 389,
-		["374"] = 389,
-		["376"] = 391,
-		["377"] = 392,
-		["378"] = 393,
-		["379"] = 393,
-		["380"] = 394,
-		["381"] = 394,
-		["382"] = 395,
-		["383"] = 396,
-		["384"] = 397,
-		["386"] = 399,
-		["387"] = 399,
-		["389"] = 401,
+		["365"] = 388,
+		["366"] = 388,
+		["368"] = 389,
+		["369"] = 389,
+		["371"] = 390,
+		["372"] = 390,
+		["374"] = 391,
+		["375"] = 391,
+		["377"] = 393,
+		["378"] = 394,
+		["379"] = 395,
+		["380"] = 395,
+		["381"] = 396,
+		["382"] = 396,
+		["383"] = 397,
+		["384"] = 398,
+		["385"] = 399,
+		["387"] = 401,
+		["388"] = 401,
 		["390"] = 403,
-		["391"] = 404,
-		["392"] = 405,
-		["393"] = 406,
-		["395"] = 408,
+		["391"] = 405,
+		["392"] = 406,
+		["393"] = 407,
+		["394"] = 408,
 		["396"] = 410,
-		["397"] = 411,
-		["398"] = 412,
-		["399"] = 413,
-		["400"] = 414,
-		["401"] = 417,
-		["402"] = 418,
-		["403"] = 418,
-		["404"] = 419,
-		["405"] = 420,
-		["406"] = 421,
-		["407"] = 422,
-		["408"] = 422,
-		["409"] = 422,
-		["410"] = 422,
-		["412"] = 422,
-		["413"] = 422,
-		["414"] = 422,
-		["415"] = 422,
-		["417"] = 424,
-		["418"] = 425,
-		["419"] = 426,
-		["420"] = 427,
-		["421"] = 428,
-		["422"] = 429,
-		["423"] = 429,
-		["424"] = 430,
-		["425"] = 431,
-		["426"] = 432,
-		["427"] = 433,
-		["428"] = 433,
-		["429"] = 433,
-		["430"] = 433,
-		["432"] = 433,
-		["433"] = 433,
-		["434"] = 433,
-		["435"] = 433,
-		["439"] = 438,
-		["443"] = 442,
-		["446"] = 446,
+		["397"] = 412,
+		["398"] = 413,
+		["399"] = 414,
+		["400"] = 415,
+		["401"] = 416,
+		["402"] = 419,
+		["403"] = 420,
+		["404"] = 420,
+		["405"] = 421,
+		["406"] = 422,
+		["407"] = 423,
+		["408"] = 424,
+		["409"] = 424,
+		["410"] = 424,
+		["411"] = 424,
+		["413"] = 424,
+		["414"] = 424,
+		["415"] = 424,
+		["416"] = 424,
+		["418"] = 426,
+		["419"] = 427,
+		["420"] = 428,
+		["421"] = 429,
+		["422"] = 430,
+		["423"] = 431,
+		["424"] = 431,
+		["425"] = 432,
+		["426"] = 433,
+		["427"] = 434,
+		["428"] = 435,
+		["429"] = 435,
+		["430"] = 435,
+		["431"] = 435,
+		["433"] = 435,
+		["434"] = 435,
+		["435"] = 435,
+		["436"] = 435,
+		["440"] = 440,
+		["444"] = 444,
 		["447"] = 448,
 		["448"] = 450,
-		["449"] = 383,
-		["450"] = 452,
-		["451"] = 452,
-		["452"] = 452,
-		["454"] = 453,
+		["449"] = 452,
+		["450"] = 385,
+		["451"] = 454,
+		["452"] = 454,
+		["453"] = 454,
 		["455"] = 455,
-		["456"] = 455,
-		["458"] = 456,
-		["459"] = 456,
-		["461"] = 457,
-		["462"] = 457,
-		["464"] = 459,
-		["465"] = 459,
-		["467"] = 461,
-		["468"] = 462,
-		["469"] = 463,
-		["470"] = 464,
-		["472"] = 466,
-		["473"] = 467,
-		["474"] = 467,
+		["456"] = 457,
+		["457"] = 457,
+		["459"] = 458,
+		["460"] = 458,
+		["462"] = 459,
+		["463"] = 459,
+		["465"] = 461,
+		["466"] = 461,
+		["468"] = 463,
+		["469"] = 464,
+		["470"] = 465,
+		["471"] = 466,
+		["473"] = 468,
+		["474"] = 469,
 		["475"] = 469,
-		["477"] = 469,
-		["479"] = 469,
-		["481"] = 472,
+		["476"] = 471,
+		["478"] = 471,
+		["480"] = 471,
 		["482"] = 474,
-		["483"] = 452,
-		["484"] = 477,
-		["485"] = 478,
-		["486"] = 477,
-		["487"] = 481,
-		["488"] = 482,
+		["483"] = 476,
+		["484"] = 454,
+		["485"] = 479,
+		["486"] = 480,
+		["487"] = 479,
+		["488"] = 483,
 		["489"] = 484,
-		["490"] = 485,
-		["491"] = 486,
-		["492"] = 486,
-		["494"] = 487,
-		["495"] = 487,
-		["497"] = 488,
-		["498"] = 488,
-		["500"] = 489,
-		["501"] = 489,
-		["503"] = 490,
-		["504"] = 490,
-		["506"] = 492,
-		["507"] = 493,
-		["508"] = 494,
-		["509"] = 494,
-		["510"] = 495,
-		["512"] = 495,
-		["514"] = 495,
-		["516"] = 498,
+		["490"] = 486,
+		["491"] = 487,
+		["492"] = 488,
+		["493"] = 488,
+		["495"] = 489,
+		["496"] = 489,
+		["498"] = 490,
+		["499"] = 490,
+		["501"] = 491,
+		["502"] = 491,
+		["504"] = 492,
+		["505"] = 492,
+		["507"] = 494,
+		["508"] = 495,
+		["509"] = 496,
+		["510"] = 496,
+		["511"] = 497,
+		["513"] = 497,
+		["515"] = 497,
 		["517"] = 500,
-		["518"] = 481,
-		["519"] = 502,
-		["520"] = 503,
-		["521"] = 503,
-		["522"] = 503,
-		["523"] = 503,
-		["524"] = 502,
-		["525"] = 505,
+		["518"] = 502,
+		["519"] = 483,
+		["520"] = 504,
+		["521"] = 505,
+		["522"] = 505,
+		["523"] = 505,
+		["524"] = 505,
+		["525"] = 504,
 		["526"] = 507,
-		["527"] = 507,
-		["528"] = 507,
-		["529"] = 508,
-		["530"] = 509,
-		["531"] = 510,
-		["532"] = 511,
-		["533"] = 512,
-		["534"] = 513,
-		["539"] = 505,
-		["540"] = 520,
-		["541"] = 523,
-		["542"] = 523,
-		["543"] = 523,
-		["544"] = 524,
-		["545"] = 525,
-		["546"] = 526,
-		["547"] = 527,
-		["548"] = 528,
-		["549"] = 529,
-		["550"] = 530,
-		["551"] = 531,
-		["552"] = 532,
-		["553"] = 533,
-		["554"] = 534,
-		["555"] = 535,
-		["556"] = 536,
-		["557"] = 537,
-		["559"] = 539,
-		["566"] = 520,
-		["567"] = 549,
-		["568"] = 550,
-		["569"] = 551,
-		["570"] = 552,
-		["571"] = 553,
-		["572"] = 554,
-		["573"] = 555,
-		["574"] = 556,
-		["575"] = 557,
-		["576"] = 558,
-		["578"] = 559,
-		["579"] = 559,
-		["580"] = 560,
-		["581"] = 560,
-		["582"] = 559,
-		["588"] = 549,
-		["589"] = 566,
-		["590"] = 567,
-		["591"] = 568,
-		["592"] = 569,
-		["593"] = 570,
-		["595"] = 571,
-		["596"] = 571,
-		["597"] = 572,
-		["598"] = 572,
-		["599"] = 571,
-		["602"] = 566,
-		["603"] = 576,
-		["604"] = 577,
-		["605"] = 578,
-		["606"] = 579,
-		["607"] = 580,
-		["609"] = 581,
-		["610"] = 581,
-		["611"] = 582,
-		["612"] = 581,
-		["616"] = 585,
-		["617"] = 576,
-		["618"] = 588,
-		["619"] = 589,
-		["620"] = 588,
-		["621"] = 591,
-		["622"] = 592,
-		["623"] = 593,
-		["624"] = 594,
-		["625"] = 595,
-		["626"] = 596,
-		["627"] = 591,
-		["628"] = 31,
-		["629"] = 605,
-		["630"] = 606,
+		["527"] = 509,
+		["528"] = 509,
+		["529"] = 509,
+		["530"] = 510,
+		["531"] = 511,
+		["532"] = 512,
+		["533"] = 513,
+		["534"] = 514,
+		["535"] = 515,
+		["540"] = 507,
+		["541"] = 522,
+		["542"] = 525,
+		["543"] = 525,
+		["544"] = 525,
+		["545"] = 526,
+		["546"] = 527,
+		["547"] = 528,
+		["548"] = 529,
+		["549"] = 530,
+		["550"] = 531,
+		["551"] = 532,
+		["552"] = 533,
+		["553"] = 534,
+		["554"] = 535,
+		["555"] = 536,
+		["556"] = 537,
+		["557"] = 538,
+		["558"] = 539,
+		["560"] = 541,
+		["567"] = 522,
+		["568"] = 551,
+		["569"] = 552,
+		["570"] = 553,
+		["571"] = 554,
+		["572"] = 555,
+		["573"] = 556,
+		["574"] = 557,
+		["575"] = 558,
+		["576"] = 559,
+		["577"] = 560,
+		["579"] = 561,
+		["580"] = 561,
+		["581"] = 562,
+		["582"] = 562,
+		["583"] = 561,
+		["589"] = 551,
+		["590"] = 568,
+		["591"] = 569,
+		["592"] = 570,
+		["593"] = 571,
+		["594"] = 572,
+		["596"] = 573,
+		["597"] = 573,
+		["598"] = 574,
+		["599"] = 574,
+		["600"] = 573,
+		["603"] = 568,
+		["604"] = 578,
+		["605"] = 579,
+		["606"] = 580,
+		["607"] = 581,
+		["608"] = 582,
+		["610"] = 583,
+		["611"] = 583,
+		["612"] = 584,
+		["613"] = 583,
+		["617"] = 587,
+		["618"] = 578,
+		["619"] = 590,
+		["620"] = 591,
+		["621"] = 590,
+		["622"] = 593,
+		["623"] = 594,
+		["624"] = 595,
+		["625"] = 596,
+		["626"] = 597,
+		["627"] = 598,
+		["628"] = 593,
+		["629"] = 31,
+		["630"] = 607,
+		["631"] = 608,
 	}
 )
 local o = {}
@@ -789,56 +790,57 @@ function r.prototype.GetSpecialValueUpgrade(self, z, H, I, J)
 	local R = Q and Q[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_SPECIAL_VALUE + 1]
 	local S = R and R[H]
 	local T = S and S[I]
-	return T and T[J] or 0
+	local U = T
+	return T and T[J] or U and U[tostring(J)] or 0
 end
-function r.prototype.CalcSpecialValueUpgrade(self, z, H, I, U)
-	return (U + self:GetSpecialValueUpgrade(z, H, I, ABILITY_UPGRADES_OP.ABILITY_UPGRADES_OP_ADD))
+function r.prototype.CalcSpecialValueUpgrade(self, z, H, I, V)
+	return (V + self:GetSpecialValueUpgrade(z, H, I, ABILITY_UPGRADES_OP.ABILITY_UPGRADES_OP_ADD))
 		* (1 + self:GetSpecialValueUpgrade(z, H, I, ABILITY_UPGRADES_OP.ABILITY_UPGRADES_OP_MUL) * 0.01)
 end
-function r.prototype.AddAbilityMechanicsUpgradeByID(self, z, V, W)
-	local X = KeyValues.AbilityUpgradesMechenicsKV[V]
-	if not X then
+function r.prototype.AddAbilityMechanicsUpgradeByID(self, z, W, X)
+	local Y = KeyValues.AbilityUpgradesMechenicsKV[W]
+	if not Y then
 		return false
 	end
 	local t =
-		{ id = V, type = ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, description = X.description }
-	if W then
-		t.ability_name = W
+		{ id = W, type = ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, description = Y.description }
+	if X then
+		t.ability_name = X
 	else
-		t.ability_name = X.ability_name
+		t.ability_name = Y.ability_name
 	end
-	if type(X.AbilityValues) == "table" then
-		t.values = X.AbilityValues
+	if type(Y.AbilityValues) == "table" then
+		t.values = Y.AbilityValues
 	end
 	return self:AddAbilityMechanicsUpgrade(z, t)
 end
-function r.prototype.HasAbilityMechanicsUpgradeByID(self, z, V, H)
-	local X = KeyValues.AbilityUpgradesMechenicsKV[V]
-	if not (X and X.description) then
+function r.prototype.HasAbilityMechanicsUpgradeByID(self, z, W, H)
+	local Y = KeyValues.AbilityUpgradesMechenicsKV[W]
+	if not (Y and Y.description) then
 		return false
 	end
 	if H == nil then
-		H = X.ability_name
+		H = Y.ability_name
 	end
-	return self:HasAbilityMechanicsUpgrade(z, H, X.description)
+	return self:HasAbilityMechanicsUpgrade(z, H, Y.description)
 end
-function r.prototype.RemoveAbilityMechanicsUpgradeByID(self, z, V, W)
-	local X = KeyValues.AbilityUpgradesMechenicsKV[V]
-	if not X then
+function r.prototype.RemoveAbilityMechanicsUpgradeByID(self, z, W, X)
+	local Y = KeyValues.AbilityUpgradesMechenicsKV[W]
+	if not Y then
 		return false
 	end
 	local t =
-		{ id = V, type = ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, description = X.description }
-	if W then
-		t.ability_name = W
+		{ id = W, type = ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, description = Y.description }
+	if X then
+		t.ability_name = X
 	else
-		t.ability_name = X.ability_name
+		t.ability_name = Y.ability_name
 	end
 	return self:RemoveAbilityMechanicsUpgrade(z, t)
 end
-function r.prototype.AddAbilityMechanicsUpgrade(self, z, t, Y)
-	if Y == nil then
-		Y = false
+function r.prototype.AddAbilityMechanicsUpgrade(self, z, t, Z)
+	if Z == nil then
+		Z = false
 	end
 	assert(IsServer())
 	if t.type ~= ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS then
@@ -855,76 +857,76 @@ function r.prototype.AddAbilityMechanicsUpgrade(self, z, t, Y)
 	end
 	local A = self:GetAbilityUpgradeTable(z)
 	local D = self:GetAbilityUpgradeIndexs(z)
-	local Z = A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1]
-	Z[#Z + 1] = t
-	local _ = D[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	_[#_ + 1] = #A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1] - 1
-	if Y then
+	local _ = A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1]
+	_[#_ + 1] = t
+	local a0 = D[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
+	a0[#a0 + 1] = #A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1] - 1
+	if Z then
 		if self.removeRetention[z] == nil then
 			self.removeRetention[z] = {}
 		end
-		local a0 = self.removeRetention[z]
-		a0[#a0 + 1] = t
+		local a1 = self.removeRetention[z]
+		a1[#a1 + 1] = t
 	end
-	local a1 =
+	local a2 =
 		A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_CACHED_RESULT + 1][ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
 	local H = t.ability_name
-	local a2 = t.description
-	if a1[H] == nil then
-		a1[H] = {}
+	local a3 = t.description
+	if a2[H] == nil then
+		a2[H] = {}
 	end
-	local a3 = a1[H]
-	local a4 = {}
+	local a4 = a2[H]
+	local a5 = {}
 	if type(t.values) == "table" then
-		for a5 in pairs(t.values) do
-			local w = t.values[a5]
+		for a6 in pairs(t.values) do
+			local w = t.values[a6]
 			local x = { value = {} }
 			if type(w) == "number" then
-				local a6 = x.value
-				a6[#a6 + 1] = w
+				local a7 = x.value
+				a7[#a7 + 1] = w
 			elseif type(w) == "string" then
-				local a7 = f(w, " ")
-				if #a7 > 0 then
-					g(a7, function(v, a8)
-						local a9 = x.value
-						local aa = #a9 + 1
-						a9[aa] = toFiniteNumber(a8)
-						return aa
+				local a8 = f(w, " ")
+				if #a8 > 0 then
+					g(a8, function(v, a9)
+						local aa = x.value
+						local ab = #aa + 1
+						aa[ab] = toFiniteNumber(a9)
+						return ab
 					end)
 				end
 			elseif type(w) == "table" then
-				for ab in pairs(w) do
-					local a8 = w[ab]
-					if ab == "value" then
-						if type(a8) == "number" then
-							local ac = x.value
-							ac[#ac + 1] = a8
-						elseif type(a8) == "string" then
-							local a7 = f(a8, " ")
-							if #a7 > 0 then
-								g(a7, function(v, ad)
-									local ae = x.value
-									local af = #ae + 1
-									ae[af] = toFiniteNumber(ad)
-									return af
+				for ac in pairs(w) do
+					local a9 = w[ac]
+					if ac == "value" then
+						if type(a9) == "number" then
+							local ad = x.value
+							ad[#ad + 1] = a9
+						elseif type(a9) == "string" then
+							local a8 = f(a9, " ")
+							if #a8 > 0 then
+								g(a8, function(v, ae)
+									local af = x.value
+									local ag = #af + 1
+									af[ag] = toFiniteNumber(ae)
+									return ag
 								end)
 							end
 						end
 					else
-						x[ab] = a8
+						x[ac] = a9
 					end
 				end
 			end
-			a4[a5] = x
+			a5[a6] = x
 		end
 	end
-	a3[a2] = a4
+	a4[a3] = a5
 	self:UpdateAbilityUpgradesNetTables(z, A)
 	return true
 end
-function r.prototype.RemoveAbilityMechanicsUpgrade(self, z, t, Y)
-	if Y == nil then
-		Y = false
+function r.prototype.RemoveAbilityMechanicsUpgrade(self, z, t, Z)
+	if Z == nil then
+		Z = false
 	end
 	assert(IsServer())
 	if t.type ~= ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS then
@@ -941,16 +943,16 @@ function r.prototype.RemoveAbilityMechanicsUpgrade(self, z, t, Y)
 	end
 	local A = self:GetAbilityUpgradeTable(z)
 	self:RemoveAbilityUpgradeDataByID(z, ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, t.id)
-	if Y then
+	if Z then
 		self:RemoveRemoveRetention(z, t)
 	end
-	local a1 =
+	local a2 =
 		A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_CACHED_RESULT + 1][ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	local ag = a1[t.ability_name]
-	if (ag and ag[t.description]) ~= nil then
-		local ah = a1[t.ability_name]
-		if ah ~= nil then
-			h(ah, t.description)
+	local ah = a2[t.ability_name]
+	if (ah and ah[t.description]) ~= nil then
+		local ai = a2[t.ability_name]
+		if ai ~= nil then
+			h(ai, t.description)
 		end
 		local v = true
 	end
@@ -980,60 +982,60 @@ function r.prototype.RemoveAbilityMechanicsUpgradeByIndex(self, z, G)
 		return false
 	end
 	self:RemoveAbilityUpgradeDataByIndex(z, ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS, G)
-	local a1 =
+	local a2 =
 		A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_CACHED_RESULT + 1][ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	local ai = a1[t.ability_name]
-	if (ai and ai[t.description]) ~= nil then
-		local aj = a1[t.ability_name]
-		if aj ~= nil then
-			h(aj, t.description)
+	local aj = a2[t.ability_name]
+	if (aj and aj[t.description]) ~= nil then
+		local ak = a2[t.ability_name]
+		if ak ~= nil then
+			h(ak, t.description)
 		end
 		local v = true
 	end
 	self:UpdateAbilityUpgradesNetTables(z, A)
 	return true
 end
-function r.prototype.HasAbilityMechanicsUpgrade(self, z, H, a2)
-	local ak = self:GetCachedResult(z)
-	local al = ak and ak[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	local am = al and al[H]
-	return (am and am[a2]) ~= nil
+function r.prototype.HasAbilityMechanicsUpgrade(self, z, H, a3)
+	local al = self:GetCachedResult(z)
+	local am = al and al[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
+	local an = am and am[H]
+	return (an and an[a3]) ~= nil
 end
-function r.prototype.GetAbilityMechanicsUpgradeLevelSpecialValue(self, z, H, an, ao)
-	local ap = self:GetCachedResult(z)
-	local aq = ap and ap[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	local a3 = aq and aq[H]
-	if a3 ~= nil then
-		for a2 in pairs(a3) do
-			local a4 = a3[a2]
-			local ar = a4[an]
-			if (ar and ar.value) ~= nil then
-				return ar.value[Clamp(ao, 0, #ar.value - 1) + 1]
+function r.prototype.GetAbilityMechanicsUpgradeLevelSpecialValue(self, z, H, ao, ap)
+	local aq = self:GetCachedResult(z)
+	local ar = aq and aq[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
+	local a4 = ar and ar[H]
+	if a4 ~= nil then
+		for a3 in pairs(a4) do
+			local a5 = a4[a3]
+			local as = a5[ao]
+			if (as and as.value) ~= nil then
+				return as.value[Clamp(ap, 0, #as.value - 1) + 1]
 			end
 		end
 	end
 	return
 end
-function r.prototype.GetAbilityMechanicsUpgradeLevelSpecialAddedValue(self, z, H, an, ao, as)
-	local at = self:GetCachedResult(z)
-	local au = at and at[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
-	local a3 = au and au[H]
-	if a3 ~= nil then
-		for a2 in pairs(a3) do
-			local a4 = a3[a2]
-			local ar = a4[an]
-			local w = ar and ar[as]
+function r.prototype.GetAbilityMechanicsUpgradeLevelSpecialAddedValue(self, z, H, ao, ap, at)
+	local au = self:GetCachedResult(z)
+	local av = au and au[ABILITY_UPGRADES_TYPE.ABILITY_UPGRADES_TYPE_ABILITY_MECHANICS + 1]
+	local a4 = av and av[H]
+	if a4 ~= nil then
+		for a3 in pairs(a4) do
+			local a5 = a4[a3]
+			local as = a5[ao]
+			local w = as and as[at]
 			if type(w) == "number" then
 				return w
 			elseif type(w) == "string" then
-				local a7 = f(w, " ")
-				if #a7 > 0 then
-					local a8 = a7[Clamp(ao, 0, #a7 - 1) + 1]
-					local av = i(a8)
-					if j(i(av)) then
-						return av
+				local a8 = f(w, " ")
+				if #a8 > 0 then
+					local a9 = a8[Clamp(ap, 0, #a8 - 1) + 1]
+					local aw = i(a9)
+					if j(i(aw)) then
+						return aw
 					else
-						return a8
+						return a9
 					end
 				end
 			end
@@ -1041,38 +1043,38 @@ function r.prototype.GetAbilityMechanicsUpgradeLevelSpecialAddedValue(self, z, H
 	end
 	return
 end
-function r.prototype.RemoveAbilityUpgradeDataByID(self, z, aw, V)
+function r.prototype.RemoveAbilityUpgradeDataByID(self, z, ax, W)
 	local A = self:GetAbilityUpgradeTable(z)
 	local D = self:GetAbilityUpgradeIndexs(z)
-	local ax = D[aw + 1]
-	for N = 0, #ax - 1, 1 do
-		local O = ax[N + 1]
+	local ay = D[ax + 1]
+	for N = 0, #ay - 1, 1 do
+		local O = ay[N + 1]
 		local P = A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1][O + 1]
-		if P ~= nil and V == P.id then
+		if P ~= nil and W == P.id then
 			k(A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1], O, 1)
-			ArrayRemove(ax, N)
+			ArrayRemove(ay, N)
 			do
-				local ay = N
-				while ay < #ax do
-					local az, aA = ax, ay + 1
-					az[aA] = az[aA] - 1
-					ay = ay + 1
+				local az = N
+				while az < #ay do
+					local aA, aB = ay, az + 1
+					aA[aB] = aA[aB] - 1
+					az = az + 1
 				end
 			end
 			break
 		end
 	end
 end
-function r.prototype.RemoveAbilityUpgradeDataByIndex(self, z, aw, O)
+function r.prototype.RemoveAbilityUpgradeDataByIndex(self, z, ax, O)
 	local A = self:GetAbilityUpgradeTable(z)
 	local D = self:GetAbilityUpgradeIndexs(z)
 	k(A[ABILITY_UPGRADES_KEY.UPGRADES_KEY_DATA + 1], O, 1)
-	ArrayRemove(D[aw + 1], O)
+	ArrayRemove(D[ax + 1], O)
 	do
 		local N = O
-		while N < #D[aw + 1] do
-			local aB, aC = D[aw + 1], N + 1
-			aB[aC] = aB[aC] - 1
+		while N < #D[ax + 1] do
+			local aC, aD = D[ax + 1], N + 1
+			aC[aD] = aC[aD] - 1
 			N = N + 1
 		end
 	end
@@ -1080,19 +1082,19 @@ end
 function r.prototype.ResetAbilityUpgradesByPlayerID(self, z)
 	h(self.tAbilityUpgrades, z)
 	h(self.tAbilityUpgradesIndexs, z)
-	local aD = self.removeRetention[z]
-	if aD ~= nil then
+	local aE = self.removeRetention[z]
+	if aE ~= nil then
 		do
 			local N = 0
-			while N < #aD do
-				AbilityUpgrades:AddAbilityMechanicsUpgrade(z, aD[N + 1])
+			while N < #aE do
+				AbilityUpgrades:AddAbilityMechanicsUpgrade(z, aE[N + 1])
 				N = N + 1
 			end
 		end
 	end
 	self:UpdateAbilityUpgradesNetTables(z)
 end
-function r.prototype.OnClearClientAbilityUpgradeCache(self, aE)
+function r.prototype.OnClearClientAbilityUpgradeCache(self, aF)
 	self.tClientAbilityUpgrades = {}
 end
 function r.prototype.reset(self)

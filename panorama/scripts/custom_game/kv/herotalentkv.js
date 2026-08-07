@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -26,6 +26,23 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 			"attackspeed_bonus": 30,
 		},
 	},
+	"ursa_talent_3": {
+		"Eid": 201,
+		"Hid": 3000001,
+		"Hero": "ursa",
+		"Note": "+2怒意狂击易伤层数",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/ursa",
+		"AbilityClass": "sect_bst",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 5,
+		"UIDirection": "right",
+		"AbilityValues": {
+			"injury_bonus": 2,
+		},
+	},
 	"ursa_talent_4": {
 		"Eid": 202,
 		"Hid": 3000001,
@@ -37,10 +54,27 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 5,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"attack_count_bonus": 2,
+		},
+	},
+	"ursa_talent_5": {
+		"Eid": 301,
+		"Hid": 3000001,
+		"Hero": "ursa",
+		"Note": "超强力量附加【自身最大生命值】*0.5%的易伤层数",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/ursa",
+		"AbilityClass": "skill_ext",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"attack_count_bonus": 4,
+			"extra_injury": 0.5,
 		},
 	},
 	"ursa_talent_6": {
@@ -59,40 +93,6 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityValues": {
 			"damage_reduce_pct": 45,
 			"duration": 1.5,
-		},
-	},
-	"ursa_talent_9": {
-		"Eid": 203,
-		"Hid": 3000001,
-		"Hero": "ursa",
-		"Note": "怒意狂击附加【自身最大生命值】*1%的物理伤害",
-		"BaseClass": "ability_lua",
-		"ScriptFile": "abilities/heroes/ursa",
-		"AbilityClass": "skill_ext",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 5,
-		"UIDirection": "left",
-		"AbilityValues": {
-			"health_damage_pct": 1,
-		},
-	},
-	"ursa_talent_10": {
-		"Eid": 204,
-		"Hid": 3000001,
-		"Hero": "ursa",
-		"Note": "+100%超强力量期间普攻命中概率",
-		"BaseClass": "ability_lua",
-		"ScriptFile": "abilities/heroes/ursa",
-		"AbilityClass": "skill_ext",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 5,
-		"UIDirection": "right",
-		"AbilityValues": {
-			"extra_hit_chance": 45,
 		},
 	},
 	"ursa_talent_11": {
@@ -1058,7 +1058,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"Eid": 102,
 		"Hid": 3000012,
 		"Hero": "pudge",
-		"Note": "+12% 腐肉堆积比例",
+		"Note": "根据已损失生命值，获得30%-48%技能吸血",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pudge",
 		"AbilityClass": "skill_bst",
@@ -1067,15 +1067,15 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"AbilityValues": {
-			"passive_pct": 30,
-			"skill_steal_health": 30,
+			"skill_steal_health_min": 30,
+			"skill_steal_health_max": 48,
 		},
 	},
 	"pudge_talent_5": {
 		"Eid": 301,
 		"Hid": 3000012,
 		"Hero": "pudge",
-		"Note": "腐肉堆积上限提升",
+		"Note": "+2000腐肉堆积上限，+30%腐肉堆积转化比例",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/pudge",
 		"AbilityClass": "skill_bst",
@@ -1086,6 +1086,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"UIDirection": "right",
 		"AbilityValues": {
 			"threshold_bonus": 2000,
+			"passive_pct": 30,
 		},
 	},
 	"pudge_talent_6": {
@@ -1156,65 +1157,10 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 10,
-		"UIDirection": "left",
-		"AbilityValues": {
-			"damage_bonus": {
-				"value": 40,
-				"_ulti": 1,
-			},
-		},
-	},
-	"jugg_talent_5": {
-		"Eid": 301,
-		"Hid": 3000013,
-		"Hero": "jugg",
-		"Note": "根据当前额外攻速减少【0-0.3】剑刃风暴间隔",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/jugg",
-		"AbilityClass": "skill_bst",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 15,
-		"AbilityValues": {
-			"max_reduce": 0.35,
-			"min_reduce": 0.1,
-			"attackspeed_max": 210,
-		},
-	},
-	"jugg_talent_6": {
-		"Eid": 302,
-		"Hid": 3000013,
-		"Hero": "jugg",
-		"Note": "+15% 剑刃风暴额外暴击概率",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/jugg",
-		"AbilityClass": "attr_bst",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 5,
-		"UIDirection": "left",
-		"AbilityValues": {
-			"chance_bonus": 7,
-		},
-	},
-	"jugg_talent_9": {
-		"Eid": 203,
-		"Hid": 3000013,
-		"Hero": "jugg",
-		"Note": "+50 剑刃风暴期间额外攻速",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/jugg",
-		"AbilityClass": "skill_ext",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 5,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"extra_atk_speed": {
+			"damage_bonus": {
 				"value": 30,
 				"_ulti": 1,
 			},
@@ -1234,7 +1180,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"RequiredLevel": 15,
 		"AbilityValues": {
 			"count": 4,
-			"hit_pct": 30,
+			"hit_pct": 40,
 		},
 	},
 	"jugg_talent_12": {
@@ -1252,6 +1198,52 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityValues": {
 			"regen": 100,
 			"times": 5,
+		},
+	},
+	"jugg_talent_2": {
+		"Hero": "jugg",
+		"Note": "+50%攻击暴击吸血",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/jugg",
+		"AbilityClass": "skill_ext",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 5,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"skill_steal_health": 50,
+		},
+	},
+	"jugg_talent_3": {
+		"Hero": "jugg",
+		"Note": "+10%攻击暴击概率，剑刃风暴+75%攻击力的伤害",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/jugg",
+		"AbilityClass": "skill_ext",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 10,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"crit_chance": 10,
+			"attack_bonus_pct": 75,
+		},
+	},
+	"jugg_talent_4": {
+		"Hero": "jugg",
+		"Note": "暴击时有30%概率触发剑刃风暴",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/jugg",
+		"AbilityClass": "skill_ext",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"chance": 35,
 		},
 	},
 	"hoodwink_talent_1": {
@@ -3300,6 +3292,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 5,
+		"UIDirection": "left",
 		"AbilityValues": {
 			"rum_reduce_pct": 15,
 		},
@@ -3313,8 +3306,9 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 10,
+		"UIDirection": "left",
 		"AbilityValues": {
-			"rum_up": 85,
+			"rum_up": 90,
 		},
 	},
 	"kunkka_talent_5": {
@@ -3325,9 +3319,10 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 10,
+		"RequiredLevel": 5,
+		"UIDirection": "right",
 		"AbilityValues": {
-			"cooldown_reduce": 2,
+			"cooldown_reduce": 1,
 		},
 	},
 	"kunkka_talent_2": {
@@ -3339,25 +3334,10 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
+		"UIDirection": "left",
 		"AbilityValues": {
 			"interval": 2,
 			"damage_pct": 20,
-		},
-	},
-	"kunkka_talent_8": {
-		"Hero": "kunkka",
-		"Note": "+30【潮汐使者】伤害",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/kunkka",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 5,
-		"AbilityValues": {
-			"bonus_damage": {
-				"value": 30,
-				"_ulti": 1,
-			},
 		},
 	},
 	"kunkka_talent_7": {
@@ -3368,9 +3348,25 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 15,
+		"RequiredLevel": 10,
+		"UIDirection": "right",
 		"AbilityValues": {
-			"damage_pct": 5,
+			"damage_pct": 3,
+		},
+	},
+	"kunkka_talent_10": {
+		"Hero": "kunkka",
+		"Note": "潮汐使者+%crit_bonus%暴击率，暴击时无视减伤",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/kunkka",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "right",
+		"AbilityValues": {
+			"crit_bonus": 15,
+			"damage_bonus": 150,
 		},
 	},
 	"nyx_assassin_talent_1": {
@@ -3861,22 +3857,6 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 			"fury_count": 20,
 		},
 	},
-	"enigma_talent_1": {
-		"Hero": "enigma",
-		"Note": "虚灵体每攻击%attack_trigger%次召唤%count%个攻击%attack_count%次的临时虚灵体",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/enigma",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 15,
-		"UIDirection": "left",
-		"AbilityValues": {
-			"attack_trigger": 6,
-			"count": 1,
-			"attack_count": 2,
-		},
-	},
 	"enigma_talent_2": {
 		"Hero": "enigma",
 		"Note": "虚灵体+【混沌流经验*%damage%】伤害",
@@ -3903,7 +3883,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"UIDirection": "right",
 		"AbilityValues": {
 			"add_ult_duration": 1,
-			"add_ult_stun_time": 0.3,
+			"add_ult_stun_time": 0.4,
 		},
 	},
 	"enigma_talent_6": {
@@ -3950,6 +3930,20 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"UIDirection": "left",
 		"AbilityValues": {
 			"attack_interval_reduce": 1,
+		},
+	},
+	"enigma_talent_9": {
+		"Hero": "enigma",
+		"Note": "+2虚灵体，开战是虚灵体立即攻击一次",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/enigma",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"ghost_add": 2,
 		},
 	},
 	"phantom_assassin_talent_1": {
@@ -4703,18 +4697,19 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 			"damage_pct": 30,
 		},
 	},
-	"drow_ranger_talent_6": {
+	"drow_ranger_talent_7": {
 		"Hero": "drow_ranger",
-		"Note": "物理伤害有50%概率无视减伤并额外造成100点物理伤害",
+		"Note": "敌方寒霜层数>500时，霜冻之箭+30%命中率且无视减伤",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/drow_ranger",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
+		"UIDirection": "right",
 		"AbilityValues": {
-			"chance": 60,
-			"bonus_damage": 150,
+			"ice_limit": 500,
+			"chance": 30,
 		},
 	},
 	"abaddon_talent_1": {
@@ -6234,7 +6229,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"cooldown": 0.7,
+			"cooldown": 0.5,
 		},
 	},
 	"mars_talent_2": {
@@ -7793,7 +7788,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 	},
 	"bloodseeker_talent_1": {
 		"Hero": "bloodseeker",
-		"Note": "-0.5%血怒损失的生命值",
+		"Note": "+0.5%血怒伤害",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/bloodseeker",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -7802,12 +7797,12 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"RequiredLevel": 5,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"health_reduce": 0.5,
+			"ult_bonus_pct": 0.5,
 		},
 	},
 	"bloodseeker_talent_2": {
 		"Hero": "bloodseeker",
-		"Note": "+50血祭回复上限，不受回复流禁用削减影响",
+		"Note": "+50血祭回复上限，A1728受回复流禁用削减影响",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/bloodseeker",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -7837,7 +7832,7 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 	},
 	"bloodseeker_talent_4": {
 		"Hero": "bloodseeker",
-		"Note": "-0.5血祭间隔，+50血祭伤害",
+		"Note": "-1秒血祭间隔，血祭附带1次血怒伤害",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/bloodseeker",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -7846,13 +7841,13 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"interval_reduce": 0.5,
-			"talent_damage_bonus": 50,
+			"interval_reduce": 1.5,
+			"count": 1,
 		},
 	},
 	"bloodseeker_talent_5": {
 		"Hero": "bloodseeker",
-		"Note": "血怒效果常驻",
+		"Note": "血怒效果常驻,+50血祭回复上限",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/bloodseeker",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -7860,6 +7855,9 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"UIDirection": "left",
+		"AbilityValues": {
+			"limit_bonus": 50,
+		},
 	},
 	"bloodseeker_talent_6": {
 		"Hero": "bloodseeker",
@@ -7871,6 +7869,9 @@ GameUI.CustomUIConfig().HeroTalentKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"UIDirection": "right",
+		"AbilityValues": {
+			"count": 2,
+		},
 	},
 	"warlock_talent_1": {
 		"Hero": "warlock",

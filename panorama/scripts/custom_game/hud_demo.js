@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build b9dc48c · 2026-08-02 17:42:46 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -26,6 +26,7 @@ var ShopEffectCard = require('./ShopEffectCard.js');
 var EOM_Image = require('./EOM_Image.js');
 var EOM_NumberAdjust = require('./EOM_NumberAdjust.js');
 var SectIcon = require('./SectIcon.js');
+require('./Heroes.js');
 require('./SectAbility.js');
 require('./HeroCard.js');
 require('./EOM_Portrait.js');
@@ -739,6 +740,76 @@ const EOM_DebugTool_TextPicker = props => {
               libs.effect(_$p => libs.setProp(_el$26, "text", $.Localize("#" + itemName), _$p));
               return _el$26;
             })();
+          });
+        }
+      });
+    }
+  });
+};
+const EOM_DebugTool_AbilityPicker = props => {
+  const [local, other] = libs.splitProps(props, ["eventName", "title", "toggleList", "filterFunc", "itemNames"]);
+  const [filterWord, setFilterWord] = libs.createSignal("");
+  const [toggleType, setToggleType] = libs.createSignal("");
+  const [rawMode, setRawMode] = libs.createSignal(false);
+  return libs.createComponent(SelectionContainer, {
+    get eventName() {
+      return local.eventName;
+    },
+    get title() {
+      return local.title;
+    },
+    get toggleList() {
+      return local.toggleList;
+    },
+    onSearch: text => setFilterWord(text),
+    onToggleType: text => setToggleType(text),
+    onChangeRawMode: rawMode => setRawMode(rawMode),
+    get children() {
+      return libs.createComponent(EOM_Panel.EOM_Panel, {
+        className: "EOM_DebugTool_AbilityPicker",
+        flowChildren: "right-wrap",
+        width: "100%",
+        scroll: "y",
+        get children() {
+          return local.itemNames?.map((abilityname, index) => {
+            if (local.filterFunc) {
+              if (!local.filterFunc(toggleType(), abilityname)) {
+                return;
+              }
+            }
+            if (filterWord() != "") {
+              if (abilityname.search(new RegExp(filterWord(), "gim")) == -1 && $.Localize("#DOTA_Tooltip_ability_" + abilityname).search(new RegExp(filterWord(), "gim")) == -1) {
+                return;
+              }
+            }
+            return libs.createComponent(EOM_Button.EOM_BaseButton, {
+              className: "EOM_DebugTool_AbilityPickerItem",
+              width: "64px",
+              flowChildren: "down",
+              onactivate: self => FireEvent(local.eventName, abilityname),
+              onmouseover: self => {
+                if (props.customTooltip != undefined) {
+                  ShowCustomTooltip(self, props.customTooltip.name, props.customTooltip.params(abilityname));
+                }
+              },
+              onmouseout: self => {
+                if (props.customTooltip != undefined) {
+                  HideCustomTooltip(self, props.customTooltip.name);
+                }
+              },
+              get children() {
+                return [(() => {
+                  const _el$27 = libs.createElement("Image", {}, null);
+                  libs.effect(_$p => libs.setProp(_el$27, "className", libs.classNames("TreasureImage", "Type_" + (KeyValues.treasure_abilities[abilityname]?.TreasureType ?? 1)), _$p));
+                  return _el$27;
+                })(), libs.createComponent(GenericPanel.CLabel, {
+                  className: "EOM_DebugTool_AbilityPickerItemName",
+                  get text() {
+                    return rawMode() ? abilityname : "#DOTA_Tooltip_ability_" + abilityname;
+                  }
+                })];
+              }
+            });
           });
         }
       });
@@ -2307,7 +2378,7 @@ if (Players.GetTeam(Players.GetLocalPlayer()) == DOTATeam_t.DOTA_TEAM_BADGUYS) {
 function Demo() {
   const [demoSetting, _setDemoSetting] = libs.createSignal(CustomNetTables.GetTableValue("common", "demo_settings"));
   const [setting, _setSetting] = libs.createSignal(CustomNetTables.GetTableValue("common", "settings"));
-  const tooltipList = ["hero_ability", "buff_detail", "sect_ability", "keyword_list", "player_info", "equipment", "player_sect_list", "talent_tree", "medal_info", "hotkey_tip", "player_profile", "ladder_info", "ladder_player_profile", "custom_text", "attribute_detail", "proficiency_progress", "city_effect", "card_effect", "cosmetic_tooltip", "long_text", "hero_ban", "rune_reward", "roshan_reward", "trait_task", "gold_info", "hero_detail", "shard_ability", "reward_tooltip", "greevil_card", "greevil_ability", "greevil_record"];
+  const tooltipList = ["hero_ability", "buff_detail", "sect_ability", "keyword_list", "player_info", "equipment", "player_sect_list", "talent_tree", "medal_info", "hotkey_tip", "player_profile", "ladder_info", "ladder_player_profile", "custom_text", "attribute_detail", "proficiency_progress", "city_effect", "card_effect", "cosmetic_tooltip", "long_text", "hero_ban", "rune_reward", "roshan_reward", "trait_task", "gold_info", "hero_detail", "shard_ability", "reward_tooltip", "greevil_card", "greevil_ability", "greevil_record", "trait_ability", "treasure_list"];
   const getItemList = () => {
     let items = [];
     for (const sItemName in GameUI.CustomUIConfig().ItemsKv) {
@@ -2438,6 +2509,7 @@ function Demo() {
   const cardList = Object.keys(isGroupMode() ? KeyValues.TeamCardKv : KeyValues.CardEffectKv);
   const traitList = Object.keys(KeyValues.TraitKv).filter(v => KeyValues.TraitKv[v]?.IsHidden != 1);
   const greevilEffectList = Object.keys(KeyValues.GreevilEffectKV);
+  const treasureList = Object.keys(GameUI.CustomUIConfig().treasure_abilities);
   const [infoProp, setInfoProp] = libs.createSignal({});
   const animationListr = ["ACT_DOTA_SPAWN", "ACT_DOTA_ATTACK", "ACT_DOTA_IDLE", "ACT_DOTA_CAST_ABILITY_1", "ACT_DOTA_RUN", "ACT_DOTA_VICTORY", "ACT_DOTA_DIE"];
   libs.onMount(() => {
@@ -2469,6 +2541,7 @@ function Demo() {
       }
     }
   }
+  GameEvents.SendCustomEventToServer;
   libs.createEffect(() => {
     const id = CustomNetTables.SubscribeNetTableListener("common", function (_, k, v) {
       if (k === "demo_settings") {
@@ -2545,6 +2618,16 @@ function Demo() {
             title: "添加神符",
             eventName: "AddRuneButtonPressed",
             itemNames: cardList
+          }), libs.createComponent(EOM_DebugTool_AbilityPicker, {
+            title: "添加黑市藏品",
+            eventName: "AddTreasureButtonPressed",
+            itemNames: treasureList,
+            customTooltip: {
+              name: "trait_ability",
+              params: ability_name => ({
+                ability_name
+              })
+            }
           }), libs.createComponent(EOM_DebugTool_TextPicker, {
             title: "跳转到特定区域",
             eventName: "TeleportButtonPressed",
@@ -2720,6 +2803,18 @@ function Demo() {
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddArtifactButtonPressed",
                 text: "添加神器"
+              }), libs.createComponent(DemoToggle, {
+                eventName: "ForgeSourceBuyDisabled",
+                text: "禁购买给点"
+              }), libs.createComponent(DemoToggle, {
+                eventName: "ForgeSourceLegendaryDisabled",
+                text: "禁传说给点"
+              }), libs.createComponent(DemoToggle, {
+                eventName: "ForgeSourceMaxLevelDisabled",
+                text: "禁满级给点"
+              }), libs.createComponent(DemoToggle, {
+                eventName: "ForgeSourceLevelUpDisabled",
+                text: "禁升级给点"
               }), libs.createComponent(DemoButton, {
                 eventName: "RemoveInventoryItemsButtonPressed",
                 text: "移除物品栏的物品"
@@ -2744,6 +2839,9 @@ function Demo() {
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddRuneButtonPressed",
                 text: "添加神符"
+              }), libs.createComponent(DemoSelectionButton, {
+                eventName: "AddTreasureButtonPressed",
+                text: "添加黑市藏品"
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "PickSectButtonPressed",
                 text: "游戏流派"
