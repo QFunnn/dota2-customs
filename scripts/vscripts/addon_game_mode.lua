@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-06 05:45:25 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1102,7 +1102,7 @@ function DAC:InitGameMode()
 		"item_streak_plus",
 		-- "item_conceal_prepare",
 		-- "item_free_ban",
-		"item_second_chance",
+		-- "item_second_chance",
 		"item_egg",
 		"item_bench_contract",
 		"item_mangotree",
@@ -4116,6 +4116,7 @@ function PrepareATeam(v)
 				--自动抽卡一次
 				if v:HasModifier('modifier_item_second_chance') then
 					Draw5ChessAndShow(v:GetTeam(), false, -1)
+					v.second_draw_activate = true
 				else
 					Draw5ChessAndShow(v:GetTeam(), false)
 				end
@@ -14747,7 +14748,6 @@ end
 function SummonHero(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
-	-- prt('SummonHero')
 	caster.chesslock = false
 	AMHC:CreateNumberEffect(caster, 2, 3, AMHC.MSG_MISS, { 80, 80, 255 }, 3)
 	AMHC:CreateParticle("particles/econ/items/antimage/antimage_ti7/antimage_blink_start_ti7_ribbon_bright.vpcf",
@@ -24219,7 +24219,6 @@ function ItemJixiezhixin(keys)
 	local caster = keys.caster
 	local team_id = caster:GetTeam()
 	local ability = keys.ability:GetAbilityName()
-	-- prt('ItemJixiezhixin')
 
 	if caster:HasAbility('summon_hero') == false or caster:FindAbilityByName('summon_hero'):IsCooldownReady() == false then
 		return
@@ -27106,6 +27105,7 @@ function DAC:OnPlayerChat(keys)
 	local tokens = string.split(string.lower(keys.text))
 	local player_id = keys.playerid
 	local team_id = _G.playerid2team[player_id] or 1
+
 	if team_id == 1 then
 		prt((PlayerResource:GetPlayerName(player_id) or '') .. ': ' .. (tokens[1] or ''))
 		return
@@ -27891,8 +27891,6 @@ end
 function DAC:OnRefreshChess(keys)
 	local player_team = _G.playerid2team[keys.PlayerID]
 	local hero = _G.teamid2hero[player_team]
-	local reroll = keys.reroll
-	-- prt('OnRefreshChess')
 
 	if player_team ~= keys.team or IsUnitExist(hero) == false then
 		return
@@ -27906,9 +27904,10 @@ function DAC:OnRefreshChess(keys)
 	a:StartCooldown(0.6)
 
 	local cost_mana = 2
-	if reroll then
+	if hero.second_draw_activate == true then
 		--二次机会
-		Draw5ChessAndShow(keys.team, true, reroll)
+		Draw5ChessAndShow(keys.team, true, -1)
+		hero.second_draw_activate = nil
 	elseif hero:GetMana() < 2 then
 		--金币不够
 		CustomGameEventManager:Send_ServerToTeam(keys.team, "mima", {
@@ -28382,7 +28381,6 @@ function DAC:OnRequestChooseLoot(keys)
 	local target_item = keys.target_item_name
 	local player_id = keys.PlayerID
 	local loot_index = keys.loot_index
-	-- prt('OnRequestChooseLoot')
 
 	local hero = PlayerId2Hero(player_id)
 
@@ -32189,7 +32187,7 @@ function IsEmotionCooldown(h)
 end
 
 function DAC:RequestShowEmotionBubble(keys)
-	local player_id = keys.playerID or keys.player_id
+	local player_id = keys.PlayerID
 	local h = PlayerId2Hero(player_id)
 	local emotion_index = keys.emotion_index
 
@@ -40111,6 +40109,9 @@ function RemoveRelic(m,will_repeat)
 					end
 				end 
 			end
+			if item_name == 'item_second_change' then 
+				hero.second_draw_activate = nil
+			end
 			if FindValueInTable(_G.DROP_RELIC_LIST, item_name) == true or item_name == 'item_stolen_vault' then
 				hero:RemoveItem(item)
 			end
@@ -40819,7 +40820,6 @@ function ItemRmWheelOfWonder(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local p = (keys.target_points or {})[1]
-	-- prt('ItemRmWheelOfWonder')
 	
 	--支持点目标选取
 	if not target then

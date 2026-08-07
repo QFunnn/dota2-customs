@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-06 05:45:25 UTC
+  ~ build 9d26fbd · 2026-08-07 04:51:43 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -1917,7 +1917,6 @@ function reroll_panel_draw_card(reroll_status) {
 
     GameEvents.SendCustomGameEventToServer("dac_refresh_chess", {
         "team": Players.GetTeam(Players.GetLocalPlayer()),
-        "reroll": REROLL_STATUS,
     });
 }
 function toggle_panel() {
