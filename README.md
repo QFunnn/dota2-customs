@@ -22,7 +22,9 @@
 | Auto Gladiators | [`3147450491`](https://steamcommunity.com/sharedfiles/filedetails/?id=3147450491) | [`auto-gladiators`](../../tree/auto-gladiators) |
 
 
-
-thanks to umbrella project and special thanks to Db4k (@Me_okinawa). <3
+<details>
+<summary>Preview</summary>
 
 ![Preview](https://github.com/user-attachments/assets/b725aee7-8576-4faf-a972-ee5a5a0dde5b)
+
+</details
