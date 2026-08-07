@@ -3,14 +3,14 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
 
-_G.PUBLISH_TIMESTAMP = "2026-8-3 11:28"
+_G.PUBLISH_TIMESTAMP = "2026-8-7 19:7"
 
-print("loading addon dota_super_mid compiled@2026-8-3 11:27:46")
+print("loading addon dota_super_mid compiled@2026-8-7 19:6:32")
 local ____lualib = require("lualib_bundle")
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local ____exports = {}

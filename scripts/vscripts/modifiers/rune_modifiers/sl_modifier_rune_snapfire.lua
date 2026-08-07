@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -17,15 +17,26 @@ local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
 local _____sl_modifier_rune_base = require("modifiers.rune_modifiers._sl_modifier_rune_base")
 local sl_modifier_rune_base = _____sl_modifier_rune_base.sl_modifier_rune_base
---- 火箭飞行器（Lil' Shredder）激活时的强制攻击检测间隔
-local SNAPFIRE_SHREDDER_ATTACK_INTERVAL = 0.1
+--- 自动攻击的目标筛选条件（可见、非攻击免疫）
+local SNAPFIRE_TARGET_FLAGS = DOTA_UNIT_TARGET_FLAG_CAN_BE_SEEN + DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE
+--- 自动攻击的目标优先级：英雄 > 小兵/信使 > 建筑
+local SNAPFIRE_TARGET_TYPES = { DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_BUILDING }
 --- 每点力量提升{hp_per_str}生命值，每点敏捷提升{batk_per_agi}基础攻击力，每点智力提升{amp_per_int}%技能增强<br>
--- 火箭飞行器（Lil' Shredder）激活期间无法手动攻击，改为每{SNAPFIRE_SHREDDER_ATTACK_INTERVAL}秒自动强制攻击范围内敌人（优先英雄）
--- TODO(API不确定): "modifier_snapfire_lil_shredder_buff" 为约定命名，未在项目 Dota2Modifier 枚举中找到对应声明，建议实机验证具体 buff 名称是否一致。
+-- 电炎绝手无法手动选择敌人，持续自动攻击射程内距离自身最近的敌人，优先攻击英雄；自动攻击不影响移动
+--
+-- 实现要点：
+-- - 常驻缴械 + DISABLE_AUTOATTACK，禁止手动点选/引擎自动索敌打断移动
+-- - 计时器间隔固定为 FrameTime（一帧），不用攻速折算间隔（攻速会频繁变化）
+-- - 每帧按当前 GetSecondsPerAttack 累进攻击 CD 进度，就绪后对最近目标强制 PerformAttack
 ____exports.sl_modifier_rune_snapfire = __TS__Class()
 local sl_modifier_rune_snapfire = ____exports.sl_modifier_rune_snapfire
 sl_modifier_rune_snapfire.name = "sl_modifier_rune_snapfire"
 __TS__ClassExtends(sl_modifier_rune_snapfire, sl_modifier_rune_base)
+function sl_modifier_rune_snapfire.prototype.____constructor(self, ...)
+	sl_modifier_rune_base.prototype.____constructor(self, ...)
+	self._think_interval = 0
+	self._attack_progress = 0
+end
 function sl_modifier_rune_snapfire.prototype.DeclareFunctions(self)
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -53,19 +64,20 @@ function sl_modifier_rune_snapfire.prototype.GetModifierSpellAmplify_Percentage(
 		end
 	)
 end
-function sl_modifier_rune_snapfire.prototype._IsShredderActive(self)
-	local parent = self:GetParent()
-	return IsValid(parent) and parent:HasModifier(____exports.sl_modifier_rune_snapfire.SHREDDER_BUFF_NAME)
-end
 function sl_modifier_rune_snapfire.prototype.GetDisableAutoAttack(self)
-	return self:_IsShredderActive() and 1 or 0
+	return 1
+end
+function sl_modifier_rune_snapfire.prototype.CheckState(self)
+	return { [MODIFIER_STATE_DISARMED] = true }
 end
 function sl_modifier_rune_snapfire.prototype.OnCreated(self, params)
 	sl_modifier_rune_base.prototype.OnCreated(self, params)
 	if not IsServer() then
 		return
 	end
-	self:StartIntervalThink(SNAPFIRE_SHREDDER_ATTACK_INTERVAL)
+	self._think_interval = FrameTime()
+	self._attack_progress = 1
+	self:StartIntervalThink(self._think_interval)
 end
 function sl_modifier_rune_snapfire.prototype.OnIntervalThink(self)
 	if not IsServer() then
@@ -75,40 +87,58 @@ function sl_modifier_rune_snapfire.prototype.OnIntervalThink(self)
 	if not IsValidAlive(parent) then
 		return
 	end
-	if not self:_IsShredderActive() then
+	self:_AdvanceAttackProgress(parent)
+	if self._attack_progress < 1 then
 		return
 	end
-	local attack_range = parent:GetTotalAttackRangeWithBuffer()
-	local candidates = FindUnitsInRadius(
-		parent:GetTeam(),
-		parent:GetAbsOrigin(),
-		nil,
-		attack_range,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
-		DOTA_UNIT_TARGET_FLAG_NONE,
-		FIND_ANY_ORDER,
-		false
-	)
-	if #candidates == 0 then
+	if parent:IsStunned() or parent:IsHexed() or parent:IsNightmared() then
 		return
 	end
-	local target
-	for ____, unit in ipairs(candidates) do
-		if unit:IsHero() then
-			target = unit
-			break
-		end
-		if target == nil then
-			target = unit
-		end
-	end
+	local target = self:_FindAttackTarget(parent)
 	if not IsValidAlive(target) then
 		return
 	end
-	parent:PerformAttackWithFixedParams({ record_context = self }, target, true, true, true, true, false, false, false)
+	self._attack_progress = 0
+	local use_projectile = parent:GetAttackCapability() ~= DOTA_UNIT_CAP_MELEE_ATTACK
+	parent:PerformAttackWithFixedParams(
+		{ record_context = self, fix_miss_on_out_of_attack_range = true },
+		target,
+		true,
+		true,
+		true,
+		true,
+		use_projectile,
+		false,
+		false
+	)
 end
-sl_modifier_rune_snapfire.SHREDDER_BUFF_NAME = "modifier_snapfire_lil_shredder_buff"
+function sl_modifier_rune_snapfire.prototype._AdvanceAttackProgress(self, parent)
+	local seconds_per_attack = parent:GetSecondsPerAttack(false)
+	if seconds_per_attack <= 0 then
+		return
+	end
+	self._attack_progress = math.min(1, self._attack_progress + self._think_interval / seconds_per_attack)
+end
+function sl_modifier_rune_snapfire.prototype._FindAttackTarget(self, parent)
+	local attack_range = parent:GetTotalAttackRangeWithBuffer()
+	for ____, target_type in ipairs(SNAPFIRE_TARGET_TYPES) do
+		local target = FindUnitsInRadius(
+			parent:GetTeam(),
+			parent:GetAbsOrigin(),
+			nil,
+			attack_range,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			target_type,
+			SNAPFIRE_TARGET_FLAGS,
+			FIND_CLOSEST,
+			false
+		)[1]
+		if IsValidAlive(target) then
+			return target
+		end
+	end
+	return nil
+end
 sl_modifier_rune_snapfire = __TS__Decorate(
 	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_snapfire") },
 	sl_modifier_rune_snapfire

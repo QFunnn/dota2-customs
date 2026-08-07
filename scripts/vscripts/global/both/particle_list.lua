@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -46,6 +46,8 @@ GENERIC_PARTICLES.heart_strike = "particles/bless/common/heart_strike_proc.vpcf"
 GENERIC_PARTICLES.debuff_immune = "particles/debuff_immune.vpcf"
 GENERIC_PARTICLES.debuff_immune_status_effect = "particles/debuff_immune_status_effect.vpcf"
 GENERIC_PARTICLES.knockback = "particles/generic_knockback.vpcf"
+GENERIC_PARTICLES.rune_furion_treant_explode = "particles/custom/rune_furion_treant_explode.vpcf"
+GENERIC_PARTICLES.rune_enigma_control_pjt = "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 TEST_PARTICLES = TEST_PARTICLES or {}
 TEST_PARTICLES.test_linear_pjt = "particles/dev/library/base_linear_projectile_model.vpcf"
 TEST_PARTICLES.test_tracking_pjt = "particles/dev/library/base_tracking_projectile.vpcf"
@@ -147,3 +149,9 @@ BLESS_PARTICLES.bless_21004_buff = "particles/bless/21004_buff.vpcf"
 BLESS_PARTICLES.bless_21004_diso = "particles/bless/21004_buffl.vpcf"
 BLESS_PARTICLES.bless_21005_aoe_conti = "particles/bless/21005_ground_pnt.vpcf"
 BLESS_PARTICLES.bless_21006_buff = "particles/bless/21006_buff.vpcf"
+BLESS_PARTICLES.bless_10204_redirect = "particles/persona/vs_girl/ability/nether_swap.vpcf"
+BLESS_PARTICLES.bless_10206_spell_dodge =
+	"particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_basher_cast_gold.vpcf"
+BLESS_PARTICLES.bless_10206_lightning = "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+BLESS_PARTICLES.bless_10208_shadow_realm = "particles/status_fx/status_effect_dark_willow_shadow_realm.vpcf"
+BLESS_PARTICLES.bless_10214_silver_edge = "particles/items3_fx/silver_edge.vpcf"

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -177,4 +177,10 @@ do
 	end
 	--- 技能自定义记录
 	AbilitySymbols.CustomRecord = ____AbilitySymbols_CustomRecord_25
+	local ____AbilitySymbols_Bless10204RedirectCast_26 = AbilitySymbols.Bless10204RedirectCast
+	if ____AbilitySymbols_Bless10204RedirectCast_26 == nil then
+		____AbilitySymbols_Bless10204RedirectCast_26 = __TS__Symbol("AbilityBless10204RedirectCast")
+	end
+	--- 福佑 10204 流离：技能处于转向强制施法中 boolean
+	AbilitySymbols.Bless10204RedirectCast = ____AbilitySymbols_Bless10204RedirectCast_26
 end

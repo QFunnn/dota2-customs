@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -17,8 +17,9 @@ local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
 local _____sl_modifier_rune_base = require("modifiers.rune_modifiers._sl_modifier_rune_base")
 local sl_modifier_rune_base = _____sl_modifier_rune_base.sl_modifier_rune_base
---- 每点智力提升{amp_per_int}%技能增强，每点智力或敏捷提升{batk_per_int_agi}基础攻击力<br>
--- 攻击命中额外造成{magic_damage}×等级的魔法伤害（受技能增强加成）
+--- 火球术
+-- 每点智力提升{amp_per_int}%技能增强，每点智力或敏捷提升{batk_per_int_agi}基础攻击力<br>
+-- 普通攻击额外造成{magic_damage}×等级点魔法伤害，该伤害享受技能增强加成
 ____exports.sl_modifier_rune_lina = __TS__Class()
 local sl_modifier_rune_lina = ____exports.sl_modifier_rune_lina
 sl_modifier_rune_lina.name = "sl_modifier_rune_lina"
@@ -28,6 +29,7 @@ function sl_modifier_rune_lina.prototype.DeclareFunctions(self)
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
 end
 function sl_modifier_rune_lina.prototype.GetModifierSpellAmplify_Percentage(self, event)
@@ -55,6 +57,9 @@ function sl_modifier_rune_lina.prototype.GetModifierBaseAttack_BonusDamage(self)
 		end
 	)
 	return int_atk + agi_atk
+end
+function sl_modifier_rune_lina.prototype.OnTooltip(self)
+	return self:_GetRuneSpecialValue("magic_damage")
 end
 function sl_modifier_rune_lina.prototype.OnAttackLanded(self, event)
 	if not IsServer() then

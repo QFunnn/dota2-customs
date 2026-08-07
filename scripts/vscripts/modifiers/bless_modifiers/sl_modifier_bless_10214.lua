@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -34,7 +34,7 @@ function sl_modifier_bless_10214.prototype.GetModifierTotalDamageOutgoing_Percen
 	if not IsValid(target) then
 		return 0
 	end
-	if not target:HasSLModifier(____exports.sl_modifier_bless_10214_break) then
+	if not target:PassivesDisabled() then
 		return 0
 	end
 	local ____table__params_damage_amp_0 = self._params
@@ -67,6 +67,18 @@ function sl_modifier_bless_10214_break.prototype.IsPermanent(self)
 end
 function sl_modifier_bless_10214_break.prototype.RemoveOnDeath(self)
 	return true
+end
+function sl_modifier_bless_10214_break.prototype.GetEffectName(self)
+	return BLESS_PARTICLES.bless_10214_silver_edge
+end
+function sl_modifier_bless_10214_break.prototype.GetEffectAttachType(self)
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function sl_modifier_bless_10214_break.prototype.OnCreated(self)
+	if not IsServer() then
+		return
+	end
+	EmitSoundOn("DOTA_Item.SilverEdge.Target", self:GetParent())
 end
 function sl_modifier_bless_10214_break.prototype.CheckState(self)
 	return { [MODIFIER_STATE_PASSIVES_DISABLED] = true }

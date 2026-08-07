@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -18,7 +18,8 @@ local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
 local _____sl_modifier_rune_base = require("modifiers.rune_modifiers._sl_modifier_rune_base")
 local sl_modifier_rune_base = _____sl_modifier_rune_base.sl_modifier_rune_base
---- 每点智力提升{amp_per_int}%技能增强，每点智力或力量提升{hp_per_int_str}生命值<br>每2%技能增强，大招和魔晶的蛇棒攻击力+1%
+--- 每点智力提升{amp_per_int}%技能增强，每点智力或力量提升{hp_per_int_str}生命值<br>
+-- 每1%技能增强，群蛇守卫和巨蛇守卫攻击力+{ward_atkp_per_amp}%（SetSummonAmp 每秒重算）
 ____exports.sl_modifier_rune_shadow_shaman = __TS__Class()
 local sl_modifier_rune_shadow_shaman = ____exports.sl_modifier_rune_shadow_shaman
 sl_modifier_rune_shadow_shaman.name = "sl_modifier_rune_shadow_shaman"

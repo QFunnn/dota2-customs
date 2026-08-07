@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -164,3 +164,17 @@ BOOTS_ITEMS_MAP = {
 }
 SHADOW_SHAMAN_WARD_NAMES =
 	{ "npc_dota_shadow_shaman_ward_1", "npc_dota_shadow_shaman_ward_2", "npc_dota_shadow_shaman_ward_3" }
+--- 召狼各等级狼单位名（SetSummonAmp 需全等匹配）
+LYCAN_WOLF_UNIT_NAMES =
+	{ "npc_dota_lycan_wolf1", "npc_dota_lycan_wolf2", "npc_dota_lycan_wolf3", "npc_dota_lycan_wolf4" }
+--- 术士地狱火单位名
+WARLOCK_GOLEM_UNIT_NAMES =
+	{ "npc_dota_warlock_golem", "npc_dota_warlock_golem_scepter", "npc_dota_warlock_golem_aghanims" }
+--- 先知召唤树人直接产生的小树人单位名（含等级后缀；不含 Greater Treant）
+FURION_SMALL_TREANT_UNIT_NAMES = {
+	"npc_dota_furion_treant",
+	"npc_dota_furion_treant_1",
+	"npc_dota_furion_treant_2",
+	"npc_dota_furion_treant_3",
+	"npc_dota_furion_treant_4",
+}

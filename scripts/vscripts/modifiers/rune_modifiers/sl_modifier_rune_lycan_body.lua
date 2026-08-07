@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -18,7 +18,8 @@ local registerModifier = ____dota_ts_adapter.registerModifier
 local _____sl_modifier_rune_base = require("modifiers.rune_modifiers._sl_modifier_rune_base")
 local sl_modifier_rune_base = _____sl_modifier_rune_base.sl_modifier_rune_base
 --- 每点敏捷提升{batk_per_agi}基础攻击力，每点敏捷或力量提升{hp_per_agi_str}生命值<br>
--- 变身状态下（人狼合一），超出基准值的移动速度按比例转化为攻击速度和前摇伤害（不改变移动速度上限）
+-- 变身期间：超出基准的实时移速转化为攻速和攻击力，并可突破移速上限。
+-- Ignore 与转化数值均在双端直接计算，无需 Transmitter。
 ____exports.sl_modifier_rune_lycan_body = __TS__Class()
 local sl_modifier_rune_lycan_body = ____exports.sl_modifier_rune_lycan_body
 sl_modifier_rune_lycan_body.name = "sl_modifier_rune_lycan_body"
@@ -29,6 +30,7 @@ function sl_modifier_rune_lycan_body.prototype.DeclareFunctions(self)
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
 	}
 end
 function sl_modifier_rune_lycan_body.prototype.GetModifierBaseAttack_BonusDamage(self)
@@ -53,12 +55,16 @@ function sl_modifier_rune_lycan_body.prototype.GetModifierHealthBonus(self)
 	)
 	return agi_hp + str_hp
 end
+function sl_modifier_rune_lycan_body.prototype._IsShapeshiftActive(self)
+	local parent = self:GetParent()
+	return IsValid(parent) and parent:HasModifier("modifier_lycan_shapeshift")
+end
+function sl_modifier_rune_lycan_body.prototype.GetModifierIgnoreMovespeedLimit(self)
+	return self:_IsShapeshiftActive() and 1 or 0
+end
 function sl_modifier_rune_lycan_body.prototype._GetShapeshiftAttackSpeedBonus(self)
 	local parent = self:GetParent()
-	if not IsValid(parent) then
-		return 0
-	end
-	if not parent:HasModifier("modifier_lycan_shapeshift") then
+	if not IsValid(parent) or not self:_IsShapeshiftActive() then
 		return 0
 	end
 	local move_speed_per_as = self:_GetRuneSpecialValue("move_speed_per_as")

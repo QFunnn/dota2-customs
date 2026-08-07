@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -668,6 +668,9 @@ function sl_modifier_ignore_attack_speed_limit.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_IGNORE_ATTACKSPEED_LIMIT }
 end
 function sl_modifier_ignore_attack_speed_limit.prototype.GetModifierAttackSpeed_Limit(self)
+	if not IsServer() then
+		return
+	end
 	return 1
 end
 sl_modifier_ignore_attack_speed_limit = __TS__Decorate(

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -28,6 +28,7 @@ function sl_modifier_summon_amp.prototype.DeclareFunctions(self)
 		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
 end
 function sl_modifier_summon_amp.prototype.GetModifierExtraHealthBonus(self)
@@ -73,6 +74,17 @@ function sl_modifier_summon_amp.prototype.GetModifierPreAttack_BonusDamage(self)
 		____table__params_atk_bonus_9_11 = 0
 	end
 	return ____table__params_atk_bonus_9_11
+end
+function sl_modifier_summon_amp.prototype.GetModifierAttackSpeedBonus_Constant(self)
+	local ____table__params_as_bonus_12 = self._params
+	if ____table__params_as_bonus_12 ~= nil then
+		____table__params_as_bonus_12 = ____table__params_as_bonus_12.as_bonus
+	end
+	local ____table__params_as_bonus_12_14 = ____table__params_as_bonus_12
+	if ____table__params_as_bonus_12_14 == nil then
+		____table__params_as_bonus_12_14 = 0
+	end
+	return ____table__params_as_bonus_12_14
 end
 sl_modifier_summon_amp =
 	__TS__Decorate({ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_summon_amp") }, sl_modifier_summon_amp)

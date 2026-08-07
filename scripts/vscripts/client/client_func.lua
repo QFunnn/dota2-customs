@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -53,6 +53,13 @@ local NUMBER_TYPE_CONFIG = {
 	},
 	[4] = {
 		color = Vector(POPUP_COLORS.GOLD.r, POPUP_COLORS.GOLD.g, POPUP_COLORS.GOLD.b),
+		particlePath = GENERIC_PARTICLES.popup_gold,
+		attachment = PATTACH_OVERHEAD_FOLLOW,
+		postSymbol = -1,
+		preSymbol = 0,
+	},
+	[20] = {
+		color = Vector(POPUP_COLORS.EXP.r, POPUP_COLORS.EXP.g, POPUP_COLORS.EXP.b),
 		particlePath = GENERIC_PARTICLES.popup_gold,
 		attachment = PATTACH_OVERHEAD_FOLLOW,
 		postSymbol = -1,

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 9d26fbd · 2026-08-03 06:18:41 UTC
+  ~ build 16fdfbc · 2026-08-07 21:47:55 UTC
   ~ auto-generated — do not edit
 ]]
 
@@ -26,6 +26,7 @@ function sl_modifier_global_thinker.prototype.DeclareFunctions(self)
 		MODIFIER_EVENT_ON_MODIFIER_ADDED,
 		MODIFIER_EVENT_ON_MODIFIER_REFRESHED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
@@ -64,6 +65,14 @@ function sl_modifier_global_thinker.prototype.OnTakeDamage(self, event)
 	end
 	SafelyCall(function()
 		return GlobalThinker:OnTakeDamage(event)
+	end)
+end
+function sl_modifier_global_thinker.prototype.OnHealReceived(self, event)
+	if not IsServer() then
+		return
+	end
+	SafelyCall(function()
+		return GlobalThinker:OnHealReceived(event)
 	end)
 end
 function sl_modifier_global_thinker.prototype.OnAbilityStart(self, event)
