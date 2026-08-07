@@ -25,4 +25,10 @@
 <img src="https://contrib.rocks/image?repo=QFunnn/dota2-customs" />
 
 ### История звезд проекта
-[![Star History Chart](https://api.star-history.com/svg?repos=QFunnn/dota2-customs&type=Date)](https://star-history.com/#QFunnn/dota2-customs&Date)
+<a href="https://www.star-history.com/?repos=QFunnn%2Fdota2-customs&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=QFunnn/dota2-customs&type=date&theme=dark&legend=top-left&sealed_token=L6l6yY30qzfq4PGldEUiWvMF3KJMQJubmDJbU4_Q-WF5Mx9zX28Rq3-CSkGYiVjJVtJoal1Mmqx4SIDZdsysXWmTzMbXJZCC7_bFSGuRRNJxCXxbQ5x7goluO54B3Fvtyco-xRjMlx9EGe9_UO7qU5LMMDjGrPZlPzv_hzYSi3JpJWrmIBhWsgr5vKs8" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=QFunnn/dota2-customs&type=date&legend=top-left&sealed_token=L6l6yY30qzfq4PGldEUiWvMF3KJMQJubmDJbU4_Q-WF5Mx9zX28Rq3-CSkGYiVjJVtJoal1Mmqx4SIDZdsysXWmTzMbXJZCC7_bFSGuRRNJxCXxbQ5x7goluO54B3Fvtyco-xRjMlx9EGe9_UO7qU5LMMDjGrPZlPzv_hzYSi3JpJWrmIBhWsgr5vKs8" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=QFunnn/dota2-customs&type=date&legend=top-left&sealed_token=L6l6yY30qzfq4PGldEUiWvMF3KJMQJubmDJbU4_Q-WF5Mx9zX28Rq3-CSkGYiVjJVtJoal1Mmqx4SIDZdsysXWmTzMbXJZCC7_bFSGuRRNJxCXxbQ5x7goluO54B3Fvtyco-xRjMlx9EGe9_UO7qU5LMMDjGrPZlPzv_hzYSi3JpJWrmIBhWsgr5vKs8" />
+ </picture>
+</a>
