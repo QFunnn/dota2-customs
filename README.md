@@ -2,7 +2,7 @@
 
 Для каждой игры создаётся отдельная ветка, содержащая актуальные файлы.
 
-### Доступные ветки
+## Доступные ветки
 
 | Пользовательская игра | Workshop | Ветка |
 |-----------------------|----------|--------|
@@ -21,7 +21,8 @@
 | Dota 12v12 | [`1576297063`](https://steamcommunity.com/sharedfiles/filedetails/?id=1576297063) | [`dota-12v12`](../../tree/dota-12v12) |
 | Auto Gladiators | [`3147450491`](https://steamcommunity.com/sharedfiles/filedetails/?id=3147450491) | [`auto-gladiators`](../../tree/auto-gladiators) |
 
-<details>
-<summary>Купить мне пиво</summary>
-usdt trc20: TKCbMsgNK8QAr4Za5jy4jwZswhBX2ZM7n7
-</details>
+### Контрибьюторы
+<img src="https://contrib.rocks/image?repo=QFunnn/dota2-customs" />
+
+### История звезд проекта
+[![Star History Chart](https://api.star-history.com/svg?repos=QFunnn/dota2-customs&type=Date)](https://star-history.com/#QFunnn/dota2-customs&Date)
