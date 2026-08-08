@@ -23,6 +23,3 @@
 
 ### Контрибьюторы
 <img src="https://contrib.rocks/image?repo=QFunnn/dota2-customs" />
-
-### История звезд проекта
-[![Star History Chart](https://api.star-history.com/chart?repos=QFunnn/dota2-customs&type=date&legend=top-left&sealed_token=R9dZFWlI2F0ZX9TuSOjv_5078t8TunSjzkcSOsb-vGHKPcZif6mLTEZQDy_J-FzsCA_yAgT-fVdxsI6EMuz6nV6K2Fx9JaJMu4S1onXEMrebFfDSZWIHxJ4ljhuGpaqNFCuyTbLo6Mk61NJgmA1R2IzNnATvvOSJytpKCRjl_BdLSfbhhmZdqbaS5NDn)](https://www.star-history.com/?repos=QFunnn%2Fdota2-customs&type=date&legend=top-left)
