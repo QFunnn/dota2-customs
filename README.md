@@ -20,6 +20,7 @@
 | Bless ARAM | [`2841152696`](https://steamcommunity.com/sharedfiles/filedetails/?id=2841152696) | [`bless-aram`](../../tree/bless-aram) |
 | Dota 12v12 | [`1576297063`](https://steamcommunity.com/sharedfiles/filedetails/?id=1576297063) | [`dota-12v12`](../../tree/dota-12v12) |
 | Auto Gladiators | [`3147450491`](https://steamcommunity.com/sharedfiles/filedetails/?id=3147450491) | [`auto-gladiators`](../../tree/auto-gladiators) |
+| Gem TD | [`474619917`](https://steamcommunity.com/sharedfiles/filedetails/?id=474619917) | [`gem-td`](../../tree/gem-td) |
 
 ### Контрибьюторы
 <img src="https://contrib.rocks/image?repo=QFunnn/dota2-customs" />
