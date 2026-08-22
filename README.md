@@ -16,11 +16,9 @@
 | Dota 1x6                | [`2836965027`](https://steamcommunity.com/sharedfiles/filedetails/?id=2836965027) | [`dota-1x6`](../../tree/dota-1x6)                               |
 | Dota 12v12              | [`1576297063`](https://steamcommunity.com/sharedfiles/filedetails/?id=1576297063) | [`dota-12v12`](../../tree/dota-12v12)                           |
 | Dota Auto Chess         | [`1613886175`](https://steamcommunity.com/sharedfiles/filedetails/?id=1613886175) | [`dota-auto-chess`](../../tree/dota-auto-chess)                 |
-| Dota Up Up              | [`3749629215`](https://steamcommunity.com/sharedfiles/filedetails/?id=3749629215) | [`dota-up-up`](../../tree/dota-up-up)                           |
 | Emberfall               | [`2331812965`](https://steamcommunity.com/sharedfiles/filedetails/?id=2331812965) | [`emberfall`](../../tree/emberfall)                             |
 | Gem TD                  | [`474619917`](https://steamcommunity.com/sharedfiles/filedetails/?id=474619917)   | [`gem-td`](../../tree/gem-td)                                   |
 | Overthrow 3.0           | [`2760533777`](https://steamcommunity.com/sharedfiles/filedetails/?id=2760533777) | [`overthrow-3-0`](../../tree/overthrow-3-0)                     |
-| Ratten Run              | [`3591032355`](https://steamcommunity.com/sharedfiles/filedetails/?id=3591032355) | [`ratten-run`](../../tree/ratten-run)                           |
 | World of Dota           | [`2880603428`](https://steamcommunity.com/sharedfiles/filedetails/?id=2880603428) | [`world-of-dota`](../../tree/world-of-dota)                     |
 
 ### Контрибьюторы
