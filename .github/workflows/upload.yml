@@ -45,8 +45,7 @@ jobs:
           TIME="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           WATERMARK=$(printf '%s' "$WATERMARK_TEMPLATE" \
             | sed \
-              -e "s|\${build}|$BUILD|g" \
-              -e "s|\${time}|$TIME|g")
+              -e "s|\${build}|$BUILD|g" 
           {
             echo "watermark<<__WM_EOF__"
             echo "$WATERMARK"
