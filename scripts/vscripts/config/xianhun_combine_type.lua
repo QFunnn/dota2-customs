@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+return decrypt("b25ad45075983e4d5609d90dbbcbe4276518d38c11447ba534cfc007c81a30559d4acd392afe3cda61b50318acdeaebc7e88a22e03b08c3556dce08b933b11964969b4a447187d9c99c558b48ce485b6d20508bf3ae416b8681d5dcc3bde72edaa964cb48c41cef67209a8113c35ec3f11b18ce1d056aa754a76488b32a17f0bb1fa50124e4c7cc684557f7f0e8e0daf68e4da912baa869dac5c9d184135214461a5c9dd1c6f7cd22b553fa88b6b60cc7aaa239c18679299461eb45048fbd997a685ed9f2b51fccff17270203b4dcb2eb736e26f71ecaa8378de5ae0e2cb66f7b0e395e92e7f76df128eab250a3ed06f33f4c92bc82b3666778d7ace1ea5eeffefcca7ec10f51a87434e313bd17f7cd4421fac618ff1eeff8695d0d3f1c69e911f99441e7e7c3544cedec71802d7da0261e13581b3c6b1ae730ccee66a1924a04c45e956db5c79c1fce0bad0ced1abab223e49a5b9c3910c2a44a4584b70e42ff7343ff45c672dbc83a9125022eaac7e","10a6c484b19603a45f0f0deff5c1a42e",'config/xianhun_combine_type.lua',getfenv(1),true)

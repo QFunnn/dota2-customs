@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+return decrypt("8d6f7e7544eb23116b457eeed485107ea2f08f1933710e540bf2fb13bfe926f66530de08fd5390b204b1392e923303eed9a04efc2fa6f6fff79fc765b5ca9abe3d99264028c1a8c07a03bbf9acac0f4793abca84f72c98f39ff7854b664a39af61c34b6c970117cbb82a946583ff036b891ea64b6a01fae6859c3525b186b95f86d0340b9376caa204e9e14a1b18ba36cf11615420390f44f69e105f77b41878041b45bf7b9a04dd3e6e4650d7fecc99ab7c5522837a5155f1e98ebbc3d5f1f0606bd1768a674af541e13d52ca4b08740f74d70c54e6fb009a899a6f7add1c19869300d46659df0065889e45178acd9062cb63ae2a9171ea362eae29e37c28470ac681632e6b49b8cd301623fc87b09a","82b8e116d5348349043d9039e44d134e",'config/xianhun_settings.lua',getfenv(1),true)

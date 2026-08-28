@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+return decrypt("a281aa8354b95dd3cb1172f8670304cde2a183ea60b7eb22c6c2ef58e97808b38ac566504ab652e3be1cf3f8c5307e90506a281d3fcf7ec21f4047f72c4d7eeb8fd6d79eface832f9abdad8d63629a24d32578fc0cc846d7187f73cdfb9bb0fd5732db6d65361d2f97ffb4de010a47e25a4ac9ae26056d804dba8b2b2154dc78ae99a265ae8aa76d8b9db10f5f466267099ecee94720467248a9d527305aafe45a0f360d539ca4031c4d4da7ff774651d6b28de52d01169fe61b4fc89f930a51fcc5c935d0fe6c1730d6ba3d95651bead053b289b9312242d7ef6419c69076a97214013d80254fab21f984d7be08aa6afd7e9e0a89c36eccc1380d87c48daff5f883315887be68ee0908993bd934bb78079c413c51d99fe62a88fc140d38879899bec07309c5b82555bf502e961518fa","bd268c195d4fb71a5a9918582349acaf",'config/extract_settings.lua',getfenv(1),true)
