@@ -1,0 +1,38 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+modifier_nevermore_18 = class({})
+
+function modifier_nevermore_18:IsHidden()
+	return true
+end
+function modifier_nevermore_18:IsPurgable()
+	return false
+end
+function modifier_nevermore_18:IsPurgeException()
+	return false
+end
+function modifier_nevermore_18:RemoveOnDeath()
+	return false
+end
+
+function modifier_nevermore_18:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(1)
+end
+
+function modifier_nevermore_18:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(self:GetStackCount() + 1)
+end
