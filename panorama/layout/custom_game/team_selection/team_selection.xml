@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/team_selection/team_selection.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/team_selection/team_selection.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="TS_Team">
+			<Button class="TS_Team" onactivate="OnJoinTeamPressed()">
+				<Panel class="TS_Team_Header">
+					<Label text="{s:team_name}" />
+				</Panel>
+				<Panel class="TS_Team_Players_Root">
+					<Panel id="TS_Team_Players_Overlay" />
+					<Panel id="TS_Team_Players_List" />
+				</Panel>
+			</Button>
+		</snippet>
+		<snippet name="TS_Player">
+			<Button class="TS_Player">
+				<Panel class="TS_Player_Overlay" />
+				<Label class="TS_EmptyPlayer" text="#team_selection_empty_slot" />
+				<Panel id="TS_PlayerInfo">
+					<DOTAAvatarImage />
+					<DOTAUserName />
+				</Panel>
+			</Button>
+		</snippet>
+		<snippet name="VoteOption">
+			<Panel class="VoteOption" onmouseout="DOTAHideTextTooltip()">
+				<ToggleButton id="VO_CheckBox" checked="false">
+					<Panel id="VO_Root">
+						<Panel id="VO_NameValue_Root">
+							<Label id="VO_Name" text="{s:vo_name}" />
+							<Label id="VO_Votes" text="{d:votes_count}/{d:votes_for_init_option}" />
+						</Panel>
+						<ProgressBar id="VO_ProgressBar" value="0" />
+					</Panel>
+				</ToggleButton>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="TeamSelection_Root" hittest="false">
+		<Panel class="TS_Base" hittest="false">
+			<Panel id="TS_TeamsRoot" />
+			<Panel class="TS_BottomButtons">
+				<Button class="TS_Button_Lock BHostElement" onactivate="LockAndStart()">
+					<Label text="#team_selection_lock" />
+				</Button>
+				<Button class="TS_Button_Unlock" onactivate="UnlockTeams()">
+					<Label text="#team_selection_unlock" />
+				</Button>
+				<Button class="TS_Button_Shuffle BHostElement" onactivate="ShuffleTeams()">
+					<Image src="s2r://panorama/images/control_icons/shuffle_psd.vtex" />
+					<Label text="#team_selection_shuffle" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="UnassignedPlayerPanel" hittest="true">
+			<Panel id="UnassignedPlayersHeader">
+				<Label text="#custom_game_team_select_unassigned_players" />
+			</Panel>
+			<Button id="UnassignedPlayersButton">
+				<Panel id="UnassignedPlayersContainer" />
+			</Button>
+			<Button class="TS_Button_Auto BHostElement" onactivate="AutoAssign()">
+				<Panel>
+					<Image src="s2r://panorama/images/control_icons/double_arrow_left_png.vtex" />
+					<Label text="#custom_game_team_select_auto_assign" />
+				</Panel>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

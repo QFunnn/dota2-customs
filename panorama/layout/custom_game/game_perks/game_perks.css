@@ -1,0 +1,772 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.GamePerks
+{
+	width: 100%;
+	height: 100%;
+}
+
+#Perks_MapButton
+{
+	width: 38px;
+	height: 38px;
+	border-radius: 100px;
+	margin-bottom: 227px;
+	margin-left: 247px;
+	align: left bottom;
+}
+
+.HUDFlipped #Perks_MapButton
+{
+	align: right bottom;
+	margin-left: 0px;
+	margin-right: 246px;
+}
+
+.MinimapExtraLarge #Perks_MapButton
+{
+	margin-left: 282px;
+}
+
+.HUDFlipped.MinimapExtraLarge #Perks_MapButton
+{
+	margin-right: 283px;
+}
+
+#Perks_MapButton_BG
+{
+	width: 71px;
+	height: 60px;
+	margin-bottom: 215px;
+	margin-left: 225px;
+	align: left bottom;
+	background-image: url("s2r://panorama/images/custom_game/perks/background_game_perks_png.vtex");
+	background-size: 100%;
+}
+
+.IsLocalPlayerSpectating #Perks_MapButton_BG,.IsLocalPlayerSpectating #Perks_MapButton_Image
+{
+	visibility: collapse;
+}
+
+.dota_tournament #Perks_MapButton_BG,.dota_tournament #Perks_MapButton_Image
+{
+	visibility: collapse;
+}
+
+.HUDFlipped #Perks_MapButton_BG
+{
+	transform: ScaleX(-1);
+	align: right bottom;
+	margin-left: 0px;
+	margin-right: 225px;
+}
+
+.MinimapExtraLarge #Perks_MapButton_BG
+{
+	width: 52px;
+	background-image: url("s2r://panorama/images/custom_game/perks/background_game_perks_old_png.vtex");
+	margin-left: 280px;
+}
+
+.HUDFlipped.MinimapExtraLarge #Perks_MapButton_BG
+{
+	margin-right: 280px;
+}
+
+#Perks_Menu
+{
+	margin-bottom: 22%;
+	align: center bottom;
+	flow-children: down;
+	visibility: collapse;
+	box-shadow: hollow rgba(0, 0, 0, 0.3) 0px 0px 4px 0px;
+	background-color: rgba(8, 9, 17, 0.95);
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.8)), to(rgba(15, 16, 30, 0.8)));
+}
+
+.Show:not(.dota_tournament) #Perks_Menu
+{
+	visibility: visible;
+}
+
+.PM_Header
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 45px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.95)), to(rgba(15, 16, 30, 0.95)));
+	border: 1px solid black;
+}
+
+.PM_HeaderText
+{
+	align: center center;
+	font-size: 24px;
+	color: #899ce2;
+	font-family: titleFont;
+	letter-spacing: 1px;
+	text-shadow: 0 1px 2px 2 black;
+	width: 100%;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#PM_Close
+{
+	width: 30px;
+	height: 30px;
+	align: right center;
+	wash-color: #99afd6;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 22px 22px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	margin-right: 5px;
+}
+
+#PM_Close:hover
+{
+	brightness: 1.5;
+}
+
+#PM_Close:active
+{
+	brightness: 0.75;
+	pre-transform-scale2d: 0.9;
+}
+
+.Perks_OverlayBottom
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.96, transparent), to(rgba(0, 0, 0, 0.8)) );
+}
+
+.Perks_OverlayTop
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.85)), color-stop(0.07, transparent), to(transparent) );
+}
+
+.Perks_OverlayTopIndicator
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.8)), color-stop(0.5, transparent), to(transparent) );
+}
+
+.Perk
+{
+	background-color: #27282d, gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 100%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent)), gradient(linear, 100% 0%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent));
+	margin: 10px 0 0 9px;
+	width: 120px;
+	height: 127px;
+	flow-children: down;
+	border-radius: 4px;
+	transition-property: box-shadow, background-color;
+	transition-duration: 0.15s;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 1px 2px 0;
+}
+
+.MaxPerksTiers_4 .Perk
+{
+	width: 82px;
+}
+
+.BAvailableTier .Perk
+{
+	background-color: #232841, gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 100%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent)), gradient(linear, 100% 0%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent));
+	transition-property: box-shadow, background-color;
+}
+
+.Perk:disabled
+{
+	saturation: 0.3;
+}
+
+.BAvailableTier .Perk:hover
+{
+	brightness: 1.5;
+	background-color: #232841, gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.1)), color-stop(0.02, transparent), to(transparent)), gradient(linear, 0% 100%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent)), gradient(linear, 100% 0%, 0% 0%, from(black), color-stop(0.03, transparent), to(transparent)), gradient( radial, 50% -10%, 0% 0%, 85% 75%, from(rgba(255, 199, 137, 0.3)), color-stop(1, transparent), to(transparent) );
+}
+
+.BAvailableTier .Perk:hover #Perk_Image
+{
+	pre-transform-scale2d: 1.08;
+}
+
+.BAvailableTier .Perk:active
+{
+	brightness: 0.7;
+}
+
+.BAvailableTier .Perk:active #Perk_Image
+{
+	pre-transform-scale2d: 0.96;
+}
+
+#Perk_Image
+{
+	margin-top: 10px;
+	width: 60px;
+	height: 60px;
+	horizontal-align: center;
+	border-radius: 5px;
+	saturation: 0;
+	brightness: 0.7;
+	contrast: 0.94;
+	wash-color: #e4e4e4;
+	box-shadow: rgba(0, 0, 0, 0.6) 0 0 10px 1px;
+}
+
+.PerksTier_3.BAvailableTier #Perk_Image
+{
+	saturation: 1.05;
+	box-shadow: #00ffa3 0 0 6px 1px;
+	wash-color: rgba(0, 255, 163, 0.16);
+}
+
+.BAvailableTier #Perk_Image
+{
+	saturation: 1;
+	brightness: 1;
+	contrast: 1;
+	wash-color: transparent;
+}
+
+#Perk_Name
+{
+	align: center center;
+	font-size: 16px;
+	text-overflow: clip;
+	text-align: center;
+	text-shadow: black 0px 1px 1px 2;
+	text-overflow: shrink;
+	color: rgb(188, 188, 188);
+	margin: 5px;
+	max-height: 100%;
+}
+
+.BAvailableTier #Perk_Name
+{
+	color: rgb(223, 255, 244);
+}
+
+.BAvailableTier .Perk:hover #Perk_Name
+{
+	color: rgb(240, 240, 240);
+}
+
+#Perks_MapButton_Image
+{
+	width: 60px;
+	height: 60px;
+	pre-transform-scale2d: 0.99;
+	margin-right: 1px;
+	horizontal-align: center;
+	vertical-align: middle;
+}
+
+#Perks_MapButton_Image:hover
+{
+	brightness: 2;
+}
+
+#PM_List
+{
+	height: 502px;
+	padding: 0px 15px 0 0;
+	flow-children: right;
+	overflow: squish scroll;
+	horizontal-align: center;
+}
+
+.Perks_Tier
+{
+	margin-left: 10px;
+	width: 410px;
+	padding: 5px;
+}
+
+.MaxPerksTiers_4 .Perks_Tier
+{
+	width: 300px;
+}
+
+.Perks_Tier > Panel
+{
+	width: 100%;
+	border: 1px solid black;
+	flow-children: down;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	box-shadow: hollow rgba(0, 0, 0, 0.7) 0px 0px 5px 0px;
+	margin-bottom: 4px;
+}
+
+.AspectRatio4x3 .Perks_Tier
+{
+	width: 270px;
+}
+
+#Perks_Tier_Header
+{
+	width: 100%;
+	height: 38px;
+	horizontal-align: center;
+	z-index: 10;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.PerksTier_0 #Perks_Tier_Header
+{
+	background-color: gradient( radial, 50% 100%, 0% 0%, 45% 90%, from(rgb(42, 46, 47)), color-stop(0.5, rgba(35, 39, 46, 1)), to(rgba(22, 24, 35, 1)) );
+}
+
+.PerksTier_1 #Perks_Tier_Header
+{
+	background-color: gradient( radial, 50% 100%, 0% 0%, 45% 90%, from(rgba(46, 46, 47, 1)), color-stop(0.5, rgba(35, 37, 41, 1)), to(rgba(22, 24, 35, 1)) );
+}
+
+.PerksTier_2 #Perks_Tier_Header
+{
+	background-color: gradient( radial, 50% 100%, 0% 0%, 45% 90%, from(rgb(45, 47, 48)), color-stop(0.5, rgba(34, 35, 39, 1)), to(rgba(22, 24, 35, 1)) );
+}
+
+.PerksTier_3 #Perks_Tier_Header
+{
+	background-color: gradient( radial, 50% 100%, 0% 0%, 45% 90%, from(rgb(45, 48, 48)), color-stop(0.5, rgb(34, 39, 38)), to(rgb(22, 35, 33)) );
+}
+
+.Perks_Tier_HeaderText
+{
+	width: 100%;
+	max-height: 100%;
+	align: center center;
+	text-align: center;
+	margin-top: 1px;
+	font-size: 21px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-shadow: 0 1px 0 2 black;
+}
+
+.PerksTier_0 .Perks_Tier_HeaderText
+{
+	color: #e6e6e6;
+}
+
+.PerksTier_1 .Perks_Tier_HeaderText
+{
+	color: #ffa95d;
+}
+
+.PerksTier_2 .Perks_Tier_HeaderText
+{
+	color: #ffe65d;
+}
+
+.PerksTier_3 .Perks_Tier_HeaderText
+{
+	color: #0adb9f;
+}
+
+#Perks_Container
+{
+	horizontal-align: center;
+	border-style: solid;
+	width: 400px;
+	flow-children: right-wrap;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgb(12, 11, 25)), color-stop(0.3, rgb(26, 28, 47)), to(rgb(26, 28, 47)) );
+	border-right: 3px solid white;
+	border-left: 3px solid white;
+	border-brush: transparent;
+	padding-bottom: 10px;
+}
+
+.MaxPerksTiers_4 #Perks_Container
+{
+	width: 290px;
+}
+
+.BAvailableTier #Perks_Container
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(rgba(6, 6, 15, 1)), color-stop(0.25, rgb(33, 45, 34)), to(rgb(33, 45, 34)) );
+	border-brush: gradient(linear, 0% 0%, 0% 100%, from(#0a804b), color-stop(0.2, transparent), to(transparent));
+}
+
+#ScrollThumb
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a405a), to(#282f41));
+	box-shadow: rgba(0, 0, 0, 0.4) -1px 1px 2px 1;
+}
+
+#VerticalScrollBar
+{
+	width: 12px;
+	margin: 12px 0 10px 0;
+}
+
+.BAvailableTier .ActiveTierHeader_Indicator
+{
+	width: 100%;
+	height: 4px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#075837), color-stop(0.3, #5cecb8), color-stop(0.7, #5cecb8), to(#075837) );
+	vertical-align: bottom;
+}
+
+.PerksStatesContainer
+{
+	width: 100%;
+}
+
+.Perks_State
+{
+	width: 100%;
+	padding: 5px 10px 4px 10px;
+	background-size: 100%;
+	border-right: 3px solid white;
+	border-left: 3px solid white;
+	visibility: collapse;
+}
+
+.Perks_State.Choose
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0ce79b), to(#0a804b));
+	border-brush: transparent;
+}
+
+.Perks_State.Old
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a6a7a7), to(#6a6b6b));
+	border-brush: transparent;
+}
+
+.Perks_State.Old Label
+{
+	color: #f8f8f8;
+}
+
+.PerksTier_1 .Perks_State.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/perks/unlock_silver_bg_png.vtex");
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from(#727374), color-stop(0.4, #e6e6e7), color-stop(0.6, #e6e6e7), to(#727374) );
+}
+
+.PerksTier_1 .Perks_State.Unlock:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/perks/unlock_silver_bg_hover_png.vtex");
+}
+
+.PerksTier_2 .Perks_State.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/perks/unlock_gold_bg_png.vtex");
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from(#815b08), color-stop(0.4, #e6d41a), color-stop(0.6, #e6d41a), to(#815b08) );
+}
+
+.PerksTier_2 .Perks_State.Unlock:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/perks/unlock_gold_bg_hover_png.vtex");
+}
+
+.PerksTier_3 .Perks_State.Unlock
+{
+	background-color: gradient( linear, 100% 0%, 0% 0%, from(#0c4a3b), color-stop(0.4, #39906b), color-stop(0.6, #39906b), to(#0c4a3b) );
+	border-brush: gradient( linear, 0% 0%, 0% 100%, from(#168167), color-stop(0.4, #56e6b1), color-stop(0.6, #56e6b1), to(#0f8166) );
+}
+
+.PerksTier_3 .Perks_State.Unlock:hover
+{
+	background-color: gradient( linear, 100% 0%, 0% 0%, from(#0e6251), color-stop(0.4, #3da27b), color-stop(0.6, #3da27b), to(#0e6251) );
+}
+
+.BAvailableTier .Perks_State.Choose,.BOldTier .Perks_State.Old,.BLockedTier .Perks_State.Unlock
+{
+	visibility: visible;
+}
+
+.Perks_State Label
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	color: #effff4;
+	text-shadow: rgba(0, 0, 0, 0.95) 0 1px 1px 2;
+}
+
+.Perks_State.Unlock Label
+{
+	color: white;
+	margin-left: 8px;
+}
+
+.Perks_State.Unlock > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+.PS_UnlockIcon
+{
+	width: 11px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/custom_game/perks/lock_png.vtex");
+	background-size: 95%;
+	background-position: 50% 50%;
+	img-shadow: black 0 1px 2px 2;
+	margin-top: 4px;
+	background-img-opacity: 0;
+}
+
+.PS_UnlockIcon > Panel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/perks/lock_png.vtex");
+}
+
+.PerksTier_1 .Perks_State.Unlock Label
+{
+	color: gradient(linear, 0% 130%, 0% 0%, from(#bababa), to(white));
+}
+
+.PerksTier_1 .PS_UnlockIcon > Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#bababa), to(white));
+}
+
+.PerksTier_2 .Perks_State.Unlock Label
+{
+	color: gradient(linear, 0% 130%, 0% 0%, from(#d7b95b), to(#faf399));
+}
+
+.PerksTier_2 .PS_UnlockIcon > Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#d7b95b), to(#faf399));
+}
+
+.PerksTier_3 .Perks_State.Unlock Label
+{
+	color: gradient(linear, 0% 130%, 0% 0%, from(#86d7aa), to(#b4face));
+}
+
+.PerksTier_3 .PS_UnlockIcon > Panel
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#86d7aa), to(#b4face));
+}
+
+.Perks_State.Unlock
+{
+	transition-property: brightness, background-image;
+	transition-duration: 0.1s;
+}
+
+.Perks_State.Unlock:active
+{
+	brightness: 0.5;
+}
+
+#PM_ListWrap
+{
+	z-index: 1;
+}
+
+.PM_ServerStateContainer
+{
+	min-height: 72px;
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(14, 18, 19, 0.9)), to(rgba(15, 16, 30, 0.9)));
+	flow-children: down;
+}
+
+.PM_SS_Indicator
+{
+	height: 7px;
+	width: 100%;
+}
+
+.ServerState_0 .PM_SS_Indicator
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#04383e), color-stop(0.5, #95fff4), to(#04383e));
+}
+
+.ServerState_1 .PM_SS_Indicator
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#113e04), color-stop(0.5, #59ef80), to(#113e04));
+}
+
+.ServerState_2 .PM_SS_Indicator
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3e0404), color-stop(0.5, #dd1d1d), to(#3e0404));
+}
+
+.PM_SS_Content
+{
+	flow-children: down;
+	align: center center;
+	padding: 10px 0 12px 0;
+}
+
+.PM_SS_Header
+{
+	font-size: 23px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	horizontal-align: center;
+	text-align: center;
+	font-weight: semi-bold;
+}
+
+.ServerState_0 .PM_SS_Header
+{
+	color: #79d0c8;
+}
+
+.ServerState_1 .PM_SS_Header
+{
+	color: #5af584;
+	background-image: url("s2r://panorama/images/custom_game/perks/tick_png.vtex");
+	background-size: 25px 22px;
+	background-position: 0% 2px;
+	background-repeat: no-repeat;
+	padding-left: 29px;
+}
+
+.ServerState_2 .PM_SS_Header
+{
+	color: #ef5959;
+}
+
+.PM_SS_Description
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #d9e4e4;
+	margin-top: 1px;
+}
+
+.ServerState_1 .PM_SS_Description
+{
+	visibility: collapse;
+}
+
+.Perks_Search
+{
+	width: 500px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	align: center center;
+	background-color: #212633;
+}
+
+.Perks_Search_Clear
+{
+	box-shadow: black 0 0px 5px -1px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#293143), to(#343f55));
+	padding: 4px 8px;
+	align: right center;
+	margin-right: 5px;
+	border-radius: 3px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	max-width: 120px;
+}
+
+.BSearchInputFocus .Perks_Search_Clear
+{
+	opacity: 1;
+}
+
+.Perks_Search_Clear Label
+{
+	background-image: url("s2r://panorama/images/custom_game/import_dota/x_close_png_png.vtex");
+	background-size: 13px;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	padding: 1px 0 0 16px;
+	text-transform: uppercase;
+	color: white;
+	font-size: 14px;
+	wash-color: #aabbe1;
+}
+
+#Perks_Search_TextEntry
+{
+	width: 100%;
+	margin: 0 120px 0 40px;
+	height: 24px;
+	padding: 0 5px;
+	color: #aabbe1;
+	text-shadow: black 0 0px 1px 2;
+	background-color: none;
+	align: center center;
+	border: 0px solid transparent;
+	font-weight: lighter;
+}
+
+#Perks_Search_TextEntry:focus
+{
+	color: #ffb284;
+	text-decoration: underline;
+}
+
+.Perks_Search_Placeholder
+{
+	background-color: #212633;
+	width: 100%;
+	padding: 8px 11px;
+	horizontal-align: center;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	vertical-align: center;
+}
+
+.BSearchInputFocus .Perks_Search_Placeholder
+{
+	opacity: 0;
+}
+
+.Perks_Search_Placeholder Label
+{
+	color: white;
+	wash-color: #aabbe1;
+	text-shadow: black 0 0px 1px 2;
+	padding-left: 20px;
+	background-image: url("s2r://panorama/images/custom_game/perks/search_png.vtex");
+	background-size: 15px;
+	background-repeat: no-repeat;
+	background-position: 0% 50%;
+	horizontal-align: center;
+	text-align: center;
+	font-weight: lighter;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+}
+
+.Perks_Search_Placeholder:hover Label
+{
+	wash-color: #c3d6ff;
+}
+
+.Perks_Search_Placeholder:active Label
+{
+	wash-color: #91a1c3;
+}

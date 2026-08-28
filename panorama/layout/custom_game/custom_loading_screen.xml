@@ -1,0 +1,74 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen_utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="LS_Player">
+			<Panel class="LS_Player">
+				<Panel class="LS_Player_Overlay" />
+				<Panel id="LS_PlayerInfo">
+					<DOTAAvatarImage steamid="local" />
+					<DOTAUserName steamid="local" />
+				</Panel>
+				<Panel class="LS_Player_LoadingState" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="MegaDotaRoot">
+		<Panel id="LoadingScreenTipsPanel">
+			<Panel class="PrevTip" onactivate="PrevHint()" />
+			<Image id="LoadingTipImage" />
+			<Panel id="LoadingTipTextWrap">
+				<Label id="LoadingTipText" html="true" text="{s:loading_screen_tip_desc}" />
+			</Panel>
+			<Panel class="NextTip" onactivate="NextHint()" />
+		</Panel>
+		<Panel class="LS_StartTimer_Root" hittest="false">
+			<Label id="LS_StartTimer_Header" text="#ls_hint_text_header_players_loading" html="true" hittest="false" />
+			<Label id="LS_StartTimer_Timer" text="{s:ls_hints_timer}" html="true" hittest="false" />
+		</Panel>
+		<Panel class="SocialLinks_Root">
+			<Panel class="SocialLinks_List">
+				<Button class="SocialLink Discord" onactivate="$.DispatchEvent(&apos;ExternalBrowserGoToURL&apos;, &apos;https://discord.gg/9PTC7PBaJv&apos;)">
+					<Label class="SocialHeader" text="Discord" />
+					<Panel class="SocialImage" />
+					<Label class="SocialClickHint" text="#click_to_open" />
+				</Button>
+				<Panel class="SocialLink WeChat">
+					<Label class="SocialHeader" text="#custom_ls_wechat" />
+					<Panel class="SocialImage" />
+					<Label class="SocialClickHint" text="#scan_qr_to_open" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="LoadingPlayers_Root">
+			<Label id="LoadingPlayers_Root_Text" text="#LoadingScreenPlayersInfo" />
+			<Panel id="LoadingPlayers_List" />
+		</Panel>
+		<Panel class="NotificationInstaLoading_Root">
+			<Label text="#insta_loading_hint" />
+		</Panel>
+		<Panel class="TournamentModeHint_Container">
+			<Label class="TournamentMode_Header" text="#tournament_mode_header" html="true" />
+			<Label class="TournamentMode_Hint" text="#tournament_mode_hint" html="true" />
+		</Panel>
+		<Panel class="Banner_2" />
+	</Panel>
+</root>

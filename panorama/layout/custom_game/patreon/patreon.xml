@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/patreon/patreon.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/patreon/patreon.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PatreonPerk">
+			<Panel class="PatreonPerk">
+				<Image id="PatreonPerkImage" src="none" />
+				<Panel id="PatreonPerkRightColumn">
+					<Label id="PatreonPerkTitle" />
+					<Label id="PatreonPerkAccess" />
+					<Panel id="PatreonPerkAdditional">
+						<Label id="PateonPerkDescription" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="PatreonRoot">
+		<Panel id="LocalServerWarningContainer">
+			<Label id="LocalServerWarningLabel" text="#local_lobby_warning" />
+			<Button id="LocalServerWarningButton" onactivate="CloseLocalServerWarning()">
+				<Label id="LocalServerWarningButtonLabel" text="#local_lobby_confirm" />
+			</Button>
+		</Panel>
+		<Panel id="PatreonButtonPanel">
+			<Panel id="PatreonContainer">
+				<Button id="ClosePatreonButton" onactivate="ClosePatreonButton();" onmouseover="ShowClosePatreonButton()" onmouseout="HideClosePatreonButton()" />
+				<Panel id="NewMethodsAnnouncement" hittest="false">
+					<Image id="NewMethodsAnnouncementImage" src="s2r://panorama/images/custom_game/patreon/new_methods_announcement_png.vtex" />
+					<Panel id="NewMethodsAnnouncementText">
+						<Label html="true" text="#patreon_new_methods_announcement" />
+						<Panel id="NewMethodsAnnouncementImages">
+							<Image onactivate="OpenShop()" src="s2r://" />
+							<Image onactivate="OpenShop()" src="s2r://" />
+							<Image onactivate="OpenShop()" src="s2r://" />
+							<Button class="PatreonCloseButtonX" onactivate="HideNewMethodsAnnouncement()" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PatreonButtonContainer">
+					<TextButton id="PatreonButton" onactivate="OpenShop()" text="#patreon_perks" />
+					<Button id="PatreonButtonSmallerImage" onmouseover="ShowCloseSmallPatreonButton()" onmouseout="HideCloseSmallPatreonButton()">
+						<Image id="PatreonSmallerImage" src="s2r://panorama/images/custom_game/patreon/small_button_png.vtex" onactivate="OpenShop()" />
+						<Button id="CloseSmallPatreonButton" onactivate="CloseSmallPatreonButton();" onmouseover="ShowCloseSmallPatreonButton()" onmouseout="HideCloseSmallPatreonButton()" />
+					</Button>
+					<Panel id="ChatWheelContainer">
+						<Image id="VOIcon" src="s2r://panorama/images/custom_game/patreon/voicon_png.vtex" onmouseover="ShowVOIconButton()" onmouseout="HideVOIconButton()" />
+						<Button id="CloseVOIconButton" onactivate="CloseVOIconButton();" onmouseover="ShowVOIconButton()" onmouseout="HideVOIconButton()" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

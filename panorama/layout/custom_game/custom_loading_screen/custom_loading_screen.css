@@ -1,0 +1,919 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.MegaDotaRoot
+{
+	background-color: black;
+	background-image: url("s2r://panorama/images/custom_game/12v12_background_v2_png.vtex");
+	background-size: 100%;
+}
+
+#mega_bg
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.NextTip
+{
+	vertical-align: center;
+	width: 23px;
+	height: 100%;
+	wash-color: white;
+	background-size: 20px 20px;
+	horizontal-align: right;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/arrow_solid_right_png_png.vtex");
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0.6;
+}
+
+.PrevTip
+{
+	vertical-align: center;
+	width: 24px;
+	height: 100%;
+	wash-color: #ffffff;
+	background-size: 20px 20px;
+	horizontal-align: right;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/arrow_solid_left_png_png.vtex");
+	background-color: rgba(0, 0, 0, 0.52);
+	opacity: 0.85;
+}
+
+.BFirstTip .PrevTip
+{
+	visibility: collapse;
+}
+
+#ActivateBotsInToolsModeRoot
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#272d2e), to(#131617));
+	box-shadow: #868686a8 -2px -2px 4px 4px;
+	height: 40px;
+	vertical-align: center;
+	margin-top: 140px;
+	margin-left: 280px;
+	flow-children: right;
+	padding-right: 7px;
+	padding-left: 7px;
+	border-radius: 5px;
+	visibility: collapse;
+}
+
+#ActivateBotsInToolsModeButton,#ActivateBotsInToolsModeText
+{
+	vertical-align: center;
+}
+
+#ActivateBotsInToolsModeText
+{
+	margin-left: 5px;
+	color: rgb(220, 220, 220);
+}
+
+#LoadingScreenTipsPanel
+{
+	width: 600px;
+	height: 100px;
+	horizontal-align: center;
+	margin-top: 510px;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
+}
+
+.AspectRatio4x3.Language_schinese .dota_tournament #LoadingScreenTipsPanel,.AspectRatio4x3.Language_schinese .dota_tournament .TournamentModeHint_Container
+{
+	width: 420px;
+}
+
+#LoadingScreenTipsPanel.darkened
+{
+	brightness: 0.2;
+	blur: gaussian(2.5);
+}
+
+#LoadingScreenTipsPanel.hidden
+{
+	visibility: collapse;
+}
+
+#LoadingTipImage
+{
+	width: 100px;
+	height: 100px;
+	background-color: #000000;
+	vertical-align: center;
+	margin-left: 3px;
+	border: 2px solid rgba(255, 255, 255, 0.56);
+}
+
+#LoadingTipText
+{
+	width: 100%;
+	color: #ececec;
+	vertical-align: center;
+	font-size: 18px;
+	line-height: 21px;
+	text-overflow: shrink;
+	text-align: center;
+	font-weight: lighter;
+}
+
+.AspectRatio16x10 #LoadingTipText
+{
+	text-overflow: clip;
+	font-size: 15px;
+}
+
+.AspectRatio4x3 #LoadingTipText
+{
+	text-overflow: clip;
+	font-size: 14px;
+}
+
+#LoadingTipTextWrap
+{
+	height: 100%;
+	width: fill-parent-flow(1);
+}
+
+.FormLinkContainer
+{
+	margin-top: 570px;
+	margin-left: 95px;
+	width: 30%;
+	border: 2px solid #32383677;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#272d2e), to(#131617));
+	flow-children: down;
+}
+
+.LinkHeader
+{
+	width: 90%;
+	height: 45px;
+	font-size: 45px;
+	font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New, YDYGO 540;
+	font-weight: bold;
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-transform: uppercase;
+	text-align: center;
+	color: #e2e2e2;
+}
+
+.LinkButton
+{
+	width: 80%;
+	horizontal-align: center;
+	padding: 5px;
+	margin: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5aa15e), to(#87d69533));
+	background-image: url("s2r://panorama/images/custom_game/import_dota/background_play_button_2x_png_png.vtex");
+	background-size: 328px 50px;
+	border-top: 1px solid #ffffff44;
+	border-right: 1px solid #00000088;
+	border-left: 1px solid #ffffff44;
+	border-bottom: 1px solid #00000088;
+	transition-property: background-color, box-shadow;
+	transition-duration: 0.2s;
+}
+
+.LinkButton:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5aa15e), to(#87d695));
+	box-shadow: fill #87d69533 -4px -4px 9px 10px;
+}
+
+.LinkButtonText
+{
+	color: white;
+	font-weight: bold;
+	horizontal-align: center;
+	font-size: 24px;
+}
+
+.SocialLinks_Root
+{
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(24, 32, 34, 0.7)), to(rgba(15, 17, 17, 0.4)));
+	align: right bottom;
+	margin: 10px;
+	padding: 10px 10px 4px 10px;
+}
+
+.AspectRatio4x3 .SocialLinks_Root
+{
+	margin-right: 274px;
+}
+
+.AspectRatio4x3.Language_schinese .SocialLinks_Root
+{
+	margin: 10px;
+}
+
+.AspectRatio4x3 .InstaLoading .SocialLinks_Root
+{
+	margin-right: 10px;
+}
+
+.SocialLinks_List
+{
+	flow-children: right;
+	padding-left: -10px;
+}
+
+.SocialLink
+{
+	margin-left: 10px;
+	flow-children: down;
+}
+
+.SocialHeader
+{
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+Button.SocialLink:hover .SocialImage
+{
+	brightness: 1.3;
+}
+
+Button.SocialLink:active .SocialImage
+{
+	brightness: 0.8;
+	background-size: 120px;
+}
+
+.SocialLink Label
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #eeeeee;
+	padding: 2px 5px;
+	font-size: 20px;
+	width: 100%;
+}
+
+.SocialImage
+{
+	width: 130px;
+	height: 130px;
+	horizontal-align: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	transition: brightness 0.1s ease-in-out 0s;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Discord .SocialImage
+{
+	background-image: url("s2r://panorama/images/custom_game/discord_logo_png.vtex");
+}
+
+.Language_schinese .WeChat,.Language_tchinese .WeChat
+{
+	width: 150px;
+}
+
+.WeChat .SocialImage
+{
+	background-image: url("s2r://panorama/images/custom_game/wechat_qr_png.vtex");
+}
+
+.SocialLink .SocialClickHint
+{
+	font-size: 14px;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+#LoadingPlayers_Root
+{
+	flow-children: down;
+	max-width: 1510px;
+	min-height: 135px;
+	horizontal-align: center;
+	margin-top: 300px;
+	visibility: collapse;
+}
+
+.InstaLoading #LoadingPlayers_Root
+{
+	horizontal-align: right;
+	margin: 10px 8px 0 0;
+}
+
+.BLoadingState #LoadingPlayers_Root
+{
+	visibility: visible;
+}
+
+#LoadingPlayers_Root_Text
+{
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	font-family: titleFont;
+	color: white;
+	text-shadow: black 1px 2px 1px 2;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	height: 43px;
+	text-overflow: shrink;
+}
+
+#LoadingPlayers_List
+{
+	flow-children: right-wrap;
+	padding: 1px 8px 8px 0;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/loading_screen_png.vtex");
+	background-size: 100%;
+}
+
+.InstaLoading #LoadingPlayers_List
+{
+	padding: 5px 8px 8px 0;
+	background-img-opacity: 0.98;
+	background-color: white;
+	box-shadow: black 0 0 7px -1px;
+}
+
+.InstaLoading #LoadingPlayers_List
+{
+	flow-children: down;
+}
+
+.LS_Player
+{
+	width: 240px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_2_png.vtex");
+	background-size: 100%;
+	margin: 8px 0 0 8px;
+}
+
+.Language_schinese .LS_Player
+{
+	width: 225px;
+}
+
+.InstaLoading .LS_Player
+{
+	height: 28px;
+	width: 210px;
+	margin: 5px 0 0 8px;
+}
+
+.AspectRatio16x10 .InstaLoading .LS_Player
+{
+	width: 190px;
+	margin: 4px 0 0 8px;
+}
+
+.AspectRatio4x3 .InstaLoading .LS_Player
+{
+	width: 140px;
+	margin: 3px 0 0 8px;
+}
+
+.LS_Player.BLocalPlayer
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_local_png.vtex");
+}
+
+.LS_Player_Overlay
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+}
+
+.BState_Loaded,.BState_Failed
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_png.vtex");
+}
+
+.BState_Loaded .LS_Player_Overlay
+{
+	background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#6bb95b));
+}
+
+.BState_Failed .LS_Player_Overlay
+{
+	background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#b24949));
+}
+
+.LS_Player_LoadingState
+{
+	width: 4px;
+	height: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#424242), color-stop(0.2, #acacac), color-stop(0.8, #acacac), to(#424242) );
+	horizontal-align: right;
+}
+
+.BState_Loaded .LS_Player_LoadingState
+{
+	background-color: #6bb95b;
+}
+
+.BState_Failed .LS_Player_LoadingState
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from(#942929), color-stop(0.2, #b24949), color-stop(0.8, #b24949), to(#942929) );
+}
+
+#LS_PlayerInfo
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+#LS_PlayerInfo DOTAAvatarImage
+{
+	width: 30px;
+	height: 30px;
+	box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 2px 1;
+}
+
+.InstaLoading #LS_PlayerInfo DOTAAvatarImage
+{
+	width: 26px;
+	height: 26px;
+}
+
+#LS_PlayerInfo DOTAUserName
+{
+	vertical-align: center;
+	margin-left: 10px;
+	height: 21px;
+}
+
+.InstaLoading #LS_PlayerInfo DOTAUserName
+{
+	margin-top: 1px;
+}
+
+#LS_PlayerInfo DOTAUserName Label
+{
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 2;
+	overflow: clip;
+}
+
+.LS_StartTimer_Root
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 820px;
+	visibility: collapse;
+}
+
+.InstaLoading .LS_StartTimer_Root
+{
+	margin-top: 660px;
+}
+
+.Language_schinese .LS_StartTimer_Root
+{
+	margin: 0 422px 210px 0;
+	align: right bottom;
+}
+
+.AspectRatio4x3.Language_schinese .LS_StartTimer_Root
+{
+	align: right bottom;
+	margin: 0 145px 210px 0;
+}
+
+#LS_StartTimer_Header
+{
+	font-family: titleFont;
+	font-weight: semi-bold;
+	width: 200px;
+	text-align: center;
+	font-size: 25px;
+	color: #e7e7e7;
+}
+
+#LS_StartTimer_Timer
+{
+	background-color: #232323;
+	font-size: 59px;
+	width: 100px;
+	height: 100px;
+	padding: 8px 4px 0 4px;
+	font-family: monospaceNumbersFont;
+	text-align: center;
+	border-radius: 50px;
+	border: 4px solid #fdfdfd;
+	color: #e7e7e7;
+	text-overflow: shrink;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.BGameLoading .LS_StartTimer_Root,.BGameLaunch .LS_StartTimer_Root,.BForceTimer .LS_StartTimer_Root
+{
+	visibility: visible;
+}
+
+.NotificationInstaLoading_Root
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#011d1e), to(#006e6e));
+	box-shadow: red 0 0 10px 0;
+	padding: 15px;
+	width: 400px;
+	horizontal-align: center;
+	margin-top: 820px;
+	animation-name: red_glow;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	visibility: collapse;
+	max-height: 193px;
+	align: right bottom;
+	margin: 0 310px 10px 0;
+}
+
+.AspectRatio4x3 .NotificationInstaLoading_Root
+{
+	max-width: 270px;
+}
+
+.InstaLoading .NotificationInstaLoading_Root
+{
+	visibility: visible;
+}
+
+.Language_schinese .InstaLoading .NotificationInstaLoading_Root
+{
+	align: right bottom;
+	margin: 0 330px 10px 0;
+}
+
+.Language_schinese.AspectRatio4x3 .InstaLoading .NotificationInstaLoading_Root
+{
+	height: 100px;
+	align: left center;
+	margin: 360px 0 0 0;
+	width: 600px;
+	max-width: 600px;
+	padding: 8px 5px -8px 5px;
+}
+
+.AspectRatio4x3 .NotificationInstaLoading_Root
+{
+	margin-left: 200px;
+}
+
+.AspectRatio16x10 .NotificationInstaLoading_Root
+{
+	margin-left: 270px;
+}
+
+.NotificationInstaLoading_Root Label
+{
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#b90100), to(#ff0100));
+	text-shadow: black 0 0 3px 3;
+	font-size: 30px;
+	font-family: titleFont;
+	font-weight: bold;
+	padding: 3px;
+	text-overflow: shrink;
+}
+
+@keyframes 'red_glow'
+{
+	0%
+	{
+		box-shadow: red 0 0 5px 0;
+	}
+	
+	50%
+	{
+		box-shadow: red 0 0 18px 0;
+	}
+	
+	100%
+	{
+		box-shadow: red 0 0 5px 0;
+	}
+	
+}
+
+@keyframes 'red_glow_short'
+{
+	0%
+	{
+		box-shadow: red 0 0 1px 0;
+	}
+	
+	50%
+	{
+		box-shadow: red 0 0 2px 0;
+	}
+	
+	100%
+	{
+		box-shadow: red 0 0 1px 0;
+	}
+	
+}
+
+.TournamentModeHint_Container
+{
+	width: 600px;
+	margin-top: 320px;
+	horizontal-align: center;
+	flow-children: down;
+	border-top: 2px solid rgba(255, 255, 255, 0.12);
+	border-left: 2px solid rgba(255, 255, 255, 0.05);
+	border-bottom: 2px solid rgba(255, 255, 255, 0.01);
+	border-right: 2px solid rgba(255, 255, 255, 0.01);
+	visibility: collapse;
+}
+
+.dota_tournament .TournamentModeHint_Container
+{
+	visibility: visible;
+}
+
+.TournamentMode_Header
+{
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
+	text-align: center;
+	padding: 4px 28px;
+	font-size: 22px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.01);
+	color: gradient(linear, 0% 100%, 0% 0%, from(#de7548), to(#c5472e));
+}
+
+.TournamentMode_Hint
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
+	padding: 8px 28px;
+	width: 100%;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#dcdcdc), to(#f6f6f6));
+}
+
+.TournamentBanner_1
+{
+	width: 230px;
+	height: 460px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	margin: 191px 0 0 10px;
+	box-shadow: black 0 0 4px 1px;
+	visibility: collapse;
+}
+
+.AspectRatio4x3 .TournamentBanner_1
+{
+	width: 165px;
+	height: 330px;
+	margin: 125px 0 0 3px;
+}
+
+.Banner_1
+{
+	width: 304px;
+	height: 130px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	margin: 5px 0 0 290px;
+	visibility: collapse;
+}
+
+.Language_schinese .Banner_1
+{
+	visibility: visible;
+}
+
+.AspectRatio4x3.Language_schinese .Banner_1
+{
+	width: 268px;
+	height: 115px;
+	margin: 5px 0 0 430px;
+}
+
+.Language_schinese .TournamentBanner_1,.Language_tchinese .TournamentBanner_1
+{
+	visibility: visible;
+}
+
+#TournamentPromo_1_Container
+{
+	align: center bottom;
+	margin-bottom: 95px;
+	visibility: collapse;
+	flow-children: down;
+}
+
+.Language_schinese #TournamentPromo_1_Container
+{
+	visibility: visible;
+}
+
+.AspectRatio4x3.Language_schinese #TournamentPromo_1_Container
+{
+	margin: 0 0 2px 220px;
+}
+
+#TournamentPromo_1
+{
+	width: 450px;
+	height: 300px;
+	border-top: 2px solid rgba(255, 255, 255, 0.12);
+	border-left: 2px solid rgba(255, 255, 255, 0.05);
+	border-bottom: 2px solid rgba(255, 255, 255, 0.01);
+	border-right: 2px solid rgba(255, 255, 255, 0.01);
+}
+
+#TournamentPromo_1_Container Label
+{
+	color: #7d7d7d;
+	font-size: 16px;
+	width: 100%;
+	text-align: center;
+	margin-top: 5px;
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.Promo_10v10
+{
+	height: 270px;
+	width: 270px;
+	background-image: url("s2r://panorama/images/custom_game/10v10_promo_png.vtex");
+	background-size: 100%;
+	align: center bottom;
+	margin-bottom: 10px;
+}
+
+.dota_tournament .Promo_10v10
+{
+	margin-left: 400px;
+}
+
+.Promo_10v10:hover
+{
+	brightness: 1.3;
+}
+
+.Promo_10v10:active
+{
+	brightness: 0.7;
+}
+
+.Promo_10v10_Hint
+{
+	align: center bottom;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#ffbb22), to(#ffffcf));
+	text-decoration: underline;
+	font-style: italic;
+	text-shadow: black 0 0 3px 4;
+}
+
+.Promo_10v10_Text_p1
+{
+	width: 100%;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#efae2c), to(#ffef87));
+	text-transform: uppercase;
+	font-size: 17px;
+	text-shadow: black 0 0 3px 3;
+	transform: rotateZ(-45deg);
+	margin: 68px 109px 0 0;
+	letter-spacing: 1px;
+}
+
+.Promo_10v10_Text_p2
+{
+	width: 100%;
+	vertical-align: bottom;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 100% 0%, from(#eeb315), to(#fff22b));
+	text-transform: uppercase;
+	font-size: 15px;
+	text-shadow: black 0 0 3px 3;
+	transform: rotateZ(-45deg);
+	margin: 0 0 69px 115px;
+}
+
+.Banner_2
+{
+	width: 229px;
+	height: 656px;
+	background-image: url("s2r://panorama/images/custom_game/banner_2_png.vtex");
+	background-size: 100%;
+	margin: 54px 0 0 10px;
+	box-shadow: black 0 0 4px 1px;
+	visibility: collapse;
+}
+
+.AspectRatio4x3 .Banner_2
+{
+	width: 165px;
+	height: 473px;
+	margin: 125px 0 0 3px;
+}
+
+.Language_schinese .Banner_2,.Language_tchinese .Banner_2
+{
+	visibility: visible;
+}
+
+.Banner_ServerErrors
+{
+	flow-children: right;
+	width: 600px;
+	align: center top;
+	background-color: rgba(0, 0, 0, 0.6);
+	margin-top: 625px;
+}
+
+.Banner_SE_Bevel
+{
+	height: 100%;
+	width: 4px;
+	background-color: #c5341a;
+}
+
+.Banner_SE_Content
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.Banner_SE_Header
+{
+	text-transform: uppercase;
+	font-size: 24px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#c5341a), to(rgba(197, 52, 26, 0.4)));
+	width: 100%;
+	padding: 3px 8px 2px 7px;
+	color: white;
+	font-weight: lighter;
+}
+
+.Banner_SE_Description
+{
+	font-size: 16px;
+	color: #d3d3d3;
+	padding: 3px 8px 2px 8px;
+}
+
+.Banner_Event_SameHero
+{
+	width: 482px;
+	height: 260px;
+	align: center bottom;
+	margin-bottom: 35px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+.Banner_Event_SameHero_Header
+{
+	text-transform: uppercase;
+	align: center bottom;
+	margin-bottom: 34px;
+	font-size: 30px;
+	font-weight: semi-bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#c5cfed), to(#ffffff));
+	text-shadow: black 0 2px 0px 2;
+	text-align: center;
+}
+
+.Language_russian .Banner_Event_SameHero_Header
+{
+	font-size: 28px;
+	margin-bottom: 36px;
+}
+
+.Banner_Event_SameHero_Description
+{
+	text-transform: uppercase;
+	align: center bottom;
+	margin-bottom: 4px;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	text-shadow: black 0 1px 0px 2;
+}

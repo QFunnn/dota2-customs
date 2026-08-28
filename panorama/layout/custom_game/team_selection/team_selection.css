@@ -1,0 +1,671 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.TeamSelection_Root
+{
+	width: 100%;
+	height: 100%;
+}
+
+.TS_Base
+{
+	height: 100%;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#TS_TeamsRoot
+{
+	flow-children: down;
+	padding: -7px 0 0 -650px;
+	margin-top: 140px;
+}
+
+.AspectRatio4x3.Language_schinese .dota_tournament #TS_TeamsRoot
+{
+	padding: -7px 0 0 -450px;
+}
+
+.AspectRatio4x3 #TS_TeamsRoot
+{
+	margin-top: 80px;
+}
+
+#TS_TeamsRoot > Panel
+{
+	flow-children: right;
+	margin-top: 7px;
+}
+
+.TS_Team
+{
+	flow-children: down;
+	margin-left: 650px;
+}
+
+.AspectRatio4x3.Language_schinese .dota_tournament .TS_Team
+{
+	margin-left: 450px;
+	width: 270px;
+}
+
+.TS_Team,.TS_Player
+{
+	width: 384px;
+}
+
+.AspectRatio4x3 .TS_Team,.AspectRatio4x3 .TS_Player
+{
+	width: 320px;
+}
+
+.AspectRatio4x3 .InstaLoading .TS_Team,.AspectRatio4x3 .InstaLoading .TS_Player
+{
+	width: 220px;
+}
+
+.AspectRatio16x10 .TS_Team,.AspectRatio16x10 .TS_Player
+{
+	width: 280px;
+}
+
+.AspectRatio16x10 .InstaLoading .TS_Team,.AspectRatio16x10 .InstaLoading .TS_Player
+{
+	width: 260px;
+}
+
+.TS_Team:not(.BFullTeam):hover .TS_Player.Empty
+{
+	brightness: 1.3;
+}
+
+.TS_Team:not(.BFullTeam):active .TS_Player.Empty
+{
+	brightness: 0.85;
+}
+
+.TS_Team_Header
+{
+	width: 100%;
+}
+
+.TS_Team_Header Label
+{
+	width: 100%;
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: black 0px 1px 1px 2;
+	font-weight: semi-bold;
+	font-family: titleFont;
+	letter-spacing: 1px;
+	font-size: 45px;
+	padding-top: 2px;
+}
+
+.AspectRatio16x10 .TS_Team_Header Label
+{
+	font-size: 38px;
+	height: 50px;
+}
+
+.AspectRatio4x3 .TS_Team_Header Label
+{
+	font-size: 40px;
+	width: 155px;
+	padding-top: 1px;
+}
+
+.AspectRatio4x3 .Team_2 .TS_Team_Header Label
+{
+	width: 155px;
+}
+
+.Team_2 .TS_Team_Header Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#0097e4), to(#26d8f3));
+}
+
+.Team_3 .TS_Team_Header Label
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#bd201d), to(#e84c3b));
+}
+
+.TS_Team_Players_Root
+{
+	width: 100%;
+	background-color: yellow;
+	box-shadow: black 0 0 7px -1px;
+}
+
+.Team_2 .TS_Team_Players_Root
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#022951), to(#18ccdf));
+}
+
+.Team_3 .TS_Team_Players_Root
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#500100), to(#fd5040));
+}
+
+#TS_Team_Players_Overlay
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TS_Team_Players_List
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0 10px 10px 10px;
+	background-color: black;
+	margin: 15px;
+}
+
+.TS_Player
+{
+	height: 30px;
+	margin-top: 10px;
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_png.vtex");
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1b1c21), to(#25282d));
+	background-size: 100%;
+}
+
+.TS_Player.BLocalPlayer
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_local_png.vtex");
+}
+
+.TS_Player.Empty
+{
+	background-image: url("s2r://panorama/images/custom_game/backgrounds/ts_player_bg_empty_png.vtex");
+}
+
+.TS_EmptyPlayer
+{
+	padding-left: 35px;
+	text-align: center;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#8f8f8f), to(#b0b0b0));
+	color: #828b8e;
+	text-shadow: rgba(0, 0, 0, 0.91) 0px 0px 4px 3;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/custom_game/empty_avatar_hr_png.vtex");
+	background-size: 30px;
+	background-repeat: no-repeat;
+	height: 30px;
+	line-height: 27px;
+}
+
+.Empty .TS_EmptyPlayer
+{
+	visibility: visible;
+}
+
+#TS_PlayerInfo
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.Empty #TS_PlayerInfo
+{
+	visibility: collapse;
+}
+
+#TS_PlayerInfo DOTAAvatarImage
+{
+	width: 30px;
+	height: 30px;
+	box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 3px 1;
+}
+
+#TS_PlayerInfo DOTAUserName
+{
+	vertical-align: center;
+	margin-left: 10px;
+	height: 21px;
+}
+
+#TS_PlayerInfo DOTAUserName Label
+{
+	text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 2;
+	overflow: clip;
+}
+
+.TS_BottomButtons
+{
+	width: 100%;
+	margin-top: 8px;
+}
+
+.TS_BottomButtons Button:hover,.TS_Button_Auto:hover
+{
+	brightness: 1.25;
+	saturation: 1.1;
+}
+
+.TS_BottomButtons Button:active,.TS_Button_Auto:active
+{
+	brightness: 0.8;
+}
+
+.TS_Button_Lock,.TS_Button_Unlock
+{
+	horizontal-align: center;
+}
+
+.BHasUnassignedPlayers .TS_Button_Lock,.BHasUnassignedPlayers .TS_Button_Unlock
+{
+	opacity: 0;
+}
+
+.Language_schinese .dota_tournament .TS_Button_Lock,.Language_tchinese .dota_tournament .TS_Button_Unlock
+{
+	horizontal-align: right;
+	margin-right: 133px;
+}
+
+.Language_schinese.AspectRatio4x3 .dota_tournament .TS_Button_Lock,.Language_tchinese.AspectRatio4x3 .dota_tournament .TS_Button_Unlock
+{
+	horizontal-align: right;
+	margin-right: 98px;
+}
+
+.TS_Button_Lock Label,.TS_Button_Unlock Label
+{
+	padding: 17px 45px;
+	background-image: url("s2r://panorama/images/custom_game/import_dota/background_play_button_2x_png_png.vtex");
+	background-size: 100%;
+	color: #cfcfcf;
+	font-size: 20px;
+	font-weight: semi-bold;
+	min-width: 250px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0e0b1e), to(#4c529b));
+	text-align: center;
+}
+
+.AspectRatio4x3 .TS_Button_Lock Label,.AspectRatio4x3 .TS_Button_Unlock Label
+{
+	min-width: 220px;
+}
+
+.TS_Button_Unlock Label
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1e0404), to(#9b2b36));
+}
+
+.TS_Button_Shuffle,.TS_Button_Auto
+{
+	horizontal-align: right;
+	flow-children: right;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#424242), to(#666666));
+	background-image: url("s2r://panorama/images/custom_game/import_dota/background_play_button_2x_png_png.vtex");
+	background-size: 100%;
+	box-shadow: black 0 0 3px 1;
+}
+
+.TS_Button_Auto
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 10px 0;
+	opacity: 0;
+}
+
+.BHasUnassignedPlayers .TS_Button_Auto
+{
+	opacity: 1;
+}
+
+.TS_Button_Auto > Panel
+{
+	flow-children: right;
+	align: center center;
+}
+
+.TS_Button_Auto Image
+{
+	width: 18px;
+	height: 15px;
+	vertical-align: center;
+}
+
+.TS_Button_Auto Label
+{
+	margin-left: 5px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #e1e1e1;
+}
+
+.TS_Button_Shuffle Image
+{
+	width: 24px;
+	height: 20px;
+	vertical-align: center;
+	margin-left: 10px;
+}
+
+.TS_Button_Shuffle Label
+{
+	padding: 10px;
+	color: #cfcfcf;
+}
+
+.TS_Button_Unlock
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.BTeamsLocked .TS_Button_Unlock
+{
+	opacity: 1;
+}
+
+#UnassignedPlayerPanel
+{
+	width: 240px;
+	flow-children: down;
+	horizontal-align: right;
+	visibility: collapse;
+	margin-top: 162px;
+	padding: 10px;
+}
+
+.AspectRatio4x3 #UnassignedPlayerPanel
+{
+	margin: 0 34px 0 0;
+	vertical-align: bottom;
+}
+
+.AspectRatio4x3.Language_schinese .dota_tournament #UnassignedPlayerPanel
+{
+	margin: 0;
+	align: right top;
+	margin: 92px 0 0 0;
+	width: 230px;
+}
+
+.AspectRatio16x10 #UnassignedPlayerPanel
+{
+	width: 200px;
+	margin-top: 137px;
+}
+
+.BShowUnassigned:not(.InstaLoading) #UnassignedPlayerPanel
+{
+	visibility: visible;
+}
+
+#UnassignedPlayersButton
+{
+	flow-children: down;
+	height: 520px;
+	width: 100%;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1e1e1e), to(#9b9b9b));
+	box-shadow: inset rgba(0, 0, 0, 0.5) 0px 2px 15px -3px;
+	margin-top: 10px;
+}
+
+.AspectRatio4x3 #UnassignedPlayersButton
+{
+	margin-top: 0px;
+	height: 215px;
+}
+
+.AspectRatio4x3.Language_schinese .dota_tournament #UnassignedPlayersButton
+{
+	height: 525px;
+}
+
+.AspectRatio16x10 #UnassignedPlayersButton
+{
+	width: 200px;
+	height: 518px;
+}
+
+#UnassignedPlayersButton:hover #UnassignedPlayersHeader Label
+{
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: white;
+}
+
+#UnassignedPlayersButton:hover
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#414141), to(#bdbdbd));
+	box-shadow: inset rgba(0, 0, 0, 0.8) 0px 2px 15px -3px;
+}
+
+#UnassignedPlayersHeader
+{
+	width: 100%;
+}
+
+#UnassignedPlayersHeader Label
+{
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: #d3d3d3;
+	font-weight: semi-bold;
+	text-shadow: black 0 0 6px 6;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	transition-property: color;
+	transition-duration: 0.2s;
+	text-align: center;
+}
+
+#UnassignedPlayerPanel:hover #UnassignedPlayersHeader Label
+{
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: white;
+}
+
+#UnassignedPlayersContainer
+{
+	width: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+	margin: 16px;
+	padding: 0px 10px;
+	background-color: rgba(0, 0, 0, 0.9);
+	height: 100%;
+}
+
+#UnassignedPlayersContainer .TS_Player
+{
+	width: 100%;
+}
+
+.PrivElement
+{
+	visibility: collapse;
+}
+
+.BShowPrivElements .PrivElement
+{
+	visibility: visible;
+}
+
+.BHostElement
+{
+	visibility: collapse;
+}
+
+.BShowHostElements.BTeamsLocked .BHostElement
+{
+	visibility: collapse;
+}
+
+.GameOptions_Root
+{
+	width: 600px;
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 330px;
+}
+
+.dota_tournament .GameOptions_Root
+{
+	visibility: collapse;
+}
+
+#VoteOptionsHeaderWrap
+{
+	width: 100%;
+	height: 33px;
+	padding: 0 10px;
+}
+
+#VoteOptionsHeaderText
+{
+	align: center center;
+	font-weight: lighter;
+	color: gainsboro;
+	font-size: 24px;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+#VoteOptionsTotalVotesWrap
+{
+	width: 100%;
+}
+
+#VoteOptionsTotalVotesText
+{
+	align: right center;
+	font-weight: lighter;
+	color: gainsboro;
+	font-size: 14px;
+}
+
+#VoteOptionsButtons
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.VoteOption
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 3px;
+}
+
+#VO_CheckBox
+{
+	width: 100%;
+	padding: 0px;
+}
+
+#VO_CheckBox .TickBox
+{
+	width: 25px;
+	height: 25px;
+	margin-right: 8px;
+	box-shadow: transparent 0 0 0 0;
+	background-color: #2b2b39;
+	border: 2px solid #2b2b39;
+	border-radius: 3px;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+	vertical-align: bottom;
+}
+
+#VO_CheckBox:hover .TickBox
+{
+	background-color: #4e4e6d;
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.75);
+}
+
+#VO_CheckBox:selected .TickBox
+{
+	border: 3px solid #2b2b39;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1eda1e), to(#b0ffab));
+	box-shadow: inset 0px 0px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+.BVoteEnable #VO_CheckBox:selected .TickBox
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#e6c61d), to(#fff99a));
+}
+
+#VO_Root
+{
+	flow-children: down;
+	width: 100%;
+}
+
+#VO_NameValue_Root
+{
+	flow-children: right-wrap;
+	width: 100%;
+}
+
+#VO_Name,#VO_Votes
+{
+	margin: 0px;
+	font-size: 20px;
+	letter-spacing: 0px;
+	color: white;
+}
+
+#VO_Name
+{
+	transition: text-shadow 0.1s ease-in-out 0s;
+	text-shadow: transparent 0 0 0px 0;
+}
+
+#VO_CheckBox:selected #VO_Name
+{
+	text-shadow: rgb(0, 141, 8) 0 0 2px 2;
+}
+
+.BVoteEnable #VO_CheckBox #VO_Name,.BVoteEnable #VO_Votes
+{
+	text-shadow: rgb(191, 177, 40) 0 0 2px 2;
+}
+
+#VO_Votes
+{
+	horizontal-align: right;
+	text-align: right;
+}
+
+#VO_ProgressBar
+{
+	border-radius: 0px;
+	height: 3px;
+	background-color: #3b3b3b;
+	width: 100%;
+}
+
+#VO_ProgressBar_Left
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#656565), to(#d1d1d1));
+	transition: width 0.1s ease-in-out 0s;
+}
+
+#VO_CheckBox:selected #VO_ProgressBar_Left
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#007f0f), to(#36f338));
+}
+
+.BVoteEnable #VO_CheckBox #VO_ProgressBar_Left
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#a87b00), to(#f3db07));
+}

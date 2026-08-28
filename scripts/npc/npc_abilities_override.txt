@@ -1,0 +1,411 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"Version"       "1"
+
+	"backdoor_protection"
+	{
+		"AbilityValues"
+		{
+			"regen_rate"			"360"
+		}
+	}
+
+	"zuus_thundergods_wrath"
+	{
+		"AbilityCooldown"				"150"
+
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"							"240 380 520"
+				"special_bonus_unique_zeus_4"		"+60"
+			}
+		}
+	}
+
+	"mirana_invis"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"140 130 120"
+				"special_bonus_unique_mirana_4"		"-30"
+			}
+			"fade_delay"			"2.5 2.25 2.0"
+			"duration"				"15.0"
+		}
+	}
+
+	"silencer_glaives_of_wisdom"
+	{
+		"AbilityValues"
+		{
+			"int_steal"		
+			{
+				"value"		"1 1 1 1"
+				"special_bonus_shard"		"+1"
+			}
+		}
+	}
+
+	"silencer_global_silence"
+	{
+		"AbilityValues"
+		{
+			"AbilityDuration"
+			{
+				"value"					"4.0 4.5 5.0"
+				"special_bonus_unique_silencer_global_duration"	"+2"
+			}
+			"AbilityCooldown"
+			{
+				"value"								"150"
+				"special_bonus_unique_silencer_7"	"-15"
+			}
+		}
+	}
+
+	"alchemist_goblins_greed"
+	{
+		"AbilityValues"
+		{
+			//It is just a tooltip values. For update logic u need update modifier_alchemist_consumable_scepter_nerf
+			"nerfed_stats_tooltip"	"5"
+			"nerfed_health_tooltip"	"100"
+			"nerfed_mana_tooltip"	"100"
+			
+			"bonus_gold"			"4"
+			"bonus_gold_tooltip"
+			{
+				"value"						"4"
+				"special_bonus_scepter"		"+0"
+				"dynamic_value"				"true"
+			}
+			"bonus_bonus_gold"			"4"
+			"bonus_gold_per_scepter"	"0"
+			"damage"
+			{
+				"special_bonus_unique_alchemist_7"	"+1.5"
+			}
+			"bonus_gold_cap"			"32"
+			"bonus_gold_cap_tooltip"
+			{
+				"value"						"32"
+				"special_bonus_scepter"		"+0"
+				"dynamic_value"				"true"
+			}
+			"scepter_bonus_damage"	"15"
+		}
+	}
+
+	"bounty_hunter_jinada"
+	{
+		"AbilityValues"
+		{
+			"gold_steal"
+			{
+				"value"			"30 44 58 72"
+				"special_bonus_unique_bounty_hunter"		"+100"
+			}
+		}
+	}
+
+	"doom_bringer_devour"
+	{
+		"AbilityValues"
+		{
+			"bonus_gold"
+			{
+				"value"				"70 140 210 280"
+			}
+		}
+	}
+
+	"skeleton_king_vampiric_spirit"
+	{
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"							"4.25"
+				"hero_levelup"					"+0.25"
+				"levelup_interval"				"6"
+				"special_bonus_scepter"			"+0.5"
+			}
+		}
+	}
+
+	"special_bonus_unique_undying_3"
+	{
+		"BaseClass"						"special_bonus_base"
+	}
+
+	"invoker_sun_strike"
+	{
+		"AbilityValues"
+		{
+			"cataclysm_count"
+			{
+				"value"					"0"
+				"special_bonus_scepter_3"		"+1"
+			}
+			"cataclysm_min_range"
+			{
+				"value"					"5"
+			}
+			"cataclysm_max_range"
+			{
+				"value"					"10"
+			}
+			"cataclysm_damage_pct"
+			{
+				"value"					"125"
+			}
+		}
+	}
+
+	"warlock_fatal_bonds"
+	{
+		"AbilityValues"
+		{
+			"search_aoe"
+			{
+				"value"			"650"
+				"affected_by_aoe_increase"	"1"
+			}
+		}
+	}
+
+	"sniper_assassinate"
+	{
+		"AbilityCastRange"				"2500"
+	}
+
+	"spectre_haunt_single"
+	{
+		"LinkedAbility"						""
+		"AbilityDraftUltScepterAbility"		""
+
+		"HasScepterUpgrade"					"1"
+
+		"AbilityValues"
+		{
+			"illusion_damage_outgoing"
+			{
+				"value"									"-60 -40 -20"
+				"special_bonus_unique_spectre_4"		"+25"
+			}
+			"tooltip_outgoing"
+			{
+				"value"									"40 60 80"
+				"special_bonus_unique_spectre_4"		"+25"
+			}
+
+			"illusion_damage_incoming"
+			{
+				"value"		"100 100 100"
+				"special_bonus_scepter"	"-100"
+			}
+			"tooltip_illusion_total_damage_incoming"
+			{
+				"value"					"200 200 200"
+				"special_bonus_scepter"	"-100"
+
+				// "damage" in attribute name but it's a percentage-based effect
+				"CalculateSpellDamageTooltip"	"0"
+				"DamageTypeTooltip"	"DAMAGE_TYPE_NONE"
+			}
+			"duration"
+			{
+				"value" 				"6.0"
+				"special_bonus_scepter"	"+2"
+			}
+			"custom_scepter_duration_tooltip"	"2"
+		}
+	}
+
+	"abyssal_underlord_pit_of_malice"
+	{
+		"AbilityValues"
+		{
+			"pit_interval"					"4.5"
+		}
+	}
+
+	"furion_wrath_of_nature"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"							"100"
+				"special_bonus_unique_furion_7"	"-15"
+			}
+		}
+	}
+
+	"sniper_take_aim"
+	{
+		"AbilityValues"
+		{
+			"active_attack_range_bonus"
+			{
+				"value"									"50 100 150 200"
+			}
+			"passive_attack_range_bonus"
+			{
+				"value"								"120 180 240 300"
+				"special_bonus_unique_sniper_5" 		"+50"
+			}
+		}
+	}
+
+	"sniper_keen_scope"
+	{
+		"AbilityValues"
+		{
+			"bonus_damage_for_range"
+			{
+				"value"						"0.75"
+				"hero_levelup"				"+0.025"
+			}
+		}
+	}
+
+	"witch_doctor_gris_gris"
+	{
+		"AbilityValues"
+		{
+			"gold_tick_interval_tooltip"		"1.5"
+		}
+	}
+
+	"warlock_black_grimoire"
+	{
+		"AbilityValues"
+		{
+			// purely for tooltips on variant selection, actual KV's are on the item
+			"tooltip_xp"				"500"
+		}
+	}
+
+	"elder_titan_ancestral_spirit"
+	{
+		"AbilityValues"
+		{
+			"move_pct_creeps"				"1.5"
+			"move_pct_heroes"
+			{
+				"value"		"2 2.5 3 3.5"
+				"special_bonus_unique_elder_titan_bonus_spirit_speed"	"+1.25"
+			}
+			"damage_creeps"
+			{
+				"value"	"3 7 11 15"
+				"CalculateSpellDamageTooltip"				"0"
+				"DamageTypeTooltip"		"DAMAGE_TYPE_NONE"
+			}
+			"damage_heroes"
+			{
+				"value"		"8.5 19 29.5 40"
+				"special_bonus_unique_elder_titan"	"+12.5"
+				"CalculateSpellDamageTooltip"	"0"
+				"DamageTypeTooltip"				"DAMAGE_TYPE_NONE"
+			}
+			"armor_creeps"					"0.5"
+			"armor_heroes"					"0.75 1.5 2.25 3"
+			"move_pct_cap"					"40"
+			"scepter_magic_immune_per_hero"
+			{
+				"special_bonus_scepter"		"1"
+			}
+		}
+	}
+
+	"spirit_breaker_herd_mentality"
+	{
+		"AbilityValues"
+		{
+			"xp_gain_rate"				"120"
+		}
+	}
+
+	// Phantom Lancer's Juxtapose has halved illusion count and proc chance, but double outgoing damage and halved incoming damage
+	"phantom_lancer_juxtapose"
+	{
+		"AbilityValues"
+		{
+			"proc_chance_pct"		"40 45 50" // Vanilla is 40/45/50 -- works well with vanilla values (~49% winrate)
+
+			"illusion_proc_chance_pct"
+			{
+				"value"				"9" // Vanilla is 9 -- works well with vanilla values (~49% winrate)
+				"special_bonus_unique_phantom_lancer_juxtapose_illusio_proc_chance" "+3"
+			}
+
+			"max_illusions"
+			{
+				"value"						"3 4 5"
+			}
+
+			"illusion_damage_out_pct"
+			{
+				"value"							"-70" // Vanilla is -85
+				"CalculateSpellDamageTooltip"	"0"
+			}
+
+			"tooltip_illusion_damage"
+			{
+				"value"							"30" // Vanilla is 15
+				"CalculateSpellDamageTooltip"	"0"
+				"DamageTypeTooltip"	"DAMAGE_TYPE_NONE"
+			}
+
+
+			"illusion_damage_in_pct"
+			{
+				"value"							"200" // Vanilla is 500 -- 200 is 300% damage taken
+				"CalculateSpellDamageTooltip"	"0"
+				"special_bonus_unique_phantom_lancer_juxtapose_damage_in"	"-35" // Vanilla is -70
+			}
+
+			"tooltip_total_illusion_damage_in_pct"
+			{
+				"value"							"300" // Vanilla is 600
+				"CalculateSpellDamageTooltip"	"0"
+				"special_bonus_unique_phantom_lancer_juxtapose_damage_in"	"-35" // Vanilla is -70
+				"DamageTypeTooltip"	"DAMAGE_TYPE_NONE"
+			}
+		}
+	}
+	
+	"primal_beast_colossal"
+	{
+		"AbilityValues"
+		{
+			"aoe_per_threshold"							"0.3"
+			"trample_bonus"
+			{
+				"value"													"0"
+				"special_bonus_unique_primal_beast_colossal_trample"	"1.75"
+			}
+		}
+	}
+	
+	"ancient_apparition_ice_blast"
+	{
+		"AbilityCooldown"				"60 55 50"
+	}
+}

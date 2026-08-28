@@ -1,0 +1,75 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass_simple/battle_pass_simple_precache.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass_simple/battle_pass_simple.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/cosmetics/cosmetics_rarities.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/item_tooltip/item_tooltip.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/const.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/collection/battle_pass_simple/battle_pass_simple.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="BP_Item">
+			<Panel class="BP_Item">
+				<Panel class="BP_ItemBorder CI_Background">
+					<Image id="BP_ItemImage">
+						<Label class="BP_Item_Count" text="x{d:count}" />
+					</Image>
+				</Panel>
+				<Image class="BP_Lock" src="s2r://panorama/images/custom_game/collection/battle_pass/lock_png.vtex" />
+				<Image class="BP_Tick" src="s2r://panorama/images/custom_game/collection/battle_pass/tick_png.vtex" />
+			</Panel>
+		</snippet>
+		<snippet name="BP_Level">
+			<Panel class="BP_Level">
+				<Label text="{d:level}" />
+			</Panel>
+		</snippet>
+		<snippet name="BP_Level_Progress">
+			<Panel class="BP_Level_Progress" />
+		</snippet>
+	</snippets>
+	<Panel class="BattlePass" hittest="false">
+		<Panel id="BP_Core">
+			<Panel class="BP_Flag">
+				<Image class="BP_Flag_Logo" src="s2r://panorama/images/custom_game/collection/battle_pass/bp_logo_png.vtex" />
+				<Button class="BP_FullButton" onactivate="UnlockFullBP()">
+					<Label text="#tab_battle_pass_simple" html="true" />
+				</Button>
+				<Panel class="BP_CurrentLevelWrap">
+					<Label class="BP_CurrentLevelHeader" text="#bp_level" />
+					<Label class="BP_CurrentLevel" text="{s:bp_level}" />
+				</Panel>
+			</Panel>
+			<Panel class="BP_Content_Wrap">
+				<Panel class="BP_Content">
+					<Panel class="BP_SimpleProgression">
+						<Label id="BP_ExpProgressionSimple" text="#battle_pass_simple_exp_progress" />
+						<ProgressBar id="BP_Levels_Progress_Container_BG_SimpleProgress" />
+						<Label id="BP_DailyLimitSimple" text="#battle_pass_simple_daily_limit" />
+						<Label id="BP_HintSimple" text="#battle_pass_simple_hint" html="true" />
+						<Panel id="BP_SimpleRewards" />
+					</Panel>
+					<Panel class="BP_Level SimpleLevel">
+						<Label text="{s:bp_level}" />
+					</Panel>
+					<Panel id="BP_Levels_Root" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

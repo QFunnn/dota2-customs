@@ -1,0 +1,165 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+#base "items/secret_shop_overrides.txt"
+
+"DOTAAbilities"
+{
+	"item_blade_mail"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blade_mail"
+		"AbilityTextureName"			"item_blade_mail"
+	}
+
+	"item_helm_of_the_undying"
+	{
+		"AbilityValues"
+		{
+			"bonus_kill_duration"	"0"
+		}
+	}
+
+    "item_aghanims_shard"
+	{
+		"ItemInitialStockTime"			"690"
+	}
+
+	"item_ward_sentry"
+	{
+		"ItemCost"						"25"
+		"ItemStockMax"					"20"
+		"ItemStockInitial"				"7"
+		"ItemStockTime"					"29"
+	}
+
+	"item_dust"
+	{
+		"AbilityCooldown"				"12"
+		"ItemCost"						"40"
+	}
+
+	"item_gem"
+	{
+		"ItemStockTime"					"250"
+	}
+
+	"item_tango"
+	{
+		"ItemStockMax"					"24"
+		"ItemStockInitial"				"24"
+		"ItemStockTime"					"50"
+		"AbilityCooldown"				"3"
+	}
+
+	"item_enchanted_mango"
+	{
+		"ItemStockMax"					"10"
+		"ItemStockInitial"				"10"
+		"ItemStockTime"					"50"
+
+		"AbilityCooldown"				"7"
+	}
+	"item_faerie_fire"
+	{
+		"AbilityCooldown"				"7"
+	}
+
+	"item_flask"
+	{
+		"ItemStockMax"					"12"
+		"ItemStockInitial"				"12"
+		"ItemStockTime"					"50"
+	}
+
+	"item_clarity"
+	{
+		"ItemStockMax"					"12"
+		"ItemStockInitial"				"12"
+		"ItemStockTime"					"50"
+	}
+
+	"item_blood_grenade"
+	{
+		"ItemStockMax"					"7"
+		"ItemStockInitial"				"5"
+		"ItemStockTime"					"75"
+	}
+
+	"item_smoke_of_deceit"
+	{
+		"ItemStockInitial"				"5"
+		"ItemStockMax"					"7"
+		"ItemStockTime"					"175"
+	}
+
+	"item_grisgris"
+	{
+		"AbilityValues"
+		{
+			"gold_tick_interval"							"1.5"
+		}
+	}
+
+	"item_black_grimoire"
+	{
+		"AbilityValues"
+		{
+			"xp_per_charge"					"500"
+		}
+	}
+
+	"item_magical_damage_perk_dummy"
+	{
+		"BaseClass"						"item_datadriven"
+
+		"ItemPurchasable"				"0"
+		"ShouldBeSuggested"				"0"
+		"ItemSellable"					"0"
+		"ItemCost"						"99999"
+
+		"AbilityCooldown"				"0"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ITEM "
+	}
+
+	"item_madstone_bundle"
+	{
+		"AbilityValues"
+		{
+			"madstone_primary"			"3 5"
+			"madstone_secondary"		"3 5"
+		}
+	}
+
+	"item_enhancement_greedy"
+	{
+		"AbilityValues"
+		{
+			"bonus_gpm"			"130 180"
+		}
+	}
+
+	"item_enhancement_wise"
+	{
+		"AbilityValues"
+		{
+			"bonus_xpm"					"2000"
+		}
+	}
+
+	"item_precache_dummy"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"abilities/items/precache_dummy.lua"
+
+		"ItemPurchasable"				"0"
+		"ItemCost"						"0"
+	}
+}
