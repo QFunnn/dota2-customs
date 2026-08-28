@@ -1,0 +1,212 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().MedalConfigKv = {
+	"0": {
+		"icon": 1,
+		"star": "Ⅰ",
+		"medal": 0,
+	},
+	"1": {
+		"icon": 2,
+		"star": "Ⅰ",
+		"medal": 500,
+	},
+	"2": {
+		"icon": 2,
+		"star": "Ⅱ",
+		"medal": 650,
+	},
+	"3": {
+		"icon": 2,
+		"star": "Ⅲ",
+		"medal": 800,
+	},
+	"4": {
+		"icon": 3,
+		"star": "Ⅰ",
+		"medal": 1000,
+	},
+	"5": {
+		"icon": 3,
+		"star": "Ⅱ",
+		"medal": 1300,
+	},
+	"6": {
+		"icon": 3,
+		"star": "Ⅲ",
+		"medal": 1600,
+	},
+	"7": {
+		"icon": 4,
+		"star": "Ⅰ",
+		"medal": 2000,
+	},
+	"8": {
+		"icon": 4,
+		"star": "Ⅱ",
+		"medal": 2300,
+	},
+	"9": {
+		"icon": 4,
+		"star": "Ⅲ",
+		"medal": 2600,
+	},
+	"10": {
+		"icon": 5,
+		"star": "Ⅰ",
+		"medal": 3000,
+	},
+	"11": {
+		"icon": 5,
+		"star": "Ⅱ",
+		"medal": 3300,
+	},
+	"12": {
+		"icon": 5,
+		"star": "Ⅲ",
+		"medal": 3600,
+	},
+	"13": {
+		"icon": 6,
+		"star": "Ⅰ",
+		"medal": 4000,
+	},
+	"14": {
+		"icon": 6,
+		"star": "Ⅱ",
+		"medal": 4500,
+	},
+	"15": {
+		"icon": 6,
+		"star": "Ⅲ",
+		"medal": 5000,
+	},
+	"16": {
+		"icon": 6,
+		"star": "Ⅳ",
+		"medal": 5500,
+	},
+	"17": {
+		"icon": 7,
+		"star": "Ⅰ",
+		"medal": 6000,
+	},
+	"18": {
+		"icon": 7,
+		"star": "Ⅱ",
+		"medal": 6500,
+	},
+	"19": {
+		"icon": 7,
+		"star": "Ⅲ",
+		"medal": 7000,
+	},
+	"20": {
+		"icon": 7,
+		"star": "Ⅳ",
+		"medal": 7500,
+	},
+	"21": {
+		"icon": 8,
+		"star": "Ⅰ",
+		"medal": 8000,
+	},
+	"22": {
+		"icon": 8,
+		"star": "Ⅱ",
+		"medal": 8500,
+	},
+	"23": {
+		"icon": 8,
+		"star": "Ⅲ",
+		"medal": 9000,
+	},
+	"24": {
+		"icon": 8,
+		"star": "Ⅳ",
+		"medal": 9500,
+	},
+	"25": {
+		"icon": 9,
+		"star": "Ⅰ",
+		"medal": 10000,
+	},
+	"26": {
+		"icon": 9,
+		"star": "Ⅱ",
+		"medal": 11000,
+	},
+	"27": {
+		"icon": 9,
+		"star": "Ⅲ",
+		"medal": 12000,
+	},
+	"28": {
+		"icon": 9,
+		"star": "Ⅳ",
+		"medal": 13000,
+	},
+	"29": {
+		"icon": 9,
+		"star": "Ⅴ",
+		"medal": 14000,
+	},
+	"30": {
+		"icon": 10,
+		"star": "Ⅰ",
+		"medal": 16000,
+	},
+	"31": {
+		"icon": 10,
+		"star": "Ⅱ",
+		"medal": 18000,
+	},
+	"32": {
+		"icon": 10,
+		"star": "Ⅲ",
+		"medal": 20000,
+	},
+	"33": {
+		"icon": 10,
+		"star": "Ⅳ",
+		"medal": 22000,
+	},
+	"34": {
+		"icon": 10,
+		"star": "Ⅴ",
+		"medal": 25000,
+	},
+	"35": {
+		"icon": 11,
+		"star": "Ⅰ",
+		"medal": 30000,
+	},
+	"36": {
+		"icon": 11,
+		"star": "Ⅱ",
+		"medal": 35000,
+	},
+	"37": {
+		"icon": 11,
+		"star": "Ⅲ",
+		"medal": 40000,
+	},
+	"38": {
+		"icon": 11,
+		"star": "Ⅳ",
+		"medal": 45000,
+	},
+	"39": {
+		"icon": 11,
+		"star": "Ⅴ",
+		"medal": 50000,
+	},
+};

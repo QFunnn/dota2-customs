@@ -1,0 +1,100 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().RookieGuideKV = {
+	"hero_ban": {
+		"orderby": 1,
+	},
+	"hero_ban_confirm": {
+		"orderby": 2,
+	},
+	"hero_selection": {
+		"orderby": 3,
+	},
+	"sect_flow": {
+		"orderby": 4,
+	},
+	"rune_task": {
+		"orderby": 5,
+	},
+	"rune_task_confirm": {
+		"orderby": 6,
+	},
+	"card_effect_1": {
+		"orderby": 7,
+	},
+	"ability_card_buy": {
+		"orderby": 8,
+	},
+	"ability_card_sect": {
+		"orderby": 9,
+	},
+	"ability_card_rarity": {
+		"orderby": 10,
+	},
+	"ability_card_effect": {
+		"orderby": 11,
+	},
+	"ability_card_cost": {
+		"orderby": 12,
+	},
+	"hero_attribute": {
+		"orderby": 13,
+	},
+	"hero_attribute_enemy": {
+		"orderby": 14,
+	},
+	"shop_refresh": {
+		"orderby": 15,
+	},
+	"shop_random": {
+		"orderby": 16,
+	},
+	"shop_lock": {
+		"orderby": 17,
+	},
+	"shop_ready": {
+		"orderby": 20,
+	},
+	"shop_chance": {
+		"orderby": 19,
+	},
+	"gold_interest": {
+		"orderby": 18,
+	},
+	"artifact_pick": {
+		"override": 1,
+	},
+	"equipment_pick": {
+		"override": 1,
+	},
+	"talent_pick_button": {
+		"override": 1,
+	},
+	"talent_pick": {
+		"override": 1,
+	},
+	"trait_pick": {
+		"override": 1,
+		"group": "trait",
+		"group_orderby": 1,
+	},
+	"trait_pick_confirm": {
+		"override": 1,
+		"group": "trait",
+		"group_orderby": 2,
+	},
+	"trait_pick_button": {
+		"override": 1,
+	},
+	"card_effect_buy": {
+		"override": 1,
+	},
+};

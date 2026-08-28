@@ -1,0 +1,145 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 45
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ -24.088539, -113.666672, 0.0 ]
+					m_angOffset = [ -0.0, 2.130037, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ -16.346077, -89.867722, 0.0 ]
+					m_angOffset = [ -0.0, 15.226239, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ -23.340767, 114.814964, 0.0 ]
+					m_angOffset = [ -0.0, -116.229568, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ -17.139683, 89.916374, 0.0 ]
+					m_angOffset = [ -0.0, -129.589172, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+		{
+			m_name = "game"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_angOffset = [ -0.0, 2.13004, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_angOffset = [ -0.0, -116.229996, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_angOffset = [ -0.0, -129.588989, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nFirstSourcePoint = 2
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP1Pos = [ -24.0885, -113.667, 0.0 ]
+			m_vecCP2Pos = [ -16.3461, -89.8677, 0.0 ]
+			m_vecCP3Pos = [ -23.3408, 114.815, 0.0 ]
+			m_vecCP4Pos = [ -17.1397, 89.9164, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_vecRotation = [ 0.0, 2.13004, 0.0 ]
+			m_vecRotationB = [ 0.0, 2.13004, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 2
+			m_vecRotation = [ 0.0, 15.2262, 0.0 ]
+			m_vecRotationB = [ 0.0, 15.2262, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 3
+			m_vecRotation = [ 0.0, -116.23, 0.0 ]
+			m_vecRotationB = [ 0.0, -116.23, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_nCP = 4
+			m_vecRotation = [ 0.0, -129.589, 0.0 ]
+			m_vecRotationB = [ 0.0, -129.589, 0.0 ]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/eom/ui/ui_fx/ui_fx_spotlight.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/ui/ui_fx/ui_fx_spotlight_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/ui/ui_fx/ui_fx_spotlight_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/eom/ui/ui_fx/ui_fx_spotlight_03.vpcf"
+		},
+	]
+}

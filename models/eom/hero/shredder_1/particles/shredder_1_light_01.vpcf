@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_flConstantRadius = 3.0
+	m_nSnapshotControlPoint = 6
+	m_hSnapshot = resource:"particles/models/eom/hero/zeus_2/zeus_2/zeus_2_fx_shoulder_l.vsnap"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/shredder_1/shredder_1.vmdl"
+				m_sequenceName = "shredder_1_idle"
+				m_flPlaybackSpeed = 0.0
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nChildControlPoint = 1
+			m_nFirstSourcePoint = 2
+			m_bSetOrientation = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/shredder_1/particles/shredder_1_light.vpcf"
+		},
+	]
+}

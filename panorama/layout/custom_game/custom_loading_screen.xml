@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/require.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/custom_loading_screen.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="T11ContainerRoot">
+			<Panel class="T11ContainerRoot">
+				<Panel id="T11Container" hittest="false">
+					<Image id="T11Img" hittest="false" />
+					<Panel id="T11Button" hittest="false">
+						<Image id="T11ButtonBG" hittest="false" />
+						<Label id="T11ButtonText" text="#T12Txt" hittest="false" />
+					</Panel>
+					<Label id="T11SearchTitle" text="#T12SearchTxt2" hittest="false" />
+					<Button id="T11SearchButton" onactivate="JumpT11Url()">
+						<Image id="T11SearchButtonBG" hittest="false" />
+						<Label id="T11SearchButtonText" text="#T11SearchTxt" hittest="false" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="T12ContainerRoot">
+			<Panel class="T12ContainerRoot">
+				<Panel id="T12Container">
+					<Image id="T12Img" hittest="false" />
+					<Image id="T12TxtBg" />
+					<Label id="T12Txt" html="true" text="#T12Txt" />
+					<Label id="T12SearchTxt2" html="true" text="#T12SearchTxt2" />
+					<Image id="T12SearchBg" />
+					<Label id="T12SearchTxt" html="true" text="#T12SearchTxt" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="C1ContainerRoot">
+			<Panel class="C1ContainerRoot">
+				<Panel id="C1Container" hittest="false">
+					<Image id="C1TxtBg" />
+					<Label id="C1Txt" html="true" text="#C1Txt" />
+					<Label id="C1SearchLabel" html="true" text="#C1SearchLabel" />
+					<Panel id="C1SearchBar">
+						<Image id="C1SearchBarBG" hittest="false" />
+						<Label id="C1SearchBarText" html="true" text="#C1SearchBarText" />
+						<Image id="C1SearchBarIcon" hittest="false" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="LoadingRoot" hittest="false">
+		<Image id="BlackBlock" />
+		<Image class="Logo" />
+		<Image id="CompanyLogo" />
+		<Panel id="WorldVignetteRight" />
+		<Panel id="RankBG">
+			<Panel id="RankInfo">
+				<Panel id="RankTitle">
+					<Label id="RankTitleLabel" text="#LadderHelp_Title" />
+				</Panel>
+				<Panel class="RankRow Black">
+					<Panel class="DownFlow">
+						<Label id="RankRowLabel" html="true" text="#LadderHelp_1_desc" />
+						<Panel id="ImageRow">
+							<Image id="RankImage1" />
+							<Image id="RankImage2" />
+							<Image id="RankImage3" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="RankRow">
+					<Label id="RankRowLabel" html="true" text="#LadderHelp_2_desc" />
+				</Panel>
+				<Panel class="RankRow Black">
+					<Label id="RankRowLabel" html="true" text="#LadderHelp_3_desc" />
+				</Panel>
+				<Panel class="RankRow">
+					<Label id="RankRowLabel" html="true" text="#LadderHelp_5_desc" />
+				</Panel>
+				<Panel class="RankRow Black">
+					<Label id="RankRowLabel" html="true" text="#LadderHelp_6_desc" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

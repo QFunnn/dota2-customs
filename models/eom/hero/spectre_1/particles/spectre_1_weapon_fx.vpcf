@@ -1,0 +1,67 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 91
+	m_flConstantRadius = 4.0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "spectre_1_weapon_01"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iControlPoint = 12
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "spectre_1_weapon_02"
+					m_entityName = "self_with_wearables"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/spectre_1/spectre_1.vmdl"
+				m_sequenceName = "spectre_1_idle"
+				m_flPlaybackSpeed = 0.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/spectre_1/particles/spectre_1_weapon_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/spectre_1/particles/spectre_1_weapon_02.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/spectre_1/particles/spectre_1_weapon_03.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/spectre_1/particles/spectre_1_weapon_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/spectre_1/particles/spectre_1_weapon_04.vpcf"
+		},
+	]
+}

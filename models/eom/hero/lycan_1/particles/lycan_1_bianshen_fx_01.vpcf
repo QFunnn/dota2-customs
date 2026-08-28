@@ -1,0 +1,223 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_flConstantRadius = 32.0
+	m_ConstantColor = [ 255, 89, 0, 255 ]
+	m_nConstantSequenceNumber = 5
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+		{
+			m_name = "loadout"
+			m_drivers = 
+			[
+				{
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_INVALID"
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/lycan/lycan.vmdl"
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 250.0, 1024.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 2
+			}
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 2
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 16.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.6
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_flNumToAssign = 16.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 4
+			m_nFieldOutput = 7
+			m_bActiveRange = true
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_bActiveRange = true
+			m_flOutputMax = 0.0
+			m_flOutputMin = 1.0
+			m_nInputMin = 14
+			m_nFieldOutput = 7
+			m_nInputMax = 15
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 15
+			m_flOutputMin = 512.0
+			m_flOutputMax = 75.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 240, 72, 0 ]
+			m_flFadeEndTime = 0.25
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_MaintainSequentialPath"
+			m_flNumToAssign = 16.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+			}
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 16
+			m_Rate = -4.0
+			m_flEndTime = 10000000000.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 2.0
+			m_flEndScale = 0.0
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_flBias = 0.8
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 2.0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 1000000.0
+			m_nMaxTesselation = 6
+			m_nMinTesselation = 6
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_hotwhite.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01x.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01v.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01m.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01n.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/lycan_1/particles/lycan_1_bianshen_fx_01g.vpcf"
+		},
+	]
+}

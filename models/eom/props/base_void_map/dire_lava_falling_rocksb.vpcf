@@ -1,0 +1,182 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf60:version{cd92a366-0b0d-4811-a18d-f6d472d19709} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 250
+	m_BoundingBoxMin = [ -10.0, -10.0, -100.0 ]
+	m_BoundingBoxMax = [ 10.0, 10.0, -100.0 ]
+	m_flConstantLifespan = 3.0
+	m_ConstantColor = [ 255, 255, 255, 25 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flMaxSize = 0.4
+			m_flOverbrightFactor = 5.0
+			m_flAnimationRate = 0.25
+			m_nAnimationType = "ANIMATION_TYPE_FIT_LIFETIME"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/lava_blasts/lava_glow.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flRadiusScale = 2.5
+			m_flAlphaScale = 100.0
+			m_flStartFalloff = 0.5
+			m_hTexture = resource:"materials/particle/lava_blasts/lava_glow.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 255, 60, 0 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 4
+			m_RateMin = -0.1
+			m_RateMax = 0.1
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flStartScale = 0.15
+			m_flEndScale = 0.6
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 1.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_nFieldOutput = 16
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_nFieldOutput = 7
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 25.0 ]
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 254.0
+				m_flRandomMax = 355.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 3
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.75
+				m_flRandomMax = 1.25
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateFromParentParticles"
+			m_bRandomDistribution = true
+			m_flIncrement = 0.5
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.294118
+				m_flRandomMax = 0.478431
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 118, 67, 53, 255 ]
+			m_ColorMin = [ 168, 117, 94, 255 ]
+		},
+		{
+			_class = "C_INIT_InheritFromParentParticles"
+			m_bDisableOperator = true
+			m_nFieldOutput = 21
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 33.0, 33.0, 55.0 ]
+			m_OffsetMin = [ -33.0, -33.0, 45.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flOpEndFadeOutTime = 0.15
+			m_flOpStartFadeOutTime = 0.083333
+			m_flOpStartFadeInTime = 0.06666
+			m_flOpEndFadeInTime = 0.07
+			m_flOpFadeOscillatePeriod = 30.0
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 25.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

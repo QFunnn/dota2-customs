@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf64:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 22, 143, 64, 255 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAnimationRate = 1.0
+			m_flAddSelfAmount = 2.0
+			m_flOverbrightFactor = 5.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_flares/aircraft_white_v2.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 5.0
+			m_flStartTime = 0.5
+			m_flStartScale = 0.5
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_fSpinRateStopTime = 1.0
+			m_nSpinRateDegrees = 55
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 1.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flRotOffset = 90.0
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_nFirstControlPoint = 6
+			m_nNumControlPoints = 8
+			m_bSetOrientation = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.607843
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.8
+			}
+			m_nOutputField = 1
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -5156.620117
+			}
+			m_nOutputField = 20
+		},
+		{
+			_class = "C_INIT_RandomSecondSequence"
+			m_nSequenceMax = 2
+			m_nSequenceMin = 2
+			m_bDisableOperator = true
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.6
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 33, 228, 127, 255 ]
+			m_ColorMax = [ 6, 143, 99, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 3.0, 3.0, 5.0 ]
+			m_OffsetMax = [ -3.0, -3.0, 5.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 8.0
+			}
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_fMinDistance = 5.0
+			m_flMaxDistance0 = 5.0
+			m_PathParameters = 
+			{
+				m_nEndControlPointNumber = 4
+				m_flMidPoint = 0.85
+			}
+			m_flTravelTime = 0.8
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0g.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/mars_1/particles/mars_1_dandao_03l0e.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

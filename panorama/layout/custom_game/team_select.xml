@@ -1,0 +1,93 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PlayerContainerRoot">
+			<Panel class="PlayerContainerRoot">
+				<Panel class="PlayerInfoPanel">
+					<Panel class="PlayerInfoBackgroundGradient" />
+					<Panel class="PlayerInfoCol">
+						<Panel class="CourierPanel">
+							<Image src="s2r://" />
+						</Panel>
+						<Panel class="PlayerInfoRow">
+							<DOTAAvatarImage class="PlayerAvatar" accountid="128320546" />
+							<Label class="PlayerName" text="婉婉最甜" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList">
+				<Panel id="TeamsListGroup">
+					<Panel id="TeamsListRoot" />
+				</Panel>
+			</Panel>
+			<Panel id="GameAndPlayersRoot">
+				<Panel id="GameInfoPanel">
+					<Panel id="StartGameCountdownTimer">
+						<Image id="TimerBg" src="s2r://" />
+						<Image id="TimerRing" src="s2r://" />
+						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+						<Panel id="TimerLabelBox">
+							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
+							<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
+						</Panel>
+					</Panel>
+					<Panel id="TournamentModeSelect">
+						<Label id="TournamentModeTitle" text="#CompetitionMode" />
+						<Panel id="TournamentModeButtons">
+							<Button class="TournamentModeBtn" id="TournamentModeCompetitionBtn" onactivate="OnSelectTournamentMode(0)">
+								<Label text="#MatchType_Solo" />
+							</Button>
+							<Button class="TournamentModeBtn" id="TournamentModeGroupBtn" onactivate="OnSelectTournamentMode(1)">
+								<Label text="#MatchType_Team" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="UnassignedPlayerPanel">
+					<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+						<Panel id="UnassignedPlayersHeader">
+							<Label text="#custom_game_team_select_unassigned_players" />
+						</Panel>
+						<Panel id="UnassignedPlayersDivider" />
+						<Panel id="UnassignedPlayersContainer" />
+					</Button>
+					<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
+						<Image src="s2r://" style="pre-transform-rotate2d: -90deg;" />
+						<Label text="#custom_game_team_select_auto_assign" />
+					</Button>
+				</Panel>
+				<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+					<Label text="#custom_game_team_select_lock_start" />
+				</Button>
+				<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
+					<Label text="#custom_game_team_select_cancel_unlock" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

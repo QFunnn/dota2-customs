@@ -1,0 +1,215 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 8
+	m_BoundingBoxMin = [ -128.0, -128.0, -128.0 ]
+	m_BoundingBoxMax = [ 128.0, 128.0, 128.0 ]
+	m_flCullRadius = 1.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/ring01.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.0
+			m_flFadeStartTime = 1.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.5
+			m_flStartScale = 0.75
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 99999.0
+			m_Rate = -50.0
+			m_nField = 7
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -10.0
+				m_flRandomMax = 10.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 128.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 5.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02s.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02k.vpcf"
+		},
+		{
+			m_flDelay = 1.5
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02a.vpcf"
+		},
+		{
+			m_flDelay = 1.5
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02i.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02r.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02c.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02g.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02t.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02b.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02h.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02q.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02l.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02n.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02j.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02p.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02m.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/shanxiayin_1/praticles/shanxiayin_nec_fx_chuansong_02o.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_nCP1 = 3
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

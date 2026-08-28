@@ -1,0 +1,97 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().WikiKv = {
+	"HeroLevel": {
+		"nav": "Hero",
+		"Note": "英雄等级",
+		"keyword": "hero|level",
+	},
+	"Buff": {
+		"nav": "Buff",
+		"Note": "状态效果",
+		"keyword": "buff|debuff",
+	},
+	"Debuff": {
+		"nav": "Buff",
+		"Note": "状态效果",
+		"keyword": "buff|debuff",
+	},
+	"stun": {
+		"nav": "Buff",
+		"Note": "状态效果",
+		"keyword": "buff|debuff",
+	},
+	"BuffRule": {
+		"nav": "Buff",
+		"Note": "状态效果",
+		"keyword": "buff|debuff",
+	},
+	"OtherBuff": {
+		"nav": "Buff",
+		"Note": "状态效果",
+		"keyword": "buff|debuff",
+	},
+	"DamageTypeNone": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"Physical": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"Magical": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"Poison": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"Pure": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"Chaos": {
+		"nav": "DamageType",
+		"Note": "伤害类型",
+		"keyword": "damagetype",
+	},
+	"DamageSpeedup": {
+		"nav": "GameMech",
+		"Note": "游戏机制",
+		"keyword": "damage",
+	},
+	"CourierDamage": {
+		"nav": "GameMech",
+		"Note": "游戏机制",
+		"keyword": "damage",
+	},
+	"GreevilEgg": {
+		"nav": "Greevil",
+		"Note": "贪魔",
+		"keyword": "greevil",
+	},
+	"Greevil": {
+		"nav": "Greevil",
+		"Note": "贪魔",
+		"keyword": "greevil",
+	},
+	"GreevilShop": {
+		"nav": "Greevil",
+		"Note": "贪魔",
+		"keyword": "greevil",
+	},
+};

@@ -1,0 +1,81 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero.vfx"
+	"F_ALPHA_TEST"	"1"
+	"F_DETAIL"	"2"
+	"F_MASKS_1"	"1"
+	"F_MASKS_2"	"1"
+	"F_RENDER_BACKFACES"	"1"
+	"g_flAlphaTestReference"	"0.564"
+	"g_flAmbientScale"	"1"
+	"g_flBloomScale"	"0"
+	"g_flBloomShift"	"0"
+	"g_flCloakBlurAmount"	"0.005"
+	"g_flCloakIntensity"	"0.85"
+	"g_flCloakRefractAmount"	"0.1"
+	"g_flDetailBlendFactor"	"1"
+	"g_flDetailBlendToFull"	"0"
+	"g_flDetailTexCoordRotation"	"0"
+	"g_flDiffuseModulationAmount"	"1"
+	"g_flEnvMapBlendToFull"	"0"
+	"g_flFresnelModulatesAlpha"	"0"
+	"g_flMaterialCloakFactor"	"0"
+	"g_flMetalnessBlendToFull"	"0"
+	"g_flOverbrightFactor"	"1"
+	"g_flReflectionsTintByBaseBlendToNone"	"0"
+	"g_flRimLightScale"	"1"
+	"g_flSelfIllumBlendToFull"	"0"
+	"g_flSpecularBlendToFull"	"0"
+	"g_flSpecularExponent"	"32"
+	"g_flSpecularExponentBlendToFull"	"0"
+	"g_flSpecularScale"	"1"
+	"g_flTexCoordRotation"	"0"
+	"g_vBloomColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vCloakColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetail1ColorTint"	"[1.000000 0.796078 0.184314 0.000000]"
+	"g_vDetailTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vDetailTexCoordScale"	"[4.000000 3.000000 0.000000 0.000000]"
+	"g_vRimLightColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vSpecularColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureMetalnessMask"	"[0.000000 0.000000 0.000000 0.000000]"
+	"TextureNormal"	"[0.501961 0.501961 1.000000 0.000000]"
+	"TextureRimMask"	"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureSelfIllumMask"	"[0.203000 0.203000 0.203000 0.000000]"
+	"TextureColor"	"models/eom/courier/nezha_1/textures/nezha_1_body1_color.png"
+	"TextureTranslucency"	"models/eom/courier/nezha_1/textures/nezha_1_body1_d11d6fe2_trans.png"
+	"TextureDetail"	"particles/eom/events/s3_territory_fx/tex/tex_vfx_noise_13.png"
+	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
+	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_d9279d65-G.png"
+	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_d9279d65-B.png"
+	"TextureDetailMask"	"models/eom/courier/nezha_1/textures/nezha_1_body1_color_a.png"
+	"TextureDiffuseWarpMask"	"models/eom/courier/nezha_1/textures/nezha_1_body1_color_a_30191081_diffusemask.png"
+	"TextureSpecularMask"	"models/eom/courier/nezha_1/nezha_1_body1_color_vmat_g_tmasks2_c1772ea5.png"
+	"TextureTintByBaseMask"	"models/eom/courier/nezha_1/nezha_1_body1_color_vmat_g_tmasks2_c1772ea5_c1772ea5_basetintmask.png"
+	"TextureSpecularExponent"	"models/eom/courier/nezha_1/nezha_1_body1_color_vmat_g_tmasks2_c1772ea5_c1772ea5_specexp.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"models/eom/courier/nezha_1/textures/nezha_1_body1_color_png_d11d6fe2.vtex"
+		"g_tDetail"	"particles/eom/events/s3_territory_fx/tex/tex_vfx_noise_13.vtex"
+		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_d9279d65.vtex"
+		"g_tMasks1"	"models/eom/courier/nezha_1/textures/nezha_1_body1_color_a_png_30191081.vtex"
+		"g_tMasks2"	"models/eom/courier/nezha_1/nezha_1_body1_color_vmat_g_tmasks2_c1772ea5.vtex"
+		"g_tNormal"	"models/eom/courier/nezha_1/nezha_1_body1_color_vmat_g_tnormal_5a28bd86.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flDetailBlendFactor"	"return (sin(time()/1)+3)/1*1.33;"
+		"g_vDetailTexCoordOffset"	"return float2(0,-.3)*time();"
+	}
+}

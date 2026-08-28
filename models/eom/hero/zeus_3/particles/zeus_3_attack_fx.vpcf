@@ -1,0 +1,262 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 10
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "point_follow_point_follow"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack1"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack2"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/zeus_3/zeus_3.vmdl"
+				m_sequenceName = "zeus_3_attckl_1"
+				m_nFireParticleOnSequenceFrame = 3
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+		{
+			m_name = "point_follow_point_follow_2"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack2"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack1"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/zeus/zeus.vmdl"
+				m_sequenceName = "zeus_idle_alt2"
+				m_nFireParticleOnSequenceFrame = 35
+				m_bAnimationNonLooping = true
+			}
+		},
+		{
+			m_name = "point_follow_point_follow_3"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_attack1"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_spawn"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/zeus/zeus.vmdl"
+				m_sequenceName = "zeus_loadout_spawn"
+				m_nFireParticleOnSequenceFrame = 16
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.4
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 3.0
+				m_flRandomMax = 8.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_flNumToAssign = 10.0
+			m_bSaveOffset = true
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 1
+				m_flBulge = -1.0
+				m_nBulgeControl = 1
+				m_flMidPoint = 0.7
+			}
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScaleLoc = 0.1
+			m_vecOutputMax = [ 24.0, 24.0, 10.0 ]
+			m_vecOutputMin = [ -24.0, -24.0, -10.0 ]
+			m_flNoiseScale = 5.0
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_bActiveRange = true
+			m_nFieldOutput = 7
+			m_nInputMax = 2
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_bActiveRange = true
+			m_flOutputMax = 0.0
+			m_flOutputMin = 1.0
+			m_nFieldOutput = 7
+			m_nInputMin = 9
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 75, 216, 255 ]
+			m_ColorMax = [ 255, 234, 77 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+			m_Gravity = [ 0.0, 0.0, 50.0 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+			m_RateMax = [ 28.0, 28.0, 28.0 ]
+			m_RateMin = [ -28.0, -28.0, -28.0 ]
+			m_FrequencyMin = [ 2.0, 2.0, 2.0 ]
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.35
+			m_flEndScale = 0.0
+			m_flStartScale = 3.0
+		},
+		{
+			_class = "C_OP_LockToSavedSequentialPathV2"
+			m_PathParams = 
+			{
+				m_flMidPoint = 0.7
+				m_nEndControlPointNumber = 1
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_RandomForce"
+			m_MaxForce = [ 500.0, 500.0, 500.0 ]
+			m_MinForce = [ -500.0, -500.0, -500.0 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 15.0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 123.076927
+			m_flTextureVScrollRate = 369.230774
+			m_nMaxTesselation = 2
+			m_nMinTesselation = 2
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/bendibeam2.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_attack_fxa.vpcf"
+		},
+	]
+}

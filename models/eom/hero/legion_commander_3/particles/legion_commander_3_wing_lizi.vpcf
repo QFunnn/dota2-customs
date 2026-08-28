@@ -1,0 +1,69 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 20
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "wing"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 21
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "wing_02"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 22
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "wing_01"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 23
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "wing_03"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/legion_commander_3/legion_commander_3.vmdl"
+				m_sequenceName = "legion_commander_3_idle"
+				m_flPlaybackSpeed = 0.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/legion_commander_3/particles/legion_commander_3_wing_lizib.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/legion_commander_3/particles/legion_commander_3_wing_lizia.vpcf"
+		},
+	]
+}

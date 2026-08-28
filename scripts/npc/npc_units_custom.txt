@@ -1,0 +1,222 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+#base "kv/units/npc_common.kv"
+#base "kv/units/npc_neutral.kv"
+#base "kv/units/npc_special.kv"
+#base "kv/units/npc_ui_scene.kv"
+#base "kv/units/npc_gameplay.kv"
+
+"DOTAUnits"
+{
+	"Version"	"1"
+	"npc_dota_dummy"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/development/invisiblebox.vmdl"	// Model.
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"MinimapIcon"				"minimap_plaincircle"
+	}
+	"demo_dummy"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+		"Level"						"1"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"0"
+		"StatusHealth"				"100"
+		"CustomStatusHealth"		"5000"
+		"StatusHealthRegen"			"1000"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		"Model"						"models/props_gameplay/dummy/dummy.vmdl"
+		"ModelScale"				"2.5"
+		"HealthBarOffset"			"150"
+		"ConsideredHero"			"1"
+	}
+	"npc_wisp"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/wisp/wisp.vmdl"	// Model.
+		"ModelScale"				"1"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+
+	"npc_shop_custom"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/shopkeeper/shopkeeper.vmdl"	// Model.
+		"ModelScale"				"1.2"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"250"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+	"npc_score_custom"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/sign/techies_sign.vmdl"	// Model.
+		"ModelScale"				"2"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"250"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+	"npc_bunny_test"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/eom/hero/tunvlang_2/tunvlang_2.vmdl"	// Model.
+		"ModelScale"				"1.5"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"250"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+	"christmas_tree"
+	{
+		"BaseClass"								"npc_dota_creature"
+		"Model"									"models/props_frostivus/frostivus_ancient/frostivus_ancient.vmdl"	// Model.
+		"ModelScale"				"1"
+		"AttackRange"							"100"
+		"AttackAcquisitionRange"				"0"
+		"VisionDaytimeRange"					"300"
+		"VisionNighttimeRange"					"300"
+		"Ability1"								"christmas_tree"
+		"include_keys_from"						"unit_base"
+		"HealthBarOffset"						"250"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"							"100"
+		"MovementTurnRate"						"1"
+		"HasAggressiveStance"					"0"
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"RingRadius"							"100"
+		"BoundsHullName"						"DOTA_HULL_SIZE_REGULAR"
+		"BoundsHullRadius"						"80"
+	}
+	"nian_scene"
+	{
+		"BaseClass"								"npc_dota_creature"
+		"Model"									"models/items/courier/nian_courier/nian_courier.vmdl"	// Model.
+		"ModelScale"				"3"
+		"AttackRange"							"100"
+		"AttackAcquisitionRange"				"0"
+		"VisionDaytimeRange"					"300"
+		"VisionNighttimeRange"					"300"
+		"Ability1"								"nian_scene"
+		"include_keys_from"						"unit_base"
+		"HealthBarOffset"						"200"
+		"MovementCapabilities"					"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"							"100"
+		"MovementTurnRate"						"1"
+		"HasAggressiveStance"					"0"
+		"AttackCapabilities"					"DOTA_UNIT_CAP_NO_ATTACK"
+		"RingRadius"							"100"
+		"BoundsHullName"						"DOTA_HULL_SIZE_REGULAR"
+		"BoundsHullRadius"						"80"
+	}
+	"npc_mars_soldier"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/mars/mars_soldier.vmdl"	// Model.
+		"ModelScale"				"1"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+	"npc_custom_phantom"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/development/invisiblebox.vmdl"	// Model.
+		"ModelScale"				"1"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"HasInventory"				"0"
+		"RingRadius"				"70"
+	}
+	"npc_custom_team_portal"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/props_gameplay/team_portal/team_portal.vmdl"	// Model.
+		"ModelScale"				"1"
+		"SoundSet"					"0"					// Name of sound set.
+		"StatusHealth"				"100"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"HasInventory"				"0"
+		"RingRadius"				"140"
+		"DefaultAbility1"					"custom_team_portal"
+	}
+	"npc_abyssal_underlord_door"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl"	// Model.
+		"ModelScale"				"1"
+		"SoundSet"					"0"					// Name of sound set.
+		"StatusHealth"				"100"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"HasInventory"				"0"
+		"RingRadius"				"140"
+	}
+	"npc_wisp_small"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/wisp/wisp.vmdl"	// Model.
+		"ModelScale"				"0.5"
+		"SoundSet"					"0"					// Name of sound set.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"200"
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
+}

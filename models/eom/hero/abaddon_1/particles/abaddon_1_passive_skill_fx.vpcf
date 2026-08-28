@@ -1,0 +1,164 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 2.0
+	m_nConstantSequenceNumber = 1
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1000.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 500.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ -86.372078, 0.0, 0.000096 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_hitboxSetName = "select_low"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 100.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 100.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_MaxVelocity"
+			m_nOverrideCP = 2
+			m_flMaxVelocity = 1.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 2.0
+			m_flStartScale = 0.75
+			m_flEndScale = 0.75
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_nCP = 3
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1000000.0
+			}
+			m_fFalloffPower = 0.0
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+				m_bUseOrientation = false
+			}
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_01.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_03.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_05.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_04.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_07.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_hit_01.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_hit_05.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_hit_02.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/abaddon_1/particles/abaddon_1_passive_skill_hit_04.vpcf"
+			m_bEndCap = true
+		},
+	]
+}

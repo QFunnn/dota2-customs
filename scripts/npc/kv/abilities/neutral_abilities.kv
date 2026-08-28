@@ -1,0 +1,934 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"KeyValue"
+{
+	"neutral_temp_talent"
+	{
+		"Note"									"野怪临时天赋"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_temp"
+		"AbilityTextureName"					"furbolg_enrage_attack_speed"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"neutral_temp_ult"
+	{
+		"Note"									"野怪临时大招"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_temp"
+		"AbilityTextureName"					"furbolg_enrage_damage"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+	}
+	"neutral_talent_1"
+	{
+		"Note"									"骷髅"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_1"
+		"AbilityTextureName"					"chen_divine_favor"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"40"
+			"hp_regen"							"8"
+		}
+	}
+	"neutral_ult_1"
+	{
+		"Note"									"骷髅"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_1"
+		"AbilityTextureName"					"dark_troll_warlord_raise_dead"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"attackspeed_bonus"					"80"
+			"threshold"							"10"
+			"duration"							"3"
+		}
+	}
+	"neutral_talent_2"
+	{
+		"Note"									"瘟疫守卫"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_2"
+		"AbilityTextureName"					"venomancer_plague_ward"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"poison_damage_reduce"				"25"
+		}
+	}
+	"neutral_ult_2"
+	{
+		"Note"									"瘟疫守卫"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_2"
+		"AbilityTextureName"					"venomancer_plague_ward_alt"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"base_poison"						"50"
+			"factor"							"0.4"
+		}
+	}
+	"neutral_talent_3"
+	{
+		"Note"									"头狼"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_3"
+		"AbilityTextureName"					"giant_wolf_intimidate"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_decrease"					"3"
+			"duration"							"3"
+		}
+	}
+	"neutral_ult_3"
+	{
+		"Note"									"头狼"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_3"
+		"AbilityTextureName"					"alpha_wolf_command_aura"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"stack"								"1"
+			"duration"							"2"
+		}
+	}
+	"neutral_talent_4"
+	{
+		"Note"									"机械蜘蛛"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_4"
+		"AbilityTextureName"					"furbolg_enrage_attack_speed"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_reduce"						"8"
+		}
+	}
+	"neutral_ult_4"
+	{
+		"Note"									"机械蜘蛛"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_4"
+		"AbilityTextureName"					"furbolg_enrage_damage"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"shield"							"80"
+		}
+	}
+	"neutral_talent_5"
+	{
+		"Note"									"地狱熊怪"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_5"
+		"AbilityTextureName"					"centaur_khan_endurance_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_increase"					"3"
+			"duration"							"3"
+		}
+	}
+	"neutral_ult_5"
+	{
+		"Note"									"地狱熊怪"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_5"
+		"AbilityTextureName"					"polar_furbolg_ursa_warrior_thunder_clap"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"crit_increase"						"5"
+			"duration"							"3"
+			"damage"							"35"
+			"crit_damage"						"3"
+		}
+	}
+	"neutral_talent_6"
+	{
+		"Note"									"幽魂"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_6"
+		"AbilityTextureName"					"arc_warden_spark_wraith"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"extra_evasion"						"10"
+		}
+	}
+	"neutral_ult_6"
+	{
+		"Note"									"幽魂"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_6"
+		"AbilityTextureName"					"ghost_frost_attack"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"ice"								"60"
+			"damage"							"65"
+			"factor"							"0.8"
+		}
+	}
+	"neutral_talent_7"
+	{
+		"Note"									"熔炉精灵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_7"
+		"AbilityTextureName"					"invoker_ice_wall_ad"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"40"
+		}
+	}
+	"neutral_ult_7"
+	{
+		"Note"									"熔炉精灵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_7"
+		"AbilityTextureName"					"invoker_forge_spirit_persona1"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"damage"							"80"
+			"factor"							"0.7"
+		}
+	}
+	"neutral_talent_8"
+	{
+		"Note"									"黑龙"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_8"
+		"AbilityTextureName"					"black_dragon_dragonhide_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"40"
+			"injury"							"7"
+		}
+	}
+	"neutral_ult_8"
+	{
+		"Note"									"黑龙"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_8"
+		"AbilityTextureName"					"black_dragon_splash_attack"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"factor"							"0.2"
+		}
+	}
+	"neutral_talent_9"
+	{
+		"Note"									"枭兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_9"
+		"AbilityTextureName"					"enraged_wildkin_toughness_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage"							"20"
+		}
+	}
+	"neutral_ult_9"
+	{
+		"Note"									"枭兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_9"
+		"AbilityTextureName"					"enraged_wildkin_hurricane"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"evasion_increase"					"8"
+			"duration"							"3"
+			"damage"							"25"
+			"evasion_damage"					"1.2"
+		}
+	}
+	"neutral_talent_10"
+	{
+		"Note"									"超级近战兵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_10"
+		"AbilityTextureName"					"action_lockcreep"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"12"
+			"shield"							"8"
+		}
+	}
+	"neutral_ult_10"
+	{
+		"Note"									"超级近战兵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_10"
+		"AbilityTextureName"					"pangolier_shield_crash"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"interval"							"0.5"
+			"shield"							"5"
+			"duration"							"3"
+			"damage_shield"						"0.3"
+		}
+	}
+	"neutral_talent_11"
+	{
+		"Note"									"远古萨特"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_11"
+		"AbilityTextureName"					"spawnlord_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"30"
+		}
+	}
+	"neutral_ult_11"
+	{
+		"Note"									"远古萨特"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_11"
+		"AbilityTextureName"					"spawnlord_master_freeze"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"factor"							"6"
+		}
+	}
+	"neutral_talent_12"
+	{
+		"Note"									"天陨旦远程兵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_12"
+		"AbilityTextureName"					"chen_holy_persuasion"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"damage_increase"					"60"
+		}
+	}
+	"neutral_ult_12"
+	{
+		"Note"									"天陨旦远程兵"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_12"
+		"AbilityTextureName"					"skywrath_mage_shield_of_the_scion"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"damage"							"225"
+		}
+	}
+	"neutral_talent_13"
+	{
+		"Note"									"剧毒术士"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_13"
+		"AbilityTextureName"					"venomancer_venomous_gale"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"poison"							"80"
+		}
+	}
+	"neutral_ult_13"
+	{
+		"Note"									"剧毒术士"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_13"
+		"AbilityTextureName"					"venomancer_poison_nova"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"poison"							"40"
+			"factor"							"4"
+		}
+	}
+	"neutral_talent_14"
+	{
+		"Note"									"地狱火"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_14"
+		"AbilityTextureName"					"warlock/tools_hellsworn_icons/warlock_golem_flaming_fists"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"30"
+			"damage"							"50"
+			"factor"							"0.4"
+		}
+	}
+	"neutral_ult_14"
+	{
+		"Note"									"地狱火"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_14"
+		"AbilityTextureName"					"warlock/tools_hellsworn_icons/warlock_rain_of_chaos"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"fury"								"200"
+			"attackspeed_bonus"					"50"
+			"duration"							"3"
+		}
+	}
+	"neutral_talent_15"
+	{
+		"Note"									"精灵守卫"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_15"
+		"AbilityTextureName"					"wisp_tether"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"50"
+			"factor"							"0.1"
+		}
+	}
+	"neutral_ult_15"
+	{
+		"Note"									"精灵守卫"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_15"
+		"AbilityTextureName"					"wisp/wisp_spirits_out_alt"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"hp_regen_pct"						"8"
+		}
+	}
+	"neutral_talent_16"
+	{
+		"Note"									"燃烧之军"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_16"
+		"AbilityTextureName"					"clinkz_searing_arrows"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"base_damage"						"5"
+			"factor"							"10"
+		}
+	}
+	"neutral_ult_16"
+	{
+		"Note"									"燃烧之军"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_16"
+		"AbilityTextureName"					"clinkz_burning_army"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"fury_stack"						"30"
+		}
+	}
+	"neutral_talent_17"
+	{
+		"Note"									"狗头人"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_17"
+		"AbilityTextureName"					"kunkka_x_marks_the_spot"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"20"
+			"damage"							"10"
+		}
+	}
+	"neutral_ult_17"
+	{
+		"Note"									"狗头人"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_17"
+		"AbilityTextureName"					"hill_troll_rally"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"atk_speed_bonus"					"40"
+			"attack_bonus"						"10"
+			"count"								"3"
+		}
+	}
+	"neutral_talent_18"
+	{
+		"Note"									"小萨特"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_18"
+		"AbilityTextureName"					"satyr_trickster_purge"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"interval"							"1.5"
+			"injury"							"5"
+		}
+	}
+	"neutral_ult_18"
+	{
+		"Note"									"小萨特"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_18"
+		"AbilityTextureName"					"satyr_hellcaller_shockwave"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"injury_stack"						"40"
+		}
+	}
+	"neutral_talent_19"
+	{
+		"Note"									"狗头人奴隶主"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_19"
+		"AbilityTextureName"					"kobold_taskmaster_speed_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"wisp_health"						"150"
+		}
+	}
+	"neutral_ult_19"
+	{
+		"Note"									"狗头人奴隶主"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_19"
+		"AbilityTextureName"					"kobold_disarm"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"duration"							"3"
+			"wisp_regen"						"20"
+			"base_health"						"60"
+		}
+	}
+	"neutral_talent_20"
+	{
+		"Note"									"冥毒狼"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_20"
+		"AbilityTextureName"					"necrolyte/sullen_hollow/necrophos_death_pulse"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"15"
+			"poison"							"4"
+		}
+	}
+	"neutral_ult_20"
+	{
+		"Note"									"冥毒狼"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_20"
+		"AbilityTextureName"					"beastmaster_boar_poison"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"poison_stack"						"30"
+		}
+	}
+	"neutral_talent_21"
+	{
+		"Note"									"森林巨魔牧师"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_21"
+		"AbilityTextureName"					"forest_troll_high_priest_heal"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"regen_bonus"						"12"
+		}
+	}
+	"neutral_ult_21"
+	{
+		"Note"									"森林巨魔牧师"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_21"
+		"AbilityTextureName"					"alchemist_berserk_potion"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"damage_pct"						"20"
+			"base_damage"						"0"
+		}
+	}
+	"neutral_talent_22"
+	{
+		"Note"									"半人马酋长"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_22"
+		"AbilityTextureName"					"mudgolem_cloak_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"health_bonus"						"500"
+		}
+	}
+	"neutral_ult_22"
+	{
+		"Note"									"半人马酋长"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_22"
+		"AbilityTextureName"					"centaur_khan_war_stomp"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"						"0.4"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"stun_duration"						"0.5"
+			"base_damage"						"120"
+			"health_pct"						"8"
+		}
+	}
+	"neutral_talent_23"
+	{
+		"Note"									"泥石傀儡"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_23"
+		"AbilityTextureName"					"mud_golem_rock_destroy"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"20"
+			"shield"							"5"
+		}
+	}
+	"neutral_ult_23"
+	{
+		"Note"									"泥石傀儡"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_23"
+		"AbilityTextureName"					"mud_golem_hurl_boulder"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"base_damage"						"10"
+			"shield_pct"						"15"
+			"interval"							"0.5"
+			"duration"							"2"
+		}
+	}
+	"neutral_talent_24"
+	{
+		"Note"									"食人魔棒槌手"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_24"
+		"AbilityTextureName"					"meepo_geostrike_scavenger"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"25"
+			"stun_duration"						"0.2"
+			"damage"							"15"
+		}
+	}
+	"neutral_ult_24"
+	{
+		"Note"									"食人魔棒槌手"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_24"
+		"AbilityTextureName"					"meepo_poof_scavenger"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"atk_speed_bonus"					"50"
+			"duration"							"2"
+			"talent_param"						"2"
+		}
+	}
+	"neutral_talent_25"
+	{
+		"Note"									"雷肤兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_25"
+		"AbilityTextureName"					"big_thunder_lizard_wardrums_aura"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"hp_loss"							"300"
+			"atk_speed_bonus"					"5"
+		}
+	}
+	"neutral_ult_25"
+	{
+		"Note"									"雷肤兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_25"
+		"AbilityTextureName"					"big_thunder_lizard_slam"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"attack_bonus"						"70"
+			"duration"							"3"
+		}
+	}
+	"neutral_talent_26"
+	{
+		"Note"									"鼹鼠"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_26"
+		"AbilityTextureName"					"bristleback_warpath"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"crit_damage_bonus"					"50"
+		}
+	}
+	"neutral_ult_26"
+	{
+		"Note"									"鼹鼠"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_26"
+		"AbilityTextureName"					"bristleback_viscous_nasal_goo_crimson"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"crit_count"						"3"
+			"crit_chance"						"100"
+		}
+	}
+	"neutral_talent_27"
+	{
+		"Note"									"佣兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_27"
+		"AbilityTextureName"					"visage_summon_familiars_stone_form"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"evade_regen"						"40"
+		}
+	}
+	"neutral_ult_27"
+	{
+		"Note"									"佣兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_27"
+		"AbilityTextureName"					"visage_summon_familiars_stone_form_alt1"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"evade_count"						"3"
+			"evade_chance"						"100"
+		}
+	}
+	"neutral_talent_28"
+	{
+		"Note"									"年兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_28"
+		"AbilityTextureName"					"primal_beast/primal_beast_onslaught_release_immortal"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"mana_restore"						"25"
+		}
+	}
+	"neutral_ult_28"
+	{
+		"Note"									"年兽"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_28"
+		"AbilityTextureName"					"primal_beast_uproar_none"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCastPoint"						"2"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"base_damage"						"280"
+			"damage_stack"						"110"
+		}
+	}
+	"neutral_talent_29"
+	{
+		"Note"									"陈"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_29"
+		"AbilityTextureName"					"chen_divine_favor"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"regen_bonus_pct"					"25"
+		}
+	}
+	"neutral_ult_29"
+	{
+		"Note"									"陈"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_29"
+		"AbilityTextureName"					"chen_hand_of_god"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"regen_ps"							"100"
+			"duration"							"3"
+		}
+	}
+	"neutral_talent_30"
+	{
+		"Note"									"冰熊"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_30"
+		"AbilityTextureName"					"crystal_maiden_brilliance_aura_persona"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"25"
+			"damage_pct"						"25"
+			"interval"							"0.3"
+		}
+	}
+	"neutral_ult_30"
+	{
+		"Note"									"冰熊"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_30"
+		"AbilityTextureName"					"crystal_maiden_frostbite_persona"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"atk_bonus_ice"						"10"
+			"duration"							"3"
+			"base_attack"						"10"
+		}
+	}
+	"neutral_talent_roshan"
+	{
+		"Note"									"肉山"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_roshan"
+		"AbilityTextureName"					"roshan_bash"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"chance"							"15"
+			"damage"							"100"
+			"duration"							"1"
+		}
+	}
+	"neutral_ult_roshan"
+	{
+		"Note"									"肉山"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/neutral/neutral_ability_roshan"
+		"AbilityTextureName"					"roshan_slam"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityManaCost"						"100"
+		"AbilityValues"
+		{
+			"damage"							"300"
+			"attackspeed_reduce"				"60"
+			"duration"							"2"
+			"bonus_pct"							"10"
+		}
+	}
+}

@@ -1,0 +1,82 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"Layer0"
+{
+	"shader"	"hero.vfx"
+	"F_DETAIL"	"1"
+	"F_MASKS_1"	"1"
+	"F_MASKS_2"	"1"
+	"F_RENDER_BACKFACES"	"1"
+	"F_SPECULAR_CUBE_MAP"	"1"
+	"g_flAmbientScale"	"2.273"
+	"g_flBloomScale"	"0.009"
+	"g_flBloomShift"	"-0.591"
+	"g_flCloakBlurAmount"	"0.005"
+	"g_flCloakIntensity"	"0.85"
+	"g_flCloakRefractAmount"	"0.1"
+	"g_flCubeMapScalar"	"3.988"
+	"g_flDetailBlendFactor"	"1"
+	"g_flDetailBlendToFull"	"0"
+	"g_flDetailTexCoordRotation"	"180"
+	"g_flDiffuseModulationAmount"	"1"
+	"g_flEnvMapBlendToFull"	"0"
+	"g_flFresnelModulatesAlpha"	"0"
+	"g_flMaterialCloakFactor"	"0"
+	"g_flMetalnessBlendToFull"	"0"
+	"g_flReflectionsTintByBaseBlendToNone"	"0"
+	"g_flRimLightScale"	"1"
+	"g_flSelfIllumBlendToFull"	"0"
+	"g_flSpecularBlendToFull"	"0"
+	"g_flSpecularExponent"	"28.375"
+	"g_flSpecularExponentBlendToFull"	"0"
+	"g_flSpecularScale"	"47.619"
+	"g_flTexCoordRotation"	"0"
+	"g_vBloomColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vCloakColorTint"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vDetail1ColorTint"	"[1.000000 0.592157 0.592157 0.000000]"
+	"g_vDetailTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vDetailTexCoordScale"	"[3.000000 3.000000 0.000000 0.000000]"
+	"g_vRimLightColor"	"[1.000000 1.000000 1.000000 0.000000]"
+	"g_vSpecularColor"	"[0.690196 0.882353 0.980392 0.000000]"
+	"g_vTexCoordOffset"	"[0.000000 0.000000 0.000000 0.000000]"
+	"g_vTexCoordScale"	"[1.000000 1.000000 0.000000 0.000000]"
+	"TextureRimMask"	"[0.871000 0.871000 0.871000 0.000000]"
+	"TextureSelfIllumMask"	"[0.191000 0.191000 0.191000 0.000000]"
+	"TextureColor"	"models/eom/hero/axe_2/texture/axe_2_weapon_color.png"
+	"TextureTranslucency"	"models/eom/hero/axe_2/texture/axe_2_weapon_4f197e1_trans.png"
+	"TextureCubeMap"	"materials/models/cubemaps/techies_metal_cube.png"
+	"TextureDetail"	"models/eom/hero/phantom_assassin_1/particles/tex/tex_vfx_noise_02.png"
+	"TextureFresnelWarpRim"	"materials/default/default_fresnelwarprim.tga"
+	"TextureFresnelWarpColor"	"materials/default/default_fresnelwarprim_d9279d65-G.png"
+	"TextureFresnelWarpSpec"	"materials/default/default_fresnelwarprim_d9279d65-B.png"
+	"TextureDetailMask"	"models/eom/hero/axe_2/texture/axe_2_weapon_color_mask.png"
+	"TextureDiffuseWarpMask"	"models/eom/hero/axe_2/texture/axe_2_weapon_color_mask_164a7670_diffusemask.png"
+	"TextureMetalnessMask"	"models/eom/hero/axe_2/texture/axe_2_weapon_color_mask_164a7670_metalnessmask.png"
+	"TextureSpecularMask"	"models/eom/hero/axe_2/texture/axe_2_weapon_metalnessmask.png"
+	"TextureTintByBaseMask"	"models/eom/hero/axe_2/texture/axe_2_weapon_71345754_basetintmask.png"
+	"TextureSpecularExponent"	"models/eom/hero/axe_2/texture/axe_2_weapon_71345754_specexp.png"
+	"TextureNormal"	"models/eom/hero/axe_2/texture/axe_2_weapon_normal.png"
+	"Compiled Textures"
+	{
+		"g_tColor"	"models/eom/hero/axe_2/texture/axe_2_weapon_color_png_4f197e1.vtex"
+		"g_tCubeMap"	"materials/models/cubemaps/techies_metal_cube_tga_12f60802.vtex"
+		"g_tDetail"	"models/eom/hero/phantom_assassin_1/particles/tex/tex_vfx_noise_02_png_b7f150e.vtex"
+		"g_tFresnelWarp"	"materials/default/default_fresnelwarprim_tga_d9279d65.vtex"
+		"g_tMasks1"	"models/eom/hero/axe_2/texture/axe_2_weapon_color_mask_png_164a7670.vtex"
+		"g_tMasks2"	"models/eom/hero/axe_2/texture/axe_2_weapon_metalnessmask_png_71345754.vtex"
+		"g_tNormal"	"models/eom/hero/axe_2/texture/axe_2_weapon_normal_png_688ba128.vtex"
+	}
+	"DynamicParams"
+	{
+		"g_flDetailBlendFactor"	"return (sin(time()/.65)+1)/2*2.4;"
+		"g_vDetailTexCoordOffset"	"return float2(0,.15)*time();"
+	}
+}

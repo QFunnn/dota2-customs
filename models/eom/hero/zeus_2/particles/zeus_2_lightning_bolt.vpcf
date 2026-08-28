@@ -1,0 +1,84 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP4Pos = [ 0.0, -8.0, 0.0 ]
+			m_nCP4 = 11
+			m_vecCP3Pos = [ -15.0, 0.0, 0.0 ]
+			m_nCP3 = 10
+			m_vecCP2Pos = [ 0.0, 24.0, 0.0 ]
+			m_nCP2 = 9
+			m_vecCP1Pos = [ 32.0, 0.0, 0.0 ]
+			m_nCP1 = 8
+		},
+		{
+			_class = "C_OP_SetParentControlPointsToChildCP"
+			m_nFirstSourcePoint = 8
+			m_nNumControlPoints = 4
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 3
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_2/particles/zeus_2_lightning_boltc.vpcf"
+		},
+		{
+			m_flDelay = 0.05
+			m_ChildRef = resource:"models/eom/hero/zeus_2/particles/zeus_2_lightning_boltb.vpcf"
+		},
+		{
+			m_flDelay = 0.12
+			m_ChildRef = resource:"models/eom/hero/zeus_2/particles/zeus_2_lightning_boltb.vpcf"
+		},
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"models/eom/hero/zeus_2/particles/zeus_2_lightning_boltb.vpcf"
+		},
+		{
+			m_flDelay = 0.15
+			m_ChildRef = resource:"models/eom/hero/zeus_2/particles/zeus_2_lightning_bolta.vpcf"
+		},
+	]
+}

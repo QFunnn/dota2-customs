@@ -1,0 +1,37 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/hud_message.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud_message.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
+	</scripts>
+	<Panel class="CustomHudRoot MessageRoot" hittest="false">
+		<Panel id="MessageMain" hittest="false">
+			<Panel id="MessageList" hittest="false">
+				<Panel id="MessageLinesWrapper" hittest="false">
+					<ToastManager id="MessageToast" hittest="false" toastduration="3s" maxtoastsvisible="5" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="true" />
+				</Panel>
+			</Panel>
+			<Panel id="AddItemList" hittest="false">
+				<Panel id="AddItemLinesWrapper" hittest="false">
+					<ToastManager id="AddItemToast" hittest="false" toastduration="4s" maxtoastsvisible="5" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>
