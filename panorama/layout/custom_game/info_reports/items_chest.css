@@ -1,0 +1,1593 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.ChestWindowHolder
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ChestWindowParent
+{
+	width: 100%;
+	height: 100%;
+	z-index: 300;
+}
+
+.ChestHudMainPanel
+{
+	width: 1080px;
+	min-height: 600px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1e2627 ), to( #0f0a18 ) );
+	border: 1px solid #deca73;
+	align: center center;
+	opacity: 0;
+	z-index: 5010;
+	flow-children: down;
+	padding-bottom: 40px;
+	border-radius: 6px;
+	box-shadow: black 0px 0px 20px 0px;
+}
+
+.HeroSelectionItemsPreview .ChestHudMainPanel
+{
+	ui-scale: 80%;
+}
+
+.ChestGrantedContainer .ChestHudMainPanel
+{
+	ui-scale: 95%;
+}
+
+.ChestHudAnimOpen
+{
+	opacity: 1;
+	animation-name: BuyPanelShow;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	box-shadow: black 0px 0px 8px 0px;
+}
+
+.ChestHudAnimClose
+{
+	animation-name: BuyPanelHide;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.CloseChestHudIcon
+{
+	width: 35px;
+	height: 35px;
+	margin-right: 10px;
+	margin-top: 10px;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	brightness: 2;
+	z-index: 999;
+	horizontal-align: right;
+	ignore-parent-flow: true;
+}
+
+.CloseChestHudIcon:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.03;
+}
+
+.CloseChestHudIcon:Active
+{
+	pre-transform-scale2d: 0.9;
+}
+
+.RollLine
+{
+	width: 1080px;
+	height: 130px;
+	margin-top: 75px;
+	horizontal-align: center;
+	border-bottom: 1px solid #ded29e;
+	border-top: 1px solid #ded29e;
+	box-shadow: 0px 0px 20px black;
+}
+
+.RollLineBorderTop
+{
+	width: 100%;
+	height: 4px;
+	vertical-align: top;
+}
+
+.RollLineBorderBottom
+{
+	width: 100%;
+	height: 4px;
+	vertical-align: bottom;
+}
+
+.RollLineBg
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2e2709 ), to( #14130d ) );
+}
+
+.RollItemsList
+{
+	width: 100%;
+	vertical-align: center;
+	flow-children: none;
+	overflow: clip;
+}
+
+.RollItemsListMain
+{
+	width: 15800px;
+	flow-children: right;
+	overflow: clip;
+	position: -85px 0px 0px;
+}
+
+.OpenChestButton
+{
+	horizontal-align: center;
+	width: 220px;
+	height: 40px;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #4B555D ) );
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	border: 1px solid #83838390;
+	box-shadow: fill #ebb13a 0px 0px 9px -3px;
+	margin-top: 20px;
+	animation-name: BlurRare;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+}
+
+.OpenChestButton:hover
+{
+	brightness: 2;
+}
+
+.OpenChestButton:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.OpenChestButtonLabel
+{
+	font-weight: semi-bold;
+	color: rgb(255, 255, 255);
+	text-transform: uppercase;
+	align: center center;
+	font-size: 18px;
+}
+
+.ItemsInChestBlock
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+.item_panel
+{
+	width: 98.462px;
+	height: 70px;
+	margin: 5px;
+	margin-right: 0px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.item_panel_roll
+{
+	width: 128px;
+	height: 85.3px;
+	margin: 5px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	box-shadow: 0px 0px 20px black;
+}
+
+.item_panel_rare
+{
+	animation-name: BlurRare;
+	animation-iteration-count: infinite;
+	animation-duration: 2.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BlurRare'
+{
+	0%
+	{
+		box-shadow: fill #faf593 0px 0px 3px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #faf593 0px 0px 6px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #faf593 0px 0px 3px -2px;
+	}
+	
+}
+
+@keyframes 'BlurCommon'
+{
+	0%
+	{
+		box-shadow: fill #ccc 0px 0px 3px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ccc 0px 0px 6px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ccc 0px 0px 3px -2px;
+	}
+	
+}
+
+.item_panel_name
+{
+	width: 100%;
+	height: 20px;
+	vertical-align: bottom;
+	z-index: 5;
+}
+
+.item_icon
+{
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	brightness: 0.9;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	background-repeat: no-repeat;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #222 ), to( #111 ) );
+}
+
+.item_icon_tip
+{
+	width: 70px;
+	height: 70px;
+	align: center center;
+}
+
+.item_name
+{
+	font-size: 14px;
+	color: white;
+	font-weight: semi-bold;
+	align: center center;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+	width: 90%;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.item_panel_border
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid white;
+}
+
+.item_sound_name
+{
+	width: 94%;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	color: #eee;
+	font-size: 12px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-shadow: 0px 0px 4px 3 black;
+	z-index: 5;
+}
+
+.item_panel:hover .item_icon
+{
+	brightness: 1.2;
+}
+
+.pointer_top
+{
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/hero_badges/hero_badge_rank_0_png.vtex");
+	background-size: 100%;
+	z-index: 5;
+	horizontal-align: center;
+	margin-top: -10px;
+	saturation: 0.5;
+}
+
+.pointer_bottom
+{
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/hero_badges/hero_badge_rank_0_png.vtex");
+	background-size: 100%;
+	z-index: 5;
+	horizontal-align: center;
+	vertical-align: bottom;
+	overflow: clip;
+	saturation: 0.5;
+	transform: rotateZ(180deg) translateY( 10px );
+}
+
+.very_rare_item_effect
+{
+	width: 100%;
+	height: 100%;
+	wash-color: white;
+	margin-top: 0px;
+	transform: scale3d( 1.2, 1.8, 1) translateY( 0px );
+	hue-rotation: -90deg;
+	overflow: clip;
+}
+
+.DropItemPanel
+{
+	width: 500px;
+	align: center center;
+	z-index: 20;
+	flow-children: none;
+	opacity: 0;
+	pre-transform-scale2d: 0;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-duration: 0.1s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #242E33 ), to( #0E1619 ) );
+	box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+	border: 1px solid #deca73;
+	ignore-parent-flow: true;
+	border-radius: 4px;
+	flow-children: down;
+	padding-bottom: 20px;
+	box-shadow: fill black 0px 0px 45px 0px;
+}
+
+.ItemDropHeader
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ItemDropCategory
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+.ItemDropCategoryIcon
+{
+	height: 28px;
+	width: 28px;
+	vertical-align: center;
+}
+
+.ItemDropCategoryIconItem
+{
+	width: 36px;
+	height: 36px;
+	border-radius: 2px;
+	border: 1px solid #666;
+	box-shadow: fill #000000 0px 0px 4px 0px;
+	wash-color: #ddd;
+}
+
+.ItemDropCategoryText
+{
+	margin-left: 6px;
+	font-size: 21px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
+	font-weight: semi-bold;
+	vertical-align: center;
+	text-shadow: 0px 0px 3px 3 black;
+	text-overflow: shrink;
+	text-align: center;
+}
+
+.ItemDropName
+{
+	font-size: 28px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	font-weight: semi-bold;
+	align: center top;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px 3 black;
+	text-overflow: shrink;
+	height: 28px;
+	text-align: center;
+}
+
+.ItemDropNamePhrase
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #7fb8e8 ), to( #b8ecff ) );
+	letter-spacing: 0.5px;
+}
+
+.DropItemPanelVisible
+{
+	pre-transform-scale2d: 1;
+	opacity: 1;
+}
+
+.DropItemContentAndEffects
+{
+	width: 100%;
+	height: 200px;
+	margin-top: 8px;
+}
+
+.DropItemContent
+{
+	width: 100%;
+	align: center top;
+	flow-children: down;
+}
+
+.DropEffect
+{
+	width: 400px;
+	height: 240px;
+	align: center center;
+	overflow: clip;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_png.vtex") 1.0;
+}
+
+.ItemDropHeader
+{
+	font-size: 18px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	font-weight: semi-bold;
+	align: center center;
+	text-transform: uppercase;
+	margin-top: 10px;
+	text-shadow: 0px 0px 3px 2.0 #000000b0;
+}
+
+.ItemDropIcon
+{
+	width: 180px;
+	height: 120px;
+	horizontal-align: center;
+	margin-top: 20px;
+	box-shadow: black 0px 0px 6px 0px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #222 ), to( #000 ) );
+	border: 1px solid #666;
+	border-radius: 3px;
+	background-repeat: no-repeat;
+}
+
+.ItemDropIconSquare
+{
+	width: 120px;
+	height: 120px;
+}
+
+.DropButtons
+{
+	margin-top: 25px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ItemDropClaimButton
+{
+	width: 150px;
+	height: 35px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(97, 190, 43, 0.75)), color-stop(0.5, rgba(44, 210, 80, 0.5)), to(rgba(61, 189, 67, 0.52)));
+	box-shadow: black 0px 0px 8px 0px;
+	transition-property: brightness;
+	transition-duration: 0.3s;
+	border: 1px solid rgb(32, 235, 59);
+}
+
+.ItemDropClaimButtonLabel
+{
+	font-size: 20px;
+	color: white;
+	margin-top: 3px;
+	font-weight: bold;
+	align: center center;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px 3 black;
+}
+
+.ItemDropClaimButton:hover
+{
+	brightness: 2;
+}
+
+.ItemDropClaimButton:active
+{
+	brightness: 0.8;
+}
+
+.ItemDropRerollButton
+{
+	width: 150px;
+	height: 35px;
+	background-color: gradient(linear, 10% 100%, 0% 0%, from(rgba(190, 151, 43, 0.75)), color-stop(0.5, rgba(180, 210, 44, 0.5)), to(rgba(189, 138, 61, 0.52)));
+	box-shadow: black 0px 0px 8px 0px;
+	transition-property: brightness;
+	transition-duration: 0.3s;
+	border: 1px solid rgb(235, 222, 32);
+	margin-left: 20px;
+}
+
+.ItemDropRerollButton:hover
+{
+	brightness: 2;
+}
+
+.ItemDropRerollButton:active
+{
+	brightness: 0.8;
+}
+
+.DropEffect_top
+{
+	width: 400px;
+	height: 180px;
+	align: center center;
+	transform: translateY(20px);
+	overflow: clip;
+	margin-bottom: 12px;
+}
+
+.DropEffect_bottom
+{
+	width: 400px;
+	height: 180px;
+	align: center center;
+	transform: translateY(-20px);
+	overflow: clip;
+	margin-top: 0px;
+}
+
+.DropEffectIcon
+{
+	width: 170px;
+	height: 120px;
+	align: center center;
+	transform: translateY(-1px);
+	overflow: clip;
+	z-index: 20;
+}
+
+.item_drop_effect
+{
+	height: 100%;
+	width: 100%;
+	margin-bottom: -40px;
+	align: center center;
+	ignore-parent-flow: true;
+}
+
+.no_money
+{
+	wash-color: #777;
+	saturation: 0.1;
+}
+
+.has_all_items
+{
+	wash-color: #777;
+	saturation: 0.1;
+}
+
+.has_dropped_item
+{
+	wash-color: #777;
+	saturation: 0;
+}
+
+.is_chest_no_buy
+{
+	wash-color: #fff;
+	saturation: 1;
+	background-color: gradient( linear, 0% 0%, 90% 100%, from( #007f9f ), to( #2b28db ) );
+}
+
+.is_chest_has_opened
+{
+	wash-color: #fd0000;
+	saturation: 0.5;
+}
+
+.item_icon_terrorblade_color
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/econ/sockets/gem_color_mask_png.vtex");
+	background-size: 100%;
+}
+
+.ChestCostPanel
+{
+	align: center center;
+	flow-children: right;
+}
+
+.ChestCostLabel
+{
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	text-shadow: 0px 0px 5px 3.0 black;
+	font-size: 28px;
+	vertical-align: center;
+	margin-left: 4px;
+}
+
+.ChestHudPairMode .RollLineBg
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #222 ), to( #111 ) );
+}
+
+.ChestHudPairMode .RollLine
+{
+	border-bottom: 1px solid #aaa;
+	border-top: 1px solid #aaa;
+}
+
+.ChestPairLineUnitRich .RollLineBg
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2e1b09 ), to( #14100d ) );
+}
+
+.ChestPairLineUnitRich .RollLine
+{
+	border-bottom: 1px solid #e89842;
+	border-top: 1px solid #e89842;
+}
+
+.ChestHudPairMode .ChestCostLabel
+{
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	font-size: 24px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #fff ) );
+}
+
+.ChestPairLineUnitRich .ChestCostLabel
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ee9311 ), to( #f6d943 ) );
+}
+
+.ChestHudPairMode .OpenChestButton
+{
+	margin-top: 25px;
+	width: 220px;
+	height: 42px;
+	border-radius: 6px;
+}
+
+.OpenChestButtonCommon
+{
+	animation-name: BlurCommonChest;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.OpenChestButtonRare
+{
+	animation-name: BlurRareChest;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'BlurRareChest'
+{
+	0%
+	{
+		box-shadow: fill #eda548 0px 0px 5px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eda548 0px 0px 10px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eda548 0px 0px 5px -3px;
+	}
+	
+}
+
+@keyframes 'BlurCommonChest'
+{
+	0%
+	{
+		box-shadow: fill #ccc 0px 0px 5px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #ccc 0px 0px 10px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #ccc 0px 0px 5px -3px;
+	}
+	
+}
+
+.ChestCostIcon
+{
+	background-image: url("s2r://panorama/images/dota_plus/currency_icon_small_png.vtex");
+	background-size: 100%;
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+}
+
+.chest_cost_no_money
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ff5e5e ), to( #d30000 ) );
+	font-weight: bold;
+	align: center center;
+	text-shadow: 0px 0px 3px 1.5 black;
+}
+
+.item_panel_chance
+{
+	width: 90px;
+	height: 20%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c2000000 ), to( #fffb00 ) );
+	horizontal-align: right;
+}
+
+.item_panel_chance_label
+{
+	font-weight: bold;
+	align: right top;
+	font-family: Radiance;
+	font-size: 18px;
+	margin-right: 2px;
+	text-shadow: 0px 0px 6px 2 black;
+}
+
+.ItemsInChestName
+{
+	font-weight: semi-bold;
+	font-size: 22px;
+	margin-top: 20px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #fff ) );
+	font-size: 28px;
+	align: center center;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 3px 2.0 black;
+	text-align: center;
+}
+
+.ItemsInChestNameRare
+{
+	margin-top: 0px;
+	margin-left: 25px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+}
+
+.BorderItemsChestBlock
+{
+	border-bottom: 1px solid #fff;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(white), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 10px;
+}
+
+.BorderItemsChestBlockRare
+{
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(#faf593), to(#faf59300));
+}
+
+.ChestHeader
+{
+	width: 100%;
+}
+
+.ChestHudPairMode .ChestHeader
+{
+	visibility: collapse;
+	width: 100%;
+}
+
+.ChestName
+{
+	horizontal-align: center;
+	color: white;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	font-size: 34px;
+	ignore-parent-flow: true;
+	letter-spacing: 1.5px;
+	margin-top: 20px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+	text-shadow: 0px 0px 3px 2.0 black;
+}
+
+.ChestHudPairMode .ChestName
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #fff ) );
+}
+
+.RarePanelWithInfo
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	flow-children: right;
+}
+
+.RareInfoItem
+{
+	margin-left: 12px;
+	margin-top: 3px;
+	vertical-align: center;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/info_png.vtex");
+	background-size: 100%;
+}
+
+.ChestBackground
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/loadout_backgrounds/loadout_bg_rocky_003_jpg.vtex");
+	brightness: 0.1;
+	background-size: 100%;
+	opacity: 0.2;
+	z-index: -1;
+	blur: gaussian( 10 );
+}
+
+.NoRareItems .RarePanelWithInfo
+{
+	visibility: collapse;
+}
+
+.NoRareItems .item_panel
+{
+	width: 120px;
+	height: 80px;
+}
+
+.InfoOpenReroll
+{
+	margin-left: 12px;
+	margin-bottom: 3px;
+	vertical-align: bottom;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/info_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+.ItemsInChestNameBlock
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ChestPairRollBlock
+{
+	width: 1080px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ChestHudPairMode .ChestPairRollBlock
+{
+	margin-top: 10px;
+}
+
+.ChestPairLineUnit
+{
+	width: 1080px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ChestHudPairMode .ChestPairLineUnit
+{
+	margin-top: 30px;
+}
+
+.ChestHudPairMode .ChestPairLineUnitRich
+{
+	margin-top: 50px;
+}
+
+.RollLineTitle
+{
+	width: 1080px;
+	horizontal-align: center;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 10px;
+	margin-bottom: 8px;
+	text-align: center;
+	visibility: collapse;
+	font-weight: bold;
+	font-size: 26px;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #888 ), to( #fff ) );
+}
+
+.ChestPairLineUnitRich .RollLineTitle
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ee9311 ), to( #f6d943 ) );
+}
+
+.ChestPairButtonRow
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	visibility: collapse;
+}
+
+.ChestHudPairMode .ChestPairButtonRow
+{
+	visibility: visible;
+}
+
+.ChestPairButtonRow .OpenChestButton
+{
+	margin-top: 0px;
+	vertical-align: center;
+}
+
+.RollLineChestIcon
+{
+	width: 115px;
+	height: 76.6px;
+	vertical-align: center;
+	margin-right: 16px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: fill black 0px 0px 12px 0px;
+	border: 1.5px solid white;
+	border-brush: gradient( linear, 0.0% 100.0%, 0.0% 0.0%, color-stop( 0.0, #c6e3e9ff ), color-stop( 1.0, #00000019 ) );
+}
+
+.RollLineChestIconRich
+{
+	border-brush: gradient( linear, 0.0% 100.0%, 0.0% 0.0%, color-stop( 0.0, #bf9437 ), color-stop( 1.0, #00000019 ) );
+}
+
+.RollLineChestIconRich.RollLineGray
+{
+	animation-name: none;
+	box-shadow: none;
+}
+
+@keyframes 'ChestIconPulse'
+{
+	0%
+	{
+		box-shadow: fill #d59f59 0px 0px 3px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #d59f59 0px 0px 9px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #d59f59 0px 0px 3px -2px;
+	}
+	
+}
+
+.RollLine2
+{
+	margin-top: 6px;
+	visibility: collapse;
+}
+
+.RollLineBack
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+.RollLineLockOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.72);
+	z-index: 20;
+	align: center center;
+	ignore-parent-flow: true;
+	flow-children: down;
+	visibility: collapse;
+}
+
+.RollLineLockLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 20px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-shadow: 0px 0px 4px 5 black;
+	visibility: collapse;
+	z-index: 21;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ee9311 ), to( #f6d943 ) );
+}
+
+.RollLineLocked
+{
+	visibility: visible;
+}
+
+.RollLineGray
+{
+	saturation: 0.4;
+	wash-color: #888;
+}
+
+.ChestLocked
+{
+	wash-color: #ccc;
+	saturation: 0.9;
+	animation-name: NoAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.ChestLockedTextCommon
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #999 ), to( #ccc ) );
+}
+
+.ChestLockedTextRare
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f9e0bb ), to( #fff442 ) );
+}
+
+.ChestLocked:hover
+{
+	brightness: 1;
+}
+
+.ChestLocked:active
+{
+	pre-transform-scale2d: 1;
+}
+
+@keyframes 'NoAnim'
+{
+	0%
+	{
+		box-shadow: fill black 0px 0px 7px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill black 0px 0px 7px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill black 0px 0px 7px -1px;
+	}
+	
+}
+
+.OpenChestButtonPair
+{
+	visibility: collapse;
+	margin-top: 8px;
+	width: 200px;
+	height: 34px;
+}
+
+.ChestHudPairMode .OpenChestButtonPair
+{
+	visibility: visible;
+}
+
+.ChestHudPairMode .OpenChestButtonPair.chest_btn_hidden
+{
+	opacity: 0;
+}
+
+.ChestHudPairMode .OpenChestButtonSingle
+{
+	visibility: collapse;
+}
+
+.ChestHudPairMode .RollLine
+{
+	margin-top: 8px;
+}
+
+.ChestHudPairMode .RollLineTitle
+{
+	visibility: visible;
+}
+
+.ChestHudPairMode .RollLine2
+{
+	visibility: visible;
+}
+
+.ChestHudPairMode #RarePanelWithInfo,.ChestHudPairMode #RarePanelBorder,.ChestHudPairMode #ItemsInChestBlockRare,.ChestHudPairMode .ItemsInChestNameBlock,.ChestHudPairMode .BorderItemsChestBlock,.ChestHudPairMode #ItemsInChestBlock
+{
+	visibility: collapse;
+}
+
+.BlockItemNewHover
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 50;
+}
+
+.BlockItem_new_badge
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 2px;
+	padding: 1px 6px 1px 6px;
+	background-color: #d4af37;
+	color: #14130d;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 3px;
+	z-index: 10;
+	ignore-parent-flow: true;
+}
+
+.SlotPanelNewBadge
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 5px;
+	z-index: 20;
+}
+
+.BlockItem_owned_chest
+{
+	box-shadow: fill #ebb13a 0px 0px 12px -4px;
+}
+
+.new_items_alert
+{
+	height: 120px;
+	align: right top;
+	margin-right: 220px;
+	margin-top: 30px;
+	flow-children: right;
+	z-index: 6000;
+}
+
+.new_items_alert_show
+{
+	animation-name: ActiveVoteShow;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.new_items_alert_hidden
+{
+	opacity: 0;
+	animation-name: ActiveVoteHide;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.new_items_alert_body
+{
+	height: 90%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #323232 ), to( #000000 ) );
+	border-radius: 8px;
+	border-left: 3px solid #bea942;
+	border-right: 3px solid #bea942;
+	vertical-align: center;
+	flow-children: down;
+	padding: 0px 50px;
+}
+
+.new_items_alert_arrow
+{
+	height: 40px;
+	width: 25px;
+	vertical-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/custom_game/shop/slider_right_png.vtex");
+	wash-color: #bea942;
+}
+
+.new_items_alert_title
+{
+	color: #ccc;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 3px 2.0 black;
+	text-align: center;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.new_items_alert_icons
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 8px;
+}
+
+.new_items_alert_container
+{
+	margin: 0px 6px;
+}
+
+.new_items_alert_icon
+{
+	margin: 5px 5px;
+	width: 80px;
+	height: 53px;
+	align: center center;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: fill #edde63 0px 0px 5px -2px;
+	border: 1.5px solid #665f3f;
+}
+
+.new_items_alert_icon_square
+{
+	height: 53px;
+	width: 53px;
+	margin: 5px 1px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #222 ), to( #111 ) );
+}
+
+.new_items_alert_shards
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #f5dba7 ), to( #da9132 ) );
+	font-size: 20px;
+	font-weight: bold;
+	font-family: Radiance;
+	text-shadow: 0px 0px 3px 3 black;
+	text-align: left;
+	align: left bottom;
+	margin-bottom: 5px;
+	margin-left: 7px;
+}
+
+.new_items_alert_icon_hero
+{
+	width: 28px;
+	height: 28px;
+	margin-top: 1px;
+	align: left bottom;
+}
+
+.new_items_alert_icon_tip
+{
+	width: 20px;
+	height: 20px;
+	margin-bottom: 2px;
+	align: left bottom;
+}
+
+.new_items_alert_icon_item
+{
+	width: 26px;
+	height: 26px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	align: left bottom;
+	border: 0.5px solid #aaa;
+	border-radius: 2px;
+	box-shadow: fill #000000 0px 0px 4px 0px;
+	wash-color: #ddd;
+}
+
+.new_items_alert_container_phrase .new_items_alert_icon
+{
+	box-shadow: fill #63b4ed 0px 0px 5px -2px;
+	border: 1.5px solid #3f5766;
+}
+
+.new_items_alert_phrase_name
+{
+	width: 84%;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 8px;
+	color: #ddd;
+	font-size: 11px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-shadow: 0px 0px 4px 3 black;
+	z-index: 5;
+}
+
+.SoundNewBadge
+{
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 8px;
+	margin-top: 0px;
+}
+
+.HeroSelectionTopBar
+{
+	width: 100%;
+	height: 46px;
+	horizontal-align: left;
+	margin-bottom: 2px;
+}
+
+#HeroSelectionChestInfoPanel
+{
+	margin-right: 2px;
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+.HeroSelectionChestInfo
+{
+	height: 40px;
+	padding: 3px 6px 3px 6px;
+	border-radius: 8px;
+	flow-children: right;
+	border: 1.5px solid #807851;
+	vertical-align: center;
+	background-color: rgba(0, 0, 0, 0.72);
+	transition-property: box-shadow, border-color;
+	transition-duration: 0.2s;
+}
+
+.HeroSelectionChestInfo_glow
+{
+	border-color: #ffd970;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #110f15 ), to( #34323a ) );
+	animation-name: SelectionChestInfoAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1.5px solid #d8ae86;
+}
+
+@keyframes 'SelectionChestInfoAnim'
+{
+	0%
+	{
+		box-shadow: fill #edde63 0px 0px 12px -3px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #edde63 0px 0px 20px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #edde63 0px 0px 12px -3px;
+	}
+	
+}
+
+.HeroSelectionChestIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	margin-left: 4px;
+	margin-right: 8px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/rank_tier_icons/mini/rank8_psd.vtex");
+}
+
+.HeroSelectionChestSquares
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 6px;
+}
+
+.HeroSelectionChestCdLabel
+{
+	color: #c6be95;
+	font-size: 14px;
+	font-weight: semi-bold;
+	vertical-align: center;
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.HeroSelectionChestSquare
+{
+	width: 38px;
+	height: 14px;
+	margin-left: 2px;
+	margin-right: 2px;
+	vertical-align: center;
+	border-radius: 2px;
+	border: 1px solid #777;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111 ), to( #393939 ) );
+	box-shadow: fill #e5c35b 0px 0px 6px -3px;
+}
+
+.HeroSelectionChestSquareFilled
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #b39a58 ), to( #59270a ) );
+	border: 1px solid #eab785;
+	animation-name: ChestSquareFilledAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'ChestSquareFilledAnim'
+{
+	0%
+	{
+		box-shadow: fill #eaab6e 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #eaab6e 0px 0px 9px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #eaab6e 0px 0px 5px -2px;
+	}
+	
+}
+
+.HeroSelectionChestOpenButton
+{
+	vertical-align: center;
+	padding: 4px 14px 4px 14px;
+	border: 1px solid #deca73;
+	margin-left: 5px;
+	transition-property: brightness, pre-transform-scale2d, saturation;
+	transition-duration: 0.15s;
+	border-radius: 4px;
+}
+
+.HeroSelectionChestOpenButton_available
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #4B555D ) );
+	box-shadow: fill #efb57d 0px 0px 7px -2px;
+	border: 1px solid #cdbc87;
+}
+
+.HeroSelectionChestOpenButton_locked
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #121018 ), to( #262335 ) );
+	border: 1px solid #555555;
+	saturation: 0.2;
+	brightness: 0.6;
+}
+
+.HeroSelectionChestOpenButtonLabel
+{
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: semi-bold;
+	color: #bfc8cc;
+	font-family: Radiance;
+	text-shadow: 0px 0px 3px 2.0 black;
+	letter-spacing: 0.5px;
+}
+
+.HeroSelectionChestOpenButtonLabel_available
+{
+	color: #f4e4be;
+}
+
+.HeroSelectionChestOpenButton_available:hover
+{
+	brightness: 2;
+}
+
+.panel_hidden
+{
+	visibility: collapse;
+}
+
+#HeroSelectionChestAlert
+{
+	width: 42px;
+	height: 42px;
+	vertical-align: center;
+	background-color: red;
+	margin-right: 8px;
+	border-radius: 8px;
+	transition-property: box-shadow, border-color;
+	transition-duration: 0.2s;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #110f15 ), to( #34323a ) );
+	animation-name: SelectionChestInfoAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	border: 1.5px solid #eab785;
+	visibility: collapse;
+}
+
+#HeroSelectionChestAlertText
+{
+	font-size: 34px;
+	text-transform: uppercase;
+	font-weight: bold;
+	align: center center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #eccf90 ), to( #eca055 ) );
+	font-family: Radiance;
+	margin-bottom: 2px;
+	text-shadow: 0px 0px 3px 2.0 black;
+}

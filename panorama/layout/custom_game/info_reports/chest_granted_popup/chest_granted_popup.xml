@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/chest_granted_popup/chest_granted_popup.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/info_reports/chest_granted_popup/chest_granted_popup.vjs_c" />
+	</scripts>
+	<Panel class="ChestGrantedContainer" hittest="false">
+		<Panel class="ChestGrantedRoot ChestGrantedHidden" id="ChestGrantedRoot" hittest="false">
+			<Panel class="ChestGrantedDim" id="ChestGrantedDim" hittest="true" />
+			<Panel class="ChestGrantedWindow" id="ChestGrantedWindow">
+				<Panel id="ChestGrantedWindowContent">
+					<Panel class="ChestGrantedClose" onactivate="ChestGrantedClose();" hittest="true" />
+					<Label class="ChestGrantedTitle" id="ChestGrantedTitle" text="#chest_granted_title" />
+					<Panel class="ChestGrantedIconsRow">
+						<Panel class="ChestGrantedItem">
+							<Label class="ChestGrantedName" id="ChestGrantedNamePoor" />
+							<Panel class="ChestGrantedIcon" id="ChestGrantedIconPoor" />
+						</Panel>
+						<Panel class="ChestGrantedItem ChestGrantedItemRich">
+							<Label class="ChestGrantedName" id="ChestGrantedNameRich" />
+							<Panel class="ChestGrantedIcon" id="ChestGrantedIconRich" />
+						</Panel>
+					</Panel>
+					<Panel class="ChestGrantedOpenButton" onactivate="ChestGrantedOpen();">
+						<Label class="ChestGrantedOpenButtonLabel" text="#chest_pair_open_button" />
+					</Panel>
+				</Panel>
+				<Panel class="ChestGrantedWindowBack" />
+			</Panel>
+			<Panel class="ChestWindowHolder" id="chest_window_holder" hittest="false" />
+		</Panel>
+	</Panel>
+</root>
