@@ -1,0 +1,77 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_hitloc"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.816855, -13.584033, 135.850952 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/axe/axe.vmdl"
+				m_nModSpecificData = 2
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 4
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/bless/10176_protecta.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/10176_protectc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/10176_protectf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/10176_protectb.vpcf"
+		},
+	]
+}

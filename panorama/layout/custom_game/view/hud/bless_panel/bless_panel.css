@@ -1,0 +1,208 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#bless_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.bless-panel-container
+{
+	flow-children: down;
+	align: center top;
+	margin-top: 90px;
+}
+
+.bless-panel-container .bless-panel-options
+{
+	flow-children: right;
+	transition-duration: 0.2s;
+	transition-property: opacity, transform;
+	transition-timing-function: ease-out;
+}
+
+.bless-panel-container .bless-panel-options.hide
+{
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.bless-panel-container .bless-panel-options.show
+{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.bless-panel-container .bless-panel-options .option-content
+{
+	flow-children: down;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option
+{
+	width: 338px;
+	height: 545px;
+	flow-children: down;
+	margin: 12px 12px;
+	transition-duration: 0.2s;
+	transition-property: transform;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	background-image: url("s2r://panorama/images/hero_selection_panel/options_png.vtex");
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option:hover
+{
+	transform: translateY(-10px) rotateX(3deg);
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option .com-bless-item
+{
+	width: 104px;
+	height: 104px;
+	margin-top: 51px;
+	horizontal-align: center;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option .bless-panel-option-name
+{
+	font-size: 25px;
+	horizontal-align: center;
+	margin-top: 30px;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option .bless-panel-option-desc
+{
+	width: 80%;
+	height: 240px;
+	font-size: 24px;
+	color: #e2e2e2;
+	margin-top: 24px;
+	horizontal-align: center;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option .bless-tags
+{
+	width: 80%;
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 12px;
+}
+
+.bless-panel-container .bless-panel-options .option-content .bless-panel-option .bless-tags .bless-tag
+{
+	margin: 0 3px;
+	font-size: 16px;
+	horizontal-align: center;
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn
+{
+	width: 262px;
+	height: 75px;
+	margin-top: 19px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/hero_selection_panel/btn_on.png_png.vtex");
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn .refresh-title
+{
+	margin-top: 12px;
+	horizontal-align: center;
+	font-size: 24px;
+	font-family: defaultFont;
+	color: #ffffff;
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn .refresh-cost
+{
+	margin-top: 40px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn .refresh-cost .com-goods-icon
+{
+	width: 26px;
+	height: 26px;
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn .refresh-cost .refresh-cost-label
+{
+	color: #ffffff;
+	font-size: 18px;
+	margin-left: 3px;
+	vertical-align: center;
+	font-family: defaultFont;
+}
+
+.bless-panel-container .bless-panel-options .option-content .refresh-btn .refresh-free
+{
+	color: #ffffff;
+	font-size: 18px;
+	margin-left: 3px;
+	margin-top: 42px;
+	horizontal-align: center;
+	font-family: defaultFont;
+}
+
+.bless-panel-container .bless-panel-header
+{
+	width: 183.4px;
+	height: 52.5px;
+	margin-top: 19px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hero_selection_panel/btn_on.png_png.vtex");
+	margin-top: 15px;
+	horizontal-align: center;
+	transition-duration: 0.4s;
+	transition-property: background-color, box-shadow, transform;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	opacity: 0.5;
+}
+
+.bless-panel-container .bless-panel-header .bless-panel-title
+{
+	font-size: 24px;
+	color: #ffffff;
+	align: center center;
+	margin: 10px 22px;
+	text-shadow: 2px 2px 4px #00000099;
+	letter-spacing: 2px;
+}
+
+.bless-panel-container .bless-panel-header:active
+{
+	pre-transform-scale2d: 0.95;
+}
+
+.bless-panel-container .bless-panel-header.show
+{
+	opacity: 1;
+}
+
+.bless-panel-container .currency-diamond
+{
+	horizontal-align: center;
+	opacity: 0;
+	ui-scale: 75% 75% 100%;
+}
+
+.bless-panel-container .currency-diamond.show
+{
+	opacity: 1;
+}

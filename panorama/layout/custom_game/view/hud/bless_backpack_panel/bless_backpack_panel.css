@@ -1,0 +1,158 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#bless_backpack_panel
+{
+	align: right center;
+}
+
+.bless-backpack-panel-container
+{
+	flow-children: right;
+	transition-duration: 0.2s;
+	transition-property: transform;
+	transition-timing-function: ease-in-out;
+	transform: translateX(256px);
+}
+
+.bless-backpack-panel-container.active
+{
+	transform: translateX(0px);
+	align: center center;
+}
+
+.bless-backpack-panel-container .toggle-btn
+{
+	width: 46px;
+	height: 180px;
+	transform: translateX(7px);
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/bless_backpack_panel/togger_bg_png.vtex");
+}
+
+.bless-backpack-panel-container .toggle-btn .arrow-icon
+{
+	width: 32px;
+	height: 43px;
+	align: center center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/bless_backpack_panel/arrow_png.vtex");
+}
+
+.bless-backpack-panel-container .toggle-btn .arrow-icon.active
+{
+	transform: rotateZ(180deg);
+}
+
+.bless-backpack-panel-container .backpack-content
+{
+	width: 260px;
+	height: 791px;
+	background-image: url("s2r://panorama/images/bless_backpack_panel/bg_png.vtex");
+	flow-children: down;
+}
+
+.bless-backpack-panel-container .backpack-content .title
+{
+	font-size: 18px;
+	color: #ffffff;
+	margin-left: 56px;
+	margin-top: 10px;
+	font-family: defaultFont;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container
+{
+	height: 620px;
+	flow-children: down;
+	margin-top: 11px;
+	horizontal-align: center;
+	overflow: clip scroll;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell
+{
+	width: 231px;
+	height: 69px;
+	margin: 3px 0;
+	background-image: url("s2r://panorama/images/bless_backpack_panel/list_bg_png.vtex");
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .com-bless-item
+{
+	width: 52px;
+	height: 52px;
+	margin-left: 9px;
+	vertical-align: center;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .bless-name
+{
+	width: 124.5px;
+	height: 17.25px;
+	font-size: 18px;
+	margin-left: 70px;
+	margin-top: 9px;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .bless-recraft
+{
+	font-size: 18px;
+	color: #ffffff;
+	margin-left: 70px;
+	margin-top: 33px;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .bless-recraft:disabled
+{
+	brightness: 0.5;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .bless-recraft .text
+{
+	font-size: 15px;
+	color: #d2af59;
+	align: center center;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .recraft-cost
+{
+	width: 21px;
+	height: 21px;
+	margin-left: 178px;
+	margin-top: 38px;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-list-container .bless-cell .cost-text
+{
+	font-size: 15px;
+	color: #ffffff;
+	position: 204px 39px 0;
+}
+
+.bless-backpack-panel-container .backpack-content .bless-tips
+{
+	width: 240.5px;
+	color: #a19d91;
+	font-size: 16.5px;
+	margin-top: 0px;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.bless-backpack-panel-container .currency-diamond
+{
+	margin-top: 15px;
+	margin-left: 20px;
+	horizontal-align: center;
+	ui-scale: 75% 75% 100%;
+}

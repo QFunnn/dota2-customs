@@ -1,0 +1,548 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#ranking_panel
+{
+	width: 100%;
+	height: 100%;
+	ui-scale: 75% 75% 100%;
+}
+
+.ranking-panel
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/ranking/diban_png.vtex");
+	background-size: 100% 100%;
+	opacity: 0;
+	transform: translateY(30px);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.ranking-panel.show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.ranking-panel.hide
+{
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.ranking-container
+{
+	width: 2320px;
+	height: 1250px;
+	align: center center;
+}
+
+.ranking-title
+{
+	position: 146px 33px 0;
+	width: 140px;
+	height: 67px;
+	background-size: 100% 100%;
+}
+
+.ranking-title.zh
+{
+	background-image: url("s2r://panorama/images/ranking/rank_png.vtex");
+}
+
+.ranking-title.en
+{
+	background-image: url("s2r://panorama/images/ranking/rank_en_png.vtex");
+}
+
+.ranking-close-btn
+{
+	position: 2219px 27px 0;
+	width: 73px;
+	height: 74px;
+	background-image: url("s2r://panorama/images/ranking/guanbi_png.vtex");
+	background-size: 100% 100%;
+	transition-property: brightness;
+	transition-duration: 0.2s;
+}
+
+.ranking-close-btn:hover
+{
+	brightness: 1.5;
+}
+
+.ranking-close-btn:active
+{
+	brightness: 0.8;
+}
+
+.ranking-left-menu
+{
+	width: 430px;
+	height: 100%;
+}
+
+.ranking-season-dropdown-panel
+{
+	position: 40px 172px 0;
+	width: 359px;
+	flow-children: down;
+	z-index: 20;
+}
+
+.season-dropdown
+{
+	width: 359px;
+	height: 65px;
+	background-image: url("s2r://panorama/images/ranking/season_header_png.vtex");
+	background-size: 100% 100%;
+	padding: 0;
+	border: 0;
+}
+
+.season-dropdown .com-red-dot
+{
+	align: right center;
+	margin-right: 8px;
+	margin-bottom: 40px;
+}
+
+.season-dropdown .season-text
+{
+	align: center center;
+	font-size: 26px;
+	color: #d8c59e;
+}
+
+.season-dropdown .season-arrow
+{
+	width: 34px;
+	height: 18px;
+	align: right center;
+	margin-right: 24px;
+	background-size: 100% 100%;
+}
+
+.season-dropdown .season-arrow.arrow-bottom
+{
+	background-image: url("s2r://panorama/images/ranking/arrow_bottom_png.vtex");
+}
+
+.season-dropdown .season-arrow.arrow-top
+{
+	background-image: url("s2r://panorama/images/ranking/arrow_top_png.vtex");
+}
+
+.ranking-season-dropdown-list
+{
+	width: 359px;
+	position: 0 71px 0;
+	ignore-parent-flow: true;
+	opacity: 0;
+	flow-children: down;
+	padding: 12px 0 8px 0;
+	background-color: #201e1d;
+	border: 1px solid #6c5b3c;
+	visibility: collapse;
+}
+
+.ranking-season-dropdown-list.show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.ranking-season-dropdown-list .com-red-dot
+{
+	align: right center;
+	margin-right: 7px;
+	margin-bottom: 30px;
+}
+
+.ranking-season-dropdown-items
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ranking-season-dropdown-item
+{
+	width: 359px;
+	height: 52px;
+	margin-bottom: 0;
+	padding: 0;
+	border: 0;
+	background-color: #201e1d;
+}
+
+.ranking-season-dropdown-item:hover
+{
+	background-color: #2a2725;
+}
+
+.ranking-season-dropdown-item.selected
+{
+	background-color: #2a2725;
+}
+
+.ranking-season-dropdown-label
+{
+	align: center center;
+	font-size: 22px;
+	color: #d7d3cd;
+}
+
+.rank-tab
+{
+	width: 386px;
+	height: 73px;
+	padding: 0;
+	border: 0;
+}
+
+.rank-tab .tab-bg
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/ranking/huise paimingditu_png.vtex");
+	background-size: 100% 100%;
+}
+
+.rank-tab.selected .tab-bg
+{
+	background-image: url("s2r://panorama/images/ranking/xuanzhong  paimingditu_png.vtex");
+}
+
+.rank-tab .tab-text
+{
+	vertical-align: center;
+	margin-left: 119px;
+	font-size: 28px;
+	color: #8c8c8c;
+}
+
+.rank-tab.selected .tab-text
+{
+	color: #dfba78;
+}
+
+.rank-tab .tab-icon
+{
+	width: 56px;
+	height: 48px;
+	vertical-align: center;
+	margin-left: 45px;
+	background-size: 100% 100%;
+}
+
+.mixed-tab
+{
+	position: 28px 279px 0;
+}
+
+.mixed-tab .tab-icon
+{
+	background-image: url("s2r://panorama/images/ranking/hunhe huise_png.vtex");
+}
+
+.mixed-tab.selected .tab-icon
+{
+	background-image: url("s2r://panorama/images/ranking/hunhe  jinse_png.vtex");
+}
+
+.solo-tab
+{
+	position: 28px 353px 0;
+}
+
+.solo-tab .tab-icon
+{
+	background-image: url("s2r://panorama/images/ranking/danpai  huise_png.vtex");
+}
+
+.solo-tab.selected .tab-icon
+{
+	background-image: url("s2r://panorama/images/ranking/danpai  jinse_png.vtex");
+}
+
+.rule-btn
+{
+	position: 140px 1022px 0;
+	flow-children: right;
+}
+
+.rule-btn .rule-icon
+{
+	width: 25px;
+	height: 25px;
+	margin-right: 8px;
+	background-image: url("s2r://panorama/images/ranking/tips_png.vtex");
+	background-size: 100% 100%;
+}
+
+.rule-btn .rule-icon Label
+{
+	visibility: collapse;
+}
+
+.rule-btn > Label
+{
+	color: #777;
+	font-size: 24px;
+	vertical-align: center;
+}
+
+.rule-btn:hover
+{
+	brightness: 1.5;
+}
+
+.ranking-right-area
+{
+	position: 430px 48px 0;
+	width: 1770px;
+	height: 1000px;
+}
+
+.col-player
+{
+	position: 262px 0 0;
+	width: 191px;
+	height: 33px;
+	text-align: left;
+	vertical-align: center;
+}
+
+.col-winrate
+{
+	position: 574px 0 0;
+	height: 33px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.col-score
+{
+	position: 789px 0 0;
+	width: 70px;
+	height: 33px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.col-kda
+{
+	position: 1004px 0 0;
+	width: 173px;
+	height: 33px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.col-matches
+{
+	position: 1282px 0 0;
+	height: 33px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.col-heroes
+{
+	position: 1467px 0 0;
+	height: 33px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.ranking-header
+{
+	width: 100%;
+	height: 40px;
+}
+
+.ranking-header Label
+{
+	vertical-align: center;
+	font-size: 26px;
+	color: #a4a4a4;
+	text-align: center;
+}
+
+.ranking-header .col-player
+{
+	position: 319px 0 0;
+	width: 78px;
+}
+
+.ranking-header .col-winrate
+{
+	position: 560px 0 0;
+}
+
+.ranking-header .col-score
+{
+	position: 745px 0 0;
+	width: 157px;
+}
+
+.ranking-header .col-kda
+{
+	position: 1003px 0 0;
+}
+
+.ranking-header .col-matches
+{
+	position: 1266px 0 0;
+}
+
+.ranking-header .col-heroes
+{
+	position: 1470px 0 0;
+}
+
+.ranking-list-container
+{
+	position: 0 98px 0;
+	width: 100%;
+	height: 930px;
+	flow-children: down;
+	overflow: squish scroll;
+	padding-bottom: 24px;
+}
+
+.ranking-list-row Label,.my-rank-bar Label
+{
+	vertical-align: center;
+	font-size: 26px;
+	height: 33px;
+	color: #d8d8d8;
+}
+
+.ranking-list-row .rank-avatar-bg,.my-rank-bar .rank-avatar-bg
+{
+	position: 176px 0 0;
+	vertical-align: center;
+	width: 57px;
+	height: 57px;
+	background-image: url("s2r://panorama/images/ranking/yuankuang_png.vtex");
+	background-size: 100% 100%;
+}
+
+.ranking-list-row .rank-avatar,.my-rank-bar .rank-avatar
+{
+	width: 49px;
+	height: 49px;
+	align: center center;
+	border-radius: 50%;
+}
+
+.ranking-list-row .rank-heroes-group,.my-rank-bar .my-heroes-group
+{
+	width: 170px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ranking-list-row .rank-heroes-group .hero-head,.my-rank-bar .my-heroes-group .hero-head
+{
+	vertical-align: center;
+	width: 50px;
+	height: 45px;
+	margin: 0 4px 0 0;
+}
+
+.ranking-list-row .rank-num,.my-rank-bar .my-rank-num
+{
+	height: 33px;
+	text-align: left;
+}
+
+.ranking-list-row
+{
+	width: 1770px;
+	height: 63px;
+	margin-bottom: 8px;
+	padding: 0;
+	border: 0;
+	background-image: url("s2r://panorama/images/ranking/chang ditu_png.vtex");
+	background-size: 100% 100%;
+}
+
+.ranking-list-row.selected
+{
+	background-image: url("s2r://panorama/images/ranking/xuanzhong  paimingditu_png.vtex");
+}
+
+.ranking-list-row .rank-num
+{
+	position: 38px 0 0;
+}
+
+.ranking-list-row .rank-heroes-group
+{
+	position: 1467px 0 0;
+	height: 100%;
+}
+
+.my-rank-area
+{
+	position: 206px 1084px 0;
+	width: 1997px;
+	height: 162px;
+}
+
+.my-rank-text-group
+{
+	width: 370px;
+	position: -175px 46px 0;
+	flow-children: down;
+}
+
+.my-rank-text-group .my-rank-main-text
+{
+	font-size: 32px;
+	color: #d1c8ac;
+	horizontal-align: center;
+}
+
+.my-rank-text-group .my-rank-sub-text
+{
+	font-size: 18px;
+	color: #7b7b7b;
+	margin-top: 4px;
+	horizontal-align: center;
+}
+
+.my-rank-bar
+{
+	position: 224px 60px 0;
+	width: 1770px;
+	height: 63px;
+	background-image: url("s2r://panorama/images/ranking/xuanzhong  paimingditu_png.vtex");
+	background-size: 100% 100%;
+	border: 2px solid #dfba78;
+}
+
+.my-rank-bar .my-rank-num
+{
+	position: 36px 0 0;
+	color: #dfba78;
+}
+
+.my-rank-bar .my-heroes-group
+{
+	position: 1466px 0 0;
+}

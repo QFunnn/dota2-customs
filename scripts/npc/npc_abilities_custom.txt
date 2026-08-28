@@ -1,0 +1,83 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+#base abilities/tower_abilities.txt
+#base abilities/hero_abilities.txt
+
+"DOTAAbilities"
+{
+    //空技能
+    "ability_global_thinker"
+    {
+        "BaseClass"	"ability_lua"
+        "ScriptFile"	"abilities/ability_global_thinker"
+        "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "MaxLevel"	"1"
+    }
+
+    // 福佑 猫猫技能 撤退
+    "bless_10169_cat_ability_1"
+    {
+        "BaseClass"	"ability_lua"
+        "ScriptFile"	"abilities/units/bless_10169_cat_ability_1"
+        "AbilityTextureName" "bless_10169_cat_ability_1"
+        "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"	"1"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+        "AbilityCooldown"				"15"
+
+		"AbilityValues"
+		{
+            "speed_ally" "60"
+            "speed_enemy" "-60"
+            "speed_dur" "3"
+            "check_angle" "140"
+        }
+    }
+
+    // 福佑 猫猫技能 集火
+    "bless_10169_cat_ability_2"
+    {
+        "BaseClass"	"ability_lua"
+        "ScriptFile"	"abilities/units/bless_10169_cat_ability_2"
+        "AbilityTextureName" "bless_10169_cat_ability_2"
+        "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"	"1"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+        "AbilityCooldown"				"15"
+
+		"AbilityValues"
+		{
+            "dmg_pct" "20"
+            "dmg_dur" "10"
+        }
+    }
+
+    // 福佑 猫猫技能 保护
+    "bless_10169_cat_ability_3"
+    {
+        "BaseClass"	"ability_lua"
+        "ScriptFile"	"abilities/units/bless_10169_cat_ability_3"
+        "AbilityTextureName" "bless_10169_cat_ability_3"
+        "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"	"1"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+        "AbilityCooldown"				"15"
+
+		"AbilityValues"
+		{
+            "hp_pct" "20"
+        }
+    }
+}

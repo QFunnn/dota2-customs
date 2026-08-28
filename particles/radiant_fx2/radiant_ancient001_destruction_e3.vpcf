@@ -1,0 +1,158 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 20
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAnimationRate = 3.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/orb/particle_energy_orb.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flAlphaScale = 5.0
+			m_flRadiusScale = 5.0
+			m_hTexture = resource:"materials/particle/orb/particle_energy_orb.vtex"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_flOscMult = 5.0
+			m_flEndTime_max = 999999.0
+			m_flEndTime_min = 999999.0
+			m_RateMin = 1.0
+			m_RateMax = 3.0
+			m_flOpEndFadeInTime = 1.0
+			m_flOpStartFadeOutTime = 0.1
+			m_flOpEndFadeOutTime = 2.0
+			m_flOpFadeOscillatePeriod = 10.0
+			m_FrequencyMin = 0.1
+		},
+		{
+			_class = "C_OP_ClampScalar"
+			m_nFieldOutput = 7
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.7
+			m_flEndTime = 0.6
+			m_flEndScale = 1.8
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+			m_flEndFadeInTime = 0.1
+			m_flStartFadeOutTime = 0.6
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.9
+			m_bEaseInAndOut = true
+			m_flEndScale = 0.5
+			m_flStartScale = 1.8
+			m_flStartTime = 0.6
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 10
+			}
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 180.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -90.0
+			}
+			m_nOutputField = 20
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.705882
+				m_flRandomMax = 0.588235
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.4
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 16
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_e3a.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 5
+}

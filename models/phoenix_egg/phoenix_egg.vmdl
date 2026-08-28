@@ -1,0 +1,197 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "phoenix_egg_model"
+						filename = "models/phoenix_egg/phoenix_egg_phoenix_egg_model.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_hitloc"
+						ignore_rotation = false
+						parent_bone = "root"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "Folder"
+						children = 
+						[
+							{
+								_class = "AnimFile"
+								name = "egg_cast_supernova"
+								source_filename = "models/phoenix_egg/phoenix_egg_egg_cast_supernova.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_IDLE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "bird_egg_portrait"
+								source_filename = "models/phoenix_egg/phoenix_egg_bird_egg_portrait.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_CAPTURE"
+								activity_weight = 1
+							},
+							{
+								_class = "AnimFile"
+								name = "bird_egg_loadout"
+								source_filename = "models/phoenix_egg/phoenix_egg_bird_egg_loadout.dmx"
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = true
+								delta = false
+								worldSpace = false
+								hidden = false
+								activity_name = "ACT_DOTA_LOADOUT"
+								activity_weight = 1
+								children = 
+								[
+									{
+										_class = "AnimEvent"
+										event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+										event_frame = 0
+										event_keys = 
+										{
+											name = resource:"particles/units/heroes/hero_phoenix/phoenix_supernova_egg_loadout.vpcf"
+											detach_from_owner = false
+											always_run = false
+											stop_on_seq_change = false
+											stop_immediately = false
+											use_layer_sequence = false
+											tags = null
+											config = "point_follow"
+											aggregate = false
+										}
+									},
+								]
+							},
+						]
+						name = "asset_sequences"
+					},
+					{
+						_class = "AnimBindPose"
+						name = "bindPose"
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -51.882179, -54.539471, -52.64732 ]
+								hitbox_maxs = [ 51.882179, 54.539471, 52.64732 ]
+								name = "root"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_low"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -86.040207, -1.954482, -84.511543 ]
+								hitbox_maxs = [ 86.040207, 425.132202, 84.511543 ]
+								name = "root1"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+					{
+						_class = "HitboxSet"
+						name = "select_high"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -44.43335, 1.619883, -45.088638 ]
+								hitbox_maxs = [ 44.43335, 403.980713, 45.088638 ]
+								name = "root2"
+								parent_bone = "root"
+								surface_property = "default"
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "root"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ -0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

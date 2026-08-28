@@ -1,0 +1,146 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 9
+	m_hSnapshot = resource:"particles/particle_snapshots/good_ancient_destruction/radiant_ground_thickemissions.vsnap"
+	m_nSnapshotControlPoint = 4
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flOverbrightFactor = 15.0
+			m_flAnimationRate = 4.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/yellowflare.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.01
+			m_flOpStartFadeInTime = 3.0
+			m_flOpEndFadeInTime = 3.2
+			m_Gravity = [ 0.0, 0.0, 500.0 ]
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
+			m_nNumControlPoints = 9
+			m_nFirstControlPoint = 2
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFromCPSnapshot"
+			m_nControlPointNumber = 4
+			m_nAttributeToRead = 0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 3.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 2.0
+				m_flRandomMax = 3.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_bDisableOperator = true
+			m_fRadiusMax = 50.0
+		},
+		{
+			_class = "C_INIT_InitFromCPSnapshot"
+			m_nControlPointNumber = 4
+			m_nAttributeToWrite = 2
+			m_nAttributeToRead = 0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMax = [ 150.0, 150.0, 1000.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ -50.0, -50.0, 500.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.5
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 150.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/radiant_fx2/radiant_ancient001_destruction_h7e.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 4
+}

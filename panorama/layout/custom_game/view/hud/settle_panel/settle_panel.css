@@ -1,0 +1,1727 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.com-mouse-style
+{
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	sound: "ui_friends_slide_out";
+	transition-property: brightness, saturation;
+	transition-timing-function: ease-in-out;
+}
+
+.com-mouse-style:hover
+{
+	brightness: 1.4;
+}
+
+.com-mouse-style:disabled
+{
+	saturation: 0;
+}
+
+.com-mouse-style:active
+{
+	pre-transform-scale2d: 0.98;
+}
+
+.com-mouse-style2
+{
+	transition-property: brightness;
+	transition-duration: 0.2s;
+	sound: "ui_friends_slide_out";
+	transition-property: brightness, saturation;
+	transition-timing-function: ease-in-out;
+}
+
+.com-mouse-style2:hover
+{
+	brightness: 1.1;
+}
+
+.com-mouse-style2:disabled
+{
+	saturation: 0;
+}
+
+.com-mouse-style2:active
+{
+	pre-transform-scale2d: 0.98;
+}
+
+.com-ani
+{
+	animation-name: twinkle;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: 3;
+}
+
+.normal
+{
+	font-size: 16px;
+	color: #eeeeee;
+}
+
+VerticalScrollBar
+{
+	background-position: center;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+VerticalScrollBar .ScrollThumb
+{
+	background-color: #313131;
+}
+
+VerticalScrollBar .ScrollThumb:hover
+{
+	brightness: 1.2;
+}
+
+HorizontalScrollBar
+{
+	background-position: center;
+	background-size: 100% 3px;
+	background-repeat: no-repeat;
+	height: 3px;
+}
+
+HorizontalScrollBar .ScrollThumb
+{
+	background-color: #313131;
+}
+
+HorizontalScrollBar .ScrollThumb:hover
+{
+	brightness: 1.2;
+}
+
+.hide-vertical-scroll VerticalScrollBar
+{
+	background-image: none;
+	width: 0;
+}
+
+.hide-vertical-scroll VerticalScrollBar .ScrollThumb
+{
+	width: 0;
+	background-color: none;
+	background-image: none;
+}
+
+.hide-vertical-scroll VerticalScrollBar .ScrollThumb:hover
+{
+	background-color: none;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar
+{
+	background-image: none;
+	height: 0;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar .ScrollThumb
+{
+	background-color: none;
+	background-image: none;
+	height: 0;
+}
+
+.hide-horizontal-scroll HorizontalScrollBar .ScrollThumb:hover
+{
+	background-color: none;
+}
+
+.score-board-container
+{
+	width: 100%;
+	height: 100%;
+	align: left center;
+}
+
+.score-board-container.before-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(-100px, 0px, 0px);
+}
+
+.score-board-container.show
+{
+	opacity: 1;
+	transform: none;
+	transition-timing-function: ease-in;
+	transition-duration: 0.1s;
+	transition-delay: 0s;
+}
+
+.score-board-container.after-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(100px, 0px, 0px);
+}
+
+.score-board-container .teams-info-container
+{
+	width: 267px;
+	height: 939px;
+	align: left top;
+	transform: translateY(-25px);
+	flow-children: down;
+	background-size: 100%;
+	padding-top: 25px;
+	padding-left: 9px;
+	background-image: url("s2r://panorama/images/hud/settle/img_left_list_bg_png.vtex");
+}
+
+.score-board-container .teams-info-container .score-board-team-container
+{
+	flow-children: down;
+	margin: 3px 0;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info
+{
+	width: 230px;
+	flow-children: right;
+	margin: 1.5px 0;
+	padding-left: 13px;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-icon
+{
+	width: 34px;
+	height: 34px;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-icon.team-2
+{
+	background-size: 100%;
+	background-position: 50%;
+	background-image: url("s2r://panorama/images/team_icons/radiant_png.vtex");
+	border: 1px solid black;
+	box-shadow: inset 3px 0px 6px 0px #000000dd;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-icon.team-3
+{
+	background-size: 100%;
+	background-position: 50%;
+	background-image: url("s2r://panorama/images/team_icons/dire_png.vtex");
+	border: 1px solid black;
+	box-shadow: inset 3px 0px 6px 0px #000000dd;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-name
+{
+	wash-color: white;
+	text-overflow: shrink;
+	font-size: 18px;
+	text-align: left;
+	color: #deedd9;
+	letter-spacing: 1.8px;
+	align: left center;
+	margin-left: 5px;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-name.team-2
+{
+	text-shadow: 0px 0px 6px 1 #9be40c8f;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-name.team-3
+{
+	text-shadow: 0px 0px 6px 1 #e74d088f;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .team-score
+{
+	font-size: 12px;
+	text-align: left;
+	color: #deedd9;
+	margin-left: 4px;
+	align: left center;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .winner-icon
+{
+	width: 68px;
+	height: 23px;
+	align: right center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hud/settle/img_victory_text_bg_png.vtex");
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-info .winner-icon .winner-text
+{
+	font-size: 14px;
+	text-align: left;
+	color: #16191b;
+	margin-left: 24px;
+	align: left center;
+	letter-spacing: 2.7px;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list
+{
+	height: 398px;
+	flow-children: down;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container
+{
+	width: 231px;
+	height: 37px;
+	margin: 1.5px 0;
+	flow-children: right;
+	background-color: rgba(6, 8, 9, 0.24);
+	padding-left: 5px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hud/settle/img_left_list_player_bg_png.vtex");
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container.local
+{
+	background-color: #204851;
+	background-image: url("s2r://panorama/images/hud/settle/img_left_list_my_bg_png.vtex");
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-avatar
+{
+	width: 70px;
+	align: left center;
+	border-radius: 2px;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-info
+{
+	width: 88px;
+	margin-left: 6px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-info .com-player-name
+{
+	font-size: 15px;
+	height: 16px;
+	text-align: left;
+	color: #d7e3e3;
+	width: 100%;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-info .player-hero-info
+{
+	flow-children: right;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-info .player-hero-info .hero-level
+{
+	font-size: 12px;
+	text-align: center;
+	color: #a0aaa1;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .player-info .player-hero-info .hero-name
+{
+	margin-left: 4px;
+	font-size: 12px;
+	text-align: center;
+	color: #a0aaa1;
+}
+
+.score-board-container .teams-info-container .score-board-team-container .team-player-list .score-board-account-container .back-penalty-count
+{
+	border: 1px solid #e71010;
+	vertical-align: center;
+	color: #e71010;
+	text-align: center;
+	text-overflow: shrink;
+	font-size: 13px;
+	margin-left: 16px;
+	border-radius: 2px;
+}
+
+.score-board-container .players-container
+{
+	width: 85%;
+	flow-children: down;
+	overflow: scroll clip;
+	position: 240px 0 0;
+}
+
+.score-board-container .players-container .score-board-player-container
+{
+	flow-children: down;
+	padding-bottom: 1.5px;
+}
+
+.score-board-container .players-container .score-board-player-container .sc-headers-container
+{
+	height: 37px;
+	margin-top: 3px;
+	flow-children: right;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list
+{
+	flow-children: down;
+	height: 400px;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container
+{
+	margin: 2px 0;
+	height: 37px;
+	margin: 1.5px 0;
+	background-color: rgba(33, 40, 45, 0.2);
+	flow-children: right;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container.local
+{
+	background-color: rgba(32, 72, 81, 0.5);
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .score
+{
+	text-align: center;
+	width: 150px;
+	margin-left: 22px;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .combo
+{
+	transform: translateX(10px);
+	flow-children: right;
+	overflow: scroll clip;
+	height: 100%;
+	vertical-align: center;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .combo .com-bless-item
+{
+	height: 100%;
+	width: height-percentage(100%);
+	margin: 0 1px;
+	vertical-align: center;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .status
+{
+	flow-children: right;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .goldPerMin
+{
+	width: 69px;
+	margin-left: 24px;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .settle-reward-container
+{
+	vertical-align: center;
+}
+
+.score-board-container .players-container .score-board-player-container .score-board-player-list .sc-cells-container .settle-reward-container .settle-reward
+{
+	width: 32px;
+	height: 32px;
+}
+
+.score-board-container .header
+{
+	text-align: center;
+	vertical-align: center;
+	color: #7c8d85;
+	font-size: 17px;
+}
+
+.score-board-container .cell-label
+{
+	font-size: 18px;
+	text-align: center;
+	vertical-align: center;
+	color: #777777;
+	text-overflow: shrink;
+}
+
+.score-board-container .cell-label.local
+{
+	color: #ececec;
+}
+
+.score-board-container .score
+{
+	width: 150px;
+	margin-left: 22px;
+}
+
+.score-board-container .reward
+{
+	width: 100px;
+	margin-left: 16px;
+}
+
+.score-board-container .titles
+{
+	width: 230px;
+	margin-left: 6px;
+}
+
+.score-board-container .combo
+{
+	width: 400px;
+	margin-left: 6px;
+}
+
+.score-board-container .kda
+{
+	width: 83px;
+	margin-left: 18px;
+}
+
+.score-board-container .gold
+{
+	width: 83px;
+	margin-left: 30px;
+}
+
+.score-board-container .equips
+{
+	width: 310px;
+	margin-left: 24px;
+}
+
+.score-board-container .status
+{
+	width: 198px;
+	margin-left: 48px;
+}
+
+.score-board-container .lastHit-deny
+{
+	width: 83px;
+	margin-left: 24px;
+}
+
+.score-board-container .goldPerMin
+{
+	width: 69px;
+	margin-left: 24px;
+}
+
+.score-board-container .expPerMin
+{
+	width: 69px;
+	margin-left: 24px;
+}
+
+.score-board-container .heal
+{
+	width: 66px;
+	margin-left: 40px;
+}
+
+.score-board-container .damageDealt
+{
+	width: 66px;
+	margin-left: 40px;
+}
+
+.score-board-container .damageTaken
+{
+	width: 66px;
+	margin-left: 40px;
+}
+
+.score-board-container .damageBuilding
+{
+	width: 68px;
+	margin-left: 40px;
+}
+
+.score-board-container .controlTime
+{
+	width: 96px;
+	margin-left: 22px;
+}
+
+.score-board-container .top-highlight
+{
+	color: #dcc56e;
+}
+
+.score-board-equips
+{
+	flow-children: right;
+	vertical-align: center;
+	width: 310px;
+	margin-left: 24px;
+}
+
+.score-board-equips .equip
+{
+	width: 46px;
+	height: 33px;
+}
+
+.score-board-equips .equip.neutral
+{
+	width: 32px;
+	height: 32px;
+	border: 2px solid #353f4e;
+	border-radius: 50%;
+}
+
+.score-board-statuses
+{
+	width: 198px;
+	margin-left: 48px;
+	flow-children: right;
+}
+
+.score-board-statuses .status-container
+{
+	width: 33px;
+	height: 33px;
+	margin: 2px;
+}
+
+.score-board-statuses .status-value
+{
+	font-size: 18px;
+	brightness: 2;
+	margin-right: 5px;
+	align: right bottom;
+	text-shadow: 1px 1px 3px 3 #000000;
+}
+
+.score-board-titles
+{
+	flow-children: right;
+	width: 230px;
+	margin-left: 6px;
+	overflow: scroll clip;
+	vertical-align: center;
+}
+
+.score-board-titles .title
+{
+	width: 25.2px;
+	height: 25.2px;
+	margin: 0 2px;
+	vertical-align: center;
+}
+
+.score-board-titles .title.title-0,.score-board-titles .title.title-13
+{
+	width: 50.4px;
+	height: 25.2px;
+}
+
+.score-board-titles .title.title-11
+{
+	width: 36.4px;
+	height: 13.3px;
+}
+
+.score-board-titles .title.title-15
+{
+	width: 54.6px;
+	height: 13.3px;
+}
+
+.score-board-titles .title.title-16
+{
+	width: 62.3px;
+	height: 13.3px;
+}
+
+.personal-container
+{
+	width: 100%;
+	height: 100%;
+}
+
+.personal-container.before-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(-100px, 0px, 0px);
+}
+
+.personal-container.show
+{
+	opacity: 1;
+	transform: none;
+	transition-timing-function: ease-in;
+	transition-duration: 0.1s;
+	transition-delay: 0s;
+}
+
+.personal-container.after-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(100px, 0px, 0px);
+}
+
+.personal-hero-container
+{
+	width: 100%;
+	height: 100%;
+}
+
+.personal-hero-container .personal-scene
+{
+	width: 980px;
+	height: 100%;
+	transform: translateY(50px);
+	align: left bottom;
+}
+
+.personal-hero-container .personal-hero-info
+{
+	width: 600px;
+	flow-children: down;
+	align: left bottom;
+	margin-left: 160px;
+	margin-bottom: 98px;
+}
+
+.personal-hero-container .personal-hero-info .personal-abilities-info
+{
+	horizontal-align: center;
+	margin-top: 20px;
+}
+
+.personal-hero-container .personal-hero-info .personal-abilities-info .com-ability-image
+{
+	width: 41px;
+	height: 41px;
+	margin: 0 3px;
+}
+
+.personal-hero-container .personal-hero-info .com-bless-content
+{
+	horizontal-align: center;
+}
+
+.personal-data-container
+{
+	width: 750px;
+	position: 970px 230px 0;
+	flow-children: right-wrap;
+}
+
+.personal-data-container .personal-data-cell-container
+{
+	width: 250px;
+	padding-left: 16px;
+	margin-bottom: 5px;
+	min-height: 85px;
+	flow-children: down;
+	background-color: rgba(59, 59, 56, 0.16);
+}
+
+.personal-data-container .personal-data-cell-container.gold .title
+{
+	color: #a97521;
+}
+
+.personal-data-container .personal-data-cell-container.gold .value-container .value
+{
+	color: #ecc95d;
+}
+
+.personal-data-container .personal-data-cell-container .title
+{
+	font-size: 15px;
+	text-align: center;
+	color: #ccbf91;
+	margin-top: 13px;
+}
+
+.personal-data-container .personal-data-cell-container .value-container
+{
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.personal-data-container .personal-data-cell-container .value-container .value
+{
+	font-size: 32px;
+	font-weight: bold;
+	text-align: left;
+	color: #f2f2f2;
+}
+
+.personal-data-container .personal-data-cell-container .value-container .sub-value
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #848484;
+	margin-left: 25px;
+	margin-bottom: 4px;
+	vertical-align: bottom;
+}
+
+.personal-data-container .personal-data-cell-container .line
+{
+	width: 2px;
+	height: 65px;
+	ignore-parent-flow: true;
+	align: right center;
+	background-size: 100%;
+	background-color: #282c29;
+	background-image: url("s2r://panorama/images/hud/settle/img_personal_num_line_png.vtex");
+}
+
+.personal-data-container .equips-cell
+{
+	width: 500px;
+}
+
+.personal-data-container .equips-cell .title
+{
+	margin-top: 13px;
+}
+
+.personal-data-container .equips-cell .personal-equips
+{
+	width: 100%;
+	margin-top: 6px;
+	margin-left: 0px;
+}
+
+.personal-data-container .equips-cell .personal-equips .equip
+{
+	width: 55px;
+	height: 39px;
+	margin-right: 10px;
+	vertical-align: center;
+}
+
+.personal-data-container .equips-cell .personal-equips .equip.neutral
+{
+	width: 45px;
+	height: 45px;
+}
+
+.personal-data-container .statuses-cell .personal-statuses
+{
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+.personal-data-container .statuses-cell .personal-statuses .status-container
+{
+	width: 39px;
+	height: 39px;
+	margin-right: 10px;
+}
+
+.personal-data-container .personal-streak
+{
+	width: 100%;
+}
+
+.personal-data-container .personal-streak .personal-killed-hero
+{
+	flow-children: right;
+	overflow: scroll clip;
+	margin-top: 11px;
+	margin-bottom: 27px;
+	height: 42px;
+}
+
+.personal-data-container .personal-streak .personal-killed-hero .max-streak-hero
+{
+	margin-right: 23px;
+	flow-children: right;
+}
+
+.personal-data-container .personal-streak .personal-killed-hero .max-streak-hero .com-hero-image
+{
+	width: 32px;
+	height: 32px;
+	border: 0px none red;
+}
+
+.personal-data-container .personal-streak .personal-killed-hero .max-streak-hero .count
+{
+	font-size: 13px;
+	text-align: center;
+	color: #e3e1df;
+	vertical-align: bottom;
+}
+
+.personal-data-container .personal-titles
+{
+	width: 100%;
+	margin: 0px 0 26px 0;
+}
+
+.personal-data-container .personal-titles .title
+{
+	margin: 0 3px;
+}
+
+.mvp-container
+{
+	flow-children: right;
+	align: center center;
+}
+
+.mvp-container.before-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(-100px, 0px, 0px);
+}
+
+.mvp-container.show
+{
+	opacity: 1;
+	transform: none;
+	transition-timing-function: ease-in;
+	transition-duration: 0.1s;
+	transition-delay: 0s;
+}
+
+.mvp-container.after-show
+{
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0.1s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+	transform: translate3d(100px, 0px, 0px);
+}
+
+.mvp-container .mvp-player-info-container
+{
+	width: 384px;
+	height: 954px;
+	margin-top: 24px;
+	flow-children: down;
+}
+
+.mvp-container .mvp-player-info-container .name-and-avatar
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.mvp-container .mvp-player-info-container .name-and-avatar .mvp-avatar
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 8px;
+}
+
+.mvp-container .mvp-player-info-container .name-and-avatar .mvp-player-name
+{
+	font-size: 18px;
+	color: #8c8b87;
+	vertical-align: center;
+}
+
+.mvp-container .mvp-player-info-container .title-container
+{
+	width: 210px;
+	height: 55px;
+	horizontal-align: center;
+	flow-children: down;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hud/settle/img_title_others_frame_png.vtex");
+}
+
+.mvp-container .mvp-player-info-container .title-container.mvp
+{
+	width: 211px;
+	height: 69px;
+	background-image: url("s2r://panorama/images/hud/settle/img_title_mvp_frame_png.vtex");
+}
+
+.mvp-container .mvp-player-info-container .title-container .title
+{
+	margin-top: 8px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	color: #e7e5dc;
+	letter-spacing: 1.8px;
+	horizontal-align: center;
+}
+
+.mvp-container .mvp-player-info-container .title-container .title.mvp
+{
+	font-weight: bold;
+	color: #e9dfc5;
+}
+
+.mvp-container .mvp-player-info-container .title-container .title-data-info
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.mvp-container .mvp-player-info-container .title-container .title-data-info .data-name
+{
+	flow-children: right;
+	font-size: 14px;
+	text-align: center;
+	color: #747474;
+	line-height: 13px;
+	margin-right: 14px;
+}
+
+.mvp-container .mvp-player-info-container .title-container .title-data-info .data
+{
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #2fbfcc;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 11px;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name .com-abilities-container
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 15px;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name .com-abilities-container .com-abilities
+{
+	margin-right: 10px;
+	vertical-align: center;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name .com-abilities-container .com-abilities .com-ability-image
+{
+	width: 28px;
+	height: 28px;
+	margin: 4px;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name .hero-name
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #7d7d7d;
+	letter-spacing: 0.98px;
+	vertical-align: center;
+}
+
+.mvp-container .mvp-player-info-container .abilities-and-name .com-bless-content
+{
+	width: 290px;
+}
+
+.mvp-container .mvp-player-info-container .mvp-hero-scene
+{
+	width: 100%;
+	height: 82%;
+}
+
+.mvp-container .mvp-player-info-container .kda
+{
+	horizontal-align: center;
+	font-size: 17px;
+	text-align: center;
+	color: #575757;
+}
+
+.com-bless-item
+{
+	width: 46px;
+	height: 46px;
+}
+
+.com-bless-item .bless-icon
+{
+	width: 96%;
+	height: 96%;
+	align: center center;
+}
+
+.bless-qua-3
+{
+	color: #ff910a;
+}
+
+.bless-qua-2
+{
+	color: #b518ff;
+}
+
+.bless-qua-1
+{
+	color: #4197ff;
+}
+
+.common-text-button
+{
+	width: 210px;
+	height: 50px;
+	background-color: gradient(linear, 0% 0%, 0% 90%, from(#060e15), to(#224c63));
+	border: 2px solid rgba(116, 255, 250, 0.2);
+	background-size: 100%;
+}
+
+.common-text-button .label
+{
+	font-size: 26px;
+	text-align: center;
+	color: #eaeaea;
+	align: center center;
+}
+
+.common-text-button.gray
+{
+	border: 2px solid #2a3439;
+	background-color: none;
+	background-image: url("s2r://");
+}
+
+.com-player-avatar
+{
+	width: 32px;
+	height: 32px;
+}
+
+.com-player-item-line
+{
+	width: 100%;
+	height: 2px;
+	overflow: noclip;
+	ignore-parent-flow: true;
+	background-size: 100%;
+	background-image: url("s2r://");
+}
+
+.com-abilities-container
+{
+	flow-children: right;
+}
+
+.com-close-btn
+{
+	width: 30px;
+	height: 30px;
+	background-size: 100%;
+	background-image: url("s2r://");
+}
+
+.player-info-container
+{
+	width: 122px;
+	margin-left: 6.5px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.player-info-container .com-player-name
+{
+	font-size: 17px;
+	text-align: left;
+	color: #a3a3a3;
+	letter-spacing: 0.83px;
+}
+
+.player-info-container .com-player-name.is-local-player
+{
+	color: #e1c337;
+}
+
+.player-info-container .com-player-hero-name
+{
+	font-size: 15px;
+	text-align: left;
+	color: #666663;
+	letter-spacing: 0.75px;
+}
+
+.com-hero-abilities-container
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.com-hero-ahs
+{
+	width: 36px;
+	height: 36px;
+	margin: 0 3px;
+	wash-color: #708d9f;
+	img-shadow: 0px 4px 8px black;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/spellicons/aghsicon_psd.vtex");
+}
+
+.com-hero-talent
+{
+	width: 36px;
+	height: 36px;
+	margin: 0 3px;
+	wash-color: #708d9f;
+	img-shadow: 0px 4px 8px black;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/spellicons/statbranch_psd.vtex");
+}
+
+.com-hero-name-and-type
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.com-hero-name-and-type .hero-attribute-primary
+{
+	margin-right: 17px;
+}
+
+.com-hero-name-and-type .com-player-hero-name
+{
+	font-size: 38px;
+	text-align: center;
+	color: #ededed;
+	letter-spacing: 6.75px;
+	vertical-align: center;
+}
+
+.com-hero-image
+{
+	width: 28px;
+	height: width-percentage(100%);
+}
+
+.com-hero-attribute-primary
+{
+	width: 33px;
+	height: 33px;
+	vertical-align: center;
+	background-size: 100% 100%;
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_STRENGTH
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_strength_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_AGILITY
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_agility_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_INTELLECT
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex");
+}
+
+.com-hero-attribute-primary.DOTA_ATTRIBUTE_ALL
+{
+	background-image: url("s2r://panorama/images/primary_attribute_icons/mini_primary_attribute_icon_all_psd.vtex");
+}
+
+.custom-hero-scene-panel
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.custom-hero-scene-panel .scene-panel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/hero_model_preview_mask_loadout_psd.vtex");
+}
+
+.com-bless-content
+{
+	width: 520px;
+	flow-children: right-wrap;
+	overflow: clip scroll;
+}
+
+.com-bless-content .com-bless-item
+{
+	margin: 6px;
+}
+
+.com-bless-name
+{
+	font-size: 18px;
+	font-family: defaultFont;
+}
+
+.connect-state-container
+{
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.connect-state-container.show
+{
+	opacity: 1;
+}
+
+.connect-state-container.hide
+{
+	opacity: 0;
+}
+
+.connect-state-container .state-text
+{
+	color: #1eda33;
+	font-size: 16px;
+	height: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 3 #000000;
+}
+
+.connect-state-container .state-text.state-4
+{
+	color: red;
+}
+
+.top-bar-mask
+{
+	width: 66px;
+	height: 36px;
+	margin-top: 4px;
+	vertical-align: top;
+	z-index: 10;
+}
+
+.top-bar-mask .abilityList
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.top-bar-mask .abilityList.show
+{
+	opacity: 1;
+}
+
+.top-bar-mask .abilityList .dotaImage1
+{
+	height: 50%;
+	width: height-percentage(100%);
+	border: 1px solid rgba(0, 0, 0, 0.9);
+	align: center bottom;
+	margin-right: 50%;
+}
+
+.top-bar-mask .abilityList .dotaImage2
+{
+	height: 50%;
+	width: height-percentage(100%);
+	border: 1px solid rgba(0, 0, 0, 0.9);
+	align: center bottom;
+	margin-left: 50%;
+}
+
+.top-bar-mask .disconnect-mask
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	background-color: #aa000050;
+}
+
+.top-bar-mask .disconnect-mask.show
+{
+	opacity: 1;
+}
+
+.top-bar-mask .connect-state-container
+{
+	vertical-align: bottom;
+}
+
+.exit-game-alert
+{
+	width: 1251px;
+	height: 741px;
+	flow-children: down;
+	align: center center;
+	background-size: 100% 100%;
+	background-image: url("s2r://panorama/images/hud/exit_game_alert/exit_game_alert_bg_png.vtex");
+	background-color: #181818cc;
+	border-radius: 4px;
+	box-shadow: #00000055 0px 0px 2px 2px;
+}
+
+.exit-game-alert.show
+{
+	opacity: 1;
+}
+
+.exit-game-alert.hide
+{
+	opacity: 0;
+}
+
+.exit-game-alert .common-close-btn
+{
+	margin-top: 38px;
+	margin-right: 34px;
+	ignore-parent-flow: true;
+}
+
+.exit-game-alert .exit-game-title
+{
+	font-size: 45px;
+	align: center top;
+	margin-top: 64px;
+	color: #8d7c5d;
+}
+
+.exit-game-alert .exit-game-sub-title
+{
+	width: 90%;
+	margin-top: 50px;
+	margin-left: 73px;
+	color: #ae8b5c;
+	font-size: 30px;
+}
+
+.exit-game-alert .exit-game-tips-container
+{
+	width: 90%;
+	height: 42%;
+	margin-top: 29.25px;
+	margin-left: 73px;
+	flow-children: down;
+	overflow: clip scroll;
+}
+
+.exit-game-alert .exit-game-tips-container .exit-game-tip
+{
+	color: #ff6b6b;
+	font-size: 22px;
+	line-height: 30px;
+}
+
+.exit-game-alert .exit-game-tips-container .exit-game-tip.eng
+{
+	font-size: 20px;
+}
+
+.exit-game-alert .exit-game-btns
+{
+	ignore-parent-flow: true;
+	align: center bottom;
+	margin-bottom: 108px;
+	flow-children: right;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn
+{
+	width: 156px;
+	height: 38px;
+	margin: 0 41px;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn.cancel
+{
+	height: 36px;
+}
+
+.exit-game-alert .exit-game-btns .exit-game-btn .btn-text
+{
+	align: center center;
+}
+
+.exit-game-alert .exit-button
+{
+	width: 237.6px;
+	height: 64.35px;
+	margin: 0 60px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/common/button/432_b_png.vtex");
+}
+
+.exit-game-alert .exit-button.cancel
+{
+	background-image: url("s2r://panorama/images/common/button/432_g_png.vtex");
+}
+
+.exit-game-alert .exit-button.cancel .exit-button-label
+{
+	align: center center;
+	color: #ae8b5c;
+}
+
+.exit-game-alert .exit-button .exit-button-label
+{
+	align: center center;
+	color: #8c8888;
+	font-size: 22px;
+}
+
+.exit-game-alert .exit-game-score-tips
+{
+	ignore-parent-flow: true;
+	align: center bottom;
+	font-size: 18px;
+	color: #ae8b5c;
+	margin-bottom: 43px;
+}
+
+.com-red-dot
+{
+	width: 10px;
+	height: 10px;
+	align: right top;
+	border-radius: 50%;
+	background-color: #8d2f2f;
+	ignore-parent-flow: true;
+}
+
+.chatContianer
+{
+	width: 100%;
+	height: 100%;
+}
+
+.chatContianer .chatOverLayer
+{
+	width: 100%;
+	height: 200px;
+	align: center bottom;
+}
+
+.chatContianer .chatBody
+{
+	width: 600px;
+}
+
+#settle_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.settle-container
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hud/settle/img_jifen_bg_png.vtex");
+}
+
+.settle-container .match-result
+{
+	font-size: 26px;
+	font-weight: black;
+	text-align: center;
+	color: #e0ce85;
+	horizontal-align: center;
+	letter-spacing: 35.7px;
+	margin-top: 20px;
+}
+
+.settle-container .match-result.DEFEAT
+{
+	width: 274px;
+	height: 20px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/hud/settle/defeat_png.vtex");
+}
+
+.settle-container .gold-line
+{
+	width: 100%;
+	height: 3px;
+	margin-top: 48px;
+	background-color: #987c57;
+}
+
+.settle-container .settle-nav
+{
+	flow-children: right;
+	margin-top: 27px;
+	horizontal-align: center;
+}
+
+.settle-container .settle-nav .nav-tab-container
+{
+	margin: 0 19px;
+	flow-children: right;
+}
+
+.settle-container .settle-nav .nav-tab-container .tab-label
+{
+	font-size: 20px;
+	text-align: center;
+	color: #8d8f7a;
+	letter-spacing: 3.9px;
+	vertical-align: center;
+}
+
+.settle-container .settle-nav .nav-tab-container .tab-label.active
+{
+	color: #f2e8d6;
+}
+
+.settle-container .settle-nav .nav-tab-container .tab-line
+{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	color: #8d8f7a;
+	vertical-align: center;
+}
+
+.settle-container .settle-nav .nav-tab-container .tab-line.left
+{
+	margin-right: 22px;
+}
+
+.settle-container .settle-nav .nav-tab-container .tab-line.right
+{
+	margin-left: 22px;
+}
+
+.settle-container .settle-view-list
+{
+	width: 100%;
+	height: 89%;
+	align: center bottom;
+}
+
+.settle-container .settle-btns
+{
+	margin: 16px;
+	align: right bottom;
+}
+
+.settle-container .settle-wechat-qr-container
+{
+	width: 78px;
+	flow-children: down;
+	ignore-parent-flow: true;
+	align: right top;
+	margin-top: 4px;
+	margin-right: 150px;
+}
+
+.settle-container .settle-wechat-qr-frame
+{
+	width: 62px;
+	height: 62px;
+	horizontal-align: center;
+	padding: 3px;
+	background-color: rgba(13, 28, 46, 0.88);
+	border: 1px solid #87c9ea;
+	border-radius: 8px;
+	box-shadow: #06111d88 0px 0px 6px 0px;
+}
+
+.settle-container .settle-wechat-qr
+{
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	border-radius: 4px;
+}
+
+.settle-container .settle-wechat-empty-img
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background-image: url("s2r://panorama/images/common/element/wechat-qrcode_png.vtex");
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.settle-container .settle-wechat-qr-text
+{
+	margin-top: 3px;
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	font-weight: semi-bold;
+	color: #d7efff;
+	letter-spacing: 0.3px;
+	text-shadow: 0px 0px 4px 1 #4f88b5aa;
+}
+
+.settle-container .settle-match-info-container
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	align: center center;
+}
+
+.settle-container .settle-match-info-container .match-id
+{
+	margin-left: 29px;
+	margin-bottom: 26px;
+	align: left bottom;
+	width: 148px;
+	font-size: 15px;
+	color: #3e3e3e;
+}
+
+.settle-container .settle-match-info-container .macth-time
+{
+	margin-top: 130px;
+	margin-right: 44px;
+	align: right top;
+	font-size: 17px;
+	color: #bfbfbf;
+}
+
+.chatContianer
+{
+	z-index: 1;
+	ignore-parent-flow: true;
+}

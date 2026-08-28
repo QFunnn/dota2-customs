@@ -1,0 +1,154 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 2
+	m_flConstantRadius = 2.0
+	m_ConstantColor = [ 255, 235, 97, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetCPOrientationToPointAtCP"
+			m_nOutputCP = 3
+			m_nInputCP = 0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 213, 240, 246 ]
+			m_ColorMin = [ 213, 240, 246 ]
+		},
+		{
+			_class = "C_INIT_NormalAlignToCP"
+		},
+		{
+			_class = "C_INIT_VelocityFromCP"
+			m_velocityInput = 
+			{
+				m_nType = "PVEC_TYPE_CP_VALUE"
+				m_nControlPoint = 1
+			}
+			m_transformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 1024.0
+			m_bSetNormal = true
+			m_flOffset = 8.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 1.0
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_bSetNormal = true
+			m_flTolerance = 0.0
+			m_flOffset = 10.0
+			m_flMaxTraceLength = 1024.0
+			m_flTraceOffset = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 3
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/bless/21002_liner_proj_corea.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/21002_liner_proj_coreb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/21002_liner_proj_corec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/21002_liner_proj_cored.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bless/21002_liner_proja.vpcf"
+		},
+	]
+}
