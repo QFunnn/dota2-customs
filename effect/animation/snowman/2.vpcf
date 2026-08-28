@@ -1,0 +1,225 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 40
+	m_ConstantColor = [ 255, 255, 255, 70 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAnimationRate = 1.0
+			m_bDisableOperator = true
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_flares/aircraft_blue.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flEndScale = 0.0
+			m_bEaseInAndOut = true
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpStartFadeInTime = 5.0
+			m_flOpEndFadeInTime = 5.0
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_FrequencyMax = [ 3.0, 3.0, 3.0 ]
+			m_FrequencyMin = [ 0.5, 0.5, 0.5 ]
+			m_RateMax = [ 4.0, 4.0, 4.0 ]
+			m_RateMin = [ -4.0, -4.0, -4.0 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_bDisableOperator = true
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.1
+				m_flRandomMax = 0.22
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 100.0
+				m_flRandomMax = 180.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMax = 24.0
+			m_fSpeedMax = 800.0
+			m_LocalCoordinateSystemSpeedMin = [ 20.0, 0.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 100.0, 0.0, 0.0 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 105, 165, 255, 255 ]
+			m_ColorMax = [ 209, 238, 255, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_nFieldOutput = 22
+			m_ColorMax = [ 150, 236, 255, 255 ]
+			m_ColorMin = [ 50, 84, 183, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			m_bDisableOperator = true
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScale = 3.0
+			m_vecOutputMax = [ 10.0, 10.0, 10.0 ]
+			m_vecOutputMin = [ -10.0, -10.0, -10.0 ]
+			m_flNoiseScaleLoc = 5.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, -30.0, 10.0 ]
+			m_OffsetMin = [ 0.0, -30.0, 10.0 ]
+			m_bDisableOperator = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bDisableOperator = true
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.743
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_ground.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_fall_dust.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_fall_ice_large.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_fall_ice_small.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_switch_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/animation/snowman/2_throes.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointToImpactPoint"
+			m_nCPOut = 2
+			m_nCPIn = 0
+			m_vecTraceDir = [ 0.0, 0.0, -1.0 ]
+			m_CollisionGroupName = "DEBRIS"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 10.0
+			m_bDisableOperator = true
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

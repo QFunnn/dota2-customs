@@ -1,0 +1,276 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "toon_reaper"
+						filename = "models/toon_reaper/toon_reaper_flying_toon_reaper.dmx"
+					},
+				]
+			},
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						name = "0"
+						remaps = [  ]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "1"
+						remaps = 
+						[
+							{
+								_class = "BaseMaterialRemap"
+								from = "models/toon_reaper/toon_reaper_magent.vmat"
+								to = "models/toon_reaper/toon_reaper_red.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "2"
+						remaps = 
+						[
+							{
+								_class = "BaseMaterialRemap"
+								from = "models/toon_reaper/toon_reaper_magent.vmat"
+								to = "models/toon_reaper/toon_reaper_purple.vmat"
+							},
+						]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "3"
+						remaps = 
+						[
+							{
+								_class = "BaseMaterialRemap"
+								from = "models/toon_reaper/toon_reaper_magent.vmat"
+								to = "models/toon_reaper/toon_reaper_gold.vmat"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "toon_reaper_idle"
+						source_filename = "models/toon_reaper/toon_reaper_flying_toon_reaper_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "toon_reaper_movefor"
+						source_filename = "models/toon_reaper/toon_reaper_flying_toon_reaper_movefor.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_RUN"
+						activity_weight = 1
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -63.0, -35.0, -35.0 ]
+								hitbox_maxs = [ 35.0, 35.0, 35.0 ]
+								name = "RigSpine1"
+								parent_bone = "RigSpine1"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "RigPelvis"
+						origin = [ -0.000024, -0.0, 72.841751 ]
+						angles = [ -89.999969, -89.999969, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "RigSpine1"
+								origin = [ 0.0, 0.0, 0.0 ]
+								angles = [ -0.000018, -0.0, -0.0 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "RigRibcage"
+										origin = [ 27.975525, 0.000002, -0.000006 ]
+										angles = [ -0.000005, 0.000003, -0.000005 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "RigHead"
+												origin = [ 57.084946, 0.0, -0.000016 ]
+												angles = [ -0.000003, -0.0, -0.000003 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "RigRArmPalm"
+												origin = [ 0.563393, 0.000016, -87.96743 ]
+												angles = [ 89.459732, -64.986786, -64.092636 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "RigCapeBack1"
+												origin = [ 5.371368, -28.690054, 0.000005 ]
+												angles = [ -0.000037, -160.006088, 0.000022 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "RigCapeBack2"
+														origin = [ 24.410278, -0.000008, -0.000007 ]
+														angles = [ 0.000006, 13.962904, 0.000009 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "RigCapeR1"
+												origin = [ 7.656471, 19.624779, -11.791817 ]
+												angles = [ 36.421173, 154.533798, -15.788634 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "RigCapeR2"
+														origin = [ 28.806, 0.000019, 0.000015 ]
+														angles = [ 0.000008, 0.000001, -0.000004 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "RigCapeL1"
+												origin = [ 7.656525, 19.624783, 11.791813 ]
+												angles = [ -36.421246, 154.533752, 15.788711 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "RigCapeL2"
+														origin = [ 28.805984, 0.000031, -0.000069 ]
+														angles = [ -0.000002, 0.000003, 0.000002 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "RigTail1"
+								origin = [ -0.000015, -0.000001, 0.0 ]
+								angles = [ 9.91511, 158.345291, 0.000039 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "RigTail2"
+										origin = [ 26.494034, 0.000008, 0.00001 ]
+										angles = [ -37.893486, 84.453056, -12.276381 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "RigTail3"
+												origin = [ 27.271555, -0.000034, -0.000036 ]
+												angles = [ 26.077429, -115.718994, -41.11005 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "RigTail4"
+														origin = [ 23.76078, 0.000046, 0.000031 ]
+														angles = [ -36.964279, 87.167618, -53.985935 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

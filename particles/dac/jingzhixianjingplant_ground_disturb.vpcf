@@ -1,0 +1,181 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 7
+	m_flConstantRadius = 1.0
+	m_nConstantSequenceNumber1 = 1
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_flAnimationRate = 70.0
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/soil_rupture.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -200.0 ]
+			m_flOpStartFadeInTime = 1.0
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.6
+			m_flEndScale = 0.5
+			m_flStartTime = 0.6
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 70.0
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMin = [ 0.65, 0.65, 0.65 ]
+			m_flWarpTime = 3.0
+			m_bUseCount = true
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 500.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 500.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_CollisionGroupName = "DEBRIS"
+			m_flMaxTraceLength = 2048.0
+			m_bSetNormal = true
+			m_flOffset = -0.25
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 2
+			m_nFieldOutput = 13
+			m_bActiveRange = true
+			m_flOutputMin = 4.0
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMin = 5
+			m_nInputMax = 8
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.5
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 5.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flInitFromKilledParentParticles = 1.0
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/dac/jingzhixianjingplant_elec.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/dac/jingzhixianjingplant_elec_rad.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/dac/jingzhixianjingplant_elec_radwall.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 6
+}

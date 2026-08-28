@@ -1,0 +1,252 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf58:version{9bada39c-a931-42d0-abdd-e5c1b13d37a6} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 192
+	m_ConstantColor = [ 228, 0, 0, 255 ]
+	m_nGroupID = 3
+	m_flMaxDrawDistance = 2000.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flAddSelfAmount = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_flOpTimeOffsetMax = 1.0
+			m_flAnimationRate = 1.45
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/glyphs/glyph4_2.vtex"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_flOpTimeOffsetMax = 1.0
+		},
+		{
+			_class = "C_OP_Spin"
+			m_flOpTimeOffsetMax = 1.0
+			m_fSpinRateStopTime = 1.0
+			m_nSpinRateDegrees = 4
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpTimeOffsetMax = 1.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flOpTimeOffsetMax = 1.0
+			m_flBias = 0.35
+			m_flEndScale = 0.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.125
+		},
+		{
+			_class = "C_OP_MoveToHitbox"
+			m_flLifeTimeLerpEnd = 1.5
+			m_flLifeTimeLerpStart = 0.5
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_flEndTime_max = 0.5
+			m_flEndTime_min = 0.5
+			m_flStartTime_max = 0.5
+			m_flStartTime_min = 0.5
+		},
+		{
+			_class = "C_OP_RemapDirectionToCPToVector"
+			m_bNormalize = true
+			m_nFieldOutput = 21
+			m_nCP = 2
+			m_flOpFadeOscillatePeriod = 1.5
+			m_flOpEndFadeInTime = 0.65
+			m_flOpStartFadeInTime = 0.55
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 40.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.8
+			m_flFadeStartTime = 0.5
+			m_ColorFade = [ 0, 0, 0, 255 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 6.0
+				m_flRandomMax = 15.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -30.0
+				m_flRandomMax = 30.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.45098
+				m_flRandomMax = 0.607843
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 21
+		},
+		{
+			_class = "C_INIT_SetHitboxToModel"
+			m_vecDirectionBias = [ 0.0, 0.0, 1.0 ]
+			m_vecHitBoxScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL"
+				m_vLiteralValue = [ 1.4, 1.4, 1.4 ]
+			}
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_flParticlesPerOrbit = 30.0
+			m_bEvenDistribution = true
+			m_flInitialRadius = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 130.0
+			}
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+			m_flOpTimeOffsetMax = 1.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 8.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 8.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flOpFadeOscillatePeriod = 1.5
+			m_flOpEndFadeOutTime = 0.25
+			m_flOpStartFadeOutTime = 0.25
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 80.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_debuff_f.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/bloodseeker/warlock_shadow_word_debuff_j.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_debuff_k.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_debuff_e.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_glyph_glow.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_glyph_sparks.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/shushi/warlock/warlock_shadow_word_debuff_core.vpcf"
+			m_bDisableChild = true
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_vecCP1Pos = [ 0.0, 0.0, 200.0 ]
+			m_vecCP2Pos = [ 0.0, 0.0, 100.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointToImpactPoint"
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+}

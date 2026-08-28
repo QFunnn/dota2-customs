@@ -1,0 +1,168 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf59:version{6cf97bfa-52a0-441a-87f0-856fb7aaa129} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_flConstantRadius = 15.0
+	m_ConstantColor = [ 255, 255, 255, 32 ]
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_nCPin = 0
+				m_flProxyRadius = 2.0
+				m_flInputMax = 0.1
+			}
+			m_bDisableZBuffering = true
+			m_flAnimationRate = 1.0
+			m_nHSVShiftControlPoint = 62
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_flares/aircraft_white.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_vecOutputMax = [ 0.5, 0.5, 0.5 ]
+			m_fl4NoiseScale = 1.0
+			m_nFieldOutput = 0
+			m_vecOutputMin = [ -0.5, -0.5, -0.5 ]
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_FrequencyMax = 8.0
+			m_FrequencyMin = 4.0
+			m_RateMax = 25.0
+			m_RateMin = -25.0
+			m_nField = 16
+		},
+		{
+			_class = "C_OP_ClampScalar"
+			m_nFieldOutput = 16
+			m_flOutputMin = 0.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.5
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 242, 221, 195, 255 ]
+			m_ColorMin = [ 253, 232, 133, 255 ]
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flNoiseScale = 4.0
+			m_flOutputMin = 20.0
+			m_flOutputMax = 55.0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = -34.0
+				m_flRandomMax = 34.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.098039
+				m_flRandomMax = 0.254902
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScale = 1.5
+			m_vecOutputMin = [ -4.0, -4.0, 6.0 ]
+			m_vecOutputMax = [ 4.0, 4.0, 16.0 ]
+			m_TransformInput = 
+			{
+			}
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 18.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 18.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 6.0
+			}
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 6
+}

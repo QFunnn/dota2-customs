@@ -1,0 +1,171 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"particles/models/items/shadow_demon/ti7_immortal_head/sd_ti7_immortal_claw.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_flAnimationRate = 15.0
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_PositionLock"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_SetControlPointsToModelParticles"
+			m_nFirstControlPoint = 5
+			m_AttachmentName = "default"
+			m_bAttachment = true
+		},
+		{
+			_class = "C_OP_SetControlPointsToModelParticles"
+			m_AttachmentName = "Root"
+			m_nFirstControlPoint = 6
+			m_bAttachment = true
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.2
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.1
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 20
+			m_flOutput = 2.0
+			m_flEndTime = 0.7
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RemapInitialTransformDirectionToRotation"
+			m_flOffsetRot = 90.0
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMin = [ 300.0, 1000.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 300.0, 1000.0, 0.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 3
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_ConstantColor = [ 255, 252, 247, 255 ]
+	m_flConstantRadius = 1.0
+	m_flConstantLifespan = 1.6
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/sf/claw_trail.vpcf"
+			m_flDelay = 0.2
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claw_trail_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claw_trail_bits.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claw_trail_rocks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claws.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claw_mist.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/claw_trail_glow.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nBehaviorVersion = 3
+	m_nFirstMultipleOverride_BackwardCompat = 2
+}

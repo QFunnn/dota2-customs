@@ -1,0 +1,321 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#panel_event_ti12
+{
+	width:1800px;
+	height:950px;
+	background-color: #000;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	vertical-align: center;
+	horizontal-align:center;
+	z-index:5000;
+}
+
+#panel_event_ti12_bg
+{
+	width:100%;
+	height:100%;
+	background-image: url("s2r://panorama/images/custom_game/loading/s44_loading_jpg.vtex");
+	background-size:100% 110%;
+	background-img-opacity: 1;
+	background-position: center;
+	brightness: 0.075;
+	saturation: 0.75;
+	z-index:5;
+}
+
+#panel_event_ti12_outer
+{
+	width:100%;
+	height:100%;
+	z-index:10;
+}
+
+#panel_event_ti12_title
+{
+	height:100px;
+	width:100%;
+	overflow: clip;
+	z-index:10;
+}
+
+#panel_event_ti12_title Label
+{
+	font-size:40px;
+	color:#fff;
+	margin-left:50px;
+	vertical-align: center;
+	horizontal-align:left;
+	font-family: titleFont;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+.icon_close
+{
+	width:30px;
+	height:30px;
+	horizontal-align:right;
+	vertical-align: top;
+	margin-top:30px;
+	margin-right:50px;
+	transition-property:transform;
+	transition-duration:0.2s;
+	margin-bottom:20px;
+}
+
+.icon_close:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5);
+}
+
+#panel_event_ti12_container
+{
+	width:100%;
+	height:800px;
+	margin-top:100px;
+	z-index:10;
+	flow-children: right-wrap;
+	padding-left:40px;
+}
+
+.dota_button
+{
+	background-image:url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
+	background-size: 100% 100%;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	border-top:1px solid #ffffff44;
+	border-right:1px solid #00000088;
+	border-left:1px solid #ffffff44;
+	border-bottom:1px solid #00000088;
+}
+
+.dota_button:hover
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #7Ac17E ), to( #a7f6b533 ) );
+}
+
+.dota_button.unavailable:hover
+{
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
+}
+
+#panel_event_ti12_desc_container
+{
+	width:1700px;
+	height:200px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	padding:10px;
+	background-color: rgba(0,0,0,0.5);
+	margin-right:50px;
+	margin-bottom:30px;
+	z-index: 0;
+}
+
+#panel_event_ti12_countdown_container
+{
+	width:500px;
+	height:40px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-right:60px;
+	margin-bottom:40px;
+	flow-children:right;
+}
+
+.text_countdown
+{
+	font-size:20px;
+	color:#fae5d3;
+	text-shadow:2px 2px 2px #330000;
+	margin-right:5px;
+	horizontal-align:right;
+	vertical-align:center;
+}
+
+#text_event_ti12_desc_title
+{
+	margin-top:10px;
+	margin-left:10px;
+	color:#EA6953;
+	font-size:22px;
+	text-shadow:1px 1px 4px 1.0 black;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+#text_event_ti12_desc_desc
+{
+	margin-top:10px;
+	margin-left:800px;
+	color:#fae5d3;
+	font-size:22px;
+	text-shadow:1px 1px 4px 1.0 black;
+	line-height: 30px;
+}
+
+#panel_event_ti12_desc_award_container
+{
+	height:500px;
+	vertical-align:bottom;
+	horizontal-align:left;
+	flow-children:right;
+	margin-bottom: 10px;
+}
+
+.my_prediction
+{
+	horizontal-align:center;
+	vertical-align:bottom;
+	color:#ffffff;
+	font-size:20px;
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #eb984e ), to( #ca6f1e ) );
+	height:35px;
+	z-index:5000;
+	line-height:25px;
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius:5px;
+}
+
+.panel_event_ti12_desc_award_one
+{
+	width:500px;
+	height:500px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-bottom: 30px;
+	margin-right: -225px;
+}
+
+.panel_event_ti12_desc_award_one DOTAScenePanel
+{
+	width:100%;
+	height:100%;
+}
+
+.unavailable
+{
+	saturation:0;
+	brightness:0.1;
+}
+
+.bet_one_outer
+{
+	width:200px;
+	height:245px;
+	margin:8px;
+	margin-bottom:5px;
+	flow-children:down;
+}
+
+.bet_one_outer.my_choice
+{
+	background-image: url("s2r://panorama/images/custom_game/event/ti15/bg_png.vtex");
+	background-size: 200px 205px;
+	background-repeat: no-repeat;
+}
+
+.bet_one_image_container
+{
+	width:200px;
+	height:150px;
+}
+
+.bet_one_image
+{
+	width:150px;
+	height:150px;
+	opacity-mask:url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+	transition-property:transform;
+	transition-duration:0.2s;
+	horizontal-align: center;
+	margin-top:10px;
+}
+
+.bet_one_image:hover
+{
+	transform: scale3d( 1.1, 1.1, 1.1);
+}
+
+.bet_one_image.unavailable:hover
+{
+	transform: scale3d( 1.0, 1.0, 1.0);
+}
+
+#event_ti12_candy_box
+{
+	height:50px;
+	horizontal-align:right;
+	vertical-align:center;
+	margin-right:150px;
+	flow-children:right;
+}
+
+#event_ti12_candy_box Image
+{
+	width:40px;
+	height:40px;
+	vertical-align: center;
+}
+
+#event_ti12_candy_box Label
+{
+	color:white;
+	font-size: 32px;
+	text-shadow:2.0px 2.0px 2.0px 1.0 #330000FF;
+	margin-left:10px;
+	letter-spacing: 0px;
+}
+
+.exclusion_window
+{
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color, position;
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+	transform: scale3d( 0.95, 0.95, 0.95);
+	position: -100px -50px 0px;
+}
+
+.exclusion_window.show
+{
+	opacity: 1;
+	transform: scale3d( 1, 1, 1);
+	position: 0px 0px 0px;
+	sound: "ui.settings_open";
+	sound-out: "Shop.PanelUp";
+}
+
+#panel_event_ti12_get_award
+{
+	width:300px;
+	height:60px;
+	horizontal-align:left;
+	vertical-align:bottom;
+	margin-left:805px;
+	margin-bottom:5px;
+}
+
+#panel_event_ti12_get_award Label
+{
+	horizontal-align:center;
+	vertical-align:center;
+	font-size:24px;
+	color:#fff;
+	text-shadow: 1.0px 1.50px 0.0px 1.0 #000000FF;
+}

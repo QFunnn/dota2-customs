@@ -1,0 +1,141 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "submarine"
+						filename = "models/diverabndsubmarine/submarine_submarine.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "submarine_run"
+						source_filename = "models/diverabndsubmarine/submarine_submarine_run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "submarine_walk"
+						source_filename = "models/diverabndsubmarine/submarine_submarine_walk.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Torpedo_R"
+						origin = [ 31.223421, -8.301497, 21.321722 ]
+						angles = [ -0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "Torpedo_L"
+						origin = [ 31.223421, 0.50798, 21.321722 ]
+						angles = [ -0.0, 90.0, 90.0 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "Sub_Body"
+						origin = [ -0.391924, -3.932184, 24.684816 ]
+						angles = [ -0.0, 90.0, 90.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "Prop_Rear"
+								origin = [ 0.017285, 1.079475, -20.677208 ]
+								angles = [ -0.0, 0.0, 0.0 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "Prop_R"
+								origin = [ -13.86293, -3.743717, -2.324157 ]
+								angles = [ -0.0, 0.0, 0.0 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "Prop_L"
+								origin = [ 13.860821, -3.746092, -2.247087 ]
+								angles = [ -0.0, 0.0, 0.0 ]
+								do_not_discard = true
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

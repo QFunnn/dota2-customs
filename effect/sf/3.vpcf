@@ -1,0 +1,133 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 350.0
+	m_nConstantSequenceNumber = 6
+	m_nGroupID = 1
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flRadiusScale = 0.75
+			m_flStartFalloff = 0.0
+			m_flAlphaScale = 5.0
+			m_bDisableOperator = true
+			m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+			m_vecColorScale = 
+			{
+				m_nType = "PVEC_TYPE_LITERAL_COLOR"
+				m_LiteralColor = [ 255, 125, 39 ]
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_OrientTo2dDirection"
+			m_nFieldOutput = 12
+			m_flRotOffset = 90.0
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 2.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InheritVelocity"
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/sf/3_model.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_swirl_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_core.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_fire.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_ember.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/sf/3_edge_black.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

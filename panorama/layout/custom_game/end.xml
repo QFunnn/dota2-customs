@@ -1,0 +1,580 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/dac.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/end.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;z-index:99999;" hittest="true">
+		<Panel id="race_gameover" class="" hittest="true" onactivate="">
+			<Panel id="gameover_inner">
+				<Panel id="gameover_bg" />
+				<Panel style="background-color:rgba(0,0,0,0);width:1920px;height:100%;flow-children:down;z-index:100;">
+					<Panel class="race_topbar">
+						<Label text="GAME OVER" />
+					</Panel>
+					<Panel class="race_title">
+						<Panel class="race_col1">
+							<Label id="end_rank_0" text="" />
+						</Panel>
+						<Panel class="race_col2">
+							<Label id="end_player_0" text="#text_stat_title_player" />
+						</Panel>
+						<Panel class="race_col15" style="width:80px;">
+							<Label id="end_level_0" text="#text_stat_title_level" />
+						</Panel>
+						<Panel class="race_col15" style="width:70px;">
+							<Label id="end_talent_tree_0" text="#text_stat_title_talent_tree" />
+						</Panel>
+						<Panel class="race_col35" style="width:500px;">
+							<Label id="end_chess_0" text="#text_stat_title_lineup" />
+						</Panel>
+						<Panel class="race_col36" style="width:240px;">
+							<Label id="end_buff_0" text="#text_stat_title_buff" />
+						</Panel>
+						<Panel class="race_col15" style="width:150px;">
+							<Label id="end_worth_0" text="#text_stat_title_relic" />
+						</Panel>
+						<Panel class="race_col15" style="width:80px;">
+							<Label id="end_gold_0" text="#text_stat_title_gold" />
+						</Panel>
+						<Panel class="race_col5" style="width:100px;">
+							<Label id="end_win_0" text="#text_stat_title_wl" />
+						</Panel>
+						<Panel class="race_col16" style="width:110px;margin-left:10px;">
+							<Label id="end_damage_0" text="#text_stat_title_damage" />
+						</Panel>
+						<Panel class="race_col9" style="width:80px;">
+							<Label id="end_duration_0" text="#text_stat_title_duration" />
+						</Panel>
+						<Panel class="race_col3">
+							<Label id="end_award_0" text="#text_stat_title_award" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_1" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_1" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_1" text="1" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_1" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_1" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_1" class="player_name invisible" style="font-size:32px;height:35px;margin-top:2px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_1" class="img_player_hero invisible" />
+										<Panel id="end_level_1" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_1" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_1" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_1" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_1" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_1" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_1" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_1" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_1" />
+							</Panel>
+							<Panel id="end_buff_1" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_1" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_1" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_1" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_1" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_1" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_1" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_1" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_1" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_1" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_1" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_1" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_1" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_1" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(1)">
+								<Image id="img_end_report_1" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_1" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_1" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_1" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_1" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_2" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_2" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_2" text="2" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_2" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_2" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_2" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_2" class="img_player_hero invisible" />
+										<Panel id="end_level_2" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_2" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_2" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_2" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_2" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_2" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_2" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_2" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_2" />
+							</Panel>
+							<Panel id="end_buff_2" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_2" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_2" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_2" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_2" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_2" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_2" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_2" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_2" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_2" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_2" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_2" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_2" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_2" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(2)">
+								<Image id="img_end_report_2" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_2" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_2" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_2" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_2" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_3" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_3" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_3" text="3" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_3" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_3" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_3" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_3" class="img_player_hero invisible" />
+										<Panel id="end_level_3" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_3" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_3" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_3" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_3" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_3" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_3" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_3" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_3" />
+							</Panel>
+							<Panel id="end_buff_3" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_3" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_3" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_3" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_3" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_3" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_3" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_3" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_3" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_3" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_3" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_3" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_3" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_3" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(3)">
+								<Image id="img_end_report_3" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_3" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_3" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_3" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_3" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_4" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_4" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_4" text="4" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_4" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_4" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_4" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_4" class="img_player_hero invisible" />
+										<Panel id="end_level_4" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_4" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_4" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_4" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_4" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_4" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_4" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_4" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_4" />
+							</Panel>
+							<Panel id="end_buff_4" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_4" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_4" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_4" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_4" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_4" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_4" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_4" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_4" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_4" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_4" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_4" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_4" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_4" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(4)">
+								<Image id="img_end_report_4" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_4" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_4" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_4" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_4" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_5" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_5" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_5" text="5" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_5" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_5" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_5" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_5" class="img_player_hero invisible" />
+										<Panel id="end_level_5" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_5" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_5" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_5" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_5" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_5" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_5" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_5" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_5" />
+							</Panel>
+							<Panel id="end_buff_5" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_5" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_5" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_5" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_5" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_5" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_5" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_5" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_5" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_5" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_5" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_5" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_5" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_5" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(5)">
+								<Image id="img_end_report_5" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_5" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_5" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_5" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_5" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_6" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_6" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_6" text="6" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_6" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_6" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_6" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_6" class="img_player_hero invisible" />
+										<Panel id="end_level_6" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_6" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_6" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_6" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_6" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_6" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_6" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_6" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_6" />
+							</Panel>
+							<Panel id="end_buff_6" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_6" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_6" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_6" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_6" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_6" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_6" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_6" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_6" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_6" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_6" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_6" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_6" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_6" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(6)">
+								<Image id="img_end_report_6" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_6" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_6" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_6" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_6" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_7" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_7" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_7" text="7" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_7" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_7" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_7" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_7" class="img_player_hero invisible" />
+										<Panel id="end_level_7" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_7" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_7" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_7" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_7" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_7" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_7" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_7" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_7" />
+							</Panel>
+							<Panel id="end_buff_7" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_7" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_7" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_7" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_7" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_7" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_7" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_7" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_7" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_7" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_7" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_7" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_7" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_7" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(7)">
+								<Image id="img_end_report_7" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_7" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_7" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_7" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_7" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+					<Panel class="race_line_outer">
+						<Panel id="end_avatar_player_vip_badge_8" class="end_dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
+						<Panel id="race_line_8" class="race_line" style="height:100px;width:1920px;">
+							<Panel class="race_col1">
+								<Label id="end_rank_8" text="8" class="invisible" />
+							</Panel>
+							<Panel id="end_board_player_8" class="race_col2">
+								<DOTAAvatarImage class="player_avatar" id="end_avatar_8" steamid="" />
+								<Panel class="race_col2_right">
+									<DOTAUserName steamid="" id="end_player_8" class="player_name invisible" style="font-size:32px;height:35px;margin-top:0px;" />
+									<Panel class="race_col2_right_bottom">
+										<Panel id="end_hero_8" class="img_player_hero invisible" />
+										<Panel id="end_level_8" class="gameover_race_level_pic invisible" />
+										<Label id="end_level_lbl_8" class="gameover_race_level_lbl" text="" />
+										<Label id="end_level_lbl_delta_8" class="gameover_race_level_lbl" text="" />
+									</Panel>
+								</Panel>
+								<Panel id="end_avatar_player_vip_8" class="dota_avatar_vip invisible" style="height:70px;width:70px;" />
+								<Image id="p2team_flag_8" class="invisible" style="height:100px;width:6px;margin-left:250px;z-index:500;" src="s2r://panorama/images/custom_game/p2team_1_png.vtex" />
+							</Panel>
+							<Panel id="panel_end_hero_level_8" class="race_col15 invisible" style="width:70px;">
+								<Panel style="width:50px;height:50px;border-radius:25px;border:4px solid #222;background-color:rgba(0,0,0,0.5);">
+									<Label id="end_hero_level_8" text="" class="text_end_hero_level" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_talent_tree_8" class="col_talent_tree" />
+							<Panel class="race_col35" style="height:80px;margin-top:-10px;">
+								<Panel class="chess_lineup_panel" id="panel_end_lineup_container_8" />
+							</Panel>
+							<Panel id="end_buff_8" class="race_col36" style="margin-top:-5px;" />
+							<Panel id="end_relic_8" class="race_col365" />
+							<Panel class="race_col15" style="width:80px;">
+								<Label id="end_money_8" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col5" style="width:100px;">
+								<Label id="end_win_8" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col16" style="width:110px;margin-left:10px;">
+								<Label id="end_damage_8" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col9" style="width:80px;">
+								<Label id="end_duration_8" text="" style="horizontal-align:center;" />
+							</Panel>
+							<Panel class="race_col3 panel_end_board_award" id="panel_end_board_award_8" style="margin-left:20px;">
+								<Panel id="panel_end_board_award_biscuit_8" class="panel_end_board_award_line1 invisible">
+									<Image id="img_end_board_biscuit_8" src="s2r://panorama/images/custom_game/award_biscuit_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_biscuit_8" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+								<Panel id="panel_end_board_award_candy_8" class="panel_end_board_award_line2 invisible">
+									<Image id="img_end_board_candy_8" src="s2r://panorama/images/custom_game/award_candy_png.vtex" class="img_end_board_award_candy invisible" />
+									<Label id="text_end_board_award_candy_8" text="× 0" class="text_end_board_award_candy invisible" />
+								</Panel>
+							</Panel>
+							<Panel id="panel_end_report_8" class="race_col9 invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_report&apos;)" onmouseout="DOTAHideTextTooltip()" onactivate="report(8)">
+								<Image id="img_end_report_8" src="s2r://panorama/images/custom_game/report_white_png.vtex" class="img_end_flag" />
+							</Panel>
+						</Panel>
+						<Panel id="end_panel_player_details_g_bar_8" class="end_panel_player_details_g_bar">
+							<Panel id="end_panel_player_details_g_bar_bar_8" class="end_panel_player_details_g_bar_bar" />
+							<Label id="end_panel_player_details_g_bar_text_8" class="end_panel_player_details_g_bar_text" text="" />
+							<Panel id="end_panel_player_details_g_bar_bar_total_8" class="end_panel_player_details_g_bar_bar_total" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="button_endgame" onactivate="Game.FinishGame();" class="dota_button">
+				<Label text="#text_endgame" />
+			</Panel>
+		</Panel>
+		<Panel id="endgame_curtain" />
+	</Panel>
+</root>

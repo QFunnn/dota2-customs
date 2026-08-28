@@ -1,0 +1,138 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/tester_box.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/tester_box.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;z-index:50;" hittest="false">
+		<Panel id="panel_tester_box" class="panel_with_border">
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="startBattle();">
+					<Panel>
+						<Panel id="panel_battle_animation" style="width:45px;height:30px;margin-right:5px;flow-children:none;" />
+						<Label text="战斗！" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_flow_down" style="width:50%;">
+					<Label text="#text_round" style="font-size:14px;" />
+					<TextEntry id="textentry_tester_box_round" text="100" style="height:32px;" />
+				</Panel>
+				<Panel class="panel_tester_box_button" onactivate="chooseRound();">
+					<Panel>
+						<Label text="选回合" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="giveMoney();">
+					<Panel>
+						<Label text="填满金币" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="giveExp();">
+					<Panel>
+						<Label text="升满等级" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right" style="height:25px;margin-top:10px;">
+				<ToggleButton id="toggle_tester_box_show_damage" selected="true" text="伤害显示" onactivate="toggleShowDamage();" />
+			</Panel>
+			<Panel class="panel_tester_box_flow_right" style="height:25px;margin-bottom:10px;">
+				<ToggleButton id="toggle_tester_box_show_grid" selected="false" text="占用格子显示" onactivate="toggleShowGrid();" />
+			</Panel>
+			<Panel class="panel_tester_box_flow_right" style="height:25px;margin-bottom:10px;">
+				<ToggleButton id="toggle_tester_box_courier_no_damage" selected="false" text="信使不受伤害" onactivate="toggleCourierNoDamage();" />
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="openChessSelect();">
+					<Panel>
+						<Label text="◄" />
+						<Image src="s2r://panorama/images/custom_game/chess_knight_png.vtex" style="width:30px;height:30px;margin-left:3px;" />
+						<Label text="添加棋子" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="openItemSelect();">
+					<Panel>
+						<Label text="◄" />
+						<Panel style="width:45px;height:30px;margin-right:0px;">
+							<Image src="s2r://panorama/images/custom_game/defend_png.vtex" style="width:20px;height:20px;vertical-align:center;margin-left:5px;margin-right:0px;" />
+							<Image src="s2r://panorama/images/custom_game/sword_png.vtex" style="width:20px;height:20px;vertical-align:center;margin-left:-7px;margin-right:0px;" />
+						</Panel>
+						<Label text="添加装备" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="openCourierSelect();">
+					<Panel>
+						<Label text="◄" />
+						<Image src="s2r://panorama/images/custom_game/ping_world_courier_png.vtex" style="width:30px;height:30px;margin-left:0px;" />
+						<Label text="选择信使" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="panel_tester_box_flow_right">
+				<Panel class="panel_tester_box_button" onactivate="clearGround();">
+					<Panel>
+						<Label text="清除地上的物品" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<TextEntry id="tester_box_import_export" class="" placeholder="粘贴阵容字符串" style="margin-top:30px;" />
+			<Panel class="panel_tester_box_flow_right" style="margin-top:10px;">
+				<Panel id="button_import_lineup" class="panel_tester_box_button" onactivate="importLineup();" style="width:47%;">
+					<Panel>
+						<Label text="导入" />
+					</Panel>
+				</Panel>
+				<Panel id="button_export_lineup" class="panel_tester_box_button" onactivate="exportLineup();" style="width:47%;horizontal-align:right;">
+					<Panel>
+						<Label text="导出" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="panel_tester_select" oncancel="closeSelect();" />
+		<Panel id="panel_slide" draggable="true">
+			<Panel id="touch_mode_toolbar_title">
+				<Label text="#touch_mode_toolbar_title" />
+			</Panel>
+			<Panel id="touch_mode_toolbar_body">
+				<Panel id="panel_pause_game" onactivate="pauseGame();">
+					<Panel id="panel_pause_game_button" />
+				</Panel>
+				<Panel id="panel_back_home" onactivate="backHome();">
+					<Panel id="panel_back_home_button" />
+				</Panel>
+				<Panel id="panel_d" onactivate="d();">
+					<Panel id="panel_d_button" />
+				</Panel>
+				<Panel id="panel_f" onactivate="f();">
+					<Panel id="panel_f_button" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,238 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "tv_flying"
+						filename = "models/bilibilitv/model/tv_flying_tv_flying.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "standby"
+						source_filename = "models/bilibilitv/model/tv_flying_standby.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "dead"
+						source_filename = "models/bilibilitv/model/tv_flying_dead.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_DIE"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "run"
+						source_filename = "models/bilibilitv/model/tv_flying_run.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_RUN"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "HitboxSetList"
+				children = 
+				[
+					{
+						_class = "HitboxSet"
+						name = "default"
+						children = 
+						[
+							{
+								_class = "Hitbox"
+								hitbox_mins = [ -26.186329, -14.93642, -29.90144 ]
+								hitbox_maxs = [ 21.732929, 14.678413, 17.805378 ]
+								name = "joint7"
+								parent_bone = "joint7"
+								surface_property = ""
+								translation_only = false
+								group_id = 0
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "joint2"
+						origin = [ -2.069796, -0.0, 54.254986 ]
+						angles = [ 90.0, -90.0, 0.0 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "joint13"
+								origin = [ 6.537651, 0.000001, 0.0 ]
+								angles = [ -0.000005, -0.0, 0.000005 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "joint6"
+										origin = [ 10.19566, 0.000002, -0.000001 ]
+										angles = [ -0.0, 0.0, 0.0 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "joint7"
+												origin = [ 13.688284, 0.000005, -0.000001 ]
+												angles = [ 0.0, 0.0, -0.0 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "joint8"
+														origin = [ 12.48881, 0.000012, -0.000001 ]
+														angles = [ 0.0, 0.0, 0.0 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "joint9"
+																origin = [ 2.058835, 0.000022, -8.999825 ]
+																angles = [ 0.0, 0.0, -0.0 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "joint10"
+																		origin = [ 8.544493, 0.000043, 0.000171 ]
+																		angles = [ 0.0, 0.0, 0.0 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "joint11"
+																origin = [ 2.058836, 0.000024, 8.999825 ]
+																angles = [ -0.00001, -179.999985, -179.999985 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "joint12"
+																		origin = [ -8.544493, 0.000043, 0.000171 ]
+																		angles = [ 0.0, 0.0, 0.0 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "joint1"
+								origin = [ -11.756428, -0.030342, 0.0 ]
+								angles = [ 0.0, 89.460403, 0.000178 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "joint3"
+										origin = [ 17.377436, -0.000084, -0.0 ]
+										angles = [ -0.000172, -89.460403, -89.999992 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "joint4"
+										origin = [ -8.896542, -0.247719, -15.169963 ]
+										angles = [ -0.000172, -89.460403, -89.999992 ]
+										do_not_discard = true
+									},
+									{
+										_class = "Bone"
+										name = "joint5"
+										origin = [ -8.896541, -0.247627, 15.169957 ]
+										angles = [ -0.000172, -89.460403, -89.999992 ]
+										do_not_discard = true
+									},
+								]
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

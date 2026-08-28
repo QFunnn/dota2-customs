@@ -1,0 +1,171 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf56:version{f07dae67-740b-4789-a729-6ddffc9f855e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_nSpinRateDegrees = -1
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 7
+			m_flOutput = 0.0
+			m_flStartTime = 0.5
+			m_flEndTime = 2.0
+			m_bDisableOperator = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ActivityName = "ACT_DOTA_CAPTURE"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/development/invisiblebox.vmdl"
+				},
+			]
+			m_bOrientZ = true
+			m_nAnimationScaleField = 19
+			m_nBodyGroupField = 19
+			m_nSubModelField = 19
+			m_nLOD = 1
+			m_nAnimationField = 19
+			m_bDisableShadows = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_bOriginalModel = true
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+				m_nType = "PM_TYPE_CONTROL_POINT"
+				m_nControlPoint = 3
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, -8.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, -8.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -150.0
+			}
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_RadiusFromCPObject"
+			m_nControlPoint = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.501961
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 50.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 50.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.0
+				m_flInput1 = 1000.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1000.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 4
+				m_nVectorComponent = 0
+			}
+		},
+		{
+			_class = "C_INIT_RemapTransformToVector"
+			m_nFieldOutput = 6
+			m_vInputMax = [ 1.0, 1.0, 1.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_bDisableOperator = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 6
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_flConstantRadius = 1.0
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
+}

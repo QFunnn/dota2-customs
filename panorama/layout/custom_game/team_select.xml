@@ -1,0 +1,183 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList">
+				<Panel class="select_board_outer">
+					<Panel class="select-block" id="select-block-difficulty" hittest="true">
+						<Label class="select-title" text="#text_difficulty_select" />
+						<Panel class="loading_select_block_inner difficulty" id="select-difficulty-inner" hittest="true">
+							<Panel id="panel_difficulty_1" class="hero_sea_top_panel_summary" onactivate="select_difficulty(1);">
+								<Image class="img_difficulty_cloud" src="s2r://panorama/images/custom_game/cloud_png.vtex" />
+								<Label id="text_difficulty_1" class="text_20" text="#text_difficulty_1" />
+							</Panel>
+							<Panel id="panel_difficulty_2" class="hero_sea_top_panel_summary" onactivate="select_difficulty(2);">
+								<Image class="img_difficulty_cloud" src="s2r://panorama/images/custom_game/cloud_png.vtex" />
+								<Label id="text_difficulty_2" class="text_20_highlight" text="#text_difficulty_2" />
+							</Panel>
+							<Panel id="panel_difficulty_3" class="hero_sea_top_panel_summary" onactivate="select_difficulty(3);">
+								<Image class="img_difficulty_cloud" src="s2r://panorama/images/custom_game/cloud_png.vtex" />
+								<Label id="text_difficulty_3" class="text_20" text="#text_difficulty_3" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="TeamsListGroup">
+						<Panel id="TeamListHeader">
+							<Label id="TeamListHeaderLabel" text="#custom_game_team_select" />
+							<Image id="TeamListLockedIcon" src="s2r://" />
+						</Panel>
+						<Panel id="TeamsListRoot" />
+						<Button id="ShuffleTeamAssignmentButton" onactivate="OnShufflePlayersPressed()">
+							<Label text="#custom_game_team_select_shuffle" />
+							<Image src="s2r://" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="GameAndPlayersRoot">
+				<Panel id="GameInfoPanel">
+					<Panel id="CustomGameModeName">
+						<Label id="GameModeNameLabel" text="#addon_game_name" />
+					</Panel>
+					<Panel id="MapInfo">
+						<Label id="MapInfoLabel" class="MapInfoLabel" text="#LoadingScreenMapInfo" />
+					</Panel>
+					<Panel class="select-block invisible" id="select-block-group" hittest="true">
+						<Panel class="loading_select_block_inner group" id="select-block-group-inner" hittest="true" />
+					</Panel>
+					<Panel id="StartGameCountdownTimer">
+						<Image id="TimerBg" src="s2r://" />
+						<Image id="TimerRing" src="" />
+						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+						<Panel id="TimerLabelBox">
+							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
+							<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="UnassignedPlayerPanel">
+					<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+						<Panel id="UnassignedPlayersHeader">
+							<Label text="#custom_game_team_select_unassigned_players" />
+						</Panel>
+						<Panel id="UnassignedPlayersDivider" />
+						<Panel id="UnassignedPlayersContainer" />
+					</Button>
+					<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
+						<Image src="s2r://" />
+						<Label text="#custom_game_team_select_auto_assign" />
+					</Button>
+				</Panel>
+				<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+					<Label text="#custom_game_team_select_lock_start" />
+				</Button>
+				<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
+					<Label text="#custom_game_team_select_cancel_unlock" />
+				</Button>
+			</Panel>
+		</Panel>
+		<Panel id="CourierSelectContainer">
+			<Panel class="select-board" id="select-board" hittest="true">
+				<Panel class="select_board_outer">
+					<Panel class="select-block invisible" id="select-block-badge" hittest="true">
+						<Label class="select-title" text="#badge_select" />
+						<Panel class="loading_select_block_inner badge" id="select-block-badge-inner" hittest="true" />
+					</Panel>
+					<Panel class="select-block" id="select-block-chessboard" hittest="true">
+						<Label class="select-title" text="#chessboard_select" />
+						<Panel class="loading_select_block_inner chessboard" id="select-block-chessboard-inner" hittest="true" />
+					</Panel>
+					<Panel class="select-block" id="select-block" hittest="true">
+						<Label class="select-title" text="#hero_select" />
+						<Panel class="loading_select_block_inner courier" id="select-block-inner" hittest="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="AdNoticeContainer">
+			<Panel id="dac_loading_ad" class="dac_loading_ad">
+				<Image id="image_loading_ad" src="s2r://panorama/images/custom_game/loading/s17_ad_jpg.vtex" />
+				<Panel id="panel_loading_ad_text_outer">
+					<Panel id="panel_loading_ad_text_brush" />
+					<Label id="text_loading_ad" class="snap_text" text="" />
+				</Panel>
+			</Panel>
+			<Label id="gametips" text="123123" />
+		</Panel>
+		<Panel id="LowPlayerNoticeContainer">
+			<Image id="img_low_player" src="s2r://panorama/images/custom_game/ui/warning_low_english_png.vtex" />
+			<Panel id="panel_low_player_right">
+				<Image id="img_low_player_bird" src="s2r://panorama/images/custom_game/ui/bird_sang_png.vtex" />
+				<Label id="title_low_player" text="#title_low_player" />
+				<Label id="text_low_player" text="#text_low_player" />
+				<Panel id="panel_low_player_rank_container">
+					<Panel class="panel_low_player_rank_item">
+						<Label text="#text_rank_list" style="margin-left:10px;font-family:titleFont;color:#888;" />
+					</Panel>
+					<Panel class="panel_low_player_rank_item">
+						<Image src="s2r://panorama/images/custom_game/level_0_png.vtex" style="margin-left:5px;" />
+						<Image src="s2r://panorama/images/custom_game/level_1_png.vtex" />
+						<Label text="#text_rank_01" style="margin-right:5px;" />
+						<Image src="s2r://panorama/images/custom_game/level_10_png.vtex" />
+						<Label text="#text_rank_02" />
+						<Label id="your_rank_low_1" text="#your_rank_level" class="your_rank_level invisible" style="color:#ddd;" />
+					</Panel>
+					<Panel class="panel_low_player_rank_item">
+						<Image src="s2r://panorama/images/custom_game/level_19_png.vtex" style="margin-left:5px;" />
+						<Label text="#text_rank_03" />
+						<Label id="your_rank_low_2" text="#your_rank_level" class="your_rank_level invisible" />
+						<Label id="require_rank_low_2" text="#require_rank_level" class="require_rank_level invisible" style="color:#ddd;" />
+					</Panel>
+					<Panel class="panel_low_player_rank_item">
+						<Image src="s2r://panorama/images/custom_game/level_28_png.vtex" style="margin-left:5px;" />
+						<Label text="#text_rank_04" />
+						<Label id="your_rank_low_3" text="#your_rank_level" class="your_rank_level invisible" />
+						<Label id="require_rank_low_3" text="#require_rank_level" class="require_rank_level invisible" style="color:#ddd;" />
+					</Panel>
+					<Panel class="panel_low_player_rank_item">
+						<Image src="s2r://panorama/images/custom_game/level_37_png.vtex" style="margin-left:5px;margin-right:2px;" />
+						<Label text="#text_player_level_37" style="margin-right:10px;" />
+						<Image src="s2r://panorama/images/custom_game/level_38_png.vtex" style="margin-right:2px;" />
+						<Label text="#text_player_level_38" />
+						<Label id="require_rank_low_4" text="#require_rank_level" class="require_rank_level invisible" style="color:#ddd;" />
+					</Panel>
+					<Panel class="panel_low_player_rank_item">
+						<Label text="#text_casual_map" style="margin-left:10px;" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Image id="arrow_low_player_0" class="arrow_low_player" src="s2r://panorama/images/custom_game/ui/arrow-down_png.vtex" />
+			<Image id="arrow_low_player_1" class="arrow_low_player" src="s2r://panorama/images/custom_game/ui/arrow-down_png.vtex" />
+			<Image id="arrow_low_player_2" class="arrow_low_player" src="s2r://panorama/images/custom_game/ui/arrow-down_png.vtex" />
+			<Image id="arrow_low_player_3" class="arrow_low_player" src="s2r://panorama/images/custom_game/ui/arrow-down_png.vtex" />
+			<Image id="arrow_low_player_4" class="arrow_low_player" src="s2r://panorama/images/custom_game/ui/arrow-down_png.vtex" />
+			<Image id="cross_low_player" src="s2r://panorama/images/custom_game/ui/cross_out_psd_png.vtex" />
+			<Label id="text_cross_low_player" text="#text_cross_low_player" />
+			<Image id="img_low_player" src="s2r://panorama/images/custom_game/ui/warning_low_english_png.vtex" />
+			<Image id="img_low_player2" src="s2r://panorama/images/custom_game/ui/a_game_list_english_png.vtex" />
+			<Image id="cross_low_player2" src="s2r://panorama/images/custom_game/ui/cross_out_psd_png.vtex" />
+			<Label id="text_cross_low_player2" text="#text_cross_low_player" />
+		</Panel>
+		<Image id="logo" class="logo" src="s2r://panorama/images/custom_game/dac_logo_png.vtex" />
+	</Panel>
+</root>

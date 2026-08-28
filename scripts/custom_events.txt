@@ -1,0 +1,132 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{
+	"show_time"
+	{
+		"timer_round"	"short"
+		"round_status"	"string"
+		"total_time"	"short"
+		"center_index"	"string"
+	}
+	"mima"
+	{
+		"text"		"string"
+	}
+	"show_cursor_hero_icon"
+	{
+		"unit"		"string"
+	}
+	"play_chess_dialogue"
+	{
+		"unit_name"			"string"
+		"dialogue_type"		"short"
+	}
+	"show_draw_card"
+	{
+		"cards"		"string"
+	}
+	"close_draw_card"
+	{
+	}
+	"show_is_hand_full"
+	{
+		"is_hand_full"	"bool"
+	}
+	"show_gold"
+	{
+		"gold"		"short"
+	}
+	"send_http_cb"
+	{
+		"event"		"string"
+		"data"		"data"
+	}
+	"bullet"
+	{
+		"player_id"	"short"
+		"text"		"string"
+		"target"	"string"
+		"item"		"string"
+		"item_level"	"short"
+		"ban"		"string"
+	}
+	"sync_hp"
+	{
+		"player_id"	"short"
+		"hp"		"short"
+		"hp_max"	"short"
+	}
+	"population"
+	{
+		"max_count"	"short"
+		"count"		"short"
+	}
+	"battle_info"
+	{
+		"type"		"string"
+		"text"		"string"
+		"round"		"short"
+		"host_oppo_id"		"short"
+		"guest_oppo_id"		"short"
+	}
+	"player_reconnect"
+	{
+		"id" 		"short"
+	}
+	"show_liuju"
+	{
+	}
+	"hide_liuju"
+	{
+	}
+	"update_liuju"
+	{
+		"count"		"short"
+		"total"		"short"
+	}
+	"drodo_chat"
+	{
+		"player_id"	"short"
+		"text"		"string"
+		"type"		"string"
+	}
+	"drodo_combat"
+	{
+		"player_id"	"short"
+		"text"		"string"
+		"type"		"string"
+	}
+	"test_legendary"
+	{
+	}
+}
+
