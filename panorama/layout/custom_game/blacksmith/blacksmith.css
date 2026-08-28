@@ -1,0 +1,759 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.blacksmith_root
+{
+	height: 100%;
+	width: 100%;
+}
+
+#blacksmith_panel_main
+{
+	height: 710px;
+	width: 900px;
+	vertical-align: center;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+}
+
+#blacksmith_close
+{
+	horizontal-align:right;
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
+}
+
+#blacksmith_close:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#blacksmith_close:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.BlacksmithInventoryMain
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom:20px;
+	background-color: rgba(0, 0, 0, 0.61);
+}
+
+.BlacksmithInventorySlots
+{
+	width: 480px;
+	vertical-align: bottom;
+	margin: 5px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+.inventory_slot
+{
+	width: 46px;
+	height: 46px;
+	margin: 1px;
+	background-color: #0f1a2a;
+	border: 2px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.inventory_slot:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.item_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#blacksmith_select_panel
+{
+	horizontal-align: center;
+	vertical-align: top;
+	height: 460px;
+	width:790px;
+	margin-top:50px;
+	background-color: rgba(0, 0, 0, 0.61);
+	padding:15px;
+	border-radius: 8px;
+	border: 2px solid rgba(74, 90, 122, 0.9);
+}
+
+#blacksmith_target
+{
+	horizontal-align: left;
+	vertical-align:center;
+}
+
+#blacksmith_result
+{
+	horizontal-align: right;
+	vertical-align:center;
+}
+
+.blacksmith_up_panel
+{
+	height: 430px;
+	width: 300px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	padding: 5px;
+	flow-children:down;
+	border-radius: 8px;
+	border: 2px solid rgba(74, 90, 122, 0.9);
+}
+
+.blacksmith_up_panel:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+	box-shadow: 0px 0px 2px 0px #64b5f6;
+}
+
+.blacksmith_up_panel_name
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: #e5e0c5;
+}
+
+.blacksmith_up_panel_image
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:5px;
+}
+
+.blacksmith_up_panel_image_back
+{
+	height:80px;
+	width:80px;
+	horizontal-align: center;
+	margin-top:-80px;
+}
+
+.blacksmith_up_panel_base
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: #ffd700;
+	margin-top: 5px;
+}
+
+.blacksmith_up_panel_bonus
+{
+	horizontal-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 5px;
+	width: 100%;
+	flow-children: down;
+}
+
+#SourceValueLine
+{
+	border-bottom: 1px solid #3a4a5a;
+	border-brush: gradient(radial, 50% 50%, 0% 0%, 50% 55%, from(#e5e0c5), to(#fff0));
+	width: 100%;
+	horizontal-align: center;
+	height: 5px;
+	margin-bottom:5px;
+}
+
+.bonus_label
+{
+	text-align: center;
+	color: #4caf50;
+	width:100%;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#blacksmith_description
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 140px;
+}
+
+.blacksmith_up_panel_desc
+{
+	flow-children: down;
+	width: 140px;
+}
+
+#blacksmith_up_panel_desc_label_chance
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #ffd700;
+}
+
+#blacksmith_up_panel_price,#blacksmith_up_panel_dust_price
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#blacksmith_up_panel_price
+{
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 8px 15px;
+	border-radius: 6px;
+}
+
+#blacksmith_up_panel_price_image
+{
+	height: 35px;
+	width: 35px;
+	vertical-align: center;
+}
+
+#blacksmith_up_panel_price_dust_label
+{
+	vertical-align:center;
+	margin-left: 5px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #e5e0c5;
+}
+
+#blacksmith_up_panel_price_label
+{
+	vertical-align:center;
+	margin-left: 5px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #ff6b6b;
+}
+
+#blacksmith_up_panel_desc_button
+{
+	horizontal-align: center;
+	width: 100px;
+	height: 40px;
+}
+
+#blacksmith_up_panel_desc_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#blacksmith_up_panel_desc_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-overflow: shrink;
+	text-align: center;
+	font-size: 14px;
+	color: #e5e0c5;
+	font-weight: bold;
+}
+
+#blacksmith_up_panel_desc_loading,#blacksmith_merge_panel_desc_loading,#blacksmith_enchant_panel_desc_loading
+{
+	horizontal-align: center;
+	background-image:url("s2r://panorama/images/elements/loading_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 40px;
+	height: 40px;
+	margin: 2px;
+	animation-name: spin;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes 'spin'
+{
+	0%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+}
+
+#blacksmith_errors_label
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 240px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.item_drop_effect
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+#blacksmith_description_text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 30px;
+}
+
+#DustPanel
+{
+	flow-children: right;
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+
+#DustPanelImage
+{
+	vertical-align:center;
+	width: 40px;
+	height: 40px;
+	margin: 10px;
+	background-image: url("s2r://panorama/images/dust_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+#DustPaneLabel
+{
+	vertical-align: center;
+	color: #e5e0c5;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.equipped_item_shadow_level_1
+{
+	box-shadow: inset #b0c3d9d0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_2
+{
+	box-shadow: inset #b0c3d9c9 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_3
+{
+	box-shadow: inset #5e97d9c5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_4
+{
+	box-shadow: inset #5e97d9cb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_5
+{
+	box-shadow: inset #4b69ffd5 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_6
+{
+	box-shadow: inset #4b69ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_7
+{
+	box-shadow: inset #8747ffcb 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_8
+{
+	box-shadow: inset #8747ffd0 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_9
+{
+	box-shadow: inset #d32ce6cc 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_10
+{
+	box-shadow: inset #e4ae39de 0px 0px 2px 2px;
+}
+
+.equipped_item_shadow_level_11
+{
+	box-shadow: inset #ed0c2ee5 0px 0px 2px 2px;
+}
+
+#BlacksmithTabSelector
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.TabBtn
+{
+	padding: 6px 20px;
+	background-color: #0f1a2a;
+	border: 1px solid #3a4a5a;
+	border-radius: 4px;
+	margin: 0 5px;
+	width: 200px;
+}
+
+.TabBtn Label
+{
+	color: #808fa6;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.TabBtn.Active
+{
+	background-color: #4a5a7a;
+	border: 1px solid #64b5f6;
+}
+
+.TabBtn.Active Label
+{
+	color: #e5e0c5;
+}
+
+.TabBtn:hover
+{
+	border: 1px solid #64b5f6;
+	sound: "ui_select_arrow";
+}
+
+#Enchant_main_controls
+{
+	width: 150px;
+}
+
+.blacksmith_Enchant_panel
+{
+	flow-children: down;
+	padding: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#Enchant_title
+{
+	font-size: 18px;
+	color: #ffd700;
+	font-weight: bold;
+	text-transform: uppercase;
+	horizontal-align: center;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+#Enchant_count
+{
+	font-size: 14px;
+	color: #e5e0c5;
+	font-weight: bold;
+	horizontal-align: center;
+}
+
+.Enchant_price_row
+{
+	flow-children: right;
+	horizontal-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 8px 15px;
+	border-radius: 6px;
+	margin: 20px 0px;
+}
+
+.Enchant_price_row Image
+{
+	width: 35px;
+	height: 35px;
+	vertical-align: center;
+}
+
+.Enchant_price_row Label
+{
+	font-size: 24px;
+	color: #ff6b6b;
+	vertical-align: center;
+	margin-left: 8px;
+	white-space: nowrap;
+	text-overflow: shrink;
+	font-weight: bold;
+}
+
+#Enchant_button_container
+{
+	horizontal-align: center;
+	margin: 2px;
+}
+
+.Enchant_button
+{
+	width: 220px;
+	height: 44px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4caf50), to(#2e7d32));
+	border: 1px solid #a5d6a7;
+	border-radius: 4px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	padding: 5px;
+}
+
+.Enchant_button:hover
+{
+	brightness: 1.5;
+}
+
+.Enchant_button:active
+{
+	brightness: 0.8;
+	pre-transform-scale2d: 0.98;
+}
+
+.Enchant_button Label
+{
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+	horizontal-align: center;
+	vertical-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+}
+
+#Enchant_max_label
+{
+	margin-top: 10px;
+	font-size: 18px;
+	color: #ff6b6b;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+.dragImage
+{
+	width: 45px;
+	height: 45px;
+}
+
+#blacksmith_merge_altar
+{
+	width: 100%;
+	height: 100%;
+}
+
+#reforge_rules
+{
+	horizontal-align: left;
+	vertical-align: center;
+	max-width: 200px;
+	font-size: 14px;
+	color: #e5d1a0;
+}
+
+.blacksmith_merge_container
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	align: center center;
+	padding: 10px;
+	letter-spacing: 2px;
+}
+
+#MergeTitle
+{
+	font-size: 24px;
+	color: #e5d1a0;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 2.0 #000000;
+	horizontal-align: center;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+}
+
+#MergeSlotsRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 10px;
+}
+
+.MergeSlotTarget
+{
+	width: 90px;
+	height: 90px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a1a1a ), to( #000000 ) );
+	border: 2px solid #444;
+	border-radius: 4px;
+	margin: 0px 10px;
+	box-shadow: inset 0px 0px 15px #000;
+	transition-property: border, box-shadow, transform;
+	transition-duration: 0.2s;
+}
+
+.MergeSlotTarget.drag_hover
+{
+	border: 2px solid #5e98d9;
+	box-shadow: 0px 0px 15px #5e98d955;
+}
+
+.MergeSlotTarget.Result
+{
+	width: 90px;
+	height: 90px;
+	border: 2px solid #e5d1a0;
+	box-shadow: 0px 0px 20px #e5d1a022;
+	margin-top: 5px;
+	horizontal-align: center;
+}
+
+#MergeArrow
+{
+	font-size: 32px;
+	color: #444;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+.MergePriceRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 20px;
+	vertical-align: middle;
+}
+
+.MergePriceRow Image
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+}
+
+.MergePriceRow Label
+{
+	font-size: 22px;
+	color: #e5e0c5;
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-shadow: 0px 0px 4px #000;
+}
+
+.MergeQuestionMark
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 50px;
+	color: #e5d1a0;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 8px 2.0 #000000;
+}
+
+#MergeExecuteButton
+{
+	margin-top: 20px;
+	horizontal-align: center;
+	min-width: 250px;
+}
+
+#MergeExecuteButton:disabled
+{
+	saturation: 0.2;
+	brightness: 0.4;
+	opacity: 0.5;
+}
+
+.MergeSlotTarget Image
+{
+	width: 90%;
+	height: 90%;
+	align: center center;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.IsDragging
+{
+	opacity: 0.3;
+}
+
+.SlotLocked
+{
+	brightness: 0.2;
+	saturation: 0;
+	opacity: 0.5;
+	cursor: default;
+}
+
+.particle
+{
+	width: 90px;
+	height: 90px;
+}

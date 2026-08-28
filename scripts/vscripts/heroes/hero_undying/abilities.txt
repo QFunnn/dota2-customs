@@ -1,0 +1,201 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"undying_decay_lua"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/hero_undying"
+		"AbilityTextureName"			"undying_decay"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Undying.Decay.Cast"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.3"
+		"MaxLevel"						"4"
+		"AbilityManaCost"				"70 80 90 100"
+		"AbilityCooldown"				"10 8 6 4"
+		
+		"AbilityValues"
+		{			
+			"decay_damage"
+			{
+				"value"						       "40 80 120 160"
+				"special_bonus_unique_undying_1"   "+80"
+			}
+			"str_steal"
+			{
+				"value"		                        "1"
+				"special_bonus_unique_undying_4"	"+2" 
+			}
+			"decay_duration"
+			{
+				"value"		                        "20"
+				"special_bonus_unique_undying_7"	 "+10" 
+			}
+			"radius"
+			{
+				"value"		"325"
+				"affected_by_aoe_increase"	"1"
+			}
+		}
+	}
+
+    "undying_soul_rip_lua"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/hero_undying"
+		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Hero_Undying.SoulRip.Cast"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"750"
+		"AbilityCooldown"				"18 14 10 6"
+		"MaxLevel"						"4"
+		"AbilityManaCost"				"60 80 100 120"
+		
+		"AbilityValues"
+		{
+			"damage_per_unit"			
+			{
+				"value"			                    "16 32 48 64"
+				"special_bonus_unique_undying_3"    "+16" 
+			}			
+			"max_units"					            "10"
+			"radius"					
+			{
+				"value"			                    "1300"
+				"affected_by_aoe_increase"	        "1"
+			}
+        }
+	}
+
+    "undying_skin_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/hero_undying"
+		"AbilityTextureName"			"undying_skin_lua"
+		"FightRecapLevel"				"1"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+			"duration"					"4"
+			"bonus_attack_speed"		"10 14 18 22"
+			"damage"					
+			{
+				"value"						            "16 24 32 40"
+				"special_bonus_unique_undying_3"	 	"+16" 
+			}
+		}
+	}
+
+    "undying_flesh_golem_lua"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_undying/hero_undying"
+		"AbilityTextureName"			"undying_flesh_golem"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Undying.FleshGolem"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"				"140"
+		"MaxLevel"						"3"
+		"AbilityManaCost"				"200 250 300"
+		
+		"AbilityValues"
+		{
+			"str_percentage"			
+			{
+				"value"					"20 35 50"
+				"special_bonus_unique_undying_2"	"+15" 
+			}
+			"damage_increace"			
+			{
+				"value"					"15 25 35"
+				"special_bonus_unique_undying_5"	"+10" 
+			}
+			
+			"duration"					"40"			
+			"movespeed"					"20 30 40"			
+		}
+	}
+
+    "special_bonus_unique_undying_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_undying_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_undying_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

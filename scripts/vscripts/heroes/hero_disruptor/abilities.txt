@@ -1,0 +1,188 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"disruptor_thunder_strike_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_disruptor/hero_disruptor"
+		"AbilityTextureName"			"disruptor_thunder_strike"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastRange"				"700"
+
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"80 90 100 110"
+
+		"AbilityValues"
+		{
+			"radius"					        "240 240 240 240"
+			"strikes"
+            {
+				"value"										"4"
+				"special_bonus_unique_disruptor_5"   	    "+4"
+			}	
+			"strike_interval"			        "1"
+			"strike_damage"				        
+            {
+				"value"										"40 80 120 160"
+				"special_bonus_unique_disruptor_1"   	    "+40"
+			}
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+	}
+
+    "disruptor_magnetic_collect"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_disruptor/hero_disruptor"
+        "AbilityTextureName"            "disruptor_glimpse"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "20 18 16 14"
+        "AbilityManaCost"               "120 140 160 180"
+
+        "AbilityValues"
+        {
+            "radius"                    "450"
+            "duration"                  "4"
+            "slow"                      "15 20 25 30"
+            "strike_interval"
+            {
+				"value"										"1"
+				"special_bonus_unique_disruptor_7"   	    "-0.8"
+			}
+            "strike_damage"				        
+            {
+				"value"										"40 80 120 160"
+				"special_bonus_unique_disruptor_2"   	    "+40"
+			}
+            "ExtraIntelligenceDamage"			"0.1"
+        }
+    }
+
+    "disruptor_kinetic_field_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_disruptor/hero_disruptor"
+        "AbilityTextureName"			"disruptor_kinetic_field"
+        "MaxLevel"						"4"
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"				"900"
+        "AbilityCastPoint"				"0.05"
+        "AbilityCooldown"				"24 22 20 18"
+        "AbilityManaCost"				"70 80 90 100"
+
+        "AbilityValues"
+        {
+            "radius"	                "340"
+            "formation_time"	        "1.2"
+            "duration"	                "3"
+            "resist"	                
+            {
+				"value"										"15 20 25 30"
+				"special_bonus_unique_disruptor_3"   	    "+15"
+			}
+        }
+    }
+    
+    "disruptor_static_storm_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_disruptor/hero_disruptor"
+		"AbilityTextureName"			"disruptor_static_storm"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"100 90 80"
+		"AbilityManaCost"				"200 300 400"
+
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"pulses"					"20"
+			"damage_max"				"200 400 600"
+			"duration"					"5.0"
+			"ExtraIntelligenceDamage"	"0.1"
+		}
+	}
+
+
+    "special_bonus_unique_disruptor_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_disruptor_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_disruptor_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}
+

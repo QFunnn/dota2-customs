@@ -1,0 +1,81 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf31:version{593cd181-a1d6-4c6f-9a8c-0534e8d44db0} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 10
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_ABSORIGIN_FOLLOW"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/queenofpain/queenofpain_arcana/queenofpain_arcana_wings.vmdl"
+				m_nModSpecificData = 2147496578
+				m_sequenceName = "qop_arc_idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_RemapSpeedtoCP"
+			m_nOutControlPointNumber = 6
+			m_flInputMin = 270.0
+			m_flInputMax = 280.0
+			m_flOutputMin = 0.3
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/skywrath_mage/manticore/wings_of_the_manticore_ambientfx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace_r.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace_b.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace_b_r.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace_pnt.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/queen_of_pain/qop_arcana/qop_arcana_wings_v2_hot_ambient_trace_pnt_r.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}

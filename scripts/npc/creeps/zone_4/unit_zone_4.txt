@@ -1,0 +1,290 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{
+    "npc_dota_zone_4_unit_1"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/heroes/mirana/mirana.vmdl"
+		"SoundSet"					"Hero_Mirana"
+		"Level"						"15"
+		"ModelScale" 				"0.9"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_arrow_lua"
+
+		"ArmorPhysical"				"5"
+		"MagicalResistance"			"5"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"200"
+		"AttackDamageMax"			"230"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"750"
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_mirana/mirana_base_attack.vpcf"
+		"ProjectileSpeed"			"900"
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"				"65"
+		"HealthBarOffset"			"180"
+
+		// "BountyXP"					"95"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"520"
+
+		"StatusHealth"				"2500"
+		"StatusHealthRegen"			"15"
+		"StatusMana"				"1000"
+		"StatusManaRegen"			"30"
+		
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"item_skadi_lua1"
+				{
+					"Item"					"item_skadi_lua1"
+				}
+					"item_bfury_lua1"
+				{
+					"Item"					"item_butterfly_lua2"
+				}
+			}
+
+				"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "7095" }
+				"Wearable2" { "ItemDef" "7096" }
+				"Wearable3" { "ItemDef" "7097" }
+				"Wearable4" { "ItemDef" "7098" }
+				"Wearable5" { "ItemDef" "7099" }
+				"Wearable6" { "ItemDef" "7100" }
+				"Wearable6" { "ItemDef" "7101" }
+			}	
+		}
+	}
+	
+    "npc_dota_zone_4_unit_2"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/ice_biome/ogreseal/ogreseal.vmdl"
+		"SoundSet"					"Hero_OgreMagi"
+		"Level"						"1"
+		"ModelScale" 				"1.0"
+		"HasInventory"				"1"
+		
+		"Ability1"					"creep_flop_lua"
+		"Ability2"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"5"
+		"MagicalResistance"			"5"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"300"
+		"AttackDamageMax"			"350"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"900"
+		"AttackRange"				"180"
+		"ProjectileModel"			""
+		"ProjectileSpeed"			"0"
+
+		"RingRadius"				"65"
+		"HealthBarOffset"			"250"
+
+		// "BountyXP"					"175"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+
+		"StatusHealth"				"4500"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"1000"
+		"StatusManaRegen"			"30"
+
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"PowerTreads"
+				{
+					"Item"					"item_shivas_guard_lua1"
+				}
+				"item_heart_lua1"
+				{
+					"Item"					"item_heart_lua1"
+				}
+				"item_bfury_lua1"
+				{
+					"Item"					"item_bfury_lua1"
+				}	
+			}
+			"DefaultState"				"Invade"
+		}
+	}
+	
+    "npc_dota_zone_4_unit_3"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/items/broodmother/spiderling/the_glacial_creeper_creepling/the_glacial_creeper_creepling.vmdl"	
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Tuskarr"				
+		"ModelScale"				"0.6"
+		"Level"						"1"
+		"HasInventory"				"1"
+	
+		"Ability1"					"creep_dispersion_lua"		
+		"Ability2"					"creep_spider_die_spawn_lua"		
+
+		"ArmorPhysical"				"10"			
+		"MagicalResistance"			"5"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"200"		
+		"AttackDamageMax"			"250"		
+		"AttackRate"				"0.6"			
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"900"		
+		"AttackRange"				"125"
+
+		// "BountyXP"					"75"		
+		
+		"RingRadius"				"100"
+		"HealthBarOffset"			"240"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"500"
+		"MovementTurnRate"			"0.5"		
+
+		"StatusHealth"				"3800"		
+		"StatusHealthRegen"			"20"		
+		"StatusMana"				"5000"			
+		"StatusManaRegen"			"150"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+	}	
+	
+    "npc_dota_zone_4_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/items/broodmother/spiderling/the_glacial_creeper_creepling/the_glacial_creeper_creepling.vmdl"	
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Tuskarr"				
+		"ModelScale"				"0.3"
+		"Level"						"1"
+		"HasInventory"				"1"
+	
+		"Ability1"					"creep_dispersion_lua"	
+		"Ability2"					"necronomicon_warrior_sight"	
+
+		"ArmorPhysical"				"5"			
+		"MagicalResistance"			"5"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		
+		"AttackDamageMax"			"200"		
+		"AttackRate"				"0.5"			
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"900"		
+		"AttackRange"				"125"
+		
+		"RingRadius"				"100"
+		"HealthBarOffset"			"240"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"500"
+		"MovementTurnRate"			"0.5"		
+
+		"StatusHealth"				"1800"		
+		"StatusHealthRegen"			"10"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+	}		
+	
+    "npc_dota_zone_4_unit_5"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/ice_biome/frostbitten/n_creep_frostbitten_swollen01.vmdl"
+		"SoundSet"					"Hero_DarkSeer"
+		"Level"						"1"
+		"ModelScale" 				"0.7"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_snowball_lua"
+		"Ability2"					"creep_ring_shards_lua"
+
+		"ArmorPhysical"				"50"
+		"MagicalResistance"			"5"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"200"
+		"AttackDamageMax"			"200"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"900"
+		"AttackRange"				"100"
+
+		"RingRadius"				"65"
+		"HealthBarOffset"			"170"
+
+		// "BountyXP"					"80"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+
+		"StatusHealth"				"2500"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"1500"
+		"StatusManaRegen"			"45"
+
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+
+}

@@ -1,0 +1,276 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"hero_destroyer_second_skill_armor"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/hero_destroyer"
+		"AbilityTextureName"			"destrarmor"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"armor"						   
+            {
+				"value"							     "5 10 15 20"
+                "special_bonus_unique_destroyer_1"   "+5"
+			}
+			"crit_chance"				    "20 30 40 50"
+			"crit_damage"
+            {
+				"value"							     "160 180 200 220"
+                "special_bonus_unique_destroyer_2"   "+40"
+			}
+			"fresist"					    
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+10"
+			}
+			"fspell_amp"					
+            {
+				"value"							     "15 25 35 45"
+                "special_bonus_unique_destroyer_2"   "+25"
+			}
+			"fregen"						
+            {
+				"value"							     "1.0 1.5 2.0 2.5"
+                "special_bonus_unique_destroyer_2"   "+1"
+			}
+			"flifesteal"					
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+15"
+			}
+		}
+	}
+	
+	"hero_destroyer_second_skill_resist"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/hero_destroyer"
+		"AbilityTextureName"			"destorresist"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"farmor"
+            {
+				"value"							     "5 10 15 20"
+                "special_bonus_unique_destroyer_1"   "+5"
+			}
+			"fcrit_chance"				    "20 30 40 50"
+			"fcrit_damage"				    
+            {
+				"value"							     "160 180 200 220"
+                "special_bonus_unique_destroyer_2"   "+40"
+			}
+			"resist"
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+10"
+			}
+			"spell_amp"
+            {
+				"value"							     "15 25 35 45"
+                "special_bonus_unique_destroyer_2"   "+25"
+			}
+			"fregen"
+            {
+				"value"							     "1.0 1.5 2.0 2.5"
+                "special_bonus_unique_destroyer_2"   "+1"
+			}
+			"flifesteal"
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+15"
+			}
+		}
+	}
+
+	"hero_destroyer_second_skill_hp"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/hero_destroyer"
+		"AbilityTextureName"			"destrhp"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityValues"
+		{
+			"farmor"
+            {
+				"value"							     "5 10 15 20"
+                "special_bonus_unique_destroyer_1"   "+5"
+			}
+			"fcrit_chance"				"20 30 40 50"
+			"fcrit_damage"
+            {
+				"value"							     "160 180 200 220"
+                "special_bonus_unique_destroyer_2"   "+40"
+			}
+			"fresist"
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+10"
+			}
+			"fspell_amp"
+            {
+				"value"							     "15 25 35 45"
+                "special_bonus_unique_destroyer_2"   "+25"
+			}
+			"regen"
+            {
+				"value"							     "1.0 1.5 2.0 2.5"
+                "special_bonus_unique_destroyer_2"   "+1"
+			}
+			"lifesteal"
+            {
+				"value"							     "10 15 20 25"
+                "special_bonus_unique_destroyer_1"   "+15"
+			}
+		}
+	}
+
+    "hero_destroyer_third_skill"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/hero_destroyer"
+		"AbilityTextureName"			"destr3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"duration"					"3"
+			"slow_ms"					"10 15 20 25"
+			"dis_arm"					
+            {
+				"value"							     "3 6 9 12"
+                "special_bonus_unique_destroyer_3"   "+3"
+			}
+			"incom_damage"				
+            {
+				"value"							     "4 8 12 16"
+                "special_bonus_unique_destroyer_5"   "+8"
+			}
+		}
+	}
+
+    "hero_destroyer_overkill"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_destroyer/hero_destroyer"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "elder_titan_echo_stomp"
+        
+        "AbilityValues"
+        {
+            "radius"                "300"
+            "damage_mult"
+            {
+				"value"							     "0.5 1.0 1.5 2.0"
+                "special_bonus_unique_destroyer_8"   "+1"
+			}
+        }
+    }
+
+    "hero_destroyer_totem"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_destroyer/hero_destroyer"
+		"AbilityTextureName"			"destr1"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"50 45 40"
+		"AbilityManaCost"				"100 150 200"
+
+		"AbilityValues"
+		{
+			"duration"					"4"
+			"damage"					
+            {
+				"value"							     "200 400 600"
+                "special_bonus_unique_destroyer_4"   "+200"
+			}
+			"damage_str"				
+            {
+				"value"							     "15 25 35"
+                "special_bonus_unique_destroyer_7"   "+15"
+			}	
+			"regen"						
+            {
+				"value"							     "1.5 2.0 2.5"
+                "special_bonus_unique_destroyer_6"   "+1.5"
+			}
+			"radius"					"450"
+		}
+	}
+
+
+
+    "special_bonus_unique_destroyer_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_destroyer_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_destroyer_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

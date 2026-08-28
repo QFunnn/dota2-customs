@@ -1,0 +1,226 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_meat_hook_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"pudge_meat_hook"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"200"
+
+		"AbilityValues"
+		{
+				"damage"			"2500"
+                "diff_boost_damage" "250"
+				"hook_speed"		"1450"
+				"hook_width"		"100"
+				"hook_distance"		"1000"
+		}
+	}
+
+    "creep_dismember_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"pudge_dismember"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"250"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"13"
+		"AbilityManaCost"				"165"	
+
+		"AbilityValues"
+		{
+				"damage"		        "2000"
+                "diff_boost_damage"     "200"
+				"duration"		        "3"
+				"tick"			        "0.5"
+		}
+	}	
+
+	"creep_rot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"pudge_rot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"400"
+
+		"AbilityValues"
+		{
+			"radius"			"400"
+			"damage"			"3"
+		}
+	}	
+
+	"creep_spider_egg_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "venomancer_venomous_gale"
+        "ScriptFile"                    "abilities/creeps/zone_10/zone_10"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCastRange"				"300"
+
+        "AbilityValues"
+        {
+			"radius"				"300"
+			"damage"				"2000"
+			"diff_boost_damage"     "200"
+			"spider_min"			"4"
+			"spider_max"			"6"
+			"trigger_radius"		"200"
+        }
+    }	
+
+	"creep_nightmare_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"bane_nightmare"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
+		"AbilityCastRange"				"650"
+		"AbilityCooldown"				"13"
+		"AbilityManaCost"				"150"	
+
+		"AbilityValues"
+		{
+			"nightmare_invuln_time"		"1"
+			"duration"					"3"
+			"animation_rate"			"0.2"
+			"pull_speed"				"100"
+		}
+	}	
+
+	"creep_midnight_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"enigma_midnight_pulse"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"radius"					"500"
+			"damage"					"2500"
+			"diff_boost_damage"     	"250"
+			"duration"					"10"
+		}
+	}	
+
+	"creep_poison_sting_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"venomancer_poison_sting"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityValues"
+		{
+				"duration"				"6"
+				"damage"				"200"
+				"diff_boost_damage"     "20"
+				"movement_speed"		"15"
+		}
+	}
+
+	"creep_gale_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_10/zone_10"
+		"AbilityTextureName"			"venomancer_venomous_gale"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"16"
+		"AbilityManaCost"				"125"
+		"AbilityValues"
+		{
+			"duration"				"4"
+			"strike_damage"			"2500"
+			"diff_boost_damage"     "250"
+			"tick_damage"			"300"
+			"tick_interval"			"1"
+			"movement_slow"			"50"
+			"radius"				"125"
+			"speed"					"1200"
+		}
+	}
+
+	"creep_summon_eggs_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_10/zone_10"
+        "AbilityTextureName"            "broodmother_spawn_spiderlings"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityCooldown"               "17"
+        "AbilityManaCost"               "200"
+
+		"AbilityValues"
+		{
+			"count"					"5"
+		}
+    }	
+
+	"creep_spider_spray_lua"
+	{
+		"BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "bristleback_quill_spray"
+        "ScriptFile"                    "abilities/creeps/zone_10/zone_10"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityCastRange"				"550"
+
+        "AbilityValues"
+        {
+			"radius"				"550"
+			"damage"				"1000"
+			"stack_damage"			"500"
+			"diff_boost_damage"     "50"
+			"duration"				"10"
+        }
+	}	
+
+
+}

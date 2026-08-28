@@ -1,0 +1,649 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/project_base.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/layout.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/reward-cards.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/winners-panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/game-slots.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/play-panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/stats-panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/win-notification.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/inventory-modal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/css/notifications.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/casv2/js/spinengine.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/shared.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/utils/timer_registry.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/space_key_handler.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/features/autospin_controller.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/features/spin_flow.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/features/window_lifecycle.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/features/inventory_tab_controller.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/game.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/casv2/js/history-inventory.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="winner_card">
+			<Panel class="winner-card BSACard">
+				<DOTAAvatarImage id="winner-avatar" class="winner-avatar BSAAvatarGold" steamid="76561198146952643" />
+				<DOTAItemImage id="winner-item" class="winner-item" itemname="item_heavy_plate" />
+				<Panel class="winner-left-section">
+					<Label id="winner-time" class="winner-time" text="#ui_casv2_winner_time_placeholder" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="ally_win_notification">
+			<Panel class="ally-win-notification" id="AllyWinNotifRoot">
+				<Panel class="ally-win-notification-top">
+					<Label id="AllyWinNotifTitle" class="ally-win-notification-title" text="#ui_casv2_ally_win_title" />
+				</Panel>
+				<Panel class="ally-win-notification-bottom">
+					<DOTAHeroImage id="AllyWinNotifHero" class="ally-win-notification-hero" heroname="npc_dota_hero_axe" heroimagestyle="portrait" />
+					<DOTAUserName id="AllyWinNotifName" class="ally-win-notification-name" steamid="0" />
+					<DOTAItemImage id="AllyWinNotifItem" class="ally-win-notification-item" itemname="item_branches" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="ally_win_notification_no_hero">
+			<Panel class="ally-win-notification ally-win-notification-no-hero" id="AllyWinNotifRoot">
+				<Panel class="ally-win-notification-top">
+					<Label id="AllyWinNotifTitle" class="ally-win-notification-title" text="#ui_casv2_ally_win_title" />
+				</Panel>
+				<Panel class="ally-win-notification-bottom">
+					<Panel class="ally-win-notification-icons">
+						<DOTAAvatarImage id="AllyWinNotifAvatar" class="ally-win-notification-avatar" steamid="0" />
+						<DOTAItemImage id="AllyWinNotifItem" class="ally-win-notification-item" itemname="item_branches" />
+					</Panel>
+					<DOTAUserName id="AllyWinNotifName" class="ally-win-notification-name" steamid="0" />
+					<Panel id="AllyWinNotifPriceWrap" class="ally-win-notification-price-chip" visible="false">
+						<Label id="AllyWinNotifPrice" class="ally-win-notification-price-value" text="0" />
+						<Image id="AllyWinNotifCurrency" class="ally-win-notification-price-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="jackpot_win_notification">
+			<Panel class="jackpot-win-notification item-card--jackpot" id="JackpotWinNotifRoot">
+				<Panel class="item-card-jackpot-glow jackpot-win-notification-glow" />
+				<Panel class="item-card-jackpot-inner jackpot-win-notification-inner">
+					<Panel class="jackpot-win-notification-row1">
+						<Label id="JackpotWinNotifTitle" class="jackpot-win-notification-title" text="#ui_casv2_jackpot_win_inscription" />
+					</Panel>
+					<Panel class="jackpot-win-notification-row2">
+						<DOTAAvatarImage id="JackpotWinNotifAvatar" class="jackpot-win-notification-avatar" steamid="0" />
+						<DOTAUserName id="JackpotWinNotifName" class="jackpot-win-notification-name" steamid="0" />
+					</Panel>
+					<Panel class="jackpot-win-notification-row3">
+						<Panel class="jackpot-win-notification-item-wrap">
+							<DOTAItemImage id="JackpotWinNotifItem" class="jackpot-win-notification-item" itemname="item_branches" />
+						</Panel>
+						<Label id="JackpotWinNotifItemName" class="jackpot-win-notification-item-name" text="" />
+						<Panel id="JackpotWinNotifPriceWrap" class="jackpot-win-notification-big-price" visible="false">
+							<Label id="JackpotWinNotifPrice" class="jackpot-win-notification-big-price-value" text="0" />
+							<Image id="JackpotWinNotifCurrency" class="jackpot-win-notification-big-price-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="inventory_item_row">
+			<Panel id="InvRowRoot" class="inventory-item-row BSACardItem">
+				<Panel class="inventory-item-row-image-wrap">
+					<DOTAItemImage id="InvRowItemImage" class="inventory-item-row-image" itemname="item_bkb_flask" />
+				</Panel>
+				<Panel class="inventory-item-row-info">
+					<Label id="InvRowItemName" class="inventory-item-row-name" text="" />
+					<Label id="InvRowItemTime" class="inventory-item-row-time" text="#ui_casv2_just_now" />
+				</Panel>
+				<Panel class="inventory-item-row-btns" id="InvRowItemButtons">
+					<Panel id="InvRowHistChip" class="inventory-item-row-price-chip" visible="false">
+						<Label id="InvRowHistPrice" class="inventory-item-row-price-value" text="0" />
+						<Image id="InvRowHistCurrency" class="inventory-item-row-price-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+					</Panel>
+					<Button id="InvRowBtnSell" class="inventory-btn-sell BSAButtonSell">
+						<Label class="inventory-btn-label" text="#ui_casv2_sell" style="visibility: collapse;" />
+						<Panel class="inventory-btn-sell-chip">
+							<Label id="InvRowSellPrice" class="inventory-btn-price" text="0" />
+							<Image id="InvRowSellCurrency" class="inventory-btn-currency-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+						</Panel>
+					</Button>
+					<Button id="InvRowBtnClaim" class="inventory-btn-claim BSAButtonClaim">
+						<Image class="inventory-btn-icon" src="s2r://panorama/images/custom_game/casv2/take_icon_2_png.vtex" />
+						<Label class="inventory-btn-label" text="#ui_casv2_claim" style="visibility: collapse;" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="inventory_item_row_aaa">
+			<Panel id="InvRowRoot" class="item-card--aaa BSACardItem">
+				<Panel class="item-card-aaa-icon-socket">
+					<DOTAItemImage id="InvRowItemImage" class="item-card-aaa-icon" itemname="item_bkb_flask" />
+				</Panel>
+				<Panel class="item-card-aaa-info">
+					<Label id="InvRowItemName" class="item-card-aaa-name" text="" />
+					<Label id="InvRowItemTime" class="item-card-aaa-time" text="#ui_casv2_just_now" />
+				</Panel>
+				<Panel class="item-card-aaa-actions" id="InvRowItemButtons">
+					<Panel id="InvRowHistChip" class="item-card-aaa-price-chip" visible="false">
+						<Label id="InvRowHistPrice" class="item-card-aaa-price-value" text="0" />
+						<Image id="InvRowHistCurrency" class="item-card-aaa-price-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+					</Panel>
+					<Button id="InvRowBtnSell" class="item-card-aaa-btn-sell">
+						<Panel class="item-card-aaa-btn-sell-chip">
+							<Label id="InvRowSellPrice" class="inventory-btn-price" text="0" />
+							<Image id="InvRowSellCurrency" class="inventory-btn-currency-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+						</Panel>
+					</Button>
+					<Button id="InvRowBtnClaim" class="item-card-aaa-btn-claim">
+						<Image class="inventory-btn-icon" src="s2r://panorama/images/custom_game/casv2/take_icon_2_png.vtex" />
+					</Button>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="inventory_item_row_jackpot">
+			<Panel id="InvRowRoot" class="item-card--jackpot BSACardItem">
+				<Panel class="item-card-jackpot-glow" />
+				<Panel class="item-card-jackpot-inner">
+					<Panel class="item-card-jackpot-icon-socket">
+						<DOTAItemImage id="InvRowItemImage" class="item-card-jackpot-icon" itemname="item_bkb_flask" />
+					</Panel>
+					<Panel class="item-card-jackpot-info">
+						<Label id="InvRowItemName" class="item-card-jackpot-name" text="" />
+						<Label id="InvRowItemTime" class="item-card-jackpot-time" text="#ui_casv2_just_now" />
+					</Panel>
+					<Panel class="item-card-jackpot-actions" id="InvRowItemButtons">
+						<Panel id="InvRowHistChip" class="item-card-jackpot-price-chip" visible="false">
+							<Label id="InvRowHistPrice" class="item-card-jackpot-price-value" text="0" />
+							<Image id="InvRowHistCurrency" class="item-card-jackpot-price-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+						</Panel>
+						<Button id="InvRowBtnSell" class="item-card-jackpot-btn-sell">
+							<Panel class="item-card-jackpot-btn-sell-chip">
+								<Label id="InvRowSellPrice" class="inventory-btn-price" text="0" />
+								<Image id="InvRowSellCurrency" class="inventory-btn-currency-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+							</Panel>
+						</Button>
+						<Button id="InvRowBtnClaim" class="item-card-jackpot-btn-claim">
+							<Image class="inventory-btn-icon" src="s2r://panorama/images/custom_game/casv2/take_icon_2_png.vtex" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="load_more_items_button">
+			<Button id="LoadMoreItemsButton" class="load-more-items-button BSAButtonGoldSecondary" acceptsfocus="true">
+				<Label class="load-more-items-label BSAButtonLabelGold" text="#ui_casv2_load_more" />
+			</Button>
+		</snippet>
+		<snippet name="slot_card_1">
+			<Panel class="slot-card" id="SlotCard1">
+				<Panel class="slot-animation-container" id="SlotAnimation1" />
+				<Panel class="slot-blur-overlay" id="SlotBlur1" />
+			</Panel>
+		</snippet>
+		<snippet name="slot_card_2">
+			<Panel class="slot-card" id="SlotCard2">
+				<Panel class="slot-animation-container" id="SlotAnimation2" />
+				<Panel class="slot-blur-overlay" id="SlotBlur2" />
+			</Panel>
+		</snippet>
+		<snippet name="slot_card_3">
+			<Panel class="slot-card" id="SlotCard3">
+				<Panel class="slot-animation-container" id="SlotAnimation3" />
+				<Panel class="slot-blur-overlay" id="SlotBlur3" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="game-container" hittest="false" style="visibility: collapse; opacity: 0;">
+		<Panel class="economy-info-overlay" id="EconomyInfoOverlay" hittest="false">
+			<Panel class="economy-info-backdrop" id="EconomyInfoBackdrop" hittest="false" />
+			<Panel class="economy-info-modal BSACard" hittest="false" onactivate="">
+				<Panel class="economy-info-modal-header">
+					<Label class="economy-info-modal-title BSATextGold" text="#ui_casv2_economy_info_title" />
+					<Panel class="casino-close-btn" id="EconomyInfoCloseButton" tooltip_text="#ui_casv2_tooltip_close" />
+				</Panel>
+				<Panel class="economy-info-modal-body">
+					<Panel class="instruction-carousel" id="InstructionCarousel">
+						<Panel class="instruction-page instruction-page--casino" id="InstructionPage0">
+							<Panel class="instruction-page-cols">
+								<Panel class="instruction-card instruction-card--victory">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_1_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_1_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--victory-line">
+										<Image class="instruction-img instruction-img--card inst-img--victory-line" src="s2r://panorama/images/custom_game/casv2/victory_line_png.vtex" />
+									</Panel>
+								</Panel>
+								<Panel class="instruction-card instruction-card--controls">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_4_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_4_text" html="true" />
+									<Panel class="instruction-card-visual instruction-keys-row">
+										<Image class="instruction-img instruction-img-kbd" src="s2r://panorama/images/custom_game/casv2/up_button_png.vtex" />
+										<Image class="instruction-img instruction-img-kbd" src="s2r://panorama/images/custom_game/casv2/down_button_png.vtex" />
+										<Image class="instruction-img instruction-img-space" src="s2r://panorama/images/custom_game/casv2/space_button_png.vtex" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="instruction-page instruction-page--casino instruction-page--hidden" id="InstructionPage1">
+							<Panel class="instruction-page-cols">
+								<Panel class="instruction-card instruction-card--victory">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_2_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_2_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--game-parameters">
+										<Image class="instruction-img instruction-img--card inst-img--game-parameters" src="s2r://panorama/images/custom_game/casv2/game_parameters_png.vtex" />
+									</Panel>
+								</Panel>
+								<Panel class="instruction-card instruction-card--controls">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_3_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_3_text" html="true" />
+									<Panel class="instruction-card-visual instruction-card-visual--bet inst-visual--insertion-parameters">
+										<Image class="instruction-img instruction-img--card instruction-img--bet-selection inst-img--insertion-parameters" src="s2r://panorama/images/custom_game/casv2/insertion_parameters_png.vtex" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="instruction-page instruction-page--casino instruction-page--half-half instruction-page--hidden" id="InstructionPage2">
+							<Panel class="instruction-page-cols instruction-page-cols--half">
+								<Panel class="instruction-card instruction-card--victory instruction-card--half">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_5_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_5_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--jackpot-mode">
+										<Image class="instruction-img instruction-img--card inst-img--jackpot-mode" src="s2r://panorama/images/custom_game/casv2/jackpot_mode_png.vtex" />
+									</Panel>
+								</Panel>
+								<Panel class="instruction-card instruction-card--controls instruction-card--half">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_6_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_6_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--crystal-jackpot">
+										<Image class="instruction-img instruction-img--card inst-img--crystal-jackpot" src="s2r://panorama/images/custom_game/casv2/crystal_jackpot_png.vtex" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="instruction-page instruction-page--casino instruction-page--half-half instruction-page--hidden" id="InstructionPage3">
+							<Panel class="instruction-page-cols instruction-page-cols--half">
+								<Panel class="instruction-card instruction-card--victory instruction-card--half">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_8_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_8_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--panda-jackpot">
+										<Image class="instruction-img instruction-img--card inst-img--panda-jackpot" src="s2r://panorama/images/custom_game/casv2/panda_jackpot_png.vtex" />
+									</Panel>
+								</Panel>
+								<Panel class="instruction-card instruction-card--controls instruction-card--half">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_9_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_9_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--pet">
+										<Image class="instruction-img instruction-img--card inst-img--pet" src="s2r://panorama/images/custom_game/casv2/pet2_png.vtex" />
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="instruction-page instruction-page--casino instruction-page--half-half instruction-page--hidden" id="InstructionPage4">
+							<Panel class="instruction-page-cols instruction-page-cols--half">
+								<Panel class="instruction-card instruction-card--victory instruction-card--half">
+									<Panel class="instruction-card-header">
+										<Label class="instruction-heading" text="#ui_casv2_inst_10_head" html="true" />
+									</Panel>
+									<Label class="instruction-text" text="#ui_casv2_inst_10_text" html="true" />
+									<Panel class="instruction-card-visual inst-visual--chance-dice">
+										<Image class="instruction-img instruction-img--card inst-img--chance-dice" src="s2r://panorama/images/custom_game/casv2/random_png.vtex" />
+									</Panel>
+								</Panel>
+								<Panel class="instruction-card instruction-card--controls instruction-card--half" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="instruction-carousel-nav">
+						<Panel class="instruction-carousel-nav-content">
+							<Button class="instruction-nav-btn instruction-nav-btn--prev" id="InstructionCarouselPrev" acceptsfocus="true" hittest="true" tooltip_text="#ui_casv2_tooltip_inst_prev">
+								<Image class="instruction-nav-arrow" src="s2r://panorama/images/custom_game/casv2/info_arrow_png.vtex" />
+							</Button>
+							<Label class="instruction-page-indicator" id="InstructionPageIndicator" text="#ui_casv2_inst_page_indicator_default" />
+							<Button class="instruction-nav-btn instruction-nav-btn--next" id="InstructionCarouselNext" acceptsfocus="true" hittest="true" tooltip_text="#ui_casv2_tooltip_inst_next">
+								<Image class="instruction-nav-arrow" src="s2r://panorama/images/custom_game/casv2/info_arrow_png.vtex" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="casino-notifications-container" id="CasinoNotificationsContainer" hittest="false">
+			<Panel class="casino-notifications-list" id="CasinoNotificationsList" />
+		</Panel>
+		<Panel id="GameHeader" class="game-header" hittest="false">
+			<Label class="logo-text" text="#ui_casv2_logo_dragon" />
+			<Label class="logo-subtitle" text="#ui_casv2_logo_jackpot" />
+		</Panel>
+		<Panel id="GameContentWrapper" class="game-content-wrapper" hittest="false">
+			<Panel class="casino-close-btn BSACloseOverlay" id="CasinoCloseButton" tooltip_text="#ui_casv2_tooltip_close" />
+			<Panel class="game-main">
+				<Panel class="winners-panel" id="WinnersPanel">
+					<Panel class="player-card BSACard" id="PlayerCard">
+						<Panel class="player-header">
+							<DOTAAvatarImage class="player-avatar BSAAvatarGold" steamid="local" />
+							<Panel class="player-info">
+								<Panel class="player-name-row">
+									<DOTAUserName class="player-name" steamid="local" />
+								</Panel>
+								<Panel class="player-exp-labels">
+									<Panel class="player-level-badge BSABadgeLevel">
+										<Label class="player-level-text" id="PlayerLevelText" text="#ui_casv2_level_prefix" />
+									</Panel>
+									<Label class="exp-values" id="ExpValues" text="" />
+								</Panel>
+								<Panel class="exp-progress-bar BSAProgressTrack">
+									<Panel class="exp-progress-fill BSAProgressFillGold" id="ExpProgressFill" style="width: 49%;" />
+								</Panel>
+							</Panel>
+						</Panel>
+						<Panel class="levelup-reward-row">
+							<Label class="levelup-reward-label" text="#ui_casv2_reward_label" />
+							<Image class="levelup-reward-icon" id="LevelUpRewardIcon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_16x16_png.vtex" />
+							<Label class="levelup-reward-value" id="LevelUpReward" text="" />
+							<Panel class="levelup-reward-spacer" />
+							<Button class="levelup-claim-button" id="LevelUpClaimBtn" onactivate="OnLevelUpClaimClick()" tooltip_text="#ui_casv2_claim_plus">
+								<Label id="LevelUpClaimBtnText" text="#ui_casv2_claim_plus" />
+								<Image id="LevelUpClaimBtnIcon" class="levelup-claim-button-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_16x16_png.vtex" />
+							</Button>
+						</Panel>
+						<Panel class="player-card-divider" />
+						<Panel class="balance-row">
+							<Label class="balance-label" text="#ui_casv2_balance" />
+							<Panel class="balance-items">
+								<Panel class="balance-item">
+									<Image class="balance-item-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_32x32_png.vtex" />
+									<Label class="balance-item-value" id="PlayerCrystals" text="1,250" />
+								</Panel>
+								<Panel class="balance-divider" />
+								<Panel class="balance-item">
+									<Image class="balance-item-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_32x32_png.vtex" />
+									<Label class="balance-item-value" id="PlayerShields" text="15,000" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="custom-dropdown" id="InventoryTabDropdown">
+						<Button class="custom-dropdown-button" id="InventoryTabDropdownButton" onactivate="OnCustomDropdownToggle()" tooltip_text="#ui_casv2_tooltip_inventory">
+							<Panel class="custom-dropdown-selected">
+								<Image class="custom-dropdown-icon" id="InventoryTabDropdownIcon" src="s2r://panorama/images/custom_game/casv2/new_icon_2_png.vtex" />
+								<Label class="custom-dropdown-text" id="InventoryTabDropdownText" text="#ui_casv2_tab_new" />
+								<Label class="custom-dropdown-arrow" text="▼" />
+							</Panel>
+						</Button>
+						<Panel class="custom-dropdown-menu" id="InventoryTabDropdownMenu" style="visibility: collapse;">
+							<Button class="custom-dropdown-option" id="InventoryTabItems" onactivate="OnCustomDropdownSelect(&apos;items&apos;, &apos;InventoryTabItems&apos;)">
+								<Image class="custom-dropdown-option-icon" src="s2r://panorama/images/custom_game/casv2/new_icon_2_png.vtex" />
+								<Label class="custom-dropdown-option-text" text="#ui_casv2_tab_new" />
+							</Button>
+							<Button class="custom-dropdown-option" id="InventoryTabClaimedHistory" onactivate="OnCustomDropdownSelect(&apos;claimed_history&apos;, &apos;InventoryTabClaimedHistory&apos;)">
+								<Image class="custom-dropdown-option-icon" src="s2r://panorama/images/custom_game/casv2/sold_icon_2_png.vtex" />
+								<Label class="custom-dropdown-option-text" text="#ui_casv2_tab_sold" />
+							</Button>
+							<Button class="custom-dropdown-option" id="InventoryTabClaimed" onactivate="OnCustomDropdownSelect(&apos;claimed&apos;, &apos;InventoryTabClaimed&apos;)">
+								<Image class="custom-dropdown-option-icon" src="s2r://panorama/images/custom_game/casv2/received_icon_2_png.vtex" />
+								<Label class="custom-dropdown-option-text" text="#ui_casv2_tab_received" />
+							</Button>
+							<Button class="custom-dropdown-option" id="InventoryTabJackpots" onactivate="OnCustomDropdownSelect(&apos;jackpots&apos;, &apos;InventoryTabJackpots&apos;)">
+								<Image class="custom-dropdown-option-icon" src="s2r://panorama/images/custom_game/casv2/jackpot_icon_png.vtex" />
+								<Label class="custom-dropdown-option-text" text="#ui_casv2_tab_jackpots" />
+							</Button>
+						</Panel>
+					</Panel>
+					<Panel class="inventory-panel BSACard" id="InventoryPanel">
+						<Panel class="inventory-bulk-actions" id="InventoryBulkActions">
+							<Button class="inventory-btn-sell-all" id="InventorySellAll" tooltip_text="#ui_casv2_sell_all">
+								<Label class="inventory-btn-sell-all-label" text="#ui_casv2_sell_all" />
+								<Panel class="inventory-btn-sell-all-currency" id="InventorySellAllRubyWrap">
+									<Label class="inventory-btn-sell-all-val" id="InventorySellAllRubyVal" text="0" />
+									<Image class="inventory-btn-sell-all-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_16x16_png.vtex" />
+								</Panel>
+								<Panel class="inventory-btn-sell-all-currency" id="InventorySellAllShieldWrap">
+									<Label class="inventory-btn-sell-all-val" id="InventorySellAllShieldVal" text="0" />
+									<Image class="inventory-btn-sell-all-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_16x16_png.vtex" />
+								</Panel>
+							</Button>
+							<Button class="inventory-btn-claim-all" id="InventoryClaimAll" tooltip_text="#ui_casv2_claim_all">
+								<Label class="inventory-btn-sell-all-label" text="#ui_casv2_claim_all" />
+							</Button>
+						</Panel>
+						<Panel class="inventory-body BSAModalBodyInset">
+							<Panel class="inventory-tab-panel" id="InventoryItemsPanel">
+								<Panel class="inventory-list" id="InventoryGrid" />
+								<Label class="inventory-empty-message" id="InventoryEmptyMessage" text="#ui_casv2_empty_inventory" />
+								<Panel id="InventoryLoadMoreContainer" style="visibility: collapse;" />
+							</Panel>
+							<Panel class="inventory-tab-panel" id="InventoryClaimedPanel" style="visibility: collapse;">
+								<Panel class="inventory-list" id="ClaimedGrid" />
+								<Label class="inventory-empty-message" id="ClaimedEmptyMessage" text="#ui_casv2_empty_claimed" />
+								<Panel id="ClaimedLoadMoreContainer" style="visibility: collapse;" />
+							</Panel>
+							<Panel class="inventory-tab-panel" id="InventoryJackpotsPanel" style="visibility: collapse;">
+								<Panel class="inventory-list" id="JackpotGrid" />
+								<Label class="inventory-empty-message" id="JackpotEmptyMessage" text="#ui_casv2_empty_jackpots" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="game-slots" id="GameSlots">
+					<Panel class="slots-container" id="SlotsContainer">
+						<Panel class="slot-card" id="SlotCard1">
+							<Panel class="slot-animation-container" id="SlotAnimation1" />
+							<Panel class="slot-blur-overlay" id="SlotBlur1" />
+						</Panel>
+						<Panel class="slot-card" id="SlotCard2">
+							<Panel class="slot-animation-container" id="SlotAnimation2" />
+							<Panel class="slot-blur-overlay" id="SlotBlur2" />
+						</Panel>
+						<Panel class="slot-card" id="SlotCard3">
+							<Panel class="slot-animation-container" id="SlotAnimation3" />
+							<Panel class="slot-blur-overlay" id="SlotBlur3" />
+						</Panel>
+					</Panel>
+					<Panel id="WinMessagePanel" class="win-message">
+						<Panel class="win-message-inner">
+							<Label id="WinMessageLabel" class="win-message-text" text="" />
+							<Image id="WinMessageCurrencyIcon" class="win-message-currency-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_32x32_png.vtex" />
+						</Panel>
+					</Panel>
+					<Panel class="play-panel BSAPanelControlMain" id="PlayPanel">
+						<Panel class="control-line BSAPanelControl">
+							<Button class="economy-info-btn BSAButtonIconGold" id="InfoButton" tooltip_text="#ui_casv2_tooltip_info">
+								<Panel class="economy-info-btn-frame" />
+								<Panel class="economy-info-btn-bg" />
+								<Image class="economy-info-icon" src="s2r://panorama/images/custom_game/casv2/inof-icon_png.vtex" />
+							</Button>
+							<Panel class="settings-zone">
+								<Panel class="BetSelectionPanel BSABgGradientDark">
+									<Label class="BetSelectionTitle BSALabelUppercase" text="#ui_casv2_bet_selection" />
+									<Panel class="CurrencyRow">
+										<Panel class="CurrencySegments">
+											<Button class="CurrencyTab BSATabBrowser CurrencyTab--Shield CurrencyTab--Active" id="TabShield" tooltip_text="#ui_casv2_currency_shields">
+												<Image class="tab-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_32x32_png.vtex" />
+											</Button>
+											<Button class="CurrencyTab BSATabBrowser CurrencyTab--Crystal" id="TabCrystal" tooltip_text="#ui_casv2_currency_crystals">
+												<Image class="tab-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_32x32_png.vtex" />
+											</Button>
+										</Panel>
+									</Panel>
+									<Panel class="BetContentPanel BSABgGradientDark">
+										<Panel class="BetControls">
+											<Panel class="BetValueDisplay BSAPanelRecessed">
+												<Panel class="BetValueInner">
+													<Label class="BetValueText BSAValueGold" id="BetValue" text="10" />
+													<Image class="BetValueCurrencyIcon" id="BetValueCurrencyIcon" src="s2r://panorama/images/custom_game/currency_icon/currency_shield_32x32_png.vtex" />
+												</Panel>
+											</Panel>
+											<Button class="BetStepBtn BSAButtonGoldSecondary" id="BetDecrease" tooltip_text="#ui_casv2_tooltip_decrease_bet">
+												<Label class="BetStepLabel BSAButtonLabelGold" text="−" />
+											</Button>
+											<Button class="BetCompactSwitch BSAButtonGoldSecondary" id="BetCompactSwitch" tooltip_text="#ui_casv2_switch_currency">
+												<Label class="BetCompactSwitchLabel BSAButtonLabelGold" text="↔" />
+											</Button>
+											<Button class="BetStepBtn BSAButtonGoldSecondary" id="BetIncrease" tooltip_text="#ui_casv2_tooltip_increase_bet">
+												<Label class="BetStepLabel BSAButtonLabelGold" text="+" />
+											</Button>
+										</Panel>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="action-zone">
+								<Panel class="action-row">
+									<Panel class="action-zone-left">
+										<Button class="modes-btn" id="ModesButton" tooltip_text="#ui_casv2_modes_tooltip">
+											<Image class="modes-btn-icon" src="s2r://panorama/images/control_icons/24px/settings.vsvg" />
+										</Button>
+									</Panel>
+									<Button class="spin-btn" id="PlayButton" tooltip_text="#ui_casv2_play">
+										<Panel class="spin-btn-frame" />
+										<Panel class="spin-bg-huge" />
+										<Label class="spin-text" id="PlayButtonText" text="#ui_casv2_play" />
+									</Button>
+								</Panel>
+							</Panel>
+							<Panel class="controls-container main-row" />
+							<Panel class="modes-drawer" id="ModesPanel">
+								<Panel class="SpeedBlock">
+									<Label class="SpeedBlockTitle" text="#ui_casv2_speed" />
+									<Panel class="speed-buttons-container">
+										<Button class="speed-btn" id="Speed1x" tooltip_text="#ui_casv2_tooltip_speed_1x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x1" />
+										</Button>
+										<Button class="speed-btn" id="Speed2x" tooltip_text="#ui_casv2_tooltip_speed_2x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x2" />
+										</Button>
+										<Button class="speed-btn" id="Speed4x" tooltip_text="#ui_casv2_tooltip_speed_4x">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="x4" />
+										</Button>
+										<Button class="speed-btn" id="SpeedInf" tooltip_text="#ui_casv2_tooltip_speed_max">
+											<Panel class="speed-btn-frame" />
+											<Panel class="speed-btn-bg" />
+											<Label class="speed-text" text="&gt;&gt;" />
+										</Button>
+									</Panel>
+								</Panel>
+								<Panel class="AutoSpinBlock">
+									<Label class="AutoSpinBlockTitle" text="#ui_casv2_autospin" />
+									<Panel class="autospin-buttons-container">
+										<Button class="autospin-mode-btn" id="AutoSpinOff" tooltip_text="#ui_casv2_tooltip_autospin_off">
+											<Label class="speed-text" text="OFF" />
+										</Button>
+										<Button class="autospin-mode-btn" id="AutoSpin10" tooltip_text="#ui_casv2_tooltip_autospin_10">
+											<Label class="speed-text" text="10" />
+										</Button>
+										<Button class="autospin-mode-btn" id="AutoSpin25" tooltip_text="#ui_casv2_tooltip_autospin_25">
+											<Label class="speed-text" text="25" />
+										</Button>
+										<Button class="autospin-mode-btn" id="AutoSpinInf" tooltip_text="#ui_casv2_tooltip_autospin_inf">
+											<Label class="speed-text" text="∞" />
+										</Button>
+									</Panel>
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="stats-panel" id="StatsPanel">
+					<Panel class="crystal-jackpot-banner JackpotAccent--Pink JackpotIdle" id="CrystalJackpotBanner" tooltip_text="#ui_casv2_tooltip_crystal_jackpot">
+						<Panel class="jackpot-hero">
+							<Label class="jackpot-title" text="#ui_casv2_crystal_jackpot" />
+							<Panel class="jackpot-hero-wrapper">
+								<Panel class="jackpot-value-container">
+									<Image class="crystal-icon" src="s2r://panorama/images/custom_game/currency_icon/currency_ruby_64x64_png.vtex" />
+									<Label class="jackpot-value" id="JackpotValue" text="12 450" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="reward-card RewardCard--Dragon RewardCard--Red JackpotIdle" id="RewardCardDragon" tooltip_text="#ui_casv2_tooltip_main_prize">
+						<Panel class="reward-progress-chance-wrap">
+							<Panel class="reward-progress-column" id="RewardProgressColumnDragon" hittest="true">
+								<Panel class="reward-progress-bg" />
+								<Panel class="reward-progress-mask">
+									<Panel class="reward-progress-fill" id="RewardProgressFillDragon" style="height: 0%;">
+										<Panel class="progress-level-line" />
+									</Panel>
+									<Panel class="reward-progress-fill reward-progress-fill-overflow" id="RewardProgressFillDragonOverflow" style="height: 0%;" />
+								</Panel>
+								<Panel class="reward-progress-frame" />
+							</Panel>
+							<Panel class="reward-stats">
+								<Label class="reward-chance-text" id="RewardChanceTextDragon" text="#ui_casv2_chance" />
+							</Panel>
+						</Panel>
+						<Panel class="reward-content-panel">
+							<Label class="reward-card-title" text="#ui_casv2_main_prize" />
+							<DOTAItemImage class="reward-icon" id="RewardIconDragon" itemname="" />
+							<Panel class="reward-winner-section">
+								<Label class="reward-winner-label" text="#ui_casv2_prev_winner" />
+								<DOTAAvatarImage class="reward-winner-avatar" id="RewardWinnerAvatarDragon" steamid="" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="reward-card RewardCard--Dragon RewardCard--Gold JackpotIdle" id="RewardCardSecond" tooltip_text="#ui_casv2_tooltip_second_prize">
+						<Panel class="reward-progress-chance-wrap">
+							<Panel class="reward-progress-column" id="RewardProgressColumnSecond" hittest="true">
+								<Panel class="reward-progress-bg" />
+								<Panel class="reward-progress-mask">
+									<Panel class="reward-progress-fill" id="RewardProgressFillSecond" style="height: 0%;">
+										<Panel class="progress-level-line" />
+									</Panel>
+									<Panel class="reward-progress-fill reward-progress-fill-overflow" id="RewardProgressFillSecondOverflow" style="height: 0%;" />
+								</Panel>
+								<Panel class="reward-progress-frame" />
+							</Panel>
+							<Panel class="reward-stats">
+								<Label class="reward-chance-text" id="RewardChanceTextSecond" text="#ui_casv2_chance" />
+							</Panel>
+						</Panel>
+						<Panel class="reward-content-panel">
+							<Label class="reward-card-title" text="#ui_casv2_second_prize" />
+							<DOTAItemImage class="reward-icon" id="RewardIconSecond" itemname="" />
+							<Panel class="reward-winner-section">
+								<Label class="reward-winner-label" text="#ui_casv2_prev_winner" />
+								<DOTAAvatarImage class="reward-winner-avatar" id="RewardWinnerAvatarSecond" steamid="" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="win-notification" id="WinNotification" hittest="false">
+			<Label class="win-notification-title" text="#ui_casv2_win_notification" />
+			<Label class="win-notification-amount" id="WinAmount" text="+0" />
+		</Panel>
+	</Panel>
+</root>

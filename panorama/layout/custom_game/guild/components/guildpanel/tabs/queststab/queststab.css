@@ -1,0 +1,630 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.quests-tab
+{
+	width: 100%;
+	height: 100%;
+	padding: 12px;
+	flow-children: down;
+}
+
+.quests-tab > .header
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.quests-tab > .header > .primary
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.quests-tab > .header > .primary > .icon
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+}
+
+.quests-tab > .header > .primary > .label
+{
+	vertical-align: center;
+	margin-left: 8px;
+	color: #e5e0c5;
+	font-size: 32px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.quests-tab > .header > .secondary
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	color: #8a9ba8;
+	font-size: 14px;
+	font-weight: bold;
+	opacity: 0.9;
+}
+
+.quests-tab > .tabs
+{
+	flow-children: right;
+	margin-top: 12px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(20, 30, 45, 0.8)), to(rgba(15, 22, 35, 0.8)));
+	border: 1px solid rgba(60, 80, 110, 0.4);
+	border-radius: 10px;
+	padding: 16px;
+}
+
+.quests-tab > .tabs > Button
+{
+	width: fill-parent-flow(1);
+	padding: 8px;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.quests-tab > .tabs > Button:not(:last-child)
+{
+	margin-right: 16px;
+}
+
+.quests-tab > .tabs > Button > .wrapper
+{
+	align: center center;
+	flow-children: down;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .top
+{
+	horizontal-align: center;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .top > .expire-time
+{
+	color: #8a9ba8;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .bottom
+{
+	margin-top: 6px;
+	flow-children: right;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .bottom > Label
+{
+	vertical-align: center;
+	text-align: center;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .bottom > .icon
+{
+	width: 24px;
+	height: 24px;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .bottom > .name
+{
+	margin-left: 8px;
+	color: #8a9ba8;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.quests-tab > .tabs > Button > .wrapper > .bottom > .progress
+{
+	min-width: 40px;
+	margin-left: 8px;
+	padding: 2px 8px;
+	background-color: rgba(100, 181, 246, 0.2);
+	border: 1px solid rgba(100, 181, 246, 0.4);
+	border-radius: 15px;
+	color: #8a9ba8;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.quests-tab > .tabs > Button:hover
+{
+	background-color: rgba(100, 181, 246, 0.1);
+	border-color: rgba(100, 181, 246, 0.3);
+}
+
+.quests-tab > .tabs > Button.active
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.2)), to(rgba(74, 144, 226, 0.15)));
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: hollow 0 0px 8px rgba(100, 181, 246, 0.3);
+}
+
+.quests-tab > .tabs > Button.active > .wrapper > .top > .expire-time
+{
+	color: #64B5F6;
+}
+
+.quests-tab > .tabs > Button.active > .wrapper > .bottom > Label
+{
+	color: #64B5F6;
+}
+
+.quests-tab > .tabs > Button.active > .wrapper > .bottom > .progress
+{
+	background-color: rgba(100, 181, 246, 0.3);
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: hollow 0 0 4px rgba(100, 181, 246, 0.4);
+}
+
+.quests-tab > .tabs > Button > .indicator
+{
+	horizontal-align: right;
+	width: 28px;
+	height: 28px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#ffd700), to(#ffa500));
+	border: 2px solid rgba(26, 42, 58, 0.9);
+	border-radius: 100%;
+	box-shadow: hollow rgba(255, 215, 0, 0.15) 0px 0px 8px 0px;
+	animation-name: indicator-pulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.quests-tab > .tabs > Button > .indicator > .inner
+{
+	align: center center;
+	margin-top: -2px;
+	text-align: center;
+	color: #000000;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.quests-tab > .list
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 16px;
+	overflow: squish scroll;
+}
+
+.quests-tab > .list #VerticalScrollBar
+{
+	height: 100%;
+	margin-top: 0px;
+}
+
+.quests-tab > .list > .content
+{
+	width: 100%;
+	padding-bottom: -6px;
+	flow-children: right-wrap;
+}
+
+.quests-tab > .list > .content > .quest
+{
+	width: 49.9%;
+	margin-bottom: 6px;
+	padding-top: 2px;
+	padding-right: 8px;
+}
+
+.quests-tab > .list > .content > .quest:nth-child(2n)
+{
+	padding-right: 12px;
+}
+
+.quests-tab > .list > .content > .quest.completed > .inner > .details > .header > .icon
+{
+	img-shadow: 0px 0px 8px 1 rgba(255, 215, 0, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner
+{
+	width: 100%;
+	padding: 12px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(20, 30, 45, 0.95)), to(rgba(15, 22, 35, 0.95)));
+	border-width: 2px 2px 2px 0px;
+	border-style: solid;
+	border-color: rgba(60, 80, 110, 0.4);
+	border-radius: 10px;
+	box-shadow: hollow 0 4px 12px rgba(0, 0, 0, 0.4);
+	transition: transform 0.2s ease 0s;
+}
+
+.quests-tab > .list > .content > .quest > .inner:hover
+{
+	transform: translateY(-2px);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .mark
+{
+	width: 6px;
+	height: 100%;
+	margin: -14px 12px -14px -12px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .mark.daily
+{
+	background-color: rgba(100, 181, 246, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .mark.weekly
+{
+	background-color: rgba(156, 39, 176, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .mark.guild
+{
+	background-color: rgba(255, 193, 7, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header
+{
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .icon
+{
+	width: 32px;
+	height: 32px;
+	margin-bottom: 16px;
+	padding: 4px;
+	img-shadow: 0px 0px 8px 1 rgba(100, 181, 246, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right
+{
+	width: fill-parent-flow(1);
+	margin-left: 16px;
+	flow-children: down;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .top
+{
+	width: 100%;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .top > .name
+{
+	margin-top: 2px;
+	color: #e5e0c5;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .top > .status
+{
+	horizontal-align: right;
+	padding: 2px 12px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.3)), to(rgba(56, 142, 60, 0.3)));
+	border: 1px solid rgba(76, 175, 80, 0.6);
+	border-radius: 6px;
+	box-shadow: hollow 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .top > .status > .icon
+{
+	vertical-align: center;
+	width: 12px;
+	height: 12px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .top > .status > .label
+{
+	vertical-align: center;
+	text-align: center;
+	color: #81c784;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .header > .right > .desc
+{
+	margin-top: 2px;
+	color: #8a9ba8;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation
+{
+	width: 100%;
+	margin-top: 12px;
+	flow-children: down;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency:not(:last-child)
+{
+	margin-bottom: 10px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .progress
+{
+	vertical-align: center;
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .progress > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .progress > .numerical
+{
+	vertical-align: center;
+	margin-left: 8px;
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .progress > .percentage
+{
+	vertical-align: center;
+	margin-left: 6px;
+	color: #8a9ba8;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate
+{
+	align: right center;
+	height: 27px;
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .text-entry
+{
+	width: 120px;
+	height: 100%;
+	flow-children: right;
+	background-color: rgba(20, 30, 45, 0.6);
+	border: 1px solid;
+	border-color: #4a5a7a;
+	border-radius: 8px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .text-entry.focused
+{
+	border-color: rgb(138.9132653061, 154.137755102, 184.5867346939);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .text-entry > .input
+{
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	margin-left: 8px;
+	margin-right: 8px;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .text-entry > .max-chars
+{
+	visibility: collapse;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .donate
+{
+	vertical-align: center;
+	width: fit-children;
+	margin-left: 12px;
+	padding: 2px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.3)), to(rgba(255, 193, 7, 0.2)));
+	border: 2px solid rgba(255, 215, 0, 0.6);
+	border-radius: 5px;
+	box-shadow: hollow 0 0px 4px rgba(255, 215, 0, 0.2);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .donate:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.5)), to(rgba(255, 193, 7, 0.4)));
+	border-color: rgba(255, 215, 0, 0.8);
+	box-shadow: hollow 0 0px 4px rgba(255, 215, 0, 0.4);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .donate.done
+{
+	background-color: none;
+	border-color: none;
+	box-shadow: none;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .donate > .done
+{
+	vertical-align: center;
+	width: 22px;
+	height: 22px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .donation > .currency > .donate > .donate > .label
+{
+	vertical-align: center;
+	text-align: center;
+	color: #ffd700;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress
+{
+	width: 100%;
+	margin-top: 12px;
+	flow-children: down;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .labels
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .labels > .numerical
+{
+	color: #b8c5d1;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .labels > .percentage
+{
+	horizontal-align: right;
+	color: #64b5f6;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0 0 8px rgba(100, 181, 246, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .bar
+{
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	height: 12px;
+	margin-top: 6px;
+	background-color: rgba(60, 80, 110, 0.5);
+	border: 1px solid rgba(42, 58, 74, 0.5);
+	border-radius: 8px;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .bar > .filler
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.8)), color-stop(0.5, rgba(74, 144, 226, 0.8)), to(rgba(100, 181, 246, 0.8)));
+	border-radius: 4px;
+	box-shadow: hollow 0 0px 8px rgba(100, 181, 246, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress > .bar > .filler > .animation
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0)));
+	animation-name: progress-bar-filler-animation;
+	animation-duration: 2.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress.completed > .labels > .percentage
+{
+	color: #ffd700;
+	text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .progress.completed > .bar > .filler
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 215, 0, 0.8)), color-stop(0.5, rgba(255, 193, 7, 0.8)), to(rgba(255, 215, 0, 0.8)));
+	box-shadow: hollow 0 0px 8px rgba(255, 215, 0, 0.6);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .contributors
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 8px 12px;
+	flow-children: right;
+	background-color: rgba(100, 181, 246, 0.1);
+	border: 1px solid rgba(100, 181, 246, 0.3);
+	border-radius: 6px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .contributors > .icon
+{
+	width: 20px;
+	height: 20px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .contributors > .label
+{
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 16px;
+	color: #64B5F6;
+	font-weight: bold;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .line
+{
+	width: 100%;
+	height: 2px;
+	margin-top: 8px;
+	background-color: rgba(60, 80, 110, 0.3);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards
+{
+	width: 100%;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards > .reward
+{
+	flow-children: right;
+	padding: 4px 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.07)), to(rgba(255, 193, 7, 0.04)));
+	border: 1px solid rgba(255, 215, 0, 0.3);
+	border-radius: 5px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards > .reward:not(:last-child)
+{
+	margin-right: 8px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards > .reward:hover
+{
+	border-color: rgba(255, 215, 0, 0.6);
+	box-shadow: hollow 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards > .reward > .icon
+{
+	width: 24px;
+	height: 24px;
+	padding: 2px;
+}
+
+.quests-tab > .list > .content > .quest > .inner > .details > .rewards > .reward > .value
+{
+	vertical-align: center;
+	margin-left: 4px;
+	color: #ffd700;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0 0 6px 1 rgba(255, 215, 0, 0.6);
+}

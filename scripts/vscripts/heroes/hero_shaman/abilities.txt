@@ -1,0 +1,189 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"shadow_shaman_ether_shock_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shaman/hero_shaman"
+		"AbilityTextureName"			"shadow_shaman_ether_shock"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Hero_ShadowShaman.EtherShock"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+		{
+			"start_radius"				"200"
+			"end_radius"				"300"
+			"end_distance"				"500"
+			"targets"					
+			{
+				"value"					                    "2 3 4 5"
+				"special_bonus_unique_shadow_shaman_2"      "+3"
+			}	
+			"damage"					
+            {
+				"value"					                    "75 150 225 300" 
+				"special_bonus_unique_shadow_shaman_1"      "+75"
+			}
+			"ExtraIntelligenceDamage"			"0.1"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+    "shaman_hex"
+	{
+		"BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_shaman/hero_shaman"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"shadow_shaman_voodoo"
+		"AbilityCooldown"				"20 16 12 8"
+		"AbilityManaCost"				"80 100 120 140"
+		"AbilityValues"
+		{
+			"damage"					
+			{
+				"value"					                "15 30 45 60"
+				"special_bonus_unique_shadow_shaman_3"  "+30"
+			}	
+			"duration"					"5"
+			"count"						
+			{
+				"value"					                "5"
+				"special_bonus_unique_shadow_shaman_6"  "+3"
+			}
+            "damage_radius"			            "250"
+            "activation_radius"		            "150"
+            "ExtraIntelligenceDamage"			"0.1"
+		}
+	}
+
+    "shaman_shackles"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shaman/hero_shaman"
+		"AbilityTextureName"			"shadow_shaman_shackles"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"3"
+		"AbilityCooldown"				"16 13 10 7"
+		"AbilityManaCost"				"140 150 160 170"
+		
+		"AbilityValues"
+		{
+            "tick_interval"		                "0.1"
+            "total_damage"		                
+            {
+				"value"					                    "100 200 300 400" 
+				"special_bonus_unique_shadow_shaman_4"      "+75"
+			}
+            "duration"                          "3"
+            "ExtraIntelligenceDamage"			"0.1"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+    "shaman_wards_custom"
+	{
+		"BaseClass"              		"ability_lua"
+		"ScriptFile"					"heroes/hero_shaman/hero_shaman"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"50 45 40"
+		"AbilityManaCost"				"200 350 500"
+		
+		"AbilityValues"
+		{
+			"count"						
+			{
+				"value"					                    "4 5 6"
+				"special_bonus_unique_shadow_shaman_7"      "+4"
+			}	
+			"duration"					"15"
+			"dmg_per_int"				
+			{
+				"value"					                "0.5 1.0 1.5"
+				"special_bonus_unique_shadow_shaman_8"	"+0.5"
+			}	
+			"as_per_agi"
+			{
+				"value"					                "0.5 1.0 1.5"
+				"special_bonus_unique_shadow_shaman_8"	"+0.5"
+			}					
+		}
+	}
+
+    "special_bonus_unique_shadow_shaman_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_shadow_shaman_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_shaman_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

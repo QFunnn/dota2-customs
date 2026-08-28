@@ -1,0 +1,190 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{	
+
+"brewmaster_thunder_clap_lua"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_brewmaster/hero_brewmaster"
+        "AbilityTextureName"            "brewmaster_thunder_clap"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Brewmaster.ThunderClap"
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityCastPoint"				"0.4"
+		"AbilityManaCost"				"90 100 110 120"		
+        "AbilityCastRange"				"400"
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"damage"					
+            {
+				"value"								"80 160 240 320"
+				"special_bonus_unique_brewmaster_4"	"+80"
+			}	
+			"movement_slow"				"10 15 20 25"
+			"duration"
+            {
+				"value"								"3"
+				"special_bonus_unique_brewmaster_1"	"+2"
+			}		
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+"brewmaster_cinder_brew_lua"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_brewmaster/hero_brewmaster"
+		"AbilityTextureName"            "brewmaster_cinder_brew"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"60 70 80 90"		
+
+		"AbilityValues"
+		{
+			"duration"
+            {
+				"value"								"3"
+				"special_bonus_unique_brewmaster_5"	"+2"
+			}
+			"total_damage"				
+			{
+				"value"								"60 120 180 240"
+				"special_bonus_unique_brewmaster_6"	"+60"
+			}	
+			"attack_speed_slow"				"10 20 30 40"
+			"radius"					"400"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	
+	
+"brewmaster_drunken_brawler_lua"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_brewmaster/hero_brewmaster"
+        "AbilityTextureName"            "brewmaster_drunken_brawler"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilitySound"					"Hero_Brewmaster.Brawler.Crit"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"60 80 100 120"		
+
+		"AbilityValues"
+		{
+			"dodge_chance"			
+            {
+				"value"					            "15 20 25 30"
+				"special_bonus_unique_brewmaster_2"	"+10"
+			}
+			"crit_chance"			"40"
+			"crit_multiplier"
+			{
+				"value"					            "140 180 220 260"
+				"special_bonus_unique_brewmaster_7"	"+80"
+			}	
+			"duration"				"4"
+		}
+	}
+
+"brewmaster_ult"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_brewmaster/hero_brewmaster"
+        "AbilityTextureName"            "brewmaster_primal_companion"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCooldown"				"80 70 60"
+		"AbilityManaCost"				"200 300 400"	
+
+		"AbilityValues"
+		{
+			"duration"				
+			{
+				"value"					"12 16 20"
+				"special_bonus_unique_brewmaster_8"	"+8"
+			}	
+			"model_scele"			"40"
+			"movespeed"				
+            {
+				"value"					"15 20 25"
+				"special_bonus_unique_brewmaster_3"	"+15"
+			}	
+		}
+	}		
+
+    "special_bonus_unique_brewmaster_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_brewmaster_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_brewmaster_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+
+}

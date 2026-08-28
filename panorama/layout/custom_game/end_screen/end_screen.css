@@ -1,0 +1,242 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.EndScreenRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EndScreenRoot.SummaryHidden
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#GameSummaryContainer
+{
+	width: 1250px;
+	margin-top: 100px;
+	horizontal-align: center;
+	border: 3px solid rgb(180, 180, 180);
+	background-color: gradient(linear, 0% 10%, 0% 100%, from(rgb(0, 0, 0)), to( rgba(0, 0, 0, 0.966)));
+	flow-children: down;
+}
+
+#GameSummaryResultLabel
+{
+	margin-bottom: 7px;
+	text-align: center;
+	text-transform: uppercase;
+	horizontal-align: middle;
+	vertical-align: top;
+	font-size: 40px;
+	pre-transform-scale2d: 1;
+	opacity: 1;
+	font-weight: black;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 10px 20px;
+}
+
+#GameSummaryResultLabel.IsWin
+{
+	color: rgb(255, 255, 255);
+	background-color: rgb(30, 200, 30);
+}
+
+#GameSummaryResultLabel.IsLose
+{
+	color: rgb(255, 255, 255);
+	background-color: rgb(200, 30, 30);
+}
+
+#GameSummaryLoseReasonLabel
+{
+	horizontal-align: middle;
+	text-align: center;
+	font-size: 25px;
+	color: #fff;
+	margin-bottom: 5px;
+}
+
+#GameSummaryLoseReasonLabel.Hidden
+{
+	visibility: collapse;
+}
+
+#GameSummaryDifficultyLabel
+{
+	horizontal-align: middle;
+	text-align: center;
+	font-size: 20px;
+	color: #fff;
+}
+
+#PlayersSummaryContainer
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0 20px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#PlayerScoreHeader
+{
+	width: 100%;
+	margin-top: 20px;
+	margin-left: 360px;
+	flow-children: right;
+}
+
+.PlayerSummaryPartHeader
+{
+	width: 140px;
+	text-align: center;
+	vertical-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.PlayerSummaryRow
+{
+	width: 100%;
+	margin-bottom: 5px;
+	background-color: gradient(linear, 50% 0%, 50% 100%, from(rgba(200, 200, 200, 0.1)), to( rgba(200, 200, 200, 0.015)));
+	flow-children: right;
+}
+
+.PlayerSummaryHeroContainer
+{
+	flow-children: right;
+}
+
+.PlayerHeroImage
+{
+	width: 90px;
+	height: 90px;
+	margin: 5px 0px 5px 5px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_sharper_png.vtex");
+	box-shadow: #feb300 0px 0px 4px -1px;
+}
+
+.PlayerInfoContainer
+{
+	width: 230px;
+	vertical-align: center;
+	flow-children: down;
+	margin-left: 15px;
+}
+
+.PlayerInfoContainer Label
+{
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.PlayerInfoContainer Label.PlayerName
+{
+	color: rgb(255, 230, 0);
+}
+
+.PlayerRewardsContainer
+{
+	margin-top: 3px;
+	flow-children: right;
+}
+
+.PlayerRewardsContainer Image
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.PlayerRewardsContainer Label
+{
+	margin-left: 3px;
+	margin-right: 10px;
+	letter-spacing: 1px;
+}
+
+.PlayerSummaryPartContainer
+{
+	width: 140px;
+	vertical-align: center;
+}
+
+.PlayerSummaryPartContainer Label
+{
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	horizontal-align: center;
+}
+
+.PlayerSummaryRow .PlayerSummaryPartLabel
+{
+	width: 140px;
+	text-align: center;
+}
+
+.DamageDealtSummary,.DamageReceivedSummary
+{
+	flow-children: down;
+}
+
+.PlayerSummaryRow .PhysicalDamageSummary
+{
+	color: rgb(200, 30, 30);
+}
+
+.PlayerSummaryRow .MagicalDamageSummary
+{
+	color: rgb(30, 80, 200);
+}
+
+.PlayerSummaryRow .PureDamageSummary
+{
+	color: rgb(255, 180, 0);
+}
+
+.PlayerSummaryRow .PlayerSummaryPartDivider
+{
+	width: 75%;
+	height: 1px;
+	horizontal-align: center;
+	margin: 4px 0px 4px 0px;
+	background-color: #fff;
+}
+
+#DisconnectButton
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	padding: 10px 24px 10px 24px;
+	background-color: #22000077;
+	border: 1px solid rgb(254, 179, 0);
+	vertical-align: bottom;
+	margin-bottom: 10px;
+}
+
+#DisconnectButton:hover
+{
+	brightness: 2;
+}

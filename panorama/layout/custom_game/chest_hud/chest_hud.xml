@@ -1,0 +1,53 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/chest_hud/chest_hud.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/chest_hud/chest_hud.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+		<Panel class="ChestHudMainPanel" id="ChestHudMainPanel">
+			<Panel class="DropItemPanel" id="DropItemPanel">
+				<DOTAParticleScenePanel id="DropEffect" class="DropEffect" particleName="particles/ui/ui_generic_rays.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+				<DOTAParticleScenePanel id="DropEffect_top" class="DropEffect_top" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+				<DOTAParticleScenePanel id="DropEffect_bottom" class="DropEffect_bottom" particleName="particles/ui/ui_godrays_soft_glow.vpcf" renderdeferred="true" particleonly="false" startActive="true" cameraOrigin="160 0 0" lookAt="0 0 0" fov="80" />
+				<Panel class="DropItemContent">
+					<Label class="ItemDropHeader" text="Вы получили предмет" />
+					<Label class="ItemDropName" id="ItemDropName" html="true" text="Undefined" />
+					<DOTAItemImage id="ItemDropIconItem" class="ItemDropIcon" hittest="true" itemname="item_armor_aura" />
+				</Panel>
+			</Panel>
+			<Panel class="CloseChestHudIcon" onactivate="CloseChest();" />
+			<Label class="ChestName" id="ChestName" html="true" text="Сундук Undefined" />
+			<Panel class="RollLine" id="RollLine">
+				<Panel class="RollLineBg" />
+				<Panel class="pointer_top" />
+				<Panel class="pointer_bottom" />
+				<Panel class="RollItemsList">
+					<Panel class="RollItemsListMain" id="RollItemsListMain" />
+				</Panel>
+				<Panel class="RollLineBorderTop" />
+				<Panel class="RollLineBorderBottom" />
+			</Panel>
+			<Panel class="OpenChestButton" id="OpenChestButton">
+				<Label class="OpenChestButtonLabel" text="Открыть" />
+			</Panel>
+			<Label id="counter_to_best_reward" text="#counter_to_best_reward" />
+			<Label class="ItemsInChestName" text="Содержимое сундука" />
+			<Panel class="BorderItemsChestBlock" />
+			<Panel class="ItemsInChestBlock" id="ItemsInChestBlock" />
+		</Panel>
+	</Panel>
+</root>

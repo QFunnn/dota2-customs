@@ -1,0 +1,451 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{
+    "npc_creeps_passives"
+    {
+        "BaseClass"                    	"npc_dota_creature"
+		"Level"							"10"
+        "Model"                       	"models/development/invisiblebox.vmdl"  
+        "Ability1"                   	"axe_counter_helix_lua"            
+        "Ability2"                   	"antimage_mana_break_lua"            
+        "Ability3"                    	"omniknight_degen_aura_lua"            
+        "Ability4"                    	"centaur_return_lua"            
+        "Ability5"                    	"creep_poison_sting_lua"            
+        "Ability6"                   	"wraith_king_vampiric_aura_lua"            
+        "Ability7"                    	"mars_bulwark_lua"            
+        "Ability8"                   	"phantom_assassin_blur_lua"            
+        "Ability9"                    	"phantom_assassin_coup_de_grace_lua"            
+        "Ability10"                    	"sniper_headshot_lua"            
+        "Ability11"                    	"time_lock_lua"            
+        "Ability12"                    	"backtrack_lua"            
+        "Ability13"                    	"lifestealer_feast_lua"            
+        "Ability14"                    	"lycan_feral_lua"            
+        "Ability15"                    	"legion_courage"                        
+        "Ability16"                    	"luna_moon_glaive_lua"            
+        "Ability17"                    	"night_stalker_blood"                    
+        "Ability18"                    	"sven_great_cleave_lua"            
+        "Ability19"                    	"tidehunter_kraken_shell_lua"            
+        "Ability20"                    	"templar_assassin_psi_blades_lua"            
+        "Ability21"                    	"troll_warlord_fervor_lua"                    
+        "Ability22"                    	"muerta_gunslinger_lua"                    
+        "Ability23"                    	"lycan_double_hit"                    
+        "Ability24"                    	"magnataur_skin"                    
+        "Ability25"                    	"sand_caustic"		
+        "Ability26"                    	"boss_ursa_fury_swipes_lua"		
+        "PathfindingSearchDepthScale" 	"0"
+    }
+
+    //===================================================================================================
+
+    "npc_dota_zone_1_unit_quest"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_ShadowShaman"
+		"Level"						"2"
+		"ModelScale" 				"1"
+		
+		"Ability1"					"creep_ether_shock_lua"
+		"Ability2"					"creep_earthbind_lua"
+		"Ability3"					"gold_200"
+		"Ability4"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"2"			
+		"MagicalResistance"			"2"		
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"60"			
+		"AttackDamageMax"			"60"			
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0.8"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"850"		
+		"AttackRange"				"600"	
+		"ProjectileModel"			"particles/base_attacks/ranged_badguy.vpcf" 
+		"ProjectileSpeed"			"900"
+
+		// "BountyXP"					"50"		
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"			"130"
+		"RingRadius"				"50"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"330"
+		"MovementTurnRate"			"0.5"		
+
+		"StatusHealth"				"700"
+		"StatusHealthRegen"			"0.0"		
+		"StatusMana"				"2500"			
+		"StatusManaRegen"			"75"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VisionDaytimeRange"		"900"		
+		"VisionNighttimeRange"		"900"		
+	}
+
+    "npc_dota_zone_1_unit_1"
+	{			
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"6"
+		"ModelScale" 				".95"
+		
+		"Ability1"					"creep_shockwave_lua"			
+
+		"ArmorPhysical"				"2"
+		"MagicalResistance"			"4"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"40"		
+		"AttackDamageMax"			"40"			
+		"AttackRate"				"1.0"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"550"		
+		"AttackRange"				"100" 
+
+		"RingRadius"				"60"
+		"HealthBarOffset"			"210"
+
+		// "BountyXP"					"125"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"290"		
+
+		"StatusHealth"				"550"
+		"StatusHealthRegen"			"5"
+		"StatusMana"				"2000"
+		"StatusManaRegen"			"60"				 
+	
+		"VisionDaytimeRange"		"800"		
+		"VisionNighttimeRange"		"800"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"35"
+				}
+			}
+		}
+	}		
+	
+    "npc_dota_zone_1_unit_2"
+	{		
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Ranged"
+		"Level"						"2"
+		"ModelScale" 				".7"
+
+		"Ability1"					"creep_mana_burn"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"30"			
+		"AttackDamageMax"			"30"		
+		"AttackRate"				"0.9"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"400"		
+		"AttackRange"				"400"
+		"ProjectileModel"			"particles/neutral_fx/satyr_trickster_projectile.vpcf" 
+	
+		"RingRadius"				"50"
+		"HealthBarOffset"			"170"
+
+		// "BountyXP"					"70"		
+	
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"					
+
+		"StatusHealth"				"300"
+		"StatusHealthRegen"			"2"
+		"StatusMana"				"500"
+		"StatusManaRegen"			"15"			 
+		
+		"VisionDaytimeRange"		"800"		
+		"VisionNighttimeRange"		"800"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"15"
+				}
+			}
+		}
+	}
+	
+    "npc_dota_zone_1_unit_3"
+	{	
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"5"
+		"ModelScale" 				"1.1"
+
+		"Ability1"					"creep_thunder_clap"
+
+		"ArmorPhysical"				"2"
+		"MagicalResistance"			"4"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"50"
+		"AttackDamageMax"			"50"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"500"
+		"AttackRange"				"100"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"170"
+
+		// "BountyXP"					"125"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+
+		"StatusHealth"				"550"
+		"StatusHealthRegen"			"5"
+		"StatusMana"				"500"
+		"StatusManaRegen"			"15"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"35"
+				}
+			}
+		}
+	}
+	
+    "npc_dota_zone_1_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"Level"						"1"
+		"ModelScale" 				".60"
+
+		"Ability1"					"boss_ursa_fury_swipes_lua"
+
+		"ArmorPhysical"				"2"
+		"MagicalResistance"			"4"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"35"
+		"AttackDamageMax"			"35"
+		"AttackRate"				"1.1"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"550"
+		"AttackRange"				"100"
+
+		"RingRadius"				"50"
+		"HealthBarOffset"			"140"
+
+		// "BountyXP"					"70"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"330"
+
+		"StatusHealth"				"300"
+		"StatusHealthRegen"			"2"
+		"StatusMana"				"200"
+		"StatusManaRegen"			"6"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_mana_potion"
+					}
+					"Chance"			"25"
+				}
+		
+			}
+		}
+	}
+
+    "npc_dota_zone_1_unit_5"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/items/lycan/wolves/ambry_summon/ambry_summon.vmdl" 
+		"SoundSet"					"Hero_Lycan"
+		"Level"						"1"
+		"ModelScale" 				"0.67"
+
+		"ArmorPhysical"				"1"
+		"MagicalResistance"			"6"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"35"
+		"AttackDamageMax"			"35"
+		"AttackRate"				"0.95"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"550"
+		"AttackRange"				"100"
+		"ProjectileModel"			""
+		"ProjectileSpeed"			"0"
+
+		"RingRadius"				"45"
+		"HealthBarOffset"			"90"
+
+		// "BountyXP"					"70"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+
+		"StatusHealth"				"300"
+		"StatusHealthRegen"			"2"
+		"StatusMana"				"200"
+		"StatusManaRegen"			"6"
+	
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+		"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_mana_potion"
+					}
+					"Chance"			"25"
+				}
+			}
+		}
+	}
+	
+    "npc_dota_zone_1_unit_6"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/items/lycan/ultimate/ambry_true_form/ambry_true_form.vmdl"
+		"SoundSet"					"Hero_Lycan"
+		"Level"						"1"
+		"ModelScale" 				"1"
+
+		"Ability1"					"creep_howl_lua"
+		"Ability2"					"creep_critical_strike"
+
+		"ArmorPhysical"				"2"
+		"MagicalResistance"			"6"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"50"
+		"AttackDamageMax"			"50"
+		"AttackRate"				"0.85"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"600"
+		"AttackRange"				"150"
+		"ProjectileModel"			""
+		"ProjectileSpeed"			"1200"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"160"
+
+		// "BountyXP"					"110"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"370"
+
+		"StatusHealth"				"500"
+		"StatusHealthRegen"			"3"
+		"StatusMana"				"500"
+		"StatusManaRegen"			"15"	
+
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"30"
+				}
+			}				
+		}
+	}
+}

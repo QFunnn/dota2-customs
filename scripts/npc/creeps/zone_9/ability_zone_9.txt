@@ -1,0 +1,231 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_sticky_napalm_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"					"abilities/creeps/zone_9/zone_9"
+        "AbilityTextureName"            "batrider_sticky_napalm"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.2"
+        "AbilityCooldown"               "3"
+
+        "AbilityValues"
+        {
+            "radius"                    "375"
+            "duration"                  "7"
+            "max_stacks"                "10"
+            "mr_reduction"              "3"
+            "turn_rate_pct"             "3"
+            "move_speed"                 "3"
+            "diff_boost_additional"		"1"
+            "projectile_speed"          "1400"
+        }
+    }
+
+    "creep_unit_walking_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_9/zone_9"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "slark_shadow_dance"
+
+        "AbilityValues"
+        {
+            "bonus_speed"               "25" 
+        }
+    }
+
+    "creep_flaming_lasso_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_9/zone_9"
+        "AbilityTextureName"            "batrider_flaming_lasso"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "700"
+        "AbilityCastPoint"              "0.2"
+        "AbilityCooldown"               "20.0"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "duration"                  "4.0"
+            "base_damage"               "2000"
+            "damage_per_distance"       "100"
+            "distance_unit"             "100"
+            "drag_distance"             "150"
+            "dash_distance"             "600"
+        }
+    }
+
+    "creep_fireball_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_9/zone_9"
+        "AbilityTextureName"            "black_dragon_fireball"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "150"
+
+        "AbilityValues"
+        {
+            "projectile_speed"          "1000"
+            "projectile_radius"         "150"
+            "burn_radius"               "250"
+            "burn_duration"             "6.0"
+            "damage_per_second"         "1500"
+            "diff_boost_damage"         "150"
+            "interval"                  "0.5"
+        }
+    }
+
+    "creep_fatal_bonds_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_9/zone_9"
+		"AbilityTextureName"			"warlock_fatal_bonds"
+        "AbilitySound"                  "Hero_Warlock.FatalBonds"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityCastAnimation"          "ACT_DOTA_FATAL_BONDS"
+        "AbilityCastRange"              "1000"
+        "AbilityCooldown"               "18"
+        "AbilityManaCost"               "150"
+        
+        "AbilityValues"
+        {
+            "search_aoe"					"700"
+			"damage_share_pct"				"20"
+            "diff_boost_damage"             "1"
+			"duration"						"18"
+			"accumulate_damage_time_min"	"0.1"
+			"accumulate_damage_time_max"	"0.2"
+        }
+	}
+
+    "creep_rain_of_chaos_lua"
+    {
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_9/zone_9"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+        "AbilitySound"                  "Hero_Warlock.RainOfChaos"
+        "AbilityTextureName"            "warlock_rain_of_chaos"
+        "AbilityCooldown"               "40"
+        "AbilityManaCost"               "200"       
+        "AbilityCastRange"              "900"
+
+        "AbilityValues"
+        {
+            "golem_duration"            "60"
+            "stun_duration"             "1"
+            "aoe"                       "600"
+            "golem_hp"                  "15000"
+            "golem_dmg"                 "500"
+            "golem_armor"               "20"
+            "golem_movement_speed"      "350"
+            "diff_boost_damage"         "10"
+        }
+    }
+
+    "creep_flaming_fists_lua"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/creeps/zone_9/zone_9"
+        "AbilityTextureName"    "warlock_golem_flaming_fists"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+        
+        "AbilityValues"
+        {
+            "proc_chance"       "40"
+            "radius"            "250"
+            "damage"            "500"
+        }
+    }
+
+    "creep_immolation_lua"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/creeps/zone_9/zone_9"
+        "AbilityTextureName"    "warlock_golem_permanent_immolation"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        
+        "AbilityValues"
+        {
+            "radius"            "300"
+            "damage"            "500"
+            "tick_interval"     "0.5"
+        }
+    }
+
+    "creep_feast_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_9/zone_9"
+		"AbilityTextureName"			"lifestealer_feast"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"hp_leech_percent"		    "5"
+		}
+	}
+
+    "creep_rage_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_9/zone_9"
+		"AbilityTextureName"			"lifestealer_rage"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCooldown"				"16"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+            "attack_speed_bonus"	"100"
+            "duration"				"6"
+		}
+	}
+
+
+    "spawn_tomb_units"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_9/zone_9"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"skeletal"	
+	}
+}

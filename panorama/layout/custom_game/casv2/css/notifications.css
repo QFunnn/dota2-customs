@@ -1,0 +1,338 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.casino-notifications-container
+{
+	width: 340px;
+	flow-children: down;
+	horizontal-align: right;
+	vertical-align: top;
+	margin: 16px 16px 0 0;
+	padding: 8px 0;
+	z-index: 1500;
+}
+
+.casino-notifications-list
+{
+	width: 100%;
+	flow-children: down;
+	overflow: noclip;
+}
+
+.ally-win-notification
+{
+	width: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	padding: 10px 12px;
+	margin-bottom: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+
+.ally-win-notification.visible
+{
+	opacity: 1;
+}
+
+.ally-win-notification.hiding
+{
+	opacity: 0;
+	pre-transform-scale2d: 0.95;
+}
+
+.ally-win-notification-top
+{
+	width: 100%;
+	margin-bottom: 6px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid rgba(60, 80, 110, 0.5);
+}
+
+.ally-win-notification-title
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.ally-win-notification-bottom
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	min-height: 40px;
+}
+
+.ally-win-notification-icons
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 10px;
+}
+
+.ally-win-notification-avatar
+{
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	margin-right: 6px;
+}
+
+.ally-win-notification-hero
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
+	margin-right: 6px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	vertical-align: center;
+}
+
+.ally-win-notification-item
+{
+	width: 36px;
+	height: 36px;
+	min-width: 36px;
+	min-height: 36px;
+	margin-left: 8px;
+	border-radius: 4px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	vertical-align: center;
+}
+
+.ally-win-notification-name
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: #e5e0c5;
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	horizontal-align: right;
+	text-align: right;
+	text-overflow: shrink;
+	overflow: squish;
+	text-shadow: 0px 0px 4px black;
+}
+
+.ally-win-notification-price-chip
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 4px 8px;
+	margin-left: 8px;
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.ally-win-notification-price-value
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: #e5e0c5;
+	margin-right: 6px;
+	vertical-align: center;
+	text-shadow: 0px 0px 4px black;
+}
+
+.ally-win-notification-price-icon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+}
+
+.jackpot-win-notification.item-card--jackpot
+{
+	height: 160px;
+	min-height: 160px;
+	margin-bottom: 12px;
+	margin-top: 0;
+	padding: 0;
+	opacity: 0;
+	overflow: squish;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-out;
+	box-shadow: 0 0 24px rgba(212, 175, 55, 0.35), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.jackpot-win-notification.visible
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+.jackpot-win-notification.hiding
+{
+	opacity: 0;
+	pre-transform-scale2d: 0.92;
+}
+
+.jackpot-win-notification-glow.item-card-jackpot-glow
+{
+	height: 160px;
+	min-height: 160px;
+	border-radius: 10px;
+}
+
+.jackpot-win-notification-inner.item-card-jackpot-inner
+{
+	height: 160px;
+	min-height: 160px;
+	margin-top: -160px;
+	flow-children: down;
+	padding: 10px 24px 12px 24px;
+	vertical-align: center;
+	overflow: squish;
+}
+
+.jackpot-win-notification-row1
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	margin-bottom: 6px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.jackpot-win-notification-title
+{
+	font-size: 15px;
+	font-weight: bold;
+	color: #ffd700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	vertical-align: center;
+	text-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 0 4px black, 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.jackpot-win-notification-big-price
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 8px;
+	padding: 6px 14px;
+	min-width: 90px;
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 2px solid rgba(255, 215, 0, 0.6);
+	box-shadow: 0 0 14px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	overflow: noclip;
+}
+
+.jackpot-win-notification-big-price-value
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffd700;
+	margin-right: 6px;
+	vertical-align: center;
+	text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 4px black;
+	overflow: noclip;
+}
+
+.jackpot-win-notification-big-price-icon
+{
+	width: 20px;
+	height: 20px;
+	min-width: 20px;
+	min-height: 20px;
+	vertical-align: center;
+}
+
+.jackpot-win-notification-row2
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	min-height: 44px;
+	margin-bottom: 6px;
+}
+
+.jackpot-win-notification-row3
+{
+	width: 100%;
+	flow-children: right;
+	vertical-align: center;
+	min-height: 44px;
+	padding-top: 6px;
+	border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.jackpot-win-notification-avatar
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 2px solid rgba(212, 175, 55, 0.6);
+	margin-right: 10px;
+	box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.jackpot-win-notification-item-wrap
+{
+	width: 44px;
+	height: 44px;
+	margin-right: 12px;
+	border-radius: 8px;
+	border: 2px solid rgba(212, 175, 55, 0.6);
+	box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+	overflow: clip;
+}
+
+.jackpot-win-notification-item
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 6px;
+	visibility: visible;
+	opacity: 1;
+}
+
+.jackpot-win-notification-item-name
+{
+	width: fill-parent-flow(1);
+	min-width: 0;
+	margin: 0 10px;
+	font-size: 17px;
+	font-weight: bold;
+	color: #ffe4b5;
+	vertical-align: center;
+	text-overflow: shrink;
+	overflow: squish;
+	text-shadow: 0 0 6px rgba(255, 215, 0, 0.3), 0 0 2px black;
+}
+
+.jackpot-win-notification-name
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: rgba(255, 228, 181, 0.95);
+	vertical-align: center;
+	text-overflow: shrink;
+	overflow: squish;
+	max-width: 200px;
+	text-shadow: 0 0 6px rgba(255, 215, 0, 0.25), 0 0 2px black;
+}

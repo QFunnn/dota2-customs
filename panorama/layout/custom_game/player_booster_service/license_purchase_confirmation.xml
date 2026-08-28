@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/common_styles.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/license_purchase_confirmation.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/license_purchase_confirmation.js" />
+	</scripts>
+	<Panel class="root2" hittest="false" style="height: 100%; width: 100%;">
+		<Panel class="unified-modal-overlay" id="license_confirmation_overlay">
+			<Panel class="unified-modal-medium">
+				<Panel class="unified-modal-header">
+					<Label class="unified-modal-title" text="#ui_booster_license_confirmation_title" />
+					<Button class="unified-close-button" id="close_confirmation_button">
+						<Label class="unified-close-text" text="×" />
+					</Button>
+				</Panel>
+				<Panel class="unified-modal-content">
+					<Label class="unified-modal-message" text="#ui_booster_license_confirmation_message" />
+					<Panel class="unified-info-section">
+						<Panel class="unified-license-icon">
+							<Image class="unified-license-icon-image" src="s2r://panorama/images/custom_game/license_icon_png.vtex" />
+						</Panel>
+						<Panel class="unified-info-text">
+							<Label class="unified-name" text="#ui_booster_license_title" />
+							<Label class="unified-stats" text="#ui_booster_license_description" />
+						</Panel>
+					</Panel>
+					<Panel class="unified-details-section">
+						<Panel class="unified-detail-row">
+							<Label class="unified-detail-label" text="#ui_booster_license_feature_pricing" />
+						</Panel>
+						<Panel class="unified-detail-row">
+							<Label class="unified-detail-label" text="#ui_booster_license_feature_display" />
+						</Panel>
+						<Panel class="unified-detail-row">
+							<Label class="unified-detail-label" text="#ui_booster_license_feature_orders" />
+						</Panel>
+						<Panel class="unified-detail-row">
+							<Label class="unified-detail-label" text="#ui_booster_license_feature_stats" />
+						</Panel>
+						<Panel class="unified-detail-row total-row">
+							<Label class="unified-detail-label" text="#ui_booster_license_price_label" />
+							<Label class="unified-detail-value unified-total-amount" text="150" />
+						</Panel>
+					</Panel>
+					<Panel class="unified-actions-section">
+						<Button class="unified-button unified-button-danger" id="reject_license_purchase">
+							<Label class="button-text" text="#ui_booster_reject_button" />
+						</Button>
+						<Button class="unified-button unified-button-primary" id="confirm_license_purchase">
+							<Label class="button-text" text="#ui_booster_confirm_purchase_button" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

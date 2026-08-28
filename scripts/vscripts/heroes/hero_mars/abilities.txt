@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"mars_lil"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_mars/hero_mars"
+		"AbilityTextureName"			"mars_spear"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"19 16 13 10"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+		{
+			"damage"					
+            {
+				"value"					            "40 80 120 160"
+				"special_bonus_unique_mars_1"       "+40"
+			}
+			"attacks"	                "3 4 5 6"
+			"attack_speed_bonus"	    "300"
+			"attack_range_bonus"	    "100"
+			"duration"          	    "6"
+			"base_attack_time"	        "1.0"
+			"loss_armor"	            
+            {
+				"value"					            "1 2 3 4"
+				"special_bonus_unique_mars_7"       "+3"
+			}
+			"loss_duration"	            
+            {
+				"value"					            "3"
+				"special_bonus_unique_mars_3"       "+2"
+			}
+		}
+	}
+
+    "mars_gods_rebuke_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_mars/hero_mars"
+        "AbilityTextureName"			"mars_gods_rebuke"
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+        "AbilityCastRange"				"500"
+        "AbilityCastPoint"				"0.2"
+        "AbilityCooldown"				"18 16 14 12"
+        "AbilityManaCost"				"100 120 140 160"
+
+        "AbilityValues"
+        {
+            "crit_mult"	                
+            {
+				"value"					         "130 160 190 220"
+				"special_bonus_unique_mars_6"    "+130"
+			}
+            "angle"	                    "140"
+            "radius"	                "500"
+            "knockback_duration"	    "0.3"			
+            "knockback_distance"	    "150"
+            "activity_duration"	        "2"
+            "damage"					
+            {
+				"value"					         "80 160 240 320"
+				"special_bonus_unique_mars_2"    "+80"
+			}
+        }
+    }
+
+    "mars_bulwark_lua"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_mars/hero_mars"
+        "AbilityTextureName"			"mars_bulwark"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilityValues"
+        {
+            "physical_damage_reduction"	        
+            {
+				"value"					         "30 40 50 60"
+				"special_bonus_unique_mars_5"    "+20"
+			}
+            "forward_angle"	                    "140"
+            "physical_damage_reduction_side"	
+            {
+				"value"					         "20 25 30 35"
+				"special_bonus_unique_mars_5"    "+20"
+			}
+            "side_angle"	                    "240"
+        }
+    }
+
+    "mars_atrophy_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_mars/hero_mars"
+		"AbilityTextureName"			"mars"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"	
+		"AbilityCastRange"				"700"
+
+		"AbilityValues"
+        {
+            "radius"	                "700"
+            "damage_reduction_pct"	    
+            {
+				"value"					         "5 10 15"
+				"special_bonus_unique_mars_4"    "+10"
+			}
+            "bonus_damage_from_creep"	
+            {
+				"value"					         "3 6 9"
+				"special_bonus_unique_mars_8"    "+3"
+			}
+            "bonus_damage_duration"	    "40"
+        }
+	}
+
+    "special_bonus_unique_mars_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_mars_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_mars_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

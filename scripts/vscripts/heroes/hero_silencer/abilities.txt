@@ -1,0 +1,180 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+	"silencer_arcane_curse_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/hero_silencer"
+		"AbilityTextureName"			"silencer_curse_of_the_silent"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"90 100 110 120"
+
+		"AbilityValues"
+		{
+			"damage"
+            {
+				"value"					            "40 80 120 160"
+				"special_bonus_unique_silencer_1"   "+80"
+			}
+			"radius"			        "425"
+			"duration"
+            {
+				"value"					            "3"
+				"special_bonus_unique_silencer_3"   "+1"
+			}
+			"penalty_duration"			"2"
+			"movespeed"			        "9 12 15 18"
+			"ExtraIntelligenceDamage"	"0.1"
+		}
+	}
+
+    "silencer_glaives_of_wisdom_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/hero_silencer"
+		"AbilityTextureName"			"silencer_glaives_of_wisdom"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityManaCost"				"40 80 120 160"
+
+		"AbilityValues"
+		{
+			"intellect_damage_pct"	    
+            {
+				"value"					           "15 20 25 30"
+				"special_bonus_unique_silencer_7"   "+10"
+			}
+		}
+	}
+
+	"silencer_last_word_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/hero_silencer"
+		"AbilityTextureName"			"silencer_last_word"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"100 110 120 130"
+
+		"AbilityValues"
+		{
+			"damage"
+            {
+                "value"					            "80 160 240 320"
+                "special_bonus_unique_silencer_2"   "+100"
+            }
+            "debuff_duration"
+            {
+				"value"					            "3"
+				"special_bonus_unique_silencer_3"   "+1"
+			}
+            "duration"			        "1.0 1.5 2.0 2.5"
+            "radius"			        "300"
+            "ExtraIntelligenceDamage"	"0.1"
+		}
+	}
+
+    "silencer_infinite_int_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_silencer/hero_silencer"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"silencer_global_silence"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+
+		"AbilityValues"
+        {
+            "bonus_int"	                "20 40 60"
+            "stack_bonus_int"	       
+            {
+                "value"					             "0.3 0.4 0.5"
+                "special_bonus_unique_silencer_8"   "+0.2"
+            }
+            "max_stack_count"	        
+            {
+                "value"					            "200 400 600"
+                "special_bonus_unique_silencer_6"   "+200"
+            }
+        }
+	}
+
+    "special_bonus_unique_silencer_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_silencer_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_silencer_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

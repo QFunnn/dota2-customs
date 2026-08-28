@@ -1,0 +1,733 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.casv2-root.casino-closed #GameHeader,.casv2-root.casino-closed #GameContentWrapper
+{
+	visibility: collapse;
+}
+
+.game-container
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	overflow: noclip;
+}
+
+.casino-close-btn
+{
+	horizontal-align: right;
+	z-index: 1000;
+	margin: 10% 50px 10px 0;
+	width: 44px;
+	height: 44px;
+	border-radius: 8px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: #0f1a28;
+	border: 2px solid rgba(74, 90, 122, 1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+	transition-property: transform, border-color, background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+}
+
+.casino-close-btn:hover
+{
+	sound: "ui_select_arrow";
+	background-color: #2a1a1a;
+	border-color: rgba(255, 107, 107, 1);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.casino-close-btn:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+	brightness: 0.95;
+	transform: translateY(1px);
+}
+
+@keyframes 'logo-idle'
+{
+	0%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.06;
+		pre-transform-scale2d: 1.02;
+	}
+	
+	100%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'logo-text-shine'
+{
+	0%
+	{
+		brightness: 1;
+		text-shadow: 0 0 12px rgba(184, 134, 11, 0.5), 0 0 6px rgba(255, 215, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	}
+	
+	25%
+	{
+		brightness: 1.08;
+		text-shadow: 0 0 20px rgba(212, 175, 55, 0.7), 0 0 12px rgba(255, 215, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	}
+	
+	50%
+	{
+		brightness: 1.2;
+		text-shadow: 0 0 28px rgba(255, 215, 0, 0.9), 0 0 18px rgba(255, 235, 180, 0.6), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	}
+	
+	75%
+	{
+		brightness: 1.08;
+		text-shadow: 0 0 20px rgba(212, 175, 55, 0.7), 0 0 12px rgba(255, 215, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	}
+	
+	100%
+	{
+		brightness: 1;
+		text-shadow: 0 0 12px rgba(184, 134, 11, 0.5), 0 0 6px rgba(255, 215, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	}
+	
+}
+
+@keyframes 'logo-subtitle-shine'
+{
+	0%
+	{
+		brightness: 1;
+		text-shadow: 0 0 10px rgba(184, 134, 11, 0.4), 0 0 4px rgba(255, 215, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	}
+	
+	25%
+	{
+		brightness: 1.06;
+		text-shadow: 0 0 16px rgba(212, 175, 55, 0.6), 0 0 10px rgba(255, 215, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	}
+	
+	50%
+	{
+		brightness: 1.18;
+		text-shadow: 0 0 22px rgba(255, 215, 0, 0.85), 0 0 14px rgba(255, 230, 150, 0.5), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	}
+	
+	75%
+	{
+		brightness: 1.06;
+		text-shadow: 0 0 16px rgba(212, 175, 55, 0.6), 0 0 10px rgba(255, 215, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	}
+	
+	100%
+	{
+		brightness: 1;
+		text-shadow: 0 0 10px rgba(184, 134, 11, 0.4), 0 0 4px rgba(255, 215, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	}
+	
+}
+
+.game-header
+{
+	width: fit-children;
+	flow-children: down;
+	horizontal-align: center;
+	padding: 20px 0 24px 0;
+	margin: 50px 50px 30px 50px;
+	animation-name: logo-idle;
+	animation-duration: 3.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.logo-text
+{
+	font-size: 56px;
+	font-weight: bold;
+	letter-spacing: 12px;
+	color: rgba(245, 220, 150, 0.98);
+	text-shadow: 0 0 16px rgba(184, 134, 11, 0.7), 0 0 8px rgba(255, 215, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85), 0 6px 16px rgba(0, 0, 0, 0.6);
+	horizontal-align: center;
+	vertical-align: center;
+	animation-name: logo-text-shine;
+	animation-duration: 3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.logo-subtitle
+{
+	font-size: 36px;
+	font-weight: bold;
+	letter-spacing: 10px;
+	margin-top: -2px;
+	color: rgba(230, 200, 130, 0.9);
+	text-shadow: 0 0 12px rgba(184, 134, 11, 0.5), 0 0 6px rgba(255, 215, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.55);
+	horizontal-align: center;
+	vertical-align: center;
+	animation-name: logo-subtitle-shine;
+	animation-duration: 3s;
+	animation-delay: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.game-main
+{
+	height: fill-parent-flow(1);
+	height: 100%;
+	flow-children: right;
+	overflow: noclip;
+	horizontal-align: center;
+	vertical-align: top;
+	margin: 0 50px 50px 50px;
+	padding: 0 50px 50px 50px;
+}
+
+.game-content-wrapper
+{
+	height: 975px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.economy-info-overlay
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+	z-index: 500;
+}
+
+.economy-info-backdrop
+{
+	width: 100%;
+	height: 100%;
+	background-color: #00000000;
+}
+
+.economy-info-modal
+{
+	width: 1100px;
+	height: 800px;
+	max-width: 1400px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 0;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+}
+
+.economy-info-modal-header
+{
+	width: 100%;
+	height: 55px;
+	flow-children: right;
+	padding: 12px 16px 12px 20px;
+	border-bottom: 1px solid #3a4a5a;
+}
+
+.economy-info-modal-title
+{
+	vertical-align: center;
+	font-size: 18px;
+	width: fill-parent-flow(1);
+	color: #e5e0c5;
+}
+
+.economy-info-modal-header .casino-close-btn
+{
+	margin: 0;
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+}
+
+.economy-info-modal-body
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+.instruction-carousel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+	margin: 0px 0px 80px 0px;
+}
+
+.instruction-page
+{
+	width: 100%;
+	height: 100%;
+	padding: 16px 24px 12px 24px;
+	flow-children: down;
+}
+
+.instruction-page--hidden
+{
+	visibility: collapse;
+}
+
+.instruction-page--single-col
+{
+	overflow: squish scroll;
+	height: 100%;
+}
+
+.instruction-page--casino
+{
+	padding: 20px 28px 16px 28px;
+}
+
+.instruction-page--half-half
+{
+	overflow: clip;
+}
+
+.instruction-page-cols--half
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.instruction-card--half
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin: 0 10px;
+}
+
+.instruction-page-cols--half .instruction-card--victory.instruction-card--half
+{
+	margin-left: 0;
+}
+
+.instruction-page-cols--half .instruction-card--controls.instruction-card--half
+{
+	margin-right: 0;
+}
+
+.instruction-page-cols--single
+{
+	height: fit-children;
+	margin-bottom: 16px;
+}
+
+.instruction-page--single-col .instruction-page-cols--single:last-child
+{
+	margin-bottom: 0;
+}
+
+.instruction-page-cols--single .instruction-card--full
+{
+	margin: 0;
+	width: 100%;
+}
+
+.instruction-page-cols--single .instruction-card--full .instruction-card-visual
+{
+	height: fit-children;
+	min-height: 160px;
+	overflow: noclip;
+}
+
+.instruction-page-cols--single .instruction-card--full .instruction-card-visual .instruction-img--card
+{
+	height: 160px;
+	width: 100%;
+	max-width: 420px;
+}
+
+.instruction-page-cols
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
+}
+
+.instruction-card
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin: 0 10px;
+	padding: 24px 28px 28px 28px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.instruction-card--victory
+{
+	border-top-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.instruction-card--controls
+{
+	border-top-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.instruction-page-cols .instruction-card--victory
+{
+	margin-left: 0;
+}
+
+.instruction-page-cols .instruction-card--controls
+{
+	margin-right: 0;
+}
+
+.instruction-card-header
+{
+	width: 100%;
+	margin-bottom: 12px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(60, 80, 110, 0.4);
+}
+
+.instruction-card .instruction-heading
+{
+	margin-bottom: 0;
+	font-size: 22px;
+	letter-spacing: 2px;
+}
+
+.instruction-card .instruction-text
+{
+	margin-bottom: 20px;
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.instruction-card-visual
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.instruction-card-visual--bet
+{
+	min-height: 140px;
+}
+
+.instruction-img--bet-selection
+{
+	max-width: 380px;
+	max-height: 200px;
+}
+
+.inst-visual--victory-line
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--victory-line
+{
+	width: 420px;
+	height: 218px;
+	horizontal-align: center;
+}
+
+.inst-visual--game-parameters
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--game-parameters
+{
+	width: 360px;
+	height: 77px;
+	horizontal-align: center;
+}
+
+.inst-visual--insertion-parameters
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--insertion-parameters
+{
+	width: 280px;
+	height: 172px;
+	horizontal-align: center;
+}
+
+.inst-visual--jackpot-mode
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--jackpot-mode
+{
+	width: 275px;
+	height: 450px;
+	horizontal-align: center;
+}
+
+.inst-visual--crystal-jackpot
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--crystal-jackpot
+{
+	width: 340px;
+	height: 141px;
+	horizontal-align: center;
+}
+
+.inst-visual--panda-jackpot
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--panda-jackpot
+{
+	width: 380px;
+	height: 229px;
+	horizontal-align: center;
+}
+
+.inst-visual--pet
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--pet
+{
+	width: 380px;
+	height: 244px;
+	horizontal-align: center;
+}
+
+.inst-visual--chance-dice
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+.instruction-card-visual .inst-img--chance-dice
+{
+	width: 320px;
+	height: 320px;
+	horizontal-align: center;
+}
+
+.instruction-keys-row
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.instruction-keys-row .instruction-img-kbd,.instruction-keys-row .instruction-img-space
+{
+	margin: 0 10px;
+}
+
+.instruction-carousel-nav
+{
+	width: 100%;
+	height: 80px;
+	min-height: 56px;
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: bottom;
+	padding: 8px 24px 16px 16px;
+	border-top: 1px solid rgba(60, 80, 110, 0.4);
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 10;
+}
+
+.instruction-carousel-nav-content
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.instruction-nav-btn
+{
+	width: 44px;
+	height: 44px;
+	vertical-align: center;
+	flow-children: none;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	transition-property: brightness, border-color;
+	transition-duration: 0.2s;
+}
+
+.instruction-nav-btn:hover
+{
+	brightness: 1.15;
+	border-color: rgba(100, 181, 246, 0.6);
+	sound: "ui_select_arrow";
+}
+
+.instruction-nav-btn:active
+{
+	brightness: 0.9;
+}
+
+.instruction-nav-btn:disabled
+{
+	opacity: 0.4;
+}
+
+.instruction-nav-arrow
+{
+	width: 36px;
+	height: 36px;
+	vertical-align: center;
+	horizontal-align: center;
+	wash-color: #e5e0c5;
+}
+
+.instruction-nav-btn--prev .instruction-nav-arrow
+{
+	transform: scaleX(-1);
+}
+
+.instruction-page-indicator
+{
+	font-size: 15px;
+	color: #e5e0c5;
+	vertical-align: center;
+	margin: 0 24px;
+	min-width: 60px;
+	text-align: center;
+}
+
+.instruction-page .instruction-section
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 14px;
+}
+
+.instruction-section
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 18px;
+}
+
+.instruction-heading
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+	margin-bottom: 8px;
+	letter-spacing: 1px;
+}
+
+.instruction-text
+{
+	font-size: 20px;
+	color: #e5e0c5;
+	line-height: 1.5;
+	margin-bottom: 12px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.instruction-imgs
+{
+	flow-children: right;
+	horizontal-align: left;
+}
+
+.instruction-img
+{
+	width: 300px;
+	height: 180px;
+	margin-right: 16px;
+	margin-bottom: 8px;
+}
+
+.instruction-img-kbd
+{
+	width: 72px;
+	height: 72px;
+}
+
+.instruction-img-space
+{
+	height: 72px;
+	width: 120px;
+}
+
+.instruction-text-inline
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 12px;
+}
+
+.instruction-text-inline .instruction-text
+{
+	margin-bottom: 0;
+	vertical-align: center;
+}
+
+.instruction-icon-inline
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin: 0 6px;
+}
+
+.instruction-img-currency
+{
+	width: 48px;
+	height: 48px;
+}
+
+.instruction-page .instruction-img-currency
+{
+	width: 56px;
+	height: 56px;
+}

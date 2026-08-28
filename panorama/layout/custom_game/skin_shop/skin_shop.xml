@@ -1,0 +1,60 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/skin_shop/skin_shop.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/skin_shop/skin_shop.vjs_c" />
+	</scripts>
+	<Panel class="SSRoot" hittest="false" style="width: 100%; height: 100%;">
+		<Panel class="SSPanel" id="SSPanel">
+			<Panel class="SSContent">
+				<Panel class="SSHeader">
+					<Panel class="SSHeaderTitle" hittest="false">
+						<Label class="SSTitle" text="AKATSUKI" />
+						<Label class="SSSubTitle" text="#skin_shop_title" />
+					</Panel>
+					<Panel class="SSClose" id="SSClose" onmouseactivate="closeSkinShop()">
+						<Label class="SSCloseLabel" text="X" />
+					</Panel>
+				</Panel>
+				<Panel class="SSDivider" hittest="false" />
+				<Panel class="SSGrid" id="SSGrid" />
+			</Panel>
+			<Panel class="SSModal" id="SkinShopModal">
+				<Panel class="SSModalBox">
+					<Panel class="SSModalSpacer" />
+					<Label class="SSModalTitle" text="#skin_buy" />
+					<Panel class="SSModalSpacer" />
+					<Label class="SSModalSkinName" id="SkinShopModalName" text="" />
+					<Panel class="SSModalSpacer" />
+					<Panel class="SSModalPrice">
+						<Image class="SSModalPriceIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+						<Label class="SSModalPriceLabel" id="SkinShopModalPrice" text="" />
+					</Panel>
+					<Panel class="SSModalSpacer" />
+					<Panel class="SSModalButtons">
+						<Panel class="SSModalBtn SSModalBuyBtn" onmouseactivate="confirmBuy()">
+							<Label class="SSModalBtnLabel" text="#buy" />
+						</Panel>
+						<Panel class="SSModalBtn SSModalCancelBtn" onmouseactivate="cancelBuy()">
+							<Label class="SSModalBtnLabel" text="#close" />
+						</Panel>
+					</Panel>
+					<Panel class="SSModalSpacer" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

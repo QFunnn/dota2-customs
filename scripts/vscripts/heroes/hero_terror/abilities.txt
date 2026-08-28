@@ -1,0 +1,170 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"terrorblade_reflection_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_terror/hero_terror"
+		"AbilityTextureName"				"terrorblade_reflection"
+		"AbilityType"						"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"					"500"
+		"AbilityCastPoint"					"0.3"
+		"AbilityCooldown"					"24 20 16 12"
+		"AbilityManaCost"					"60 70 80 90"
+
+		"AbilityValues"
+		{
+			"illusion_duration"			    "4"
+			"illusion_outgoing_damage"	    
+            {
+				"value"					                "30 40 50 60"
+				"special_bonus_unique_terrorblade_6"	"+15"
+			}	
+			"move_slow"					    "10 15 20 25"
+			"range"						    "500"
+		}
+	}
+
+    "terrorblade_conjure_image_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_terror/hero_terror"
+		"AbilityTextureName"			"terrorblade_conjure_image"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastPoint"				"0.15"
+		"AbilityCooldown"				"24 22 20 18"
+		"AbilityManaCost"				"70 80 90 100"
+		"AbilityValues"
+		{
+			"illusion_duration"					"20" 
+			"illusion_outgoing_damage"
+			{
+				"value"					                "30 40 50 60"
+				"special_bonus_unique_terrorblade_8"    "+20"
+			}
+			"illusion_incoming_damage"
+			{
+				"value"					                "200"
+				"special_bonus_unique_terrorblade_8"   "-100"
+			}
+		}
+	}
+
+    "terrorblade_metamorphosis_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_terror/hero_terror"
+		"AbilityTextureName"			"terrorblade_metamorphosis"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCooldown"				"100 90 80"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+	    {
+		    "duration"	                "30"
+			"transformation_time"	    "0.35"
+			"base_attack_time"	        "1.4"
+			"bonus_range"	            "400"
+			"tooltip_attack_range"	    "550"
+			"bonus_damage"
+            {
+				"value"					               "25 50 75 100"
+				"special_bonus_unique_terrorblade_1"   "+25"
+			}
+			"metamorph_aura_tooltip"	"1200"
+	    }
+	}
+
+    "terrorblade_sunder_lua"
+	{
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_terror/hero_terror"
+		"AbilityTextureName"				"terrorblade_sunder"
+		"AbilityType"						"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PURE"
+		"AbilityCastRange"					"600"
+		"AbilityCastPoint"					"0.35"
+		"AbilityCooldown"					"55 50 45"
+		"AbilityManaCost"					"200 250 300"
+
+		"AbilityValues"
+		{
+			"damage"					"150 300 450"
+			"bonus_damage"				"25 50 75"
+			"duration"
+            {
+				"value"					               "15"
+				"special_bonus_unique_terrorblade_3"   "+5"
+			}
+			"range"						"600"
+		}
+	}
+
+    "special_bonus_unique_terrorblade_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_terrorblade_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_terrorblade_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

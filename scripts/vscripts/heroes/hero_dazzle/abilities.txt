@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"dazzle_poison_touch_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"dazzle_poison_touch"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ScriptFile"					"heroes/hero_dazzle/hero_dazzle"
+		"AbilityCooldown"               "0.01"
+		"MaxLevel"						"4"
+        
+		"AbilityValues"
+		{
+            "chance"
+			{
+				"value"					"15"
+				"special_bonus_unique_dazzle_7"   "+10"
+			}
+            "damage"
+			{
+				"value"					"25 50 75 100"
+				"special_bonus_unique_dazzle_1"   "+50"
+			}
+            "slow" 	"10 15 20 30"
+			"targets" "2 3 4 5"
+			"duration" "5"
+		}
+	}
+	
+"dazzle_shallow_grave_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dazzle/hero_dazzle"
+		"AbilityTextureName"			"dazzle_shallow_grave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+
+		"AbilityCooldown"				"36 32 28 24"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"					"3"
+				"special_bonus_unique_dazzle_3"   "+1"
+			}
+			"hp"
+			{
+				"value"					"0.5 1.0 1.5 2.0"
+				"special_bonus_unique_dazzle_5"   "+1"
+			}
+			"radius"	"300"
+		}
+	}
+
+"dazzle_shadow_wave_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dazzle/hero_dazzle"
+		"AbilityTextureName"			"dazzle_shadow_wave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"20 17 14 11"
+		"AbilityManaCost"				"60 70 80 90"
+		
+		"AbilityValues"
+		{
+			"heal"						"30 60 90 120"
+			"damage"
+			{
+				"value"					"60 120 180 240"
+				"special_bonus_unique_dazzle_2"   "+60"
+			}
+			"disarm"					
+			{
+				"value"					"2 3 4 5"
+				"special_bonus_unique_dazzle_6"   "+3"
+			}
+			"duration"
+			{
+				"value"					"3"
+				"special_bonus_unique_dazzle_4"   "+1"
+			}
+		}
+	}
+
+ "dazzle_custom_badjuju"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"heroes/hero_dazzle/hero_dazzle"
+        "AbilityType"					"ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"			"dazzle_bad_juju"
+		"MaxLevel"						"3"
+
+        "AbilityValues"
+		{
+			"cooldown_reduc"	"15 20 25"
+			"spell_amplify"		"15 30 45"
+		}
+    }	
+
+
+
+	"special_bonus_unique_dazzle_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_dazzle_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_dazzle_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

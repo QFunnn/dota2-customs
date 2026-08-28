@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"broodmother_web"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_broodmother/broodmother_web/broodmother_web"
+		"AbilityTextureName"			"broodmother_1"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.25"
+
+		"AbilityCooldown"				"24 20 16 12"
+		"AbilityManaCost"				"50 60 70 80"
+
+		"AbilityValues"
+		{		
+			"damage"
+			{
+				"value"					"75 125 175 225"
+				"LinkedSpecialBonus"	"special_bonus_broodmother_1"
+			}	
+			
+			"slow"	"20 30 40 50"
+			"duration"	"2 3 4 5"
+			"radius"	"450"
+		}
+	}
+}

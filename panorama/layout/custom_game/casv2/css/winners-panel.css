@@ -1,0 +1,351 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.winners-panel
+{
+	width: 350px;
+	height: 800px;
+	max-height: 85%;
+	padding: 10px;
+	margin-right: 20px;
+	margin-bottom: 40px;
+	vertical-align: top;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.99)), to(rgba(20, 35, 50, 0.99)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.player-card
+{
+	width: 100%;
+	flow-children: down;
+	padding: 10px;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	horizontal-align: left;
+	vertical-align: top;
+}
+
+.player-header
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 8px;
+}
+
+.player-avatar
+{
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	margin-right: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.player-info
+{
+	flow-children: down;
+	vertical-align: center;
+	width: fill-parent-flow(1);
+}
+
+.player-name-row
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 4px;
+}
+
+.player-name
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	width: 100%;
+	overflow: squish;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 4px black;
+}
+
+.player-exp-labels
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 3px;
+}
+
+.player-level-badge
+{
+	padding: 1px 6px;
+	vertical-align: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+}
+
+.player-level-text
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.exp-values
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	text-align: right;
+	horizontal-align: right;
+	text-shadow: 0px 0px 4px black;
+}
+
+.exp-progress-bar
+{
+	width: 100%;
+	height: 8px;
+	overflow: clip;
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(60, 80, 110, 0.3);
+	border-radius: 4px;
+}
+
+.exp-progress-fill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.6)), to(rgba(60, 80, 110, 0.5)));
+	border-radius: 4px;
+}
+
+.levelup-reward-row
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: right;
+	margin-bottom: 8px;
+	padding-left: 54px;
+}
+
+.levelup-reward-spacer
+{
+	width: fill-parent-flow(1);
+}
+
+.levelup-reward-label
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: #b0bfc9;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	vertical-align: center;
+	margin-right: 4px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.levelup-reward-icon
+{
+	width: 14px;
+	height: 14px;
+	margin-right: 3px;
+	vertical-align: center;
+	img-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.levelup-reward-value
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.levelup-claim-button
+{
+	flow-children: right;
+	padding: 4px 10px;
+	height: 22px;
+	vertical-align: center;
+	visibility: collapse;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.levelup-claim-button-icon
+{
+	width: 14px;
+	height: 14px;
+	margin-left: 4px;
+	vertical-align: center;
+	img-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.levelup-claim-button Label
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-shadow: 0px 0px 4px black;
+}
+
+.levelup-claim-button:hover
+{
+	sound: "ui_select_arrow";
+	brightness: 1.15;
+}
+
+.levelup-claim-button:active
+{
+	brightness: 0.9;
+}
+
+.player-card-divider
+{
+	width: 100%;
+	height: 1px;
+	background-color: rgba(60, 80, 110, 0.4);
+	margin-bottom: 8px;
+}
+
+.balance-row
+{
+	width: 100%;
+	flow-children: right;
+	padding: 5px 0;
+	vertical-align: center;
+}
+
+.balance-label
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: #b0bfc9;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+	vertical-align: center;
+	margin-right: 14px;
+	text-shadow: 0px 0px 4px black;
+}
+
+.balance-items
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+.balance-item
+{
+	flow-children: right;
+	vertical-align: center;
+	padding: 2px 0;
+}
+
+.balance-divider
+{
+	width: 1px;
+	height: 16px;
+	margin: 0 14px;
+	background-color: rgba(60, 80, 110, 0.4);
+	vertical-align: center;
+}
+
+.balance-item-icon
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	vertical-align: center;
+	img-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.balance-item-value
+{
+	width: 72px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #e5e0c5;
+	vertical-align: center;
+	text-align: left;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+	letter-spacing: 0.5px;
+}
+
+.winner-card
+{
+	width: 100%;
+	padding: 6px;
+	margin-bottom: 6px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.8)), to(rgba(20, 35, 50, 0.7)));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.winner-card:last-child
+{
+	margin-bottom: 0px;
+}
+
+.winner-avatar
+{
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	vertical-align: top;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	border-radius: 4px;
+}
+
+.winner-left-section
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+	margin-top: 40px;
+}
+
+.winner-item
+{
+	height: 40px;
+	border: 2px solid rgba(60, 80, 110, 0.3);
+	border-radius: 4px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.4);
+	margin-left: 55px;
+}
+
+.winner-time
+{
+	font-size: 11px;
+	font-weight: normal;
+	color: #b0bfc9;
+	text-shadow: 0px 0px 4px black;
+	text-align: right;
+	horizontal-align: right;
+}

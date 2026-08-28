@@ -1,0 +1,65 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/health_bar/damage_challenge.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/health_bar/damage_challenge.js" />
+	</scripts>
+	<Panel class="root" hittest="false">
+		<Panel id="damage-challenge-container" class="damage-challenge-container">
+			<Panel id="settings-container">
+				<Panel id="armor-container" class="setting-container">
+					<Button class="setting-button setting-first-button" onmouseactivate="adjustArmor(1)" onmouseover="showTooltip(&apos;armor&apos;, true)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_armor_psd.vtex" />
+						<Label class="setting-button-label" text="+10" />
+					</Button>
+					<Button class="setting-button" onmouseactivate="adjustArmor(-1)" onmouseover="showTooltip(&apos;armor&apos;, false)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_armor_psd.vtex" />
+						<Label class="setting-button-label" text="-10" />
+					</Button>
+				</Panel>
+				<Panel id="magic-armor-container" class="setting-container">
+					<Button class="setting-button setting-first-button" onmouseactivate="adjustMagicRes(1)" onmouseover="showTooltip(&apos;magic_armor&apos;, true)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex" />
+						<Label class="setting-button-label" text="+5%" />
+					</Button>
+					<Button class="setting-button" onmouseactivate="adjustMagicRes(-1)" onmouseover="showTooltip(&apos;magic_armor&apos;, false)" onmouseout="hideTooltip()">
+						<Image class="setting-button-icon" src="s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex" />
+						<Label class="setting-button-label" text="-5%" />
+					</Button>
+				</Panel>
+			</Panel>
+			<Panel id="damage-challenge-inner" class="damage-challenge-inner">
+				<Panel id="lives-circle" class="lives-circle">
+					<Label id="lives-text" class="lives-text" text="1" />
+				</Panel>
+				<Panel id="hp-bar" class="hp-bar">
+					<Panel id="hp-trail" class="hp-trail" />
+					<Panel id="hp-fill" class="hp-fill" />
+					<Label id="hp-text" class="hp-text" text="500 / 500" />
+				</Panel>
+				<Panel id="timer-circle" class="timer-circle">
+					<Panel id="timer-ring" class="timer-ring">
+						<Panel id="timer-progress" class="timer-progress" />
+					</Panel>
+					<Panel id="timer-inner" class="timer-inner">
+						<Label id="timer-text" class="timer-text" text="30" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Label id="total-damage" class="total-damage" text="TOTAL DAMAGE: 0" />
+		</Panel>
+	</Panel>
+</root>

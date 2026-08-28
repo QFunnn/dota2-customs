@@ -1,0 +1,65 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/account/account.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/account/account.js" />
+	</scripts>
+	<snippets>
+		<snippet name="player_data">
+			<Panel id="content">
+				<DOTAUserName id="profname" steamid="0" />
+				<DOTAAvatarImage id="profavatar" steamid="0" />
+				<Label id="proflevel" text="Level: 514" />
+				<Panel id="profbarback" onmouseover="TipsOver(&apos;Exp_line&apos;,&apos;profbarback&apos;)" onmouseout="TipsOut()">
+					<Panel id="profbar" />
+				</Panel>
+				<Panel id="Reset" onmouseactivate="reset_acc()">
+					<Panel id="ResetContent">
+						<Image id="reset_image" src="s2r://panorama/images/guild/gem.png" />
+						<Label id="reset_text" text="50 RESET" />
+					</Panel>
+				</Panel>
+				<Label id="skill_points" text="0" />
+			</Panel>
+		</snippet>
+		<snippet name="StatInfo">
+			<Panel class="StatInfo">
+				<Image class="StatImage" />
+				<Label class="StatValue" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel id="Account" class="Account" hittest="false">
+			<Panel id="AccountPanel">
+				<Panel id="main" hittest="false">
+					<Panel id="main_content" />
+					<Panel id="CloseButtonIcon" src="" onmouseactivate="openaccountButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;CloseButtonIcon&apos;)" onmouseout="TipsOut()" />
+					<Panel id="TotalStatsInfo">
+						<Button id="StatInfoHeader" onactivate="switchStatsInfoVisibility()">
+							<Label class="StatInfoHeaderText" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Image id="ban" />
+			<Panel id="AcceptReset">
+				<Label class="AcceptResetDescription" text="#reset" />
+				<Label id="AcceptResetYes" text="#yes" />
+				<Label id="AcceptResetNo" text="#no" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

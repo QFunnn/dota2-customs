@@ -1,0 +1,211 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 5
+	m_BoundingBoxMin = [ 40.0, 40.0, -10.0 ]
+	m_BoundingBoxMax = [ -40.0, -40.0, 10.0 ]
+	m_flConstantLifespan = 2.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_flAnimationRate = 60.0
+			m_bOrientZ = true
+			m_bScaleAnimationRate = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/props_destruction/rockyspikes_dynamic.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.25
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.125
+			m_flBias = 0.35
+		},
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.125
+			m_flStartScale = 0.0
+			m_flBias = 0.85
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 179, 255, 192, 255 ]
+			m_flFadeEndTime = 0.0
+		},
+		{
+			_class = "C_OP_RemapScalarOnceTimed"
+			m_flRemapTime = 1.33
+			m_nFieldInput = 13
+			m_flInputMin = 1.0
+			m_flInputMax = 5.0
+			m_nFieldOutput = 13
+			m_flOutputMin = 6.0
+			m_flOutputMax = 10.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flOutputMax = 15.0
+			m_flOutputMin = -15.0
+			m_nFieldOutput = 5
+			m_flNoiseScaleLoc = 1.0
+			m_flNoiseScale = 3.0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.5
+				m_flRandomMax = 2.25
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 12
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.7
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreationNoise"
+			m_flNoiseScale = 1.0
+			m_flNoiseScaleLoc = 0.1
+			m_nFieldOutput = 20
+			m_flOutputMax = 0.0
+		},
+		{
+			_class = "C_INIT_CreatePhyllotaxis"
+			m_nScaleCP = 1
+			m_fsizeOverall = 1.0
+			m_fRadPerPointTo = 0.5
+			m_fMinRad = 1.0
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.85
+				m_flRandomMax = 1.5
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_RandomSecondSequence"
+			m_nSequenceMax = 5
+			m_nSequenceMin = 1
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 5
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 256.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 256.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_bSetNormal = true
+			m_flMaxTraceLength = 512.0
+			m_CollisionGroupName = "DEBRIS"
+			m_flOffset = 5.0
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_bDisableOperator = true
+			m_nInputMax = 100
+			m_nFieldOutput = 12
+			m_flOutputMax = 13750.700195
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 35.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_RandomForce"
+			m_MaxForce = [ 0.0, 0.0, -100.0 ]
+			m_MinForce = [ 0.0, 0.0, -50.0 ]
+			m_flOpEndFadeOutTime = 3.0
+			m_flOpStartFadeOutTime = 2.0
+			m_flOpEndFadeInTime = 1.0
+			m_flOpStartFadeInTime = 1.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/frostivus_gameplay/frostivus_leshrac_splitearth_groundflash_lines.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 2
+			m_vecCP1Pos = [ 0.0, 0.0, -128.0 ]
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 10
+}

@@ -1,0 +1,238 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.main-tab > .right > .table > .content > .member-row
+{
+	width: fit-children;
+	height: 60px;
+	flow-children: right;
+	background-color: rgba(20, 35, 50, 0.15);
+	border-bottom: 1px solid rgba(42, 58, 74, 0.3);
+	transition: transform 0.2s ease 0s;
+}
+
+.main-tab > .right > .table > .content > .member-row:hover
+{
+	box-shadow: -2px 0 12px rgba(255, 215, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.03);
+	border-bottom-color: rgba(255, 215, 0, 0.3);
+	transform: translateX(2px);
+}
+
+.main-tab > .right > .table > .content > .member-row.online
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(76, 175, 80, 0.03)), to(rgba(26, 42, 58, 0.1)));
+}
+
+.main-tab > .right > .table > .content > .member-row.is-top-merits
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 215, 0, 0.03)), to(rgba(26, 42, 58, 0.1)));
+	border-bottom-color: rgba(255, 215, 0, 0.2);
+}
+
+.main-tab > .right > .table > .content > .member-row > Panel
+{
+	height: 100%;
+}
+
+.main-tab > .right > .table > .content > .member-row > Panel:not(:last-child)
+{
+	border-right: 1px solid rgba(42, 58, 74, 0.3);
+}
+
+.main-tab > .right > .table > .content > .member-row > .mark
+{
+	ignore-parent-flow: true;
+	height: 100%;
+}
+
+.main-tab > .right > .table > .content > .member-row.online > .mark
+{
+	width: 4px;
+	background-color: #4caf50;
+}
+
+.main-tab > .right > .table > .content > .member-row.is-top-merits > .mark
+{
+	width: 4px;
+	background-color: #ffd700;
+}
+
+.main-tab > .right > .table > .content > .member-row > .level > .label
+{
+	align: center center;
+	padding: 8px 9px 8px 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.15)), to(rgba(255, 165, 0, 0.1)));
+	border: 1px solid rgba(255, 215, 0, 0.3);
+	border-radius: 6px;
+	text-align: center;
+	color: #ffd700;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 12px rgba(255, 215, 0, 0.3), 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.main-tab > .right > .table > .content > .member-row > .member
+{
+	padding-right: 10px;
+}
+
+.main-tab > .right > .table > .content > .member-row.is-top-merits > .member
+{
+	padding-right: 6px;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member
+{
+	flow-children: right;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .avatar
+{
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 8px;
+	border: 2px solid rgba(100, 181, 246, 0.4);
+	border-radius: 8px;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .avatar:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 0 8px rgba(100, 181, 246, 0.4);
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .name
+{
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	height: 20px;
+	flow-children: right;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .name > Label
+{
+	width: fill-parent-flow(1);
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .top-merits
+{
+	horizontal-align: right;
+	vertical-align: center;
+	width: 36px;
+	height: 36px;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .top-merits > .pulse
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: rgba(255, 215, 0, 0.4) 0px 0px 10px -8px;
+	border-radius: 50%;
+	animation-name: top-merits-glow-pulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .right > .table > .content > .member-row > .member > .top-merits > .inner
+{
+	width: 100%;
+	height: 100%;
+	margin: 9px;
+}
+
+.main-tab > .right > .table > .content > .member-row > .role > .label
+{
+	align: center center;
+	padding: 6px;
+	border: 1px solid;
+	border-radius: 6px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.main-tab > .right > .table > .content > .member-row > .stats > .wrapper
+{
+	align: center center;
+	flow-children: right;
+}
+
+.main-tab > .right > .table > .content > .member-row > .stats > .wrapper > .icon
+{
+	width: height-percentage(100%);
+	height: 20px;
+}
+
+.main-tab > .right > .table > .content > .member-row > .stats > .wrapper > .value
+{
+	vertical-align: center;
+	margin-left: 6px;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper
+{
+	vertical-align: center;
+	margin-left: 4px;
+	flow-children: right;
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper > .icon
+{
+	width: height-percentage(100%);
+	height: 12px;
+	border-radius: 50%;
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper > .label
+{
+	vertical-align: center;
+	padding-right: 10px;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper.online > .icon
+{
+	margin: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#4caf50), to(#2E7D32));
+	box-shadow: 0 0 4px rgba(76, 175, 80, 0.8);
+	animation-name: status-pulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper.online > .label
+{
+	color: rgb(76, 175, 80);
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper.offline > .icon
+{
+	margin: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(102, 102, 102)), to(rgb(68, 68, 68)));
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.main-tab > .right > .table > .content > .member-row > .status > .wrapper.offline > .label
+{
+	color: rgb(229, 224, 197);
+}

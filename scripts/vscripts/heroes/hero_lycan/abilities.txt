@@ -1,0 +1,162 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lycan_double_hit"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/hero_lycan"
+		"AbilityTextureName"			"double_hit"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityValues"
+		{
+			"slow"						"5 10 15 20"
+			"slow_as"					"5 10 15 20"
+			"duration"					"1"
+            "hits"                      
+            {
+				"value"							  "7 6 5 4"
+				"special_bonus_unique_lycan_5"    "-2"
+			}
+		}
+	}
+
+    "lycan_howl_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/hero_lycan"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"			"lycan_howl"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"34 30 26 22"
+		"AbilityCastRange"				"700"
+		"AbilityManaCost"				"70 80 90 100"
+	
+		"AbilityValues"
+		{
+			"duration"			
+            {
+				"value"							  "6"
+				"special_bonus_unique_lycan_1"    "+4"
+			}
+			"as"				"15 25 35 45"
+			"movespeed"			"10 15 20 25"
+            "damage"
+            {
+				"value"							  "10 15 20 25"
+				"special_bonus_unique_lycan_4"    "+10"
+			}
+			"radius"			"700"
+		}
+	}
+
+    "lycan_feral_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/hero_lycan"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"lycan_feral_impulse"
+
+		"AbilityValues"
+		{	
+			"damage"
+            {
+				"value"							  "10 15 20 25"
+				"special_bonus_unique_lycan_6"    "+15"
+			}
+			"armor"					    
+            {
+				"value"							  "3 6 9 12"
+				"special_bonus_unique_lycan_2"    "+3"
+			}
+		}
+	}
+
+    "lycan_shapeshift_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lycan/hero_lycan"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"lycan_shapeshift"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"90 80 70"
+		"AbilityDuration"				"20"
+		"AbilityManaCost"				"100 150 200"
+	
+		"AbilityValues"
+		{
+			"duration"				"20"		
+			"chance"				"40"
+			"mult"					
+            {
+				"value"							  "160 190 220"
+				"special_bonus_unique_lycan_3"    "+30"
+			}
+			"ms"					"550"
+			"hp"					"300 600 900"
+		}
+	}
+
+    "special_bonus_unique_lycan_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_lycan_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_lycan_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

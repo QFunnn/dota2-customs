@@ -1,0 +1,111 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"boss_slardar_slithereen_crush_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/slardar/slardar"
+		"AbilityTextureName"			"slardar_slithereen_crush"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"600"
+		"AbilityManaCost"				"500"
+		"AbilityCooldown"				"10"
+
+		"AbilityValues"
+		{
+			"crush_radius"				"600"
+			"slow_ms"					"80"
+			"slow_as"					"80"
+			"duration"					"3"
+			"damage"					"3500"
+			"diff_boost_damage"			"350"
+		}
+	}
+
+	"boss_slardar_torrential_waters"
+	{
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                  	"abilities/bosses/slardar/slardar"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"naga_siren_rip_tide"
+		"GameSoundsFile"				"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"500"
+
+		"AbilityValues"
+		{
+			"damage"					"3500"
+			"diff_boost_damage"			"350"
+			"interval"					"0.4"
+			"range"						"800"
+			"duration"					"4"
+			"delay"						"0.75"
+			"damage_radius"				"225"	
+		}
+	}
+
+	"boss_slardar_sprint_buff"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"           			"abilities/bosses/slardar/slardar"
+		"AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"slardar_guardian_sprint"
+	}
+
+	"boss_slardar_water_blast"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/slardar/slardar"
+        "AbilityTextureName"            "nayadzar_water_blast"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"              "900"
+        "AbilityCooldown"               "12"
+
+        "AbilityValues"
+        {
+            "radius"                	"900"
+            "speed"                 	"700"
+            "wave_width"            	"250"
+            "damage"					"3500"
+			"diff_boost_damage"			"350"
+        }
+    }
+
+	"boss_slardar_bubble"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/bosses/slardar/slardar"
+        "AbilityTextureName"            "nayadzar_bubble"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET" 
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "AbilityCooldown"               "15"
+        "AbilityCastRange"              "900"
+
+        "AbilityValues"
+        {
+            "duration"                  "2.5"
+            "damage"                    "45"
+            "radius"                    "900"
+        }
+    }
+}

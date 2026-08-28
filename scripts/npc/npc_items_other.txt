@@ -1,0 +1,1308 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"item_tombstone"
+	{
+		"AbilityName"					"item_datadriven" // "item_tombstone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/props_gameplay/tombstoneb01.vmdl"
+		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		//"AbilityChannelTime"			"7.0"	
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		//"ItemCastOnPickup"				"1"
+		"ItemKillable"					"0"
+	}
+	
+"item_shovel_dig"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"Trusty_Shovel_icon"
+		"ScriptFile"					"items/item_shovel_dig"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"ItemPurchasable" 				"0"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+	}
+	
+"item_shovel"
+	{
+		"Model"							"models/items/rattletrap/warmachine_shovel_dc/warmachine_shovel_dc.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"ModelScale" 					"1.80"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_trusty_shovel"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"	
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"1"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound" "Item.PickUpRingShop"
+		"UIDropSound" "Item.DropRecipeShop"
+		"WorldDropSound" "Item.DropGemWorld"
+	}	
+	
+"item_gold_brus"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"gold"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemPurchasable" 				"0"
+	}	
+	
+"item_prison_cell_key"
+	{
+		"Model"							"models/gameplay/prison_key.vmdl"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"prison_key"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemPurchasable" 				"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"UIPickupSound"					"Item.PickUpRingShop"
+		"UIDropSound" 					"Item.DropRecipeShop"
+		"WorldDropSound" 				"Item.DropGemWorld"
+	}	
+
+"item_orb"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"orb_of_passage"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/props_gameplay/neutral_box.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"1"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}
+	
+"item_Lord_heart"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"candy1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+
+"item_Medusa_heart"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"candy1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}	
+	
+"item_boss_soul"
+	{
+		"BaseClass"						"item_datadriven"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"boss"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+	}	
+	
+"item_slot_block"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"block"
+		"ItemPermanent"					"0"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemDroppable"					"0"
+		"ItemKillable"					"0"
+	}	
+
+"item_aegis_lua"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"      
+		"Model"							"models/props_gameplay/aegis.vmdl"			
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		    "item_aegis"
+		"ScriptFile"					"items/item_aegis_lua"
+		"ItemCost"						"10000"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"1"
+		"ItemSellable"		    		"0"
+		"ItemStockTime"					"180"
+		"ItemStockMax"					"1"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"0"		
+	}
+
+
+"item_dado_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"dado"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}
+	
+"item_triss_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"triss"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}	
+
+"item_destroyer_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"destroyer"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}		
+
+"item_fiddlesticks_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"fiddlesticks"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}
+
+"item_anakim_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"anakim"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Model"							"models/gameplay/orb_passage.vmdl"
+		"ItemPurchasable"				"0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ItemDroppable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"UIPickupSound"					"Item.PickUpGemShop"
+		"UIDropSound"					"Item.DropGemShop"
+		"WorldDropSound"				"Item.DropGemWorld"
+	}	
+	
+"item_krest"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"krest"
+		"ItemPurchasable"				"0"
+		"AbilityCooldown"				"30"
+		"ItemStackable"					"1"  
+		"ItemStockInitial"				"1"
+		"OnSpellStart"
+		{				
+			"RunScript"
+			{
+				"ScriptFile"            "items/item_krest.lua"
+				"Function"              "last_chance"
+			}
+		}
+	}
+	
+"item_bag_of_gold"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/gold_bag.vmdl"
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"10"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"100"
+		"ItemKillable"					"0"
+	}	
+	
+"item_naga_stone"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"pharaoh_mask"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemAliases"					"enchanted mango"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"130"
+		"ItemPurchasable"				"0"	
+		"ItemInitialCharges"			"1"
+		"ItemPermanent"					"0"
+		"IsTempestDoubleClonable"		"0"
+		"ItemInitiallySellable"			"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		"ShouldBeInitiallySuggested"	"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	}
+
+"item_candy1"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"stone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+	
+"item_candy2"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"stone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+	
+"item_candy3"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"stone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+
+"item_candy4"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"stone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+	
+"item_candy5"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"candy1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAliases"					"heal;health"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"HomeShop"						"0"
+		"SideShop"						"0"
+		"SecretShop"					"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}	
+	
+"item_ticket"
+	{
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"rosh"
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"130"
+		"ItemInitialCharges"			"1"
+		"ItemPermanent"					"0"
+		"IsTempestDoubleClonable"		"0"
+		"ItemInitiallySellable"			"1"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"1"
+		"ShouldBeInitiallySuggested"	"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"AllowedInBackpack"				"0"
+		"ItemPurchasable"				"0"
+	}
+	
+"item_ticket2"
+	{
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"rosh"
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemStackable"					"1"
+		"ItemStackableMax"				"130"
+		"ItemInitialCharges"			"1"
+		"ItemPermanent"					"0"
+		"IsTempestDoubleClonable"		"0"
+		"ItemInitiallySellable"			"1"
+		"ItemDroppable"					"1"
+		"ItemSellable"					"0"
+		"ItemKillable"					"1"
+		"ShouldBeInitiallySuggested"	"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"AllowedInBackpack"				"0"
+		"ItemPurchasable"				"0"
+	}
+	
+//=====================================================================================================================================================	
+//=====================================================================================================================================================	
+//=====================================================================================================================================================	
+//=====================================================================================================================================================
+
+	
+"item_speed_common"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/neutral/item_speed_common"
+		"AbilityTextureName"			"neutral/windfury"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AoERadius"              		 "700"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"30"
+			"bonus_attack_speed"	"10"
+			"radius"	"700"
+	}
+	}
+	
+"item_speed_rare"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/neutral/item_speed_rare"
+		"AbilityTextureName"			"neutral/nova_blade"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AoERadius"              		 "700"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"60"
+			"bonus_attack_speed"	"20"
+			"radius"	"700"
+	}
+	}
+	
+"item_speed_legendary"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/neutral/item_speed_legendary"
+		"AbilityTextureName"			"neutral/speed_legen"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AoERadius"              		 "700"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_attack_speed_tooltip"	"100"
+			"bonus_attack_speed"	"40"
+			"radius"	"700"
+	}
+	}
+
+"item_boots_speed_common"
+	{
+		"ScriptFile"					"items/neutral/item_boots_speed_common"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		  	"neutral/common_boots"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+		{
+				"bonus_speed_tooltip"			"25"
+		}
+	}
+	
+"item_boots_speed_rare"
+	{
+		"ScriptFile"					"items/neutral/item_boots_speed_rare"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		    "neutral/rare_boots"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_speed_tooltip"	"25"
+	}
+	}
+
+"item_boots_speed_legendary"
+	{
+		"ScriptFile"					"items/neutral/item_boots_speed_legendary"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		    "neutral/legendary_boots"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_speed_tooltip"	"25"
+	}
+	}
+
+"item_crit_common"
+	{
+		"ScriptFile"					"items/neutral/item_crit_common"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		  	"neutral/crit_common"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"crit_chance"	"5"
+			"crit_mult"	"125"
+	}
+	}
+	
+"item_crit_rare"
+	{
+		"ScriptFile"					"items/neutral/item_crit_rare"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		  	"neutral/crit_rare"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"crit_chance"	"10"
+			"crit_mult"	"225"
+	}
+	}	
+
+"item_crit_legendary"
+	{
+		"ScriptFile"					"items/neutral/item_crit_legendary"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"       
+        "BaseClass"						"item_lua"
+        "AbilityTextureName" 		  	"neutral/crit_legendary"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"crit_chance"	"15"
+			"crit_mult"	"325"
+	}
+	}
+	
+"item_bolt_common"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bolt_comm"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"5"
+			"target_count"	"4"
+	}
+		"Modifiers"
+		{
+			"modifier_bolt_common"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"		"%lightnihg_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"items/neutral/item_bolt_common"
+								"Function"		"Bolt"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+"item_bolt_rare"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bolt_rare"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+	//	"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"7"
+			"target_count"	"8"
+	}
+		"Modifiers"
+		{
+			"modifier_bolt_rare"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"		"%lightnihg_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"items/neutral/item_bolt_common"
+								"Function"		"Bolt"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+"item_bolt_legendary"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bolt_leg"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemIsNeutralActiveDrop"				"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityValues"
+	{
+		"radius"	"700"
+			"lightnihg_chance"	"5"
+			"lightnihg_damage_pct"	"9"
+	}
+		"Modifiers"
+		{
+			"modifier_bolt_legendary"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"		"%lightnihg_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"items/neutral/item_bolt_common"
+								"Function"		"Bolt_leg"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+"item_bash_common"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bash_common"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_damage"	"200"
+			"bash_chance"	"5"
+			"bash_duration"	"0.1"
+	}
+		"Modifiers"
+		{
+			"modifier_bash_common"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				}
+
+				"OnAttackStart"
+				{
+					"Random"
+					{
+						"Chance"			"%bash_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_bash_common_bash"
+								"Target" 		"TARGET"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Slardar.Bash"
+								"Target" 		"TARGET"
+							}
+						}
+					}
+				}
+			}
+			"modifier_bash_common_bash"
+			{
+				"Duration"              "%bash_duration"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"TextureName" "spear_of_destruction_modifier"
+				
+				"EffectName"            "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"      "follow_overhead"
+				"OverrideAnimation"     "ACT_DOTA_DISABLED"
+				
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED" 		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+"item_bash_rare"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bash_rare"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_damage"	"400"
+			"bash_chance"	"5"
+			"bash_duration"	"0.2"
+	}
+		"Modifiers"
+		{
+			"modifier_bash_rare"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				}
+
+				"OnAttackStart"
+				{
+					"Random"
+					{
+						"Chance"			"%bash_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_bash_rare_bash"
+								"Target" 		"TARGET"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Slardar.Bash"
+								"Target" 		"TARGET"
+							}
+						}
+					}
+				}
+			}
+			"modifier_bash_rare_bash"
+			{
+				"Duration"              "%bash_duration"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"TextureName" "spear_of_destruction_modifier"
+				
+				"EffectName"            "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"      "follow_overhead"
+				"OverrideAnimation"     "ACT_DOTA_DISABLED"
+				
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED" 		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+"item_bash_legendary"
+	{
+		"BaseClass"             		"item_datadriven"
+		"AbilityTextureName"			"neutral/bash_leg"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"			"ACT_DOTA_IDLE"
+		//"ItemDroppable" 				"0"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"				"1"
+		"Model" "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+	{
+		"bonus_damage"	"600"
+			"bash_chance"	"5"
+			"bash_duration"	"0.3"
+	}
+		"Modifiers"
+		{
+			"modifier_bash_legendary"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				}
+
+				"OnAttackStart"
+				{
+					"Random"
+					{
+						"Chance"			"%bash_chance"
+						"PseudoRandom"	"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_bash_legendary_bash"
+								"Target" 		"TARGET"
+							}
+							"FireSound"
+							{
+								"EffectName"	"Hero_Slardar.Bash"
+								"Target" 		"TARGET"
+							}
+						}
+					}
+				}
+			}
+			"modifier_bash_legendary_bash"
+			{
+				"Duration"              "%bash_duration"
+				"IsDebuff"				"1"
+				"IsPurgable"			"1"
+				"TextureName" "spear_of_destruction_modifier"
+				
+				"EffectName"            "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"      "follow_overhead"
+				"OverrideAnimation"     "ACT_DOTA_DISABLED"
+				
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED" 		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+"item_xdes_heart"
+	{
+		"BaseClass"             		"item_lua"
+		"ScriptFile"					"items/neutral/item_xdes_heart"
+		"AbilityTextureName"			"neutral/xdes"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable" 				"0"
+		"ItemSellable"					"0"
+		"ItemIsNeutralActiveDrop"		"1"
+		"Model" 						"models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityValues"
+		{
+			"bonus"	"50"
+		}
+	}	
+	
+//=============================================================================================
+
+"item_health_potion"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"item_health_potion"
+		"ScriptFile"					"items/item_health_potion"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/bottle_rejuvenation.vmdl"
+		"ItemKillable"					"0"
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemKillable"					"0"
+		"ItemCastOnPickup"				"1"
+		"AbilityValues"
+		{
+			"hp_restore_pct"	"20"
+		}
+	}
+
+"item_mana_potion"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"item_mana_potion"
+		"ScriptFile"					"items/item_mana_potion"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/bottle_mango001.vmdl"
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemKillable"					"0"
+		"ItemCastOnPickup"				"1"
+		"AbilityValues"
+		{
+			"mana_restore_pct"	"30"
+		}
+	}
+
+//============================================================================================================
+
+"item_gold_1000"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+"item_gold_1500"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+"item_gold_2000"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+"item_gold_2500"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+"item_gold_3000"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+"item_gold_3500"
+	{
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "items/item_golden"
+		"AbilityTextureName"            "golden_box"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"Model"                         "models/props_gameplay/treasure_chest_gold.vmdl"
+		"ItemPurchasable"               "0"
+	}
+
+//=====================================================================================================================
+	
+"item_book_of_strength"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"	
+		"Model"							"models/gameplay/attrib_tome_str.vmdl"
+		"skin" "1"	
+		"ItemCost"						"150"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+		"ItemKillable"					"1"
+
+		"AbilityValues"
+		{
+			"bonus_stat"	"3"
+		}
+	}
+
+"item_book_of_agility"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/gameplay/attrib_tome_agi.vmdl"
+		"skin" "2"
+		"ItemCost"						"150"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+		"ItemKillable"					"1"
+
+		"AbilityValues"
+		{
+			"bonus_stat"	"3"
+		}
+	}
+
+"item_book_of_intelligence"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/gameplay/attrib_tome_int.vmdl"
+		"ItemCost"						"150"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"0"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+		"ItemKillable"					"1"
+
+		"AbilityValues"
+		{
+			"bonus_stat"	"3"
+		}
+	}
+	
+//========================================================================================================
+
+"item_chest"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"chest_3"
+		"ItemCost"						"500"
+		"ItemHideCharges"				"0"
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"600.0"
+		"OnSpellStart"
+		{				
+			"RunScript"
+			{
+				"ScriptFile"            "items/item_chest.lua"
+				"Function"              "chest"
+			}
+		}
+	}
+	
+"item_chest2"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+		"AbilityTextureName"			"chest_4"
+		"ItemCost"						"1000"
+		"ItemHideCharges"				"0"
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"1200.0"
+		"OnSpellStart"
+		{				
+			"RunScript"
+			{
+				"ScriptFile"            "items/item_chest.lua"
+				"Function"              "chest2"
+			}
+		}
+	}
+}

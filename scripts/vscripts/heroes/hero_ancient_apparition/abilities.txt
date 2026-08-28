@@ -1,0 +1,173 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{	
+	"ancient_apparition_cold_feet_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                   	"heroes/hero_ancient_apparition/ancient_apparition.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"ancient_apparition_cold_feet"
+		"MaxLevel"						"4"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"20 16 12 8"
+		"AbilityManacost"				"60 80 100 120"			
+		
+		"AbilityValues"
+		{
+			"duration"					"2"
+			"radius"					"250"
+			"resist"
+			{
+				"value"											"4 8 12 16"
+				"special_bonus_unique_ancient_apparition_2"   	"+4"
+			}			
+			"damage"
+			{
+				"value"											"50 100 150 200"
+				"special_bonus_unique_ancient_apparition_3"   	"+100"
+			}	
+			"ExtraIntelligenceDamage" "0.2"
+		}
+	}
+
+	"ancient_apparition_ice_vortex_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                   	"heroes/hero_ancient_apparition/ancient_apparition.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"ancient_apparition_ice_vortex"
+		"MaxLevel"						"4"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"16 15 14 13"
+		"AbilityManacost"				"80 100 120 140"
+		
+		"AbilityValues"
+		{
+			"radius"					"600"
+			"slow"						"5 10 15 20"
+			"duration"					"3 4 5 6"
+			"damage"					
+			{
+				"value"											"4 8 12 16"
+				"special_bonus_unique_ancient_apparition_1"   	"+4"
+			}	
+		}
+	}
+
+	"ancient_apparition_chilling_touch_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ancient_apparition/ancient_apparition.lua"
+		"AbilityTextureName"			"ancient_apparition_chilling_touch"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Ancient_Apparition.ChillingTouchCast"
+		"MaxLevel"						"4"
+		"AbilityCooldown"				"8 6 4 2"
+		"AbilityManacost"				"10 15 20 25"
+
+		"AbilityValues"
+		{
+			"damage"					
+			{
+				"value"											"20 40 60 80"
+				"special_bonus_unique_ancient_apparition_4"   	"+40"
+			}	
+			"attack_range_bonus"		"250"
+			"ExtraIntelligenceDamage" 	"0.2"
+		}
+	}
+
+	"ancient_apparition_ice_blast_lua"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                   	"heroes/hero_ancient_apparition/ancient_apparition.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"ancient_apparition_ice_blast"
+		"MaxLevel"						"3"
+		
+		"AbilityValues"
+		{
+			"slow"						"10 15 20"
+			"duration"					"2"
+			"damage"					
+			{
+				"value"											"50 100 150"
+				"special_bonus_unique_ancient_apparition_5"   	"+100"
+			}	
+			"ExtraIntelligenceDamage" "0.2"
+		}
+	}
+
+	"special_bonus_unique_ancient_apparition_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_ancient_apparition_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_ancient_apparition_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

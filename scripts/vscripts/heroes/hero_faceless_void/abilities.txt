@@ -1,0 +1,165 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"time_walk_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/hero_faceless_void"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"                  "Hero_FacelessVoid.TimeWalk"
+        "AbilityTextureName"			"faceless_void_time_walk"
+		"AbilityCastRange"              "850"
+		"AbilityCooldown"               "24 18 12 6"
+		"AbilityManaCost"               "40 60 80 100"
+
+		"AbilityValues"
+		{
+			"range"                     "550 650 750 850"
+			"speed"                     "3000"
+			"backtrack_duration"        "2"
+			"slow_radius"               "300"
+			"duration"                  "3"
+			"as_steal"
+            {
+                "value"					                    "5 10 15 20"
+                "special_bonus_unique_faceless_void_2"	    "+10"
+            }
+			"ms_steal"
+            {
+                "value"					                    "5 10 15 20"
+                "special_bonus_unique_faceless_void_2"	    "+10"
+            }
+			"time_walk_reverse_timer"   "1.5"
+		}
+	}
+
+    "backtrack_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/hero_faceless_void"
+		"AbilityTextureName"			"faceless_void_backtrack"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"chance"
+            {
+            "value"					                    "5 10 15 20"
+            "special_bonus_unique_faceless_void_4"	    "+10"
+            }
+		}
+	}
+
+    "time_lock_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/hero_faceless_void"
+		"AbilityTextureName"			"faceless_void_time_lock"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"chance"				
+            {
+            "value"					                "8 12 16 20"
+            "special_bonus_unique_faceless_void_7"	"+10"
+            }
+			"damage"		
+            {
+            "value"					                "20 40 60 80"
+            "special_bonus_unique_faceless_void_3"	"+40"
+            }
+			"duration"				"0.1"
+		}
+	}
+
+    "faceless_void_chronosphere_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_faceless_void/hero_faceless_void"
+		"AbilityTextureName"			"faceless_void_chronosphere"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCooldown"				"80 70 60"
+		"AbilityManaCost"				"150 225 300"
+
+		"AbilityValues"
+		{
+			"radius"				    "425"
+			"duration"				    "4.0 4.5 5.0"
+		}
+	}
+
+    "special_bonus_unique_faceless_void_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_faceless_void_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_faceless_void_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

@@ -1,0 +1,201 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"crystal_maiden_frostbite_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/hero_crystal_maiden"
+		"AbilityTextureName"			"crystal_maiden_frostbite"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"9 8 7 6"
+		"AbilityManaCost"				"125 135 145 155"
+
+		"AbilityValues"
+		{
+            "damage"
+			{
+				"value"					"100"
+				"special_bonus_unique_crystal_1"   "+50"
+			}
+			"duration"				"1.0 1.5 2.0 2.5"
+			"boss_duration"			"0.5 0.75 1.0 1.25"
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+
+"crystal_maiden_crystal_nova_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/hero_crystal_maiden"
+		"AbilityTextureName"			"crystal_maiden_crystal_nova"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityCooldown"				"9 8 7 6"
+		"AbilityManaCost"				"100 140 180 220"
+
+		"AbilityValues"
+		{
+			"radius"			"400"
+			"movespeed_slow"	"-10 -15 -20 -25"
+			"attackspeed_slow"	"-10 -15 -20 -25"
+			"duration"
+			{
+				"value"					"3"
+				"special_bonus_unique_crystal_2"   "+2"
+			}
+			"nova_damage"			
+			{
+				"value"					"100 150 200 250"
+				"special_bonus_unique_crystal_4"   "+100"
+			}
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+
+"crystal_maiden_arcane_aura_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/hero_crystal_maiden"
+		"AbilityTextureName"			"crystal_maiden_brilliance_aura"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastRange"				"600"
+
+		"AbilityValues"
+		{
+			"mana_regen"	"4 6 8 10"
+			"ampl"				
+			{
+				"value"								"0.5 1.0 1.5 2.0"
+				"special_bonus_unique_crystal_3"	"+1"
+			}
+		}
+	}
+
+"crystal_maiden_freezing_field_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/hero_crystal_maiden"
+		"AbilityTextureName"			"crystal_maiden_freezing_field"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"10"
+
+		"AbilityCooldown"				"50 45 40"
+		"AbilityManaCost"				"200 400 600"
+
+		"AbilityValues"
+		{
+			"radius"					"700"
+			"explosion_radius"			"300"
+			"explosion_interval"		"0.1"
+			"movespeed_slow"			"-30"
+			"attack_slow"				"-30"
+			"slow_duration"				"1.0"
+			"explosion_min_dist"		"195"
+			"explosion_max_dist"		"785"
+			"damage"					
+			{
+				"value"								"100 200 300"
+				"special_bonus_unique_crystal_5"	"+150"
+			}
+			"duration"					"10"
+			"ExtraIntelligenceDamage"	"0.2"
+		}
+	}
+
+
+	"special_bonus_unique_crystal_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_crystal_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_crystal_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

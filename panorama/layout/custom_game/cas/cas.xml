@@ -1,0 +1,62 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/cas/cas.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/cas/cas.js" />
+	</scripts>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Image id="openCasino" onmouseactivate="openCasinoButton()" onmouseover="TipsOver(&apos;casino&apos;,&apos;openCasino&apos;)" onmouseout="TipsOut()" />
+		<Panel id="slotMachine" class="slotMachine" hittest="false">
+			<Label class="main_label" text="#casino" html="true" />
+			<Panel id="DSClose" class="DSClose" onmouseactivate="openCasinoButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;DSClose&apos;)" onmouseout="TipsOut()" />
+			<Panel id="rew" />
+			<Panel id="money_panel" class="money_panel">
+				<Panel class="DNMoneyPanel" id="DNMoneyPanel">
+					<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+					<Label class="DNMoneyLabel" id="DNMoneyLabel" text="0" html="true" />
+				</Panel>
+				<Panel class="MMMRPointsPanel" id="MMMRPointsPanel">
+					<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/protection.png" />
+					<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
+				</Panel>
+			</Panel>
+			<Panel id="spin_start_don" onmouseactivate="press_button(&apos;don&apos;)">
+				<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+				<Label class="slot_button_label" text="1" />
+			</Panel>
+			<Panel id="spin_start_rp" onmouseactivate="press_button(&apos;rp&apos;)">
+				<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/protection.png" />
+				<Label class="slot_button_label" text="10" />
+			</Panel>
+			<Panel id="wheels" class="wheels">
+				<Panel id="wheel1" class="wheel">
+					<Panel class="wheel_content">
+						<Panel class="RollItemsListMain" id="RollItemsListMain" />
+					</Panel>
+				</Panel>
+				<Panel id="wheel2" class="wheel">
+					<Panel class="wheel_content">
+						<Panel class="RollItemsListMain" id="RollItemsListMain" />
+					</Panel>
+				</Panel>
+				<Panel id="wheel3" class="wheel">
+					<Panel class="wheel_content">
+						<Panel class="RollItemsListMain" id="RollItemsListMain" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,177 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bristleback_passive"
+	{	
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bristleback/hero_bristleback"
+		"AbilityTextureName"			"ult_bb"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+        {
+            "bonus_hp"	                
+            {
+				"value"							        "3 4 5 6"
+				"special_bonus_unique_bristleback_1" 	"+3"
+			}	
+            "regen"	                    
+            {
+				"value"							        "0.2 0.4 0.6 0.8"
+				"special_bonus_unique_bristleback_4" 	"+0.4"
+			}
+        }
+    }
+
+    "bristleback_quill_spray_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bristleback/hero_bristleback"
+		"AbilityTextureName"			"bristleback_quill_spray"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"3"
+		"AbilityManaCost"				"35"
+
+		"AbilityValues"
+		{
+			"radius"	                "500"
+			"quill_base_damage"	        
+            {
+				"value"							        "25 35 45 55"
+				"special_bonus_unique_bristleback_7" 	"+25"
+			}	
+			"quill_stack_damage"	    
+            {
+				"value"							        "20 30 40 50"
+				"special_bonus_unique_bristleback_7" 	"+20"
+			}	
+			"quill_stack_duration"	    "7.0"
+			"max_damage"	            "1000.0"
+			"projectile_speed"	        "2400"
+		}
+	}
+
+	"bristleback_bristleback_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bristleback/hero_bristleback"
+		"AbilityTextureName"			"bristleback_bristleback"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilityValues"
+        {
+            "side_damage_reduction"	    
+            {
+				"value"							        "8 12 16 20"
+				"special_bonus_unique_bristleback_3" 	"+30"
+			}	
+            "back_damage_reduction"	    
+            {
+				"value"							        "16 24 32 40"
+				"special_bonus_unique_bristleback_3" 	"+30"
+			}	
+            "side_angle"	            "110"
+            "back_angle"	            "70"
+            "quill_release_threshold"	
+            {
+				"value"							        "550 500 450 400"
+				"special_bonus_unique_bristleback_2" 	"-100"
+			}
+        }
+    }
+
+    "bristleback_warpath_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bristleback/hero_bristleback"
+		"AbilityTextureName"			"bristleback_warpath"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"AbilityValues"
+		{
+			"damage_per_stack"		    
+            {
+				"value"							        "15 30 45"
+				"special_bonus_unique_bristleback_5" 	"+15"
+			}	
+			"move_speed_per_stack"	    "3 4 5"
+            "hp_regen_amp_per_stack"    "3 4 5"
+			"stack_duration"		    "20"
+			"max_stacks"			
+			{
+				"value"								    "5 7 9"
+				"special_bonus_unique_bristleback_6"	"+6"
+			}
+		}
+	}
+
+    "special_bonus_unique_bristleback_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_bristleback_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_bristleback_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

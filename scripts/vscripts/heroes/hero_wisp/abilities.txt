@@ -1,0 +1,196 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"wisp_tether_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/hero_wisp.lua"
+		"AbilityTextureName"			"wisp_tether"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCooldown"				"20 18 16 14"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"600"
+		"MaxLevel"						"4"
+
+		"AbilityValues"
+		{
+			"radius"					"900"
+			"movespeed"					"10 14 18 22"
+			"tether_heal_amp"			
+			{
+				"value"								"1.0 1.5 2.0 2.5"
+				"special_bonus_unique_wisp_6"   	"+1.5"
+			}	
+			"damage"
+            {
+				"value"								"10 15 20 25"
+				"special_bonus_unique_wisp_7"   	"+15"
+			}	
+		}
+	}
+	
+	"wisp_tether_break_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/hero_wisp.lua"
+		"AbilityTextureName"			"wisp_tether_break"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"						"1"
+ 		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"1.0"
+	}
+
+    "wisp_spirits_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/hero_wisp.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Wisp.Spirits.Cast"
+		"AbilityTextureName"			"wisp_spirits"
+		"MaxLevel"						"4"
+
+		"AbilityValues"
+		{
+			"creep_damage"				
+			{
+				"value"								"30 60 90 120"
+				"special_bonus_unique_wisp_1"   	"+30"
+			}	
+			"collision_radius"			            "50"
+			"num_spirits"
+            {
+				"value"								"5"
+				"special_bonus_unique_wisp_3"   	"+3"
+			}	
+			"spirit_turn_rate"			            "100"
+			"damage_interval"			            "0.45"
+		}
+	}	
+
+    "wisp_overcharge_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/hero_wisp.lua"
+		"AbilityTextureName"			"wisp_overcharge"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityManaCost"				"80 100 120 140"
+
+		"AbilityValues"
+		{
+            "bonus_attack_speed"	    
+            {
+				"value"								"20 40 60 80"
+				"special_bonus_unique_wisp_2"   	"+20"
+			}	
+            "bonus_move_speed"	        "10 20 30 40"
+            "hp_ampl"	                "0.3 0.6 0.9 1.2"
+            "interval"	                "0.2"
+            "hp_loss"	                
+            {
+				"value"								"0.9 1.8 2.7 3.6"
+				"special_bonus_unique_wisp_5"   	"-1"
+			}	
+            "mp_loss"	                "10 15 20 25"
+		}
+	}
+
+    "wisp_event_horizon"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wisp/hero_wisp.lua"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilitySound"					"Hero_Wisp.Relocate"
+		"AbilityTextureName"			"wisp_relocate"
+		"MaxLevel"						"3"
+		"AbilityCooldown"				"55 50 45"
+		"AbilityManaCost"				"200 300 400"
+        "AbilityCastRange"				"700"
+
+		"AbilityValues"
+        {
+            "radius"	                "700"
+            "duration"                  "2"
+            "hp_damage"
+            {
+				"value"								"10"
+				"special_bonus_unique_wisp_5"   	"5"
+			}
+            "damage"                    "200 400 600"
+        }
+	}
+
+    "special_bonus_unique_wisp_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_wisp_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_wisp_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+
+
+}

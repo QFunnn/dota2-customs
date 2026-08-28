@@ -1,0 +1,468 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.damage-challenge-container
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#22324a), to(#111a2a));
+	border: 2px solid #4a5a7a;
+	border-radius: 10px;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #4a5a7a33 0px 0px 8px 0px;
+	padding: 10px 20px;
+	transition-property: box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container:hover
+{
+	box-shadow: fill #4a5a7a88 0px 6px 12px 0px;
+}
+
+.damage-challenge-inner
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.lives-circle
+{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 2px solid #E6A300;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ffb84d), to(#d07a00));
+	box-shadow: fill #00000088 0px 2px 6px 0px, fill #E6A30044 0px 0px 8px 0px;
+	margin-right: 10px;
+	transition-property: all;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.lives-circle:hover
+{
+	box-shadow: fill #FFB74D88 0px 4px 8px 0px;
+}
+
+.lives-text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #fff;
+	font-family: Radiance;
+	font-size: 21px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 3.0 #000000f6;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.lives-circle:hover .lives-text
+{
+	color: #FFF3E0;
+	text-shadow: 1px 1px 3px #000000CC;
+}
+
+.hp-bar
+{
+	width: 200px;
+	height: 30px;
+	border: 2px solid #4a5a7a;
+	border-radius: 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a0f0f), to(#6a1e1e));
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #aa5a5a33, inset 0px -2px 3px #00000088;
+	margin: 0px 10px;
+	transition-property: border-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	vertical-align: center;
+}
+
+.hp-bar:hover
+{
+	border-color: #5a6a8a;
+}
+
+.hp-fill
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#b02b2b), to(#701a1a));
+	border-radius: 10px;
+	box-shadow: inset 0px 1px 1px #ffaaaa33, inset 0px -2px 4px #00000088;
+}
+
+.hp-trail
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#ffffff), to(#f0f0f0));
+	border-radius: 10px;
+	box-shadow: inset 0px 1px 1px #ffffff66, inset 0px -2px 4px #00000044, fill #ffffff88 0px 0px 8px 0px, fill #ffffff44 0px 0px 16px 0px;
+}
+
+.hp-text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #E5E0C5;
+	font-family: Radiance;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #000000AA;
+	transition-property: color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle
+{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a5a), to(#1a2a4a));
+	border: 3px solid #4a5a7a;
+	box-shadow: fill #00000088 0px 2px 6px 0px, fill #4a5a7a44 0px 0px 8px 0px;
+	margin-left: 10px;
+	transition-property: all;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle:hover
+{
+	border-color: #5a6a8a;
+	box-shadow: fill #4a5a7a88 0px 4px 8px 0px;
+}
+
+.timer-ring
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border: 3px solid #4a5a7a;
+	horizontal-align: center;
+	vertical-align: center;
+	transition-property: all;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-progress
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #4CAF50;
+	horizontal-align: center;
+	vertical-align: center;
+	transition-property: background-color, opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	border: 3px solid #4CAF50;
+	background-color: transparent;
+}
+
+.timer-inner
+{
+	width: 82%;
+	height: 82%;
+	border-radius: 50%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a5a), to(#1a2a4a));
+	horizontal-align: center;
+	vertical-align: center;
+	box-shadow: fill #00000088 0px 0px 4px 0px;
+}
+
+.timer-text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #E5E0C5;
+	font-family: Radiance;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px #000000AA;
+	transition-property: all;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle:hover .timer-text
+{
+	color: #FFB74D;
+	text-shadow: 1px 1px 3px #000000CC;
+}
+
+.total-damage
+{
+	color: #FFB84D;
+	font-family: Radiance;
+	font-size: 16px;
+	font-weight: bold;
+	horizontal-align: center;
+	margin-top: 6px;
+	text-shadow: 1px 1px 3px #000000DD;
+	padding-top: 4px;
+	transition-property: all;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	margin-top: -5px;
+}
+
+.total-damage:hover
+{
+	color: #FFB74D;
+	text-shadow: 1px 1px 3px #000000CC;
+}
+
+.hp-bar.low-health
+{
+	border-color: #a02b2b;
+	box-shadow: fill #a02b2b44 0px 0px 8px 0px;
+}
+
+.hp-bar.low-health .hp-fill
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#ff4444), to(#cc0000));
+	box-shadow: fill #ff444444 0px 0px 4px 0px;
+}
+
+.timer-circle.critical
+{
+	border-color: #ff4444;
+	box-shadow: fill #ff444444 0px 0px 8px 0px;
+}
+
+.timer-circle.critical .timer-ring
+{
+	border-color: #ff4444;
+}
+
+.timer-circle.critical .timer-progress
+{
+	border-color: #ff4444;
+	background-color: transparent;
+}
+
+.timer-circle.critical .timer-text
+{
+	color: #ff4444;
+	text-shadow: 1px 1px 3px #000000CC;
+}
+
+.hp-bar.damage-flash
+{
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #aa5a5a33, inset 0px -2px 3px #00000088, fill #FF4444AA 0px 0px 10px 2px;
+}
+
+.total-damage.pulse
+{
+	color: #FFD700;
+	text-shadow: 1px 1px 4px #000000EE;
+}
+
+.lives-circle:hover
+{
+	box-shadow: fill #00000088 0px 2px 6px 0px, fill #E6A30066 0px 0px 12px 0px;
+}
+
+.timer-circle:hover
+{
+	box-shadow: fill #00000088 0px 2px 6px 0px, fill #4a5a7a66 0px 0px 12px 0px;
+}
+
+.timer-circle.invulnerable
+{
+	background-color: #2d5a6b;
+	border-color: #1a3d4a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #3d6b7a33, inset 0px -2px 3px #00000088, fill #2d5a6b88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.disabled
+{
+	background-color: #4a4a6b;
+	border-color: #2a2a3d;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #5a5a7a33, inset 0px -2px 3px #00000088, fill #4a4a6b88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.frozen
+{
+	background-color: #3d5a6b;
+	border-color: #2a3d4a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #4d6a7a33, inset 0px -2px 3px #00000088, fill #3d5a6b88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.stunned
+{
+	background-color: #6b5a2d;
+	border-color: #4a3d1a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #7a6a3d33, inset 0px -2px 3px #00000088, fill #6b5a2d88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.ready
+{
+	background-color: #2d5a6b;
+	border-color: #1a3d4a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #3d6b7a33, inset 0px -2px 3px #00000088, fill #2d5a6b88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.attacking
+{
+	background-color: #6b2d3d;
+	border-color: #4a1a2a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #7a3d4d33, inset 0px -2px 3px #00000088, fill #6b2d3d88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.timer-circle.recharge
+{
+	background-color: #5a2d6b;
+	border-color: #3d1a4a;
+	box-shadow: fill #00000066 0px 2px 6px 0px, inset 0px 1px 0px #6a3d7a33, inset 0px -2px 3px #00000088, fill #5a2d6b88 0px 0px 15px 3px;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container.ready
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a3d4a), to(#0d2a35)) !important;
+	border-color: #2d5a6b !important;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #2d5a6b22 0px 0px 12px 0px !important;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container.attacking
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a1a2a), to(#2d0f1a)) !important;
+	border-color: #6b2d3d !important;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #6b2d3d22 0px 0px 12px 0px !important;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container.recharge
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3d1a4a), to(#2a0d35)) !important;
+	border-color: #5a2d6b !important;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #5a2d6b22 0px 0px 12px 0px !important;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container.disabled
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2a3d), to(#1a1a2a)) !important;
+	border-color: #4a4a6b !important;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #4a4a6b22 0px 0px 12px 0px !important;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+
+.damage-challenge-container.stunned
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a3d1a), to(#2a2a0d)) !important;
+	border-color: #6b5a2d !important;
+	box-shadow: fill #00000099 0px 4px 8px 0px, fill #6b5a2d22 0px 0px 12px 0px !important;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+
+#settings-container
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.setting-container
+{
+	flow-children: right;
+}
+
+.setting-button
+{
+	flow-children: right;
+	width: 60px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b6f4f), to(#1e4a3b));
+	border: 2px solid #4a8a6a;
+	box-shadow: fill #00000066 0px 4px 8px 0px, inset 0px 1px 0px #5a9a7a;
+	padding: 3px;
+}
+
+.setting-button:hover
+{
+	brightness: 1.2;
+	border-color: #5a9a7a;
+	box-shadow: fill #00000088 0px 6px 12px 0px, inset 0px 1px 0px #6aaa8a;
+}
+
+.setting-button:active
+{
+	brightness: 0.9;
+	box-shadow: fill #00000044 0px 2px 4px 0px, inset 0px 1px 0px #4a8a6a;
+}
+
+.setting-button-icon
+{
+	margin-left: 2px;
+	width: 15px;
+	height: 15px;
+}
+
+.setting-button-label
+{
+	horizontal-align: center;
+	font-family: Radiance;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#magic-armor-container
+{
+	horizontal-align: right;
+}
+
+.setting-first-button
+{
+	margin-right: 10px;
+}

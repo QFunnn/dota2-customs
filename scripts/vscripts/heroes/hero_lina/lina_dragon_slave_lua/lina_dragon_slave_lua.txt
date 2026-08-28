@@ -1,0 +1,49 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lina_dragon_slave_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lina/lina_dragon_slave_lua/lina_dragon_slave_lua"
+		"AbilityTextureName"			"lina_dragon_slave"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.45"
+		"AbilityDuration"				"0.6875"
+
+		"AbilityCooldown"				"8.0"
+		"AbilityManaCost"				"100 150 200 250"
+
+		"AbilityValues"
+		{
+			"dragon_slave_speed"			"1200"
+			"dragon_slave_width_initial"	"275"
+			"dragon_slave_width_end"		"200"
+			"dragon_slave_distance"			"1075"
+			"damage"						
+			{
+				"value"					"80 120 160 200"
+				"LinkedSpecialBonus"	"special_bonus_lina_1"
+			}
+			"ExtraIntelligenceDamage"			"0.2"
+		}
+	}
+}

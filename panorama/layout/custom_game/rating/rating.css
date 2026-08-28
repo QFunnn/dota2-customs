@@ -1,0 +1,314 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height:100%;
+	width:100%;
+}
+
+.openrating
+{
+	width:30px;
+	height:30px;
+	margin-left:160px;
+	margin-top:10px;
+	tooltip-position: bottom;
+	background-image: url("s2r://panorama/images/custom_game/rating.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.openrating:hover
+{
+	brightness: 1.8;
+}
+
+.openrating:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+.CloseRating
+{
+	vertical-align: top;
+	horizontal-align:right;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/custom_game/closeicon.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width:20px;
+	height:20px;
+}
+
+.CloseRating:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.CloseRating:hover
+{
+	sound: "ui_select_arrow";
+}
+
+#RatingPanel
+{
+	width: 950px;
+	height: 560px;
+	vertical-align: center;
+	horizontal-align:center;
+	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding:5px;
+}
+
+#RatingContainer
+{
+	width: 950px;
+	margin-top:40px;
+	height: 100%;
+	flow-children: down;
+}
+
+#RatingTabs
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.Tabs
+{
+	width:150px;
+	height:35px;
+	border-radius: 4px 4px 0 0;
+	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	opacity: 0.2;
+	margin:0 6px;
+	color: white;
+}
+
+#RatingContent
+{
+	width: 950px;
+	height: 100%;
+	box-shadow: inset 2px 2px 4px 0px #00000080;
+	padding: 5px;
+}
+
+#Diff_choise
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.rating_choise
+{
+	width: 65px;
+	height: 30px;
+	margin-left: 5px;
+	background-image: url("s2r://panorama/images/shop/shop_backgraund.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	opacity: 0.2;
+	color: white;
+}
+
+.rating_choise:hover,.Tabs:hover
+{
+	brightness: 2;
+	color:gold;
+	sound: "ui_select_arrow";
+}
+
+.diff,.Tab
+{
+	font-size:20px;
+	vertical-align:center;
+	horizontal-align:center;
+	text-align: center;
+}
+
+#Diff_description_bg
+{
+	margin-top: 30px;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: right;
+	vertical-align: top;
+	height: 435px;
+	width: 100%;
+	box-shadow: 0px 2px 4px 2px #00000080;
+	border-radius:2px;
+	brightness: 0.4;
+}
+
+#Mode_container_simple,#Mode_container_ability
+{
+	horizontal-align: right;
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+}
+
+.RightPanel
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align:right;
+	overflow: clip scroll;
+	flow-children: down;
+}
+
+.RatingCartContainer
+{
+	margin: 5px;
+	width: 100%;
+	padding:5px;
+	flow-children: down;
+	border: 1px solid black;
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align:center;
+}
+
+.RatingCartContainerTime
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.items_container
+{
+	flow-children: down;
+	margin-right:15px;
+	vertical-align:center;
+	horizontal-align: left;
+}
+
+.items_content
+{
+	flow-children: right;
+	margin-right:15px;
+	vertical-align:center;
+}
+
+.RatingCartHero
+{
+	margin: 5px;
+	flow-children: right;
+	font-size: 18px;
+	width: 100%;
+}
+
+.selected_bd
+{
+	background-image:url("s2r://panorama/images/shop/shop_backgraund_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-shadow: 0px 2px 2px 0px #00000080;
+	opacity: 1.3;
+	brightness: 1.2;
+	color:#d76a00;
+}
+
+#Diff_description
+{
+	margin-top: 30px;
+	horizontal-align: right;
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+}
+
+#ability_container,#item_container
+{
+	flow-children: right;
+}
+
+.LinkedAbility
+{
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+}
+
+#TabLoading
+{
+	color: white;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.hero_icon
+{
+	width: 50px;
+	height: 50px;
+	border: 1px solid gold;
+}
+
+.name_container
+{
+	flow-children: down;
+	vertical-align:center;
+	horizontal-align:center;
+	margin-left: 10px;
+	color:white;
+	width: 300px;
+}
+
+.statistic
+{
+	font-size: 16px;
+	flow-children: right;
+	horizontal-align:center;
+}
+
+.dota_hero
+{
+	margin-left:10px;
+	width: 55px;
+	height: 40px;
+	vertical-align:center;
+}
+
+.dota_item
+{
+	margin-left:5px;
+	width: 55px;
+	height: 50px;
+	vertical-align:center;
+}
+
+.hero_level,.hero_rating
+{
+	horizontal-align:center;
+	font-size: 18px;
+	color: white;
+}
+
+.hidden
+{
+	visibility: collapse;
+}
+
+.no_data
+{
+	horizontal-align:center;
+	margin-top:50%;
+}

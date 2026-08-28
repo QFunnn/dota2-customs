@@ -1,0 +1,536 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "golden_miner_crushing_rift"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_miner"
+        "AbilityTextureName"            "golden_miner_crushing_rift"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastRange"              "450"
+
+        "AbilityValues"
+		{
+			"disarm"						"2"
+			"stun_duration"					"0.1"
+			"debuff_duration"				"10"
+			"cleave"						"100"
+			"distance"					    "450"
+		}
+    }
+
+    "golden_miner_flesh_weight"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_miner"
+        "AbilityTextureName"            "golden_miner_flesh_weight"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "800"
+
+        "AbilityValues"
+        {
+			"max_distance"					"800"
+			"min_distance"					"250"
+			"max_slow"					    "70"
+			"min_slow"					    "10"
+			"duration"			        	"2"
+		}
+    }
+
+    "golden_miner_rock_throw"
+    {
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/addition_bosses/golden_miner"
+		"AbilityTextureName"			"golden_miner_rock_throw"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+        "AbilityCooldown"               "6"
+        "AbilityManaCost"               "150"
+        "AbilityCastRange"              "800"
+
+        "AbilityValues"
+        {
+            "damage"                    "3500"
+            "diff_boost_damage"         "350"
+            "impact_radius"             "300"    
+            "stun_duration"             "1"
+        }
+    } 
+
+    "golden_miner_death_nova"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_miner"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "14"
+        "AbilityManaCost"               "300"
+        "AbilityCastRange"              "800"
+        
+        "AbilityValues"
+        {
+            "radius"                    "800"
+            "pulses"                    "5"
+            "pull_duration"             "4"
+            "pull_speed"                "150"
+            "damage_per_pulse"          "2000"
+            "diff_boost_additional"     "200"
+            "explode_damage"            "500"
+            "diff_boost_damage"         "50"
+            "shard_count"               "12"
+        }
+    }
+
+    //================================================================================================
+
+    "golden_queen_field"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_queen"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"            "aerialis_field"
+        "AbilityCooldown"               "11"
+        "AbilityManaCost"               "250"
+        "AbilityCastRange"              "1000"
+
+        "AbilityValues"
+        {
+            "damage"                "3000"
+            "diff_boost_damage"     "300"
+            "range"                 "1000"
+            "damage_radius"         "350"
+            "delay"                 "3.0"
+            "explosion_delay"       "4"
+            "duration"              "2"
+            "slow"                  "50"
+        }
+    }
+
+    "golden_queen_aero_echo"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_queen"
+        "AbilityTextureName"            "rubick_spell_steal"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilityValues"
+        {
+            "radius"                "1200"
+            "echo_delay"            "2.0"
+            "damage_reflect_pct"    "70"
+            "find_radius"           "350"
+        }
+    }
+
+    //================================================================================================
+
+    "golden_wyvern_touch"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"                    "abilities/addition_bosses/golden_wyvern"	
+		"AbilityTextureName"			"huskar_berserkers_blood"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"damage"				    "500"
+            "diff_boost_damage"         "50"
+		}
+	}	
+
+    "golden_wyvern_aura" 
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_wyvern"
+        "AbilityTextureName"            "boss_lich_ice_aura"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "800"
+
+        "AbilityValues"
+        {
+			"max_distance"					"800"
+			"min_distance"					"250"
+			"resist_max"				    "90"
+			"resist_min"				    "10"
+		}
+    }
+
+    "golden_wyvern_splinter_blast"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                   	"abilities/addition_bosses/golden_wyvern"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"winter_wyvern_splinter_blast"
+		"AbilityCastRange"				"1200"
+		"AbilityCooldown"				"11.0"
+		"AbilityManaCost"				"250"
+
+		"AbilityValues"
+		{
+			"projectile_speed"		    "650"
+			"projectile_max_time"	    "1.0"
+			"split_radius"			    "500"
+			"duration"				    "2.5"
+			"damage"				    "3000"
+            "diff_boost_damage"         "300"
+			"secondary_projectile_speed"	"800"
+		}
+	}
+	
+    //================================================================================================
+
+    "golden_sea_anti_fervor"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_sea"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "troll_warlord_fervor"
+        
+        "AbilityValues"
+        {
+            "attack_speed"              "2"
+            "duration"                  "10"
+        }
+    }
+
+    "golden_sea_turbulence"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_sea"
+        "AbilityTextureName"            "aerialis_turbulence"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "800"
+        "AbilityCooldown"               "8"
+        "AbilityManaCost"               "200"
+
+        "AbilityValues"
+        {
+            "push_distance"         "150"
+            "interval"              "0.5"
+            "duration"              "3"
+            "damage"                "3000"
+            "diff_boost_damage"     "300"
+        }
+    }
+
+    "golden_sea_hydro"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_sea"
+        "AbilityTextureName"            "nayadzar_hydro"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilityValues"
+        {
+            "debuff_duration"			"5"
+            "damage"                    "100"
+            "diff_boost_damage"         "10"
+        }
+    }
+
+    "golden_sea_mirror_surface"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_sea"
+        "AbilityTextureName"            "nayadzar_mirror_surface"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "13"
+        "AbilityManaCost"               "250"
+
+        "AbilityValues"
+        {
+            "duration"              "4"
+            "reflect_pct"           "100"
+            "projectile_speed"      "1200"
+            "stun_duration"         "1.5"
+        }
+    }
+
+    "golden_sea_illusion"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_sea"
+        "AbilityTextureName"            "nayadzar_illusion"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCooldown"               "25"
+        "AbilityManaCost"               "350"
+        "AbilityCastRange"              "900"
+
+        "AbilityValues"
+        {
+            "duration"                  "10"
+            "radius"                    "900"
+        }
+    }
+
+    //================================================================================================
+
+    "golden_dragon_blinding_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_dragon"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"              "900"
+        "AbilityCooldown"               "13"
+        "AbilityManaCost"               "250"
+        
+        "AbilityValues"
+        {
+            "radius"                    "900"
+            "duration"                  "3.0"
+            "blind_pct"                 "100"
+            "explosion_damage"          "4500"
+            "diff_boost_damage"         "450"
+        }
+    }
+
+    "golden_dragon_greed"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_dragon"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCooldown"               "14"
+        "AbilityManaCost"               "300"
+        "AbilityCastRange"              "700"
+        
+        "AbilityValues"
+        {
+            "radius"                    "700"
+            "duration"                  "5"
+        }
+    }
+
+    "golden_dragon_solar_wind"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_dragon"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "12"
+        "AbilityManaCost"               "250"
+        "AbilityCastRange"              "700"
+        
+        "AbilityValues"
+        {
+            "distance"          "400"
+            "radius"            "500"
+            "duration"          "0.5"
+            "burn_duration"     "3.0"
+            "burn_damage"       "3500"
+            "diff_boost_damage" "350"
+            "slow_pct"          "60"
+        }
+    }
+
+    "golden_dragon_vacuum_dash"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_dragon"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "200"
+        "AbilityCastRange"              "700"
+        
+        "AbilityValues"
+        {
+            "radius"            "450"
+            "pull_duration"     "0.3"
+            "dash_speed"        "1800"
+            "damage"            "3500"
+            "diff_boost_damage" "350"
+        }
+    }
+
+    //================================================================================================
+
+    "golden_forest_death_investment"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/golden_forest"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "200"
+        "AbilityCastRange"              "800"
+
+        "AbilityValues"
+        {
+            "duration"                  "3"
+            "bonus_damage"              "1000"
+            "bonus_attack_speed"        "100"
+            "stun_duration"             "2"
+        }
+    }
+
+    //================================================================================================
+    
+    "hidden_snow_boss_ice_torrent"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/hidden_snow_boss"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL" 
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastRange"              "1000"
+        "AbilityCooldown"               "2.0"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+            "radius"                "350"
+            "delay"                 "7"
+            "vision_duration"       "7"
+            "damage"                "3500"
+            "diff_boost_damage"     "350"
+        }
+    }
+
+    "hidden_snow_boss_pinguin_wave"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/addition_bosses/hidden_snow_boss"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "skeletal"
+        "AbilityCastAnimation"          "ACT_DOTA_TELEPORT"
+        "AbilityCastPoint"              "0.1"
+        "AbilityCooldown"               "6"
+        "AbilityManaCost"               "600"
+
+        "AbilityValues"
+        {
+            "count"                     "5"
+            "count_tooltip"             "10"
+            "radius"                    "125"
+            "spawn_radius"              "800"
+            "damage"                    "3500"
+            "diff_boost_damage"         "350"
+            "speed"                     "500"
+            "distance"                  "1500"
+        }
+    }
+
+    //================================================================================================
+
+    "hidden_earth_boss_split_earth"
+	{
+		"BaseClass"          			"ability_lua"
+		"ScriptFile"					"abilities/addition_bosses/hidden_earth_boss"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"leshrac_split_earth"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.7"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"200"
+
+		"AbilityValues"
+		{
+			"delay"				        "0.35"
+			"radius"			        "800"
+			"duration"			        "2"
+			"damage"			        "3500"
+            "diff_boost_damage"         "350"
+		}
+	}
+
+    "hidden_earth_boss_create_stone"
+    {
+        "BaseClass"                 "ability_lua"
+        "ScriptFile"                "abilities/addition_bosses/hidden_earth_boss"
+        "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityTextureName"        "morphling_adaptive_strike"
+        "AbilityCastRange"          "600"
+        "AbilityCastPoint"          "0.3"
+        "AbilityCooldown"           "10"
+        "AbilityManaCost"           "100"
+
+        "AbilityValues"
+        {
+            "count"                 "2"
+            "duration"              "30"
+            "spawn_radius"          "600"
+        }
+    }
+
+    "hidden_earth_boss_fissure_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/addition_bosses/hidden_earth_boss"
+		"AbilityTextureName"			"earthshaker_fissure"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"150"
+
+		"AbilityValues"
+		{
+            "fissure_duration"	        "3"
+            "fissure_radius"	        "225"
+            "stun_duration"	            "2"
+            "damage"                    "3500"
+            "diff_boost_damage"         "350"
+            "distance"                  "800"
+		}
+	}
+
+    "hidden_earth_boss_magnetize_lua"
+    {
+        "BaseClass"                 "ability_lua"
+        "ScriptFile"                "abilities/addition_bosses/hidden_earth_boss"
+        "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"        "earth_spirit_magnetize"
+        "AbilityCastRange"          "500"
+        "AbilityCooldown"           "10"
+        "AbilityManaCost"           "100"
+
+        "AbilityValues"
+        {
+            "cast_radius"           "500"
+            "damage_per_second"     "2000"
+            "diff_boost_damage"     "200"
+            "damage_duration"       "6"
+            "damage_interval"       "0.5"
+            "radius"                "500"
+        }
+    }
+}

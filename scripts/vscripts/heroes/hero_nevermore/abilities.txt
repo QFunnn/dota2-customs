@@ -1,0 +1,240 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"shadow_fiend_shadowraze_a_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_shadowraze1"
+		"LinkedAbility"					"shadow_fiend_shadowraze_b_lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.55"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+        {
+            "shadowraze_damage"	        
+            {
+				"value"					                 "80 140 200 260"
+				"special_bonus_unique_shadow_fiend_1"    "+60"
+			}
+            "shadowraze_radius"	        "200"
+            "shadowraze_range"	        "200"
+            "soul"
+            {
+				"value"					                 "2"
+				"special_bonus_unique_shadow_fiend_5"    "+2"
+			}
+        }
+	}
+
+	"shadow_fiend_shadowraze_b_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_shadowraze2"
+		"LinkedAbility"					"shadow_fiend_shadowraze_c_lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.55"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+        {
+            "shadowraze_damage"	        
+            {
+				"value"					                 "80 140 200 260"
+				"special_bonus_unique_shadow_fiend_1"    "+60"
+			}
+            "shadowraze_radius"	        "200"
+            "shadowraze_range"	        "450"
+            "soul"
+            {
+				"value"					                 "2"
+				"special_bonus_unique_shadow_fiend_5"    "+2"
+			}
+        }
+	}
+
+	"shadow_fiend_shadowraze_c_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_shadowraze3"
+		"LinkedAbility"					"shadow_fiend_shadowraze_a_lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.55"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"70 80 90 100"
+
+		"AbilityValues"
+        {
+            "shadowraze_damage"	        
+            {
+				"value"					                 "80 140 200 260"
+				"special_bonus_unique_shadow_fiend_1"    "+60"
+			}
+            "shadowraze_radius"     	"200"
+            "shadowraze_range"	        "700"
+            "soul"
+            {
+				"value"					                 "2"
+				"special_bonus_unique_shadow_fiend_5"    "+2"
+			}
+        }
+    }
+
+    "shadow_fiend_necromastery_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_necromastery_demon"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"soul_damage"
+            {
+				"value"								    "1"
+				"special_bonus_unique_shadow_fiend_6" 	"+1"
+			}
+			"soul_release"
+			{
+				"value"								    "70 60 50 40"
+				"special_bonus_unique_shadow_fiend_7" 	"-20"
+			}
+		}
+	}
+
+    "nevermore_aura"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_dark_lord"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"				"1200"
+
+		"AbilityValues"
+		{
+			"reduction"
+			{
+				"value"								    "2 4 6 8"
+				"special_bonus_unique_shadow_fiend_2"	"+3"
+			}
+            "chance"
+            {
+				"value"								    "15"
+				"special_bonus_unique_shadow_fiend_3" 	"+10"
+			}
+		}
+	}
+
+	"shadow_fiend_requiem_of_souls_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_nevermore/hero_nevermore"
+		"AbilityTextureName"			"nevermore_requiem"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1.67"
+		"AbilityCooldown"				"60 50 40"
+		"AbilityManaCost"				"200 300 400"
+
+		"AbilityValues"
+        {
+            "requiem_range"	            "1000"
+            "requiem_line_width_start"	"125"
+            "requiem_line_width_end"	"425"
+            "requiem_line_speed"	    "700"
+            "damage"	                
+            {
+				"value"								    "4 8 12"
+				"special_bonus_unique_shadow_fiend_4" 	"+4"
+			}
+        }
+	}
+
+    "special_bonus_unique_shadow_fiend_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_shadow_fiend_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_shadow_fiend_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+
+}

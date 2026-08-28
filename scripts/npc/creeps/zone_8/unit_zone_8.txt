@@ -1,0 +1,453 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{
+    
+    "npc_dota_zone_8_unit_1"
+	{
+		"Model"						"models/heroes/techies/techies.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Techies"
+		"IsAncient"					"1"
+		"ModelScale" 				"0.6"
+		
+		"Ability1"					"creep_forest_quest_lua"
+		"Ability2"					"necronomicon_warrior_sight"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"				"100"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"170"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"25"
+		"StatusHealth"				"100000"
+
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+		
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"1" { "ItemDef" "491" }
+				"2" { "ItemDef" "490" }
+				"3" { "ItemDef" "492" }
+				"4" { "ItemDef" "394" }
+				"5" { "ItemDef" "487" }
+				"6" { "ItemDef" "489" }
+				"7" { "ItemDef" "499" }
+			}
+		}
+	}	
+
+    "npc_dota_zone_8_unit_2"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/enchantress/enchantress.vmdl"
+		"BaseClass"					"npc_dota_creature"										
+		"SoundSet"					"Hero_Enchantress"								
+		"ModelScale"				"0.8"
+		"HasInventory"				"1"
+		"CanBeDominated"			"0"
+		
+		"Ability1"					"creep_untouchable_lua"		
+		"Ability2"					"creep_enchant_lua"		
+
+		"ArmorPhysical"				"15"			
+		"MagicalResistance"			"15"			
+	
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"450"		
+		"AttackDamageMax"			"450"		
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0.4"			
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"800"		
+		"AttackRange"				"550"
+		"ProjectileModel"			"particles/units/heroes/hero_enchantress/enchantress_base_attack.vpcf"	
+		"ProjectileSpeed"			"900"
+
+		// "BountyXP"					"85"		
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+		"HealthBarOffset"			"240"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+		"MovementTurnRate"			"0.7"		
+
+		"StatusHealth"				"5000"		
+		"StatusHealthRegen"			"10"		
+		"StatusMana"				"650"			
+		"StatusManaRegen"			"19.5"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"Creature"
+		{
+		"EquippedItems"
+			{
+			"item_mael2"
+				{
+					"Item"					"item_mjollnir_lua3"
+				}
+			"desol"
+				{
+					"Item"					"item_desolator_lua2"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "286" }
+				"Wearable2" { "ItemDef" "287" }
+				"Wearable3" { "ItemDef" "288" }
+				"Wearable4" { "ItemDef" "289" }
+				"Wearable5" { "ItemDef" "290" }
+			}
+		}
+	}
+
+    "npc_dota_zone_8_unit_3"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/techies/techies.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Techies"
+		"ModelScale" 				"0.6"
+		
+		"Ability1"					"creep_stasis_lua"
+		"Ability2"					"creep_land_mines_lua"
+		"Ability3"					"creep_suicide_lua"
+		"Ability4"					"necronomicon_warrior_sight"
+		
+		"ArmorPhysical"				"15"
+		"MagicalResistance"			"15"
+		
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"500"
+		"AttackDamageMax"			"500"
+		"AttackRate"				"0.7"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"				"700"
+		"ProjectileModel"			"particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+		"ProjectileSpeed"			"900"
+		
+		"RingRadius"				"70"
+		"HealthBarOffset"			"170"
+		
+		// "BountyXP"					"80"
+		
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"550"
+		
+		"StatusHealth"				"15000"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"2700"
+		"StatusManaRegen"			"81"
+		
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"1" { "ItemDef" "491" } // Techies Squee Costume
+				"2" { "ItemDef" "490" } // Techies Cart
+				"3" { "ItemDef" "492" } // Techies Spleen Costume
+				"4" { "ItemDef" "394" } // Techies Bomb Arsenal
+				"5" { "ItemDef" "487" } // Techies Spoon Costume
+				"6" { "ItemDef" "489" } // Techies Slingshot
+				"7" { "ItemDef" "499" } // Techies Sign
+			}
+		}
+	}
+
+    "npc_dota_zone_8_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/creeps/forest_bear/forest_bear.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"ModelScale" 				"1"
+		"HasInventory"				"1"
+		
+		"Ability1"					"boss_ursa_fury_swipes_lua"
+		"Ability2"					"zombie_lifesteal"
+
+		"ArmorPhysical"				"15"
+		"MagicalResistance"			"15"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"500"
+		"AttackDamageMax"			"500"
+		"AttackRate"				"0.5"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"100"
+		"ProjectileModel"			""
+		"ProjectileSpeed"			"0"
+
+		"RingRadius"				"50"
+		"HealthBarOffset"			"140"
+
+		// "BountyXP"					"90"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"380"
+
+		"StatusHealth"				"9000"
+		"StatusHealthRegen"			"30"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"EquippedItems"
+			{
+			"mkb"
+				{
+					"Item"					"item_monkey_king_bar_lua2"
+				}
+			}
+			"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"15"
+				}
+			}
+		}
+	}
+	
+    "npc_dota_zone_8_unit_5"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl"
+		"SoundSet"					"Hero_KeeperOfTheLight"
+		"ModelScale" 				"1"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_cast_damage_immune_lua"
+		"Ability2"					"neutral_spell_immunity"
+
+		"ArmorPhysical"				"15"
+		"MagicalResistance"			"80"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"400"
+		"AttackDamageMax"			"400"
+		"AttackRate"				"0.4"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_base_attack.vpcf"
+		"ProjectileSpeed"			"900"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"310"
+
+		// "BountyXP"					"70"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"500"
+
+		"StatusHealth"				"5000"
+		"StatusHealthRegen"			"10"
+		"StatusMana"				"1750"
+		"StatusManaRegen"			"52.5"
+		
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"ItemDrops"
+			{
+				"Trinkets"
+				{
+					"Item"
+					{	
+						"1"				"item_health_potion"
+					}
+					"Chance"			"35"
+				}
+			}
+			"EquippedItems"
+			{
+				"mkb"
+				{
+					"Item"					"item_octarine_core_lua1"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "5770"}
+				"Wearable2" {"ItemDef" "5771"}
+				"Wearable3" {"ItemDef" "5772"}
+				"Wearable4" {"ItemDef" "9123"}
+			}
+		}
+	}
+
+    "npc_dota_zone_8_unit_6"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"Model"						"models/heroes/treant_protector/treant_protector.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Treant"
+		"ModelScale" 				"1.5"
+		"HasInventory"				"1"
+	
+		"Ability1"					"creep_treant_seed_lua"				
+		"Ability2"					"creep_overgrowth_lua"
+		"Ability3"					"armor_reduction_aura"
+		"Ability4"					"treant_invis"
+		"Ability5"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"20"			
+		"MagicalResistance"         "15"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"700"		
+		"AttackDamageMax"			"700"		
+		"AttackRate"				"0.5"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"900"		
+		"AttackRange"				"200"
+
+		"RingRadius"				"70"
+		"HealthBarOffset"			"315"
+
+		// "BountyXP"					"150"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"380"			
+		"MovementTurnRate"			"1"		
+	
+		"StatusHealth"				"15000"		
+		"StatusHealthRegen"			"50"		
+		"StatusMana"				"3000"			
+		"StatusManaRegen"			"90"			 
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"item_bfury_lua1"
+				{
+					"Item"					"item_bfury_lua2"
+				}
+				"desol"
+				{
+					"Item"					"item_desolator_lua2"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "227" }
+				"Wearable2" { "ItemDef" "228" }
+				"Wearable3" { "ItemDef" "229" }
+				"Wearable4" { "ItemDef" "230" }
+			}			
+		}
+	}
+
+    "npc_zone_8_creep_land_mines"
+    {
+        "BaseClass"                     "npc_dota_base"
+        "Model"                         "models/items/techies/farming_techies_proximity_mine/farming_techies_proximity_mine.vmdl"
+        "VisualScale"                   "0.6"
+        "SoundSet"                      "Hero_Techies.LandMine"
+        "StatusHealth"                  "1"
+        "StatusHealthRegen"             "0"
+        "StatusMana"                    "0"
+        "StatusManaRegen"               "0"
+        "StatusStartingArmor"           "0"
+        "BoundsHullName"                "DOTA_HULL_SIZE_SMALL"
+        "MovementCapabilities"          "DOTA_UNIT_CAP_MOVE_NONE"
+        "MovementSpeed"                 "0"
+        "AttackCapabilities"            "DOTA_UNIT_CAP_NO_ATTACK"
+        "VisionDaytimeRange"            "600"
+        "VisionNighttimeRange"          "600"
+        "UnitRelationshipClass"         "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+        "HasInventory"                  "0"
+    }
+		
+    "npc_zone_8_creep_stasis"
+    {
+        "BaseClass"                     "npc_dota_base"
+        "Model"                         "models/heroes/techies/fx_techiesfx_stasis.vmdl"
+        "VisualScale"                   "0.6"
+        "SoundSet"                      "Hero_Techies.LandMine"
+        "StatusHealth"                  "1"
+        "StatusHealthRegen"             "0"
+        "StatusMana"                    "0"
+        "StatusManaRegen"               "0"
+        "StatusStartingArmor"           "0"
+        "BoundsHullName"                "DOTA_HULL_SIZE_SMALL"
+        "MovementCapabilities"          "DOTA_UNIT_CAP_MOVE_NONE"
+        "MovementSpeed"                 "0"
+        "AttackCapabilities"            "DOTA_UNIT_CAP_NO_ATTACK"
+        "VisionDaytimeRange"            "600"
+        "VisionNighttimeRange"          "600"
+        "UnitRelationshipClass"         "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+        "HasInventory"                  "0"
+    }
+		
+}

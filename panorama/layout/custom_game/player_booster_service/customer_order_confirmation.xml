@@ -1,0 +1,61 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/common_styles.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/customer_order_confirmation.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/customer_order_confirmation.js" />
+	</scripts>
+	<Panel class="root2" hittest="false" style="height: 100%; width: 100%;">
+		<Panel class="unified-modal-overlay" id="order_confirmation_overlay">
+			<Panel class="unified-modal-medium">
+				<Panel class="unified-modal-header">
+					<Label class="unified-modal-title" text="#ui_booster_order_confirmation_title" />
+					<Button class="unified-close-button" id="close_button">
+						<Label class="unified-close-text" text="×" />
+					</Button>
+				</Panel>
+				<Panel class="unified-modal-content">
+					<Panel class="unified-info-section">
+						<DOTAAvatarImage id="confirmation_avatar" class="unified-avatar" steamid="76561198146952643" />
+						<Panel class="unified-info-text">
+							<DOTAUserName id="confirmation_booster_name" class="unified-name" steamid="76561198146952643" />
+							<Label id="confirmation_booster_stats" class="unified-stats" text="#ui_booster_orders_completed" html="true" />
+						</Panel>
+					</Panel>
+					<Label class="unified-modal-message" text="#ui_booster_order_confirmation_message" />
+					<Panel class="unified-details-section">
+						<Panel class="unified-detail-row">
+							<Label class="unified-detail-label" text="#ui_booster_difficulty_label" />
+							<Label id="confirmation_difficulty" class="unified-detail-value" text="20" />
+						</Panel>
+						<Panel class="unified-detail-row total-row">
+							<Label class="unified-detail-label" text="#ui_booster_price_label" />
+							<Label id="confirmation_total" class="unified-detail-value unified-total-amount" text="100" />
+						</Panel>
+					</Panel>
+					<Panel class="unified-actions-section">
+						<Button class="unified-button unified-button-danger" id="reject_order_button">
+							<Label class="button-text" text="#ui_booster_reject_button" />
+						</Button>
+						<Button class="unified-button unified-button-primary" id="confirm_order_button">
+							<Label class="button-text" text="#ui_booster_confirm_button" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

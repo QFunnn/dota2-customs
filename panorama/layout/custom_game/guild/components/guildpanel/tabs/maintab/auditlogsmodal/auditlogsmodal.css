@@ -1,0 +1,392 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.root > .top-layer > .blank > .audit-logs
+{
+	width: 1000px;
+	flow-children: down;
+}
+
+.root > .top-layer > .blank > .audit-logs > .header
+{
+	width: 100%;
+	padding: 12px 12px 12px 16px;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .icon
+{
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	img-shadow: 0 0 8px 1.5 rgba(100, 181, 246, 0.6);
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .label
+{
+	vertical-align: center;
+	margin-left: 12px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .close
+{
+	horizontal-align: right;
+	vertical-align: center;
+	width: 32px;
+	height: 32px;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .close:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .close:hover > .icon
+{
+	background-color: #ff6b6b;
+}
+
+.root > .top-layer > .blank > .audit-logs > .header > .close > .icon
+{
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	opacity-mask: url("s2r://panorama/images/control_icons/close_png.vtex");
+	opacity-mask-scale: 70%;
+	opacity-mask-position: 0% 0%;
+}
+
+.root > .top-layer > .blank > .audit-logs > .line
+{
+	width: 100%;
+	height: 1px;
+	background-color: #3a4a5a;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list
+{
+	width: 100%;
+	height: 550px;
+	padding: 20px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > #VerticalScrollBar
+{
+	width: 4px;
+	height: 92%;
+	margin-top: 4%;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .loading
+{
+	width: 100%;
+	height: 100%;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .loading > .inner
+{
+	align: center center;
+	width: 50px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	animation-name: loading-animation;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .empty
+{
+	width: 100%;
+	height: 100%;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .empty > .label
+{
+	align: center center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log
+{
+	width: 100%;
+	padding: 12px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.6)), to(rgba(15, 26, 42, 0.6)));
+	border: 1px solid rgba(74, 90, 122, 0.4);
+	border-radius: 8px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log:not(:last-child)
+{
+	margin-bottom: 8px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log:hover
+{
+	border-color: rgba(74, 90, 122, 0.8);
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .timestamp
+{
+	color: #e5e0c5;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .line
+{
+	width: 1px;
+	height: 100%;
+	margin: 0 12px;
+	background-color: #3a4a5a;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line:not(:first-child)
+{
+	margin-top: 8px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .log-text
+{
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 18.75px;
+	font-weight: bold;
+	opacity: 0.5;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .arrow
+{
+	vertical-align: center;
+	width: 16px;
+	height: 16px;
+	margin: 0 12px;
+	background-color: #fff;
+	opacity-mask: url("s2r://panorama/images/guild/arrow.png");
+	opacity-mask-scale: 100%;
+	opacity-mask-position: 0% 0%;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player
+{
+	vertical-align: center;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player.target,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player.target
+{
+	margin-left: 4px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player > .avatar,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player > .avatar
+{
+	vertical-align: center;
+	width: 24px;
+	height: 24px;
+	margin-right: 6px;
+	border: 1px solid rgba(100, 181, 246, 0.3);
+	border-radius: 4px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player > .avatar:hover,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player > .avatar:hover
+{
+	border-color: rgba(100, 181, 246, 0.6);
+	box-shadow: 0 0 8px rgba(100, 181, 246, 0.4);
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player > .name,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player > .name
+{
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 18.75px;
+	font-weight: bold;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .player > .name > Label,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player > .name > Label
+{
+	text-align: center;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players
+{
+	flow-children: down;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player
+{
+	vertical-align: top;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .players > .player:not(:first-child)
+{
+	margin-top: 8px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .role
+{
+	vertical-align: center;
+	height: 29px;
+	padding: 0 6px;
+	border: 1px solid;
+	border-radius: 6px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .role > .label
+{
+	align: center center;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .talent,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .service
+{
+	vertical-align: center;
+	margin-left: 4px;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .talent > .icon,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .service > .icon
+{
+	vertical-align: center;
+	margin-right: 6px;
+	width: 24px;
+	height: 24px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .talent > .label,.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .service > .label
+{
+	vertical-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 18.75px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .ticket
+{
+	vertical-align: center;
+	margin-left: 4px;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .ticket > .icon
+{
+	vertical-align: center;
+	margin-right: 6px;
+	width: 24px;
+	height: 24px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .ticket > .label
+{
+	vertical-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 18.75px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .ticket > .amount
+{
+	vertical-align: center;
+	margin-left: 8px;
+	text-align: center;
+	color: #ffd700;
+	font-size: 18.75px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .price
+{
+	vertical-align: center;
+	flow-children: right;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .price > .icon
+{
+	vertical-align: center;
+	margin-right: 6px;
+	width: 24px;
+	height: 24px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .list > .log > .log-data-lines > .line > .price > .label
+{
+	vertical-align: center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 18.75px;
+	font-weight: bold;
+}
+
+.root > .top-layer > .blank > .audit-logs > .update
+{
+	horizontal-align: center;
+	width: 40%;
+	margin-top: 16px;
+	margin-bottom: 12px;
+	padding: 5px 0;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.3)), to(rgba(74, 144, 226, 0.2)));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	border-radius: 8px;
+}
+
+.root > .top-layer > .blank > .audit-logs > .update:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.5)), to(rgba(74, 144, 226, 0.4)));
+	border-color: rgba(100, 181, 246, 0.8);
+}
+
+.root > .top-layer > .blank > .audit-logs > .update > .label
+{
+	align: center center;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 20px;
+	font-weight: bold;
+}

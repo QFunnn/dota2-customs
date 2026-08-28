@@ -1,0 +1,493 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+﻿"DOTAUnits"
+{	
+
+"npc_hero_fiddlesticks_rise_unit"
+	{	
+		"vscripts"       			"ai/ai_fiddlesticks_unit.lua"
+		"BaseClass" 				"npc_dota_creature"
+		"Model" 					"models/events/crownfall/survivors/undying_minion/undying_minion_enemy.vmdl" 
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"700"
+		"AttackRange"				"150"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"
+		"StatusHealth"				"1"
+		"VisionDaytimeRange"		"1"
+		"VisionNighttimeRange"		"1"
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+	
+"npc_dota_monkey_clone_hero"
+    {
+        "BaseClass"                                   "npc_dota_creature"
+        "Model"                                       "models/heroes/monkey_king/monkey_king.vmdl"
+        "ModelScale"                                  "1"
+        "SoundSet"                                    "Hero_MonkeyKing"
+        "Level"                                       "1"
+        "UnitLabel"                                   "monkey_clone"
+
+        "CanBeDominated"                              "0"
+        "ConsideredHero"                              "0"
+
+        "AutoAttacksByDefault"                        "1"
+        "IgnoreAddSummonedToSelection"                "1"
+
+        "AttackCapabilities"                          "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackAnimationPoint"                        "0.45"
+        "AttackSpeedActivityModifiers"
+        {
+            "fast"      "170"
+            "faster"    "275"
+            "fastest"   "350"
+        }
+        "AttackAcquisitionRange"                      "800"
+        "AttackRange"                                 "300"
+        "AttackRangeActivityModifiers"
+        {
+            "attack_normal_range"   "0"
+            "attack_long_range"     "200"
+        }
+
+        "BountyXP"                                    "0"
+        "BountyGoldMin"                               "0"
+        "BountyGoldMax"                               "0"
+
+        "BoundsHullName"                              "DOTA_HULL_SIZE_SMALL"
+
+        "MovementCapabilities"                        "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"                               "300"
+        "MovementTurnRate"                            "0.6"
+
+        "VisionDaytimeRange"                          "600"
+        "VisionNighttimeRange"                        "600"
+
+        "HasInventory"                                "1"
+        "WakesNeutrals"                               "0"
+		"Creature"
+        {
+        "AttachWearables"
+            {
+                "Wearable1" { "ItemDef" "594" }         // head
+                "Wearable2" { "ItemDef" "608" }         // armor
+                "Wearable3" { "ItemDef" "609" }         // weapon
+                "Wearable4" { "ItemDef" "657" }         // shoulders
+            }
+        }
+    }
+
+	
+"npc_dota_clinkz_skeleton_archer"
+	{
+		"BaseClass"                 "npc_dota_creature"
+		"Model"                     "models/heroes/clinkz/clinkz_archer.vmdl"
+		"SoundSet"                  "Hero_Clinkz"
+		"Level"                     "1"
+		"ModelScale"                "1.1"
+		"wearable"                  "669"
+
+		"Ability1"                  "clinkz_searing_arrows_lua"
+
+		"ArmorPhysical"             "0"
+		"MagicalResistance"         "0"
+
+		"AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"           "5"
+		"AttackDamageMax"           "5"
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"                "1.0"
+		"AttackAnimationPoint"      "0.3"
+		"AttackAcquisitionRange"    "900"
+		"AttackRange"               "600"
+		"ProjectileModel"           "particles/units/heroes/hero_clinkz/clinkz_base_attack.vpcf"
+		"ProjectileSpeed"           "900"
+
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"           "200"
+		
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"             "0"
+		"MovementTurnRate"          "0.5"
+
+		"BountyXP"                  "0"
+		"BountyGoldMin"             "0"
+		"BountyGoldMax"             "0"
+
+		"StatusHealth"              "2"
+		"StatusHealthRegen"         "0"
+		"StatusMana"                "100"
+		"StatusManaRegen"           "0"
+
+		"TeamName"                  "DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		
+		"VisionDaytimeRange"        "800"
+		"VisionNighttimeRange"      "800"
+	}
+
+"npc_dota_watch_tower_activation_point"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"Model"						""// Model.
+		"Level"						"1"
+		"ModelScale"				"1"
+		"ArmorPhysical"				"1110"			
+		"MagicalResistance"			"1133"		
+		"StatusHealth"				"20000"	
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"VisionDaytimeRange"		"1"		
+		"VisionNighttimeRange"		"1"		
+	}
+	
+"npc_dota_watch_tower"
+	{
+		"BaseClass"					"npc_dota_watch_tower"	
+		"Model"						"models/props_structures/outpost.vmdl"
+		"SoundSet"					"Creep_Good_Melee"							
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			
+		"AttackDamageMax"			"0"			
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0"			
+		"AttackAnimationPoint"		"0"			
+		"AttackAcquisitionRange"	"0"			
+		"AttackRange"				"0"	
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_FILLER"
+		"RingRadius"				"100"
+		"HealthBarOffset"			"475"
+		"MinimapIconSize"			"500"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+
+		"StatusHealth"				"450"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"			
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_SIEGE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+
+		"VisionDaytimeRange"		"700"		
+		"VisionNighttimeRange"		"700"		
+	}	
+	
+"land_mine_trap"
+    {
+        "Model"                     "models/heroes/techies/fx_techiesfx_mine.vmdl"
+        "BaseClass"                 "npc_dota_creature"
+        "SoundSet"                  "0"
+        "ModelScale"                ".8"
+        "BoundsHullName"            "DOTA_HULL_SIZE_SMALL"
+
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackDamageMin"           "0"  
+        "AttackDamageMax"           "0"      
+        "AttackRate"                "1.0" of attack.
+        "AttackAnimationPoint"      "0.0"
+        "AttackAcquisitionRange"    "0"  
+        "AttackRange"               "0"
+
+        "HealthBarOffset"           "140"
+
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"  
+
+        "StatusHealth"              "2"     
+        "StatusHealthRegen"         "0.0"
+        
+        "VisionDaytimeRange"        "64"  
+        "VisionNighttimeRange"      "64"  
+    }
+	
+"npc_spitit_wisp"
+	{	
+		"BaseClass" 				"npc_dota_creature"
+		"Model" 					"models/development/invisiblebox.vmdl" 
+		"SoundSet" 					"Creep_Good_Range" 
+		"UnitLabel" 				"healing_ward"
+		"AttackCapabilities" 		"DOTA_UNIT_CAP_NO_ATTACK" 
+		"AttackDamageType" 			"DAMAGE_TYPE_ArmorPhysical"
+		"StatusHealth" 				"1" 
+		"StatusMana" 				"1" 
+		"VisionDaytimeRange"		"0"
+		"VisionNighttimeRange"		"0"
+	}
+	
+"npc_shaman_hex"
+	{	
+		"vscripts"       			"ai/ai_shaman_hex.lua"
+		"BaseClass" 				"npc_dota_creature"
+		"Model" 					"models/items/courier/mighty_chicken/mighty_chicken.vmdl" 
+		"AttackCapabilities" 		"DOTA_UNIT_CAP_NO_ATTACK" 
+		"MovementCapabilities"   	"DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"       		"550"
+		"AttackDamageType" 			"DAMAGE_TYPE_ArmorPhysical"
+		"StatusHealth" 				"1" 
+		"StatusMana" 				"1" 
+	}
+	
+"shadow_shaman_ward"
+	{
+		"BaseClass"                 "npc_dota_creature"
+		"Model"                     "models/heroes/shadowshaman/shadowshaman_totem.vmdl"
+		"SoundSet"                  "ShadowShaman_Ward"        
+		"Level"                     "1"
+		"ModelScale"                "1.15"
+		"wearable"                  "8371"
+
+		"AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"           "50"
+		"AttackDamageMax"           "50"
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"                "1.5"
+		"AttackAnimationPoint"      "0.3"
+		"AttackAcquisitionRange"    "650"
+		"AttackRange"               "650"
+		"ProjectileModel"           "particles/units/heroes/hero_shadowshaman/shadow_shaman_ward_base_attack.vpcf"
+		"ProjectileSpeed"           "900"
+
+		"BoundsHullName"            "DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"           "200"
+
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"             "0"
+		"MovementTurnRate"          "0.5"
+
+		"StatusHealth"              "2"
+
+		"TeamName"                  "DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+		"VisionDaytimeRange"        "1200"
+		"VisionNighttimeRange"      "800"
+
+		"HasInventory"              "0"
+	}
+	
+"tinkerbot"
+	{
+		"vscripts"					"heroes/hero_tinker/ai.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/npc_minions/draft_siege_good.vmdl"// Model.
+		"SoundSet"					"Hero_Clinkz"					
+		"Level"						"1"
+		"ModelScale"				"1.1"
+		"IsAncient"					"1"
+
+		"Ability1"					"tinker_heat_seeking_missile_lua"
+
+		"ArmorPhysical"				"0"			
+		"MagicalResistance"			"0"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"1"			
+		"AttackDamageMax"			"1"			
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.1"		
+		"AttackAnimationPoint"		"0.1"		
+		"AttackAcquisitionRange"	"900"		
+		"AttackRange"				"500"
+		
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"200"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"0"
+		"MovementTurnRate"			"0.5"		
+
+		"StatusHealth"				"2000"		
+		"StatusHealthRegen"			"0"		
+		"StatusMana"				"1000"			
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		"VisionDaytimeRange"		"800"		
+		"VisionNighttimeRange"		"800"		
+		"Creature"
+		{
+			"DisableResistance"			"100.0"
+			"OffensiveAbilities"
+			{
+				"Ability2"				
+				{
+					"Name"				"tinker_heat_seeking_missile_lua"
+					"Radius"			"650"
+					"MinimumTargets"	"1"
+				}
+			}	
+		}
+	}
+	
+"npc_dota_mjz_pugna_nether_ward"
+	{										
+		"Model"						"models/items/pugna/ward/nether_grandmasters_ward/nether_grandmasters_ward.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Pugna_NetherWard"			
+		"Level"						"0"
+		"ModelScale"				"1"
+		"wearable"				    "8627"
+	
+		"ArmorPhysical"				"0"			
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			
+		"AttackDamageMax"			"0"				
+		"AttackRate"				"1.0"		
+		"AttackAnimationPoint"		"0.0"		
+		"AttackAcquisitionRange"	"0"			
+		"AttackRange"				"0"	
+		"ProjectileModel"			""			
+		"ProjectileSpeed"			"0"		   
+
+		"HealthBarOffset"			"145"				   
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"		
+
+		"StatusHealth"				"1"		
+		"StatusHealthRegen"			"0.0"		
+		
+		"VisionDaytimeRange"		"0"		
+		"VisionNighttimeRange"		"0"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	}
+	
+"blacksmith"
+    {
+        "BaseClass"         "npc_dota_creature" 
+        "Model"           	"models/props_gameplay/shopkeeper_fountain/shopkeeper_fountain.vmdl"
+        "SoundSet"          "Creep_Good_Range"          
+        "Level"           "0"
+     
+        "Ability1"          ""   
+
+        "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"     // Type of attack - melee, ranged, etc.
+        "AttackDamageMin"     "0"     
+        "AttackDamageMax"     "0"     
+        "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+        "AttackRate"        "1"     
+        "AttackAnimationPoint"    "0.5"   
+        "AttackAcquisitionRange"  "800"   
+        "AttackRange"       "500"   // Range within a target can be attacked.
+        "ProjectileModel"     "" 
+        "ProjectileSpeed"     "900"   // Speed of projectile.
+		"HealthBarOffset"			"250"
+
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"   "0"     // Base strength
+        "AttributeStrengthGain"   "0"     // Strength bonus per level.
+        "AttributeBaseIntelligence" "0"     // Base intelligence
+        "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+        "AttributeBaseAgility"    "0"     // Base agility
+        "AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+        "BoundsHullName"      "DOTA_HULL_SIZE_SMALL"      // Hull type used for navigation/locomotion.
+
+        "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"     // Type of locomotion - ground, air
+        "MovementSpeed"       "450"   // Speed
+        "MovementTurnRate"      "1.0"   
+        "FollowRange"       "250"   // Distance to keep when following
+
+        "StatusHealth"        "1"     
+        "StatusHealthRegen"     "0"     
+        "StatusMana"        "0"     
+        "StatusManaRegen"     "0"     // Mana regeneration rate.
+
+        "TeamName"          "DOTA_TEAM_GOODGUYS"      
+        "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+        "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_BASIC"
+        "UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+        
+        "VisionDaytimeRange"    "0"   
+        "VisionNighttimeRange"    "0"   
+
+        "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
+    }	
+
+	"npc_dota_venomancer_plague_ward_1_custom"
+	{
+		"BaseClass"                 "npc_dota_creature"
+		"Model"                     "models/heroes/venomancer/venomancer_ward.vmdl"
+		"SoundSet"                  "Hero_VenomancerWard"
+		"Level"                     "1"
+		"ModelScale"                "0.8"
+		"SelectionGroup"            "Venomancer_Wards"
+		"UnitLabel"                 "plaguewards"
+		"wearable"                  "684"
+
+		"ArmorPhysical"             "0"
+		"MagicalResistance"         "0"
+
+		"AttackCapabilities"        "DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"           "14"
+		"AttackDamageMax"           "18"
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"                "1.7"
+		"AttackAnimationPoint"      "0.3"
+		"AttackAcquisitionRange"    "600"
+		"AttackRange"               "600"
+		"ProjectileModel"           "particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+		"ProjectileSpeed"           "1900"
+
+		"BoundsHullName"            "DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"           "170"
+
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"             "0"
+		"MovementTurnRate"          "0.5"
+
+		"StatusHealth"              "150"
+		"StatusMana"        		"2000"
+
+		"TeamName"                  "DOTA_TEAM_GOODGUYS"
+		"UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+		"VisionDaytimeRange"        "800"
+		"VisionNighttimeRange"      "800"
+
+		"HasInventory"              "0"
+
+		"precache"
+		{
+			"particle" "particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_venomancer_plague_ward.vpcf"
+		}
+		
+		"party_hat_effects"
+		{
+			"party_hat_effect_0" "particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_venomancer_plague_ward.vpcf"
+		}
+	}
+}

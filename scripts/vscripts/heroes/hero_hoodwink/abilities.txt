@@ -1,0 +1,211 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+
+"hoodwink_acorn_shot_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hero_hoodwink"
+		"AbilityTextureName"			"hoodwink_acorn_shot"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"575"
+
+		"AbilityChargeRestoreTime"		"18 16 14 12"
+		"AbilityManaCost"				"75 85 95 105"
+
+		"AbilityValues"
+		{
+			"bonus_damage"			
+			{
+				"value"								"40 80 120 160"
+				"special_bonus_unique_hoodwink_1"	"+40"
+			}
+			"projectile_speed"						"2000"
+			"bounce_count"
+			{
+				"value"								"3"
+				"special_bonus_unique_hoodwink_5"	"+1"
+			}
+			"AbilityCharges"
+			{
+				"value"								"2"
+				"special_bonus_unique_hoodwink_7"	"+1"
+			}
+			"bounce_range"							"325"
+			"debuff_duration"						"0.25"
+			"slow"									"100"
+			"bounce_delay"							"0.1"
+		}
+	}
+	
+"hoodwink_bushwhack_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hero_hoodwink"
+		"AbilityTextureName"			"hoodwink_bushwhack"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"90 100 110 120"
+
+		"AbilityValues"
+		{
+			"trap_radius"					"325"
+			"debuff_duration"				
+			{
+				"value"								"1.5"
+				"special_bonus_unique_hoodwink_4"	"+1"
+			}
+			"projectile_speed"				"1000"
+			"total_damage"					
+			{
+				"value"								"90 180 270 360"
+				"special_bonus_unique_hoodwink_2"	"+90"
+			}
+			"animation_rate"				"0.3"
+			"visual_height"					"50"
+		}
+	}	
+	
+	
+"hoodwink_scurry_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hero_hoodwink"
+		"AbilityTextureName"			"hoodwink_scurry"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				"0.0"
+		"AbilityManaCost"				"35"
+		"AbilityCharges"				"2"
+		"AbilityChargeRestoreTime"		"18 16 14 12"
+		
+		"AbilityValues"
+		{
+			"radius"						"275"
+			"movement_speed_pct"			"15 20 25 30"
+			"duration"						"4.0"
+			"evasion"						
+			{
+				"value"					"15 20 25 30"
+				"special_bonus_unique_hoodwink_3"	"+20"
+			}
+		}
+	}	
+	
+"hoodwink_sharpshooter_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_hoodwink/hero_hoodwink"
+		"AbilityTextureName"			"hoodwink_sharpshooter"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"50 45 40"
+		"AbilityManaCost"				"150 200 250"
+
+		"AbilityValues"
+		{
+			"arrow_speed"				"2200"
+			"arrow_width"				"125"
+			"arrow_range"				"1000"
+			"damage"
+			{
+				"value"								"300 500 700"
+				"special_bonus_unique_hoodwink_6"	"+200"
+			}
+			"count"
+			{
+				"value"								"3 4 5"
+				"special_bonus_unique_hoodwink_8"	"+2"
+			}
+		}
+	}
+	
+	
+	"special_bonus_unique_hoodwink_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_hoodwink_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_hoodwink_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

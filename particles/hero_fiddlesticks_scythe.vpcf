@@ -1,0 +1,106 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 50.0
+	m_flConstantLifespan = 4.0
+	m_ConstantColor = [ 255, 255, 255, 100 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 7.0, 228.0, 229.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_HSVShiftToCP"
+			m_DefaultHSVColor = [ 88, 245, 10, 255 ]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_flDelay = -0.5
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_spiral.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_rope.vpcf"
+		},
+		{
+			m_flDelay = -1.5
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_flare.vpcf"
+		},
+		{
+			m_flDelay = -1.5
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_e.vpcf"
+		},
+		{
+			m_flDelay = -1.5
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_b.vpcf"
+		},
+		{
+			m_flDelay = -1.35
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_swirl_burst.vpcf"
+		},
+		{
+			m_flDelay = -0.55
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_traila.vpcf"
+		},
+		{
+			m_flDelay = -0.55
+			m_ChildRef = resource:"particles/units/heroes/hero_necrolyte/necrolyte_scythe_trailb.vpcf"
+		},
+	]
+}

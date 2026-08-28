@@ -1,0 +1,175 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"drow_ranger_frost_arrows_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/hero_drow_ranger"
+		"AbilityTextureName"			"drow_ranger_frost_arrows"		
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"625"
+        "AbilityManaCost"               "3"
+
+		"AbilityValues"
+		{
+			"movement_speed"	        "8 12 16 20"
+			"duration"	                "1.5"
+			"damage"	                
+            {
+				"value"							"15 30 45 60"
+                "special_bonus_unique_drow_1"   "+30"
+			}
+		}
+	}
+
+    "drow_cross_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_drow_ranger/hero_drow_ranger"
+        "AbilityTextureName"            "POWERSHOT"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCooldown"               "18 16 14 12"
+        "AbilityManaCost"               "70 80 90 100"
+        
+        "AbilityValues"
+        {
+            "duration"                  
+            {
+				"value"							"3"
+                "special_bonus_unique_drow_2"   "+1"
+			}
+            "pierce_width"              "150"
+            "pierce_range"              "300"
+            "pierce_damage_pct"         
+            {
+				"value"							"50"
+                "special_bonus_unique_drow_3"   "+25"
+			}
+            "attack_speed"              "20 40 60 80"
+        }
+    }
+
+    "drow_ranger_aura"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/hero_drow_ranger"
+		"AbilityTextureName"			"speedaura2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"600"
+
+		"AbilityValues"
+		{
+			"attack_speed"		        
+            {
+				"value"							"5 10 15 20"
+                "special_bonus_unique_drow_4"   "+10"
+			}
+		}
+	}
+
+    "drow_ranger_marksmanship_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_drow_ranger/hero_drow_ranger"
+		"AbilityTextureName"			"drow_ranger_marksmanship"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastRange"				"600"
+		
+		"AbilityValues"
+		{
+			"aura_radius"					"600"
+			"chance"						
+            {
+				"value"							"15 20 25"
+                "special_bonus_unique_drow_5"   "+10"
+			}
+			"bonus_damage"					
+            {
+				"value"							"50 100 150"
+                "special_bonus_unique_drow_6"   "+100"
+			}
+			"bonus_agility"
+			{
+				"value"							"15 25 35"
+				"special_bonus_unique_drow_7" 	"+20"
+			}
+			"split_count"			        "2"
+			"split_range"					"275"
+			"split_damage_reduction"		"50"
+		}
+	}
+
+
+    "special_bonus_unique_drow_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_drow_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_drow_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

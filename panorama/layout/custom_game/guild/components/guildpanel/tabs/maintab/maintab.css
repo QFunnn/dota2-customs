@@ -1,0 +1,935 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.main-tab
+{
+	width: 100%;
+	height: 100%;
+	padding: 12px;
+	flow-children: right;
+}
+
+.main-tab > .left
+{
+	width: 270px;
+	height: 100%;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild
+{
+	width: 100%;
+	height: 86%;
+	padding-right: 6px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 1.5px solid #3a4a5a;
+	border-radius: 8px;
+	overflow: squish scroll;
+}
+
+.main-tab > .left > .guild > .details
+{
+	width: 100%;
+	padding: 8px;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .details > .general
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .details > .general > .image
+{
+	width: 56px;
+	height: 56px;
+	margin: -4px;
+	padding: 4px;
+}
+
+.main-tab > .left > .guild > .details > .general > .image > .inner
+{
+	width: 100%;
+	height: 100%;
+	border: 2px solid rgba(255, 215, 0, 0.4);
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .guild > .details > .general > .image > .inner:hover
+{
+	transform: scale3d(1.05, 1.05, 1.05);
+	border-color: rgba(255, 215, 0, 0.6);
+	box-shadow: hollow 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+.main-tab > .left > .guild > .details > .general > .name-level
+{
+	vertical-align: center;
+	width: 100%;
+	height: fit-children;
+	margin-left: 10px;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .details > .general > .name-level > .name
+{
+	width: 100%;
+	color: #e5e0c5;
+	font-size: 17px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .general > .name-level > .level
+{
+	width: 100%;
+	color: #ffd700;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .booster
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 8px 10px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(37, 43, 228, 0.1)), to(rgba(26, 42, 58, 0.6)));
+	border: 1px solid rgba(37, 43, 228, 0.5);
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .guild > .details > .booster:hover
+{
+	transform: translateY(-2px);
+	border-color: rgba(37, 43, 228, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .booster > .top
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .details > .booster > .top > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+	img-shadow: 0 0 4px #ffd700;
+}
+
+.main-tab > .left > .guild > .details > .booster > .top > .expire
+{
+	vertical-align: center;
+	margin-left: 8px;
+	text-align: left;
+	color: #e5e0c5;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .booster > .top > .value
+{
+	align: right center;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .details > .booster > .top > .value > .icon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 20px;
+}
+
+.main-tab > .left > .guild > .details > .booster > .top > .value > .label
+{
+	vertical-align: center;
+	margin-left: 4px;
+	text-align: center;
+	color: #ffd700;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .booster > .bar
+{
+	width: 100%;
+	height: 16px;
+	margin-top: 8px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(20, 30, 45, 0.8)), to(rgba(15, 25, 35, 0.9)));
+	box-shadow: 0 0 4px rgba(76, 80, 175, 0.2);
+	border: 1px solid rgba(42, 58, 74, 0.5);
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .details > .booster > .bar > .filler
+{
+	height: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(76, 80, 175)), color-stop(0.5, rgb(102, 106, 187)), to(rgb(76, 80, 175)));
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .details > .booster > .bar > .filler > .animation
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0)));
+	animation-name: progress-bar-filler-animation;
+	animation-duration: 2.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.main-tab > .left > .guild > .details > .progress
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 8px 10px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(26, 42, 58, 0.5)), to(rgba(15, 25, 35, 0.4)));
+	border: 1px solid rgba(76, 175, 80, 0.2);
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .guild > .details > .progress:hover
+{
+	transform: translateY(-2px);
+	border-color: rgba(76, 175, 80, 0.6);
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .labels
+{
+	width: 100%;
+	margin-bottom: 6px;
+	padding: 0 2px;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .labels > Label
+{
+	width: 30px;
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .labels > .current
+{
+	text-align: left;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .labels > .exp
+{
+	width: fill-parent-flow(1);
+	text-align: center;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .labels > .next
+{
+	horizontal-align: right;
+	text-align: right;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .bar
+{
+	width: 100%;
+	height: 16px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(20, 30, 45, 0.8)), to(rgba(15, 25, 35, 0.9)));
+	box-shadow: 0 0 4px rgba(76, 175, 80, 0.2);
+	border: 1px solid rgba(42, 58, 74, 0.5);
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .bar > .filler
+{
+	height: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#4caf50), color-stop(0.5, #66BB6A), to(#4caf50));
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .details > .progress > .inner > .bar > .filler > .animation
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0)));
+	animation-name: progress-bar-filler-animation;
+	animation-duration: 2.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.main-tab > .left > .guild > .details > .merits
+{
+	width: 100%;
+	margin-top: 8px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.15)), to(rgba(212, 175, 55, 0.1)));
+	border: 1px solid rgba(255, 215, 0, 0.4);
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .guild > .details > .merits:hover
+{
+	transform: translateY(-2px);
+	border-color: rgba(255, 215, 0, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .merits > .icon
+{
+	width: 48px;
+	height: 48px;
+}
+
+.main-tab > .left > .guild > .details > .merits > .icon > .pulse
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: rgba(255, 215, 0, 0.4) 0px 0px 12px -12px;
+	border-radius: 50%;
+	animation-name: guild-merits-pulse-animation;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .left > .guild > .details > .merits > .icon > .inner
+{
+	align: center center;
+	margin: 10px;
+	width: 100%;
+	height: 100%;
+	animation-name: guild-merits-icon-animation;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .left > .guild > .details > .merits > .labels
+{
+	vertical-align: center;
+	width: 100%;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .details > .merits > .labels > .title
+{
+	margin-bottom: 2px;
+	color: #e5e0c5;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .merits > .labels > .value
+{
+	color: #ffd700;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .description
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 6px 10px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .guild > .details > .description:hover
+{
+	border-color: #4a5a7a;
+	transform: translateY(-2px);
+}
+
+.main-tab > .left > .guild > .details > .description > .header
+{
+	width: 100%;
+	margin-bottom: 6px;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .details > .description > .header > .icon
+{
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+}
+
+.main-tab > .left > .guild > .details > .description > .header > .label
+{
+	vertical-align: center;
+	height: 16px;
+	margin-left: 6px;
+	color: #64b5f6;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .description > .line
+{
+	width: 100%;
+	height: 2px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.6), to(rgba(255, 255, 255, 0))));
+	border-radius: 2px;
+}
+
+.main-tab > .left > .guild > .details > .description > .label
+{
+	margin-top: 8px;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .statistics
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 8px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(20, 30, 45, 0.6)), to(rgba(15, 25, 35, 0.5)));
+	border: 1px solid rgba(74, 90, 122, 0.4);
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat
+{
+	width: 100%;
+	flow-children: right;
+	border: 1px solid;
+	border-radius: 8px;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat:not(:last-child)
+{
+	margin-bottom: 8px;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat:hover
+{
+	transform: translateY(-3px) scale3d(1.02, 1.02, 1.02);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.online
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.1)), to(rgba(26, 42, 58, 0.6)));
+	border-color: rgba(76, 175, 80, 0.5);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.online:hover
+{
+	border-color: rgba(76, 175, 80, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.online > .icon > .pulse
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(rgba(76, 175, 80, 0.4)), to(transparent));
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.online > .labels > .value
+{
+	color: #4caf50;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.active
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 152, 0, 0.1)), to(rgba(26, 42, 58, 0.6)));
+	border-color: rgba(255, 152, 0, 0.5);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.active:hover
+{
+	border-color: rgba(255, 152, 0, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.active > .icon > .pulse
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(rgba(255, 152, 0, 0.4)), to(transparent));
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.active > .labels > .value
+{
+	color: #FF9800;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.exp
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(43, 37, 255, 0.1)), to(rgba(26, 42, 58, 0.6)));
+	border-color: rgba(37, 43, 228, 0.5);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.exp:hover
+{
+	border-color: rgba(37, 43, 228, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.exp > .icon > .pulse
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(rgba(43, 37, 255, 0.4)), to(transparent));
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.exp > .labels > .value
+{
+	color: rgb(80, 76, 175);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.merits
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.1)), to(rgba(26, 42, 58, 0.6)));
+	border-color: rgba(255, 215, 0, 0.5);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.merits:hover
+{
+	border-color: rgba(255, 215, 0, 0.8);
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.merits > .icon > .pulse
+{
+	background-color: gradient(radial, 50% 50%, 0% 0%, 45% 45%, from(rgba(255, 215, 0, 0.4)), to(transparent));
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat.merits > .labels > .value
+{
+	color: #FFD700;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat > .icon
+{
+	width: 56px;
+	height: 56px;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat > .icon > .pulse
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	animation-name: stat-glow-pulse;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat > .icon > .inner
+{
+	align: center center;
+	margin: 13px;
+	width: 40px;
+	height: 40px;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat .labels
+{
+	vertical-align: center;
+	width: 100%;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat .labels > .value
+{
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat .labels > .name
+{
+	color: #e5e0c5;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .details > .statistics > .stat .labels > .hint
+{
+	color: #8a9ba8;
+	font-size: 11px;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.main-tab > .left > .guild > .actions
+{
+	width: 100%;
+	padding: 4px 8px 8px 8px;
+	flow-children: down;
+}
+
+.main-tab > .left > .guild > .actions > .action
+{
+	width: 100%;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.3)), to(rgba(74, 144, 226, 0.2)));
+	border: 2px solid rgba(100, 181, 246, 0.6);
+	border-radius: 8px;
+}
+
+.main-tab > .left > .guild > .actions > .action:not(:first-child)
+{
+	margin-top: 6px;
+}
+
+.main-tab > .left > .guild > .actions > .action:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(100, 181, 246, 0.5)), to(rgba(74, 144, 226, 0.4)));
+	border-color: rgba(100, 181, 246, 0.8);
+}
+
+.main-tab > .left > .guild > .actions > .action.leave
+{
+	margin-top: 10px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#6f2b2b), color-stop(0.5, #4a1e1e), to(#6f2b2b));
+	border-color: #8a4a4a;
+}
+
+.main-tab > .left > .guild > .actions > .action.leave:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#8f3b3b), color-stop(0.5, #6a2e2e), to(#8f3b3b));
+	border-color: #9a5a5a;
+}
+
+.main-tab > .left > .guild > .actions > .action > .wrapper
+{
+	align: center center;
+	width: 100%;
+	padding: 8px 12px;
+	flow-children: right;
+}
+
+.main-tab > .left > .guild > .actions > .action > .wrapper > .icon
+{
+	horizontal-align: left;
+	vertical-align: center;
+	width: 24px;
+	height: 24px;
+}
+
+.main-tab > .left > .guild > .actions > .action > .wrapper > .label
+{
+	vertical-align: center;
+	margin-left: 8px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.67);
+}
+
+.main-tab > .left > .guild > .actions > .action > .count
+{
+	horizontal-align: right;
+	padding: 2px 4px;
+	margin: 4px 4px 0 0;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#ffd700), to(#ffa500));
+	border: 1px solid rgba(26, 42, 58, 0.8);
+	border-radius: 9px;
+	text-align: center;
+	color: #1a2a3a;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+	animation-name: join-requests-count;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.main-tab > .left > .player
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 12px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .player:hover
+{
+	border-color: #5a6a8a;
+	transform: translateY(-2px);
+}
+
+.main-tab > .left > .player:hover > .avatar
+{
+	border-color: rgba(100, 181, 246, 0.7);
+	box-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
+	transform: scale3d(1.08, 1.08, 1.08);
+}
+
+.main-tab > .left > .player > .avatar
+{
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 10px 12px 10px 10px;
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+	transition: transform 0.3s ease 0s;
+}
+
+.main-tab > .left > .player > .details
+{
+	width: 100%;
+	height: 100%;
+	padding: 8px 8px 8px 0;
+	flow-children: down;
+}
+
+.main-tab > .left > .player > .details > .name
+{
+	vertical-align: center;
+	width: 100%;
+	height: fill-parent-flow(1);
+	color: #e5e0c5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.main-tab > .left > .player > .details > .role
+{
+	vertical-align: center;
+	width: 100%;
+	height: fill-parent-flow(1);
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.main-tab > .left > .player > .details > .merits
+{
+	width: 100%;
+	height: fill-parent-flow(1.2);
+	flow-children: right;
+}
+
+.main-tab > .left > .player > .details > .merits > .icon
+{
+	vertical-align: center;
+	width: 18px;
+	height: 18px;
+	margin-right: 3px;
+}
+
+.main-tab > .left > .player > .details > .merits > .value
+{
+	vertical-align: center;
+	margin-top: 1.5px;
+	color: #ffd700;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.main-tab > .right
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 8px;
+	padding: 12px;
+	flow-children: down;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(15, 25, 35, 0.95)), to(rgba(20, 30, 45, 0.95)));
+	border: 1px solid rgba(255, 215, 0, 0.15);
+	border-radius: 8px;
+}
+
+.main-tab > .right > .title
+{
+	width: 100%;
+	color: #e5e0c5;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .search
+{
+	width: 350px;
+	height: 30px;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+.main-tab > .right > .search > .text-entry
+{
+	width: fit-children;
+	height: 100%;
+	flow-children: right;
+	background-color: rgba(20, 30, 45, 0.6);
+	border: 1px solid;
+	border-color: #4a5a7a;
+	border-radius: 6px;
+}
+
+.main-tab > .right > .search > .text-entry.focused
+{
+	border-color: rgb(138.9132653061, 154.137755102, 184.5867346939);
+}
+
+.main-tab > .right > .search > .text-entry > .icon
+{
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 6px 8px 6px 6px;
+}
+
+.main-tab > .right > .search > .text-entry > .input
+{
+	vertical-align: center;
+	width: fill-parent-flow(1);
+	color: #e5e0c5;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .search > .text-entry > .max-chars
+{
+	vertical-align: center;
+	width: 20px;
+	margin-left: 8px;
+	margin-right: 4px;
+	color: #e5e0c5;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .table
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 12px;
+	flow-children: down;
+}
+
+.main-tab > .right > .table .level-column
+{
+	width: 85px;
+}
+
+.main-tab > .right > .table .member-column
+{
+	width: 220px;
+}
+
+.main-tab > .right > .table .role-column
+{
+	width: 165px;
+}
+
+.main-tab > .right > .table .exp-column
+{
+	width: 105px;
+}
+
+.main-tab > .right > .table .merits-column
+{
+	width: 135px;
+}
+
+.main-tab > .right > .table .crystals-column
+{
+	width: 100px;
+}
+
+.main-tab > .right > .table .status-column
+{
+	width: 150px;
+}
+
+.main-tab > .right > .table > .header
+{
+	width: fit-children;
+	height: 32px;
+	flow-children: right;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.05)), to(rgba(255, 165, 0, 0.05)));
+	border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-tab > .right > .table > .header > Button
+{
+	height: 100%;
+}
+
+.main-tab > .right > .table > .header > Button:hover
+{
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(255, 215, 0, 0.1)), to(rgba(255, 165, 0, 0.1)));
+}
+
+.main-tab > .right > .table > .header > Button:not(:last-child)
+{
+	border-right: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.main-tab > .right > .table > .header > Button > .wrapper
+{
+	align: center center;
+	flow-children: right;
+}
+
+.main-tab > .right > .table > .header > Button > .wrapper > .sort-arrow
+{
+	width: height-percentage(100%);
+	height: 20px;
+	margin-right: 2px;
+	background-color: #fff;
+	opacity-mask: url("s2r://panorama/images/control_icons/arrow_dropdown_png.vtex");
+	opacity-mask-scale: 100%;
+	opacity-mask-position: 0% 0%;
+	pre-transform-rotate2d: 180deg;
+	transition: transform 0.2s ease-out 0s;
+}
+
+.main-tab > .right > .table > .header > Button > .wrapper > .sort-arrow.flipped
+{
+	transform: rotateX(180deg);
+}
+
+.main-tab > .right > .table > .header > Button > .wrapper > .label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: #ffd700;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.main-tab > .right > .table > .content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}

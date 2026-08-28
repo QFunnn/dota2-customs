@@ -1,0 +1,107 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/guild/animations.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/guild.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/guildslist.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/createguildmodal/createguildmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/guildpanel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/topnav/topnav.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/chat/chat.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/maintab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/auditlogsmodal/auditlogsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/joinrequestsmodal/joinrequestsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/guildsettingsmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/namechangeconfirmmodal/namechangeconfirmmodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildleavemodal/guildleavemodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/kickmembermodal/kickmembermodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/memberrow/memberrow.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/talentstab/talentstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/speedrunstab/speedrunstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/queststab/queststab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/eventstab/eventstab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/shoptab.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/buyservicemodal/buyservicemodal.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/render/render.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/guild/override.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/constants.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/number.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/misc.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/image.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/collection.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/events.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/time.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/fast_elements.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/mouse.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/plural.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/utils/bitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/updatemanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/basemanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/membersmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/questsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/rolesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/servicesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/talentsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/joinrequestsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/auditlogsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/messagesmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/eventticketsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/managers/guildsmanager.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/basestructure.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/settingsbitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/deputypermissionsbitfield.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/guild.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/member.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/quest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/role.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/service.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/speedruns.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/speedrunsstats.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/talent.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/joinrequest.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/auditlog.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/message.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/structures/eventticket.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/guild.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/guildslist.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildslist/createguildmodal/createguildmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/guildpanel.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/topnav/topnav.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/chat/chat.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/maintab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/auditlogsmodal/auditlogsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/discordlinkmodal/discordlinkmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/joinrequestsmodal/joinrequestsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/guildsettingsmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildsettingsmodal/namechangeconfirmmodal/namechangeconfirmmodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/guildleavemodal/guildleavemodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/kickmembermodal/kickmembermodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/maintab/memberrow/memberrow.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/talentstab/talentstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/speedrunstab/speedrunstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/queststab/queststab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/eventstab/eventstab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/shoptab.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/components/guildpanel/tabs/shoptab/buyservicemodal/buyservicemodal.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/guild/render/render.vjs_c" />
+	</scripts>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel class="main-layer" hittest="false" />
+		<Panel class="top-layer" hittest="false" />
+	</Panel>
+</root>

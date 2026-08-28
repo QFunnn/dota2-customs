@@ -1,0 +1,44 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"bloodseeker_thirst_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bloodseeker/bloodseeker_thirst_lua/bloodseeker_thirst_lua"
+		"AbilityTextureName"			"bloodseeker_thirst"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"	
+
+		"AbilityCastRange"				"700"
+
+		"AbilityValues"
+		{
+			"radius"						"700"
+			"hp"					
+			{
+				"value"					"15 20 25 30"
+				"LinkedSpecialBonus"	"special_bonus_bloodseeker_2"
+			}
+			"bonus_movespeed"					
+			{
+				"value"					"3 4 5 6"
+				"LinkedSpecialBonus"	"special_bonus_bloodseeker_1"
+			}
+			"duration"					"3"
+		}
+	}
+}

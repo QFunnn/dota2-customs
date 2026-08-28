@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{ 
+    "doom_bringer_infernal_blade_custom"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_doom_bringer/doom_bringer_infernal_blade_custom/doom_bringer_infernal_blade_custom"
+		"AbilityTextureName"			"doom_bringer_infernal_blade"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_DoomBringer.InfernalBlade.Target"
+		"AbilityCooldown"				"13 10 7 4"
+		"AbilityManaCost"				"40"
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_3"
+		"AbilityValues"
+		{
+            "burn_damage"			"20 30 40 50"
+            "burn_duration"			"4.0"
+            "ministun_duration"		"0.6"
+			"burn_damage_pct"
+			{
+				"value"		                    "1 2 3 4"
+				"special_bonus_unique_doom_1"	"+2"
+			}
+            "shard_ministun_duration"		
+            {
+                "value" "1.0"
+                "RequiresShard"					"1"
+            }
+            "shard_bonus_stun_duration"		
+            {
+                "value" "1.45"
+                "RequiresShard"					"1"
+            }
+            "shard_bonus_damage"			
+            {
+                "value" "125"
+                "RequiresShard"					"1"
+            }
+		}
+	}
+}

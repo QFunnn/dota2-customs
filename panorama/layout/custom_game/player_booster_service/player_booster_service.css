@@ -1,0 +1,1624 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height: 750px;
+	width: 1100px;
+	padding: 0px;
+	align: center center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a1f2e), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	box-shadow: fill #00000088 0px 0px 12px 0px;
+	border-radius: 6px;
+	opacity: 0;
+}
+
+.booster-settings-panel
+{
+	width: 500px;
+	height: 700px;
+	margin-top: 25px;
+	horizontal-align: right;
+	margin-right: 30px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a1f2e), to(#0d1116));
+	border: 1px solid #4a5a7a;
+	border-radius: 4px;
+	box-shadow: fill #00000044 0px 0px 6px 0px;
+}
+
+.order-boost-panel
+{
+	padding: 0px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a1f2e), to(#0d1116));
+	border: 1px solid #4a5a7a;
+	border-radius: 4px;
+	box-shadow: fill #00000044 0px 0px 6px 0px;
+	width: 500px;
+	height: 700px;
+	margin-top: 25px;
+	horizontal-align: left;
+	margin-left: 30px;
+}
+
+.panel-header
+{
+	width: 100%;
+	height: 40px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a4a), to(#1a2a3a));
+	border-bottom: 1px solid #4a5a7a;
+	flow-children: right;
+	border-radius: 4px 4px 0px 0px;
+	margin-bottom: 0px;
+}
+
+.tab-button
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a4a), to(#1a2a3a));
+	border: 0px solid transparent;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	z-index: 10;
+}
+
+.tab-button:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a4a5a), to(#2a3a4a));
+}
+
+.tab-button.active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a5a6a), to(#3a4a5a));
+	border-bottom: 2px solid #ffd700;
+	box-shadow: fill #ffd70022 0px 0px 8px 0px;
+}
+
+.tab-text
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 14px;
+	font-weight: bold;
+	color: #b0c4de;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 0px 1px 2px #00000088;
+	transition-property: color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.tab-button:hover .tab-text
+{
+	color: #ffffff;
+}
+
+.tab-button.active .tab-text
+{
+	color: #ffd700;
+	text-shadow: 0px 1px 3px #ffd70044;
+}
+
+.tab-content
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: down;
+}
+
+.tab-content.hidden
+{
+	visibility: collapse;
+	height: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.tab-content.visible
+{
+	visibility: visible;
+	height: fill-parent-flow(1);
+}
+
+.booster-settings-content.no-title
+{
+	margin-top: 40px;
+}
+
+.panel-header.hidden
+{
+	visibility: collapse;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.order-item
+{
+	background-color: #1a1a1a;
+	border: 1px solid #333;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 12px;
+	flow-children: down;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+.order-item.active
+{
+	background-color: #1a2a1a;
+	border: 2px solid #4CAF50;
+	box-shadow: fill #4CAF5066 0px 0px 15px 0px;
+}
+
+.order-header
+{
+	flow-children: right;
+	margin-bottom: 12px;
+}
+
+.order-avatar
+{
+	width: 48px;
+	height: 48px;
+	margin-right: 12px;
+	border-radius: 50%;
+	border: 2px solid #FFFFFF33;
+	box-shadow: fill #0000004D 0px 2px 4px 0px;
+}
+
+.order-customer-name
+{
+	font-size: 16px;
+	color: #ffffff;
+	vertical-align: center;
+	margin-right: 12px;
+}
+
+.order-status
+{
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.order-details
+{
+	flow-children: down;
+}
+
+.order-price
+{
+	color: #4CAF50;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.order-difficulty
+{
+	color: #FFD700;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.order-payout
+{
+	color: #4CAF50;
+	font-weight: bold;
+}
+
+.order-payment-status
+{
+	color: #FF9800;
+	font-weight: bold;
+}
+
+.order-payment-status.HELD
+{
+	color: #FF9800;
+}
+
+.order-payment-status.RETURNED
+{
+	color: #F44336;
+}
+
+.order-payment-status.PAID_TO_BOOSTER
+{
+	color: #4CAF50;
+}
+
+.order-booster-name
+{
+	font-size: 16px;
+	color: #ffffff;
+	vertical-align: center;
+	margin-right: 12px;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px #00000080;
+}
+
+.order-price
+{
+	color: #FFD700;
+	font-weight: bold;
+}
+
+.order-game-status
+{
+	font-weight: bold;
+}
+
+.order-game-status.IN_PROGRESS
+{
+	color: #4CAF50;
+}
+
+.order-game-status.WAITING_CONFIRMATION
+{
+	color: #FF9800;
+}
+
+.order-game-status.COMPLETED
+{
+	color: #2196F3;
+}
+
+.order-game-status.FAILED
+{
+	color: #F44336;
+}
+
+.order-game-status.CANCELLED
+{
+	color: #F44336;
+}
+
+.order-status.IN_PROGRESS
+{
+	color: #4CAF50;
+}
+
+.order-status.WAITING_CONFIRMATION
+{
+	color: #FF9800;
+}
+
+.order-status.COMPLETED
+{
+	color: #2196F3;
+}
+
+.order-status.FAILED
+{
+	color: #F44336;
+}
+
+.order-status.CANCELLED
+{
+	color: #F44336;
+}
+
+.tab-content.no-header
+{
+	padding-top: 20px;
+	margin-top: 0px;
+}
+
+.panel-title
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: center;
+	text-shadow: 0px 1px 3px #00000088;
+	margin: 10px 0px;
+}
+
+.orders-list
+{
+	width: 100%;
+	flow-children: down;
+	margin: 10px 0px;
+}
+
+.order-item
+{
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a4a), to(#1a2a3a));
+	border: 1px solid #4a5a7a;
+	border-radius: 8px;
+	margin: 8px 0px;
+	padding: 16px;
+	flow-children: down;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	box-shadow: fill #0000004D 0px 2px 8px 0px;
+}
+
+.order-item:hover
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a4a5a), to(#2a3a4a));
+	border-color: #5a6a8a;
+	box-shadow: fill #00000066 0px 4px 12px 0px;
+}
+
+.order-item.active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a4a2a), to(#1a3a1a));
+	border: 2px solid #4CAF50;
+	box-shadow: fill #4CAF5066 0px 0px 15px 0px;
+}
+
+.order-header
+{
+	flow-children: right;
+	margin-bottom: 12px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #FFFFFF1A;
+}
+
+.order-status
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 12px;
+	font-weight: bold;
+	color: #ffd700;
+	text-shadow: 0px 1px 2px #00000088;
+}
+
+.order-date
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 10px;
+	color: #b0c4de;
+	horizontal-align: left;
+	vertical-align: center;
+}
+
+.order-details
+{
+	flow-children: down;
+	margin: 4px 0px;
+	width: 100%;
+	height: fit-children;
+}
+
+.order-details-row
+{
+	flow-children: right;
+	width: 100%;
+}
+
+.order-detail-column
+{
+	flow-children: down;
+	width: 50%;
+	margin-right: 6px;
+}
+
+.order-detail-column:last-child
+{
+	margin-right: 0px;
+}
+
+.order-detail-item
+{
+	flow-children: down;
+	margin: 2px 0px;
+	padding: 4px 6px;
+	background-color: #FFFFFF08;
+	border-radius: 4px;
+	border-left: 3px solid #4a5a7a;
+	transition-property: background-color, border-color, box-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
+	width: 100%;
+	height: fit-children;
+}
+
+.order-detail-item:hover
+{
+	background-color: #FFFFFF10;
+	border-left-color: #6a7a9a;
+}
+
+.order-detail-label
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 9px;
+	color: #8a9aba;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin-bottom: 1px;
+}
+
+.order-detail-value
+{
+	font-family: "Radiance", "Arial Unicode MS";
+	font-size: 11px;
+	color: #ffffff;
+	font-weight: bold;
+	text-shadow: 0px 1px 2px #00000080;
+}
+
+.order-status.WAITING_CONFIRMATION
+{
+	color: #ffaa00;
+}
+
+.order-status.IN_PROGRESS
+{
+	color: #00ff00;
+}
+
+.order-status.COMPLETED
+{
+	color: #00aaff;
+}
+
+.order-status.CANCELLED
+{
+	color: #ff4444;
+}
+
+.scroll-container
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	overflow: clip scroll;
+	flow-children: down;
+	margin-top: 20px;
+}
+
+.divider
+{
+	width: 1px;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a5a7a), to(#3a4a6a));
+	margin: 0px;
+	box-shadow: fill #00000022 0px 0px 2px 0px;
+}
+
+.panel-title
+{
+	font-size: 26px;
+	font-weight: bold;
+	color: #E5E0C5;
+	text-align: center;
+	margin-top: 10px;
+	text-transform: uppercase;
+	font-family: Radiance, Trajan Pro, serif;
+	text-shadow: 2px 2px 4px #000000AA;
+	width: 100%;
+}
+
+.description-section,.pricing-section,.checkbox-section,.booster-stats-section
+{
+	flow-children: down;
+	width: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.booster-stats-section
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#18283f), to(#10162a));
+	border: 2px solid #5a6a8a;
+	border-radius: 6px;
+	padding: 15px;
+	margin-top: 0px;
+	box-shadow: fill #5a6a8a 0px 0px 8px 0px, inset 0px 1px 0px #6a7a9a;
+}
+
+.description-section
+{
+	margin-top: 10px;
+}
+
+.pricing-section
+{
+	margin-top: 10px;
+}
+
+.difficulty-prices
+{
+	overflow: scroll scroll;
+	height: 165px;
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10182a), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	border-radius: 4px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: fill #00000044 0px 0px 4px 0px, inset 0px 1px 0px #4a5a7a;
+}
+
+.stats-label
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #6a7a9a;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	font-family: Radiance, Trajan Pro, serif;
+	text-shadow: 1px 1px 3px #000000AA;
+}
+
+.stats-info
+{
+	flow-children: right;
+	vertical-align: middle;
+}
+
+.stats-text
+{
+	font-size: 14px;
+	color: #E5E0C5;
+	margin-right: 10px;
+	text-shadow: 1px 1px 2px #000000AA;
+	vertical-align: center;
+}
+
+.stats-number
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #6a7a9a;
+	text-shadow: 1px 1px 3px #000000AA;
+}
+
+.current-deal-section
+{
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 15px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid #4a5a7a;
+	border-radius: 6px;
+	box-shadow: fill #00000044 0px 0px 6px 0px;
+}
+
+.deal-info
+{
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.deal-customer-info
+{
+	flow-children: right;
+	margin-bottom: 15px;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0f1a2a), to(#0a1420));
+	border: 1px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.deal-customer-avatar
+{
+	width: 50px;
+	height: 50px;
+	border-radius: 6px;
+	border: 2px solid #4a5a7a;
+	margin-right: 12px;
+	vertical-align: center;
+}
+
+.deal-customer-details
+{
+	flow-children: down;
+	vertical-align: center;
+	width: fill-parent-flow(1);
+}
+
+.deal-customer-name
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #E5E0C5;
+	margin-bottom: 3px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.deal-customer-hero
+{
+	font-size: 12px;
+	color: #B8C5D1;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.deal-details
+{
+	flow-children: down;
+	padding: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0f1a2a), to(#0a1420));
+	border: 1px solid #3a4a5a;
+	border-radius: 4px;
+}
+
+.deal-detail-row
+{
+	flow-children: right;
+	margin-bottom: 5px;
+	vertical-align: middle;
+}
+
+.deal-detail-label
+{
+	font-size: 13px;
+	color: #B8C5D1;
+	width: 100px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.deal-detail-value
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #E5E0C5;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.deal-payout
+{
+	color: #4CAF50;
+	font-size: 16px;
+}
+
+.deal-status
+{
+	color: #FFA726;
+	font-size: 14px;
+}
+
+.section-label
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #E5E0C5;
+	margin-bottom: 8px;
+	font-family: Radiance, Trajan Pro, serif;
+	text-shadow: 1px 1px 3px #000000AA;
+}
+
+.description-input
+{
+	width: 100%;
+	height: 80px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10182a), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	border-radius: 4px;
+	color: #E5E0C5;
+	font-size: 14px;
+	padding: 10px;
+	text-overflow: clip;
+	white-space: normal;
+	text-shadow: 1px 1px 2px #000000AA;
+	box-shadow: fill #00000044 0px 0px 4px 0px, inset 0px 1px 0px #4a5a7a;
+}
+
+.commission-info
+{
+	font-size: 12px;
+	color: #a9b39a;
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.difficulty-prices
+{
+	flow-children: down;
+}
+
+.price-row
+{
+	flow-children: right;
+	margin-bottom: 5px;
+	vertical-align: middle;
+}
+
+.difficulty-label
+{
+	width: 120px;
+	font-size: 14px;
+	color: #E5E0C5;
+	vertical-align: middle;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.price-input
+{
+	width: 60px;
+	height: 25px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10182a), to(#0d1116));
+	border: 1px solid #4a5a7a;
+	border-radius: 3px;
+	color: #E5E0C5;
+	font-size: 12px;
+	text-align: center;
+	margin-right: 8px;
+	text-shadow: 1px 1px 2px #000000AA;
+	box-shadow: fill #00000022 0px 0px 2px 0px;
+}
+
+.checkbox-section
+{
+	flow-children: right;
+	vertical-align: middle;
+	margin-top: 10px;
+}
+
+.hide-checkbox
+{
+	width: 20px;
+	height: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10182a), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	border-radius: 3px;
+	margin-right: 10px;
+	box-shadow: fill #00000022 0px 0px 2px 0px;
+}
+
+.hide-checkbox:selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a6a8a), to(#4a5a7a));
+	border-color: #6a7a9a;
+	box-shadow: fill #6a7a9a 0px 0px 6px 0px;
+}
+
+.checkbox-label
+{
+	font-size: 14px;
+	color: #E5E0C5;
+	vertical-align: middle;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.current-game-badge
+{
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+	border: 1px solid #00ff00;
+	margin-bottom: 20px;
+	vertical-align: middle;
+	margin-top: 20px;
+}
+
+.badge-text
+{
+	font-size: 12px;
+	color: #00ff00;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+
+.boosters-list
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.booster-card
+{
+	width: 100%;
+	height: 140px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1C2C3f), to(#10182a));
+	border: 2px solid #4a5a7a;
+	border-radius: 6px;
+	margin-bottom: 12px;
+	padding: 12px;
+	box-shadow: fill #00000066 0px 0px 8px 0px, inset 0px 1px 0px #4a5a7a;
+}
+
+.booster-hero
+{
+	width: 70px;
+	height: 92px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333333), to(#222222));
+	border: 2px solid #5a6a8a;
+	border-radius: 4px;
+	margin-right: 12px;
+	box-shadow: fill #5a6a8a 0px 0px 6px 0px, inset 0px 1px 0px #6a7a9a;
+}
+
+.booster-avatar
+{
+	width: 70px;
+	height: 70px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#333333), to(#222222));
+	border: 2px solid #5a6a8a;
+	border-radius: 4px;
+	margin-right: 12px;
+	box-shadow: fill #5a6a8a 0px 0px 6px 0px, inset 0px 1px 0px #6a7a9a;
+}
+
+.avatar-image
+{
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.booster-info
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	vertical-align: middle;
+	margin-left: 80px;
+}
+
+.booster-name
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #E5E0C5;
+	margin-bottom: 1px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.booster-stats
+{
+	font-size: 14px;
+	color: #a9b39a;
+	margin-bottom: 1px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.booster-description
+{
+	font-size: 14px;
+	color: #a9b39a;
+	white-space: normal;
+	text-shadow: 1px 1px 2px #000000AA;
+	overflow: squish scroll;
+}
+
+.order-button
+{
+	horizontal-align: right;
+	margin-right: 10px;
+	margin-top: 75px;
+	width: 200px;
+	padding: 7px 12px;
+}
+
+.info-box
+{
+	width: 100%;
+	height: 40px;
+	background-color: #333333;
+	border: 1px solid #666666;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+.info-text
+{
+	font-size: 12px;
+	color: #cccccc;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+
+.booster-price
+{
+	flow-children: right;
+	border: 2px solid #5a6a8a;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#141c2a), to(#0d1116));
+	border-radius: 4px;
+	padding: 6px 8px;
+	horizontal-align: right;
+	margin-top: 76px;
+	margin-right: 220px;
+	box-shadow: fill #5a6a8a 0px 0px 4px 0px, inset 0px 1px 0px #4a5a7a;
+}
+
+.separator-line
+{
+	margin-bottom: 10px;
+	margin-top: 2px;
+}
+
+.booster-card.no-price
+{
+	margin-bottom: 10px;
+}
+
+.booster-card.no-price .booster-price
+{
+	visibility: collapse;
+}
+
+.booster-card.no-price .order-button
+{
+	visibility: collapse;
+}
+
+.booster-contact
+{
+	font-size: 12px;
+	color: #cccccc;
+	margin-top: 2px;
+}
+
+.price-label
+{
+	font-size: 17px;
+	color: #E5E0C5;
+	vertical-align: center;
+	text-shadow: 1px 1px 3px #000000AA;
+	font-weight: bold;
+	margin-right: 4px;
+}
+
+.booster-card-no-price
+{
+	height: 90px;
+}
+
+.refund-info-box
+{
+	width: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00FF0014 ), to( #00C8001F ) );
+	border: 2px solid #00ff00;
+	border-radius: 12px;
+	padding: 16px;
+	margin-bottom: 20px;
+	flow-children: down;
+	box-shadow: fill #00FF0026 0px 4px 12px 0px;
+}
+
+.refund-header
+{
+	flow-children: right;
+	margin-bottom: 12px;
+	vertical-align: middle;
+}
+
+.refund-icon
+{
+	width: 36px;
+	height: 36px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00ff00 ), to( #00cc00 ) );
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 12px;
+	box-shadow: fill #00FF004D 0px 2px 8px 0px;
+}
+
+.refund-icon-text
+{
+	font-size: 18px;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	font-weight: bold;
+}
+
+.refund-title
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #00ff00;
+	vertical-align: middle;
+	text-shadow: 0px 1px 2px #00000080;
+}
+
+.refund-content
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.refund-item
+{
+	flow-children: right;
+	margin-bottom: 8px;
+	vertical-align: middle;
+}
+
+.refund-item:last-child
+{
+	margin-bottom: 0px;
+}
+
+.refund-check
+{
+	font-size: 14px;
+	color: #00ff00;
+	font-weight: bold;
+	margin-right: 10px;
+	width: 16px;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 0px 1px 2px #00000080;
+}
+
+.refund-text
+{
+	font-size: 13px;
+	color: #e0e0e0;
+	vertical-align: middle;
+	width: fill-parent-flow(1);
+	line-height: 1.4;
+}
+
+.current-game-badgeline
+{
+	margin-bottom: 10px;
+	background-color: #437E4880;
+}
+
+.toggle-button
+{
+	vertical-align: center;
+	margin-left: 20px;
+	color: #E5E0C5;
+	font-size: 12px;
+	flow-children: right;
+	background-color: transparent;
+	border: 0px solid transparent;
+	padding: 0px;
+}
+
+.toggle-button .TickBox
+{
+	width: 20px;
+	height: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10182a), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	border-radius: 3px;
+	margin-right: 10px;
+	box-shadow: fill #00000022 0px 0px 2px 0px;
+}
+
+.toggle-button .TickBox:selected
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a6a8a), to(#4a5a7a));
+	border-color: #6a7a9a;
+	box-shadow: fill #6a7a9a 0px 0px 6px 0px;
+}
+
+.toggle-button Label
+{
+	font-size: 14px;
+	color: #E5E0C5;
+	vertical-align: middle;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.license-purchase-section
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.license-info-box
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a1f2e), to(#0d1116));
+	border: 2px solid #4a5a7a;
+	border-radius: 6px;
+	padding: 20px;
+	margin-top: 20px;
+	flow-children: down;
+	box-shadow: fill #00000044 0px 0px 6px 0px;
+}
+
+.license-description
+{
+	font-size: 16px;
+	color: #E5E0C5;
+	text-align: center;
+	margin-bottom: 20px;
+	line-height: 1.4;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.license-features
+{
+	flow-children: down;
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.feature-item
+{
+	font-size: 14px;
+	color: #a9b39a;
+	margin-bottom: 8px;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.license-price
+{
+	flow-children: right;
+	vertical-align: middle;
+	horizontal-align: center;
+	margin-bottom: 30px;
+}
+
+.price-text
+{
+	font-size: 16px;
+	color: #E5E0C5;
+	margin-right: 15px;
+	vertical-align: center;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+.price-container
+{
+	flow-children: right;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#141c2a), to(#0d1116));
+	border: 2px solid #5a6a8a;
+	border-radius: 6px;
+	padding: 8px 12px;
+	box-shadow: fill #5a6a8a 0px 0px 4px 0px, inset 0px 1px 0px #4a5a7a;
+}
+
+.price-amount
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #E5E0C5;
+	margin-right: 8px;
+	text-shadow: 1px 1px 3px #000000AA;
+}
+
+.license-purchase-button
+{
+	horizontal-align: center;
+	width: 300px;
+	padding: 15px 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b6f4f), to(#1e4a3b));
+	border: 2px solid #4a8a6a;
+	box-shadow: fill #00000066 0px 4px 8px 0px, inset 0px 1px 0px #5a9a7a;
+}
+
+.license-purchase-button:hover
+{
+	brightness: 1.2;
+	border-color: #5a9a7a;
+	box-shadow: fill #00000088 0px 6px 12px 0px, inset 0px 1px 0px #6aaa8a;
+}
+
+.license-purchase-button:active
+{
+	brightness: 0.9;
+	box-shadow: fill #00000044 0px 2px 4px 0px, inset 0px 1px 0px #4a8a6a;
+}
+
+.license-button-text
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #E5E0C5;
+	text-shadow: 1px 1px 3px #000000AA;
+}
+
+.license-duration
+{
+	font-size: 12px;
+	color: #a9b39a;
+	text-align: center;
+	margin-top: 0px;
+	text-shadow: 1px 1px 2px #000000AA;
+	font-style: italic;
+	opacity: 0.9;
+	horizontal-align: center;
+	width: 100%;
+}
+
+.booster-settings-content
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	visibility: collapse;
+	overflow: squish scroll;
+}
+
+.booster-settings-content.has-license
+{
+	visibility: visible;
+}
+
+.license-purchase-section.has-license
+{
+	visibility: collapse;
+}
+
+.booster-settings-content
+{
+	padding: 20px;
+}
+
+.booster-settings-content.with-tabs
+{
+	padding: 25px 20px 20px 20px;
+}
+
+.already-ordered-status
+{
+	color: #FF9800;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 0px 1px 2px #00000088;
+	text-align: center;
+	horizontal-align: right;
+	margin-top: 80px;
+	margin-right: 20px;
+}
+
+.no-boosters-message
+{
+	width: 100%;
+	height: 200px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid #4a5a7a;
+	border-radius: 8px;
+	padding: 30px;
+	margin: 20px 0px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: middle;
+	box-shadow: fill #00000044 0px 0px 8px 0px;
+}
+
+.no-boosters-icon
+{
+	width: 64px;
+	height: 64px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a5a7a), to(#3a4a6a));
+	border-radius: 50%;
+	horizontal-align: center;
+	margin-bottom: 20px;
+	box-shadow: fill #4a5a7a 0px 0px 12px 0px;
+}
+
+.no-boosters-icon-image
+{
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.8;
+}
+
+.no-boosters-title
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #E5E0C5;
+	text-align: center;
+	horizontal-align: center;
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 3px #000000AA;
+	font-family: Radiance, Trajan Pro, serif;
+}
+
+.no-boosters-description
+{
+	font-size: 14px;
+	color: #B8C5D1;
+	text-align: center;
+	horizontal-align: center;
+	line-height: 1.4;
+	text-shadow: 1px 1px 2px #000000AA;
+}
+
+VerticalScrollBar .ScrollThumb
+{
+	visibility: collapse;
+}
+
+.booster-stats-section
+{
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a3a4a), to(#1a2a3a));
+	border: 1px solid #4a5a7a;
+	border-radius: 8px;
+	box-shadow: fill #00000066 0px 0px 12px 0px;
+	flow-children: down;
+}
+
+.stats-label
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #E5E0C5;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 4px #000000AA;
+	font-family: Radiance, Trajan Pro, serif;
+	width: 100%;
+	text-align: center;
+}
+
+.stats-grid
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.stats-card
+{
+	width: fill-parent-flow(1);
+	margin: 0px 8px;
+	padding: 15px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0d1a2a));
+	border: 1px solid #3a4a5a;
+	border-radius: 6px;
+	box-shadow: fill #00000044 0px 0px 8px 0px;
+	flow-children: right;
+	vertical-align: middle;
+	transition-property: brightness, box-shadow;
+	transition-duration: 0.3s;
+	height: 90px;
+}
+
+.stats-icon
+{
+	width: 40px;
+	height: 40px;
+	margin-right: 12px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a5a7a), to(#3a4a6a));
+	border-radius: 50%;
+	vertical-align: middle;
+	box-shadow: fill #4a5a7a 0px 0px 8px 0px;
+}
+
+.stats-icon-image
+{
+	width: 64px;
+	height: 64px;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.stats-content
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	vertical-align: middle;
+}
+
+.stats-text
+{
+	font-size: 12px;
+	color: #B0B0B0;
+	text-align: left;
+	text-shadow: 1px 1px 2px #000000AA;
+	font-family: "Radiance", "Arial Unicode MS";
+	margin-bottom: 4px;
+}
+
+.stats-number
+{
+	font-size: 18px;
+	color: #00FF00;
+	font-weight: bold;
+	text-align: left;
+	text-shadow: 0px 0px 8px #00FF0044;
+	font-family: "Radiance", "Arial Unicode MS";
+}
+
+.license-info-section
+{
+	width: 100%;
+	margin-top: 15px;
+	padding: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0d1a2a));
+	border: 1px solid #3a4a5a;
+	border-radius: 8px;
+	box-shadow: fill #00000044 0px 0px 8px 0px;
+	flow-children: down;
+}
+
+.license-header
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 15px;
+	vertical-align: middle;
+}
+
+.license-icon
+{
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a5a7a), to(#3a4a6a));
+	border-radius: 50%;
+	vertical-align: middle;
+	box-shadow: fill #4a5a7a 0px 0px 6px 0px;
+}
+
+.license-icon-image
+{
+	width: 64px;
+	height: 64px;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.license-info-label
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFD700;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #000000AA;
+	font-family: Radiance, Trajan Pro, serif;
+	vertical-align: middle;
+	width: fill-parent-flow(1);
+}
+
+.license-details
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 0px;
+}
+
+.license-detail-row
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+	padding: 8px 12px;
+	vertical-align: middle;
+	height: 32px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0d1a2a), to(#1a2a3a));
+	border-radius: 6px;
+	border: 1px solid #2a3a4a;
+	transition-property: brightness, box-shadow;
+	transition-duration: 0.2s;
+}
+
+.license-detail-icon
+{
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3a4a5a), to(#2a3a4a));
+	border-radius: 50%;
+	vertical-align: middle;
+	opacity: 0;
+}
+
+.license-detail-icon-image
+{
+	width: 64px;
+	height: 64px;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.license-detail-label
+{
+	font-size: 13px;
+	color: #B0B0B0;
+	width: 120px;
+	text-align: left;
+	text-shadow: 1px 1px 2px #000000AA;
+	font-family: "Radiance", "Arial Unicode MS";
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.license-detail-value
+{
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: left;
+	text-shadow: 1px 1px 2px #000000AA;
+	font-family: "Radiance", "Arial Unicode MS";
+	vertical-align: middle;
+	width: fill-parent-flow(1);
+}
+
+#completed_boosts
+{
+	color: #00FF00;
+	font-weight: bold;
+	font-size: 18px;
+	text-shadow: 0px 0px 8px #00FF0044;
+}
+
+#earned_coins
+{
+	color: #FFD700;
+	font-weight: bold;
+	font-size: 18px;
+	text-shadow: 0px 0px 8px #FFD70044;
+}
+
+#license_days_remaining
+{
+	color: #00FF00;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 0px 0px 4px #00FF0044;
+}
+
+.stats-card:hover
+{
+	brightness: 1.15;
+	box-shadow: fill #00000088 0px 0px 16px 0px;
+	border-color: #5a6a8a;
+}
+
+.stats-icon:hover
+{
+	brightness: 1.2;
+	box-shadow: fill #4a5a7a 0px 0px 12px 0px;
+}
+
+.license-detail-row:hover
+{
+	brightness: 1.1;
+	box-shadow: fill #00000044 0px 0px 8px 0px;
+	border-color: #4a5a7a;
+}
+
+#license_type_display
+{
+	color: #FFD700;
+	font-weight: bold;
+}
+
+.confirm-button
+{
+	margin-top: 25px;
+	margin-bottom: 40px;
+}

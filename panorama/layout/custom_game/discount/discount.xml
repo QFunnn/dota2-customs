@@ -1,0 +1,137 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/discount/discount.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/discount/discount.js" />
+	</scripts>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel id="DiscountPanel" hittest="false">
+			<Panel id="DiscountHeader">
+				<Label id="DiscountTop" text="#Discount" />
+				<Panel id="CloseDiscount" class="CloseDiscount" onmouseactivate="closeButton()" />
+			</Panel>
+			<Panel id="DiscountContent">
+				<Label class="SectionLabel" id="SectionLabel1" text="#special_offers" />
+				<Panel id="DiscountContainer">
+					<Panel class="OfferCard" id="Left">
+						<Panel id="leftImage" />
+						<Label class="CardTitle" html="true" text="#leftLabel" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="50" />
+						</Panel>
+						<Panel class="CardButton" id="leftButton" onmouseactivate="buy(&apos;set_discount&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+					<Panel class="OfferCard" id="Middle">
+						<Panel id="middleImage" />
+						<Label class="CardTitle" html="true" text="#middleLabel" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="25" />
+						</Panel>
+						<Panel class="CardButton" id="middleButton" onmouseactivate="buy(&apos;bless&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+					<Panel class="OfferCard" id="Right">
+						<Panel id="rightImage" />
+						<Label class="CardTitle" html="true" text="#rightLabel" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="15" />
+						</Panel>
+						<Panel class="CardButton" id="rightButton" onmouseactivate="buy(&apos;dust&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+					<Panel class="OfferCard" id="Boost">
+						<Panel id="boostImage" />
+						<Label class="CardTitle" html="true" text="#boost_descr_short" />
+						<Label class="CardTitle" html="true" text="#time_is_over" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice BoostPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="10" />
+						</Panel>
+						<Panel class="CardButton" id="boostButton" onmouseactivate="buy(&apos;boost&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="SectionDivider" />
+				<Label class="SectionLabel" id="SectionLabel2" text="#buy_experience" />
+				<Panel id="ExpContainer">
+					<Panel class="ExpCard ExpCardCommon" id="Exp1">
+						<Label class="CommonBadge" text="#common_exp" />
+						<Panel class="CardSpacer" />
+						<Label class="ExpAmount" text="#common_exp_desc" html="true" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="10" />
+						</Panel>
+						<Panel class="CardButton" id="exp1Button" onmouseactivate="buy(&apos;exp_150&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+					<Panel class="ExpCard ExpCardNormal" id="Exp2">
+						<Label class="NormalBadge" text="#normal_exp" />
+						<Panel class="CardSpacer" />
+						<Label class="ExpAmount" text="#normal_exp_desc" html="true" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="18" />
+						</Panel>
+						<Panel class="CardButton NormalButton" id="exp2Button" onmouseactivate="buy(&apos;exp_300&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+					<Panel class="ExpCard ExpCardBest" id="Exp3">
+						<Label class="BestBadge" text="#best_exp" />
+						<Panel class="CardSpacer" />
+						<Label class="ExpAmount" text="#best_exp_desc" html="true" />
+						<Panel class="CardSpacer" />
+						<Panel class="CardPrice">
+							<Image class="CoinIcon" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="PriceText" text="28" />
+						</Panel>
+						<Panel class="CardButton BestButton " id="exp3Button" onmouseactivate="buy(&apos;exp_500&apos;)">
+							<Label class="ButtonLabel" text="#buy" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="BuyControl" id="BuyControl">
+				<Panel id="close_buy" onmouseactivate="closebuy()" />
+				<Panel id="BuyContent">
+					<Panel id="item_buy_image" />
+					<Panel class="buy_content">
+						<Image class="buy_image" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+						<Label class="buy_label" id="buy_label" text="0" html="true" />
+					</Panel>
+					<Panel class="buy_button" id="buy_button">
+						<Label class="buy_button_label" text="#buy" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

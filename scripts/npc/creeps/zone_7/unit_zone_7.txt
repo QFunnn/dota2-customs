@@ -1,0 +1,276 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAUnits"
+{
+    "npc_dota_zone_7_unit_1" 
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"
+		"SoundSet"					"Hero_OgreMagi"
+		"Level"						"10"
+		"ModelScale" 				"0.6"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_sand_corpse_eater_lua"
+		"Ability2"					"creep_sand_pack_call_lua"
+		"Ability3"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"30"
+		"MagicalResistance"			"15"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"650"
+		"AttackDamageMax"			"750"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"900"
+		"AttackRange"				"180"
+
+		"RingRadius"				"65"
+		"HealthBarOffset"			"250"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+		
+		// "BountyXP"					"110"
+
+		"StatusHealth"				"10000"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"6000"
+		"StatusManaRegen"			"180"
+
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"item_bfury_lua1"
+				{
+					"Item"					"item_bfury_lua2"
+				}
+				"item_bfury_lua1"
+				{
+					"Item"					"item_sabre_blade_lua2"
+				}					
+			}
+		}
+	}
+
+	"npc_dota_zone_7_unit_2"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/heroes/nerubian_assassin/mound.vmdl"
+		"SoundSet"					"hero_sandking"
+		"ModelScale" 				"1.0"
+
+		"Ability1"					"creep_sand_impale_lua"
+		"Ability2"					"creep_sand_shift_lua"
+
+		"ArmorPhysical"				"20"
+		"MagicalResistance"			"10"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"900"
+		"AttackRange"				"180"
+
+		"RingRadius"				"65"
+		"HealthBarOffset"			"250"
+		
+		// "BountyXP"					"70"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"
+
+		"StatusHealth"				"7000"
+		"StatusHealthRegen"			"20"
+		"StatusMana"				"6000"
+		"StatusManaRegen"			"180"
+
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"900"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+
+	"npc_dota_zone_7_unit_3"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/npc/babahooka/babahooka.vmdl"
+		"SoundSet"					"Hero_WitchDoctor"
+		"Level"						"15"
+		"ModelScale" 				"6"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_sand_illusion_lua"
+		"Ability2"					"creep_sand_shimmer_aura_lua"
+
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"40"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"420"
+		"AttackDamageMax"			"520"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"750"
+		"AttackRange"				"600"
+		"ProjectileModel"			"particles/units/heroes/hero_witchdoctor/witchdoctor_base_attack.vpcf"
+		"ProjectileSpeed"			"1200"
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"				"65"
+		"HealthBarOffset"			"180"
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"520"
+		
+		// "BountyXP"					"60"		
+
+		"StatusHealth"				"6500"
+		"StatusHealthRegen"			"15"
+		"StatusMana"				"1500"
+		"StatusManaRegen"			"45"
+		
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+		{
+			"EquippedItems"
+			{
+				"Assault"
+				{
+					"Item"					"item_mirror_shield"
+				}
+				"item_bfury_lua1"
+				{
+					"Item"					"item_glimmer_cape"
+				}
+			}
+		}
+	}
+
+	"npc_dota_zone_7_unit_4"
+	{
+		"vscripts"					"ai/ai_creeps.lua"
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/npc/tu/tu.vmdl"
+		"SoundSet"					"Hero_Bristleback"
+		"ModelScale" 				"0.9"
+		"HasInventory"				"1"
+
+		"Ability1"					"creep_sand_toss_lua"
+		"Ability2"					"necronomicon_warrior_sight"
+
+		"ArmorPhysical"				"5"
+		"MagicalResistance"			"40"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"400"
+		"AttackDamageMax"			"400"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"750"
+		"AttackRange"				"200"
+
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"				"65"
+		"HealthBarOffset"			"180"
+		
+		// "BountyXP"					"90"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"520"
+
+		"StatusHealth"				"7000"
+		"StatusHealthRegen"			"15"
+		"StatusMana"				"900"
+		"StatusManaRegen"			"27"
+		
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+
+	"npc_dust_quest"	
+	{
+		"Model"						"models/props_structures/dire_tower001.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"ModelScale" 				"1"
+		"IsAncient"					"1"
+		
+		"Ability1"					"all_reduction_aura"
+
+		"ArmorPhysical"				"40"
+		"MagicalResistance"			"40"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"420"
+		"AttackDamageMax"			"520"
+		"AttackRate"				"0.6"
+		"AttackAnimationPoint"		"0.1"
+		"AttackAcquisitionRange"	"750"
+		"AttackRange"				"600"
+     
+		"RingRadius"				"70"
+		"HealthBarOffset"			"315"
+
+		// "BountyXP"					"100"		
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"325"			
+		"MovementTurnRate"			"1"		
+	
+		"StatusHealth"				"10000"		
+		"StatusHealthRegen"			"0"		
+		"StatusMana"				"0"		
+		"StatusManaRegen"			"0"			 
+		
+		"VisionDaytimeRange"		"1000"		
+		"VisionNighttimeRange"		"1000"		
+
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+}
+
+
+
+
+
+

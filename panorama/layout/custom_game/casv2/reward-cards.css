@@ -1,0 +1,624 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.reward-card
+{
+	width: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(25, 27, 32, 0.6)), to(rgba(20, 22, 26, 0.6)));
+	border: 2px solid rgba(158, 118, 6, 0.4);
+	border-radius: 12px;
+	padding: 10px 14px;
+	margin-top: 12px;
+	box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.6);
+}
+
+.reward-card:last-child
+{
+	margin-bottom: 0px;
+}
+
+.reward-card-title
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: rgba(255, 215, 0, 0.95);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 8px;
+	horizontal-align: center;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	margin-top: 10px;
+}
+
+.reward-content-panel
+{
+	width: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	height: 100%;
+	margin-left: 35px;
+}
+
+.reward-progress-column
+{
+	width: 25px;
+	height: 170px;
+	flow-children: none;
+	horizontal-align: left;
+	vertical-align: center;
+	margin: 10px;
+}
+
+.reward-progress-bg
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(15, 17, 20, 0.85)), to(rgba(10, 12, 15, 0.95)));
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.8), inset 0px -1px 2px rgba(0, 0, 0, 0.6), inset 1px 0px 1px rgba(255, 255, 255, 0.03), inset -1px 0px 1px rgba(0, 0, 0, 0.4);
+	z-index: 1;
+}
+
+.reward-progress-mask
+{
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+	border-radius: 4px;
+	flow-children: none;
+	vertical-align: bottom;
+	z-index: 2;
+}
+
+.reward-progress-fill
+{
+	width: 100%;
+	height: 0%;
+	vertical-align: bottom;
+	horizontal-align: center;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 230, 120, 0.95)), color-stop(0.25, rgba(255, 210, 90, 0.9)), color-stop(0.5, rgba(255, 195, 75, 0.85)), color-stop(0.75, rgba(212, 175, 55, 0.8)), to(rgba(184, 134, 11, 0.75)));
+	border-radius: 0px 0px 5px 5px;
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.12), inset 0px -1px 3px rgba(255, 255, 255, 0.1), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(255, 215, 0, 0.25);
+	transition-property: height;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+	z-index: 2;
+}
+
+.reward-progress-column.isHigh .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 235, 130, 0.98)), color-stop(0.25, rgba(255, 220, 100, 0.93)), color-stop(0.5, rgba(255, 205, 85, 0.88)), color-stop(0.75, rgba(230, 190, 70, 0.83)), to(rgba(200, 150, 30, 0.78)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.14), inset 0px -1px 3px rgba(255, 255, 255, 0.12), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(255, 215, 0, 0.35), 0px 0px 4px rgba(255, 230, 120, 0.25);
+}
+
+.reward-progress-column.isLow .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 210, 90, 0.85)), color-stop(0.5, rgba(212, 175, 55, 0.75)), to(rgba(158, 118, 6, 0.65)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.1), inset 0px -1px 3px rgba(255, 255, 255, 0.08), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(255, 215, 0, 0.2);
+}
+
+.reward-progress-column.isLow .progress-level-line
+{
+	opacity: 0.85;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 230, 130, 0.8)), color-stop(0.7, rgba(255, 230, 130, 0.8)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 2px rgba(255, 220, 100, 0.5);
+}
+
+.reward-progress-column.isHigh .progress-level-line
+{
+	opacity: 1.0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 245, 160, 0.95)), color-stop(0.7, rgba(255, 245, 160, 0.95)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 4px rgba(255, 235, 140, 0.7), 0px 0px 2px rgba(255, 255, 255, 0.5);
+}
+
+.reward-progress-column.isCritical .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 245, 150, 1.0)), color-stop(0.2, rgba(255, 230, 120, 0.98)), color-stop(0.5, rgba(255, 215, 100, 0.95)), color-stop(0.75, rgba(240, 200, 80, 0.9)), to(rgba(220, 170, 50, 0.85)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.18), inset 0px -1px 3px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(255, 215, 0, 0.5), 0px 0px 6px rgba(255, 240, 140, 0.4);
+}
+
+.reward-icon
+{
+	width: 68px;
+	vertical-align: top;
+	horizontal-align: center;
+	box-shadow: 0px 0px 10px rgba(184, 134, 11, 0.5), 0px 0px 5px rgba(255, 215, 0, 0.3);
+	brightness: 1.1;
+	margin-top: 60px;
+}
+
+.reward-winner-section
+{
+	flow-children: down;
+	vertical-align: top;
+	horizontal-align: center;
+	margin-top: 125px;
+}
+
+.reward-winner-avatar
+{
+	width: 32px;
+	height: 32px;
+	border-radius: 4px;
+	border: 2px solid rgba(255, 215, 0, 0.6);
+	box-shadow: 0px 0px 8px rgba(255, 215, 0, 0.4);
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: 3px;
+}
+
+.reward-winner-label
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: rgba(255, 215, 0, 0.95);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	horizontal-align: center;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	vertical-align: center;
+}
+
+.reward-stats
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 35px;
+	vertical-align: top;
+}
+
+.reward-progress-text
+{
+	font-size: 11px;
+	font-weight: bold;
+	color: rgba(184, 134, 11, 0.9);
+	horizontal-align: center;
+	margin-bottom: 4px;
+}
+
+.reward-chance-text
+{
+	font-size: 13px;
+	font-weight: bold;
+	color: rgba(255, 215, 0, 0.95);
+	horizontal-align: center;
+	text-shadow: 0px 0px 4px rgba(255, 215, 0, 0.4);
+}
+
+.reward-card.RewardProgressHigh .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 235, 130, 0.98)), color-stop(0.25, rgba(255, 220, 100, 0.93)), color-stop(0.5, rgba(255, 205, 85, 0.88)), color-stop(0.75, rgba(230, 190, 70, 0.83)), to(rgba(200, 150, 30, 0.78)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.14), inset 0px -1px 3px rgba(255, 255, 255, 0.12), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(255, 215, 0, 0.35), 0px 0px 4px rgba(255, 230, 120, 0.25);
+}
+
+.reward-card.RewardProgressLow .progress-level-line
+{
+	opacity: 0.85;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 230, 130, 0.8)), color-stop(0.7, rgba(255, 230, 130, 0.8)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 2px rgba(255, 220, 100, 0.5);
+}
+
+.reward-card.RewardProgressHigh .progress-level-line
+{
+	opacity: 1.0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 245, 160, 0.95)), color-stop(0.7, rgba(255, 245, 160, 0.95)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 4px rgba(255, 235, 140, 0.7), 0px 0px 2px rgba(255, 255, 255, 0.5);
+}
+
+.reward-card.RewardProgressHigh .reward-progress-frame
+{
+	border-color: rgba(184, 134, 11, 0.5);
+}
+
+.reward-card.RewardProgressCritical .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 245, 150, 1.0)), color-stop(0.2, rgba(255, 230, 120, 0.98)), color-stop(0.5, rgba(255, 215, 100, 0.95)), color-stop(0.75, rgba(240, 200, 80, 0.9)), to(rgba(220, 170, 50, 0.85)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.18), inset 0px -1px 3px rgba(255, 255, 255, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(255, 215, 0, 0.5), 0px 0px 6px rgba(255, 240, 140, 0.4);
+}
+
+.reward-card.RewardProgressCritical .progress-level-line
+{
+	opacity: 1.0;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 250, 180, 1.0)), color-stop(0.7, rgba(255, 250, 180, 1.0)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 5px rgba(255, 245, 160, 0.9), 0px 0px 3px rgba(255, 255, 255, 0.6);
+	animation-name: level_line_pulse;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.reward-card.RewardProgressCritical .reward-progress-frame
+{
+	border-color: rgba(255, 215, 0, 0.6);
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.08), inset 0px -1px 2px rgba(0, 0, 0, 0.5), 0px 0px 4px rgba(255, 215, 0, 0.3);
+}
+
+.reward-card.RewardJustWon .reward-progress-column
+{
+	box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8), 0px 0px 40px rgba(184, 134, 11, 0.6);
+}
+
+.reward-card.RewardJustWon .reward-progress-fill
+{
+	transition-duration: 0.6s;
+}
+
+.progress-level-line
+{
+	width: 100%;
+	height: 2px;
+	vertical-align: top;
+	horizontal-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 240, 150, 0.9)), color-stop(0.7, rgba(255, 240, 150, 0.9)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 3px rgba(255, 230, 120, 0.6), 0px 0px 1px rgba(255, 255, 255, 0.4);
+	transition-property: opacity;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+	z-index: 3;
+}
+
+.reward-progress-frame
+{
+	width: 100%;
+	height: 100%;
+	border: 1px solid rgba(158, 118, 6, 0.35);
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.04), inset 0px -1px 2px rgba(0, 0, 0, 0.5), inset 1px 0px 1px rgba(255, 255, 255, 0.02), inset -1px 0px 1px rgba(0, 0, 0, 0.3);
+	z-index: 3;
+}
+
+.reward-card.RewardCard--Red
+{
+	border: 2px solid rgba(200, 50, 50, 0.6);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 20, 20, 0.7)), to(rgba(30, 15, 15, 0.7)));
+	box-shadow: inset 0px 0px 20px rgba(150, 0, 0, 0.4);
+}
+
+.reward-card.RewardCard--Red .reward-card-title
+{
+	color: rgba(255, 100, 100, 0.95);
+	text-shadow: 0px 1px 2px rgba(200, 0, 0, 0.6);
+}
+
+.reward-card.RewardCard--Red .reward-progress-bg
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(25, 10, 10, 0.9)), to(rgba(15, 5, 5, 0.95)));
+}
+
+.reward-card.RewardCard--Red .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 120, 120, 0.95)), color-stop(0.25, rgba(255, 90, 90, 0.9)), color-stop(0.5, rgba(255, 60, 60, 0.85)), color-stop(0.75, rgba(220, 40, 40, 0.8)), to(rgba(180, 20, 20, 0.75)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.12), inset 0px -1px 3px rgba(255, 255, 255, 0.1), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(255, 50, 50, 0.4);
+}
+
+.reward-card.RewardCard--Red .progress-level-line
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 150, 150, 0.9)), color-stop(0.7, rgba(255, 150, 150, 0.9)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 3px rgba(255, 100, 100, 0.7), 0px 0px 1px rgba(255, 200, 200, 0.5);
+}
+
+.reward-card.RewardCard--Red .reward-progress-frame
+{
+	border: 1px solid rgba(200, 50, 50, 0.5);
+}
+
+.reward-card.RewardCard--Red .reward-icon
+{
+	box-shadow: 0px 0px 10px rgba(200, 50, 50, 0.6), 0px 0px 5px rgba(255, 100, 100, 0.4);
+}
+
+.reward-card.RewardCard--Red .reward-winner-avatar
+{
+	border: 2px solid rgba(255, 100, 100, 0.6);
+	box-shadow: 0px 0px 8px rgba(255, 100, 100, 0.4);
+}
+
+.reward-card.RewardCard--Red .reward-winner-label
+{
+	color: rgba(255, 100, 100, 0.95);
+	text-shadow: 0px 1px 2px rgba(200, 0, 0, 0.6);
+}
+
+.reward-card.RewardCard--Red .reward-progress-text
+{
+	color: rgba(255, 120, 120, 0.9);
+}
+
+.reward-card.RewardCard--Red .reward-chance-text
+{
+	color: rgba(255, 150, 150, 0.95);
+	text-shadow: 0px 0px 4px rgba(255, 100, 100, 0.5);
+}
+
+.reward-card.RewardCard--Gold
+{
+	border: 2px solid rgba(255, 215, 0, 0.6);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 35, 20, 0.7)), to(rgba(30, 25, 15, 0.7)));
+	box-shadow: inset 0px 0px 20px rgba(255, 215, 0, 0.3);
+}
+
+.reward-card.RewardCard--Gold .reward-card-title
+{
+	color: rgba(255, 215, 0, 1.0);
+	text-shadow: 0px 1px 2px rgba(255, 200, 0, 0.7);
+}
+
+.reward-card.RewardCard--Gold .reward-progress-bg
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(30, 25, 15, 0.9)), to(rgba(20, 18, 10, 0.95)));
+}
+
+.reward-card.RewardCard--Gold .reward-progress-fill
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 240, 140, 0.98)), color-stop(0.25, rgba(255, 220, 110, 0.95)), color-stop(0.5, rgba(255, 200, 90, 0.92)), color-stop(0.75, rgba(240, 180, 70, 0.88)), to(rgba(220, 160, 50, 0.85)));
+	box-shadow: inset -2px 0px 4px rgba(255, 255, 255, 0.15), inset 0px -1px 3px rgba(255, 255, 255, 0.12), inset 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(255, 215, 0, 0.5), 0px 0px 5px rgba(255, 230, 120, 0.4);
+}
+
+.reward-card.RewardCard--Gold .progress-level-line
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0.0)), color-stop(0.3, rgba(255, 250, 180, 1.0)), color-stop(0.7, rgba(255, 250, 180, 1.0)), to(rgba(255, 255, 255, 0.0)));
+	box-shadow: 0px 0px 4px rgba(255, 240, 160, 0.8), 0px 0px 2px rgba(255, 255, 200, 0.6);
+}
+
+.reward-card.RewardCard--Gold .reward-progress-frame
+{
+	border: 1px solid rgba(255, 215, 0, 0.6);
+	box-shadow: inset 0px 1px 2px rgba(255, 255, 200, 0.1), inset 0px -1px 2px rgba(0, 0, 0, 0.5), inset 1px 0px 1px rgba(255, 255, 200, 0.08), inset -1px 0px 1px rgba(0, 0, 0, 0.3);
+}
+
+.reward-card.RewardCard--Gold .reward-icon
+{
+	box-shadow: 0px 0px 12px rgba(255, 215, 0, 0.7), 0px 0px 6px rgba(255, 230, 120, 0.5);
+	brightness: 1.2;
+}
+
+.reward-card.RewardCard--Gold .reward-winner-avatar
+{
+	border: 2px solid rgba(255, 215, 0, 0.8);
+	box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6);
+	brightness: 1.1;
+}
+
+.reward-card.RewardCard--Gold .reward-winner-label
+{
+	color: rgba(255, 215, 0, 1.0);
+	text-shadow: 0px 1px 2px rgba(255, 200, 0, 0.7);
+}
+
+.reward-card.RewardCard--Gold .reward-progress-text
+{
+	color: rgba(255, 215, 0, 0.95);
+}
+
+.reward-card.RewardCard--Gold .reward-chance-text
+{
+	color: rgba(255, 240, 150, 1.0);
+	text-shadow: 0px 0px 5px rgba(255, 215, 0, 0.6);
+}
+
+.crystal-jackpot-banner
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	min-height: 150px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(20, 15, 30, 0.85)), to(rgba(15, 10, 25, 0.9)));
+	border: 2px solid rgba(158, 118, 6, 0.5);
+	border-radius: 12px;
+	box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.7), inset 0px 0px 10px rgba(100, 150, 255, 0.05), 0px 0px 15px rgba(100, 150, 255, 0.1);
+	vertical-align: top;
+}
+
+.jackpot-title
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: rgba(200, 180, 255, 0.9);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	horizontal-align: center;
+	margin-bottom: 4px;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: clip;
+}
+
+.jackpot-hero
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+	margin: 4px 0px;
+}
+
+.jackpot-hero-wrapper
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.jackpot-value-container
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.jackpot-value
+{
+	font-size: 42px;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 0.98);
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(200, 220, 255, 0.6), 0px 0px 4px rgba(150, 180, 255, 0.4), 0px 2px 4px rgba(0, 0, 0, 0.5);
+	letter-spacing: 2px;
+}
+
+.crystal-icon
+{
+	width: 48px;
+	height: 44px;
+	margin-left: 8px;
+	vertical-align: center;
+	img-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.jackpot-footer
+{
+	width: 100%;
+	flow-children: down;
+	vertical-align: bottom;
+	margin-top: 4px;
+}
+
+.jackpot-description
+{
+	font-size: 8px;
+	font-weight: normal;
+	color: rgba(200, 200, 220, 0.7);
+	horizontal-align: center;
+	text-align: center;
+	line-height: 1.2;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: clip;
+}
+
+.jackpot-subtitle
+{
+	visibility: collapse;
+	height: 0px;
+}
+
+.jackpot-growth
+{
+	font-size: 7px;
+	font-weight: normal;
+	color: rgba(150, 200, 150, 0.6);
+	horizontal-align: center;
+	text-align: center;
+	opacity: 0.7;
+}
+
+.crystal-jackpot-banner.isLow
+{
+	border-color: rgba(158, 118, 6, 0.4);
+	box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.7), inset 0px 0px 10px rgba(100, 150, 255, 0.03);
+}
+
+.crystal-jackpot-banner.isLow .jackpot-value
+{
+	font-size: 38px;
+	color: rgba(240, 240, 255, 0.9);
+	text-shadow: 0px 0px 6px rgba(180, 200, 255, 0.4), 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.crystal-jackpot-banner.isGrowing .jackpot-value
+{
+	animation-name: jackpot_grow_pulse;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'jackpot_grow_pulse'
+{
+	0%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+		brightness: 1.15;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1.0;
+		brightness: 1.0;
+	}
+	
+}
+
+.crystal-jackpot-banner.isHuge
+{
+	border-color: rgba(255, 215, 0, 0.6);
+	box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.7), inset 0px 0px 15px rgba(150, 200, 255, 0.08), 0px 0px 20px rgba(150, 200, 255, 0.15);
+}
+
+.crystal-jackpot-banner.isHuge .jackpot-value
+{
+	font-size: 46px;
+	color: rgba(255, 255, 255, 1.0);
+	text-shadow: 0px 0px 10px rgba(200, 220, 255, 0.7), 0px 0px 5px rgba(150, 180, 255, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.crystal-jackpot-banner.isHuge .crystal-icon
+{
+	img-shadow: 0px 0px 15px rgba(150, 180, 255, 0.6), 0px 0px 8px rgba(200, 220, 255, 0.4);
+	brightness: 1.25;
+}
+
+.crystal-jackpot-banner.isHuge .jackpot-title
+{
+	color: rgba(220, 200, 255, 1.0);
+	text-shadow: 0px 1px 3px rgba(150, 180, 255, 0.4);
+}
+
+.crystal-jackpot-banner.isCompact
+{
+	padding: 8px 10px;
+	min-height: 120px;
+}
+
+.crystal-jackpot-banner.isCompact .jackpot-title
+{
+	font-size: 9px;
+	letter-spacing: 0.8px;
+	margin-bottom: 2px;
+}
+
+.crystal-jackpot-banner.isCompact .jackpot-hero
+{
+	margin: 2px 0px;
+}
+
+.crystal-jackpot-banner.isCompact .jackpot-value
+{
+	font-size: 44px;
+	letter-spacing: 1.5px;
+}
+
+.crystal-jackpot-banner.isCompact .crystal-icon
+{
+	width: 44px;
+	height: 44px;
+	margin-left: 6px;
+}
+
+.crystal-jackpot-banner.isCompact .jackpot-footer
+{
+	visibility: collapse;
+	height: 0px;
+	margin-top: 0px;
+}

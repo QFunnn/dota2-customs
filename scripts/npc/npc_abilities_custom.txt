@@ -1,0 +1,708 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+﻿"DOTAAbilities"
+{
+
+"winter_wyvern_arctic_burn"					"REMOVE"
+"meepo_ransack"								"REMOVE"
+"beastmaster_primal_roar"					"REMOVE"
+"puck_ethereal_jaunt"						"REMOVE"
+"templar_assassin_trap_teleport"			"REMOVE"
+"snapfire_spit_creep"						"REMOVE"
+"snapfire_gobble_up"						"REMOVE"
+"clinkz_burning_army"						"REMOVE"
+"enchantress_bunny_hop"						"REMOVE"		
+"antimage_mana_overload"					"REMOVE"		
+"sniper_concussive_grenade"					"REMOVE"	
+"tinker_keen_teleport"						"REMOVE"	
+"techies_minefield_sign"					"REMOVE"
+"techies_focused_detonate"					"REMOVE"
+"remote_mines_self_detonate"				"REMOVE"
+"item_aeon_disk"							"REMOVE"
+
+//===============================================================================================================================================================
+// AKATSUKI ABILITIES
+//===============================================================================================================================================================
+
+	"pain_six_paths_authority"
+	{
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"heroes/akatsuki/pain"
+		"AbilityTextureName"		"pain_six_paths_authority"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"MaxLevel"					"5"
+		"AbilityCastRange"			"500"
+
+		"AbilityValues"
+		{
+			"aura_radius"			"500"
+			"dot_damage_pct"		"20 30 40 50 60"
+			"meteor_radius"			"500"
+		}
+	}
+
+	"itachi_crow_guard"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/itachi"
+		"AbilityTextureName"	"itachi_crow_guard"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"				"5"
+		"AbilityCastRange"		"400"
+
+		"AbilityValues"
+		{
+			"wander_radius"			"380"
+			"attack_radius"			"400"
+			"attack_damage_pct"		"50 55 60 65 70"
+			"speed_wander"			"280"
+			"speed_attack"			"700"
+			"attack_cd_base"		"1.5 1.3 1.1 0.9 0.7"
+		}
+	}
+
+	"kisame_samehada_hunger"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/kisame"
+		"AbilityTextureName"	"kisame_samehada_hunger"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"mana_burn_pct_base"		"25 30 35 40 45"
+			"magic_resist_reduction"	"25 30 35 40 45"
+			"debuff_duration"			"3"
+		}
+	}
+
+	"hidan_ritual_of_blood"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/hidan"
+		"AbilityTextureName"	"hidan_ritual_of_blood"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"bonus_per_pct_missing"		"1.0 1.5 2.0 2.5 3.0"
+			"regen_per_pct_missing"		"0.2 0.4 0.6 0.8 1.0"
+		}
+	}
+
+	"tobi_phantom_strike"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/tobi"
+		"AbilityTextureName"	"tobi_phantom_strike"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"base_chance"			"5 10 15 20 25"
+			"crit_multiplier"		"300"
+			"teleport_distance"		"150"
+			"min_angle"				"45"
+			"slow_duration"			"3"
+			"turn_rate_slow_pct"	"10"
+			"move_slow_pct"			"10"
+		}
+	}
+
+//=============================================
+
+	"zetsu_root_assimilation"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/zetsu"
+		"AbilityTextureName"	"zetsu_root_assimilation"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"proc_chance_pct"			"10 15 20 25 30"
+			"illusion_proc_chance_pct"	"5 8 10 13 15"
+			"max_illusions"				"1 2 2 3 3"
+			"illusion_duration"			"8"
+			"illusion_damage_out_pct"	"50"
+			"illusion_damage_in_pct"	"300"
+		}
+	}
+
+	"deidara_unstable_art"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/deidara"
+		"AbilityTextureName"	"deidara_unstable_art"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"splash_radius"		"250"
+			"base_splash_pct"	"50 55 60 65 70"
+			"explode_radius"	"300"
+			"explode_hp_pct"	"50"
+		}
+	}
+
+	"konan_paper_dance"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/konan"
+		"AbilityTextureName"	"konan_paper_dance"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+		"AbilityCastRange"		"1000"
+
+		"AbilityValues"
+		{
+			"aura_radius"		"1000"
+			"revive_chance_pct"	"15 25 35 45 55"
+			"revive_hp_pct"		"20 25 30 35 40"
+			"creep_heal_pct"	"50"
+		}
+	}
+
+	"kakuzu_earth_grudge_fear"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/kakuzu"
+		"AbilityTextureName"	"kakuzu_earth_grudge_fear"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"				"5"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"		"400"
+
+		"AbilityValues"
+		{
+			"kills_per_heart"			"50"
+			"max_hearts"				"4"
+			"magic_resist_per_heart"	"3 5 7 9 11"
+			"armor_per_heart"			"3 5 7 9 11"
+			"explosion_radius"			"400"
+			"explosion_stun_duration"	"1.5"
+			"heal_pct_base"				"25 30 35 40 45"
+		}
+	}
+
+	"sasori_red_secret_technique"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/akatsuki/sasori"
+		"AbilityTextureName"	"sasori_red_secret_technique"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"				"5"
+
+		"AbilityValues"
+		{
+			"poison_duration"			"6"
+			"max_poison_stacks"			"5"
+			"poison_dps_per_stack"		"10 15 20 25 30"
+			"heal_reduction_per_stack"	"10 15 20 25 30"
+		}
+	}
+
+
+
+//===============================================================================================================================================================
+
+	"ability_capture_lua"
+	{
+		"BaseClass"           			"ability_lua"
+		"ScriptFile"					"abilities/ability_capture"
+		"AbilityTextureName"			"ability_capture_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityTextureName" 			"ability_capture_lua"	
+		"IsOnCastBar"                   "0"
+		"MaxLevel"						"1"
+		"AbilityCastRange"				"150"
+	}
+		
+ 	"empty_0"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+   "empty_1"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_2"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_3"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_4"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_5"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_6"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+   "empty_7"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+   "empty_8"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+   "empty_9"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_10"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_11"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_12"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_13"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_14"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_15"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_16"
+    {
+        "BaseClass"					"ability_datadriven"
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    }
+    "empty_special_1"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_3"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_4"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_5"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	"ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_6"
+	{
+		"BaseClass"	        "ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	    "ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_7"
+	{
+		"BaseClass"	        "ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	    "ABILITY_TYPE_ATTRIBUTES"
+	}
+
+	"empty_special_8"
+	{
+		"BaseClass"	        "ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"	    "ABILITY_TYPE_ATTRIBUTES"
+	}
+//===============================================================================================================================================================
+
+"high_five_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"effects"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"MaxLevel"						"1"
+	}
+
+//===============================================================================================================================================================
+
+"ability_slot_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"     		"ability_slot"
+	}
+"ability_slot_2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"     		"ability_slot"
+	}
+"ability_slot_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"     		"ability_slot"
+	}
+"ability_slot_4"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     		"ability_slot"
+	}
+"ability_slot_5"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"     		"ability_slot"
+	}
+	
+
+}
+
+//==============================================================================================================================================================================================================================================================
+
+#base "../vscripts/heroes/talents/hero_talents.txt"
+
+//=====================================================================================================DRAGON=================================================================================================================================================
+
+#base "../vscripts/heroes/hero_dragon/dragon_fire_ball/dragon_fire_ball.txt"
+#base "../vscripts/heroes/hero_dragon/dragon_2_skill/dragon_2_skill.txt"
+#base "../vscripts/heroes/hero_dragon/dragon_blood_lua/dragon_blood_lua.txt"
+#base "../vscripts/heroes/hero_dragon/dragon_knight_elder_dragon_form_lua/dragon_knight_elder_dragon_form_lua.txt"
+
+//=======================================================================================================LINA===================================================================================================================================================
+
+#base "../vscripts/heroes/hero_lina/lina_dragon_slave_lua/lina_dragon_slave_lua.txt"
+#base "../vscripts/heroes/hero_lina/lina_stun/lina_stun.txt"
+#base "../vscripts/heroes/hero_lina/lina_fiery_soul_lua/lina_fiery_soul_lua.txt"
+#base "../vscripts/heroes/hero_lina/lina_laguna_blade_lua/lina_laguna_blade_lua.txt"
+
+//=====================================================================================================LION=======================================================================================================================================================
+
+#base "../vscripts/heroes/hero_lion/lion_earth_spike_lua/lion_earth_spike_lua.txt"
+#base "../vscripts/heroes/hero_lion/lion_soul_collector/lion_soul_collector.txt"
+#base "../vscripts/heroes/hero_lion/lion_finger_of_death_lua/lion_finger_of_death_lua.txt"
+#base "../vscripts/heroes/hero_lion/lion_mana_aura/lion_mana_aura.txt"
+
+//=====================================================================================================ZUUS=======================================================================================================================================================
+#base "../vscripts/heroes/hero_zuus/zuus_lighting/arc_lightning.txt"
+#base "../vscripts/heroes/hero_zuus/zuus_lighting_bolt/zuus_lighting_bolt.txt"
+#base "../vscripts/heroes/hero_zuus/zuus_passive/zuus_passive.txt"
+#base "../vscripts/heroes/hero_zuus/zuus_thunder/zuus_thunder.txt"
+
+//=====================================================================================================NIGHTSTALKER=================================================================================================================================================
+
+#base "../vscripts/heroes/hero_night_stalker/night_stalker_void_lua/night_stalker_void_lua.txt"
+#base "../vscripts/heroes/hero_night_stalker/night_stalker_blood/night_stalker_blood.txt"
+#base "../vscripts/heroes/hero_night_stalker/night_stalker_hunter_in_the_night_lua/night_stalker_hunter_in_the_night_lua.txt"
+#base "../vscripts/heroes/hero_night_stalker/night_stalker_darkness_lua/night_stalker_darkness_lua.txt"
+
+//=====================================================================================================ALCHEMIST=====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_alchemist/alchemist_acid_spray_lua/alchemist_acid_spray_lua.txt"
+#base "../vscripts/heroes/hero_alchemist/alchemist_unstable_concoction_throw_lua/alchemist_unstable_concoction_throw_lua.txt"
+#base "../vscripts/heroes/hero_alchemist/alchemist_greevils_greed_lua/alchemist_greevils_greed_lua.txt"
+#base "../vscripts/heroes/hero_alchemist/alchemist_chemical_rage_lua/alchemist_chemical_rage_lua.txt"
+
+//=====================================================================================================LESHRAC=====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_leshrac/leshrac_split_earth_lua/leshrac_split_earth_lua.txt"
+#base "../vscripts/heroes/hero_leshrac/leshrac_diabolic_edict_lua/leshrac_diabolic_edict_lua.txt"
+#base "../vscripts/heroes/hero_leshrac/leshrac_lightning_storm_lua/leshrac_lightning_storm_lua.txt"
+#base "../vscripts/heroes/hero_leshrac/leshrac_pulse_nova_lua/leshrac_pulse_nova_lua.txt"
+
+//=====================================================================================================VIPER=====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_viper/viper_poison_attack_lua/viper_poison_attack_lua.txt"
+#base "../vscripts/heroes/hero_viper/viper_nethertoxin_lua/viper_nethertoxin_lua.txt"
+#base "../vscripts/heroes/hero_viper/viper_corrosive_skin_lua/viper_corrosive_skin_lua.txt"
+#base "../vscripts/heroes/hero_viper/viper_viper_strike_lua/viper_viper_strike_lua.txt"
+
+//=====================================================================================================LIFESTEALER====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_lifestealer/lifestealer_rage_lua/lifestealer_rage_lua.txt"
+#base "../vscripts/heroes/hero_lifestealer/lifestealer_feast_lua/lifestealer_feast_lua.txt"
+#base "../vscripts/heroes/hero_lifestealer/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua.txt"
+#base "../vscripts/heroes/hero_lifestealer/lifestealer_monster_heart/lifestealer_monster_heart.txt"
+
+//=====================================================================================================JAKIRO====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_jakiro/jakiro_dual_breath_lua/jakiro_dual_breath_lua.txt"
+#base "../vscripts/heroes/hero_jakiro/jakiro_ice_path_lua/jakiro_ice_path_lua.txt"
+#base "../vscripts/heroes/hero_jakiro/jakiro_liquid_fire_lua/jakiro_liquid_fire_lua.txt"
+#base "../vscripts/heroes/hero_jakiro/jakiro_macropyre_lua/jakiro_macropyre_lua.txt"
+
+//=====================================================================================================TEHAS=====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_techies/techies_suicide/suicide.txt"
+#base "../vscripts/heroes/hero_techies/techies_stasis_trap/stasis_trap.txt"
+#base "../vscripts/heroes/hero_techies/techies_remote_mines/remote_mines.txt"
+#base "../vscripts/heroes/hero_techies/techies_land_mines/land_mines.txt"
+
+//=====================================================================================================TROLL=====================================================================================================================================================
+
+#base "../vscripts/heroes/hero_troll_warlord/troll_warlord_rage_lua/troll_warlord_rage_lua.txt"
+#base "../vscripts/heroes/hero_troll_warlord/troll_warlord_axes_lua/troll_warlord_axes_lua.txt"
+#base "../vscripts/heroes/hero_troll_warlord/troll_warlord_fervor_lua/troll_warlord_fervor_lua.txt"
+#base "../vscripts/heroes/hero_troll_warlord/troll_warlord_battle_trance_lua/troll_warlord_battle_trance_lua.txt"
+
+//====================================================================================================SKELETON===================================================================================================================================================
+
+#base "../vscripts/heroes/hero_skeleton/wraith_king_sceleton/wraith_king_sceleton.txt"
+#base "../vscripts/heroes/hero_skeleton/wraith_king_crit/wraith_king_crit.txt"
+#base "../vscripts/heroes/hero_skeleton/wraith_king_vampiric_aura_lua/wraith_king_vampiric_aura_lua.txt"
+#base "../vscripts/heroes/hero_skeleton/wraith_king_reincarnation_lua/wraith_king_reincarnation_lua.txt"
+
+//====================================================================================================outworld_devourer===================================================================================================================================================
+
+#base "../vscripts/heroes/hero_outworld_devourer/outworld_devourer_arcane_orb_lua/outworld_devourer_arcane_orb_lua.txt"
+#base "../vscripts/heroes/hero_outworld_devourer/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua.txt"
+#base "../vscripts/heroes/hero_outworld_devourer/outworld_devourer_flux_lua/outworld_devourer_flux_lua.txt"
+#base "../vscripts/heroes/hero_outworld_devourer/outworld_devourer_sanitys_eclipse_lua/outworld_devourer_sanitys_eclipse_lua.txt"
+
+//====================================================================================================sven_gods_strength===================================================================================================================================================
+
+#base "../vscripts/heroes/hero_sven/sven_storm_bolt_lua/sven_storm_bolt_lua.txt"
+#base "../vscripts/heroes/hero_sven/sven_great_cleave_lua/sven_great_cleave_lua.txt"
+#base "../vscripts/heroes/hero_sven/sven_warcry_lua/sven_warcry_lua.txt"
+#base "../vscripts/heroes/hero_sven/sven_gods_strength_lua/sven_gods_strength_lua.txt"
+
+//=====================================================================================================MUERTA==================================================================================================================================================
+
+#base "../vscripts/heroes/hero_muerta/muerta_dead_shot_lua/muerta_dead_shot_lua.txt"
+#base "../vscripts/heroes/hero_muerta/muerta_the_calling_lua/muerta_the_calling_lua.txt"
+#base "../vscripts/heroes/hero_muerta/muerta_gunslinger_lua/muerta_gunslinger_lua.txt"
+#base "../vscripts/heroes/hero_muerta/muerta_pierce_the_veil_lua/muerta_pierce_the_veil_lua.txt"
+
+//=====================================================================================================OGREMAGE==================================================================================================================================================
+
+#base "../vscripts/heroes/hero_ogre_mage/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua.txt"
+#base "../vscripts/heroes/hero_ogre_mage/ogre_magi_ignite_lua/ogre_magi_ignite_lua.txt"
+#base "../vscripts/heroes/hero_ogre_mage/ogre_magi_bloodlust_lua/ogre_magi_bloodlust_lua.txt"
+#base "../vscripts/heroes/hero_ogre_mage/ogre_magi_multicast_lua/ogre_magi_multicast_lua.txt"
+
+//====================================================================================================BROODMOTHER=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_broodmother/broodmother_web/broodmother_web.txt"
+#base "../vscripts/heroes/hero_broodmother/broodmother_steal/broodmother_steal.txt"
+#base "../vscripts/heroes/hero_broodmother/broodmother_poison/broodmother_poison.txt"
+#base "../vscripts/heroes/hero_broodmother/broodmother_ult/broodmother_ult.txt"
+
+//====================================================================================================HUSKAR=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_huskar/huskar_berserkers_blood_lua/huskar_berserkers_blood_lua.txt"
+#base "../vscripts/heroes/hero_huskar/huskar_burning_spear_lua/huskar_burning_spear_lua.txt"
+#base "../vscripts/heroes/hero_huskar/huskar_inner_vitality_lua/huskar_inner_vitality_lua.txt"
+#base "../vscripts/heroes/hero_huskar/huskar_life_break_lua/huskar_life_break_lua.txt"
+
+//====================================================================================================QOP=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_qop/hero_qop.txt"
+
+//====================================================================================================RUBICK=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_rubick/hero_rubick.txt"
+
+//====================================================================================================PANGO=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_pangolier/hero_pangolier_blade_of_the_exile/hero_pangolier_blade_of_the_exile.txt"
+#base "../vscripts/heroes/hero_pangolier/hero_pangolier_broken_wings/hero_pangolier_broken_wings.txt"
+#base "../vscripts/heroes/hero_pangolier/hero_pangolier_ki_burst/hero_pangolier_ki_burst.txt"
+#base "../vscripts/heroes/hero_pangolier/hero_pangolier_runic_blade/hero_pangolier_runic_blade.txt"
+
+//====================================================================================================MONKEY=============================================================================================================================================
+
+#base "../vscripts/heroes/hero_monkey_king/monkey_king_boundless_strike_lua/monkey_king_boundless_strike_lua.txt"
+#base "../vscripts/heroes/hero_monkey_king/monkey_king_banana_attack/monkey_king_banana_attack.txt"
+#base "../vscripts/heroes/hero_monkey_king/monkey_king_jingu_mastery_lua/monkey_king_jingu_mastery_lua.txt"
+#base "../vscripts/heroes/hero_monkey_king/monkey_king_wukongs_command_lua/monkey_king_wukongs_command_lua.txt"
+
+//====================================================================================================BLOODSEEKER========================================================================================================================================
+
+#base "../vscripts/heroes/hero_bloodseeker/bloodseeker_bloodrage_lua/bloodseeker_bloodrage_lua.txt"
+#base "../vscripts/heroes/hero_bloodseeker/bloodseeker_blood_rite_lua/bloodseeker_blood_rite_lua.txt"
+#base "../vscripts/heroes/hero_bloodseeker/bloodseeker_thirst_lua/bloodseeker_thirst_lua.txt"
+#base "../vscripts/heroes/hero_bloodseeker/bloodseeker_mist/bloodseeker_mist.txt"
+
+
+//====================================================================================================HEROES========================================================================================================================================
+
+#base "../vscripts/heroes/hero_treant/abilities.txt"
+#base "../vscripts/heroes/hero_underlord/abilities.txt"
+#base "../vscripts/heroes/hero_slardar/abilities.txt"
+#base "../vscripts/heroes/hero_snapfire/abilities.txt"
+#base "../vscripts/heroes/hero_dark_seer/abilities.txt"
+#base "../vscripts/heroes/hero_dazzle/abilities.txt"
+#base "../vscripts/heroes/hero_crystal_maiden/abilities.txt"
+#base "../vscripts/heroes/hero_pugna/abilities.txt"
+#base "../vscripts/heroes/hero_sand_king/abilities.txt"
+#base "../vscripts/heroes/hero_tinker/abilities.txt"
+#base "../vscripts/heroes/hero_triss/abilities.txt"
+#base "../vscripts/heroes/hero_fiddlesticks/abilities.txt"
+#base "../vscripts/heroes/hero_marci/abilities.txt"
+#base "../vscripts/heroes/hero_abaddon/abilities.txt"
+#base "../vscripts/heroes/hero_centaur/abilities.txt"
+#base "../vscripts/heroes/hero_sniper/abilities.txt"
+#base "../vscripts/heroes/hero_hoodwink/abilities.txt"
+#base "../vscripts/heroes/hero_medusa/abilities.txt"
+#base "../vscripts/heroes/hero_ancient_apparition/abilities.txt"
+#base "../vscripts/heroes/hero_primal_beast/abilities.txt"
+#base "../vscripts/heroes/hero_wisp/abilities.txt"
+#base "../vscripts/heroes/hero_disruptor/abilities.txt"
+#base "../vscripts/heroes/hero_arc/abilities.txt"
+#base "../vscripts/heroes/hero_axe/abilities.txt"
+#base "../vscripts/heroes/hero_legion/abilities.txt"
+#base "../vscripts/heroes/hero_drow_ranger/abilities.txt"
+#base "../vscripts/heroes/hero_phantom/abilities.txt"
+#base "../vscripts/heroes/hero_luna/abilities.txt"
+#base "../vscripts/heroes/hero_bristleback/abilities.txt"
+#base "../vscripts/heroes/hero_windranger/abilities.txt"
+#base "../vscripts/heroes/hero_shaman/abilities.txt"
+#base "../vscripts/heroes/hero_terror/abilities.txt"
+#base "../vscripts/heroes/hero_skywrath_mage/abilities.txt"
+#base "../vscripts/heroes/hero_juggernaut/abilities.txt"
+#base "../vscripts/heroes/hero_nevermore/abilities.txt"
+#base "../vscripts/heroes/hero_mars/abilities.txt"
+#base "../vscripts/heroes/hero_clinkz/abilities.txt"
+#base "../vscripts/heroes/hero_antimage/abilities.txt"
+#base "../vscripts/heroes/hero_naga/abilities.txt"
+#base "../vscripts/heroes/hero_spectre/abilities.txt"
+#base "../vscripts/heroes/hero_templar_assassin/abilities.txt"
+#base "../vscripts/heroes/hero_vengefulspirit/abilities.txt"
+#base "../vscripts/heroes/hero_magnataur/abilities.txt"
+#base "../vscripts/heroes/hero_tidehunter/abilities.txt"
+#base "../vscripts/heroes/hero_destroyer/abilities.txt"
+#base "../vscripts/heroes/hero_dado/abilities.txt"
+#base "../vscripts/heroes/hero_anakim/abilities.txt"
+#base "../vscripts/heroes/hero_meepo/abilities.txt"
+#base "../vscripts/heroes/hero_weaver/abilities.txt"
+#base "../vscripts/heroes/hero_silencer/abilities.txt"
+#base "../vscripts/heroes/hero_venomancer/abilities.txt"
+#base "../vscripts/heroes/hero_faceless_void/abilities.txt"
+#base "../vscripts/heroes/hero_omniknight/abilities.txt"
+#base "../vscripts/heroes/hero_gyrocopter/abilities.txt"
+#base "../vscripts/heroes/hero_brewmaster/abilities.txt"
+#base "../vscripts/heroes/hero_undying/abilities.txt"
+#base "../vscripts/heroes/hero_earthshaker/abilities.txt"
+#base "../vscripts/heroes/hero_lycan/abilities.txt"
+
+//====================================================================================================UNITS ABILITIES========================================================================================================================================
+
+
+#base "../npc/npc_abilities_creeps.txt"
+
+
+#base "../npc/creeps/zone_1/ability_zone_1.txt"
+#base "../npc/creeps/zone_2/ability_zone_2.txt"
+#base "../npc/creeps/zone_3/ability_zone_3.txt"
+#base "../npc/creeps/zone_4/ability_zone_4.txt"
+#base "../npc/creeps/zone_5/ability_zone_5.txt"
+#base "../npc/creeps/zone_6/ability_zone_6.txt"
+#base "../npc/creeps/zone_7/ability_zone_7.txt"
+#base "../npc/creeps/zone_8/ability_zone_8.txt"
+#base "../npc/creeps/zone_9/ability_zone_9.txt"
+#base "../npc/creeps/zone_10/ability_zone_10.txt"
+#base "../npc/creeps/zone_11/ability_zone_11.txt"
+#base "../npc/creeps/zone_12/ability_zone_12.txt"
+
+#base "../npc/traps/traps_ability.txt"
+
+
+
+
+
+#base "../vscripts/abilities/bosses/ursa/ursa.txt"
+#base "../vscripts/abilities/bosses/undying/undying.txt"
+#base "../vscripts/abilities/bosses/lich/lich.txt"
+#base "../vscripts/abilities/bosses/tiny/tiny.txt"
+#base "../vscripts/abilities/bosses/guard/guard.txt"
+#base "../vscripts/abilities/bosses/nyx/nyx.txt"
+#base "../vscripts/abilities/bosses/slardar/slardar.txt"
+#base "../vscripts/abilities/bosses/bristleback/bristleback.txt"
+#base "../vscripts/abilities/bosses/fura/fura.txt"
+#base "../vscripts/abilities/bosses/lord/lord.txt"
+#base "../vscripts/abilities/bosses/medusa/medusa.txt"
+#base "../vscripts/abilities/bosses/arc/arc.txt"
+#base "../vscripts/abilities/bosses/final/final.txt"
+
+
+
+
+
+
+#base "../vscripts/abilities/bosses/raid_boss.txt" 
+
+
+#base "../npc/bosses/additional_bosses_ability.txt"
+

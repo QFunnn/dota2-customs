@@ -1,0 +1,56 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "doom_bringer_scorched_earth_custom"
+	{
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_doom_bringer/doom_bringer_scorched_earth_custom/doom_bringer_scorched_earth_custom"
+		"AbilityTextureName"			"doom_bringer_scorched_earth"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_DoomBringer.ScorchedEarthAura"
+		"HasShardUpgrade"				"1"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastRange"				"600 600 600 600"
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"60 70 80 90"
+        "AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_2"
+
+		"AbilityValues"
+		{
+            "damage_per_second"		
+            {
+                "value"			"20 35 50 65"
+                "special_bonus_unique_doom_4"	"+12"				
+            }
+            "radius"				
+            {
+                "value"			"600 600 600 600"
+                "affected_by_aoe_increase"	"1"
+            }
+            "bonus_movement_speed_pct"	
+            {
+                "value"			"7 8 9 10"
+                "special_bonus_unique_doom_6"	"+7"	
+            }
+            "heal_pct"				
+            { 
+                "value"				"0"
+                "special_bonus_shard"		"+60"
+            }
+            "duration"				"10.0 12.0 14.0 16.0"
+		}
+	}
+}

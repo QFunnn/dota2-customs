@@ -1,0 +1,44 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"lifestealer_open_wounds_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_lifestealer/lifestealer_open_wounds_lua/lifestealer_open_wounds_lua"
+		"AbilityTextureName"			"life_stealer_open_wounds"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"200 300 400 500"
+		"AbilityCastPoint"				"0.2"
+		"AbilityDuration"				"3"
+
+		"AbilityCooldown"				"24 22 20 18"
+		"AbilityManaCost"				"100 120 140 160"
+
+		"AbilityValues"
+	{
+		"slow_steps"	"-50 -40 -30 -20 -10"
+			"heal_percent"	"25"
+			"slow_tooltip"	"50"
+			"duration"	"3"
+			"tooltip_range"	"200 250 300 350"
+	}
+	}
+}

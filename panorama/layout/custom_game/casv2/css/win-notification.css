@@ -1,0 +1,129 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.win-notification
+{
+	width: 400px;
+	height: 120px;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	z-index: 2000;
+	visibility: collapse;
+}
+
+.win-notification.show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.win-notification-title
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 8px;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.win-notification-amount
+{
+	font-size: 32px;
+	font-weight: bold;
+	color: #e5e0c5;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.win-message
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	height: 30px;
+}
+
+.win-message-inner
+{
+	flow-children: right;
+	width: fit-children;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.win-message-currency-icon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	margin-left: 4px;
+	visibility: collapse;
+}
+
+.win-message-currency-icon.visible
+{
+	visibility: visible;
+}
+
+.win-message-text
+{
+	font-size: 28px;
+	font-weight: bold;
+	color: #e5e0c5;
+	text-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+	letter-spacing: 6px;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+@keyframes 'win_message_pop'
+{
+	0%
+	{
+		pre-transform-scale2d: 1.0;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.1;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1.0;
+	}
+	
+}
+
+.win-message-text.pop
+{
+	animation-name: win_message_pop;
+	animation-duration: 0.35s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}

@@ -1,0 +1,55 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+"raid_aura" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/raid_boss.lua"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"     	"gyrocopter_rocket_barrage"
+	}
+		
+"fire_raze" 
+	{	
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/raid_boss.lua"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"     	"gyrocopter_rocket_barrage"
+		"AbilityCooldown"			"15"
+	}
+		
+"fire_storm"
+	{ 
+		"BaseClass"           		"ability_lua"
+		"ScriptFile"				"abilities/bosses/raid_boss.lua"
+		"AbilityBehavior"        	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"    	"invoker_chaos_meteor"
+		"AbilityCooldown"			"14"	
+	}
+	
+
+"water_skill_1"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/bosses/raid_boss.lua"
+		"AbilityTextureName"			""
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"15"
+		"AbilityValues"
+		{
+			"max_pocs"				    "3"
+			"blast_speed"				"1000"
+			"damage"					"25"
+		}
+	}	
+}

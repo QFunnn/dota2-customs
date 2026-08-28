@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/player_booster_service.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/license_purchase_confirmation.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/license_purchase_confirmation_modal.js" />
+	</scripts>
+	<Panel class="root2" hittest="false" style="height: 100%; width: 100%;">
+		<Panel class="license-confirmation-overlay" id="license_confirmation_overlay">
+			<Panel class="license-confirmation-panel">
+				<Panel class="license-confirmation-header">
+					<Label class="license-confirmation-title" text="#ui_booster_license_confirmation_title" />
+				</Panel>
+				<Panel class="license-confirmation-content">
+					<Label class="license-confirmation-message" text="#ui_booster_license_confirmation_message" />
+					<Panel class="license-info">
+						<Panel class="license-features">
+							<Label class="license-feature-item" text="#ui_booster_license_feature_pricing" />
+							<Label class="license-feature-item" text="#ui_booster_license_feature_display" />
+							<Label class="license-feature-item" text="#ui_booster_license_feature_orders" />
+							<Label class="license-feature-item" text="#ui_booster_license_feature_stats" />
+						</Panel>
+						<Panel class="license-price">
+							<Label class="license-price-text" text="#ui_booster_license_price_label" />
+							<Panel class="license-price-container">
+								<Label class="license-price-amount" text="150" />
+								<Panel class="license-currency" />
+							</Panel>
+						</Panel>
+						<Label class="license-duration" text="#ui_booster_license_duration" />
+					</Panel>
+					<Panel class="license-confirmation-buttons">
+						<Button class="button license-confirmation-cancel-button" id="cancel_license_purchase">
+							<Label class="button-text" text="#ui_booster_cancel_button" />
+						</Button>
+						<Button class="button license-confirmation-confirm-button" id="confirm_license_purchase">
+							<Label class="button-text" text="#ui_booster_confirm_purchase_button" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

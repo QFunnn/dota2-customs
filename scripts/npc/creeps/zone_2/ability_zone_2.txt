@@ -1,0 +1,103 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "armor_reduction_aura"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_2/zone_2"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "nevermore_dark_lord"
+        "AbilityCastRange"              "900"
+        
+        "AbilityValues"
+        {
+            "presence_armor_reduction"  "20"
+            "diff_boost_damage"     	"2" 
+            "presence_radius"           "900"
+        }
+    }
+
+    "zombie_spawn"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_2/zone_2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"skeletal"	
+		"AbilityCooldown"				"10"
+        "AbilityCastRange"              "1100"
+	}
+
+    "zombie_heal"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/creeps/zone_2/zone_2"
+        "AbilityTextureName"			"zombie_heal"
+        "AbilityCastRange"              "600"
+        "AbilityValues"
+        {
+            "radius"                    "600"
+            "heal_amount"               "3"
+            "diff_boost_damage"     	"1" 
+        }
+	}
+
+    "zombie_lifesteal"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_2/zone_2"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "skeleton_king_vampiric_aura"
+
+        "AbilityValues"
+        {
+            "lifesteal"                 "10"
+        }
+    }
+
+    
+    "zombie_ice_hit"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"                    "abilities/creeps/zone_2/zone_2"
+        "AbilityTextureName"            "zombie_ice_hit"
+        "AbilityValues"
+        {
+            "duration"              "2"
+            "movespeed_slow"        "35"
+        }
+	}
+
+    "fat_zombie_ultimate"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_2/zone_2"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "AbilityCastRange"              "450"
+        
+        "AbilityValues"
+        {
+            "radius"                "450"
+            "duration"              "5"
+            "armor_reduction"       "3"
+            "diff_boost_additional" "1"
+            "quill_base_damage"     "150"
+            "diff_boost_damage"     "50" 
+            "quill_stack_damage"    "100"
+        }
+    }
+	
+}

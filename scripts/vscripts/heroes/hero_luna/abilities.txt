@@ -1,0 +1,163 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "luna_starfall"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_luna/hero_luna"
+        "AbilityTextureName"            "luna_lucent_beam"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityDraftPrecursor"         "luna_lucent_beam"
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.4"
+        "AbilityCooldown"               "9.0 8.0 7.0 6.0"
+        "AbilityManaCost"               "90 100 110 120"
+
+        "AbilityValues"
+        {
+            "beam_damage"           
+            {
+				"value"					            "40 80 120 160"
+				"special_bonus_unique_luna_1"       "+40"
+			}
+            "stun_duration"         "0.3"
+            "beam_count"            
+            {
+				"value"					            "3"
+				"special_bonus_unique_luna_2"       "+2"
+			}
+            "bounce_radius"         "400"
+        }
+    }
+
+    "luna_moon_glaive_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/hero_luna"
+		"AbilityTextureName"			"luna_moon_glaive"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityValues"
+		{
+			"range"						"500"
+			"bounces"
+			{
+				"value"							"3"
+				"special_bonus_unique_luna_4"	"+2"
+			}	
+			"damage_reduction_percent"
+			{
+				"value"							"50 45 40 35"
+				"special_bonus_unique_luna_5" 	"-10"
+			}	
+		}
+	}
+
+    "luna_lunar_blessing_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/hero_luna"
+		"AbilityTextureName"			"luna_lunar_blessing"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"AbilityValues"
+		{
+			"attributes_pct"			
+            {
+				"value"							"16 32 48 64"
+				"special_bonus_unique_luna_6" 	"+32"
+			}	
+		}
+	}
+
+    "luna_moon"
+    {
+        "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_luna/hero_luna"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilitySoundEvent"             "Hero_Luna.Eclipse.Cast"
+        "AbilityType"					"ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"			"luna_Eclipse"
+        "AbilityCastPoint"              "0.6"
+        "AbilityCooldown"               "80 65 50"
+        "AbilityManaCost"               "150 200 250"
+        "AbilityCastRange"              "600"
+
+        "AbilityValues"
+        {
+            "radius"                    "600"
+            "beams"                     "6 9 12"
+            "beam_interval"             "0.6"
+            "duration"                  "10"
+        }
+    }
+
+    "special_bonus_unique_luna_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_luna_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_luna_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}

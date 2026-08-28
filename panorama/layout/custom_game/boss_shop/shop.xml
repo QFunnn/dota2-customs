@@ -1,0 +1,161 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/boss_shop/shop.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/boss_shop/shop.js" />
+	</scripts>
+	<snippets>
+		<snippet name="fr_snippet">
+			<Panel id="fr" class="fr">
+				<Image class="avatar1" src="s2r://panorama/images/custom_game/ds/bg_png.vtex" />
+				<Image class="don_img" src="s2r://panorama/images/custom_game/ds/money_logo_3_png.vtex" />
+				<Panel id="site_button_container" class="site_button_container">
+					<Label class="crystals_text" text="#get_crystals" />
+					<Panel id="site_button" class="site_button">
+						<Label class="site_button_label" text="#here_button" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="items_snippet">
+			<Panel class="item_panel" id="item_panel">
+				<DOTAItemImage id="item_panel_image" class="item_panel_image" hittest="true" itemname="" />
+				<Image id="item_panel_image2" hittest="false" class="item_panel_image2" />
+				<Image class="item_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Label id="item_panel_name" class="item_panel_name" text="" />
+				<Panel id="item_panel_buy" class="item_panel_buy">
+					<Label id="item_panel_buy_label" class="item_panel_label" text="#buy" />
+				</Panel>
+				<Panel id="item_panel_take" class="item_panel_take">
+					<Label id="item_panel_take_label" class="item_panel_label" text="#take" />
+				</Panel>
+				<Panel id="item_panel_return" class="item_panel_return">
+					<Label id="item_panel_return_label" class="item_panel_label" text="#item_return" />
+				</Panel>
+				<Panel class="item_panel_upgrade" id="item_panel_upgrade" />
+				<ToggleButton id="smart_toggle" text="" />
+			</Panel>
+		</snippet>
+		<snippet name="pet_snippet">
+			<Panel class="pet_panel" id="pet_panel">
+				<DOTAItemImage id="pet_panel_image" class="pet_panel_image" hittest="true" itemname="" />
+				<Image class="pet_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Label id="pet_panel_name" class="pet_panel_name" html="true" text="2222" />
+				<Label id="pet_panel_label" class="pet_panel_label" html="true" text="" />
+				<Panel id="pet_panel_take" class="pet_panel_take">
+					<Label id="pet_panel_take_label" class="item_panel_label" text="#take" />
+				</Panel>
+				<Panel id="pet_panel_return" class="pet_panel_return">
+					<Label id="pet_panel_return_label" class="item_panel_label" text="#item_return" />
+				</Panel>
+				<Panel id="pet_upgrade_btn" class="pet_upgrade_btn">
+					<Label id="pet_upgrade_btn_label" class="pet_upgrade_btn_label" text="#pet_upgrade_btn" />
+				</Panel>
+				<Panel id="pet_count_badge" class="pet_count_badge">
+					<Label id="pet_count_label" class="pet_count_label" text="" />
+				</Panel>
+				<ToggleButton id="smart_toggle" text="" />
+			</Panel>
+		</snippet>
+		<snippet name="consumable_snippet">
+			<Panel class="consumable_panel" id="consumable_panel">
+				<DOTAItemImage id="consumable_panel_image" class="consumable_panel_image" hittest="true" itemname="item_armor_aura">
+					<Panel id="consumable_panel_count" class="consumable_panel_count">
+						<Label id="consumable_panel_count_label" class="consumable_panel_count_label" text="100" />
+					</Panel>
+				</DOTAItemImage>
+				<Image class="consumable_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Panel class="consumable_panel_container">
+					<Label id="consumable_panel_name" class="consumable_panel_name" text="222" />
+					<Panel id="item_panel_buy" class="consumable_panel_buy">
+						<Label id="consumable_panel_buy_label" class="consumable_panel_label" text="#buy" />
+					</Panel>
+					<Panel id="item_panel_take" class="consumable_panel_take">
+						<Label id="consumable_panel_take_label" class="consumable_panel_label" text="#take" />
+					</Panel>
+					<Panel id="item_panel_return" class="consumable_panel_return">
+						<Label id="consumable_panel_return_label" class="consumable_panel_label" text="#item_return" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="treasure_snippet">
+			<Panel class="treasure_panel" id="treasure_panel">
+				<DOTAItemImage id="treasure_panel_image" hittest="false" class="item_panel_image2">
+					<Panel id="treasure_panel_count" class="treasure_panel_count">
+						<Label id="treasure_panel_count_label" class="treasure_panel_count_label" text="100" />
+					</Panel>
+				</DOTAItemImage>
+				<Image class="treasure_panel_image_back" hittest="false" src="s2r://panorama/images/shop/back_item_png.vtex" />
+				<Label id="treasure_panel_name" class="treasure_panel_name" html="true" text="" />
+				<Panel class="consumable_panel_container">
+					<Panel id="item_panel_buy" class="treasure_panel_buy">
+						<Label id="treasure_panel_buy_label" class="treasure_panel_label" text="#buy" />
+					</Panel>
+					<Panel id="item_panel_take" class="treasure_panel_take">
+						<Label id="treasure_panel_take_label" class="treasure_panel_label" text="#show" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="root" hittest="false" style="width: 100%; height: 100%;">
+		<Panel class="DSPanel" id="DSPanel">
+			<Panel id="DSClose" class="DSClose" onmouseactivate="openShopButton()" onmouseover="TipsOver(&apos;close&apos;,&apos;DSClose&apos;)" onmouseout="TipsOut()" />
+			<Panel id="dis" onactivate="move_link(&apos;https://discord.gg/M6rJS9qF29&apos;)" onmouseover="TipsOver(&apos;dis&apos;,&apos;dis&apos;)" onmouseout="TipsOut()">
+				<Image class="avatar1" src="s2r://panorama/images/custom_game/loading_screen/dis1.png" />
+			</Panel>
+			<Panel id="don" />
+			<Panel id="lowPanel" class="lowPanel" hittest="false">
+				<Panel id="money_panel" class="money_panel">
+					<Panel class="DNMoneyPanelContainer" id="DNMoneyPanelContainer">
+						<Panel class="DNMoneyPanel" id="DNMoneyPanel" onmouseover="TipsOver(&apos;gems&apos;,&apos;DNMoneyPanel&apos;)" onmouseout="TipsOut()">
+							<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+							<Label class="DNMoneyLabel" id="DNMoneyLabel" text="0" html="true" />
+						</Panel>
+						<Panel id="add_money_button" class="add_money_button" onmouseover="TipsOver(&apos;fr&apos;,&apos;add_money_button&apos;)" onmouseout="TipsOut()">
+							<Label class="add_money_label" text="+" />
+						</Panel>
+					</Panel>
+					<Panel class="MMMRPointsPanel" id="MMMRPointsPanel" onmouseover="TipsOver(&apos;mmrpoints&apos;,&apos;MMMRPointsPanel&apos;)" onmouseout="TipsOut()">
+						<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/protection.png" />
+						<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
+					</Panel>
+				</Panel>
+				<Panel class="DSTabsPanel" id="DSTabsPanel" />
+				<Panel class="DSContentPanel_bg" id="DSContentPanel_bg" />
+				<Panel class="DSContentPanel" id="DSContentPanel" />
+			</Panel>
+		</Panel>
+		<Panel class="BuyControl" id="BuyControl">
+			<Label class="item_buy_label" id="item_buy_label" text="#accept_buy" html="true" />
+			<DOTAItemImage id="item_buy_image" class="item_buy_image" hittest="true" itemname="item_mana_plate" />
+			<Image id="item_buy_image2" class="item_buy_image2" />
+			<Panel class="buy_button" id="don_button">
+				<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/money_logo_3.png" />
+				<Label class="DNMoneyLabel" id="DNMoneyLabel" text="0" html="true" />
+			</Panel>
+			<Panel class="buy_button" id="rp_button">
+				<Image class="DNMoneyLogo" src="s2r://panorama/images/custom_game/DS/protection.png" />
+				<Label class="DNMoneyLabel" id="MMMRPointsLabel" text="0" html="true" />
+			</Panel>
+			<TextEntry id="buy_text_input" ontextentrychange="InputCount()" text="1" textmode="numeric" />
+			<Panel class="buy_button" id="close_button" onmouseactivate="closeBuyControl()">
+				<Label class="close_button_label" id="close_button_label" text="#close" html="true" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

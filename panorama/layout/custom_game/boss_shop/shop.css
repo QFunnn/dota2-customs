@@ -1,0 +1,863 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.root
+{
+	height:100%;
+	width:100%;
+}
+
+.DSPanel
+{
+	height:700px;
+	width:1300px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	vertical-align:center;
+	horizontal-align:center;
+	padding: 10px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 6px;
+}
+
+.DSClose
+{
+	horizontal-align:right;
+	vertical-align:top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+}
+
+.DSClose:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+.DSClose:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#dis
+{
+	width: 85px;
+	height: 68px;
+}
+
+#dis:hover
+{
+	brightness: 1.2;
+}
+
+.lowPanel
+{
+	width: 100%;
+	vertical-align:bottom;
+	horizontal-align:center;
+	background-color: rgba(0, 0, 0, 0.4);
+	height: 600px;
+	padding:10px;
+	border-radius: 8px;
+}
+
+.money_panel
+{
+	width:170px;
+	flow-children:down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	background-size: 100% 100%;
+	border-radius:4px;
+	padding: 5px 5px 5px 0;
+}
+
+.DNMoneyPanelContainer
+{
+	flow-children: right;
+	width: 100%;
+}
+
+.DNMoneyPanelContainer:not(:last-child)
+{
+	margin-bottom: 5px;
+}
+
+.DNMoneyPanel
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+}
+
+.MMMRPointsPanel
+{
+	flow-children: right;
+}
+
+#add_money_button
+{
+	height: 22px;
+	width: 22px;
+	vertical-align: center;
+	border-radius: 50%;
+	margin-left: 5px;
+	visibility: collapse;
+}
+
+#add_money_button:hover
+{
+	brightness: 1.3;
+	sound: "ui_select_arrow";
+}
+
+.add_money_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	text-shadow: 1px 1px 2px 0.5 #000000;
+}
+
+.DNMoneyLogo
+{
+	vertical-align:center;
+	height:22px;
+	width:25px;
+	margin-left:10px;
+}
+
+.DNMoneyLabel
+{
+	color: #e5e0c5;
+	font-size:18px;
+	margin-left:10px;
+	vertical-align:center;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.DSContentPanel_bg
+{
+	background-color: rgba(0, 0, 0, 0.4);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: right;
+	vertical-align: top;
+	height: 580px;
+	width: 1080px;
+	border-radius:8px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+}
+
+.DSContentPanel
+{
+	horizontal-align: right;
+	vertical-align: top;
+	height: 580px;
+	width: 1080px;
+	overflow: clip scroll;
+	padding: 5px;
+	border-radius:8px;
+}
+
+.DSTabsPanel
+{
+	margin-top:80px;
+	width:176px;
+	flow-children:down;
+}
+
+.TabPanel
+{
+	width:100%;
+	height:35px;
+	border-radius: 4px 0 0 4px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(15, 25, 35, 0.8)), to(rgba(20, 30, 45, 0)));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 0.6;
+	margin-bottom:6px;
+}
+
+.TabPanel:hover
+{
+	brightness: 2;
+	background-color: rgba(100, 181, 246, 0.1);
+}
+
+.TabLabel:hover
+{
+	color: #ffffff;
+	sound: "ui_select_arrow";
+}
+
+.selected_bd
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(100, 181, 246, 0.2)), to(rgba(20, 30, 45, 0)));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 1;
+	brightness: 1.2;
+	border-left: 3px solid #64b5f6;
+}
+
+.horizontal_panel
+{
+	width:100%;
+	flow-children:right;
+}
+
+.horizontal_panel:first-child
+{
+	margin-top: 5px;
+}
+
+.TabContent
+{
+	width:100%;
+	flow-children:down;
+	padding:5px;
+}
+
+.item_panel
+{
+	height: 170px;
+	width: 140px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+}
+
+.item_panel:hover
+{
+	brightness: 1.5;
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.item_panel_image,.item_panel_image2,.item_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.item_panel_buy:hover,.item_panel_take:hover,.item_panel_return:hover,.item_panel_upgrade:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.item_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+}
+
+.item_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 38px;
+	text-overflow: shrink;
+	height:24px;
+	color: #e5e0c5;
+}
+
+.item_panel_upgrade
+{
+	height: 40px;
+	width: 40px;
+	background-image:url("s2r://panorama/images/shop/upgrade_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	horizontal-align: right;
+	z-index:10;
+	brightness: 3.8;
+}
+
+.BuyControl
+{
+	vertical-align:center;
+	horizontal-align:center;
+	width:300px;
+	height:380px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 8px;
+}
+
+.item_buy_image,.item_buy_image2
+{
+	horizontal-align: center;
+	margin-top:40px;
+	width: 120px;
+	height: 87px;
+	box-shadow: inset 0px 0px 4px 0px #00000080;
+	border: 1px solid black;
+}
+
+.item_buy_label
+{
+	horizontal-align: center;
+	margin-top:135px;
+	font-size: 20px;
+	color: #e5e0c5;
+	text-align: center;
+}
+
+.buy_button
+{
+	height: 40px;
+	width: 100px;
+	flow-children: right;
+}
+
+.buy_button:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+#don_button
+{
+	horizontal-align: left;
+	vertical-align: bottom;
+	margin-left: 30px;
+	margin-bottom: 90px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
+}
+
+#rp_button
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 30px;
+	margin-bottom: 90px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
+}
+
+#close_button
+{
+	height: 30px;
+	width: 120px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(175, 76, 76, 0.6)), to(rgba(142, 56, 56, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(175, 76, 76, 0.6);
+	border-radius: 4px;
+}
+
+.close_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+}
+
+#buy_text_input
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 100px;
+	margin-top: 24px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgb(25, 41, 57)), to(rgb(22, 38, 53)));
+	border: 2px solid #4a5a7a;
+	color: #e5e0c5;
+	border-radius: 4px;
+}
+
+.consumable_panel_container
+{
+	width: 100%;
+	horizontal-align:center;
+	vertical-align: bottom;
+	flow-children:down;
+}
+
+.consumable_panel
+{
+	height: 220px;
+	width: 164px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+}
+
+.consumable_panel:hover
+{
+	brightness: 1.5;
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.consumable_panel_image,.consumable_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.consumable_panel_buy,.item_panel_buy,.treasure_panel_buy
+{
+	width: 100%;
+	height: 25px;
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 175, 80, 0.6)), to(rgba(56, 142, 60, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 175, 80, 0.6);
+	border-radius: 4px;
+	margin: 2px;
+}
+
+.consumable_panel_return,.pet_panel_return,.item_panel_return
+{
+	width: 100%;
+	height: 25px;
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(175, 144, 76, 0.6)), to(rgba(142, 112, 56, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(175, 147, 76, 0.6);
+	border-radius: 4px;
+	margin: 2px;
+}
+
+.consumable_panel_buy:hover,.consumable_panel_take:hover,.consumable_panel_return:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.consumable_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+}
+
+.consumable_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	text-overflow: shrink;
+	height:24px;
+	color: #e5e0c5;
+	text-align: center;
+}
+
+.consumable_panel_count
+{
+	horizontal-align: right;
+	vertical-align:bottom;
+	background-color: black;
+	padding:2px 5px 0px 5px;
+}
+
+.consumable_panel_count_label
+{
+	text-overflow: shrink;
+	height:24px;
+	horizontal-align: center;
+	vertical-align:center;
+	color: #e5e0c5;
+}
+
+.pet_upgrade_btn
+{
+	horizontal-align: left;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-top: 28px;
+	width: 60px;
+	height: 18px;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	border: 1px solid rgba(76, 78, 175, 0.8);
+	border-radius: 3px;
+}
+
+.pet_upgrade_btn:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.pet_upgrade_btn_label
+{
+	width: 60px;
+	font-size: 10px;
+	color: #c8d8ff;
+	text-align: center;
+	margin-top: 2px;
+}
+
+.pet_count_badge
+{
+	horizontal-align: left;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 20px;
+	height: 20px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a3050cc), to(#0a1828cc));
+	border: 1px solid rgba(100, 170, 255, 0.55);
+}
+
+.pet_count_label
+{
+	width: 18px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #90c8ff;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#smart_toggle
+{
+	horizontal-align:right;
+	vertical-align: top;
+	padding: 0;
+	height: 18px;
+	width: 18px;
+	margin-right: 6px;
+	margin-top: 5px;
+}
+
+.treasure_panel
+{
+	height: 200px;
+	width: 164px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+}
+
+.treasure_panel:hover
+{
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.treasure_panel_image,.treasure_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.treasure_panel_take,.consumable_panel_take,.pet_panel_take,.item_panel_take
+{
+	width: 100%;
+	height: 25px;
+	horizontal-align: center;
+	vertical-align:bottom;
+	background-color: gradient(linear, 0% -200%, 100% 100%, from(rgba(76, 84, 175, 0.6)), to(rgba(60, 56, 142, 0.5)));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	border: 2px solid rgba(76, 78, 175, 0.6);
+	border-radius: 4px;
+	margin: 2px;
+}
+
+.treasure_panel_return
+{
+	width: 130px;
+	height: 25px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#7a4a24), to(#4d2d17));
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom:5px;
+	border: 1px solid rgba(255,255,255,0.05);
+}
+
+.treasure_panel_buy:hover,.treasure_panel_take:hover,.treasure_panel_return:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.treasure_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+}
+
+.treasure_panel_name
+{
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 70px;
+	text-overflow: shrink;
+	height:24px;
+	color: #e5e0c5;
+}
+
+.treasure_panel_count
+{
+	horizontal-align: right;
+	vertical-align:bottom;
+	background-color: black;
+	padding:2px 5px 0px 5px;
+}
+
+.treasure_panel_count_label
+{
+	text-overflow: shrink;
+	height:24px;
+	horizontal-align: center;
+	vertical-align:center;
+	color: #e5e0c5;
+}
+
+.pet_panel
+{
+	height: 220px;
+	width: 164px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	padding: 5px;
+	margin-bottom: 8px;
+	margin-right: 6px;
+	margin-left: 6px;
+	border: 2px solid rgba(60, 80, 110, 0.4);
+	border-radius: 4px;
+}
+
+.pet_panel:hover
+{
+	brightness: 1.5;
+	sound: "ui_select_arrow";
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.pet_panel_image,.pet_panel_image_back
+{
+	horizontal-align: center;
+	margin-top:4px;
+	width: 120px;
+	height: 87px;
+}
+
+.pet_panel_take:hover
+{
+	brightness: 1.8;
+	sound: "ui_select_arrow";
+}
+
+.pet_panel_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 90%;
+	margin-top: 82px;
+	height: 60px;
+	font-size: 15px;
+	text-align: center;
+	color: #e5e0c5;
+}
+
+.pet_panel_name
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+}
+
+.openShop
+{
+	width:30px;
+	height:30px;
+	margin-left:250px;
+	margin-top:10px;
+	tooltip-position: bottom;
+	background-image: url("s2r://panorama/images/custom_game/ds/shopopen_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.openShop:active
+{
+	sound: "ui_chat_slide_in";
+}
+
+.ScrollThumb
+{
+	visibility: collapse;
+}
+
+#don
+{
+	height: 110px;
+	width: 170px;
+	margin-top: 550px;
+	margin-left: 10px;
+}
+
+#don:hover
+{
+	brightness: 2.0;
+}
+
+#site_button_container
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+	width: 120px;
+}
+
+#site_button
+{
+	height: 30px;
+	width: 100px;
+	background-color: #3a4a7a;
+	border-radius: 4px;
+	box-shadow: 0px 0px 8px 1px rgba(100, 181, 246, 0.4);
+	padding: 5px;
+	margin-top: 5px;
+	horizontal-align: center;
+	border: 1px solid #64b5f6;
+}
+
+#site_button:hover
+{
+	brightness: 1.3;
+	sound: "ui_select_arrow";
+}
+
+.site_button_label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
+.crystals_text
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e5e0c5;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.4);
+}
+
+.img_fr
+{
+	background-image: url("s2r://panorama/images/custom_game/ds/bd_png.vtex");
+	background-position: 10% center;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+}
+
+.TabLabel
+{
+	letter-spacing: 1px;
+	font-size:18px;
+	color: #e5e0c5;
+	width:100%;
+	margin-left:20px;
+	vertical-align:center;
+}
+
+.don_img
+{
+	height: 40px;
+	width: 50px;
+	vertical-align: top;
+	margin-top: 25px;
+	margin-left: 5px;
+	animation-name: don_swing;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	visibility: collapse;
+}
+
+@keyframes 'don_swing'
+{
+	from
+	{
+		pre-transform-scale2d: 0.98;
+		brightness: 1.0;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.08;
+		brightness: 1.5;
+	}
+	
+	to
+	{
+		pre-transform-scale2d: 0.98;
+		brightness: 1.0;
+	}
+	
+}
+
+.selected_text
+{
+	color: #ffffff;
+	text-shadow: 0px 0px 8px rgba(137, 226, 255, 0.8);
+}

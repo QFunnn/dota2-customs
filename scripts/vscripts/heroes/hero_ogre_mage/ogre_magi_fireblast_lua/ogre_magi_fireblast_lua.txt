@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"ogre_magi_fireblast_lua"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ogre_mage/ogre_magi_fireblast_lua/ogre_magi_fireblast_lua"
+		"AbilityTextureName"			"ogre_magi_fireblast"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"475"
+		"AbilityCastPoint"				"0.45"
+
+		"AbilityCooldown"				"12 11 10 9"
+		"AbilityHealthCost"				"75 85 95 105"
+
+		"AbilityValues"
+		{
+			"stun_duration"		"1.0"
+			"multicast_delay"	"0.5"
+			"fireblast_damage"	
+			{
+			"value"					"60 120 180 240"
+			"LinkedSpecialBonus"	"special_bonus_ogre_magi_1"
+			}
+		}
+	}
+}

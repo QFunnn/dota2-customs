@@ -1,0 +1,478 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.TeamSelect
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TeamSelectContainer
+{
+	margin-left:-25px;
+	width: 100%;
+	height: 100%;
+}
+
+#GameAndPlayersRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#UnassignedPlayerPanel
+{
+	horizontal-align: center;
+}
+
+#GameInfoPanel
+{
+	horizontal-align: center;
+}
+
+#TeamsList
+{
+	width: 400px;
+	horizontal-align: center;
+	vertical-align:bottom;
+	margin-bottom: 100px;
+}
+
+#TeamsListRoot
+{
+	width: 400px;
+	flow-children: down;
+}
+
+#StartGameCountdownTimer
+{
+	horizontal-align: center;
+}
+
+#TeamSelectTimer
+{
+	font-size: 48px;
+	color: white;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#StartGameCountdownTimer.countdown_inactive #TeamSelectTimer
+{
+	opacity: 0.0;
+}
+
+#TimerBg
+{
+	wash-color: #222222;
+}
+
+#TimerBg,#TimerRing
+{
+	width: 70px;
+	height: 70px;
+	margin-top: 13px;
+	horizontal-align: center;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#TimerLabelBox
+{
+	margin-top: 76px;
+	height: 20px;
+	width: 100%;
+}
+
+#TimerLabelAutoStart
+{
+	color: #a9aaaa;
+	font-size: 16px;
+	text-transform: uppercase;
+	horizontal-align: center;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#StartGameCountdownTimer.auto_start #TimerLabelAutoStart
+{
+	visibility: visible;
+}
+
+#TimerLabelGameStart
+{
+	color: #a9aaaa;
+	font-size: 16px;
+	text-transform: uppercase;
+	horizontal-align: center;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#StartGameCountdownTimer.forced_start #TimerLabelGameStart
+{
+	visibility: visible;
+}
+
+#StartGameCountdownTimer.countdown_inactive #TimerBg,
+#StartGameCountdownTimer.countdown_inactive #TimerRing,
+#StartGameCountdownTimer.countdown_inactive #TimerLabelAutoStart,
+#StartGameCountdownTimer.countdown_inactive #TimerLabelGameStart,
+{
+	opacity: 0;
+}
+
+#UnassignedPlayerPanel
+{
+	vertical-align:center;
+	flow-children: down;
+	margin-bottom:150px;
+}
+
+#UnassignedPlayersButton
+{
+	flow-children: down;
+	margin-top: 40px;
+	height: 300px;
+	width: 250px;
+}
+
+#UnassignedPlayersContainer
+{
+	width: 100%;
+	flow-children: down;
+	overflow: clip scroll;
+	margin: 16px;
+}
+
+#AutoAssignButton
+{
+	height: 32px;
+	margin-top: 8px;
+	margin-right: 8px;
+	vertical-align: top;
+	horizontal-align: left;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.player_has_host_privileges #AutoAssignButton
+{
+	visibility: visible;
+}
+
+#AutoAssignButton Label
+{
+	font-size: 24px;
+	text-transform: uppercase;
+	margin-top: 2px;
+	margin-left: 5px;
+	color: white;
+	vertical-align: center;
+}
+
+.unassigned_players #AutoAssignButton:hover Label
+{
+	color: white;
+}
+
+.unassigned_players #AutoAssignButton:active
+{
+	sound: "ui_team_select_auto_assign";
+}
+
+#AutoAssignButton Image
+{
+	width: 24px;
+	height: 24px;
+	wash-color: white;
+	vertical-align: center;
+}
+
+.unassigned_players #AutoAssignButton:hover Image
+{
+	wash-color: white;
+}
+
+#LockAndStartButton
+{
+	horizontal-align: right;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #81562d ), to( #5e3208 ) );
+	box-shadow: fill #382a1d 0px 0px 8px 0px ;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+	visibility: collapse;
+	horizontal-align: center;
+	margin-top: 1020px;
+	margin-left:50px;
+}
+
+.unassigned_players #LockAndStartButton
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
+	box-shadow: fill #00000000 0px 0px 0px 0px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+}
+
+#LockAndStartButton Label
+{
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.unassigned_players #LockAndStartButton Label
+{
+	opacity: 0.1;
+}
+
+.player_has_host_privileges #LockAndStartButton
+{
+	visibility: visible;
+}
+
+.teams_locked #LockAndStartButton
+{
+	visibility: collapse;
+}
+
+.no_unassigned_players #LockAndStartButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #84acff ) );
+	box-shadow: fill #486ca966 0px 0px 18px 0px ;
+}
+
+.no_unassigned_players #LockAndStartButton:active
+{
+	sound: "ui_team_select_lock_and_start";
+}
+
+#CancelAndUnlockButton
+{
+	horizontal-align: right;
+	visibility: collapse;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2c1b1b ), to( #482e2f ) );
+	box-shadow: fill #552e2f00 1px 1px 8px 1px ;
+	border-top: 1px solid #3d2929;
+	border-right: 1px solid #372121;
+	border-left: 1px solid #372121;
+	border-bottom: 1px solid #2e1f21;
+	horizontal-align: center;
+	margin-top: 1020px;
+	margin-left:50px;
+}
+
+#CancelAndUnlockButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #492121 ), to( #9d4c4f ) );
+	border-top: 1px solid #7d4141;
+	border-right: 1px solid #7a3535;
+	border-left: 1px solid #7a3535;
+	border-bottom: 1px solid #2e1f21;
+	box-shadow: fill #552e2f66 1px 1px 8px 1px ;
+}
+
+#CancelAndUnlockButton:active
+{
+	sound: "ui_team_select_cancel_and_lock";
+}
+
+.player_has_host_privileges.teams_locked #CancelAndUnlockButton
+{
+	visibility: visible;
+}
+
+.TeamSelectTeam
+{
+	border-top: 2px solid #B3710B;
+	border-right: 2px solid #B3710B;
+	border-left: 2px solid #B3710B;
+	border-bottom: 2px solid #B3710B;
+}
+
+#ItemsImage1
+{
+	width: 360px;
+	height: 650px;
+}
+
+#ItemsImage2
+{
+	width: 360px;
+	height: 650px;
+}
+
+#ItemsImage3
+{
+	width: 360px;
+	height: 650px;
+}
+
+#defselect.Visible
+{
+	visibility: collapse;
+}
+
+#defselect
+{
+	width: 100%;
+	height: 100%;
+}
+
+.buttoneasy
+{
+	width: 360px;
+	height: 650px;
+	margin-top: -85px;
+	horizontal-align: left;
+	margin-left: 730px;
+	visibility: visible;
+	vertical-align: center;
+	box-shadow: 2px 2px 32px rgba(0,0,0, 0.7);
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+}
+
+.buttoneasy:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+}
+
+.buttoneasy > Image
+{
+	height: width-percentage(100%);
+}
+
+.buttonmedium
+{
+	width: 360px;
+	height: 650px;
+	margin-top: 45px;
+	horizontal-align: left;
+	margin-left: 200px;
+	visibility: visible;
+	vertical-align: center;
+	box-shadow: 2px 2px 32px rgba(0,0,0, 0.7);
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+}
+
+.buttonmedium:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+}
+
+.buttonmedium > Image
+{
+	height: width-percentage(100%);
+}
+
+.buttonhard
+{
+	width: 360px;
+	height: 650px;
+	margin-top: 45px;
+	horizontal-align: left;
+	margin-left: 1250px;
+	visibility: visible;
+	vertical-align: center;
+	box-shadow: 2px 2px 32px rgba(0,0,0, 0.7);
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+}
+
+.buttonhard:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+}
+
+.buttonhard > Image
+{
+	height: width-percentage(100%);
+}
+
+.EasyButtonText
+{
+	font-size: 40px;
+	text-shadow: 2px 2px 2px rgba(0,0,0, 0.9);
+	vertical-align: top;
+	margin-top: 30px;
+	horizontal-align: middle;
+	color: rgba(237, 237, 237, 0.7);
+	visibility: visible;
+}
+
+.EasyButtonText2
+{
+	font-size: 30px;
+	text-shadow: 2px 2px 2px rgba(0,0,0, 0.9);
+	vertical-align: top;
+	margin-top: 90px;
+	text-align: center;
+	horizontal-align: middle;
+	color: rgba(237, 237, 237, 0.7);
+	visibility: visible;
+}
+
+.MediumButtonText
+{
+	font-size: 40px;
+	text-shadow: 2px 2px 2px rgba(0,0,0, 0.9);
+	vertical-align: top;
+	margin-top: 30px;
+	horizontal-align: middle;
+	color: rgba(237, 237, 237, 0.7);
+	visibility: visible;
+}
+
+.HardButtonText
+{
+	font-size: 40px;
+	text-shadow: 2px 2px 2px rgba(0,0,0, 0.9);
+	vertical-align: top;
+	margin-top: 10px;
+	horizontal-align: middle;
+	color: rgba(237, 237, 237, 0.7);
+	visibility: visible;
+}
+
+#easy_slots
+{
+	width: 164px;
+	height: 68px;
+	margin-left: 5px;
+	flow-children: right;
+	vertical-align: bottom;
+}
+
+#normal_slots
+{
+	width: 164px;
+	height: 68px;
+	margin-left: 5px;
+	flow-children: right;
+	vertical-align: bottom;
+}
+
+#hard_slots
+{
+	width: 164px;
+	height: 68px;
+	margin-left: 5px;
+	flow-children: right;
+	vertical-align: bottom;
+}

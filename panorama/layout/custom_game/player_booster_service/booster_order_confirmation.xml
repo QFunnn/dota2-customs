@@ -1,0 +1,70 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/common_styles.css" />
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/booster_order_confirmation.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/player_booster_service/booster_order_confirmation.js" />
+	</scripts>
+	<Panel class="root2" hittest="false" style="height: 100%; width: 100%;">
+		<Panel class="unified-modal-overlay" id="booster_confirmation_overlay">
+			<Panel class="orders-container" id="orders_container">
+				<Panel class="unified-modal-medium" id="order_template" style="visibility: collapse; align: center center;">
+					<Panel class="unified-modal-header">
+						<Label class="unified-modal-title" text="#ui_booster_new_order_title" />
+						<Button class="unified-close-button" id="close_button">
+							<Label class="unified-close-text" text="×" />
+						</Button>
+					</Panel>
+					<Panel class="unified-modal-content">
+						<Panel class="unified-info-section">
+							<DOTAHeroImage class="unified-hero-avatar" id="hero_avatar" heroname="npc_dota_hero_abyssal_underlord" />
+							<Panel class="unified-info-text">
+								<Label class="unified-name" text="#ui_booster_customer_label" />
+								<Label class="unified-stats" id="hero_name" text="ABYSSAL UNDERLORD" />
+							</Panel>
+						</Panel>
+						<Panel class="unified-details-section">
+							<Panel class="unified-detail-row">
+								<Label class="unified-detail-label" text="#ui_booster_difficulty_label" />
+								<Label class="unified-detail-value" id="difficulty_value" text="5" />
+							</Panel>
+							<Panel class="unified-detail-row">
+								<Label class="unified-detail-label" text="#ui_booster_customer_price_label" />
+								<Label class="unified-detail-value" id="customer_price_value" text="10" />
+							</Panel>
+							<Panel class="unified-detail-row">
+								<Label class="unified-detail-label" text="#ui_booster_commission_label" />
+								<Label class="unified-detail-value" id="commission_value" text="-1" />
+							</Panel>
+							<Panel class="unified-detail-row total-row">
+								<Label class="unified-detail-label" text="#ui_booster_you_will_get_label" />
+								<Label class="unified-detail-value unified-total-amount" id="booster_payout_value" text="9" />
+							</Panel>
+						</Panel>
+						<Panel class="unified-actions-section">
+							<Button class="unified-button unified-button-danger" id="reject_button">
+								<Label class="button-text" text="#ui_booster_reject_button" />
+							</Button>
+							<Button class="unified-button unified-button-primary" id="accept_button">
+								<Label class="button-text" text="#ui_booster_accept_button" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

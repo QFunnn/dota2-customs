@@ -1,0 +1,399 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.HUDRoot
+{
+	height: 100%;
+	width: 100%;
+}
+
+.HPBarContainer
+{
+	align: center top;
+	margin-top:120px;
+	width: 400px;
+	height: 50px;
+}
+
+.hpbar
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #363F35 ), to( #000 ) );
+	align: center bottom;
+	border: 3px solid #3F3F3D;
+	border-radius: 5px;
+	width: 400px;
+	height: 20px;
+}
+
+.bar
+{
+	height: 100%;
+	width:100%;
+	align: left center;
+	border-radius: 5px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #461d0b ), color-stop( .1, #ff580b ), to( #360500 ) );
+}
+
+#name
+{
+	align: center top;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #461d0b ), color-stop( .1, #ff580b ), to( #360500 ) );
+	letter-spacing: 3px;
+	margin-top: 3px;
+	text-overflow: clip;
+	font-family: titleFont;
+	text-shadow: 0px 0px 15px 6 #00000099;
+	text-align: center;
+	font-size: 20;
+	text-transform: uppercase;
+}
+
+.dmgPanel
+{
+	align: right top;
+	margin-top: 100px;
+	width: 150px;
+	height: 700px;
+	flow-children:down;
+	transition-property: position;
+	transition-delay: 0.0s;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	position: 140px 0px 0px;
+}
+
+#button_show
+{
+	width: 150px;
+	height:40px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-right: 225px;
+	transition: transform 0.2s ease-in-out 0.0s;
+	transform: scale3d(0.9,0.9,1.0);
+	color:#d9d8d7;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px 4px 3.0 #222222;
+	border: 2px solid #2e2d2c;
+	background-color: #505254;
+}
+
+#show_damage
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#button_show:hover
+{
+	transform: scale3d(1.0,1.0,1.0);
+	sound: "ui_select_arrow";
+}
+
+.heroinfo
+{
+	width: 120px;
+	height: 138px;
+	border: 1px solid #3F3F3D;
+	background-color: rgba(60, 60, 60, 0.5);
+}
+
+.left
+{
+	width: 50%;
+	height: 65%;
+	align: left bottom;
+	flow-children:down;
+}
+
+.right
+{
+	width: 50%;
+	height:65%;
+	align: right bottom;
+	flow-children:down;
+}
+
+.heal,.dmg,.mag,.pure,.tank
+{
+	font-size: 14;
+	margin-left: 3px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #347916 ), color-stop( .1, #33FF0B ), to( #33FF0B ) );
+}
+
+.dmg
+{
+	color: #a61600;
+}
+
+.mag
+{
+	color: #3344ff;
+}
+
+.pure
+{
+	color: #a3009b;
+}
+
+.tank
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #40270a ), color-stop( .1, #ffa10b ), to( #ffa10b ) );
+}
+
+.right Label
+{
+	font-size: 13;
+	color: white;
+	text-align: center;
+	width: 100%;
+	margin-top: 1px;
+}
+
+.heroname
+{
+	align: center top;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #461d0b ), color-stop( .1, #ff580b ), to( #6b0c02 ) );
+	margin-top: 4px;
+	text-overflow: clip;
+	font-family: titleFont;
+	text-shadow: 0px 0px 15px 6 #00000099;
+	text-align: center;
+	font-size: 14;
+	text-transform: uppercase;
+}
+
+#newLocation
+{
+	align: center top;
+	height: 150px;
+	width: 1000px;
+	margin-top: 110px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	transition-property: transform;
+	transition-duration: 0.37s;
+	transition-timing-function: ease-in-out;
+	flow-children:down;
+}
+
+.hidden
+{
+	transform: translateY(-1000px);
+}
+
+#newLocation Label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: white;
+	font-weight:bold;
+	letter-spacing: 3px;
+	margin-top: 0px;
+	text-overflow: clip;
+	font-family: titleFont;
+	text-shadow: 0px 0px 15px 6 #00000099;
+	text-align: center;
+	font-size: 55;
+	text-transform: uppercase;
+}
+
+.endboard
+{
+	align: center center;
+	min-height: 100px;
+	width: 800px;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_hud_inspect_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#CloseButton
+{
+	box-shadow: #000000aa 0px 0px 5px 0px;
+	border-top: 1px solid #99999905;
+	border-left: 1px solid #99999905;
+	border-right: 1px solid #00000060;
+	border-bottom: 1px solid #00000060;
+	background-image: url("s2r://panorama/images/textures/miniprofile_rock_psd.vtex");
+	background-size: cover;
+	padding: 3px 7px;
+	align: right top;
+	margin: 5px;
+}
+
+#CloseButton:hover
+{
+	brightness: 2;
+}
+
+#CloseButton Label
+{
+	color: white;
+}
+
+#victoryText
+{
+	text-transform: uppercase;
+	color: white;
+	font-weight: bold;
+	align: right top;
+	margin: 8px 100px;
+	text-shadow: 0px 0px 20px green;
+}
+
+#victoryText.red
+{
+	text-shadow: 0px 0px 20px red;
+}
+
+.players
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 50px;
+}
+
+.playerrow
+{
+	width: 100%;
+	flow-children: right;
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #373C3B ), color-stop( 0.4, #505959 ), color-stop( 0.6, #505959 ), to( #2F3535 ) );
+	height: 50px;
+}
+
+.playerAvatar
+{
+	height: 48px;
+	width: 48px;
+	align: left center;
+	margin: 2px;
+}
+
+.playerrow Label
+{
+	align: left center;
+	color: white;
+	text-align: center;
+}
+
+.death
+{
+	width: 50px;
+}
+
+.heronameboard
+{
+	width: 150px;
+}
+
+.playerrow .healboard
+{
+	width: 70px;
+	color: green;
+}
+
+.playerrow .takenboard
+{
+	width: 70px;
+	margin-left: 15px;
+	color: #ffa10b;
+}
+
+.playerrow .dmgboard
+{
+	width: 70px;
+	margin-left: 15px;
+	color: #a61600;
+}
+
+.playerrow .magboard
+{
+	width: 70px;
+	margin-left: 15px;
+	color: #3344ff;
+}
+
+.playerrow .pureboard
+{
+	width: 70px;
+	margin-left: 15px;
+	color: #a3009b;
+}
+
+.items
+{
+	width: 105px;
+	height: 90%;
+	align: left center;
+	flow-children: right-wrap;
+}
+
+.items DOTAItemImage
+{
+	height: 50%;
+}
+
+.help
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 30px;
+}
+
+.help Label
+{
+	color:grey;
+}
+
+.help .name
+{
+	margin-left: 105px;
+}
+
+.help .death
+{
+	margin-left: 70px;
+}
+
+.help .items
+{
+	margin-left: 10px;
+	width: 70px;
+}
+
+.help .healboard
+{
+	margin-left: 17px;
+	margin-right: 22px;
+}
+
+.help .takenboard
+{
+	margin-left: 45px;
+}
+
+.help .dmgboard
+{
+	margin-left: 0px;
+}
+
+.help .magboard
+{
+	margin-left: 30px;
+}
+
+.help .pureboard
+{
+	margin-left: 45px;
+}

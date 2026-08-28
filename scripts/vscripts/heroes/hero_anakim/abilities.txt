@@ -1,0 +1,198 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "anakim_pulse"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/hero_anakim"
+		"AbilityTextureName"			"anakim_pulse"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"14 12 10 8"
+		"AbilityManaCost"				"80 100 120 140"
+		"AbilityCastPoint"				"0.25"
+
+		"AbilityValues"
+		{
+			"damage"	
+			{
+				"value"					        "80 160 240 320"	
+				"special_bonus_unique_anakim_1"	"+80"
+			}	
+			"radius"	"200"		
+			"range"		"700"
+			"delay"		"0.2"
+			"count"
+            {
+				"value"					        "6"	
+				"special_bonus_unique_anakim_2"	"+4"
+			}	
+		}
+	}
+
+    "anakim_chaos"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/hero_anakim"
+		"AbilityTextureName"			"anakim_chaos"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"24 20 16 12"
+        "AbilityManaCost"				"80 100 120 140"
+		
+		"AbilityValues"
+		{
+			"radius"					"350"
+			"duration"					"3"
+			"spell_amp"					
+			{
+				"value"					        "8 16 24 32"
+				"special_bonus_unique_anakim_3"	"+16"
+			}
+		}
+	}
+
+    "anakim_wisp"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_anakim/hero_anakim"
+		"AbilityTextureName"			"anakim_wisp"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"800"
+
+		"AbilityValues"
+		{	
+			"soul_damage"
+			{
+				"value"							"50 100 150 200"
+				"special_bonus_unique_anakim_4"		"+50"
+			}
+			"soul_ampl"
+			{
+				"value"							"3 4 5 6"
+				"special_bonus_unique_anakim_5"		"+4"
+			}
+			"kills"
+			{
+				"value"					    "4"
+				"special_bonus_unique_anakim_6"	"-2"
+			}
+			"max_souls"				
+			{
+				"value"					    "4 5 6 7"
+				"special_bonus_unique_anakim_8"	"+2"
+			}
+		}
+	}
+
+    "anakim_final_sacrifice"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "heroes/hero_anakim/hero_anakim"
+        "MaxLevel"                      "1"
+		"AbilityTextureName"			"anakim_final"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "180"
+
+        "AbilityValues"
+        {
+            "heal_per_wisp"         "5" 
+        }
+    }
+
+	"anakim_pulse_line"
+	{
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_anakim/hero_anakim"
+		"AbilityTextureName"            "phoenix_sun_ray"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityDamageType"             "DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"ABILITY_TYPE_ULTIMATE"
+		"AbilityCastRange"              "1200"
+		"AbilityCastPoint"              "1.2"
+		"AbilityCooldown"               "80 70 60"
+
+		"AbilityValues"
+		{
+			"radius"                "200"
+			"damage"                "400 800 1200"
+			"mana_damage"			
+			{
+				"value"					    "20 30 40"
+				"special_bonus_unique_anakim_7"	"+20"
+			}
+		}
+	}
+
+    "special_bonus_unique_anakim_1"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	
+	"special_bonus_unique_anakim_2"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_3"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_4"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_5"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_6"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_7"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+	"special_bonus_unique_anakim_8"
+    {
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+    }
+}	

@@ -1,0 +1,92 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/end_screen/end_screen.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/end_screen/end_screen.js" />
+	</scripts>
+	<snippets>
+		<snippet name="EndGameSummary">
+			<Panel id="GameSummaryContainer">
+				<Label id="GameSummaryResultLabel" text="" />
+				<Label id="GameSummaryLoseReasonLabel" class="Hidden" text="" html="true" />
+				<Label id="GameSummaryDifficultyLabel" text="" />
+				<Panel id="PlayerScoreHeader">
+					<Label class="PlayerSummaryPartHeader" text="#DOTA_HeroStat_Deaths" />
+					<Label class="PlayerSummaryPartHeader" text="#DOTA_HeroStat_LH_Short" />
+					<Label class="PlayerSummaryPartHeader" text="#DOTA_GOLD" />
+					<Label class="PlayerSummaryPartHeader" text="#DOTA_XP" />
+					<Label class="PlayerSummaryPartHeader" text="#dota_page_post_game_damage_dealt" />
+					<Label class="PlayerSummaryPartHeader" text="#dota_page_post_game_damage_received" />
+				</Panel>
+				<Panel id="PlayersSummaryContainer" />
+				<TextButton id="DisconnectButton" text="#DOTA_Leave" onactivate="Game.FinishGame()" />
+			</Panel>
+		</snippet>
+		<snippet name="EndGamePlayerSummary">
+			<Panel class="PlayerSummaryRow">
+				<Panel class="PlayerSummaryHeroContainer">
+					<DOTAScenePanel class="PlayerHeroImage" environment="default" unit="" particleonly="false" />
+					<Panel class="PlayerInfoContainer">
+						<DOTAUserName class="PlayerName" steamid="0" />
+						<Label class="BotPlayerName" text="" />
+						<Label class="HeroName" text="" />
+						<Label class="PlayerAccountLevel" text="" />
+						<Panel class="PlayerRewardsContainer">
+							<Image src="s2r://panorama/images/custom_game/DS/protection.png" />
+							<Label text="+0" />
+							<Image src="s2r://panorama/images/custom_game/account.png" />
+							<Label text="+0" />
+							<Image src="s2r://panorama/images/guild/guild_icon.png" />
+							<Label text="+0" />
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Label class="PlayerSummaryPartLabel DeathsSummary" text="1" />
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Label class="PlayerSummaryPartLabel KillsSummary" text="" />
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Label class="PlayerSummaryPartLabel GoldSummary" text="" />
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Label class="PlayerSummaryPartLabel ExpSummary" text="" />
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Panel class="DamageDealtSummary" hittestchildren="true">
+						<Label class="PlayerSummaryPartLabel PhysicalDamageSummary" text="" />
+						<Label class="PlayerSummaryPartLabel MagicalDamageSummary" text="" />
+						<Label class="PlayerSummaryPartLabel PureDamageSummary" text="" />
+						<Panel class="PlayerSummaryPartDivider" />
+						<Label class="PlayerSummaryPartLabel TotalDamageSummary" text="" />
+					</Panel>
+				</Panel>
+				<Panel class="PlayerSummaryPartContainer">
+					<Panel class="DamageReceivedSummary">
+						<Label class="PlayerSummaryPartLabel PhysicalDamageSummary" text="" />
+						<Label class="PlayerSummaryPartLabel MagicalDamageSummary" text="" />
+						<Label class="PlayerSummaryPartLabel PureDamageSummary" text="" />
+						<Panel class="PlayerSummaryPartDivider" />
+						<Label class="PlayerSummaryPartLabel TotalDamageSummary" text="" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="EndScreenRoot" hittest="false" hittestchildren="true" />
+</root>

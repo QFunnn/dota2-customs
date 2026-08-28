@@ -1,0 +1,63 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+	"outworld_devourer_astral_imprisonment_lua"
+	{
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_outworld_devourer/outworld_devourer_astral_imprisonment_lua/outworld_devourer_astral_imprisonment_lua"
+		"AbilityTextureName"			"obsidian_destroyer_astral_imprisonment"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.25 0.25 0.25 0.25"
+		"AbilityDuration"				"4.0"
+
+		"AbilityManaCost"				"140 160 180 200"
+
+		"AbilityValues"
+		{
+			"prison_duration"					"2.0"
+			"damage"							"120 200 280 360"
+			"radius"							"300"
+			"cast_range_tooltip"				"450"
+			"ExtraIntelligenceDamage"			"0.2"
+			"AbilityChargeRestoreTime"      
+            {
+                "value"             			"22 18 14 10"
+            }
+			"AbilityCharges"        
+            {
+                "value" "1"
+				"special_bonus_unique_outworld_devourer_tal1" "+1"
+            }
+		}
+	}
+
+
+	"special_bonus_unique_outworld_devourer_tal1" 
+	{
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "BaseClass"                     "special_bonus_base"
+	}
+}

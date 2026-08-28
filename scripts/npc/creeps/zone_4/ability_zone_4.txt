@@ -1,0 +1,152 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "creep_arrow_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"            "mirana_arrow"
+        
+        "AbilityCastRange"              "1200"
+        "AbilityCastPoint"              "0.5"
+        "AbilityCooldown"               "15"
+        "AbilityManaCost"               "100"
+
+        "AbilityValues"
+        {
+            "arrow_speed"               "900"
+            "arrow_radius"              "115"
+            "arrow_distance"            "1200"
+            "spawn_distance"            "150"
+            "base_damage"               "800"
+            "diff_boost_damage"     	"100"
+            "max_stun_duration"         "2"
+            "arrows_count"              "3"
+        }
+    }
+
+    "creep_flop_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "ogreseal_flop"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "6"
+        "AbilityManaCost"               "100"
+        "AbilityValues"
+        {
+			"radius"                    "275"
+			"damage"                    "800"
+            "diff_boost_damage"     	"100"
+			"stun_duration"             "0.8"
+        }
+    }
+
+    "creep_dispersion_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "spectre_dispersion"
+
+        "AbilityValues"
+        {
+            "damage_reflection_pct"     "20"
+            "diff_boost_damage"     	"2"
+            "min_radius"                "300"
+            "max_radius"                "800"
+        }
+    }
+
+    "creep_spider_die_spawn_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "broodmother_spawn_spiderlings"
+        "AbilityCastRange"              "400"
+
+        "AbilityValues"
+        {
+            "radius"                    "400"
+            "explosion_delay"           "1.1"
+            "damage"                    "300"
+            "diff_boost_damage"     	"50"
+            "debuff_duration"           "5"
+            "spawn_count"               "3"
+        }
+    }
+
+    "creep_snowball_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"    
+        "AbilityTextureName"            "tusk_snowball"
+        "AbilitySound"                  "Hero_Tusk.Snowball.Cast"
+
+        "AbilityCastRange"              "700"
+        "AbilityCastPoint"              "0.1"
+        "AbilityCooldown"               "10"
+        "AbilityManaCost"               "75"
+
+        "AbilityValues"
+        {
+            "snowball_damage"           "700"
+            "diff_boost_damage"         "70"
+            "snowball_speed"            "650"
+            "stun_duration"             "2.0"
+            "snowball_duration"         "2.5"
+        }
+    }
+
+    "creep_ring_shards_lua"
+    {
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "spawn"
+        "ScriptFile"                    "abilities/creeps/zone_4/zone_4"
+        "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"     	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"    	 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"     	"DAMAGE_TYPE_MAGICAL" 
+        "SpellImmunityType"       		"SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCooldown"               "11.0"
+        "AbilityCastRange"              "300"
+
+        "AbilityValues"
+        {
+            "shard_damage"          "500"
+            "diff_boost_damage"     "50"
+            "shard_duration"        "1.5"
+            "radius"                "400"
+            "count"                 "6"
+        }
+    }
+
+}
