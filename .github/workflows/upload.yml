@@ -41,11 +41,14 @@ jobs:
           SHA: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
         run: |
           set -euo pipefail
+
           BUILD="${SHA:0:7}"
-          TIME="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
           WATERMARK=$(printf '%s' "$WATERMARK_TEMPLATE" \
             | sed \
-              -e "s|\${build}|$BUILD|g" 
+              -e "s|\${build}|$BUILD|g"
+          )
+
           {
             echo "watermark<<__WM_EOF__"
             echo "$WATERMARK"
