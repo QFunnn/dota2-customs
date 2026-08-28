@@ -1,0 +1,1264 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.hud_overhead
+{
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.hud_overhead.DungeonLoading
+{
+	transition-delay: 1s;
+	opacity: 0;
+}
+
+.OverheadContainer
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+#OverheadContent
+{
+	flow-children: down;
+}
+
+.Overhead
+{
+	overflow: noclip;
+}
+
+.Overhead.New #HealthProgress_Loss
+{
+	transition-duration: 0s;
+}
+
+.Overhead.New #HealthProgress_Left
+{
+	transition-duration: 0s;
+}
+
+.Overhead.IsCursor:not(.IsSelected) #HealthProgress
+{
+	border: 1px solid #88ff44;
+}
+
+.Overhead.IsEnemy #HealthProgress_Left
+{
+	hue-rotation: 220deg;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a52a2a), color-stop(0.5, #d32f2f), to(#8b1a1a));
+}
+
+.Overhead.IsEnemy #HealthProgress_Loss
+{
+	background-color: #d88870;
+}
+
+.Overhead.IsEnemy #ShieldProgress
+{
+	border: 1px solid #000000;
+}
+
+.Overhead.IsEnemy.IsCursor:not(.IsSelected) #HealthProgress
+{
+	border: 1px solid #ff4444;
+}
+
+.Overhead.IsEnemy.IsCursor:not(.IsSelected) #ShieldProgress
+{
+	border: 1px solid #f8ea20;
+}
+
+.Overhead.IsUpper
+{
+	z-index: 1;
+}
+
+#Bar
+{
+	width: 100px;
+	flow-children: down;
+}
+
+#HealthProgress
+{
+	width: 100%;
+	height: 16px;
+	border-radius: 1px;
+	background-color: #1a1a1aee;
+	border: 1px solid #00000088;
+}
+
+#HealthProgress_Left
+{
+	height: 100%;
+	border-radius: 1px;
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: ease;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3d7a29), color-stop(0.5, #4caf50), to(#2d5a1f));
+}
+
+#HealthProgress_Loss
+{
+	height: 100%;
+	border-radius: 1px;
+	background-color: #cccccc;
+	transition-property: width;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+}
+
+#ShieldProgress
+{
+	width: 100%;
+	height: 6px;
+	visibility: collapse;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease;
+}
+
+#ShieldProgress.HasShield
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+#ShieldProgress_Bar
+{
+	height: 100%;
+	border-radius: 1px;
+	background-color: gradient(linear, 0% 0%, 0% 80%, from(#ffee00), to(#6d6c40));
+	transition-property: width;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-out;
+}
+
+.Hero #HeroTitleImage
+{
+	horizontal-align: center;
+	width: 174.4px;
+	height: 84px;
+	margin-bottom: -10px;
+	img-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+.Hero #HeroPlayerName
+{
+	horizontal-align: center;
+}
+
+.Hero #HeroPlayerName Label
+{
+	font-size: 18px;
+	color: #efe5cd;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000;
+}
+
+.Hero #HeroBarContainer
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.Hero #Bar
+{
+	width: 120px;
+	border-width: 0px;
+	margin: 0px 4px;
+}
+
+.Hero #HealthProgress
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_blood_bg_small_png.vtex");
+	background-size: 100%;
+	width: 129px;
+	padding: 2px;
+	border-width: 0px;
+}
+
+.Hero #HealthProgress #HealthProgress_Loss
+{
+	height: 100%;
+	border-radius: 1px;
+}
+
+.Hero #HealthProgress #HealthProgress_Left
+{
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_blood_bar_small_png.vtex");
+	background-size: 100%;
+}
+
+.Hero #ShieldProgress
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_yellow_bg_small_png.vtex");
+	background-size: 100%;
+	width: 129px;
+	height: 6px;
+	padding: 2px;
+}
+
+.Hero #ShieldProgress #ShieldProgress_Bar
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_yellow_bar_small_png.vtex");
+	background-size: 129px 100%;
+	height: 2px;
+}
+
+.Hero #UpgradePrompt
+{
+	opacity: 0;
+	vertical-align: center;
+	width: 24px;
+	height: 24px;
+	overflow: noclip;
+}
+
+.Hero #UpgradePrompt DOTAParticleScenePanel
+{
+	width: 100px;
+	height: 100px;
+	align: center center;
+	z-index: 0;
+}
+
+.Hero #UpgradePrompt .EOM_HotKeyDisplay
+{
+	vertical-align: center;
+	animation-name: UpgradePulse;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.Hero .EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_light_png.vtex");
+}
+
+.Hero .EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	font-size: 13px;
+	color: #323030;
+	text-shadow: 0px 0px 1px 1 #323030;
+}
+
+.Hero.HasUpgrade #UpgradePrompt
+{
+	opacity: 1;
+}
+
+.Hero #DashCharge
+{
+	margin-left: -3px;
+	width: 27px;
+	height: 23px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_cooling_grey_png.vtex");
+}
+
+.Hero #DashCharge #DashCharge_Bar
+{
+	transition-property: width;
+	transition-duration: 0.05s;
+	height: 23px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_cooling_light_png.vtex");
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+.Hero #DashCharge #DashCharge_Bar.DashReady
+{
+	animation-name: DashReady;
+}
+
+.Hero #DashCharge #DashCharge_Flash
+{
+	visibility: collapse;
+}
+
+.Hero #DashCharge #DashCharge_Flash.DashReady
+{
+	visibility: visible;
+}
+
+.Hero #FishingContainer
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	opacity: 0;
+	flow-children: down;
+}
+
+.Hero.Fishing #HeroBarContainer
+{
+	opacity: 0;
+}
+
+.Hero.Fishing #FishingContainer
+{
+	opacity: 1;
+}
+
+.FishingContent .EOM_HotKeyDisplay
+{
+	margin-right: 4px;
+}
+
+.FishingContent .EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	margin: 0 3px;
+}
+
+.Unit #Bar
+{
+	width: 80px;
+}
+
+#DummyDamageRecord
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 4px;
+	brightness: 1.4;
+	overflow: noclip;
+}
+
+#DummyDamageSummary
+{
+	vertical-align: center;
+	width: 160px;
+	flow-children: down;
+}
+
+#DummyAbilityDamageList
+{
+	width: 326px;
+	flow-children: down;
+	ignore-parent-flow: true;
+	position: 164px 0px 0px;
+	visibility: collapse;
+	overflow: noclip;
+	z-index: 2;
+	padding: 5px;
+	background-color: #101416ee;
+	border: 1px solid #536068aa;
+	box-shadow: fill #00000088 0px 0px 8px 0px;
+}
+
+#DummyDamageRecord.ShowAbilityList #DummyAbilityDamageList
+{
+	visibility: visible;
+}
+
+#DummyDamageCountdownBar
+{
+	horizontal-align: center;
+	width: 160px;
+	height: 4px;
+	opacity: 0;
+	margin-bottom: 2px;
+}
+
+#DummyDamageCountdownBar .ProgressBarLeft
+{
+	background-color: #cccccc;
+}
+
+#DummyDamageCountdownBar .ProgressBarRight
+{
+	background-color: #202020cc;
+}
+
+#DummyDamageRecord.ShowCountdown #DummyDamageCountdownBar
+{
+	opacity: 1;
+}
+
+.DummyDamageRecordRow
+{
+	width: 100%;
+	height: 19px;
+	flow-children: right;
+}
+
+.DummyDamageRecordLabel,.DummyDamageRecordValue
+{
+	height: 19px;
+	font-size: 16px;
+	color: white;
+	text-shadow: 0px 0px 2px 3 #000000;
+	text-overflow: shrink;
+}
+
+.DummyDamageRecordLabel
+{
+	width: 78px;
+}
+
+.DummyDamageRecordValue
+{
+	width: 82px;
+	text-align: right;
+}
+
+.DummyAbilityDamageHeader,.DummyAbilityDamageRow
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.DummyAbilityDamageHeader
+{
+	height: 18px;
+	margin-bottom: 2px;
+	border-bottom: 1px solid #68757b88;
+}
+
+.DummyAbilityDamageHeader Label
+{
+	font-size: 13px;
+	color: #aebbc1;
+	text-align: center;
+}
+
+.DummyAbilityDamageHeader .AbilityColumn
+{
+	width: 132px;
+}
+
+.DummyAbilityDamageHeader .DpsColumn
+{
+	width: 65px;
+}
+
+.DummyAbilityDamageHeader .DamageColumn
+{
+	width: 72px;
+}
+
+.DummyAbilityDamageHeader .RatioColumn
+{
+	width: 45px;
+}
+
+.DummyAbilityDamageRow
+{
+	margin: 1px 0px;
+	background-color: #26303699;
+}
+
+.DummyAbilityDamageRow Label
+{
+	vertical-align: center;
+	font-size: 14px;
+	color: white;
+	text-shadow: 0px 0px 2px 2 #000000;
+	text-overflow: shrink;
+}
+
+.DummyAbilityDamageIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	margin-left: 2px;
+	margin-right: 4px;
+}
+
+.DummyAbilityDamageName
+{
+	width: 98px;
+}
+
+.DummyAbilityDamageDps
+{
+	width: 65px;
+	text-align: right;
+}
+
+.DummyAbilityDamageValue
+{
+	width: 72px;
+	text-align: right;
+}
+
+.DummyAbilityDamageRatio
+{
+	width: 45px;
+	text-align: right;
+}
+
+@keyframes 'UpgradePulse'
+{
+	0%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+	25%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+	75%
+	{
+		brightness: 0.5;
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		brightness: 1.5;
+		pre-transform-scale2d: 1.2;
+	}
+	
+}
+
+@keyframes 'DashReady'
+{
+	0%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.1;
+		brightness: 4;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 1;
+	}
+	
+}
+
+.ShopItem
+{
+	width: 200px;
+}
+
+.ShopItem .ShopItemContent
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ShopItem .ShopItemName
+{
+	horizontal-align: center;
+	max-width: 200px;
+	font-size: 16px;
+	color: #ffffff;
+	text-align: center;
+	text-shadow: 2px 2px 0px 1 #00000088;
+	margin-bottom: 4px;
+}
+
+.ShopItem #ShopItemBarContainer
+{
+	horizontal-align: center;
+}
+
+.ShopItem .CommonItem
+{
+	horizontal-align: center;
+}
+
+.ShopItem .CostLabel
+{
+	horizontal-align: center;
+	font-size: 16px;
+	color: #e1e1e1;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-left: 25px;
+	text-shadow: 2px 2px 0px 1 #00000088;
+	background-size: 20px;
+}
+
+.ShopItem .CostLabel.GoldCost
+{
+	color: #FFCC33;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+}
+
+.ShopItem .CostLabel.NoEnoughGold
+{
+	color: red;
+}
+
+.ClientItem
+{
+	width: 220px;
+}
+
+.ClientItem .ClientItemContent
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ClientItem .ClientItemID
+{
+	horizontal-align: center;
+	max-width: 220px;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 2px 2px 0px 1 #00000088;
+	background-color: #000000;
+	padding: 4px 10px;
+	border: 1px solid #7f6740;
+}
+
+.Npc
+{
+	width: 200px;
+}
+
+.Npc .NpcContent
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.Npc #NpcIcon
+{
+	horizontal-align: center;
+	width: 60px;
+	height: 65px;
+	margin-bottom: 5px;
+}
+
+.Npc #NpcName
+{
+	horizontal-align: center;
+	max-width: 200px;
+	font-size: 18px;
+	color: #d5c9aa;
+	text-align: center;
+}
+
+.EOM_HotKeyDisplay:not(.IsImage)
+{
+	min-width: 24px;
+}
+
+.EOM_HotKeyDisplay.IsImage
+{
+	min-height: 24px;
+}
+
+.EOM_HotKeyDisplay.Filp
+{
+	transform: rotateY(-180deg);
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	align: center center;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	width: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.CommonItem
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CommonItem.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.CommonItem.large .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_big_png.vtex");
+}
+
+.CommonItem .ItemIcon
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.CommonItem .Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.CommonItem .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_png.vtex");
+}
+
+.CommonItem .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_png.vtex");
+}
+
+.CommonItem .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_png.vtex");
+}
+
+.CommonItem .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_png.vtex");
+}
+
+.CommonItem .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_png.vtex");
+}
+
+.CommonItem .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_png.vtex");
+}
+
+.CommonItem .StackCount
+{
+	align: right bottom;
+	margin: 10%;
+	font-size: 16px;
+	color: white;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}

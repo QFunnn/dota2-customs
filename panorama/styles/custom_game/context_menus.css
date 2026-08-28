@@ -1,0 +1,261 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1001;
+}
+
+#ContextMenuRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ContextMenuList
+{
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+	padding: -12px;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}

@@ -1,0 +1,785 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "unnamed_1"
+						filename = "models/eom/hero/items/windrunner_shoulders/windrunner_shoulders_unnamed_1.dmx"
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "unnamed_2"
+						filename = "models/eom/hero/items/windrunner_shoulders/windrunner_shoulders_unnamed_21.dmx"
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "unnamed_3"
+						filename = "models/eom/hero/items/windrunner_shoulders/windrunner_shoulders_unnamed_32.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "wr_ti8_birdtail"
+						ignore_rotation = false
+						parent_bone = "windrunner_shoulders01"
+						relative_origin = [ -0.000001, 0.000002, -0.000002 ]
+						relative_angles = [ -0.0, 0.000007, 0.000019 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_hawk"
+						ignore_rotation = false
+						parent_bone = "hawk_tail_0"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.000008, -16.000006, 179.999985 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						name = "golden"
+						remaps = [  ]
+					},
+					{
+						_class = "MaterialGroup"
+						name = "blue"
+						remaps = 
+						[
+							{
+								_class = "BaseMaterialRemap"
+								from = "materials/models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders.vmat"
+								to = "materials/models/items/windrunner/windranger_ti8_immortal_shoulders/windranger_ti8_immortal_shoulders_arcana_style1.vmat"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "wr_arc_idle"
+						source_filename = "models/eom/hero/items/windrunner_shoulders/windrunner_shoulders_wr_arc_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "ExtractMotion"
+								extract_tx = true
+								extract_ty = true
+								extract_tz = false
+								extract_rz = false
+								linear = false
+								quadratic = false
+								motion_type = "uniform"
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "windrunner_shoulders_fx"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"models/eom/hero/items/windrunner_shoulders/particles/windrunner_shoulders_fx.vpcf"
+							config = "preview"
+						}
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "windrunner_shoulders01"
+						origin = [ 0.206037, 0.000001, 20.415859 ]
+						angles = [ 0.000007, 89.999992, 89.999977 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "hawk_torso_0"
+								origin = [ -0.0, -3.239119, 0.347091 ]
+								angles = [ 18.640066, -89.999992, -89.999954 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hawk_torso_1"
+										origin = [ 4.308959, 0.000003, 0.0 ]
+										angles = [ -0.000003, 14.074265, 0.000014 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hawk_tail_0"
+												origin = [ 5.77774, 1.372535, -0.000003 ]
+												angles = [ 0.000002, 27.870827, -0.000009 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_tail_1"
+														origin = [ 5.56506, 0.000014, -0.0 ]
+														angles = [ -0.000007, -6.648551, -0.000003 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_tail_2"
+																origin = [ 6.9484, 0.000018, -0.000003 ]
+																angles = [ -0.000005, 0.758521, -0.0 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_tail_end"
+																		origin = [ 7.298792, 0.000026, -0.000002 ]
+																		angles = [ 0.000003, 0.000008, 0.000014 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "wr_ti8_immortal_bird_tail_0"
+														origin = [ 8.155763, -0.129014, -0.0 ]
+														angles = [ -0.00001, -6.144451, -179.999939 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "wr_ti8_immortal_bird_tail_1"
+																origin = [ 17.251017, -0.000035, 0.000006 ]
+																angles = [ -0.000003, 0.023354, 0.00001 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "wr_ti8_immortal_bird_tail_2"
+																		origin = [ 20.973829, -0.000036, 0.000009 ]
+																		angles = [ -0.000006, 5.685367, -0.000007 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "wr_ti8_immortal_bird_tail_3"
+																				origin = [ 19.952797, -0.000068, 0.000007 ]
+																				angles = [ -0.000002, 5.19599, 0.000017 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "wr_ti8_immortal_bird_tail_end"
+																						origin = [ 15.081459, -0.000111, 0.000016 ]
+																						angles = [ -0.000007, -0.000002, 0.000014 ]
+																						do_not_discard = true
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_leg_upper_R"
+												origin = [ 3.704663, 0.502748, -1.848164 ]
+												angles = [ -10.594556, 107.242432, -3.934867 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_leg_lower_R"
+														origin = [ -3.766876, 0.00001, -0.000006 ]
+														angles = [ -0.000017, 73.185516, -0.000008 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_leg_ankle_R"
+																origin = [ -3.942416, -0.000021, -0.000016 ]
+																angles = [ 7.017714, -58.423004, -175.021027 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_leg_ball_R"
+																		origin = [ -3.151525, 0.000003, 0.00002 ]
+																		angles = [ -0.250655, 51.930584, -0.343862 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_leg_ball_end_R"
+																				origin = [ -3.730542, -0.000011, 0.00003 ]
+																				angles = [ 0.000004, -0.000007, -0.000007 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_torso_end"
+												origin = [ 3.131649, 0.000007, -0.000001 ]
+												angles = [ -0.000003, 0.000005, -0.0 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "hawk_leg_upper_L"
+												origin = [ 3.704659, 0.502747, 1.848158 ]
+												angles = [ -10.59454, -72.757469, -3.934911 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_leg_lower_L"
+														origin = [ 3.766877, -0.000006, 0.000007 ]
+														angles = [ -0.000031, 73.185524, 0.000029 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_leg_ankle_L"
+																origin = [ 3.942416, 0.000017, 0.00001 ]
+																angles = [ 7.017684, -58.422993, -175.021027 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_leg_ball_L"
+																		origin = [ 3.151525, -0.000002, -0.000014 ]
+																		angles = [ -0.250711, 51.930573, -0.343873 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_leg_ball_end_L"
+																				origin = [ 3.730529, 0.000007, -0.000022 ]
+																				angles = [ -0.000004, -0.000003, 0.0 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "hawk_neck_0"
+								origin = [ 0.000002, 2.912626, 1.497241 ]
+								angles = [ -12.783488, 89.999939, -89.999954 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hawk_neck_1"
+										origin = [ 4.521191, -0.000004, -0.000006 ]
+										angles = [ -0.000033, -75.056458, -0.000022 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hawk_eeybrow_0_R"
+												origin = [ 2.123866, 1.097231, 0.853738 ]
+												angles = [ 29.269726, -20.539133, -170.582718 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_eeybrow_1_R"
+														origin = [ -3.483696, 0.00005, -0.000007 ]
+														angles = [ 7.758301, 22.375753, 5.233335 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_eeybrow_2_R"
+																origin = [ -4.186985, 0.000055, -0.000006 ]
+																angles = [ 14.335494, 14.635392, 4.979784 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_eeybrow_end_R"
+																		origin = [ -4.400774, 0.000046, 0.000002 ]
+																		angles = [ -0.000001, -0.000011, 0.000004 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_neck_end"
+												origin = [ 3.670837, -0.000021, 0.0 ]
+												angles = [ -0.0, -0.000006, -0.00001 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
+												name = "hawk_eeybrow_0_L"
+												origin = [ 2.123876, 1.097252, -0.853773 ]
+												angles = [ 29.269709, 159.460815, -170.582809 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_eeybrow_1_L"
+														origin = [ 3.483702, -0.000042, 0.000013 ]
+														angles = [ 7.758267, 22.375757, 5.233312 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_eeybrow_2_L"
+																origin = [ 4.186975, -0.00005, 0.000016 ]
+																angles = [ 14.3355, 14.635403, 4.979769 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_eeybrow_end_L"
+																		origin = [ 4.40073, -0.000051, -0.000003 ]
+																		angles = [ 0.000005, 0.000026, -0.000007 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_jaw"
+												origin = [ 1.252963, -1.327599, 0.000003 ]
+												angles = [ -0.000002, 7.933504, 0.000044 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_jaw_end"
+														origin = [ 2.478613, -0.000027, -0.000008 ]
+														angles = [ 89.999962, -10.093534, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "hawk_clavicle_L"
+								origin = [ 2.554485, -2.027361, -1.737183 ]
+								angles = [ -0.0, 0.000007, 0.000019 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hawk_arm_upper_L"
+										origin = [ 1.665679, 1.901928, 1.06354 ]
+										angles = [ 9.064989, -9.263064, 26.91905 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hawk_arm_lower_L"
+												origin = [ 7.837218, 0.000008, -0.000004 ]
+												angles = [ 0.000002, 33.319237, -0.000001 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_hand_L"
+														origin = [ 10.51218, 0.000012, 0.0 ]
+														angles = [ -9.03139, -7.14596, 178.347519 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_wing_internal_feather_03_L"
+																origin = [ 0.159962, 7.650784, 0.197312 ]
+																angles = [ -0.000005, 95.299934, -0.000015 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_finger_middle_end_03_L"
+																		origin = [ 8.359064, -0.000093, 0.000054 ]
+																		angles = [ 0.0, -0.000004, 0.000002 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "hawk_hand_end_L"
+																origin = [ 2.932083, -0.743194, 0.587605 ]
+																angles = [ -5.392738, 13.670696, 151.394516 ]
+																do_not_discard = true
+															},
+															{
+																_class = "Bone"
+																name = "hawk_finger_index_0_L"
+																origin = [ 7.076118, 4.295914, 1.641112 ]
+																angles = [ -5.53993, 28.763554, -75.744865 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_finger_index_1_L"
+																		origin = [ 9.836542, -0.00009, -0.000082 ]
+																		angles = [ -3.258632, -1.770515, 1.842073 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_finger_index_end_L"
+																				origin = [ 11.053932, -0.000114, -0.000128 ]
+																				angles = [ -0.00002, -0.000005, 0.000015 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "hawk_wing_internal_feather_04_L"
+																		origin = [ 3.925554, 3.048136, 4.006659 ]
+																		angles = [ -46.200008, -0.000065, 0.000051 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_finger_middle_end_04_L"
+																				origin = [ 8.359187, -0.000104, -0.000189 ]
+																				angles = [ -0.000001, -0.000007, 0.000007 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "hawk_wing_internal_feather_02_L"
+														origin = [ 0.893522, -5.984345, 0.090755 ]
+														angles = [ -9.031385, -101.445908, 178.347519 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_finger_ring_end_02_L"
+																origin = [ 8.754915, -0.000017, 0.000012 ]
+																angles = [ 0.000005, 0.000018, -0.000001 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_wing_internal_feather_01_L"
+												origin = [ 4.928138, -6.964489, 0.343489 ]
+												angles = [ 2.190408, -63.946003, 82.568146 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_wing_internal_feather_end_L"
+														origin = [ 8.110183, -0.00001, -0.000013 ]
+														angles = [ -0.000002, 0.000015, -0.000044 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "hawk_clavicle_R"
+								origin = [ -2.554473, -2.027393, -1.737183 ]
+								angles = [ 0.000007, 0.000007, 179.999924 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hawk_arm_upper_R"
+										origin = [ -1.665673, -1.901997, -1.063533 ]
+										angles = [ 9.065024, -9.262993, 26.919107 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hawk_arm_lower_R"
+												origin = [ -7.837214, 0.000002, -0.000002 ]
+												angles = [ 0.000014, 33.319229, -0.000028 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_hand_R"
+														origin = [ -10.512135, 0.000002, 0.000003 ]
+														angles = [ -9.031387, -7.14597, 178.347519 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_wing_internal_feather_03_R"
+																origin = [ -0.159899, -7.650809, -0.197277 ]
+																angles = [ -0.000006, 95.299965, -0.000009 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_finger_middle_end_03_R"
+																		origin = [ -8.359033, -0.000011, 0.000001 ]
+																		angles = [ 0.0, 0.000003, 0.000002 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+															{
+																_class = "Bone"
+																name = "hawk_hand_end_R"
+																origin = [ -2.932024, 0.743165, -0.587596 ]
+																angles = [ -5.392673, 13.67071, 151.394516 ]
+																do_not_discard = true
+															},
+															{
+																_class = "Bone"
+																name = "hawk_finger_index_0_R"
+																origin = [ -7.076077, -4.295933, -1.641088 ]
+																angles = [ -5.539924, 28.763508, -75.74472 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hawk_finger_index_1_R"
+																		origin = [ -9.836342, 0.000008, -0.000008 ]
+																		angles = [ -3.25861, -1.770469, 1.842022 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_finger_index_end_R"
+																				origin = [ -11.053692, -0.000008, -0.000004 ]
+																				angles = [ -0.000003, -0.000011, -0.000008 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																	{
+																		_class = "Bone"
+																		name = "hawk_wing_internal_feather_04_R"
+																		origin = [ -3.925386, -3.048229, -4.006758 ]
+																		angles = [ -46.199982, 0.000002, -0.000002 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hawk_finger_middle_end_04_R"
+																				origin = [ -8.359054, 0.0, -0.000019 ]
+																				angles = [ -0.000013, -0.000015, -0.000011 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+													{
+														_class = "Bone"
+														name = "hawk_wing_internal_feather_02_R"
+														origin = [ -0.89352, 5.984299, -0.090724 ]
+														angles = [ -9.031381, -101.445946, 178.347519 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hawk_finger_ring_end_02_R"
+																origin = [ -8.754938, 0.000004, 0.0 ]
+																angles = [ 0.000001, -0.000005, -0.000001 ]
+																do_not_discard = true
+															},
+														]
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hawk_wing_internal_feather_01_R"
+												origin = [ -4.928129, 6.964493, -0.343494 ]
+												angles = [ 2.190331, -63.945992, 82.568092 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hawk_wing_internal_feather_end_R"
+														origin = [ -8.110193, -0.000001, 0.000002 ]
+														angles = [ -0.000002, -0.000013, 0.000017 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+						]
+					},
+					{
+						_class = "Bone"
+						name = "windrunner_shoulders02"
+						origin = [ 0.431441, 2.643216, 99.72142 ]
+						angles = [ 6.312724, 109.934662, -41.896694 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "shooter_shoulders_l"
+						origin = [ 0.000017, -21.937027, 159.110947 ]
+						angles = [ 58.328823, -90.000084, 89.999886 ]
+						do_not_discard = true
+					},
+					{
+						_class = "Bone"
+						name = "paladin_shoulders"
+						origin = [ -1.470758, -24.11924, 173.205338 ]
+						angles = [ 42.090279, -93.004601, -90.242828 ]
+						do_not_discard = true
+					},
+				]
+			},
+		]
+	}
+}

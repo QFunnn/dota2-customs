@@ -1,0 +1,896 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "naga_ti10_immortal_head"
+						filename = "models/eom/hero/witch_props_1/siren_head_1_naga_ti10_immortal_head.dmx"
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimBindPose"
+						name = "bind_pose"
+					},
+					{
+						_class = "AnimFile"
+						name = "naga_ti10_immortal_idle"
+						source_filename = "models/eom/hero/witch_props_1/siren_head_1_naga_ti10_immortal_idle.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CLOTH_STIFFEN"
+								event_frame = 0
+								event_keys = 
+								{
+									Value = 0.25
+									SpeedIn = 0.0
+									SpeedOut = 0.0
+									Length = 12.0
+									VertexSet = null
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CLOTH_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									FeEffectName = "wind"
+									use_layer_sequence = false
+									tags = ""
+									Operation = 0
+									peaktailend = [ 0.0, 12.0, 12.0 ]
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CLOTH_EFFECT"
+								event_frame = 0
+								event_keys = 
+								{
+									FeEffectName = "wind_back"
+									use_layer_sequence = false
+									tags = ""
+									Operation = 0
+									peaktailend = [ 0.0, 12.0, 12.0 ]
+								}
+							},
+						]
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "naga_ti10_immortal_ambient"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"models/eom/hero/witch_props_1/particles/naga_ti10_immortal_ambient.vpcf"
+							config = "preview"
+						}
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "siren_head_1"
+						origin = [ -17.984901, -0.674201, 128.174088 ]
+						angles = [ -72.494057, -179.999939, 179.999924 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "head"
+								origin = [ 27.288277, -0.000001, -3.526381 ]
+								angles = [ 72.494019, 179.999924, 179.999924 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "hat_01"
+										origin = [ -7.772884, 0.674205, 26.944122 ]
+										angles = [ 65.126945, 0.0, -0.000001 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hat_edge_08_JNT"
+												origin = [ 27.044159, -15.143497, 18.858177 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_08_end"
+														origin = [ 5.1922, 0.000115, -2.406584 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_07_JNT"
+												origin = [ 9.484802, 21.102955, 16.052544 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_07_end"
+														origin = [ 5.192352, -0.000156, -2.406666 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_06_JNT"
+												origin = [ 16.077148, 14.302758, -25.673573 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_06_end"
+														origin = [ 5.192123, -0.000107, -2.406956 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_05_JNT"
+												origin = [ 14.581009, -4.243219, -27.705555 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_05_end"
+														origin = [ 5.192154, 0.000034, -2.406975 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_04_JNT"
+												origin = [ 19.571335, -22.46282, -15.410763 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_04_end"
+														origin = [ 5.192123, 0.000172, -2.406857 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_03_JNT"
+												origin = [ 28.24144, -26.495975, 3.442402 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_03_end"
+														origin = [ 5.192123, 0.0002, -2.406688 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_02_JNT"
+												origin = [ 15.871567, 4.947979, 24.208282 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_02_end"
+														origin = [ 5.192322, -0.000034, -2.406584 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+											{
+												_class = "Bone"
+												name = "hat_edge_01_JNT"
+												origin = [ 15.732208, 25.84034, -8.569515 ]
+												angles = [ -24.873066, 179.999924, 0.000008 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_edge_01_end"
+														origin = [ 5.192215, -0.000193, -2.406832 ]
+														angles = [ 0.0, -0.0, 0.0 ]
+														do_not_discard = true
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_L_mid_01_JNT"
+										origin = [ 3.284681, 11.104952, 11.425629 ]
+										angles = [ 53.509834, 125.578239, 11.92965 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_L_mid_02_JNT"
+												origin = [ 11.999229, 0.000278, 0.000839 ]
+												angles = [ -3.422276, 5.276667, 7.141873 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_L_mid_03_JNT"
+														origin = [ 14.999214, 0.000656, 0.001129 ]
+														angles = [ -34.757591, 8.524589, -2.661754 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_L_mid_04_JNT"
+																origin = [ 15.000383, 0.000946, 0.002029 ]
+																angles = [ 11.572082, 0.477094, 0.323031 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_L_mid_05_JNT"
+																		origin = [ 15.000269, 0.001217, 0.002396 ]
+																		angles = [ -2.787246, -13.595772, 0.332328 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_L_mid_06_JNT"
+																				origin = [ 15.000454, 0.001499, 0.003113 ]
+																				angles = [ 0.000009, -0.0, 0.000001 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_R_mid_top_01_JNT"
+										origin = [ -6.312443, -7.394022, 12.831924 ]
+										angles = [ 53.508656, -117.101936, -2.144327 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_R_mid_top_02_JNT"
+												origin = [ 18.999428, -0.000175, 0.00074 ]
+												angles = [ -29.793865, -20.486042, -0.725448 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_R_mid_top_03_JNT"
+														origin = [ 19.000158, -0.000584, 0.001221 ]
+														angles = [ 3.642078, 1.106877, -7.367517 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_R_mid_top_04_JNT"
+																origin = [ 19.000278, -0.000916, 0.001373 ]
+																angles = [ -9.21125, -4.731925, -5.577291 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_R_mid_top_05_JNT"
+																		origin = [ 19.000942, -0.001282, 0.00161 ]
+																		angles = [ 8.944563, -10.951179, -7.513886 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_R_mid_top_06_JNT"
+																				origin = [ 19.0014, -0.001572, 0.001862 ]
+																				angles = [ 0.00001, -0.000015, 8.899447 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_R_mid_01_JNT"
+										origin = [ 4.567041, -9.104574, 11.155029 ]
+										angles = [ 64.638153, -120.653069, -38.271278 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_R_mid_02_JNT"
+												origin = [ 11.998657, -0.000465, 0.000454 ]
+												angles = [ -4.831022, -3.978004, -1.513538 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_R_mid_03_JNT"
+														origin = [ 14.999435, -0.000641, 0.00058 ]
+														angles = [ -43.463268, -25.660543, 36.152317 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_R_mid_04_JNT"
+																origin = [ 15.00018, -0.000393, 0.001633 ]
+																angles = [ 6.856647, -13.109033, -7.495105 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_R_mid_05_JNT"
+																		origin = [ 15.000822, -0.000694, 0.001999 ]
+																		angles = [ -11.590222, 7.599172, -21.782173 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_R_mid_06_JNT"
+																				origin = [ 15.000797, -0.001701, 0.001831 ]
+																				angles = [ 0.000014, 0.000005, 27.77132 ]
+																				do_not_discard = true
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_L_back_01_JNT"
+										origin = [ -6.66848, 8.181656, 16.166962 ]
+										angles = [ 48.601055, 167.568375, 13.625246 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_L_back_02_JNT"
+												origin = [ 13.99939, 0.000221, 0.000977 ]
+												angles = [ 4.952869, 5.602573, -1.95803 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_L_back_03_JNT"
+														origin = [ 17.999367, 0.000332, 0.001221 ]
+														angles = [ -39.51276, 4.955279, -1.235677 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_L_back_04_JNT"
+																origin = [ 18.000593, 0.000488, 0.001892 ]
+																angles = [ -31.073139, -0.07444, -5.410369 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_L_back_05_JNT"
+																		origin = [ 18.002129, 0.000454, 0.001648 ]
+																		angles = [ 7.981526, 8.519742, 8.86209 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_L_back_06_JNT"
+																				origin = [ 18.002792, 0.000561, 0.002342 ]
+																				angles = [ 0.8955, -32.635952, -17.74577 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "hair_tentacle_L_back_07_JNT"
+																						origin = [ 18.002914, 0.001236, 0.00351 ]
+																						angles = [ 8.384941, -4.452179, 19.785534 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "hair_tentacle_L_back_08_JNT"
+																								origin = [ 18.003326, 0.00325, 0.003815 ]
+																								angles = [ -14.205917, -2.791551, -5.794144 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "hair_tentacle_L_back_09_JNT"
+																										origin = [ 18.005371, 0.003578, 0.003998 ]
+																										angles = [ 0.000004, 0.000003, -4.800432 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "tentacle_L_bot_01_JNT"
+										origin = [ -6.213984, 10.16226, 11.421005 ]
+										angles = [ 57.282143, 153.720276, 16.774645 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "tentacle_L_bot_02_JNT"
+												origin = [ 13.999336, 0.000259, 0.000702 ]
+												angles = [ -0.376275, -7.052868, 4.888919 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "tentacle_L_bot_03_JNT"
+														origin = [ 13.999252, 0.00029, 0.0009 ]
+														angles = [ -24.30575, 6.414295, -2.036882 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "tentacle_L_bot_04_JNT"
+																origin = [ 17.999901, 0.000439, 0.001434 ]
+																angles = [ -18.728487, -16.695704, 11.189731 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "tentacle_L_bot_05_JNT"
+																		origin = [ 18.000582, 0.000786, 0.001694 ]
+																		angles = [ -6.097868, 2.8322, -10.826637 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "tentacle_L_bot_06_JNT"
+																				origin = [ 18.001217, 0.000525, 0.002106 ]
+																				angles = [ -17.109364, 21.711071, -20.736029 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "tentacle_L_bot_07_JNT"
+																						origin = [ 18.002632, -0.00058, 0.001938 ]
+																						angles = [ -20.677851, 31.320826, 9.507546 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "tentacle_L_bot_08_JNT"
+																								origin = [ 18.003418, -0.001801, 0.001755 ]
+																								angles = [ 0.000009, 0.000008, -0.000003 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_R_back_01_JNT"
+										origin = [ -8.07629, 0.096442, 15.460587 ]
+										angles = [ 57.282726, -136.072571, 20.185541 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_R_back_02_JNT"
+												origin = [ 21.999329, 0.000137, 0.000824 ]
+												angles = [ -44.092297, -4.944746, 5.642796 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_R_back_03_JNT"
+														origin = [ 22.000393, 0.000244, 0.00148 ]
+														angles = [ -20.650368, -8.765265, 6.561639 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_R_back_04_JNT"
+																origin = [ 22.00135, 0.000515, 0.001694 ]
+																angles = [ -3.375174, 10.929328, -24.698265 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_R_back_05_JNT"
+																		origin = [ 22.002174, -0.000479, 0.001831 ]
+																		angles = [ 6.799209, 18.819735, 9.721265 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_R_back_06_JNT"
+																				origin = [ 22.002434, -0.000893, 0.002686 ]
+																				angles = [ 31.716656, -8.692853, -31.296288 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "hair_tentacle_R_back_07_JNT"
+																						origin = [ 22.001442, -0.002686, 0.003189 ]
+																						angles = [ 15.121571, 17.209576, -20.936283 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "hair_tentacle_R_back_08_JNT"
+																								origin = [ 22.000237, -0.00444, 0.002205 ]
+																								angles = [ 0.000012, 0.000003, 1.647127 ]
+																								do_not_discard = true
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hat_tentacle_L_01_JNT"
+										origin = [ 5.449118, 10.742222, 7.524689 ]
+										angles = [ 74.77639, 75.33181, -3.886343 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hat_tentacle_L_02_JNT"
+												origin = [ 9.999054, 0.000135, 0.000336 ]
+												angles = [ 25.748365, -23.93322, -2.236701 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_tentacle_L_03_JNT"
+														origin = [ 9.998703, -0.000443, -0.000185 ]
+														angles = [ -10.612387, -34.853466, 43.939236 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hat_tentacle_L_04_JNT"
+																origin = [ 9.999016, -0.001137, 0.00106 ]
+																angles = [ 17.395138, 10.958199, 6.750542 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hat_tentacle_L_05_JNT"
+																		origin = [ 9.998268, -0.001133, 0.000999 ]
+																		angles = [ 0.000006, -0.000003, -10.562386 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hat_tentacle_R_01_JNT"
+										origin = [ 6.529036, -7.676422, 7.524246 ]
+										angles = [ 71.896965, -67.417831, 6.84265 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hat_tentacle_R_02_JNT"
+												origin = [ 9.998978, -0.000069, 0.000362 ]
+												angles = [ 12.76993, 21.460587, 3.999333 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hat_tentacle_R_03_JNT"
+														origin = [ 9.998047, 0.000389, 0.00016 ]
+														angles = [ 0.683055, 31.233675, -12.368526 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hat_tentacle_R_04_JNT"
+																origin = [ 9.999435, 0.001175, 0.000462 ]
+																angles = [ 24.133461, -16.851002, 2.884473 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hat_tentacle_R_05_JNT"
+																		origin = [ 9.998268, 0.001083, -0.000196 ]
+																		angles = [ -0.000015, -0.000001, 0.000005 ]
+																		do_not_discard = true
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+									{
+										_class = "Bone"
+										name = "hair_tentacle_R_bot_01_JNT"
+										origin = [ -5.815838, 0.272266, 16.167038 ]
+										angles = [ 65.167099, -161.047134, 25.187107 ]
+										do_not_discard = true
+										children = 
+										[
+											{
+												_class = "Bone"
+												name = "hair_tentacle_R_bot_02_JNT"
+												origin = [ 19.999229, 0.00024, 0.000641 ]
+												angles = [ -14.504198, -7.581791, 25.126165 ]
+												do_not_discard = true
+												children = 
+												[
+													{
+														_class = "Bone"
+														name = "hair_tentacle_R_bot_03_JNT"
+														origin = [ 19.999283, 0.000694, 0.001045 ]
+														angles = [ -26.327951, 10.562779, -3.084437 ]
+														do_not_discard = true
+														children = 
+														[
+															{
+																_class = "Bone"
+																name = "hair_tentacle_R_bot_04_JNT"
+																origin = [ 20.000278, 0.001045, 0.001762 ]
+																angles = [ -12.298739, 27.89575, -19.030138 ]
+																do_not_discard = true
+																children = 
+																[
+																	{
+																		_class = "Bone"
+																		name = "hair_tentacle_R_bot_05_JNT"
+																		origin = [ 20.001762, 0.000414, 0.002274 ]
+																		angles = [ -16.252562, 6.165479, -0.209376 ]
+																		do_not_discard = true
+																		children = 
+																		[
+																			{
+																				_class = "Bone"
+																				name = "hair_tentacle_R_bot_06_JNT"
+																				origin = [ 20.003479, 0.000305, 0.002197 ]
+																				angles = [ 6.63909, -18.69931, -15.592257 ]
+																				do_not_discard = true
+																				children = 
+																				[
+																					{
+																						_class = "Bone"
+																						name = "hair_tentacle_R_bot_07_JNT"
+																						origin = [ 20.004234, 0.000698, 0.003464 ]
+																						angles = [ 10.026408, -17.793781, 15.754729 ]
+																						do_not_discard = true
+																						children = 
+																						[
+																							{
+																								_class = "Bone"
+																								name = "hair_tentacle_R_bot_08_JNT"
+																								origin = [ 20.004478, 0.003349, 0.00399 ]
+																								angles = [ -33.555893, -20.17296, 17.133829 ]
+																								do_not_discard = true
+																								children = 
+																								[
+																									{
+																										_class = "Bone"
+																										name = "hair_tentacle_R_bot_09_JNT"
+																										origin = [ 20.006546, 0.005737, 0.000641 ]
+																										angles = [ 0.000012, 0.00001, -4.800433 ]
+																										do_not_discard = true
+																									},
+																								]
+																							},
+																						]
+																					},
+																				]
+																			},
+																		]
+																	},
+																]
+															},
+														]
+													},
+												]
+											},
+										]
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "bicep_R"
+								origin = [ 8.569588, -14.127562, 4.829313 ]
+								angles = [ 11.561964, 25.398384, 158.964691 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "bicep_L"
+								origin = [ 8.569603, 15.475943, 4.82933 ]
+								angles = [ -11.56195, 154.601562, -21.035374 ]
+								do_not_discard = true
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

@@ -1,0 +1,164 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc28:version{fb63b6ca-f435-4aa0-a2c7-c66ddc651dca} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "BoneMarkupList"
+				children = [  ]
+				bone_cull_type = "None"
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						name = "unnamed_1"
+						filename = "models/eom/hero/witch_weapon_1/staff_7_unnamed_1.dmx"
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "attach_attack1"
+						ignore_rotation = false
+						parent_bone = "Bone_Prop1"
+						relative_origin = [ 0.0, 0.0, 87.40387 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_shpere"
+						ignore_rotation = false
+						parent_bone = "weapon_sphere_jnt_01"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_outer"
+						ignore_rotation = false
+						parent_bone = "weapon_out_ring_jnt_03"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "staff_9"
+						source_filename = "models/eom/hero/witch_weapon_1/staff_7_staff_9.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_LOADOUT"
+						activity_weight = 1
+					},
+					{
+						_class = "AnimFile"
+						name = "staff_10"
+						source_filename = "models/eom/hero/witch_weapon_1/staff_7_staff_10.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "seraph_celestial_weapon_ambient"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"particles/econ/items/skywrath_mage/seraph_celestial/seraph_celestial_weapon_ambient.vpcf"
+							config = "preview"
+						}
+					},
+				]
+			},
+			{
+				_class = "Skeleton"
+				children = 
+				[
+					{
+						_class = "Bone"
+						name = "Bone_Prop1"
+						origin = [ 3.277266, -0.200974, 0.070732 ]
+						angles = [ 0.000001, 0.000373, 89.999992 ]
+						do_not_discard = true
+						children = 
+						[
+							{
+								_class = "Bone"
+								name = "weapon_out_ring_jnt_03"
+								origin = [ -3.657341, 0.161858, 95.808899 ]
+								angles = [ -0.0, 89.999619, 89.999939 ]
+								do_not_discard = true
+								children = 
+								[
+									{
+										_class = "Bone"
+										name = "weapon_in_ring_jnt_02"
+										origin = [ -0.000023, 0.000099, -0.000014 ]
+										angles = [ 0.000044, -90.0, -0.000002 ]
+										do_not_discard = true
+									},
+								]
+							},
+							{
+								_class = "Bone"
+								name = "weapon_sphere_jnt_01"
+								origin = [ -3.657342, 0.161851, 95.808922 ]
+								angles = [ 0.00002, 89.999634, 0.000008 ]
+								do_not_discard = true
+							},
+							{
+								_class = "Bone"
+								name = "weapon_in_ring_jnt_04"
+								origin = [ -3.657319, 0.161853, 95.808929 ]
+								angles = [ -0.0, 89.999611, 0.000008 ]
+								do_not_discard = true
+							},
+						]
+					},
+				]
+			},
+		]
+	}
+}

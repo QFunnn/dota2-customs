@@ -1,0 +1,52 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+#base "abilities/hero_abilities.kv"
+#base "abilities/enemy_abilities.kv"
+#base "abilities/boss_abilities.kv"
+#base "abilities/attack_abilities.kv"
+#base "abilities/courier_abilities.kv"
+
+"DOTAAbilities"
+{
+	"client_ability"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/client_ability"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityTextureName"					""
+		"MaxLevel"								"0"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"custom_interact"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/common/custom_interact"
+		"AbilityTextureName"					"antimage_blink"
+		"MaxLevel"								"1"
+		"AbilityCooldown"						"0.1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"IsCastableWhileHidden"					"1"
+	}
+	"adjust_angle"
+	{
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/common/adjust_angle"
+		"AbilityTextureName"					" "
+		"MaxLevel"								"1"
+		"AbilityCooldown"						""
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_HIDDEN|DOTA_ABILITY_BEHAVIOR_POINT|DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+		"AbilityUnitTargetTeam"					""
+		"AbilityUnitTargetType"					""
+		"IsCastableWhileHidden"					"1"
+	}
+}

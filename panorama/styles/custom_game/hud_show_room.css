@@ -1,0 +1,4143 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+#ShowRoom
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+.AspectRatio16x10 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 90%;
+}
+
+.AspectRatio4x3 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 75%;
+}
+
+#ShowRoomContent
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 15% 0%, 85% 0%, from(#0b1016), to(#0b1016));
+}
+
+#ShowRoomContent .EOM_MenuLayout_Content_BG
+{
+	align: center center;
+	width: height-percentage(177.77778%);
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_showroom_bg_png.vtex");
+	background-size: 100%;
+	background-position: center center;
+	background-color: none;
+	transition-property: transform, blur;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#ShowRoomContent .EOM_MenuLayout_Content_Box
+{
+	padding-left: 0px;
+}
+
+#ShowRoomContent.editing .EOM_MenuLayout_Content_BG
+{
+	transform: translateX(-190px);
+}
+
+#ShowRoomContent.previewing .EOM_MenuLayout_Content_BG
+{
+	blur: gaussian(15);
+	brightness: 0.45;
+}
+
+#ShowRoom.editing .SlotContainer
+{
+	transform: translateX(-195px) translateY(90px);
+}
+
+.SlotContainer
+{
+	align: center center;
+	width: 1500px;
+	height: 700px;
+	transform: translateX(-5px) translateY(90px);
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#Slot1
+{
+	x: 0px;
+	y: -135px;
+	width: 470px;
+	height: 550px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_01_png.vtex");
+	background-size: 470px 240px;
+}
+
+#Slot1 .CosmeticImage
+{
+	width: 256px;
+	height: 256px;
+}
+
+#Slot1 .ModelContainer
+{
+	width: 400px;
+	height: 400px;
+}
+
+#Slot1 .ModelContainer.Cosmetic
+{
+	width: 350px;
+	height: 350px;
+}
+
+#Slot1 .ModelContainer.Courier
+{
+	y: -60px;
+	width: 100%;
+	height: 100%;
+}
+
+#Slot1 #Border
+{
+	width: 470px;
+	height: 240px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_01_selected_png.vtex");
+	background-size: 100%;
+}
+
+#Slot2
+{
+	x: -635px;
+	y: -135px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_png.vtex");
+	background-size: 192px 128px;
+}
+
+#Slot2 .CosmeticImage
+{
+	width: 160px;
+	height: 160px;
+}
+
+#Slot2 .ModelContainer
+{
+	margin-top: 140px;
+	width: 200px;
+	height: 200px;
+}
+
+#Slot2 .ModelContainer.Courier
+{
+	width: 300px;
+	height: 300px;
+	margin-top: 90px;
+}
+
+#Slot2 #Border
+{
+	width: 192px;
+	height: 128px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_selected_png.vtex");
+	background-size: 100%;
+}
+
+#Slot3
+{
+	x: -375px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_02_png.vtex");
+	background-size: 299px 223px;
+	width: 400px;
+	height: 430px;
+}
+
+#Slot3 .CosmeticImage
+{
+	width: 220px;
+	height: 220px;
+}
+
+#Slot3 #Border
+{
+	width: 299px;
+	height: 223px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_02_selected_png.vtex");
+	background-size: 100%;
+}
+
+#Slot3 .ModelContainer
+{
+	width: 320px;
+	height: 320px;
+}
+
+#Slot3 .ModelContainer.Cosmetic
+{
+	width: 280px;
+	height: 280px;
+}
+
+#Slot3 .ModelContainer.Courier
+{
+	width: 300px;
+	height: 300px;
+	margin-top: 5px;
+	pre-transform-scale2d: 1.3;
+}
+
+#Slot4
+{
+	x: 375px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_02_png.vtex");
+	background-size: 299px 223px;
+	width: 400px;
+	height: 430px;
+}
+
+#Slot4 .CosmeticImage
+{
+	width: 220px;
+	height: 220px;
+}
+
+#Slot4 #Border
+{
+	width: 299px;
+	height: 223px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_02_selected_png.vtex");
+	background-size: 100%;
+}
+
+#Slot4 .ModelContainer
+{
+	width: 320px;
+	height: 320px;
+}
+
+#Slot4 .ModelContainer.Cosmetic
+{
+	width: 280px;
+	height: 280px;
+}
+
+#Slot4 .ModelContainer.Courier
+{
+	width: 300px;
+	height: 300px;
+	margin-top: 5px;
+	pre-transform-scale2d: 1.3;
+}
+
+#Slot5
+{
+	x: 625px;
+	y: -135px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_png.vtex");
+	background-size: 192px 128px;
+}
+
+#Slot5 .CosmeticImage
+{
+	width: 160px;
+	height: 160px;
+}
+
+#Slot5 .ModelContainer
+{
+	margin-top: 140px;
+	width: 200px;
+	height: 200px;
+}
+
+#Slot5 .ModelContainer.Courier
+{
+	width: 300px;
+	height: 300px;
+	margin-top: 90px;
+}
+
+#Slot5 #Border
+{
+	width: 192px;
+	height: 128px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_stage_03_selected_png.vtex");
+	background-size: 100%;
+}
+
+.ShowRoomSlot
+{
+	width: 300px;
+	height: 410px;
+	align: center bottom;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+}
+
+.ShowRoomSlot.potential_drop_target
+{
+	brightness: 2;
+}
+
+.ShowRoomSlot:hover
+{
+	brightness: 2;
+}
+
+.ShowRoomSlot .SlotEmpty
+{
+	font-size: 36px;
+	color: rgba(120, 120, 140, 0.6);
+	align: center center;
+	horizontal-align: center;
+}
+
+.ShowRoomSlot .SlotIndex
+{
+	font-size: 14px;
+	color: rgba(180, 180, 200, 0.6);
+	horizontal-align: center;
+	margin-top: 4px;
+}
+
+.ShowRoomSlot .StoreItemBlock
+{
+	width: 80px;
+	height: 80px;
+}
+
+.ShowRoomSlot #Border
+{
+	align: center bottom;
+	opacity: 0;
+}
+
+.ModelContainer
+{
+	horizontal-align: center;
+	width: 300px;
+	height: 300px;
+}
+
+.ModelContainer .PortraitsCourier,.ModelContainer .Weapon3DPreview,.ModelContainer .CosmeticImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ModelContainer .CosmeticImage
+{
+	align: center center;
+}
+
+.ModelContainer .EquipmentIcon
+{
+	horizontal-align: center;
+	width: 70%;
+	height: 70%;
+}
+
+.ModelContainer .EquipmentIcon
+{
+	background-size: 0%;
+}
+
+#ShowRoomRight
+{
+	align: right center;
+	flow-children: down;
+	margin-right: 22px;
+}
+
+#ShowRoomRight .ItemListContainer
+{
+	width: 382px;
+	height: 756px;
+	padding-top: 7px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_panel_itembg_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+}
+
+#ItemDesc
+{
+	width: 100%;
+	height: 200px;
+	flow-children: down;
+	overflow: squish scroll;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 8px;
+}
+
+#ItemDescName
+{
+	horizontal-align: center;
+	width: 100%;
+	font-size: 22px;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+#ItemDescSkill
+{
+	horizontal-align: center;
+	width: 100%;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	background-color: rgba(191, 170, 130, 0.1);
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(191, 170, 130, 0.3);
+	margin-bottom: 8px;
+}
+
+#ItemDescSkill #ItemDescSkillText
+{
+	font-size: 16px;
+	color: #BFAA82;
+}
+
+#ItemDescAttributes
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.AttributeRow
+{
+	horizontal-align: center;
+	flow-children: down;
+	width: 100%;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.AttributeRow .AttributeRowHeader
+{
+	horizontal-align: center;
+	flow-children: right;
+	width: 100%;
+	height: 30px;
+}
+
+.AttributeRow .AttributeRowStars
+{
+	vertical-align: center;
+	flow-children: right;
+	width: fill-parent-flow(1);
+	margin-left: 8px;
+}
+
+.AttributeRow .AttributeRowTitle
+{
+	vertical-align: center;
+	width: 80px;
+	margin-right: 8px;
+	font-size: 16px;
+	text-align: right;
+	color: #686868;
+}
+
+.AttributeRow .AttributeRowDesc
+{
+	horizontal-align: center;
+	width: 100%;
+	margin-bottom: 4px;
+	font-size: 16px;
+	text-align: left;
+	color: #686868;
+}
+
+.AttributeRow.Active .AttributeRowTitle,.AttributeRow.Active .AttributeRowDesc
+{
+	color: #BFAA82;
+}
+
+.AttributeRowIcon
+{
+	vertical-align: center;
+	width: 20px;
+	height: 22px;
+	margin-right: 2px;
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_3_png.vtex");
+	background-size: 100%;
+}
+
+.AttributeRowIcon.RowActivated
+{
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_1_png.vtex");
+}
+
+#ShowRoomGrid
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 8px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#ShowRoomGrid.RecycleView
+{
+	overflow: clip;
+	padding: 0;
+}
+
+.GridItem
+{
+	width: 76px;
+	height: 76px;
+	margin: 4px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+}
+
+.GridItem:hover
+{
+	brightness: 1.2;
+}
+
+.GridItem.dragging_from
+{
+	wash-color: #808080;
+	pre-transform-scale2d: 0.95;
+}
+
+.GridItem .StoreItemBlock
+{
+	width: 72px;
+	height: 72px;
+}
+
+.RecycleView .GridItem
+{
+	width: 84px;
+	height: 84px;
+	margin: 0;
+}
+
+.RecycleView .GridItem .StoreItemBlock
+{
+	horizontal-align: center;
+	width: 84px;
+	height: 84px;
+}
+
+.ShowRoomCourierStoreItem,.ShowRoomWeaponStoreItem
+{
+	width: 84px;
+	height: 92px;
+	flow-children: down;
+}
+
+.ShowRoomCourierStoreItem .StarList,.ShowRoomWeaponStoreItem .StarList
+{
+	horizontal-align: center;
+	flow-children: right;
+	height: 15px;
+	margin-top: 3px;
+}
+
+.ShowRoomCourierStoreItem .CourierStar,.ShowRoomWeaponStoreItem .CourierStar
+{
+	vertical-align: center;
+	width: 13px;
+	height: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/start_3_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.ShowRoomCourierStoreItem .CourierStar.Unlock,.ShowRoomWeaponStoreItem .CourierStar.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/start_1_png.vtex");
+}
+
+.ShowRoomEquipmentStoreItem
+{
+	width: 84px;
+	height: 84px;
+}
+
+.ShowRoomEquipmentStoreItem .StoreItemBlock
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ShowRoomEquipmentStoreItem #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.ShowRoomWeaponStoreItem .WeaponStar
+{
+	vertical-align: center;
+	width: 13px;
+	height: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_3_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.ShowRoomWeaponStoreItem .WeaponStar.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_1_png.vtex");
+}
+
+.RecycleView .GridItem.StarGridItem
+{
+	height: 96px;
+}
+
+.ShowRoomFullDetail
+{
+	horizontal-align: center;
+	height: 994px;
+	z-index: 20;
+	flow-children: down;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailName
+{
+	horizontal-align: center;
+	margin-top: 86px;
+	width: 520px;
+	height: 56px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	text-shadow: 0px 0px 0px 5 #000000;
+	padding-top: 6px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #1b242acc), to(#00000000));
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel
+{
+	horizontal-align: center;
+	width: 490px;
+	height: 490px;
+	margin-top: 29px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel .Weapon3DPreview,.ShowRoomFullDetail .ShowRoomFullDetailModel .PortraitsCourier,.ShowRoomFullDetail .ShowRoomFullDetailModel .CosmeticImage,.ShowRoomFullDetail .ShowRoomFullDetailModel .EquipmentIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill
+{
+	horizontal-align: center;
+	padding: 2px 0px;
+	width: 1145px;
+	min-height: 50px;
+	max-height: 80px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000bb), to(#00000000));
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillIcon
+{
+	vertical-align: center;
+	width: 42px;
+	height: 42px;
+	margin-right: 12px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill .SuitIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	margin-right: 12px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill .SuitIcon Image
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel.equipment
+{
+	width: 400px;
+	height: 400px;
+	margin-top: 74px;
+	margin-bottom: 45px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel.equipment .EquipmentIcon
+{
+	background-image: none;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailModel.cosmetic .CosmeticImage
+{
+	align: center center;
+	width: 256px;
+	height: 256px;
+}
+
+.ShowRoomFullDetail.cosmetic .ShowRoomFullDetailClose
+{
+	margin-top: 20px;
+}
+
+.ShowRoomFullDetail .ShowRoomCosmeticEffectList
+{
+	width: 1145px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill.cosmetic
+{
+	flow-children: down;
+	max-height: 120px;
+	margin-bottom: 6px;
+	padding: 8px 80px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkill.cosmetic .ShowRoomFullDetailSkillText
+{
+	horizontal-align: center;
+}
+
+.ShowRoomFullDetail .ShowRoomCosmeticEffectTitle
+{
+	horizontal-align: center;
+	font-size: 18px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 5 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillText
+{
+	vertical-align: center;
+	font-size: 20px;
+	text-align: center;
+	color: #BFAA82;
+	text-shadow: 0px 0px 0px 5 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillContent
+{
+	vertical-align: center;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillTitle
+{
+	width: 250px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillName
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 5 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillType
+{
+	vertical-align: center;
+	margin-right: 16px;
+	font-size: 20px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 5 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailSkillItem
+{
+	vertical-align: center;
+	width: 42px;
+	height: 42px;
+	margin-left: 12px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailMeta
+{
+	horizontal-align: center;
+	width: 1003px;
+	height: 60px;
+	margin-top: 38px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailMeta.HasStars .ShowRoomDetailStars
+{
+	align: left center;
+	margin-left: 82px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailMeta.HasStars .Origin
+{
+	align: right center;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailMeta.HasLevel .ShowRoomDetailLevel
+{
+	align: left center;
+	margin-left: 82px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailMeta.HasLevel .Origin
+{
+	align: right center;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStars
+{
+	flow-children: right;
+	height: 34px;
+}
+
+.ShowRoomFullDetail .Origin
+{
+	align: center center;
+	color: #BFAA82;
+	text-shadow: 0px 0px 0px 5 #000000;
+	font-size: 24px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStarsLabel
+{
+	vertical-align: center;
+	margin-right: 8px;
+	font-size: 22px;
+	color: #BFAA82;
+	text-shadow: 0px 0px 5px 5 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailLevel
+{
+	color: #BFAA82;
+	text-shadow: 0px 0px 0px 5 #000000;
+	font-size: 24px;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStarList
+{
+	vertical-align: center;
+	flow-children: right;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStar
+{
+	vertical-align: center;
+	width: 22px;
+	height: 25px;
+	margin-right: 3px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStar.weapon
+{
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_3_png.vtex");
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStar.weapon.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/w_weapon/w_start_1_png.vtex");
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStar.courier
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/start_3_png.vtex");
+}
+
+.ShowRoomFullDetail .ShowRoomDetailStar.courier.Unlock
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/start_1_png.vtex");
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailClose
+{
+	horizontal-align: center;
+	margin-top: 61px;
+	width: 240px;
+	height: 36px;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailClose Label
+{
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	color: #D6584D;
+	text-shadow: 0px 0px 4px 3 #000000;
+}
+
+.ShowRoomFullDetail .ShowRoomFullDetailClose:hover
+{
+	brightness: 1.5;
+}
+
+#RightTopBtns
+{
+	margin-top: 76px;
+	margin-right: 96px;
+	align: right top;
+	flow-children: down;
+	overflow: noclip;
+}
+
+.RightTopBtn
+{
+	width: 211px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_number_bg_png.vtex");
+	background-size: 211px 47px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.RightTopBtn .IconFrame
+{
+	vertical-align: center;
+}
+
+.LikeBtn
+{
+	overflow: noclip;
+}
+
+.LikeBtn .IconFrame
+{
+	margin-left: 48px;
+	width: 54px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_button_bg_png.vtex");
+	background-size: 100%;
+}
+
+.LikeBtn .Icon
+{
+	align: center center;
+	wash-color: #D0B090;
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_icon_great_png.vtex");
+	background-size: 100%;
+}
+
+.LikeBtn .NumLabel
+{
+	vertical-align: center;
+	horizontal-align: right;
+	width: 80px;
+	text-align: center;
+	margin-right: 23px;
+	font-size: 20px;
+	color: #B59774;
+}
+
+.FloatingLike
+{
+	align: right top;
+	opacity: 0;
+	z-index: 10;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_icon_great_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	animation-duration: 1.3s;
+	animation-timing-function: ease-out;
+}
+
+.FloatingLike.DriftLeft
+{
+	animation-name: ShowRoomLikeFloatLeft;
+}
+
+.FloatingLike.DriftCenter
+{
+	animation-name: ShowRoomLikeFloatCenter;
+}
+
+.FloatingLike.DriftRight
+{
+	animation-name: ShowRoomLikeFloatRight;
+}
+
+@keyframes 'ShowRoomLikeFloatLeft'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(0px) translateY(0px);
+		pre-transform-scale2d: 0.65;
+	}
+	
+	15%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1.1;
+	}
+	
+	45%
+	{
+		transform: translateX(-10px) translateY(-55px);
+		pre-transform-scale2d: 0.95;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateX(-32px) translateY(-150px);
+		pre-transform-scale2d: 0.85;
+	}
+	
+}
+
+@keyframes 'ShowRoomLikeFloatCenter'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(0px) translateY(0px);
+		pre-transform-scale2d: 0.65;
+	}
+	
+	15%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1.1;
+	}
+	
+	45%
+	{
+		transform: translateX(7px) translateY(-58px);
+		pre-transform-scale2d: 0.95;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateX(-5px) translateY(-155px);
+		pre-transform-scale2d: 0.85;
+	}
+	
+}
+
+@keyframes 'ShowRoomLikeFloatRight'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(0px) translateY(0px);
+		pre-transform-scale2d: 0.65;
+	}
+	
+	15%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1.1;
+	}
+	
+	45%
+	{
+		transform: translateX(12px) translateY(-54px);
+		pre-transform-scale2d: 0.95;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateX(34px) translateY(-148px);
+		pre-transform-scale2d: 0.85;
+	}
+	
+}
+
+.EditBtn
+{
+	align: right bottom;
+	margin-right: 183px;
+	margin-bottom: 207px;
+	width: 100px;
+	height: 63px;
+}
+
+.EditBtn .IconFrame
+{
+	horizontal-align: center;
+	width: 54px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_button_bg_png.vtex");
+	background-size: 100%;
+}
+
+.EditBtn .Icon
+{
+	align: center center;
+	wash-color: #D0B090;
+	width: 26px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/s4_showroom/s4_icon_revise_png.vtex");
+	background-size: 100%;
+}
+
+.EditBtn Label
+{
+	padding-top: 2px;
+	vertical-align: bottom;
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	font-size: 17px;
+	color: #AC9880;
+	text-shadow: 0px 0px 3px 3 #00000088;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(rgba(0, 0, 0, 0)), color-stop(0.5, #000000), to(rgba(0, 0, 0, 0)));
+}
+
+.CancelBtn
+{
+	margin-top: 30px;
+	horizontal-align: center;
+}
+
+.CourierAbilityItem
+{
+	horizontal-align: center;
+	width: 100%;
+	flow-children: down;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.CourierAbilityItem .CourierAbilityName
+{
+	horizontal-align: center;
+	flow-children: right;
+	height: 20px;
+}
+
+.CourierAbilityItem .CourierAbilityName .CourierAbilityLabel
+{
+	color: #BDA87F;
+	font-size: 16px;
+	text-align: center;
+	vertical-align: center;
+	width: 160px;
+}
+
+.CourierAbilityItem .CourierAbilityName .AbilityNameDecorLeft,.CourierAbilityItem .CourierAbilityName .AbilityNameDecorRight
+{
+	vertical-align: center;
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+}
+
+.CourierAbilityItem .CourierAbilityName .AbilityNameDecorRight
+{
+	transform: rotateY(-180deg);
+}
+
+.CourierAbilityItem .CourierAbilityDesc
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.CourierAbilityItem .CourierAbilityDesc .CourierAbilityIcon
+{
+	width: 48px;
+	height: 48px;
+	margin-right: 8px;
+}
+
+.CourierAbilityItem .CourierAbilityDesc .CourierAbilityText
+{
+	width: fill-parent-flow(1);
+	font-size: 14px;
+	color: #8E8B83;
+	text-align: left;
+}
+
+.CourierAbilityItem .CourierAbilityDesc .StoreItemBlock
+{
+	width: 48px;
+	height: 48px;
+	margin-left: 4px;
+}
+
+#ItemDescLevel
+{
+	horizontal-align: center;
+	font-size: 18px;
+	color: #BFAA82;
+	margin-bottom: 4px;
+}
+
+#PartFilter
+{
+	width: 56px;
+	height: 756px;
+	margin-left: 8px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_panel_table_png.vtex");
+	background-size: 100%;
+}
+
+#PartFilter .PartTab
+{
+	width: 50px;
+	height: fill-parent-flow(1);
+	horizontal-align: center;
+	background-repeat: no-repeat;
+	background-position: center center;
+	transition-property: background-image, brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#PartFilter .PartTab.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_select_png.vtex");
+}
+
+#PartFilter .PartTab.Selected #PartIcon
+{
+	wash-color: #E6D4A4;
+}
+
+#PartFilter .PartTab:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_select_png.vtex");
+	brightness: 2;
+}
+
+#PartFilter .PartTab:not(:disabled):hover #PartIcon
+{
+	wash-color: #E6D4A4;
+}
+
+#PartFilter .PartTab:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+#PartFilter .PartTab:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#PartFilter .PartTab #PartIcon
+{
+	align: center center;
+	ui-scale: 35%;
+	wash-color: #686868;
+}
+
+#BGLight
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CheckIcon
+{
+	align: right top;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+#dragImage
+{
+	width: 84px;
+	height: 84px;
+	border: 0px;
+}
+
+.Info
+{
+	align: right top;
+	width: 18px;
+	height: 18px;
+	margin-right: 70px;
+	margin-top: 96px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+	wash-color: #B9A777;
+}
+
+.Info:hover
+{
+	brightness: 1.5;
+}
+
+.EOM_Loading.Wave
+{
+	flow-children: right;
+}
+
+.EOM_Loading.Wave Image
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: EOM_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.Wave .WaveCol1
+{
+	animation-name: EOM_Loading_Wave1;
+}
+
+@keyframes 'EOM_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol2
+{
+	animation-name: EOM_Loading_Wave2;
+}
+
+@keyframes 'EOM_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol3
+{
+	animation-name: EOM_Loading_Wave3;
+}
+
+@keyframes 'EOM_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol4
+{
+	animation-name: EOM_Loading_Wave4;
+}
+
+@keyframes 'EOM_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol5
+{
+	animation-name: EOM_Loading_Wave5;
+}
+
+@keyframes 'EOM_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol6
+{
+	animation-name: EOM_Loading_Wave6;
+}
+
+@keyframes 'EOM_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol7
+{
+	animation-name: EOM_Loading_Wave7;
+}
+
+@keyframes 'EOM_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol8
+{
+	animation-name: EOM_Loading_Wave8;
+}
+
+@keyframes 'EOM_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	transform: rotateZ(45deg);
+}
+
+.EOM_Loading.Matrix .Row2 Image
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.Matrix .Row3 Image
+{
+	animation-delay: 0.4s;
+}
+
+.EOM_Loading.Matrix .Row4 Image
+{
+	animation-delay: 0.6s;
+}
+
+.EOM_Loading.Matrix Image
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: EOM_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: EOM_Loading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin Image
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.EOM_Loading.PointSpin .Point1
+{
+	opacity: 1;
+}
+
+.EOM_Loading.PointSpin .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.EOM_Loading.PointSpin .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.EOM_Loading.PointSpin .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.EOM_Loading.PointQueue
+{
+	flow-children: right;
+}
+
+.EOM_Loading.PointQueue Image
+{
+	width: 6px;
+	height: 6px;
+	margin: 4px 4px;
+	border-radius: 50%;
+	wash-color: #A39C82;
+	animation-name: PointQueueJump;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.EOM_Loading.PointQueue .Point1
+{
+	animation-delay: 0s;
+}
+
+.EOM_Loading.PointQueue .Point2
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.PointQueue .Point3
+{
+	animation-delay: 0.4s;
+}
+
+@keyframes 'PointQueueJump'
+{
+	0%
+	{
+		transform: translateY(0px);
+	}
+	
+	25%
+	{
+		transform: translateY(-4px);
+	}
+	
+	50%
+	{
+		transform: translateY(0px);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_RedMark
+{
+	flow-children: none;
+}
+
+.EOM_RedMark .EOM_RedMark-Dot
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_01_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-exclamation.Size-small
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-medium
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-large
+{
+	width: 69.6px;
+	height: 69.6px;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark.Type-new
+{
+	align: right top;
+	margin-right: -5px;
+	margin-top: -3px;
+	width: 52.8px;
+	height: 28.8px;
+	overflow: noclip;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-new.Size-small
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-medium
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-large
+{
+	width: 63.36px;
+	height: 34.56px;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark .EOM_RedMark-Count
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px 2 black;
+	text-align: center;
+}
+
+.EOM_RedMark.Type-dot.Size-small
+{
+	width: 12px;
+	height: 12px;
+}
+
+.EOM_RedMark.Type-dot.Size-small .EOM_RedMark-Count
+{
+	font-size: 8px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium .EOM_RedMark-Count
+{
+	font-size: 10px;
+}
+
+.EOM_RedMark.Type-dot.Size-large
+{
+	width: 42px;
+	height: 42px;
+}
+
+.EOM_RedMark.Type-dot.Size-large .EOM_RedMark-Count
+{
+	font-size: 14px;
+}
+
+.EOM_RedMark.EOM_RedMark-Breathe .EOM_RedMark-Dot
+{
+	animation-name: RedMarkBreathe;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'RedMarkBreathe'
+{
+	0%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		opacity: 0.8;
+		transform: scale3d(1.15, 1.15, 1);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_MenuLayout
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: black;
+	transform: translateY(-30px);
+	transition-property: opacity, transform;
+	transition-duration: 0.24s;
+	transition-timing-function: ease-out;
+}
+
+.EOM_MenuLayout.Show
+{
+	sound: "UI.Menu.Open";
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout .EOM_CloseButton
+{
+	margin-top: 16px;
+	margin-right: 16px;
+	horizontal-align: right;
+	z-index: 2;
+}
+
+.EOM_MenuLayout #TopBottomBG
+{
+	width: 100%;
+	height: 86px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_panel_1_png.vtex");
+	background-size: 100%;
+	z-index: 1;
+}
+
+.EOM_MenuLayout #WindowTitle
+{
+	align: center top;
+	margin-top: 15px;
+}
+
+.EOM_MenuLayout #WindowTitle Label
+{
+	font-size: 24px;
+	font-weight: normal;
+	color: #3b89d1;
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+}
+
+.EOM_MenuLayout .CurrencyGroup
+{
+	margin-top: 24px;
+	margin-right: 73px;
+}
+
+.EOM_MenuLayout .CurrencyGroup .EOM_Currency
+{
+	margin: 0px 12px;
+}
+
+.CurrencyGroup
+{
+	z-index: 2;
+}
+
+.EOM_MenuLayout_Content
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Content.Show
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Content_BG
+{
+	background-color: black;
+}
+
+.EOM_MenuLayout_Content_Box
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 246px;
+	padding-top: 86px;
+}
+
+#EOM_MenuLayoutBGScene
+{
+	align: center center;
+	width: 100%;
+	height: width-percentage(100%);
+	z-index: -100;
+}
+
+.EOM_MenuLayout_Menu
+{
+	opacity: 0;
+	transform: translateX(-40px);
+	animation-name: none;
+	animation-duration: 0.24s;
+	animation-timing-function: ease-out;
+	animation-delay: 0.24s;
+	animation-fill-mode: forwards;
+	min-width: 246px;
+	height: 895px;
+	margin-top: 169px;
+	margin-left: 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_line_png.vtex");
+	background-size: 2px 618px;
+	background-position: left 42px top 0px;
+	background-repeat: no-repeat;
+	overflow: squish scroll;
+	flow-children: down;
+	padding-top: 85px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu.Show
+{
+	animation-name: SlideInLeft;
+}
+
+.EOM_MenuLayout_Menu .MenuLockIcon
+{
+	width: 30px;
+	height: 38px;
+	vertical-align: center;
+	ui-scale: 60%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu VerticalScrollBar
+{
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Menu .TabButton
+{
+	width: 246px;
+	height: 52px;
+	margin-top: 10px;
+	margin-bottom: 39px;
+	z-index: 1;
+	flow-children: right;
+	overflow: noclip;
+	background-size: 100%;
+	transition-property: position, background-image;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton:hover .TabLabel
+{
+	brightness: 2;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected,.EOM_MenuLayout_Menu .TabButton:selected
+{
+	sound: "UI.TabButton";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select_png.vtex");
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundArrow,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundArrow
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_1_png.vtex");
+	transform: rotateZ(0deg);
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabLabel,.EOM_MenuLayout_Menu .TabButton:selected .TabLabel
+{
+	color: #E6D4A4;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:hover .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabLabel
+{
+	vertical-align: center;
+	margin: 0px 1px 0px 5px;
+	font-size: 22px;
+	color: #686868;
+	transition-property: color, brightness;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.15s;
+}
+
+.EOM_MenuLayout_Menu .TabButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .russian
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabIcon
+{
+	width: 26px;
+	height: 26px;
+	vertical-align: center;
+	margin-left: 33px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu .TabButton.HasSecondaryMenu .TabIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundArrow
+{
+	width: 36px;
+	height: 28px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_0_png.vtex");
+	background-position: center;
+	transform: rotateZ(180deg);
+	background-repeat: no-repeat;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-right: -10px;
+	align: right top;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundActive
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton .MenuMarkIcon
+{
+	align: right top;
+	margin-top: 0px;
+	margin-right: 6px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabButtonParticle
+{
+	align: center center;
+	width: 230px;
+	height: 100px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer
+{
+	width: 100%;
+	max-height: 0px;
+	margin-left: 24px;
+	margin-top: -38px;
+	margin-bottom: 39px;
+	opacity: 0;
+	flow-children: down;
+	transition-property: height, max-height, position;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	z-index: 0;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected,.EOM_MenuLayout_Menu .SecondaryContainer:selected
+{
+	max-height: 600px;
+	opacity: 1;
+	margin-bottom: 0px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected .SecondaryMenuButton,.EOM_MenuLayout_Menu .SecondaryContainer:selected .SecondaryMenuButton
+{
+	visibility: visible;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton
+{
+	visibility: collapse;
+	width: 150px;
+	height: 38px;
+	margin: 0px 1px;
+	padding-left: 12px;
+	transition-property: transform;
+	transition-timing-function: cubic-bezier(0.65, 0.1, 0.9, 0.31);
+	transition-duration: 0.3s;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton #TextAndRedMark
+{
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 26px;
+	flow-children: right;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .MenuLockIcon
+{
+	margin-top: -8px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton Label
+{
+	font-size: 18px;
+	color: #A69F87;
+	text-shadow: 0px 1px 2px 2 #000000;
+	transition-property: color, transform;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.1s;
+	text-overflow: shrink;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-top: -8px;
+	align: right top;
+	overflow: noclip;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected
+{
+	sound: "ui_find_match_change_options";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select2_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected .SecondaryBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected Label
+{
+	color: #FFF0BA;
+	text-shadow: 0px 1px 4px 4 #71541B;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .SecondaryBackgroundActive
+{
+	horizontal-align: center;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/tag_hightlight_2_png.vtex");
+	background-repeat: no-repeat;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .TabButtonParticle
+{
+	vertical-align: center;
+	margin-left: 7px;
+	width: 115px;
+	height: 50px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_ShadowBoder
+{
+	width: 600px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex"), url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex");
+	wash-color: #000000;
+	background-img-opacity: 0.9, 0.2;
+	background-size: 100%, 280px 100%;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.EOM_MenuLayout_ShadowBoder.Right
+{
+	horizontal-align: right;
+	transform: rotateZ(180deg);
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsCourier #PortraitsCourierScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Weapon3DPreview #Weapon3DPreviewScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CustomScrollBar
+{
+	z-index: 999999;
+	background-color: #0000007c;
+	border-radius: 3px;
+}
+
+.CustomScrollBar #ScrollBarThumb
+{
+	background-color: #685c47;
+	border-radius: 3px;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.CustomScrollBar #ScrollBarThumb:hover
+{
+	brightness: 1.5;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar
+{
+	width: 4px;
+	height: 100%;
+	horizontal-align: right;
+	margin: 16px 0px 16px 0px;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar #ScrollBarThumb
+{
+	width: 8px;
+	horizontal-align: center;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar
+{
+	width: 100%;
+	height: 4px;
+	vertical-align: bottom;
+	margin: 0px 16px 0px 16px;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar #ScrollBarThumb
+{
+	height: 8px;
+	vertical-align: center;
+}
+
+.RecycleViewPageLabel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -28px;
+	font-size: 18px;
+	color: #b7a487;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.Equipment
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+	padding: 4px;
+}
+
+.Equipment #EquipmentIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Equipment #LevelLabel
+{
+	margin-left: 5px;
+	margin-top: 2px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Equipment #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Equipment .SuitIcon
+{
+	margin: -4px;
+}
+
+.Equipment #EquipedTag
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -6px;
+	flow-children: right;
+}
+
+.Equipment #EquipGemSlots .GemSlot
+{
+	width: 26px;
+	height: 26px;
+	margin: 0px 1px;
+}
+
+.Equipment #EquipGemSlots .GemSlot.EmptySlot
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_dark_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_yellow_png.vtex");
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_red_png.vtex");
+}
+
+.Equipment #RarityParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.Equipment.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Equipment.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Equipment.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Equipment.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Equipment.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Equipment.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Equipment.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.Equipment.Rarity7 #RarityParticle
+{
+	opacity: 1;
+}
+
+.Gem
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.Gem #GemIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Gem #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Gem #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Gem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Gem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Gem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Gem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Gem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Gem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Gem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.SuitIcon
+{
+	width: 36px;
+	height: 36px;
+	align: right bottom;
+	background-size: 100%;
+}
+
+.EquipmentIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentIcon Image
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.EquipmentIcon.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.EquipmentIcon.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.EquipmentIcon.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.EquipmentIcon.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.EquipmentIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.EquipmentIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.EquipmentIcon.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.EOM_Countdown
+{
+	flow-children: right;
+}
+
+.EOM_Countdown .EOM_CountdownIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/icon_clock_png.vtex");
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #B9A777;
+}
+
+.EOM_Countdown Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 3 #000000;
+	font-size: 16px;
+}
+
+.EOM_ImageNumber1
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber1 .EOM_NUM
+{
+	width: height-percentage(70.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber2 .EOM_NUM
+{
+	width: height-percentage(84.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber3
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber3 .EOM_NUM
+{
+	width: height-percentage(81.5%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/0_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/1_png.vtex");
+	background-size: 100% 100%;
+	width: height-percentage(55%);
+}
+
+.EOM_ImageNumber3 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/2_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/3_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/4_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/5_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/6_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/7_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/8_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/9_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber4
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber4 .EOM_NUM
+{
+	width: height-percentage(77.78%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber4 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/0_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/1_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/2_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/3_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/4_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/5_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/6_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/7_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/8_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/9_png.vtex");
+}
+
+.EOM_ImageNumber5
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber5 .EOM_NUM
+{
+	width: height-percentage(73.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber5 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/0_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/1_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/2_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/3_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/4_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/5_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/6_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/7_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/8_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/9_png.vtex");
+}
+
+.EOM_ImageNumber6
+{
+	height: 43px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber6 .EOM_NUM
+{
+	width: height-percentage(55.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber6 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/0_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_1
+{
+	width: height-percentage(34.88%);
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/1_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/2_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/3_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/4_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/5_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/6_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/7_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/8_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/9_png.vtex");
+}
+
+.EOM_ImageNumber7
+{
+	height: 22px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber7 .EOM_NUM
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin: 0px -4px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber7 .EOM_PercentSign
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin-left: -5px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_%_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_0_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_1
+{
+	background-size: 100% 100%;
+	width: height-percentage(62%);
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_1_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_2_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_3_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_4_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_5_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_6_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_7_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_8_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_9_png.vtex");
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.StoreItemMain
+{
+	width: 275px;
+}
+
+.StoreItemMain #RedPoint
+{
+	width: 48px;
+	height: 48px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemMain.Free #PriceBtn #CurrentPrice,.StoreItemMain.Free #PriceBtn #CostOriginPriceLabel
+{
+	visibility: collapse;
+}
+
+.StoreItemMain.Free #PriceBtn #FreeLabel
+{
+	visibility: visible;
+}
+
+.StoreItem
+{
+	width: 248px;
+	height: 300px;
+	background-size: 100%;
+	horizontal-align: center;
+	background-image: url("s2r://");
+}
+
+.Language_english .StoreItem #LimitInfo Label,.Language_russian .StoreItem #LimitInfo Label
+{
+	text-overflow: shrink;
+}
+
+.StoreItem:hover #ItemImage
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.5;
+}
+
+.StoreItem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_grey_png.vtex");
+}
+
+.StoreItem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_green_png.vtex");
+}
+
+.StoreItem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_blue_png.vtex");
+}
+
+.StoreItem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_yellow_png.vtex");
+}
+
+.StoreItem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_red_png.vtex");
+}
+
+.StoreItem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem #ItemName
+{
+	width: 100%;
+	height: 20px;
+	font-size: 18px;
+	color: #FDEFC8;
+	margin-top: 27px;
+	text-align: center;
+	padding: 0px 30px;
+}
+
+.StoreItem #SplitLine
+{
+	width: 196px;
+	height: 10px;
+	horizontal-align: center;
+	margin-top: 53px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_line_png.vtex");
+}
+
+.StoreItem #ItemParticle
+{
+	horizontal-align: center;
+	margin-top: 65px;
+	width: 175px;
+	height: 175px;
+}
+
+.StoreItem #ItemImage
+{
+	width: 175px;
+	height: 175px;
+	margin-top: 65px;
+	horizontal-align: center;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.StoreItem #ItemCount
+{
+	align: right bottom;
+	margin-right: 36px;
+	margin-bottom: 80px;
+	text-align: center;
+	font-size: 20px;
+	color: #FCD6A4;
+	text-shadow: 0px 0px 4px 4 #000000;
+}
+
+.StoreItem #FirstPayDesc
+{
+	align: center bottom;
+	margin-bottom: 24px;
+	font-size: 18px;
+	height: 20px;
+	width: 190px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #C98849;
+	text-shadow: 0px 0px 4px 4 #000000aa;
+}
+
+.StoreItem .EOM_Countdown
+{
+	align: center bottom;
+	margin-bottom: 58px;
+}
+
+.StoreItem #LimitInfo
+{
+	align: center bottom;
+	margin-bottom: 22px;
+	width: 234px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_character_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItem #LimitInfo Label
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #C98849;
+}
+
+#VIPIcon
+{
+	width: 50px;
+	height: 50px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+#VIPIcon.Buff101
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip101_png.vtex");
+}
+
+#VIPIcon.Buff102
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip102_png.vtex");
+}
+
+#VIPIcon.Buff104
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip104_png.vtex");
+}
+
+#FirstPayLabel
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_en_png.vtex");
+	background-size: 100%;
+	animation-name: Scale;
+	animation-duration: 1.2s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+.Language_schinese #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_cn_png.vtex");
+}
+
+.Language_russian #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_ru_png.vtex");
+}
+
+#PriceBtn
+{
+	horizontal-align: center;
+	margin-top: 290px;
+}
+
+#PriceBtn .CurrencyIcon
+{
+	margin: 0px -3px 0px 0px;
+	letter-spacing: 0px;
+}
+
+#PriceBtn .CurrencyIcon.0
+{
+	margin-bottom: 1px;
+}
+
+#PriceBtn #FreeLabel
+{
+	visibility: collapse;
+	line-height: 20px;
+}
+
+#PriceBtn #CostOriginPriceLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #E94141;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 0px 2 #000000;
+	text-decoration: line-through;
+}
+
+#DiscountNum
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_sale_png.vtex");
+}
+
+#DiscountNum .Rotate15
+{
+	margin-top: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	transform: rotateZ(-15deg);
+}
+
+#DiscountNum #OffSign
+{
+	horizontal-align: center;
+	margin-top: -5px;
+	margin-left: 1px;
+	width: 34px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_off_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemImage
+{
+	width: 256px;
+	height: 256px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+}
+
+.StoreItemBlock
+{
+	width: 128px;
+	height: 128px;
+	background-size: 100%;
+}
+
+.StoreItemBlock.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemBlock.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemBlock.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemBlock.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.StoreItemBlock.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.StoreItemBlock.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.StoreItemBlock.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.StoreItemBlock.IsEquip .StoreItemImage
+{
+	width: 80%;
+	height: 80%;
+}
+
+.StoreItemBlock .StoreItemImage
+{
+	align: center center;
+}
+
+.StoreItemBlock #ItemCount
+{
+	align: right bottom;
+	font-size: 20px;
+	color: #EFEFEF;
+	margin-right: 10%;
+	margin-bottom: 8%;
+}
+
+.StoreItemCard
+{
+	width: 186px;
+	height: 208px;
+}
+
+.StoreItemCard #CardBG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity1 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity2 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemCard.Rarity3 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemCard.Rarity4 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_purple_png.vtex");
+}
+
+.StoreItemCard.Rarity5 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+}
+
+.StoreItemCard.Rarity6 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard.Rarity7 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard #CollectionIcon
+{
+	width: 75%;
+	height: 75%;
+	align: center bottom;
+	margin-bottom: 10%;
+}
+
+.StoreItemCard .StoreItemImage
+{
+	width: 98%;
+	height: 98%;
+	align: center center;
+}
+
+.StoreItemCard #Name
+{
+	align: center top;
+	margin-top: 10%;
+	max-width: 80%;
+	height: 20px;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #1C1132;
+}
+
+.StoreItemCard #LockIcon
+{
+	width: 16%;
+	height: width-percentage(127%);
+	align: center bottom;
+	margin-bottom: 32%;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+.StoreItemCard #SelectedHover
+{
+	align: center center;
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.StoreItemCard #BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+}
+
+.StoreItemCard:not(.Selected):hover #SelectedHover
+{
+	opacity: 1;
+	brightness: 0.5;
+}
+
+.StoreItemCard.Selected #SelectedHover
+{
+	opacity: 1;
+}
+
+.StoreItemCard.Lock .StoreItemImage
+{
+	brightness: 0.25;
+	saturation: 0;
+}
+
+.StoreItemCard.Lock #Name
+{
+	color: #686868;
+}
+
+.StoreItemCard.Lock #LockIcon
+{
+	opacity: 1;
+}
+
+@keyframes 'Scale'
+{
+	0%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+}

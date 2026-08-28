@@ -1,0 +1,482 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1001;
+}
+
+#PerformanceHeatmapRoot
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+#PerformanceHeatmapDock
+{
+	align: right center;
+	width: 430px;
+	height: 78%;
+	max-height: 820px;
+	flow-children: right;
+	overflow: noclip;
+	margin-top: -40px;
+}
+
+#PerformanceHeatmapToggle
+{
+	width: 28px;
+	height: 104px;
+	vertical-align: center;
+	margin-top: 18px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#315a42), to(#1d3328));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #66d48a;
+	box-shadow: fill #000000aa 0px 0px 12px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.22s;
+}
+
+#PerformanceHeatmapToggle:hover
+{
+	brightness: 1.18;
+}
+
+#PerformanceHeatmapToggle:active
+{
+	transform: translateX(-2px);
+}
+
+#PerformanceHeatmapToggle.Collapsed
+{
+	transform: translateX(402px);
+}
+
+.PerformanceHeatmapToggleArrow
+{
+	align: center center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #f2fff6;
+	text-shadow: 0px 0px 2px 3 #000000cc;
+}
+
+#PerformanceHeatmapViewport
+{
+	width: 402px;
+	height: 100%;
+	overflow: noclip;
+}
+
+#PerformanceHeatmapPanel
+{
+	width: 402px;
+	height: 100%;
+	padding: 12px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#101720f5), to(#09100df4));
+	border-style: solid;
+	border-width: 1px;
+	border-color: #314737;
+	border-radius: 8px;
+	box-shadow: fill #000000dd 0px 0px 22px 0px;
+	transition-property: transform, opacity;
+	transition-duration: 0.22s;
+}
+
+#PerformanceHeatmapPanel.Collapsed
+{
+	opacity: 0;
+	transform: translateX(402px);
+}
+
+.PerfHeader,.PerfDetailPanel,.PerfModeBar
+{
+	width: 100%;
+	background-color: #151d22f2;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #2d3f35;
+	border-radius: 8px;
+}
+
+.PerfHeader
+{
+	padding: 12px;
+	flow-children: down;
+	margin-bottom: 8px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#1b2a26f7), to(#121c20f7));
+}
+
+.PerfTitleRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+}
+
+.PerfHeaderIcon
+{
+	width: 34px;
+	height: 34px;
+	margin-right: 10px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#55c980), to(#b6d86a));
+}
+
+.PerfHeaderIcon Label
+{
+	align: center center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #09140d;
+}
+
+.PerfTitleText
+{
+	flow-children: down;
+	vertical-align: center;
+}
+
+.PerfTitle
+{
+	font-size: 19px;
+	font-weight: bold;
+	color: #eef8f1;
+}
+
+.PerfSubtitle
+{
+	margin-top: 2px;
+	font-size: 12px;
+	color: #8aa39a;
+}
+
+.PerfSummaryRow,.PerfDetailStats
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.PerfSummaryChip
+{
+	width: fill-parent-flow(1);
+	margin-right: 6px;
+	padding: 8px 9px;
+	flow-children: down;
+	border-radius: 7px;
+	background-color: #10181c;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #263733;
+}
+
+.PerfSummaryChip:last-child
+{
+	margin-right: 0px;
+}
+
+.PerfSummaryChip.Green .PerfSummaryValue
+{
+	color: #64d98b;
+}
+
+.PerfSummaryChip.Gold .PerfSummaryValue
+{
+	color: #f0c35b;
+}
+
+.PerfSummaryChip.Red .PerfSummaryValue
+{
+	color: #ff6b76;
+}
+
+.PerfSummaryValue
+{
+	font-size: 17px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	color: #eef8f1;
+}
+
+.PerfSummaryLabel
+{
+	margin-top: 2px;
+	font-size: 10px;
+	color: #7f918a;
+}
+
+.PerfModeBar
+{
+	padding: 4px;
+	flow-children: right;
+	margin-bottom: 8px;
+}
+
+.PerfModeButton
+{
+	width: fill-parent-flow(1);
+	padding: 7px 8px;
+	margin-right: 4px;
+	border-radius: 6px;
+	background-color: #00000000;
+	transition-property: brightness, background-color;
+	transition-duration: 0.14s;
+}
+
+.PerfModeButton.Active
+{
+	background-color: #22342d;
+}
+
+.PerfModeButton:hover
+{
+	brightness: 1.12;
+}
+
+.PerfModeButton Label
+{
+	horizontal-align: center;
+	font-size: 12px;
+	font-weight: semi-bold;
+	color: #dcefe2;
+}
+
+.PerfDetailPanel
+{
+	padding: 12px;
+	flow-children: down;
+	margin-bottom: 8px;
+	min-height: 138px;
+}
+
+.PerfDetailHeader
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+}
+
+.PerfDetailTitleBlock
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+}
+
+.PerfDetailTitle
+{
+	font-size: 16px;
+	font-weight: bold;
+	color: #eef8f1;
+	text-overflow: shrink;
+}
+
+.PerfDetailSub
+{
+	margin-top: 2px;
+	font-size: 11px;
+	color: #8aa39a;
+	text-overflow: shrink;
+}
+
+.PerfDetailBadge,.PerfLevelPill
+{
+	width: fit-children;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+}
+
+.PerfDetailBadge
+{
+	padding: 4px 8px;
+	margin-left: 8px;
+}
+
+.PerfDetailBadge Label
+{
+	font-size: 11px;
+	font-weight: semi-bold;
+}
+
+.PerfDetailFooter
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-top: 8px;
+}
+
+.PerfDetailFooter Label
+{
+	margin-right: 12px;
+	font-size: 11px;
+	color: #879991;
+	font-family: monospaceNumbersFont;
+}
+
+.PerfListHeader
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 6px;
+	padding: 0px 2px;
+}
+
+.PerfListHeader Label
+{
+	width: fill-parent-flow(1);
+	font-size: 11px;
+	font-weight: semi-bold;
+	color: #7f918a;
+}
+
+.PerfListHeader Label:last-child
+{
+	text-align: right;
+}
+
+.PerfMetricList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	min-height: 0px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.PerfMetricRow
+{
+	width: 100%;
+	padding: 9px 10px;
+	margin-bottom: 5px;
+	flow-children: down;
+	border-radius: 8px;
+	background-color: #121a1ef0;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #22312c;
+	transition-property: brightness, border;
+	transition-duration: 0.14s;
+}
+
+.PerfMetricRow.Active
+{
+	border-color: #65d98b;
+	background-color: #172620f0;
+}
+
+.PerfMetricRow:hover
+{
+	brightness: 1.12;
+}
+
+.PerfMetricTop
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 7px;
+}
+
+.PerfMetricInfo
+{
+	width: fill-parent-flow(1);
+	min-width: 0px;
+	flow-children: down;
+}
+
+.PerfMetricName
+{
+	font-size: 13px;
+	font-weight: semi-bold;
+	color: #edf8f1;
+	text-overflow: shrink;
+}
+
+.PerfMetricGroup
+{
+	margin-top: 1px;
+	font-size: 10px;
+	color: #7f918a;
+	text-overflow: shrink;
+}
+
+.PerfMetricValueWrap
+{
+	min-width: 74px;
+	margin-left: 8px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.PerfMetricValue
+{
+	horizontal-align: right;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+}
+
+.PerfLevelPill
+{
+	horizontal-align: right;
+	margin-top: 3px;
+	padding: 2px 7px;
+}
+
+.PerfLevelPill Label
+{
+	font-size: 10px;
+	font-weight: semi-bold;
+}
+
+.PerfMetricBarTrack
+{
+	width: 100%;
+	height: 5px;
+	background-color: #26332f;
+	border-radius: 3px;
+}
+
+.PerfMetricBarFill
+{
+	height: 100%;
+	border-radius: 3px;
+}
+
+.PerfEmptyState
+{
+	align: center center;
+	flow-children: down;
+}
+
+.PerfEmptyTitle
+{
+	horizontal-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #dcefe2;
+}
+
+.PerfEmptyDesc
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	font-size: 11px;
+	color: #7f918a;
+}

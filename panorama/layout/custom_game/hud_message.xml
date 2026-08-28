@@ -1,0 +1,38 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/global_style.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/hud_message.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud_message.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
+	</scripts>
+	<Panel class="hud_message CustomHudRoot" hittest="false">
+		<Panel id="GameplayTextContainer" hittest="false">
+			<Panel id="GameplayTextLinesWrapper" hittest="false">
+				<ToastManager id="GameplayTextToast" hittest="false" toastduration="3s" maxtoastsvisible="3" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="true" />
+			</Panel>
+		</Panel>
+		<Panel id="ReceiveItemContainer" hittest="false">
+			<Panel id="ReceiveItemLinesWrapper" hittest="false">
+				<ToastManager id="ReceiveItemToast" hittest="false" toastduration="1.0s" maxtoastsvisible="5" maxtoastbehavior="deleteoldest" preservefadedtoasts="true" delaytime="0" addtoaststohead="false" />
+			</Panel>
+		</Panel>
+		<Panel id="GameStartRequestContainer" hittest="false" />
+		<Panel id="RestartGameRequestContainer" hittest="false" />
+		<Panel id="SavingPotContainer" hittest="true" />
+	</Panel>
+</root>

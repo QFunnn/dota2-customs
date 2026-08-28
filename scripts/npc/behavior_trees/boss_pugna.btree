@@ -1,0 +1,222 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"BOSS-破晓晨星"
+	"Description"								"检测敌人并追击，否则巡逻"
+	"X"											"985.8690476190475"
+	"Y"											"100"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"985.8690476190475"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"技能序列"
+					"X"							"885.8690476190475"
+					"Y"							"340"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"				"Condition"
+							"Name"				"是否有敌人"
+							"Description"		"检查是否有敌人在范围内"
+							"X"					"463.8690476190474"
+							"Y"					"450"
+							"Index"				"1"
+							"Params"
+							{
+								"Radius"		"1000"
+							}
+						}
+						"CheckAbilityStatus"
+						{
+							"Type"				"Action"
+							"Name"				"检查技能状态"
+							"X"					"699.8690476190474"
+							"Y"					"466"
+							"Index"				"2"
+						}
+						"AbilityCooldown"
+						{
+							"Type"				"Cooldown"
+							"Name"				"技能CD"
+							"Description"		"技能通用CD"
+							"X"					"1085.8690476190475"
+							"Y"					"460"
+							"Index"				"3"
+							"Params"
+							{
+								"cd"			"4"
+							}
+							"Children"
+							{
+								"AbilitySelector"
+								{
+									"Type"		"Selector"
+									"Name"		"技能选择器"
+									"X"			"1085.8690476190475"
+									"Y"			"580"
+									"Index"		"1"
+									"Children"
+									{
+										"AbilitySequence1"
+										{
+											"Type""Sequence"
+											"Name""技能序列"
+											"X"	"585.8690476190475"
+											"Y"	"700"
+											"Index""1"
+											"Children"
+											{
+												"CheckDistance"
+												{
+													"Type""Condition"
+													"Name""检查距离"
+													"X""485.8690476190475"
+													"Y""820"
+													"Index""1"
+													"Params"
+													{
+														"Distance""800"
+													}
+												}
+												"Ability"
+												{
+													"Type""Action"
+													"Name""释放:幽冥爆轰"
+													"X""685.8690476190475"
+													"Y""820"
+													"Index""2"
+													"Params"
+													{
+														"ability_name""enemy_boss_pugna_nether_blast"
+													}
+												}
+											}
+										}
+										"AbilitySequence2"
+										{
+											"Type""Sequence"
+											"Name""技能序列"
+											"X"	"1007.1190476190475"
+											"Y"	"706.25"
+											"Index""2"
+											"Children"
+											{
+												"CheckHealthPct"
+												{
+													"Type""Condition"
+													"Name""检查生命"
+													"X""910.8690476190475"
+													"Y""815"
+													"Index""1"
+													"Params"
+													{
+														"HealthPercent""60"
+													}
+												}
+												"Ability"
+												{
+													"Type""Action"
+													"Name""释放:幽冥守卫"
+													"X""1134.6190476190475"
+													"Y""830"
+													"Index""2"
+													"Params"
+													{
+														"ability_name"	"enemy_boss_pugna_nether_ward"
+													}
+												}
+											}
+										}
+										"AbilitySequence3"
+										{
+											"Type"	"Sequence"
+											"Name"	"技能序列"
+											"X"	"1007.1190476190475"
+											"Y"	"706.25"
+											"Index""3"
+											"Children"
+											{
+												"CheckHealthPct"
+												{
+													"Type""Condition"
+													"Name""检查生命"
+													"X""910.8690476190475"
+													"Y""815"
+													"Index""1"
+													"Params"
+													{
+														"HealthPercent"	"90"
+													}
+												}
+												"Ability"
+												{
+													"Type""Action"
+													"Name""释放:分裂子弹"
+													"X""1134.6190476190475"
+													"Y""830"
+													"Index""2"
+													"Params"
+													{
+														"ability_name""enemy_boss_pugna_bullet_spirit"
+													}
+												}
+											}
+										}
+										"Ability"
+										{
+											"Type""Action"
+											"Name""释放:子弹矩阵"
+											"X"	"1329.8690476190475"
+											"Y"	"688"
+											"Index""4"
+											"Params"
+											{
+												"ability_name""enemy_boss_pugna_bullet_matrix"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"MoveToAttackPosition"
+				{
+					"Type"						"Action"
+					"Name"						"寻找最佳攻击位置"
+					"Description"				"寻找最佳攻击位置"
+					"X"							"1885.8690476190475"
+					"Y"							"340"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

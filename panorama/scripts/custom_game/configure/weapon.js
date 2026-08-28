@@ -1,0 +1,925 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().weapon = {
+	"1000001": {
+		id: 1000001,
+		hero: 224,
+		is_default: 1,
+		rarity: 3,
+		model: "models/eom/hero/assassin_weapon_1/dagger_0.vmdl",
+		star_effect2: {
+			damage_intensity: 5
+		},
+		star_effect3: {
+			damage_intensity: 5
+		},
+		star_effect4: {
+			damage_intensity: 5
+		},
+		star_effect5: {
+			damage_intensity: 5,
+			hero_damage_boost: 1
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1000002": {
+		id: 1000002,
+		hero: 225,
+		is_default: 1,
+		rarity: 3,
+		model: "models/eom/hero/shooter_weapon_1/gun_0.vmdl",
+		star_effect2: {
+			damage_intensity: 5
+		},
+		star_effect3: {
+			damage_intensity: 5
+		},
+		star_effect4: {
+			damage_intensity: 5
+		},
+		star_effect5: {
+			damage_intensity: 5,
+			hero_damage_boost: 1
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1000003": {
+		id: 1000003,
+		hero: 226,
+		is_default: 1,
+		rarity: 3,
+		model: "models/eom/hero/witch_weapon_1/staff_0.vmdl",
+		star_effect2: {
+			damage_intensity: 5
+		},
+		star_effect3: {
+			damage_intensity: 5
+		},
+		star_effect4: {
+			damage_intensity: 5
+		},
+		star_effect5: {
+			damage_intensity: 5,
+			hero_damage_boost: 1
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1000004": {
+		id: 1000004,
+		hero: 227,
+		is_default: 1,
+		rarity: 3,
+		model: "models/eom/hero/paladin_weapon_1/mns_0.vmdl",
+		star_effect2: {
+			damage_intensity: 5
+		},
+		star_effect3: {
+			damage_intensity: 5
+		},
+		star_effect4: {
+			damage_intensity: 5
+		},
+		star_effect5: {
+			damage_intensity: 5,
+			hero_damage_boost: 1
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
+	"1000005": {
+		id: 1000005,
+		name: "UP池2期-刺客",
+		hero: 224,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/assassin_weapon_1/dagger_1.vmdl",
+		weapon_effect: "privilege_weapon_033",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_037"
+	},
+	"1000006": {
+		id: 1000006,
+		name: "普池武器-刺客",
+		hero: 224,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/assassin_weapon_1/dagger_2.vmdl",
+		weapon_effect: "privilege_weapon_009",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_026"
+	},
+	"1000007": {
+		id: 1000007,
+		hero: 224,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 4,
+		model: "models/eom/hero/assassin_weapon_1/dagger_3.vmdl"
+	},
+	"1000008": {
+		id: 1000008,
+		name: "UP池武器-刺客",
+		hero: 224,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/assassin_weapon_1/dagger_4.vmdl",
+		weapon_effect: "privilege_weapon_025",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_017"
+	},
+	"1000009": {
+		id: 1000009,
+		hero: 224,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 6,
+		model: "models/eom/hero/assassin_weapon_1/dagger_5.vmdl",
+		star_privilege2: "privilege_weapon_018"
+	},
+	"1000010": {
+		id: 1000010,
+		name: "普池2期-刺客",
+		hero: 224,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 5,
+		model: "models/eom/hero/assassin_weapon_1/dagger_6.vmdl"
+	},
+	"1000011": {
+		id: 1000011,
+		name: "UP池2期-枪手",
+		hero: 225,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/shooter_weapon_1/gun_1.vmdl",
+		weapon_effect: "privilege_weapon_034",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_038"
+	},
+	"1000012": {
+		id: 1000012,
+		hero: 225,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 6,
+		model: "models/eom/hero/shooter_weapon_1/gun_2.vmdl"
+	},
+	"1000013": {
+		id: 1000013,
+		name: "星海秘宝-枪手",
+		hero: 225,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/shooter_weapon_1/gun_3.vmdl",
+		weapon_effect: "privilege_weapon_027",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_028"
+	},
+	"1000014": {
+		id: 1000014,
+		name: "普池2期-枪手",
+		hero: 225,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 5,
+		model: "models/eom/hero/shooter_weapon_1/gun_4.vmdl"
+	},
+	"1000015": {
+		id: 1000015,
+		name: "普池武器-枪手",
+		hero: 225,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/shooter_weapon_1/gun_5.vmdl",
+		weapon_effect: "privilege_weapon_014",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_018"
+	},
+	"1000016": {
+		id: 1000016,
+		name: "捕鱼商店投放",
+		hero: 225,
+		is_default: 0,
+		rarity: 4,
+		model: "models/eom/hero/shooter_weapon_1/gun_6.vmdl",
+		weapon_effect: "privilege_weapon_006",
+		star_effect1: {
+			damage_intensity: 10
+		},
+		star_effect2: {
+			damage_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10
+		},
+		star_effect4: {
+			damage_intensity: 10
+		},
+		star_effect5: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 4
+		}
+	},
+	"1000017": {
+		id: 1000017,
+		name: "捕鱼商店投放",
+		hero: 226,
+		is_default: 0,
+		rarity: 4,
+		model: "models/eom/hero/witch_weapon_1/staff_1.vmdl",
+		weapon_effect: "privilege_weapon_007",
+		star_effect1: {
+			damage_intensity: 10
+		},
+		star_effect2: {
+			damage_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10
+		},
+		star_effect4: {
+			damage_intensity: 10
+		},
+		star_effect5: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 4
+		}
+	},
+	"1000018": {
+		id: 1000018,
+		name: "UP池2期-法师",
+		hero: 226,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/witch_weapon_1/staff_2.vmdl",
+		weapon_effect: "privilege_weapon_035",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10,
+			bless_refresh_count: 1
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		}
+	},
+	"1000019": {
+		id: 1000019,
+		name: "普池2期-法师",
+		hero: 226,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 5,
+		model: "models/eom/hero/witch_weapon_1/staff_3.vmdl"
+	},
+	"1000020": {
+		id: 1000020,
+		hero: 226,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 4,
+		model: "models/eom/hero/witch_weapon_1/staff_4.vmdl"
+	},
+	"1000021": {
+		id: 1000021,
+		name: "星海秘宝-法师",
+		hero: 226,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/witch_weapon_1/staff_5.vmdl",
+		weapon_effect: "privilege_weapon_029",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_030"
+	},
+	"1000022": {
+		id: 1000022,
+		hero: 226,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 6,
+		model: "models/eom/hero/witch_weapon_1/staff_6.vmdl"
+	},
+	"1000023": {
+		id: 1000023,
+		name: "普池武器-圣骑",
+		hero: 227,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/paladin_weapon_1/mns_1.vmdl",
+		weapon_effect: "privilege_weapon_012",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_020"
+	},
+	"1000024": {
+		id: 1000024,
+		hero: 227,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 6,
+		model: "models/eom/hero/paladin_weapon_1/mns_2.vmdl"
+	},
+	"1000025": {
+		id: 1000025,
+		name: "星海秘宝-圣骑",
+		hero: 227,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/paladin_weapon_1/mns_3.vmdl",
+		weapon_effect: "privilege_weapon_016",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_032"
+	},
+	"1000026": {
+		id: 1000026,
+		name: "普池2期-圣骑",
+		hero: 227,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 5,
+		model: "models/eom/hero/paladin_weapon_1/mns_4.vmdl"
+	},
+	"1000027": {
+		id: 1000027,
+		name: "UP池2期-圣骑",
+		hero: 227,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/paladin_weapon_1/mns_5.vmdl",
+		weapon_effect: "privilege_weapon_036",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_040"
+	},
+	"1000028": {
+		id: 1000028,
+		hero: 227,
+		is_default: 0,
+		in_tool: 1,
+		rarity: 6,
+		model: "models/eom/hero/paladin_weapon_1/mns_6.vmdl"
+	},
+	"1000029": {
+		id: 1000029,
+		name: "捕鱼商店投放",
+		hero: 224,
+		is_default: 0,
+		rarity: 4,
+		model: "models/eom/hero/assassin_weapon_1/dagger_7.vmdl",
+		weapon_effect: "privilege_weapon_005",
+		star_effect1: {
+			damage_intensity: 10
+		},
+		star_effect2: {
+			damage_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10
+		},
+		star_effect4: {
+			damage_intensity: 10
+		},
+		star_effect5: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 4
+		}
+	},
+	"1000030": {
+		id: 1000030,
+		name: "星海秘宝-刺客",
+		hero: 224,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/assassin_weapon_1/dagger_8.vmdl",
+		weapon_effect: "privilege_weapon_013",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_021"
+	},
+	"1000031": {
+		id: 1000031,
+		name: "UP池武器-枪手",
+		hero: 225,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/shooter_weapon_1/gun_7.vmdl",
+		weapon_effect: "privilege_weapon_010",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_022"
+	},
+	"1000032": {
+		id: 1000032,
+		name: "普池武器-法师",
+		hero: 226,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/witch_weapon_1/staff_7.vmdl",
+		weapon_effect: "privilege_weapon_011",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10,
+			ability_upgrade_refresh_count: 1
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		}
+	},
+	"1000033": {
+		id: 1000033,
+		name: "UP池武器-法师",
+		hero: 226,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/witch_weapon_1/staff_8.vmdl",
+		weapon_effect: "privilege_weapon_015",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_023"
+	},
+	"1000034": {
+		id: 1000034,
+		name: "捕鱼商店投放",
+		hero: 227,
+		is_default: 0,
+		rarity: 4,
+		model: "models/eom/hero/paladin_weapon_1/mns_7.vmdl",
+		weapon_effect: "privilege_weapon_008",
+		star_effect1: {
+			damage_intensity: 10
+		},
+		star_effect2: {
+			damage_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10
+		},
+		star_effect4: {
+			damage_intensity: 10
+		},
+		star_effect5: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect6: {
+			damage_intensity: 10,
+			hero_damage_boost: 4
+		}
+	},
+	"1000035": {
+		id: 1000035,
+		name: "UP池武器-圣骑",
+		hero: 227,
+		is_default: 0,
+		rarity: 5,
+		model: "models/eom/hero/paladin_weapon_1/mns_8.vmdl",
+		weapon_effect: "privilege_weapon_031",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_drop_num_pct: 20
+		},
+		star_privilege2: "privilege_weapon_024"
+	}
+};

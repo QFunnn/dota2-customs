@@ -1,0 +1,38 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+local a = "abilities/privilege/privilege_bless_005"
+local b = require("lualib_bundle")
+local c = b.__TS__Class
+local d = b.__TS__ClassExtends
+local e = b.__TS__DecorateLegacy
+local f = {}
+local g = require("abilities.eom_privilege")
+local h = g.EOMPrivilege
+local i = g.RegisterPrivilege
+local j = c()
+j.name = "privilege_bless_005"
+d(j, h)
+function j.prototype.EventListener(self)
+	return {
+		wishing_pool_reward = function(k, l)
+			if l.playerID ~= self.playerID then
+				return
+			end
+			local m = self:GetSpecialValueFor("chance")
+			if self:PRD(m) then
+				Player:ModifyGold(self.playerID, l.cost, true, true, false)
+				print("在许愿池许愿时概率返还金币")
+			end
+		end,
+	}
+end
+j = e({ i(nil) }, j)
+return f

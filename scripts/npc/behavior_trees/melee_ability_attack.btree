@@ -1,0 +1,186 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"普攻-技能-巡逻AI"
+	"Description"								"检测敌人并追击，否则巡逻"
+	"X"											"243.9880952380953"
+	"Y"											"85.00000000000003"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"245.65476190476193"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"战斗序列"
+					"Description"				"发现敌人后追击并攻击"
+					"X"							"145.65476190476193"
+					"Y"							"340"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"				"Condition"
+							"Name"				"是否有敌人"
+							"Description"		"检查是否有敌人在范围内"
+							"X"					"2.321428571428555"
+							"Y"					"453.33333333333326"
+							"Index"				"1"
+						}
+						"BattleSelector"
+						{
+							"Type"				"Selector"
+							"Name"				"技能-攻击选择器"
+							"Description"		"优先释放技能，否则尝试普通攻击"
+							"X"					"245.65476190476193"
+							"Y"					"460"
+							"Index"				"2"
+							"Children"
+							{
+								"AbilitySequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"技能序列"
+									"Description""尝试施放技能"
+									"X"			"-86.01190476190476"
+									"Y"			"594"
+									"Index"		"1"
+									"Children"
+									{
+										"CheckAbilityStatus"
+										{
+											"Type""Action"
+											"Name""检查技能状态"
+											"X"	"-198.59523809523802"
+											"Y"	"727.8333333333333"
+											"Index""1"
+										}
+										"SpellAbility"
+										{
+											"Type""Action"
+											"Name""释放技能"
+											"X"	"0.6547619047619264"
+											"Y"	"731.75"
+											"Index""2"
+										}
+									}
+								}
+								"AttackSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"攻击序列"
+									"Description""检查攻击状态并执行普通攻击"
+									"X"			"246.32142857142867"
+									"Y"			"589.6666666666666"
+									"Index"		"2"
+									"Children"
+									{
+										"CheckAttackStatus"
+										{
+											"Type""Action"
+											"Name""检查攻击状态"
+											"X"	"182.65476190476193"
+											"Y"	"726.6666666666666"
+											"Index""1"
+										}
+										"Attack"
+										{
+											"Type""Action"
+											"Name""攻击"
+											"Description""攻击敌人"
+											"X"	"385.32142857142856"
+											"Y"	"733.3333333333334"
+											"Index""2"
+										}
+									}
+								}
+								"SmartMoveSelector"
+								{
+									"Type"		"Selector"
+									"Name"		"智能移动选择器"
+									"Description""在范围内等待，不在范围则追击"
+									"X"			"625"
+									"Y"			"583"
+									"Index"		"3"
+									"Children"
+									{
+										"CheckTargetDistance"
+										{
+											"Type""Condition"
+											"Name""CheckTargetDistance"
+											"Description""检查目标是否在攻击范围内"
+											"X"	"571"
+											"Y"	"722"
+											"Index""1"
+											"Params"
+											{
+												"radius""200"
+											}
+											"Children"
+											{
+												"Wait"
+												{
+													"Type""Action"
+													"Name""WaitAction"
+													"Description""等待冷却"
+													"X""571"
+													"Y""842"
+													"Index""1"
+													"Params"
+													{
+														"Duration""2"
+													}
+												}
+											}
+										}
+										"MoveToEnemy"
+										{
+											"Type""Action"
+											"Name""追击敌人"
+											"Description""追击敌人"
+											"X"	"785"
+											"Y"	"719"
+											"Index""2"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"						"Action"
+					"Name"						"巡逻"
+					"Description"				"在区域内巡逻"
+					"X"							"632.3214285714287"
+					"Y"							"356.6666666666667"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

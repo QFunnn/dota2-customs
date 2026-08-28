@@ -1,0 +1,113 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"远程攻击"
+	"Description"								"检测敌人并追击，否则巡逻"
+	"X"											"470"
+	"Y"											"100"
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"470"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"战斗序列"
+					"Description"				"发现敌人后追击并攻击"
+					"X"							"233.33333333333337"
+					"Y"							"342"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"				"Condition"
+							"Name"				"HasEnemy"
+							"Description"		"检查是否有敌人在范围内"
+							"X"					"-85.15873015873011"
+							"Y"					"553.6507936507935"
+							"Index"				"1"
+						}
+						"BattleSelector"
+						{
+							"Type"				"Selector"
+							"Name"				"战斗选择器"
+							"Description"		"优先攻击，不然尝试释放技能"
+							"X"					"359.94047619047615"
+							"Y"					"552.8571428571429"
+							"Index"				"2"
+							"Children"
+							{
+								"AttackSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"攻击序列"
+									"Description""发现敌人后追击并释放技能"
+									"X"			"226.52777777777794"
+									"Y"			"673.8095238095237"
+									"Index"		"1"
+									"Children"
+									{
+										"CheckAttackStatus"
+										{
+											"Type""Action"
+											"Name""检查攻击状态"
+											"X"	"-19.50396825396814"
+											"Y"	"833.1746031746032"
+											"Index""1"
+										}
+										"Attack"
+										{
+											"Type""Action"
+											"Name""Attack"
+											"Description""攻击敌人"
+											"X"	"227.02380952380952"
+											"Y"	"844.1269841269841"
+											"Index""2"
+										}
+									}
+								}
+								"MoveToAttackPosition"
+								{
+									"Type"		"Action"
+									"Name"		"寻找最佳攻击位置"
+									"Description""寻找最佳攻击位置"
+									"X"			"545.8838383838385"
+									"Y"			"679.9999999999999"
+									"Index"		"2"
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"						"Action"
+					"Name"						"Patrol"
+					"Description"				"在区域内巡逻"
+					"X"							"711.4285714285714"
+					"Y"							"355.9523809523809"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

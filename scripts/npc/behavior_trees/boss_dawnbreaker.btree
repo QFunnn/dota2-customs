@@ -1,0 +1,187 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"BOSS-破晓晨星"
+	"Description"								"检测敌人并追击，否则巡逻"
+	"X"											"157.32142857142856"
+	"Y"											"81.6666666666667"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"157.32142857142867"
+			"Y"									"196.66666666666666"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"技能序列"
+					"X"							"-100.05952380952363"
+					"Y"							"319.5238095238095"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"				"Condition"
+							"Name"				"是否有敌人"
+							"Description"		"检查是否有敌人在范围内"
+							"X"					"-327.96428571428567"
+							"Y"					"458.4761904761905"
+							"Index"				"1"
+							"Params"
+							{
+								"Radius"		"1000"
+							}
+						}
+						"CheckAbilityStatus"
+						{
+							"Type"				"Action"
+							"Name"				"检查技能状态"
+							"X"					"-100.35714285714266"
+							"Y"					"464.8809523809524"
+							"Index"				"2"
+						}
+						"AbilityCooldown"
+						{
+							"Type"				"Cooldown"
+							"Name"				"技能CD"
+							"Description"		"技能通用CD"
+							"X"					"110.27380952380952"
+							"Y"					"466.5714285714286"
+							"Index"				"3"
+							"Params"
+							{
+								"cd"			"3"
+							}
+							"Children"
+							{
+								"AbilitySelector"
+								{
+									"Type"		"Selector"
+									"Name"		"技能选择器"
+									"X"			"111.79761904761926"
+									"Y"			"609.2857142857144"
+									"Index"		"1"
+									"Children"
+									{
+										"AbilitySequence1"
+										{
+											"Type""Sequence"
+											"Name""技能序列"
+											"X"	"-315.77380952381"
+											"Y"	"804.0476190476192"
+											"Index""1"
+											"Children"
+											{
+												"CheckDistance"
+												{
+													"Type""Condition"
+													"Name""检查距离"
+													"X""-450.9285714285712"
+													"Y""978.8809523809524"
+													"Index""1"
+													"Params"
+													{
+														"Distance""800"
+													}
+												}
+												"Ability"
+												{
+													"Type""Action"
+													"Name""释放:石破天惊"
+													"X""-201.5833333333337"
+													"Y""972.1309523809525"
+													"Index""2"
+													"Params"
+													{
+														"ability_name""enemy_boss_rotate_smash"
+													}
+												}
+											}
+										}
+										"AbilitySequence2"
+										{
+											"Type""Sequence"
+											"Name""技能序列"
+											"X"	"110.5595238095242"
+											"Y"	"806.3809523809523"
+											"Index""2"
+											"Children"
+											{
+												"CheckHealthPct"
+												{
+													"Type""Condition"
+													"Name""检查生命"
+													"X""10.785714285714448"
+													"Y""970.0238095238093"
+													"Index""1"
+													"Params"
+													{
+														"HealthPercent""50"
+													}
+												}
+												"Ability"
+												{
+													"Type""Action"
+													"Name""释放:天光现世"
+													"X""261.08333333333303"
+													"Y""971.2261904761904"
+													"Index""2"
+													"Params"
+													{
+														"ability_name""enemy_boss_solar_guardian"
+													}
+												}
+											}
+										}
+										"Ability"
+										{
+											"Type""Action"
+											"Name""释放:上界巨锤"
+											"X"	"435.03571428571433"
+											"Y"	"828.3214285714289"
+											"Index""3"
+											"Params"
+											{
+												"ability_name""enemy_boss_celestial_hammer"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"MoveToEnemy"
+				{
+					"Type"						"Action"
+					"Name"						"追击敌人"
+					"Description"				"在区域内巡逻"
+					"X"							"409.70238095238096"
+					"Y"							"330.95238095238096"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

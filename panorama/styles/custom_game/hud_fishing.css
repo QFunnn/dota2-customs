@@ -1,0 +1,3879 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	z-index: 30;
+	width: 100%;
+	height: 100%;
+}
+
+#FishResultDisplayRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FishResultPopup
+{
+	position: 0px 0px 0px;
+	flow-children: down;
+	horizontal-align: center;
+	background-color: rgba(20, 15, 10, 0.85);
+	border-radius: 8px;
+	padding: 8px 14px;
+}
+
+.FishResultPopup .FishResultPopupName
+{
+	color: #f5d87a;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 2px 4px 3 rgba(0, 0, 0, 0.9);
+	horizontal-align: center;
+}
+
+.FishResultComp
+{
+	width: 122px;
+	height: 114px;
+	animation-name: FishResultShow;
+	animation-duration: 2.7s;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+}
+
+.FishResultComp #FishResultCompBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_frame_png.vtex");
+	opacity: 0.4;
+}
+
+.FishResultComp #FishResultCompBG.Lv1
+{
+	wash-color: #4f5958;
+}
+
+.FishResultComp #FishResultCompBG.Lv2
+{
+	wash-color: #4e7036;
+}
+
+.FishResultComp #FishResultCompBG.Lv3
+{
+	wash-color: #355aa4;
+}
+
+.FishResultComp #FishResultCompBG.Lv4
+{
+	wash-color: #6f2fa1;
+}
+
+.FishResultComp #FishResultCompBG.Lv5
+{
+	wash-color: #9c7a06;
+}
+
+.FishResultComp #FishResultCompBG.Lv6
+{
+	wash-color: #930c00;
+}
+
+.FishResultComp #FishResultCompBG.Lv7
+{
+	wash-color: #93599c;
+}
+
+.FishResultComp #FishResultCompBorder
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_frame_special_png.vtex");
+	background-size: 100%;
+}
+
+.FishResultComp #FishResultCompContent
+{
+	width: 100%;
+	height: 100%;
+	margin: 8px 8px 12px 8px;
+}
+
+.FishResultComp Label
+{
+	align: center bottom;
+	text-align: center;
+	font-size: 20;
+	color: #ffffff;
+	text-shadow: 0 0 2px 2px #000000;
+}
+
+@keyframes 'FishResultShow'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(50px);
+		pre-transform-scale2d: 0;
+	}
+	
+	5%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	95%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY(50px);
+		pre-transform-scale2d: 0;
+	}
+	
+}
+
+#FishRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FishingContainer
+{
+	align: center center;
+	flow-children: down;
+	background-color: rgba(40, 30, 20, 0.95);
+	padding: 30px;
+	box-shadow: 0px 8px 32px 3 rgba(0, 0, 0, 0.8);
+}
+
+#FishingMain
+{
+	horizontal-align: center;
+	width: 330px;
+	height: 550px;
+}
+
+.SingleFishUI
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding: 20px;
+	opacity: 0;
+}
+
+.SingleFishUI.Show
+{
+	animation-delay: 0.4s;
+	animation-fill-mode: backwards;
+	animation-name: FishingTrackAreaShow;
+	animation-duration: 0.6s;
+	animation-timing-function: linear;
+	opacity: 1;
+}
+
+#SingleFishBar
+{
+	padding: 4px 3px 4px 5px;
+	width: 37px;
+	height: 408px;
+	box-shadow: 0 0 4px 4px #ffffff1a;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_bg_png.vtex");
+	background-size: 100%;
+}
+
+@keyframes 'FishingTrackAreaShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.FishingTrackArea
+{
+	width: 18px;
+	height: 404px;
+}
+
+.FishingTrackArea .WoodenFrame
+{
+	width: 100%;
+	height: 100%;
+	background-color: #8B6914;
+	box-shadow: inset 0px 0px 0px 13px #A0782C, inset 0px 0px 0px 17px #6B5010;
+}
+
+.FishingTrackArea .TrackBackground
+{
+	width: 18px;
+	height: 100%;
+	background-color: gradient(linear, 0 0, 0 100%, from(#7ba9cf), to(#2e8fdf));
+	box-shadow: inset 0 0px 4px 0px rgba(0, 0, 0, 0.4);
+}
+
+.FishingTrackArea .TrackBackground .ScaleMarks
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.FishingTrackArea .TrackBackground .ScaleMarks .ScaleLine
+{
+	width: 100%;
+	height: 10%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.FishingTrackArea .TrackContent
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px 3px;
+}
+
+.FishingTrackArea .TrackContent .TrackInBox
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+.FishingTrackArea .FishIndicator
+{
+	overflow: noclip;
+	y: -20px;
+	horizontal-align: center;
+	transition-property: transform, ui-scale, saturation;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-in-out;
+	z-index: 1;
+	saturation: 0.5;
+	brightness: 0.7;
+	ui-scale: 90%;
+}
+
+.FishingTrackArea .FishIndicator.Progressing
+{
+	ui-scale: 100%;
+	saturation: 1;
+	brightness: 1.2;
+}
+
+.FishingTrackArea .FishIndicator.Escaped
+{
+	animation-name: FishEscaped;
+	animation-fill-mode: forwards;
+	animation-duration: 0.8s;
+}
+
+.FishingTrackArea .FishIndicator .FishIcon
+{
+	overflow: noclip;
+	width: 27px;
+	height: 39px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_fish_01_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.FishingTrackArea .FishIndicator .FishIcon.rainbow
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_fish_02_png.vtex");
+}
+
+.FishingTrackArea .BoxIndicator
+{
+	horizontal-align: center;
+	width: 36px;
+	height: 36px;
+	brightness: 0.25;
+	saturation: 0.5;
+	opacity: 0;
+	y: -28px;
+}
+
+.FishingTrackArea .BoxIndicator.Show
+{
+	opacity: 1;
+	animation-name: BoxAppear;
+	animation-duration: 0.2s;
+	animation-timing-function: linear;
+}
+
+.FishingTrackArea .BoxIndicator.Progressing
+{
+	brightness: 1.2;
+	saturation: 1;
+}
+
+.FishingTrackArea .BoxIndicator.Success
+{
+	opacity: 0;
+	brightness: 1.2;
+	saturation: 1;
+	animation-name: BoxAppear;
+	animation-fill-mode: backwards;
+	animation-duration: 0.6s;
+	animation-direction: reverse;
+}
+
+.FishingTrackArea .BoxIndicator.Success .BoxProgressFill
+{
+	background-color: #ffda9d;
+}
+
+.FishingTrackArea .BoxIndicator .BoxProgressBar
+{
+	width: 36px;
+	height: 4px;
+	background-color: #000000;
+	border: 1px solid #ffffffaa;
+}
+
+.FishingTrackArea .BoxIndicator .BoxProgressBar .BoxProgressFill
+{
+	height: 100%;
+	background-color: #FECD7D;
+	transition-property: width;
+	transition-duration: 0.01s;
+	transition-timing-function: linear;
+}
+
+.FishingTrackArea .BoxIndicator .BoxIcon
+{
+	align: center bottom;
+	width: 30px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_box_png.vtex");
+	background-size: 100%;
+}
+
+.FishingTrackArea .PlayerBar
+{
+	overflow: noclip;
+	width: 20px;
+	horizontal-align: center;
+	background-color: #2f8726;
+	border-radius: 4px;
+	transition-property: transform;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-in-out;
+}
+
+.FishingTrackArea .PlayerBarParticle
+{
+	box-shadow: inset 0 0 2px 0px #00000033;
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes 'FishEscaped'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0;
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'BoxAppear'
+{
+	0%
+	{
+		pre-transform-scale2d: 0;
+		opacity: 0;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+.ProgressContainer
+{
+	align: right center;
+	width: 4px;
+	height: 100%;
+	z-index: -1;
+}
+
+.ProgressContainer .ProgressBarBackground
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 2px;
+}
+
+.ProgressContainer .ProgressBarFill
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 100%;
+	background-color: #2f8726;
+	transition-property: clip;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-out;
+}
+
+.ProgressContainer .ProgressBarParticle
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ProgressContainer .ProgressText
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #FFE4B5;
+	horizontal-align: right;
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+}
+
+.ButtonArea
+{
+	width: 100%;
+	margin-top: 50px;
+	flow-children: down;
+}
+
+#FishGameUI
+{
+	width: 800px;
+	height: 600px;
+	overflow: noclip;
+}
+
+.FishingTipsBox
+{
+	align: center center;
+	x: 154px;
+	y: 150px;
+	padding: 20px;
+	border-radius: 16px;
+	background-color: #000000aa;
+	flow-children: down;
+	opacity: 0;
+}
+
+.FishingTipsBox.Show
+{
+	opacity: 1;
+}
+
+.FishingTipsBox #FishingTipsKey
+{
+	margin-bottom: 10px;
+	horizontal-align: center;
+}
+
+.FishingTipsBox #FishingTipsBox_HotKey
+{
+	horizontal-align: center;
+	width: 28px;
+	height: 39px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_key_mouse_big_png.vtex");
+	background-size: 100%;
+	margin-bottom: 20px;
+}
+
+.FishingTipsBox Label
+{
+	font-size: 20px;
+	color: #D5C9A9;
+	text-align: center;
+}
+
+#FishingHookWarning
+{
+	align: center center;
+	x: 154px;
+	y: -150px;
+	width: 46px;
+	height: 122px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_exclamation_mark_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	ui-scale: 0%;
+	transition-property: opacity, ui-scale;
+	transition-duration: 0.2s;
+}
+
+#FishingHookWarning.Show
+{
+	ui-scale: 80%;
+	opacity: 1;
+	animation-name: FishingHookWarningShake;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 0.3s;
+	sound: "Hero_Lion.Fishstick.Target";
+}
+
+@keyframes 'FishingHookWarningShake'
+{
+	0%
+	{
+		transform: none;
+		pre-transform-scale2d: 1;
+	}
+	
+	20%
+	{
+		transform: rotateZ(2deg);
+		pre-transform-scale2d: 1.05;
+	}
+	
+	40%
+	{
+		transform: rotateZ(-3deg);
+		pre-transform-scale2d: 0.98;
+	}
+	
+	60%
+	{
+		transform: rotateZ(1deg);
+		pre-transform-scale2d: 1.03;
+	}
+	
+	80%
+	{
+		transform: rotateZ(-2deg);
+		pre-transform-scale2d: 0.99;
+	}
+	
+	100%
+	{
+		transform: none;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#LeftBar
+{
+	flow-children: down;
+	align: left bottom;
+	margin-bottom: 200px;
+}
+
+#TipsContainer
+{
+	margin-left: 50px;
+	flow-children: down;
+}
+
+#TipsContainer .TipsRow
+{
+	margin: 6px 0;
+	flow-children: right;
+	padding: 0 10px 0 0;
+}
+
+#TipsContainer .TipsRow.Hidden
+{
+	visibility: collapse;
+}
+
+#TipsContainer .TipsRow .EOM_HotKeyDisplay
+{
+	width: 24px;
+	margin-right: 8px;
+}
+
+#TipsContainer .TipsRow .TipsLabel
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #D5C9A9;
+}
+
+#PowerBarContainer
+{
+	align: right center;
+	width: 200px;
+	opacity: 0;
+}
+
+#PowerBarContainer.Show
+{
+	opacity: 1;
+}
+
+#PowerBarContainer #PowerTitle
+{
+	horizontal-align: center;
+	color: #ffda95;
+}
+
+#PowerBarContainer #PowerBarBackground
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	width: 12px;
+	height: 256px;
+	border-radius: 8px;
+	background-color: #6B5010;
+	box-shadow: 0 0 3px 3px #4b3109cc;
+	padding: 2px;
+}
+
+#PowerBarContainer #PowerBarFill
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	background-color: gradient(linear, 0 0, 0 100%, from(#f37556), color-stop(0.5, #ffcb7d), to(#d6ff76));
+}
+
+#PowerBarContainer #PowerLabel
+{
+	align: center bottom;
+	x: 32px;
+	color: #ffffff;
+	text-shadow: 0 0 2px 2 #000000;
+	font-size: 16px;
+	overflow: noclip;
+}
+
+#PlayerPower
+{
+	align: right bottom;
+	margin-bottom: 87px;
+	margin-right: 110px;
+}
+
+#PlayerPower:hover
+{
+	brightness: 1.5;
+}
+
+#PlayerPower #PowerBarBG
+{
+	horizontal-align: center;
+	width: 109px;
+	height: 109px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_energy_bg_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerPower #PowerBarFill
+{
+	width: 109px;
+	height: 109px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_energy_progress_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerPower #PowerValueLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 31px;
+	color: #B9B1A6;
+}
+
+#PlayerPower #PowerBarLabel
+{
+	align: center bottom;
+	text-align: center;
+	margin-bottom: 6px;
+	height: 24px;
+	width: 131px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#1A161400), color-stop(0.3, #1A1614e9), color-stop(0.8, #1A1614e9), to(#1A161400));
+	line-height: 24px;
+	font-size: 18px;
+	color: #B9B1A6;
+	text-shadow: 0px 0px 4px #000000;
+}
+
+#BackpackBtn
+{
+	align: right bottom;
+	margin-right: 136px;
+	margin-bottom: 244px;
+	width: 80px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beg_png.vtex");
+	background-size: 64px;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+#BackpackBtn:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+#BackpackBtn:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+#BackpackBtn:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#BackpackBtn Label
+{
+	align: center bottom;
+	width: 100%;
+	height: 17px;
+	font-size: 16px;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000), to(#00000000));
+	color: #AB977F;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+.FishingCooldownBar
+{
+	align: center center;
+	x: 154px;
+	y: -80px;
+	width: 100px;
+	height: 10px;
+	background-color: #000000;
+	padding: 2px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+.FishingCooldownBar.Show
+{
+	opacity: 1;
+	transition-duration: 0s;
+}
+
+.FishingCooldownBar.Show #FishingCooldownBar_Fill
+{
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.FishingCooldownBar #FishingCooldownBar_Fill
+{
+	width: 100%;
+	height: 100%;
+	transition-property: none;
+	background-color: #d5c9aa;
+}
+
+.FishResultContainer
+{
+	align: right top;
+	margin-top: 100px;
+	opacity: 0;
+	width: 250px;
+	margin-right: 64px;
+}
+
+.FishResultContainer.Show
+{
+	opacity: 1;
+}
+
+.FishResultContainer #FishResultContent
+{
+	width: 250px;
+	flow-children: down;
+}
+
+.FishResultContainer #FishResultMainContent
+{
+	width: 250px;
+	height: 396px;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_infor_bg_01_png.vtex");
+	background-size: 100%;
+	padding: 5px 30px;
+	flow-children: down;
+}
+
+.FishResultContainer Label
+{
+	align: center center;
+	text-align: center;
+}
+
+.FishResultContainer #FishExtraRewardList
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 23px;
+}
+
+.FishResultContainer .FishResultItem
+{
+	width: 250px;
+	height: 66px;
+	horizontal-align: center;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_infor_bg_02_png.vtex");
+	background-size: 100%;
+	padding: 1px 41px 1px 10px;
+	margin-top: 4px;
+}
+
+.FishResultContainer .FishResultItem .StoreItemImage
+{
+	width: 64px;
+	height: 64px;
+}
+
+.FishResultContainer .FishResultItem .StoreItemImage .FishResultItemAmounts
+{
+	align: right bottom;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	text-align: center;
+	font-size: 16px;
+	color: #C8C8C8;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.FishResultContainer .FishResultItem .ItemName
+{
+	vertical-align: center;
+	text-align: right;
+	width: fill-parent-flow(1);
+	margin-left: 18px;
+	text-overflow: shrink;
+	font-size: 16px;
+	color: #B9B1A6;
+}
+
+.FishResult
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+.FishResult #FishResultTitle
+{
+	width: 236px;
+	height: 32px;
+	font-size: 24px;
+	color: #C8C0B4;
+	text-shadow: 0px 0px 4px 3 #000000;
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.FishResult #FishResultIcon
+{
+	width: 137px;
+	height: 137px;
+	horizontal-align: center;
+}
+
+.FishResult #FishResultRarityLabel
+{
+	font-size: 16px;
+	text-shadow: 0px 0px 2px 1 #000000;
+	horizontal-align: center;
+	margin-bottom: 6px;
+}
+
+.FishResult #FishResultStarList
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.FishResult .FishStarIcon
+{
+	width: 22px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_star_bright_png.vtex");
+	background-size: 100%;
+	margin: 0px 2px;
+}
+
+.FishResult .FishResultDivider
+{
+	width: 204px;
+	height: 2px;
+	horizontal-align: center;
+	background-color: #3E4249;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.FishResult .FishResultSubTitle
+{
+	flow-children: right;
+	height: 26px;
+	width: 100%;
+	padding: 0 15px 0 10px;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel
+{
+	vertical-align: center;
+	text-align: left;
+	font-size: 16px;
+	color: #B9B1A6;
+	width: fill-parent-flow(1);
+	text-overflow: shrink;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.value
+{
+	text-align: right;
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.valueIcon
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+	vertical-align: center;
+	margin-left: 8px;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.valueIcon Label
+{
+	vertical-align: center;
+	text-align: right;
+	width: fill-parent-flow(1);
+}
+
+.FishResult #FishResultCount
+{
+	flow-children: right;
+}
+
+.FishResult #FishResultValueIcon
+{
+	width: 30px;
+	height: 30px;
+	margin-right: 6px;
+	vertical-align: center;
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_HotKeyDisplay:not(.IsImage)
+{
+	min-width: 24px;
+}
+
+.EOM_HotKeyDisplay.IsImage
+{
+	min-height: 24px;
+}
+
+.EOM_HotKeyDisplay.Filp
+{
+	transform: rotateY(-180deg);
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	align: center center;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	width: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_Countdown
+{
+	flow-children: right;
+}
+
+.EOM_Countdown .EOM_CountdownIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/icon_clock_png.vtex");
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #B9A777;
+}
+
+.EOM_Countdown Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 3 #000000;
+	font-size: 16px;
+}
+
+.EOM_ImageNumber1
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber1 .EOM_NUM
+{
+	width: height-percentage(70.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber2 .EOM_NUM
+{
+	width: height-percentage(84.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber3
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber3 .EOM_NUM
+{
+	width: height-percentage(81.5%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/0_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/1_png.vtex");
+	background-size: 100% 100%;
+	width: height-percentage(55%);
+}
+
+.EOM_ImageNumber3 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/2_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/3_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/4_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/5_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/6_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/7_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/8_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/9_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber4
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber4 .EOM_NUM
+{
+	width: height-percentage(77.78%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber4 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/0_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/1_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/2_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/3_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/4_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/5_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/6_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/7_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/8_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/9_png.vtex");
+}
+
+.EOM_ImageNumber5
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber5 .EOM_NUM
+{
+	width: height-percentage(73.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber5 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/0_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/1_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/2_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/3_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/4_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/5_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/6_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/7_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/8_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/9_png.vtex");
+}
+
+.EOM_ImageNumber6
+{
+	height: 43px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber6 .EOM_NUM
+{
+	width: height-percentage(55.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber6 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/0_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_1
+{
+	width: height-percentage(34.88%);
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/1_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/2_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/3_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/4_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/5_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/6_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/7_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/8_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/9_png.vtex");
+}
+
+.EOM_ImageNumber7
+{
+	height: 22px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber7 .EOM_NUM
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin: 0px -4px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber7 .EOM_PercentSign
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin-left: -5px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_%_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_0_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_1
+{
+	background-size: 100% 100%;
+	width: height-percentage(62%);
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_1_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_2_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_3_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_4_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_5_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_6_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_7_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_8_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_9_png.vtex");
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.StoreItemMain
+{
+	width: 275px;
+}
+
+.StoreItemMain #RedPoint
+{
+	width: 48px;
+	height: 48px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemMain.Free #PriceBtn #CurrentPrice,.StoreItemMain.Free #PriceBtn #CostOriginPriceLabel
+{
+	visibility: collapse;
+}
+
+.StoreItemMain.Free #PriceBtn #FreeLabel
+{
+	visibility: visible;
+}
+
+.StoreItem
+{
+	width: 248px;
+	height: 300px;
+	background-size: 100%;
+	horizontal-align: center;
+	background-image: url("s2r://");
+}
+
+.Language_english .StoreItem #LimitInfo Label,.Language_russian .StoreItem #LimitInfo Label
+{
+	text-overflow: shrink;
+}
+
+.StoreItem:hover #ItemImage
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.5;
+}
+
+.StoreItem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_grey_png.vtex");
+}
+
+.StoreItem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_green_png.vtex");
+}
+
+.StoreItem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_blue_png.vtex");
+}
+
+.StoreItem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_yellow_png.vtex");
+}
+
+.StoreItem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_red_png.vtex");
+}
+
+.StoreItem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem #ItemName
+{
+	width: 100%;
+	height: 20px;
+	font-size: 18px;
+	color: #FDEFC8;
+	margin-top: 27px;
+	text-align: center;
+	padding: 0px 30px;
+}
+
+.StoreItem #SplitLine
+{
+	width: 196px;
+	height: 10px;
+	horizontal-align: center;
+	margin-top: 53px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_line_png.vtex");
+}
+
+.StoreItem #ItemParticle
+{
+	horizontal-align: center;
+	margin-top: 65px;
+	width: 175px;
+	height: 175px;
+}
+
+.StoreItem #ItemImage
+{
+	width: 175px;
+	height: 175px;
+	margin-top: 65px;
+	horizontal-align: center;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.StoreItem #ItemCount
+{
+	align: right bottom;
+	margin-right: 36px;
+	margin-bottom: 80px;
+	text-align: center;
+	font-size: 20px;
+	color: #FCD6A4;
+	text-shadow: 0px 0px 4px 4 #000000;
+}
+
+.StoreItem #FirstPayDesc
+{
+	align: center bottom;
+	margin-bottom: 24px;
+	font-size: 18px;
+	height: 20px;
+	width: 190px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #C98849;
+	text-shadow: 0px 0px 4px 4 #000000aa;
+}
+
+.StoreItem .EOM_Countdown
+{
+	align: center bottom;
+	margin-bottom: 58px;
+}
+
+.StoreItem #LimitInfo
+{
+	align: center bottom;
+	margin-bottom: 22px;
+	width: 234px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_character_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItem #LimitInfo Label
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #C98849;
+}
+
+#VIPIcon
+{
+	width: 50px;
+	height: 50px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+#VIPIcon.Buff101
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip101_png.vtex");
+}
+
+#VIPIcon.Buff102
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip102_png.vtex");
+}
+
+#VIPIcon.Buff104
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip104_png.vtex");
+}
+
+#FirstPayLabel
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_en_png.vtex");
+	background-size: 100%;
+	animation-name: Scale;
+	animation-duration: 1.2s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+.Language_schinese #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_cn_png.vtex");
+}
+
+.Language_russian #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_ru_png.vtex");
+}
+
+#PriceBtn
+{
+	horizontal-align: center;
+	margin-top: 290px;
+}
+
+#PriceBtn .CurrencyIcon
+{
+	margin: 0px -3px 0px 0px;
+	letter-spacing: 0px;
+}
+
+#PriceBtn .CurrencyIcon.0
+{
+	margin-bottom: 1px;
+}
+
+#PriceBtn #FreeLabel
+{
+	visibility: collapse;
+	line-height: 20px;
+}
+
+#PriceBtn #CostOriginPriceLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #E94141;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 0px 2 #000000;
+	text-decoration: line-through;
+}
+
+#DiscountNum
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_sale_png.vtex");
+}
+
+#DiscountNum .Rotate15
+{
+	margin-top: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	transform: rotateZ(-15deg);
+}
+
+#DiscountNum #OffSign
+{
+	horizontal-align: center;
+	margin-top: -5px;
+	margin-left: 1px;
+	width: 34px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_off_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemImage
+{
+	width: 256px;
+	height: 256px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+}
+
+.StoreItemBlock
+{
+	width: 128px;
+	height: 128px;
+	background-size: 100%;
+}
+
+.StoreItemBlock.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemBlock.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemBlock.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemBlock.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.StoreItemBlock.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.StoreItemBlock.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.StoreItemBlock.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.StoreItemBlock.IsEquip .StoreItemImage
+{
+	width: 80%;
+	height: 80%;
+}
+
+.StoreItemBlock .StoreItemImage
+{
+	align: center center;
+}
+
+.StoreItemBlock #ItemCount
+{
+	align: right bottom;
+	font-size: 20px;
+	color: #EFEFEF;
+	margin-right: 10%;
+	margin-bottom: 8%;
+}
+
+.StoreItemCard
+{
+	width: 186px;
+	height: 208px;
+}
+
+.StoreItemCard #CardBG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity1 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity2 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemCard.Rarity3 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemCard.Rarity4 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_purple_png.vtex");
+}
+
+.StoreItemCard.Rarity5 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+}
+
+.StoreItemCard.Rarity6 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard.Rarity7 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard #CollectionIcon
+{
+	width: 75%;
+	height: 75%;
+	align: center bottom;
+	margin-bottom: 10%;
+}
+
+.StoreItemCard .StoreItemImage
+{
+	width: 98%;
+	height: 98%;
+	align: center center;
+}
+
+.StoreItemCard #Name
+{
+	align: center top;
+	margin-top: 10%;
+	max-width: 80%;
+	height: 20px;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #1C1132;
+}
+
+.StoreItemCard #LockIcon
+{
+	width: 16%;
+	height: width-percentage(127%);
+	align: center bottom;
+	margin-bottom: 32%;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+.StoreItemCard #SelectedHover
+{
+	align: center center;
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.StoreItemCard #BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+}
+
+.StoreItemCard:not(.Selected):hover #SelectedHover
+{
+	opacity: 1;
+	brightness: 0.5;
+}
+
+.StoreItemCard.Selected #SelectedHover
+{
+	opacity: 1;
+}
+
+.StoreItemCard.Lock .StoreItemImage
+{
+	brightness: 0.25;
+	saturation: 0;
+}
+
+.StoreItemCard.Lock #Name
+{
+	color: #686868;
+}
+
+.StoreItemCard.Lock #LockIcon
+{
+	opacity: 1;
+}
+
+@keyframes 'Scale'
+{
+	0%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+}
+
+.CustomHudRoot
+{
+	z-index: 30;
+	width: 100%;
+	height: 100%;
+}
+
+#FishResultDisplayRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FishResultPopup
+{
+	position: 0px 0px 0px;
+	flow-children: down;
+	horizontal-align: center;
+	background-color: rgba(20, 15, 10, 0.85);
+	border-radius: 8px;
+	padding: 8px 14px;
+}
+
+.FishResultPopup .FishResultPopupName
+{
+	color: #f5d87a;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 2px 4px 3 rgba(0, 0, 0, 0.9);
+	horizontal-align: center;
+}
+
+.FishResultComp
+{
+	width: 122px;
+	height: 114px;
+	animation-name: FishResultShow;
+	animation-duration: 2.7s;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+}
+
+.FishResultComp #FishResultCompBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_frame_png.vtex");
+	opacity: 0.4;
+}
+
+.FishResultComp #FishResultCompBG.Lv1
+{
+	wash-color: #4f5958;
+}
+
+.FishResultComp #FishResultCompBG.Lv2
+{
+	wash-color: #4e7036;
+}
+
+.FishResultComp #FishResultCompBG.Lv3
+{
+	wash-color: #355aa4;
+}
+
+.FishResultComp #FishResultCompBG.Lv4
+{
+	wash-color: #6f2fa1;
+}
+
+.FishResultComp #FishResultCompBG.Lv5
+{
+	wash-color: #9c7a06;
+}
+
+.FishResultComp #FishResultCompBG.Lv6
+{
+	wash-color: #930c00;
+}
+
+.FishResultComp #FishResultCompBG.Lv7
+{
+	wash-color: #93599c;
+}
+
+.FishResultComp #FishResultCompBorder
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_frame_special_png.vtex");
+	background-size: 100%;
+}
+
+.FishResultComp #FishResultCompContent
+{
+	width: 100%;
+	height: 100%;
+	margin: 8px 8px 12px 8px;
+}
+
+.FishResultComp Label
+{
+	align: center bottom;
+	text-align: center;
+	font-size: 20;
+	color: #ffffff;
+	text-shadow: 0 0 2px 2px #000000;
+}
+
+@keyframes 'FishResultShow'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(50px);
+		pre-transform-scale2d: 0;
+	}
+	
+	5%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	95%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		transform: translateY(50px);
+		pre-transform-scale2d: 0;
+	}
+	
+}
+
+#FishRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.FishingContainer
+{
+	align: center center;
+	flow-children: down;
+	background-color: rgba(40, 30, 20, 0.95);
+	padding: 30px;
+	box-shadow: 0px 8px 32px 3 rgba(0, 0, 0, 0.8);
+}
+
+#FishingMain
+{
+	horizontal-align: center;
+	width: 330px;
+	height: 550px;
+}
+
+.SingleFishUI
+{
+	flow-children: right;
+	horizontal-align: center;
+	padding: 20px;
+	opacity: 0;
+}
+
+.SingleFishUI.Show
+{
+	animation-delay: 0.4s;
+	animation-fill-mode: backwards;
+	animation-name: FishingTrackAreaShow;
+	animation-duration: 0.6s;
+	animation-timing-function: linear;
+	opacity: 1;
+}
+
+#SingleFishBar
+{
+	padding: 4px 3px 4px 5px;
+	width: 37px;
+	height: 408px;
+	box-shadow: 0 0 4px 4px #ffffff1a;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_bg_png.vtex");
+	background-size: 100%;
+}
+
+@keyframes 'FishingTrackAreaShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.FishingTrackArea
+{
+	width: 18px;
+	height: 404px;
+}
+
+.FishingTrackArea .WoodenFrame
+{
+	width: 100%;
+	height: 100%;
+	background-color: #8B6914;
+	box-shadow: inset 0px 0px 0px 13px #A0782C, inset 0px 0px 0px 17px #6B5010;
+}
+
+.FishingTrackArea .TrackBackground
+{
+	width: 18px;
+	height: 100%;
+	background-color: gradient(linear, 0 0, 0 100%, from(#7ba9cf), to(#2e8fdf));
+	box-shadow: inset 0 0px 4px 0px rgba(0, 0, 0, 0.4);
+}
+
+.FishingTrackArea .TrackBackground .ScaleMarks
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.FishingTrackArea .TrackBackground .ScaleMarks .ScaleLine
+{
+	width: 100%;
+	height: 10%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.FishingTrackArea .TrackContent
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px 3px;
+}
+
+.FishingTrackArea .TrackContent .TrackInBox
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+.FishingTrackArea .FishIndicator
+{
+	overflow: noclip;
+	y: -20px;
+	horizontal-align: center;
+	transition-property: transform, ui-scale, saturation;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-in-out;
+	z-index: 1;
+	saturation: 0.5;
+	brightness: 0.7;
+	ui-scale: 90%;
+}
+
+.FishingTrackArea .FishIndicator.Progressing
+{
+	ui-scale: 100%;
+	saturation: 1;
+	brightness: 1.2;
+}
+
+.FishingTrackArea .FishIndicator.Escaped
+{
+	animation-name: FishEscaped;
+	animation-fill-mode: forwards;
+	animation-duration: 0.8s;
+}
+
+.FishingTrackArea .FishIndicator .FishIcon
+{
+	overflow: noclip;
+	width: 27px;
+	height: 39px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_fish_01_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.FishingTrackArea .FishIndicator .FishIcon.rainbow
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_fish_02_png.vtex");
+}
+
+.FishingTrackArea .BoxIndicator
+{
+	horizontal-align: center;
+	width: 36px;
+	height: 36px;
+	brightness: 0.25;
+	saturation: 0.5;
+	opacity: 0;
+	y: -28px;
+}
+
+.FishingTrackArea .BoxIndicator.Show
+{
+	opacity: 1;
+	animation-name: BoxAppear;
+	animation-duration: 0.2s;
+	animation-timing-function: linear;
+}
+
+.FishingTrackArea .BoxIndicator.Progressing
+{
+	brightness: 1.2;
+	saturation: 1;
+}
+
+.FishingTrackArea .BoxIndicator.Success
+{
+	opacity: 0;
+	brightness: 1.2;
+	saturation: 1;
+	animation-name: BoxAppear;
+	animation-fill-mode: backwards;
+	animation-duration: 0.6s;
+	animation-direction: reverse;
+}
+
+.FishingTrackArea .BoxIndicator.Success .BoxProgressFill
+{
+	background-color: #ffda9d;
+}
+
+.FishingTrackArea .BoxIndicator .BoxProgressBar
+{
+	width: 36px;
+	height: 4px;
+	background-color: #000000;
+	border: 1px solid #ffffffaa;
+}
+
+.FishingTrackArea .BoxIndicator .BoxProgressBar .BoxProgressFill
+{
+	height: 100%;
+	background-color: #FECD7D;
+	transition-property: width;
+	transition-duration: 0.01s;
+	transition-timing-function: linear;
+}
+
+.FishingTrackArea .BoxIndicator .BoxIcon
+{
+	align: center bottom;
+	width: 30px;
+	height: 26px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_box_png.vtex");
+	background-size: 100%;
+}
+
+.FishingTrackArea .PlayerBar
+{
+	overflow: noclip;
+	width: 20px;
+	horizontal-align: center;
+	background-color: #2f8726;
+	border-radius: 4px;
+	transition-property: transform;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-in-out;
+}
+
+.FishingTrackArea .PlayerBarParticle
+{
+	box-shadow: inset 0 0 2px 0px #00000033;
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes 'FishEscaped'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0;
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'BoxAppear'
+{
+	0%
+	{
+		pre-transform-scale2d: 0;
+		opacity: 0;
+	}
+	
+	90%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+}
+
+.ProgressContainer
+{
+	align: right center;
+	width: 4px;
+	height: 100%;
+	z-index: -1;
+}
+
+.ProgressContainer .ProgressBarBackground
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 2px;
+}
+
+.ProgressContainer .ProgressBarFill
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 100%;
+	background-color: #2f8726;
+	transition-property: clip;
+	transition-duration: 0.01s;
+	transition-timing-function: ease-out;
+}
+
+.ProgressContainer .ProgressBarParticle
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ProgressContainer .ProgressText
+{
+	font-size: 24px;
+	font-weight: bold;
+	color: #FFE4B5;
+	horizontal-align: right;
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+}
+
+.ButtonArea
+{
+	width: 100%;
+	margin-top: 50px;
+	flow-children: down;
+}
+
+#FishGameUI
+{
+	width: 800px;
+	height: 600px;
+	overflow: noclip;
+}
+
+.FishingTipsBox
+{
+	align: center center;
+	x: 154px;
+	y: 150px;
+	padding: 20px;
+	border-radius: 16px;
+	background-color: #000000aa;
+	flow-children: down;
+	opacity: 0;
+}
+
+.FishingTipsBox.Show
+{
+	opacity: 1;
+}
+
+.FishingTipsBox #FishingTipsKey
+{
+	margin-bottom: 10px;
+	horizontal-align: center;
+}
+
+.FishingTipsBox #FishingTipsBox_HotKey
+{
+	horizontal-align: center;
+	width: 28px;
+	height: 39px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_key_mouse_big_png.vtex");
+	background-size: 100%;
+	margin-bottom: 20px;
+}
+
+.FishingTipsBox Label
+{
+	font-size: 20px;
+	color: #D5C9A9;
+	text-align: center;
+}
+
+#FishingHookWarning
+{
+	align: center center;
+	x: 154px;
+	y: -150px;
+	width: 46px;
+	height: 122px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_exclamation_mark_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	ui-scale: 0%;
+	transition-property: opacity, ui-scale;
+	transition-duration: 0.2s;
+}
+
+#FishingHookWarning.Show
+{
+	ui-scale: 80%;
+	opacity: 1;
+	animation-name: FishingHookWarningShake;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 0.3s;
+	sound: "Hero_Lion.Fishstick.Target";
+}
+
+@keyframes 'FishingHookWarningShake'
+{
+	0%
+	{
+		transform: none;
+		pre-transform-scale2d: 1;
+	}
+	
+	20%
+	{
+		transform: rotateZ(2deg);
+		pre-transform-scale2d: 1.05;
+	}
+	
+	40%
+	{
+		transform: rotateZ(-3deg);
+		pre-transform-scale2d: 0.98;
+	}
+	
+	60%
+	{
+		transform: rotateZ(1deg);
+		pre-transform-scale2d: 1.03;
+	}
+	
+	80%
+	{
+		transform: rotateZ(-2deg);
+		pre-transform-scale2d: 0.99;
+	}
+	
+	100%
+	{
+		transform: none;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#LeftBar
+{
+	flow-children: down;
+	align: left bottom;
+	margin-bottom: 200px;
+}
+
+#TipsContainer
+{
+	margin-left: 50px;
+	flow-children: down;
+}
+
+#TipsContainer .TipsRow
+{
+	margin: 6px 0;
+	flow-children: right;
+	padding: 0 10px 0 0;
+}
+
+#TipsContainer .TipsRow.Hidden
+{
+	visibility: collapse;
+}
+
+#TipsContainer .TipsRow .EOM_HotKeyDisplay
+{
+	width: 24px;
+	margin-right: 8px;
+}
+
+#TipsContainer .TipsRow .TipsLabel
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #D5C9A9;
+}
+
+#PowerBarContainer
+{
+	align: right center;
+	width: 200px;
+	opacity: 0;
+}
+
+#PowerBarContainer.Show
+{
+	opacity: 1;
+}
+
+#PowerBarContainer #PowerTitle
+{
+	horizontal-align: center;
+	color: #ffda95;
+}
+
+#PowerBarContainer #PowerBarBackground
+{
+	horizontal-align: center;
+	margin-top: 30px;
+	width: 12px;
+	height: 256px;
+	border-radius: 8px;
+	background-color: #6B5010;
+	box-shadow: 0 0 3px 3px #4b3109cc;
+	padding: 2px;
+}
+
+#PowerBarContainer #PowerBarFill
+{
+	vertical-align: bottom;
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	background-color: gradient(linear, 0 0, 0 100%, from(#f37556), color-stop(0.5, #ffcb7d), to(#d6ff76));
+}
+
+#PowerBarContainer #PowerLabel
+{
+	align: center bottom;
+	x: 32px;
+	color: #ffffff;
+	text-shadow: 0 0 2px 2 #000000;
+	font-size: 16px;
+	overflow: noclip;
+}
+
+#PlayerPower
+{
+	align: right bottom;
+	margin-bottom: 87px;
+	margin-right: 110px;
+}
+
+#PlayerPower:hover
+{
+	brightness: 1.5;
+}
+
+#PlayerPower #PowerBarBG
+{
+	horizontal-align: center;
+	width: 109px;
+	height: 109px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_energy_bg_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerPower #PowerBarFill
+{
+	width: 109px;
+	height: 109px;
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_energy_progress_png.vtex");
+	background-size: 100%;
+}
+
+#PlayerPower #PowerValueLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 31px;
+	color: #B9B1A6;
+}
+
+#PlayerPower #PowerBarLabel
+{
+	align: center bottom;
+	text-align: center;
+	margin-bottom: 6px;
+	height: 24px;
+	width: 131px;
+	background-color: gradient(linear, 0 0, 100% 0, from(#1A161400), color-stop(0.3, #1A1614e9), color-stop(0.8, #1A1614e9), to(#1A161400));
+	line-height: 24px;
+	font-size: 18px;
+	color: #B9B1A6;
+	text-shadow: 0px 0px 4px #000000;
+}
+
+#BackpackBtn
+{
+	align: right bottom;
+	margin-right: 136px;
+	margin-bottom: 244px;
+	width: 80px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beg_png.vtex");
+	background-size: 64px;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+#BackpackBtn:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+#BackpackBtn:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+#BackpackBtn:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#BackpackBtn Label
+{
+	align: center bottom;
+	width: 100%;
+	height: 17px;
+	font-size: 16px;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000), to(#00000000));
+	color: #AB977F;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+.FishingCooldownBar
+{
+	align: center center;
+	x: 154px;
+	y: -80px;
+	width: 100px;
+	height: 10px;
+	background-color: #000000;
+	padding: 2px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+.FishingCooldownBar.Show
+{
+	opacity: 1;
+	transition-duration: 0s;
+}
+
+.FishingCooldownBar.Show #FishingCooldownBar_Fill
+{
+	transition-property: width;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.FishingCooldownBar #FishingCooldownBar_Fill
+{
+	width: 100%;
+	height: 100%;
+	transition-property: none;
+	background-color: #d5c9aa;
+}
+
+.FishResultContainer
+{
+	align: right top;
+	margin-top: 100px;
+	opacity: 0;
+	width: 250px;
+	margin-right: 64px;
+}
+
+.FishResultContainer.Show
+{
+	opacity: 1;
+}
+
+.FishResultContainer #FishResultContent
+{
+	width: 250px;
+	flow-children: down;
+}
+
+.FishResultContainer #FishResultMainContent
+{
+	width: 250px;
+	height: 396px;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_infor_bg_01_png.vtex");
+	background-size: 100%;
+	padding: 5px 30px;
+	flow-children: down;
+}
+
+.FishResultContainer Label
+{
+	align: center center;
+	text-align: center;
+}
+
+.FishResultContainer #FishExtraRewardList
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 23px;
+}
+
+.FishResultContainer .FishResultItem
+{
+	width: 250px;
+	height: 66px;
+	horizontal-align: center;
+	flow-children: right;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/hud/fish/h_f_infor_bg_02_png.vtex");
+	background-size: 100%;
+	padding: 1px 41px 1px 10px;
+	margin-top: 4px;
+}
+
+.FishResultContainer .FishResultItem .StoreItemImage
+{
+	width: 64px;
+	height: 64px;
+}
+
+.FishResultContainer .FishResultItem .StoreItemImage .FishResultItemAmounts
+{
+	align: right bottom;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	text-align: center;
+	font-size: 16px;
+	color: #C8C8C8;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.FishResultContainer .FishResultItem .ItemName
+{
+	vertical-align: center;
+	text-align: right;
+	width: fill-parent-flow(1);
+	margin-left: 18px;
+	text-overflow: shrink;
+	font-size: 16px;
+	color: #B9B1A6;
+}
+
+.FishResult
+{
+	flow-children: down;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+.FishResult #FishResultTitle
+{
+	width: 236px;
+	height: 32px;
+	font-size: 24px;
+	color: #C8C0B4;
+	text-shadow: 0px 0px 4px 3 #000000;
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.FishResult #FishResultIcon
+{
+	width: 137px;
+	height: 137px;
+	horizontal-align: center;
+}
+
+.FishResult #FishResultRarityLabel
+{
+	font-size: 16px;
+	text-shadow: 0px 0px 2px 1 #000000;
+	horizontal-align: center;
+	margin-bottom: 6px;
+}
+
+.FishResult #FishResultStarList
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.FishResult .FishStarIcon
+{
+	width: 22px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_star_bright_png.vtex");
+	background-size: 100%;
+	margin: 0px 2px;
+}
+
+.FishResult .FishResultDivider
+{
+	width: 204px;
+	height: 2px;
+	horizontal-align: center;
+	background-color: #3E4249;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.FishResult .FishResultSubTitle
+{
+	flow-children: right;
+	height: 26px;
+	width: 100%;
+	padding: 0 15px 0 10px;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel
+{
+	vertical-align: center;
+	text-align: left;
+	font-size: 16px;
+	color: #B9B1A6;
+	width: fill-parent-flow(1);
+	text-overflow: shrink;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.value
+{
+	text-align: right;
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.valueIcon
+{
+	flow-children: right;
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+	vertical-align: center;
+	margin-left: 8px;
+}
+
+.FishResult .FishResultSubTitle .FishResultSubTitleLabel.valueIcon Label
+{
+	vertical-align: center;
+	text-align: right;
+	width: fill-parent-flow(1);
+}
+
+.FishResult #FishResultCount
+{
+	flow-children: right;
+}
+
+.FishResult #FishResultValueIcon
+{
+	width: 30px;
+	height: 30px;
+	margin-right: 6px;
+	vertical-align: center;
+}

@@ -1,0 +1,709 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+.ArenaHud
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ArenaHud .ArenaStatusPill
+{
+	horizontal-align: center;
+	margin-top: 24px;
+	flow-children: right;
+	padding: 7px 16px;
+	background-color: #08111ae6;
+	border-bottom: 2px solid #b48a47;
+}
+
+.ArenaHud .ArenaStatusPill .ArenaStatusTitle
+{
+	color: #f1cf88;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-right: 16px;
+}
+
+.ArenaHud .ArenaStatusPill .ArenaStatusText
+{
+	color: #d4e5ee;
+	font-size: 17px;
+}
+
+.ArenaHud .ArenaInfoPanel,.ArenaHud .ArenaOpponentPanel
+{
+	width: 330px;
+	max-height: 670px;
+	vertical-align: center;
+	flow-children: down;
+	background-color: #0a1520ed;
+	border: 1px solid #5c6c76;
+	border-left: 3px solid #b48a47;
+	box-shadow: 0px 8px 28px #000000aa;
+	padding: 18px 18px 16px;
+}
+
+.ArenaHud .ArenaInfoPanel
+{
+	horizontal-align: left;
+	margin-left: 32px;
+}
+
+.ArenaHud .ArenaOpponentPanel
+{
+	horizontal-align: right;
+	margin-right: 32px;
+	border-left: 1px solid #5c6c76;
+	border-right: 3px solid #91485a;
+}
+
+.ArenaHud .ArenaPanelEyebrow
+{
+	color: #8caeb7;
+	font-size: 13px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.ArenaHud .ArenaPanelTitle
+{
+	color: #f0d39a;
+	font-size: 29px;
+	font-weight: bold;
+	margin-top: 1px;
+	margin-bottom: 12px;
+}
+
+.ArenaHud .ArenaFormationTabs,.ArenaHud .ArenaResultActions
+{
+	flow-children: right;
+}
+
+.ArenaHud .ArenaFormationTab,.ArenaHud .ArenaAction,.ArenaHud .ArenaExitButton
+{
+	background-color: #182b39;
+	border: 1px solid #526976;
+	padding: 8px 12px;
+	margin-right: 8px;
+	cursor: pointer;
+	transition-property: brightness, background-color, transform;
+	transition-duration: 0.14s;
+}
+
+.ArenaHud .ArenaFormationTab:hover,.ArenaHud .ArenaAction:hover,.ArenaHud .ArenaExitButton:hover
+{
+	brightness: 1.45;
+	transform: translateY(-1px);
+}
+
+.ArenaHud .ArenaFormationTab.Selected,.ArenaHud .ArenaAction.Selected,.ArenaHud .ArenaExitButton.Selected
+{
+	background-color: #315f63;
+	border-color: #7ed2c9;
+}
+
+.ArenaHud .ArenaButtonLabel
+{
+	color: #eef4f4;
+	font-size: 17px;
+	font-weight: semi-bold;
+}
+
+.ArenaHud .ArenaDragHint,.ArenaHud .ArenaOpponentHint
+{
+	color: #a8bbc2;
+	font-size: 15px;
+	line-height: 20px;
+	margin-top: 12px;
+	white-space: normal;
+}
+
+.ArenaHud .ArenaDivider
+{
+	width: 100%;
+	height: 1px;
+	background-color: #42505a;
+	margin: 16px 0px 12px;
+}
+
+.ArenaHud .ArenaLoadoutHeader
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ArenaHud .ArenaSectionTitle
+{
+	color: #e1c17a;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.ArenaHud .ArenaLoadoutItems
+{
+	width: 100%;
+	flow-children: right-wrap;
+	margin-top: 6px;
+}
+
+.ArenaHud .ArenaLoadoutItem
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+}
+
+.ArenaHud .ArenaEmptyBuild
+{
+	color: #7f9199;
+	font-size: 15px;
+	margin-top: 9px;
+}
+
+.ArenaHud .ArenaUpgradeList
+{
+	width: 100%;
+	max-height: 180px;
+	margin-top: 9px;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.ArenaHud .ArenaUpgradeRow
+{
+	width: 100%;
+	min-height: 36px;
+	flow-children: right;
+	padding: 5px 0px;
+	border-bottom: 1px solid #243744;
+}
+
+.ArenaHud .ArenaHeroName
+{
+	width: 93px;
+	color: #e1c17a;
+	font-size: 14px;
+	vertical-align: center;
+}
+
+.ArenaHud .ArenaUpgradeIcons
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ArenaHud .ArenaUpgradeIcon
+{
+	width: 26px;
+	height: 26px;
+	margin-right: 3px;
+}
+
+.ArenaHud .ArenaExitButton
+{
+	horizontal-align: left;
+	margin-top: 18px;
+	background-color: #2e2026;
+	border-color: #784353;
+}
+
+.ArenaHud .ArenaOpponentHint
+{
+	margin-top: -6px;
+	margin-bottom: 12px;
+}
+
+.ArenaHud .ArenaOpponentList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ArenaHud .ArenaOpponentCard
+{
+	width: 100%;
+	height: 88px;
+	flow-children: down;
+	background-color: #14232f;
+	border-left: 2px solid #596c76;
+	padding: 12px;
+	margin-bottom: 8px;
+	cursor: pointer;
+	transition-property: brightness, transform, background-color;
+	transition-duration: 0.14s;
+}
+
+.ArenaHud .ArenaOpponentCard:hover
+{
+	brightness: 1.38;
+	transform: translateX(-2px);
+}
+
+.ArenaHud .ArenaOpponentCard.Selected
+{
+	background-color: #4a2631;
+	border-color: #e07c88;
+}
+
+.ArenaHud .ArenaOpponentName
+{
+	color: #f0dfbd;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.ArenaHud .ArenaOpponentPower
+{
+	color: #a9c7df;
+	font-size: 15px;
+	margin-top: 5px;
+}
+
+.ArenaHud .ArenaResult
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 420px;
+	background-color: #0c1724f5;
+	border: 2px solid #d8b665;
+	padding: 26px;
+	flow-children: down;
+	box-shadow: 0px 0px 32px #000000;
+}
+
+.ArenaHud .ArenaResultTitle
+{
+	horizontal-align: center;
+	color: #f4d58d;
+	font-size: 42px;
+	font-weight: bold;
+}
+
+.ArenaHud .ArenaResultText
+{
+	horizontal-align: center;
+	color: #dce9f3;
+	font-size: 20px;
+	margin: 14px 0px;
+}
+
+.ArenaHud .ArenaResultActions
+{
+	horizontal-align: center;
+}
+
+.CommonItem
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CommonItem.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.CommonItem.large .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_big_png.vtex");
+}
+
+.CommonItem .ItemIcon
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.CommonItem .Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.CommonItem .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_png.vtex");
+}
+
+.CommonItem .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_png.vtex");
+}
+
+.CommonItem .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_png.vtex");
+}
+
+.CommonItem .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_png.vtex");
+}
+
+.CommonItem .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_png.vtex");
+}
+
+.CommonItem .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_png.vtex");
+}
+
+.CommonItem .StackCount
+{
+	align: right bottom;
+	margin: 10%;
+	font-size: 16px;
+	color: white;
+}
+
+.UpgradeIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+.UpgradeIcon.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.UpgradeIcon.large #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity3
+{
+	background-image: url("s2r://");
+}
+
+.UpgradeIcon.large #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_big_png.vtex");
+}
+
+.UpgradeIcon #UpgradeImage
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.UpgradeIcon #Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.UpgradeIcon #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_golden_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}

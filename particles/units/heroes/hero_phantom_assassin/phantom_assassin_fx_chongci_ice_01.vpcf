@@ -1,0 +1,74 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_nMaxParticles = 0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 20
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_hitboxSetName = "default"
+				m_materialGroupName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 3
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_bSetOnce = true
+			m_nCP = 3
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_fx_chongci_ice_01b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_fx_chongci_ice_01a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_fx_chongci_ice_01d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_fx_chongci_ice_01c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_fx_chongci_ice_01f.vpcf"
+		},
+	]
+}

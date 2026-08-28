@@ -1,0 +1,100 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_entityName = "parent"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 300.0, 1.0, 1.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 100.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 20
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/witch_1/witch_1.vmdl"
+				m_sequenceName = "witch_1_idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 3
+			m_vecCP1Pos = [ 0.0, 0.0, 100.0 ]
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxa.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxe.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxd.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxf.vpcf"
+			m_flDelay = 0.3
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/witch_1/particles/witch_1_ice_flameguard_fxh.vpcf"
+		},
+	]
+}

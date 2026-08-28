@@ -1,0 +1,175 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 51;
+}
+
+.CustomHudRoot.Paused
+{
+	opacity: 1;
+}
+
+#CustomPausing
+{
+	align: center center;
+	margin-bottom: 200px;
+	font-size: 25px;
+	color: #FF3333;
+}
+
+#PauseCustomTip
+{
+	align: center center;
+	background-color: #000000EE;
+}
+
+#PlayerDisconnectInfo
+{
+	align: center top;
+	box-shadow: 0 0 2px 2px #00000088;
+	border-radius: 6px;
+	background-color: gradient(linear, 0 0, 0 100%, from(#00000088), to(#00000033));
+	margin-top: 200px;
+	flow-children: right-wrap;
+	width: 650px;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo
+{
+	width: 300px;
+	margin: 10px 10px;
+	flow-children: right;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo.disconnected .PlayerAvatar
+{
+	wash-color: #f5a1a1;
+	brightness: 0.7;
+	opacity: 0.7;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo.disconnected .PlayerName Label
+{
+	color: #cd7979;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo.disconnected #disconnectCount
+{
+	brightness: 1;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo.overTime #disconnectCount
+{
+	color: #ff5353;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo .PlayerAvatar
+{
+	ui-scale: 75%;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo .PlayerName
+{
+	vertical-align: center;
+	width: 100px;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo .PlayerName Label
+{
+	color: #ffffff;
+	text-shadow: 0 0 2px 2 #000000cc;
+}
+
+#PlayerDisconnectInfo .DisconnectInfo #disconnectCount
+{
+	vertical-align: center;
+	color: #ffffff;
+	brightness: 0.5;
+	text-shadow: 0 0 2px 2 #000000cc;
+}
+
+.CustomTip
+{
+	width: 484px;
+	height: 84px;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 1px solid #9B9B9B;
+	border-radius: 8px;
+	flow-children: none;
+}
+
+.CustomTip #TipLabel
+{
+	width: 400px;
+	align: center center;
+	font-size: 18px;
+	color: #FFF;
+	text-align: center;
+}
+
+.CustomTip #PrevTip
+{
+	width: 24px;
+	height: 24px;
+	vertical-align: center;
+	margin-left: 12px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	pre-transform-rotate2d: 180deg;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomTip #PrevTip:hover
+{
+	brightness: 1.5;
+	pre-transform-scale2d: 1.05;
+}
+
+.CustomTip #PrevTip:active
+{
+	brightness: 0.95;
+	pre-transform-scale2d: 0.95;
+}
+
+.CustomTip #NextTip
+{
+	width: 24px;
+	height: 24px;
+	align: right center;
+	margin-right: 12px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomTip #NextTip:hover
+{
+	brightness: 1.5;
+	pre-transform-scale2d: 1.05;
+}
+
+.CustomTip #NextTip:active
+{
+	brightness: 0.95;
+	pre-transform-scale2d: 0.95;
+}

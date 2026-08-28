@@ -1,0 +1,808 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 61;
+}
+
+.hud_menu_bar
+{
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.hud_menu_bar.DungeonLoading
+{
+	transition-delay: 1s;
+	opacity: 0;
+}
+
+#MenuMain
+{
+	width: 100%;
+}
+
+#MenuMain #MenuBar
+{
+	margin-left: 15px;
+	margin-top: 10px;
+	width: 100%;
+	flow-children: right;
+}
+
+#MenuMain #MenuBar.Hidden
+{
+	opacity: 0;
+}
+
+#MenuMain #DropContainer
+{
+	width: 160px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.1s;
+	transform: translateY(-5px);
+	flow-children: down;
+	overflow: noclip;
+	padding: 6px;
+}
+
+#MenuMain #DropContainer.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#MenuMain #DropContainer #MarginTop
+{
+	height: 70px;
+	width: 46px;
+	horizontal-align: center;
+}
+
+#MenuMain #DropContainer #DropMain
+{
+	width: 100%;
+	flow-children: down;
+	padding: -12px -30px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+}
+
+#MenuMain #DropContainer .DropdownItem
+{
+	width: 100%;
+	height: 38px;
+}
+
+#MenuMain #DropContainer .DropdownItem Label
+{
+	margin-left: 30px;
+	margin-right: 30px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#MenuMain #DropContainer .DropdownItem .EOM_RedMark
+{
+	margin-top: 2px;
+	margin-right: 3px;
+	align: right top;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#MenuMain .MenuButton
+{
+	width: 59px;
+	overflow: noclip;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#MenuMain .MenuButton:not(:disabled):hover .BGImage,#MenuMain .MenuButton.Selected .BGImage,#MenuMain .MenuButton.ShowDropDown .BGImage
+{
+	wash-color: #E6D4A4;
+}
+
+#MenuMain .MenuButton:not(:disabled):hover .MenuLabel,#MenuMain .MenuButton.Selected .MenuLabel,#MenuMain .MenuButton.ShowDropDown .MenuLabel
+{
+	color: #E6D4A4;
+}
+
+#MenuMain .MenuButton:not(:disabled):hover #SelectedHover,#MenuMain .MenuButton.Selected #SelectedHover,#MenuMain .MenuButton.ShowDropDown #SelectedHover
+{
+	opacity: 1;
+}
+
+#MenuMain .MenuButton.Selected #SelectParticleRoot
+{
+	opacity: 1;
+}
+
+#MenuMain .MenuButton:not(:disabled):hover
+{
+	brightness: 0.8;
+}
+
+#MenuMain .MenuButton #SelectedHover
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_select_png.vtex");
+	background-size: 50px;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#MenuMain .MenuButton #SelectParticleRoot
+{
+	opacity: 0;
+	align: center top;
+	width: 48px;
+	height: 48px;
+}
+
+#MenuMain .MenuButton #SelectParticleRoot #SelectParticle
+{
+	align: center center;
+	margin-top: -5px;
+	width: 130%;
+	height: 130%;
+	overflow: noclip;
+}
+
+#MenuMain .MenuButton .BGImage
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	wash-color: #686868;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	background-size: 100%;
+}
+
+#MenuMain .MenuButton .MenuMarkIcon
+{
+	align: right top;
+	transform: translateX(10px) translateY(-6px);
+}
+
+#MenuMain .MenuButton .Mark
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+	width: 42px;
+	height: 42px;
+	align: right top;
+	transform: translateX(10px) translateY(-6px);
+}
+
+#MenuMain .MenuButton .EOM_RedMark
+{
+	margin-right: -5px;
+	margin-top: -5px;
+	align: right top;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#MenuMain .MenuLabel
+{
+	width: 100%;
+	height: 18px;
+	margin-top: 42px;
+	text-align: center;
+	font-size: 16px;
+	color: #686868;
+	text-shadow: 0px 0px 2px 3 #000000;
+	text-overflow: shrink;
+}
+
+#MenuMain .BGImage.Return
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/return_png.vtex");
+}
+
+#MenuMain .BGImage.setting
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/set_png.vtex");
+}
+
+#MenuMain .BGImage.mail
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/mail_png.vtex");
+}
+
+#MenuMain .BGImage.store
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/shop_png.vtex");
+}
+
+#MenuMain .BGImage.battlepass
+{
+	background-image: url("s2r://");
+}
+
+#MenuMain .BGImage.draw
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/treasure_png.vtex");
+}
+
+#MenuMain .BGImage.activity
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/act_png.vtex");
+}
+
+#MenuMain .BGImage.hero
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/hero_png.vtex");
+}
+
+#MenuMain .BGImage.equipment
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_icon_02_png.vtex");
+}
+
+#MenuMain .BGImage.cosmetic
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/backpack_png.vtex");
+}
+
+#MenuMain .BGImage.rune
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/rune_png.vtex");
+}
+
+#MenuMain .BGImage.inventory
+{
+	background-image: url("s2r://");
+}
+
+#MenuMain .BGImage.profile
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/files_png.vtex");
+}
+
+#MenuMain .BGImage.book
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/book_png.vtex");
+}
+
+#MenuMain .BGImage.handbook
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/book_png.vtex");
+}
+
+#MenuMain .BGImage.rank
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/rank_png.vtex");
+}
+
+#MenuMain .BGImage.endscreen
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/statistics_png.vtex");
+}
+
+#MenuMain .BGImage.guide
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/guide_png.vtex");
+}
+
+#MenuMain .BGImage.community
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/community_png.vtex");
+}
+
+#MenuMain .EOM_BaseButton.russian .MenuLabel
+{
+	text-overflow: shrink;
+}
+
+#MenuMain #scoreboardLabel
+{
+	color: #cbb98c;
+}
+
+#MenuMain #EquipmentCapacityTipContainer
+{
+	width: 360px;
+	margin-top: 77px;
+	opacity: 0;
+	transition-property: opacity, transform;
+	transition-duration: 0.1s;
+	transform: translateY(-5px);
+	flow-children: down;
+	overflow: noclip;
+}
+
+#MenuMain #EquipmentCapacityTipContainer.Show.Positioned
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#MenuMain #EquipmentCapacityTipContainer #EquipmentCapacityTipArrow
+{
+	width: 24px;
+	height: 21px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/tooltips/tooltip_arrow_top_png.vtex");
+	background-size: 100%;
+	wash-color: #E7D5A5;
+	margin-bottom: -1px;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip
+{
+	width: 100%;
+	min-height: 40px;
+	z-index: 10;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip .TipBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip .TipContext
+{
+	width: 100%;
+	align: center center;
+	flow-children: down;
+	padding: 11px;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip #EquipmentCapacityTipTitle
+{
+	width: 100%;
+	color: #E7D5A5;
+	font-size: 22px;
+	text-shadow: 0px 0px 2px 3 #000000;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip #EquipmentCapacityTipContent
+{
+	width: 100%;
+	margin-top: 4px;
+	color: #D6C7A5;
+	font-size: 18px;
+	text-shadow: 0px 0px 2px 3 #000000;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#MenuMain #EquipmentCapacityTipContainer .EquipmentCapacityTip.Critical #EquipmentCapacityTipTitle
+{
+	color: #FFCE73;
+}
+
+#battlepass,#store
+{
+	visibility: collapse;
+}
+
+.ShowStoreContent #battlepass,.ShowStoreContent #store
+{
+	visibility: visible;
+}
+
+.EOM_RedMark
+{
+	flow-children: none;
+}
+
+.EOM_RedMark .EOM_RedMark-Dot
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_01_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-exclamation.Size-small
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-medium
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-large
+{
+	width: 69.6px;
+	height: 69.6px;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark.Type-new
+{
+	align: right top;
+	margin-right: -5px;
+	margin-top: -3px;
+	width: 52.8px;
+	height: 28.8px;
+	overflow: noclip;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-new.Size-small
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-medium
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-large
+{
+	width: 63.36px;
+	height: 34.56px;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark .EOM_RedMark-Count
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px 2 black;
+	text-align: center;
+}
+
+.EOM_RedMark.Type-dot.Size-small
+{
+	width: 12px;
+	height: 12px;
+}
+
+.EOM_RedMark.Type-dot.Size-small .EOM_RedMark-Count
+{
+	font-size: 8px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium .EOM_RedMark-Count
+{
+	font-size: 10px;
+}
+
+.EOM_RedMark.Type-dot.Size-large
+{
+	width: 42px;
+	height: 42px;
+}
+
+.EOM_RedMark.Type-dot.Size-large .EOM_RedMark-Count
+{
+	font-size: 14px;
+}
+
+.EOM_RedMark.EOM_RedMark-Breathe .EOM_RedMark-Dot
+{
+	animation-name: RedMarkBreathe;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'RedMarkBreathe'
+{
+	0%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		opacity: 0.8;
+		transform: scale3d(1.15, 1.15, 1);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}

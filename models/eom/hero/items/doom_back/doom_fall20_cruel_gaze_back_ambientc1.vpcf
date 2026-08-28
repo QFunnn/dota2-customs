@@ -1,0 +1,127 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 2
+	m_flConstantRadius = 8.0
+	m_ConstantColor = [ 119, 0, 0, 255 ]
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_eye_l"
+					m_entityName = "self_with_wearables"
+				},
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/grimstroke/ti9_cache_grim_ink_dragon_poet_weapon/ti9_cache_grim_ink_dragon_poet_weapon.vmdl"
+				m_nModSpecificData = 13060
+				m_sequenceName = "gs_idle"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.8
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMax = [ 350.0, 0.0, -1000.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 350.0, 0.0, -1000.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.0
+				m_flRandomMax = 360.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flBias = 0.85
+			m_flEndScale = 2.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 16
+			m_Rate = -10.0
+			m_flEndTime = 99999.0
+		},
+	]
+}

@@ -1,0 +1,1338 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background-image: url("s2r://panorama/images/custom_game/loading/l_bg_png.vtex");
+	background-size: 2520px 1200px;
+	background-position: center center;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+
+.CustomHudRoot.GameState_Login
+{
+	opacity: 1;
+}
+
+#Return
+{
+	width: 59px;
+	margin-left: 15px;
+	margin-top: 10px;
+	overflow: noclip;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#Return:not(:disabled):hover .BGImage,#Return.Selected .BGImage,#Return.ShowDropDown .BGImage
+{
+	wash-color: #E6D4A4;
+}
+
+#Return:not(:disabled):hover .MenuLabel,#Return.Selected .MenuLabel,#Return.ShowDropDown .MenuLabel
+{
+	color: #E6D4A4;
+}
+
+#Return:not(:disabled):hover #SelectedHover,#Return.Selected #SelectedHover,#Return.ShowDropDown #SelectedHover
+{
+	opacity: 1;
+}
+
+#Return.Selected #SelectParticleRoot
+{
+	opacity: 1;
+}
+
+#Return:not(:disabled):hover
+{
+	brightness: 0.8;
+}
+
+#Return #SelectedHover
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_select_png.vtex");
+	background-size: 50px;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#Return #SelectParticleRoot
+{
+	opacity: 0;
+	align: center top;
+	width: 48px;
+	height: 48px;
+}
+
+#Return #SelectParticleRoot #SelectParticle
+{
+	align: center center;
+	margin-top: -5px;
+	width: 130%;
+	height: 130%;
+	overflow: noclip;
+}
+
+#Return .BGImage
+{
+	horizontal-align: center;
+	width: 40px;
+	height: 40px;
+	wash-color: #686868;
+	transition-property: wash-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/return_png.vtex");
+}
+
+#Return .MenuMarkIcon
+{
+	align: right top;
+	transform: translateX(10px) translateY(-6px);
+}
+
+#Return .MenuLabel
+{
+	width: 100%;
+	height: 18px;
+	margin-top: 42px;
+	text-align: center;
+	font-size: 16px;
+	color: #686868;
+	text-shadow: 0px 0px 2px 3 #000000;
+	text-overflow: shrink;
+}
+
+#BannedContainer
+{
+	align: center center;
+	z-index: 3;
+	flow-children: none;
+}
+
+#BannedContent
+{
+	horizontal-align: center;
+	color: white;
+	font-size: 20px;
+	margin-top: 30px;
+	width: 90%;
+}
+
+#BanQrCode
+{
+	width: 160px;
+	height: 160px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#BanQrCode.schinese
+{
+	background-image: url("s2r://");
+}
+
+#BanContact
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	color: white;
+}
+
+#BanCountdownContainer
+{
+	flow-children: right;
+	transform: translateY(100px);
+	align: center bottom;
+}
+
+#BanCountdownContainer Label
+{
+	color: red;
+	font-size: 24px;
+}
+
+#InviteKey
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000cc;
+}
+
+#InviteKey #InviteKeyContainer
+{
+	align: center center;
+	flow-children: down;
+	width: 522px;
+	min-height: 196px;
+	padding: 32px 32px 25px 32px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_popup_png.vtex");
+	background-size: 100%;
+}
+
+#InviteKey #InviteKeyTitle
+{
+	horizontal-align: center;
+	font-size: 28px;
+	text-shadow: 0px 0px 4px 3 #000000;
+}
+
+#InviteKey #InviteKeyDesc
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	width: 100%;
+	font-size: 17px;
+	text-align: center;
+	line-height: 24px;
+}
+
+#InviteKey #InviteKeyForm
+{
+	margin-top: 24px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#InviteKey #InviteKeyEntry
+{
+	width: 280px;
+	height: 38px;
+	margin-right: 12px;
+	vertical-align: center;
+	background-color: #00000099;
+}
+
+#LoadingContainer
+{
+	align: center center;
+	flow-children: down;
+}
+
+#LoadingContainer Label
+{
+	horizontal-align: center;
+}
+
+#InviteKeyConfirm
+{
+	width: 96px;
+}
+
+#PlayerReadyUp
+{
+	align: center top;
+	margin-top: 200px;
+	flow-children: right;
+}
+
+#LoginStepsContainer
+{
+	align: center center;
+	margin-top: 320px;
+	flow-children: down;
+	padding: 12px 24px;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_frame_06_png.vtex");
+	background-size: 100%;
+}
+
+#LoginStepsTitle
+{
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.LoginStepItem
+{
+	flow-children: right;
+	margin-top: 4px;
+	align: left center;
+	transition-property: wash-color, opacity;
+	transition-duration: 0.2s;
+	opacity: 0.6;
+}
+
+.LoginStepItem:first-child
+{
+	margin-top: 0px;
+}
+
+.LoginStepItem.Completed
+{
+	opacity: 1;
+}
+
+.LoginStepIndicator
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 8px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_2_png.vtex");
+	background-size: 100%;
+}
+
+.LoginStepItem.Completed .LoginStepIndicator
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_3_png.vtex");
+}
+
+.LoginStepLabel
+{
+	font-size: 18px;
+	vertical-align: center;
+	brightness: 0.4;
+}
+
+.LoginStepItem.Completed .LoginStepLabel
+{
+	brightness: 1;
+}
+
+.PlayerReadySlot
+{
+	margin: 4px;
+	width: 64px;
+	height: 64px;
+	visibility: visible;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#222222), to(#666666));
+	overflow: noclip;
+	wash-color: #888888;
+	box-shadow: #000000aa 0px 0px 4px 0px;
+	transition-property: wash-color, box-shadow, background-color;
+	transition-duration: 0.3s;
+	transition-delay: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.AvatarImage
+{
+	width: 100%;
+	height: 100%;
+	transition-property: wash-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	visibility: collapse;
+}
+
+.PartyMemberInSlot .AvatarImage
+{
+	visibility: visible;
+}
+
+.PartyMemberInSlot .PlayerBackground
+{
+	background-color: black;
+}
+
+.AcceptedMatch
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/status_icons/ready_up_accept_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	border: 2px solid #00ffaa33;
+	box-shadow: #00ff0033 0px 0px 4px 0px;
+	opacity: 0;
+	pre-transform-scale2d: 0.5;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerReadySlot.Accepted .AvatarImage
+{
+	wash-color: white;
+}
+
+.PlayerReadySlot.Accepted .PlayerBackground
+{
+	wash-color: white;
+}
+
+.PlayerReadySlot.Accepted
+{
+	wash-color: #88888800;
+	box-shadow: #00ffdd33 0px 0px 4px 0px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(black), to(black));
+	transition-delay: 0s;
+}
+
+.PlayerReadySlot.Accepted .AcceptedMatch
+{
+	pre-transform-scale2d: 1;
+	opacity: 1;
+}
+
+.DeclinedMatch
+{
+	visibility: collapse;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/status_icons/ready_up_deny_psd.vtex");
+	background-size: 100% 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	border: 2px solid #cc000033;
+	box-shadow: #cc000033 0px 0px 4px 0px;
+	opacity: 0;
+	pre-transform-scale2d: 0.5;
+	transition-property: pre-transform-scale2d, opacity;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerReadySlot.Declined .AvatarImage
+{
+	wash-color: white;
+}
+
+.PlayerReadySlot.Declined .PlayerBackground
+{
+	wash-color: white;
+}
+
+.PlayerReadySlot.Declined
+{
+	wash-color: #cc1100;
+	box-shadow: #ff110022 0px 0px 4px 0px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(black), to(black));
+	transition-delay: 0s;
+}
+
+.PlayerReadySlot.Declined .DeclinedMatch
+{
+	visibility: visible;
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.AspectRatio4x3 .EOM_PopupMain.large
+{
+	ui-scale: 90%;
+}
+
+.EOM_PopupMain
+{
+	align: center center;
+	width: 981px;
+	height: 620px;
+	opacity: 0;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+}
+
+.EOM_PopupMain.Custom
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.EOM_PopupMain.normal
+{
+	width: 884px;
+	height: 635px;
+}
+
+.EOM_PopupMain.small
+{
+	width: 814px;
+	height: 380px;
+}
+
+.EOM_PopupMain.small .EOM_CloseButton
+{
+	margin: 2px -11px 0px 0px;
+}
+
+.EOM_PopupMain.large
+{
+	width: 1362px;
+	height: 872px;
+}
+
+.EOM_PopupMain.PopupType_LeftTop
+{
+	transition-duration: 0.4s;
+	transform: translateX(-120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+.EOM_PopupMain.PopupType_LeftTop.EOM_PopupMainShow
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+.EOM_PopupMain.PopupType_PopOut
+{
+	transition-duration: 0.2s;
+	animation-name: PopOut;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainShow
+{
+	opacity: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainClose
+{
+	opacity: 0;
+	animation-name: PopOutClose;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain .EOM_PopupBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.small.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_small_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.normal.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_middle_png.vtex");
+	background-size: 100% 602px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.large.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_big_png.vtex");
+	background-size: 1362px 804px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 408px;
+	height: 66px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 24px;
+	font-weight: normal;
+	color: #e1cb7e;
+	text-shadow: 0px 0px 3px 3 rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_title_png.vtex");
+	background-size: 408px 66px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: 22px;
+}
+
+.small.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 592px;
+	margin-top: 42px;
+	padding-top: 5px;
+	font-size: 22px;
+	color: #D0CA95;
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_board_title_png.vtex");
+	background-size: 592px 34px;
+	background-position: center top;
+}
+
+.EOM_PopupMain .EOM_PopupContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 100px 60px 60px 60px;
+}
+
+.EOM_PopupMain .EOM_PopupContent.Custom
+{
+	width: fit-children;
+	height: fit-children;
+	margin: 0px;
+}
+
+.small.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 85px 63px 40px 63px;
+}
+
+.normal.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 73px 32px 48px 30px;
+}
+
+.EOM_PopupMain .EOM_CloseButton
+{
+	horizontal-align: right;
+	margin-top: 15px;
+	margin-right: -6px;
+}
+
+.EOM_PopupMain .EOM_CloseButton:active
+{
+	sound: "ui_settings_out_multi";
+}
+
+.EOM_PopupMain .EOM_CloseButton:hover
+{
+	wash-color: none;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}
+
+.EOM_Countdown
+{
+	flow-children: right;
+}
+
+.EOM_Countdown .EOM_CountdownIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/icon_clock_png.vtex");
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #B9A777;
+}
+
+.EOM_Countdown Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 3 #000000;
+	font-size: 16px;
+}
+
+.EOM_Loading.Wave
+{
+	flow-children: right;
+}
+
+.EOM_Loading.Wave Image
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: EOM_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.Wave .WaveCol1
+{
+	animation-name: EOM_Loading_Wave1;
+}
+
+@keyframes 'EOM_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol2
+{
+	animation-name: EOM_Loading_Wave2;
+}
+
+@keyframes 'EOM_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol3
+{
+	animation-name: EOM_Loading_Wave3;
+}
+
+@keyframes 'EOM_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol4
+{
+	animation-name: EOM_Loading_Wave4;
+}
+
+@keyframes 'EOM_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol5
+{
+	animation-name: EOM_Loading_Wave5;
+}
+
+@keyframes 'EOM_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol6
+{
+	animation-name: EOM_Loading_Wave6;
+}
+
+@keyframes 'EOM_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol7
+{
+	animation-name: EOM_Loading_Wave7;
+}
+
+@keyframes 'EOM_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol8
+{
+	animation-name: EOM_Loading_Wave8;
+}
+
+@keyframes 'EOM_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	transform: rotateZ(45deg);
+}
+
+.EOM_Loading.Matrix .Row2 Image
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.Matrix .Row3 Image
+{
+	animation-delay: 0.4s;
+}
+
+.EOM_Loading.Matrix .Row4 Image
+{
+	animation-delay: 0.6s;
+}
+
+.EOM_Loading.Matrix Image
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: EOM_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: EOM_Loading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin Image
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.EOM_Loading.PointSpin .Point1
+{
+	opacity: 1;
+}
+
+.EOM_Loading.PointSpin .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.EOM_Loading.PointSpin .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.EOM_Loading.PointSpin .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.EOM_Loading.PointQueue
+{
+	flow-children: right;
+}
+
+.EOM_Loading.PointQueue Image
+{
+	width: 6px;
+	height: 6px;
+	margin: 4px 4px;
+	border-radius: 50%;
+	wash-color: #A39C82;
+	animation-name: PointQueueJump;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.EOM_Loading.PointQueue .Point1
+{
+	animation-delay: 0s;
+}
+
+.EOM_Loading.PointQueue .Point2
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.PointQueue .Point3
+{
+	animation-delay: 0.4s;
+}
+
+@keyframes 'PointQueueJump'
+{
+	0%
+	{
+		transform: translateY(0px);
+	}
+	
+	25%
+	{
+		transform: translateY(-4px);
+	}
+	
+	50%
+	{
+		transform: translateY(0px);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}

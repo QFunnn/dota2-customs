@@ -1,0 +1,121 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"宝石怪锤击追击AI"
+	"Description"								"使用单位索敌范围检测敌人并执行锤击，否则巡逻"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"							"Sequence"
+					"Name"							"战斗序列"
+					"Index"							"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"					"Condition"
+							"Name"					"HasEnemy"
+							"Index"					"1"
+						}
+						"BattleSelector"
+						{
+							"Type"					"Selector"
+							"Name"					"战斗选择器"
+							"Index"					"2"
+							"Children"
+							{
+								"AttackSequence"
+								{
+									"Type"				"Sequence"
+									"Name"				"锤击序列"
+									"Index"				"1"
+									"Children"
+									{
+										"CheckAttackStatus"
+										{
+											"Type"			"Action"
+											"Name"			"检查攻击状态"
+											"Index"			"1"
+											"Params"
+											{
+												"ability"	"skeleton_hammer_attack"
+											}
+										}
+										"Attack"
+										{
+											"Type"			"Action"
+											"Name"			"Attack"
+											"Index"			"2"
+											"Params"
+											{
+												"ability"	"skeleton_hammer_attack"
+											}
+										}
+									}
+								}
+								"MoveSelector"
+								{
+									"Type"				"Selector"
+									"Name"				"移动选择器"
+									"Index"				"2"
+									"Children"
+									{
+										"CheckTargetDistance"
+										{
+											"Type"			"Condition"
+											"Name"			"目标在范围内"
+											"Index"			"1"
+											"Children"
+											{
+												"FaceMove"
+												{
+													"Type"		"Action"
+													"Name"		"横向移动"
+													"Index"		"1"
+												}
+											}
+										}
+										"MoveToEnemy"
+										{
+											"Type"			"Action"
+											"Name"			"移动到目标"
+											"Index"			"2"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"							"Action"
+					"Name"							"Patrol"
+					"Index"							"2"
+				}
+			}
+		}
+	}
+}

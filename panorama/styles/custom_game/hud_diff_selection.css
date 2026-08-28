@@ -1,0 +1,3743 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+#DiffSelection
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_bg_png.vtex");
+	background-size: 2048px 1080px;
+	background-position: center center;
+	align: center center;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+#DiffSelection.Show
+{
+	opacity: 1;
+}
+
+#DiffSelection .EOM_CloseButton
+{
+	margin-top: 16px;
+	margin-right: 16px;
+	horizontal-align: right;
+	z-index: 2;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsCourier #PortraitsCourierScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EOM_Countdown
+{
+	flow-children: right;
+}
+
+.EOM_Countdown .EOM_CountdownIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/icon_clock_png.vtex");
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #B9A777;
+}
+
+.EOM_Countdown Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 3 #000000;
+	font-size: 16px;
+}
+
+.EOM_ImageNumber1
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber1 .EOM_NUM
+{
+	width: height-percentage(70.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber2 .EOM_NUM
+{
+	width: height-percentage(84.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber3
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber3 .EOM_NUM
+{
+	width: height-percentage(81.5%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/0_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/1_png.vtex");
+	background-size: 100% 100%;
+	width: height-percentage(55%);
+}
+
+.EOM_ImageNumber3 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/2_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/3_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/4_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/5_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/6_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/7_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/8_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/9_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber4
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber4 .EOM_NUM
+{
+	width: height-percentage(77.78%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber4 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/0_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/1_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/2_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/3_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/4_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/5_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/6_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/7_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/8_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/9_png.vtex");
+}
+
+.EOM_ImageNumber5
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber5 .EOM_NUM
+{
+	width: height-percentage(73.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber5 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/0_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/1_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/2_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/3_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/4_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/5_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/6_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/7_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/8_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/9_png.vtex");
+}
+
+.EOM_ImageNumber6
+{
+	height: 43px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber6 .EOM_NUM
+{
+	width: height-percentage(55.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber6 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/0_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_1
+{
+	width: height-percentage(34.88%);
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/1_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/2_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/3_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/4_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/5_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/6_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/7_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/8_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/9_png.vtex");
+}
+
+.EOM_ImageNumber7
+{
+	height: 22px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber7 .EOM_NUM
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin: 0px -4px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber7 .EOM_PercentSign
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin-left: -5px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_%_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_0_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_1
+{
+	background-size: 100% 100%;
+	width: height-percentage(62%);
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_1_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_2_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_3_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_4_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_5_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_6_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_7_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_8_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_9_png.vtex");
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.StoreItemMain
+{
+	width: 275px;
+}
+
+.StoreItemMain #RedPoint
+{
+	width: 48px;
+	height: 48px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemMain.Free #PriceBtn #CurrentPrice,.StoreItemMain.Free #PriceBtn #CostOriginPriceLabel
+{
+	visibility: collapse;
+}
+
+.StoreItemMain.Free #PriceBtn #FreeLabel
+{
+	visibility: visible;
+}
+
+.StoreItem
+{
+	width: 248px;
+	height: 300px;
+	background-size: 100%;
+	horizontal-align: center;
+	background-image: url("s2r://");
+}
+
+.Language_english .StoreItem #LimitInfo Label,.Language_russian .StoreItem #LimitInfo Label
+{
+	text-overflow: shrink;
+}
+
+.StoreItem:hover #ItemImage
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.5;
+}
+
+.StoreItem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_grey_png.vtex");
+}
+
+.StoreItem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_green_png.vtex");
+}
+
+.StoreItem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_blue_png.vtex");
+}
+
+.StoreItem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_yellow_png.vtex");
+}
+
+.StoreItem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_red_png.vtex");
+}
+
+.StoreItem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem #ItemName
+{
+	width: 100%;
+	height: 20px;
+	font-size: 18px;
+	color: #FDEFC8;
+	margin-top: 27px;
+	text-align: center;
+	padding: 0px 30px;
+}
+
+.StoreItem #SplitLine
+{
+	width: 196px;
+	height: 10px;
+	horizontal-align: center;
+	margin-top: 53px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_line_png.vtex");
+}
+
+.StoreItem #ItemParticle
+{
+	horizontal-align: center;
+	margin-top: 65px;
+	width: 175px;
+	height: 175px;
+}
+
+.StoreItem #ItemImage
+{
+	width: 175px;
+	height: 175px;
+	margin-top: 65px;
+	horizontal-align: center;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.StoreItem #ItemCount
+{
+	align: right bottom;
+	margin-right: 36px;
+	margin-bottom: 80px;
+	text-align: center;
+	font-size: 20px;
+	color: #FCD6A4;
+	text-shadow: 0px 0px 4px 4 #000000;
+}
+
+.StoreItem #FirstPayDesc
+{
+	align: center bottom;
+	margin-bottom: 24px;
+	font-size: 18px;
+	height: 20px;
+	width: 190px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #C98849;
+	text-shadow: 0px 0px 4px 4 #000000aa;
+}
+
+.StoreItem .EOM_Countdown
+{
+	align: center bottom;
+	margin-bottom: 58px;
+}
+
+.StoreItem #LimitInfo
+{
+	align: center bottom;
+	margin-bottom: 22px;
+	width: 234px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_character_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItem #LimitInfo Label
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #C98849;
+}
+
+#VIPIcon
+{
+	width: 50px;
+	height: 50px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+#VIPIcon.Buff101
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip101_png.vtex");
+}
+
+#VIPIcon.Buff102
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip102_png.vtex");
+}
+
+#VIPIcon.Buff104
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip104_png.vtex");
+}
+
+#FirstPayLabel
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_en_png.vtex");
+	background-size: 100%;
+	animation-name: Scale;
+	animation-duration: 1.2s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+.Language_schinese #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_cn_png.vtex");
+}
+
+.Language_russian #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_ru_png.vtex");
+}
+
+#PriceBtn
+{
+	horizontal-align: center;
+	margin-top: 290px;
+}
+
+#PriceBtn .CurrencyIcon
+{
+	margin: 0px -3px 0px 0px;
+	letter-spacing: 0px;
+}
+
+#PriceBtn .CurrencyIcon.0
+{
+	margin-bottom: 1px;
+}
+
+#PriceBtn #FreeLabel
+{
+	visibility: collapse;
+	line-height: 20px;
+}
+
+#PriceBtn #CostOriginPriceLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #E94141;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 0px 2 #000000;
+	text-decoration: line-through;
+}
+
+#DiscountNum
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_sale_png.vtex");
+}
+
+#DiscountNum .Rotate15
+{
+	margin-top: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	transform: rotateZ(-15deg);
+}
+
+#DiscountNum #OffSign
+{
+	horizontal-align: center;
+	margin-top: -5px;
+	margin-left: 1px;
+	width: 34px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_off_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemImage
+{
+	width: 256px;
+	height: 256px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+}
+
+.StoreItemBlock
+{
+	width: 128px;
+	height: 128px;
+	background-size: 100%;
+}
+
+.StoreItemBlock.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemBlock.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemBlock.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemBlock.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.StoreItemBlock.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.StoreItemBlock.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.StoreItemBlock.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.StoreItemBlock.IsEquip .StoreItemImage
+{
+	width: 80%;
+	height: 80%;
+}
+
+.StoreItemBlock .StoreItemImage
+{
+	align: center center;
+}
+
+.StoreItemBlock #ItemCount
+{
+	align: right bottom;
+	font-size: 20px;
+	color: #EFEFEF;
+	margin-right: 10%;
+	margin-bottom: 8%;
+}
+
+.StoreItemCard
+{
+	width: 186px;
+	height: 208px;
+}
+
+.StoreItemCard #CardBG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity1 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity2 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemCard.Rarity3 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemCard.Rarity4 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_purple_png.vtex");
+}
+
+.StoreItemCard.Rarity5 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+}
+
+.StoreItemCard.Rarity6 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard.Rarity7 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard #CollectionIcon
+{
+	width: 75%;
+	height: 75%;
+	align: center bottom;
+	margin-bottom: 10%;
+}
+
+.StoreItemCard .StoreItemImage
+{
+	width: 98%;
+	height: 98%;
+	align: center center;
+}
+
+.StoreItemCard #Name
+{
+	align: center top;
+	margin-top: 10%;
+	max-width: 80%;
+	height: 20px;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #1C1132;
+}
+
+.StoreItemCard #LockIcon
+{
+	width: 16%;
+	height: width-percentage(127%);
+	align: center bottom;
+	margin-bottom: 32%;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+.StoreItemCard #SelectedHover
+{
+	align: center center;
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.StoreItemCard #BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+}
+
+.StoreItemCard:not(.Selected):hover #SelectedHover
+{
+	opacity: 1;
+	brightness: 0.5;
+}
+
+.StoreItemCard.Selected #SelectedHover
+{
+	opacity: 1;
+}
+
+.StoreItemCard.Lock .StoreItemImage
+{
+	brightness: 0.25;
+	saturation: 0;
+}
+
+.StoreItemCard.Lock #Name
+{
+	color: #686868;
+}
+
+.StoreItemCard.Lock #LockIcon
+{
+	opacity: 1;
+}
+
+@keyframes 'Scale'
+{
+	0%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+}
+
+#AbyssalSelection
+{
+	width: 100%;
+	height: 100%;
+}
+
+#AbyssalSelection #DiffDetail
+{
+	margin-top: 60px;
+	horizontal-align: center;
+	flow-children: down;
+	padding-left: 14px;
+}
+
+#AbyssalSelection #NormalReward
+{
+	font-size: 22px;
+	color: #BFAA82;
+}
+
+#AbyssalSelection #ChallengeReward
+{
+	margin-top: 0px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#AbyssalSelection #RewardCondition
+{
+	margin-top: 0px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#AbyssalSelection #NormalRewardDesc
+{
+	width: 300px;
+	height: 88px;
+	font-size: 20px;
+	color: #958D83;
+}
+
+#AbyssalSelection #DiffDetailDivider
+{
+	margin-left: -14px;
+	margin-top: -6px;
+	margin-bottom: 11px;
+	width: 274px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider1_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #StarRewardTitle
+{
+	flow-children: right;
+}
+
+#AbyssalSelection #StarRewardTitle #StarRewardLabel
+{
+	font-size: 20px;
+	color: #B9B1A6;
+	vertical-align: bottom;
+}
+
+#AbyssalSelection #StarRewardTitle .DiffStar
+{
+	width: 29px;
+	height: 29px;
+}
+
+#AbyssalSelection .DiffStar
+{
+	width: 34px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_1_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #CheckTag
+{
+	align: center center;
+	width: 50px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #StarRewardList
+{
+	margin-top: 7px;
+	margin-bottom: 45px;
+	flow-children: right;
+}
+
+#AbyssalSelection #StarRewardList .StoreItemBlock
+{
+	margin-right: 10px;
+	width: 60px;
+	height: 60px;
+}
+
+#AbyssalSelection #StarRewardList .StoreItemBlock #ItemCount
+{
+	font-size: 16px;
+	margin-right: 1px;
+}
+
+#AbyssalSelection #StarConditionList
+{
+	flow-children: down;
+}
+
+#AbyssalSelection #StarConditionList .StarCondition
+{
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+#AbyssalSelection #StarConditionList .StarCondition .StarConditionText
+{
+	font-size: 20px;
+	margin-left: 7px;
+	color: #61C441;
+	align: center center;
+}
+
+#AbyssalSelection #StarConditionList .StarCondition.Unfilled .DiffStar
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_0_png.vtex");
+}
+
+#AbyssalSelection #StarConditionList .StarCondition.Unfilled .StarConditionText
+{
+	color: #D5372A;
+}
+
+#AbyssalSelection #CenterModels
+{
+	width: 1550px;
+	height: 100%;
+	overflow: noclip;
+	padding-right: 50px;
+}
+
+#AbyssalSelection #BottomParticle
+{
+	align: center bottom;
+	width: 100%;
+	height: 100%;
+	y: 540px;
+	transition-property: opacity;
+	transition-timing-function: linear;
+	transition-duration: 0.5s;
+}
+
+#AbyssalSelection #BGScene
+{
+	width: 100%;
+	height: width-percentage(100%);
+	align: center center;
+	y: 150px;
+	z-index: 50;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/horizontal_scroll_center_png.vtex");
+}
+
+#AbyssalSelection .HeroWithShowFx
+{
+	width: 1040px;
+	height: 1040px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	overflow: noclip;
+	animation-name: AbyssalHeroShow;
+	animation-fill-mode: both;
+}
+
+#AbyssalSelection .HeroWithShowFx #HeroModelScene
+{
+	width: 1040px;
+	height: 1040px;
+}
+
+#AbyssalSelection .HeroWithShowFx .PlayerName
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#AbyssalSelection .HeroWithShowFx .PlayerName #Diff
+{
+	horizontal-align: center;
+	color: #BFAA82;
+	margin-bottom: 4px;
+}
+
+#AbyssalSelection .HeroWithShowFx .PlayerName #Name
+{
+	min-width: 132px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_panel_name_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	text-align: center;
+	font-size: 20px;
+	line-height: 28px;
+	color: #EFE5CD;
+}
+
+#AbyssalSelection #DiffRight
+{
+	horizontal-align: right;
+	margin-top: 66px;
+	margin-right: 32px;
+	flow-children: down;
+	height: 942px;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo
+{
+	width: 440px;
+	height: 195px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_panel_difficulty_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffSelectionTitleLabel
+{
+	align: center top;
+	margin-top: 32px;
+	width: 342px;
+	height: 24px;
+	font-size: 22px;
+	text-align: center;
+	color: #BFAA82;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer
+{
+	height: 56px;
+	margin-top: 82px;
+	align: center top;
+	flow-children: right;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer #RightArrow
+{
+	pre-transform-rotate2d: 180deg;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .DiffSelectionArrow
+{
+	width: 35px;
+	height: 52px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_arrow_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .DiffSelectionArrow:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_arrow_dis_png.vtex");
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer #DiffList
+{
+	width: 340px;
+	horizontal-align: center;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff
+{
+	width: 60px;
+	height: 60px;
+	vertical-align: center;
+	horizontal-align: center;
+	transition-property: transform, z-index;
+	transition-duration: 0.3s;
+	transition-timing-function: linear;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton
+{
+	width: 52px;
+	height: 56px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_b_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton.Select
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_a_png.vtex");
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton .DiffName
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 22px;
+	color: #BFAA82;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 3 #00000088;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_c_png.vtex");
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled .DiffStar
+{
+	visibility: collapse;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled .DiffName
+{
+	text-align: center;
+	color: #686868;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff .SelectParticle
+{
+	align: center center;
+	width: 200%;
+	height: 300%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-2
+{
+	opacity: 0;
+	transform: translateX(-188px);
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-1
+{
+	opacity: 1;
+	transform: translateX(-94px);
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0
+{
+	opacity: 1;
+	transform: translateX(0px);
+	z-index: 2;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0 .SelectParticle
+{
+	opacity: 1;
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index1
+{
+	opacity: 1;
+	transform: translateX(94px);
+}
+
+#AbyssalSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index2
+{
+	opacity: 0;
+	transform: translateX(188px);
+}
+
+#AbyssalSelection #DiffRight #Start
+{
+	width: 335px;
+	height: 97px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_strat_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #DiffRight #Start Label
+{
+	align: center center;
+	font-size: 26px;
+	color: #E6D4A4;
+}
+
+#AbyssalSelection #DiffRight #Teammate
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#AbyssalSelection #DiffRight #Teammate #TeammateDiff
+{
+	width: 186px;
+	height: 96px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_frame_txt_png.vtex");
+	background-size: 100%;
+}
+
+#AbyssalSelection #DiffRight #Teammate #TeammateDiff Label
+{
+	font-size: 24px;
+	align: center center;
+	color: #BFAA82;
+}
+
+#AbyssalSelection #DiffRight #Teammate #StartCountdown
+{
+	horizontal-align: center;
+	font-size: 14px;
+	margin-top: 10px;
+	color: #B9B1A6;
+}
+
+@keyframes 'AbyssalHeroShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_CheckBox
+{
+	margin: 2px;
+}
+
+.EOM_CheckBox > .TickBox
+{
+	vertical-align: center;
+}
+
+.EOM_CheckBox > Label
+{
+	vertical-align: center;
+}
+
+.EOM_CheckBox2
+{
+	flow-children: right;
+}
+
+.EOM_CheckBox2:hover
+{
+	brightness: 2;
+}
+
+.EOM_CheckBox2 #CheckBox
+{
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+}
+
+.EOM_CheckBox2 #CheckBox #CheckBoxTick
+{
+	align: center center;
+	width: 20px;
+	height: 13px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex");
+	background-size: 20px 13px;
+	background-position: left 2px center;
+	background-repeat: no-repeat;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.05s;
+	transition-timing-function: linear;
+}
+
+.EOM_CheckBox2:selected #CheckBox #CheckBoxTick
+{
+	opacity: 1;
+}
+
+.CheckLabel
+{
+	font-size: 18px;
+	color: #FFF;
+	vertical-align: center;
+	margin-left: 8px;
+}
+
+.CustomScrollBar
+{
+	z-index: 999999;
+	background-color: #0000007c;
+	border-radius: 3px;
+}
+
+.CustomScrollBar #ScrollBarThumb
+{
+	background-color: #685c47;
+	border-radius: 3px;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.CustomScrollBar #ScrollBarThumb:hover
+{
+	brightness: 1.5;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar
+{
+	width: 4px;
+	height: 100%;
+	horizontal-align: right;
+	margin: 16px 0px 16px 0px;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar #ScrollBarThumb
+{
+	width: 8px;
+	horizontal-align: center;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar
+{
+	width: 100%;
+	height: 4px;
+	vertical-align: bottom;
+	margin: 0px 16px 0px 16px;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar #ScrollBarThumb
+{
+	height: 8px;
+	vertical-align: center;
+}
+
+.RecycleViewPageLabel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -28px;
+	font-size: 18px;
+	color: #b7a487;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.DungeonKey
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.DungeonKey #DungeonKeyIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.DungeonKey #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.DungeonKey #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.DungeonKey #RarityParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.DungeonKey.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.DungeonKey.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.DungeonKey.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.DungeonKey.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.DungeonKey.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.DungeonKey.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.DungeonKey.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.DungeonKey.Rarity7 #RarityParticle
+{
+	opacity: 1;
+}
+
+.MenuTabButton
+{
+	width: 238px;
+	height: 42px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_table_0_png.vtex");
+	margin: 0px 2px;
+}
+
+.MenuTabButton .MenuTabButtonContent
+{
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.MenuTabButton.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_table_1_png.vtex");
+}
+
+.MenuTabButton.Selected #MenuTabButtonLabel
+{
+	color: #E7D5A5;
+}
+
+.MenuTabButton.Selected .MenuTabButtonNum
+{
+	color: #E7D5A5;
+}
+
+.MenuTabButton.Selected Image
+{
+	wash-color: #E7D5A5;
+}
+
+.MenuTabButton Image
+{
+	ui-scale: 40%;
+	vertical-align: center;
+	wash-color: #686868;
+}
+
+.MenuTabButton #MenuTabButtonLabel
+{
+	margin-top: 1px;
+	vertical-align: center;
+	color: #686868;
+	font-size: 22px;
+	text-align: center;
+}
+
+.MenuTabButton .MenuTabButtonNum
+{
+	margin-left: 4px;
+	margin-top: 1px;
+	vertical-align: center;
+	color: #686868;
+	font-size: 20px;
+	text-align: center;
+}
+
+.MenuTabButton .MenuLockIcon
+{
+	width: 30px;
+	height: 38px;
+	margin-left: 4px;
+	vertical-align: center;
+	ui-scale: 60%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	wash-color: white;
+}
+
+.EquipmentCommonBtn
+{
+	width: 154px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentCommonBtn Label
+{
+	text-align: center;
+	align: center center;
+	font-size: 18px;
+	color: #FDEFC8;
+}
+
+.ShowBtnBorder
+{
+	border-image-source: url("s2r://panorama/images/custom_game/e1_equipment/e1_select_png.vtex");
+	border-width: 10px 10px 10px 10px;
+	border-image-slice: 10px 10px 10px 10px;
+	border-image-repeat: stretch;
+}
+
+.EquipSeparator
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.EquipSeparator .Line
+{
+	vertical-align: center;
+	width: 157px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_img_title_png.vtex");
+	background-size: 100%;
+}
+
+.EquipSeparator #Line1
+{
+	transform: rotateY(-180deg);
+}
+
+.EquipSeparator Label
+{
+	text-align: center;
+	max-width: 100px;
+	margin: 0px 13px;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+.ConsumeList
+{
+	flow-children: right;
+}
+
+.ConsumeList #Consume
+{
+	margin: 0px 33px;
+	flow-children: down;
+}
+
+.ConsumeList #Consume.NotEnough Label
+{
+	color: #D5372A;
+}
+
+.ConsumeList #Consume .StoreItemBlock
+{
+	horizontal-align: center;
+	width: 59px;
+	height: 59px;
+}
+
+.ConsumeList #Consume Label
+{
+	margin-top: 7px;
+	horizontal-align: center;
+	color: #B9B1A6;
+	font-size: 20px;
+}
+
+.RewardList
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.RewardList #RewardPanel
+{
+	margin: 0px 33px;
+	flow-children: down;
+}
+
+.RewardList #RewardPanel .StoreItemBlock
+{
+	width: 59px;
+	height: 59px;
+}
+
+.RewardList #RewardPanel Label
+{
+	margin-top: 8px;
+	horizontal-align: center;
+	color: #B9B1A6;
+	font-size: 20px;
+}
+
+.AttrBox
+{
+	width: 100%;
+	overflow: squish scroll;
+	max-height: 600px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+.AttrContainer
+{
+	width: 90%;
+	padding: 5px 0px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.Language_english .AttrContainer .AttrItem,.Language_russian .AttrContainer .AttrItem
+{
+	height: 45px;
+}
+
+.Language_english .AttrContainer .AttrItem #AttributeName,.Language_russian .AttrContainer .AttrItem #AttributeName
+{
+	max-width: 200px;
+	max-height: 40px;
+}
+
+.AttrContainer .AttrItem
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 32px;
+	padding: 0px 27px;
+	margin-bottom: 9px;
+	background-color: #00000056;
+	overflow: noclip;
+}
+
+.AttrContainer .AttrItem.ValueIsChange #AttributeValue
+{
+	margin-right: 165px;
+}
+
+.AttrContainer .AttrItem.New
+{
+	height: 38px;
+}
+
+.AttrContainer .AttrItem.New .NewBorder
+{
+	visibility: visible;
+}
+
+.AttrContainer .AttrItem.New .NewTag
+{
+	visibility: visible;
+}
+
+.AttrContainer .AttrItem .NewBorder
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px -27px;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/custom_game/e1_equipment/e1_attribute_list_new_png.vtex");
+	border-image-slice: 0px 20px fill;
+	border-width: 0px 20px;
+	border-image-repeat: stretch;
+	visibility: collapse;
+}
+
+.AttrContainer .AttrItem .NewTag
+{
+	margin-top: -22px;
+	overflow: noclip;
+	width: 66px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+.AttrContainer .AttrItem.Main #Point
+{
+	width: 12px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_primary_png.vtex");
+}
+
+.AttrContainer .AttrItem.Main #AttributeName
+{
+	color: #BFAA82;
+}
+
+.AttrContainer .AttrItem.Adverb #Point
+{
+	width: 8px;
+	height: 8px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_png.vtex");
+	background-size: 100%;
+}
+
+.AttrContainer .AttrItem.Adverb #AttributeName
+{
+	color: #958D83;
+}
+
+.AttrContainer .AttrItem.Adverb.gray #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_gray_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.green #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_green_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.blue #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_blue_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.purple #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_purple_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.yellow #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_yellow_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.red #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_red_png.vtex");
+}
+
+.AttrContainer .AttrItem.Adverb.pink #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_pink_png.vtex");
+}
+
+.AttrContainer .AttrItem Label
+{
+	vertical-align: center;
+	font-size: 20px;
+}
+
+.AttrContainer .AttrItem #Point
+{
+	vertical-align: center;
+}
+
+.AttrContainer .AttrItem #AttributeName
+{
+	max-width: 300px;
+	max-height: 23px;
+	vertical-align: center;
+	text-overflow: shrink;
+	margin-left: 7px;
+	margin-top: 1px;
+}
+
+.AttrContainer .AttrItem #AttributeValue
+{
+	horizontal-align: right;
+	margin-right: 0px;
+	color: #E1E1E1;
+}
+
+.AttrContainer .AttrItem #AttrNameChangeArrow
+{
+	vertical-align: center;
+	margin-left: 15px;
+	margin-right: 20px;
+}
+
+.AttrContainer .AttrItem #ValueChangeArrow
+{
+	align: right center;
+	margin-right: 106px;
+}
+
+.AttrContainer .AttrItem #Next
+{
+	horizontal-align: right;
+	color: #61C441;
+}
+
+.EquipArrow
+{
+	width: 22px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_attribute_arrow_png.vtex");
+}
+
+.AttributeSelectBtn
+{
+	vertical-align: center;
+	margin-right: 11px;
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+}
+
+.AttributeSelectBtn #mid
+{
+	width: 20px;
+	height: 14px;
+	align: center center;
+	opacity: 0;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex");
+}
+
+.AttributeSelectBtn.Selected #mid
+{
+	opacity: 1;
+}
+
+.ToolTipInfo
+{
+	horizontal-align: right;
+	margin-top: 60px;
+	margin-right: 25px;
+	width: 38px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_description_png.vtex");
+	background-size: 100%;
+}
+
+.ToolTipInfo:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EmptySelectTips
+{
+	align: center center;
+	flow-children: down;
+}
+
+.EmptySelectTips #SelectTitle
+{
+	horizontal-align: center;
+	font-size: 36px;
+	color: #B9B1A6;
+}
+
+.EmptySelectTips #EmptyTipsText
+{
+	margin-top: 13px;
+	font-size: 24px;
+	color: #B38C59;
+}
+
+.EmptySlotAdd
+{
+	align: center top;
+	margin-top: 50px;
+	width: 48px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_img_add_png.vtex");
+	background-size: 100%;
+}
+
+.MythEntry
+{
+	flow-children: right;
+}
+
+.MythEntry Image
+{
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_mythical_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-right: 11px;
+}
+
+.MythEntry Label
+{
+	color: #DEBB44;
+	font-size: 18px;
+	vertical-align: center;
+}
+
+.ChaosEntry
+{
+	flow-children: right;
+}
+
+.ChaosEntry #Point
+{
+	vertical-align: center;
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_chaos_png.vtex");
+	background-size: 100%;
+	margin-right: 11px;
+}
+
+.ChaosEntry #EntryText
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #D68545;
+}
+
+.EquipSuitList
+{
+	margin-top: 10px;
+}
+
+.EquipSuitList .Separator
+{
+	visibility: collapse;
+}
+
+.EquipSuitList #Title Label
+{
+	font-size: 20px;
+}
+
+.EquipSuitList .LvEffectItem #EffectLabel,.EquipSuitList .LvEffectItem #LvLabel
+{
+	font-size: 18px;
+}
+
+#DiffSelection #DiffDetail
+{
+	width: 320px;
+	margin-top: 23px;
+	horizontal-align: center;
+	flow-children: down;
+	padding-left: 14px;
+	padding-right: 20px;
+}
+
+#DiffSelection #NormalReward
+{
+	font-size: 22px;
+	color: #BFAA82;
+}
+
+#DiffSelection #ChallengeReward
+{
+	margin-top: 0px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#DiffSelection #RewardCondition
+{
+	margin-top: 0px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#DiffSelection #KeySelectionTitle
+{
+	margin-top: 0px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#DiffSelection #KeySelectionWrapper
+{
+	width: 320px;
+	margin-top: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	padding-left: 14px;
+}
+
+#DiffSelection #KeySelectionWrapper .ToolTipInfo
+{
+	margin-top: 0px;
+	margin-left: 10px;
+	ui-scale: 66%;
+}
+
+#DiffSelection #KeySelectionRow
+{
+	flow-children: right;
+	horizontal-align: left;
+}
+
+#DiffSelection #KeyOwnerAvatar
+{
+	width: 64px;
+	height: 64px;
+	margin-left: 12px;
+	vertical-align: center;
+}
+
+#DiffSelection #KeyIntensityLimit
+{
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
+	color: #D84A3A;
+	margin-top: 5px;
+}
+
+#DiffSelection #NormalRewardDesc
+{
+	width: 300px;
+	height: 88px;
+	font-size: 20px;
+	color: #958D83;
+}
+
+#DiffSelection #TrainInfo
+{
+	width: 300px;
+	text-overflow: shrink;
+	max-height: 88px;
+	font-size: 20px;
+	color: #958D83;
+	margin-bottom: 50px;
+}
+
+#DiffSelection #DiffDetailDivider
+{
+	margin-left: -14px;
+	margin-top: -6px;
+	margin-bottom: 11px;
+	width: 274px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider1_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #KeyActionSlot
+{
+	width: 76px;
+	height: 76px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_add_png.vtex");
+	background-size: 40px 40px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#DiffSelection #KeyActionSlot.Disabled
+{
+	saturation: 0.2;
+}
+
+#DiffSelection #KeyActionSlot.HasKey
+{
+	background-image: none;
+}
+
+#DiffSelection #KeyActionSlot.HasKey #Bg
+{
+	opacity: 0;
+}
+
+#DiffSelection #KeyActionSlot #Bg
+{
+	width: 76px;
+	height: 76px;
+	vertical-align: center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+}
+
+#DiffSelection #KeyActionSlot #SelectedKeyPreview
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#DiffSelection #KeyActionSlot .DungeonKey
+{
+	width: 76px;
+	height: 76px;
+}
+
+#DiffSelection #KeyActionSlot .SelectedKeyCloseButton
+{
+	width: 26px;
+	height: 26px;
+	margin-right: -5px;
+	margin-top: -5px;
+	z-index: 2;
+}
+
+#DiffSelection #KeyActionSlot #SelectedKeyInfo
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 188px;
+}
+
+#DiffSelection #KeyActionSlot .SelectedKeyName
+{
+	font-size: 18px;
+	color: #E6D4A4;
+}
+
+#DiffSelection #KeyActionSlot .SelectedKeyIntensity
+{
+	margin-top: 6px;
+	font-size: 16px;
+	color: #B9B1A6;
+}
+
+#DiffSelection #KeyListRoot
+{
+	ignore-parent-flow: true;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+#DiffSelection #KeyListRoot #KeyListBox
+{
+	width: 400px;
+	height: 620px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_panel_itembg_png.vtex");
+	background-size: 100%;
+	padding-top: 11px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList .CustomScrollBar
+{
+	margin-right: 2px;
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList .Item
+{
+	width: 88px;
+	height: 88px;
+	overflow: noclip;
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList .Item:not(.Gray):hover
+{
+	brightness: 1.8;
+	sound: "UI.HeroCard.Hover";
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList .Item.Selected .SelectedBorder,#DiffSelection #KeyListRoot #DungeonKeysList .Item.InAction .SelectedBorder
+{
+	opacity: 1;
+}
+
+#DiffSelection #KeyListRoot #DungeonKeysList .Item.Gray
+{
+	brightness: 0.1;
+	saturation: 0.5;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow
+{
+	width: 100%;
+	flow-children: down;
+	padding: 26px 22px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .Subheading
+{
+	font-size: 20px;
+	color: #B9B1A6;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .FilterLine
+{
+	width: 100%;
+	height: 2px;
+	margin-top: 8px;
+	margin-left: -11px;
+	margin-right: -11px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider2_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .CheckBoxList
+{
+	width: 100%;
+	flow-children: right-wrap;
+	padding: -6.5px -16px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .CheckBoxList .EOM_CheckBox2
+{
+	width: 144px;
+	margin: 6.5px 16px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .CheckBoxList .EOM_CheckBox2 .CheckLabel
+{
+	text-overflow: shrink;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #RarityFilterList
+{
+	margin-top: 11px;
+}
+
+#DiffSelection #KeyListRoot #BtnsContainer
+{
+	width: 300px;
+	margin-top: 14px;
+}
+
+#DiffSelection #KeyListRoot #BtnsContainer #ResetBtn
+{
+	vertical-align: center;
+	margin-left: 7px;
+	width: 44px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_refresh_png.vtex");
+}
+
+#DiffSelection .SelectedBorder
+{
+	align: center center;
+	width: 80px;
+	height: 80px;
+	border-image-source: url("s2r://panorama/images/custom_game/e1_equipment/e1_select_png.vtex");
+	border-width: 25px 25x 25px 25px;
+	border-image-slice: 25px 25x 25px 25px;
+	border-image-repeat: stretch;
+	opacity: 0;
+}
+
+#DiffSelection #StarRewardTitle
+{
+	flow-children: right;
+}
+
+#DiffSelection #StarRewardTitle #StarRewardLabel
+{
+	font-size: 20px;
+	color: #B9B1A6;
+	vertical-align: bottom;
+}
+
+#DiffSelection #StarRewardTitle .DiffStar
+{
+	width: 29px;
+	height: 29px;
+}
+
+#DiffSelection .DiffStar
+{
+	width: 34px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_1_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #CheckTag
+{
+	align: center center;
+	width: 50px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #StarRewardList
+{
+	margin-top: 7px;
+	margin-bottom: 35px;
+	flow-children: right;
+}
+
+#DiffSelection #StarRewardList .StoreItemBlock
+{
+	margin-right: 10px;
+	width: 60px;
+	height: 60px;
+}
+
+#DiffSelection #StarRewardList .StoreItemBlock #ItemCount
+{
+	font-size: 16px;
+	margin-right: 1px;
+}
+
+#DiffSelection #StarConditionList
+{
+	flow-children: down;
+}
+
+#DiffSelection #StarConditionList .StarCondition
+{
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+#DiffSelection #StarConditionList .StarCondition .StarConditionText
+{
+	font-size: 20px;
+	margin-left: 7px;
+	color: #61C441;
+	align: center center;
+}
+
+#DiffSelection #StarConditionList .StarCondition.Unfilled .DiffStar
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_dot_0_png.vtex");
+}
+
+#DiffSelection #StarConditionList .StarCondition.Unfilled .StarConditionText
+{
+	color: #D5372A;
+}
+
+#DiffSelection #CenterModels
+{
+	width: 1550px;
+	height: 100%;
+	overflow: noclip;
+	padding-right: 50px;
+}
+
+#BottomParticle
+{
+	align: center bottom;
+	width: 100%;
+	height: 100%;
+	y: 540px;
+	transition-property: opacity;
+	transition-timing-function: linear;
+	transition-duration: 0.5s;
+}
+
+#BGScene
+{
+	width: 100%;
+	height: width-percentage(100%);
+	align: center center;
+	y: 150px;
+	z-index: 50;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/horizontal_scroll_center_png.vtex");
+}
+
+.HeroWithShowFx
+{
+	width: 1040px;
+	height: 1040px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	overflow: noclip;
+	animation-name: HeroShow;
+	animation-fill-mode: both;
+}
+
+.HeroWithShowFx #HeroModelScene
+{
+	width: 1040px;
+	height: 1040px;
+}
+
+.HeroWithShowFx .PlayerName
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.HeroWithShowFx .PlayerName #Diff
+{
+	horizontal-align: center;
+	color: #BFAA82;
+	margin-bottom: 4px;
+	height: 75px;
+}
+
+.HeroWithShowFx .PlayerName #Name
+{
+	min-width: 132px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_panel_name_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	text-align: center;
+	font-size: 20px;
+	line-height: 28px;
+	color: #EFE5CD;
+}
+
+#DiffSelection #DiffRight
+{
+	horizontal-align: right;
+	margin-top: 66px;
+	margin-right: 32px;
+	flow-children: down;
+	height: 942px;
+}
+
+#DiffSelection #DiffRight VerticalScrollBar
+{
+	margin-right: -5px;
+}
+
+#DiffSelection #DiffRight #DiffInfo
+{
+	width: 440px;
+	height: 195px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_panel_difficulty_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffSelectionTitleLabel
+{
+	align: center top;
+	margin-top: 32px;
+	width: 342px;
+	height: 24px;
+	font-size: 22px;
+	text-align: center;
+	color: #BFAA82;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer
+{
+	margin-top: 82px;
+	align: center top;
+	flow-children: right;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer #RightArrow
+{
+	pre-transform-rotate2d: 180deg;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .DiffSelectionArrow
+{
+	width: 35px;
+	height: 52px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_arrow_png.vtex");
+	background-size: 100%;
+	vertical-align: top;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .DiffSelectionArrow:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_arrow_dis_png.vtex");
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer #DiffList
+{
+	width: 340px;
+	horizontal-align: center;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff
+{
+	width: 60px;
+	height: 75px;
+	vertical-align: center;
+	horizontal-align: center;
+	transition-property: transform, z-index;
+	transition-duration: 0.3s;
+	transition-timing-function: linear;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffTop
+{
+	width: 52px;
+	height: 56px;
+	vertical-align: top;
+	horizontal-align: center;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffDesc
+{
+	width: 100%;
+	height: 16px;
+	vertical-align: center;
+	text-align: center;
+	font-size: 16px;
+	color: #BFAA82;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 3 #00000088;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton
+{
+	width: 52px;
+	height: 56px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_b_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton.Select
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_a_png.vtex");
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton .DiffName
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 22px;
+	color: #BFAA82;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 3 #00000088;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_c_png.vtex");
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled .DiffStar
+{
+	visibility: collapse;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton:disabled .DiffName
+{
+	text-align: center;
+	color: #686868;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff .SelectParticle
+{
+	align: center center;
+	width: 200%;
+	height: 300%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-2
+{
+	opacity: 0;
+	transform: translateX(-188px);
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-1
+{
+	opacity: 1;
+	transform: translateX(-94px);
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0
+{
+	opacity: 1;
+	transform: translateX(0px);
+	z-index: 2;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0 .SelectParticle
+{
+	opacity: 1;
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index1
+{
+	opacity: 1;
+	transform: translateX(94px);
+}
+
+#DiffSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index2
+{
+	opacity: 0;
+	transform: translateX(188px);
+}
+
+#DiffSelection #DiffRight #Start
+{
+	width: 335px;
+	height: 97px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_strat_png.vtex");
+	background-size: 100%;
+	flow-children: right;
+}
+
+#DiffSelection #DiffRight #Start #StartLabel
+{
+	font-size: 26px;
+	color: #E6D4A4;
+}
+
+#DiffSelection #DiffRight #Start .EOM_GamePad
+{
+	margin-left: 8px;
+}
+
+#DiffSelection #DiffRight #Teammate
+{
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#DiffSelection #DiffRight #Teammate #TeammateDiff
+{
+	width: 186px;
+	height: 96px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_frame_txt_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #DiffRight #Teammate #TeammateDiff Label
+{
+	font-size: 24px;
+	align: center center;
+	color: #BFAA82;
+}
+
+#DiffSelection #DiffRight #Teammate #StartCountdown
+{
+	horizontal-align: center;
+	font-size: 14px;
+	margin-top: 10px;
+	color: #B9B1A6;
+}
+
+@keyframes 'HeroShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+#KeyOwnerLabel
+{
+	vertical-align: center;
+	margin-left: 16px;
+	color: #cfc7b2;
+	font-size: 16px;
+}
+
+#KeyOwnerAvatar
+{
+	vertical-align: center;
+}

@@ -1,0 +1,157 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 128
+	m_BoundingBoxMin = [ -40.0, -150.0, -10.0 ]
+	m_BoundingBoxMax = [ 150.0, 20.0, 180.0 ]
+	m_flConstantLifespan = 0.45
+	m_ConstantColor = [ 242, 255, 95, 255 ]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 30.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_CreateInEpitrochoid"
+			m_bUseCount = true
+			m_nComponent1 = 1
+			m_nComponent2 = 0
+			m_flRadius1 = 104.0
+			m_flRadius2 = 41.299999
+			m_flOffset = 34.0
+			m_flParticleDensity = 0.13
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMin = [ 0.0, 0.0, 35.0 ]
+			m_vecOutputMax = [ 0.0, 0.0, 35.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 22.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 22.0 ]
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 16
+			m_bActiveRange = true
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_bActiveRange = true
+			m_flOutputMax = 0.0
+			m_flOutputMin = 1.0
+			m_nFieldOutput = 16
+			m_nInputMax = 100
+			m_nInputMin = 90
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMax = [ 0.5, 0.5, 0.5 ]
+			m_vecWarpMin = [ 0.5, 0.5, 0.5 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_flStartScale = 0.0
+			m_flBias = 0.98
+			m_flEndTime = 2.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = -24.0
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_flEndTime = 2.0
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.5
+			m_ColorFade = [ 65, 203, 219 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 2.0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 2500.0
+			m_nMaxTesselation = 4
+			m_nMinTesselation = 4
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_hotwhite.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

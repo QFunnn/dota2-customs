@@ -1,0 +1,169 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_flConstantRadius = 150.0
+	m_ConstantColor = [ 154, 176, 255, 225 ]
+	m_ConstantNormal = [ 1.0, 0.0, 0.0 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_nMaxParticles = 20
+	m_flCullRadius = -1.0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 20.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.3
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_flNumToAssign = 20.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 5
+				m_nStartControlPointNumber = 4
+				m_vStartPointOffset = [ 0.0, 0.0, 5.0 ]
+				m_vMidPointOffset = [ 0.0, 0.0, 100.0 ]
+				m_vEndOffset = [ 0.0, 0.0, 5.0 ]
+			}
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMax = 19
+			m_flOutputMin = 2.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_flOutputMax = 0.5
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 7
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_nInputMax = 5
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 7
+			m_nInputMin = 15
+			m_nInputMax = 19
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_MaintainSequentialPath"
+			m_flNumToAssign = 20.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 5
+				m_nStartControlPointNumber = 4
+				m_vStartPointOffset = [ 0.0, 0.0, 5.0 ]
+				m_vMidPointOffset = [ 0.0, 0.0, 250.0 ]
+				m_vEndOffset = [ 0.0, 0.0, 5.0 ]
+			}
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flTextureVWorldSize = 1000.0
+			m_flTextureVScrollRate = -1000.0
+			m_flAddSelfAmount = 1.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_flRadiusScale = 0.5
+			m_flOverbrightFactor = 0.5
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_cone_gradient_1.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+		{
+			_class = "C_OP_RenderRopes"
+			m_flTextureVWorldSize = 500.0
+			m_flTextureVScrollRate = -4.0
+			m_flRadiusScale = 0.25
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_generic_4.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

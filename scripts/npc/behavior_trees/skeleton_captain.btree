@@ -1,0 +1,155 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"巡逻追击AI"
+	"Description"								"检测敌人并追击，否则巡逻"
+	"X"											"448"
+	"Y"											"100"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"448"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"战斗序列"
+					"Description"				"发现敌人后追击并攻击"
+					"X"							"348"
+					"Y"							"340"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckEnemy"
+						{
+							"Type"				"Condition"
+							"Name"				"HasEnemy"
+							"Description"		"检查是否有敌人在范围内"
+							"X"					"-52"
+							"Y"					"460"
+							"Index"				"1"
+						}
+						"BattleSelector"
+						{
+							"Type"				"Selector"
+							"Name"				"战斗选择器"
+							"Description"		"优先攻击，攻击冷却则智能移动"
+							"X"					"448"
+							"Y"					"458.75"
+							"Index"				"2"
+							"Children"
+							{
+								"AttackSequence"
+								{
+									"Type"		"Sequence"
+									"Name"		"攻击序列"
+									"Description""检查攻击状态并执行攻击"
+									"X"			"248"
+									"Y"			"580"
+									"Index"		"1"
+									"Children"
+									{
+										"CheckAttackStatus"
+										{
+											"Type""Action"
+											"Name""检查攻击状态"
+											"X"	"148"
+											"Y"	"700"
+											"Index""1"
+											"Params"
+											{
+												"ability""boss_attack_combo1"
+											}
+										}
+										"Attack"
+										{
+											"Type""Action"
+											"Name""Attack"
+											"Description""攻击敌人"
+											"X"	"348"
+											"Y"	"700"
+											"Index""2"
+											"Params"
+											{
+												"ability""boss_attack_combo1"
+											}
+										}
+									}
+								}
+								"MoveSelector"
+								{
+									"Type"		"Selector"
+									"Name"		"移动选择器"
+									"X"			"648"
+									"Y"			"580"
+									"Index"		"2"
+									"Children"
+									{
+										"CheckTargetDistance"
+										{
+											"Type""Condition"
+											"Name""目标在范围内？"
+											"X"	"548"
+											"Y"	"700"
+											"Index""1"
+											"Children"
+											{
+												"FaceMove"
+												{
+													"Type""Action"
+													"Name""横向移动"
+													"Description""面对敌人进行圆周移动"
+													"X""548"
+													"Y""820"
+													"Index""1"
+												}
+											}
+										}
+										"MoveToEnemy"
+										{
+											"Type""Action"
+											"Name""移动到目标"
+											"X"	"748"
+											"Y"	"700"
+											"Index""2"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"						"Action"
+					"Name"						"Patrol"
+					"Description"				"在区域内巡逻"
+					"X"							"948"
+					"Y"							"340"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

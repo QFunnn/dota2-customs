@@ -1,0 +1,795 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"BOSS-骷髅王"
+	"Description"								"远程压制、中距离转场、近身处决、复活强化"
+	"X"											"742"
+	"Y"											"100"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"X"									"742"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSelector"
+				{
+					"Type"						"Selector"
+					"Name"						"战斗选择器"
+					"X"							"642"
+					"Y"							"340"
+					"Index"						"1"
+					"Children"
+					{
+						"PhaseTwoCombat"
+						{
+							"Type"				"Sequence"
+							"Name"				"二阶段战斗"
+							"X"					"-1558"
+							"Y"					"460"
+							"Index"				"1"
+							"Children"
+							{
+								"CheckStartTime"
+								{
+									"Type"		"Condition"
+									"Name"		"开场延迟"
+									"X"			"-3258"
+									"Y"			"580"
+									"Index"		"1"
+									"Params"
+									{
+										"Delay"	"6"
+									}
+								}
+								"CheckEnemy"
+								{
+									"Type"		"Condition"
+									"Name"		"检测敌人"
+									"X"			"-3058"
+									"Y"			"580"
+									"Index"		"2"
+									"Params"
+									{
+										"Radius""2000"
+									}
+								}
+								"HasReincarnationBuff"
+								{
+									"Type"		"Condition"
+									"Name"		"二阶段判定"
+									"X"			"-2858"
+									"Y"			"580"
+									"Index"		"3"
+								}
+								"CheckAbilityStatus"
+								{
+									"Type"		"Action"
+									"Name"		"技能状态"
+									"X"			"-2658"
+									"Y"			"580"
+									"Index"		"4"
+								}
+								"PhaseTwoGlobalCooldown"
+								{
+									"Type"		"Cooldown"
+									"Name"		"二阶段节奏"
+									"X"			"-1158"
+									"Y"			"580"
+									"Index"		"5"
+									"Params"
+									{
+										"cd"	"2.1"
+									}
+									"Children"
+									{
+										"PhaseTwoSkills"
+										{
+											"Type""Selector"
+											"Name""二阶段技能"
+											"X"	"-1158"
+											"Y"	"700"
+											"Index""1"
+											"Children"
+											{
+												"PhaseTwoClose"
+												{
+													"Type""Sequence"
+													"Name""二阶段近身"
+													"X""-2058"
+													"Y""820"
+													"Index""1"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""近身距离"
+															"X""-2458"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""0"
+																"MaxDistance""300"
+															}
+														}
+														"PhaseTwoClosePolling"
+														{
+															"Type""Polling"
+															"Name""近身轮询"
+															"X""-1958"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseTwoKick"
+																{
+																	"Type""Sequence"
+																	"Name""踢击分支"
+																	"X""-2158"
+																	"Y""1060"
+																	"Index""1"
+																	"Children"
+																	{
+																		"HasSummonedSkeletons"
+																		{
+																			"Type""Condition"
+																			"Name""场上有骷髅"
+																			"X""-2258"
+																			"Y""1180"
+																			"Index""1"
+																		}
+																		"Ability"
+																		{
+																			"Type""Action"
+																			"Name""踢击"
+																			"X""-2058"
+																			"Y""1180"
+																			"Index""2"
+																			"Params"
+																			{
+																				"ability_name""boss_kick"
+																			}
+																		}
+																	}
+																}
+																"PhaseTwoCombo"
+																{
+																	"Type""Action"
+																	"Name""三连击"
+																	"X""-1858"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_attack_combo1"
+																	}
+																}
+																"PhaseTwoRing"
+																{
+																	"Type""Action"
+																	"Name""冥火环绕"
+																	"X""-1658"
+																	"Y""1060"
+																	"Index""3"
+																	"Params"
+																	{
+																		"ability_name""boss_hellfire_ring"
+																	}
+																}
+															}
+														}
+													}
+												}
+												"PhaseTwoMid"
+												{
+													"Type""Sequence"
+													"Name""二阶段中距"
+													"X""-1058"
+													"Y""820"
+													"Index""2"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""中距离"
+															"X""-1458"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""301"
+																"MaxDistance""850"
+															}
+														}
+														"PhaseTwoMidPolling"
+														{
+															"Type""Polling"
+															"Name""中距轮询"
+															"X""-958"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseTwoMortalStrike"
+																{
+																	"Type""Action"
+																	"Name""本命一击"
+																	"X""-1258"
+																	"Y""1060"
+																	"Index""1"
+																	"Params"
+																	{
+																		"ability_name""boss_mortal_strike"
+																	}
+																}
+																"PhaseTwoSpike"
+																{
+																	"Type""Action"
+																	"Name""突刺"
+																	"X""-1058"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_spike"
+																	}
+																}
+																"PhaseTwoSummon"
+																{
+																	"Type""Action"
+																	"Name""召唤骷髅"
+																	"X""-858"
+																	"Y""1060"
+																	"Index""3"
+																	"Params"
+																	{
+																		"ability_name""boss_summon_skeleton"
+																	}
+																}
+																"PhaseTwoRing"
+																{
+																	"Type""Action"
+																	"Name""冥火环绕"
+																	"X""-658"
+																	"Y""1060"
+																	"Index""4"
+																	"Params"
+																	{
+																		"ability_name""boss_hellfire_ring"
+																	}
+																}
+															}
+														}
+													}
+												}
+												"PhaseTwoFar"
+												{
+													"Type""Sequence"
+													"Name""二阶段远程"
+													"X""-158"
+													"Y""820"
+													"Index""3"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""远距离"
+															"X""-458"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""851"
+																"MaxDistance""2000"
+															}
+														}
+														"PhaseTwoFarPolling"
+														{
+															"Type""Polling"
+															"Name""远程轮询"
+															"X""-58"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseTwoHellfireBlast"
+																{
+																	"Type""Action"
+																	"Name""冥火爆击"
+																	"X""-258"
+																	"Y""1060"
+																	"Index""1"
+																	"Params"
+																	{
+																		"ability_name""boss_hellfire_blast"
+																	}
+																}
+																"PhaseTwoShockWave"
+																{
+																	"Type""Action"
+																	"Name""震荡波"
+																	"X""-58"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_shock_wave"
+																	}
+																}
+																"PhaseTwoSummon"
+																{
+																	"Type""Action"
+																	"Name""召唤骷髅"
+																	"X""142"
+																	"Y""1060"
+																	"Index""3"
+																	"Params"
+																	{
+																		"ability_name""boss_summon_skeleton"
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						"PhaseOneCombat"
+						{
+							"Type"				"Sequence"
+							"Name"				"一阶段战斗"
+							"X"					"2042"
+							"Y"					"460"
+							"Index"				"2"
+							"Children"
+							{
+								"CheckStartTime"
+								{
+									"Type"		"Condition"
+									"Name"		"开场延迟"
+									"X"			"342"
+									"Y"			"580"
+									"Index"		"1"
+									"Params"
+									{
+										"Delay"	"6"
+									}
+								}
+								"CheckEnemy"
+								{
+									"Type"		"Condition"
+									"Name"		"检测敌人"
+									"X"			"542"
+									"Y"			"580"
+									"Index"		"2"
+									"Params"
+									{
+										"Radius""2000"
+									}
+								}
+								"CheckAbilityStatus"
+								{
+									"Type"		"Action"
+									"Name"		"技能状态"
+									"X"			"742"
+									"Y"			"580"
+									"Index"		"3"
+								}
+								"PhaseOneGlobalCooldown"
+								{
+									"Type"		"Cooldown"
+									"Name"		"一阶段节奏"
+									"X"			"2342"
+									"Y"			"580"
+									"Index"		"4"
+									"Params"
+									{
+										"cd"	"3"
+									}
+									"Children"
+									{
+										"PhaseOneSkills"
+										{
+											"Type""Selector"
+											"Name""一阶段技能"
+											"X"	"2342"
+											"Y"	"700"
+											"Index""1"
+											"Children"
+											{
+												"PhaseOneClose"
+												{
+													"Type""Sequence"
+													"Name""一阶段近身"
+													"X""1242"
+													"Y""820"
+													"Index""1"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""近身距离"
+															"X""942"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""0"
+																"MaxDistance""300"
+															}
+														}
+														"PhaseOneClosePolling"
+														{
+															"Type""Polling"
+															"Name""近身轮询"
+															"X""1342"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseOneKick"
+																{
+																	"Type""Sequence"
+																	"Name""踢击分支"
+																	"X""1242"
+																	"Y""1060"
+																	"Index""1"
+																	"Children"
+																	{
+																		"HasSummonedSkeletons"
+																		{
+																			"Type""Condition"
+																			"Name""场上有骷髅"
+																			"X""1142"
+																			"Y""1180"
+																			"Index""1"
+																		}
+																		"Ability"
+																		{
+																			"Type""Action"
+																			"Name""踢击"
+																			"X""1342"
+																			"Y""1180"
+																			"Index""2"
+																			"Params"
+																			{
+																				"ability_name""boss_kick"
+																			}
+																		}
+																	}
+																}
+																"PhaseOneCombo"
+																{
+																	"Type""Action"
+																	"Name""三连击"
+																	"X""1542"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_attack_combo1"
+																	}
+																}
+															}
+														}
+													}
+												}
+												"PhaseOneMid"
+												{
+													"Type""Sequence"
+													"Name""一阶段中距"
+													"X""2042"
+													"Y""820"
+													"Index""2"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""中距离"
+															"X""1742"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""301"
+																"MaxDistance""850"
+															}
+														}
+														"PhaseOneMidPolling"
+														{
+															"Type""Polling"
+															"Name""中距轮询"
+															"X""2142"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseOneMortalStrike"
+																{
+																	"Type""Action"
+																	"Name""本命一击"
+																	"X""1942"
+																	"Y""1058.888888888889"
+																	"Index""1"
+																	"Params"
+																	{
+																		"ability_name""boss_mortal_strike"
+																	}
+																}
+																"PhaseOneSpike"
+																{
+																	"Type""Action"
+																	"Name""突刺"
+																	"X""2142"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_spike"
+																	}
+																}
+																"PhaseOneSummon"
+																{
+																	"Type""Action"
+																	"Name""召唤骷髅"
+																	"X""2342"
+																	"Y""1060"
+																	"Index""3"
+																	"Params"
+																	{
+																		"ability_name""boss_summon_skeleton"
+																	}
+																}
+															}
+														}
+													}
+												}
+												"PhaseOneFar"
+												{
+													"Type""Sequence"
+													"Name""一阶段远程"
+													"X""2842"
+													"Y""820"
+													"Index""3"
+													"Children"
+													{
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""远距离"
+															"X""2542"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"MinDistance""851"
+																"MaxDistance""2000"
+															}
+														}
+														"PhaseOneFarPolling"
+														{
+															"Type""Polling"
+															"Name""远程轮询"
+															"X""2942"
+															"Y""940"
+															"Index""2"
+															"Children"
+															{
+																"PhaseOneHellfireBlast"
+																{
+																	"Type""Action"
+																	"Name""冥火爆击"
+																	"X""2742"
+																	"Y""1060"
+																	"Index""1"
+																	"Params"
+																	{
+																		"ability_name""boss_hellfire_blast"
+																	}
+																}
+																"PhaseOneShockWave"
+																{
+																	"Type""Action"
+																	"Name""震荡波"
+																	"X""2942"
+																	"Y""1060"
+																	"Index""2"
+																	"Params"
+																	{
+																		"ability_name""boss_shock_wave"
+																	}
+																}
+																"PhaseOneSummon"
+																{
+																	"Type""Action"
+																	"Name""召唤骷髅"
+																	"X""3142"
+																	"Y""1060"
+																	"Index""3"
+																	"Params"
+																	{
+																		"ability_name""boss_summon_skeleton"
+																	}
+																}
+															}
+														}
+													}
+												}
+												"PhaseOneLateRing"
+												{
+													"Type""Sequence"
+													"Name""后期火环"
+													"X""3542"
+													"Y""820"
+													"Index""4"
+													"Children"
+													{
+														"CheckStartTime"
+														{
+															"Type""Condition"
+															"Name""延后火环"
+															"X""3342"
+															"Y""940"
+															"Index""1"
+															"Params"
+															{
+																"Delay""35"
+															}
+														}
+														"CheckDistanceRange"
+														{
+															"Type""Condition"
+															"Name""火环距离"
+															"X""3542"
+															"Y""940"
+															"Index""2"
+															"Params"
+															{
+																"MinDistance""0"
+																"MaxDistance""450"
+															}
+														}
+														"PhaseOneRing"
+														{
+															"Type""Action"
+															"Name""冥火环绕"
+															"X""3742"
+															"Y""940"
+															"Index""3"
+															"Params"
+															{
+																"ability_name""boss_hellfire_ring"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						"ChaseSequence"
+						{
+							"Type"				"Sequence"
+							"Name"				"追击"
+							"X"					"4242"
+							"Y"					"460"
+							"Index"				"3"
+							"Children"
+							{
+								"CheckStartTime"
+								{
+									"Type"		"Condition"
+									"Name"		"开场延迟"
+									"X"			"3942"
+									"Y"			"580"
+									"Index"		"1"
+									"Params"
+									{
+										"Delay"	"6"
+									}
+								}
+								"CheckEnemy"
+								{
+									"Type"		"Condition"
+									"Name"		"检测敌人"
+									"X"			"4142"
+									"Y"			"580"
+									"Index"		"2"
+									"Params"
+									{
+										"Radius""2000"
+									}
+								}
+								"MoveSelector"
+								{
+									"Type"		"Selector"
+									"Name"		"对峙移动"
+									"X"			"4442"
+									"Y"			"580"
+									"Index"		"3"
+									"Children"
+									{
+										"CheckTargetDistance"
+										{
+											"Type""Condition"
+											"Name""目标在对峙范围"
+											"X"	"4342"
+											"Y"	"700"
+											"Index""1"
+											"Params"
+											{
+												"radius""650"
+											}
+											"Children"
+											{
+												"FaceMove"
+												{
+													"Type""Action"
+													"Name""横向移动"
+													"X""4342"
+													"Y""820"
+													"Index""1"
+													"Params"
+													{
+														"radius""350"
+														"moveType""strafe"
+													}
+												}
+											}
+										}
+										"MoveToEnemy"
+										{
+											"Type""Action"
+											"Name""追击敌人"
+											"X"	"4542"
+											"Y"	"700"
+											"Index""2"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"						"Action"
+					"Name"						"巡逻"
+					"X"							"4742"
+					"Y"							"340"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

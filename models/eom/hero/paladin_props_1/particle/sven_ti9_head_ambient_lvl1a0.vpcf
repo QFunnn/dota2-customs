@@ -1,0 +1,188 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 6
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/items/sven/ti9_sven_cavern_crawl_head/ti9_sven_cavern_crawl_head.vmdl"
+				m_nModSpecificData = 12991
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_nSnapshotControlPoint = 6
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 16.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 41, 215, 237, 255 ]
+			m_ColorMax = [ 41, 215, 237, 255 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMin = [ 40.0, 0.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 40.0, 0.0, 0.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 4
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.25
+				m_flRandomMax = 0.27
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ -6.0, 2.0, 0.0 ]
+			m_OffsetMax = [ -6.0, 2.0, 0.0 ]
+			m_bLocalCoords = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 4
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 4.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+				m_bHasRandomSignFlip = true
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 40, 129, 237, 255 ]
+			m_ColorMax = [ 40, 129, 237, 255 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 70.0 ]
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.2
+			m_flEndScale = 0.0
+			m_flBias = 0.3
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.45
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.2
+			m_flStartScale = 0.6
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_min = 0.5
+			m_flStartTime_max = 0.65
+			m_flEndTime_min = 0.75
+			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 2
+			}
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nMaxTesselation = 3
+			m_flTextureVWorldSize = 100.0
+			m_flScaleVScrollByControlPointDistance = 2.0
+			m_nScalarFieldForTextureCoordinate = 26
+			m_flAnimationRate = 0.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_flOverbrightFactor = 2.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_jagged_06.vtex"
+				},
+			]
+		},
+	]
+	m_hSnapshot = resource:"particles/models/items/sven/ti9_sven_cavern_crawl_head/ti9_sven_cavern_crawl_head_fx.vsnap"
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"models/eom/hero/paladin_props_1/particle/sven_ti9_head_ambient_lvl1a0a.vpcf"
+		},
+	]
+}

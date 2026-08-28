@@ -1,0 +1,214 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf64:version{c95f3434-dfef-4a35-9913-024beddb416a} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 24
+	m_flConstantRadius = 48.0
+	m_flConstantLifespan = 2.0
+	m_ConstantColor = [ 42, 118, 120, 255 ]
+	m_nConstantSequenceNumber = 6
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 16.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 300.0
+				m_flRandomMax = 400.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.137255
+				m_flRandomMax = 0.196078
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 6.0
+				m_flRandomMax = 8.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 10
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 127, 231, 233, 255 ]
+			m_ColorMax = [ 120, 235, 183, 255 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_fSpeedMax = 500.0
+			m_fSpeedMin = 350.0
+			m_fRadiusMax = 10.0
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 1.5
+				m_flRandomMax = 2.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.0
+				m_flInput1 = 0.25
+				m_flOutput0 = 0.1
+				m_flOutput1 = 1.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_PARTICLE_FLOAT"
+				m_nScalarAttribute = 8
+			}
+			m_nOutputField = 10
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeStartTime = 0.5
+			m_ColorFade = [ 16, 36, 79, 255 ]
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+			m_TransformInput = 
+			{
+				m_nControlPoint = 5
+			}
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = 15.0
+			m_nField = 10
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 99999997952.0
+			m_Rate = -200.0
+			m_nField = 10
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 99999997952.0
+			m_Rate = -5.0
+			m_nField = 16
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RadiusDecay"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.0
+			m_Rate = -1000.0
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			m_flOverbrightFactor = 2.0
+			m_bIgnoreDT = true
+			m_flMaxLength = 400.0
+			m_flRadiusScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_flTailAlphaScale = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.0
+			}
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_cone_gradient_2.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+						m_flFinalTextureOffsetV = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = 1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+}

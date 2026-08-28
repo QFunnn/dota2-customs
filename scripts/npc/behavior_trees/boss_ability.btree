@@ -1,0 +1,103 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"BehaviorTree"
+{
+	"Type"										"Root"
+	"Name"										"BOSS单位技能AI"
+	"Description"								"释放技能，否则巡逻"
+	"X"											"368"
+	"Y"											"100"
+	"Params"
+	{
+		"Debug"									"0"
+	}
+	"Children"
+	{
+		"MainSelector"
+		{
+			"Type"								"Selector"
+			"Name"								"主选择器"
+			"Description"						"优先追击敌人，没有敌人则巡逻"
+			"X"									"368"
+			"Y"									"220"
+			"Index"								"1"
+			"Children"
+			{
+				"CombatSequence"
+				{
+					"Type"						"Sequence"
+					"Name"						"技能序列"
+					"X"							"268"
+					"Y"							"340"
+					"Index"						"1"
+					"Children"
+					{
+						"CheckStartTime"
+						{
+							"Type"				"Condition"
+							"Name"				"CheckStartTime"
+							"Description"		"2s后开始"
+							"X"					"67"
+							"Y"					"464"
+							"Index"				"1"
+							"Params"
+							{
+								"Delay"			"1"
+							}
+						}
+						"CheckAbilityStatus"
+						{
+							"Type"				"Action"
+							"Name"				"检查技能状态"
+							"X"					"268"
+							"Y"					"465"
+							"Index"				"2"
+						}
+						"AbilityCooldown"
+						{
+							"Type"				"Cooldown"
+							"Name"				"技能CD：2s"
+							"Description"		"技能通用CD"
+							"X"					"468"
+							"Y"					"463"
+							"Index"				"3"
+							"Params"
+							{
+								"cd"			"2"
+							}
+							"Children"
+							{
+								"SpellAbility"
+								{
+									"Type"		"Action"
+									"Name"		"轮询释放自己的技能"
+									"Description""攻击敌人"
+									"X"			"468"
+									"Y"			"588"
+									"Index"		"1"
+								}
+							}
+						}
+					}
+				}
+				"Patrol"
+				{
+					"Type"						"Action"
+					"Name"						"Patrol"
+					"Description"				"在区域内巡逻"
+					"X"							"668"
+					"Y"							"340"
+					"Index"						"2"
+				}
+			}
+		}
+	}
+}

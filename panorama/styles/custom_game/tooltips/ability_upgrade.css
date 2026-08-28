@@ -1,0 +1,562 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.EOM_Tooltip
+{
+	padding: -12px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+}
+
+.FeatureTag
+{
+	flow-children: down;
+	width: 300px;
+}
+
+.FeatureTag .FeatureTagTitle
+{
+	font-size: 18px;
+	color: #CABEA2;
+}
+
+.FeatureTag .FeatureTagLine
+{
+	width: 274px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/line_divider1_png.vtex");
+	background-size: 100%;
+	margin-left: -10px;
+	margin-top: -6px;
+	margin-bottom: 6px;
+}
+
+.FeatureTag .FeatureTagDesc
+{
+	font-size: 16px;
+	color: #B9B1A6;
+}
+
+.FeatureTags
+{
+	flow-children: down;
+}
+
+.FeatureTags .FeatureTag
+{
+	margin-bottom: 8px;
+}
+
+.TooltipContainer.BaseTooltip #Contents
+{
+	background-color: none;
+	box-shadow: none;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+	padding: -12px;
+	border-color: none;
+}
+
+.TooltipContainer.EmptyTooltip #Contents
+{
+	background-color: none;
+	box-shadow: none;
+	border-color: none;
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_HotKeyDisplay:not(.IsImage)
+{
+	min-width: 24px;
+}
+
+.EOM_HotKeyDisplay.IsImage
+{
+	min-height: 24px;
+}
+
+.EOM_HotKeyDisplay.Filp
+{
+	transform: rotateY(-180deg);
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	align: center center;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	width: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.UpgradeBox
+{
+	width: 500px;
+	flow-children: right;
+}
+
+.UpgradeBox .UpgradeIcon
+{
+	horizontal-align: left;
+	vertical-align: middle;
+	margin: -10px 10px -10px -10px;
+}
+
+.UpgradeBox .UpgradeInfo
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	horizontal-align: left;
+	vertical-align: middle;
+	padding: 3px 0px;
+}
+
+.UpgradeBox .UpgradeInfo .UpgradeName
+{
+	width: 100%;
+	font-size: 28px;
+	color: #CABEA2;
+	text-align: left;
+	margin-bottom: 4px;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.UpgradeBox .UpgradeInfo .UpgradeDescription
+{
+	width: 100%;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-align: left;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+.UpgradeIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+.UpgradeIcon.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.UpgradeIcon.large #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity3
+{
+	background-image: url("s2r://");
+}
+
+.UpgradeIcon.large #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_big_png.vtex");
+}
+
+.UpgradeIcon #UpgradeImage
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.UpgradeIcon #Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.UpgradeIcon #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_golden_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
+}

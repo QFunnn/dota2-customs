@@ -1,0 +1,290 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().courier = {
+	"600001": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/duskie/duskie.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600002": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/captain_bamboo/captain_bamboo.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600003": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/baekho/baekho.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600004": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/mighty_chicken/mighty_chicken.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600005": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/tory_the_sky_guardian/tory_the_sky_guardian.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600006": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/blue_lightning_horse/blue_lightning_horse.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600007": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/props_gameplay/donkey.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600008": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/arneyb_rabbit/arneyb_rabbit.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600009": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/xianhe_stork/xianhe_stork.vmdl",
+		"ModelScale": 1,
+		"Skin": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600010": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/jin_yin_white_fox/jin_yin_white_fox.vmdl",
+		"ModelScale": 1,
+		"Skin": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600011": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/flightless_dod/flightless_dod.vmdl",
+		"ModelScale": 1,
+		"Skin": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600012": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/livery_llama_courier/livery_llama_courier.vmdl",
+		"ModelScale": 1,
+		"Skin": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier"
+	},
+	"600013": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/courier_ti10_radiant/courier_ti10_radiant.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600014": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/hamster_courier/hamster_courier_lv3.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600015": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/shibe_dog_cat/shibe_dog_cat.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600016": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/dragon_courier_2024_gold/dragon_courier_2024_gold.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600017": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/nian_courier/nian_courier_flying.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600018": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/blazing_hatchling_the_fortune_bringer_courier/blazing_hatchling_the_fortune_bringer_courier_flying.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600019": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/amaterasu/amaterasu_flying.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600020": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/hand_courier/hand_courier_radiant_lv4_flying.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600021": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/mole_messenger/mole_messenger_lvl5.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600022": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/courier/otter_dragon/otter_dragon.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	}
+};

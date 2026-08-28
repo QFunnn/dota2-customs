@@ -1,0 +1,34 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+local a = "abilities/privilege/privilege_bless_009"
+local b = require("lualib_bundle")
+local c = b.__TS__Class
+local d = b.__TS__ClassExtends
+local e = b.__TS__DecorateLegacy
+local f = {}
+local g = require("abilities.eom_privilege")
+local h = g.EOMPrivilege
+local i = g.RegisterPrivilege
+local j = c()
+j.name = "privilege_bless_009"
+d(j, h)
+function j.prototype.OnCreated(self)
+	Privilege:SetPlayerDynamicValue(self.privilegeName, self:GetPlayerID(), "FirstDropCount", 1)
+end
+function j.prototype.EventListener(self)
+	return {
+		dungeon_room_start = function()
+			Privilege:SetPlayerDynamicValue(self.privilegeName, self:GetPlayerID(), "FirstDropCount", 1)
+		end,
+	}
+end
+j = e({ i(nil) }, j)
+return f

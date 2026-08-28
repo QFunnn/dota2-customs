@@ -1,0 +1,6558 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+.AspectRatio16x10 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 90%;
+}
+
+.AspectRatio4x3 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 75%;
+}
+
+.hud_main
+{
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+}
+
+.hud_main.DungeonLoading
+{
+	transition-delay: 1s;
+	opacity: 0;
+}
+
+.hud_main.Arena
+{
+	opacity: 0;
+}
+
+.HUDMainHover
+{
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.HUDMainHover:hover
+{
+	brightness: 1.4;
+}
+
+.Fishing #BottomBar
+{
+	opacity: 0;
+}
+
+.Fishing #LeftBar
+{
+	opacity: 0;
+}
+
+.Fishing #RightBar
+{
+	opacity: 0;
+}
+
+.Explore #BottomBar
+{
+	opacity: 0;
+}
+
+.Explore #LeftBar #ArtifactList
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.Explore #LeftBar #UpgradeList
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.Explore #RightBar #BackpackBtn
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+.Explore #RightBar #PlayerList
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#Version
+{
+	align: right bottom;
+	font-size: 14px;
+	brightness: 0.2;
+}
+
+#Logo
+{
+	horizontal-align: right;
+	margin-right: 240px;
+	margin-top: 10px;
+	width: 168px;
+	height: 100px;
+	background-image: url("s2r://panorama/images/custom_game/loading/logo_small_en_png.vtex");
+	background-size: 100%;
+}
+
+.Language_schinese #Logo,.Language_Schinese #Logo
+{
+	background-image: url("s2r://panorama/images/custom_game/loading/logo_small_cn_png.vtex");
+}
+
+.EOM_Icon
+{
+	width: 100%;
+	height: width-percentage(100%);
+	background-size: 100%;
+	transition-property: pre-transform-rotate2d;
+	transition-duration: 0.2s;
+}
+
+.EOM_Icon.EOM_IconSpin
+{
+	animation-name: SpinnerRotate;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Icon.EOM_IconShadow
+{
+	img-shadow: 0px 0px 3px 3 black;
+}
+
+.EOM_Icon.Mirror
+{
+	transform: rotateY(180deg);
+}
+
+.EOM_Icon.Size16
+{
+	width: 16px;
+	height: 16px;
+}
+
+.EOM_Icon.Size24
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_Icon.Size32
+{
+	width: 32px;
+	height: 32px;
+}
+
+.EOM_Icon.Size48
+{
+	width: 48px;
+	height: 48px;
+}
+
+.EOM_Icon.Size64
+{
+	width: 64px;
+	height: 64px;
+}
+
+.EOM_Icon.Size96
+{
+	width: 96px;
+	height: 96px;
+}
+
+.EOM_Icon.Size128
+{
+	width: 128px;
+	height: 128px;
+}
+
+.EOM_IconRefresh
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_IconGear
+{
+	background-image: url("s2r://panorama/images/control_icons/gear_png.vtex");
+}
+
+.EOM_IconArrowRight
+{
+	width: 18px;
+	height: width-percentage(175%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_min_right_psd.vtex");
+}
+
+.EOM_IconDoubleArrowRight
+{
+	width: 18px;
+	height: width-percentage(175%);
+	background-image: url("s2r://panorama/images/control_icons/double_arrow_right_png.vtex");
+}
+
+.EOM_IconArrowSolidRight
+{
+	width: 19px;
+	height: width-percentage(167%);
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+}
+
+.EOM_IconArrowExpand
+{
+	background-image: url("s2r://panorama/images/control_icons/brackets_psd.vtex");
+}
+
+.EOM_IconPopout
+{
+	background-image: url("s2r://panorama/images/control_icons/arrow_popout_png.vtex");
+}
+
+.EOM_IconLockSmall
+{
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+.EOM_CloseButton.Tui12
+{
+	width: 48px;
+	height: 48px;
+	background-image: url("s2r://");
+}
+
+.EOM_CloseButton.Tui12:not(:disabled):hover .EOM_IconXClose
+{
+	pre-transform-scale2d: 1.2;
+}
+
+.EOM_CloseButton.Tui12:not(:disabled):active .EOM_IconXClose
+{
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_IconXClose
+{
+	width: 34px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+}
+
+.EOM_IconXClose.Gradient
+{
+	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
+}
+
+.EOM_IconXClose.Quit
+{
+	background-image: url("s2r://panorama/images/control_icons/quit_png.vtex");
+}
+
+.EOM_IconXClose.Tui9
+{
+	width: 37px;
+	height: 34px;
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Tui10
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Tui10_old
+{
+	width: 80px;
+	height: 80px;
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Tui7
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Tui3
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.P2
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.C4_old
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.C4
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Default
+{
+	background-image: url("s2r://");
+}
+
+.EOM_IconXClose.Tui12
+{
+	width: 48px;
+	height: 48px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	transition-property: pre-transform-scale2d;
+	transition-duration: 0.15s;
+	transition-timing-function: ease;
+}
+
+.EOM_IconSpinner
+{
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+}
+
+.EOM_GamePad
+{
+	flow-children: none;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.EOM_GamePad .Image
+{
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadIcon,.EOM_GamePad .EOM_GamePadStick
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+}
+
+.EOM_GamePad .EOM_GamePadDirection
+{
+	width: 42%;
+	height: 42%;
+	align: center center;
+	opacity: 0.95;
+}
+
+.EOM_GamePad .EOM_GamePadText
+{
+	align: center center;
+	font-size: 14px;
+	color: #d5c8a8;
+	text-align: center;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad .EOM_GamePadTextBorder
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.EOM_GamePad .EOM_GamePadTextValue
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+.EOM_GamePad.IsTextKey
+{
+	min-width: 24px;
+	width: fit-children;
+	height: 24px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_neg .EOM_GamePadDirection
+{
+	margin-right: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-r_axis_pos .EOM_GamePadDirection
+{
+	margin-left: 46%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_neg .EOM_GamePadDirection
+{
+	margin-bottom: 48%;
+}
+
+.EOM_GamePad.HasDirection.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.HasDirection.Key-u_axis_pos .EOM_GamePadDirection
+{
+	margin-top: 48%;
+}
+
+.EOM_GamePad.Key-joy1,.EOM_GamePad.Key-joy2,.EOM_GamePad.Key-joy3,.EOM_GamePad.Key-joy4,.EOM_GamePad.Key-joy9,.EOM_GamePad.Key-joy10
+{
+	width: height-percentage(100%);
+	height: 40px;
+}
+
+.EOM_GamePad.Key-pov_left,.EOM_GamePad.Key-pov_right,.EOM_GamePad.Key-pov_up,.EOM_GamePad.Key-pov_down
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-x_axis_neg,.EOM_GamePad.Key-x_axis_pos,.EOM_GamePad.Key-y_axis_neg,.EOM_GamePad.Key-y_axis_pos,.EOM_GamePad.Key-r_axis_neg,.EOM_GamePad.Key-r_axis_pos,.EOM_GamePad.Key-u_axis_neg,.EOM_GamePad.Key-u_axis_pos
+{
+	width: 40px;
+	height: 40px;
+}
+
+.EOM_GamePad.Key-joy1 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy1_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy2 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy2_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy3 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy3_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy4 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy4_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy5 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy5_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy6 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy6_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy7 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy7_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy8 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy8_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy9 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy9_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-joy10 .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/joy10_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-z_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/z_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-v_axis_pos .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/v_axis_pos_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-home .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-menu .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-select .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-start .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-view .EOM_GamePadIcon
+{
+	background-image: url("s2r://");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_left .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_left_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_right .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_right_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_up .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_up_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-pov_down .EOM_GamePadIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/pov_down_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-x_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-y_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/left_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-r_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadStick,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadStick
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/gamepad/right_stick_png.vtex");
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.EOM_GamePad.Key-x_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_neg .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_left_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-x_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-r_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 6px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_neg .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_neg .EOM_GamePadDirection
+{
+	y: 3px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_up_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_GamePad.Key-y_axis_pos .EOM_GamePadDirection,.EOM_GamePad.Key-u_axis_pos .EOM_GamePadDirection
+{
+	y: 2px;
+	width: 10px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/control_icons/arrow_solid_down_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_HotKeyDisplay:not(.IsImage)
+{
+	min-width: 24px;
+}
+
+.EOM_HotKeyDisplay.IsImage
+{
+	min-height: 24px;
+}
+
+.EOM_HotKeyDisplay.Filp
+{
+	transform: rotateY(-180deg);
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	align: center center;
+	font-size: 12px;
+	color: #D5C8A8;
+	text-align: center;
+	margin: 0px 5px;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayImage
+{
+	align: center center;
+}
+
+.EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	width: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_png.vtex");
+	border-width: 24px 5px 0px 5px;
+	border-image-slice: 100% 5px 0px 5px;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+.SectIcon
+{
+	width: 32px;
+	height: 32px;
+}
+
+.SectIcon .SectImage
+{
+	width: 100%;
+	height: 100%;
+	background-size: 130%;
+	align: center center;
+	background-position: center;
+}
+
+.SectIcon.Crit .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Crit.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_crit_png.vtex");
+}
+
+.SectIcon.Crit.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Crit.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_crit_png.vtex");
+}
+
+.SectIcon.Ice .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Ice.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_ice_png.vtex");
+}
+
+.SectIcon.Ice.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Ice.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_ice_png.vtex");
+}
+
+.SectIcon.Zeus .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Zeus.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_zeus_png.vtex");
+}
+
+.SectIcon.Zeus.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Zeus.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_zeus_png.vtex");
+}
+
+.SectIcon.Poison .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Poison.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_poison_png.vtex");
+}
+
+.SectIcon.Poison.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Poison.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_poison_png.vtex");
+}
+
+.SectIcon.Holy .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Holy.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_holy_png.vtex");
+}
+
+.SectIcon.Holy.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Holy.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_holy_png.vtex");
+}
+
+.SectIcon.Wind .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Wind.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_wind_png.vtex");
+}
+
+.SectIcon.Wind.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Wind.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_wind_png.vtex");
+}
+
+.SectIcon.Bleed .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Bleed.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/skill_blood_png.vtex");
+}
+
+.SectIcon.Bleed.Large .SectImage
+{
+	background-image: url("s2r://");
+}
+
+.SectIcon.Bleed.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/skill/large/skill_blood_png.vtex");
+}
+
+.SectIcon.sect_health .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_brawny_grey_png.vtex");
+}
+
+.SectIcon.sect_health.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_brawny_png.vtex");
+}
+
+.SectIcon.sect_health.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_brawny_grey_png.vtex");
+}
+
+.SectIcon.sect_health.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_brawny_png.vtex");
+}
+
+.SectIcon.sect_fury .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_fury_grey_png.vtex");
+}
+
+.SectIcon.sect_fury.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_fury_png.vtex");
+}
+
+.SectIcon.sect_fury.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_fury_grey_png.vtex");
+}
+
+.SectIcon.sect_fury.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_fury_png.vtex");
+}
+
+.SectIcon.sect_regen .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_healer_grey_png.vtex");
+}
+
+.SectIcon.sect_regen.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_healer_png.vtex");
+}
+
+.SectIcon.sect_regen.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_healer_grey_png.vtex");
+}
+
+.SectIcon.sect_regen.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_healer_png.vtex");
+}
+
+.SectIcon.sect_wisp .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_void_grey_png.vtex");
+}
+
+.SectIcon.sect_wisp.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_void_png.vtex");
+}
+
+.SectIcon.sect_wisp.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_void_grey_png.vtex");
+}
+
+.SectIcon.sect_wisp.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_void_png.vtex");
+}
+
+.SectIcon.sect_chaos .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_chaos_grey_png.vtex");
+}
+
+.SectIcon.sect_chaos.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_chaos_png.vtex");
+}
+
+.SectIcon.sect_chaos.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_chaos_grey_png.vtex");
+}
+
+.SectIcon.sect_chaos.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_chaos_png.vtex");
+}
+
+.SectIcon.sect_none .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_none_grey_png.vtex");
+}
+
+.SectIcon.sect_none.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/sect_none_png.vtex");
+}
+
+.SectIcon.sect_none.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_none_grey_png.vtex");
+}
+
+.SectIcon.sect_none.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/sect_none_png.vtex");
+}
+
+.SectIcon.sect_crit .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_assassin_grey_png.vtex");
+}
+
+.SectIcon.sect_crit.Active .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/skill_assassin_png.vtex");
+}
+
+.SectIcon.sect_crit.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_assassin_grey_png.vtex");
+}
+
+.SectIcon.sect_crit.Active.Large .SectImage
+{
+	background-image: url("s2r://panorama/images/custom_game/sect_icon/large/skill_assassin_png.vtex");
+}
+
+.CommonBox
+{
+	width: 500px;
+}
+
+.CommonBox .CommonItem.large
+{
+	width: 110px;
+	height: 110px;
+}
+
+.CommonBox .CommonItem
+{
+	horizontal-align: left;
+	vertical-align: middle;
+	margin: -6px -10px;
+}
+
+.CommonBox .CommonInfo
+{
+	width: 100%;
+	flow-children: down;
+	margin-left: 110px;
+	horizontal-align: left;
+	vertical-align: middle;
+	padding: 3px 0px;
+}
+
+.CommonBox .CommonInfo .CommonNameRow
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CommonBox .CommonInfo .CommonNameRow .CommonName
+{
+	font-size: 22px;
+	font-weight: bold;
+	text-align: left;
+	margin-bottom: 4px;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.CommonBox .CommonInfo .CommonNameRow .CommonExtraTag
+{
+	vertical-align: center;
+	font-size: 18px;
+	margin-left: 6px;
+	color: #D8C88E;
+	text-shadow: 1px 1px 2px #000000;
+}
+
+.CommonBox .CommonInfo .Rarity1
+{
+	color: #7C918E;
+}
+
+.CommonBox .CommonInfo .Rarity2
+{
+	color: #69944A;
+}
+
+.CommonBox .CommonInfo .Rarity3
+{
+	color: #4472CE;
+}
+
+.CommonBox .CommonInfo .Rarity4
+{
+	color: #875DD4;
+}
+
+.CommonBox .CommonInfo .Rarity5
+{
+	color: #CEAD3C;
+}
+
+.CommonBox .CommonInfo .Rarity6
+{
+	color: #E55043;
+}
+
+.CommonBox .CommonInfo .CommonDescription
+{
+	width: 100%;
+	font-size: 18px;
+	color: #B9B1A6;
+	text-align: left;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+.CommonBox .CommonInfo .HeroAbility__Details
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 6px;
+}
+
+.CommonBox .CommonInfo .HeroAbility__Detail
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CommonBox .CommonInfo .HeroAbility__DetailLabel
+{
+	font-size: 16px;
+	color: #A39C82;
+}
+
+.CommonBox .CommonInfo .HeroAbility__DetailValue
+{
+	font-size: 16px;
+	color: #e1e1e1;
+}
+
+.CommonBox .CommonInfo .HeroAbility__UpgradeValue
+{
+	color: #70EA72;
+}
+
+.CommonBox .HeroAbility__PropertyValue
+{
+	horizontal-align: right;
+	font-size: 16px;
+	color: #e1e1e1;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-left: 25px;
+	margin-right: 10px;
+	text-shadow: 2px 2px 0px 1 #00000088;
+	padding-top: 2px;
+	background-size: 20px;
+}
+
+.CommonBox .HeroAbility__PropertyValue.AbilityCooldown
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+}
+
+.CommonBox .HeroAbility__PropertyValue.AbilityManaCost
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_healthcost_icon_psd.vtex");
+}
+
+.CommonBox .HeroAbility__PropertyValue.AbilityCastRange
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_castrange_icon_psd.vtex");
+}
+
+.CommonBox .HeroAbility__PropertyValue.GoldCost
+{
+	color: #FFCC33;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+}
+
+.CommonBox .HeroAbility__PropertyValue.NoEnoughGold
+{
+	color: red;
+}
+
+.CommonBox .SectList
+{
+	horizontal-align: right;
+	flow-children: right;
+}
+
+.CommonBox .SectList .SectIcon
+{
+	margin-left: 4px;
+}
+
+.CommonItem
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CommonItem.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.CommonItem.large .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_big_png.vtex");
+}
+
+.CommonItem .ItemIcon
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.CommonItem .Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.CommonItem .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_png.vtex");
+}
+
+.CommonItem .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_png.vtex");
+}
+
+.CommonItem .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_png.vtex");
+}
+
+.CommonItem .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_png.vtex");
+}
+
+.CommonItem .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_png.vtex");
+}
+
+.CommonItem .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_png.vtex");
+}
+
+.CommonItem .StackCount
+{
+	align: right bottom;
+	margin: 10%;
+	font-size: 16px;
+	color: white;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+@keyframes 'ArtifactOptionAppear'
+{
+	0%
+	{
+		transform: translateY(80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#ArtifactSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	flow-children: down;
+	opacity: 0;
+}
+
+#ArtifactSelection.Show
+{
+	opacity: 1;
+}
+
+#ArtifactSelection.Show .SelectionOption
+{
+	animation-name: ArtifactOptionAppear;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#ArtifactSelection #BG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_01_png.vtex");
+	border-image-slice: 60px 100% 60px 0px;
+	border-width: 60px 100% 60px 0px;
+	border-image-repeat: stretch;
+}
+
+#ArtifactSelection #SelectionConent
+{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#ArtifactSelection #SelectionConent #Title
+{
+	width: 296px;
+	height: 40px;
+	align: center center;
+	flow-children: right;
+}
+
+#ArtifactSelection #SelectionConent #Title Label
+{
+	width: 100%;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+}
+
+#ArtifactSelection #SelectionConent #Title .LeftIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#ArtifactSelection #SelectionConent #Title .RightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#ArtifactSelection #SelectionConent #Options
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#ArtifactSelection #SelectionConent .SelectionOption
+{
+	horizontal-align: center;
+	width: 487px;
+	height: 132px;
+	margin: -2px 0px;
+	padding: 18px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_01_png.vtex");
+	background-size: 100%;
+}
+
+#ArtifactSelection #SelectionConent .SelectionOption:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#ArtifactSelection #SelectionConent .SelectionOption.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#ArtifactSelection .ParticleFx
+{
+	align: center center;
+	width: 200%;
+	height: 200%;
+	overflow: noclip;
+	z-index: 1;
+	ignore-parent-flow: true;
+}
+
+#Footer
+{
+	width: 100%;
+	flow-children: left;
+	padding: 0px 10px;
+}
+
+#Footer .FooterButtonPlaceholder
+{
+	width: 154px;
+	height: 44px;
+}
+
+#Footer .EOM_Button.GamepadSelected
+{
+	brightness: 1.5;
+}
+
+#Footer #GiveUpGold
+{
+	margin-bottom: 0px;
+	color: #FFCC33;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-top: 1px;
+	padding-left: 20px;
+	line-height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+	background-size: 20px;
+}
+
+.EOM_Loading.Wave
+{
+	flow-children: right;
+}
+
+.EOM_Loading.Wave Image
+{
+	width: 6px;
+	height: 40px;
+	background-color: white;
+	margin: 0px 3px;
+	border-radius: 10px;
+	animation-name: EOM_Loading_Wave;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.Wave .WaveCol1
+{
+	animation-name: EOM_Loading_Wave1;
+}
+
+@keyframes 'EOM_Loading_Wave1'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol2
+{
+	animation-name: EOM_Loading_Wave2;
+}
+
+@keyframes 'EOM_Loading_Wave2'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol3
+{
+	animation-name: EOM_Loading_Wave3;
+}
+
+@keyframes 'EOM_Loading_Wave3'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol4
+{
+	animation-name: EOM_Loading_Wave4;
+}
+
+@keyframes 'EOM_Loading_Wave4'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol5
+{
+	animation-name: EOM_Loading_Wave5;
+}
+
+@keyframes 'EOM_Loading_Wave5'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol6
+{
+	animation-name: EOM_Loading_Wave6;
+}
+
+@keyframes 'EOM_Loading_Wave6'
+{
+	0%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+	12.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	62.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.92387953, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol7
+{
+	animation-name: EOM_Loading_Wave7;
+}
+
+@keyframes 'EOM_Loading_Wave7'
+{
+	0%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+	25%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	75%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.70710678, 1);
+	}
+	
+}
+
+.EOM_Loading.Wave .WaveCol8
+{
+	animation-name: EOM_Loading_Wave8;
+}
+
+@keyframes 'EOM_Loading_Wave8'
+{
+	0%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+	37.5%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	87.5%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0.38268343, 1);
+	}
+	
+}
+
+.EOM_Loading.Matrix
+{
+	width: 120px;
+	height: 120px;
+	transform: rotateZ(45deg);
+}
+
+.EOM_Loading.Matrix .Row2 Image
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.Matrix .Row3 Image
+{
+	animation-delay: 0.4s;
+}
+
+.EOM_Loading.Matrix .Row4 Image
+{
+	animation-delay: 0.6s;
+}
+
+.EOM_Loading.Matrix Image
+{
+	background-color: white;
+	border-radius: 50%;
+	width: height-percentage(100%);
+	height: 100%;
+	margin: 5px;
+	animation-name: EOM_Loading_Matrix;
+	animation-duration: 1.6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin
+{
+	width: 24px;
+	height: 24px;
+	transform: rotateZ(45deg);
+	animation-name: EOM_Loading_PointSpin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.EOM_Loading.PointSpin Image
+{
+	width: 36%;
+	height: 36%;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.EOM_Loading.PointSpin .Point1
+{
+	opacity: 1;
+}
+
+.EOM_Loading.PointSpin .Point2
+{
+	horizontal-align: right;
+	opacity: 0.7;
+}
+
+.EOM_Loading.PointSpin .Point3
+{
+	align: right bottom;
+	opacity: 0.4;
+}
+
+.EOM_Loading.PointSpin .Point4
+{
+	align: left bottom;
+	opacity: 0.1;
+}
+
+.EOM_Loading.PointQueue
+{
+	flow-children: right;
+}
+
+.EOM_Loading.PointQueue Image
+{
+	width: 6px;
+	height: 6px;
+	margin: 4px 4px;
+	border-radius: 50%;
+	wash-color: #A39C82;
+	animation-name: PointQueueJump;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.EOM_Loading.PointQueue .Point1
+{
+	animation-delay: 0s;
+}
+
+.EOM_Loading.PointQueue .Point2
+{
+	animation-delay: 0.2s;
+}
+
+.EOM_Loading.PointQueue .Point3
+{
+	animation-delay: 0.4s;
+}
+
+@keyframes 'PointQueueJump'
+{
+	0%
+	{
+		transform: translateY(0px);
+	}
+	
+	25%
+	{
+		transform: translateY(-4px);
+	}
+	
+	50%
+	{
+		transform: translateY(0px);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Wave'
+{
+	0%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1, 1, 1);
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 0, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_Matrix'
+{
+	50%
+	{
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	
+}
+
+@keyframes 'EOM_Loading_PointSpin'
+{
+	0%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+}
+
+.ServerEquipDetail
+{
+	width: 416px;
+	horizontal-align: center;
+}
+
+#ServerEquipDetailLoaded
+{
+	width: 100%;
+	padding: 26px 20px 10px 20px;
+	background-size: 100% 228px, 2px 70%, 2px 70%;
+	background-position: left top, left top 228px, right top 228px;
+	background-repeat: no-repeat;
+	flow-children: down;
+}
+
+#ServerEquipDetailLoaded.TipsRarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_gary_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity1 #Name
+{
+	color: #7C918E;
+}
+
+#ServerEquipDetailLoaded.TipsRarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_green_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity2 #Name
+{
+	color: #69944A;
+}
+
+#ServerEquipDetailLoaded.TipsRarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_blue_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity3 #Name
+{
+	color: #4472CE;
+}
+
+#ServerEquipDetailLoaded.TipsRarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_purple_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity4 #Name
+{
+	color: #875DD4;
+}
+
+#ServerEquipDetailLoaded.TipsRarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_yellow_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity5 #Name
+{
+	color: #CEAD3C;
+}
+
+#ServerEquipDetailLoaded.TipsRarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_red_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity6 #Name
+{
+	color: #E55043;
+}
+
+#ServerEquipDetailLoaded.TipsRarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_blackgold_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity7 #Name
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#917E4B), to(#F1D999));
+}
+
+#ServerEquipDetailLoaded.TipsRarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_yellow_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_yellow_line_left_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_yellow_line_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_red_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_red_line_left_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_red_line_png.vtex");
+}
+
+#ServerEquipDetailLoaded.TipsRarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_blackgold_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_blackgold_line_left_png.vtex"), url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_blackgold_line_png.vtex");
+}
+
+#ServerEquipDetailLoaded #Top
+{
+	horizontal-align: center;
+	width: 100%;
+	padding: 0px 5px;
+}
+
+#ServerEquipDetailLoaded #Top .Separator
+{
+	margin: 8px -5px;
+}
+
+#ServerEquipDetailLoaded #Top #TopLeft
+{
+	flow-children: down;
+}
+
+#ServerEquipDetailLoaded #Top #EquipmentInfo
+{
+	flow-children: down;
+	horizontal-align: right;
+	margin-right: -20px;
+	margin-top: -10px;
+}
+
+#ServerEquipDetailLoaded #Top #EquipmentInfo .Equipment
+{
+	horizontal-align: center;
+	margin: 0px;
+}
+
+#ServerEquipDetailLoaded #Top #OrnamentParticleRoot
+{
+	align: center top;
+	width: 100px;
+	height: 100px;
+}
+
+#ServerEquipDetailLoaded #Top #OrnamentParticleRoot #OrnamentParticle
+{
+	align: center center;
+	x: -50px;
+	y: 50px;
+	width: 490%;
+	height: 490%;
+	overflow: noclip;
+}
+
+#ServerEquipDetailLoaded #Potential
+{
+	margin-top: 4px;
+	width: 210px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_txtbgframe_png.vtex");
+	background-size: 160px 34px;
+	background-position: left -15px bottom;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+#ServerEquipDetailLoaded #Potential Label
+{
+	color: #B9B1A6;
+	font-size: 20px;
+	vertical-align: top;
+}
+
+#ServerEquipDetailLoaded #EquipPreviewCraftBy
+{
+	margin-top: 4px;
+	flow-children: right;
+	width: 210px;
+	height: 37px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/conv_tips_txtbgframe_png.vtex");
+	background-size: 160px 34px;
+	background-position: left -15px bottom;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+#ServerEquipDetailLoaded #EquipPreviewCraftBy Label
+{
+	font-size: 16px;
+	color: #B9B1A6;
+	vertical-align: top;
+}
+
+#ServerEquipDetailLoaded #OtherInfo
+{
+	margin-top: 8px;
+	flow-children: right;
+}
+
+#ServerEquipDetailLoaded .TopLabel
+{
+	margin-right: 28px;
+	font-size: 16px;
+	color: #6D655B;
+}
+
+#ServerEquipDetailLoaded .WidthShrink
+{
+	padding: 0px -5px;
+}
+
+#ServerEquipDetailLoaded #Name
+{
+	color: #7C918E;
+	font-size: 24px;
+}
+
+#ServerEquipDetailLoaded #Part
+{
+	align: right bottom;
+}
+
+#ServerEquipDetailLoaded .Equipment
+{
+	width: 100px;
+	height: 100px;
+	margin-right: -20px;
+	margin-top: -10px;
+	horizontal-align: right;
+	background-image: none;
+}
+
+#ServerEquipDetailLoaded .Equipment #EquipmentIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ServerEquipDetailLoaded .Equipment #Lock,#ServerEquipDetailLoaded .Equipment #EquipGemSlots,#ServerEquipDetailLoaded .Equipment #EquipedTag,#ServerEquipDetailLoaded .Equipment .SuitIcon,#ServerEquipDetailLoaded .Equipment #LevelLabel
+{
+	visibility: collapse;
+}
+
+#ServerEquipDetailLoaded #AttrList
+{
+	horizontal-align: center;
+	width: 100%;
+	padding: 0px 5px;
+	flow-children: down;
+}
+
+#ServerEquipDetailLoaded #Bottom
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: down;
+	padding: 0px 5px;
+}
+
+#ServerEquipDetailLoaded #Bottom #EquipedTips
+{
+	font-size: 16px;
+}
+
+#ServerEquipDetailLoaded #Bottom #EquipedInfo
+{
+	margin-top: 7px;
+	flow-children: right-wrap;
+}
+
+#ServerEquipDetailLoaded #Bottom #ModeDetailsTips
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Tips
+{
+	margin-top: 1px;
+	text-align: center;
+	vertical-align: center;
+	color: #6D655B;
+	font-size: 16px;
+}
+
+#ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Hotkey
+{
+	width: 32px;
+	height: 19px;
+	font-size: 16px;
+	color: #BFAA82;
+	border: 1px solid #575048;
+	text-align: center;
+}
+
+#ServerEquipDetailLoaded #Bottom #FeatureLabel
+{
+	margin: 2px 0px;
+	color: #5C554B;
+	font-size: 16px;
+	background-color: #181512;
+	padding: 5px;
+}
+
+#FeatureLabelContainer
+{
+	width: 100%;
+	flow-children: down;
+	visibility: collapse;
+}
+
+.AltPressed #FeatureLabelContainer
+{
+	visibility: visible;
+}
+
+#EquipedInfoContainer
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#ALTTipsContainer
+{
+	flow-children: down;
+}
+
+.AltPressed #ALTTipsContainer
+{
+	visibility: collapse;
+}
+
+.EquipmentAttrRow
+{
+	width: 385px;
+	flow-children: right;
+	margin: 2.5px 0px;
+}
+
+.EquipmentAttrRow.Main #Point
+{
+	width: 12px;
+	height: 12px;
+	margin-right: 9px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_primary_png.vtex");
+}
+
+.EquipmentAttrRow.Main #AttrName
+{
+	color: #BFAA82;
+}
+
+.EquipmentAttrRow.Adverb #Point
+{
+	width: 8px;
+	height: 8px;
+	margin-right: 11px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb #AttrName
+{
+	color: #958D83;
+}
+
+.EquipmentAttrRow.Adverb.gray #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_gray_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.green #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_green_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.blue #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_blue_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.purple #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_purple_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.yellow #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_yellow_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.red #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_red_png.vtex");
+}
+
+.EquipmentAttrRow.Adverb.pink #Point
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_secondary_pink_png.vtex");
+}
+
+.EquipmentAttrRow #Point
+{
+	vertical-align: center;
+	background-size: 100%;
+}
+
+.EquipmentAttrRow #AttrName
+{
+	font-size: 16px;
+	vertical-align: center;
+	text-align: center;
+	font-weight: thin;
+}
+
+.EquipmentAttrRow #AttrValue
+{
+	min-width: 50px;
+	padding-top: 0px;
+	margin-right: 8px;
+	font-weight: thin;
+	vertical-align: middle;
+	font-size: 15px;
+	text-align: left;
+	color: #E1E1E1;
+}
+
+.EquipmentAttrRow #CompareTag
+{
+	width: 8px;
+	height: 8px;
+	align: right center;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tips_arrow_red_png.vtex");
+	background-size: 12px 18px;
+	background-position: center;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+.EquipmentAttrRow #CompareTag.Up
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tips_arrow_green_png.vtex");
+}
+
+.Separator
+{
+	margin: 5px -5px;
+	width: 100%;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider2_png.vtex");
+	background-size: 100%;
+}
+
+.EquipState
+{
+	margin-right: 24px;
+	flow-children: right;
+}
+
+.EquipState .HeroSmallAvatar
+{
+	width: 28px;
+	height: 28px;
+}
+
+.EquipState #EquipSuit
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+.EquipSuitList
+{
+	flow-children: down;
+}
+
+.ChaosEntry
+{
+	flow-children: right;
+}
+
+.ChaosEntry #Point
+{
+	vertical-align: center;
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_chaos_png.vtex");
+	background-size: 100%;
+	margin-right: 11px;
+}
+
+.ChaosEntry #EntryText
+{
+	vertical-align: center;
+	font-size: 16px;
+	color: #D68545;
+}
+
+.MythEntry
+{
+	flow-children: right;
+}
+
+.MythEntry Image
+{
+	width: 16px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/point_mythical_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	margin-right: 11px;
+}
+
+.MythEntry Label
+{
+	color: #DEBB44;
+	font-size: 16px;
+	vertical-align: center;
+}
+
+.PrivilegeEntry
+{
+	flow-children: right;
+}
+
+.PrivilegeEntry Label
+{
+	color: #BFAA82;
+	vertical-align: center;
+}
+
+.AbilityEntry
+{
+	flow-children: down;
+}
+
+.AbilityEntry #Title
+{
+	margin-bottom: 5px;
+}
+
+.AbilityEntry #Title.Active Label
+{
+	color: #61c441;
+}
+
+.AbilityEntry #Title .SuitIcon
+{
+	vertical-align: center;
+	margin-right: 7px;
+}
+
+.AbilityEntry #Title Label
+{
+	font-size: 18px;
+	vertical-align: center;
+	color: #6e6e6e;
+}
+
+.AbilityEntry .LvEffectItem
+{
+	flow-children: right;
+}
+
+.AbilityEntry .LvEffectItem.Hide
+{
+	visibility: collapse;
+}
+
+.AbilityEntry .LvEffectItem.Active Label
+{
+	color: #61c441;
+}
+
+.AbilityEntry .LvEffectItem Label
+{
+	color: #6e6e6e;
+	margin: 1px 0px;
+}
+
+.AbilityEntry .LvEffectItem #LvLabel
+{
+	width: 40px;
+	font-size: 16px;
+}
+
+.AbilityEntry .LvEffectItem #EffectLabel
+{
+	line-height: 18px;
+	font-size: 16px;
+}
+
+.GemDesc
+{
+	flow-children: right;
+	margin-top: 4px;
+}
+
+.GemDesc #Slot
+{
+	vertical-align: center;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_hole_small_png.vtex");
+	background-size: 100%;
+	margin-right: 8px;
+}
+
+.GemDesc #GemIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.GemDesc #EmptyTips
+{
+	color: #6E6E6E;
+	font-size: 16px;
+	vertical-align: center;
+}
+
+.GemDesc .GemEntries
+{
+	flow-children: down;
+	width: fill-parent-flow(1);
+}
+
+.Equipment
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+	padding: 4px;
+}
+
+.Equipment #EquipmentIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Equipment #LevelLabel
+{
+	margin-left: 5px;
+	margin-top: 2px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Equipment #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Equipment .SuitIcon
+{
+	margin: -4px;
+}
+
+.Equipment #EquipedTag
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -6px;
+	flow-children: right;
+}
+
+.Equipment #EquipGemSlots .GemSlot
+{
+	width: 26px;
+	height: 26px;
+	margin: 0px 1px;
+}
+
+.Equipment #EquipGemSlots .GemSlot.EmptySlot
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_dark_png.vtex");
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_yellow_png.vtex");
+}
+
+.Equipment #EquipGemSlots .GemSlot .GemIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/jewel/point_jewel_red_png.vtex");
+}
+
+.Equipment #RarityParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.Equipment.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Equipment.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Equipment.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Equipment.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Equipment.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Equipment.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Equipment.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.Equipment.Rarity7 #RarityParticle
+{
+	opacity: 1;
+}
+
+.Gem
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.Gem #GemIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Gem #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #FEFEFE;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Gem #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Gem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Gem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Gem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Gem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Gem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Gem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Gem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.SuitIcon
+{
+	width: 36px;
+	height: 36px;
+	align: right bottom;
+	background-size: 100%;
+}
+
+.EquipmentIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.EquipmentIcon Image
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.EquipmentIcon.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.EquipmentIcon.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.EquipmentIcon.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.EquipmentIcon.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.EquipmentIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.EquipmentIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.EquipmentIcon.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.DrawingAttrRow
+{
+	flow-children: right;
+	margin: 2.5px 0px;
+}
+
+.DrawingAttrRow #AttrName
+{
+	font-size: 16px;
+	vertical-align: center;
+	text-align: center;
+	font-weight: thin;
+	color: #958D83;
+}
+
+.DrawingAttrRow #AttrValue
+{
+	min-width: 50px;
+	padding-top: 0px;
+	margin-right: 8px;
+	font-weight: thin;
+	vertical-align: middle;
+	font-size: 15px;
+	text-align: left;
+	color: #E1E1E1;
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+#AttributeSummary
+{
+	align: left bottom;
+	width: 477px;
+	min-height: 634px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	background-size: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+	padding: -7px -35px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#AttributeSummary.Show
+{
+	opacity: 1;
+}
+
+#AttributeSummary #AttributesSummary
+{
+	horizontal-align: center;
+	width: 100%;
+	flow-children: down;
+}
+
+#AttributeSummary #AttributesSummaryTitle
+{
+	margin: 0px 28px;
+	font-size: 24px;
+	color: #C2AB65;
+}
+
+#AttributeSummary #TitleLine
+{
+	margin-left: 18px;
+	margin-bottom: 5px;
+	width: 274px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider1_png.vtex");
+}
+
+#AttributeSummary .EquipmentAttrRow
+{
+	margin: 3px 0px;
+}
+
+#AttributeSummary .EquipmentAttrRow #AttrName
+{
+	color: #BFAA82;
+}
+
+#AttributeSummary #Attributes
+{
+	width: 100%;
+	height: 560px;
+	padding: 0px 28px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#AttributeSummary #EmptyAttributeTips
+{
+	margin-top: 12px;
+	horizontal-align: center;
+	font-size: 20px;
+	color: #958D83;
+}
+
+#AttributeSummary .Separator
+{
+	margin: 4px -2px;
+}
+
+@keyframes 'BlessOptionAppear'
+{
+	0%
+	{
+		transform: translateY(80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#BlessSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	flow-children: down;
+	opacity: 0;
+}
+
+#BlessSelection.Show
+{
+	opacity: 1;
+}
+
+#BlessSelection.Show .SelectionOption
+{
+	animation-name: BlessOptionAppear;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#BlessSelection #BG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_01_png.vtex");
+	border-image-slice: 60px 100% 60px 0px;
+	border-width: 60px 100% 60px 0px;
+	border-image-repeat: stretch;
+}
+
+#BlessSelection #SelectionConent
+{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#BlessSelection #SelectionConent #Title
+{
+	width: 296px;
+	height: 40px;
+	align: center center;
+	flow-children: right;
+}
+
+#BlessSelection #SelectionConent #Title .LeftIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#BlessSelection #SelectionConent #Title .RightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#BlessSelection #SelectionConent #Title .TitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#BlessSelection #SelectionConent #Title .TitleTextRow
+{
+	flow-children: right;
+	width: fit-children;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#BlessSelection #SelectionConent #Title #UpgradeTitle
+{
+	vertical-align: middle;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+	width: fit-children;
+}
+
+#BlessSelection #SelectionConent #Title #UpgradeCount
+{
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #ffefc8;
+	text-shadow: 3px 3px 6px #d25b14;
+	width: fit-children;
+}
+
+#BlessSelection #SelectionConent #Options
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#BlessSelection #SelectionConent .SelectionOption
+{
+	horizontal-align: center;
+	width: 487px;
+	height: 132px;
+	margin: -2px 0px;
+	padding: 18px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_01_png.vtex");
+	background-size: 100%;
+}
+
+#BlessSelection #SelectionConent .SelectionOption:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#BlessSelection #SelectionConent .SelectionOption.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#BlessSelection #SelectionConent .SelectionOption .CommonBox
+{
+	width: 100%;
+}
+
+#BlessSelection #SelectionConent .SelectionOption #UpgradeIcon
+{
+	width: 36px;
+	height: 36px;
+	align: right bottom;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_up_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+#BlessSelection .ParticleFx
+{
+	align: center center;
+	width: 200%;
+	height: 200%;
+	overflow: noclip;
+	z-index: 1;
+	ignore-parent-flow: true;
+}
+
+#Footer
+{
+	width: 100%;
+	flow-children: left;
+	padding: 0px 10px;
+}
+
+#Footer .FooterButtonPlaceholder
+{
+	width: 154px;
+	height: 44px;
+}
+
+#Footer .EOM_Button
+{
+	overflow: noclip;
+}
+
+#Footer #ButtonGamepadSelected
+{
+	width: 120%;
+	height: 120%;
+	align: center center;
+	margin: -16px;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+	opacity: 0;
+}
+
+#Footer .GamepadSelected
+{
+	brightness: 2;
+}
+
+#Footer .GamepadSelected #ButtonGamepadSelected
+{
+	opacity: 1;
+}
+
+#Footer #GiveUpGold
+{
+	margin-bottom: 0px;
+	color: #FFCC33;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-top: 1px;
+	padding-left: 20px;
+	line-height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+	background-size: 20px;
+}
+
+#Footer #PayRefreshCost
+{
+	margin-bottom: 0px;
+	color: #FFCC33;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-top: 1px;
+	padding-left: 20px;
+	margin-left: 4px;
+	line-height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/tokens/110010_png.vtex");
+	background-size: 20px;
+}
+
+.DungeonKey
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.DungeonKey #DungeonKeyIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.DungeonKey #LevelLabel
+{
+	margin-left: 9px;
+	margin-top: 6px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.DungeonKey #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 6px;
+	margin-left: 6px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.DungeonKey #RarityParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.DungeonKey.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.DungeonKey.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.DungeonKey.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.DungeonKey.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.DungeonKey.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.DungeonKey.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.DungeonKey.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.DungeonKey.Rarity7 #RarityParticle
+{
+	opacity: 1;
+}
+
+.EOM_ToggleButton
+{
+	flow-children: right;
+}
+
+.EOM_ToggleButton #ToggleBox
+{
+	vertical-align: center;
+}
+
+.EOM_ToggleButton #ToggleBoxRing
+{
+	width: 20px;
+	height: 20px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_ToggleButton #ToggleBoxTick
+{
+	width: 20px;
+	height: 14px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.EOM_ToggleButton:selected #ToggleBoxTick
+{
+	opacity: 1;
+}
+
+.EOM_ToggleButton:not(:disabled):active
+{
+	sound: "ui_generic_button_click";
+}
+
+.EOM_ToggleButton > Label
+{
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 4px;
+	font-size: 18px;
+	color: #D5C9A9;
+	text-shadow: 0px 0px 5px 2 #000000;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsCourier #PortraitsCourierScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BottomBar
+{
+	width: 100%;
+	vertical-align: bottom;
+}
+
+#BottomBar #DungeonKeyInfo
+{
+	align: center bottom;
+	margin-bottom: 150px;
+	opacity: 0;
+	animation-name: DungeonKeyInfoShow;
+	animation-duration: 3.55s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-delay: 3s;
+	flow-children: down;
+}
+
+#BottomBar #DungeonKeyInfo .DungeonKey
+{
+	background-image: none;
+	ui-scale: 120%;
+}
+
+#BottomBar #DungeonKeyInfo .DungeonKey #Lock
+{
+	opacity: 0;
+}
+
+#BottomBar #DungeonKeyInfo #SelectParticle
+{
+	align: center center;
+	width: 150%;
+	height: 150%;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/circle_mask_png.vtex");
+}
+
+#BottomBar #DungeonKeyInfo #DungeonKeyInfoTextContainer
+{
+	background-color: black;
+	opacity-mask: url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+	padding: 10px 20px;
+}
+
+#BottomBar #LevelAndHealth
+{
+	vertical-align: bottom;
+	margin-left: 23px;
+	margin-bottom: 11px;
+}
+
+#BottomBar #AttributeContainer
+{
+	vertical-align: bottom;
+	flow-children: right;
+	margin-left: 120px;
+	margin-bottom: 100px;
+}
+
+#BottomBar #AttributeContainer .PropRow
+{
+	tooltip-position: top;
+	flow-children: right;
+	margin-right: 100px;
+}
+
+#BottomBar #AttributeContainer #PropAttack
+{
+	width: 28px;
+	height: 28px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_attack_png.vtex");
+	background-size: 100%;
+	wash-color: #D1C4A5;
+}
+
+#BottomBar #AttributeContainer #PropArmor
+{
+	width: 28px;
+	height: 28px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_shield_png.vtex");
+	background-size: 100%;
+	wash-color: #D1C4A5;
+}
+
+#BottomBar #AttributeContainer #PropValue
+{
+	margin-left: 2px;
+	vertical-align: center;
+	font-size: 20px;
+	color: #FFEFC8;
+}
+
+#BottomBar #HeroLevel
+{
+	z-index: 1;
+	width: 110px;
+	height: 119px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_level_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BottomBar #HeroLevel #HeroXpProgress
+{
+	align: center center;
+	width: 110px;
+	height: 119px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_level_bar_png.vtex");
+	background-size: 100%;
+	transition-property: clip;
+	transition-duration: 0.15s;
+	transition-timing-function: ease;
+}
+
+#BottomBar #HeroLevel #HeroLevelLabel
+{
+	align: center center;
+	font-size: 40px;
+	font-weight: bold;
+	color: #e6d4a4;
+	text-shadow: 0px 0px 3px 1.5 #8e4704;
+}
+
+#BottomBar #HealthBarContainer
+{
+	vertical-align: center;
+	margin-left: 54px;
+}
+
+#BottomBar #HealthBarContainer .HeroHealthBG
+{
+	width: 308px;
+	height: 27px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BottomBar #HealthBarContainer .HealthBar
+{
+	margin-right: 0px;
+	horizontal-align: right;
+	width: 308px;
+	height: 27px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_blood_bar_png.vtex");
+	background-size: 100%;
+	transition-property: clip;
+	transition-duration: 0.1s;
+}
+
+#BottomBar #HealthBarContainer .HealthBarLoss
+{
+	margin-right: 22px;
+	horizontal-align: right;
+	margin-top: 6px;
+	margin-left: 22px;
+	width: 296px;
+	height: 13px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	transition-property: clip;
+	transition-duration: 0.2s;
+	transition-delay: 0.1s;
+}
+
+#BottomBar #HealthBarContainer .ManaBarContainer
+{
+	horizontal-align: right;
+	margin-top: 27px;
+	width: 308px;
+	height: 27px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BottomBar #HealthBarContainer .ManaBarContainer .ManaBar
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_red_bar_png.vtex");
+	background-size: 100%;
+	transition-property: clip;
+	transition-duration: 0.1s;
+}
+
+#BottomBar #HealthBarContainer .ManaBarContainer.ManaType_1
+{
+	hue-rotation: -190deg;
+}
+
+#BottomBar #HealthBarContainer .HealthText
+{
+	align: center top;
+	margin-top: 5px;
+	width: 296px;
+	font-size: 14px;
+	color: #e8dcbe;
+	text-shadow: 0px 0px 1px 2.5 black;
+	text-align: center;
+}
+
+#BottomBar #HealthBarContainer .ManaText
+{
+	align: center top;
+	margin-top: 32px;
+	width: 295px;
+	font-size: 14px;
+	color: #e8dcbe;
+	text-shadow: 0px 0px 1px 2.5 black;
+	text-align: center;
+}
+
+#BottomBar #UnitPanel
+{
+	align: center bottom;
+}
+
+#BottomBar #UnitPanel #BuffContainer
+{
+	align: center bottom;
+	margin-bottom: 120px;
+	flow-children: right;
+}
+
+#BottomBar #UnitPanel #PortraitContainer
+{
+	vertical-align: bottom;
+	width: 142px;
+	height: 142px;
+	z-index: 1;
+}
+
+#BottomBar #UnitPanel #PortraitContainer #PortraitBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_avatar_frame_png.vtex");
+	background-size: 100%;
+	z-index: 1;
+}
+
+#BottomBar #UnitPanel #AbilityBar
+{
+	vertical-align: bottom;
+	margin-left: 52px;
+}
+
+#BottomBar #UnitPanel #AbilityBar #AbilityBarBG
+{
+	align: center bottom;
+	width: 535px;
+	height: 133px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_skill_bg_png.vtex");
+	background-size: 100%;
+}
+
+#BottomBar #UnitPanel #AbilityBar #AbilityList
+{
+	x: 10px;
+	align: center top;
+	margin-top: 30px;
+	flow-children: right;
+}
+
+#BottomBar .AbilitySlot
+{
+	width: 75px;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer
+{
+	horizontal-align: center;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AbilitySlotBorder
+{
+	horizontal-align: center;
+	width: 60px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/hud/passive_ability_border_png.vtex");
+	background-size: 100%;
+	z-index: 1;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AutoCasting
+{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AutoCastCorners
+{
+	align: center top;
+	width: 60px;
+	height: 60px;
+	border: 2px solid #8f7a44;
+	border-radius: 2px;
+	opacity: 0.45;
+	z-index: 2;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AutoCastIndicator
+{
+	align: right top;
+	margin-top: -4px;
+	margin-right: 4px;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 55% 55%, from(#fff6b9), color-stop(0.45, #e0a83f), to(#553010));
+	border: 1px solid #ffe8a4;
+	box-shadow: fill #d99422 0px 0px 8px 1px;
+	z-index: 13;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AutoCastIndicator Label
+{
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	color: #1d1206;
+	text-shadow: 0px 0px 1px 1 #fff0b8;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer DOTAAbilityImage
+{
+	tooltip-position: top;
+	align: center top;
+	width: 100%;
+	height: 100%;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #ManaCost
+{
+	align: right bottom;
+	color: #FFEFC8;
+	font-size: 14px;
+	text-shadow: 0px 0px 3px 3 #000000;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	text-overflow: shrink;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AbilityCharges
+{
+	width: 20px;
+	height: 20px;
+	background-color: #0D0405;
+	border-radius: 50%;
+	z-index: 2;
+	padding: 1px;
+	box-shadow: fill 2px 2px 4px black;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AbilityCharges #AbilityChargesBorder
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border: 1px solid #665B40;
+	transition-property: clip;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AbilityCharges #AbilityChargesBorder.NoTransition
+{
+	transition-duration: 0s;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer #AbilityCharges > Label
+{
+	margin-top: 2px;
+	font-size: 15px;
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+	text-overflow: shrink;
+	color: #D5C8A8;
+}
+
+#BottomBar .AbilitySlot .AbilityImageContainer .CooldownSweep
+{
+	height: 100%;
+	transition-duration: 0s;
+}
+
+#BottomBar .AbilitySlot.Cooldown .CooldownOverlay
+{
+	width: 54px;
+	height: 54px;
+	align: center top;
+	z-index: 10;
+}
+
+#BottomBar .AbilitySlot.Cooldown .CooldownOverlay .CooldownNumber
+{
+	align: center center;
+	font-size: 36px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 2px 2px 4px 2 #000000;
+	z-index: 12;
+}
+
+#BottomBar .AbilitySlot.Cooldown .CooldownOverlay .CooldownSweep
+{
+	width: 100%;
+	align: center top;
+	border-bottom: 2px solid #f4dab0;
+	background-color: #000000;
+	z-index: 11;
+	transition-property: height;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+#BottomBar .AbilitySlot.Cooldown DOTAAbilityImage
+{
+	brightness: 0.4;
+	saturation: 0.3;
+}
+
+#BottomBar .AbilitySlot.NoMana DOTAAbilityImage
+{
+	saturation: 0;
+	wash-color: #1569be;
+	contrast: 0.7;
+}
+
+#BottomBar .AbilitySlot.AutoCast #AutoCasting
+{
+	opacity: 1;
+}
+
+#BottomBar .AbilitySlot .EOM_HotKeyDisplay
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 60px;
+}
+
+#BottomBar .AbilitySlot .EOM_GamePad
+{
+	margin-top: 60px;
+	height: 24px;
+}
+
+#BottomBar #ResourceList
+{
+	align: right bottom;
+	margin-bottom: 28px;
+	margin-right: 28px;
+	flow-children: down;
+}
+
+#BottomBar .ResourceItem
+{
+	width: 164px;
+	height: 40px;
+	margin: 5px 0px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_coin_bg_png.vtex");
+	background-size: 100%;
+	padding-right: 18px;
+}
+
+#BottomBar .ResourceItem Image
+{
+	vertical-align: center;
+}
+
+#BottomBar .ResourceItem Label
+{
+	vertical-align: center;
+	margin-right: 11px;
+	text-align: center;
+	color: #ffefc7;
+	font-size: 18px;
+}
+
+#BottomBar #RevivalCoin Image,#BottomBar #BountyKey Image
+{
+	width: 38px;
+	height: 38px;
+}
+
+#BottomBar #ControlGuideRoot
+{
+	align: right bottom;
+	width: 1106px;
+}
+
+#BottomBar #ControlGuideRoot.FoldUp #MoveKeys.FoldUpShow
+{
+	opacity: 1;
+}
+
+#BottomBar #ControlGuideRoot.FoldUp #ControlGuidePanel
+{
+	pre-transform-scale2d: 0.8;
+	opacity: 0;
+	transform: translateY(66px);
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys.FoldUpShow
+{
+	align: right bottom;
+	margin-right: 350px;
+	margin-bottom: 10px;
+	transition-delay: 0.5s;
+	transition-property: opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in;
+	opacity: 0;
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys .KeyList
+{
+	vertical-align: bottom;
+	width: 96px;
+	margin-right: 11px;
+	flow-children: right-wrap;
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys .KeyContainer
+{
+	width: 27px;
+	margin: 2px;
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys .KeyContainer .EOM_HotKeyDisplay
+{
+	width: 100%;
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys .EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_light_png.vtex");
+}
+
+#BottomBar #ControlGuideRoot #MoveKeys .EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	color: #323030;
+}
+
+#BottomBar #ControlGuideRoot .KeysContainer
+{
+	flow-children: right;
+}
+
+#BottomBar #ControlGuideRoot .KeysContainer #KeyDes
+{
+	text-overflow: shrink;
+	max-width: 82px;
+	font-size: 20px;
+	color: #D5C9A9;
+	vertical-align: bottom;
+	margin-bottom: 2px;
+}
+
+#BottomBar #ControlGuideRoot #AbilityKeys
+{
+	margin-left: 343px;
+	margin-bottom: 111px;
+	vertical-align: bottom;
+}
+
+#BottomBar #ControlGuideRoot #AbilityKeys .KeyList
+{
+	vertical-align: bottom;
+	margin-right: 6px;
+	flow-children: right;
+}
+
+#BottomBar #ControlGuideRoot #AbilityKeys .KeyContainer
+{
+	width: 23px;
+	height: 31px;
+	margin: 0px 2px;
+}
+
+#BottomBar #ControlGuideRoot #AbilityKeys .KeyContainer .EOM_HotKeyDisplay
+{
+	vertical-align: bottom;
+}
+
+#BottomBar #ControlGuideRoot #ShowTips
+{
+	align: right top;
+	margin-top: 53px;
+	margin-right: 67px;
+}
+
+#BottomBar #ControlGuideRoot #ShowTips Label
+{
+	font-size: 16px;
+}
+
+#BottomBar #ControlGuideRoot #ControlGuidePanel
+{
+	align: right bottom;
+	margin-right: 145px;
+	margin-bottom: -70px;
+	width: 586px;
+	height: 239px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beginner_bg_png.vtex");
+	background-size: 100%;
+	transition-property: pre-transform-scale2d, transform, opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in;
+}
+
+#BottomBar #ControlGuideRoot #ControlGuidePanel #MoveKeys
+{
+	align: left bottom;
+	margin-left: 158px;
+	margin-bottom: 109px;
+}
+
+#BottomBar #InteractInfo
+{
+	align: center bottom;
+	margin-bottom: 150px;
+	flow-children: down;
+	min-width: 200px;
+}
+
+#BottomBar #InteractInfo #InteractInfoContainer
+{
+	flow-children: down;
+	horizontal-align: center;
+	background-color: black;
+	opacity-mask: url("s2r://panorama/images/masks/scratched_box_psd.vtex");
+	padding: 15px 30px;
+}
+
+#BottomBar #InteractInfo #InteractInfoContainer #InteractInfoBackgroundParticle
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	ignore-parent-flow: true;
+	padding: -15px -30px;
+}
+
+#BottomBar #InteractInfo #NpcIcon
+{
+	horizontal-align: center;
+	width: 65px;
+	height: 65px;
+	margin-bottom: 5px;
+}
+
+#BottomBar #InteractInfo #NpcIcon #SelectParticle
+{
+	align: center center;
+	width: 150%;
+	height: 150%;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/circle_mask_png.vtex");
+}
+
+#BottomBar #InteractInfo #InteractInfoItemBox
+{
+	horizontal-align: center;
+	margin-bottom: 12px;
+	max-width: 520px;
+}
+
+#BottomBar #InteractInfo #InteractInfoItemBox .CommonBox
+{
+	max-width: 520px;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 2px;
+	padding: 4px 10px;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow.Secondary
+{
+	margin-top: 8px;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractProgressTrack
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractProgressTrack .InteractProgressFill
+{
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff22;
+	transition-property: clip;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractPrefix
+{
+	vertical-align: center;
+	margin-right: 8px;
+	font-size: 18px;
+	color: #b5a37a;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .EOM_HotKeyDisplay
+{
+	vertical-align: center;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .EOM_HotKeyDisplay .EOM_HotKeyDisplayBorder
+{
+	border-width: 29px 5px 0px 5px;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_key_bg_light_png.vtex");
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .EOM_HotKeyDisplay .EOM_HotKeyDisplayText
+{
+	margin: 0px 10px;
+	font-size: 16px;
+	color: #323030;
+	text-shadow: 0px 0px 1px 1 #323030;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractAction
+{
+	margin-left: 10px;
+	font-size: 26px;
+	color: #e6d4a4;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractCost
+{
+	margin-left: 4px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractCost Label
+{
+	font-size: 26px;
+	color: #e6d4a4;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .InteractCost.NoEnough .InteractCostValue
+{
+	color: red;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .CostIcon
+{
+	width: 26px;
+	height: 26px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	vertical-align: center;
+}
+
+#BottomBar #InteractInfo .InteractInfoRow .GoldIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/icon/gold_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+@keyframes 'DungeonKeyInfoShow'
+{
+	0%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 0.2;
+	}
+	
+	30%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+#LeftBar
+{
+	width: 600px;
+	height: 100%;
+}
+
+#LeftBar #Background
+{
+	width: 100%;
+	height: 100%;
+	background-color: #141414de;
+	opacity-mask: url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex");
+}
+
+#LeftBar #ArtifactDescBtn
+{
+	width: 80px;
+	height: 56px;
+	margin-left: 21px;
+	margin-top: 77px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_xq_png.vtex");
+	background-size: 48px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#LeftBar #ArtifactDescBtn:hover
+{
+	brightness: 1.4;
+}
+
+#LeftBar #ArtifactDescBtn Label
+{
+	align: center bottom;
+	width: 100%;
+	height: 17px;
+	font-size: 16px;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000), to(#00000000));
+	color: #AB977F;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#LeftBar #UpgradeBtn
+{
+	width: 72px;
+	height: 94px;
+	vertical-align: bottom;
+	margin-left: 25px;
+	margin-bottom: 119px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_level_up_png.vtex");
+	background-size: 100%;
+}
+
+#LeftBar #UpgradeBtn Label
+{
+	align: center bottom;
+	margin-bottom: 12px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFECB9;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#LeftBar #UpgradeBtn #UpgradeIconMask
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/hud/h_role_level_up_mask_png.vtex");
+}
+
+#LeftBar #UpgradeBtn #UpgradeIconMask .UpgradeIcon
+{
+	align: center center;
+}
+
+#LeftBar #ArtifactList
+{
+	margin-top: 70px;
+	margin-left: 30px;
+	padding: 20px 0px;
+	width: 200px;
+	flow-children: down;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	overflow: noclip;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem
+{
+	height: 64px;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactTypeIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactTypeIcon .ArtifactTypeLabel
+{
+	align: center bottom;
+	width: 100%;
+	height: 17px;
+	font-size: 16px;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000), to(#00000000));
+	color: #AB977F;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactTypeShop
+{
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beg_png.vtex");
+	background-size: 100%;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .SectIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .SectIcon .SectImage
+{
+	width: 52px;
+	height: 52px;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .StackCount
+{
+	align: right bottom;
+	margin-right: 10px;
+	margin-bottom: 8px;
+	color: white;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc
+{
+	background-color: #0000007f;
+	border-radius: 3px;
+	width: 80px;
+	height: 34px;
+	margin-left: 56px;
+	vertical-align: center;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc .ExpProgress
+{
+	width: 59px;
+	height: 4px;
+	vertical-align: bottom;
+	margin-left: 14px;
+	margin-bottom: 5px;
+	background-image: url("s2r://panorama/images/custom_game/hud/s_schedule_png.vtex");
+	background-size: 59px 4px;
+	background-position: left;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc .ExpProgressBG
+{
+	width: 59px;
+	height: 6px;
+	border-radius: 4px;
+	vertical-align: bottom;
+	margin-left: 14px;
+	margin-bottom: 4px;
+	background-color: #0000007f;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc .ExpShield
+{
+	width: 13px;
+	height: 14px;
+	vertical-align: bottom;
+	margin-left: 2px;
+	margin-bottom: 0px;
+	background-image: url("s2r://panorama/images/custom_game/hud/s_level_02_png.vtex");
+	background-size: 100%;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc .ExpLabel
+{
+	margin-left: 6px;
+	margin-top: 2px;
+	text-align: right;
+	width: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 0px 0px 2px 4 #000000;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactDesc .ExpMaxLabel
+{
+	margin-left: 40px;
+	margin-top: 6px;
+	font-size: 16px;
+	opacity: 0.5;
+	font-weight: bold;
+	color: #A0A2A2;
+	text-shadow: 0px 0px 2px 4 #000000;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactCount
+{
+	background-color: #0000007f;
+	border-radius: 3px;
+	width: 40px;
+	height: 34px;
+	margin-left: 56px;
+	vertical-align: center;
+}
+
+#LeftBar #ArtifactList .ArtifactTypeItem .ArtifactCount .ArtifactCountLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	text-align: center;
+	width: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 0px 0px 2px 4 #000000;
+}
+
+#LeftBar #ArtifactList .ArtifactItemList
+{
+	flow-children: right-wrap;
+	width: 200px;
+	margin-left: 6px;
+	height: 0px;
+	transition-property: height;
+	opacity: 0;
+	transition-duration: 0.15s;
+}
+
+#LeftBar #ArtifactList .ArtifactItemList.Show
+{
+	opacity: 1;
+}
+
+#LeftBar #ArtifactList .ArtifactItemList .CommonItem
+{
+	width: 40px;
+	height: 40px;
+}
+
+#LeftBar #UpgradeList
+{
+	align: left bottom;
+	margin-left: 29px;
+	margin-bottom: 140px;
+	padding: 20px 0px;
+	width: 200px;
+	flow-children: up;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#LeftBar #UpgradeList .UpgradeListItem
+{
+	width: 64px;
+	height: 64px;
+	margin: -16px 0px;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#LeftBar #UpgradeList .UpgradeListItem:hover
+{
+	brightness: 1.4;
+}
+
+#LeftBar #UpgradeList .UpgradeListItem.Index1
+{
+	transform: translateX(58px);
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .UpgradeCount
+{
+	align: right bottom;
+	margin-right: 14px;
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px 2 #000000;
+	z-index: 3;
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .UpgradeSlotImage
+{
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_grey_big_png.vtex");
+	background-size: 100%;
+	transition-property: opacity, wash-color, brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .UpgradeSlotTag
+{
+	align: center center;
+	wash-color: #6b6b6b;
+	width: 40px;
+	height: 40px;
+	background-size: 28px 28px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .Attack
+{
+	background-image: url("s2r://panorama/images/hud/facets/icons/damage_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .Skill
+{
+	background-image: url("s2r://panorama/images/hud/facets/icons/unique_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .Dodge
+{
+	background-image: url("s2r://panorama/images/hud/facets/icons/speed_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .Defense
+{
+	background-image: url("s2r://panorama/images/hud/facets/icons/armor_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot .Ultimate
+{
+	background-image: url("s2r://panorama/images/hud/facets/icons/nuke_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot.Active .UpgradeSlotImage
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
+}
+
+#LeftBar #UpgradeList .UpgradeSlot.Active .UpgradeSlotTag
+{
+	wash-color: white;
+}
+
+#LeftBar #UpgradeList #UpgradeBtn
+{
+	width: 72px;
+	height: 94px;
+	margin: -16px 0px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_role_level_up_png.vtex");
+	background-size: 100%;
+	animation-name: GlowPulseSimple, PopOut;
+	animation-duration: 3s, 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite, 1;
+}
+
+#LeftBar #UpgradeList #UpgradeBtn Label
+{
+	align: center bottom;
+	margin-bottom: 12px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFECB9;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#LeftBar #UpgradeList #UpgradeBtn #UpgradeIconMask
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/hud/h_role_level_up_mask_png.vtex");
+}
+
+#LeftBar #UpgradeList #UpgradeBtn #UpgradeIconMask .UpgradeIcon
+{
+	align: center center;
+}
+
+#LeftBar #UpgradeList #UpgradeBtn.Index1
+{
+	transform: translateX(58px);
+}
+
+@keyframes 'PrivilegeRewardSelectionContentReveal'
+{
+	0%
+	{
+		opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	}
+	
+	50%
+	{
+		opacity-brush: gradient(linear, 0 50%, 0 100%, from(#ffffff), to(#ffffff00));
+	}
+	
+	100%
+	{
+		opacity-brush: gradient(linear, 0 100%, 0 150%, from(#ffffff), to(#ffffff00));
+	}
+	
+}
+
+@keyframes 'PrivilegeRewardSelectionOptionAppear'
+{
+	0%
+	{
+		transform: translateY(24px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#PrivilegeRewardSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	transform: translateY(50px);
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+	visibility: collapse;
+}
+
+#PrivilegeRewardSelection.Show
+{
+	transform: translateY(0px);
+	visibility: visible;
+}
+
+#PrivilegeRewardSelection.Show #PrivilegeRewardSelectionContent
+{
+	animation-name: PrivilegeRewardSelectionContentReveal;
+}
+
+#PrivilegeRewardSelection.Show .PrivilegeRewardSelectionOption
+{
+	animation-name: PrivilegeRewardSelectionOptionAppear;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent
+{
+	width: 542px;
+	padding: 40px 30px;
+	horizontal-align: center;
+	flow-children: down;
+	opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_02_png.vtex");
+	background-size: 100% 100%;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle
+{
+	width: 360px;
+	height: 40px;
+	align: center top;
+	flow-children: right;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle .PrivilegeRewardSelectionTitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle #PrivilegeRewardSelectionTitleLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle .PrivilegeRewardSelectionLeftIcon,#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle .PrivilegeRewardSelectionRightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionTitle .PrivilegeRewardSelectionRightIcon
+{
+	transform: rotateY(-180deg);
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionOptions
+{
+	width: 464px;
+	max-height: 296px;
+	horizontal-align: center;
+	padding: 4px 26px 4px 0px;
+	margin-bottom: 5px;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionOptions .PrivilegeRewardSelectionOption
+{
+	width: 64px;
+	height: 64px;
+	margin: 4px;
+	transition-property: brightness, pre-transform-scale2d, box-shadow;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
+}
+
+#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionOptions .PrivilegeRewardSelectionOption:hover,#PrivilegeRewardSelection #PrivilegeRewardSelectionContent #PrivilegeRewardSelectionOptions .PrivilegeRewardSelectionOption.Selected
+{
+	brightness: 1.25;
+	pre-transform-scale2d: 1.06;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ffefc866;
+}
+
+#PrivilegeRewardSelection .PrivilegeRewardSelectionParticleFx
+{
+	align: center center;
+	width: 250%;
+	height: 250%;
+	overflow: noclip;
+	z-index: 10;
+	y: 50px;
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+.PlayerRankBadgeBanner
+{
+	align: right bottom;
+	margin-right: 45px;
+	margin-bottom: 25px;
+	width: 120px;
+	height: 90px;
+	overflow: noclip;
+}
+
+.PlayerRankBadgeBanner .RankBadgeList
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide
+{
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+	opacity: 0;
+	transform: translateX(200%);
+	z-index: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide.Index-2
+{
+	opacity: 0;
+	transform: translateX(-200%);
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide.Index-1
+{
+	opacity: 1;
+	transform: translateX(-100%);
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide.Index0
+{
+	opacity: 1;
+	transform: translateX(0%);
+	z-index: 2;
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide.Index1
+{
+	opacity: 1;
+	transform: translateX(100%);
+}
+
+.PlayerRankBadgeBanner .RankBadgeSlide.Index2
+{
+	opacity: 0;
+	transform: translateX(200%);
+}
+
+.PlayerRankBadgeBanner .RankBadgeImage
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+}
+
+#RightBar
+{
+	horizontal-align: right;
+	height: 100%;
+}
+
+#RightBar #RightBlack
+{
+	width: 600px;
+	height: 100%;
+	background-color: #141414de;
+	opacity-mask: url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex");
+	transform: rotateZ(180deg);
+}
+
+#RightBar #BackpackBtn
+{
+	align: right bottom;
+	margin-right: 28px;
+	margin-bottom: 244px;
+	width: 80px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_beg_png.vtex");
+	background-size: 64px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	transition-property: brightness, transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#RightBar #BackpackBtn:hover
+{
+	brightness: 1.4;
+}
+
+#RightBar #BackpackBtn Label
+{
+	align: center bottom;
+	width: 100%;
+	height: 17px;
+	font-size: 16px;
+	text-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000), to(#00000000));
+	color: #AB977F;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#RightBar #PlayerList
+{
+	horizontal-align: right;
+	margin-top: 71px;
+	margin-right: 22px;
+	flow-children: down;
+}
+
+#RightBar #PlayerList #PlayerBar
+{
+	flow-children: right;
+	horizontal-align: right;
+}
+
+#RightBar #PlayerList .PlayerHeroRankBadge
+{
+	vertical-align: center;
+	width: 96px;
+	height: 72px;
+	margin-right: 8px;
+}
+
+#RightBar #PlayerList .PlayerState
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 10px;
+	overflow: noclip;
+}
+
+#RightBar #PlayerList .PlayerState #Check
+{
+	width: 27px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+#RightBar #PlayerList .PlayerState #Close
+{
+	width: 20px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_x_png.vtex");
+	background-size: 100%;
+}
+
+#RightBar #PlayerList .PlayerState Label
+{
+	margin-left: 4px;
+}
+
+#RightBar #PlayerList .PlayerItem
+{
+	margin-bottom: 12px;
+}
+
+#RightBar #PlayerList .PlayerItem .PlayerHealthBarContainer
+{
+	horizontal-align: center;
+	margin-top: 55px;
+	width: 96px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_player_blood_bg_png.vtex");
+	background-size: 100%;
+}
+
+#RightBar #PlayerList .PlayerItem .PlayerHealthBarContainer .HealthBar
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_player_blood_bar_png.vtex");
+	background-size: 100%;
+}
+
+#RightBar #PlayerList .PlayerItem .PlayerAvatar
+{
+	horizontal-align: center;
+}
+
+#RightBar #PlayerList .PlayerItem #PlayerName
+{
+	horizontal-align: center;
+	margin-top: 70px;
+	text-align: center;
+	font-size: 14px;
+	color: #CABEA2;
+	text-shadow: 0px 0px 1px 2.5 black;
+}
+
+#RightBar .PlayerAvatar
+{
+	width: 74px;
+	height: 74px;
+}
+
+#RightBar .PlayerAvatar.Disconnect #AvatarMask
+{
+	wash-color: #ff6868;
+}
+
+#RightBar .PlayerAvatar.Disconnect #DisconnectIcon
+{
+	opacity: 1;
+}
+
+#RightBar .PlayerAvatar #DisconnectIcon
+{
+	align: center center;
+	width: 71.2px;
+	height: 20.8px;
+	opacity: 0;
+	background-image: url("s2r://panorama/images/custom_game/icon_disconnect_png.vtex");
+	background-size: 100%;
+}
+
+#RightBar .PlayerAvatar DOTAAvatarImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RightBar .PlayerAvatar #AvatarMask
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/hud/h_player_avatar_mask_png.vtex");
+	background-color: #291713;
+}
+
+#RightBar .PlayerAvatar #HeroIcon
+{
+	align: center center;
+	overflow: noclip;
+	width: 63px;
+	height: 63px;
+}
+
+#RightBar .PlayerBorder
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+#RightBar .PlayerBorder.defaultBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_player_avatar_frame-_png.vtex");
+}
+
+#TutorialTask
+{
+	align: right top;
+	margin-top: 190px;
+	margin-right: 30px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
+	border-width: 33px 33px 33px 33px;
+	border-image-slice: 33px 33px 33px 33px;
+	border-image-repeat: stretch;
+	flow-children: down;
+	opacity: 0;
+	background-img-opacity: 0.65;
+	transition-duration: 0.2s;
+}
+
+#TutorialTask.Show
+{
+	opacity: 1;
+	sound: "UI.StartRequest";
+}
+
+#TutorialTask.AllSuccess
+{
+	animation-delay: 0.5s;
+	animation-fill-mode: backwards;
+	animation-name: TutorialTaskSuccessAnim;
+	animation-duration: 0.2s;
+}
+
+#TutorialTask #TaskTitle
+{
+	font-size: 24px;
+	horizontal-align: center;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#TutorialTask .SingleTaskRow
+{
+	flow-children: right;
+	min-height: 28px;
+	margin: 2px 0;
+}
+
+#TutorialTask .SingleTaskRow.Success
+{
+	sound: "monsterhunter.materialtrader.success";
+	opacity: 0.6;
+	brightness: 0.5;
+}
+
+#TutorialTask .SingleTaskRow.Success .SingleTaskBox
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex"), url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 20px 14px, 20px 20px;
+}
+
+#TutorialTask .SingleTaskRow.Success .finishLine
+{
+	opacity: 1;
+}
+
+#TutorialTask .SingleTaskRow .SingleTaskBox
+{
+	vertical-align: center;
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#TutorialTask .SingleTaskRow .TaskText
+{
+	vertical-align: center;
+	font-size: 18px;
+}
+
+#TutorialTask .SingleTaskRow .finishLine
+{
+	width: 100%;
+	height: 1px;
+	opacity: 0;
+	background-color: #b1a888;
+	vertical-align: center;
+	margin-left: 26px;
+	ignore-parent-flow: true;
+}
+
+#TutorialTask .SingleTaskRow .TaskAbility
+{
+	vertical-align: center;
+	width: 50px;
+	height: 50px;
+	margin-right: 6px;
+}
+
+#TutorialTask .SingleTaskRow .TaskAbility .TaskAbilityIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+#TutorialTask .SingleTaskRow .TaskAbility .TaskAbilityHotkey
+{
+	align: right bottom;
+	z-index: 1;
+}
+
+@keyframes 'TutorialTaskSuccessAnim'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+#TopBar
+{
+	width: 100%;
+}
+
+#TopBar #GameStateInfo
+{
+	horizontal-align: center;
+	width: 359px;
+	height: 76px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_time_bg_png.vtex");
+	background-size: 359px 91px;
+	background-position: bottom;
+	transform: translateY(-76px);
+	transition-property: transform;
+	transition-duration: 1s;
+	transition-timing-function: ease-in-out;
+	transition-delay: 3.5s;
+}
+
+#TopBar #GameStateInfo #TopBar_Label
+{
+	margin-top: 12px;
+	horizontal-align: center;
+}
+
+#TopBar #BossHealthContainer
+{
+	horizontal-align: center;
+	opacity: 0;
+}
+
+#TopBar #BossHealthContainer #BarBG
+{
+	width: 536px;
+	height: 98px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_boss_bar_bg_png.vtex");
+	background-size: 100%;
+}
+
+#TopBar #BossHealthContainer #Bar
+{
+	width: 0px;
+	height: 98px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_boss_bar_png.vtex");
+	background-size: 536px 98px;
+	background-repeat: no-repeat;
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+#TopBar #BossHealthContainer Label
+{
+	horizontal-align: center;
+	margin-top: 56px;
+	font-size: 14px;
+	color: #E8DCBE;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#TopBar #BossInfo
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 88px;
+}
+
+#TopBar #BossShrinkTimer
+{
+	horizontal-align: center;
+	vertical-align: center;
+	padding-top: 4px;
+	padding-right: 16px;
+	padding-bottom: 4px;
+	padding-left: 16px;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#TopBar #BossShrinkTimer Label
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	color: #F5E6C8;
+	text-shadow: 0px 0px 4px 3 #000000;
+}
+
+#TopBar #BossShrinkTimer.ShrinkActive Label
+{
+	color: #FF6B57;
+	animation-name: BossShrinkAlert;
+	animation-duration: 0.55s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#TopBar.GameState_Dungeon:not(.BossRound) #GameStateInfo
+{
+	transition-property: none;
+	transition-delay: 0s;
+	transition-duration: 0s;
+	transform: translateY(0px);
+}
+
+#TopBar #DungeonKeyDock
+{
+	horizontal-align: center;
+	margin-left: 335px;
+	margin-top: 6px;
+	opacity: 0;
+	animation-name: DungeonKeyDockShow;
+	animation-duration: 0.35s;
+	animation-timing-function: ease-out;
+	animation-delay: 6.55s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+#TopBar #DungeonKeyDock .DungeonKey
+{
+	background-image: none;
+	ui-scale: 50%;
+}
+
+#TopBar #DungeonKeyDock .DungeonKey #Lock
+{
+	opacity: 0;
+}
+
+#TopBar #DungeonKeyDock #DungeonKeyDockParticle
+{
+	align: center center;
+	width: 150%;
+	height: 150%;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/circle_mask_png.vtex");
+}
+
+#TopBar.BossRound #DungeonKeyDock
+{
+	visibility: collapse;
+}
+
+#TopBar.BossRound #BossHealthContainer
+{
+	opacity: 1;
+}
+
+#TopBar.BossRound #BossShrinkTimer
+{
+	opacity: 1;
+}
+
+#TopBar.BattleGemBoss #BossHealthContainer
+{
+	margin-top: 56px;
+}
+
+@keyframes 'DungeonKeyDockShow'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.2;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'BossShrinkAlert'
+{
+	0%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+		text-shadow: 0px 0px 3px 2 #000000;
+	}
+	
+	100%
+	{
+		opacity: 0.18;
+		pre-transform-scale2d: 1.04;
+		text-shadow: 0px 0px 4px 2 #FF3B1F55;
+	}
+	
+}
+
+@keyframes 'ArtifactOptionAppear'
+{
+	0%
+	{
+		transform: translateY(80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#UpgradeArtifactSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	opacity: 0;
+}
+
+#UpgradeArtifactSelection.Show
+{
+	opacity: 1;
+}
+
+#UpgradeArtifactSelection.Show .SelectionOption
+{
+	animation-name: ArtifactOptionAppear;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+#BG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://");
+	border-image-slice: 60px 100% 60px 0px;
+	border-width: 60px 100% 60px 0px;
+	border-image-repeat: stretch;
+}
+
+#SelectionConent
+{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#SelectionConent #Title
+{
+	width: 296px;
+	height: 40px;
+	align: center center;
+	flow-children: right;
+}
+
+#SelectionConent #Title .TitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#SelectionConent #Title .TitleTextRow
+{
+	flow-children: right;
+	width: fit-children;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#SelectionConent #Title #UpgradeTitle
+{
+	vertical-align: middle;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+	width: fit-children;
+}
+
+#SelectionConent #Title #UpgradeCount
+{
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #ffefc8;
+	text-shadow: 3px 3px 6px #d25b14;
+	width: fit-children;
+}
+
+#SelectionConent #Title .LeftIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#SelectionConent #Title .RightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#SelectionConent #Options
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#SelectionConent .SelectionOption
+{
+	horizontal-align: center;
+	width: 487px;
+	height: 132px;
+	margin: -2px 0px;
+	padding: 18px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	flow-children: right;
+}
+
+#SelectionConent .SelectionOption:hover
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#SelectionConent .SelectionOption.Selected
+{
+	background-image: url("s2r://");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#SelectionConent .SelectionOption .CommonBox
+{
+	width: 100%;
+}
+
+.ParticleFx
+{
+	align: center center;
+	width: 200%;
+	height: 200%;
+	overflow: noclip;
+	z-index: 1;
+	ignore-parent-flow: true;
+}
+
+@keyframes 'BlessOptionAppear'
+{
+	0%
+	{
+		transform: translateY(80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#UpgradeBlessSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	opacity: 0;
+}
+
+#UpgradeBlessSelection.Show
+{
+	opacity: 1;
+}
+
+#UpgradeBlessSelection.Show .SelectionOption
+{
+	animation-name: BlessOptionAppear;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+#BG
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_png.vtex");
+	border-image-slice: 60px 100% 60px 0px;
+	border-width: 60px 100% 60px 0px;
+	border-image-repeat: stretch;
+}
+
+#SelectionConent
+{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#SelectionConent #Title
+{
+	width: 296px;
+	height: 40px;
+	align: center center;
+	flow-children: right;
+}
+
+#SelectionConent #Title .TitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#SelectionConent #Title .TitleTextRow
+{
+	flow-children: right;
+	width: fit-children;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#SelectionConent #Title #UpgradeTitle
+{
+	vertical-align: middle;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+	width: fit-children;
+}
+
+#SelectionConent #Title #UpgradeCount
+{
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #ffefc8;
+	text-shadow: 3px 3px 6px #d25b14;
+	width: fit-children;
+}
+
+#SelectionConent #Title .LeftIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#SelectionConent #Title .RightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#SelectionConent #Options
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-bottom: 5px;
+}
+
+#SelectionConent #Footer
+{
+	width: 100%;
+	horizontal-align: center;
+}
+
+#SelectionConent #Footer .FooterButtonPlaceholder
+{
+	width: 154px;
+	height: 44px;
+}
+
+#SelectionConent #Footer .EOM_Button.GamepadSelected
+{
+	brightness: 1.5;
+}
+
+#SelectionConent .SelectionOption
+{
+	horizontal-align: center;
+	width: 487px;
+	height: 132px;
+	margin: -2px 0px;
+	padding: 18px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_01_png.vtex");
+	background-size: 100%;
+}
+
+#SelectionConent .SelectionOption:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#SelectionConent .SelectionOption.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#SelectionConent .SelectionOption .CommonBox
+{
+	width: 100%;
+}
+
+#SelectionConent .SelectionOption #UpgradeIcon
+{
+	width: 36px;
+	height: 36px;
+	align: right bottom;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_up_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+.ParticleFx
+{
+	align: center center;
+	width: 200%;
+	height: 200%;
+	overflow: noclip;
+	z-index: 1;
+	ignore-parent-flow: true;
+}
+
+.UpgradeBox
+{
+	width: 500px;
+	flow-children: right;
+}
+
+.UpgradeBox .UpgradeIcon
+{
+	horizontal-align: left;
+	vertical-align: middle;
+	margin: -10px 10px -10px -10px;
+}
+
+.UpgradeBox .UpgradeInfo
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	horizontal-align: left;
+	vertical-align: middle;
+	padding: 3px 0px;
+}
+
+.UpgradeBox .UpgradeInfo .UpgradeName
+{
+	width: 100%;
+	font-size: 28px;
+	color: #CABEA2;
+	text-align: left;
+	margin-bottom: 4px;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.UpgradeBox .UpgradeInfo .UpgradeDescription
+{
+	width: 100%;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-align: left;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+.UpgradeIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+.UpgradeIcon.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.UpgradeIcon.large #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity3
+{
+	background-image: url("s2r://");
+}
+
+.UpgradeIcon.large #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_big_png.vtex");
+}
+
+.UpgradeIcon #UpgradeImage
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.UpgradeIcon #Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.UpgradeIcon #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_golden_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
+}
+
+@keyframes 'UpgradeContentReveal'
+{
+	0%
+	{
+		opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	}
+	
+	50%
+	{
+		opacity-brush: gradient(linear, 0 50%, 0 100%, from(#ffffff), to(#ffffff00));
+	}
+	
+	100%
+	{
+		opacity-brush: gradient(linear, 0 100%, 0 150%, from(#ffffff), to(#ffffff00));
+	}
+	
+}
+
+@keyframes 'UpgradeOptionAppear'
+{
+	0%
+	{
+		transform: translateY(80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#UpgradeSelection
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	transform: translateY(50px);
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+	visibility: collapse;
+}
+
+#UpgradeSelection.Show
+{
+	transform: translateY(0px);
+	visibility: visible;
+}
+
+#UpgradeSelection.Show #UpgradeConent
+{
+	animation-name: UpgradeContentReveal;
+}
+
+#UpgradeSelection.Show .UpgradeOption
+{
+	animation-name: UpgradeOptionAppear;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+#UpgradeSelection #UpgradeConent
+{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-left: 30px;
+	padding-right: 30px;
+	horizontal-align: center;
+	flow-children: down;
+	opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_02_png.vtex");
+	background-size: 100%;
+}
+
+#UpgradeSelection #UpgradeConent #Title
+{
+	width: 296px;
+	height: 40px;
+	align: center top;
+	flow-children: right;
+}
+
+#UpgradeSelection #UpgradeConent #Title .TitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#UpgradeSelection #UpgradeConent #Title .TitleTextRow
+{
+	flow-children: right;
+	width: fit-children;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#UpgradeSelection #UpgradeConent #Title #UpgradeTitle
+{
+	vertical-align: middle;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+}
+
+#UpgradeSelection #UpgradeConent #Title #UpgradeCount
+{
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #ffefc8;
+	text-shadow: 3px 3px 6px #d25b14;
+}
+
+#UpgradeSelection #UpgradeConent #Title .LeftIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#UpgradeSelection #UpgradeConent #Title .RightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#UpgradeSelection #UpgradeConent #UpgradeOptions
+{
+	horizontal-align: center;
+	flow-children: down;
+	margin-bottom: 5px;
+}
+
+#UpgradeSelection #UpgradeConent .UpgradeOption
+{
+	horizontal-align: center;
+	width: 487px;
+	height: 132px;
+	margin: -2px 0px;
+	padding: 18px;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_01_png.vtex");
+	background-size: 100%;
+}
+
+#UpgradeSelection #UpgradeConent .UpgradeOption:hover
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#UpgradeSelection #UpgradeConent .UpgradeOption.Selected
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_02_png.vtex");
+	background-size: 100%;
+	brightness: 1.15;
+}
+
+#UpgradeSelection #UpgradeConent .UpgradeOption .UpgradeIcon
+{
+	ui-scale: 85%;
+}
+
+#UpgradeSelection #Footer
+{
+	width: 100%;
+	flow-children: left;
+	padding: 0px 10px;
+}
+
+#UpgradeSelection #Footer .FooterButtonPlaceholder
+{
+	width: 154px;
+	height: 44px;
+}
+
+#UpgradeSelection #Footer .EOM_Button.GamepadSelected
+{
+	brightness: 1.5;
+}
+
+#UpgradeSelection #Footer #PayRefreshCost
+{
+	margin-bottom: 0px;
+	color: #FFCC33;
+	font-weight: semi-bold;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+	padding-top: 1px;
+	padding-left: 20px;
+	margin-left: 4px;
+	line-height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/tokens/110010_png.vtex");
+	background-size: 20px;
+}
+
+#UpgradeSelection .ParticleFx
+{
+	align: center center;
+	width: 250%;
+	height: 250%;
+	overflow: noclip;
+	z-index: 10;
+	y: 50px;
+}
+
+@keyframes 'UpgradeSelectionAllContentReveal'
+{
+	0%
+	{
+		opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	}
+	
+	50%
+	{
+		opacity-brush: gradient(linear, 0 50%, 0 100%, from(#ffffff), to(#ffffff00));
+	}
+	
+	100%
+	{
+		opacity-brush: gradient(linear, 0 100%, 0 150%, from(#ffffff), to(#ffffff00));
+	}
+	
+}
+
+@keyframes 'UpgradeSelectionAllOptionAppear'
+{
+	0%
+	{
+		transform: translateY(24px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+#UpgradeSelectionAll
+{
+	align: left bottom;
+	width: 542px;
+	margin-left: 155px;
+	margin-bottom: 142px;
+	transform: translateY(50px);
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+	visibility: collapse;
+}
+
+#UpgradeSelectionAll.Show
+{
+	transform: translateY(0px);
+	visibility: visible;
+}
+
+#UpgradeSelectionAll.Show #UpgradeSelectionAllContent
+{
+	animation-name: UpgradeSelectionAllContentReveal;
+}
+
+#UpgradeSelectionAll.Show .UpgradeSelectionAllOption
+{
+	animation-name: UpgradeSelectionAllOptionAppear;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent
+{
+	width: 542px;
+	padding: 40px 30px;
+	horizontal-align: center;
+	flow-children: down;
+	opacity-brush: gradient(linear, 0 0, 0 0, from(#ffffff), to(#ffffff00));
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	background-image: url("s2r://panorama/images/custom_game/hud/h_blessing_bg_02_png.vtex");
+	background-size: 100% 100%;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle
+{
+	width: 296px;
+	height: 40px;
+	align: center top;
+	flow-children: right;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle .UpgradeSelectionAllTitleCenter
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle #UpgradeSelectionAllTitleLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #AC9880;
+	text-shadow: 3px 3px 6px #000000;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle .UpgradeSelectionAllLeftIcon,#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle .UpgradeSelectionAllRightIcon
+{
+	width: 33px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/m1_messenger/m1_info_figure_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllTitle .UpgradeSelectionAllRightIcon
+{
+	transform: rotateY(-180deg);
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllOptions
+{
+	width: 464px;
+	max-height: 296px;
+	horizontal-align: center;
+	padding: 4px 26px 4px 0px;
+	margin-bottom: 5px;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllOptions .UpgradeSelectionAllOption
+{
+	width: 64px;
+	height: 64px;
+	margin: 4px;
+	transition-property: brightness, pre-transform-scale2d, box-shadow;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-out;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllOptions .UpgradeSelectionAllOption:hover
+{
+	brightness: 1.25;
+	pre-transform-scale2d: 1.06;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ffefc866;
+}
+
+#UpgradeSelectionAll #UpgradeSelectionAllContent #UpgradeSelectionAllOptions .UpgradeSelectionAllOption.Selected
+{
+	brightness: 1.35;
+	pre-transform-scale2d: 1.06;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ffefc866;
+}
+
+#UpgradeSelectionAll .UpgradeSelectionAllParticleFx
+{
+	align: center center;
+	width: 250%;
+	height: 250%;
+	overflow: noclip;
+	z-index: 10;
+	y: 50px;
+}

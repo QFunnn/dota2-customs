@@ -1,0 +1,149 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"Pools"
+{
+	"bonus_god_zues"
+	{
+		"item_zues_attack"	"1"
+		"item_zues_dash"	"1"
+	}
+	"bonus_god_fire"
+	{
+	}
+	"bonus_god_earth"
+	{
+		"item_earth_dash"	"1"
+		"item_earth_skin"	"1"
+	}
+	"bonus_god_blade"
+	{
+		"item_blade_attack"	"1"
+		"item_blade_crit_track"	"1"
+		"item_blade_crit"	"1"
+	}
+	"bonus_god_wind"
+	{
+		"item_wind_dash"	"1"
+	}
+	"pom_reward"
+	{
+		"item_ball_health"	"1"
+		"item_ball_attack"	"1"
+	}
+	"breakable"
+	{
+		"npc_dungeon_crate_1"		"1"
+		"npc_dungeon_crate_2"		"1"
+		"npc_dungeon_bucket"		"1"
+	}
+	"breakable_ice"
+	{
+		"npc_dungeon_crate_1"		"1"
+		"npc_dungeon_crate_2"		"1"
+		"npc_dungeon_bucket"		"1"
+		"npc_dungeon_ice_1"			"1"
+	}
+	"shop_rarity_zone1"
+	{
+		// 第一关：以白绿过渡为主，保留少量蓝紫高光，橙装只做惊喜。
+		"1"		"60"
+		"2"		"26"
+		"3"		"10"
+		"4"		"3"
+		"5"		"1"
+	}
+	"shop_rarity_zone2"
+	{
+		// 第二关：明显进入蓝装期，紫装开始稳定出现，橙装有可感知概率。
+		"1"		"35"
+		"2"		"30"
+		"3"		"20"
+		"4"		"10"
+		"5"		"5"
+	}
+	"shop_rarity_zone3"
+	{
+		// 第三关：商店应更偏向后期成型，蓝紫为主，橙装成为真实追求。
+		"1"		"15"
+		"2"		"23"
+		"3"		"30"
+		"4"		"22"
+		"5"		"10"
+	}
+	"wish_pool_zone1"
+	{
+		"item_health_potion_1"	"2"
+		"item_health_potion_2"	"2"
+		"item_mana_potion_1"	"1"
+		"item_mana_potion_2"	"1"
+		"item_coin_stack"		"2"
+		// "item_regen_bottle"		"2"
+		"item_ball_attack"		"2"
+		"item_ball_health"		"2"
+		"item_gold_pouch"		"2"
+		"item_boon_bless"		"2"
+		// "item_hammer_weapon"	"1"
+		// "item_bless_upgrade"	"1"
+	}
+	"wish_pool_zone2"
+	{
+		"item_health_potion_2"	"2"
+		"item_health_potion_3"	"2"
+		"item_mana_potion_2"	"1"
+		"item_mana_potion_3"	"1"
+		"item_coin_stack"		"2"
+		// "item_regen_bottle"		"2"
+		"item_ball_attack"		"2"
+		"item_ball_health"		"2"
+		"item_gold_pouch"		"2"
+		"item_boon_bless"		"2"
+		"item_hammer_weapon"	"2"
+		// "item_bless_upgrade"	"1"
+	}
+	"wish_pool_zone3"
+	{
+		// "item_health_potion_2"	"1"
+		"item_health_potion_3"	"2"
+		// "item_mana_potion_2"	"2"
+		"item_mana_potion_3"	"1"
+		"item_coin_stack"		"2"
+		"item_regen_bottle"		"2"
+		"item_ball_attack"		"2"
+		"item_ball_health"		"2"
+		"item_gold_pouch"		"2"
+		"item_boon_bless"		"2"
+		"item_hammer_weapon"	"2"
+		"item_bless_upgrade"	"2"
+	}
+	// ⚠️ 以下 special_room_zone* 仅作兜底 fallback —— 正常流程由 dungeon_config.txt → SpecialRoomOptions 控制出口选项
+	// 只有当出口系统异常未传 specialKind 时才会走到这里，日常修改特殊房类型请改 dungeon_config.txt
+	"special_room_zone1"
+	{
+		"WishingPool"		"1"
+		"Smithy"		"1"
+		"RegenWell"			"1"
+		"Book"			"1"
+	}
+	"special_room_zone2"
+	{
+		"WishingPool"	"1"
+		"Smithy"		"1"
+		"RegenWell"			"1"
+		"Book"			"1"
+	}
+	"special_room_zone3"
+	{
+		"WishingPool"		"1"
+		"Smithy"		"1"
+		"RegenWell"			"1"
+		"Book"			"1"
+	}
+}

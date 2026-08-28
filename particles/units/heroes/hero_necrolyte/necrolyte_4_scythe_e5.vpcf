@@ -1,0 +1,148 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf63:version{a6e6a69e-52d3-4527-8b9c-ff3bb91aca3e} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 256.0
+	m_flConstantLifespan = 1.2
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 6.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 180.0
+			}
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 50.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 50.0 ]
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 32.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 32.0 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_flInput0 = 0.0
+				m_flInput1 = 10000.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 12500.0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 1
+				m_nVectorComponent = 0
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 59, 255, 112 ]
+			m_ColorMax = [ 111, 255, 58 ]
+			m_bDisableOperator = true
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+			m_Gravity = [ 0.0, 0.0, -20.0 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.05
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.9
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.1
+			m_flBias = 0.125
+			m_flEndTime = 0.8
+			m_flStartScale = 0.9
+			m_bEaseInAndOut = true
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+			m_nFieldOutput = 16
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 28, 55, 4 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flRefractAmount = 0.0075
+			m_nRefractBlurRadius = 3
+			m_nRefractBlurType = "BLURFILTER_BOX"
+			m_bGammaCorrectVertexColors = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/particle_heroring_6_crisp.vtex"
+				},
+			]
+		},
+	]
+}

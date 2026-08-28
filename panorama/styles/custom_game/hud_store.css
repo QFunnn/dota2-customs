@@ -1,0 +1,5850 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+.AspectRatio16x10 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 90%;
+}
+
+.AspectRatio4x3 .CustomHudRoot
+{
+	width: 100%;
+	height: width-percentage(900/16%);
+	ui-scale: 75%;
+}
+
+.BackgroundScene
+{
+	width: 100%;
+	height: 100%;
+	z-index: -99;
+}
+
+#StoreBG
+{
+	width: height-percentage(177.77778%);
+	height: 100%;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bg_png.vtex");
+	background-size: 100%;
+	z-index: -100;
+	transition-property: background-image;
+	transition-duration: 0.1s;
+}
+
+#StoreBG.StoreTabRecommend
+{
+	background-image: url("s2r://panorama/images/custom_game/store/s_bg2_png.vtex");
+}
+
+#StoreBG.StoreTabPrivilege
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_bj_png.vtex");
+}
+
+.SeaMysteryTurntable #StoreBG
+{
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_bg_png.vtex");
+}
+
+.SeaMysteryTask #StoreBG
+{
+	width: 2048px;
+	height: 1080px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_bj_png.vtex");
+	background-size: 2048px 1080px;
+	background-position: center center;
+}
+
+#StoreMain .EOM_MenuLayout_Content
+{
+	z-index: -1;
+	transition-property: opacity;
+	transition-duration: 0.24s;
+	transition-timing-function: ease-out;
+}
+
+#StoreMain .EOM_MenuLayout_Content.Show #CosmeticPreview
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+#StoreMain .EOM_MenuLayout_Content .MarkIcon
+{
+	align: right top;
+	margin: 0;
+	margin-top: -16px;
+}
+
+#StoreMain .EOM_MenuLayout_Content_Box
+{
+	padding-left: 228px;
+}
+
+#ExchangeTextEntry
+{
+	width: 236px;
+	height: 37px;
+}
+
+#ExchangeTextEntry TextEntry
+{
+	width: 100%;
+	height: 27px;
+	font-size: 16px;
+	margin: 4px 35px 4px 21px;
+	padding: 3px 0px;
+	vertical-align: center;
+	overflow: clip;
+}
+
+#ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.TagContent
+{
+	width: 100%;
+	height: 100%;
+	margin-right: 70px;
+	margin-bottom: 20px;
+	overflow: squish;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.TagContent:selected
+{
+	opacity: 1;
+}
+
+#StoreList
+{
+	margin-top: 18px;
+	padding-top: 10px;
+	padding-left: 15px;
+	margin-bottom: 100px;
+	flow-children: right-wrap;
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#StoreList .StoreItemMain
+{
+	margin: 11px 0px;
+}
+
+#VipPage
+{
+	width: 100%;
+	height: 100%;
+}
+
+#VipPage #discount
+{
+	width: 48px;
+	height: 48px;
+	margin-left: 623px;
+	background-image: url("s2r://");
+	background-position: center;
+	background-repeat: no-repeat;
+	flow-children: right;
+	z-index: 11;
+}
+
+#VipPage #discount.mounth
+{
+	margin-top: 97px;
+}
+
+#VipPage #discount.year
+{
+	margin-top: 69px;
+}
+
+#VipPage #discount .number
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 18px;
+	color: #F5EECB;
+	text-shadow: 0px 0px 4px #2D0505;
+	transform: translateX(6px);
+}
+
+#VipPage #discount .pct
+{
+	align: center center;
+	font-family: Reaver;
+	color: #F5EECB;
+	font-size: 12px;
+	transform: translateY(2px);
+}
+
+#VipPage .vip
+{
+	z-index: 10;
+	width: 1514px;
+	height: 714px;
+	margin-left: 61px;
+	margin-top: 119px;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0;
+}
+
+#VipPage .vip .PrivilegeList
+{
+	horizontal-align: right;
+	margin-top: 220px;
+	margin-right: 99px;
+	flow-children: down;
+}
+
+#VipPage .vip .PrivilegeList .privilege
+{
+	width: 638px;
+	flow-children: down;
+}
+
+#VipPage .vip .PrivilegeList .privilege.russian .line Label
+{
+	font-size: 15px;
+	margin-top: 16px;
+	margin-bottom: 15px;
+	text-align: right;
+}
+
+#VipPage .vip .PrivilegeList .privilege.english .line Label
+{
+	font-size: 15px;
+	margin-top: 16px;
+	margin-bottom: 15px;
+	text-align: right;
+}
+
+#VipPage .vip .PrivilegeList .privilege .line
+{
+	flow-children: left;
+	horizontal-align: right;
+}
+
+#VipPage .vip .PrivilegeList .privilege .line Label
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #606060;
+	margin-top: 15px;
+	margin-bottom: 13px;
+	text-align: right;
+}
+
+#VipPage .vip .PrivilegeList .privilege .line Image
+{
+	margin-left: 10px;
+	margin-right: 17px;
+	width: 10px;
+	height: 10px;
+	vertical-align: center;
+	background-image: url("s2r://");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#VipPage .vip .PrivilegeList .privilege .div
+{
+	width: 638px;
+	height: 2px;
+	background-image: url("s2r://");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#VipPage .vip.show
+{
+	opacity: 1;
+}
+
+#VipPage .vip .vipTitle
+{
+	horizontal-align: right;
+	margin-top: 126px;
+	margin-right: 102px;
+	font-weight: normal;
+	font-size: 60px;
+	color: #5F5F5F;
+}
+
+#VipPage .vip .vipTitle.russian
+{
+	font-size: 40px;
+}
+
+#VipPage .vip .vipTitle.english
+{
+	font-size: 40px;
+}
+
+#VipPage .vip #remain
+{
+	vertical-align: bottom;
+	margin-left: 380px;
+	margin-bottom: 40px;
+}
+
+#VipPage .vip #remain Label
+{
+	font-size: 30px;
+	color: white;
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	text-shadow: 0px 0px 5px 3 black;
+}
+
+#VipPage .vip #remain.russian Label
+{
+	font-size: 20px;
+}
+
+#VipPage .vip #remain.english Label
+{
+	font-size: 20px;
+}
+
+#VipPage .vip .LeftTitle
+{
+	margin-left: 462px;
+	margin-top: 578px;
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	font-size: 34px;
+}
+
+#VipPage .vip .LeftTitle.russian
+{
+	margin-left: 300px;
+}
+
+#VipPage .vip .LeftTitle.english
+{
+	margin-left: 300px;
+}
+
+#VipPage .vip #year_discount
+{
+	width: 120px;
+	height: 120px;
+	margin-left: 590px;
+	margin-top: 465px;
+}
+
+#VipPage .vip #year_discount Label
+{
+	font-family: Reaver;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFE675), to(#FFF098));
+	text-shadow: 0px 0px 2px #9B2420;
+}
+
+#VipPage .vip #year_discount #number
+{
+	font-size: 68px;
+	transform: translateX(-5px);
+}
+
+#VipPage .vip #year_discount #pct
+{
+	font-size: 36px;
+	transform: translateX(82px) translateY(12px);
+}
+
+#VipPage .vip #year_discount #off
+{
+	font-size: 20px;
+	transform: translateX(78px) translateY(50px);
+}
+
+#VipPage .vip .BuyBtn
+{
+	width: 264px;
+	height: 66px;
+	background-image: url("s2r://");
+	align: right bottom;
+	margin-right: 99px;
+	margin-bottom: 81px;
+}
+
+#VipPage .vip .BuyBtn.discount #origin_price
+{
+	opacity: 1;
+}
+
+#VipPage .vip .BuyBtn.discount #real_price
+{
+	margin-right: 30px;
+}
+
+#VipPage .vip .BuyBtn .EOM_Button_Text
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+}
+
+#VipPage .vip .BuyBtn #origin_price
+{
+	opacity: 0;
+	align: right center;
+	margin-right: 20px;
+	color: #E54A4A;
+	text-shadow: 0px 0px 2px 2 #241838;
+	text-decoration: line-through;
+	ignore-parent-flow: true;
+}
+
+#VipPage .vip .StoreItemDiscount
+{
+	align: right bottom;
+	margin-right: 220px;
+	margin-bottom: 75px;
+}
+
+#VipPage .tab
+{
+	background-image: url("s2r://");
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 101px;
+	width: 216px;
+	height: 50px;
+}
+
+#VipPage .tab Label
+{
+	align: center center;
+	font-weight: normal;
+	font-size: 24px;
+	color: #512D1E;
+}
+
+#VipPage .tab.selected
+{
+	margin-top: 77px;
+	width: 218px;
+	height: 79px;
+	background-image: url("s2r://");
+}
+
+#VipPage .tab.russian Label
+{
+	font-size: 15px;
+}
+
+#VipPage .tab.english Label
+{
+	font-size: 15px;
+}
+
+#VipPage #tab_mounth
+{
+	margin-left: 198px;
+}
+
+#VipPage #tab_year
+{
+	margin-left: 434px;
+}
+
+#VipPage #vip_mounth
+{
+	background-image: url("s2r://");
+}
+
+#VipPage #vip_mounth .LeftTitle
+{
+	color: #CCD5ED;
+}
+
+#VipPage #vip_mounth .LeftTitle.russian
+{
+	font-size: 25px;
+	margin-left: 370px;
+}
+
+#VipPage #vip_mounth .LeftTitle.english
+{
+	font-size: 25px;
+	margin-left: 400px;
+}
+
+#VipPage #vip_year
+{
+	background-image: url("s2r://");
+}
+
+#VipPage #vip_year .LeftTitle
+{
+	color: #FFEC9D;
+}
+
+#VipPage #vip_year .LeftTitle.russian
+{
+	font-size: 25px;
+	margin-left: 400px;
+}
+
+#VipPage #vip_year .LeftTitle.english
+{
+	font-size: 25px;
+	margin-left: 400px;
+}
+
+#MustPage
+{
+	margin-left: 220px;
+	width: 100%;
+	height: 100%;
+}
+
+#MustPage #MustTitle
+{
+	horizontal-align: center;
+	width: 1540px;
+	height: 170px;
+	margin-top: 20px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#MustPage #MustTitle.english
+{
+	background-image: url("s2r://");
+}
+
+#MustPage #MustTitle.russian
+{
+	background-image: url("s2r://");
+}
+
+#MustPage #ItemList
+{
+	margin-top: 190px;
+	flow-children: down-wrap;
+	height: 100%;
+	margin-left: -20px;
+	margin-right: -10px;
+	margin-bottom: 20px;
+	padding: 0 -50px 10px 50px;
+	opacity-mask: url("s2r://");
+}
+
+#MustPage #ItemList > HorizontalScrollBar
+{
+	height: 6px;
+	background-color: #425590;
+	box-shadow: none;
+	width: 90%;
+}
+
+#MustPage #ItemList > HorizontalScrollBar .ScrollThumb
+{
+	background-color: gradient(linear, 0 0, 0 100%, from(#95cbfc), to(#6396e2));
+	margin-bottom: 1px;
+}
+
+#MustPage .SpecialItem
+{
+	margin-right: 12px;
+}
+
+#MustPage .SpecialItem.small
+{
+	margin: 22px 12px 22px 0;
+}
+
+#MustPage .SpecialItem.big.9900226 #Detail.english,#MustPage .SpecialItem.big.9900226 #Detail.russian
+{
+	margin-top: 480px;
+}
+
+#FirstRechargeBanner
+{
+	width: 100%;
+	margin-left: 36px;
+	margin-right: 36px;
+	margin-top: 36px;
+}
+
+#FirstRechargeBanner #BG
+{
+	width: 100%;
+	height: 74px;
+	vertical-align: bottom;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#FirstRechargeBanner #Hero1
+{
+	align: right bottom;
+	margin-right: 287px;
+	width: 239px;
+	height: 78px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#FirstRechargeBanner #Hero2
+{
+	align: right bottom;
+	margin-right: 152px;
+	width: 232px;
+	height: 93px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#FirstRechargeBanner #Hero3
+{
+	align: right bottom;
+	margin-right: 107px;
+	width: 136px;
+	height: 88px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#FirstRechargeBanner #Hero4
+{
+	align: right bottom;
+	margin-right: 3px;
+	width: 156px;
+	height: 58px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#FirstRechargeBanner #Desc
+{
+	margin-bottom: 23px;
+	margin-left: 47px;
+	vertical-align: bottom;
+	font-size: 28px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#FFDCAB));
+	text-shadow: 0px 1px 2px 2 #09051D;
+}
+
+#BGRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#BGRoot #BGLight
+{
+	width: 100%;
+	height: 100%;
+}
+
+.EOM_RedMark
+{
+	flow-children: none;
+}
+
+.EOM_RedMark .EOM_RedMark-Dot
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: middle;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_01_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-exclamation.Size-small
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-medium
+{
+	width: 58px;
+	height: 58px;
+}
+
+.EOM_RedMark.Type-exclamation.Size-large
+{
+	width: 69.6px;
+	height: 69.6px;
+}
+
+.EOM_RedMark.Type-exclamation .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark.Type-new
+{
+	align: right top;
+	margin-right: -5px;
+	margin-top: -3px;
+	width: 52.8px;
+	height: 28.8px;
+	overflow: noclip;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Dot
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.EOM_RedMark.Type-new.Size-small
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-medium
+{
+	width: 52.8px;
+	height: 28.8px;
+}
+
+.EOM_RedMark.Type-new.Size-large
+{
+	width: 63.36px;
+	height: 34.56px;
+}
+
+.EOM_RedMark.Type-new .EOM_RedMark-Count
+{
+	visibility: collapse;
+}
+
+.EOM_RedMark .EOM_RedMark-Count
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 0px 2px 2 black;
+	text-align: center;
+}
+
+.EOM_RedMark.Type-dot.Size-small
+{
+	width: 12px;
+	height: 12px;
+}
+
+.EOM_RedMark.Type-dot.Size-small .EOM_RedMark-Count
+{
+	font-size: 8px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium
+{
+	width: 24px;
+	height: 24px;
+}
+
+.EOM_RedMark.Type-dot.Size-medium .EOM_RedMark-Count
+{
+	font-size: 10px;
+}
+
+.EOM_RedMark.Type-dot.Size-large
+{
+	width: 42px;
+	height: 42px;
+}
+
+.EOM_RedMark.Type-dot.Size-large .EOM_RedMark-Count
+{
+	font-size: 14px;
+}
+
+.EOM_RedMark.EOM_RedMark-Breathe .EOM_RedMark-Dot
+{
+	animation-name: RedMarkBreathe;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'RedMarkBreathe'
+{
+	0%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+	50%
+	{
+		opacity: 0.8;
+		transform: scale3d(1.15, 1.15, 1);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+	
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: black;
+	transform: translateY(-30px);
+	transition-property: opacity, transform;
+	transition-duration: 0.24s;
+	transition-timing-function: ease-out;
+}
+
+.EOM_MenuLayout.Show
+{
+	sound: "UI.Menu.Open";
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout .EOM_CloseButton
+{
+	margin-top: 16px;
+	margin-right: 16px;
+	horizontal-align: right;
+	z-index: 2;
+}
+
+.EOM_MenuLayout #TopBottomBG
+{
+	width: 100%;
+	height: 86px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_panel_1_png.vtex");
+	background-size: 100%;
+	z-index: 1;
+}
+
+.EOM_MenuLayout #WindowTitle
+{
+	align: center top;
+	margin-top: 15px;
+}
+
+.EOM_MenuLayout #WindowTitle Label
+{
+	font-size: 24px;
+	font-weight: normal;
+	color: #3b89d1;
+	text-shadow: 0px 0px 2px 4 rgba(0, 0, 0, 0.5);
+}
+
+.EOM_MenuLayout .CurrencyGroup
+{
+	margin-top: 24px;
+	margin-right: 73px;
+}
+
+.EOM_MenuLayout .CurrencyGroup .EOM_Currency
+{
+	margin: 0px 12px;
+}
+
+.CurrencyGroup
+{
+	z-index: 2;
+}
+
+.EOM_MenuLayout_Content
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Content.Show
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Content_BG
+{
+	background-color: black;
+}
+
+.EOM_MenuLayout_Content_Box
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 246px;
+	padding-top: 86px;
+}
+
+#EOM_MenuLayoutBGScene
+{
+	align: center center;
+	width: 100%;
+	height: width-percentage(100%);
+	z-index: -100;
+}
+
+.EOM_MenuLayout_Menu
+{
+	opacity: 0;
+	transform: translateX(-40px);
+	animation-name: none;
+	animation-duration: 0.24s;
+	animation-timing-function: ease-out;
+	animation-delay: 0.24s;
+	animation-fill-mode: forwards;
+	min-width: 246px;
+	height: 895px;
+	margin-top: 169px;
+	margin-left: 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_line_png.vtex");
+	background-size: 2px 618px;
+	background-position: left 42px top 0px;
+	background-repeat: no-repeat;
+	overflow: squish scroll;
+	flow-children: down;
+	padding-top: 85px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu.Show
+{
+	animation-name: SlideInLeft;
+}
+
+.EOM_MenuLayout_Menu .MenuLockIcon
+{
+	width: 30px;
+	height: 38px;
+	vertical-align: center;
+	ui-scale: 60%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu VerticalScrollBar
+{
+	opacity: 0;
+}
+
+.EOM_MenuLayout_Menu .TabButton
+{
+	width: 246px;
+	height: 52px;
+	margin-top: 10px;
+	margin-bottom: 39px;
+	z-index: 1;
+	flow-children: right;
+	overflow: noclip;
+	background-size: 100%;
+	transition-property: position, background-image;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton:hover .TabLabel
+{
+	brightness: 2;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected,.EOM_MenuLayout_Menu .TabButton:selected
+{
+	sound: "UI.TabButton";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select_png.vtex");
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundArrow,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundArrow
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_1_png.vtex");
+	transform: rotateZ(0deg);
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabLabel,.EOM_MenuLayout_Menu .TabButton:selected .TabLabel
+{
+	color: #E6D4A4;
+}
+
+.EOM_MenuLayout_Menu .TabButton.Selected .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:hover .TabBackgroundActive,.EOM_MenuLayout_Menu .TabButton:selected .TabBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabLabel
+{
+	vertical-align: center;
+	margin: 0px 1px 0px 5px;
+	font-size: 22px;
+	color: #686868;
+	transition-property: color, brightness;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.15s;
+}
+
+.EOM_MenuLayout_Menu .TabButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .russian
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabIcon
+{
+	width: 26px;
+	height: 26px;
+	vertical-align: center;
+	margin-left: 33px;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.EOM_MenuLayout_Menu .TabButton.HasSecondaryMenu .TabIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/cvt_tag_dian3_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundArrow
+{
+	width: 36px;
+	height: 28px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_0_png.vtex");
+	background-position: center;
+	transform: rotateZ(180deg);
+	background-repeat: no-repeat;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-right: -10px;
+	align: right top;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabBackgroundActive
+{
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .TabButton .MenuMarkIcon
+{
+	align: right top;
+	margin-top: 0px;
+	margin-right: 6px;
+	z-index: 1;
+}
+
+.EOM_MenuLayout_Menu .TabButton .TabButtonParticle
+{
+	align: center center;
+	width: 230px;
+	height: 100px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer
+{
+	width: 100%;
+	max-height: 0px;
+	margin-left: 24px;
+	margin-top: -38px;
+	margin-bottom: 39px;
+	opacity: 0;
+	flow-children: down;
+	transition-property: height, max-height, position;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+	z-index: 0;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected,.EOM_MenuLayout_Menu .SecondaryContainer:selected
+{
+	max-height: 600px;
+	opacity: 1;
+	margin-bottom: 0px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer.Selected .SecondaryMenuButton,.EOM_MenuLayout_Menu .SecondaryContainer:selected .SecondaryMenuButton
+{
+	visibility: visible;
+	transform: translateY(0px);
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton
+{
+	visibility: collapse;
+	width: 150px;
+	height: 38px;
+	margin: 0px 1px;
+	padding-left: 12px;
+	transition-property: transform;
+	transition-timing-function: cubic-bezier(0.65, 0.1, 0.9, 0.31);
+	transition-duration: 0.3s;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton #TextAndRedMark
+{
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 26px;
+	flow-children: right;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .MenuLockIcon
+{
+	margin-top: -8px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton Label
+{
+	font-size: 18px;
+	color: #A69F87;
+	text-shadow: 0px 1px 2px 2 #000000;
+	transition-property: color, transform;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.1s;
+	text-overflow: shrink;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .EOM_RedMark
+{
+	margin-left: -5px;
+	margin-top: -8px;
+	align: right top;
+	overflow: noclip;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .english
+{
+	font-size: 17px;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected
+{
+	sound: "ui_find_match_change_options";
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_btn_select2_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected .SecondaryBackgroundActive,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected .SecondaryBackgroundActive
+{
+	opacity: 1;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:hover Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton.Selected Label,.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton:selected Label
+{
+	color: #FFF0BA;
+	text-shadow: 0px 1px 4px 4 #71541B;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .SecondaryBackgroundActive
+{
+	horizontal-align: center;
+	z-index: -1;
+	background-image: url("s2r://panorama/images/custom_game/eom_design/layout/tag_hightlight_2_png.vtex");
+	background-repeat: no-repeat;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_MenuLayout_Menu .SecondaryContainer .SecondaryMenuButton .TabButtonParticle
+{
+	vertical-align: center;
+	margin-left: 7px;
+	width: 115px;
+	height: 50px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	z-index: -1;
+}
+
+.EOM_MenuLayout_ShadowBoder
+{
+	width: 600px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex"), url("s2r://panorama/images/custom_game/conv/common/mask_01_png.vtex");
+	wash-color: #000000;
+	background-img-opacity: 0.9, 0.2;
+	background-size: 100%, 280px 100%;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.EOM_MenuLayout_ShadowBoder.Right
+{
+	horizontal-align: right;
+	transform: rotateZ(180deg);
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.EOM_Countdown
+{
+	flow-children: right;
+}
+
+.EOM_Countdown .EOM_CountdownIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/icon_clock_png.vtex");
+	background-size: 100%;
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+	wash-color: #B9A777;
+}
+
+.EOM_Countdown Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 0px 3 #000000;
+	font-size: 16px;
+}
+
+.EOM_ImageNumber1
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber1 .EOM_NUM
+{
+	width: height-percentage(70.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber2 .EOM_NUM
+{
+	width: height-percentage(84.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber3
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber3 .EOM_NUM
+{
+	width: height-percentage(81.5%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/0_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/1_png.vtex");
+	background-size: 100% 100%;
+	width: height-percentage(55%);
+}
+
+.EOM_ImageNumber3 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/2_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/3_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/4_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/5_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/6_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/7_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/8_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/9_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber4
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber4 .EOM_NUM
+{
+	width: height-percentage(77.78%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber4 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/0_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/1_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/2_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/3_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/4_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/5_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/6_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/7_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/8_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/9_png.vtex");
+}
+
+.EOM_ImageNumber5
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber5 .EOM_NUM
+{
+	width: height-percentage(73.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber5 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/0_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/1_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/2_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/3_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/4_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/5_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/6_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/7_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/8_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/9_png.vtex");
+}
+
+.EOM_ImageNumber6
+{
+	height: 43px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber6 .EOM_NUM
+{
+	width: height-percentage(55.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber6 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/0_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_1
+{
+	width: height-percentage(34.88%);
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/1_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/2_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/3_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/4_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/5_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/6_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/7_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/8_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/9_png.vtex");
+}
+
+.EOM_ImageNumber7
+{
+	height: 22px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber7 .EOM_NUM
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin: 0px -4px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber7 .EOM_PercentSign
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin-left: -5px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_%_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_0_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_1
+{
+	background-size: 100% 100%;
+	width: height-percentage(62%);
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_1_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_2_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_3_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_4_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_5_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_6_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_7_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_8_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_9_png.vtex");
+}
+
+.StoreItemMain
+{
+	width: 275px;
+}
+
+.StoreItemMain #RedPoint
+{
+	width: 48px;
+	height: 48px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemMain.Free #PriceBtn #CurrentPrice,.StoreItemMain.Free #PriceBtn #CostOriginPriceLabel
+{
+	visibility: collapse;
+}
+
+.StoreItemMain.Free #PriceBtn #FreeLabel
+{
+	visibility: visible;
+}
+
+.StoreItem
+{
+	width: 248px;
+	height: 300px;
+	background-size: 100%;
+	horizontal-align: center;
+	background-image: url("s2r://");
+}
+
+.Language_english .StoreItem #LimitInfo Label,.Language_russian .StoreItem #LimitInfo Label
+{
+	text-overflow: shrink;
+}
+
+.StoreItem:hover #ItemImage
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.5;
+}
+
+.StoreItem.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_grey_png.vtex");
+}
+
+.StoreItem.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_green_png.vtex");
+}
+
+.StoreItem.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_blue_png.vtex");
+}
+
+.StoreItem.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_yellow_png.vtex");
+}
+
+.StoreItem.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_red_png.vtex");
+}
+
+.StoreItem.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.StoreItem #ItemName
+{
+	width: 100%;
+	height: 20px;
+	font-size: 18px;
+	color: #FDEFC8;
+	margin-top: 27px;
+	text-align: center;
+	padding: 0px 30px;
+}
+
+.StoreItem #SplitLine
+{
+	width: 196px;
+	height: 10px;
+	horizontal-align: center;
+	margin-top: 53px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_line_png.vtex");
+}
+
+.StoreItem #ItemParticle
+{
+	horizontal-align: center;
+	margin-top: 65px;
+	width: 175px;
+	height: 175px;
+}
+
+.StoreItem #ItemImage
+{
+	width: 175px;
+	height: 175px;
+	margin-top: 65px;
+	horizontal-align: center;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.StoreItem #ItemCount
+{
+	align: right bottom;
+	margin-right: 36px;
+	margin-bottom: 80px;
+	text-align: center;
+	font-size: 20px;
+	color: #FCD6A4;
+	text-shadow: 0px 0px 4px 4 #000000;
+}
+
+.StoreItem #FirstPayDesc
+{
+	align: center bottom;
+	margin-bottom: 24px;
+	font-size: 18px;
+	height: 20px;
+	width: 190px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #C98849;
+	text-shadow: 0px 0px 4px 4 #000000aa;
+}
+
+.StoreItem .EOM_Countdown
+{
+	align: center bottom;
+	margin-bottom: 58px;
+}
+
+.StoreItem #LimitInfo
+{
+	align: center bottom;
+	margin-bottom: 22px;
+	width: 234px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_character_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItem #LimitInfo Label
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 18px;
+	color: #C98849;
+}
+
+#VIPIcon
+{
+	width: 50px;
+	height: 50px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+#VIPIcon.Buff101
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip101_png.vtex");
+}
+
+#VIPIcon.Buff102
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip102_png.vtex");
+}
+
+#VIPIcon.Buff104
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/common/vip104_png.vtex");
+}
+
+#FirstPayLabel
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_en_png.vtex");
+	background-size: 100%;
+	animation-name: Scale;
+	animation-duration: 1.2s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+.Language_schinese #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_cn_png.vtex");
+}
+
+.Language_russian #FirstPayLabel
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_double_ru_png.vtex");
+}
+
+#PriceBtn
+{
+	horizontal-align: center;
+	margin-top: 290px;
+}
+
+#PriceBtn .CurrencyIcon
+{
+	margin: 0px -3px 0px 0px;
+	letter-spacing: 0px;
+}
+
+#PriceBtn .CurrencyIcon.0
+{
+	margin-bottom: 1px;
+}
+
+#PriceBtn #FreeLabel
+{
+	visibility: collapse;
+	line-height: 20px;
+}
+
+#PriceBtn #CostOriginPriceLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #E94141;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 0px 2 #000000;
+	text-decoration: line-through;
+}
+
+#DiscountNum
+{
+	x: -5px;
+	width: 78px;
+	height: 62px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_tag_sale_png.vtex");
+}
+
+#DiscountNum .Rotate15
+{
+	margin-top: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	transform: rotateZ(-15deg);
+}
+
+#DiscountNum #OffSign
+{
+	horizontal-align: center;
+	margin-top: -5px;
+	margin-left: 1px;
+	width: 34px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_off_png.vtex");
+	background-size: 100%;
+}
+
+.StoreItemImage
+{
+	width: 256px;
+	height: 256px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+}
+
+.StoreItemBlock
+{
+	width: 128px;
+	height: 128px;
+	background-size: 100%;
+}
+
+.StoreItemBlock.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemBlock.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemBlock.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemBlock.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.StoreItemBlock.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.StoreItemBlock.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.StoreItemBlock.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.StoreItemBlock.IsEquip .StoreItemImage
+{
+	width: 80%;
+	height: 80%;
+}
+
+.StoreItemBlock .StoreItemImage
+{
+	align: center center;
+}
+
+.StoreItemBlock #ItemCount
+{
+	align: right bottom;
+	font-size: 20px;
+	color: #EFEFEF;
+	margin-right: 10%;
+	margin-bottom: 8%;
+}
+
+.StoreItemCard
+{
+	width: 186px;
+	height: 208px;
+}
+
+.StoreItemCard #CardBG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity1 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.StoreItemCard.Rarity2 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.StoreItemCard.Rarity3 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.StoreItemCard.Rarity4 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_purple_png.vtex");
+}
+
+.StoreItemCard.Rarity5 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+}
+
+.StoreItemCard.Rarity6 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard.Rarity7 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_red_png.vtex");
+}
+
+.StoreItemCard #CollectionIcon
+{
+	width: 75%;
+	height: 75%;
+	align: center bottom;
+	margin-bottom: 10%;
+}
+
+.StoreItemCard .StoreItemImage
+{
+	width: 98%;
+	height: 98%;
+	align: center center;
+}
+
+.StoreItemCard #Name
+{
+	align: center top;
+	margin-top: 10%;
+	max-width: 80%;
+	height: 20px;
+	font-size: 16px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #1C1132;
+}
+
+.StoreItemCard #LockIcon
+{
+	width: 16%;
+	height: width-percentage(127%);
+	align: center bottom;
+	margin-bottom: 32%;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+.StoreItemCard #SelectedHover
+{
+	align: center center;
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.StoreItemCard #BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+}
+
+.StoreItemCard:not(.Selected):hover #SelectedHover
+{
+	opacity: 1;
+	brightness: 0.5;
+}
+
+.StoreItemCard.Selected #SelectedHover
+{
+	opacity: 1;
+}
+
+.StoreItemCard.Lock .StoreItemImage
+{
+	brightness: 0.25;
+	saturation: 0;
+}
+
+.StoreItemCard.Lock #Name
+{
+	color: #686868;
+}
+
+.StoreItemCard.Lock #LockIcon
+{
+	opacity: 1;
+}
+
+@keyframes 'Scale'
+{
+	0%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+	50%
+	{
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	
+	100%
+	{
+		transform: scale3d(0.95, 0.95, 1);
+	}
+	
+}
+
+.StoreTagPageList
+{
+	width: 100%;
+	height: 100%;
+	padding-top: 28px;
+	padding-left: 15px;
+	padding-right: 0px;
+	padding-bottom: 100px;
+	flow-children: right-wrap;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+.StoreTagPageList .StoreItemMain
+{
+	margin: 11px 0px;
+}
+
+.EOM_CostLabel
+{
+	flow-children: right;
+}
+
+.EOM_CostLabel .EOM_CostLabelValue
+{
+	font-size: 20px;
+	color: #B9B1A6;
+}
+
+.EOM_CostLabel .EOM_CostLabelValue.NoEnough
+{
+	color: #FF4C4C;
+}
+
+#CollectionTreasureRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CollectionTreasureRoot .EOM_MenuLayout_Content_BG
+{
+	align: center center;
+	width: height-percentage(177.77778%);
+	height: 100%;
+	background-size: 100%;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_bj_png.vtex");
+}
+
+#CollectionTreasureRoot .CollectionDivider
+{
+	width: 450px;
+	height: 10px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_lin_png.vtex");
+}
+
+#CollectionTreasurePanel
+{
+	width: 1614px;
+	height: 930px;
+	align: center center;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionTreasureBG
+{
+	width: 1614px;
+	height: 930px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_book_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails
+{
+	flow-children: down;
+	margin-top: 92px;
+	margin-left: 64px;
+	width: 450px;
+	height: 760px;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionItemIconContent
+{
+	vertical-align: center;
+	margin-left: 24px;
+	margin-bottom: 0px;
+	width: 124px;
+	height: 124px;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionItemIconContent #CollectionItemIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionItemIconContent #LevelupFx
+{
+	width: 512px;
+	height: 512px;
+	align: center center;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionTopContent
+{
+	flow-children: right;
+	width: 100%;
+	height: 168px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionTopRightContent
+{
+	flow-children: down;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionTitle
+{
+	horizontal-align: center;
+	margin-top: 26px;
+	width: 380px;
+	height: 36px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionTitle #CollectionTitleText
+{
+	align: center center;
+	width: 100%;
+	font-size: 24px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionSubTitle
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	width: 212px;
+	height: 28px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionSubTitleBG
+{
+	width: 212px;
+	height: 22px;
+	align: center center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_bottom_01_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionSubTitleText
+{
+	align: center center;
+	width: 190px;
+	font-size: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #LvArea
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelContentWithBorder
+{
+	horizontal-align: center;
+}
+
+#CollectionTreasurePanel #CollectionDetails #Triangle
+{
+	margin: 0px 25px;
+	vertical-align: center;
+	width: 30px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_shape_triangle_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelBorderTextContent
+{
+	align: center center;
+	max-width: 96px;
+	max-height: 36px;
+	flow-children: right;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelBorderTextContent .CollectionLevelBorderText
+{
+	text-overflow: shrink;
+	font-size: 30px;
+	color: #EFCC77;
+	text-shadow: 0px 0px 2px 2 #000000;
+	font-family: Adobe Heiti Std;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelBorderTextContent .CollectionLevelBorderText.BorderTextPrefix
+{
+	margin-bottom: 2px;
+	vertical-align: bottom;
+	font-size: 20px;
+}
+
+#CollectionTreasurePanel #CollectionDetails .CollectionLevelBG
+{
+	horizontal-align: center;
+	vertical-align: top;
+	width: 62px;
+	height: 68px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_lv_big_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelContent
+{
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 10px;
+	width: 306px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelText
+{
+	horizontal-align: center;
+	height: 24px;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelProgressBar
+{
+	margin-top: 0px;
+	width: 306px;
+	height: 32px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelProgressBG
+{
+	width: 306px;
+	height: 32px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_progress_0_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelProgressFill
+{
+	width: 276px;
+	height: 14px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_progress_1_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelProgressTrack
+{
+	align: center center;
+	width: 276px;
+	height: 14px;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionDetails .CollectionLevelProgressSeparator
+{
+	vertical-align: center;
+	width: 3px;
+	height: 14px;
+	margin-left: -1px;
+	background-color: #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionCurrentAttributes
+{
+	flow-children: down;
+	width: 100%;
+	height: 136px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionCurrentAttributes #CollectionCurrentAttributesLockedContent
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionCurrentAttributes #CollectionCurrentAttributesLockedText
+{
+	align: center center;
+	width: 100%;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionCurrentAttributesBG
+{
+	width: 138px;
+	height: 38px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_bottom_short_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionCurrentAttributesText
+{
+	horizontal-align: left;
+	vertical-align: center;
+	margin-left: 18px;
+	margin-bottom: 4px;
+	font-size: 18px;
+	color: #CCBB8F;
+	text-align: center;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffects
+{
+	flow-children: down;
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffects.MaxLevel
+{
+	height: 434px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsTitleBG
+{
+	width: 230px;
+	height: 42px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_bottom_long_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsTitle
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: 18px;
+	margin-bottom: 4px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText1,#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText2,#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText3
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #F3DCA6;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText1
+{
+	margin-right: 10px;
+	color: #CCBB8F;
+	text-align: center;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText2
+{
+	color: #B9B1A6;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionLevelEffectsText3
+{
+	color: #61C441;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 100%;
+	margin-top: 2px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection #CollectionUpgradeItemBlock
+{
+	horizontal-align: center;
+	width: 52px;
+	height: 52px;
+	margin-top: 3px;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection #CollectionUpgradeItemBlock .EOM_RedMark
+{
+	margin-top: -8px;
+	margin-right: -8px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection .StoreItemBlock
+{
+	horizontal-align: center;
+	width: 52px;
+	height: 52px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection #UpgradeCost
+{
+	horizontal-align: center;
+	margin-top: 2px;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeSection #UpgradeBtn
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	ui-scale: 70%;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeCostLabel
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeCostText1,#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeCostText2
+{
+	font-size: 18px;
+	color: #B9B1A6;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionDetails #CollectionUpgradeCostText2
+{
+	margin-left: 6px;
+	color: #F3DCA6;
+}
+
+#CollectionTreasurePanel #CollectionRightContainer
+{
+	flow-children: down;
+	horizontal-align: right;
+	margin-top: 92px;
+	margin-right: 58px;
+	width: 1000px;
+	height: 760px;
+}
+
+#CollectionTreasurePanel #CollectionList
+{
+	flow-children: right-wrap;
+	horizontal-align: right;
+	width: 1000px;
+	height: fill-parent-flow(1);
+	padding: 8px 0px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList VerticalScrollBar
+{
+	opacity: 0;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 66px;
+	background-size: 986px 66px;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_gray_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_gray_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_green_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_blue_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_purple_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_yellow_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_red_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitle.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_panel_tiele_blackgold_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityTitleContent
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#CollectionTreasurePanel #CollectionList .RarityTitle
+{
+	align: center center;
+	font-size: 24px;
+	text-align: center;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon
+{
+	vertical-align: center;
+	margin-left: 8px;
+	width: 21px;
+	height: 21px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon:hover
+{
+	brightness: 1.5;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity1
+{
+	wash-color: #7C918E;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity2
+{
+	wash-color: #69944A;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity3
+{
+	wash-color: #4472CE;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity4
+{
+	wash-color: #875DD4;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity5
+{
+	wash-color: #CEAD3C;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity6
+{
+	wash-color: #E55043;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionRarityIcon.Rarity7
+{
+	wash-color: #F1D999;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem
+{
+	margin: 6px;
+	width: 186px;
+	height: 208px;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CardBG
+{
+	width: 186px;
+	height: 208px;
+	background-size: 186px 208px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_gray_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity1 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_gray_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity2 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_green_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity3 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_blue_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity4 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_purple_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity5 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_yellow_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity6 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_red_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Rarity7 #CardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_item_blackgold_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CollectionIcon
+{
+	width: 140px;
+	height: 140px;
+	align: center bottom;
+	margin-bottom: 20px;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem .StoreItemImage
+{
+	width: 182px;
+	height: 182px;
+	align: center center;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #Name
+{
+	horizontal-align: center;
+	width: 100%;
+	margin: 14px;
+	font-size: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 2px 2 #1C1132;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #LockIcon
+{
+	width: 30px;
+	height: 38px;
+	align: center bottom;
+	margin-bottom: 67px;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CollectionLevel
+{
+	align: center bottom;
+	margin-bottom: 10px;
+	width: 100%;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CollectionLevel.Max
+{
+	color: #CEAD3C;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CollectionNumberCount
+{
+	align: center bottom;
+	margin-bottom: 9px;
+	flow-children: right;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #CollectionNumberCount .EOM_CostLabelValue
+{
+	font-size: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 3px 3 #000000;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #HasCount
+{
+	align: right bottom;
+	flow-children: right;
+	margin-bottom: 29px;
+	margin-right: 12px;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #HasCount #IconBG
+{
+	align: center center;
+	width: 20px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_box_png.vtex");
+	background-size: 100%;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #HasCount #SmallCollectionIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #HasCount #HasCountText
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #F3DCA6;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #SelectedHover
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.03s;
+	transition-timing-function: linear;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem #BorderParticle
+{
+	align: center center;
+	width: 120%;
+	height: 120%;
+	overflow: noclip;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem .EOM_RedMark
+{
+	margin-top: 4px;
+	margin-right: 4px;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem:not(.Selected):hover #SelectedHover
+{
+	opacity: 1;
+	brightness: 0.5;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Selected #SelectedHover
+{
+	opacity: 1;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Lock .StoreItemImage
+{
+	brightness: 0.25;
+	saturation: 0;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Lock #Name
+{
+	color: #686868;
+}
+
+#CollectionTreasurePanel #CollectionList .CollectionTreasureItem.Lock #LockIcon
+{
+	opacity: 1;
+}
+
+#CollectionTreasurePanel #CollectionRightOperations
+{
+	horizontal-align: center;
+}
+
+#CollectionTreasurePanel #CollectionRightOperations #FastUpgradeBtn
+{
+	ui-scale: 70%;
+}
+
+#CollectionAttributesList
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 410px;
+	height: fill-parent-flow(1);
+	overflow: squish scroll;
+}
+
+#CollectionAttributesList VerticalScrollBar
+{
+	opacity: 0;
+}
+
+#CollectionAttributesList .CurrentAttributeRow
+{
+	flow-children: right;
+	width: 410px;
+	min-height: 28px;
+	margin-top: 4px;
+	margin-left: 10px;
+}
+
+#CollectionAttributesList .CurrentAttributeRowDot
+{
+	vertical-align: center;
+	width: 22px;
+	height: 22px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_diamond_png.vtex");
+}
+
+#CollectionAttributesList .CurrentAttributeRowContent
+{
+	width: 374px;
+	min-height: 24px;
+}
+
+#CollectionAttributesList .CurrentAttributeRowBG
+{
+	width: 374px;
+	height: 100%;
+	min-height: 24px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_bottom_02_small_png.vtex");
+}
+
+#CollectionAttributesList .CurrentAttributeRowText
+{
+	vertical-align: center;
+	width: 354px;
+	margin-left: 16px;
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+#CollectionAttributesList .CurrentAttributeRowText .AbilityLabel,#CollectionAttributesList .CurrentAttributeRowText .FeatureLabel
+{
+	text-decoration: none;
+}
+
+#CollectionAttributesList .CollectionAttributesPlaceholder
+{
+	horizontal-align: center;
+	width: 100%;
+	margin-top: 18px;
+	font-size: 18px;
+	color: #B9B1A6;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionLevelEffectsList
+{
+	flow-children: down;
+	horizontal-align: center;
+	width: 430px;
+	height: fill-parent-flow(1);
+	overflow: squish scroll;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#CollectionLevelEffectsList VerticalScrollBar
+{
+	opacity: 0;
+}
+
+#CollectionLevelEffects.MaxLevel #CollectionLevelEffectsList
+{
+	height: 386px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRow
+{
+	flow-children: right;
+	width: 430px;
+	margin-top: 4px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRow.Locked
+{
+	saturation: 0.8;
+	brightness: 0.3;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDotContent
+{
+	align: center center;
+	width: 54px;
+	height: fill-parent-flow(1);
+	max-height: 58px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDot
+{
+	align: center center;
+	width: 62px;
+	height: 68px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_lv_big_png.vtex");
+	ui-scale: 80%;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowLevelText
+{
+	align: center center;
+	width: 54px;
+	font-family: Adobe Heiti Std;
+	font-size: 24px;
+	color: #EBCE82;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionContent
+{
+	width: 406px;
+	min-height: 58px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionContent .LevelEffectRowDescriptionBG
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_effect_bottom_03_png.vtex");
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionContent.WithExp
+{
+	width: 244px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionContent.WithExp .LevelEffectRowDescriptionBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_effect_bottom_01_png.vtex");
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionText
+{
+	font-size: 18px;
+	margin-top: 5px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionText.FirstRow
+{
+	margin-top: 0px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionText .AbilityLabel,#CollectionLevelEffectsList .LevelEffectRowDescriptionText .FeatureLabel
+{
+	text-decoration: none;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowDescriptionList
+{
+	flow-children: down;
+	vertical-align: center;
+	width: 100%;
+	margin-right: 4px;
+	margin-left: 10px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpDescrioption .StoreItemImage
+{
+	width: 52px;
+	height: 52px;
+	vertical-align: center;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpContent
+{
+	height: 100%;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpBG
+{
+	width: 160px;
+	height: 100%;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/favor_treasure/f3_treasure_title_effect_bottom_02_png.vtex");
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpIcon
+{
+	vertical-align: center;
+	margin-left: 8px;
+	width: 32px;
+	height: 32px;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpDescrioption
+{
+	flow-children: right;
+	vertical-align: center;
+	horizontal-align: center;
+	width: 90%;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpText
+{
+	vertical-align: center;
+	font-size: 20px;
+	color: #AFA26D;
+	text-overflow: shrink;
+}
+
+#CollectionLevelEffectsList .LevelEffectRowExpName
+{
+	font-size: 18px;
+	color: #AFA26D;
+	text-overflow: shrink;
+}
+
+#CollectionVipRoot.Show #CollectionRewardPreview #CollectionRewardPreviewBG
+{
+	animation-name: CollectionVipPreviewPop;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#CollectionVipRoot.Show #CollectionRewardPreview .StoreItemImage
+{
+	animation-name: CollectionVipRewardImageShow;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#CollectionVipRoot.Show #CollectionVipTopRight
+{
+	animation-name: CollectionVipSlideInTop;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#CollectionVipRoot.Show #CollectionVipLevelInfo,#CollectionVipRoot.Show #CollectionVipCenter
+{
+	animation-name: CollectionVipSlideInLeft;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+#CollectionVipRoot.Show #CollectionVipOperatorContainer
+{
+	animation-name: CollectionVipSlideInRight;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes 'CollectionVipPreviewPop'
+{
+	0%
+	{
+		pre-transform-scale2d: 2.4;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'CollectionVipRewardImageShow'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	50%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'CollectionVipSlideInTop'
+{
+	0%
+	{
+		transform: translateY(-80px);
+		opacity: 0;
+	}
+	
+	50%
+	{
+		transform: translateY(-80px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'CollectionVipSlideInLeft'
+{
+	0%
+	{
+		transform: translateX(-120px);
+		opacity: 0;
+	}
+	
+	50%
+	{
+		transform: translateX(-120px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'CollectionVipSlideInRight'
+{
+	0%
+	{
+		transform: translateX(120px);
+		opacity: 0;
+	}
+	
+	50%
+	{
+		transform: translateX(120px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+	
+}
+
+#CollectionVipRoot
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+#CollectionVipRoot .EOM_MenuLayout_Content_Box
+{
+	overflow: noclip;
+}
+
+#CollectionVipRoot #CollectionVipContent
+{
+	width: 100%;
+	flow-children: down;
+	vertical-align: bottom;
+}
+
+#CollectionVipRoot .EOM_MenuLayout_Content_BG
+{
+	align: center center;
+	width: height-percentage(177.77778%);
+	height: 100%;
+	background-size: 100%;
+	background-position: center center;
+}
+
+#CollectionVipRoot #CollectionRewardPreview
+{
+	width: 238px;
+	height: 238px;
+	ignore-parent-flow: true;
+	overflow: noclip;
+	margin-top: 246px;
+	margin-right: 96px;
+	horizontal-align: center;
+}
+
+#CollectionVipRoot #CollectionRewardPreview .CollectionBGFx
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+}
+
+#CollectionVipRoot #CollectionRewardPreview .CollectionBGFx .CollectionCardFx
+{
+	x: 0px;
+	align: center center;
+	margin-top: 180px;
+	width: 1300px;
+	height: 1300px;
+	overflow: noclip;
+}
+
+#CollectionVipRoot #CollectionRewardPreview #CollectionRewardPreviewBG
+{
+	width: 2048px;
+	height: 1080px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_bg_png.vtex");
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 300px;
+	margin-right: 116px;
+}
+
+#CollectionVipRoot #CollectionRewardPreview .StoreItemImage
+{
+	width: 238px;
+	height: 238px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#CollectionVipRoot #CollectionVipTop
+{
+	width: 90%;
+	horizontal-align: center;
+	margin-bottom: 8px;
+}
+
+#CollectionVipRoot #CollectionVipLevelInfo
+{
+	vertical-align: bottom;
+	flow-children: right;
+}
+
+#CollectionVipRoot #CollectionVipLevelBG
+{
+	width: 112px;
+	height: 116px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_level_frame_png.vtex");
+	background-size: 100%;
+}
+
+#CollectionVipRoot #VipLevelNumber
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 55%;
+	font-family: Adobe Heiti Std;
+	text-align: center;
+	font-size: 32px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFA853), to(#FFE8B6));
+	text-shadow: 0px 0px 5px 3 #000000;
+	text-overflow: shrink;
+}
+
+#CollectionVipRoot #CollectionVipProgress
+{
+	margin-left: 10px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+#CollectionVipRoot #CollectionVipProgress #VipProgressNumber
+{
+	font-family: Adobe Heiti Std;
+	font-weight: normal;
+	font-size: 30px;
+	color: #F5E7C0;
+	text-shadow: 0px 0px 4px #000000;
+}
+
+#CollectionVipRoot #CollectionVipProgress #VipProgressNumber,#CollectionVipRoot #CollectionVipProgress #VipProgressTitle,#CollectionVipRoot #CollectionVipProgress #VipProgressDesc
+{
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#CollectionVipRoot #VipProgressTitle
+{
+	font-size: 20px;
+	color: #E6D4A4;
+}
+
+#CollectionVipRoot #VipProgressBarContainer
+{
+	width: 434px;
+	height: 32px;
+}
+
+#CollectionVipRoot #CollectionVipProgress #ProgressBarBG
+{
+	width: 434px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_progress_0_png.vtex");
+	background-size: 100%;
+}
+
+#CollectionVipRoot #CollectionVipProgress #ProgressBar
+{
+	align: center center;
+	width: 392px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/c1_collection/c1_progress_1_png.vtex");
+	background-size: 100%;
+}
+
+#CollectionVipRoot #CollectionVipProgress #ProgressBarText
+{
+	text-align: center;
+	align: center center;
+	font-size: 18px;
+	color: #F3D89C;
+	text-shadow: 0px 0px 3px 2 #000000;
+}
+
+#CollectionVipRoot #VipProgressDesc
+{
+	font-size: 16px;
+	color: #C1BFBA;
+}
+
+#CollectionVipRoot #CollectionVipTopRight
+{
+	horizontal-align: left;
+	margin-top: 40px;
+	margin-left: 68px;
+}
+
+#CollectionVipRoot #CollectionVipTimeLimit
+{
+	margin-left: 28px;
+	vertical-align: bottom;
+	flow-children: right;
+}
+
+#CollectionVipRoot #CollectionVipTimeLimit #CollectionVipTimeIcon
+{
+	width: 16px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_time_png.vtex");
+	background-size: 100%;
+	wash-color: #B9B1A6;
+}
+
+#CollectionVipRoot #CollectionVipTimeLimit #CollectionVipTimeText
+{
+	font-size: 20px;
+	color: #B9B1A6;
+}
+
+#CollectionVipRoot #CollectionVipToolTipIcon
+{
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 100%;
+	opacity-brush: gradient(linear, 0% 0%, 0% 100%, from(#AB8363), to(#F6E3C1));
+}
+
+#CollectionVipRoot #CollectionVipToolTipIcon:hover
+{
+	brightness: 1.5;
+}
+
+#CollectionVipRoot #CollectionVipToolTipIcon.Language_schinese
+{
+	margin-left: 380px;
+	margin-top: 14px;
+}
+
+#CollectionVipRoot #CollectionVipTopRightBG
+{
+	width: 706px;
+	height: 152px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_title_en_png.vtex");
+	background-size: 100%;
+}
+
+#CollectionVipRoot #CollectionVipTopRightBG.Language_schinese
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_title_cn_png.vtex");
+}
+
+#CollectionVipRoot #CollectionVipTopRightBG.Language_russian
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_title_ru_png.vtex");
+}
+
+#CollectionVipRoot #CollectionVipTopRightBG.Language_english
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_title_en_png.vtex");
+}
+
+#CollectionVipRoot #VipSummary
+{
+	align: center center;
+	flow-children: down;
+}
+
+#CollectionVipRoot #VipSummaryTitle
+{
+	horizontal-align: center;
+	font-size: 28px;
+	color: #FDEFC8;
+	text-shadow: 0px 0px 4px 3 #000000;
+}
+
+#CollectionVipRoot #VipSummaryTime
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	font-size: 21px;
+	color: #D9BC76;
+	text-shadow: 0px 0px 3px 2 #000000;
+}
+
+#CollectionVipRoot #CollectionVipCenter
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	width: 93%;
+	height: 456px;
+	overflow: noclip;
+}
+
+#CollectionVipRoot .SwitchArrow
+{
+	width: 42px;
+	height: 44px;
+	vertical-align: center;
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+#CollectionVipRoot .SwitchArrow:hover
+{
+	brightness: 1.8;
+}
+
+#CollectionVipRoot .SwitchArrow:active
+{
+	brightness: 0.6;
+	sound: "ui_generic_button_click";
+}
+
+#CollectionVipRoot .SwitchArrow:disabled
+{
+	opacity: 0.35;
+	brightness: 0.5;
+	saturation: 0.35;
+}
+
+#CollectionVipRoot .SwitchArrow:disabled:hover
+{
+	brightness: 0.5;
+}
+
+#CollectionVipRoot #LeftArrow
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_left_png.vtex");
+}
+
+#CollectionVipRoot #RightArrow
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_right_png.vtex");
+}
+
+#CollectionVipRoot #RewardsContent
+{
+	width: 100%;
+	height: 398px;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: -50px;
+	padding-top: 50px;
+	overflow: noclip;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/horizontal_scroll_center_png.vtex");
+}
+
+#CollectionVipRoot #RewardsContent.Dragging #RewardCardList
+{
+	transition-duration: 0s;
+}
+
+#CollectionVipRoot #RewardCardViewport
+{
+	width: 100%;
+}
+
+#CollectionVipRoot #RewardCardList
+{
+	width: fit-children;
+	flow-children: right;
+	overflow: noclip;
+	transition-property: transform;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+}
+
+#CollectionVipRoot #CollectionVipOperatorContainer
+{
+	horizontal-align: right;
+	vertical-align: bottom;
+	width: 290px;
+	overflow: noclip;
+}
+
+#CollectionVipRoot #ReciveRewardButton
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+}
+
+.CollectionCard
+{
+	width: 174px;
+	height: 348px;
+	margin-left: 14px;
+	margin-right: 14px;
+	overflow: noclip;
+	vertical-align: center;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.CollectionCard .CollectionCardRoot,.CollectionCard .RewardLevelMarker
+{
+	transition-property: brightness;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.CollectionCard .RewardProgressSegment
+{
+	x: 87px;
+	width: 202px;
+	height: 36px;
+	margin-top: 236px;
+	overflow: clip;
+}
+
+.CollectionCard .RewardProgressSegment .RewardProgressSegmentBG
+{
+	width: 100%;
+	height: 36px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_progress_0_png.vtex");
+	background-size: 1632px 36px;
+}
+
+.CollectionCard .RewardProgressSegment .RewardProgressSegmentFill
+{
+	align: center center;
+	width: 100%;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_progress_1_png.vtex");
+	background-size: 1360px 14px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice0 .RewardProgressSegmentBG
+{
+	background-position: -311px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice0 .RewardProgressSegmentFill
+{
+	background-position: -175px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice1 .RewardProgressSegmentBG
+{
+	background-position: -513px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice1 .RewardProgressSegmentFill
+{
+	background-position: -377px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice2 .RewardProgressSegmentBG
+{
+	background-position: -715px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice2 .RewardProgressSegmentFill
+{
+	background-position: -579px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice3 .RewardProgressSegmentBG
+{
+	background-position: -917px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice3 .RewardProgressSegmentFill
+{
+	background-position: -781px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice4 .RewardProgressSegmentBG
+{
+	background-position: -1119px 0px;
+}
+
+.CollectionCard .RewardProgressSegment.Slice4 .RewardProgressSegmentFill
+{
+	background-position: -983px 0px;
+}
+
+.CollectionCard .CollectionCardMain
+{
+	vertical-align: center;
+	width: 174px;
+	height: 224px;
+}
+
+.CollectionCard.Claimable .CollectionCardFxLayer
+{
+	opacity: 1;
+}
+
+.CollectionCard.Claimable .CollectionCardFxLayerTop
+{
+	opacity: 1;
+}
+
+.CollectionCard.Claimable .CollectionCardRedPoint
+{
+	opacity: 1;
+}
+
+.CollectionCard.Received .CollectionCardRoot,.CollectionCard.Received .RewardLevelMarker
+{
+	brightness: 0.72;
+}
+
+.CollectionCard.Received .CollectionCardRecived
+{
+	opacity: 1;
+}
+
+.CollectionCard.Received .CollectionCardContent
+{
+	wash-color: #787878;
+}
+
+.CollectionCard.Locked .RewardLevelMarkerBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_02_unlocked_png.vtex");
+}
+
+.CollectionCard.EmptyReward .CollectionCardMain
+{
+	opacity: 0;
+}
+
+.CollectionCard .CollectionCardRoot
+{
+	width: 174px;
+	height: 224px;
+	overflow: noclip;
+}
+
+.CollectionCard .RewardLevelMarker
+{
+	width: fill-parent-flow(1);
+	height: 124px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+.CollectionCard .RewardLevelMarker .RewardLevelLabel
+{
+	align: center center;
+	text-align: center;
+	font-size: 24px;
+	color: #c4b984;
+	text-shadow: 0px 0px 2px 2 #0a0a0a;
+}
+
+.CollectionCard .RewardLevelMarker .RewardLevelMarkerContent
+{
+	horizontal-align: center;
+}
+
+.CollectionCard .RewardLevelMarker .RewardLevelMarkerBG
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 64px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_02_png.vtex");
+	background-size: 100%;
+}
+
+.CollectionCard .RewardLevelMarker.Received .RewardLevelMarkerBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_02_claimed_png.vtex");
+}
+
+.CollectionCard .RewardLevelMarker.Locked .RewardLevelMarkerBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_02_unlocked_png.vtex");
+}
+
+.CollectionCard .RewardLevelMarker.Claimable .RewardLevelLabel
+{
+	color: #FFFFFF;
+}
+
+.CollectionCard .RewardLevelMarker.Claimable .RewardLevelMarkerBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_02_png.vtex");
+}
+
+.CollectionCard .RewardLevelMarker.Current .RewardLevelMarkerBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_level_board_01_png.vtex");
+}
+
+.CollectionCard .RewardLevelMarker.Current .RewardLevelLabel
+{
+	color: #FFF1AE;
+}
+
+.CollectionCard .CollectionCardBG
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 174px;
+	height: 224px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_gray_png.vtex");
+}
+
+.CollectionCard .CollectionCardFx
+{
+	x: 0px;
+	align: center center;
+	width: 1736px;
+	height: 1720px;
+	overflow: noclip;
+}
+
+.CollectionCard .CollectionCardFxLayer
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.CollectionCard .CollectionCardFxLayerTop
+{
+	width: 100%;
+	height: 100%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+.CollectionCard .CollectionCardSelectedBorder
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 174px;
+	height: 224px;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_select_png.vtex");
+}
+
+.CollectionCard.Selected .CollectionCardSelectedBorder
+{
+	opacity: 1;
+}
+
+.CollectionCard .CollectionCardBorder
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 174px;
+	height: 224px;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_select_png.vtex");
+}
+
+.CollectionCard .CollectionCardContent
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 40px;
+	width: 250px;
+	height: 326px;
+	flow-children: down;
+}
+
+.CollectionCard .CollectionCardContent .CollectionCardName
+{
+	width: 75%;
+	height: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 3px 3 #000000;
+	text-overflow: shrink;
+	horizontal-align: center;
+}
+
+.CollectionCard .CollectionCardContent .StoreItemImage
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	width: 108px;
+	height: 108px;
+}
+
+.CollectionCard .CollectionCardContent .CollectionCardDivider
+{
+	width: 122px;
+	height: 14px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_line_divider_png.vtex");
+	horizontal-align: center;
+}
+
+.CollectionCard .CollectionCardContent .CollectionCardAmount
+{
+	max-width: 100%;
+	horizontal-align: right;
+	margin-right: 28px;
+	margin-top: -6px;
+	text-align: center;
+	font-size: 18px;
+	color: #F8C66C;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.CollectionCard .CollectionCardRecived
+{
+	align: center bottom;
+	margin-bottom: 14px;
+	width: 62px;
+	height: 42px;
+	opacity: 0;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+}
+
+.CollectionCard .CollectionCardRedPoint
+{
+	horizontal-align: right;
+	margin-right: -8px;
+	margin-top: 12px;
+	width: 48px;
+	height: 48px;
+	opacity: 0;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_prompt_light_png.vtex");
+	background-size: 100%;
+}
+
+.CollectionCard.Rarity1 .CollectionCardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_gray_png.vtex");
+}
+
+.CollectionCard.Rarity1 .CollectionCardBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_board_line_gray_png.vtex");
+}
+
+.CollectionCard.Rarity2 .CollectionCardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_green_png.vtex");
+}
+
+.CollectionCard.Rarity2 .CollectionCardBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_board_line_blue_png.vtex");
+}
+
+.CollectionCard.Rarity3 .CollectionCardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_blue_png.vtex");
+}
+
+.CollectionCard.Rarity3 .CollectionCardBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_board_line_purple_png.vtex");
+}
+
+.CollectionCard.Rarity4 .CollectionCardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_purple_png.vtex");
+}
+
+.CollectionCard.Rarity4 .CollectionCardBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_board_line_red_png.vtex");
+}
+
+.CollectionCard.Rarity5 .CollectionCardBG
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/new/f3_board_yellow_png.vtex");
+}
+
+.CollectionCard.Rarity5 .CollectionCardBorder
+{
+	background-image: url("s2r://panorama/images/custom_game/f3_favor/f3_board_line_yellow_png.vtex");
+}
+
+.EOM_ToggleButton
+{
+	flow-children: right;
+}
+
+.EOM_ToggleButton #ToggleBox
+{
+	vertical-align: center;
+}
+
+.EOM_ToggleButton #ToggleBoxRing
+{
+	width: 20px;
+	height: 20px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_ToggleButton #ToggleBoxTick
+{
+	width: 20px;
+	height: 14px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.EOM_ToggleButton:selected #ToggleBoxTick
+{
+	opacity: 1;
+}
+
+.EOM_ToggleButton:not(:disabled):active
+{
+	sound: "ui_generic_button_click";
+}
+
+.EOM_ToggleButton > Label
+{
+	vertical-align: center;
+	margin-top: 2px;
+	margin-left: 4px;
+	font-size: 18px;
+	color: #D5C9A9;
+	text-shadow: 0px 0px 5px 2 #000000;
+}
+
+.Language_schinese #SeaMysteryContent #SeaMysteryTitle
+{
+	background-image: url("s2r://");
+}
+
+.Language_russian #SeaMysteryContent #SeaMysteryTitle
+{
+	background-image: url("s2r://");
+}
+
+#SeaMysteryContent
+{
+	align: center bottom;
+}
+
+#SeaMysteryContent #DrawerBG
+{
+	vertical-align: bottom;
+	width: 1920px;
+	height: 286px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_step_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #DrawerBG2
+{
+	align: center bottom;
+	transform: translateX(100px);
+	margin-bottom: 120px;
+	width: 311px;
+	height: 138px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_treasure_01_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #DrawerBG3
+{
+	align: right bottom;
+	width: 355px;
+	height: 220px;
+	margin-right: 160px;
+	margin-bottom: 90px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_treasure_02_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #SeaMysteryCurrency
+{
+	margin-top: 19px;
+	margin-right: 40px;
+	align: right top;
+}
+
+#SeaMysteryContent .CurrencyGroup
+{
+	margin-top: 19px;
+	margin-right: 40px;
+}
+
+#SeaMysteryContent #SeaMysteryTitle
+{
+	width: 410px;
+	height: 70px;
+	margin-left: 30px;
+	background-image: url("s2r://");
+	background-size: 410px 110px;
+	background-position: center center;
+}
+
+#SeaMysteryContent #LeftContent
+{
+	vertical-align: bottom;
+	width: 868px;
+	height: 926px;
+	margin-left: 178px;
+	margin-bottom: 74px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_exchange_bg_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #StoreItemContent
+{
+	horizontal-align: right;
+	margin-top: 65px;
+	width: 600px;
+	height: 770px;
+	margin-right: 80px;
+	flow-children: down;
+}
+
+#SeaMysteryContent #SeaMysteryDesc
+{
+	margin: 0px 60px;
+	width: 100%;
+	height: 90px;
+	margin-top: 28px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#SeaMysteryContent #SeaMysteryDesc #SeaMysteryDesc_Title
+{
+	width: fill-parent-flow(1);
+	font-size: 24px;
+	color: #ECCEA1;
+	text-shadow: 0px 0px 2px 2 #0A1732;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#SeaMysteryContent #SeaMysteryDesc #SeaMysteryDesc_Desc
+{
+	width: fill-parent-flow(1);
+	font-size: 16px;
+	color: #ECCEA1;
+	text-shadow: 0px 0px 2px 2 #0A1732;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#SeaMysteryContent #DropLeft
+{
+	width: 17px;
+	height: 23px;
+	background-image: url("s2r://");
+	vertical-align: center;
+}
+
+#SeaMysteryContent #DropRight
+{
+	width: 17px;
+	height: 23px;
+	background-image: url("s2r://");
+	vertical-align: center;
+	transform: rotateY(-180deg);
+}
+
+#SeaMysteryContent #BottomFrame
+{
+	width: 705px;
+	height: 15px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #ItemList
+{
+	flow-children: right-wrap;
+	horizontal-align: center;
+	max-width: 644px;
+	padding-right: 20px;
+	height: fill-parent-flow(1);
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#SeaMysteryContent #ItemList VerticalScrollBar
+{
+	opacity: 0;
+}
+
+#SeaMysteryContent #ItemList .StoreItemMain
+{
+	ui-scale: 70%;
+}
+
+#SeaMysteryContent #ItemList .StoreItemMain .StoreItem #ItemName
+{
+	font-size: 22px;
+	text-overflow: shrink;
+	padding: 0px 16px;
+	height: 26px;
+	margin-top: 24px;
+}
+
+#SeaMysteryContent #ItemList .StoreItemMain .StoreItem #ItemImage
+{
+	width: 240px;
+	height: 240px;
+	margin-top: 40px;
+}
+
+#SeaMysteryContent #ItemList .StoreItemMain #CostLabel
+{
+	font-size: 28px;
+}
+
+#SeaMysteryContent #RightContent
+{
+	margin-right: 170px;
+	align: right bottom;
+	height: 940px;
+}
+
+#SeaMysteryContent #RouletteTitleImage
+{
+	horizontal-align: center;
+	width: 556px;
+	height: 92px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_title_02_png.vtex");
+	background-size: 100%;
+}
+
+.Language_schinese #SeaMysteryContent #RouletteTitleImage
+{
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_title_01_png.vtex");
+}
+
+.Language_russian #SeaMysteryContent #RouletteTitleImage
+{
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_title_03_png.vtex");
+}
+
+#SeaMysteryContent #RouletteTitle
+{
+	width: 657px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/label_bg_png.vtex");
+	background-size: 100%;
+	background-img-opacity: 0.5;
+	margin-top: 95px;
+	padding: 0px 20px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#SeaMysteryContent #RouletteTitle Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #ECCEA1;
+	text-shadow: 0px 0px 2px 2 #0A1732;
+	text-align: center;
+	margin: 0px 15px;
+	text-overflow: shrink;
+	width: fill-parent-flow(1);
+}
+
+#SeaMysteryContent #RouletteTitle #Info
+{
+	vertical-align: center;
+	width: 15px;
+	height: 15px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 100%;
+	wash-color: #ECCEA1;
+}
+
+#SeaMysteryContent #RouletteMain
+{
+	align: center bottom;
+	margin-bottom: 113px;
+}
+
+#SeaMysteryContent #Compass1
+{
+	width: 750px;
+	height: 750px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_turntable_03_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #Compass2
+{
+	width: 750px;
+	height: 750px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_turntable_04_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #Compass2Particle
+{
+	width: 700px;
+	height: 700px;
+}
+
+#SeaMysteryContent #RotatingParticle
+{
+	width: 700px;
+	height: 700px;
+	opacity: 0;
+}
+
+#SeaMysteryContent #RotatingParticle.SceneLoaded.Show
+{
+	opacity: 1;
+}
+
+#SeaMysteryContent #Compass3
+{
+	width: 750px;
+	height: 750px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_turntable_02_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 80s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#SeaMysteryContent #Compass3Particle
+{
+	width: 700px;
+	height: 700px;
+}
+
+#SeaMysteryContent #Compass4
+{
+	width: 700px;
+	height: 700px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 80s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#SeaMysteryContent #RouletteItemList
+{
+	width: 540px;
+	height: 540px;
+	align: center center;
+}
+
+#SeaMysteryContent #RouletteItemList .RewardItemCol
+{
+	width: 150px;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+#SeaMysteryContent #RouletteItemList .RewardItemCol .RewardItem
+{
+	width: 150px;
+	height: 90px;
+	background-image: url("s2r://");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #RouletteItemList .RewardItemCol .StoreItemImage
+{
+	width: 110px;
+	height: 110px;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+#SeaMysteryContent #RouletteItemList .RewardItemCol #Bubble
+{
+	width: 110px;
+	height: 110px;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+#SeaMysteryContent #Pointer
+{
+	align: center center;
+	width: 750px;
+	height: 750px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_turntable_01_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+	z-index: 1;
+}
+
+#SeaMysteryContent #PointerParticle
+{
+	width: 390px;
+	height: 390px;
+	opacity: 0;
+	align: center center;
+	background-size: 100%;
+	z-index: 1;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer
+{
+	align: right center;
+	width: 74px;
+	height: 338px;
+	overflow: noclip;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyFill
+{
+	width: 40px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_slider_03_png.vtex");
+	background-size: 30px 233px;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	align: center bottom;
+	transition-property: height;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyFrame
+{
+	align: center top;
+	width: 59px;
+	height: 285px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_slider_01_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+	padding: 26px 0px;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyBadgeContent
+{
+	width: 72px;
+	height: 64px;
+	align: center bottom;
+	y: 18px;
+	transition-property: transform;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+	flow-children: up;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyBadge
+{
+	width: 72px;
+	height: 43px;
+	background-image: url("s2r://panorama/images/custom_game/w3_wanxiang/w3_slider_02_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyValue
+{
+	align: center center;
+	font-size: 17px;
+	font-weight: bold;
+	color: #F9E6C1;
+	text-shadow: 0px 1px 3px 2 #000000;
+}
+
+#SeaMysteryContent #SeaMysteryLuckyContainer #SeaMysteryLuckyTitle
+{
+	width: 100px;
+	align: center bottom;
+	y: -30px;
+	text-align: center;
+	font-size: 18px;
+	color: #ECCEA1;
+}
+
+#SeaMysteryContent #DrawBtnContainer
+{
+	width: 100%;
+	vertical-align: bottom;
+	margin-bottom: 130px;
+}
+
+#SeaMysteryContent #DrawBtnContainer .CostContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+	overflow: noclip;
+}
+
+#SeaMysteryContent #DrawBtnContainer .CostContainer Label
+{
+	vertical-align: center;
+	font-size: 24px;
+	color: white;
+	text-shadow: 0px 0px 1px 2 #000000;
+}
+
+#SeaMysteryContent #SkipButton
+{
+	align: right bottom;
+	margin-bottom: 700px;
+}
+
+#SeaMysteryContent #Draw1
+{
+	horizontal-align: center;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/label_bg_png.vtex");
+	background-size: 80% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-img-opacity: 0.5;
+	x: -150px;
+}
+
+#SeaMysteryContent #Draw2
+{
+	horizontal-align: center;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/label_bg_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-img-opacity: 0.5;
+	x: 150px;
+}
+
+#SeaMysteryContent #Draw1Cost
+{
+	horizontal-align: center;
+	x: -150px;
+	margin-top: 100px;
+}
+
+#SeaMysteryContent #Draw2Cost
+{
+	horizontal-align: center;
+	x: 150px;
+	margin-top: 100px;
+}
+
+.EOM_ProgressBar
+{
+	border-radius: 5px;
+	width: 320px;
+	height: 22px;
+	border: 2px solid #232222;
+	background-color: #222222ff;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Left
+{
+	height: 100%;
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	z-index: -1;
+}
+
+.EOM_ProgressBar.Tui12
+{
+	background-color: #2A284FFF;
+	border-radius: 0px;
+	border: 0px;
+	padding: 5px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Left
+{
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Right
+{
+	background-color: #2A284FFF;
+}
+
+.Language_schinese #SeaMysteryTaskContent #SeaMysteryTitle
+{
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_hd_title_cn_png.vtex");
+}
+
+.Language_russian #SeaMysteryTaskContent #SeaMysteryTitle
+{
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_hd_title_ru_png.vtex");
+}
+
+#SeaMysteryTaskContent
+{
+	align: center center;
+	flow-children: right;
+	transform: translateX(120px);
+}
+
+#SeaMysteryTaskContent #SeaMysteryTitle
+{
+	vertical-align: bottom;
+	margin-bottom: 140px;
+	horizontal-align: center;
+	width: 902px;
+	height: 98px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_hd_title_en_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryTaskContent #SeaMysteryTitle2
+{
+	width: 802px;
+	vertical-align: bottom;
+	margin-bottom: 110px;
+	text-align: center;
+	color: #FFF1CE;
+	font-size: 18px;
+	horizontal-align: center;
+}
+
+#SeaMysteryTaskContent #LeftContent
+{
+	width: 902px;
+	height: 918px;
+}
+
+#SeaMysteryTaskContent #RightContent
+{
+	width: 792px;
+	height: 904px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_bottom_bj_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryTaskContent #RightContent .CurrencyGroup
+{
+	margin-top: 19px;
+	margin-right: 40px;
+}
+
+#SeaMysteryTaskContent #RightContent #ItemList
+{
+	flow-children: down;
+	horizontal-align: center;
+	margin-top: 110px;
+}
+
+#SeaMysteryTaskContent #RightContent .ItemCard
+{
+	margin-bottom: 0px;
+}
+
+#SeaMysteryTaskContent #RightContent #Gift
+{
+	width: 54px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_icon_png.vtex");
+	background-size: 100%;
+	margin-left: 2px;
+}
+
+#SeaMysteryTaskContent #RightContent #CardBG
+{
+	width: 614px;
+	height: 160px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_bottom_recharge_png.vtex");
+	background-size: 100%;
+	margin-top: 9px;
+}
+
+#SeaMysteryTaskContent #RightContent #SeaTask201Title
+{
+	margin-left: 56px;
+	margin-top: 3px;
+	width: 320px;
+	height: 38px;
+}
+
+#SeaMysteryTaskContent #RightContent #SeaTask201Title Label
+{
+	vertical-align: center;
+	font-size: 18px;
+	color: #FDEFC8;
+	text-shadow: 0px 0px 2px 1 black;
+	line-height: 18px;
+}
+
+#SeaMysteryTaskContent #RightContent .StoreItemImage
+{
+	width: 100px;
+	height: 100px;
+	margin-top: 43px;
+	margin-left: 42px;
+}
+
+#SeaMysteryTaskContent #RightContent #ItemCount
+{
+	margin-top: 120px;
+	margin-left: 110px;
+	font-size: 18px;
+	color: #FDEFC8;
+	text-shadow: 1px 0px 2px 2 #000000;
+	text-align: left;
+	font-style: normal;
+	text-transform: none;
+}
+
+#SeaMysteryTaskContent #RightContent #ActionButton
+{
+	margin-top: 67px;
+	margin-right: 17px;
+	ui-scale: 80%;
+	horizontal-align: right;
+}
+
+#SeaMysteryTaskContent #RightContent #TaskUnFinished
+{
+	color: #7268BD;
+	font-size: 24px;
+	width: 206px;
+	text-align: center;
+	margin-top: 67px;
+	margin-right: 17px;
+	horizontal-align: right;
+}
+
+#SeaMysteryTaskContent #RightContent #TaskFinished
+{
+	margin-top: 60px;
+	margin-right: 80px;
+	horizontal-align: right;
+	width: 90px;
+	height: 60px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 4px 2 #000000;
+}
+
+#SeaMysteryTaskContent #RightContent #Progress
+{
+	horizontal-align: right;
+	margin-right: 18px;
+	margin-top: 12px;
+	border-radius: 0px;
+	padding: 3px 5px;
+	overflow: noclip;
+	width: 220px;
+	height: 18px;
+	border: 0px solid #214B7A;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_progress_bottom_png.vtex");
+	background-size: 100%;
+	background-color: #00000000;
+}
+
+#SeaMysteryTaskContent #RightContent #Progress .EOM_ProgressBar_Left
+{
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/w2_wanxiang/w2_progress_bar_png.vtex");
+	background-size: 100%;
+}
+
+#SeaMysteryTaskContent #RightContent #Progress .EOM_ProgressBar_Right
+{
+	background-color: #214B7A00;
+}
+
+#SeaMysteryTaskContent #RightContent #ProgressText
+{
+	margin-right: 18px;
+	margin-top: 11px;
+	width: 220px;
+	text-align: center;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #000000;
+	horizontal-align: right;
+}
+
+.CustomScrollBar
+{
+	z-index: 999999;
+	background-color: #0000007c;
+	border-radius: 3px;
+}
+
+.CustomScrollBar #ScrollBarThumb
+{
+	background-color: #685c47;
+	border-radius: 3px;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+.CustomScrollBar #ScrollBarThumb:hover
+{
+	brightness: 1.5;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar
+{
+	width: 4px;
+	height: 100%;
+	horizontal-align: right;
+	margin: 16px 0px 16px 0px;
+}
+
+.CustomScrollBar.CustomVerticalScrollBar #ScrollBarThumb
+{
+	width: 8px;
+	horizontal-align: center;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar
+{
+	width: 100%;
+	height: 4px;
+	vertical-align: bottom;
+	margin: 0px 16px 0px 16px;
+}
+
+.CustomScrollBar.CustomHorizontalScrollBar #ScrollBarThumb
+{
+	height: 8px;
+	vertical-align: center;
+}
+
+.RecycleViewPageLabel
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -28px;
+	font-size: 18px;
+	color: #b7a487;
+	text-shadow: 0px 0px 4px 2 #000000;
+}
+
+#StorePrivilege
+{
+	width: 100%;
+	height: 100%;
+}
+
+#StorePrivilege #LeftArrow
+{
+	vertical-align: center;
+	width: 42px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_left_png.vtex");
+	background-size: 100%;
+}
+
+#StorePrivilege #RightArrow
+{
+	align: right center;
+	margin-right: 15px;
+	width: 42px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_right_png.vtex");
+	background-size: 100%;
+}
+
+#StorePrivilege #Content
+{
+	align: center center;
+	margin-top: -40px;
+	width: 1614px;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/horizontal_scroll_center_png.vtex");
+}
+
+#StorePrivilege #Content HorizontalScrollBar
+{
+	opacity: 0;
+}
+
+#StorePrivilege #Content .PrivilegeItem
+{
+	width: 538px;
+	height: 882px;
+	flow-children: down;
+	animation-name: HideOpactiy, SlideInRight;
+	animation-timing-function: ease-in-out;
+	transition-property: brightness;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+#StorePrivilege #Content .PrivilegeItem:hover
+{
+	brightness: 1.5;
+}
+
+#StorePrivilege #Content .PrivilegeItem:hover #Light
+{
+	opacity: 1;
+}
+
+#StorePrivilege #Content .PrivilegeItem:hover #BG
+{
+	background-size: 0%, 100%;
+}
+
+#StorePrivilege #Content .PrivilegeItem.802002 #BG
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_yongjiu_dark_png.vtex"), url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_yongjiu_light_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802002 #Title
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFBE58), to(#FFE6D3));
+}
+
+#StorePrivilege #Content .PrivilegeItem.802002 .Line
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_yongjiu_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802002 #Valid Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFD956), to(#FFECC4));
+}
+
+#StorePrivilege #Content .PrivilegeItem.802003 #BG
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_diaoyu_dark_png.vtex"), url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_diaoyu_light_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802003 #Title
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#7B9AFF), to(#DEF8FF));
+}
+
+#StorePrivilege #Content .PrivilegeItem.802003 .Line
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_diaoyu_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802003 #Valid Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#85CAFF), to(#E7F1FF));
+}
+
+#StorePrivilege #Content .PrivilegeItem.802004 #BG
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_xinshi_dark_png.vtex"), url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_xinshi_light_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802004 #Title
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#E14B9A), to(#F6BDB7));
+}
+
+#StorePrivilege #Content .PrivilegeItem.802004 .Line
+{
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_xinshi_png.vtex");
+}
+
+#StorePrivilege #Content .PrivilegeItem.802004 #Valid Label
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#D23F82), to(#FFDDC4));
+}
+
+#StorePrivilege #Content .PrivilegeItem #BG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_yueka_dark_png.vtex"), url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_yueka_light_png.vtex");
+	background-size: 100%, 0%;
+	ignore-parent-flow: true;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid
+{
+	padding-top: 31px;
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	flow-children: down;
+	margin-top: 196px;
+	width: 96px;
+	height: 104px;
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_time_bottom_brown_png.vtex");
+	background-size: 100%;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid #ValidTips
+{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid #ValidLabel
+{
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Light
+{
+	align: center center;
+	margin-top: 111px;
+	width: 496px;
+	height: 704px;
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_png.vtex");
+	background-size: 100%;
+	ignore-parent-flow: true;
+	opacity: 0;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Title
+{
+	horizontal-align: center;
+	margin-top: 208px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#C9871F), to(#FED3B2));
+	font-size: 36px;
+	text-shadow: 2px 2px 5px #0D0806;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid Label
+{
+	width: 100%;
+	text-align: center;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#F4AB38), to(#FFDDC4));
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid #VaildLabel
+{
+	font-size: 16px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #Valid #TimeLabel
+{
+	font-size: 20px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #PrivilegeDescContainer
+{
+	width: 100%;
+	height: 260px;
+	padding: 0px 70px;
+	margin-top: 12px;
+	overflow: clip;
+}
+
+#StorePrivilege #Content .PrivilegeItem #PrivilegeDesc
+{
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	color: #F9DEC1;
+	ignore-parent-flow: true;
+}
+
+#StorePrivilege #Content .PrivilegeItem #PrivilegeDesc.Centered
+{
+	vertical-align: center;
+}
+
+#StorePrivilege #Content .PrivilegeItem .Line
+{
+	horizontal-align: center;
+	width: 368px;
+	height: 10px;
+	background-image: url("s2r://panorama/images/custom_game/m3_monthly_pass/m3_line_yueka_png.vtex");
+	background-size: 100%;
+}
+
+#StorePrivilege #Content .PrivilegeItem .Line.BottomLine
+{
+	transform: scaleY(-1);
+}
+
+#StorePrivilege #Content .PrivilegeItem #BuyBtn
+{
+	horizontal-align: center;
+}
+
+#StorePrivilege #Content .PrivilegeItem #StatLabel
+{
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	font-size: 24px;
+}
+
+#StorePrivilege #Content .PrivilegeItem .CurrencyIcon
+{
+	font-size: 30px;
+	margin-top: 1px;
+	margin-right: -7px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #CostLabel
+{
+	font-size: 30px;
+	color: #FDEFC8;
+}
+
+#StorePrivilege #Content .PrivilegeItem #CostOriginPriceLabel
+{
+	vertical-align: bottom;
+	margin-left: 5px;
+	margin-bottom: 2px;
+	color: #E94141;
+	font-size: 22px;
+	letter-spacing: 0px;
+	text-shadow: 0px 0px 0px 2 #000000;
+	text-decoration: line-through;
+}
+
+#StorePrivilege #Content .PrivilegeItem #RewardTitle
+{
+	margin-top: 27px;
+	horizontal-align: center;
+	color: #F9DEC1;
+	font-size: 18px;
+}
+
+#StorePrivilege #Content .PrivilegeItem #RewardList
+{
+	height: 108px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#StorePrivilege #Content .PrivilegeItem #RewardList .StoreItemBlock
+{
+	width: 84px;
+	height: 84px;
+	margin: 0px 19px;
+}
+
+#StorePrivilege #Content .DownArrow
+{
+	horizontal-align: center;
+	width: 26px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/conv/left_navigation/conv_table_arrow_1_png.vtex");
+	background-size: 100%;
+	transition-property: brightness, opacity;
+	transition-duration: 0.12s;
+	opacity: 0;
+}
+
+#StorePrivilege #Content .DownArrow.Show
+{
+	opacity: 1;
+}
+
+#StorePrivilege #Content .DownArrow:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+#StorePrivilege #Content .DownArrow:disabled
+{
+	opacity: 0.3;
+	saturation: 0;
+}
