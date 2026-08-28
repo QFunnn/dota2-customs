@@ -1,0 +1,101 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+// No spaces in event names, max length 32
+// All strings are case sensitive
+//
+// valid data key types are:
+//   string : a zero terminated string
+//   bool   : unsigned int, 1 bit
+//   byte   : unsigned int, 8 bit
+//   short  : signed int, 16 bit
+//   long   : signed int, 32 bit
+//   float  : float, 32 bit
+//   uint64 : unsigned int 64 bit
+//   local  : any data, but not networked to clients
+//
+// following key names are reserved:
+//   local      : if set to 1, event is not networked to clients
+//   unreliable : networked, but unreliable
+//   suppress   : never fire this event
+//   time	: firing server time
+//   eventid	: holds the event ID
+
+"CustomEvents"
+{
+	
+	"score_board"
+	{
+		"team_id"					"short"
+		"team_score"				"short"
+	}
+
+	"kills_counter"
+	{
+		"leading_team"				"short"
+		"kills_remaining"			"short"
+	}
+
+	"countdown_timer"
+	{
+		"timer_reminder"			"short"
+	}
+	"show_time"
+	{
+		"total_time"					"short"
+		"wave_time"						"short"
+		"win_streak"					"short"
+		"kuangbao_time"					"short"
+		"win_streak_time"				"short"
+	}
+	"show_money"
+	{
+		"money"					"short"
+	}
+	"use_extend"
+	{
+		"player_id"				"short"
+	}
+	"mima"
+	{
+		"text"		"string"
+	}
+	"show_use_extend"
+	{
+		"player_id"				"short"
+	}
+	"show_use_bush_ticket"
+	{
+		"player_id"				"short"
+	}
+	"show_use_night_ticket"
+	{
+		"player_id"				"short"
+	}
+	"show_words"
+	{
+		"name"			"string"
+		"expire"		"short"
+	}
+	"prt_localize"
+	{
+		"text"			"string"
+	}
+	"show_enemy_count"
+	{
+		"count"					"short"
+	}
+	"show_kill_stat"
+	{
+		"kill"						"short"
+		"unkill"					"short"
+	}
+}
+

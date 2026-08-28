@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_ABSORIGIN_FOLLOW"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ 0.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/items/puck/puck_snowflake_elf_back/puck_snowflake_elf_back.vmdl"
+				m_nModSpecificData = 9580
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "0"
+			}
+		},
+	]
+	m_nMaxParticles = 0
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_bDisableOperator = true
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_flare.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_flare_bot.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_flare_topl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_flare_topr.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_magic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_snow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_glow_soft.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"effect/puck_xuehua/1_bits.vpcf"
+		},
+	]
+}

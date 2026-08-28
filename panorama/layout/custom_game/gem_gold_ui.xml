@@ -1,0 +1,114 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/gem_gold_ui.vcss_c" />
+	</styles>
+	<script>
+		"use strict";
+
+		function OnGameStateChanged( table, key, data )
+		{
+			$.Msg( "Table '", table, "' changed: '", key, "' = ", data );
+
+			if (key == 'gem_team_gold'){
+				var table_value = CustomNetTables.GetTableValue( "game_state", "gem_team_gold" );
+				if ( table_value )
+				{
+					$("#gold_ui_teamgold").text = table_value.gold;
+				}
+			}
+
+			if (key == 'gem_maze_length'){
+				var table_value = CustomNetTables.GetTableValue( "game_state", "gem_maze_length" );
+				if ( table_value )
+				{
+					$("#gold_ui_mazelength").text = table_value.length;
+				}
+			}
+
+			if (key == 'gem_team_level'){
+				var table_value = CustomNetTables.GetTableValue( "game_state", "gem_team_level" );
+				if ( table_value )
+				{
+					if (table_value.level == 1){
+						$("#gold_ui_1").text = "100%";
+						$("#gold_ui_2").text = "0%";
+						$("#gold_ui_3").text = "0%";
+						$("#gold_ui_4").text = "0%";
+						$("#gold_ui_5").text = "0%";
+					}
+					if (table_value.level == 2){
+						$("#gold_ui_1").text = "80%";
+						$("#gold_ui_2").text = "20%";
+						$("#gold_ui_3").text = "0%";
+						$("#gold_ui_4").text = "0%";
+						$("#gold_ui_5").text = "0%";
+					}
+					if (table_value.level == 3){
+						$("#gold_ui_1").text = "60%";
+						$("#gold_ui_2").text = "30%";
+						$("#gold_ui_3").text = "10%";
+						$("#gold_ui_4").text = "0%";
+						$("#gold_ui_5").text = "0%";
+					}
+					if (table_value.level == 4){
+						$("#gold_ui_1").text = "40%";
+						$("#gold_ui_2").text = "30%";
+						$("#gold_ui_3").text = "20%";
+						$("#gold_ui_4").text = "10%";
+						$("#gold_ui_5").text = "0%";
+					}
+					if (table_value.level == 5){
+						$("#gold_ui_1").text = "10%";
+						$("#gold_ui_2").text = "30%";
+						$("#gold_ui_3").text = "30%";
+						$("#gold_ui_4").text = "20%";
+						$("#gold_ui_5").text = "10%";
+					}
+					
+				}
+			}
+			
+		}
+
+
+		(function()
+		{
+			CustomNetTables.SubscribeNetTableListener( "game_state", OnGameStateChanged );
+		})();
+
+	</script>
+    <Panel style="flow-children:down;width:100%;height:100%;" class="hidden" hittest="false">
+        
+
+        <Panel id="gem_gold_ui_pic" >
+			<Label class="gold_ui_label" text="#text_gold_ui_11" style="margin-left:60px;margin-top:10px;color:#888888;"/>
+			<Label class="gold_ui_label" text="#text_gold_ui_22" style="margin-left:175px;margin-top:10px;color:#888888;"/>
+
+			<Label id="gold_ui_teamgold" class="gold_ui_label" text="0" style="width:80px;text-align:center;margin-left:45px;margin-top:30px;font-size:20px;color:yellow;"/>
+			<Label id="gold_ui_mazelength" class="gold_ui_label" text="115" style="width:80px;text-align:center;margin-left:170px;margin-top:30px;font-size:20px;color:lightblue;"/>
+
+			<Label class="gold_ui_label" text="#text_gold_ui_1" style="margin-left:10px;margin-top:87px;color:#888888;"/>
+			<Label class="gold_ui_label" text="#text_gold_ui_2" style="margin-left:57px;margin-top:87px;color:#888888;"/>
+			<Label class="gold_ui_label" text="#text_gold_ui_3" style="margin-left:105px;margin-top:87px;color:#888888;"/>
+			<Label class="gold_ui_label" text="#text_gold_ui_4" style="margin-left:153px;margin-top:87px;color:#888888;"/>
+			<Label class="gold_ui_label" text="#text_gold_ui_5" style="margin-left:200px;margin-top:87px;color:#888888;"/>
+
+			<Label id="gold_ui_1" class="gold_ui_label" text="100%" style="width:40px;text-align:center;margin-left:2px;margin-top:100px;"/>
+			<Label id="gold_ui_2" class="gold_ui_label" text="0%" style="width:40px;text-align:center;margin-left:52px;margin-top:100px;"/>
+			<Label id="gold_ui_3" class="gold_ui_label" text="0%" style="width:40px;text-align:center;margin-left:99px;margin-top:100px;"/>
+			<Label id="gold_ui_4" class="gold_ui_label" text="0%" style="width:40px;text-align:center;margin-left:146px;margin-top:100px;"/>
+			<Label id="gold_ui_5" class="gold_ui_label" text="0%" style="width:40px;text-align:center;margin-left:196px;margin-top:100px;"/>
+        	
+        </Panel>
+    </Panel>
+</root>

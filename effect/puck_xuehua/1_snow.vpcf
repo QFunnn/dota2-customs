@@ -1,0 +1,167 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flRadiusScaleMin = 0.0
+				m_flInputMax = 0.25
+				m_flProxyRadius = 8.0
+			}
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bBlendFramesSeq0 = false
+			m_hTexture = resource:"materials/particle/snowflake/snowflakes_01.vtex"
+			m_bAdditive = true
+			m_flOverbrightFactor = 2.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.08
+			m_Gravity = [ 0.0, 0.0, -150.0 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flBias = 0.2
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.5
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_bAdditive = true
+			m_vecOutputMin = [ -1.0, -1.0, -1.0 ]
+			m_nFieldOutput = "0"
+			m_fl4NoiseScale = 0.6458
+		},
+		{
+			_class = "C_OP_RampScalarLinear"
+			m_RateMax = 3.0
+			m_RateMin = 0.2
+			m_nField = "12"
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_RateMin = [ -1.5, -1.5, 0.0 ]
+			m_RateMax = [ 1.5, 1.5, 0.0 ]
+			m_FrequencyMax = [ 1.5, 1.5, 1.5 ]
+			m_FrequencyMin = [ 0.75, 0.75, 0.75 ]
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_DistanceToCP"
+			m_nFieldOutput = "16"
+			m_flInputMin = 350.0
+			m_flInputMax = 450.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+			m_nStartCP = 1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 2.5
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 10.0
+			m_flRadiusMax = 50.0
+			m_flRadiusRandExponent = 2.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 200
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 183, 216, 255, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 7
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMin = 180.0
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScaleLoc = 0.7
+			m_vecOutputMin = [ 0.0, 0.0, 20.0 ]
+			m_vecOutputMax = [ 0.0, 0.0, 50.0 ]
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fSpeedMax = 30.0
+			m_fRadiusMax = 200.0
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, -50.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 50.0 ]
+			m_nControlPointNumber = 1
+			m_bLocalCoords = true
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 200.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 5.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

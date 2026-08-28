@@ -1,0 +1,128 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/data.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="TeamSelect">
+		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+			<Panel hittest="false" id="TeamsSelectEmptySpace" />
+			<Panel id="TeamsList" />
+			<Panel id="GameAndPlayersRoot">
+				<Panel id="GameInfoPanel">
+					<Panel id="CustomGameModeName">
+						<Label id="GameModeNameLabel" text="#addon_game_name" />
+					</Panel>
+					<Panel id="MapInfo">
+						<Label id="MapInfoLabel" text="#LoadingScreenMapInfo" />
+					</Panel>
+					<Panel class="select-block" id="team-block" hittest="true">
+						<Label class="select-title" text="#player_list" />
+						<Panel class="select-block-inner" id="team-block-inner" hittest="true">
+							<Panel class="my_courier_list_line">
+								<Panel id="team_select_player_panel_0" class="player_list_one invisible">
+									<Panel class="player_info_one">
+										<DOTAAvatarImage id="team_select_player_avatar_0" steamid="" nocompendiumborder="true" />
+										<Panel id="team_select_player_star_0" class="img_team_select_player_star invisible" />
+										<DOTAUserName id="team_select_player_name_0" steamid="" />
+										<Image id="team_select_player_level_all_0" />
+									</Panel>
+									<Panel id="team_select_player_hero_info_0" class="my_courier_list_one" />
+								</Panel>
+								<Panel id="team_select_player_panel_1" class="player_list_one invisible">
+									<Panel class="player_info_one">
+										<DOTAAvatarImage id="team_select_player_avatar_1" steamid="" nocompendiumborder="true" />
+										<Panel id="team_select_player_star_1" class="img_team_select_player_star invisible" />
+										<DOTAUserName id="team_select_player_name_1" steamid="" />
+										<Image id="team_select_player_level_all_1" />
+									</Panel>
+									<Panel id="team_select_player_hero_info_1" class="my_courier_list_one" />
+								</Panel>
+								<Panel id="team_select_player_panel_2" class="player_list_one invisible">
+									<Panel class="player_info_one">
+										<DOTAAvatarImage id="team_select_player_avatar_2" steamid="" nocompendiumborder="true" />
+										<Panel id="team_select_player_star_2" class="img_team_select_player_star invisible" />
+										<DOTAUserName id="team_select_player_name_2" steamid="" />
+										<Image id="team_select_player_level_all_2" />
+									</Panel>
+									<Panel id="team_select_player_hero_info_2" class="my_courier_list_one" />
+								</Panel>
+								<Panel id="team_select_player_panel_3" class="player_list_one invisible">
+									<Panel class="player_info_one">
+										<DOTAAvatarImage id="team_select_player_avatar_3" steamid="" nocompendiumborder="true" />
+										<Panel id="team_select_player_star_3" class="img_team_select_player_star invisible" />
+										<DOTAUserName id="team_select_player_name_3" steamid="" />
+										<Image id="team_select_player_level_all_3" />
+									</Panel>
+									<Panel id="team_select_player_hero_info_3" class="my_courier_list_one" />
+								</Panel>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="StartGameCountdownTimer">
+						<Image id="TimerBg" src="s2r://" />
+						<Image id="TimerRing" src="s2r://" />
+						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+						<Panel id="TimerLabelBox">
+							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
+							<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
+						</Panel>
+					</Panel>
+					<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+						<Label text="#start_game" />
+					</Button>
+					<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
+						<Label text="#cancel_start_game" />
+					</Button>
+					<Panel id="UnassignedPlayerPanel" style="visibility:collapse;">
+						<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+							<Panel id="UnassignedPlayersHeader">
+								<Label text="#custom_game_team_select_unassigned_players" />
+							</Panel>
+							<Panel id="UnassignedPlayersDivider" />
+							<Panel id="UnassignedPlayersContainer" />
+						</Button>
+						<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
+							<Image src="s2r://" />
+							<Label text="#custom_game_team_select_auto_assign" />
+						</Button>
+					</Panel>
+					<Panel id="TeamsListGroup" style="visibility:collapse;">
+						<Panel id="TeamListHeader">
+							<Label id="TeamListHeaderLabel" text="#custom_game_team_select" />
+							<Image id="TeamListLockedIcon" src="s2r://" />
+						</Panel>
+						<Panel id="TeamsListRoot" />
+						<Button id="ShuffleTeamAssignmentButton" onactivate="OnShufflePlayersPressed()">
+							<Label text="#custom_game_team_select_shuffle" />
+							<Image src="s2r://" />
+						</Button>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="CourierSelectContainer">
+			<Panel class="select-board" id="select-board" hittest="true">
+				<Panel class="select-block" id="select-block" hittest="true">
+					<Label class="select-title" text="#hero_select" />
+					<Panel class="select-block-inner" id="select-block-inner" hittest="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

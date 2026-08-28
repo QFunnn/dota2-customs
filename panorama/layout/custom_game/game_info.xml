@@ -1,0 +1,122 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+<root>
+        <styles>
+                <!-- 导入官方css -->
+                <include src="s2r://panorama/styles/dotastyles.vcss_c"/>
+                <!-- file://{resources}/就是指你的地图目录下的panorama -->
+                <include src="s2r://panorama/styles/custom_game/game_info.vcss_c"/>
+        </styles>
+ 
+        <!-- 使用脚本 -->
+        <script>
+                    $.AsyncWebRequest( 
+                        'http://101.200.189.65:2009/gemtd/ranking/get', 
+                        { 
+                            type: 'GET',
+                            complete: function(a,b,c,d,e) { 
+                                var tt = a.responseText;
+                                tt = tt.substr(0,tt.length-1)
+
+                                var aa = JSON.parse(tt);
+                                var aa = aa.data;
+                                var show = '【实时世界排名v0.2】\n\n';
+                                for (var i in aa){
+                                	if (aa[i].score==31){
+                                		aa[i].score= '通';
+                                	}
+                                    show+= ('第'+(parseInt(i)+1)+'名 '+aa[i].player_name+' ---最好成绩'+aa[i].score+'关\n');
+                                }
+
+                                show+= "\n(内测期间排名随时可能因为修改bug而删档，望理解！)\n\n\n";
+
+                                show+= "【v0.1通关玩家名单】\n\nOlya_ross^^ Mayhem \n加好友专业通关RPG 笑笑 ♥ ҉҈҉҈҈҉҈҉҈҉҈҉҈҉҈ \nM0jo-J0jo Mythos MiGTh \n新号定位 公司睡觉看TI \nvienne Ken\n Скотина \n.Leh@ Ёптыть Charlie \nCATBUG!!! Shintail\n\n"
+
+
+                                $("#label2").text = show; 
+                            }, 
+                            timeout: 50000
+                        } 
+                    );
+
+                function onBtnClick()
+                {
+
+
+                }
+        </script>
+ 
+        <Panel>
+                <Panel>
+                <Label id="label1" text="
+欢迎来到宝石TD的世界！\n
+作者：萌小虾~[AMHC]Puck\n
+版本：GemTD alpha v0.2\n
+论坛：gemtd.dota2rpg.com\n
+玩家QQ群：253407817\n
+\n
+【更新内容】\n
+\n
+-alpha试玩版本，仅完成了前30关的怪物和基本宝石合成\n
+-暂时禁用了单回合合成系统、石板系统和杀怪设计系统\n
+-模型、图标和UI暂时用的简陋版，后期会更新\n
+-如有问题或建议请联系作者萌小虾\n
+\n
+【游戏规则】\n
+\n
+-建造你的宝石和迷宫来保护宝石城堡。共有n波怪物来进攻。\n
+-每一关你都可以建造5块随机的宝石，然后选择1块留下。\n
+  其余的4个石头会变成没有攻击力的普通石头。\n
+-怪物会沿着指定的6个箭头寻路前进，所以你可以合理利用石头\n
+  的位置来规划“迷宫”让怪物尽可能的难以走到终点。\n
+-同一回合相同的2块石头可以合并留下成为高1级的宝石，\n
+  同一回合相同的4块石头可以合并留下成为高2级的宝石！\n
+-你也可以根据合成公式合成高级的宝石，具体公式如下~\n
+\n
+【合成公式】\n
+\n
+白银 = B1 + D1 + Y1\n
+孔雀石 = E1 + G1 + Q1\n
+星彩红宝石 = R2 + R1 + P1\n
+玉 = G3 + E3 + B2\n
+芙蓉石 = G4 + R3 + P2\n
+黑暗翡翠 = G5 + B4 + Y2\n
+黄彩蓝宝石 = B5 + Y4 + R4\n
+黄金 = P5 + P4 + D2\n
+粉红钻石 = D5 + D3 + Y3\n
+鸡血石 = R5 + Q4 + P3\n
+铀238 = Y5 + B3 + E2\n
+黑色猫眼石 = E5 + D4 +Q3\n
+帕拉伊巴碧玺 = Q5 + E4 + G2 + Q2\n
+其他宝石待添加:)"/>
+
+
+                    <Label id="label2" text="暂无世界排名"/>
+                    
+                </Panel>
+
+                <!--
+                
+
+                
+ 
+                <DropDown id="drop">
+                  <Label text="下拉列表项1" id="entry1"/>
+                  <Label text="下拉列表项2" id="entry2"/>
+                  <Label text="下拉列表项3" id="entry3"/>
+                  <Label text="下拉列表项4" id="entry4"/>
+                </DropDown>
+
+                <ToggleButton id="toggleBtn_1" checked="true" text="Checkbox 1" />
+                <ToggleButton id="toggleBtn_2" checked="true" text="Checkbox 2" />-->
+ 
+        </Panel>
+</root>

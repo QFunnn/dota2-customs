@@ -1,0 +1,1020 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"DOTAAbilities"
+{
+    "Version" "1"
+    "item_bag_of_gold"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityName" "item_bag_of_gold"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+        "Model" "models/props_gameplay/gold_bag.vmdl"
+        "ItemKillable" "0"
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange" "100"
+        "AbilityCastPoint" "0.0"
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost" "99999"
+        "ItemPurchasable" "0"
+        "ItemShopTags" "consumable"
+        "ItemQuality" "consumable"
+        "ItemStackable" "1"
+        "ItemShareability" "ITEM_FULLY_SHAREABLE"
+        "ItemPermanent" "0"
+        "ItemInitialCharges" "1"
+        "ItemKillable" "0"
+    }
+    "item_hummer"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_build"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemDroppable" "0"
+        "ItemSellable" "1"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "0"
+        "ItemInitialCharges" "0"
+        "SideShop" "1"
+        "SecretShop" "1"
+        "ItemStockMax" "5"
+        "ItemStockTime" "60"
+        "ItemStockInitial" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+    }
+    "item_extend"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_extend"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "rare"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemStackable" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemExtend"
+            }
+        }
+    }
+    "item_ticket_bush"
+    {
+        "BaseClass" "item_datadriven"
+        "ItemIsNeutralDrop" "1"
+        "AbilityTextureName" "custom/item_ticket_bush"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "rare"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "TicketBush"
+            }
+        }
+    }
+    "item_ticket_night"
+    {
+        "BaseClass" "item_datadriven"
+        "ItemIsNeutralDrop" "1"
+        "AbilityTextureName" "custom/item_ticket_night"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "rare"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "TicketNight"
+            }
+        }
+    }
+    "item_pumpkin"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_pumpkin"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "epic"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemPumpkin"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_roshan"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_roshan"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "artifact"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemRoshan"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_greevil"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_greevil"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "artifact"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemGreevil"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_shell"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_shell"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "artifact"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemShell"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_snow"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_snow"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "epic"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemSnow"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_beach"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_beach"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "epic"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemBeach"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_mushroom"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_mushroom"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.3"
+        "AbilityCooldown" "0"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "0"
+        "ItemQuality" "epic"
+        "ItemDroppable" "0"
+        "ItemShareability" "ITEM_NOT_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
+                "Function" "ItemMushroom"
+            }
+            "SpendCharge"	{}
+        }
+    }
+    "item_jingying"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_cheese"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/halloween_cupcakes001_spider.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "750"
+        "ItemDroppable" "1"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_witchdoctor.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemJingYing"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "follow_overhead"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "Hero_WitchDoctor.Maledict_Cast"
+            }
+        }
+    }
+    "item_fog"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_smoke_of_deceit"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/smoke.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "500"
+        "ItemDroppable" "1"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "soundfile" "soundevents/game_sounds_items.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemFog"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "follow_overhead"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "DOTA_Item.SmokeOfDeceit.Activate"
+            }
+        }
+    }
+    "item_huichun"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_greater_salve"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/salve.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "500"
+        "ItemDroppable" "1"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemHuichun"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "follow_overhead"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+        }
+    }
+    "item_fly"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_courier_radiant_flying"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/halloween_cupcakes001_bat.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "750"
+        "ItemDroppable" "1"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "soundfile" "soundevents/game_sounds_ui.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemFly"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "follow_overhead"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "ui.courier_in_use"
+            }
+        }
+    }
+    "item_aojiao"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_firework_mine"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/bottle_mango001.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "250"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemAoJiao"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "follow_overhead"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "Hero_Alchemist.UnstableConcoction.Throw"
+            }
+        }
+    }
+    "item_qianggong"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_quelling_blade"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/quelling_blade.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "250"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds.vsndevts"
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemQianggong"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "attach_origin"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "gemtd.item.box"
+            }
+        }
+    }
+    "item_huabingxie"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/winter_skates"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/boots_of_speed.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "500"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds.vsndevts"
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "particle" "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemHuaBingxie"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "attach_origin"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "gemtd.item.box"
+            }
+            "ApplyModifier"
+            {
+                "Target"
+                {
+                    "Types" "DOTA_UNIT_TARGET_BASIC"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Center" "CASTER"
+                    "Radius" "9999"
+                }
+                "ModifierName" "modifier_item_huabingxie"
+                "Duration" "60"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_item_huabingxie"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "30"
+                }
+                "EffectName" "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+                "EffectAttachType" "follow_origin"
+                "IsBuff" "1"
+                "TextureName" "windrunner_windrun"
+            }
+        }
+    }
+    "item_qiongguidun"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_poor_mans_shield"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/stout_shield.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "500"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds.vsndevts"
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "particle" "particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemQiongguidun"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "attach_origin"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "gemtd.item.box"
+            }
+            "ApplyModifier"
+            {
+                "Target"
+                {
+                    "Types" "DOTA_UNIT_TARGET_BASIC"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Center" "CASTER"
+                    "Radius" "9999"
+                }
+                "ModifierName" "modifier_item_qiongguidun"
+                "Duration" "60"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_item_qiongguidun"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "20"
+                }
+                "EffectName" "particles/units/heroes/hero_dazzle/dazzle_armor_friend_shield.vpcf"
+                "EffectAttachType" "follow_overhead"
+            }
+        }
+    }
+    "item_mobang"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "item_magic_wand"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_gameplay/magic_wand.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "500"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds.vsndevts"
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            "particle" "particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield_e.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemMoBang"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "attach_origin"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "gemtd.item.box"
+            }
+            "ApplyModifier"
+            {
+                "Target"
+                {
+                    "Types" "DOTA_UNIT_TARGET_BASIC"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Center" "CASTER"
+                    "Radius" "9999"
+                }
+                "ModifierName" "modifier_item_doupeng"
+                "Duration" "60"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_item_doupeng"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "30"
+                }
+                "EffectName" "particles/econ/items/medusa/medusa_daughters/medusa_daughters_mana_shield_e.vpcf"
+                "EffectAttachType" "follow_origin"
+            }
+        }
+    }
+    "item_moshuhe"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/present"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastAnimation" "ACT_DOTA_TELEPORT"
+        "AbilityCooldown" "0.1"
+        "ItemQuality" "rare"
+        "ItemCastOnPickup" "1"
+        "Model" "models/props_winter/present.vmdl"
+        "Effect" "effect/item_shanguang/1.vpcf"
+        "ItemCost" "1000"
+        "ItemDroppable" "1"
+        "ItemPurchasable" "1"
+        "ItemDeclarations" "DECLARE_PURCHASES_IN_SPEECH"
+        "ItemKillable" "0"
+        "ItemAlertable" "1"
+        "ItemPermanent" "0"
+        "ItemRequiresCharges" "1"
+        "ItemInitialCharges" "1"
+        "ItemStackable" "0"
+        "ItemStockMax" "1"
+        "ItemStockTime" "1"
+        "ItemStockInitial" "1"
+        "ItemRecipe" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds.vsndevts"
+            "particle" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target" "CASTER"
+                "ScriptFile" "addon_game_mode.lua"
+                "Function" "ItemMoshuhe"
+            }
+            "SpendCharge"	{}
+            "AttachEffect"
+            {
+                "Target" "CASTER"
+                "EffectAttachType" "attach_origin"
+                "EffectName" "particles/econ/items/dazzle/dazzle_ti6_gold/dazzle_ti6_shallow_grave_gold_glyph_flare.vpcf"
+            }
+            "FireSound"
+            {
+                "Target" "CASTER"
+                "EffectName" "gemtd.item.box"
+            }
+        }
+    }
+}
