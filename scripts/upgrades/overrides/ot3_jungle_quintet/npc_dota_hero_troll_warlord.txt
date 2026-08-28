@@ -1,0 +1,132 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+"npc_dota_hero_troll_warlord"
+{
+	"troll_warlord_switch_stance"
+	{
+		"armor_per_interval"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+		}
+	}
+	"troll_warlord_berserkers_rage"
+	{
+		"bonus_move_speed"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"maim_slow" "3"
+				"maim_attack_slow" "20"
+			}
+		}
+		"maim_damage"
+		{
+			"value" "65"
+			"operator" "OP_ADD"
+		}
+		"ensnare_chance"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"maim_chance" "4"
+			}
+		}
+	}
+	"troll_warlord_whirling_axes_ranged"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "6"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "6"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"axe_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"damage" "30"
+				}
+			}
+		}
+		"axe_spread"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"axe_width" "5"
+			}
+			"linked_abilities"
+			{
+				"troll_warlord_whirling_axes_melee"
+				{
+					"max_range" "25"
+					"hit_radius" "25"
+				}
+			}
+		}
+	}
+	"troll_warlord_fervor"
+	{
+		"attack_speed"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"base_chance"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"requires_shard" "1"
+		}
+	}
+	"troll_warlord_battle_trance"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"multiplicative_target"	"80"
+		}
+		"attack_speed"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"lifesteal" "12"
+			}
+		}
+	}
+}
