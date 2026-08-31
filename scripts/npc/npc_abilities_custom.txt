@@ -225,6 +225,27 @@
 					}
 				}
 			}
+			"modifier_assassin_crit_x250"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"250"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_assassin_crit_x250"
+						"Target"	"CASTER"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_PhantomAssassin.CoupDeGrace"
+						"Target"	"TARGET"
+					}
+				}
+			}
 			"modifier_assassin_crit_x300"
 			{
 				"IsHidden"	"1"
@@ -5131,7 +5152,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"200"
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"250"
 				}
 				"OnAttackLanded"
 				{
@@ -17458,7 +17479,7 @@
         }
         "AbilityValues"
 		{
-			"damage"      	"150 250 350"
+			"damage"      	"100 200 300"
 		}
 	}
 
@@ -17695,8 +17716,8 @@
 		}
 		"AbilityValues"
         {
-           	"damage"			"300 400 600"
-			"damage_per"		"15 20 30"
+           	"damage"			"200 300 500"
+			"damage_per"		"10 15 25"
 			"stun_duration"		"2.0 2.5 3.0"
         }
     }
@@ -18758,7 +18779,7 @@
 			}
 			"slow_duration"
 			{
-				"value"							"6.0"
+				"value"							"8.0"
 			}
 			"bonus_damage_per_target"
 			{
@@ -18766,11 +18787,11 @@
 			}
 			"attack_slow_pct"
 			{
-				"value"							"10 30 50"
+				"value"							"10 20 40"
 			}
 			"recharge_slow_pct"
 			{
-				"value"							"10 30 50"
+				"value"							"10 20 40"
 			}
 		}
 	}

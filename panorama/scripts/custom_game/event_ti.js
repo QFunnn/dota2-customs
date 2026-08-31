@@ -26,11 +26,16 @@ function OnMouseOutEventti12(){
 }
 
 function ShowBetInfo(info){
+	var is_bet_expired = false;
 	var panel = FindDotaHudElement('panel_event_ti12_container');
 	if (!panel || !info){
 		return;
 	}
 	panel.RemoveAndDeleteChildren();
+	if (Date.now() / 1000 >= info.end_time) {
+		is_bet_expired = true;
+	}
+
 	// 按赔率排序
 	var team_arr = [];
 	for (var i in info.teams){
@@ -160,13 +165,15 @@ function ShowBetInfo(info){
 			text: '× '+t.bet_candy,
 		});
 
-		if (!info.is_bet_available || info.my_bet || MY_CANDY < 40){
+		if (!info.is_bet_available || is_bet_expired || info.my_bet || MY_CANDY < 40){
 			button.SetHasClass('unavailable',true);
 		}
 		else{
 			InitButtonBuyBet(button,t.team_id,t);
 		}
 	}
+
+	
 
 	// 竞猜剩余时间
 	if (info.is_bet_available && info.end_time){
@@ -184,7 +191,7 @@ function ShowBetInfo(info){
 	if (info.is_award_available && award_button){
 		award_button.SetHasClass('invisible',false);
 
-		if (info.teams[info.my_bet].prize){
+		if (info.my_bet && info.teams[info.my_bet].prize){	
 			award_button.SetPanelEvent(
 				"onactivate",
 				function () {

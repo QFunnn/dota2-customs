@@ -1098,6 +1098,7 @@ function DAC:InitGameMode()
 	_G.ITEM_FOOD_LIST = _G.ITEM_LIST_BY_LEVEL[1]
 	_G.ITEM_2_LEVEL = {}
 	_G.DROP_RELIC_LIST = {
+		"item_remainder_seeker",
 		"item_upgrade_lootbox",
 		"item_streak_plus",
 		-- "item_conceal_prepare",
@@ -1509,6 +1510,7 @@ function DAC:InitGameMode()
 		[4] = { 'chess_am', 'chess_pa',  'chess_dk', 'chess_phx', 'chess_doom', 'chess_medusa', 'chess_et', 'chess_ga', 'chess_light', 'chess_ld', 'chess_pangolier', 'chess_chen', 'chess_kunkka',  'chess_snap', 'chess_mk', 'chess_mag', 'chess_br', 'chess_lion' },
 		[5] = { 'chess_ok', 'chess_ta', 'chess_morph', 'chess_gyro', 'chess_thd', 'chess_tech', 'chess_zeus', 'chess_ts', 'chess_qop', 'chess_wl', 'chess_troll', 'chess_aw', 'chess_disruptor', 'chess_th', 'chess_pb', 'chess_kael', 'chess_sven', 'chess_rm', 'chess_au' },
 	}
+	_G.chess_remainder_table = {}
 	--已揭示/未揭示 的橙卡棋子列表
 	_G.revealed_legendary_chess_list = {}
 	_G.unrevealed_legendary_chess_list = {}
@@ -2740,14 +2742,6 @@ function InitHeros()
 		end
 	end
 
-
-	if string.find(_G.steamidlist, '76561198101849234') or string.find(_G.steamidlist, '76561198090961025') or string.find(_G.steamidlist, "76561198090931971") or string.find(_G.steamidlist, "76561198132023205") or string.find(_G.steamidlist, "76561198079679584") or string.find(_G.steamidlist, "76561198069865383") then
-		_G.myself = true
-		if _G.playing_player_count <= 2 then
-			_G.is_tester_mode = true
-		end
-	end
-
 	if IsInToolsMode() == true then
 		combat('WORKSHOP TOOL MODE')
 		_G.myself = true
@@ -2918,10 +2912,12 @@ function InitHeros()
 						})
 					end)
 				end
-
 				if _G.playing_player_count == 1 and user_info.vip_tester == true then
-					prt('<font color="#ffff44">WELCOME VIP TESTER!</font>')
+					prt('WELCOME VIP TESTER!')
 					_G.myself = true
+					if _G.playing_player_count <= 2 then
+						_G.is_tester_mode = true
+					end
 				end
 				user_info['player_id'] = player_id
 				hero.steam_id = steam_id
@@ -4135,10 +4131,23 @@ function PrepareATeam(v)
 			--大头菜概率长大
 			if v.hand_entities ~= nil and v:HasModifier('modifier_item_bench_contract') and v.relic_ttl <= 10 then
 				--11/21/31/41...回合不+1，为了缓冲开圣物的时间，开魔法种子圣物的时候就把第一回合的+1加进去了
-				local prob = _G.battle_round*3 + 10
+				local prob_base = 2*_G.battle_round^1.2
+				-- local placeholder_count = 0
+				-- for k0, x0 in pairs(v.hand_entities) do
+				-- 	if x0:GetUnitName() == 'placeholder' then 
+				-- 		placeholder_count = placeholder_count + 1
+				-- 	end
+				-- end
+				-- local prob = prob_base + (8-placeholder_count)*5
+				local prob = prob_base
 				for k, x in pairs(v.hand_entities) do
 					if x:GetUnitName() == 'placeholder' and RandomInt(1, 100) <= prob then
-						local scale = (x.buy_price or 1) + 1
+						local scale = x.buy_price or 1
+						if prob > 100 and RandomInt(1, 100) <= prob - 100 then
+							scale = scale + 2
+						else 
+							scale = scale + 1
+						end
 						x.buy_price = scale
 						AddModelScalePlus(x, 1.2 + scale / 10.0)
 						AddTotalMoneyStat(v:GetPlayerID(), 1)
@@ -4381,7 +4390,8 @@ function Draw5ChessAndShow(team_id, unlock, draw_type)
 	--1：表示抽5橙卡，
 	-- -1：表示第二次机会带reroll的抽卡，
 	--4：表示奇观轮（正常抽，但每个都随机一个它没有的种族/职业）
-	--5：表示普通核心
+	--5：表示普通核心（现在用-1表示了）
+	--6：抽冷门棋子
 	local h = TeamId2Hero(team_id)
 	if h.chesslock == true then
 		CustomGameEventManager:Send_ServerToTeam(h:GetTeam(), "show_draw_card", {
@@ -4406,9 +4416,14 @@ function Draw5ChessAndShow(team_id, unlock, draw_type)
 
 	--把上次剩的洗回棋库
 	h.ban_chess_list = {}
+	if draw_type == nil and h:HasModifier('modifier_item_remainder_seeker') then 
+		draw_type = 6
+	end
+	h.last_draw_type = h.draw_type
+	h.draw_type = draw_type
 	if h.curr_chess_table ~= nil then
 		for _, chess in pairs(h.curr_chess_table) do
-			if chess ~= nil and (h.draw_type == nil or h.draw_type == 3) then
+			if chess ~= nil and (h.last_draw_type == nil or h.last_draw_type == -1 or h.last_draw_type == 6) then
 				table.insert(h.ban_chess_list, chess.chess)
 				AddAChessToChessPool(chess.chess)
 			end
@@ -4417,7 +4432,6 @@ function Draw5ChessAndShow(team_id, unlock, draw_type)
 	--把上上次的删掉
 	h.curr_chess_table = {}
 	--抽！
-	h.draw_type = draw_type
 
 	local curr_chess_table = RandomNDrawChessNew(team_id, 5, unlock, draw_type)
 	h.curr_chess_table = curr_chess_table
@@ -4439,11 +4453,10 @@ function Draw5ChessAndShow(team_id, unlock, draw_type)
 		if refund == true then --招募没亮灯
 			if h.unlucky_draw == nil then 
 				h.unlucky_draw = 1
-
 			else
 				h.unlucky_draw = h.unlucky_draw + 1		
 			end
-			if RandomFloat(0,1) < 4/h.unlucky_draw then
+			if RandomFloat(0,1) < 5/h.unlucky_draw then
 				AddCourierMana(h,1)  --返还1金币
 			else
 				AddCourierMana(h,2)  --返还2金币
@@ -10956,8 +10969,8 @@ function RandomRelic()
 	local remove_table = {}
 	local ll = table.maxn(_G.DROP_RELIC_LIST)
 	local locked_relic_list = {
-		-- "item_exchange_items",
-		-- "item_free_draw",
+		-- "item_remainder_seeker",
+		-- "item_bench_contract",
 		-- "item_super_uprank",
 		-- "item_rank_damage",
 	}
@@ -13178,7 +13191,7 @@ function InitSynergyBanInfo()
 	for syn, chs_list in pairs(ban_table) do
 		_G.ban_chess_list[syn] = {
 			chess_list = CopyTable(chs_list),
-			ban_price = table.maxn(chs_list) * 2,
+			ban_price = math.floor(6*table.maxn(chs_list)^0.56),
 		}
 	end
 
@@ -14776,7 +14789,7 @@ function SummonHero(keys)
 end
 
 function RandomNDrawChessNew(team_id, n, unlock, draw_type)
-	--draw_type = 1金色核心，= 2黑暗核心，= 0普通核心 = 3魔法卡牌，上次对手的卡，-1普通核心，4=奇观轮
+	--draw_type = 1金色核心，= 2黑暗核心，= 0普通核心 = 3魔法卡牌，上次对手的卡，-1普通核心，4=奇观轮，5=普通核心，6=冷门棋子
 	local new_chess_list_str = ""
 	local new_chess_list_table = {}
 	local chess_count = 0
@@ -14914,7 +14927,7 @@ function RandomNDrawChessNew(team_id, n, unlock, draw_type)
 end
 
 function RandomDrawChessNew(team_id, unlock, draw_type)
-	--draw_type = 1金色核心，= 2黑暗核心，-1第二次机会，4奇观轮
+	--draw_type = 1金色核心，= 2黑暗核心，=-1第二次机会，=4奇观轮，=5普通核心，=6冷门棋子
 	local h = TeamId2Hero(team_id)
 	local this_chess = nil
 	local ran = RandomInt(1, 100)
@@ -14934,7 +14947,7 @@ function RandomDrawChessNew(team_id, unlock, draw_type)
 		io_chance = io_chance * GetIOAfricaValue(h)
 	end
 	local special_draw = false
-	if draw_type == 1 or draw_type == 2 or draw_type == 3 or draw_type == 4 then
+	if draw_type == 1 or draw_type == 2 or draw_type == 3 or draw_type == 4 or draw_type == 6 then
 		special_draw = true
 	end
 	if h:GetLevel() >= 7 and ran1 <= 1 and ran2 <= 1 and not special_draw then
@@ -15073,6 +15086,30 @@ function RandomDrawChessNew(team_id, unlock, draw_type)
 				else
 					--自动免费抽牌
 					this_chess = DrawAChessFromChessPool(chess_level, table_11chess, {}, {}, h)
+				end
+				--draw_type == 6没传进来没有用只是一个标记，这里用modifier判断
+				if h:FindModifierByName('modifier_item_remainder_seeker') ~= nil then 
+					local remainder_max = 0
+					for _,chessname in pairs(_G.chess_list_by_mana[chess_level]) do 
+						local count = _G.chess_remainder_table[chessname]
+						if count >= remainder_max then 
+							remainder_max = count
+						end
+					end
+					local remainder_this_chess = _G.chess_remainder_table[this_chess] or 0
+					if remainder_max - remainder_this_chess == 0 then 
+						force_price = _G.chess_2_mana[this_chess] or 1
+						force_price = force_price - 2
+						if force_price < 0 then
+							force_price = 0
+						end
+					elseif remainder_max - remainder_this_chess <= 4 then 
+						force_price = _G.chess_2_mana[this_chess] or 1
+						force_price = force_price - 1
+						if force_price < 0 then
+							force_price = 0
+						end
+					end
 				end
 			end
 		end
@@ -16660,6 +16697,9 @@ function DrawAChessFromChessPool(cost, table_11chess, table_ban_chess, table_ban
 			end
 			if chess_exist == true and check_available == true and ban_available == true then
 				RemoveOneValueInTable(_G.chess_pool[cost], least_chess)
+				if _G.chess_remainder_table[least_chess] ~= nil then
+					_G.chess_remainder_table[least_chess] = _G.chess_remainder_table[least_chess] - 1
+				end
 				return least_chess
 			end
 		end
@@ -16670,7 +16710,6 @@ function DrawAChessFromChessPool(cost, table_11chess, table_ban_chess, table_ban
 		index = RandomInt(1, table.maxn(_G.chess_pool[cost]))
 		chess_name = _G.chess_pool[cost][index]
 	end
-
 	if FindValueInTable(table_11chess, chess_name) == true then
 		return nil
 	end
@@ -16695,10 +16734,16 @@ function DrawAChessFromChessPool(cost, table_11chess, table_ban_chess, table_ban
 	if index == -1 then
 		--从招募池opp_lineup抽牌
 		RemoveChessFromChessPool(chess_name)   --从公共卡池扣除
+		if _G.chess_remainder_table[chess_name] ~= nil then
+			_G.chess_remainder_table[chess_name] = _G.chess_remainder_table[chess_name] - 1
+		end
 		RemoveOneValueInTable(opp_lineup, chess_name) --从招募池扣除
 	else
 		--从公共卡池抽牌
 		table.remove(_G.chess_pool[cost], index) --从公共卡池扣除
+		if _G.chess_remainder_table[chess_name] ~= nil then
+			_G.chess_remainder_table[chess_name] = _G.chess_remainder_table[chess_name] - 1
+		end
 	end
 	--测试：锁定抽亡灵
 	-- chess_name = ({ 'chess_ww', 'chess_clinkz', 'chess_abaddon', 'chess_vs', 'chess_muerta', 'chess_naix','chess_pudge', 'chess_ud', 'chess_dr', 'chess_lich', 'chess_na', 'chess_dp', 'chess_snk', 'chess_spe', 'chess_nec' })[RandomInt(1,15)]
@@ -16792,7 +16837,6 @@ function AddAChessToChessPool(chess)
 			[1] = base_chess
 		})
 	end
-	
 	if IsChessCanRefill(chess) == false then
 		return
 	end
@@ -16816,12 +16860,15 @@ function AddAChessToChessPool(chess)
 			})
 		end
 	end
-
 	--洗回
 	for count = 1, maxcount do
 		if _G.chess_2_mana[base_chess] ~= nil then
 			local cost = _G.chess_2_mana[base_chess]
 			table.insert(_G.chess_pool[cost], base_chess)
+			if _G.chess_remainder_table[base_chess] == nil then 
+				_G.chess_remainder_table[base_chess] = 0
+			end
+			_G.chess_remainder_table[base_chess] = _G.chess_remainder_table[base_chess] + 1
 		end
 	end
 end
@@ -20084,6 +20131,9 @@ function RandomAFish(team_id, fisher, all_chess_base_table)
 		if cost ~= nil and cost > 0 then
 			--从棋库中移除
 			RemoveOneValueInTable(_G.chess_pool[cost], ran_chess)
+			if _G.chess_remainder_table[ran_chess] ~= nil then
+				_G.chess_remainder_table[ran_chess] = _G.chess_remainder_table[ran_chess] - 1
+			end
 		end
 		Timers:CreateTimer(2, function()
 			--创建鱼棋子，播动画
@@ -24345,6 +24395,7 @@ function DestroyUnitPieceFromChessPool(base_chess)
 		for i = table.maxn(_G.chess_pool[chess_cost]), 1, -1 do
 			if _G.chess_pool[chess_cost][i] == base_chess then
 				table.remove(_G.chess_pool[chess_cost], i)
+				_G.chess_remainder_table[base_chess] = 0
 			end
 		end
 	end
@@ -24396,6 +24447,9 @@ function RemoveChessFromChessPool(chess_name, count)
 	for i = table.maxn(_G.chess_pool[chess_cost]), 1, -1 do
 		if _G.chess_pool[chess_cost][i] == chess_name then
 			table.remove(_G.chess_pool[chess_cost], i)
+			if _G.chess_remainder_table[chess_name] ~= nil then
+				_G.chess_remainder_table[chess_name] = _G.chess_remainder_table[chess_name] - 1
+			end
 			count = count - 1
 			if count <= 0 then
 				return true
@@ -26056,7 +26110,10 @@ function DAC:OnPlayerReconnected(keys)
 			type = 'player_event',
 		})
 	end
-
+	CustomGameEventManager:Send_ServerToAllClients("show_2b_per", {
+		hehe = RandomFloat(1, 10000),
+		per = _G.PER_2B,
+	})
 	Timers:CreateTimer(1.5, function()
 		--显示姓名牌子
 		UpdatePlayerWorldPanel()
@@ -30420,7 +30477,7 @@ function InitAssassinJump(u)
 			[1] = 400,
 		},
 		is_assassin_buff = {
-			[1] = 200,
+			[1] = 250,
 		},
 		phantom_assassin_coup_de_grace = {
 			[1] = 300,

@@ -2758,7 +2758,6 @@ function SendHTTPCb(keys) {
         }
         else {
             // show_msg('#get_season_award_success');
-            $.Msg(object.award);
             if (object.award) {
                 if (object.award.candy_add) {
                     open_panel_award('dac', 'candy', '', object.award.candy_add, 'lucky');
@@ -2958,7 +2957,6 @@ function OnPlayerReconnect(data) {
         RELIC_TTL = relic_ttl['ttl'];
         UpdateRelicRemainingRounds(RELIC_TTL);
     }
-
     $.Schedule(1, function () {
         if (PORTRAIT_COURIER_PLAYER_ID || PORTRAIT_COURIER_PLAYER_ID == 0) {
             UpdateTalentTree(PORTRAIT_COURIER_PLAYER_ID);
@@ -9667,7 +9665,6 @@ function FillOtherStoreInfo(object) {
         }
 
         if (FindDotaHudElement('icon_event_ti12')) {
-            $.Msg(myinfo.bet_info);
             if (myinfo.bet_info) {
                 FindDotaHudElement('icon_event_ti12').visible = true;
                 ShowBetInfo(myinfo.bet_info);

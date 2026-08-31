@@ -402,9 +402,9 @@ function OnShowChatBubblePlayerBoard(keys) {
 		}
 		else {
 			// 发表情
-			var m_info;
+			var m_info;emot
 			for (var i in EMOTION_LIST) {
-				if (EMOTION_LIST[i].emotion_index == keys.emotion_index) {
+				if (EMOTION_LIST[i].ion_index == keys.emotion_index) {
 					m_info = EMOTION_LIST[i];
 				}
 			}

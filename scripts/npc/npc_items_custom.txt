@@ -2803,7 +2803,6 @@
                 {
                     "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-50"
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "-50"
-                    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"   "-50"
                 }
                 // "EffectName" "particles/econ/items/crystal_maiden/ti7_immortal_shoulder/cm_ti7_immortal_frostbite_snow_base.vpcf"
                 // "EffectAttachType" "attach_origin"
@@ -7433,5 +7432,36 @@
             }
             
         }
+    }
+    "item_remainder_seeker"
+    {
+        "BaseClass" "item_datadriven"
+        "AbilityTextureName" "custom/item_remainder_seeker"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "ID" "1001690"
+        "ItemCastOnPickup" "0"
+        "ItemDroppable" "0"
+        "ItemSellable" "0"
+        "ItemShareability" "ITEM_FULLY_SHAREABLE"
+        "ItemPurchasable" "0"
+        "ItemKillable" "1"
+        "ItemAlertable" "0"
+        "ItemPermanent" "1"
+        "ItemRequiresCharges" "0"
+        "ItemInitialCharges" "0"
+        "ItemStackable" "0"
+        "ItemRequirements"	{}
+        "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "Modifiers"
+        {
+            "modifier_item_remainder_seeker"
+            {
+                "IsHidden" "1"
+                "Passive" "1"
+            }
+        }
+        "ItemIsNeutralDrop" "1"
     }
 }
