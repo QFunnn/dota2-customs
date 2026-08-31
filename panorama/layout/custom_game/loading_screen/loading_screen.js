@@ -23260,18 +23260,34 @@ function useIsComponentMounted() {
 /* harmony export */   useLocalEvent: () => (/* binding */ useLocalEvent)
 /* harmony export */ });
 /* harmony import */ var _commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @commonLib/modules/evt/local_event_utils */ "./commonLib/modules/evt/local_event_utils.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+
 
 
 function useLocalEvent(eventName, listener, dependencies = [], enabled = true) {
-    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(() => {
+    const contextPanel = $.GetContextPanel();
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
         if (!enabled) {
             return;
         }
-        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.onLocalEvent)(eventName, listener);
-        return () => {
-            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.offLocalEvent)(eventName, listener);
-        };
+        let subscribed = true;
+        function stopListening() {
+            if (!subscribed) {
+                return;
+            }
+            subscribed = false;
+            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.offLocalEvent)(eventName, guardedListener);
+        }
+        function guardedListener(evt, ...arg) {
+            if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_1__.isPanelValid)(contextPanel)) {
+                stopListening();
+                return;
+            }
+            listener(evt, ...arg);
+        }
+        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.onLocalEvent)(eventName, guardedListener);
+        return stopListening;
     }, dependencies);
 }
 
@@ -23346,6 +23362,8 @@ function useMakeRenderOnLocalEventCallback(eventName, listener, dependencies = [
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
 /* harmony import */ var _useIsComponnetMounted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIsComponnetMounted */ "./commonLib/hooks/useIsComponnetMounted.ts");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 /**
@@ -23361,9 +23379,10 @@ function useMakeRenderOnLocalEventCallback(eventName, listener, dependencies = [
  */
 function useStateIfMounted(initialValue) {
     const isComponentMounted = (0,_useIsComponnetMounted__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    const contextPanel = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)($.GetContextPanel());
     const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialValue);
     const newSetState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(value => {
-        if (isComponentMounted.current) {
+        if (isComponentMounted.current && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_2__.isPanelValid)(contextPanel.current)) {
             setState(value);
         }
     }, [isComponentMounted]);
@@ -24628,6 +24647,113 @@ function progressNum(num, maxNum) {
     const [newnum, numunit] = ShortenNumber(num);
     const [newmaxnum, maxnumunit] = ShortenNumber(maxNum);
     return [Number(pct), `${parseFloat(newnum.toFixed(1))}${numunit}/${parseFloat(newmaxnum.toFixed(1))}${maxnumunit}`];
+}
+
+
+/***/ },
+
+/***/ "./commonLib/utils/ui_utils.ts"
+/*!*************************************!*\
+  !*** ./commonLib/utils/ui_utils.ts ***!
+  \*************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isPanelValid: () => (/* binding */ isPanelValid)
+/* harmony export */ });
+/* unused harmony exports getRoot, scroll, canClick, getAncestorByClassName, IsMouseOnPanel, GetPanelMouseOnState, HideHudElements */
+/**
+ * UI相关工具方法
+ */
+/**
+ * Panorama 面板被原生 UI 生命周期删除后，JS 包装对象仍可能保持 truthy。
+ * 所有跨帧、异步和事件回调在访问面板前都应使用该方法检查。
+ */
+function isPanelValid(panel) {
+    var _a;
+    try {
+        return !!((_a = panel === null || panel === void 0 ? void 0 : panel.IsValid) === null || _a === void 0 ? void 0 : _a.call(panel));
+    }
+    catch (_b) {
+        return false;
+    }
+}
+function getRoot() {
+    let root = $.GetContextPanel();
+    while (root.GetParent() != null) {
+        root = root.GetParent();
+    }
+    return root;
+}
+/**
+ * 操作一个面板的滚动条，如果他有的话
+ * @param panel 需要操作的面板
+ * @param left  是否是向左滚动
+ * @param offset 偏移量默认3
+ */
+function scroll(panel, left, offset = 3) {
+    if (panel) {
+        for (let index = 0; index < offset; index++) {
+            $.DispatchEvent(left ? "ScrollLeft" : "ScrollRight", panel);
+        }
+    }
+}
+/**
+ * 点击cd 有一个bug，在点击后如果之前的panel被删除，并且在canClick函数中还打印了这个panel，那么游戏会直接闪退
+ * @param self
+ * @param callback
+ * @param cd
+ */
+function canClick(self, callback, cd = 1) {
+    $.Schedule(cd, () => {
+        self.enabled = true;
+    });
+    if (self.enabled == true) {
+        self.enabled = false;
+        callback;
+    }
+}
+function getAncestorByClassName(panel, className) {
+    let parent = panel;
+    while (parent != null) {
+        parent = parent.GetParent();
+        if (parent === null || parent === void 0 ? void 0 : parent.BHasClass(className)) {
+            break;
+        }
+    }
+    return parent;
+}
+function IsMouseOnPanel(panel) {
+    if (!panel) {
+        return false;
+    }
+    const panelPos = panel.GetPositionWithinWindow();
+    const right = panelPos.x + panel.actuallayoutwidth;
+    const bottom = panelPos.y + panel.actuallayoutheight;
+    const [mouseX, mouseY] = GameUI.GetCursorPosition();
+    return mouseX >= panelPos.x && mouseX <= right && mouseY >= panelPos.y && mouseY <= bottom;
+}
+function GetPanelMouseOnState(stateObj) {
+    if (!stateObj) {
+        return {};
+    }
+    return {
+        onmouseover: () => {
+            stateObj.isMouseOn = true;
+        },
+        onmouseout: () => {
+            stateObj.isMouseOn = false;
+        },
+    };
+}
+function HideHudElements(name) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    const root = (_g = (_f = (_e = (_d = (_c = (_b = (_a = $.GetContextPanel) === null || _a === void 0 ? void 0 : _a.call($)) === null || _b === void 0 ? void 0 : _b.GetParent) === null || _c === void 0 ? void 0 : _c.call(_b)) === null || _d === void 0 ? void 0 : _d.GetParent) === null || _e === void 0 ? void 0 : _e.call(_d)) === null || _f === void 0 ? void 0 : _f.GetParent) === null || _g === void 0 ? void 0 : _g.call(_f);
+    const element = root === null || root === void 0 ? void 0 : root.FindChildTraverse(name);
+    if (element != null) {
+        element.style.visibility = "collapse";
+    }
 }
 
 
@@ -28069,7 +28195,7 @@ function ComBlessCell(_a) {
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `com-bless-item ${className}` }, (showTips ? (0,_commonLib_modules_tooltip_tooltip_utils__WEBPACK_IMPORTED_MODULE_5__.GetTooltipDisplayProp)(`text`, blessDescLocalize(blessId, playerId)) : {}), props, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-icon", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_8__["default"].getBlessIconPath(blessId) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-qua-boarder", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_8__["default"].getBlessQuaBorder(blessCfg.quality) })] })));
 }
 function blessDescLocalize(blessId, playerId) {
-    var _a, _b;
+    var _a;
     const blessDataMgr = Game.DataHub.BlessDataMgr;
     const blessCfg = blessDataMgr.GetBlesssCfg(blessId);
     const reason_key = (_a = blessDataMgr.GetBlessServerData(blessId, playerId)) === null || _a === void 0 ? void 0 : _a.gain_reason_key;
@@ -28078,28 +28204,7 @@ function blessDescLocalize(blessId, playerId) {
     if (reason_key) {
         reason_text = `${$.lang(`#${reason_key}`)} - `;
     }
-    // 加入获取限制描述
-    const gainReasonLimit = Object.values((_b = blessCfg.gain_reason_limit) !== null && _b !== void 0 ? _b : {});
-    let gain_reason_limit_desc = "";
-    if (gainReasonLimit.length > 0) {
-        // $.Msg("gainReasonLimit", gainReasonLimit);
-        gain_reason_limit_desc = `<br><font color="#707070">${$.Localize(`#bless_gain_reason_limit`)}`;
-        for (const reason_key of gainReasonLimit) {
-            gain_reason_limit_desc += $.Localize(`#${reason_key}`) + ",";
-        }
-        gain_reason_limit_desc = gain_reason_limit_desc.slice(0, -1);
-        gain_reason_limit_desc += `</font>`;
-    }
-    // 加入福佑细节类型描述
-    let detail_desc = "";
-    const cfgs = blessCfg.cfgs;
-    if (cfgs !== undefined) {
-        for (const key in cfgs) {
-            const cfg_key = key;
-            detail_desc += `<br>${$.Localize(`#bless_detail_${cfg_key}`)}${$.Localize(`#bless_detail_value_${cfgs[cfg_key]}`)}`;
-        }
-    }
-    const blessLocalizeKey = `<font color="${BlessQuaColor[blessCfg.quality]}">【${reason_text}${$.lang(`#bless_${blessId}`)}】</font> <br> ${blessDataMgr.GetBlessDesc(blessId, playerId)}${gain_reason_limit_desc}<br><font color='#8e8e8e'>${detail_desc}</font>`;
+    const blessLocalizeKey = `<font color="${BlessQuaColor[blessCfg.quality]}">【${reason_text}${$.lang(`#bless_${blessId}`)}】</font> <br> ${blessDataMgr.GetBlessDesc(blessId, playerId)}${blessDataMgr.GetBlessConfigDetailDesc(blessId)}`;
     return blessLocalizeKey;
 }
 function blessNameLocalize(blessId) {

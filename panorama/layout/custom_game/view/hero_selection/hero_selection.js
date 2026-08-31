@@ -24278,18 +24278,34 @@ function useKeyPressed(keyName) {
 /* harmony export */   useLocalEvent: () => (/* binding */ useLocalEvent)
 /* harmony export */ });
 /* harmony import */ var _commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @commonLib/modules/evt/local_event_utils */ "./commonLib/modules/evt/local_event_utils.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+
 
 
 function useLocalEvent(eventName, listener, dependencies = [], enabled = true) {
-    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(() => {
+    const contextPanel = $.GetContextPanel();
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useLayoutEffect)(() => {
         if (!enabled) {
             return;
         }
-        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.onLocalEvent)(eventName, listener);
-        return () => {
-            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.offLocalEvent)(eventName, listener);
-        };
+        let subscribed = true;
+        function stopListening() {
+            if (!subscribed) {
+                return;
+            }
+            subscribed = false;
+            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.offLocalEvent)(eventName, guardedListener);
+        }
+        function guardedListener(evt, ...arg) {
+            if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_1__.isPanelValid)(contextPanel)) {
+                stopListening();
+                return;
+            }
+            listener(evt, ...arg);
+        }
+        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.onLocalEvent)(eventName, guardedListener);
+        return stopListening;
     }, dependencies);
 }
 
@@ -24365,6 +24381,8 @@ function useMakeRenderOnLocalEventCallback(eventName, listener, dependencies = [
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
 /* harmony import */ var _useIsComponnetMounted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIsComponnetMounted */ "./commonLib/hooks/useIsComponnetMounted.ts");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 /**
@@ -24380,9 +24398,10 @@ function useMakeRenderOnLocalEventCallback(eventName, listener, dependencies = [
  */
 function useStateIfMounted(initialValue) {
     const isComponentMounted = (0,_useIsComponnetMounted__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    const contextPanel = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)($.GetContextPanel());
     const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialValue);
     const newSetState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(value => {
-        if (isComponentMounted.current) {
+        if (isComponentMounted.current && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_2__.isPanelValid)(contextPanel.current)) {
             setState(value);
         }
     }, [isComponentMounted]);
@@ -26707,6 +26726,113 @@ function progressNum(num, maxNum) {
 
 /***/ },
 
+/***/ "./commonLib/utils/ui_utils.ts"
+/*!*************************************!*\
+  !*** ./commonLib/utils/ui_utils.ts ***!
+  \*************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isPanelValid: () => (/* binding */ isPanelValid)
+/* harmony export */ });
+/* unused harmony exports getRoot, scroll, canClick, getAncestorByClassName, IsMouseOnPanel, GetPanelMouseOnState, HideHudElements */
+/**
+ * UI相关工具方法
+ */
+/**
+ * Panorama 面板被原生 UI 生命周期删除后，JS 包装对象仍可能保持 truthy。
+ * 所有跨帧、异步和事件回调在访问面板前都应使用该方法检查。
+ */
+function isPanelValid(panel) {
+    var _a;
+    try {
+        return !!((_a = panel === null || panel === void 0 ? void 0 : panel.IsValid) === null || _a === void 0 ? void 0 : _a.call(panel));
+    }
+    catch (_b) {
+        return false;
+    }
+}
+function getRoot() {
+    let root = $.GetContextPanel();
+    while (root.GetParent() != null) {
+        root = root.GetParent();
+    }
+    return root;
+}
+/**
+ * 操作一个面板的滚动条，如果他有的话
+ * @param panel 需要操作的面板
+ * @param left  是否是向左滚动
+ * @param offset 偏移量默认3
+ */
+function scroll(panel, left, offset = 3) {
+    if (panel) {
+        for (let index = 0; index < offset; index++) {
+            $.DispatchEvent(left ? "ScrollLeft" : "ScrollRight", panel);
+        }
+    }
+}
+/**
+ * 点击cd 有一个bug，在点击后如果之前的panel被删除，并且在canClick函数中还打印了这个panel，那么游戏会直接闪退
+ * @param self
+ * @param callback
+ * @param cd
+ */
+function canClick(self, callback, cd = 1) {
+    $.Schedule(cd, () => {
+        self.enabled = true;
+    });
+    if (self.enabled == true) {
+        self.enabled = false;
+        callback;
+    }
+}
+function getAncestorByClassName(panel, className) {
+    let parent = panel;
+    while (parent != null) {
+        parent = parent.GetParent();
+        if (parent === null || parent === void 0 ? void 0 : parent.BHasClass(className)) {
+            break;
+        }
+    }
+    return parent;
+}
+function IsMouseOnPanel(panel) {
+    if (!panel) {
+        return false;
+    }
+    const panelPos = panel.GetPositionWithinWindow();
+    const right = panelPos.x + panel.actuallayoutwidth;
+    const bottom = panelPos.y + panel.actuallayoutheight;
+    const [mouseX, mouseY] = GameUI.GetCursorPosition();
+    return mouseX >= panelPos.x && mouseX <= right && mouseY >= panelPos.y && mouseY <= bottom;
+}
+function GetPanelMouseOnState(stateObj) {
+    if (!stateObj) {
+        return {};
+    }
+    return {
+        onmouseover: () => {
+            stateObj.isMouseOn = true;
+        },
+        onmouseout: () => {
+            stateObj.isMouseOn = false;
+        },
+    };
+}
+function HideHudElements(name) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    const root = (_g = (_f = (_e = (_d = (_c = (_b = (_a = $.GetContextPanel) === null || _a === void 0 ? void 0 : _a.call($)) === null || _b === void 0 ? void 0 : _b.GetParent) === null || _c === void 0 ? void 0 : _c.call(_b)) === null || _d === void 0 ? void 0 : _d.GetParent) === null || _e === void 0 ? void 0 : _e.call(_d)) === null || _f === void 0 ? void 0 : _f.GetParent) === null || _g === void 0 ? void 0 : _g.call(_f);
+    const element = root === null || root === void 0 ? void 0 : root.FindChildTraverse(name);
+    if (element != null) {
+        element.style.visibility = "collapse";
+    }
+}
+
+
+/***/ },
+
 /***/ "./commonLib/utils/window_utils.ts"
 /*!*****************************************!*\
   !*** ./commonLib/utils/window_utils.ts ***!
@@ -28074,6 +28200,8 @@ class StoreDataMgr extends _commonLib_modules_data_base_data_mgr__WEBPACK_IMPORT
 /* harmony import */ var _commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @commonLib/modules/evt/local_event_utils */ "./commonLib/modules/evt/local_event_utils.ts");
 /* harmony import */ var shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! shared/client_shared_declarations */ "./shared/client_shared_declarations.ts");
 /* harmony import */ var _commonLib_modules_evt_net_event_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @commonLib/modules/evt/net_event_utils */ "./commonLib/modules/evt/net_event_utils.ts");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 
@@ -28136,7 +28264,7 @@ class GameSessionMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE_
         this._panelLifecycleMap.forEach((panelState, panelName) => {
             const panel = $(`#${panelName}`);
             $.Msg(`panelName:${panelName} panelState:${panelState} panel:${panel}`);
-            if (panel) {
+            if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_4__.isPanelValid)(panel)) {
                 if (state >= panelState) {
                     panel.style.visibility = "visible";
                 }
@@ -28161,10 +28289,173 @@ class GameSessionMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE_
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BlessCfgDataMgr: () => (/* binding */ BlessCfgDataMgr)
 /* harmony export */ });
+/* unused harmony exports normalizeBlessTagValues, normalizeBlessHeroTagValue, normalizeBlessConfigEntries, buildBlessCatalogEntries */
 /* harmony import */ var _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @commonLib/base/singleton */ "./commonLib/base/singleton.ts");
 /* harmony import */ var _commonLib_utils_engine_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @commonLib/utils/engine_utils */ "./commonLib/utils/engine_utils.ts");
 
 
+const BLESS_CONFIG_KEYS = new Set([
+    "id",
+    "bless_id",
+    "blessId",
+    "debug_name",
+    "weight",
+    "quality",
+    "basic",
+    "recraft",
+    "hero_tags",
+    "custom_tags",
+    "attrs",
+    "special_values",
+    "fix_ability_special_values",
+]);
+function isRecord(value) {
+    return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+function looksLikeBlessConfigRecord(value) {
+    return Object.keys(value).some(key => BLESS_CONFIG_KEYS.has(key));
+}
+function isTruthyFlag(value) {
+    return value === true || value === 1 || value === "1" || value === "true";
+}
+/** 将数组、KV 对象、|/# 分隔字符串和空值统一成去重后的标签数组。 */
+function normalizeBlessTagValues(value) {
+    const result = [];
+    const seen = new Set();
+    const append = (item) => {
+        if (Array.isArray(item)) {
+            item.forEach(append);
+            return;
+        }
+        if (typeof item === "string") {
+            // Excel/KV 数组常见的分隔符是 |，旧配置和远端数据也可能使用 #。
+            item.split(/[|#]/).forEach(part => {
+                const tag = part.trim();
+                if (tag !== "" && !seen.has(tag)) {
+                    seen.add(tag);
+                    result.push(tag);
+                }
+            });
+            return;
+        }
+        if (typeof item === "number" && Number.isFinite(item)) {
+            const tag = String(item).trim();
+            if (tag !== "" && !seen.has(tag)) {
+                seen.add(tag);
+                result.push(tag);
+            }
+            return;
+        }
+        if (isRecord(item)) {
+            const entries = Object.entries(item);
+            const flagMap = entries.length > 0 && entries.every(([, flag]) => [true, false, 0, 1, "0", "1", "true", "false"].includes(flag));
+            if (flagMap) {
+                entries.forEach(([key, flag]) => {
+                    if (isTruthyFlag(flag)) {
+                        append(key);
+                    }
+                });
+            }
+            else {
+                entries.forEach(([, nestedValue]) => append(nestedValue));
+            }
+        }
+    };
+    append(value);
+    return result;
+}
+/** 将英雄短名转换为标准 npc_dota_hero_* Token。 */
+function normalizeBlessHeroTagValue(tag) {
+    const normalized = String(tag !== null && tag !== void 0 ? tag : "").trim();
+    if (normalized === "") {
+        return "";
+    }
+    return normalized.startsWith("npc_dota_hero_") ? normalized : `npc_dota_hero_${normalized}`;
+}
+/** 兼容数组配置、KV 对象配置和空值，并返回可处理的福佑条目。 */
+function normalizeBlessConfigEntries(value) {
+    let source = value;
+    if (isRecord(source) && (isRecord(source.blessAbility) || Array.isArray(source.blessAbility))) {
+        source = source.blessAbility;
+    }
+    if (Array.isArray(source)) {
+        const result = [];
+        source.forEach((item, index) => {
+            var _a, _b, _c, _d;
+            if (Array.isArray(item) && item.length >= 2 && isRecord(item[1])) {
+                const tupleId = String((_a = item[0]) !== null && _a !== void 0 ? _a : index).trim();
+                if (tupleId !== "") {
+                    result.push([tupleId, item[1]]);
+                }
+                return;
+            }
+            if (!isRecord(item)) {
+                return;
+            }
+            // 某些 KV 适配器会把对象映射包在数组中（例如 [{ "10001": {...} }]）。
+            // 只有看起来像福佑记录时才使用数组下标作为兜底 ID，避免丢失内层键。
+            if (!looksLikeBlessConfigRecord(item)) {
+                const nestedEntries = normalizeBlessConfigEntries(item);
+                if (nestedEntries.length > 0) {
+                    result.push(...nestedEntries);
+                    return;
+                }
+            }
+            const id = String((_d = (_c = (_b = item.id) !== null && _b !== void 0 ? _b : item.bless_id) !== null && _c !== void 0 ? _c : item.blessId) !== null && _d !== void 0 ? _d : index).trim();
+            if (id !== "") {
+                result.push([id, item]);
+            }
+        });
+        return result;
+    }
+    if (!isRecord(source)) {
+        return [];
+    }
+    const result = [];
+    Object.entries(source).forEach(([key, item]) => {
+        if (!isRecord(item)) {
+            return;
+        }
+        const candidateId = /^\d+$/.test(key) && item.id !== undefined ? String(item.id).trim() : key.trim();
+        if (candidateId !== "") {
+            result.push([candidateId, item]);
+        }
+    });
+    return result;
+}
+function uniqueStrings(values) {
+    return [...new Set(values.filter(value => value !== ""))];
+}
+/** 从配置生成图鉴快照条目；不读取玩家状态。 */
+function buildBlessCatalogEntries(value) {
+    const result = [];
+    const seenIds = new Set();
+    normalizeBlessConfigEntries(value).forEach(([blessId, rawBless]) => {
+        var _a;
+        const id = String(blessId);
+        if (seenIds.has(id)) {
+            return;
+        }
+        const weight = Number((_a = rawBless.weight) !== null && _a !== void 0 ? _a : 0);
+        if (!(weight > 0)) {
+            return;
+        }
+        const quality = Number(rawBless.quality);
+        if (quality !== 1 && quality !== 2 && quality !== 3) {
+            return;
+        }
+        const heroTags = uniqueStrings(normalizeBlessTagValues(rawBless.hero_tags).map(normalizeBlessHeroTagValue));
+        seenIds.add(id);
+        result.push({
+            id,
+            scope: heroTags.length > 0 ? "exclusive" : "common",
+            quality: quality,
+            heroTags,
+            customTags: normalizeBlessTagValues(rawBless.custom_tags),
+        });
+    });
+    return result;
+}
 class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE_0__["default"] {
     constructor() {
         super(...arguments);
@@ -28173,17 +28464,34 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
         this.blessCfg = {};
         /**英雄相关的福佑，<heroName,blessName[]> */
         this.heroBlessMap = {};
+        this.blessCatalogSnapshot = {
+            ready: false,
+            version: 0,
+            entries: [],
+        };
+        /** 对外返回的稳定防御性视图；仅在配置版本变化时重建，避免滚动时反复复制 596 条数据。 */
+        this.blessCatalogSnapshotView = this.blessCatalogSnapshot;
+    }
+    /** 将 KV 数组、对象和空值统一成字符串数组。 */
+    normalizeBlessTags(value) {
+        return normalizeBlessTagValues(value);
+    }
+    normalizeHeroTag(tag) {
+        return normalizeBlessHeroTagValue(tag);
     }
     processHeroBlessMap(blessId, bless) {
-        if (!bless.hero_tags || bless.weight === 0)
+        const tags = uniqueStrings(this.normalizeBlessTags(bless.hero_tags).map(tag => this.normalizeHeroTag(tag)));
+        // 保留旧英雄提示的语义：仅明确禁用的 weight=0 条目不进入英雄映射；
+        // weight 缺省的事件/特殊配置仍可被现有英雄提示使用。图鉴自身另按 weight>0 收录。
+        if (tags.length === 0 || bless.weight === 0 || bless.weight === "0")
             return;
-        const tags = Array.isArray(bless.hero_tags) ? bless.hero_tags : Object.values(bless.hero_tags);
         tags.forEach(tag => {
-            const tagName = `npc_dota_hero_${tag}`;
-            if (!this.heroBlessMap[tagName]) {
-                this.heroBlessMap[tagName] = [];
+            if (!this.heroBlessMap[tag]) {
+                this.heroBlessMap[tag] = [];
             }
-            this.heroBlessMap[tagName].push(blessId);
+            if (!this.heroBlessMap[tag].includes(blessId)) {
+                this.heroBlessMap[tag].push(blessId);
+            }
         });
     }
     /**
@@ -28192,31 +28500,50 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
      * special_values属性特殊值
      */
     processBlessCfg(blesskv) {
+        // 服务器配置可能在运行中刷新，不能让旧条目残留在图鉴或英雄映射中。
+        this.blessCfg = {};
+        this.blessLocalizeData = {};
         this.heroBlessMap = {};
-        Object.entries(blesskv !== null && blesskv !== void 0 ? blesskv : {}).forEach(([blessId, bless]) => {
-            var _a;
+        normalizeBlessConfigEntries(blesskv).forEach(([blessId, rawBless]) => {
+            const bless = rawBless;
             this.blessCfg[blessId] = bless;
             const localizeData = {};
             // 处理基础属性
-            if ("attrs" in bless) {
+            if (isRecord(bless.attrs)) {
                 Object.entries(bless.attrs).forEach(([key, cfg]) => {
-                    localizeData[key] = this.setBlessSpecialValue(key, cfg);
+                    if (isRecord(cfg) && typeof cfg.type === "string") {
+                        localizeData[key] = this.setBlessSpecialValue(key, cfg);
+                    }
                 });
-            }
-            // 处理技能特殊值修改
-            if ("fix_ability_special_values" in bless) {
-                const fixAbilitySpecialValues = this.setBlessFixAbilitySpecialValue(blessId, bless.fix_ability_special_values);
-                Object.assign(localizeData, fixAbilitySpecialValues);
             }
             // 处理特殊值
-            if ("special_values" in bless) {
-                Object.entries((_a = bless.special_values) !== null && _a !== void 0 ? _a : {}).forEach(([key, cfg]) => {
-                    localizeData[key] = this.setBlessSpecialValue(key, cfg);
+            if (isRecord(bless.special_values)) {
+                Object.entries(bless.special_values).forEach(([key, cfg]) => {
+                    if (isRecord(cfg) && typeof cfg.type === "string") {
+                        localizeData[key] = this.setBlessSpecialValue(key, cfg);
+                    }
                 });
+            }
+            // 先保存基础值，再处理技能特殊值修改；这样修改项可以复用同一福佑的配置区间。
+            this.blessLocalizeData[blessId] = localizeData;
+            if (bless.fix_ability_special_values !== undefined) {
+                const fixAbilitySpecialValues = this.setBlessFixAbilitySpecialValue(blessId, bless.fix_ability_special_values);
+                Object.assign(localizeData, fixAbilitySpecialValues);
             }
             this.processHeroBlessMap(blessId, bless);
             this.blessLocalizeData[blessId] = localizeData;
         });
+        const catalogEntries = buildBlessCatalogEntries(this.blessCfg);
+        this.blessCatalogSnapshot = {
+            ready: true,
+            version: this.blessCatalogSnapshot.version + 1,
+            entries: catalogEntries,
+        };
+        this.blessCatalogSnapshotView = {
+            ready: this.blessCatalogSnapshot.ready,
+            version: this.blessCatalogSnapshot.version,
+            entries: catalogEntries.map(entry => (Object.assign(Object.assign({}, entry), { heroTags: [...entry.heroTags], customTags: [...entry.customTags] }))),
+        };
     }
     /**
      * 处理福佑技能特殊值修改
@@ -28226,8 +28553,9 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
      */
     setBlessFixAbilitySpecialValue(blessId, specialKey) {
         const localizeData = {};
-        const arr = Array.isArray(specialKey) ? specialKey : Object.values(specialKey !== null && specialKey !== void 0 ? specialKey : {});
-        arr === null || arr === void 0 ? void 0 : arr.forEach((abilitySpecialValue, index) => {
+        const rawValues = Array.isArray(specialKey) ? specialKey : isRecord(specialKey) ? Object.values(specialKey) : [];
+        const arr = rawValues.map(value => String(value !== null && value !== void 0 ? value : "").trim()).filter(value => value !== "");
+        arr.forEach((abilitySpecialValue, index) => {
             var _a, _b;
             const [abilityName, specialValuesKey, modifyType, value] = abilitySpecialValue.split("|");
             if (!abilityName || !specialValuesKey || !modifyType || !value) {
@@ -28280,7 +28608,7 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
                 result = serverValue !== undefined ? this.formatBlessNumber(serverValue) : this.formatBlessNumber(cfg.const_value);
                 break;
             case "rand":
-                if (serverValue) {
+                if (serverValue !== undefined) {
                     const formattedValue = this.formatBlessNumber(serverValue);
                     const formattedMin = this.formatBlessNumber(cfg.rand_min_init);
                     const formattedMax = this.formatBlessNumber(cfg.rand_max_recraft);
@@ -28339,6 +28667,19 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
         var _a;
         return (_a = this.heroBlessMap[heroName]) !== null && _a !== void 0 ? _a : [];
     }
+    /** 获取当前运行时配置对应的图鉴快照；返回稳定防御性视图，配置更新时替换引用。 */
+    GetBlessCatalogSnapshot() {
+        return this.blessCatalogSnapshotView;
+    }
+    /** 供派生管理器读取单条图鉴元数据，避免为每个 Tooltip 复制整个快照。 */
+    findBlessCatalogEntry(blessId) {
+        return this.blessCatalogSnapshot.entries.find(entry => entry.id === String(blessId));
+    }
+    /** 仅返回配置计算出的基础本地化值，不合并玩家当前持有的随机值。 */
+    getBlessConfigLocalizeData(blessId) {
+        var _a;
+        return Object.assign({}, ((_a = this.blessLocalizeData[blessId]) !== null && _a !== void 0 ? _a : {}));
+    }
     /** 获取全部福佑 id（配置表顺序不保证；调用方可自行排序） */
     GetAllBlessIds() {
         return Object.keys(this.blessCfg);
@@ -28370,6 +28711,20 @@ class BlessCfgDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE
 
 
 
+const BLESS_QUALITY_COLORS = {
+    1: "#4197ff",
+    2: "#b518ff",
+    3: "#ff910a",
+};
+const BLESS_QUALITY_TOKENS = {
+    1: "#player_center_bless_catalog_quality_r",
+    2: "#player_center_bless_catalog_quality_sr",
+    3: "#player_center_bless_catalog_quality_ssr",
+};
+function localizeOrFallback(token, fallback) {
+    const localized = $.lang(token);
+    return localized && localized !== token ? localized : fallback;
+}
 class BlessDataMgr extends _bless_cfg_data_mgr__WEBPACK_IMPORTED_MODULE_3__.BlessCfgDataMgr {
     constructor() {
         super(...arguments);
@@ -28406,9 +28761,10 @@ class BlessDataMgr extends _bless_cfg_data_mgr__WEBPACK_IMPORTED_MODULE_3__.Bles
     }
     registerEventListener() {
         (0,_utils_server_config_utils__WEBPACK_IMPORTED_MODULE_5__.OnServerSettingLoaded)("blessAbility", blesskv => {
-            if (blesskv) {
-                this.processBlessCfg(blesskv);
-            }
+            this.processBlessCfg(blesskv !== null && blesskv !== void 0 ? blesskv : {});
+            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.emitLocalEvent)("on_bless_catalog_update", {
+                version: this.GetBlessCatalogSnapshot().version,
+            });
         });
         //更新全部数据
         (0,_commonLib_modules_evt_net_event_utils__WEBPACK_IMPORTED_MODULE_1__.onNetEvent)("s2c_send_all_player_bless_record", data => {
@@ -28474,7 +28830,9 @@ class BlessDataMgr extends _bless_cfg_data_mgr__WEBPACK_IMPORTED_MODULE_3__.Bles
                     for (const blessId in playerBless) {
                         if (((_b = playerBless === null || playerBless === void 0 ? void 0 : playerBless[blessId]) === null || _b === void 0 ? void 0 : _b.slot) === (data === null || data === void 0 ? void 0 : data.slot)) {
                             (_d = (_c = this.blessLocalizeDataByPlayer) === null || _c === void 0 ? void 0 : _c[Number(data === null || data === void 0 ? void 0 : data.player_id)]) === null || _d === void 0 ? true : delete _d[blessId];
-                            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.emitLocalEvent)("on_bless_data_update", { playerId: data.player_id });
+                            (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_0__.emitLocalEvent)("on_bless_data_update", {
+                                playerId: data.player_id,
+                            });
                         }
                     }
                 }
@@ -28582,6 +28940,49 @@ class BlessDataMgr extends _bless_cfg_data_mgr__WEBPACK_IMPORTED_MODULE_3__.Bles
     /** 获取首个待选择的福佑槽位 */
     GetFirstBlessChoosingSlot() {
         return this.firstBlessChoosingSlot;
+    }
+    /** 获取仅由配置决定的 Tooltip 附加说明，不读取玩家当前持有数据。 */
+    GetBlessConfigDetailDesc(blessId) {
+        var _a, _b;
+        const cfg = this.GetBlesssCfg(String(blessId));
+        const gainReasonLimit = Object.values((_a = cfg === null || cfg === void 0 ? void 0 : cfg.gain_reason_limit) !== null && _a !== void 0 ? _a : {});
+        let gainReasonLimitDesc = "";
+        if (gainReasonLimit.length > 0) {
+            const reasonNames = gainReasonLimit.map(reasonKey => $.Localize(`#${reasonKey}`)).join(",");
+            gainReasonLimitDesc = `<br><font color="#707070">${$.Localize(`#bless_gain_reason_limit`)}${reasonNames}</font>`;
+        }
+        const detailLines = Object.entries((_b = cfg === null || cfg === void 0 ? void 0 : cfg.cfgs) !== null && _b !== void 0 ? _b : {}).map(([key, value]) => `${$.Localize(`#bless_detail_${key}`)}${$.Localize(`#bless_detail_value_${value}`)}`);
+        const detailDesc = detailLines.length > 0 ? `<br><br><font color='#8e8e8e'>${detailLines.join("<br>")}</font>` : "";
+        return `${gainReasonLimitDesc}${detailDesc}`;
+    }
+    /** 获取图鉴 Tooltip。只使用配置基础值，不读取玩家当前拥有的福佑数据。 */
+    GetBlessCatalogTooltip(blessId) {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const id = String(blessId);
+        const cfg = this.GetBlesssCfg(id);
+        const entry = this.findBlessCatalogEntry(id);
+        const quality = Number((_b = (_a = cfg === null || cfg === void 0 ? void 0 : cfg.quality) !== null && _a !== void 0 ? _a : entry === null || entry === void 0 ? void 0 : entry.quality) !== null && _b !== void 0 ? _b : 1);
+        const name = localizeOrFallback(`#bless_${id}`, String((_c = cfg === null || cfg === void 0 ? void 0 : cfg.debug_name) !== null && _c !== void 0 ? _c : id));
+        const qualityName = localizeOrFallback((_d = BLESS_QUALITY_TOKENS[quality]) !== null && _d !== void 0 ? _d : "#player_center_bless_catalog_quality_r", quality === 3 ? "橙色" : quality === 2 ? "紫色" : "蓝色");
+        const localizeData = this.getBlessConfigLocalizeData(id);
+        const descToken = `#bless_${id}_desc`;
+        const descValue = $.lang(descToken);
+        const renderedDesc = descValue && descValue !== descToken ? $.lang(descToken, localizeData) : name;
+        const tags = ((_e = entry === null || entry === void 0 ? void 0 : entry.customTags) !== null && _e !== void 0 ? _e : this.normalizeBlessTags(cfg === null || cfg === void 0 ? void 0 : cfg.custom_tags))
+            .map(tag => localizeOrFallback(`#bless_tag_${tag}`, tag))
+            .join(", ");
+        const heroes = ((_f = entry === null || entry === void 0 ? void 0 : entry.heroTags) !== null && _f !== void 0 ? _f : this.normalizeBlessTags(cfg === null || cfg === void 0 ? void 0 : cfg.hero_tags).map(tag => this.normalizeHeroTag(tag)))
+            .map(tag => localizeOrFallback(`#${tag}`, tag.replace(/^npc_dota_hero_/, "")))
+            .join(", ");
+        const color = (_g = BLESS_QUALITY_COLORS[quality]) !== null && _g !== void 0 ? _g : "#FFFFFF";
+        let tooltip = `<font color="${color}">【${qualityName}】 ${name}</font><br>${renderedDesc}${this.GetBlessConfigDetailDesc(id)}`;
+        if (tags) {
+            tooltip += `<br><font color="#8e8e8e">${localizeOrFallback("#player_center_bless_catalog_tags", "Tags")}: ${tags}</font>`;
+        }
+        if (heroes) {
+            tooltip += `<br><font color="#8e8e8e">${localizeOrFallback("#player_center_bless_catalog_heroes", "Heroes")}: ${heroes}</font>`;
+        }
+        return tooltip;
     }
     GetBlessServerData(blessId, playerId = Game.GetLocalPlayerID()) {
         var _a, _b;
@@ -28746,6 +29147,7 @@ class HeroSelectionMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODUL
 var PlayerCenterMainNavType;
 (function (PlayerCenterMainNavType) {
     PlayerCenterMainNavType["Achievement"] = "achievement";
+    PlayerCenterMainNavType["BlessCatalog"] = "bless_catalog";
     PlayerCenterMainNavType["Profile"] = "profile";
     PlayerCenterMainNavType["Record"] = "record";
 })(PlayerCenterMainNavType || (PlayerCenterMainNavType = {}));
@@ -28769,7 +29171,12 @@ const TAB_TOKEN_MAP = {
 class PlayerCenterDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MODULE_0__["default"] {
     constructor() {
         super(...arguments);
-        this._mainNavList = [PlayerCenterMainNavType.Achievement, PlayerCenterMainNavType.Profile, PlayerCenterMainNavType.Record];
+        this._mainNavList = [
+            PlayerCenterMainNavType.Achievement,
+            PlayerCenterMainNavType.Profile,
+            PlayerCenterMainNavType.Record,
+            PlayerCenterMainNavType.BlessCatalog,
+        ];
         this._achievementTabList = [
             PlayerCenterAchievementTabType.All,
             PlayerCenterAchievementTabType.Journey,
@@ -28987,7 +29394,9 @@ class PlayerCenterDataMgr extends _commonLib_base_singleton__WEBPACK_IMPORTED_MO
         this._curMainNav = PlayerCenterMainNavType.Achievement;
         this._curAchievementTab = PlayerCenterAchievementTabType.All;
         (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_2__.emitLocalEvent)("on_player_center_nav_toggle", { nav: this._curMainNav });
-        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_2__.emitLocalEvent)("on_player_center_tab_toggle", { tab: this._curAchievementTab });
+        (0,_commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_2__.emitLocalEvent)("on_player_center_tab_toggle", {
+            tab: this._curAchievementTab,
+        });
         this._emitUpdate();
     }
     get hasClaimableRewards() {
@@ -30062,11 +30471,12 @@ if (!Game.TimeHub) {
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BlessQuality: () => (/* binding */ BlessQuality),
+/* harmony export */   CustomBlessTags: () => (/* binding */ CustomBlessTags),
 /* harmony export */   GameFlowState: () => (/* binding */ GameFlowState),
 /* harmony export */   GameType: () => (/* binding */ GameType),
 /* harmony export */   GoodsTypeEnum: () => (/* binding */ GoodsTypeEnum)
 /* harmony export */ });
-/* unused harmony exports CustomBlessTags, CustomHeroTags, BlessDrawReason, BlessCfgType, CustomAttr, ErrorTipCode, ErrorPanelCode, GameFlowAction, CustomItem, DotaAbility, DotaItem, CustomAbility, Dota2Modifier, NeutralItem, DotaHero, NeutralEnhancement, PseudoRandom, TeamShuffleVoteValue, TeamShufflePhase, AbilityAmpType, PurgeType, TriggerAbilityType, URLs, CustomRuneType, CashTypeEnum, ServerErrorCodeEnum, SettlementTitle */
+/* unused harmony exports CustomHeroTags, BlessDrawReason, BlessCfgType, CustomAttr, ErrorTipCode, ErrorPanelCode, GameFlowAction, CustomItem, DotaAbility, DotaItem, CustomAbility, Dota2Modifier, NeutralItem, DotaHero, NeutralEnhancement, PseudoRandom, TeamShuffleVoteValue, TeamShufflePhase, AbilityAmpType, PurgeType, TriggerAbilityType, URLs, CustomRuneType, CashTypeEnum, ServerErrorCodeEnum, SettlementTitle */
 /**
  * 这个文件由后端shared文件夹内的声明编译而成。仅用于使用。查看可到game目录下的shared文件夹内查看
  */
@@ -34602,7 +35012,7 @@ function ComBlessCell(_a) {
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `com-bless-item ${className}` }, (showTips ? (0,_commonLib_modules_tooltip_tooltip_utils__WEBPACK_IMPORTED_MODULE_5__.GetTooltipDisplayProp)(`text`, blessDescLocalize(blessId, playerId)) : {}), props, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-icon", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_8__["default"].getBlessIconPath(blessId) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-qua-boarder", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_8__["default"].getBlessQuaBorder(blessCfg.quality) })] })));
 }
 function blessDescLocalize(blessId, playerId) {
-    var _a, _b;
+    var _a;
     const blessDataMgr = Game.DataHub.BlessDataMgr;
     const blessCfg = blessDataMgr.GetBlesssCfg(blessId);
     const reason_key = (_a = blessDataMgr.GetBlessServerData(blessId, playerId)) === null || _a === void 0 ? void 0 : _a.gain_reason_key;
@@ -34611,28 +35021,7 @@ function blessDescLocalize(blessId, playerId) {
     if (reason_key) {
         reason_text = `${$.lang(`#${reason_key}`)} - `;
     }
-    // 加入获取限制描述
-    const gainReasonLimit = Object.values((_b = blessCfg.gain_reason_limit) !== null && _b !== void 0 ? _b : {});
-    let gain_reason_limit_desc = "";
-    if (gainReasonLimit.length > 0) {
-        // $.Msg("gainReasonLimit", gainReasonLimit);
-        gain_reason_limit_desc = `<br><font color="#707070">${$.Localize(`#bless_gain_reason_limit`)}`;
-        for (const reason_key of gainReasonLimit) {
-            gain_reason_limit_desc += $.Localize(`#${reason_key}`) + ",";
-        }
-        gain_reason_limit_desc = gain_reason_limit_desc.slice(0, -1);
-        gain_reason_limit_desc += `</font>`;
-    }
-    // 加入福佑细节类型描述
-    let detail_desc = "";
-    const cfgs = blessCfg.cfgs;
-    if (cfgs !== undefined) {
-        for (const key in cfgs) {
-            const cfg_key = key;
-            detail_desc += `<br>${$.Localize(`#bless_detail_${cfg_key}`)}${$.Localize(`#bless_detail_value_${cfgs[cfg_key]}`)}`;
-        }
-    }
-    const blessLocalizeKey = `<font color="${BlessQuaColor[blessCfg.quality]}">【${reason_text}${$.lang(`#bless_${blessId}`)}】</font> <br> ${blessDataMgr.GetBlessDesc(blessId, playerId)}${gain_reason_limit_desc}<br><font color='#8e8e8e'>${detail_desc}</font>`;
+    const blessLocalizeKey = `<font color="${BlessQuaColor[blessCfg.quality]}">【${reason_text}${$.lang(`#bless_${blessId}`)}】</font> <br> ${blessDataMgr.GetBlessDesc(blessId, playerId)}${blessDataMgr.GetBlessConfigDetailDesc(blessId)}`;
     return blessLocalizeKey;
 }
 function blessNameLocalize(blessId) {
@@ -35249,6 +35638,436 @@ function LogoPanel() {
 
 /***/ },
 
+/***/ "./view/hud/player_center_panel/bless_catalog/bless_catalog.tsx"
+/*!**********************************************************************!*\
+  !*** ./view/hud/player_center_panel/bless_catalog/bless_catalog.tsx ***!
+  \**********************************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PlayerCenterBlessCatalog: () => (/* binding */ PlayerCenterBlessCatalog)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "../../../node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+/* harmony import */ var _commonLib_hooks_useLocalEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @commonLib/hooks/useLocalEvent */ "./commonLib/hooks/useLocalEvent.ts");
+/* harmony import */ var _commonLib_hooks_useXNetTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @commonLib/hooks/useXNetTable */ "./commonLib/hooks/useXNetTable.ts");
+/* harmony import */ var _commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @commonLib/hooks/useStateIfMounted */ "./commonLib/hooks/useStateIfMounted.ts");
+/* harmony import */ var _commonLib_modules_tooltip_tooltip_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @commonLib/modules/tooltip/tooltip_utils */ "./commonLib/modules/tooltip/tooltip_utils.ts");
+/* harmony import */ var shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! shared/client_shared_declarations */ "./shared/client_shared_declarations.ts");
+/* harmony import */ var _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @view/utils/path_utils */ "./view/utils/path_utils.ts");
+/* harmony import */ var _bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./bless_catalog_utils */ "./view/hud/player_center_panel/bless_catalog/bless_catalog_utils.ts");
+
+
+
+
+
+
+
+
+
+const EMPTY_SNAPSHOT = {
+    ready: false,
+    version: 0,
+    entries: [],
+};
+const QUALITY_OPTIONS = [
+    { quality: shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__.BlessQuality.R, token: "#player_center_bless_catalog_quality_r" },
+    {
+        quality: shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__.BlessQuality.SR,
+        token: "#player_center_bless_catalog_quality_sr",
+    },
+    {
+        quality: shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__.BlessQuality.SSR,
+        token: "#player_center_bless_catalog_quality_ssr",
+    },
+];
+const HERO_PRIMARY_ATTRIBUTE_GROUPS = [
+    {
+        attribute: "DOTA_ATTRIBUTE_STRENGTH",
+        token: "#DOTA_HeroSelectorCategory_PrimaryAttribute_Strength",
+        fallback: "力量",
+        className: "strength",
+    },
+    {
+        attribute: "DOTA_ATTRIBUTE_AGILITY",
+        token: "#DOTA_HeroSelectorCategory_PrimaryAttribute_Agility",
+        fallback: "敏捷",
+        className: "agility",
+    },
+    {
+        attribute: "DOTA_ATTRIBUTE_INTELLECT",
+        token: "#DOTA_HeroSelectorCategory_PrimaryAttribute_Intelligence",
+        fallback: "智力",
+        className: "intelligence",
+    },
+    {
+        attribute: "DOTA_ATTRIBUTE_ALL",
+        token: "#DOTA_HeroSelectorCategory_PrimaryAttribute_All",
+        fallback: "全才",
+        className: "universal",
+    },
+];
+function isHeroPrimaryAttribute(value) {
+    return HERO_PRIMARY_ATTRIBUTE_GROUPS.some(group => group.attribute === value);
+}
+function localizeOrFallback(token, fallback, dialogVariables) {
+    const localized = $.lang(token, dialogVariables);
+    return localized && localized !== token ? localized : fallback;
+}
+function localizeBlessName(blessId, cfg) {
+    var _a;
+    return localizeOrFallback(`#bless_${blessId}`, String((_a = cfg === null || cfg === void 0 ? void 0 : cfg.debug_name) !== null && _a !== void 0 ? _a : blessId));
+}
+function localizeHeroTag(tag) {
+    return localizeOrFallback(`#${tag}`, tag.replace(/^npc_dota_hero_/, ""));
+}
+function buildDisplayEntries(snapshot, blessDataMgr) {
+    return snapshot.entries.map((entry) => {
+        const cfg = blessDataMgr === null || blessDataMgr === void 0 ? void 0 : blessDataMgr.GetBlesssCfg(entry.id);
+        return Object.assign(Object.assign({}, entry), { name: localizeBlessName(entry.id, cfg), heroNames: entry.heroTags.map(localizeHeroTag), 
+            // Tooltip 按悬停单元懒加载，避免首屏构建全部描述文本。
+            tooltip: "" });
+    });
+}
+/**
+ * GetBlessCatalogSnapshot 返回防御性副本；组件自身状态变化时不需要重新复制并本地化全部条目。
+ * 版本号由配置管理器在每次重建快照时递增，因此可以安全地复用同一引用。
+ */
+function useStableCatalogSnapshot(blessDataMgr, refreshKey, visible) {
+    const [snapshot, setSnapshot] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])(() => { var _a, _b; return (_b = (_a = blessDataMgr === null || blessDataMgr === void 0 ? void 0 : blessDataMgr.GetBlessCatalogSnapshot) === null || _a === void 0 ? void 0 : _a.call(blessDataMgr)) !== null && _b !== void 0 ? _b : EMPTY_SNAPSHOT; });
+    const refreshSnapshot = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
+        var _a, _b, _c;
+        const currentBlessDataMgr = blessDataMgr !== null && blessDataMgr !== void 0 ? blessDataMgr : (_a = Game === null || Game === void 0 ? void 0 : Game.DataHub) === null || _a === void 0 ? void 0 : _a.BlessDataMgr;
+        const nextSnapshot = (_c = (_b = currentBlessDataMgr === null || currentBlessDataMgr === void 0 ? void 0 : currentBlessDataMgr.GetBlessCatalogSnapshot) === null || _b === void 0 ? void 0 : _b.call(currentBlessDataMgr)) !== null && _c !== void 0 ? _c : EMPTY_SNAPSHOT;
+        setSnapshot(previousSnapshot => {
+            if (previousSnapshot.ready === nextSnapshot.ready && previousSnapshot.version === nextSnapshot.version) {
+                return previousSnapshot;
+            }
+            return nextSnapshot;
+        });
+    }, [blessDataMgr, setSnapshot]);
+    // 事件可能在组件挂载前就已发出；布局阶段主动读取一次，避免首帧停留在空快照。
+    // 再补一个 0 帧刷新，覆盖页签切换时 DataHub/Panel 尚未完成绑定的情况。
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(() => {
+        refreshSnapshot();
+        $.Schedule(0, refreshSnapshot);
+    }, [refreshSnapshot, refreshKey, visible]);
+    (0,_commonLib_hooks_useLocalEvent__WEBPACK_IMPORTED_MODULE_2__.useLocalEvent)("on_bless_catalog_update", refreshSnapshot, [refreshSnapshot]);
+    return snapshot;
+}
+function PlayerCenterBlessCatalog({ visible, windowOpen }) {
+    var _a;
+    const blessDataMgr = (_a = Game === null || Game === void 0 ? void 0 : Game.DataHub) === null || _a === void 0 ? void 0 : _a.BlessDataMgr;
+    const snapshot = useStableCatalogSnapshot(blessDataMgr, windowOpen, visible);
+    const [scope, setScope] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])("common");
+    const [appliedKeyword, setAppliedKeyword] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])("");
+    const [selectedQualities, setSelectedQualities] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])([]);
+    const [selectedTags, setSelectedTags] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])([]);
+    const [selectedHeroTag, setSelectedHeroTag] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_4__["default"])("");
+    const [heroPickerOpen, setHeroPickerOpen] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const searchInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const draftKeywordRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)("");
+    const resetState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
+        setScope("common");
+        setAppliedKeyword("");
+        setSelectedQualities([]);
+        setSelectedTags([]);
+        setSelectedHeroTag("");
+        setHeroPickerOpen(false);
+        draftKeywordRef.current = "";
+        if (searchInputRef.current) {
+            searchInputRef.current.text = "";
+        }
+    }, [setAppliedKeyword, setScope, setSelectedHeroTag, setSelectedQualities, setSelectedTags, setHeroPickerOpen]);
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+        if (!windowOpen) {
+            resetState();
+        }
+    }, [resetState, windowOpen]);
+    const displayEntries = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => buildDisplayEntries(snapshot, blessDataMgr), [blessDataMgr, snapshot]);
+    const tagOptions = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => (0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.getCatalogTagOptions)(displayEntries), [displayEntries]);
+    const heroOptions = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => (0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.getCatalogHeroOptions)(displayEntries), [displayEntries]);
+    const filteredEntries = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => (0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.sortBlessCatalogEntries)((0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.filterBlessCatalogEntries)(displayEntries, {
+        scope,
+        keyword: appliedKeyword,
+        qualities: selectedQualities,
+        tags: selectedTags,
+        heroTag: selectedHeroTag,
+    })), [appliedKeyword, displayEntries, scope, selectedHeroTag, selectedQualities, selectedTags]);
+    const commitKeyword = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((value) => {
+        const next = value.trim();
+        draftKeywordRef.current = value;
+        setAppliedKeyword(prev => (prev === next ? prev : next));
+    }, [setAppliedKeyword]);
+    const switchScope = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((nextScope) => {
+        var _a, _b;
+        if (nextScope === scope)
+            return;
+        // 点击筛选控件会使搜索框失焦；先提交草稿，避免丢失最后一次输入。
+        commitKeyword((_b = (_a = searchInputRef.current) === null || _a === void 0 ? void 0 : _a.text) !== null && _b !== void 0 ? _b : draftKeywordRef.current);
+        setScope(nextScope);
+        setSelectedQualities([]);
+        setSelectedTags([]);
+        setSelectedHeroTag("");
+        setHeroPickerOpen(false);
+    }, [commitKeyword, scope, setHeroPickerOpen, setSelectedHeroTag, setSelectedQualities, setSelectedTags, setScope]);
+    const toggleQuality = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((quality) => {
+        setSelectedQualities(prev => (prev.includes(quality) ? prev.filter(item => item !== quality) : [...prev, quality]));
+    }, [setSelectedQualities]);
+    const toggleTag = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((tag) => {
+        setSelectedTags(prev => (prev.includes(tag) ? prev.filter(item => item !== tag) : [...prev, tag]));
+    }, [setSelectedTags]);
+    const selectHero = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((heroTag) => {
+        setSelectedHeroTag(heroTag);
+        setHeroPickerOpen(false);
+    }, [setHeroPickerOpen, setSelectedHeroTag]);
+    const ready = snapshot.ready;
+    const countText = ready
+        ? localizeOrFallback("#player_center_bless_catalog_count", `当前筛选：${filteredEntries.length} 个福佑`, { count: filteredEntries.length })
+        : localizeOrFallback("#player_center_bless_catalog_loading", "加载中...");
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-panel", visible: visible }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-toolbar" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-filter-header" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-count", text: countText }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-filter-row" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-filter-label", text: localizeOrFallback("#player_center_bless_catalog_search_label", "搜索") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-search-wrap" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(TextEntry, { className: "bless-catalog-search", ref: searchInputRef, enabled: ready, placeholder: localizeOrFallback("#player_center_bless_catalog_search_placeholder", "输入关键词搜索福佑"), ontextentrychange: self => {
+                                            var _a;
+                                            draftKeywordRef.current = (_a = self.text) !== null && _a !== void 0 ? _a : "";
+                                        }, onblur: self => { var _a; return commitKeyword((_a = self.text) !== null && _a !== void 0 ? _a : draftKeywordRef.current); }, oninputsubmit: self => { var _a; return commitKeyword((_a = self.text) !== null && _a !== void 0 ? _a : draftKeywordRef.current); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "bless-catalog-search-icon" })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-filter-label bless-catalog-scope-label", text: localizeOrFallback("#player_center_bless_catalog_scope_label", "类型") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-scope-tabs" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(CatalogFilterButton, { className: "bless-catalog-scope-tab", selected: scope === "common", enabled: ready, text: localizeOrFallback("#player_center_bless_catalog_common", "通用"), onactivate: () => switchScope("common") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(CatalogFilterButton, { className: "bless-catalog-scope-tab", selected: scope === "exclusive", enabled: ready, text: localizeOrFallback("#player_center_bless_catalog_exclusive", "专属"), onactivate: () => switchScope("exclusive") })] }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-filter-row bless-catalog-quality-row" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-filter-label", text: localizeOrFallback("#player_center_bless_catalog_quality_label", "品质") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-quality-filters" }, { children: QUALITY_OPTIONS.map(option => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(CatalogFilterButton, { className: `bless-catalog-quality quality-${option.quality}`, selected: selectedQualities.includes(option.quality), enabled: ready, text: localizeOrFallback(option.token, option.quality === shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__.BlessQuality.R ? "蓝色" : option.quality === shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_6__.BlessQuality.SR ? "紫色" : "橙色"), onactivate: () => toggleQuality(option.quality) }, option.quality))) }))] }))] })), scope === "common" ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-secondary-filters" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-filter-title", text: localizeOrFallback("#player_center_bless_catalog_tag_filter", "标签") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-tag-options" }, { children: tagOptions.map(tag => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(CatalogFilterButton, { className: "bless-catalog-tag", selected: selectedTags.includes(tag), enabled: ready, text: localizeOrFallback(`#bless_tag_${tag}`, tag), onactivate: () => toggleTag(tag) }, tag))) }))] }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-secondary-filters exclusive-filters" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-filter-title", text: localizeOrFallback("#player_center_bless_catalog_hero_filter", "英雄") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BlessCatalogHeroFilterTrigger, { enabled: ready, options: heroOptions, selectedTag: selectedHeroTag, open: heroPickerOpen, onactivate: () => setHeroPickerOpen(open => !open) })] }))), !ready ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-state" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-state-text", text: localizeOrFallback("#player_center_bless_catalog_loading", "加载中...") }) }))) : filteredEntries.length === 0 ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-state" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "bless-catalog-state-text", text: localizeOrFallback("#player_center_bless_catalog_empty", "暂无匹配福佑") }) }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BlessCatalogGrid, { entries: filteredEntries, visible: visible, snapshotVersion: snapshot.version, blessDataMgr: blessDataMgr }, `${snapshot.version}-${scope}-${visible ? "visible" : "hidden"}`)), heroPickerOpen && ready && scope === "exclusive" ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BlessCatalogHeroPicker, { options: heroOptions, selectedTag: selectedHeroTag, onClose: () => setHeroPickerOpen(false), onSelect: selectHero })) : null] })));
+}
+function CatalogFilterButton({ text, selected, enabled, className, onactivate, }) {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Button, Object.assign({ className: `${className} ${selected ? "selected" : ""}`, enabled: enabled, onactivate: onactivate }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "filter-button-bg" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "filter-button-text", text: text })] })));
+}
+function BlessCatalogHeroFilterTrigger({ enabled, options, selectedTag, open, onactivate, }) {
+    var _a;
+    const selected = options.find(option => option.tag === selectedTag);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-hero-filter" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Button, Object.assign({ className: `hero-filter-trigger ${selectedTag === "" ? "selected" : ""} ${open ? "open" : ""}`, enabled: enabled, acceptsfocus: true, hittest: true, hittestchildren: false, onactivate: () => {
+                if (enabled) {
+                    Game.EmitSound("UI.Button.Pressed");
+                    onactivate();
+                }
+            } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "filter-button-bg", hittest: false }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "filter-button-text", text: (_a = selected === null || selected === void 0 ? void 0 : selected.name) !== null && _a !== void 0 ? _a : localizeOrFallback("#player_center_bless_catalog_all_heroes", "全部英雄"), hittest: false })] })) })));
+}
+function BlessCatalogHeroPicker({ options, selectedTag, onClose, onSelect, }) {
+    const [query, setQuery] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+    const heroConfigs = (0,_commonLib_hooks_useXNetTable__WEBPACK_IMPORTED_MODULE_3__.useXNetTableKey)("kvdata", "npc_heroes", {});
+    const normalizedQuery = (0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.normalizeCatalogSearchText)(query);
+    const visibleOptions = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => normalizedQuery
+        ? options.filter(option => (0,_bless_catalog_utils__WEBPACK_IMPORTED_MODULE_8__.normalizeCatalogSearchText)(`${option.name} ${option.tag}`).includes(normalizedQuery))
+        : options, [normalizedQuery, options]);
+    const heroConfigReady = Object.keys(heroConfigs).length > 0;
+    const { groups, unresolvedOptions } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => {
+        const nextGroups = HERO_PRIMARY_ATTRIBUTE_GROUPS.map(group => (Object.assign(Object.assign({}, group), { options: [] })));
+        const groupByAttribute = new Map(nextGroups.map(group => [group.attribute, group]));
+        const nextUnresolvedOptions = [];
+        visibleOptions.forEach(option => {
+            var _a, _b;
+            const attribute = (_a = heroConfigs[option.tag]) === null || _a === void 0 ? void 0 : _a.AttributePrimary;
+            if (isHeroPrimaryAttribute(attribute)) {
+                (_b = groupByAttribute.get(attribute)) === null || _b === void 0 ? void 0 : _b.options.push(option);
+            }
+            else {
+                // 异常或自定义英雄仍保留在末尾，避免因缺失官方 KV 而从筛选器消失。
+                nextUnresolvedOptions.push(option);
+            }
+        });
+        return {
+            groups: nextGroups,
+            unresolvedOptions: nextUnresolvedOptions,
+        };
+    }, [heroConfigs, visibleOptions]);
+    const close = () => {
+        Game.EmitSound("UI.Button.Pressed");
+        onClose();
+    };
+    const select = (tag) => {
+        Game.EmitSound("UI.Button.Pressed");
+        onSelect(tag);
+    };
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-overlay", hittest: true, acceptsfocus: true, oncancel: close }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Button, { className: "hero-picker-backdrop", hittestchildren: false, onactivate: close }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-window", hittest: true }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-header" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "hero-picker-title", text: localizeOrFallback("#player_center_bless_catalog_hero_filter", "选择英雄") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Button, Object.assign({ className: `hero-picker-all-button ${selectedTag === "" ? "selected" : ""}`, hittestchildren: false, onactivate: () => select("") }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: localizeOrFallback("#player_center_bless_catalog_all_heroes", "全部英雄"), hittest: false }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-search-wrap" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(TextEntry, { className: "hero-picker-search", placeholder: localizeOrFallback("#player_center_bless_catalog_hero_search_placeholder", "搜索英雄"), ontextentrychange: self => { var _a; return setQuery((_a = self.text) !== null && _a !== void 0 ? _a : ""); } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "hero-picker-search-icon", hittest: false })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Button, Object.assign({ className: "hero-picker-close", hittestchildren: false, onactivate: close }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: "\u00D7", hittest: false }) }))] })), !heroConfigReady ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "hero-picker-state" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: localizeOrFallback("#player_center_bless_catalog_loading", "加载中...") }) }))) : visibleOptions.length === 0 ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "hero-picker-state" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: localizeOrFallback("#player_center_bless_catalog_empty", "暂无结果") }) }))) : ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-groups" }, { children: [groups.map(group => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `hero-picker-attribute-group ${group.className}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-attribute-header" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: `hero-picker-attribute-icon ${group.attribute}` }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: localizeOrFallback(group.token, group.fallback) })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "hero-picker-attribute-options" }, { children: group.options.map(option => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BlessCatalogHeroOptionButton, { option: option, selected: selectedTag === option.tag, onSelect: select }, option.tag))) }))] }), group.attribute))), unresolvedOptions.length > 0 ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "hero-picker-unresolved-options" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "hero-picker-unresolved-title", text: "?" }), unresolvedOptions.map(option => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BlessCatalogHeroOptionButton, { option: option, selected: selectedTag === option.tag, onSelect: select }, option.tag)))] }))) : null] })))] }))] })));
+}
+function BlessCatalogHeroOptionButton({ option, selected, onSelect, }) {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Button, Object.assign({ className: `hero-picker-option ${selected ? "selected" : ""}`, hittestchildren: false, onactivate: () => onSelect(option.tag) }, (0,_commonLib_modules_tooltip_tooltip_utils__WEBPACK_IMPORTED_MODULE_5__.GetTooltipDisplayProp)("text", option.name), { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(DOTAHeroImage, { className: "hero-picker-option-image", heroname: option.tag, heroimagestyle: "icon", hittest: false }) })));
+}
+function BlessCatalogGrid({ entries, visible, snapshotVersion, blessDataMgr }) {
+    const listRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+    const tooltipCacheRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)({
+        version: -1,
+        values: {},
+    });
+    if (tooltipCacheRef.current.version !== snapshotVersion || tooltipCacheRef.current.source !== blessDataMgr) {
+        tooltipCacheRef.current = {
+            version: snapshotVersion,
+            source: blessDataMgr,
+            values: {},
+        };
+    }
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(() => {
+        var _a;
+        if (visible) {
+            (_a = listRef.current) === null || _a === void 0 ? void 0 : _a.ScrollToTop();
+        }
+    }, [entries.length, snapshotVersion, visible]);
+    const getEntryTooltip = (entry) => {
+        var _a, _b;
+        try {
+            if (entry.tooltip) {
+                return entry.tooltip;
+            }
+            const cached = tooltipCacheRef.current.values[entry.id];
+            if (cached !== undefined) {
+                return cached;
+            }
+            const tooltip = (_b = (_a = blessDataMgr === null || blessDataMgr === void 0 ? void 0 : blessDataMgr.GetBlessCatalogTooltip) === null || _a === void 0 ? void 0 : _a.call(blessDataMgr, entry.id)) !== null && _b !== void 0 ? _b : entry.name;
+            tooltipCacheRef.current.values[entry.id] = tooltip;
+            return tooltip;
+        }
+        catch (error) {
+            // 单条异常配置不能阻断整张图鉴；保留名称作为可用 Tooltip，并记录到客户端日志。
+            $.Msg("[BlessCatalog] tooltip error:", entry.id, error);
+            return entry.name;
+        }
+    };
+    if (!visible) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "bless-catalog-list", visible: false });
+    }
+    // 按行分组，避免一次向同一 Panel 挂载数百个直接子节点导致 Panorama 首次布局丢失。
+    // 行内仍是固定单元格网格，筛选后只会重建实际命中的行。
+    const rows = [];
+    const columns = 12;
+    for (let index = 0; index < entries.length; index += columns) {
+        rows.push(entries.slice(index, index + columns));
+    }
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-list", hittest: true, ref: listRef }, { children: rows.map((row, rowIndex) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-row" }, { children: [row.map(entry => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "bless-catalog-cell", onmouseover: panel => {
+                        try {
+                            GameUI.CustomUIConfig().ShowTooltip("text", panel, getEntryTooltip(entry));
+                        }
+                        catch (error) {
+                            $.Msg("[BlessCatalog] show tooltip error:", entry.id, error);
+                        }
+                    }, onmouseout: () => GameUI.CustomUIConfig().HideTooltip() }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "bless-catalog-icon", hittest: false }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-icon", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_7__["default"].getBlessIconPath(entry.id) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "bless-qua-boarder", src: _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_7__["default"].getBlessQuaBorder(entry.quality) })] })) }), entry.id))), row.length < columns
+                    ? Array.from({ length: columns - row.length }, (_, fillerIndex) => ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "bless-catalog-cell-filler" }, `filler-${fillerIndex}`)))
+                    : null] }), `row-${rowIndex}`))) })));
+}
+
+
+/***/ },
+
+/***/ "./view/hud/player_center_panel/bless_catalog/bless_catalog_utils.ts"
+/*!***************************************************************************!*\
+  !*** ./view/hud/player_center_panel/bless_catalog/bless_catalog_utils.ts ***!
+  \***************************************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   filterBlessCatalogEntries: () => (/* binding */ filterBlessCatalogEntries),
+/* harmony export */   getCatalogHeroOptions: () => (/* binding */ getCatalogHeroOptions),
+/* harmony export */   getCatalogTagOptions: () => (/* binding */ getCatalogTagOptions),
+/* harmony export */   normalizeCatalogSearchText: () => (/* binding */ normalizeCatalogSearchText),
+/* harmony export */   sortBlessCatalogEntries: () => (/* binding */ sortBlessCatalogEntries)
+/* harmony export */ });
+/* harmony import */ var shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! shared/client_shared_declarations */ "./shared/client_shared_declarations.ts");
+
+function normalizeCatalogSearchText(value) {
+    return String(value !== null && value !== void 0 ? value : "")
+        .trim()
+        .toLowerCase();
+}
+function compareBlessIds(a, b) {
+    const numberA = Number(a);
+    const numberB = Number(b);
+    if (!Number.isNaN(numberA) && !Number.isNaN(numberB) && numberA !== numberB) {
+        return numberA - numberB;
+    }
+    if (a < b)
+        return -1;
+    if (a > b)
+        return 1;
+    return 0;
+}
+/** 品质降序，同品质按 ID 稳定升序；不修改传入数组。 */
+function sortBlessCatalogEntries(entries) {
+    return [...entries].sort((a, b) => {
+        const qualityDiff = Number(b.quality) - Number(a.quality);
+        return qualityDiff !== 0 ? qualityDiff : compareBlessIds(String(a.id), String(b.id));
+    });
+}
+function filterBlessCatalogEntries(entries, filters) {
+    const keyword = normalizeCatalogSearchText(filters.keyword);
+    const qualitySet = new Set(filters.qualities.map(quality => Number(quality)));
+    const tagSet = new Set(filters.tags);
+    return entries.filter(entry => {
+        if (entry.scope !== filters.scope) {
+            return false;
+        }
+        if (keyword) {
+            const searchable = [entry.id, entry.name, ...(entry.scope === "exclusive" ? entry.heroNames : [])]
+                .map(normalizeCatalogSearchText)
+                .join(" ");
+            if (!searchable.includes(keyword)) {
+                return false;
+            }
+        }
+        if (qualitySet.size > 0 && !qualitySet.has(Number(entry.quality))) {
+            return false;
+        }
+        if (filters.scope === "common" && tagSet.size > 0 && !entry.customTags.some(tag => tagSet.has(tag))) {
+            return false;
+        }
+        if (filters.scope === "exclusive" && filters.heroTag !== "" && !entry.heroTags.includes(filters.heroTag)) {
+            return false;
+        }
+        return true;
+    });
+}
+/** 从通用福佑并集生成标签选项；选项顺序跟随 CustomBlessTags 声明顺序。 */
+function getCatalogTagOptions(entries) {
+    const available = new Set();
+    entries.forEach(entry => {
+        if (entry.scope === "common") {
+            entry.customTags.forEach(tag => available.add(tag));
+        }
+    });
+    const canonicalOrder = Object.values(shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_0__.CustomBlessTags);
+    const rank = new Map(canonicalOrder.map((tag, index) => [tag, index]));
+    return [...available].sort((a, b) => {
+        const rankA = rank.get(a);
+        const rankB = rank.get(b);
+        if (rankA !== undefined || rankB !== undefined) {
+            if (rankA === undefined)
+                return 1;
+            if (rankB === undefined)
+                return -1;
+            if (rankA !== rankB)
+                return rankA - rankB;
+        }
+        return a < b ? -1 : a > b ? 1 : 0;
+    });
+}
+function getCatalogHeroOptions(entries) {
+    const options = new Map();
+    entries.forEach(entry => {
+        if (entry.scope !== "exclusive")
+            return;
+        entry.heroTags.forEach((tag, index) => {
+            var _a;
+            if (!options.has(tag)) {
+                options.set(tag, {
+                    tag,
+                    name: (_a = entry.heroNames[index]) !== null && _a !== void 0 ? _a : tag.replace(/^npc_dota_hero_/, ""),
+                });
+            }
+        });
+    });
+    return [...options.values()].sort((a, b) => {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return a.tag < b.tag ? -1 : a.tag > b.tag ? 1 : 0;
+    });
+}
+
+
+/***/ },
+
 /***/ "./view/hud/player_center_panel/match_history/match_history.tsx"
 /*!**********************************************************************!*\
   !*** ./view/hud/player_center_panel/match_history/match_history.tsx ***!
@@ -35343,6 +36162,8 @@ function PlayerCenterMatchHistory({ curNav }) {
 /* harmony import */ var _commonLib_modules_evt_local_event_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @commonLib/modules/evt/local_event_utils */ "./commonLib/modules/evt/local_event_utils.ts");
 /* harmony import */ var _commonLib_hooks_useLocalEvent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @commonLib/hooks/useLocalEvent */ "./commonLib/hooks/useLocalEvent.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 
@@ -35430,18 +36251,17 @@ function PlayerCenterPlayerInfo() {
 }
 function WechatQrCode() {
     const [show, setShow] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_2__["default"])(false);
+    const qrPanelRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null);
     const url = Game.DataHub.BindWechatMgr.getDisplayUrl();
     const hasQrUrl = url !== "";
     (0,_commonLib_hooks_useLocalEvent__WEBPACK_IMPORTED_MODULE_11__.useLocalEvent)("on_wechat_qr_code_toggle", () => {
         setShow(prev => !prev);
     });
     (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(() => {
-        var _a;
-        const panel = $("#wechat-qr");
-        if (!panel) {
+        const panel = qrPanelRef.current;
+        if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_13__.isPanelValid)(panel)) {
             return;
         }
-        (_a = panel.RemoveAndDeleteChildren) === null || _a === void 0 ? void 0 : _a.call(panel);
         if (hasQrUrl) {
             try {
                 // @ts-ignore Panorama 全局二维码脚本提供的方法
@@ -35451,15 +36271,12 @@ function WechatQrCode() {
                 $.Msg("CreateQRCode error:", e);
             }
         }
-        return () => {
-            const p = $("#wechat-qr");
-            if (p && p.RemoveAndDeleteChildren) {
-                p.RemoveAndDeleteChildren();
-            }
-        };
+        else {
+            panel.RemoveAndDeleteChildren();
+        }
     }, [hasQrUrl, url]);
     const isCn = (0,_commonLib_utils_player_utils__WEBPACK_IMPORTED_MODULE_8__.isChinese)();
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `wechat-qr-container ${show ? "show" : ""}`, hittest: false, visible: isCn }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "wechat-qr-frame", hittest: false }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "wechat-empty-img", hittest: false, visible: !hasQrUrl }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { id: "wechat-qr", className: "wechat-qr", hittest: false, visible: hasQrUrl })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "wechat-qr-text", text: $.Localize("#settle_wechat_qr_tips"), hittest: false })] })));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `wechat-qr-container ${show ? "show" : ""}`, hittest: false, visible: isCn }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "wechat-qr-frame", hittest: false }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "wechat-empty-img", hittest: false, visible: !hasQrUrl }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { id: "wechat-qr", className: "wechat-qr", hittest: false, visible: hasQrUrl, ref: qrPanelRef })] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "wechat-qr-text", text: $.Localize("#settle_wechat_qr_tips"), hittest: false })] })));
 }
 
 
@@ -35489,6 +36306,8 @@ function WechatQrCode() {
 /* harmony import */ var _view_utils_path_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @view/utils/path_utils */ "./view/utils/path_utils.ts");
 /* harmony import */ var _personal_info_personal_info__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./personal_info/personal_info */ "./view/hud/player_center_panel/personal_info/personal_info.tsx");
 /* harmony import */ var _match_history_match_history__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./match_history/match_history */ "./view/hud/player_center_panel/match_history/match_history.tsx");
+/* harmony import */ var _bless_catalog_bless_catalog__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./bless_catalog/bless_catalog */ "./view/hud/player_center_panel/bless_catalog/bless_catalog.tsx");
+
 
 
 
@@ -35505,28 +36324,38 @@ function WechatQrCode() {
 
 const LEFT_NAVS = [
     {
+        key: _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Achievement,
+        text: "#player_center_nav_achievement",
+        fallback: "成就页面",
+        iconOn: "hunhe_jinse.png",
+        iconOff: "chengjiu_hui.png",
+    },
+    {
         key: _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Profile,
         text: "#player_center_nav_profile",
+        fallback: "个人资料",
         iconOn: "b_gerenziliao_2.png",
         iconOff: "b_gerenziliao_1.png",
     },
     {
         key: _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Record,
         text: "#player_center_nav_record",
+        fallback: "战绩统计",
         iconOn: "b_zhanji_2.png",
         iconOff: "b_zhanji_1.png",
     },
     {
-        key: _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Achievement,
-        text: "#player_center_nav_achievement",
-        iconOn: "hunhe_jinse.png",
-        iconOff: "chengjiu_hui.png",
+        key: _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.BlessCatalog,
+        text: "#player_center_nav_bless_catalog",
+        fallback: "福佑图鉴",
+        iconOn: "b_bless_catalog_2.png",
+        iconOff: "b_bless_catalog_1.png",
     },
 ];
-function localizeText(token) {
+function localizeText(token, fallback = "") {
     const localized = $.lang(token);
     if (!localized || localized === token) {
-        return "";
+        return fallback;
     }
     return localized;
 }
@@ -35542,13 +36371,13 @@ function PlayerCenterPanel() {
     });
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_commonLib_components_base_panel__WEBPACK_IMPORTED_MODULE_1__.PanelWithAspectAgentUiScale, Object.assign({ className: `player-center-panel ${show ? "show" : "hide"}`, onactivate: () => { } }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "player-center-container" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "panel-bg" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Button, { className: "close-btn", onactivate: () => {
                         (0,_commonLib_utils_window_utils__WEBPACK_IMPORTED_MODULE_7__.ToggleWindows)("player_center", false);
-                    } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "left-side" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "left-title", text: localizeText("#player_center_title_personal") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "left-divider" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "left-menu" }, { children: LEFT_NAVS.map(cfg => {
+                    } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "left-side" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "left-title", text: localizeText("#player_center_profile_title", "PROFILE") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "left-divider" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "left-menu" }, { children: LEFT_NAVS.map(cfg => {
                                 const selected = cfg.key === curNav;
                                 const icon = selected ? cfg.iconOn : cfg.iconOff;
                                 return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Button, Object.assign({ className: `left-menu-item ${selected ? "selected" : ""}`, onactivate: () => {
                                         mgr.setMainNav(cfg.key);
-                                    } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "menu-bg" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "menu-icon", src: `file://{images}/player_center_panel/${icon}`, visible: icon !== "" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: `menu-text ${icon === "" ? "no-icon" : ""}`, text: localizeText(cfg.text) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "menu-red-dot", visible: cfg.key === _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Achievement && mgr.hasClaimableRewards })] }), cfg.key));
-                            }) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "right-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Achievement, { curNav: curNav }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_personal_info_personal_info__WEBPACK_IMPORTED_MODULE_12__.PlayerCenterPersonalInfo, { curNav: curNav }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_match_history_match_history__WEBPACK_IMPORTED_MODULE_13__.PlayerCenterMatchHistory, { curNav: curNav })] }))] })) })));
+                                    } }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "menu-bg" }), icon !== "" ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Image, { className: "menu-icon", src: `file://{images}/player_center_panel/${icon}` }) : null, (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: `menu-text ${icon === "" ? "no-icon" : ""}`, text: localizeText(cfg.text, cfg.fallback) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "menu-red-dot", visible: cfg.key === _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.Achievement && mgr.hasClaimableRewards })] }), cfg.key));
+                            }) }))] })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "right-content" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Achievement, { curNav: curNav }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_personal_info_personal_info__WEBPACK_IMPORTED_MODULE_12__.PlayerCenterPersonalInfo, { curNav: curNav }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_bless_catalog_bless_catalog__WEBPACK_IMPORTED_MODULE_14__.PlayerCenterBlessCatalog, { visible: curNav === _mgr_data_intra_game_player_center_data_mgr__WEBPACK_IMPORTED_MODULE_8__.PlayerCenterMainNavType.BlessCatalog, windowOpen: show }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_match_history_match_history__WEBPACK_IMPORTED_MODULE_13__.PlayerCenterMatchHistory, { curNav: curNav })] }))] })) })));
 }
 function Achievement({ curNav }) {
     const mgr = Game.DataHub.PlayerCenterDataMgr;
@@ -35863,6 +36692,8 @@ function buildRankingRows(season, mode, startRank, count, baseScore) {
 /* harmony import */ var _commonLib_utils_engine_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @commonLib/utils/engine_utils */ "./commonLib/utils/engine_utils.ts");
 /* harmony import */ var _com_compos_com_compos__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../com_compos/com_compos */ "./view/hud/com_compos/com_compos.tsx");
 /* harmony import */ var _commonLib_components_base_panel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @commonLib/components/base_panel */ "./commonLib/components/base_panel.tsx");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 
@@ -35894,10 +36725,10 @@ function RankingPanel() {
     const rankingDataMgr = Game.DataHub.RankingDataMgr;
     const [show] = (0,_commonLib_hooks_useToggle__WEBPACK_IMPORTED_MODULE_3__.useToggleWindow)(false, "ranking");
     const prevShowRef = (0,react__WEBPACK_IMPORTED_MODULE_5__.useRef)(show);
+    const contextPanelRef = (0,react__WEBPACK_IMPORTED_MODULE_5__.useRef)($.GetContextPanel());
     const [selectedTab, setSelectedTab] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(() => rankingDataMgr.GetDefaultMode());
     const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(() => rankingDataMgr.GetDefaultSeason());
     (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
-        var _a;
         const prevShow = prevShowRef.current;
         if (show) {
             if (!prevShow) {
@@ -35911,7 +36742,9 @@ function RankingPanel() {
             rankingDataMgr.RefreshRanking(selectedTab, selectedSeason);
         }
         else if (prevShow) {
-            (_a = scrollContainerRef.current) === null || _a === void 0 ? void 0 : _a.ScrollToTop();
+            if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_12__.isPanelValid)(scrollContainerRef.current)) {
+                scrollContainerRef.current.ScrollToTop();
+            }
             rankingDataMgr.ClearAllRanking();
         }
         prevShowRef.current = show;
@@ -35939,11 +36772,14 @@ function RankingPanel() {
         let disposed = false;
         const pollScrollPosition = () => {
             var _a, _b, _c;
-            if (disposed) {
+            if (disposed || !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_12__.isPanelValid)(contextPanelRef.current)) {
                 return;
             }
             const container = scrollContainerRef.current;
             if (container) {
+                if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_12__.isPanelValid)(container)) {
+                    return;
+                }
                 const contentHeight = (_a = container.contentheight) !== null && _a !== void 0 ? _a : 0;
                 const offY = Math.abs((_b = container.scrolloffset_y) !== null && _b !== void 0 ? _b : 0);
                 const actualLayoutHeight = (_c = container.actuallayoutheight) !== null && _c !== void 0 ? _c : 0;
@@ -36942,7 +37778,6 @@ function CurrencyPurchaseAlert({ goodsId, num }) {
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   initUILifeCycle: () => (/* binding */ initUILifeCycle)
 /* harmony export */ });
@@ -36966,6 +37801,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ranking_panel_ranking_panel__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./ranking_panel/ranking_panel */ "./view/hud/ranking_panel/ranking_panel.tsx");
 /* harmony import */ var _player_center_panel_player_center_panel__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./player_center_panel/player_center_panel */ "./view/hud/player_center_panel/player_center_panel.tsx");
 /* harmony import */ var _random_event_panel_random_event_panel__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./random_event_panel/random_event_panel */ "./view/hud/random_event_panel/random_event_panel.tsx");
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 
 
 
@@ -36993,7 +37830,7 @@ const mapName = Game.GetMapInfo().map_display_name;
 const isTestMap = testMapList.includes(mapName);
 function SLRenderPanel(panel, panelName, state, showTestMap = true) {
     const root = $(`#${panelName}`);
-    if (root && (!isTestMap || showTestMap)) {
+    if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(root) && (!isTestMap || showTestMap)) {
         Game.DataHub.GameSessionMgr.registerPanelLifecycle(panelName, state);
         (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)(panel, root);
     }
@@ -37042,39 +37879,63 @@ function initUILifeCycle() {
     SLRenderPanel((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_other_element_panel_other_element_panel__WEBPACK_IMPORTED_MODULE_11__.OtherElementPanel, {}), `other_element_panel`, shared_client_shared_declarations__WEBPACK_IMPORTED_MODULE_4__.GameFlowState.PreGame);
 }
 function RenderScoreBoardBlessPanel() {
-    var _a;
-    const root = (_a = $.GetContextPanel()) === null || _a === void 0 ? void 0 : _a.FindAncestor("DotaHud");
-    const scoreboard = root === null || root === void 0 ? void 0 : root.FindChildTraverse("scoreboard");
-    const topBarRadiantPlayersContainer = root === null || root === void 0 ? void 0 : root.FindChildTraverse("TopBarRadiantPlayersContainer");
-    const topBarDirePlayersContainer = root === null || root === void 0 ? void 0 : root.FindChildTraverse("TopBarDirePlayersContainer");
+    const contextPanel = $.GetContextPanel();
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(contextPanel) || !isScoreBoardGameState()) {
+        return;
+    }
+    const root = contextPanel.FindAncestor("DotaHud");
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(root)) {
+        return;
+    }
+    const scoreboard = root.FindChildTraverse("scoreboard");
+    const topBarRadiantPlayersContainer = root.FindChildTraverse("TopBarRadiantPlayersContainer");
+    const topBarDirePlayersContainer = root.FindChildTraverse("TopBarDirePlayersContainer");
     // oldBlessDashboardPanel?.DeleteAsync(0);
-    const gameState = Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) || Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME);
-    if (!gameState || !topBarRadiantPlayersContainer || !topBarDirePlayersContainer || !scoreboard) {
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(topBarRadiantPlayersContainer) || !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(topBarDirePlayersContainer) || !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreboard)) {
         return;
     }
     setTimeout(() => {
-        var _a;
-        const radianPlayerIds = topBarRadiantPlayersContainer === null || topBarRadiantPlayersContainer === void 0 ? void 0 : topBarRadiantPlayersContainer.Children().map((panel, index) => {
+        if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(contextPanel) ||
+            !isScoreBoardGameState() ||
+            !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(topBarRadiantPlayersContainer) ||
+            !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(topBarDirePlayersContainer) ||
+            !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreboard)) {
+            return;
+        }
+        const radianPlayerIds = [];
+        topBarRadiantPlayersContainer.Children().forEach((panel, index) => {
+            if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(panel)) {
+                return;
+            }
             const playerId = Number(panel.id.replace("RadiantPlayer", ""));
             RenderTopBarPlayerStatePanel({ playerId: playerId, panel });
             ProcessExchangeHeroPanel({ teamType: "RadiantPlayer", index, scoreboard });
-            return playerId;
+            radianPlayerIds.push(playerId);
         });
-        const direPlayerIds = (_a = topBarDirePlayersContainer === null || topBarDirePlayersContainer === void 0 ? void 0 : topBarDirePlayersContainer.Children()) === null || _a === void 0 ? void 0 : _a.map((panel, index) => {
+        const direPlayerIds = [];
+        topBarDirePlayersContainer.Children().forEach((panel, index) => {
+            if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(panel)) {
+                return;
+            }
             const playerId = Number(panel.id.replace("DirePlayer", ""));
             RenderTopBarPlayerStatePanel({ playerId: playerId, panel });
             ProcessExchangeHeroPanel({ teamType: "DirePlayer", index, scoreboard });
-            return playerId;
+            direPlayerIds.push(playerId);
         });
-        const oldBlessDashboardPanel = scoreboard === null || scoreboard === void 0 ? void 0 : scoreboard.FindChildTraverse("bless-dashboard-root");
-        if (!oldBlessDashboardPanel) {
+        const oldBlessDashboardPanel = scoreboard.FindChildTraverse("bless-dashboard-root");
+        if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(oldBlessDashboardPanel)) {
             const p = $.CreatePanel("Panel", scoreboard, "bless-dashboard-root");
-            (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_bless_dashboard_panel_bless_dashboard_panel__WEBPACK_IMPORTED_MODULE_6__.BlessDashBoardPanel, { direPlayerIds: direPlayerIds || [], radiantPlayerIds: radianPlayerIds || [] }), p);
+            if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(p)) {
+                (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_bless_dashboard_panel_bless_dashboard_panel__WEBPACK_IMPORTED_MODULE_6__.BlessDashBoardPanel, { direPlayerIds: direPlayerIds, radiantPlayerIds: radianPlayerIds }), p);
+            }
         }
         else {
-            (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_bless_dashboard_panel_bless_dashboard_panel__WEBPACK_IMPORTED_MODULE_6__.BlessDashBoardPanel, { direPlayerIds: direPlayerIds || [], radiantPlayerIds: radianPlayerIds || [] }), oldBlessDashboardPanel);
+            (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_bless_dashboard_panel_bless_dashboard_panel__WEBPACK_IMPORTED_MODULE_6__.BlessDashBoardPanel, { direPlayerIds: direPlayerIds, radiantPlayerIds: radianPlayerIds }), oldBlessDashboardPanel);
         }
     }, 1000);
+}
+function isScoreBoardGameState() {
+    return Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) || Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME);
 }
 /**
  * 渲染顶部栏玩家状态面板
@@ -37082,8 +37943,11 @@ function RenderScoreBoardBlessPanel() {
  * @param panel 面板
  */
 function RenderTopBarPlayerStatePanel({ playerId, panel }) {
-    const heroImagePanel = panel === null || panel === void 0 ? void 0 : panel.FindChildTraverse("SlantedContainerPanel");
-    if (heroImagePanel && !heroImagePanel.FindChildTraverse(`TopBarMask${playerId}`)) {
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(panel)) {
+        return;
+    }
+    const heroImagePanel = panel.FindChildTraverse("SlantedContainerPanel");
+    if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(heroImagePanel) && !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(heroImagePanel.FindChildTraverse(`TopBarMask${playerId}`))) {
         (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_com_compos_com_compos__WEBPACK_IMPORTED_MODULE_13__.TopBarMask, { playerID: playerId }), heroImagePanel);
     }
 }
@@ -37094,19 +37958,34 @@ function RenderTopBarPlayerStatePanel({ playerId, panel }) {
  * @param scoreboard 记分板面板
  */
 function ProcessExchangeHeroPanel({ teamType, index, scoreboard }) {
-    var _a, _b, _c, _d, _e, _f, _g;
-    const scoreCell = scoreboard === null || scoreboard === void 0 ? void 0 : scoreboard.FindChildTraverse(`${teamType}${index}`);
-    const scoreColumn = (_a = scoreCell === null || scoreCell === void 0 ? void 0 : scoreCell.FindChildrenWithClassTraverse("ScoreboardAvatar")) === null || _a === void 0 ? void 0 : _a[0];
-    const playerNameLabel = (_b = scoreCell === null || scoreCell === void 0 ? void 0 : scoreCell.FindChildrenWithClassTraverse("TopBottomFlow")) === null || _b === void 0 ? void 0 : _b[0];
-    const playerAvatar = (_c = scoreCell === null || scoreCell === void 0 ? void 0 : scoreCell.FindChildrenWithClassTraverse("ScoreboardHeroImage")) === null || _c === void 0 ? void 0 : _c[0];
-    if (scoreColumn && playerNameLabel && playerAvatar) {
+    var _a, _b, _c;
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreboard)) {
+        return;
+    }
+    const scoreCell = scoreboard.FindChildTraverse(`${teamType}${index}`);
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreCell)) {
+        return;
+    }
+    const scoreColumn = (_a = scoreCell.FindChildrenWithClassTraverse("ScoreboardAvatar")) === null || _a === void 0 ? void 0 : _a[0];
+    const playerNameLabel = (_b = scoreCell.FindChildrenWithClassTraverse("TopBottomFlow")) === null || _b === void 0 ? void 0 : _b[0];
+    const playerAvatar = (_c = scoreCell.FindChildrenWithClassTraverse("ScoreboardHeroImage")) === null || _c === void 0 ? void 0 : _c[0];
+    if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreColumn) && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerNameLabel) && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerAvatar)) {
         scoreColumn.enabled = false;
         playerNameLabel.enabled = false;
         playerAvatar.enabled = false;
-        (_d = scoreColumn.GetParent()) === null || _d === void 0 ? void 0 : _d.SetPanelEvent("oncontextmenu", _checkExchangeHeroAvailable);
-        (_e = scoreColumn.GetParent()) === null || _e === void 0 ? void 0 : _e.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
-        (_f = playerNameLabel.GetParent()) === null || _f === void 0 ? void 0 : _f.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
-        (_g = playerAvatar.GetParent()) === null || _g === void 0 ? void 0 : _g.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
+        const scoreColumnParent = scoreColumn.GetParent();
+        const playerNameParent = playerNameLabel.GetParent();
+        const playerAvatarParent = playerAvatar.GetParent();
+        if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreColumnParent)) {
+            scoreColumnParent.SetPanelEvent("oncontextmenu", _checkExchangeHeroAvailable);
+            scoreColumnParent.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
+        }
+        if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerNameParent)) {
+            playerNameParent.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
+        }
+        if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerAvatarParent)) {
+            playerAvatarParent.SetPanelEvent("onactivate", _checkExchangeHeroAvailable);
+        }
     }
     function _checkExchangeHeroAvailable() {
         // 判断当前游戏时间是否>5分钟
@@ -37114,7 +37993,7 @@ function ProcessExchangeHeroPanel({ teamType, index, scoreboard }) {
         //交换英雄限制时间，单位秒
         const second = 300;
         // $.Msg(`玩家${playerId}点击了交换英雄，当前游戏时间${gameTime}秒`);
-        if (scoreColumn && playerNameLabel && playerAvatar) {
+        if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(scoreColumn) && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerNameLabel) && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_20__.isPanelValid)(playerAvatar)) {
             if (gameTime >= second) {
                 if (!scoreColumn.enabled || !playerNameLabel.enabled) {
                     (0,_commonLib_utils_engine_utils__WEBPACK_IMPORTED_MODULE_15__.PopErrorMessage)($.lang(`#exchange_hero_time_tips`, { time: Math.floor(second / 60) }));
@@ -37736,11 +38615,21 @@ let __webpack_exports__ = {};
 /*!************************************************!*\
   !*** ./view/hero_selection/hero_selection.tsx ***!
   \************************************************/
+/* harmony import */ var _commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @commonLib/utils/ui_utils */ "./commonLib/utils/ui_utils.ts");
+
 const mapName = Game.GetMapInfo().map_display_name;
-(async () => {
+const contextPanel = $.GetContextPanel();
+(() => {
+    var _a, _b;
     const gameState = Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_HERO_SELECTION);
-    if (gameState) {
-        const [{}, { initUILifeCycle }] = await Promise.all([Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../game_init */ "./view/game_init.ts")), Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! @view/hud/ui_initer */ "./view/hud/ui_initer.tsx"))]);
+    if (gameState && (0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(contextPanel)) {
+        // 必须在当前脚本执行周期内完成初始化，避免旧英雄选择上下文的异步 chunk
+        // 晚于 HUD 加载后执行并重建 DataHub、清空新 HUD 的事件监听。
+        __webpack_require__(/*! ../game_init */ "./view/game_init.ts");
+        const { initUILifeCycle } = __webpack_require__(/*! @view/hud/ui_initer */ "./view/hud/ui_initer.tsx");
+        if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(contextPanel) || !Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_HERO_SELECTION)) {
+            return;
+        }
         // 初始化重载计数
         if (Game.reloadCount == null) {
             Game.reloadCount = 0;
@@ -37752,24 +38641,30 @@ const mapName = Game.GetMapInfo().map_display_name;
         // checkAndClearOnReload();
         initUILifeCycle();
     }
-    const root = $.GetContextPanel().GetParent().GetParent().GetParent();
-    const PreGame = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse("PreGame");
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(contextPanel)) {
+        return;
+    }
+    const contextParent = contextPanel.GetParent();
+    const root = (_a = contextParent === null || contextParent === void 0 ? void 0 : contextParent.GetParent()) === null || _a === void 0 ? void 0 : _a.GetParent();
+    const preGame = (_b = root === null || root === void 0 ? void 0 : root.GetParent()) === null || _b === void 0 ? void 0 : _b.FindChildTraverse("PreGame");
+    if (!(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(contextParent) || !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(root) || !(0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(preGame)) {
+        return;
+    }
     function HideHudElements(rootPanel, name) {
         const element = rootPanel.FindChildTraverse(name);
-        if (element != null) {
+        if ((0,_commonLib_utils_ui_utils__WEBPACK_IMPORTED_MODULE_0__.isPanelValid)(element)) {
             element.style.visibility = "collapse";
         }
     }
-    $.GetContextPanel().GetParent().style.zIndex = -1;
+    contextParent.style.zIndex = -1;
     if (mapName != "test_map" && mapName != "lab") {
-        HideHudElements(PreGame, "RadiantTeamPlayers");
-        HideHudElements(PreGame, "DireTeamPlayers");
+        HideHudElements(preGame, "RadiantTeamPlayers");
+        HideHudElements(preGame, "DireTeamPlayers");
         HideHudElements(root, "BottomPanelsContainer");
         HideHudElements(root, "BacktoHeroGrid");
         HideHudElements(root, "HeroPickScreen");
     }
 })();
-
 
 })();
 

@@ -8,9 +8,9 @@
 ]]
 
 
-_G.PUBLISH_TIMESTAMP = "2026-8-25 16:31"
+_G.PUBLISH_TIMESTAMP = "2026-8-31 14:41"
 
-print("loading addon dota_super_mid compiled@2026-8-25 16:31:29")
+print("loading addon dota_super_mid compiled@2026-8-31 14:40:27")
 local ____lualib = require("lualib_bundle")
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local ____exports = {}
