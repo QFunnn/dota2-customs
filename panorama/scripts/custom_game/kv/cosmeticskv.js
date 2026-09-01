@@ -3313,6 +3313,7 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"StoreID": 91000069,
 		"access": "draw",
 		"mark": "jianxin",
+		"coloring": 5230047,
 		"resource": "particles/eom/events/xuwuzhiling/xuwuzhiling_base_attack_fxu.vpcf",
 	},
 	"5230035": {

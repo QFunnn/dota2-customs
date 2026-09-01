@@ -930,7 +930,7 @@ GameUI.CustomUIConfig().ItemsKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
 		"AbilityValues": {
 			"ability_count": 7,
-			"limit": 3,
+			"limit": 2,
 		},
 	},
 	"item_equipment_4": {

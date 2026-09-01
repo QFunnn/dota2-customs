@@ -48,24 +48,34 @@ f(
 		["39"] = 30,
 		["40"] = 31,
 		["42"] = 10,
-		["43"] = 6,
-		["44"] = 5,
-		["45"] = 6,
-		["47"] = 6,
-		["48"] = 40,
-		["49"] = 47,
-		["50"] = 40,
-		["51"] = 47,
-		["52"] = 47,
-		["53"] = 40,
-		["54"] = 40,
-		["55"] = 40,
-		["56"] = 40,
-		["57"] = 40,
-		["58"] = 40,
-		["59"] = 40,
-		["60"] = 47,
-		["62"] = 47,
+		["43"] = 38,
+		["44"] = 39,
+		["45"] = 40,
+		["46"] = 40,
+		["48"] = 41,
+		["49"] = 42,
+		["50"] = 43,
+		["51"] = 44,
+		["54"] = 47,
+		["55"] = 38,
+		["56"] = 6,
+		["57"] = 5,
+		["58"] = 6,
+		["60"] = 6,
+		["61"] = 51,
+		["62"] = 58,
+		["63"] = 51,
+		["64"] = 58,
+		["65"] = 58,
+		["66"] = 51,
+		["67"] = 51,
+		["68"] = 51,
+		["69"] = 51,
+		["70"] = 51,
+		["71"] = 51,
+		["72"] = 51,
+		["73"] = 58,
+		["75"] = 58,
 	}
 )
 local g = {}
@@ -93,11 +103,11 @@ function n.prototype.Spawn(self)
 			PlayerData:removeArtifact(p, s, false)
 		end
 		o:AddItemByName(q)
-		if PlayerData:getNeutralArtifactChargePending(p) then
-			local t = o:FindModifierByName("modifier_item_artifact_146")
-			if t then
-				t:IncrementStackCount()
-				PlayerData:consumeNeutralArtifactCharge(p)
+		local t = self:GetPreviousNeutralWinCount(p)
+		if t > 0 then
+			local u = o:FindModifierByName("modifier_item_artifact_146")
+			if u then
+				u:SetStackCount(u:GetStackCount() + t)
 			end
 		end
 		PlayerData:addArtifact(p, q, false)
@@ -108,18 +118,31 @@ function n.prototype.Spawn(self)
 		)
 	end
 end
+function n.prototype.GetPreviousNeutralWinCount(self, p)
+	local v = CombatLog.roundMatchInfo[p]
+	if not v then
+		return 0
+	end
+	local w = 0
+	for x, y in pairs(v) do
+		if (string.find(y.enemy, "N_", nil, true) or 0) - 1 == 0 and y.isWinner == true then
+			w = w + 1
+		end
+	end
+	return w
+end
 n = e({ j(nil) }, n)
 g.trait_188 = n
 g.modifier_trait_188 = c()
-local u = g.modifier_trait_188
-u.name = "modifier_trait_188"
-d(u, l)
-u = e(
+local z = g.modifier_trait_188
+z.name = "modifier_trait_188"
+d(z, l)
+z = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	u
+	z
 )
-g.modifier_trait_188 = u
+g.modifier_trait_188 = z
 return g

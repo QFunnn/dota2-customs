@@ -54,102 +54,98 @@ i(
 		["47"] = 39,
 		["48"] = 30,
 		["49"] = 39,
-		["51"] = 39,
-		["52"] = 43,
-		["53"] = 30,
-		["54"] = 44,
-		["55"] = 45,
-		["56"] = 46,
-		["57"] = 44,
-		["58"] = 48,
-		["59"] = 49,
-		["60"] = 50,
-		["61"] = 50,
-		["62"] = 50,
-		["63"] = 49,
-		["64"] = 49,
-		["65"] = 49,
-		["66"] = 48,
-		["67"] = 54,
-		["68"] = 55,
-		["69"] = 56,
-		["70"] = 58,
-		["71"] = 59,
-		["74"] = 54,
-		["75"] = 63,
-		["76"] = 64,
-		["77"] = 65,
-		["78"] = 66,
-		["79"] = 67,
-		["80"] = 69,
-		["81"] = 70,
-		["82"] = 71,
-		["85"] = 74,
-		["86"] = 75,
-		["89"] = 69,
-		["90"] = 79,
-		["91"] = 81,
-		["92"] = 82,
-		["94"] = 84,
-		["95"] = 85,
+		["50"] = 42,
+		["51"] = 43,
+		["52"] = 42,
+		["53"] = 45,
+		["54"] = 46,
+		["55"] = 47,
+		["56"] = 47,
+		["57"] = 47,
+		["58"] = 46,
+		["59"] = 46,
+		["60"] = 46,
+		["61"] = 45,
+		["62"] = 51,
+		["63"] = 52,
+		["64"] = 53,
+		["65"] = 55,
+		["66"] = 56,
+		["69"] = 51,
+		["70"] = 60,
+		["71"] = 61,
+		["72"] = 62,
+		["73"] = 63,
+		["74"] = 64,
+		["75"] = 66,
+		["76"] = 67,
+		["77"] = 68,
+		["80"] = 71,
+		["81"] = 72,
+		["84"] = 66,
+		["85"] = 76,
+		["86"] = 78,
+		["87"] = 79,
+		["89"] = 81,
+		["90"] = 82,
+		["91"] = 83,
+		["92"] = 85,
+		["93"] = 86,
+		["94"] = 86,
+		["95"] = 86,
 		["96"] = 86,
-		["97"] = 88,
-		["98"] = 89,
+		["98"] = 60,
 		["99"] = 89,
-		["100"] = 89,
-		["101"] = 89,
-		["103"] = 63,
-		["104"] = 92,
-		["105"] = 94,
-		["108"] = 95,
-		["109"] = 97,
-		["112"] = 99,
-		["113"] = 100,
-		["114"] = 102,
-		["115"] = 103,
-		["117"] = 92,
-		["118"] = 106,
-		["119"] = 107,
-		["120"] = 108,
-		["121"] = 110,
-		["123"] = 112,
-		["124"] = 112,
-		["125"] = 113,
+		["100"] = 91,
+		["103"] = 92,
+		["104"] = 94,
+		["105"] = 95,
+		["108"] = 97,
+		["109"] = 98,
+		["110"] = 100,
+		["111"] = 101,
+		["113"] = 89,
+		["114"] = 104,
+		["115"] = 105,
+		["116"] = 106,
+		["117"] = 108,
+		["119"] = 110,
+		["120"] = 110,
+		["121"] = 111,
+		["122"] = 114,
+		["123"] = 114,
+		["124"] = 114,
+		["125"] = 115,
 		["126"] = 116,
-		["127"] = 116,
-		["128"] = 116,
-		["129"] = 117,
-		["130"] = 118,
-		["131"] = 119,
-		["132"] = 124,
-		["133"] = 124,
-		["134"] = 124,
-		["135"] = 124,
-		["136"] = 124,
-		["137"] = 116,
-		["138"] = 116,
-		["139"] = 112,
-		["142"] = 127,
-		["143"] = 129,
-		["144"] = 130,
-		["145"] = 131,
-		["146"] = 133,
-		["149"] = 106,
-		["150"] = 137,
-		["151"] = 138,
-		["152"] = 137,
-		["153"] = 39,
+		["127"] = 117,
+		["128"] = 122,
+		["129"] = 122,
+		["130"] = 122,
+		["131"] = 122,
+		["132"] = 122,
+		["133"] = 114,
+		["134"] = 114,
+		["135"] = 110,
+		["138"] = 125,
+		["139"] = 127,
+		["141"] = 130,
+		["142"] = 131,
+		["145"] = 104,
+		["146"] = 135,
+		["147"] = 136,
+		["148"] = 135,
+		["149"] = 39,
+		["150"] = 30,
+		["151"] = 30,
+		["152"] = 30,
+		["153"] = 30,
 		["154"] = 30,
 		["155"] = 30,
 		["156"] = 30,
 		["157"] = 30,
 		["158"] = 30,
-		["159"] = 30,
-		["160"] = 30,
-		["161"] = 30,
-		["162"] = 30,
-		["163"] = 39,
-		["165"] = 39,
+		["159"] = 39,
+		["161"] = 39,
 	}
 )
 local j = {}
@@ -192,13 +188,8 @@ j.modifier_item_artifact_146 = c()
 local w = j.modifier_item_artifact_146
 w.name = "modifier_item_artifact_146"
 d(w, o)
-function w.prototype.____constructor(self, ...)
-	o.prototype.____constructor(self, ...)
-	self.completion_count = 0
-end
 function w.prototype.GetAbilitySpecialValue(self)
 	self.ability_count = self:GetAbilitySpecialValueFor("ability_count")
-	self.limit = self:GetAbilitySpecialValueFor("limit")
 end
 function w.prototype.EDeclareEvents(self)
 	return {
@@ -249,7 +240,8 @@ function w.prototype.OnBattleEnd(self, x)
 		return
 	end
 	local t = self:GetParent():GetPlayerOwnerID()
-	if x.winPlayerID ~= t then
+	local z = PlayerData:getHero(t).hero
+	if x.winPlayerID ~= t or not IsValid(z) or not z:IsAlive() then
 		return
 	end
 	local F = self:GetStackCount() > 0
@@ -260,7 +252,7 @@ function w.prototype.OnBattleEnd(self, x)
 end
 function w.prototype.OnAbilityLearn(self, x)
 	local t = self:GetParent():GetPlayerOwnerID()
-	if self:GetStackCount() > 0 and self.completion_count < self.limit and x.abilityname == self.secret_key then
+	if self:GetStackCount() > 0 and x.abilityname == self.secret_key then
 		self:SetStackCount(self:GetStackCount() - 1)
 		do
 			local G = 0
@@ -283,11 +275,11 @@ function w.prototype.OnAbilityLearn(self, x)
 				G = G + 1
 			end
 		end
-		self.completion_count = self.completion_count + 1
-		if self.completion_count >= self.limit then
-			PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
-		elseif self:GetStackCount() > 0 then
+		if self:GetStackCount() > 0 then
 			self:RandomizeSecretKey()
+		else
+			PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
+			self.secret_key = nil
 		end
 	end
 end
