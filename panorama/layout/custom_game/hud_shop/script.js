@@ -5884,6 +5884,7 @@ const SHOP_ITEM_COST_MANIFEST_KEY = "shop_item_cost_manifest";
 const SHOP_ITEM_COST_CHUNK_PREFIX = "shop_item_cost_chunk_";
 const SHOP_STOCK_KEY_PREFIX = "shop_stock_";
 const SHOP_PURCHASE_EVENT = "custom_shop_purchase_item";
+const SHOP_PURCHASE_SUCCESS_EVENT = "custom_shop_purchase_success";
 const AGHANIMS_SCEPTER_ITEM = "item_ultimate_scepter";
 const AGHANIMS_BLESSING_RECIPE = "item_recipe_ultimate_scepter_2";
 const AGHANIMS_BLESSING_ITEM = "item_ultimate_scepter_2";
@@ -5968,9 +5969,110 @@ function getHudRoot() {
     }
     return panel;
 }
+let cachedNativeShop = null;
+function findPanelByType(root, panelType) {
+    if (!root) {
+        return null;
+    }
+    if (root.paneltype === panelType) {
+        return root;
+    }
+    for (let childIndex = 0; childIndex < root.GetChildCount(); childIndex++) {
+        const match = findPanelByType(root.GetChild(childIndex), panelType);
+        if (match) {
+            return match;
+        }
+    }
+    return null;
+}
 function getNativeShop() {
+    if (cachedNativeShop === null || cachedNativeShop === void 0 ? void 0 : cachedNativeShop.IsValid()) {
+        return cachedNativeShop;
+    }
+    const hudRoot = getHudRoot();
+    const namedShop = (hudRoot === null || hudRoot === void 0 ? void 0 : hudRoot.FindChildTraverse("shop")) || null;
+    cachedNativeShop = findPanelByType(namedShop, "DOTAHUDShop") || findPanelByType(hudRoot, "DOTAHUDShop");
+    return cachedNativeShop;
+}
+function roundRecipeCoordinate(value) {
+    return Math.round(value * 10) / 10;
+}
+function getNativeShopItemName(panel) {
+    const itemImage = panel.FindChildTraverse("ItemImage");
+    const candidates = [
+        panel.itemname,
+        itemImage === null || itemImage === void 0 ? void 0 : itemImage.itemname,
+        panel.GetAttributeString("itemname", ""),
+        itemImage === null || itemImage === void 0 ? void 0 : itemImage.GetAttributeString("itemname", ""),
+    ];
+    for (let candidateIndex = 0; candidateIndex < candidates.length; candidateIndex++) {
+        const itemName = candidates[candidateIndex];
+        if (typeof itemName === "string" && /^item_[A-Za-z0-9_]+$/.test(itemName)) {
+            return itemName;
+        }
+    }
+    return "";
+}
+function readNativeRecipeSelection() {
     var _a;
-    return ((_a = getHudRoot()) === null || _a === void 0 ? void 0 : _a.FindChildTraverse("shop")) || null;
+    const nativeCombines = (_a = getNativeShop()) === null || _a === void 0 ? void 0 : _a.FindChildTraverse("ItemCombines");
+    const itemsContainer = (nativeCombines === null || nativeCombines === void 0 ? void 0 : nativeCombines.FindChildTraverse("ItemsContainer")) || null;
+    if (!nativeCombines || !itemsContainer || !nativeCombines.IsSizeValid()) {
+        return null;
+    }
+    const scaleX = itemsContainer.actualuiscale_x || 1;
+    const scaleY = itemsContainer.actualuiscale_y || 1;
+    const width = roundRecipeCoordinate(itemsContainer.actuallayoutwidth / scaleX);
+    const height = roundRecipeCoordinate(itemsContainer.actuallayoutheight / scaleY);
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+        return null;
+    }
+    const visibleItems = [];
+    const lifecycleParts = [];
+    for (let childIndex = 0; childIndex < itemsContainer.GetChildCount(); childIndex++) {
+        const itemPanel = itemsContainer.GetChild(childIndex);
+        if (!itemPanel) {
+            continue;
+        }
+        const itemName = getNativeShopItemName(itemPanel);
+        const visible = itemPanel.BHasClass("Visible");
+        const destroying = itemPanel.BHasClass("Destroying");
+        lifecycleParts.push(`${childIndex}:${itemPanel.id}:${itemName}:${visible ? 1 : 0}:${destroying ? 1 : 0}`);
+        if (!itemName || !visible || destroying) {
+            continue;
+        }
+        const position = itemPanel.GetPositionWithinAncestor(itemsContainer);
+        const x = roundRecipeCoordinate(position.x / scaleX);
+        const y = roundRecipeCoordinate(position.y / scaleY);
+        if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            continue;
+        }
+        visibleItems.push({
+            itemName,
+            x,
+            y,
+        });
+    }
+    if (visibleItems.length === 0) {
+        return null;
+    }
+    let currentItem = visibleItems[0];
+    let currentY = -Number.MAX_VALUE;
+    let currentHorizontalDistance = Number.MAX_VALUE;
+    const centerX = width * 0.5;
+    for (let itemIndex = 0; itemIndex < visibleItems.length; itemIndex++) {
+        const item = visibleItems[itemIndex];
+        const horizontalDistance = Math.abs(item.x + COMBINE_ITEM_WIDTH * 0.5 - centerX);
+        if (item.y > currentY || (item.y === currentY && horizontalDistance < currentHorizontalDistance)) {
+            currentItem = item;
+            currentY = item.y;
+            currentHorizontalDistance = horizontalDistance;
+        }
+    }
+    return {
+        itemName: currentItem.itemName,
+        refreshSignature: `${currentItem.itemName}#${itemsContainer.GetChildCount()}#${lifecycleParts.join("|")}`,
+    };
 }
 function getNativeQuickBuy() {
     var _a, _b;
@@ -6059,7 +6161,6 @@ function suppressNativeShop() {
     const guideFlyout = nativeShop.FindChildTraverse("GuideFlyout");
     if (guideFlyout) {
         guideFlyout.style.visibility = "collapse";
-        guideFlyout.style.opacity = "0";
         guideFlyout.hittest = false;
         guideFlyout.hittestchildren = false;
     }
@@ -6671,6 +6772,8 @@ function CustomShop() {
     const [activeTab, setActiveTab] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(((_a = availableTabs[0]) === null || _a === void 0 ? void 0 : _a.id) || "basic");
     const [search, setSearch] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
     const [selectedItem, setSelectedItem] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(defaultSelectedItem);
+    const latestNativeRecipeSelection = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+    const customRecipeSelectionBaseline = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const [recipeIndex, setRecipeIndex] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(readShopRecipeIndex);
     const [itemCosts, setItemCosts] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(readShopItemCosts);
     const [stockState, setStockState] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => getCommonNetTableValue(getShopStockKey()) || {});
@@ -6712,6 +6815,12 @@ function CustomShop() {
         return () => CustomNetTables.UnsubscribeNetTableListener(listener);
     }, []);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+        const listener = GameEvents.Subscribe(SHOP_PURCHASE_SUCCESS_EVENT, () => {
+            Game.EmitSound("General.Buy");
+        });
+        return () => GameEvents.Unsubscribe(listener);
+    }, []);
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
         let stopped = false;
         let scheduleId;
         const updateGold = () => {
@@ -6723,6 +6832,42 @@ function CustomShop() {
             scheduleId = $.Schedule(0.25, updateGold);
         };
         updateGold();
+        return () => {
+            stopped = true;
+            if (scheduleId !== undefined) {
+                $.CancelScheduled(scheduleId);
+            }
+        };
+    }, []);
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+        let stopped = false;
+        let scheduleId;
+        let lastNativeItemName = "";
+        const syncNativeRecipeSelection = () => {
+            if (stopped) {
+                return;
+            }
+            const snapshot = readNativeRecipeSelection();
+            if (snapshot) {
+                latestNativeRecipeSelection.current = snapshot;
+                const customBaseline = customRecipeSelectionBaseline.current;
+                if (customBaseline !== null) {
+                    if (!customBaseline) {
+                        customRecipeSelectionBaseline.current = snapshot.refreshSignature;
+                    }
+                    else if (snapshot.refreshSignature !== customBaseline) {
+                        customRecipeSelectionBaseline.current = null;
+                        setSelectedItem((currentItem) => currentItem === snapshot.itemName ? currentItem : snapshot.itemName);
+                    }
+                }
+                else if (snapshot.itemName !== lastNativeItemName) {
+                    setSelectedItem((currentItem) => currentItem === snapshot.itemName ? currentItem : snapshot.itemName);
+                }
+                lastNativeItemName = snapshot.itemName;
+            }
+            scheduleId = $.Schedule(0, syncNativeRecipeSelection);
+        };
+        scheduleId = $.Schedule(0, syncNativeRecipeSelection);
         return () => {
             stopped = true;
             if (scheduleId !== undefined) {
@@ -6807,6 +6952,11 @@ function CustomShop() {
     }, [activeTab, categories, itemIds, profile, searchText]);
     const visibleItemCount = Object.keys(itemPlacements).length;
     const stockItems = stockState.items || {};
+    const selectDisplayedItem = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)((itemName) => {
+        var _a;
+        customRecipeSelectionBaseline.current = ((_a = latestNativeRecipeSelection.current) === null || _a === void 0 ? void 0 : _a.refreshSignature) || "";
+        setSelectedItem(itemName);
+    }, []);
     const updateQuickBuy = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)((itemName, allowDuplicate) => {
         setQuickBuyGoals((currentGoals) => {
             if (!allowDuplicate && currentGoals.some((goal) => goal.itemName === itemName)) {
@@ -6921,12 +7071,12 @@ function CustomShop() {
                         react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopBrowser" },
                             react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopSearchResults", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Visible: !!searchText }) },
                                 react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "CustomShopSearchTitle", text: $.Localize("#DOTA_Shop_Search_Results_Title") })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopCategoryList", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Visible: !!searchText || activeTab !== "neutral" }) }, categories.map((category) => (react__WEBPACK_IMPORTED_MODULE_2__.createElement(ShopCategoryRow, { key: category.id, category: category, items: profile[category.id] || [], placements: itemPlacements, stockItems: stockItems, itemCosts: itemCosts, currentGold: currentGold, onSelect: setSelectedItem, onQuickBuy: updateQuickBuy })))),
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopCategoryList", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Visible: !!searchText || activeTab !== "neutral" }) }, categories.map((category) => (react__WEBPACK_IMPORTED_MODULE_2__.createElement(ShopCategoryRow, { key: category.id, category: category, items: profile[category.id] || [], placements: itemPlacements, stockItems: stockItems, itemCosts: itemCosts, currentGold: currentGold, onSelect: selectDisplayedItem, onQuickBuy: updateQuickBuy })))),
                             react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("CustomShopNoResultsContainer", { Visible: !!searchText && visibleItemCount === 0 }) },
                                 react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "CustomShopNoResults", text: $.Localize("#DOTA_Shop_Search_No_Results") }))))),
                 react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopCombinesSection" },
                     react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CustomShopItemCombines" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(RecipeTree, { tree: recipeTree, stockItems: stockItems, itemCosts: itemCosts, currentGold: currentGold, onSelect: setSelectedItem, onQuickBuy: updateQuickBuy }))))),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(RecipeTree, { tree: recipeTree, stockItems: stockItems, itemCosts: itemCosts, currentGold: currentGold, onSelect: selectDisplayedItem, onQuickBuy: updateQuickBuy }))))),
         react__WEBPACK_IMPORTED_MODULE_2__.createElement(CustomQuickBuy, { goals: quickBuyGoals, recipeIndex: recipeIndex, stockItems: stockItems, itemCosts: itemCosts, currentGold: currentGold, onGoalsChange: setQuickBuyGoals, onClear: () => setQuickBuyGoals([]) })));
 }
 const customShopRoot = $.GetContextPanel();

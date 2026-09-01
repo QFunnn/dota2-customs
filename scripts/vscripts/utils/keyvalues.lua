@@ -88,6 +88,7 @@ local SHOP_ITEM_COST_CHUNK_PREFIX = "shop_item_cost_chunk_"
 local SHOP_STOCK_KEY_PREFIX = "shop_stock_"
 local SHOP_STOCK_UPDATE_INTERVAL = 0.5
 local SHOP_PURCHASE_EVENT = "custom_shop_purchase_item"
+local SHOP_PURCHASE_SUCCESS_EVENT = "custom_shop_purchase_success"
 local PHYSICAL_SHOP_TYPES = { 0, 1, 2, 3, 4, 5, 6 }
 local AGHANIMS_SCEPTER_ITEM = "item_ultimate_scepter"
 local AGHANIMS_BLESSING_RECIPE = "item_recipe_ultimate_scepter_2"
@@ -1097,6 +1098,11 @@ function KeyValues:PurchaseShopItem(eventData)
 	end
 	if next(stockRequirements) ~= nil then
 		self:PublishTeamShopStock(teamNumber, true)
+	end
+
+	local player = PlayerResource:GetPlayer(playerID)
+	if player ~= nil then
+		CustomGameEventManager:Send_ServerToPlayer(player, SHOP_PURCHASE_SUCCESS_EVENT, {})
 	end
 end
 
