@@ -213,50 +213,48 @@ function InitChatBubble(unit_index, pic, text, duration) {
 	};
 	chatBubbleTable[unit_index] = bubbleInfo;
 
-	var panel = bubbleInfo['panel'];
-	panel = $.CreatePanel('Panel', $.GetContextPanel(), "");
-	panel.BLoadLayoutSnippet('bubble');
+	// var panel = bubbleInfo['panel'];
+	// panel = $.CreatePanel('Panel', $.GetContextPanel(), "");
+	// panel.BLoadLayoutSnippet('bubble');
 
-	// TODO: 对战气泡
-	
+	// // TODO: 对战气泡
+	// if (pic) {
+	// 	// 图片气泡
+	// 	var pic_panel = panel.FindChild('Text').FindChild('Pic');
+	// 	panel.FindChild('Text').text = '';
+	// 	panel.FindChild('Text').style['padding'] = '0px';
+	// 	if (pic_panel) {
+	// 		pic_panel.visible = true;
 
-	if (pic) {
-		// 图片气泡
-		var pic_panel = panel.FindChild('Text').FindChild('Pic');
-		panel.FindChild('Text').text = '';
-		panel.FindChild('Text').style['padding'] = '0px';
-		if (pic_panel) {
-			pic_panel.visible = true;
+	// 		var m_info;
+	// 		for (var i in EMOTION_LIST) {
+	// 			if (EMOTION_LIST[i].emotion_index == pic) {
+	// 				m_info = EMOTION_LIST[i];
+	// 			}
+	// 		}
+	// 		pic_panel.SetImage('file://{resources}/images/custom_game/chat/' + pic + '.png');
+	// 		pic_panel.style['transform'] = 'scale3d( EMOTIONSIZE, EMOTIONSIZE, EMOTIONSIZE)'.replace(/EMOTIONSIZE/g, m_info.size);
+	// 		pic_panel.style['vertical-align'] = 'center';
+	// 		panel.style['height'] = '120px';
+	// 		panel.style['margin-top'] = '-30px';
+	// 	}
+	// }
+	// else {
+	// 	// 文字气泡
+	// 	panel.FindChild('Text').text = text;
+	// 	panel.FindChild('Text').style['padding'] = '15px';
+	// 	var font_size = 25;
+	// 	var tanhao_count = (text.split('!').length - 1) + (text.split('！').length - 1);
+	// 	if (tanhao_count >= 3) {
+	// 		tanhao_count = 3;
+	// 	}
+	// 	font_size += tanhao_count * 5;
+	// 	panel.FindChild('Text').style['font-size'] = font_size + 'px';
+	// 	panel.FindChild('Text').style['line-height'] = font_size + 'px';
+	// 	panel.FindChild('Text').FindChild('Pic').visible = false;
+	// }
 
-			var m_info;
-			for (var i in EMOTION_LIST) {
-				if (EMOTION_LIST[i].emotion_index == pic) {
-					m_info = EMOTION_LIST[i];
-				}
-			}
-			pic_panel.SetImage('file://{resources}/images/custom_game/chat/' + pic + '.png');
-			pic_panel.style['transform'] = 'scale3d( EMOTIONSIZE, EMOTIONSIZE, EMOTIONSIZE)'.replace(/EMOTIONSIZE/g, m_info.size);
-			pic_panel.style['vertical-align'] = 'center';
-			panel.style['height'] = '120px';
-			panel.style['margin-top'] = '-30px';
-		}
-	}
-	else {
-		// 文字气泡
-		panel.FindChild('Text').text = text;
-		panel.FindChild('Text').style['padding'] = '15px';
-		var font_size = 25;
-		var tanhao_count = (text.split('!').length - 1) + (text.split('！').length - 1);
-		if (tanhao_count >= 3) {
-			tanhao_count = 3;
-		}
-		font_size += tanhao_count * 5;
-		panel.FindChild('Text').style['font-size'] = font_size + 'px';
-		panel.FindChild('Text').style['line-height'] = font_size + 'px';
-		panel.FindChild('Text').FindChild('Pic').visible = false;
-	}
-
-	bubbleInfo['panel'] = panel;
+	// bubbleInfo['panel'] = panel;
 
 	ShowChatBubble(unit_index, duration);
 
@@ -402,9 +400,9 @@ function OnShowChatBubblePlayerBoard(keys) {
 		}
 		else {
 			// 发表情
-			var m_info;emot
+			var m_info;
 			for (var i in EMOTION_LIST) {
-				if (EMOTION_LIST[i].ion_index == keys.emotion_index) {
+				if (EMOTION_LIST[i].emotion_index == keys.emotion_index) {
 					m_info = EMOTION_LIST[i];
 				}
 			}
