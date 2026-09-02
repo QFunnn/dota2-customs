@@ -80,6 +80,7 @@ function hero_fiddlesticks_harvest:OnSpellStart()
 	for _, enemy in pairs(enemies) do
 		damageTable.victim = enemy
 		ApplyDamage(damageTable)
+		caster:PerformAttack(enemy, true, true, true, false, false, true, true)
 	end
 
 	if #enemies > 0 then
@@ -211,9 +212,12 @@ function hero_fiddlesticks_rise:OnSpellStart()
 	local count = self:GetSpecialValueFor("count")
 	local damage = self:GetSpecialValueFor("damage")
 	local duration = self:GetSpecialValueFor("duration")
-	local position = self:GetCaster():GetOrigin()
+	local caster = self:GetCaster()
+	local position = caster:GetOrigin()
 	local bounds_max = position + Vector(200, 200, 0)
 	local bounds_min = position + Vector(-200, -200, 0)
+
+	local unit_damage = caster:GetAverageTrueAttackDamage(caster) * damage / 100
 
 	Timers:CreateTimer(0, function()
 		if count > 0 then
@@ -224,15 +228,15 @@ function hero_fiddlesticks_rise:OnSpellStart()
 				"npc_hero_fiddlesticks_rise_unit",
 				random_position,
 				true,
-				self:GetCaster(),
-				self:GetCaster(),
-				self:GetCaster():GetTeamNumber()
+				caster,
+				caster,
+				caster:GetTeamNumber()
 			)
-			unit:AddNewModifier(self:GetCaster(), self, "modifier_hero_fiddlesticks_rise", { duration = duration })
-			unit:AddNewModifier(self:GetCaster(), self, "modifier_kill", { duration = duration })
-			unit:SetBaseDamageMin(self:GetCaster():GetBaseDamageMin() * damage / 100)
-			unit:SetBaseDamageMax(self:GetCaster():GetBaseDamageMax() * damage / 100)
-			EmitSoundOn("Undying_Zombie.Spawn", self:GetCaster())
+			unit:AddNewModifier(caster, self, "modifier_hero_fiddlesticks_rise", { duration = duration })
+			unit:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
+			unit:SetBaseDamageMin(unit_damage)
+			unit:SetBaseDamageMax(unit_damage)
+			EmitSoundOn("Undying_Zombie.Spawn", caster)
 
 			return 0.1
 		else

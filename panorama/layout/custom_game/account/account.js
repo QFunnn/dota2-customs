@@ -152,8 +152,10 @@ function createPanel(talent) {
    
     panel.style.backgroundSize = "100%";
 	
-    panel.SetPanelEvent("onmouseover", function() { $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize('#')+bonus)});
-	panel.SetPanelEvent("onmouseout", TipsOut)
+    nodePanels[String(id)] = panel;
+
+    panel.SetPanelEvent("onmouseover", function() { highlightChain(talent); $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize('#')+bonus)});
+	panel.SetPanelEvent("onmouseout", function() { clearHot(); TipsOut(); })
 		
 
 	
@@ -175,7 +177,94 @@ function getTalentName(str) {
 }
 
 
+var LINK_W = 4;
+
+var talentLinks = [];
+var nodePanels = {};
+var talentsById = {};
+var hotPanels = [];
+
+function drawTalentLinks(talents) {
+	talentLinks = [];
+	talentsById = {};
+	Object.values(talents).forEach(function(t) { talentsById[String(t.id)] = t; });
+
+	var drawn = {};
+	Object.values(talents).forEach(function(talent) {
+		var linked = Object.values(talent.requires || {}).concat(Object.values(talent.alternative || {}));
+		linked.forEach(function(otherId) {
+			var other = talentsById[String(otherId)];
+			if (!other) { return; }
+			var pair = Math.min(talent.id, other.id) + ":" + Math.max(talent.id, other.id);
+			if (drawn[pair]) { return; }
+			drawn[pair] = true;
+			drawLink(talent, other);
+		});
+	});
+}
+
+function clearHot() {
+	hotPanels.forEach(function(p) {
+		if (p && p.IsValid()) {
+			p.RemoveClass("link_hot");
+			p.RemoveClass("node_hot");
+		}
+	});
+	hotPanels = [];
+}
+
+function highlightChain(talent) {
+	clearHot();
+	var chain = {};
+	var queue = [talent.id];
+	var guard = 0;
+	while (queue.length && guard < 600) {
+		guard++;
+		var id = String(queue.shift());
+		if (chain[id]) { continue; }
+		chain[id] = true;
+
+		var p = nodePanels[id];
+		if (p && p.IsValid()) { p.AddClass("node_hot"); hotPanels.push(p); }
+
+		var cur = talentsById[id];
+		if (!cur) { continue; }
+		// Идём к корню по requires; если их нет — по alternative (любой из них открывает нод)
+		var req = Object.values(cur.requires || {});
+		var next = req.length ? req : Object.values(cur.alternative || {});
+		next.forEach(function(n) { queue.push(n); });
+	}
+
+	talentLinks.forEach(function(l) {
+		if (chain[String(l.a)] && chain[String(l.b)] && l.panel.IsValid()) {
+			l.panel.AddClass("link_hot");
+			hotPanels.push(l.panel);
+		}
+	});
+}
+
+function drawLink(a, b) {
+	// Экранные координаты нод перевёрнуты: left = talent.y, top = talent.x (см. createPanel)
+	var dx = b.y - a.y;
+	var dy = b.x - a.x;
+	var len = Math.sqrt(dx * dx + dy * dy);
+	if (len < 1) { return; }
+
+	var line = $.CreatePanel("Panel", parentPanel, "", {class: 'talent_link', hittest: 'false'});
+	talentLinks.push({ a: a.id, b: b.id, panel: line });
+	line.style.width = len + "px";
+	line.style.height = LINK_W + "px";
+	line.style.marginLeft = a.y + "px";
+	line.style.marginTop = (a.x - LINK_W / 2) + "px";
+	line.style.transformOrigin = "0% 50%";
+	line.style.transform = "rotateZ(" + (Math.atan2(dy, dx) * 180 / Math.PI) + "deg)";
+}
+
 function createPattern(talents) {
+	nodePanels = {};
+	hotPanels = [];
+	drawTalentLinks(talents);
+
 	Object.entries(talents).forEach(([key, talent]) => {
         createPanel(talent);
     });

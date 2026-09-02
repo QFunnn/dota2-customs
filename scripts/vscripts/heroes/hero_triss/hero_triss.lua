@@ -189,10 +189,15 @@ function triss_turret:OnSpellStart()
 	turret:SetMaxHealth(set_hp)
 	turret:SetHealth(set_hp)
 
-	local turret_dmg = damage / 100 * caster:GetBaseDamageMin()
+	-- От полного урона героя (с предметами), не от базового
+	local turret_dmg = damage / 100 * caster:GetAverageTrueAttackDamage(caster)
 
 	turret:SetBaseDamageMin(turret_dmg)
 	turret:SetBaseDamageMax(turret_dmg)
+
+	-- Скорость атаки 1в1 как у героя на момент установки:
+	-- у турели нет бонусов АС, поэтому её интервал атаки = BAT
+	turret:SetBaseAttackTime(caster:GetSecondsPerAttack(false))
 
 	turret:AddNewModifier(turret, self, "modifier_triss_turret", {})
 	turret:AddNewModifier(turret, self, "modifier_tutorial_disable_healing", {})
@@ -270,7 +275,7 @@ function modifier_triss_splash:OnAttackLanded(keys)
 	then
 		local radius = self:GetAbility():GetSpecialValueFor("radius")
 		local damage = self:GetAbility():GetSpecialValueFor("damage")
-		local caster_damage = keys.attacker:GetBaseDamageMin()
+		local caster_damage = keys.attacker:GetAverageTrueAttackDamage(keys.attacker)
 
 		local boom_damage = math.ceil(caster_damage * damage / 100)
 
@@ -441,7 +446,7 @@ function modifier_triss_disguise:OnAttack(params)
 end
 
 function modifier_triss_disguise:OnSpentMana(params)
-	if params.unit == self:GetParent() and params.ability:GetManaCost() > 10 then
+	if params.unit == self:GetParent() and params.ability:GetManaCost(-1) > 10 then
 		self:Destroy()
 	end
 end

@@ -51,6 +51,7 @@ require("libraries/base_npc")
 require("mini_quest")
 require("essentials")
 require("rules")
+require("daily")
 require("guild_events")
 require("effects")
 require("hero_builder")
@@ -593,6 +594,16 @@ function InitPlayerHero(hHero, pid)
 		-- CAddonAdvExGameMode:RemoveWearables(hHero)
 	end
 
+	local accountStats = _G.Account_stats and _G.Account_stats[sid]
+	if accountStats and (accountStats.level or 0) < 10 then
+		local bottle = hHero:AddItemByName("item_bottle")
+		if bottle then
+			bottle:SetPurchaser(hHero)
+			bottle:SetPurchaseTime(0)
+		end
+		hHero:ModifyGold(500, true, DOTA_ModifyGold_Unspecified)
+	end
+
 	hHero.bInited = true
 end
 
@@ -1063,13 +1074,14 @@ function CAddonAdvExGameMode:OnEntityKilled(keys)
 			FindClearSpaceForUnit(roshan, point, false)
 			roshan:Stop()
 			roshan:RespawnUnit()
+			Notifications:TopToAll({ text = "#roshan_respawn", duration = 5 })
 			roshan:SetBaseDamageMin(roshan:GetBaseDamageMin() * 1.6)
 			roshan:SetBaseDamageMax(roshan:GetBaseDamageMax() * 1.6)
 			roshan:SetPhysicalArmorBaseValue(roshan:GetPhysicalArmorBaseValue() * 1.6)
 			roshan:SetBaseMagicalResistanceValue(roshan:GetBaseMagicalResistanceValue() * 1.3)
 			roshan:SetMaxHealth(roshan:GetMaxHealth() * 1.6)
 			roshan:SetBaseMaxHealth(roshan:GetBaseMaxHealth() * 1.6)
-			roshan:SetHealth(roshan:GetMaxHealth() * 1.6)
+			roshan:SetHealth(roshan:GetMaxHealth())
 
 			if roshan:GetBaseMagicalResistanceValue() >= 99 then
 				roshan:SetBaseMagicalResistanceValue(99)

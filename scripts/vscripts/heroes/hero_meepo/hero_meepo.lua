@@ -223,6 +223,23 @@ function meepo_poof_lua:PlayEffects(caster)
 	ParticleManager:ReleaseParticleIndex(particle_index)
 end
 
+local POOF_FORBIDDEN_TARGETS = {
+	npc_dota_observer_wards = true,
+	npc_dota_sentry_wards = true,
+	shadow_shaman_ward = true,
+}
+
+function meepo_poof_lua:CastFilterResultTarget(target)
+	if target and (POOF_FORBIDDEN_TARGETS[target:GetUnitName()] or target:IsOther()) then
+		return UF_FAIL_CUSTOM
+	end
+	return UF_SUCCESS
+end
+
+function meepo_poof_lua:GetCustomCastErrorTarget(target)
+	return "#dota_hud_error_cant_cast_on_other"
+end
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 

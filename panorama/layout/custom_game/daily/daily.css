@@ -1,0 +1,259 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#DailyPanel
+{
+	width: 1020px;
+	height: 340px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#1a2a3a), to(#0f1a2a));
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+	margin-bottom: 60px;
+}
+
+.CloseDaily
+{
+	opacity: 0;
+	pre-transform-scale2d: 0.85;
+	visibility: collapse;
+}
+
+#DailyClose
+{
+	horizontal-align: right;
+	vertical-align: top;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	background-color: rgba(74, 90, 122, 0.3);
+	border: 2px solid rgba(74, 90, 122, 0.9);
+	border-radius: 8px;
+	transition: transform 0.2s ease 0s;
+	margin: 5px;
+	z-index: 5;
+}
+
+#DailyClose:active
+{
+	sound: "ui_custom_lobby_dialog_slide";
+}
+
+#DailyClose:hover
+{
+	background-color: rgba(255, 107, 107, 0.3);
+	border-color: rgba(255, 107, 107, 0.5);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#DailyHead
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 30px;
+	flow-children: down;
+	z-index: 3;
+}
+
+#DailyTitle
+{
+	horizontal-align: center;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e5e0c5 ), to( #b17829 ) );
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-shadow: 0px 2px 10px 3.0 #000e;
+	text-overflow: shrink;
+	text-transform: uppercase;
+}
+
+#DailyTitleLine
+{
+	width: 420px;
+	height: 4px;
+	horizontal-align: center;
+	margin-top: 4px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(transparent), color-stop(0.2, #b17829), color-stop(0.8, #b17829), to(transparent));
+}
+
+#DailySub
+{
+	margin-top: 4px;
+	horizontal-align: center;
+	color: #e5e0c5;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-shadow: 0px 2px 10px 3.0 #000e;
+	text-overflow: shrink;
+	opacity: 0.9;
+}
+
+#DailyBanner
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border-radius: 8px;
+	box-shadow: inset 0px 0px 50px 5px #000000e9;
+}
+
+#DailyStrip
+{
+	width: 910px;
+	height: 184px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 30px;
+	flow-children: right;
+	overflow: scroll squish;
+}
+
+.DailyScroll HorizontalScrollBar
+{
+	visibility: collapse;
+	opacity: 0;
+	height: 0px;
+	width: 0px;
+}
+
+.DailyCard
+{
+	vertical-align: center;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.DailyCard:hover
+{
+	brightness: 1.25;
+}
+
+.DailyCardFrame
+{
+	horizontal-align: center;
+	vertical-align: center;
+	width: 108px;
+	height: 128px;
+	margin: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#1a2a3a), to(#243444));
+	border: 2px solid #3a4a5a;
+	border-radius: 8px;
+	box-shadow: 2px 2px 4px 0px #00000080;
+}
+
+.DailyCard:hover .DailyCardFrame
+{
+	border-color: rgba(100, 181, 246, 0.6);
+}
+
+.DailyCardText
+{
+	color: #e5e0c5;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-overflow: shrink;
+}
+
+.DailyCardDay
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 17px;
+	font-size: 15px;
+	text-align: center;
+}
+
+.DailyCardIcon
+{
+	width: 52px;
+	height: 52px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 40px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.DailyCardQty
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 26px;
+	width: 100px;
+	font-size: 12px;
+	text-align: center;
+	color: #ffd700;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-shadow: 0px 2px 6px 2.0 #000e;
+	z-index: 1;
+}
+
+.DailyCardNext
+{
+	brightness: 1.15;
+}
+
+.DailyCardNext:hover
+{
+	brightness: 1.4;
+}
+
+.DailyCardNext .DailyCardFrame
+{
+	border-color: #ffd700aa;
+	box-shadow: 0px 0px 8px 0px #ffd70055;
+}
+
+.DailyCardFx
+{
+	padding: -4px;
+	width: 100%;
+	height: 100%;
+}
+
+.DailyCardTaken
+{
+	brightness: 0.45;
+}
+
+.DailyCardTaken:hover
+{
+	brightness: 0.45;
+}
+
+#DailyNote
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 18px;
+	text-align: center;
+	color: #e5e0c5;
+	font-size: 15px;
+	text-overflow: shrink;
+	opacity: 0.8;
+}
