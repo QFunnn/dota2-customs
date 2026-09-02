@@ -20,6 +20,10 @@ require('./dig_veins_logic.js');
 const menus = ["setting", "store", "activity", "draw", "rank", "hero", "equipment", "cosmetic", "rune", "book", "guide", "community", "endscreen"];
 const storeActivityMenus = new Set(["battlepass", "growth_fund", "starsea"]);
 const STATIC_MENU_LIST = {
+  rank: {
+    Ladder: [],
+    Rank_CommonMatchHero: []
+  },
   activity: {
     first_celebration: [],
     battlepass: ["battlepass", "daily_task", "week_task"],
@@ -65,7 +69,7 @@ const STATIC_MENU_LIST = {
     Guide3: []
   }
 };
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const storeMenuOrder = ["Privilege", "Hot", "Gift", "Resource", "collection_vip", "collection_treasure", "Moon", "Universe"];
 const open_store = solid_utils.createServiceNetData("open_shop", {
@@ -157,6 +161,7 @@ const dropdownMenus = {
   store: () => buildDropdownItems(getStoreMenuList()),
   activity: () => buildActivityDropdownItems(getActivityMenuList()),
   draw: getDrawDropdownItems,
+  rank: () => buildDropdownItems(STATIC_MENU_LIST.rank),
   hero: () => buildDropdownItems(STATIC_MENU_LIST.hero),
   equipment: () => buildDropdownItems(STATIC_MENU_LIST.equipment),
   cosmetic: () => buildDropdownItems(STATIC_MENU_LIST.cosmetic),
@@ -226,11 +231,6 @@ function ReadBooleanSetting(value, defaultValue) {
   }
   return defaultValue;
 }
-solid_utils.createNetDataSignal("common", "game_state", {
-  state: "GameState_Prepare",
-  start_time: -1,
-  end_time: -1
-});
 const settle_info = solid_utils.createNetDataSignal("common", "settle_info", {
   end_time: -1,
   show_menu_bar: false

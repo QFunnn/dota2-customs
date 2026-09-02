@@ -1,0 +1,2140 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 0b85d8d 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 40;
+}
+
+#ArenaEndScreenRoot
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Show
+{
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Victory #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_bg_victory_png.vtex");
+}
+
+#ArenaEndScreenRoot.Defeat #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_bg_defeat_png.vtex");
+}
+
+#ArenaEndScreenRoot.Victory #ResultMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_bg_png.vtex");
+}
+
+#ArenaEndScreenRoot.Defeat #ResultMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_bg_png.vtex");
+}
+
+#ArenaEndScreenRoot.Step1 #ResultMedal
+{
+	animation-name: ArenaResultMedalReveal;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-out;
+}
+
+#ArenaEndScreenRoot.Step1 .ArenaResult
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Step2 .ArenaResult,#ArenaEndScreenRoot.Step3 .ArenaResult
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Step2 .ArenaFormationTeam,#ArenaEndScreenRoot.Step2 .ArenaResultActions
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Step3 #Background
+{
+	blur: gaussian(12);
+}
+
+#ArenaEndScreenRoot.Step3 .ArenaFormationTeam,#ArenaEndScreenRoot.Step3 .ArenaResultActions
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Step3 .Self .ArenaFormationHero
+{
+	animation-name: ArenaFormationEnterFromRight;
+	animation-fill-mode: both;
+}
+
+#ArenaEndScreenRoot.Step3 .Opponent .ArenaFormationHero
+{
+	animation-name: ArenaFormationEnterFromLeft;
+	animation-fill-mode: both;
+}
+
+#ArenaEndScreenRoot.Step3 .ArenaFormationHeroBarFill
+{
+	animation-name: ArenaFormationBarReveal;
+	animation-fill-mode: both;
+}
+
+@keyframes 'ArenaResultMedalReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: scaleX(0.72) scaleY(0.72);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationEnterFromRight'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(210px) scaleX(0.86) scaleY(0.86);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationEnterFromLeft'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(-210px) scaleX(0.86) scaleY(0.86);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationBarReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: scaleX(0);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+#Background
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	blur: gaussian(5);
+	transition-property: blur;
+	transition-duration: 0.45s;
+}
+
+#ResultMedal
+{
+	align: center top;
+	margin-top: 20px;
+	width: 470px;
+	height: 325px;
+	background-size: 100%;
+}
+
+#ResultParticle
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ResultIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_text_en_png.vtex");
+	background-size: 100%;
+}
+
+.Language_schinese .Victory #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_text_cn_png.vtex");
+}
+
+.Defeat #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_text_en_png.vtex");
+}
+
+.Language_schinese .Defeat #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_text_cn_png.vtex");
+}
+
+.ArenaResult
+{
+	align: center center;
+	flow-children: right;
+	padding: 20px 24px 18px;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+}
+
+.ArenaResultMetrics
+{
+	margin: 20px 20px 20px;
+	align: center center;
+	flow-children: down;
+}
+
+.ArenaResultMetric
+{
+	width: 260px;
+	height: 136px;
+	margin: 6px 0px;
+	padding: 2px 2px;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_frame_05_png.vtex");
+	background-size: 100%;
+	align: center center;
+}
+
+.ArenaResultMetricContent
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.ArenaResultMetricBackground
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	opacity: 0.6;
+	background-color: black;
+}
+
+#ArenaEndScreenRoot.Victory .ArenaResultMetricBackground
+{
+	background-color: #3d2c2a;
+}
+
+.ArenaResultMetricHeader
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaResultMetricLabel
+{
+	vertical-align: center;
+	font-size: 26px;
+	letter-spacing: 2px;
+	color: #b9a782;
+	font-weight: bold;
+}
+
+.ArenaResultMetricChange
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.ArenaResultMetricBefore,.ArenaResultMetricAfter
+{
+	vertical-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #f2e6cb;
+}
+
+.ArenaResultMetricArrow
+{
+	margin: 0px 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #9b907d;
+}
+
+.ArenaResultMetricDelta
+{
+	margin-left: 10px;
+	vertical-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.ArenaResultMetricFinalValue
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #f2e6cb;
+}
+
+.ArenaResultMetricDelta.Gain
+{
+	color: #91da87;
+}
+
+.ArenaResultMetricDelta.Loss
+{
+	color: #e57b72;
+}
+
+.ArenaFormationTeam
+{
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_frame_07_png.vtex");
+	background-size: 100%;
+	padding: 20px;
+}
+
+.ArenaFormationTeamTitle
+{
+	width: 100%;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.ArenaFormationTeamTitle #LineLeft,.ArenaFormationTeamTitle #LineRight
+{
+	width: 133px;
+	height: 16px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_img_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationTeamTitle #LineLeft
+{
+	margin-left: 26px;
+}
+
+.ArenaFormationTeamTitle #LineRight
+{
+	margin-right: 26px;
+	transform: scaleX(-1);
+}
+
+.ArenaFormationTeamLabel
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+.ArenaFormationTeamLabel Label
+{
+	width: 100%;
+	vertical-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	color: #abdcef;
+}
+
+.ArenaFormationTeam.Opponent .ArenaFormationTeamLabel Label
+{
+	color: #f0b0a5;
+}
+
+.ArenaFormationHeroList
+{
+	width: 720px;
+	margin-top: 20px;
+	height: 406px;
+	horizontal-align: right;
+	flow-children: right;
+}
+
+.ArenaFormationTeam.Opponent .ArenaFormationHeroList
+{
+	horizontal-align: left;
+}
+
+.ArenaFormationHero
+{
+	width: 160px;
+	height: 404px;
+	margin: 0px 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 8px;
+	animation-duration: 0.36s;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	background-image: url("s2r://panorama/images/custom_game/e3_end/item_card_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationTeam.Defeated .ArenaFormationHeroModel
+{
+	saturation: 0;
+}
+
+.Self .ArenaFormationHero
+{
+	opacity: 0;
+	transform: translateX(210px) scaleX(0.86) scaleY(0.86);
+}
+
+.Opponent .ArenaFormationHero
+{
+	opacity: 0;
+	transform: translateX(-210px) scaleX(0.86) scaleY(0.86);
+}
+
+.Opponent .Hero0,.Self .Hero3
+{
+	animation-delay: 0s;
+}
+
+.Opponent .Hero1,.Self .Hero2
+{
+	animation-delay: 0.12s;
+}
+
+.Opponent .Hero2,.Self .Hero1
+{
+	animation-delay: 0.24s;
+}
+
+.Opponent .Hero3,.Self .Hero0
+{
+	animation-delay: 0.36s;
+}
+
+.ArenaFormationHeroModel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/mask_a_png.vtex");
+}
+
+.ArenaFormationHeroModel .PortraitsFullBodyLoadout
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ArenaFormationHeroKilled
+{
+	width: 60px;
+	height: 64px;
+	align: center center;
+	margin-top: 150px;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/hero_killed_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroStats
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	height: 86px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/panel_black_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroStatGroup
+{
+	width: 100%;
+	height: 50%;
+	flow-children: down;
+}
+
+.ArenaFormationHeroValue
+{
+	horizontal-align: left;
+	flow-children: right;
+	margin-left: 20px;
+}
+
+.ArenaFormationHeroValueIcon
+{
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_attack_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroValueIcon.Taken
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_shield_png.vtex");
+}
+
+.ArenaFormationHeroDamage
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 17px;
+	font-weight: bold;
+	color: #fae8bd;
+	margin-left: 5px;
+}
+
+.ArenaFormationHeroBarTrack
+{
+	width: 80%;
+	height: 10px;
+	margin-top: 5px;
+	horizontal-align: center;
+	background-color: #293842;
+}
+
+.ArenaFormationHeroBarFill
+{
+	height: 100%;
+	background-color: #5fb7d8;
+	opacity: 0;
+	transform: scaleX(0);
+	transform-origin: 0% 50%;
+	animation-duration: 0.3s;
+	animation-delay: 0.3s;
+}
+
+.Opponent .ArenaFormationHeroBarFill
+{
+	background-color: #d8756b;
+}
+
+.ArenaFormationHeroDamage.Taken
+{
+	color: #f2b27e;
+}
+
+.ArenaFormationHeroBarFill.Taken,.Opponent .ArenaFormationHeroBarFill.Taken
+{
+	background-color: #e8a35c;
+	animation-delay: 0.45s;
+}
+
+.ArenaFormationHeroRatio
+{
+	horizontal-align: center;
+	margin-top: 3px;
+	font-size: 12px;
+	color: #d1c3ab;
+}
+
+.ArenaFormationEmpty
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #92989a;
+}
+
+.ArenaResultActions
+{
+	align: center bottom;
+	margin-bottom: 120px;
+	flow-children: right;
+	transition-property: opacity;
+	transition-duration: 0.28s;
+}
+
+.ArenaRematchAction
+{
+	margin-right: 14px;
+	flow-children: down;
+}
+
+.ArenaRematchCount
+{
+	horizontal-align: center;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #dac58f;
+}
+
+.ArenaRematchAction .EOM_Button,.ArenaResultActions > .EOM_Button
+{
+	vertical-align: bottom;
+}
+
+.EOM_BaseButton
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_BaseButton:not(:disabled):hover
+{
+	brightness: 2;
+}
+
+.EOM_BaseButton:not(:disabled):active
+{
+	brightness: 0.5;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_BaseButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.EOM_Button
+{
+	width: 266px;
+	height: 64px;
+	padding: 10px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, color, pre-transform-scale2d;
+	transition-duration: 0.1s, 0.1s, 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button Label
+{
+	margin-bottom: 2px;
+	color: #FDEFC8;
+	font-size: 22px;
+	line-height: 24px;
+	letter-spacing: 2px;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	transition-property: color, opacity;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Button:not(:disabled):hover
+{
+	brightness: 1;
+}
+
+.EOM_Button:not(:disabled):hover Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:not(:disabled):active
+{
+	brightness: 1;
+	pre-transform-scale2d: 0.9;
+}
+
+.EOM_Button:not(:disabled):active Label
+{
+	color: #FEF5DA;
+}
+
+.EOM_Button:disabled
+{
+	saturation: 1;
+	brightness: 1;
+	cursor: not-allowed;
+}
+
+.EOM_Button:disabled Label
+{
+	color: #9C9C9C;
+}
+
+.EOM_Button.color-Red
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_red_png.vtex");
+}
+
+.EOM_Button.color-Green
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_green_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Green:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Purple
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_purple_png.vtex");
+}
+
+.EOM_Button.color-Gray
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_disabled_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gray:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Gold
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_yellow_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Gold:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Blue
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/button/btn_blue_png.vtex");
+}
+
+.EOM_Button.color-Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_brown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Confirm:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.color-Cancel
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_normal_png.vtex"), url("s2r://panorama/images/custom_game/conv/button/conv_btn_darkbrown_hover_png.vtex");
+	background-size: 100%, 0%;
+}
+
+.EOM_Button.color-Cancel:not(:disabled):hover
+{
+	background-size: 0%, 100%;
+}
+
+.EOM_Button.size-Small
+{
+	width: 154px;
+	height: 44px;
+	padding: 1px 5px 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+}
+
+.EOM_Button.size-Small:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_disabled_png.vtex");
+}
+
+.EOM_Button.size-Small:not(:disabled):hover
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_small_png.vtex");
+	brightness: 1.2;
+	background-size: 100%;
+}
+
+.EOM_Button.size-Small Label
+{
+	font-size: 18px;
+	text-overflow: shrink;
+}
+
+.EOM_Button.size-Large
+{
+	ui-scale: 120%;
+}
+
+.EOM_Button .EOM_Button_Content
+{
+	align: center center;
+	flow-children: right;
+}
+
+.EOM_Button .EOM_Button_Content > Image
+{
+	margin: 0px 4px;
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.EOM_Button.Loading .EOM_Button_LoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
+}
+
+.EOM_Button.Loading_Refresh .EOM_Button_LoadingIcon
+{
+	background-image: url("s2r://panorama/images/control_icons/refresh_psd.vtex");
+}
+
+.EOM_CloseButton
+{
+	width: 50px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsFullBodyLoadout #PortraitsFullBodyLoadoutBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PortraitsCourier #PortraitsCourierScene
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CommonItem
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CommonItem.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.CommonItem.large .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_big_png.vtex");
+}
+
+.CommonItem .ItemIcon
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.CommonItem .Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.CommonItem .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_png.vtex");
+}
+
+.CommonItem .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_png.vtex");
+}
+
+.CommonItem .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_png.vtex");
+}
+
+.CommonItem .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_png.vtex");
+}
+
+.CommonItem .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_png.vtex");
+}
+
+.CommonItem .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_png.vtex");
+}
+
+.CommonItem .StackCount
+{
+	align: right bottom;
+	margin: 10%;
+	font-size: 16px;
+	color: white;
+}
+
+.EOM_Breadcrumb
+{
+	flow-children: right;
+}
+
+.EOM_Breadcrumb .EOM_BreadcrumbSeparator
+{
+	font-size: 20px;
+	color: #939da022;
+	margin: 0px 12px;
+}
+
+.EOM_Breadcrumb > TabButton Label
+{
+	margin-top: 2px;
+	color: #939da044;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+.EOM_Breadcrumb > TabButton:selected Label
+{
+	color: white;
+	sound: "ui_rollover_micro";
+}
+
+.EOM_Breadcrumb > TabButton:hover Label
+{
+	color: #CCCCCC;
+}
+
+.EOM_Breadcrumb > TabButton:active
+{
+	transform: translateY(2px);
+}
+
+.EOM_Breadcrumb > TabButton:active:selected
+{
+	transform: translateY(0px);
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+#ArenaDamageDetailOverlay
+{
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+#ArenaDamageDetailBackdrop
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000cc;
+}
+
+#ArenaDamageDetailContainer
+{
+	align: center center;
+	width: 1120px;
+	height: 680px;
+	background-image: url("s2r://panorama/images/custom_game/s2_settings/s2_popup_png.vtex");
+	background-size: 100% 100%;
+}
+
+#ArenaDamageDetailTitle
+{
+	width: 592px;
+	height: 34px;
+	horizontal-align: center;
+	margin-top: 40px;
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_board_title_png.vtex");
+	background-size: 592px 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#ArenaDamageDetailTitleText
+{
+	align: center center;
+	text-align: center;
+	font-size: 24px;
+	font-weight: normal;
+	color: #e1cb7e;
+	text-shadow: 0px 0px 3px 3 rgba(0, 0, 0, 0.5);
+}
+
+#ArenaDamageDetailClose
+{
+	horizontal-align: right;
+	margin-top: 15px;
+	margin-right: -6px;
+}
+
+#ArenaDamageDetailClose:active
+{
+	sound: "ui_settings_out_multi";
+}
+
+#ArenaDamageDetailClose:hover
+{
+	wash-color: none;
+}
+
+#ArenaDamageDetailContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 100px 60px 60px 60px;
+}
+
+#ArenaDamageDetailPlayerSummary,#ArenaDamageDetailColumns
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#ArenaDamageDetailTabs
+{
+	horizontal-align: center;
+	margin-bottom: 12px;
+}
+
+#ArenaDamageDetailTabs TabButton Label
+{
+	font-size: 20px;
+}
+
+#ArenaDamageDetailPlayerSummary
+{
+	height: 76px;
+	margin-bottom: 12px;
+}
+
+.ArenaDamageDetailPlayerTotal
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 2px 14px;
+	background-color: #132b39d9;
+	border-left: 2px solid #5fb7d8;
+	flow-children: right;
+}
+
+.ArenaDamageDetailPlayerTotal.Opponent
+{
+	margin-left: 16px;
+	background-color: #381b1bd9;
+	border-left-color: #d8756b;
+}
+
+.ArenaDamageDetailPlayerAvatar
+{
+	width: 72px;
+	height: 72px;
+	vertical-align: center;
+}
+
+.ArenaDamageDetailPlayerInfo
+{
+	width: fill-parent-flow(1);
+	margin-left: 10px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.ArenaDamageDetailPlayerName Label
+{
+	font-size: 17px;
+	color: #b9dced;
+	text-overflow: shrink;
+}
+
+.ArenaDamageDetailPlayerTotal.Opponent .ArenaDamageDetailPlayerName Label
+{
+	color: #f0b0a5;
+}
+
+.ArenaDamageDetailTotalDamage
+{
+	font-size: 22px;
+	font-family: Reaver;
+	font-weight: bold;
+	color: #fae8bd;
+}
+
+#ArenaDamageDetailColumns
+{
+	height: fill-parent-flow(1);
+}
+
+.ArenaDamageDetailColumn
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+	background-color: #10232dcc;
+	border: 1px solid #31596b;
+}
+
+.ArenaDamageDetailColumn.Opponent
+{
+	margin-left: 16px;
+	background-color: #2d1719cc;
+	border-color: #714044;
+}
+
+.ArenaDamageDetailHero
+{
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	flow-children: down;
+	border-top: 1px solid #49616b;
+}
+
+.ArenaDamageDetailHero.Opponent
+{
+	border-top-color: #70474a;
+}
+
+.ArenaDamageDetailHeroHeader,.ArenaDamageDetailHeroValueRow,.ArenaDamageDetailAbility
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.ArenaDamageDetailHeroPortrait
+{
+	width: 78px;
+	height: 44px;
+	margin-right: 10px;
+}
+
+.ArenaDamageDetailHeroInfo
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+}
+
+.ArenaDamageDetailHeroName
+{
+	font-size: 17px;
+	font-weight: bold;
+	color: #f3e4bd;
+	text-overflow: shrink;
+}
+
+.ArenaDamageDetailHeroDamage
+{
+	width: fill-parent-flow(1);
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fae8bd;
+}
+
+.ArenaDamageDetailHeroRatio,.ArenaDamageDetailAbilityRatio
+{
+	color: #a8b9c1;
+	font-size: 14px;
+}
+
+.ArenaDamageDetailHeroBarTrack
+{
+	width: 100%;
+	height: 5px;
+	margin-top: 3px;
+	background-color: #293842;
+}
+
+.ArenaDamageDetailHeroBarFill
+{
+	height: 100%;
+	background-color: #5fb7d8;
+}
+
+.ArenaDamageDetailHero.Opponent .ArenaDamageDetailHeroBarFill
+{
+	background-color: #d8756b;
+}
+
+.ArenaDamageDetailAbilityList
+{
+	width: 100%;
+	margin-top: 8px;
+	padding-top: 6px;
+	flow-children: down;
+}
+
+.ArenaDamageDetailHero.Opponent .ArenaDamageDetailAbilityList
+{
+	border-top-color: #70474a;
+}
+
+.ArenaDamageDetailAbility
+{
+	height: 27px;
+	margin-top: 2px;
+}
+
+.ArenaDamageDetailAbility .ArenaDamageDetailAbilityIcon,.ArenaDamageDetailAttackIcon
+{
+	width: 24px;
+	height: 24px;
+	margin-right: 7px;
+	vertical-align: center;
+}
+
+.ArenaDamageDetailAttackIcon
+{
+	text-align: center;
+	font-size: 18px;
+	color: #d6c484;
+}
+
+.ArenaDamageDetailAbilityName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 14px;
+	color: #d8e5e7;
+	text-overflow: shrink;
+}
+
+.ArenaDamageDetailAbilityDamage
+{
+	width: 82px;
+	vertical-align: center;
+	text-align: right;
+	font-size: 14px;
+	color: #f1dcaa;
+}
+
+.ArenaDamageDetailAbilityRatio
+{
+	width: 42px;
+	vertical-align: center;
+	text-align: right;
+}
+
+.ArenaDamageDetailEmpty
+{
+	margin-top: 8px;
+	font-size: 13px;
+	color: #92989a;
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 40;
+}
+
+#ArenaEndScreenRoot
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Show
+{
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Victory #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_bg_victory_png.vtex");
+}
+
+#ArenaEndScreenRoot.Defeat #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_bg_defeat_png.vtex");
+}
+
+#ArenaEndScreenRoot.Victory #ResultMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_bg_png.vtex");
+}
+
+#ArenaEndScreenRoot.Defeat #ResultMedal
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_bg_png.vtex");
+}
+
+#ArenaEndScreenRoot.Step1 #ResultMedal
+{
+	animation-name: ArenaResultMedalReveal;
+	animation-duration: 0.45s;
+	animation-timing-function: ease-out;
+}
+
+#ArenaEndScreenRoot.Step1 .ArenaResult
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Step2 .ArenaResult,#ArenaEndScreenRoot.Step3 .ArenaResult
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Step2 .ArenaFormationTeam,#ArenaEndScreenRoot.Step2 .ArenaResultActions
+{
+	opacity: 0;
+	visibility: collapse;
+}
+
+#ArenaEndScreenRoot.Step3 #Background
+{
+	blur: gaussian(12);
+}
+
+#ArenaEndScreenRoot.Step3 .ArenaFormationTeam,#ArenaEndScreenRoot.Step3 .ArenaResultActions
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#ArenaEndScreenRoot.Step3 .Self .ArenaFormationHero
+{
+	animation-name: ArenaFormationEnterFromRight;
+	animation-fill-mode: both;
+}
+
+#ArenaEndScreenRoot.Step3 .Opponent .ArenaFormationHero
+{
+	animation-name: ArenaFormationEnterFromLeft;
+	animation-fill-mode: both;
+}
+
+#ArenaEndScreenRoot.Step3 .ArenaFormationHeroBarFill
+{
+	animation-name: ArenaFormationBarReveal;
+	animation-fill-mode: both;
+}
+
+@keyframes 'ArenaResultMedalReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: scaleX(0.72) scaleY(0.72);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationEnterFromRight'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(210px) scaleX(0.86) scaleY(0.86);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationEnterFromLeft'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateX(-210px) scaleX(0.86) scaleY(0.86);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+@keyframes 'ArenaFormationBarReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: scaleX(0);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: none;
+	}
+	
+}
+
+#Background
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	blur: gaussian(5);
+	transition-property: blur;
+	transition-duration: 0.45s;
+}
+
+#ResultMedal
+{
+	align: center top;
+	margin-top: 20px;
+	width: 470px;
+	height: 325px;
+	background-size: 100%;
+}
+
+#ResultParticle
+{
+	width: 100%;
+	height: 100%;
+}
+
+#ResultIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_text_en_png.vtex");
+	background-size: 100%;
+}
+
+.Language_schinese .Victory #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_victory_text_cn_png.vtex");
+}
+
+.Defeat #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_text_en_png.vtex");
+}
+
+.Language_schinese .Defeat #ResultIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_defeat_text_cn_png.vtex");
+}
+
+.ArenaResult
+{
+	align: center center;
+	flow-children: right;
+	padding: 20px 24px 18px;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+}
+
+.ArenaResultMetrics
+{
+	margin: 20px 20px 20px;
+	align: center center;
+	flow-children: down;
+}
+
+.ArenaResultMetric
+{
+	width: 260px;
+	height: 136px;
+	margin: 6px 0px;
+	padding: 2px 2px;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_frame_05_png.vtex");
+	background-size: 100%;
+	align: center center;
+}
+
+.ArenaResultMetricContent
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.ArenaResultMetricBackground
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	opacity: 0.6;
+	background-color: black;
+}
+
+#ArenaEndScreenRoot.Victory .ArenaResultMetricBackground
+{
+	background-color: #3d2c2a;
+}
+
+.ArenaResultMetricHeader
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaResultMetricLabel
+{
+	vertical-align: center;
+	font-size: 26px;
+	letter-spacing: 2px;
+	color: #b9a782;
+	font-weight: bold;
+}
+
+.ArenaResultMetricChange
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.ArenaResultMetricBefore,.ArenaResultMetricAfter
+{
+	vertical-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #f2e6cb;
+}
+
+.ArenaResultMetricArrow
+{
+	margin: 0px 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #9b907d;
+}
+
+.ArenaResultMetricDelta
+{
+	margin-left: 10px;
+	vertical-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.ArenaResultMetricFinalValue
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #f2e6cb;
+}
+
+.ArenaResultMetricDelta.Gain
+{
+	color: #91da87;
+}
+
+.ArenaResultMetricDelta.Loss
+{
+	color: #e57b72;
+}
+
+.ArenaFormationTeam
+{
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/e3_frame_07_png.vtex");
+	background-size: 100%;
+	padding: 20px;
+}
+
+.ArenaFormationTeamTitle
+{
+	width: 100%;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.ArenaFormationTeamTitle #LineLeft,.ArenaFormationTeamTitle #LineRight
+{
+	width: 133px;
+	height: 16px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_img_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationTeamTitle #LineLeft
+{
+	margin-left: 26px;
+}
+
+.ArenaFormationTeamTitle #LineRight
+{
+	margin-right: 26px;
+	transform: scaleX(-1);
+}
+
+.ArenaFormationTeamLabel
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+}
+
+.ArenaFormationTeamLabel Label
+{
+	width: 100%;
+	vertical-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+	color: #abdcef;
+}
+
+.ArenaFormationTeam.Opponent .ArenaFormationTeamLabel Label
+{
+	color: #f0b0a5;
+}
+
+.ArenaFormationHeroList
+{
+	width: 720px;
+	margin-top: 20px;
+	height: 406px;
+	horizontal-align: right;
+	flow-children: right;
+}
+
+.ArenaFormationTeam.Opponent .ArenaFormationHeroList
+{
+	horizontal-align: left;
+}
+
+.ArenaFormationHero
+{
+	width: 160px;
+	height: 404px;
+	margin: 0px 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 8px;
+	animation-duration: 0.36s;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	background-image: url("s2r://panorama/images/custom_game/e3_end/item_card_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationTeam.Defeated .ArenaFormationHeroModel
+{
+	saturation: 0;
+}
+
+.Self .ArenaFormationHero
+{
+	opacity: 0;
+	transform: translateX(210px) scaleX(0.86) scaleY(0.86);
+}
+
+.Opponent .ArenaFormationHero
+{
+	opacity: 0;
+	transform: translateX(-210px) scaleX(0.86) scaleY(0.86);
+}
+
+.Opponent .Hero0,.Self .Hero3
+{
+	animation-delay: 0s;
+}
+
+.Opponent .Hero1,.Self .Hero2
+{
+	animation-delay: 0.12s;
+}
+
+.Opponent .Hero2,.Self .Hero1
+{
+	animation-delay: 0.24s;
+}
+
+.Opponent .Hero3,.Self .Hero0
+{
+	animation-delay: 0.36s;
+}
+
+.ArenaFormationHeroModel
+{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/masks/mask_a_png.vtex");
+}
+
+.ArenaFormationHeroModel .PortraitsFullBodyLoadout
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ArenaFormationHeroKilled
+{
+	width: 60px;
+	height: 64px;
+	align: center center;
+	margin-top: 150px;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/hero_killed_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroStats
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	height: 86px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/e3_end/panel_black_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroStatGroup
+{
+	width: 100%;
+	height: 50%;
+	flow-children: down;
+}
+
+.ArenaFormationHeroValue
+{
+	horizontal-align: left;
+	flow-children: right;
+	margin-left: 20px;
+}
+
+.ArenaFormationHeroValueIcon
+{
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_attack_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaFormationHeroValueIcon.Taken
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_attribute_shield_png.vtex");
+}
+
+.ArenaFormationHeroDamage
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 17px;
+	font-weight: bold;
+	color: #fae8bd;
+	margin-left: 5px;
+}
+
+.ArenaFormationHeroBarTrack
+{
+	width: 80%;
+	height: 10px;
+	margin-top: 5px;
+	horizontal-align: center;
+	background-color: #293842;
+}
+
+.ArenaFormationHeroBarFill
+{
+	height: 100%;
+	background-color: #5fb7d8;
+	opacity: 0;
+	transform: scaleX(0);
+	transform-origin: 0% 50%;
+	animation-duration: 0.3s;
+	animation-delay: 0.3s;
+}
+
+.Opponent .ArenaFormationHeroBarFill
+{
+	background-color: #d8756b;
+}
+
+.ArenaFormationHeroDamage.Taken
+{
+	color: #f2b27e;
+}
+
+.ArenaFormationHeroBarFill.Taken,.Opponent .ArenaFormationHeroBarFill.Taken
+{
+	background-color: #e8a35c;
+	animation-delay: 0.45s;
+}
+
+.ArenaFormationHeroRatio
+{
+	horizontal-align: center;
+	margin-top: 3px;
+	font-size: 12px;
+	color: #d1c3ab;
+}
+
+.ArenaFormationEmpty
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #92989a;
+}
+
+.ArenaResultActions
+{
+	align: center bottom;
+	margin-bottom: 120px;
+	flow-children: right;
+	transition-property: opacity;
+	transition-duration: 0.28s;
+}
+
+.ArenaRematchAction
+{
+	margin-right: 14px;
+	flow-children: down;
+}
+
+.ArenaRematchCount
+{
+	horizontal-align: center;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #dac58f;
+}
+
+.ArenaRematchAction .EOM_Button,.ArenaResultActions > .EOM_Button
+{
+	vertical-align: bottom;
+}

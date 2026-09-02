@@ -12,17 +12,24 @@
 
 var libs = require('./libs.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
+var Player = require('./Player.js');
+var StoreTagPage = require('./StoreTagPage.js');
 var EOM_Loading = require('./EOM_Loading.js');
 var EOM_Button = require('./EOM_Button.js');
-var Player = require('./Player.js');
+var EOM_Countdown = require('./EOM_Countdown.js');
+var EOM_HeroImage = require('./EOM_HeroImage.js');
+var EOM_RedMark = require('./EOM_RedMark.js');
+var solid_utils = require('./solid_utils.js');
 require('./service_netdata_helper.js');
-require('./solid_utils.js');
-require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
+require('./StoreItem.js');
+require('./EOM_ImageNumber.js');
+require('./equipment_utils.js');
 
 const PAGE_SIZE = 10;
 const MAX_PAGE = 10;
-const DEFAULT_AVATAR_BORDER_ID = "1710000";
+const PAGE_BUTTON_COUNT = 10;
+const DEFAULT_AVATAR_BORDER_ID$1 = "1710000";
 const MIN_REQUEST_INTERVAL_MS = 30 * 1000;
 const leaderboardCache = CustomUIConfig.__commonMatchLeaderboardCache ??= {};
 const lastRequestTimes = {};
@@ -86,10 +93,10 @@ function getPlayerExtraData(data, playerID = getDisplayPlayerID(data)) {
 function getPlayerHeroID(data, playerID) {
   return firstFiniteNumber(0, data.teamExtra.player_data?.[playerID]?.hero_id);
 }
-function getAvatarBorder(extraData) {
+function getAvatarBorder$1(extraData) {
   const border = extraData?.border;
   if (border == undefined || border == "" || border == "0") {
-    return DEFAULT_AVATAR_BORDER_ID;
+    return DEFAULT_AVATAR_BORDER_ID$1;
   }
   return border;
 }
@@ -508,7 +515,7 @@ function LeaderboardAvatar(props) {
       return props.class;
     },
     get borderid() {
-      return getAvatarBorder(extraData());
+      return getAvatarBorder$1(extraData());
     },
     get children() {
       return [libs.createComponent(Player.EOM_Avatar, {
@@ -707,6 +714,14 @@ function EmptyRankList(props) {
   })();
 }
 function PageControl(props) {
+  const pageCount = () => props.pageCount ?? MAX_PAGE;
+  const pages = libs.createMemo(() => {
+    const start = Math.floor((props.page - 1) / PAGE_BUTTON_COUNT) * PAGE_BUTTON_COUNT + 1;
+    const end = Math.min(start + PAGE_BUTTON_COUNT - 1, pageCount());
+    return Array.from({
+      length: end - start + 1
+    }, (_, index) => start + index);
+  });
   return (() => {
     const _el$38 = libs.createElement("Panel", {
         id: "RankPageControl"
@@ -722,7 +737,9 @@ function PageControl(props) {
       className: "PageLeft"
     }), _el$39);
     libs.insert(_el$39, libs.createComponent(libs.For, {
-      each: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      get each() {
+        return pages();
+      },
       children: page => libs.createComponent(EOM_Button.EOM_BaseButton, {
         onactivate: () => props.setPage(page),
         get className() {
@@ -741,7 +758,7 @@ function PageControl(props) {
     }));
     libs.insert(_el$38, libs.createComponent(EOM_Button.EOM_BaseButton, {
       get enabled() {
-        return props.page < MAX_PAGE;
+        return props.page < pageCount();
       },
       onactivate: () => props.setPage(props.page + 1),
       className: "PageRight"
@@ -750,12 +767,891 @@ function PageControl(props) {
   })();
 }
 
+const PVP_AUTO_REQUEST_INTERVAL = 5 * 60;
+const DEFAULT_PVP_SCORE = 1000;
+const DEFAULT_AVATAR_BORDER_ID = "1710000";
+const DAILY_PVP_BATTLE_COUNT = 5;
+const LEADERBOARD_PAGE_SIZE = 10;
+const LEADERBOARD_MAX_PAGE = 50;
+const LEADERBOARD_MIN_REQUEST_INTERVAL_MS = 30 * 1000;
+let lastPvpRequestTime = 0;
+const pvpLeaderboardCache = CustomUIConfig.__pvpLeaderboardCache ??= {};
+const pvpLeaderboardLastRequestTimes = {};
+const [pvpLeaderboardCacheVersion, setPvpLeaderboardCacheVersion] = libs.createSignal(0);
+function getPvpLeaderboardPageKey(seasonID, page) {
+  return `${seasonID}:${page}`;
+}
+function getAvatarBorder(extraData) {
+  const border = extraData?.border;
+  if (border == undefined || border == "" || border == "0") {
+    return DEFAULT_AVATAR_BORDER_ID;
+  }
+  return border;
+}
+function normalizeLadderRank(data, defaultScore = DEFAULT_PVP_SCORE, defaultPvpPower = 0) {
+  const extraData = JSON.parseSafe(data.team_extra_data);
+  const playerExtraData = data.player_extra_data?.[data.team_id]?.extra_data;
+  const pvpPower = Number(playerExtraData?.pvp_power);
+  return {
+    accountID: data.team_id,
+    rank: data.rank,
+    score: toFiniteNumber(extraData?.score, defaultScore),
+    pvpPower: Number.isFinite(pvpPower) ? pvpPower : defaultPvpPower,
+    borderID: getAvatarBorder(playerExtraData)
+  };
+}
+function LadderButton(props) {
+  const [local, others] = libs.splitProps(props, ["class", "children"]);
+  return libs.createComponent(EOM_Button.EOM_BaseButton, libs.mergeProps$1(others, {
+    get ["class"]() {
+      return libs.classNames("LadderButton", local.class);
+    },
+    get children() {
+      return [libs.createElement("Image", {
+        "class": "LadderButtonIcon"
+      }, null), (() => {
+        const _el$2 = libs.createElement("Panel", {
+            "class": "LadderButtonContent"
+          }, null),
+          _el$3 = libs.createElement("Label", {
+            "class": "LadderButtonLabel",
+            get text() {
+              return props.labelText ?? "";
+            }
+          }, _el$2);
+        libs.effect(_$p => libs.setProp(_el$3, "text", props.labelText ?? "", _$p));
+        return _el$2;
+      })(), libs.memo(() => local.children)];
+    }
+  }));
+}
+function PlayerAvatar(props) {
+  const accountID = () => props.accountID ?? "0";
+  return (() => {
+    const _el$4 = libs.createElement("Panel", {
+      "class": "PlayerAvatar"
+    }, null);
+    libs.insert(_el$4, libs.createComponent(Player.AvatarBorder, {
+      get borderid() {
+        return props.borderID ?? DEFAULT_AVATAR_BORDER_ID;
+      },
+      get children() {
+        return [libs.createComponent(Player.EOM_Avatar, {
+          "class": "Avatar",
+          get accountid() {
+            return accountID();
+          }
+        }), (() => {
+          const _el$5 = libs.createElement("Panel", {
+            "class": "TipsArea"
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$5, "customTooltip", accountID() === "0" ? undefined : {
+            name: "player_info",
+            steam_id: accountID()
+          }, _$p));
+          return _el$5;
+        })()];
+      }
+    }));
+    return _el$4;
+  })();
+}
+function LadderChartScore(props) {
+  return (() => {
+    const _el$6 = libs.createElement("Panel", {
+        "class": "LadderChartScore"
+      }, null);
+      libs.createElement("Image", {
+        "class": "ChartScoreBadge"
+      }, _el$6);
+      const _el$8 = libs.createElement("Label", {
+        "class": "ChartScoreValue",
+        get text() {
+          return `${props.score ?? 0}`;
+        }
+      }, _el$6);
+    libs.effect(_$p => libs.setProp(_el$8, "text", `${props.score ?? 0}`, _$p));
+    return _el$6;
+  })();
+}
+function LadderLobbyBigChartItem(props) {
+  const [local, others] = libs.splitProps(props, ["class", "rankData"]);
+  return (() => {
+    const _el$9 = libs.createElement("Panel", libs.mergeProps$1(others, {
+        get ["class"]() {
+          return libs.classNames("LadderLobbyBigChartItem", local.class);
+        }
+      }), null);
+      libs.createElement("Image", {
+        "class": "LadderLobbyBigChartItemBG"
+      }, _el$9);
+      const _el$1 = libs.createElement("Panel", {
+        "class": "LadderLobbyBigChartItemContent"
+      }, _el$9),
+      _el$10 = libs.createElement("Panel", {
+        "class": "ChartPlayerName"
+      }, _el$1);
+      libs.createElement("Image", {
+        "class": "ChartPlayerNameBG"
+      }, _el$10);
+      const _el$12 = libs.createElement("Panel", {
+        "class": "LadderLobbyBigChartScoreContent"
+      }, _el$1);
+      libs.createElement("Image", {
+        "class": "LadderLobbyBigChartScoreBG"
+      }, _el$12);
+    libs.spread(_el$9, libs.mergeProps$1(others, {
+      get ["class"]() {
+        return libs.classNames("LadderLobbyBigChartItem", local.class);
+      }
+    }), true);
+    libs.insert(_el$1, libs.createComponent(PlayerAvatar, {
+      get accountID() {
+        return local.rankData?.accountID;
+      },
+      get borderID() {
+        return local.rankData?.borderID;
+      }
+    }), _el$10);
+    libs.insert(_el$10, libs.createComponent(libs.Show, {
+      get when() {
+        return local.rankData !== undefined;
+      },
+      get fallback() {
+        return libs.createElement("Label", {
+          text: "-"
+        }, null);
+      },
+      get children() {
+        return libs.createComponent(Player.PlayerName, {
+          get accountid() {
+            return local.rankData?.accountID;
+          }
+        });
+      }
+    }), null);
+    libs.insert(_el$12, libs.createComponent(LadderChartScore, {
+      get score() {
+        return local.rankData?.score;
+      }
+    }), null);
+    return _el$9;
+  })();
+}
+function LadderChartRowHeader() {
+  return (() => {
+    const _el$15 = libs.createElement("Panel", {
+        id: "LadderChartRowHeader"
+      }, null),
+      _el$16 = libs.createElement("Panel", {
+        "class": "LadderChartHeaderCol LadderNumber"
+      }, _el$15),
+      _el$17 = libs.createElement("Label", {
+        get text() {
+          return GetLocalization("#LadderChart_LadderNumber");
+        }
+      }, _el$16),
+      _el$18 = libs.createElement("Panel", {
+        "class": "LadderChartHeaderCol PlayerInfo"
+      }, _el$15),
+      _el$19 = libs.createElement("Label", {
+        get text() {
+          return GetLocalization("#LadderChart_LadderPlayer");
+        }
+      }, _el$18),
+      _el$20 = libs.createElement("Panel", {
+        "class": "LadderChartHeaderCol LadderGroup"
+      }, _el$15),
+      _el$21 = libs.createElement("Label", {
+        get text() {
+          return GetLocalization("#LadderChart_LadderPower");
+        }
+      }, _el$20),
+      _el$22 = libs.createElement("Panel", {
+        "class": "LadderChartHeaderCol LadderScore"
+      }, _el$15),
+      _el$23 = libs.createElement("Label", {
+        get text() {
+          return GetLocalization("#LadderChart_LadderScore");
+        }
+      }, _el$22);
+    libs.effect(_p$ => {
+      const _v$ = GetLocalization("#LadderChart_LadderNumber"),
+        _v$2 = GetLocalization("#LadderChart_LadderPlayer"),
+        _v$3 = GetLocalization("#LadderChart_LadderPower"),
+        _v$4 = GetLocalization(`#Ladder_Tips2`),
+        _v$5 = GetLocalization("#LadderChart_LadderScore"),
+        _v$6 = GetLocalization(`#Ladder_Tips3`);
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$17, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$19, "text", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$21, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$21, "tooltip_text", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$23, "text", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$23, "tooltip_text", _v$6, _p$._v$6));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined,
+      _v$3: undefined,
+      _v$4: undefined,
+      _v$5: undefined,
+      _v$6: undefined
+    });
+    return _el$15;
+  })();
+}
+function LadderChartRow(props) {
+  const rank = () => props.rankData?.rank ?? 0;
+  const hasRank = () => rank() > 0;
+  const isTopRank = () => rank() >= 1 && rank() <= 3;
+  const accountID = () => props.rankData?.accountID ?? "0";
+  return (() => {
+    const _el$24 = libs.createElement("Panel", {
+        get id() {
+          return props.id;
+        },
+        get ["class"]() {
+          return libs.classNames("LadderChartRow", {
+            [`Rank${rank()}`]: isTopRank()
+          });
+        }
+      }, null);
+      libs.createElement("Image", {
+        "class": "LadderChartRowBG"
+      }, _el$24);
+      const _el$26 = libs.createElement("Panel", {
+        "class": "LadderChartRowContent"
+      }, _el$24),
+      _el$27 = libs.createElement("Panel", {
+        "class": "LadderChartRowCol LadderNumber"
+      }, _el$26),
+      _el$31 = libs.createElement("Panel", {
+        "class": "LadderChartRowCol PlayerInfo"
+      }, _el$26),
+      _el$32 = libs.createElement("Panel", {
+        "class": "LadderChartRowCol LadderGroup"
+      }, _el$26),
+      _el$33 = libs.createElement("Label", {
+        "class": "LadderChartGroupValue",
+        get text() {
+          return FormatNumber(props.rankData?.pvpPower ?? 0);
+        }
+      }, _el$32),
+      _el$34 = libs.createElement("Panel", {
+        "class": "LadderChartRowCol LadderScore"
+      }, _el$26);
+    libs.insert(_el$27, libs.createComponent(libs.Show, {
+      get when() {
+        return hasRank();
+      },
+      get fallback() {
+        return (() => {
+          const _el$35 = libs.createElement("Panel", {
+              "class": "LadderChartRowRankNoRank"
+            }, null),
+            _el$36 = libs.createElement("Label", {
+              get text() {
+                return GetLocalization("#LadderLobby_ChartNoRank");
+              }
+            }, _el$35);
+          libs.effect(_$p => libs.setProp(_el$36, "text", GetLocalization("#LadderLobby_ChartNoRank"), _$p));
+          return _el$35;
+        })();
+      },
+      get children() {
+        const _el$28 = libs.createElement("Panel", {
+            "class": "LadderChartRowRank"
+          }, null);
+          libs.createElement("Image", {
+            "class": "LadderChartRankBG"
+          }, _el$28);
+        libs.insert(_el$28, libs.createComponent(libs.Show, {
+          get when() {
+            return !isTopRank();
+          },
+          get children() {
+            const _el$30 = libs.createElement("Label", {
+              "class": "LadderChartRankValue",
+              get text() {
+                return `${rank()}`;
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$30, "text", `${rank()}`, _$p));
+            return _el$30;
+          }
+        }), null);
+        return _el$28;
+      }
+    }));
+    libs.insert(_el$31, libs.createComponent(PlayerAvatar, {
+      get accountID() {
+        return accountID();
+      },
+      get borderID() {
+        return props.rankData?.borderID;
+      }
+    }), null);
+    libs.insert(_el$31, libs.createComponent(libs.Show, {
+      get when() {
+        return accountID() !== "0";
+      },
+      get fallback() {
+        return libs.createElement("Label", {
+          "class": "LadderChartPlayerName",
+          text: "-"
+        }, null);
+      },
+      get children() {
+        return libs.createComponent(Player.PlayerName, {
+          "class": "LadderChartPlayerName",
+          get accountid() {
+            return accountID();
+          }
+        });
+      }
+    }), null);
+    libs.insert(_el$34, libs.createComponent(LadderChartScore, {
+      get score() {
+        return props.rankData?.score;
+      }
+    }));
+    libs.effect(_p$ => {
+      const _v$7 = props.id,
+        _v$8 = libs.classNames("LadderChartRow", {
+          [`Rank${rank()}`]: isTopRank()
+        }),
+        _v$9 = FormatNumber(props.rankData?.pvpPower ?? 0);
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$24, "id", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$24, "class", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$33, "text", _v$9, _p$._v$9));
+      return _p$;
+    }, {
+      _v$7: undefined,
+      _v$8: undefined,
+      _v$9: undefined
+    });
+    return _el$24;
+  })();
+}
+function isHeroID(heroID) {
+  return heroID > 0;
+}
+function LadderBattleTeamSlot(props) {
+  const [local, others] = libs.splitProps(props, ["class", "heroId", "locked"]);
+  return libs.createComponent(EOM_Button.EOM_BaseButton, libs.mergeProps$1({
+    "class": "LadderBattleTeamSlot",
+    onactivate: () => {
+      GameEvents.SendCustomEventToServer("arena_enter_team_editor", {
+        kind: "attack"
+      });
+      ToggleWindow("MenuButton_rank", false);
+    },
+    get classList() {
+      return {
+        Lock: local.locked == true,
+        Idle: local.heroId == undefined && local.locked != true
+      };
+    }
+  }, others, {
+    get children() {
+      return [libs.createElement("Image", {
+        "class": "LadderBattleTeamSlotBG"
+      }, null), libs.createElement("Image", {
+        "class": "LadderBattleTeamSlotAddIcon"
+      }, null), libs.createElement("Image", {
+        "class": "LadderBattleTeamSlotLockIcon"
+      }, null), libs.createComponent(libs.Show, {
+        get when() {
+          return local.heroId !== undefined;
+        },
+        get children() {
+          return libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+            "class": "LadderBattleTeamSlotHero",
+            get heroid() {
+              return local.heroId;
+            },
+            heroimagestyle: "portrait"
+          });
+        }
+      })];
+    }
+  }));
+}
+function LadderBattleTeam(props) {
+  return (() => {
+    const _el$41 = libs.createElement("Panel", {
+        "class": "LadderBattleTeam"
+      }, null),
+      _el$42 = libs.createElement("Panel", {
+        "class": "LadderBattleTeamTitle"
+      }, _el$41),
+      _el$43 = libs.createElement("Label", {
+        "class": "LadderBattleTeamTitleLabel",
+        get text() {
+          return GetLocalization("#LadderLobby_BattleTeamTitle");
+        }
+      }, _el$42),
+      _el$44 = libs.createElement("Label", {
+        "class": "LadderBattleTeamBP",
+        get text() {
+          return LocalizeWithVars("#LadderLobby_BattleTeamTitleBP", {
+            bp: FormatNumber(props.team?.power ?? 0)
+          });
+        }
+      }, _el$42),
+      _el$45 = libs.createElement("Panel", {
+        "class": "LadderBattleTeamContent"
+      }, _el$41);
+    libs.insert(_el$45, () => [1, 2, 3, 4].map(slotID => {
+      const slot = props.team?.slots.find(item => item.slot === slotID);
+      return libs.createComponent(LadderBattleTeamSlot, {
+        get enabled() {
+          return props.team !== undefined;
+        },
+        get heroId() {
+          return slot !== undefined && isHeroID(slot.hero_id) ? slot.hero_id : undefined;
+        }
+      });
+    }));
+    libs.effect(_p$ => {
+      const _v$0 = GetLocalization("#LadderLobby_BattleTeamTitle"),
+        _v$1 = LocalizeWithVars("#LadderLobby_BattleTeamTitleBP", {
+          bp: FormatNumber(props.team?.power ?? 0)
+        });
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$43, "text", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$44, "text", _v$1, _p$._v$1));
+      return _p$;
+    }, {
+      _v$0: undefined,
+      _v$1: undefined
+    });
+    return _el$41;
+  })();
+}
+function GetCurrentPvpSeason() {
+  const serverTime = Math.floor(CustomUIConfig.GetServerTimeStamp());
+  let currentSeason = KeyValues.pvp_season["1"];
+  for (let index = 1; index <= 1000; index++) {
+    const season = KeyValues.pvp_season[String(index)];
+    if (season === undefined) break;
+    if (serverTime >= season.start_time) currentSeason = season;
+  }
+  return currentSeason;
+}
+function LadderLobby() {
+  const settings = solid_utils.createNetDataSignal("common", "settings");
+  const teamData = solid_utils.createPlayerNetDataSignal("arena", "team_setting");
+  const pvpRequest = solid_utils.createPlayerNetDataSignal("arena", "pvp_request");
+  const playerPvpDatas = solid_utils.createServiceNetData("player_pvp_datas", {});
+  const playerCounters = solid_utils.createServiceNetData("player_counters", {});
+  const [leaderboardPage, setLeaderboardPage] = libs.createSignal(1);
+  const [leaderboardPages, setLeaderboardPages] = libs.createSignal({});
+  const [redPointVersion, setRedPointVersion] = libs.createSignal(0);
+  const currentSeason = GetCurrentPvpSeason();
+  const seasonID = currentSeason?.sid ?? 1;
+  const getCachedLeaderboardPage = page => {
+    pvpLeaderboardCacheVersion();
+    return leaderboardPages()[page] ?? pvpLeaderboardCache[getPvpLeaderboardPageKey(seasonID, page)]?.data;
+  };
+  const currentPvpData = libs.createMemo(() => playerPvpDatas()[String(seasonID)]);
+  const attackTeam = libs.createMemo(() => {
+    const data = teamData();
+    return data?.setting.teams.find(team => team.team_id === data.setting.attack_team);
+  });
+  const currentLeaderboardData = libs.createMemo(() => getCachedLeaderboardPage(leaderboardPage()));
+  const firstLeaderboardData = libs.createMemo(() => getCachedLeaderboardPage(1));
+  const leaderboardRanks = libs.createMemo(() => (currentLeaderboardData()?.leaderboard_data ?? []).map(data => normalizeLadderRank(data)));
+  const topRanks = libs.createMemo(() => (firstLeaderboardData()?.leaderboard_data ?? []).map(data => normalizeLadderRank(data)));
+  const topRank = rank => topRanks().find(data => data.rank === rank);
+  const selfRank = libs.createMemo(() => {
+    const data = firstLeaderboardData()?.self_data;
+    if (data !== undefined) return normalizeLadderRank(data, currentPvpData()?.score ?? DEFAULT_PVP_SCORE, attackTeam()?.power ?? 0);
+    return {
+      accountID: Steam_64_3(Game.GetLocalPlayerInfo().player_steamid),
+      rank: 0,
+      score: currentPvpData()?.score ?? DEFAULT_PVP_SCORE,
+      pvpPower: attackTeam()?.power ?? 0
+    };
+  });
+  const requestPvpData = (force = false) => {
+    const now = CustomUIConfig.GetServerTimeStamp();
+    if (!force && now - lastPvpRequestTime < PVP_AUTO_REQUEST_INTERVAL) return;
+    lastPvpRequestTime = now;
+    GameEvents.SendCustomEventToServer("ladder_request_pvp_data", {
+      seasonID
+    });
+  };
+  const pvpLoading = libs.createMemo(() => pvpRequest()?.loading ?? currentPvpData() === undefined);
+  const isLocalHost = libs.createMemo(() => settings()?.is_local_host === true);
+  const remainingBattleCount = libs.createMemo(() => Math.max(0, DAILY_PVP_BATTLE_COUNT - (playerCounters()["daily_pvp_play"]?.count ?? 0)));
+  const pvpReady = libs.createMemo(() => {
+    const request = pvpRequest();
+    return request !== undefined && request.seasonID === seasonID && !request.loading && request.error === undefined && currentPvpData() !== undefined;
+  });
+  const battleButtonText = libs.createMemo(() => remainingBattleCount() <= 0 ? GetLocalization("#LadderBattle_ButtonCountExhausted") : pvpLoading() ? GetLocalization("#LadderBattle_ButtonLoading") : pvpReady() ? GetLocalization("#LadderBattle_ButtonBattleStart") : GetLocalization("#LadderBattle_ButtonRetry"));
+  const battleHintText = libs.createMemo(() => {
+    const error = pvpRequest()?.error;
+    if (!pvpLoading() && error === "opponents_empty") return GetLocalization("#LadderBattle_EmptyOpponents");
+    if (!pvpLoading() && error !== undefined) return GetLocalization("#LadderBattle_MatchError");
+    return LocalizeWithVars("#LadderBattle_BattleCount", {
+      allowCount: remainingBattleCount(),
+      totalCount: DAILY_PVP_BATTLE_COUNT
+    });
+  });
+  const showWeeklyTaskRedPoint = () => {
+    redPointVersion();
+    return CustomUIConfig.GetRedPoint("rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore");
+  };
+  let disposed = false;
+  let pendingLeaderboardRequestTimer;
+  const cancelPendingLeaderboardRequest = () => {
+    if (pendingLeaderboardRequestTimer === undefined) return;
+    clearTimeout(pendingLeaderboardRequestTimer);
+    pendingLeaderboardRequestTimer = undefined;
+  };
+  const requestLeaderboardPage = page => {
+    const pageKey = getPvpLeaderboardPageKey(seasonID, page);
+    const requestTime = Date.now();
+    pvpLeaderboardLastRequestTimes[pageKey] = requestTime;
+    CallActionRequest("/v1/leaderboard/fetch", {
+      leaderboard_type: "pvp",
+      extra_keys: [String(seasonID)],
+      start: (page - 1) * LEADERBOARD_PAGE_SIZE + 1,
+      end: page * LEADERBOARD_PAGE_SIZE
+    }, result => {
+      if (result?.code !== 0 || pvpLeaderboardLastRequestTimes[pageKey] !== requestTime) return;
+      const data = result.data?.leaderboard_datas?.[0];
+      const cacheData = data ?? {
+        leaderboard_data: []
+      };
+      pvpLeaderboardCache[pageKey] = {
+        data: cacheData,
+        updatedAt: Date.now() / 1000
+      };
+      setPvpLeaderboardCacheVersion(version => version + 1);
+      if (!disposed) setLeaderboardPages(pages => ({
+        ...pages,
+        [page]: cacheData
+      }));
+    });
+  };
+  const scheduleLeaderboardPageRequest = page => {
+    cancelPendingLeaderboardRequest();
+    const pageKey = getPvpLeaderboardPageKey(seasonID, page);
+    const lastRequestTime = pvpLeaderboardLastRequestTimes[pageKey] ?? (pvpLeaderboardCache[pageKey]?.updatedAt ?? 0) * 1000;
+    const delay = Math.max(0, lastRequestTime + LEADERBOARD_MIN_REQUEST_INTERVAL_MS - Date.now());
+    if (delay === 0) {
+      requestLeaderboardPage(page);
+      return;
+    }
+    pendingLeaderboardRequestTimer = setTimeout(() => {
+      pendingLeaderboardRequestTimer = undefined;
+      if (disposed || leaderboardPage() !== page) return;
+      requestLeaderboardPage(page);
+    }, delay);
+  };
+  const changeLeaderboardPage = page => {
+    setLeaderboardPage(page);
+    scheduleLeaderboardPageRequest(page);
+  };
+  libs.onMount(() => {
+    const redPointListenerID = CustomUIConfig.SubscribeRedPointChange(() => {
+      setRedPointVersion(version => version + 1);
+    }, "rank");
+    libs.onCleanup(() => {
+      disposed = true;
+      cancelPendingLeaderboardRequest();
+      GameEvents.Unsubscribe(redPointListenerID);
+    });
+    GameEvents.SendCustomEventToServer("ladder_request_team_setting", {
+      seasonID
+    });
+    requestPvpData();
+    scheduleLeaderboardPageRequest(1);
+  });
+  return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+    id: "LadderLobby",
+    get children() {
+      const _el$46 = libs.createElement("Panel", {
+          id: "LadderLobbyContent"
+        }, null),
+        _el$47 = libs.createElement("Panel", {
+          id: "LadderLobbyPageBar"
+        }, _el$46);
+        libs.createElement("Image", {
+          "class": "LadderLobbyPageArrorw PageArrorLeft"
+        }, _el$47);
+        const _el$49 = libs.createElement("Panel", {
+          "class": "LadderLobbyPageContent"
+        }, _el$47);
+        libs.createElement("Image", {
+          "class": "LadderLobbyPageBG"
+        }, _el$49);
+        const _el$51 = libs.createElement("Label", {
+          "class": "LadderLobbyPageLabel",
+          get text() {
+            return GetLocalization("#LadderGroup_Group3");
+          }
+        }, _el$49);
+        libs.createElement("Image", {
+          "class": "LadderLobbyPageArrorw PageArrorRight"
+        }, _el$47);
+        const _el$53 = libs.createElement("Panel", {
+          id: "LadderLobbyTopContent"
+        }, _el$46),
+        _el$54 = libs.createElement("Panel", {
+          id: "LadderLobbySessionContent"
+        }, _el$53);
+        libs.createElement("Image", {
+          "class": "LadderLobbySessionBG"
+        }, _el$54);
+        const _el$56 = libs.createElement("Panel", {
+          "class": "LadderLobbySessionInfo"
+        }, _el$54),
+        _el$57 = libs.createElement("Label", {
+          "class": "LadderLobbySessionLabel",
+          get text() {
+            return GetLocalization("#LadderLobby_SessionLabel");
+          }
+        }, _el$56),
+        _el$58 = libs.createElement("Label", {
+          "class": "LadderLobbySessionValue",
+          get text() {
+            return GetLocalization("#LadderGroup_Group3");
+          }
+        }, _el$56),
+        _el$59 = libs.createElement("Panel", {
+          id: "LadderLobbyBigChart"
+        }, _el$53),
+        _el$60 = libs.createElement("Panel", {
+          id: "LadderLobbyTopOptionContent"
+        }, _el$53),
+        _el$61 = libs.createElement("Panel", {
+          id: "LadderLobbyChart"
+        }, _el$46);
+        libs.createElement("Image", {
+          id: "LadderLobbyChartBG"
+        }, _el$61);
+        const _el$63 = libs.createElement("Panel", {
+          id: "LadderChartPanel"
+        }, _el$61),
+        _el$64 = libs.createElement("Panel", {
+          "class": "ChartListVerticalScroll VerticalScrollStyle"
+        }, _el$63),
+        _el$65 = libs.createElement("Panel", {
+          id: "LadderRankPagination"
+        }, _el$46),
+        _el$66 = libs.createElement("Panel", {
+          id: "LadderLobbyBottomContent"
+        }, _el$46),
+        _el$67 = libs.createElement("Panel", {
+          "class": "LadderBattleButtonContent"
+        }, _el$66),
+        _el$68 = libs.createElement("Label", {
+          "class": "LadderBattleCount",
+          get text() {
+            return battleHintText();
+          }
+        }, _el$67),
+        _el$71 = libs.createElement("Panel", {
+          "class": "LadderBottomOptions"
+        }, _el$66);
+      libs.insert(_el$53, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+        icon: true,
+        get endTime() {
+          return currentSeason?.end_time ?? 0;
+        },
+        text: "#Ladder_TimeLimit"
+      }), _el$54);
+      libs.insert(_el$59, libs.createComponent(LadderLobbyBigChartItem, {
+        "class": "Rank2",
+        get rankData() {
+          return topRank(2);
+        }
+      }), null);
+      libs.insert(_el$59, libs.createComponent(LadderLobbyBigChartItem, {
+        "class": "Rank1",
+        get rankData() {
+          return topRank(1);
+        }
+      }), null);
+      libs.insert(_el$59, libs.createComponent(LadderLobbyBigChartItem, {
+        "class": "Rank3",
+        get rankData() {
+          return topRank(3);
+        }
+      }), null);
+      libs.insert(_el$60, libs.createComponent(LadderButton, {
+        "class": "LadderLobbyButtonGroup",
+        get labelText() {
+          return GetLocalization("#LadderLobby_ButtonGroupDescription");
+        },
+        onactivate: () => {
+          ShowPopup("CommonConfirm", {
+            title: GetLocalization("#LadderGroupDescription_Title"),
+            text: GetLocalization("#LadderGroupDescription_Text"),
+            showCancel: false,
+            size: "normal"
+          });
+        }
+      }), null);
+      libs.insert(_el$60, libs.createComponent(LadderButton, {
+        "class": "LadderLobbyButtonLadderRewards",
+        onactivate: () => {
+          ShowPopup("PvpReward", {
+            seasonID
+          });
+        },
+        get labelText() {
+          return GetLocalization("#LadderLobby_ButtonLadderRewards");
+        }
+      }), null);
+      libs.insert(_el$63, libs.createComponent(LadderChartRowHeader, {}), _el$64);
+      libs.insert(_el$64, libs.createComponent(libs.For, {
+        get each() {
+          return leaderboardRanks();
+        },
+        children: rankData => libs.createComponent(LadderChartRow, {
+          rankData: rankData
+        })
+      }));
+      libs.insert(_el$63, libs.createComponent(LadderChartRow, {
+        id: "LadderChartSelfRow",
+        get rankData() {
+          return selfRank();
+        }
+      }), null);
+      libs.insert(_el$65, libs.createComponent(PageControl, {
+        get page() {
+          return leaderboardPage();
+        },
+        setPage: changeLeaderboardPage,
+        pageCount: LEADERBOARD_MAX_PAGE
+      }));
+      libs.insert(_el$66, libs.createComponent(LadderBattleTeam, {
+        get team() {
+          return attackTeam();
+        }
+      }), _el$67);
+      libs.insert(_el$67, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        "class": "LadderBattleButton",
+        get enabled() {
+          return libs.memo(() => !!(remainingBattleCount() > 0 && !pvpLoading()))() && !isLocalHost();
+        },
+        onactivate: () => {
+          if (!pvpReady()) {
+            requestPvpData(true);
+            return;
+          }
+          GameEvents.SendCustomEventToServer("arena_enter", {});
+          ToggleWindow("MenuButton_rank", false);
+        },
+        get children() {
+          return [libs.createElement("Image", {
+            "class": "LadderBattleButtonBG"
+          }, null), (() => {
+            const _el$70 = libs.createElement("Label", {
+              "class": "LadderBattleButtonLabel",
+              get text() {
+                return battleButtonText();
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$70, "text", battleButtonText(), _$p));
+            return _el$70;
+          })()];
+        }
+      }), null);
+      libs.insert(_el$71, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        "class": "LadderButton LadderLobbyButtonDefense",
+        get enabled() {
+          return teamData() !== undefined;
+        },
+        onactivate: () => {
+          GameEvents.SendCustomEventToServer("arena_enter_team_editor", {
+            kind: "defense"
+          });
+          ToggleWindow("MenuButton_rank", false);
+        },
+        get children() {
+          return [libs.createElement("Image", {
+            "class": "LadderButtonIcon"
+          }, null), (() => {
+            const _el$73 = libs.createElement("Panel", {
+                "class": "LadderButtonContent"
+              }, null),
+              _el$74 = libs.createElement("Label", {
+                "class": "LadderButtonLabel",
+                get text() {
+                  return GetLocalization("#LadderLobby_ButtonDefensiveTeam");
+                }
+              }, _el$73);
+            libs.effect(_$p => libs.setProp(_el$74, "text", GetLocalization("#LadderLobby_ButtonDefensiveTeam"), _$p));
+            return _el$73;
+          })()];
+        }
+      }), null);
+      libs.insert(_el$71, libs.createComponent(LadderButton, {
+        "class": "LadderLobbyButtonRecord",
+        onactivate: () => {
+          ShowPopup("PvpCombatLog", {
+            seasonID
+          });
+        },
+        get labelText() {
+          return GetLocalization("#LadderLobby_ButtonBattleRecord");
+        }
+      }), null);
+      libs.insert(_el$71, libs.createComponent(LadderButton, {
+        "class": "LadderLobbyButtonStore",
+        onactivate: () => {
+          CustomUIConfig.__rankRedPointState?.markWeeklyPvpTaskViewed();
+          ShowPopup("PvpWeeklyTask", {});
+        },
+        get labelText() {
+          return GetLocalization("#LadderWeekTask");
+        },
+        get children() {
+          return libs.createComponent(libs.Show, {
+            get when() {
+              return showWeeklyTaskRedPoint();
+            },
+            get children() {
+              return libs.createComponent(EOM_RedMark.EOM_RedMark, {
+                align: "right top",
+                hittest: false
+              });
+            }
+          });
+        }
+      }), null);
+      libs.effect(_p$ => {
+        const _v$10 = GetLocalization("#LadderGroup_Group3"),
+          _v$11 = GetLocalization("#LadderLobby_SessionLabel"),
+          _v$12 = GetLocalization("#LadderGroup_Group3"),
+          _v$13 = battleHintText();
+        _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$51, "text", _v$10, _p$._v$10));
+        _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$57, "text", _v$11, _p$._v$11));
+        _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$58, "text", _v$12, _p$._v$12));
+        _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$68, "text", _v$13, _p$._v$13));
+        return _p$;
+      }, {
+        _v$10: undefined,
+        _v$11: undefined,
+        _v$12: undefined,
+        _v$13: undefined
+      });
+      return _el$46;
+    }
+  });
+}
+
 const heroTabs = Object.entries(GameUI.CustomUIConfig().heroes ?? {}).filter(([, hero]) => hero.IsHero == 1 && hero.HeroID != undefined).map(([heroName, hero]) => ({
   key: heroName,
   heroID: String(hero.HeroID)
 }));
 const heroTabMap = Object.fromEntries(heroTabs.map(hero => [hero.key, hero]));
 const menuList = {
+  Ladder: ["ladder_lobby", "pvp_shop"],
   Rank_CommonMatchHero: heroTabs.map(hero => hero.key)
 };
 const {
@@ -765,6 +1661,7 @@ const {
   secondTabName
 } = EOM_MenuLayout.createMenuLayout("rank", () => menuList);
 function Rank() {
+  const isLadder = libs.createMemo(() => menuName() == "Ladder");
   const leaderboardType = libs.createMemo(() => menuName() == "Rank_CommonMatchHero" ? "common_match_hero" : "common_match");
   const extraKey = libs.createMemo(() => {
     const tab = secondTabName();
@@ -781,19 +1678,61 @@ function Rank() {
       return show();
     },
     name: "MenuButton_rank",
+    get classList() {
+      return {
+        Ladder: isLadder()
+      };
+    },
     get children() {
-      return [libs.createComponent(LayoutMenu, {}), libs.createComponent(CommonMatchLeaderboard, {
-        get visible() {
-          return show();
+      return [libs.createComponent(LayoutMenu, {}), libs.createComponent(libs.Show, {
+        get when() {
+          return isLadder();
         },
-        get leaderboardType() {
-          return leaderboardType();
-        },
-        get extraKey() {
-          return extraKey();
-        },
-        get title() {
-          return title();
+        get children() {
+          return libs.createComponent(Player.CurrencyGroup, {
+            currencyType: "top",
+            tokens: [110022]
+          });
+        }
+      }), libs.createComponent(libs.Switch, {
+        get children() {
+          return [libs.createComponent(libs.Match, {
+            get when() {
+              return menuName() == "Rank_CommonMatchHero" || menuName() == "Rank_CommonMatch";
+            },
+            get children() {
+              return libs.createComponent(CommonMatchLeaderboard, {
+                get visible() {
+                  return show();
+                },
+                get leaderboardType() {
+                  return leaderboardType();
+                },
+                get extraKey() {
+                  return extraKey();
+                },
+                get title() {
+                  return title();
+                }
+              });
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return libs.memo(() => !!isLadder())() && secondTabName() == "ladder_lobby";
+            },
+            get children() {
+              return libs.createComponent(LadderLobby, {});
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return libs.memo(() => !!isLadder())() && secondTabName() == "pvp_shop";
+            },
+            get children() {
+              return libs.createComponent(StoreTagPage.StoreTagPage, {
+                tag: "pvp_shop"
+              });
+            }
+          })];
         }
       })];
     }

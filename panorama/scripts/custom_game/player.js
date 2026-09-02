@@ -97,7 +97,6 @@ const PlayerAvatar = props => {
     const targetSteamID = cachedPlayerInfo.steamID();
     return targetSteamID != undefined && targetSteamID == localPlayerSteamID();
   });
-  let avatarImage;
   const borderID = libs.createMemo(() => {
     if (local.borderid != undefined) {
       return String(local.borderid);
@@ -124,26 +123,6 @@ const PlayerAvatar = props => {
     const steamID = steamid();
     return steamID != undefined ? Steam_64_3(steamID) : undefined;
   });
-  const updateAccountID = () => {
-    if (avatarImage != undefined && avatarImage.IsValid() && accountid() != undefined) {
-      avatarImage.accountid = accountid();
-    }
-  };
-  libs.onMount(() => {
-    let interval_id = setInterval(() => {
-      if (avatarImage != undefined && avatarImage.IsValid()) {
-        updateAccountID();
-        clearInterval(interval_id);
-        interval_id = -1;
-      }
-    }, 10);
-    libs.onCleanup(() => {
-      if (interval_id != -1) {
-        clearInterval(interval_id);
-      }
-    });
-  });
-  libs.createEffect(updateAccountID);
   return libs.createComponent(AvatarBorder, libs.mergeProps$1({
     get ["class"]() {
       return libs.classNames("PlayerAvatar", {
@@ -156,24 +135,20 @@ const PlayerAvatar = props => {
   }, other, {
     hittest: false,
     get children() {
-      const _el$ = libs.createElement("DOTAAvatarImage", {
+      return libs.createComponent(EOM_Avatar, {
         get steamid() {
           return steamid();
         },
-        nocompendiumborder: true,
-        hittest: false,
-        hittestchildren: false
-      }, null);
-      const _ref$ = avatarImage;
-      typeof _ref$ === "function" ? libs.use(_ref$, _el$) : avatarImage = _el$;
-      libs.setProp(_el$, "style", {
-        width: "48.04688%",
-        height: "48.04688%",
-        align: "center center",
-        borderRadius: "10%"
+        get accountid() {
+          return accountid();
+        },
+        style: {
+          width: "48.04688%",
+          height: "48.04688%",
+          align: "center center",
+          borderRadius: "10%"
+        }
       });
-      libs.effect(_$p => libs.setProp(_el$, "steamid", steamid(), _$p));
-      return _el$;
     }
   }));
 };
@@ -182,8 +157,8 @@ const AvatarBorder = props => {
   const resolved = libs.children(() => local.children);
   const particleName = libs.createMemo(() => KeyValues.info_item_cosmetic[String(local.borderid)]?.particle ?? "");
   return (() => {
-    const _el$2 = libs.createElement("Panel", other, null),
-      _el$3 = libs.createElement("Panel", {
+    const _el$ = libs.createElement("Panel", other, null),
+      _el$2 = libs.createElement("Panel", {
         id: "BaseBorder",
         hittest: false,
         get style() {
@@ -199,8 +174,8 @@ const AvatarBorder = props => {
             backgroundPosition: "center center"
           };
         }
-      }, _el$2);
-    libs.spread(_el$2, libs.mergeProps$1({
+      }, _el$);
+    libs.spread(_el$, libs.mergeProps$1({
       get classList() {
         return {
           "AvatarBorder": true,
@@ -208,13 +183,13 @@ const AvatarBorder = props => {
         };
       }
     }, other), true);
-    libs.insert(_el$2, resolved, _el$3);
-    libs.insert(_el$2, libs.createComponent(libs.Show, {
+    libs.insert(_el$, resolved, _el$2);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
       get when() {
         return particleName() != "";
       },
       get children() {
-        const _el$4 = libs.createElement("DOTAParticleScenePanel", {
+        const _el$3 = libs.createElement("DOTAParticleScenePanel", {
           "class": "AvatarBorderParticle",
           get particleName() {
             return particleName();
@@ -226,11 +201,11 @@ const AvatarBorder = props => {
           squarePixels: true,
           particleonly: true
         }, null);
-        libs.effect(_$p => libs.setProp(_el$4, "particleName", particleName(), _$p));
-        return _el$4;
+        libs.effect(_$p => libs.setProp(_el$3, "particleName", particleName(), _$p));
+        return _el$3;
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$3, "style", {
+    libs.effect(_$p => libs.setProp(_el$2, "style", {
       width: "100%",
       height: "100%",
       align: "center center",
@@ -241,7 +216,7 @@ const AvatarBorder = props => {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center center"
     }, _$p));
-    return _el$2;
+    return _el$;
   })();
 };
 const PlayerTitle = props => {
@@ -249,16 +224,16 @@ const PlayerTitle = props => {
   const titleID = libs.createMemo(() => String(local.titleid));
   const particleName = libs.createMemo(() => KeyValues.info_item_cosmetic[titleID()]?.particle?.trim() ?? "");
   return (() => {
-    const _el$5 = libs.createElement("Panel", other, null),
-      _el$6 = libs.createElement("Image", {
+    const _el$4 = libs.createElement("Panel", other, null),
+      _el$5 = libs.createElement("Image", {
         "class": "PlayerTitleImage",
         get src() {
           return getSrcPath(`cosmetic/AVATAR_NAME/${Language()}/${titleID()}.png`);
         },
         scaling: "stretch-to-cover-preserve-aspect",
         hittest: false
-      }, _el$5);
-    libs.spread(_el$5, libs.mergeProps$1({
+      }, _el$4);
+    libs.spread(_el$4, libs.mergeProps$1({
       get classList() {
         return {
           "PlayerTitle": true,
@@ -266,12 +241,12 @@ const PlayerTitle = props => {
         };
       }
     }, other), true);
-    libs.insert(_el$5, libs.createComponent(libs.Show, {
+    libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return particleName();
       },
       get children() {
-        const _el$7 = libs.createElement("DOTAParticleScenePanel", {
+        const _el$6 = libs.createElement("DOTAParticleScenePanel", {
           "class": "PlayerTitleParticle",
           get particleName() {
             return particleName();
@@ -283,12 +258,12 @@ const PlayerTitle = props => {
           squarePixels: true,
           particleonly: true
         }, null);
-        libs.effect(_$p => libs.setProp(_el$7, "particleName", particleName(), _$p));
-        return _el$7;
+        libs.effect(_$p => libs.setProp(_el$6, "particleName", particleName(), _$p));
+        return _el$6;
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$6, "src", getSrcPath(`cosmetic/AVATAR_NAME/${Language()}/${titleID()}.png`), _$p));
-    return _el$5;
+    libs.effect(_$p => libs.setProp(_el$5, "src", getSrcPath(`cosmetic/AVATAR_NAME/${Language()}/${titleID()}.png`), _$p));
+    return _el$4;
   })();
 };
 function GetPropNum(props, item_id) {
@@ -401,11 +376,11 @@ const showCdkeyReceiveResult = data => {
 const ExchangeEntry = () => {
   const [key, setKey] = libs.createSignal("");
   return (() => {
-    const _el$8 = libs.createElement("Panel", {
+    const _el$7 = libs.createElement("Panel", {
       hittest: false
     }, null);
-    libs.setProp(_el$8, "className", "ExchangeEntry");
-    libs.insert(_el$8, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+    libs.setProp(_el$7, "className", "ExchangeEntry");
+    libs.insert(_el$7, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
       style: {
         border: "0px",
         backgroundColor: "none"
@@ -423,7 +398,7 @@ const ExchangeEntry = () => {
         }, showCdkeyReceiveResult);
       }
     }), null);
-    libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_BaseButton, {
+    libs.insert(_el$7, libs.createComponent(EOM_Button.EOM_BaseButton, {
       id: "ExchangeBTN",
       onactivate: () => {
         CallActionRequest("/v1/cdkey/receive", {
@@ -431,7 +406,7 @@ const ExchangeEntry = () => {
         }, showCdkeyReceiveResult);
       }
     }), null);
-    return _el$8;
+    return _el$7;
   })();
 };
 const CurrencyGroup = props => {
@@ -440,13 +415,13 @@ const CurrencyGroup = props => {
   });
   const [local, others] = libs.splitProps(merged, ["tokens", "values", "exchangeButton", "recentOrder", "currencyType"]);
   return (() => {
-    const _el$9 = libs.createElement("Panel", libs.mergeProps$1(others, {
+    const _el$8 = libs.createElement("Panel", libs.mergeProps$1(others, {
       hittest: false
     }), null);
-    libs.spread(_el$9, libs.mergeProps$1(others, {
+    libs.spread(_el$8, libs.mergeProps$1(others, {
       "hittest": false
     }), true);
-    libs.insert(_el$9, libs.createComponent(libs.Show, {
+    libs.insert(_el$8, libs.createComponent(libs.Show, {
       get when() {
         return local.recentOrder;
       },
@@ -469,7 +444,7 @@ const CurrencyGroup = props => {
         });
       }
     }), null);
-    libs.insert(_el$9, libs.createComponent(libs.Show, {
+    libs.insert(_el$8, libs.createComponent(libs.Show, {
       get when() {
         return local.exchangeButton;
       },
@@ -477,7 +452,7 @@ const CurrencyGroup = props => {
         return libs.createComponent(ExchangeEntry, {});
       }
     }), null);
-    libs.insert(_el$9, libs.createComponent(libs.For, {
+    libs.insert(_el$8, libs.createComponent(libs.For, {
       get each() {
         return props.tokens;
       },
@@ -493,7 +468,7 @@ const CurrencyGroup = props => {
         });
       }
     }), null);
-    return _el$9;
+    return _el$8;
   })();
 };
 const CurrencyIcon = props => {
@@ -510,21 +485,21 @@ const CurrencyIcon = props => {
     },
     get fallback() {
       return (() => {
-        const _el$10 = libs.createElement("Image", libs.mergeProps$1(others, {
+        const _el$1 = libs.createElement("Image", libs.mergeProps$1(others, {
           get src() {
             return getSrcPath(`tokens/${props.tokenID}.png`);
           }
         }), null);
-        libs.spread(_el$10, libs.mergeProps$1(others, {
+        libs.spread(_el$1, libs.mergeProps$1(others, {
           get src() {
             return getSrcPath(`tokens/${props.tokenID}.png`);
           }
         }), false);
-        return _el$10;
+        return _el$1;
       })();
     },
     get children() {
-      const _el$1 = libs.createElement("Label", libs.mergeProps$1(others, {
+      const _el$0 = libs.createElement("Label", libs.mergeProps$1(others, {
         get text() {
           return (() => {
             const language = Language();
@@ -538,7 +513,7 @@ const CurrencyIcon = props => {
           })();
         }
       }), null);
-      libs.spread(_el$1, libs.mergeProps$1(others, {
+      libs.spread(_el$0, libs.mergeProps$1(others, {
         get text() {
           return (() => {
             const language = Language();
@@ -552,7 +527,7 @@ const CurrencyIcon = props => {
           })();
         }
       }), false);
-      return _el$1;
+      return _el$0;
     }
   });
 };
@@ -633,19 +608,19 @@ const PlayerName = props => {
     }
   });
   return (() => {
-    const _el$11 = libs.createElement("Panel", other, null),
-      _el$12 = libs.createElement("Label", {
+    const _el$10 = libs.createElement("Panel", other, null),
+      _el$11 = libs.createElement("Label", {
         get text() {
           return username();
         }
-      }, _el$11),
-      _el$13 = libs.createElement("DOTAUserName", {
+      }, _el$10),
+      _el$12 = libs.createElement("DOTAUserName", {
         get steamid() {
           return steamid();
         },
         hittest: false
-      }, _el$11);
-    libs.spread(_el$11, libs.mergeProps$1({
+      }, _el$10);
+    libs.spread(_el$10, libs.mergeProps$1({
       get classList() {
         return {
           "PlayerName": true,
@@ -653,20 +628,20 @@ const PlayerName = props => {
         };
       }
     }, other), true);
-    const _ref$2 = userNamePanel;
-    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$13) : userNamePanel = _el$13;
-    libs.insert(_el$11, resolved, null);
+    const _ref$ = userNamePanel;
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$12) : userNamePanel = _el$12;
+    libs.insert(_el$10, resolved, null);
     libs.effect(_p$ => {
       const _v$ = username(),
         _v$2 = steamid();
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$12, "text", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$13, "steamid", _v$2, _p$._v$2));
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$11, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$12, "steamid", _v$2, _p$._v$2));
       return _p$;
     }, {
       _v$: undefined,
       _v$2: undefined
     });
-    return _el$11;
+    return _el$10;
   })();
 };
 const EOM_Avatar = props => {
@@ -700,23 +675,23 @@ const EOM_Avatar = props => {
     }
   });
   return (() => {
-    const _el$14 = libs.createElement("Panel", others, null),
-      _el$15 = libs.createElement("DOTAAvatarImage", {
+    const _el$13 = libs.createElement("Panel", others, null),
+      _el$14 = libs.createElement("DOTAAvatarImage", {
         get steamid() {
           return local.steamid;
         },
         width: "100%",
         height: "100%",
         hittest: false
-      }, _el$14);
-    libs.spread(_el$14, others, true);
-    const _ref$3 = avatarImage;
-    typeof _ref$3 === "function" ? libs.use(_ref$3, _el$15) : avatarImage = _el$15;
-    libs.setProp(_el$15, "width", "100%");
-    libs.setProp(_el$15, "height", "100%");
-    libs.insert(_el$14, () => local.children, null);
-    libs.effect(_$p => libs.setProp(_el$15, "steamid", local.steamid, _$p));
-    return _el$14;
+      }, _el$13);
+    libs.spread(_el$13, others, true);
+    const _ref$2 = avatarImage;
+    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$14) : avatarImage = _el$14;
+    libs.setProp(_el$14, "width", "100%");
+    libs.setProp(_el$14, "height", "100%");
+    libs.insert(_el$13, () => local.children, null);
+    libs.effect(_$p => libs.setProp(_el$14, "steamid", local.steamid, _$p));
+    return _el$13;
   })();
 };
 

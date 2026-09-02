@@ -4798,7 +4798,7 @@ GameUI.CustomUIConfig().info_shop_product = {
 		real_price: 120,
 		discount: 0,
 		tag: "pvp_shop",
-		hide: 1,
+		hide: 0,
 		rarity: 4,
 		title: 0,
 		show_type: 0,
@@ -5919,4 +5919,4 @@ GameUI.CustomUIConfig().info_shop_product = {
 		first_pay: 0,
 		limit_repeat: 680
 	}
-};
+};

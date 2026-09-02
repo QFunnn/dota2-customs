@@ -11,11 +11,11 @@
 GameUI.CustomUIConfig().gem_setting = {
 	entry_random_weight: {
 		key: "entry_random_weight",
-		value: "160|160|120|120|120|80|80|80|20|10|3"
+		value: "160|160|120|120|120|80|80|80|10|5|1"
 	},
 	entry_makeup: {
 		key: "entry_makeup",
-		value: "0|0|0|0|100|80|80|80|20|10|3"
+		value: "0|0|100|100|100|80|80|80|10|5|1"
 	},
 	buy_actions: {
 		key: "buy_actions",
@@ -25,4 +25,4 @@ GameUI.CustomUIConfig().gem_setting = {
 		key: "gem_swap",
 		value: "120011:200"
 	}
-};
+};

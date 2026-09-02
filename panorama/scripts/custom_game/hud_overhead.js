@@ -25,6 +25,8 @@ const HEALTH_REFRESH_INTERVAL = 0.05;
 const DUMMY_RECORD_REFRESH_INTERVAL = 0.10;
 const DUMMY_RECORD_RESET_TIME = 2;
 const DUMMY_NORMAL_ATTACK_KEY = "__normal_attack__";
+const arenaSession = solid_utils.createPlayerNetDataSignal("arena", "session");
+const pvpTopStatues = solid_utils.createNetDataSignal("arena", "top_statues", {});
 function formatDummyDamage(value) {
   const formatted = FormatNumber(value, 2);
   const match = formatted.match(/^(-?\d+)(?:\.(\d+))?(.*)$/);
@@ -91,6 +93,9 @@ function getUpgradeKey() {
 function shouldShowOverhead(entIndex, type) {
   if (!Entities.IsValidEntity(entIndex)) {
     return false;
+  }
+  if (pvpTopStatues()[String(entIndex)] !== undefined) {
+    return Entities.IsAlive(entIndex);
   }
   if (type === "ShopItem" || type === "ClientItem") {
     const data = getNetDataKey("dropped_item", String(entIndex));
@@ -183,8 +188,18 @@ const HeroOverhead = ({
   entIndex
 }) => {
   const playerID = Entities.GetPlayerOwnerID(entIndex);
+  const pvpTopStatue = libs.createMemo(() => pvpTopStatues()[String(entIndex)]);
+  const arenaOpponent = libs.createMemo(() => {
+    const session = arenaSession();
+    if (session?.selectedOpponentID === undefined || !Entities.IsEnemy(entIndex)) return undefined;
+    return session.opponents.find(opponent => opponent.id === session.selectedOpponentID);
+  });
   const playerCosmeticEquips = solid_utils.createServiceNetData("player_cosmetic_equips", {}, playerID);
   const titleCosmeticID = libs.createMemo(() => {
+    const opponent = arenaOpponent();
+    if (opponent !== undefined) {
+      return opponent.titleCosmeticID !== undefined && opponent.titleCosmeticID > 0 ? String(opponent.titleCosmeticID) : "";
+    }
     for (const equip of Object.values(playerCosmeticEquips())) {
       const cosmeticInfo = KeyValues.info_item_cosmetic[String(equip.cosmetic_id)];
       if (cosmeticInfo != undefined && cosmeticInfo.type == COSMETIC_TYPE.TITLE) {
@@ -202,78 +217,138 @@ const HeroOverhead = ({
         id: "OverheadContent",
         "class": "HeroContent"
       }, null),
-      _el$0 = libs.createElement("Panel", {
+      _el$9 = libs.createElement("Panel", {
         id: "HeroBarContainer"
       }, _el$7),
-      _el$1 = libs.createElement("Panel", {
+      _el$0 = libs.createElement("Panel", {
         id: "UpgradePrompt"
-      }, _el$0);
+      }, _el$9);
       libs.createElement("DOTAParticleScenePanel", {
         lookAt: "0 0 0",
         cameraOrigin: "0 0 65",
         fov: 45,
         particleName: "particles/ui/game/ui_game_general_special_effects_02_fx.vpcf",
         squarePixels: true
-      }, _el$1);
-      const _el$11 = libs.createElement("Panel", {
+      }, _el$0);
+      const _el$10 = libs.createElement("Panel", {
         id: "Bar"
-      }, _el$0),
-      _el$12 = libs.createElement("Panel", {
+      }, _el$9),
+      _el$11 = libs.createElement("Panel", {
         id: "ShieldProgress"
-      }, _el$11);
+      }, _el$10);
       libs.createElement("Panel", {
         id: "ShieldProgress_Bar"
-      }, _el$12);
-      const _el$14 = libs.createElement("Panel", {
-        id: "HealthProgress"
       }, _el$11);
+      const _el$13 = libs.createElement("Panel", {
+        id: "HealthProgress"
+      }, _el$10);
       libs.createElement("Panel", {
         id: "HealthProgress_Loss"
-      }, _el$14);
+      }, _el$13);
       libs.createElement("Panel", {
         id: "HealthProgress_Left"
-      }, _el$14);
-      const _el$17 = libs.createElement("Panel", {
+      }, _el$13);
+      const _el$16 = libs.createElement("Panel", {
+        id: "RageProgress"
+      }, _el$10);
+      libs.createElement("Panel", {
+        id: "RageProgress_Bar"
+      }, _el$16);
+      const _el$18 = libs.createElement("Panel", {
         id: "DashCharge"
-      }, _el$0);
+      }, _el$9);
       libs.createElement("Panel", {
         id: "DashCharge_Bar"
-      }, _el$17);
+      }, _el$18);
     libs.insert(_el$7, libs.createComponent(libs.Show, {
       get when() {
-        return titleCosmeticID() !== "";
+        return (pvpTopStatue()?.title ?? "") !== "";
+      },
+      get fallback() {
+        return libs.createComponent(libs.Show, {
+          get when() {
+            return titleCosmeticID() !== "";
+          },
+          get children() {
+            return libs.createComponent(Player.PlayerTitle, {
+              id: "HeroTitleImage",
+              get titleid() {
+                return titleCosmeticID();
+              }
+            });
+          }
+        });
       },
       get children() {
         return libs.createComponent(Player.PlayerTitle, {
           id: "HeroTitleImage",
           get titleid() {
-            return titleCosmeticID();
+            return pvpTopStatue().title;
           }
         });
       }
-    }), _el$0);
+    }), _el$9);
     libs.insert(_el$7, libs.createComponent(libs.Show, {
       get when() {
-        return playerName() !== "";
+        return pvpTopStatue() !== undefined;
+      },
+      get fallback() {
+        return libs.createComponent(libs.Show, {
+          get when() {
+            return arenaOpponent() !== undefined;
+          },
+          get fallback() {
+            return libs.createComponent(libs.Show, {
+              get when() {
+                return playerName() !== "";
+              },
+              get children() {
+                const _el$21 = libs.createElement("Panel", {
+                    id: "HeroPlayerName"
+                  }, null),
+                  _el$22 = libs.createElement("Label", {
+                    get text() {
+                      return playerName();
+                    }
+                  }, _el$21);
+                libs.effect(_$p => libs.setProp(_el$22, "text", playerName(), _$p));
+                return _el$21;
+              }
+            });
+          },
+          get children() {
+            const _el$20 = libs.createElement("Panel", {
+              id: "HeroPlayerName"
+            }, null);
+            libs.insert(_el$20, libs.createComponent(Player.PlayerName, {
+              get accountid() {
+                return arenaOpponent()?.accountID;
+              }
+            }));
+            return _el$20;
+          }
+        });
       },
       get children() {
         const _el$8 = libs.createElement("Panel", {
-            id: "HeroPlayerName"
-          }, null),
-          _el$9 = libs.createElement("Label", {
-            get text() {
-              return playerName();
-            }
-          }, _el$8);
-        libs.effect(_$p => libs.setProp(_el$9, "text", playerName(), _$p));
+          id: "HeroPlayerName"
+        }, null);
+        libs.insert(_el$8, libs.createComponent(Player.PlayerName, {
+          get accountid() {
+            return pvpTopStatue().uid;
+          }
+        }));
         return _el$8;
       }
-    }), _el$0);
-    libs.insert(_el$1, libs.createComponent(EOM_HotKeyDisplay.EOM_HotKeyDisplay, {
+    }), _el$9);
+    libs.insert(_el$0, libs.createComponent(EOM_HotKeyDisplay.EOM_HotKeyDisplay, {
       get hotkey() {
         return getUpgradeKey();
       }
     }), null);
+    libs.effect(_$p => libs.setProp(_el$7, "classList", {
+      PvpTopStatue: pvpTopStatue() !== undefined
+    }, _$p));
     return _el$7;
   })();
 };
@@ -282,71 +357,71 @@ const UnitOverhead = ({
 }) => {
   const isDummy = Entities.GetUnitName(entIndex) === "demo_dummy";
   return (() => {
-    const _el$19 = libs.createElement("Panel", {
+    const _el$23 = libs.createElement("Panel", {
       id: "OverheadContent",
       "class": "UnitContent"
     }, null);
-    libs.insert(_el$19, libs.createComponent(libs.Show, {
+    libs.insert(_el$23, libs.createComponent(libs.Show, {
       when: isDummy,
       get children() {
-        const _el$20 = libs.createElement("Panel", {
+        const _el$24 = libs.createElement("Panel", {
             id: "DummyDamageRecord"
           }, null),
-          _el$21 = libs.createElement("Panel", {
+          _el$25 = libs.createElement("Panel", {
             id: "DummyDamageSummary"
-          }, _el$20),
-          _el$22 = libs.createElement("Panel", {
+          }, _el$24),
+          _el$26 = libs.createElement("Panel", {
             "class": "DummyDamageRecordRow"
-          }, _el$21),
-          _el$23 = libs.createElement("Label", {
+          }, _el$25),
+          _el$27 = libs.createElement("Label", {
             "class": "DummyDamageRecordLabel",
             get text() {
               return GetLocalization("#TestRecord_TotalDamage");
             }
-          }, _el$22);
+          }, _el$26);
           libs.createElement("Label", {
             id: "DummyTotalDamage",
             "class": "DummyDamageRecordValue",
             text: "0.00"
-          }, _el$22);
-          const _el$25 = libs.createElement("Panel", {
+          }, _el$26);
+          const _el$29 = libs.createElement("Panel", {
             "class": "DummyDamageRecordRow"
-          }, _el$21),
-          _el$26 = libs.createElement("Label", {
+          }, _el$25),
+          _el$30 = libs.createElement("Label", {
             "class": "DummyDamageRecordLabel",
             get text() {
               return GetLocalization("#TestRecord_DPS");
             }
-          }, _el$25);
+          }, _el$29);
           libs.createElement("Label", {
             id: "DummyDps",
             "class": "DummyDamageRecordValue",
             text: "0.00"
-          }, _el$25);
-          const _el$28 = libs.createElement("Panel", {
+          }, _el$29);
+          const _el$32 = libs.createElement("Panel", {
             "class": "DummyDamageRecordRow"
-          }, _el$21),
-          _el$29 = libs.createElement("Label", {
+          }, _el$25),
+          _el$33 = libs.createElement("Label", {
             "class": "DummyDamageRecordLabel",
             get text() {
               return GetLocalization("#TestRecord_LastDamage");
             }
-          }, _el$28);
+          }, _el$32);
           libs.createElement("Label", {
             id: "DummyLastDamage",
             "class": "DummyDamageRecordValue",
             text: "0"
-          }, _el$28);
-          const _el$31 = libs.createElement("Panel", {
+          }, _el$32);
+          const _el$35 = libs.createElement("Panel", {
             "class": "DummyDamageRecordRow"
-          }, _el$21),
-          _el$32 = libs.createElement("Label", {
+          }, _el$25),
+          _el$36 = libs.createElement("Label", {
             "class": "DummyDamageRecordLabel",
             get text() {
               return GetLocalization("#TestRecord_RecordTime");
             }
-          }, _el$31),
-          _el$33 = libs.createElement("Label", {
+          }, _el$35),
+          _el$37 = libs.createElement("Label", {
             id: "DummyRecordTime",
             "class": "DummyDamageRecordValue",
             get text() {
@@ -354,14 +429,14 @@ const UnitOverhead = ({
                 time: "0.0"
               });
             }
-          }, _el$31);
+          }, _el$35);
           libs.createElement("ProgressBar", {
             id: "DummyDamageCountdownBar",
             value: 0
-          }, _el$21);
+          }, _el$25);
           libs.createElement("Panel", {
             id: "DummyAbilityDamageList"
-          }, _el$20);
+          }, _el$24);
         libs.effect(_p$ => {
           const _v$ = GetLocalization("#TestRecord_TotalDamage"),
             _v$2 = GetLocalization("#TestRecord_DPS"),
@@ -370,11 +445,11 @@ const UnitOverhead = ({
             _v$5 = LocalizeWithVars("#TestRecord_RecordTimeValue", {
               time: "0.0"
             });
-          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$23, "text", _v$, _p$._v$));
-          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$26, "text", _v$2, _p$._v$2));
-          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$29, "text", _v$3, _p$._v$3));
-          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$32, "text", _v$4, _p$._v$4));
-          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$33, "text", _v$5, _p$._v$5));
+          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$27, "text", _v$, _p$._v$));
+          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$30, "text", _v$2, _p$._v$2));
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$33, "text", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$36, "text", _v$4, _p$._v$4));
+          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$37, "text", _v$5, _p$._v$5));
           return _p$;
         }, {
           _v$: undefined,
@@ -383,11 +458,11 @@ const UnitOverhead = ({
           _v$4: undefined,
           _v$5: undefined
         });
-        return _el$20;
+        return _el$24;
       }
     }), null);
-    libs.insert(_el$19, libs.createComponent(HealthBar, {}), null);
-    return _el$19;
+    libs.insert(_el$23, libs.createComponent(HealthBar, {}), null);
+    return _el$23;
   })();
 };
 const ShopItemOverhead = ({
@@ -426,23 +501,23 @@ const ShopItemOverhead = ({
     return (playerResource()?.gold ?? 0) >= goldCost();
   });
   return (() => {
-    const _el$36 = libs.createElement("Panel", {
+    const _el$40 = libs.createElement("Panel", {
         id: "OverheadContent",
         "class": "ShopItemContent"
       }, null),
-      _el$37 = libs.createElement("Label", {
+      _el$41 = libs.createElement("Label", {
         "class": "ShopItemName",
         get text() {
           return itemTitle();
         }
-      }, _el$36),
-      _el$38 = libs.createElement("Label", {
+      }, _el$40),
+      _el$42 = libs.createElement("Label", {
         "class": "CostLabel GoldCost",
         get text() {
           return goldCost();
         }
-      }, _el$36);
-    libs.insert(_el$36, libs.createComponent(common_item.CommonItem, {
+      }, _el$40);
+    libs.insert(_el$40, libs.createComponent(common_item.CommonItem, {
       get itemName() {
         return itemName();
       },
@@ -457,10 +532,10 @@ const ShopItemOverhead = ({
           NoEnoughGold: !enoughGold()
         },
         _v$9 = goldCost();
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$37, "text", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$38, "visible", _v$7, _p$._v$7));
-      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$38, "classList", _v$8, _p$._v$8));
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$38, "text", _v$9, _p$._v$9));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$41, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$42, "visible", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$42, "classList", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$42, "text", _v$9, _p$._v$9));
       return _p$;
     }, {
       _v$6: undefined,
@@ -468,7 +543,7 @@ const ShopItemOverhead = ({
       _v$8: undefined,
       _v$9: undefined
     });
-    return _el$36;
+    return _el$40;
   })();
 };
 const ClientItemOverhead = ({
@@ -478,29 +553,29 @@ const ClientItemOverhead = ({
   const itemID = libs.createMemo(() => dropItem()?.item_id ?? "");
   if (dropItem()?.show_tip) {
     return (() => {
-      const _el$39 = libs.createElement("Panel", {
+      const _el$43 = libs.createElement("Panel", {
           id: "OverheadContent",
           "class": "ClientItemContent"
         }, null),
-        _el$40 = libs.createElement("Label", {
+        _el$44 = libs.createElement("Label", {
           get ["class"]() {
             return libs.classNames("ClientItemID", "Rarity" + dropItem()?.rarity);
           },
           get text() {
             return "#" + itemID();
           }
-        }, _el$39);
+        }, _el$43);
       libs.effect(_p$ => {
         const _v$0 = libs.classNames("ClientItemID", "Rarity" + dropItem()?.rarity),
           _v$1 = "#" + itemID();
-        _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$40, "class", _v$0, _p$._v$0));
-        _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$40, "text", _v$1, _p$._v$1));
+        _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "class", _v$0, _p$._v$0));
+        _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$44, "text", _v$1, _p$._v$1));
         return _p$;
       }, {
         _v$0: undefined,
         _v$1: undefined
       });
-      return _el$39;
+      return _el$43;
     })();
   }
 };
@@ -519,34 +594,34 @@ const NpcOverhead = ({
     });
   });
   return (() => {
-    const _el$41 = libs.createElement("Panel", {
+    const _el$45 = libs.createElement("Panel", {
         id: "OverheadContent",
         "class": "NpcContent"
       }, null),
-      _el$43 = libs.createElement("Label", {
+      _el$47 = libs.createElement("Label", {
         id: "NpcName",
         get text() {
           return npcNameText();
         }
-      }, _el$41);
-    libs.insert(_el$41, libs.createComponent(libs.Show, {
+      }, _el$45);
+    libs.insert(_el$45, libs.createComponent(libs.Show, {
       get when() {
         return isPublicNpc();
       },
       get children() {
-        const _el$42 = libs.createElement("Image", {
+        const _el$46 = libs.createElement("Image", {
           id: "NpcIcon",
           get src() {
             return iconPath();
           },
           scaling: "stretch-to-fit-preserve-aspect"
         }, null);
-        libs.effect(_$p => libs.setProp(_el$42, "src", iconPath(), _$p));
-        return _el$42;
+        libs.effect(_$p => libs.setProp(_el$46, "src", iconPath(), _$p));
+        return _el$46;
       }
-    }), _el$43);
-    libs.effect(_$p => libs.setProp(_el$43, "text", npcNameText(), _$p));
-    return _el$41;
+    }), _el$47);
+    libs.effect(_$p => libs.setProp(_el$47, "text", npcNameText(), _$p));
+    return _el$45;
   })();
 };
 function getOverheadComponent(type, entIndex) {
@@ -671,6 +746,9 @@ function getOverheadComponent(type, entIndex) {
     if (type === "Hero" || type === "Unit") {
       updateHealthBar(entry);
     }
+    if (type === "Hero") {
+      updateRageBar(entry, arenaSession() !== undefined);
+    }
     return entry;
   }
   function refreshVisibleEntries() {
@@ -729,6 +807,7 @@ function getOverheadComponent(type, entIndex) {
     }
     const selectedEntity = selectedEntities.length === 1 ? selectedEntities[0] : -1;
     const hasHeroUpgrade = refreshEntityState && isHeroHasUpgrade();
+    const isArenaActive = refreshHealth && arenaSession() !== undefined;
     for (const entry of overheadEntries.values()) {
       if (!Entities.IsValidEntity(entry.entIndex)) {
         setPanelScreenVisibility(entry, false);
@@ -750,6 +829,9 @@ function getOverheadComponent(type, entIndex) {
       }
       if (refreshHealth && (entry.type === "Hero" || entry.type === "Unit")) {
         updateHealthBar(entry);
+      }
+      if (refreshHealth && entry.type === "Hero") {
+        updateRageBar(entry, isArenaActive);
       }
       if (refreshDummyRecord && entry.type === "Unit") {
         updateDummyDamageRecord(entry, gameTime);
@@ -780,6 +862,7 @@ function getOverheadComponent(type, entIndex) {
   function createPanelCache(panel) {
     const healthProgress = panel.FindChildTraverse("HealthProgress");
     const shieldProgress = panel.FindChildTraverse("ShieldProgress");
+    const rageProgress = panel.FindChildTraverse("RageProgress");
     return {
       bar: panel.FindChildTraverse("Bar"),
       healthProgress,
@@ -787,6 +870,8 @@ function getOverheadComponent(type, entIndex) {
       healthLoss: healthProgress?.FindChildTraverse("HealthProgress_Loss") ?? null,
       shieldProgress,
       shieldBar: shieldProgress?.FindChildTraverse("ShieldProgress_Bar") ?? null,
+      rageProgress,
+      rageBar: rageProgress?.FindChildTraverse("RageProgress_Bar") ?? null,
       dashBar: panel.FindChildTraverse("DashCharge_Bar"),
       dummyRecord: panel.FindChildTraverse("DummyDamageRecord"),
       dummyDamageSummary: panel.FindChildTraverse("DummyDamageSummary"),
@@ -1022,6 +1107,26 @@ function getOverheadComponent(type, entIndex) {
           cache.lastDashPercent = cooldownPercent;
         }
       }
+    }
+  }
+  function updateRageBar(entry, visible) {
+    const {
+      entIndex,
+      cache
+    } = entry;
+    const rageProgress = cache.rageProgress;
+    if (rageProgress === null) return;
+    if (cache.lastRageVisible !== visible) {
+      rageProgress.SetHasClass("Visible", visible);
+      cache.lastRageVisible = visible;
+    }
+    if (!visible || cache.rageBar === null) return;
+    const rage = Entities.GetMana(entIndex);
+    const maxRage = Entities.GetMaxMana(entIndex);
+    const percent = maxRage > 0 ? Math.max(0, Math.min(1, rage / maxRage)) : 0;
+    if (cache.lastRagePercent !== percent) {
+      cache.rageBar.style.width = formatPanoramaPercent(percent * 100);
+      cache.lastRagePercent = percent;
     }
   }
   function cleanupRecycleBin() {

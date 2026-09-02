@@ -26,6 +26,7 @@ var solid_utils = require('./solid_utils.js');
 require('./service_netdata_helper.js');
 require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 var EDrawState = function (EDrawState) {

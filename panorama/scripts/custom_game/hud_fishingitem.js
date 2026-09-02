@@ -31,6 +31,7 @@ var service_netdata_helper = require('./service_netdata_helper.js');
 var equipment_comp = require('./equipment_comp.js');
 var courier_explore_preview = require('./courier_explore_preview.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const COLLECTION_TYPE = "fish";

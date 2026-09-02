@@ -17,7 +17,7 @@ const EQUIP_PARTS = [1, 2, 3, 4, 5, 6, 7, 8];
 const MAX_EQUIPMENT_RARITY = 7;
 const EQUIP_RARITY_COLOR = ["#7C918E", "#69944A", "#4472CE", "#875DD4", "#CEAD3C", "#E55043", "gradient(linear, 0% 0%, 0% 100%, from(#917E4B), to(#F1D999))"];
 const EquipmentSimplifyConfig = ["id", "equipment_item_id", "level", "remaining_potential", "total_potential", "locked", "in_equip_suit", "ability_entry_data", "inlay_gems_data", "in_check"];
-const GemSimplifyConfig = ["id", "gem_item_id", "locked", "level", "rarity"];
+const GemSimplifyConfig = ["id", "gem_item_id", "locked", "level", "rarity", "gem_roll_change"];
 const HeroID2Name = (() => {
   let res = {};
   for (let [name, {

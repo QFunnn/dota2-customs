@@ -2700,6 +2700,11 @@
 	color: #E6D4A4;
 }
 
+.Popup_CommonConfirm .EOM_PopupMain.normal #CenterBlock
+{
+	height: fill-parent-flow(1);
+}
+
 .Popup_CommonConfirm #CenterBlock
 {
 	width: 100%;
@@ -2707,8 +2712,14 @@
 	vertical-align: center;
 }
 
+.Popup_CommonConfirm #CenterBlock.HideConfirm
+{
+	height: 320px;
+}
+
 .Popup_CommonConfirm #CenterBlock #Text
 {
+	padding: 8px;
 	horizontal-align: center;
 	color: #AEA280;
 	font-size: 24px;
@@ -5958,4 +5969,524 @@
 	brightness: 0.7;
 	width: 144px;
 	height: 72px;
+}
+
+.EOM_Breadcrumb
+{
+	flow-children: right;
+}
+
+.EOM_Breadcrumb .EOM_BreadcrumbSeparator
+{
+	font-size: 20px;
+	color: #939da022;
+	margin: 0px 12px;
+}
+
+.EOM_Breadcrumb > TabButton Label
+{
+	margin-top: 2px;
+	color: #939da044;
+	transition-property: color;
+	transition-duration: 0.2s;
+}
+
+.EOM_Breadcrumb > TabButton:selected Label
+{
+	color: white;
+	sound: "ui_rollover_micro";
+}
+
+.EOM_Breadcrumb > TabButton:hover Label
+{
+	color: #CCCCCC;
+}
+
+.EOM_Breadcrumb > TabButton:active
+{
+	transform: translateY(2px);
+}
+
+.EOM_Breadcrumb > TabButton:active:selected
+{
+	transform: translateY(0px);
+}
+
+#Popup_PvpCombatLog .EOM_PopupContent
+{
+	padding: 90px 38px 38px 38px;
+}
+
+#Popup_PvpCombatLog #PvpCombatLogContent
+{
+	width: 100%;
+	flow-children: down;
+	padding: 0px 20px;
+}
+
+#Popup_PvpCombatLog #PvpRecordTabs
+{
+	horizontal-align: center;
+	margin-bottom: 12px;
+}
+
+#Popup_PvpCombatLog #PvpRecordTabs .EOM_BreadcrumbSeparator
+{
+	color: #9D865C66;
+}
+
+#Popup_PvpCombatLog #PvpRecordTabs TabButton Label
+{
+	font-size: 21px;
+	color: #9D865C;
+}
+
+#Popup_PvpCombatLog #PvpRecordTabs TabButton:selected Label
+{
+	color: #FFE791;
+}
+
+#Popup_PvpCombatLog #PvpRecordHeader
+{
+	width: 1278px;
+	height: 40px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#Popup_PvpCombatLog #PvpRecordHeader Label
+{
+	vertical-align: center;
+	font-size: 22px;
+	color: #E6C985;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#Popup_PvpCombatLog .Line
+{
+	horizontal-align: center;
+	margin: 7px 0px;
+	width: 1226px;
+	height: 6px;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_line_png.vtex");
+	background-size: 100%;
+}
+
+#Popup_PvpCombatLog #PvpRecordList
+{
+	width: 1278px;
+	min-height: 460px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow
+{
+	width: 1278px;
+	height: 90px;
+	flow-children: right;
+	margin: 1px 0px;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_button_victory_png.vtex");
+	background-size: 100%;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpCol
+{
+	vertical-align: center;
+	font-size: 21px;
+	color: #E6D4A4;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColResult.Win
+{
+	color: #FFD564;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColResult.Lose
+{
+	color: #BFBAAC;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColOpponent
+{
+	flow-children: right;
+	padding-left: 38px;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColOpponent .AvatarBorder
+{
+	width: 64px;
+	height: 64px;
+	vertical-align: center;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColOpponent .AvatarBorder .EOM_Avatar,#Popup_PvpCombatLog .PvpRecordRow .PvpColOpponent .AvatarBorder .TipsArea
+{
+	width: 50%;
+	height: 50%;
+	align: center center;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColOpponent .OpponentName
+{
+	width: 190px;
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 20px;
+	color: #EFE8D5;
+	text-align: left;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColScore
+{
+	flow-children: down;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColScore Label
+{
+	horizontal-align: center;
+	text-align: center;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColScore .ScoreDelta
+{
+	font-size: 18px;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColScore .ScoreDelta.Positive
+{
+	color: #8FCB78;
+}
+
+#Popup_PvpCombatLog .PvpRecordRow .PvpColScore .ScoreDelta.Negative
+{
+	color: #C96E66;
+}
+
+#Popup_PvpCombatLog .PvpColTime
+{
+	width: 170px;
+}
+
+#Popup_PvpCombatLog .PvpColResult
+{
+	width: 110px;
+}
+
+#Popup_PvpCombatLog .PvpColOpponent
+{
+	width: 320px;
+}
+
+#Popup_PvpCombatLog .PvpColSelfPower,#Popup_PvpCombatLog .PvpColOpponentPower
+{
+	width: 200px;
+}
+
+#Popup_PvpCombatLog .PvpColScore
+{
+	width: 278px;
+}
+
+#Popup_PvpCombatLog .EmptyPvpRecords
+{
+	horizontal-align: center;
+	margin-top: 150px;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+#Popup_PvpCombatLog #Pagination
+{
+	align: center bottom;
+	margin-bottom: 39px;
+	flow-children: right;
+	padding: 10px 0px;
+}
+
+#Popup_PvpCombatLog #Pagination .PageBtn
+{
+	width: 42px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_left_png.vtex");
+	background-size: 100%;
+}
+
+#Popup_PvpCombatLog #Pagination .PageBtn.NextBtn
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_right_png.vtex");
+}
+
+#Popup_PvpCombatLog #Pagination .PageText
+{
+	width: 60px;
+	vertical-align: center;
+	font-size: 20px;
+	color: #E6D4A4;
+	text-align: center;
+}
+
+.Popup_PvpReward .EOM_PopupMain.normal #CenterBlock
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 0px;
+}
+
+.Popup_PvpReward .RewardDescription
+{
+	horizontal-align: center;
+	margin: 12px 0px 8px 0px;
+	font-size: 21px;
+	color: #B9B1A6;
+	text-align: center;
+	width: 80%;
+	height: 60px;
+}
+
+.Popup_PvpReward .RewardTierList
+{
+	margin: 5px 0px;
+	vertical-align: center;
+	width: 100%;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+	flow-children: down;
+	padding: 8px 18px 12px 18px;
+}
+
+.Popup_PvpReward .RewardTier
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 10px;
+	padding: 12px 18px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#211b16ee), color-stop(0.55, #34271dee), to(#211b16ee));
+	border: 1px solid #76604466;
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement
+{
+	width: 210px;
+	vertical-align: center;
+	border-right: 1px solid #806b4f55;
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent
+{
+	align: center center;
+	flow-children: down;
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent .RankIcon
+{
+	width: 52px;
+	height: 49px;
+	horizontal-align: center;
+	background-size: 100%;
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent .RankIcon.Rank1
+{
+	background-image: url("s2r://panorama/images/custom_game/r3_rank/r3_icon_rank_1_png.vtex");
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent .RankIcon.Rank2
+{
+	background-image: url("s2r://panorama/images/custom_game/r3_rank/r3_icon_rank_2_png.vtex");
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent .RankIcon.Rank3
+{
+	background-image: url("s2r://panorama/images/custom_game/r3_rank/r3_icon_rank_3_png.vtex");
+}
+
+.Popup_PvpReward .RewardTier .RankRequirement .RankRequirementContent Label
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	font-size: 22px;
+	color: #E6D4A4;
+	text-align: center;
+}
+
+.Popup_PvpReward .RewardTier .RewardText
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	padding-left: 24px;
+	font-size: 20px;
+	color: #D8CDBB;
+	text-overflow: shrink;
+}
+
+.Popup_PvpReward .EmptyReward
+{
+	align: center center;
+	font-size: 22px;
+	color: #B9B1A6;
+}
+
+.Popup_PvpReward .EOM_Button
+{
+	horizontal-align: center;
+}
+
+.EOM_ProgressBar
+{
+	border-radius: 5px;
+	width: 320px;
+	height: 22px;
+	border: 2px solid #232222;
+	background-color: #222222ff;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Left
+{
+	height: 100%;
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	z-index: -1;
+}
+
+.EOM_ProgressBar.Tui12
+{
+	background-color: #2A284FFF;
+	border-radius: 0px;
+	border: 0px;
+	padding: 5px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Left
+{
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Right
+{
+	background-color: #2A284FFF;
+}
+
+.Popup_PvpWeeklyTask .EOM_PopupContent
+{
+	padding: 85px 33px 40px 33px;
+}
+
+.Popup_PvpWeeklyTask #PvpWeeklyTaskContent
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Popup_PvpWeeklyTask #TaskRow
+{
+	width: 100%;
+	height: 116px;
+	align: center center;
+	margin-bottom: 70px;
+	background-image: url("s2r://panorama/images/custom_game/activity/shop_and_task/b3_panel_beginner_png.vtex");
+	background-size: 100% 100%;
+}
+
+.Popup_PvpWeeklyTask #TaskRow.Received
+{
+	opacity: 0.5;
+	brightness: 0.8;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskIcon
+{
+	width: 70px;
+	height: 70px;
+	vertical-align: center;
+	margin-left: 25px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharp_png.vtex");
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskInfo
+{
+	width: 250px;
+	margin-left: 105px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskName
+{
+	font-size: 16px;
+	color: #968A69;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskDes
+{
+	width: 250px;
+	margin-top: 2px;
+	font-size: 18px;
+	color: #F1DFAD;
+	text-overflow: shrink;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskProgress
+{
+	width: 210px;
+	height: 13px;
+	margin-top: 6px;
+	padding: 0px 3px;
+	background-color: #010101;
+	border: 0px;
+	border-radius: 0px;
+	overflow: noclip;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskProgress .EOM_ProgressBar_Left
+{
+	height: 7px;
+	vertical-align: center;
+	background-color: gradient(linear, 0px 0px, 529px 0px, from(#D5B661FF), to(#D5A636));
+	border-radius: 0px;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskProgress .EOM_ProgressBar_Right
+{
+	background-color: #010101;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskProgress #TaskProgressValue
+{
+	align: center center;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskRewardList
+{
+	horizontal-align: right;
+	margin-right: 33px;
+	vertical-align: center;
+	flow-children: right;
+}
+
+.Popup_PvpWeeklyTask #TaskRow #TaskRewardList #TaskReward
+{
+	width: 64px;
+	height: 64px;
+	margin: 0px 6px;
+}
+
+.Popup_PvpWeeklyTask #TaskBtn
+{
+	align: center bottom;
 }

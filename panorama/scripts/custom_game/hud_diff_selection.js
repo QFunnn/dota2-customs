@@ -22,6 +22,7 @@ var RecycleView = require('./RecycleView.js');
 var server_dungeon_key = require('./server_dungeon_key.js');
 var equipment_comp = require('./equipment_comp.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
@@ -709,6 +710,17 @@ const HERO_NAME_Y_OFFSET = {
 };
 const DEFAULT_NAME_Y = 120;
 const KEY_RARITY_COUNT = 7;
+const KEY_MAIN_ENTRY_FILTER_MODES = ["default", "include", "exclude"];
+const KEY_MAIN_ENTRY_FILTER_LIST = Object.values(KeyValues.key_entry ?? {}).filter(entry => entry.entry_type === 1).sort((a, b) => a.id - b.id);
+function parseKeyMainEntries(value) {
+  if (!value) {
+    return [];
+  }
+  if (typeof value === "string") {
+    return JSON.parseSafe(value) ?? [];
+  }
+  return Array.isArray(value) ? value : [];
+}
 function getKeyIntensity(data) {
   if (!data) {
     return 0;
@@ -854,6 +866,7 @@ const DungeonSelection = () => {
   const [showKeyList, setShowKeyList] = libs.createSignal(false);
   const [showKeyFilter, setShowKeyFilter] = libs.createSignal(false);
   const [filterRarity, setFilterRarity] = libs.createSignal({});
+  const [filterMainEntry, setFilterMainEntry] = libs.createSignal({});
   const [diff, setDiff] = libs.createSignal(1);
   const updateSelectedDiff = nextValue => {
     setDiff(nextValue);
@@ -945,11 +958,28 @@ const DungeonSelection = () => {
   const availableKeyIDs = libs.createMemo(() => {
     const rarityFilter = activeRarityFilter();
     const hasRarityFilter = Object.keys(rarityFilter).length > 0;
+    const includedMainEntries = [];
+    const excludedMainEntries = [];
+    for (const [entryID, mode] of Object.entries(filterMainEntry())) {
+      if (mode === "include") {
+        includedMainEntries.push(entryID);
+      } else if (mode === "exclude") {
+        excludedMainEntries.push(entryID);
+      }
+    }
+    const hasMainEntryFilter = includedMainEntries.length > 0 || excludedMainEntries.length > 0;
     const classLevelMax = keyClassLevelMax();
     const allKeys = player_keys();
     return Object.keys(allKeys).filter(id => {
       const data = allKeys[id];
-      return data != undefined && (!hasRarityFilter || rarityFilter[data.rarity] === true);
+      if (data == undefined || hasRarityFilter && rarityFilter[data.rarity] !== true) {
+        return false;
+      }
+      if (!hasMainEntryFilter) {
+        return true;
+      }
+      const entryIDs = new Set(parseKeyMainEntries(data.main_entry_data).map(entry => entry.id));
+      return includedMainEntries.every(entryID => entryIDs.has(entryID)) && excludedMainEntries.every(entryID => !entryIDs.has(entryID));
     }).sort((a, b) => {
       const intensityA = getKeyIntensity(allKeys[a]);
       const intensityB = getKeyIntensity(allKeys[b]);
@@ -975,6 +1005,19 @@ const DungeonSelection = () => {
         next[rarity] = true;
       } else {
         delete next[rarity];
+      }
+      return next;
+    });
+  };
+  const setMainEntryFilterMode = (entryID, mode) => {
+    setFilterMainEntry(prev => {
+      const next = {
+        ...prev
+      };
+      if (mode === "default") {
+        delete next[entryID];
+      } else {
+        next[entryID] = mode;
       }
       return next;
     });
@@ -1143,7 +1186,7 @@ const DungeonSelection = () => {
         const fxTime = 0.25;
         const interval = 0;
         return (() => {
-          const _el$43 = libs.createElement("Panel", {
+          const _el$46 = libs.createElement("Panel", {
               "class": "HeroWithShowFx",
               get style() {
                 return {
@@ -1153,7 +1196,7 @@ const DungeonSelection = () => {
                 };
               }
             }, null),
-            _el$44 = libs.createElement("Panel", {
+            _el$47 = libs.createElement("Panel", {
               "class": "PlayerName",
               get style() {
                 return {
@@ -1161,20 +1204,20 @@ const DungeonSelection = () => {
                   y: nameY() + "px"
                 };
               }
-            }, _el$43),
-            _el$45 = libs.createElement("Label", {
+            }, _el$46),
+            _el$48 = libs.createElement("Label", {
               id: "Diff",
               get text() {
                 return "#DiffSelection_DiffName" + playerDiff();
               }
-            }, _el$44),
-            _el$46 = libs.createElement("Label", {
+            }, _el$47),
+            _el$49 = libs.createElement("Label", {
               id: "Name",
               get text() {
                 return playerName();
               }
-            }, _el$44);
-          libs.insert(_el$43, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
+            }, _el$47);
+          libs.insert(_el$46, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
             id: "HeroModelScene",
             get unit() {
               return hero();
@@ -1187,31 +1230,31 @@ const DungeonSelection = () => {
                 animationName: "HeroShow"
               };
             }
-          }), _el$44);
+          }), _el$47);
           libs.effect(_p$ => {
-            const _v$8 = {
+            const _v$0 = {
                 x: pos().x + "px",
                 y: pos().y + "px",
                 zIndex: pos().zIndex
               },
-              _v$9 = {
+              _v$1 = {
                 x: 0 + "px",
                 y: nameY() + "px"
               },
-              _v$0 = "#DiffSelection_DiffName" + playerDiff(),
-              _v$1 = playerName();
-            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$43, "style", _v$8, _p$._v$8));
-            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$44, "style", _v$9, _p$._v$9));
-            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$45, "text", _v$0, _p$._v$0));
-            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$46, "text", _v$1, _p$._v$1));
+              _v$10 = "#DiffSelection_DiffName" + playerDiff(),
+              _v$11 = playerName();
+            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$46, "style", _v$0, _p$._v$0));
+            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$47, "style", _v$1, _p$._v$1));
+            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$48, "text", _v$10, _p$._v$10));
+            _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$49, "text", _v$11, _p$._v$11));
             return _p$;
           }, {
-            _v$8: undefined,
-            _v$9: undefined,
             _v$0: undefined,
-            _v$1: undefined
+            _v$1: undefined,
+            _v$10: undefined,
+            _v$11: undefined
           });
-          return _el$43;
+          return _el$46;
         })();
       }
     }), _el$3);
@@ -1285,21 +1328,21 @@ const DungeonSelection = () => {
       const _el$18 = libs.createElement("Panel", {
         id: "StarConditionList"
       }, _el$0),
-      _el$37 = libs.createElement("Panel", {
+      _el$40 = libs.createElement("Panel", {
         id: "Teammate"
       }, _el$4),
-      _el$38 = libs.createElement("Panel", {
+      _el$41 = libs.createElement("Panel", {
         id: "TeammateDiff"
-      }, _el$37),
-      _el$39 = libs.createElement("Label", {
+      }, _el$40),
+      _el$42 = libs.createElement("Label", {
         text: "#DiffSelection_TeamDiff",
         get vars() {
           return {
             diff: teamDiff()
           };
         }
-      }, _el$38),
-      _el$40 = libs.createElement("Label", {
+      }, _el$41),
+      _el$43 = libs.createElement("Label", {
         id: "StartCountdown",
         text: "#DiffSelection_StartCountdown",
         get vars() {
@@ -1307,7 +1350,7 @@ const DungeonSelection = () => {
             value: countdown()
           };
         }
-      }, _el$37);
+      }, _el$40);
     libs.insert(_el$7, libs.createComponent(EOM_Button.EOM_BaseButton, {
       get visible() {
         return diffList().length >= 3;
@@ -1335,14 +1378,14 @@ const DungeonSelection = () => {
           return a;
         };
         return (() => {
-          const _el$47 = libs.createElement("Panel", {
+          const _el$50 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("Diff", "Index" + posIndex());
               }
             }, null),
-            _el$48 = libs.createElement("Panel", {
+            _el$51 = libs.createElement("Panel", {
               "class": "DiffTop"
-            }, _el$47);
+            }, _el$50);
             libs.createElement("DOTAParticleScenePanel", {
               "class": "SelectParticle",
               particleName: "particles/ui/game/ui_game_general_special_effects_02_fx.vpcf",
@@ -1351,8 +1394,8 @@ const DungeonSelection = () => {
               lookAt: "0 0 0",
               hittest: false,
               squarePixels: true
-            }, _el$48);
-          libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            }, _el$51);
+          libs.insert(_el$51, libs.createComponent(EOM_Button.EOM_BaseButton, {
             "class": "DiffButton",
             get classList() {
               return {
@@ -1366,28 +1409,28 @@ const DungeonSelection = () => {
               updateSelectedDiff(_diff);
             },
             get children() {
-              const _el$50 = libs.createElement("Label", {
+              const _el$53 = libs.createElement("Label", {
                 "class": "DiffName",
                 text: _diff
               }, null);
-              libs.setProp(_el$50, "text", _diff);
-              return _el$50;
+              libs.setProp(_el$53, "text", _diff);
+              return _el$53;
             }
           }), null);
-          libs.insert(_el$47, libs.createComponent(libs.Show, {
+          libs.insert(_el$50, libs.createComponent(libs.Show, {
             when: _diff <= TRAIN_DIFF,
             get children() {
-              const _el$51 = libs.createElement("Label", {
+              const _el$54 = libs.createElement("Label", {
                 "class": "DiffDesc",
                 verticalAlign: "bottom",
                 text: "#DiffSelection_TrainDiff"
               }, null);
-              libs.setProp(_el$51, "verticalAlign", "bottom");
-              return _el$51;
+              libs.setProp(_el$54, "verticalAlign", "bottom");
+              return _el$54;
             }
           }), null);
-          libs.effect(_$p => libs.setProp(_el$47, "class", libs.classNames("Diff", "Index" + posIndex()), _$p));
-          return _el$47;
+          libs.effect(_$p => libs.setProp(_el$50, "class", libs.classNames("Diff", "Index" + posIndex()), _$p));
+          return _el$50;
         })();
       }
     }));
@@ -1449,19 +1492,19 @@ const DungeonSelection = () => {
                   }, null);
                 }
               }), (() => {
-                const _el$53 = libs.createElement("Panel", {
+                const _el$56 = libs.createElement("Panel", {
                   width: "100%",
                   height: "100%"
                 }, null);
-                libs.setProp(_el$53, "width", "100%");
-                libs.setProp(_el$53, "height", "100%");
-                libs.effect(_$p => libs.setProp(_el$53, "customTooltip", {
+                libs.setProp(_el$56, "width", "100%");
+                libs.setProp(_el$56, "height", "100%");
+                libs.effect(_$p => libs.setProp(_el$56, "customTooltip", {
                   name: "title_image_text",
                   title: GetLocalization(String(item.itemId)),
                   image: getSrcPath("store_items/" + item.itemId + ".png"),
                   text: GetLocalization(item.itemId + "_description") + "<br>" + GetLocalization("DiffSelection_StarReward" + reward.star)
                 }, _$p));
-                return _el$53;
+                return _el$56;
               })()];
             }
           })
@@ -1475,7 +1518,7 @@ const DungeonSelection = () => {
       children: reward => {
         const isChecked = createStarChecked(reward.star);
         return (() => {
-          const _el$54 = libs.createElement("Panel", {
+          const _el$57 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("StarCondition", {
                   Unfilled: !isChecked()
@@ -1484,26 +1527,26 @@ const DungeonSelection = () => {
             }, null);
             libs.createElement("Image", {
               "class": "DiffStar"
-            }, _el$54);
-            const _el$56 = libs.createElement("Label", {
+            }, _el$57);
+            const _el$59 = libs.createElement("Label", {
               "class": "StarConditionText",
               get text() {
                 return "#DiffSelection_StarCondition" + reward.star;
               }
-            }, _el$54);
+            }, _el$57);
           libs.effect(_p$ => {
-            const _v$10 = libs.classNames("StarCondition", {
+            const _v$12 = libs.classNames("StarCondition", {
                 Unfilled: !isChecked()
               }),
-              _v$11 = "#DiffSelection_StarCondition" + reward.star;
-            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$54, "class", _v$10, _p$._v$10));
-            _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$56, "text", _v$11, _p$._v$11));
+              _v$13 = "#DiffSelection_StarCondition" + reward.star;
+            _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$57, "class", _v$12, _p$._v$12));
+            _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$59, "text", _v$13, _p$._v$13));
             return _p$;
           }, {
-            _v$10: undefined,
-            _v$11: undefined
+            _v$12: undefined,
+            _v$13: undefined
           });
-          return _el$54;
+          return _el$57;
         })();
       }
     }));
@@ -1599,7 +1642,7 @@ const DungeonSelection = () => {
         }, _$p));
         return _el$19;
       }
-    }), _el$37);
+    }), _el$40);
     libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return showKeyList();
@@ -1611,17 +1654,17 @@ const DungeonSelection = () => {
           _el$29 = libs.createElement("Panel", {
             id: "KeyListBox"
           }, _el$28),
-          _el$34 = libs.createElement("Panel", {
+          _el$37 = libs.createElement("Panel", {
             id: "BtnsContainer"
           }, _el$28),
-          _el$35 = libs.createElement("Panel", {
+          _el$38 = libs.createElement("Panel", {
             align: "center center",
             flowChildren: "right"
-          }, _el$34),
-          _el$36 = libs.createElement("Button", {
+          }, _el$37),
+          _el$39 = libs.createElement("Button", {
             id: "ResetBtn",
             "class": "SecondaryButtonStates"
-          }, _el$35);
+          }, _el$38);
         libs.insert(_el$29, libs.createComponent(libs.Show, {
           get when() {
             return showKeyFilter();
@@ -1647,43 +1690,47 @@ const DungeonSelection = () => {
                   return data == undefined || getKeyClassLevel(data) > keyClassLevelMax();
                 });
                 return (() => {
-                  const _el$58 = libs.createElement("Panel", {
+                  const _el$61 = libs.createElement("Panel", {
                       "class": "Item"
                     }, null),
-                    _el$59 = libs.createElement("Panel", {
+                    _el$62 = libs.createElement("Panel", {
                       "class": "SelectedBorder",
                       hittest: false
-                    }, _el$58);
-                  libs.setProp(_el$58, "onactivate", () => {
+                    }, _el$61);
+                  libs.setProp(_el$61, "onactivate", () => {
                     if (disabled()) {
                       return;
                     }
                     updateDifficultyKey(id());
                     setShowKeyList(false);
                   });
-                  libs.insert(_el$58, libs.createComponent(server_dungeon_key.DungeonKey, {
+                  libs.insert(_el$61, libs.createComponent(server_dungeon_key.DungeonKey, {
                     get keyID() {
                       return id();
                     }
-                  }), _el$59);
-                  libs.effect(_$p => libs.setProp(_el$58, "classList", {
+                  }), _el$62);
+                  libs.effect(_$p => libs.setProp(_el$61, "classList", {
                     Selected: selectedKeyID() == id(),
                     InAction: selectedKeyID() == id(),
                     Gray: disabled()
                   }, _$p));
-                  return _el$58;
+                  return _el$61;
                 })();
               }
             });
           },
           get children() {
             const _el$30 = libs.createElement("Panel", {
-                id: "KeyFilterWindow"
-              }, null);
-              libs.createElement("Label", {
+                id: "KeyFilterWindow",
+                "class": "VerticalScrollStyle",
+                scroll: "y"
+              }, null),
+              _el$31 = libs.createElement("Label", {
                 id: "RarityLabel",
-                "class": "Subheading",
-                text: "#Equipment_Rarity"
+                "class": "Subheading FirstHeading",
+                get text() {
+                  return GetLocalization("#Equipment_Rarity");
+                }
               }, _el$30);
               libs.createElement("Panel", {
                 "class": "FilterLine"
@@ -1691,7 +1738,20 @@ const DungeonSelection = () => {
               const _el$33 = libs.createElement("Panel", {
                 id: "RarityFilterList",
                 "class": "CheckBoxList"
+              }, _el$30),
+              _el$34 = libs.createElement("Label", {
+                "class": "Subheading",
+                get text() {
+                  return GetLocalization("#Key_GoodEffect");
+                }
               }, _el$30);
+              libs.createElement("Panel", {
+                "class": "FilterLine"
+              }, _el$30);
+              const _el$36 = libs.createElement("Panel", {
+                id: "KeyMainEntryFilterList"
+              }, _el$30);
+            libs.setProp(_el$30, "scroll", "y");
             libs.insert(_el$33, libs.createComponent(libs.For, {
               get each() {
                 return Array(KEY_RARITY_COUNT);
@@ -1712,12 +1772,90 @@ const DungeonSelection = () => {
                 });
               }
             }));
+            libs.insert(_el$36, libs.createComponent(libs.For, {
+              each: KEY_MAIN_ENTRY_FILTER_LIST,
+              children: entry => {
+                const mode = () => filterMainEntry()[entry.entry_name] ?? "default";
+                return (() => {
+                  const _el$63 = libs.createElement("Panel", {
+                      "class": "KeyMainEntryFilterRow"
+                    }, null),
+                    _el$64 = libs.createElement("Label", {
+                      html: true,
+                      "class": "KeyMainEntryFilterName",
+                      get text() {
+                        return GetLocalization(`#property_${entry.entry_name}`).replace("%", "");
+                      }
+                    }, _el$63),
+                    _el$65 = libs.createElement("Panel", {
+                      "class": "KeyMainEntryFilterModeList"
+                    }, _el$63);
+                  libs.insert(_el$65, libs.createComponent(libs.For, {
+                    each: KEY_MAIN_ENTRY_FILTER_MODES,
+                    children: (filterMode, index) => (() => {
+                      const _el$66 = libs.createElement("Panel", {
+                          "class": "KeyMainEntryFilterModeOption"
+                        }, null),
+                        _el$67 = libs.createElement("Button", {
+                          get ["class"]() {
+                            return libs.classNames("KeyMainEntryFilterModeButton", `KeyMainEntryFilterMode-${filterMode}`, {
+                              Selected: mode() === filterMode
+                            });
+                          }
+                        }, _el$66),
+                        _el$68 = libs.createElement("Label", {
+                          get text() {
+                            return GetLocalization(`#RuneFilter_AdverbEntryMode_${filterMode}`);
+                          }
+                        }, _el$67);
+                      libs.setProp(_el$67, "onactivate", () => setMainEntryFilterMode(entry.entry_name, filterMode));
+                      libs.insert(_el$66, libs.createComponent(libs.Show, {
+                        get when() {
+                          return index() < KEY_MAIN_ENTRY_FILTER_MODES.length - 1;
+                        },
+                        get children() {
+                          return libs.createElement("Label", {
+                            "class": "KeyMainEntryFilterModeSeparator",
+                            text: "/"
+                          }, null);
+                        }
+                      }), null);
+                      libs.effect(_p$ => {
+                        const _v$14 = libs.classNames("KeyMainEntryFilterModeButton", `KeyMainEntryFilterMode-${filterMode}`, {
+                            Selected: mode() === filterMode
+                          }),
+                          _v$15 = GetLocalization(`#RuneFilter_AdverbEntryMode_${filterMode}`);
+                        _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$67, "class", _v$14, _p$._v$14));
+                        _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$68, "text", _v$15, _p$._v$15));
+                        return _p$;
+                      }, {
+                        _v$14: undefined,
+                        _v$15: undefined
+                      });
+                      return _el$66;
+                    })()
+                  }));
+                  libs.effect(_$p => libs.setProp(_el$64, "text", GetLocalization(`#property_${entry.entry_name}`).replace("%", ""), _$p));
+                  return _el$63;
+                })();
+              }
+            }));
+            libs.effect(_p$ => {
+              const _v$ = GetLocalization("#Equipment_Rarity"),
+                _v$2 = GetLocalization("#Key_GoodEffect");
+              _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$31, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$34, "text", _v$2, _p$._v$2));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined
+            });
             return _el$30;
           }
         }));
-        libs.setProp(_el$35, "align", "center center");
-        libs.setProp(_el$35, "flowChildren", "right");
-        libs.insert(_el$35, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
+        libs.setProp(_el$38, "align", "center center");
+        libs.setProp(_el$38, "flowChildren", "right");
+        libs.insert(_el$38, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
           id: "FilterBtn",
           get classList() {
             return {
@@ -1728,13 +1866,16 @@ const DungeonSelection = () => {
           onactivate: () => {
             setShowKeyFilter(prev => !prev);
           }
-        }), _el$36);
-        libs.setProp(_el$36, "onactivate", () => {
-          setFilterRarity({});
+        }), _el$39);
+        libs.setProp(_el$39, "onactivate", () => {
+          libs.batch(() => {
+            setFilterRarity({});
+            setFilterMainEntry({});
+          });
         });
         return _el$28;
       }
-    }), _el$37);
+    }), _el$40);
     libs.insert(_el$4, libs.createComponent(EOM_Button.EOM_BaseButton, {
       id: "Start",
       get visible() {
@@ -1745,17 +1886,17 @@ const DungeonSelection = () => {
       },
       onactivate: startSelectedDiff,
       get children() {
-        const _el$41 = libs.createElement("Panel", {
+        const _el$44 = libs.createElement("Panel", {
             align: "center center",
             flowChildren: "right"
           }, null);
           libs.createElement("Label", {
             id: "StartLabel",
             text: "#DiffSelection_Start"
-          }, _el$41);
-        libs.setProp(_el$41, "align", "center center");
-        libs.setProp(_el$41, "flowChildren", "right");
-        libs.insert(_el$41, libs.createComponent(libs.Show, {
+          }, _el$44);
+        libs.setProp(_el$44, "align", "center center");
+        libs.setProp(_el$44, "flowChildren", "right");
+        libs.insert(_el$44, libs.createComponent(libs.Show, {
           get when() {
             return isGamepad();
           },
@@ -1767,37 +1908,37 @@ const DungeonSelection = () => {
             });
           }
         }), null);
-        return _el$41;
+        return _el$44;
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$ = !showKeyList() ? 1 : 0,
-        _v$2 = !showKeyList() ? 1 : 0,
-        _v$3 = "#DiffSelection_NormalReward" + diff(),
-        _v$4 = isCountdownActive(),
-        _v$5 = {
-          diff: teamDiff()
-        },
+      const _v$3 = !showKeyList() ? 1 : 0,
+        _v$4 = !showKeyList() ? 1 : 0,
+        _v$5 = "#DiffSelection_NormalReward" + diff(),
         _v$6 = isCountdownActive(),
         _v$7 = {
+          diff: teamDiff()
+        },
+        _v$8 = isCountdownActive(),
+        _v$9 = {
           value: countdown()
         };
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$5, "opacity", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$9, "opacity", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$12, "text", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$37, "visible", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$39, "vars", _v$5, _p$._v$5));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$5, "opacity", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$9, "opacity", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$12, "text", _v$5, _p$._v$5));
       _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$40, "visible", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$40, "vars", _v$7, _p$._v$7));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$42, "vars", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$43, "visible", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "vars", _v$9, _p$._v$9));
       return _p$;
     }, {
-      _v$: undefined,
-      _v$2: undefined,
       _v$3: undefined,
       _v$4: undefined,
       _v$5: undefined,
       _v$6: undefined,
-      _v$7: undefined
+      _v$7: undefined,
+      _v$8: undefined,
+      _v$9: undefined
     });
     return _el$4;
   })()];

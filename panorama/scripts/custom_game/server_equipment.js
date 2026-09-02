@@ -89,7 +89,7 @@ function Equipment(props) {
             const empty = gem?.gem_item_id == undefined;
             const rarity = () => {
               if (!empty) {
-                return KeyValues.info_item_gem[gem.gem_item_id].rarity;
+                return KeyValues.info_item_gem[gem.gem_item_id]?.rarity ?? 5;
               }
               return 0;
             };

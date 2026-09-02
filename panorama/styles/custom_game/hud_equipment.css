@@ -620,6 +620,101 @@
 	margin-top: 11px;
 }
 
+#FilterWindow #EquipmentFilterContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 11px;
+	padding-bottom: 12px;
+	flow-children: down;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow
+{
+	width: 100%;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 17px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode
+{
+	width: 188px;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right-wrap;
+	horizontal-align: right;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode Label
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption
+{
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton
+{
+	max-width: 150px;
+	height: fit-children;
+	min-height: 30px;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton Label
+{
+	max-width: 150px;
+	height: fit-children;
+	vertical-align: center;
+	text-align: center;
+	white-space: normal;
+	color: #766F69;
+	text-overflow: shrink;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.Selected Label
+{
+	color: #F1E7D0;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.include.Selected Label
+{
+	color: #86C985;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.exclude.Selected Label
+{
+	color: #DD7770;
+}
+
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeSeparator
+{
+	margin: 0px 2px;
+	color: #766F69;
+}
+
 #FilterWindow #GemFilterContent
 {
 	width: 100%;
@@ -6984,14 +7079,28 @@
 #EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow
 {
 	width: 100%;
+	height: 100%;
 	flow-children: down;
+	overflow: squish scroll;
 	padding: 26px 22px;
+	padding-bottom: 38px;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow .CustomScrollBar
+{
+	margin-right: 2px;
 }
 
 #EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow .Subheading
 {
 	font-size: 20px;
+	margin-top: 18px;
 	color: #B9B1A6;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow .Subheading.FirstFilterHeading
+{
+	margin-top: 0px;
 }
 
 #EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow .FilterLine
@@ -7025,6 +7134,121 @@
 #EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #RarityFilterList
 {
 	margin-top: 11px;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingMainEntryFilterList
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 11px;
+	flow-children: down;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingMainEntryFilterList .EOM_CheckBox2
+{
+	width: 100%;
+	height: fit-children;
+	min-height: 30px;
+	margin-bottom: 4px;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingMainEntryFilterList .EOM_CheckBox2 #CheckBox
+{
+	vertical-align: center;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingMainEntryFilterList .EOM_CheckBox2 .CheckLabel
+{
+	width: fill-parent-flow(1);
+	height: fit-children;
+	white-space: normal;
+	text-overflow: shrink;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 11px;
+	flow-children: down;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow
+{
+	width: 100%;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 17px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode
+{
+	width: 188px;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right-wrap;
+	horizontal-align: right;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode Label
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption
+{
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeButton
+{
+	max-width: 150px;
+	height: fit-children;
+	min-height: 30px;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeButton Label
+{
+	max-width: 150px;
+	height: fit-children;
+	vertical-align: center;
+	text-align: center;
+	white-space: normal;
+	color: #766F69;
+	text-overflow: shrink;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeButton.Selected Label
+{
+	color: #F1E7D0;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeButton.include.Selected Label
+{
+	color: #86C985;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeButton.exclude.Selected Label
+{
+	color: #DD7770;
+}
+
+#EquipmentDrawingRoot #DrawingListRoot #DrawingFilterWindow #DrawingAdverbEntryFilterList .DrawingAdverbEntryFilterRow .DrawingAdverbEntryMode .DrawingAdverbEntryModeOption .DrawingAdverbEntryModeSeparator
+{
+	margin: 0px 2px;
+	color: #766F69;
 }
 
 #EquipmentDrawingRoot #DrawingListRoot #BtnsContainer
@@ -8352,14 +8576,22 @@
 #EquipmentKeyRoot #KeyListRoot #KeyFilterWindow
 {
 	width: 100%;
+	height: 100%;
 	flow-children: down;
+	overflow: squish scroll;
 	padding: 26px 22px;
 }
 
 #EquipmentKeyRoot #KeyListRoot #KeyFilterWindow .Subheading
 {
+	margin-top: 20px;
 	font-size: 20px;
 	color: #B9B1A6;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow .Subheading.FirstHeading
+{
+	margin-top: 0px;
 }
 
 #EquipmentKeyRoot #KeyListRoot #KeyFilterWindow .FilterLine
@@ -8399,6 +8631,93 @@
 #EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #RarityFilterList
 {
 	margin-top: 11px;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 11px;
+	padding-bottom: 12px;
+	flow-children: down;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow
+{
+	width: 100%;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 17px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList
+{
+	width: 188px;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right-wrap;
+	horizontal-align: right;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList Label
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption
+{
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton
+{
+	max-width: 150px;
+	height: fit-children;
+	min-height: 30px;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton Label
+{
+	max-width: 150px;
+	height: fit-children;
+	vertical-align: center;
+	text-align: center;
+	white-space: normal;
+	color: #766F69;
+	text-overflow: shrink;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.Selected Label
+{
+	color: #F1E7D0;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.KeyMainEntryFilterMode-include.Selected Label
+{
+	color: #86C985;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.KeyMainEntryFilterMode-exclude.Selected Label
+{
+	color: #DD7770;
+}
+
+#EquipmentKeyRoot #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeSeparator
+{
+	margin: 0px 2px;
+	color: #766F69;
 }
 
 #EquipmentKeyRoot #KeyListRoot #BtnsContainer
@@ -9354,6 +9673,20 @@
 #GemLevelupPanel #LevelEffectSeparator
 {
 	margin-top: 0px;
+}
+
+#GemLevelupPanel #GemRollChance
+{
+	horizontal-align: center;
+	margin: -4px 0px 8px 0px;
+	font-size: 20px;
+	color: #6D655B;
+}
+
+#GemLevelupPanel #GemRollChance.Active
+{
+	color: #B9B1A6;
+	font-weight: semi-bold;
 }
 
 #GemMakePanel

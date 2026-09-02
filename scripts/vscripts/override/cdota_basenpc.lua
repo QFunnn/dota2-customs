@@ -116,16 +116,23 @@ BaseNPC.GiveMana = function(self, v)
 	self:GiveMana_Engine(v)
 	Event:Fire("give_mana", { unit = self, manaAmount = v })
 end
+function CalculateEquivalentDefenseIntensity(w)
+	local x = w:GetProperty(PropertyFunction.DEFENSE_INTENSITY)
+		* (1 + w:GetProperty(PropertyFunction.DEFENSE_INTENSITY_BOOST) * 0.01)
+	return (1000 + x)
+			* (1 + w:GetProperty(PropertyFunction.HERO_DEFENSE_BOOST) * 0.01)
+			* (1 + w:GetProperty(PropertyFunction.FINAL_DEFENSE) * 0.01)
+		- 1000
+end
 if BaseNPC.GetMaxHealth_Engine == nil then
 	BaseNPC.GetMaxHealth_Engine = BaseNPC.GetMaxHealth
 end
 BaseNPC.GetMaxHealth = function(self)
-	local w = self:GetProperty(PropertyFunction.DEFENSE_INTENSITY)
-		* (1 + self:GetProperty(PropertyFunction.DEFENSE_INTENSITY_BOOST) * 0.01)
+	local y = CalculateEquivalentDefenseIntensity(self)
 	return math.floor(
 		(self:GetProperty(PropertyFunction.BASE_HEALTH) + self:GetProperty(PropertyFunction.HEALTH))
 			* (1 + self:GetProperty(PropertyFunction.HEALTH_AMPLIFY) * 0.01)
-			* (1 + w * INTENSITY_FACTOR * 0.01)
+			* (1 + y * INTENSITY_FACTOR * 0.01)
 	)
 end
 if BaseNPC.GetHealthPercent_Engine == nil then
@@ -143,17 +150,17 @@ BaseNPC.GetMaxMana = function(self)
 			* (1 + self:GetProperty(PropertyFunction.MANA_AMPLIFY) * 0.01)
 	)
 end
-BaseNPC.HasAbilityUpgrade = function(self, x)
-	return AbilityUpgrade:HasAbilityUpgrade(self, x)
+BaseNPC.HasAbilityUpgrade = function(self, z)
+	return AbilityUpgrade:HasAbilityUpgrade(self, z)
 end
-BaseNPC.GetShield = function(self, y)
+BaseNPC.GetShield = function(self, A)
 	if IsServer() then
-		local z = self:FindModifierByName("modifier_shield")
-		if IsValid(z) then
-			if y ~= nil then
-				return z:GetShieldAmount(y)
+		local B = self:FindModifierByName("modifier_shield")
+		if IsValid(B) then
+			if A ~= nil then
+				return B:GetShieldAmount(A)
 			else
-				return z:GetTotalShieldAmount(y)
+				return B:GetTotalShieldAmount(A)
 			end
 		end
 	else
@@ -164,22 +171,22 @@ end
 BaseNPC.GetShieldModifier = function(self)
 	return self.__shield_modofier
 end
-BaseNPC.GetVulnerabilityModifierValue = function(self, A)
-	local z = self.__VulnerabilityModifier
-	if not IsValid(z) then
+BaseNPC.GetVulnerabilityModifierValue = function(self, C)
+	local B = self.__VulnerabilityModifier
+	if not IsValid(B) then
 		return 0
 	end
-	local B = z:GetVulnerabilityValue(A)
-	if B == nil then
-		B = 0
+	local D = B:GetVulnerabilityValue(C)
+	if D == nil then
+		D = 0
 	end
-	return B
+	return D
 end
-BaseNPC.HasState = function(self, C)
+BaseNPC.HasState = function(self, E)
 	if IsServer() then
-		return StateSystem:GetStateValue(self:entindex(), C)
+		return StateSystem:GetStateValue(self:entindex(), E)
 	else
-		return StateSystem:GetStateValueFromNetTable(self:entindex(), C)
+		return StateSystem:GetStateValueFromNetTable(self:entindex(), E)
 	end
 end
 BaseNPC.IsBreakable = function(self)
@@ -189,49 +196,49 @@ if IsServer() then
 	if CDOTA_BaseNPC.EmitSound_Engine == nil then
 		CDOTA_BaseNPC.EmitSound_Engine = CDOTA_BaseNPC.EmitSound
 	end
-	CDOTA_BaseNPC.EmitSound = function(self, D, E)
-		if E then
-			EmitSoundOnLocationWithCaster(E, D, self)
+	CDOTA_BaseNPC.EmitSound = function(self, F, G)
+		if G then
+			EmitSoundOnLocationWithCaster(G, F, self)
 		else
-			self:EmitSound_Engine(D)
+			self:EmitSound_Engine(F)
 		end
 	end
 	if CDOTA_BaseNPC.AddAbility_Engine == nil then
 		CDOTA_BaseNPC.AddAbility_Engine = CDOTA_BaseNPC.AddAbility
 	end
-	CDOTA_BaseNPC.AddAbility = function(self, F, G)
-		local H = self:AddAbility_Engine(F)
-		if G ~= nil and IsValid(H) then
-			H:SetLevel(G)
+	CDOTA_BaseNPC.AddAbility = function(self, H, I)
+		local J = self:AddAbility_Engine(H)
+		if I ~= nil and IsValid(J) then
+			J:SetLevel(I)
 		end
-		H:__OnCreated()
-		return H
+		J:__OnCreated()
+		return J
 	end
 	if CDOTA_BaseNPC.RemoveAbility_Engine == nil then
 		CDOTA_BaseNPC.RemoveAbility_Engine = CDOTA_BaseNPC.RemoveAbility
 	end
-	CDOTA_BaseNPC.RemoveAbility = function(self, F)
-		local H = self:FindAbilityByName(F)
-		if IsValid(H) then
-			self:RemoveAbilityByHandle(H)
+	CDOTA_BaseNPC.RemoveAbility = function(self, H)
+		local J = self:FindAbilityByName(H)
+		if IsValid(J) then
+			self:RemoveAbilityByHandle(J)
 		end
 	end
 	if CDOTA_BaseNPC.RemoveAbilityByHandle_Engine == nil then
 		CDOTA_BaseNPC.RemoveAbilityByHandle_Engine = CDOTA_BaseNPC.RemoveAbilityByHandle
 	end
-	CDOTA_BaseNPC.RemoveAbilityByHandle = function(self, H)
-		if IsValid(H) then
-			if H.__OnDestroy ~= nil then
-				H:__OnDestroy()
+	CDOTA_BaseNPC.RemoveAbilityByHandle = function(self, J)
+		if IsValid(J) then
+			if J.__OnDestroy ~= nil then
+				J:__OnDestroy()
 			end
-			self:RemoveAbilityByHandle_Engine(H)
+			self:RemoveAbilityByHandle_Engine(J)
 		end
 	end
-	CDOTA_BaseNPC.GetAttachmentPosition = function(self, I)
+	CDOTA_BaseNPC.GetAttachmentPosition = function(self, K)
 		if not IsValid(self) then
 			return vec3_zero
 		end
-		return self:GetAttachmentOrigin(self:ScriptLookupAttachment(I))
+		return self:GetAttachmentOrigin(self:ScriptLookupAttachment(K))
 	end
 	if CDOTA_BaseNPC.RespawnUnit_Engine == nil then
 		CDOTA_BaseNPC.RespawnUnit_Engine = CDOTA_BaseNPC.RespawnUnit
@@ -240,22 +247,22 @@ if IsServer() then
 		if not self:UnitCanRespawn() then
 			return
 		end
-		local J = self:FirstMoveChild()
-		while J ~= nil do
-			local K = J:NextMovePeer()
-			if J ~= nil and J:GetClassname() ~= "" and J:GetClassname() == "dota_item_wearable" then
-				UTIL_Remove(J)
+		local L = self:FirstMoveChild()
+		while L ~= nil do
+			local M = L:NextMovePeer()
+			if L ~= nil and L:GetClassname() ~= "" and L:GetClassname() == "dota_item_wearable" then
+				UTIL_Remove(L)
 			end
-			J = K
+			L = M
 		end
 		self:RespawnUnit_Engine()
 	end
 	if CDOTA_BaseNPC.SetUnitCanRespawn_Engine == nil then
 		CDOTA_BaseNPC.SetUnitCanRespawn_Engine = CDOTA_BaseNPC.SetUnitCanRespawn
 	end
-	CDOTA_BaseNPC.SetUnitCanRespawn = function(self, L)
-		self.__unitCanRespawn_ = L
-		if L == true then
+	CDOTA_BaseNPC.SetUnitCanRespawn = function(self, N)
+		self.__unitCanRespawn_ = N
+		if N == true then
 			self:StopTimer("RecyclingUnit")
 		elseif not self:IsAlive() and not self:IsRealHero() then
 			self:GameTimer("RecyclingUnit", 8, function()
@@ -276,151 +283,151 @@ if IsServer() then
 		CDOTA_BaseNPC.UnitCanRespawn_Engine = CDOTA_BaseNPC.UnitCanRespawn
 	end
 	CDOTA_BaseNPC.UnitCanRespawn = function(self)
-		local M = self.__unitCanRespawn_
-		if M == nil then
-			M = false
+		local O = self.__unitCanRespawn_
+		if O == nil then
+			O = false
 		end
-		return M
+		return O
 	end
 	if CDOTA_BaseNPC.AddNewModifier_Engine == nil then
 		CDOTA_BaseNPC.AddNewModifier_Engine = CDOTA_BaseNPC.AddNewModifier
 	end
-	CDOTA_BaseNPC.AddNewModifier = function(self, N, H, O, P, Q)
-		local z = nil
-		if Q ~= nil then
-			if IsValid(self) and bit.band(Q, AddModifierFlag.IGNORE_DEATH) == AddModifierFlag.IGNORE_DEATH then
+	CDOTA_BaseNPC.AddNewModifier = function(self, P, J, Q, R, S)
+		local B = nil
+		if S ~= nil then
+			if IsValid(self) and bit.band(S, AddModifierFlag.IGNORE_DEATH) == AddModifierFlag.IGNORE_DEATH then
 				if self.__isRemoving then
 					return
 				end
-				local R = not self:IsAlive()
-				if R then
+				local T = not self:IsAlive()
+				if T then
 					self:SetHealth(1)
 				end
-				z = self:AddNewModifier_Engine(N, H, O, P)
-				if R then
+				B = self:AddNewModifier_Engine(P, J, Q, R)
+				if T then
 					self:SetHealth(0)
 				end
 			end
 		else
-			z = self:AddNewModifier_Engine(N, H, O, P)
+			B = self:AddNewModifier_Engine(P, J, Q, R)
 		end
-		if IsValid(z) and IsValid(N) then
-			local S = z:GetDuration()
-			if S > 0 then
-				if z:IsDebuff() then
-					z:SetDuration(S * (1 + GetDebuffDuration(N, nil) * 0.01), false)
+		if IsValid(B) and IsValid(P) then
+			local U = B:GetDuration()
+			if U > 0 then
+				if B:IsDebuff() then
+					B:SetDuration(U * (1 + GetDebuffDuration(P, nil) * 0.01), false)
 				else
-					z:SetDuration(S * (1 + GetBuffDuration(N, nil) * 0.01), false)
+					B:SetDuration(U * (1 + GetBuffDuration(P, nil) * 0.01), false)
 				end
 			end
 		end
-		return z
+		return B
 	end
-	CDOTA_BaseNPC.ExecuteOrder = function(self, T, ...)
-		local U = { ... }
-		local V
+	CDOTA_BaseNPC.ExecuteOrder = function(self, V, ...)
+		local W = { ... }
+		local X
 		local m
-		local W
-		local X = { DOTA_UNIT_ORDER_MOVE_TO_POSITION, DOTA_UNIT_ORDER_ATTACK_MOVE }
-		local Y = { DOTA_UNIT_ORDER_MOVE_TO_TARGET, DOTA_UNIT_ORDER_ATTACK_TARGET }
-		local Z = {
+		local Y
+		local Z = { DOTA_UNIT_ORDER_MOVE_TO_POSITION, DOTA_UNIT_ORDER_ATTACK_MOVE }
+		local _ = { DOTA_UNIT_ORDER_MOVE_TO_TARGET, DOTA_UNIT_ORDER_ATTACK_TARGET }
+		local a0 = {
 			DOTA_UNIT_ORDER_CAST_POSITION,
 			DOTA_UNIT_ORDER_CAST_TARGET,
 			DOTA_UNIT_ORDER_CAST_TARGET_TREE,
 			DOTA_UNIT_ORDER_CAST_NO_TARGET,
 			DOTA_UNIT_ORDER_CAST_TOGGLE,
 		}
-		if TableFindKey(X, T) ~= nil then
-			W = U[1]
-		elseif TableFindKey(Y, T) ~= nil then
-			m = U[1]
-		elseif TableFindKey(Z, T) ~= nil then
-			if T == DOTA_UNIT_ORDER_CAST_POSITION then
-				V = U[1]
-				W = U[2]
-			elseif T == DOTA_UNIT_ORDER_CAST_NO_TARGET or T == DOTA_UNIT_ORDER_CAST_TOGGLE then
-				V = U[1]
+		if TableFindKey(Z, V) ~= nil then
+			Y = W[1]
+		elseif TableFindKey(_, V) ~= nil then
+			m = W[1]
+		elseif TableFindKey(a0, V) ~= nil then
+			if V == DOTA_UNIT_ORDER_CAST_POSITION then
+				X = W[1]
+				Y = W[2]
+			elseif V == DOTA_UNIT_ORDER_CAST_NO_TARGET or V == DOTA_UNIT_ORDER_CAST_TOGGLE then
+				X = W[1]
 			else
-				V = U[1]
-				m = U[2]
+				X = W[1]
+				m = W[2]
 			end
 		end
 		ExecuteOrderFromTable({
 			UnitIndex = self:entindex(),
-			OrderType = T,
+			OrderType = V,
 			TargetIndex = IsValid(m) and m:entindex() or nil,
-			AbilityIndex = IsValid(V) and V:entindex() or nil,
-			Position = W,
+			AbilityIndex = IsValid(X) and X:entindex() or nil,
+			Position = Y,
 			Queue = false,
 		})
 	end
-	CDOTA_BaseNPC.Dash = function(self, _, a0, a1, S, a2)
+	CDOTA_BaseNPC.Dash = function(self, a1, a2, a3, U, a4)
 		if not self:IsAlive() then
 			return
 		end
-		local a3 = GetDashDistance(self, nil)
-		local a4 = { direction = _, dash_duration = S, dash_distance = a0 + a3, dash_height = a1 }
+		local a5 = GetDashDistance(self, nil)
+		local a6 = { direction = a1, dash_duration = U, dash_distance = a2 + a5, dash_height = a3 }
 		self:RemoveModifierByName("modifier_dash")
-		local a5 = self:AddNewModifier(self, nil, "modifier_dash", a4)
-		if IsValid(a5) and a2 ~= nil then
-			a5.callback = a2
+		local a7 = self:AddNewModifier(self, nil, "modifier_dash", a6)
+		if IsValid(a7) and a4 ~= nil then
+			a7.callback = a4
 		end
 	end
-	CDOTA_BaseNPC.KnockBack = function(self, _, a0, a1, S, a2)
+	CDOTA_BaseNPC.KnockBack = function(self, a1, a2, a3, U, a4)
 		if not self:IsAlive() then
 			return
 		end
 		if self:HasState(StateEnum.KNOCKBACK_IMMUNE) then
 			return
 		end
-		local a4 = { direction = _, dash_duration = S, dash_distance = a0, dash_height = a1 }
+		local a6 = { direction = a1, dash_duration = U, dash_distance = a2, dash_height = a3 }
 		self:RemoveModifierByName("modifier_knockback_custom")
-		local a5 = self:AddNewModifier(self, nil, "modifier_knockback_custom", a4)
-		if IsValid(a5) and a2 ~= nil then
-			a5.callback = a2
+		local a7 = self:AddNewModifier(self, nil, "modifier_knockback_custom", a6)
+		if IsValid(a7) and a4 ~= nil then
+			a7.callback = a4
 		end
 	end
-	CDOTA_BaseNPC.Stagger = function(self, S, a6, a7)
+	CDOTA_BaseNPC.Stagger = function(self, U, a8, a9)
 		if not self:IsAlive() then
 			return
 		end
-		local a4 = { duration = S, animation = a6 or ACT_DOTA_DISABLED, animation_rate = a7 or 1 }
+		local a6 = { duration = U, animation = a8 or ACT_DOTA_DISABLED, animation_rate = a9 or 1 }
 		self:RemoveModifierByName("modifier_stagger")
-		self:AddNewModifier(self, nil, "modifier_stagger", a4)
+		self:AddNewModifier(self, nil, "modifier_stagger", a6)
 	end
-	CDOTA_BaseNPC.Stun = function(self, N, H, S)
+	CDOTA_BaseNPC.Stun = function(self, P, J, U)
 		if not IsValid(self) then
 			return
 		end
-		if S <= 0 then
+		if U <= 0 then
 			return
 		end
 		if self:HasState(StateEnum.STUN_IMMUNE) then
 			return
 		end
-		self:AddNewModifier(N, H, "modifier_stunned", { duration = S })
+		self:AddNewModifier(P, J, "modifier_stunned", { duration = U })
 	end
-	CDOTA_BaseNPC.SummonUnit = function(self, a8, E, S, a9)
-		local aa = self:GetForwardVector()
-		local ab = {
-			MapUnitName = a8,
-			angles = (((tostring(aa.x) .. " ") .. tostring(aa.y)) .. " ") .. tostring(aa.z),
+	CDOTA_BaseNPC.SummonUnit = function(self, aa, G, U, ab)
+		local ac = self:GetForwardVector()
+		local ad = {
+			MapUnitName = aa,
+			angles = (((tostring(ac.x) .. " ") .. tostring(ac.y)) .. " ") .. tostring(ac.z),
 			teamnumber = self:GetTeamNumber(),
 			NeverMoveToClearSpace = false,
 			IsSummoned = "1",
 		}
-		if a9 ~= nil then
-			ab = TableOverride(ab, a9)
+		if ab ~= nil then
+			ad = TableOverride(ad, ab)
 		end
-		local ac = CreateUnitFromTable(ab, E)
-		if not IsValid(ac) then
+		local w = CreateUnitFromTable(ad, G)
+		if not IsValid(w) then
 			return nil
 		end
-		ac.__Summoner = self
-		if S ~= nil and S > 0 then
-			ac:AddNewModifier(self, nil, "modifier_kill", { duration = S })
+		w.__Summoner = self
+		if U ~= nil and U > 0 then
+			w:AddNewModifier(self, nil, "modifier_kill", { duration = U })
 		end
-		return ac
+		return w
 	end
 	CDOTA_BaseNPC.SafeRemoveUnit = function(self)
 		if not IsValid(self) then
@@ -445,53 +452,53 @@ if IsServer() then
 			self:Remove()
 		end)
 	end
-	CDOTA_BaseNPC.PassiveCast = function(self, H, ad, a9, ae)
-		if not IsValid(H) then
+	CDOTA_BaseNPC.PassiveCast = function(self, J, ae, ab, af)
+		if not IsValid(J) then
 			return
 		end
-		if a9 == nil then
-			a9 = {}
+		if ab == nil then
+			ab = {}
 		end
-		local af = a9.castPoint or H:GetCastPoint()
-		local ag = a9.castAnimation or H:GetCastAnimation()
-		local ah = a9.sActivityModifier
-		if a9.sActivityModifier and type(a9.sActivityModifier) == "table" then
-			ah = json.encode(a9.sActivityModifier)
+		local ag = ab.castPoint or J:GetCastPoint()
+		local ah = ab.castAnimation or J:GetCastAnimation()
+		local ai = ab.sActivityModifier
+		if ab.sActivityModifier and type(ab.sActivityModifier) == "table" then
+			ai = json.encode(ab.sActivityModifier)
 		end
-		local ai = af
-		local aj = af
+		local aj = ag
 		local ak = ag
-		local al = ad
-		local am = a9.animationRate
-		local an = a9.position and VectorToString(a9.position) or nil
-		local ao = IsValid(a9.target) and a9.target:entindex() or nil
-		local ap = a9.bFadeAnimation
-		local aq = a9.fadeAnimationTime
-		local ar = ah
-		local as = a9.bIgnoreBackswing
-		if as == nil then
-			as = true
+		local al = ah
+		local am = ae
+		local an = ab.animationRate
+		local ao = ab.position and VectorToString(ab.position) or nil
+		local ap = IsValid(ab.target) and ab.target:entindex() or nil
+		local aq = ab.bFadeAnimation
+		local ar = ab.fadeAnimationTime
+		local as = ai
+		local at = ab.bIgnoreBackswing
+		if at == nil then
+			at = true
 		end
-		local at = {
-			duration = ai,
-			castPoint = aj,
-			castAnimation = ak,
-			orderType = al,
-			animationRate = am,
-			position = an,
-			targetIndex = ao,
-			bFadeAnimation = ap,
-			fadeAnimationTime = aq,
-			activityModifier = ar,
-			bIgnoreBackswing = as,
-			bUseCooldown = (a9.bUseCooldown == nil or a9.bUseCooldown == true) and 1 or 0,
-			bUseMana = (a9.bUseMana == nil or a9.bUseMana == true) and 1 or 0,
+		local au = {
+			duration = aj,
+			castPoint = ak,
+			castAnimation = al,
+			orderType = am,
+			animationRate = an,
+			position = ao,
+			targetIndex = ap,
+			bFadeAnimation = aq,
+			fadeAnimationTime = ar,
+			activityModifier = as,
+			bIgnoreBackswing = at,
+			bUseCooldown = (ab.bUseCooldown == nil or ab.bUseCooldown == true) and 1 or 0,
+			bUseMana = (ab.bUseMana == nil or ab.bUseMana == true) and 1 or 0,
 		}
-		H.CustomAbilityPhaseStart = a9.OnAbilityPhaseStart
-		H.CustomAbilityPhaseInterrupted = a9.OnAbilityPhaseInterrupted
-		local z = self:AddNewModifier(self, H, "modifier_passive_cast", at)
-		if IsValid(z) then
-			z.callback = ae
+		J.CustomAbilityPhaseStart = ab.OnAbilityPhaseStart
+		J.CustomAbilityPhaseInterrupted = ab.OnAbilityPhaseInterrupted
+		local B = self:AddNewModifier(self, J, "modifier_passive_cast", au)
+		if IsValid(B) then
+			B.callback = af
 		end
 	end
 	if CDOTA_BaseNPC.AddActivityModifier_Engine == nil then
@@ -502,132 +509,132 @@ if IsServer() then
 			self.__activityModifiers = {}
 		end
 		self:ClearActivityModifiers()
-		for au = 0, #self.__activityModifiers - 1, 1 do
-			self:AddActivityModifier_Engine(self.__activityModifiers[au + 1])
+		for av = 0, #self.__activityModifiers - 1, 1 do
+			self:AddActivityModifier_Engine(self.__activityModifiers[av + 1])
 		end
 	end
-	CDOTA_BaseNPC.AddActivityModifier = function(self, av)
+	CDOTA_BaseNPC.AddActivityModifier = function(self, aw)
 		if self.__activityModifiers == nil then
 			self.__activityModifiers = {}
 		end
-		local aw = self.__activityModifiers
-		aw[#aw + 1] = av
+		local ax = self.__activityModifiers
+		ax[#ax + 1] = aw
 		self:UpdateActivityModifier()
 	end
-	CDOTA_BaseNPC.RemoveActivityModifier = function(self, av)
+	CDOTA_BaseNPC.RemoveActivityModifier = function(self, aw)
 		if self.__activityModifiers == nil then
 			self.__activityModifiers = {}
 		end
-		ArrayRemove(self.__activityModifiers, av)
+		ArrayRemove(self.__activityModifiers, aw)
 		self:UpdateActivityModifier()
 	end
-	CDOTA_BaseNPC.DealDamage = function(self, ax, H, ay, az, aA)
-		if not IsValid(self) or H ~= nil and not IsValid(H) then
+	CDOTA_BaseNPC.DealDamage = function(self, ay, J, az, aA, aB)
+		if not IsValid(self) or J ~= nil and not IsValid(J) then
 			return
 		end
-		local aB = DOTA_DAMAGE_CATEGORY_BARRIER
-		if H ~= nil then
-			if az == nil then
-				az = H:GetDamageType()
+		local aC = DOTA_DAMAGE_CATEGORY_BARRIER
+		if J ~= nil then
+			if aA == nil then
+				aA = J:GetDamageType()
 			end
-			local aC = H:GetAbilityTag()
+			local aD = J:GetAbilityTag()
 			if
-				aC == AbilityTag.Skill
-				or aC == AbilityTag.Dodge
-				or aC == AbilityTag.Defense
-				or aC == AbilityTag.Ultimate
+				aD == AbilityTag.Skill
+				or aD == AbilityTag.Dodge
+				or aD == AbilityTag.Defense
+				or aD == AbilityTag.Ultimate
 			then
-				aB = DOTA_DAMAGE_CATEGORY_SPELL
+				aC = DOTA_DAMAGE_CATEGORY_SPELL
 			end
 		end
-		if c(ax) then
-			for au, aD in ipairs(ax) do
+		if c(ay) then
+			for av, aE in ipairs(ay) do
 				do
-					if not IsValid(aD) then
-						goto aE
+					if not IsValid(aE) then
+						goto aF
 					end
-					local aF = DamageSystem:AcquireDamageInfo()
-					aF.attacker = self
-					aF.target = aD
-					aF.ability = H
-					aF.damage = ay
-					aF.damage_type = az or EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE
-					aF.damage_flags = aA
-					aF.damage_category = aB
-					DamageSystem:DealDamage(aF, true)
+					local aG = DamageSystem:AcquireDamageInfo()
+					aG.attacker = self
+					aG.target = aE
+					aG.ability = J
+					aG.damage = az
+					aG.damage_type = aA or EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE
+					aG.damage_flags = aB
+					aG.damage_category = aC
+					DamageSystem:DealDamage(aG, true)
 				end
-				::aE::
+				::aF::
 			end
 		else
-			if not IsValid(ax) then
+			if not IsValid(ay) then
 				return
 			end
-			local aF = DamageSystem:AcquireDamageInfo()
-			aF.attacker = self
-			aF.target = ax
-			aF.ability = H
-			aF.damage = ay
-			aF.damage_type = az or EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE
-			aF.damage_flags = aA
-			aF.damage_category = aB
-			DamageSystem:DealDamage(aF, true)
+			local aG = DamageSystem:AcquireDamageInfo()
+			aG.attacker = self
+			aG.target = ay
+			aG.ability = J
+			aG.damage = az
+			aG.damage_type = aA or EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE
+			aG.damage_flags = aB
+			aG.damage_category = aC
+			DamageSystem:DealDamage(aG, true)
 		end
 	end
-	CDOTA_BaseNPC.Attack = function(self, ax, aF)
-		local aG = aF and aF.baseDamage or self:GetAttackDamage()
-		local aH = aF and aF.damageAmplify or 0
-		local aI = aF and aF.bonusDamage or 0
-		local aJ = aF and aF.damageType or EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL
-		local aK = DamageSystem:AcquireDamageInfo()
-		aK.attacker = self
-		aK.target = ax
-		aK.ability = self:GetAbilityByTag(AbilityTag.Attack)
-		aK.damage = (aG + aI) * (1 + aH)
-		aK.damage_category = DOTA_DAMAGE_CATEGORY_ATTACK
-		aK.damage_type = aJ
-		aK.damage_flags = aF and aF.flags or EOM_DAMAGE_FLAGS.NONE
-		DamageSystem:DealDamage(aK, true)
+	CDOTA_BaseNPC.Attack = function(self, ay, aG)
+		local aH = aG and aG.baseDamage or self:GetAttackDamage()
+		local aI = aG and aG.damageAmplify or 0
+		local aJ = aG and aG.bonusDamage or 0
+		local aK = aG and aG.damageType or EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL
+		local aL = DamageSystem:AcquireDamageInfo()
+		aL.attacker = self
+		aL.target = ay
+		aL.ability = self:GetAbilityByTag(AbilityTag.Attack)
+		aL.damage = (aH + aJ) * (1 + aI)
+		aL.damage_category = DOTA_DAMAGE_CATEGORY_ATTACK
+		aL.damage_type = aK
+		aL.damage_flags = aG and aG.flags or EOM_DAMAGE_FLAGS.NONE
+		DamageSystem:DealDamage(aL, true)
 	end
-	CDOTA_BaseNPC.GetAbilityByTag = function(self, aL)
+	CDOTA_BaseNPC.GetAbilityByTag = function(self, aM)
 		if self:IsHero() then
-			if aL == AbilityTag.Skill then
+			if aM == AbilityTag.Skill then
 				return self:GetAbilityByIndex(0)
 			end
-			if aL == AbilityTag.Dodge then
+			if aM == AbilityTag.Dodge then
 				return self:GetAbilityByIndex(1)
 			end
-			if aL == AbilityTag.Defense then
+			if aM == AbilityTag.Defense then
 				return self:GetAbilityByIndex(2)
 			end
-			if aL == AbilityTag.Ultimate then
+			if aM == AbilityTag.Ultimate then
 				return self:GetAbilityByIndex(5)
 			end
-			if aL == AbilityTag.Attack then
+			if aM == AbilityTag.Attack then
 				return self:GetAbilityByIndex(3)
 			end
-			if aL == AbilityTag.Interact then
+			if aM == AbilityTag.Interact then
 				return self:GetAbilityByIndex(4)
 			end
 		else
 			do
-				local aM = 0
-				while aM < self:GetAbilityCount() do
-					local H = self:GetAbilityByIndex(aM)
-					if IsValid(H) and H:GetAbilityTag() == aL then
-						return H
+				local aN = 0
+				while aN < self:GetAbilityCount() do
+					local J = self:GetAbilityByIndex(aN)
+					if IsValid(J) and J:GetAbilityTag() == aM then
+						return J
 					end
-					aM = aM + 1
+					aN = aN + 1
 				end
 			end
 		end
 	end
-	CDOTA_BaseNPC.EachAbility = function(self, ae)
-		local aN = { AbilityTag.Attack, AbilityTag.Skill, AbilityTag.Dodge, AbilityTag.Defense, AbilityTag.Ultimate }
-		for au = 0, #aN - 1, 1 do
-			local aC = aN[au + 1]
-			local H = self:GetAbilityByTag(aC)
-			if IsValid(H) then
-				ae(H, aC)
+	CDOTA_BaseNPC.EachAbility = function(self, af)
+		local aO = { AbilityTag.Attack, AbilityTag.Skill, AbilityTag.Dodge, AbilityTag.Defense, AbilityTag.Ultimate }
+		for av = 0, #aO - 1, 1 do
+			local aD = aO[av + 1]
+			local J = self:GetAbilityByTag(aD)
+			if IsValid(J) then
+				af(J, aD)
 			end
 		end
 	end
@@ -640,188 +647,188 @@ if IsServer() then
 	if CDOTA_BaseNPC.RemoveItem_Engine == nil then
 		CDOTA_BaseNPC.RemoveItem_Engine = CDOTA_BaseNPC.RemoveItem
 	end
-	CDOTA_BaseNPC.AddItem = function(self, aO, aP)
-		if aP == nil then
-			aP = true
+	CDOTA_BaseNPC.AddItem = function(self, aP, aQ)
+		if aQ == nil then
+			aQ = true
 		end
 		if self.__items == nil then
 			self.__items = {}
 		end
-		self:AddItem_Engine(aO)
-		aO:__OnCreated()
-		local aQ = self.__items
-		aQ[#aQ + 1] = {
-			entIndex = aO:entindex(),
-			itemName = aO:GetAbilityName(),
-			level = aO:GetLevel(),
-			stackCount = aO.__StackCount or 0,
-			charge = aO.__Charge or 0,
-			maxCharge = aO:GetMaxCharges(),
-			chargeRestoreTime = aO.__ChargeRestoreTime or 0,
-			isChargeCooldownFrozen = aO:IsChargeCooldownFrozen(),
-			chargeFrozenCooldownRemaining = aO:GetChargeCooldownRemaining(),
+		self:AddItem_Engine(aP)
+		aP:__OnCreated()
+		local aR = self.__items
+		aR[#aR + 1] = {
+			entIndex = aP:entindex(),
+			itemName = aP:GetAbilityName(),
+			level = aP:GetLevel(),
+			stackCount = aP.__StackCount or 0,
+			charge = aP.__Charge or 0,
+			maxCharge = aP:GetMaxCharges(),
+			chargeRestoreTime = aP.__ChargeRestoreTime or 0,
+			isChargeCooldownFrozen = aP:IsChargeCooldownFrozen(),
+			chargeFrozenCooldownRemaining = aP:GetChargeCooldownRemaining(),
 		}
-		self:TakeItem(aO)
-		Event:Fire("item_added", { unit = self, item = aO })
-		if aP then
+		self:TakeItem(aP)
+		Event:Fire("item_added", { unit = self, item = aP })
+		if aQ then
 			self:UpdateAbilityNetData()
 		end
-		return aO
+		return aP
 	end
-	CDOTA_BaseNPC.AddItemByName = function(self, aR, G, aP)
-		if G == nil then
-			G = 1
+	CDOTA_BaseNPC.AddItemByName = function(self, aS, I, aQ)
+		if I == nil then
+			I = 1
 		end
-		if aP == nil then
-			aP = true
+		if aQ == nil then
+			aQ = true
 		end
 		if self.__items == nil then
 			self.__items = {}
 		end
-		local aO = self:AddItemByName_Engine(aR)
-		aO:__OnCreated()
-		if G > 1 then
-			aO:SetLevel(G, false)
+		local aP = self:AddItemByName_Engine(aS)
+		aP:__OnCreated()
+		if I > 1 then
+			aP:SetLevel(I, false)
 		end
-		local aS = self.__items
-		aS[#aS + 1] = {
-			entIndex = aO:entindex(),
-			itemName = aO:GetAbilityName(),
-			level = aO:GetLevel(),
-			stackCount = aO.__StackCount or 0,
-			charge = aO.__Charge or 0,
-			maxCharge = aO:GetMaxCharges(),
-			chargeRestoreTime = aO.__ChargeRestoreTime or 0,
-			isChargeCooldownFrozen = aO:IsChargeCooldownFrozen(),
-			chargeFrozenCooldownRemaining = aO:GetChargeCooldownRemaining(),
+		local aT = self.__items
+		aT[#aT + 1] = {
+			entIndex = aP:entindex(),
+			itemName = aP:GetAbilityName(),
+			level = aP:GetLevel(),
+			stackCount = aP.__StackCount or 0,
+			charge = aP.__Charge or 0,
+			maxCharge = aP:GetMaxCharges(),
+			chargeRestoreTime = aP.__ChargeRestoreTime or 0,
+			isChargeCooldownFrozen = aP:IsChargeCooldownFrozen(),
+			chargeFrozenCooldownRemaining = aP:GetChargeCooldownRemaining(),
 		}
-		self:TakeItem(aO)
-		Event:Fire("item_added", { unit = self, item = aO })
-		if aP then
+		self:TakeItem(aP)
+		Event:Fire("item_added", { unit = self, item = aP })
+		if aQ then
 			self:UpdateAbilityNetData()
 		end
-		return aO
+		return aP
 	end
-	CDOTA_BaseNPC.RemoveItem = function(self, aO)
+	CDOTA_BaseNPC.RemoveItem = function(self, aP)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		if not IsValid(aO) then
+		if not IsValid(aP) then
 			return
 		end
-		Event:Fire("item_consumed", { unit = self, item = aO })
-		aO:__OnDestroy()
-		self.__items = d(self.__items, function(aT, at)
-			return at.entIndex ~= aO:entindex()
+		Event:Fire("item_consumed", { unit = self, item = aP })
+		aP:__OnDestroy()
+		self.__items = d(self.__items, function(aU, au)
+			return au.entIndex ~= aP:entindex()
 		end)
-		self:RemoveItem_Engine(aO)
-		Event:Fire("item_removed", { unit = self, item = aO })
+		self:RemoveItem_Engine(aP)
+		Event:Fire("item_removed", { unit = self, item = aP })
 		self:UpdateAbilityNetData()
 	end
 	CDOTA_BaseNPC.RemoveAllItem = function(self)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		local aU = self:GetAllItems()
-		e(aU, function(aT, aO)
-			if IsValid(aO) then
-				aO:__OnDestroy()
-				self.__items = d(self.__items or {}, function(aT, at)
-					return at.entIndex ~= aO:entindex()
+		local aV = self:GetAllItems()
+		e(aV, function(aU, aP)
+			if IsValid(aP) then
+				aP:__OnDestroy()
+				self.__items = d(self.__items or {}, function(aU, au)
+					return au.entIndex ~= aP:entindex()
 				end)
-				self:RemoveItem_Engine(aO)
-				Event:Fire("item_removed", { unit = self, item = aO })
+				self:RemoveItem_Engine(aP)
+				Event:Fire("item_removed", { unit = self, item = aP })
 			end
 		end)
 		self.__items = {}
 		CustomNetTables:SetNetData("unit", tostring(self:entindex()), nil)
 	end
 	CDOTA_BaseNPC.GetAllItems = function(self)
-		local aV = {}
+		local aW = {}
 		if self.__items == nil then
 			self.__items = {}
 		end
-		e(self.__items, function(aT, at)
-			local aO = EntIndexToHScript(at.entIndex)
-			if IsValid(aO) then
-				aV[#aV + 1] = aO
+		e(self.__items, function(aU, au)
+			local aP = EntIndexToHScript(au.entIndex)
+			if IsValid(aP) then
+				aW[#aW + 1] = aP
 			end
 		end)
-		return aV
+		return aW
 	end
-	CDOTA_BaseNPC.GetItemByName = function(self, aR)
+	CDOTA_BaseNPC.GetItemByName = function(self, aS)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		local aO
-		f(self.__items, function(aT, at)
-			if at.itemName == aR then
-				aO = EntIndexToHScript(at.entIndex)
+		local aP
+		f(self.__items, function(aU, au)
+			if au.itemName == aS then
+				aP = EntIndexToHScript(au.entIndex)
 			end
 		end)
-		return aO
+		return aP
 	end
-	CDOTA_BaseNPC.GetItemByNameAndLevel = function(self, aR, G)
+	CDOTA_BaseNPC.GetItemByNameAndLevel = function(self, aS, I)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		local aO
-		f(self.__items, function(aT, at)
-			if at.itemName == aR and at.level == G then
-				aO = EntIndexToHScript(at.entIndex)
+		local aP
+		f(self.__items, function(aU, au)
+			if au.itemName == aS and au.level == I then
+				aP = EntIndexToHScript(au.entIndex)
 			end
 		end)
-		return aO
+		return aP
 	end
-	CDOTA_BaseNPC.HasItem = function(self, aR)
+	CDOTA_BaseNPC.HasItem = function(self, aS)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		return g(self.__items, function(aT, at)
-			return at.itemName == aR
+		return g(self.__items, function(aU, au)
+			return au.itemName == aS
 		end)
 	end
-	CDOTA_BaseNPC.GetItemCount = function(self, aR)
+	CDOTA_BaseNPC.GetItemCount = function(self, aS)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		return #d(self.__items, function(aT, at)
-			return at.itemName == aR
+		return #d(self.__items, function(aU, au)
+			return au.itemName == aS
 		end)
 	end
 	CDOTA_BaseNPC.UpdateAbilityNetData = function(self)
 		if self.__items == nil then
 			self.__items = {}
 		end
-		e(self.__items, function(aT, at)
-			local aO = EntIndexToHScript(at.entIndex)
-			at.stackCount = aO.__StackCount or 0
-			at.charge = aO.__Charge or 0
-			at.maxCharge = aO:GetMaxCharges()
-			at.chargeRestoreTime = aO.__ChargeRestoreTime or 0
-			at.isChargeCooldownFrozen = aO:IsChargeCooldownFrozen()
-			at.chargeFrozenCooldownRemaining = aO:GetChargeCooldownRemaining()
+		e(self.__items, function(aU, au)
+			local aP = EntIndexToHScript(au.entIndex)
+			au.stackCount = aP.__StackCount or 0
+			au.charge = aP.__Charge or 0
+			au.maxCharge = aP:GetMaxCharges()
+			au.chargeRestoreTime = aP.__ChargeRestoreTime or 0
+			au.isChargeCooldownFrozen = aP:IsChargeCooldownFrozen()
+			au.chargeFrozenCooldownRemaining = aP:GetChargeCooldownRemaining()
 		end)
-		local aW = {}
-		local aX = self:GetAbilityByTag(AbilityTag.Attack)
-		if aX then
-			aW[#aW + 1] = aX
-		end
-		local aY = self:GetAbilityByTag(AbilityTag.Skill)
+		local aX = {}
+		local aY = self:GetAbilityByTag(AbilityTag.Attack)
 		if aY then
-			aW[#aW + 1] = aY
+			aX[#aX + 1] = aY
 		end
-		local aZ = self:GetAbilityByTag(AbilityTag.Dodge)
+		local aZ = self:GetAbilityByTag(AbilityTag.Skill)
 		if aZ then
-			aW[#aW + 1] = aZ
+			aX[#aX + 1] = aZ
 		end
-		local a_ = self:GetAbilityByTag(AbilityTag.Defense)
+		local a_ = self:GetAbilityByTag(AbilityTag.Dodge)
 		if a_ then
-			aW[#aW + 1] = a_
+			aX[#aX + 1] = a_
 		end
-		local b0 = self:GetAbilityByTag(AbilityTag.Ultimate)
+		local b0 = self:GetAbilityByTag(AbilityTag.Defense)
 		if b0 then
-			aW[#aW + 1] = b0
+			aX[#aX + 1] = b0
+		end
+		local b1 = self:GetAbilityByTag(AbilityTag.Ultimate)
+		if b1 then
+			aX[#aX + 1] = b1
 		end
 		if not self:IsRealHero() then
 			return
@@ -831,16 +838,16 @@ if IsServer() then
 			tostring(self:entindex()),
 			{
 				items = self.__items,
-				abilities = f(aW, function(aT, H)
+				abilities = f(aX, function(aU, J)
 					return {
-						entIndex = H:entindex() or -1,
-						stackCount = H.__StackCount or 0,
-						abilityName = H:GetAbilityName(),
-						charge = H.__Charge or 0,
-						maxCharge = H:GetMaxCharges(),
-						chargeRestoreTime = H.__ChargeRestoreTime or 0,
-						isChargeCooldownFrozen = H:IsChargeCooldownFrozen(),
-						chargeFrozenCooldownRemaining = H:GetChargeCooldownRemaining(),
+						entIndex = J:entindex() or -1,
+						stackCount = J.__StackCount or 0,
+						abilityName = J:GetAbilityName(),
+						charge = J.__Charge or 0,
+						maxCharge = J:GetMaxCharges(),
+						chargeRestoreTime = J.__ChargeRestoreTime or 0,
+						isChargeCooldownFrozen = J:IsChargeCooldownFrozen(),
+						chargeFrozenCooldownRemaining = J:GetChargeCooldownRemaining(),
 					}
 				end),
 			}
@@ -848,225 +855,225 @@ if IsServer() then
 	end
 	CDOTA_BaseNPC.CallAbilityCreated = function(self)
 		do
-			local au = 0
-			while au < self:GetAbilityCount() do
-				local H = self:GetAbilityByIndex(au)
-				if IsValid(H) then
-					H:__OnCreated()
+			local av = 0
+			while av < self:GetAbilityCount() do
+				local J = self:GetAbilityByIndex(av)
+				if IsValid(J) then
+					J:__OnCreated()
 				end
-				au = au + 1
+				av = av + 1
 			end
 		end
 	end
 	CDOTA_BaseNPC.CallAbilityRefresh = function(self)
 		do
-			local au = 0
-			while au < self:GetAbilityCount() do
-				local H = self:GetAbilityByIndex(au)
-				if IsValid(H) then
-					H:__OnRefresh()
+			local av = 0
+			while av < self:GetAbilityCount() do
+				local J = self:GetAbilityByIndex(av)
+				if IsValid(J) then
+					J:__OnRefresh()
 				end
-				au = au + 1
+				av = av + 1
 			end
 		end
 	end
 	CDOTA_BaseNPC.CallAbilityDestroy = function(self)
 		do
-			local au = 0
-			while au < self:GetAbilityCount() do
-				local H = self:GetAbilityByIndex(au)
-				if IsValid(H) then
-					H:__OnDestroy()
+			local av = 0
+			while av < self:GetAbilityCount() do
+				local J = self:GetAbilityByIndex(av)
+				if IsValid(J) then
+					J:__OnDestroy()
 				end
-				au = au + 1
+				av = av + 1
 			end
 		end
 		self:RemoveAllItem()
 	end
-	CDOTA_BaseNPC.ChangeWeapon = function(self, b1)
+	CDOTA_BaseNPC.ChangeWeapon = function(self, b2)
 		if self.__weapon ~= nil then
 			self.__weapon:RemoveSelf()
 			self.__weapon = nil
 		end
-		local a4 = KeyValues.weapon[b1]
-		if a4 == nil then
+		local a6 = KeyValues.weapon[b2]
+		if a6 == nil then
 			return
 		end
 		self.__weapon = SpawnEntityFromTableSynchronous(
 			"dota_prop_customtexture",
 			{
-				targetname = b1,
-				model = a4.model,
+				targetname = b2,
+				model = a6.model,
 				StartingAnim = "ACT_DOTA_IDLE",
 				StartingAnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
 			}
 		)
-		local b2 = KeyValues.weapon_asset_modifier[b1]
+		local b3 = KeyValues.weapon_asset_modifier[b2]
 		self.__weapon.__asset_modifier = {}
-		if b2 ~= nil then
-			if b2.particle_color ~= nil then
-				self.__weapon.__asset_modifier.particle_color = RGBStringToVector(b2.particle_color)
+		if b3 ~= nil then
+			if b3.particle_color ~= nil then
+				self.__weapon.__asset_modifier.particle_color = RGBStringToVector(b3.particle_color)
 			end
 		end
 		self.__weapon:FollowEntity(self, true)
 		self:CheckNoDraw(self.__weapon)
 	end
-	CDOTA_BaseNPC.SetWeaponVisible = function(self, b3)
-		self.__weapon_hidden = not b3
+	CDOTA_BaseNPC.SetWeaponVisible = function(self, b4)
+		self.__weapon_hidden = not b4
 		if IsValid(self.__weapon) then
 			self:CheckNoDraw(self.__weapon)
 		end
 	end
-	CDOTA_BaseNPC.EquipCosmetic = function(self, b4)
-		b4 = tostring(b4)
-		local a4 = KeyValues.info_item_cosmetic[b4]
-		if a4 == nil then
+	CDOTA_BaseNPC.EquipCosmetic = function(self, b5)
+		b5 = tostring(b5)
+		local a6 = KeyValues.info_item_cosmetic[b5]
+		if a6 == nil then
 			return
 		end
-		local b5 = tostring(a4.type)
+		local b6 = tostring(a6.type)
 		if self.__cosmetics == nil then
 			self.__cosmetics = {}
 		end
-		if b5 == "MISC" then
-			local b6 = { id = b4 }
-			local b7 = self.__cosmetics[b5]
-			if b7 ~= nil then
-				b7[#b7 + 1] = b6
+		if b6 == "MISC" then
+			local b7 = { id = b5 }
+			local b8 = self.__cosmetics[b6]
+			if b8 ~= nil then
+				b8[#b8 + 1] = b7
 			else
-				self.__cosmetics[b5] = { b6 }
+				self.__cosmetics[b6] = { b7 }
 			end
-			self:AddActivityModifier(b4)
-			Cosmetic:RegisterParticleReplacements(self, b5, b4)
-			if a4.model == nil then
+			self:AddActivityModifier(b5)
+			Cosmetic:RegisterParticleReplacements(self, b6, b5)
+			if a6.model == nil then
 				return
 			end
-			local b8 = SpawnEntityFromTableSynchronous(
+			local b9 = SpawnEntityFromTableSynchronous(
 				"dota_prop_customtexture",
 				{
-					targetname = b4,
-					model = a4.model,
+					targetname = b5,
+					model = a6.model,
 					StartingAnim = "ACT_DOTA_IDLE",
 					StartingAnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
 				}
 			)
-			b8:FollowEntity(self, true)
-			b6.entity = b8
+			b9:FollowEntity(self, true)
+			b7.entity = b9
 			return
 		end
-		self:UnequipCosmeticByType(b5, nil, true)
-		self.__cosmetics[b5] = { id = b4 }
-		self:AddActivityModifier(b4)
-		Cosmetic:RegisterParticleReplacements(self, b5, b4)
-		print(b5, "kv.particle", a4.particle)
-		if a4.particle ~= nil then
-			local b9 = ParticleManager:CreateParticle(tostring(a4.particle), PATTACH_ABSORIGIN_FOLLOW, self)
-			self.__cosmetics[b5].particleId = b9
+		self:UnequipCosmeticByType(b6, nil, true)
+		self.__cosmetics[b6] = { id = b5 }
+		self:AddActivityModifier(b5)
+		Cosmetic:RegisterParticleReplacements(self, b6, b5)
+		print(b6, "kv.particle", a6.particle)
+		if a6.particle ~= nil then
+			local ba = ParticleManager:CreateParticle(tostring(a6.particle), PATTACH_ABSORIGIN_FOLLOW, self)
+			self.__cosmetics[b6].particleId = ba
 			return
 		end
-		if a4.model == nil then
+		if a6.model == nil then
 			return
 		end
-		local b8 = SpawnEntityFromTableSynchronous(
+		local b9 = SpawnEntityFromTableSynchronous(
 			"dota_prop_customtexture",
 			{
-				targetname = b4,
-				model = a4.model,
+				targetname = b5,
+				model = a6.model,
 				StartingAnim = "ACT_DOTA_IDLE",
 				StartingAnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
 			}
 		)
-		b8:FollowEntity(self, true)
-		self.__cosmetics[b5].entity = b8
+		b9:FollowEntity(self, true)
+		self.__cosmetics[b6].entity = b9
 	end
-	CDOTA_BaseNPC.UnequipCosmeticByType = function(self, b5, b4, ba)
+	CDOTA_BaseNPC.UnequipCosmeticByType = function(self, b6, b5, bb)
 		if self.__cosmetics == nil then
 			self.__cosmetics = {}
 		end
-		if b5 == "MISC" then
-			local bb = self.__cosmetics[b5]
-			if bb == nil then
+		if b6 == "MISC" then
+			local bc = self.__cosmetics[b6]
+			if bc == nil then
 				return
 			end
-			if b4 ~= nil then
+			if b5 ~= nil then
 				do
-					local au = #bb - 1
-					while au >= 0 do
-						if bb[au + 1].id == b4 then
-							self:RemoveActivityModifier(bb[au + 1].id)
-							Cosmetic:UnregisterParticleReplacements(self, b5)
-							if bb[au + 1].entity ~= nil and IsValid(bb[au + 1].entity) then
-								bb[au + 1].entity:RemoveSelf()
+					local av = #bc - 1
+					while av >= 0 do
+						if bc[av + 1].id == b5 then
+							self:RemoveActivityModifier(bc[av + 1].id)
+							Cosmetic:UnregisterParticleReplacements(self, b6)
+							if bc[av + 1].entity ~= nil and IsValid(bc[av + 1].entity) then
+								bc[av + 1].entity:RemoveSelf()
 							end
-							table.remove(bb, au)
+							table.remove(bc, av)
 							break
 						end
-						au = au - 1
+						av = av - 1
 					end
 				end
-				if #bb == 0 then
-					h(self.__cosmetics, b5)
+				if #bc == 0 then
+					h(self.__cosmetics, b6)
 				end
 			else
 				do
-					local au = #bb - 1
-					while au >= 0 do
-						self:RemoveActivityModifier(bb[au + 1].id)
-						Cosmetic:UnregisterParticleReplacements(self, b5)
-						if bb[au + 1].entity ~= nil and IsValid(bb[au + 1].entity) then
-							bb[au + 1].entity:RemoveSelf()
+					local av = #bc - 1
+					while av >= 0 do
+						self:RemoveActivityModifier(bc[av + 1].id)
+						Cosmetic:UnregisterParticleReplacements(self, b6)
+						if bc[av + 1].entity ~= nil and IsValid(bc[av + 1].entity) then
+							bc[av + 1].entity:RemoveSelf()
 						end
-						au = au - 1
+						av = av - 1
 					end
 				end
-				h(self.__cosmetics, b5)
+				h(self.__cosmetics, b6)
 			end
 			return
 		end
-		local bc = self.__cosmetics[b5]
-		if bc == nil then
+		local bd = self.__cosmetics[b6]
+		if bd == nil then
 			return
 		end
-		self:RemoveActivityModifier(bc.id)
-		Cosmetic:UnregisterParticleReplacements(self, b5)
-		if bc.particleId ~= nil then
-			ParticleManager:DestroyParticle(bc.particleId, true)
+		self:RemoveActivityModifier(bd.id)
+		Cosmetic:UnregisterParticleReplacements(self, b6)
+		if bd.particleId ~= nil then
+			ParticleManager:DestroyParticle(bd.particleId, true)
 		end
-		if bc.entity ~= nil and IsValid(bc.entity) then
-			bc.entity:RemoveSelf()
+		if bd.entity ~= nil and IsValid(bd.entity) then
+			bd.entity:RemoveSelf()
 		end
-		h(self.__cosmetics, b5)
-		if not ba then
-			local bd = self:GetPlayerOwnerID()
-			local be = tostring(PlayerResource:GetSelectedHeroID(bd))
-			for bf, bg in pairs(KeyValues.info_item_cosmetic) do
+		h(self.__cosmetics, b6)
+		if not bb then
+			local be = self:GetPlayerOwnerID()
+			local bf = tostring(PlayerResource:GetSelectedHeroID(be))
+			for bg, bh in pairs(KeyValues.info_item_cosmetic) do
 				do
-					local b6 = bg
-					if tostring(b6.type) ~= b5 then
-						goto bh
+					local b7 = bh
+					if tostring(b7.type) ~= b6 then
+						goto bi
 					end
-					if tostring(b6.default) ~= "1" then
-						goto bh
+					if tostring(b7.default) ~= "1" then
+						goto bi
 					end
-					local bi = b6.hero_id ~= nil and tostring(b6.hero_id) or nil
-					if bi == nil or bi == be then
-						self:EquipCosmetic(bf)
+					local bj = b7.hero_id ~= nil and tostring(b7.hero_id) or nil
+					if bj == nil or bj == bf then
+						self:EquipCosmetic(bg)
 						break
 					end
 				end
-				::bh::
+				::bi::
 			end
 		end
 	end
-	CDOTA_BaseNPC.CheckNoDraw = function(self, b8)
-		local b3 = not self.__NODAW
+	CDOTA_BaseNPC.CheckNoDraw = function(self, b9)
+		local b4 = not self.__NODAW
 		if self.__weapon_hidden then
-			b3 = false
+			b4 = false
 		end
-		if IsValid(b8) then
-			if b3 then
-				b8:RemoveEffects(EF_NODRAW)
+		if IsValid(b9) then
+			if b4 then
+				b9:RemoveEffects(EF_NODRAW)
 			else
-				b8:AddEffects(EF_NODRAW)
+				b9:AddEffects(EF_NODRAW)
 			end
 		end
 	end
@@ -1086,158 +1093,157 @@ if IsServer() then
 		self:CheckNoDraw(self.__weapon)
 		self:RemoveNoDraw_Engine()
 	end
-	CDOTA_BaseNPC.AddShield = function(self, bj, y, bk, bl)
-		if bj <= 0 then
+	CDOTA_BaseNPC.AddShield = function(self, bk, A, bl, bm)
+		if bk <= 0 then
 			return
 		end
-		local w = self:GetProperty(PropertyFunction.DEFENSE_INTENSITY)
-			* (1 + self:GetProperty(PropertyFunction.DEFENSE_INTENSITY_BOOST) * 0.01)
-		bj = bj * (1 + GetShieldAmplify(self) * 0.01) * (1 + w * INTENSITY_FACTOR * 0.01)
-		local bm = y or DoUniqueString("shield")
-		local bn = bk or "override"
-		local bo = bl or "normal"
-		self:AddNewModifier(self, nil, "modifier_shield", { shield = bj, id = bm, method = bn, type = bo })
+		local y = CalculateEquivalentDefenseIntensity(self)
+		bk = bk * (1 + GetShieldAmplify(self) * 0.01) * (1 + y * INTENSITY_FACTOR * 0.01)
+		local bn = A or DoUniqueString("shield")
+		local bo = bl or "override"
+		local bp = bm or "normal"
+		self:AddNewModifier(self, nil, "modifier_shield", { shield = bk, id = bn, method = bo, type = bp })
 	end
-	CDOTA_BaseNPC.RemoveShield = function(self, y)
-		if y == nil then
+	CDOTA_BaseNPC.RemoveShield = function(self, A)
+		if A == nil then
 			self:RemoveModifierByName("modifier_shield")
 		else
-			local z = self:FindModifierByName("modifier_shield")
-			if IsValid(z) then
-				z:RemoveShield(y)
+			local B = self:FindModifierByName("modifier_shield")
+			if IsValid(B) then
+				B:RemoveShield(A)
 			end
 		end
 	end
-	CDOTA_BaseNPC.ReduceShield = function(self, t, y, bp)
+	CDOTA_BaseNPC.ReduceShield = function(self, t, A, bq)
 		if t <= 0 then
 			return
 		end
-		local z = self:FindModifierByName("modifier_shield")
-		if not IsValid(z) then
+		local B = self:FindModifierByName("modifier_shield")
+		if not IsValid(B) then
 			return
 		end
-		z:ReduceShield(t, y, bp)
+		B:ReduceShield(t, A, bq)
 	end
-	CDOTA_BaseNPC.AddProperty = function(self, n, bq)
+	CDOTA_BaseNPC.AddProperty = function(self, n, br)
 		if PROPERTY_MAP_REVERSE[n] ~= nil then
 			PropertySystem:AddStaticProperty(
 				self:entindex(),
 				PROPERTY_MAP_REVERSE[n],
 				DoUniqueString("static_property"),
-				bq
+				br
 			)
 		end
 	end
-	CDOTA_BaseNPC.EnergyStrike = function(self, br, bs, H, bt, ay, a2, a9)
-		a9 = a9 or {}
-		local bu = a9.source or self
-		local bv = a9.jumpDelay or 0
-		local bw = a9.jumpCount or 0
-		local bx = a9.jumpRadius or 600
-		local I = a9.attachName or "attach_attack1"
-		local by = a9.soundName or "Hero_Zuus.ArcLightning.Cast"
-		local function bz(bu, ax, bA)
-			self:DealDamage(ax, H, ay)
-			if type(a2) == "function" then
-				a2(bu, ax, bA)
+	CDOTA_BaseNPC.EnergyStrike = function(self, bs, bt, J, bu, az, a4, ab)
+		ab = ab or {}
+		local bv = ab.source or self
+		local bw = ab.jumpDelay or 0
+		local bx = ab.jumpCount or 0
+		local by = ab.jumpRadius or 600
+		local K = ab.attachName or "attach_attack1"
+		local bz = ab.soundName or "Hero_Zuus.ArcLightning.Cast"
+		local function bA(bv, ay, bB)
+			self:DealDamage(ay, J, az)
+			if type(a4) == "function" then
+				a4(bv, ay, bB)
 			else
-				local b9 = ParticleManager:CreateParticle(a2, PATTACH_CUSTOMORIGIN, nil)
+				local ba = ParticleManager:CreateParticle(a4, PATTACH_CUSTOMORIGIN, nil)
 				ParticleManager:SetParticleControlEnt(
-					b9,
+					ba,
 					0,
-					bu,
+					bv,
 					PATTACH_POINT_FOLLOW,
-					bA and I or "attach_hitloc",
-					bu:GetAbsOrigin(),
+					bB and K or "attach_hitloc",
+					bv:GetAbsOrigin(),
 					false
 				)
 				ParticleManager:SetParticleControlEnt(
-					b9,
+					ba,
 					1,
-					ax,
+					ay,
 					PATTACH_POINT_FOLLOW,
 					"attach_hitloc",
-					ax:GetAbsOrigin(),
+					ay:GetAbsOrigin(),
 					false
 				)
-				ParticleManager:ReleaseParticleIndex(b9)
+				ParticleManager:ReleaseParticleIndex(ba)
 			end
-			EmitSoundOnLocationWithCaster(bu:GetAbsOrigin(), by, self)
+			EmitSoundOnLocationWithCaster(bv:GetAbsOrigin(), bz, self)
 		end
-		local bB = { br }
-		if bt > 0 then
-			local bC = FindUnitsInRadiusWithAbility(self, br:GetAbsOrigin(), bs, H)
-			ArrayRemove(bC, br)
-			for bD, ac in ipairs(bC) do
-				table.insert(bB, ac)
-				bt = bt - 1
-				if bt <= 0 then
+		local bC = { bs }
+		if bu > 0 then
+			local bD = FindUnitsInRadiusWithAbility(self, bs:GetAbsOrigin(), bt, J)
+			ArrayRemove(bD, bs)
+			for bE, w in ipairs(bD) do
+				table.insert(bC, w)
+				bu = bu - 1
+				if bu <= 0 then
 					break
 				end
 			end
 		end
-		local bE = {}
-		local bF = bw - 1
-		for bD, ac in ipairs(bB) do
-			local bG = ac
-			bz(bu, bG, true)
-			table.insert(bE, ac)
-			if bF > 0 then
-				bF = bF - 1
-				self:GameTimer(bv, function()
-					local bH = FindUnitsInRadiusWithAbility(self, bG:GetAbsOrigin(), bx, H, FIND_CLOSEST)
-					for bD, bI in ipairs(bE) do
-						ArrayRemove(bH, bI)
+		local bF = {}
+		local bG = bx - 1
+		for bE, w in ipairs(bC) do
+			local bH = w
+			bA(bv, bH, true)
+			table.insert(bF, w)
+			if bG > 0 then
+				bG = bG - 1
+				self:GameTimer(bw, function()
+					local bI = FindUnitsInRadiusWithAbility(self, bH:GetAbsOrigin(), by, J, FIND_CLOSEST)
+					for bE, bJ in ipairs(bF) do
+						ArrayRemove(bI, bJ)
 					end
-					local bJ = bH[1]
-					if IsValid(bJ) then
-						bz(bG, bJ, false)
-						table.insert(bE, bJ)
-						if bF > 0 then
-							bG = bJ
-							return bv
+					local bK = bI[1]
+					if IsValid(bK) then
+						bA(bH, bK, false)
+						table.insert(bF, bK)
+						if bG > 0 then
+							bH = bK
+							return bw
 						end
 					end
 				end)
 			end
 		end
 	end
-	CDOTA_BaseNPC.AddExpose = function(self, ax, bK)
-		if bK == nil then
-			bK = 1
+	CDOTA_BaseNPC.AddExpose = function(self, ay, bL)
+		if bL == nil then
+			bL = 1
 		end
-		local z = ax:AddNewModifier(self, nil, "modifier_expose", { stack = bK, duration = 3 })
-		local bL = IsValid(z) and z:GetStackCount() or 0
-		Event:Fire("expose_event", { target = ax, caster = self, addStack = bK, stack = bL })
+		local B = ay:AddNewModifier(self, nil, "modifier_expose", { stack = bL, duration = 3 })
+		local bM = IsValid(B) and B:GetStackCount() or 0
+		Event:Fire("expose_event", { target = ay, caster = self, addStack = bL, stack = bM })
 	end
 	CDOTA_BaseNPC.IsExpose = function(self)
-		local z = self:FindModifierByName("modifier_expose")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_expose")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.AddIceMark = function(self, ax, bK)
-		if bK == nil then
-			bK = 1
+	CDOTA_BaseNPC.AddIceMark = function(self, ay, bL)
+		if bL == nil then
+			bL = 1
 		end
-		local z = ax:AddNewModifier(self, nil, "modifier_ice_mark", { stack = bK, duration = 3 })
-		local bM = IsValid(z) and z:GetStackCount() or 0
-		Event:Fire("ice_mark_event", { target = ax, caster = self, addStack = bK, stack = bM })
+		local B = ay:AddNewModifier(self, nil, "modifier_ice_mark", { stack = bL, duration = 3 })
+		local bN = IsValid(B) and B:GetStackCount() or 0
+		Event:Fire("ice_mark_event", { target = ay, caster = self, addStack = bL, stack = bN })
 	end
 	CDOTA_BaseNPC.IsIceMark = function(self)
-		local z = self:FindModifierByName("modifier_ice_mark")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_ice_mark")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.ArcLightning = function(self, ax, ay, bN)
-		if bN == nil then
-			bN = false
+	CDOTA_BaseNPC.ArcLightning = function(self, ay, az, bO)
+		if bO == nil then
+			bO = false
 		end
-		local bO = BlessPerformance.Enabled
-		local bP = GameRules:GetGameTime()
-		if bO then
+		local bP = BlessPerformance.Enabled
+		local bQ = GameRules:GetGameTime()
+		if bP then
 			BlessPerformance:Increment("arc_calls")
 		end
-		local bB = FindUnitsInRadius(
+		local bC = FindUnitsInRadius(
 			self:GetTeamNumber(),
-			ax:GetAbsOrigin(),
+			ay:GetAbsOrigin(),
 			nil,
 			900,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -1246,74 +1252,74 @@ if IsServer() then
 			FIND_CLOSEST,
 			false
 		)
-		ArrayRemove(bB, ax)
-		table.insert(bB, 1, ax)
-		local bQ = self
-		local bR = 3
+		ArrayRemove(bC, ay)
+		table.insert(bC, 1, ay)
+		local bR = self
+		local bS = 3
 		if
 			self.__arcLightningSoundTime == nil
-			or bP - self.__arcLightningSoundTime >= ARC_LIGHTNING_SOUND_COOLDOWN_SECONDS
+			or bQ - self.__arcLightningSoundTime >= ARC_LIGHTNING_SOUND_COOLDOWN_SECONDS
 		then
-			self.__arcLightningSoundTime = bP
+			self.__arcLightningSoundTime = bQ
 			self:EmitSound("Bless.ArcLightning")
 		end
-		for au, aD in ipairs(bB) do
-			if bO then
+		for av, aE in ipairs(bC) do
+			if bP then
 				BlessPerformance:Increment("arc_hits")
 				BlessPerformance:Increment("arc_particles")
 			end
-			local b9 = ParticleManager:CreateParticle(
+			local ba = ParticleManager:CreateParticle(
 				"particles/units/benediction/zuus_arc_lightning.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				self
 			)
-			if au == 0 then
+			if av == 0 then
 				ParticleManager:SetParticleControlEnt(
-					b9,
+					ba,
 					0,
-					bQ,
+					bR,
 					PATTACH_POINT_FOLLOW,
 					"attach_attack1",
-					bQ:GetAbsOrigin(),
+					bR:GetAbsOrigin(),
 					false
 				)
 			else
 				ParticleManager:SetParticleControlEnt(
-					b9,
+					ba,
 					0,
-					bQ,
+					bR,
 					PATTACH_POINT_FOLLOW,
 					"attach_hitloc",
-					bQ:GetAbsOrigin(),
+					bR:GetAbsOrigin(),
 					false
 				)
 			end
 			ParticleManager:SetParticleControlEnt(
-				b9,
+				ba,
 				1,
-				aD,
+				aE,
 				PATTACH_POINT_FOLLOW,
 				"attach_hitloc",
-				aD:GetAbsOrigin(),
+				aE:GetAbsOrigin(),
 				false
 			)
-			ParticleManager:ReleaseParticleIndex(b9)
-			self:DealDamage(aD, nil, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE)
+			ParticleManager:ReleaseParticleIndex(ba)
+			self:DealDamage(aE, nil, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE)
 			if PRD(nil, self, GetLightningExposeChance(self), "ArcLightning") then
-				self:AddExpose(aD)
+				self:AddExpose(aE)
 			end
-			bR = bR - 1
-			if bR <= 0 then
+			bS = bS - 1
+			if bS <= 0 then
 				break
 			end
-			bQ = aD
+			bR = aE
 		end
-		if not bN then
-			local bS = GetLightningCount(self)
-			if bS > 0 then
-				local bT = FindUnitsInRadius(
+		if not bO then
+			local bT = GetLightningCount(self)
+			if bT > 0 then
+				local bU = FindUnitsInRadius(
 					self:GetTeamNumber(),
-					ax:GetAbsOrigin(),
+					ay:GetAbsOrigin(),
 					nil,
 					900,
 					DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -1322,234 +1328,237 @@ if IsServer() then
 					FIND_ANY_ORDER,
 					false
 				)
-				ArrayRemove(bT, ax)
-				local bU = 0
-				for bD, ac in ipairs(bT) do
-					self:ArcLightning(ac, ay, true)
-					bU = bU + 1
-					if bU >= bS then
+				ArrayRemove(bU, ay)
+				local bV = 0
+				for bE, w in ipairs(bU) do
+					self:ArcLightning(w, az, true)
+					bV = bV + 1
+					if bV >= bT then
 						break
 					end
 				end
 			end
 		end
 	end
-	CDOTA_BaseNPC.LightningStrike = function(self, ax, ay, s)
+	CDOTA_BaseNPC.LightningStrike = function(self, ay, az, s)
 		if s == nil then
 			s = EOM_DAMAGE_FLAGS.NONE
 		end
-		local bO = BlessPerformance.Enabled
-		if bO then
+		local bP = BlessPerformance.Enabled
+		if bP then
 			BlessPerformance:Increment("lightning_requests")
 		end
-		local bP = GameRules:GetGameTime()
+		local bQ = GameRules:GetGameTime()
 		s = bit.bor(s, EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE)
-		local bV = GetLightningRadius(self)
-		local bW = ax:GetAbsOrigin()
-		local bB = {}
-		if bV > 0 then
-			bB = FindEnemiesInRadius(self, bW, bV)
+		local bW = GetLightningRadius(self)
+		local bX = ay:GetAbsOrigin()
+		local bC = {}
+		if bW > 0 then
+			bC = FindEnemiesInRadius(self, bX, bW)
 		else
-			bB = { ax }
+			bC = { ay }
 		end
-		if bV > 0 then
-			local bX = ArrayRemove(bB, ax)
-			if bX ~= nil then
-				table.insert(bB, 1, bX)
+		if bW > 0 then
+			local bY = ArrayRemove(bC, ay)
+			if bY ~= nil then
+				table.insert(bC, 1, bY)
 			end
 		end
-		local bY = self.__lightningStrikeHitTime == bP and (self.__lightningStrikeTargetHitCount or 0) or 0
-		local bZ = math.max(0, MAX_LIGHTNING_STRIKE_TARGET_HITS_PER_FRAME - bY)
-		if #bB > bZ then
-			local b_ = #bB - bZ
-			if bO then
-				BlessPerformance:Increment("lightning_dropped", b_)
+		local bZ = self.__lightningStrikeHitTime == bQ and (self.__lightningStrikeTargetHitCount or 0) or 0
+		local b_ = math.max(0, MAX_LIGHTNING_STRIKE_TARGET_HITS_PER_FRAME - bZ)
+		if #bC > b_ then
+			local c0 = #bC - b_
+			if bP then
+				BlessPerformance:Increment("lightning_dropped", c0)
 			end
-			bB = i(bB, 0, bZ)
+			bC = i(bC, 0, b_)
 		end
-		if #bB == 0 then
+		if #bC == 0 then
 			return
 		end
-		self.__lightningStrikeHitTime = bP
-		self.__lightningStrikeTargetHitCount = bY + #bB
-		if bO then
-			BlessPerformance:Increment("lightning_aoe_hits", #bB)
+		self.__lightningStrikeHitTime = bQ
+		self.__lightningStrikeTargetHitCount = bZ + #bC
+		if bP then
+			BlessPerformance:Increment("lightning_aoe_hits", #bC)
 		end
-		for au, ac in ipairs(bB) do
-			if ac == ax then
-				self:DealDamage(ac, nil, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, s)
+		for av, w in ipairs(bC) do
+			if w == ay then
+				self:DealDamage(w, nil, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, s)
 			else
-				self:DealDamage(ac, nil, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, bit.bor(s, EOM_DAMAGE_FLAGS.NO_EXPOSE))
+				self:DealDamage(w, nil, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, bit.bor(s, EOM_DAMAGE_FLAGS.NO_EXPOSE))
 			end
 		end
 		if
 			self.__lightningStrikeEffectWindowStart == nil
-			or bP - self.__lightningStrikeEffectWindowStart >= LIGHTNING_STRIKE_EFFECT_LIMIT_INTERVAL_SECONDS
+			or bQ - self.__lightningStrikeEffectWindowStart >= LIGHTNING_STRIKE_EFFECT_LIMIT_INTERVAL_SECONDS
 		then
-			self.__lightningStrikeEffectWindowStart = bP
+			self.__lightningStrikeEffectWindowStart = bQ
 			self.__lightningStrikeEffectCount = 0
 			self.__lightningStrikeSoundCount = 0
 		end
 		if (self.__lightningStrikeSoundCount or 0) < MAX_LIGHTNING_STRIKE_SOUNDS_PER_SECOND then
 			self.__lightningStrikeSoundCount = (self.__lightningStrikeSoundCount or 0) + 1
-			self:EmitSound("Bless.LightningStrike", bW)
+			self:EmitSound("Bless.LightningStrike", bX)
 		end
 		if (self.__lightningStrikeEffectCount or 0) < MAX_LIGHTNING_STRIKE_EFFECTS_PER_SECOND then
 			self.__lightningStrikeEffectCount = (self.__lightningStrikeEffectCount or 0) + 1
-			if bO then
+			if bP then
 				BlessPerformance:Increment("lightning_particles", 2)
 			end
-			local b9 = ParticleManager:CreateParticle(
+			local ba = ParticleManager:CreateParticle(
 				"particles/units/benediction/zuus_lightning_bolt.vpcf",
 				PATTACH_WORLDORIGIN,
 				nil
 			)
-			ParticleManager:SetParticleControl(b9, 0, bW + Vector(0, 0, 900))
-			ParticleManager:SetParticleControl(b9, 1, bW)
-			ParticleManager:ReleaseParticleIndex(b9)
-			b9 = ParticleManager:CreateParticle(
+			ParticleManager:SetParticleControl(ba, 0, bX + Vector(0, 0, 900))
+			ParticleManager:SetParticleControl(ba, 1, bX)
+			ParticleManager:ReleaseParticleIndex(ba)
+			ba = ParticleManager:CreateParticle(
 				"particles/units/benediction/zuus_lightning_bolt_aoe.vpcf",
 				PATTACH_WORLDORIGIN,
 				nil
 			)
-			ParticleManager:SetParticleControl(b9, 0, bW)
-			ParticleManager:SetParticleControl(b9, 1, Vector(bV, 0, 0))
-			ParticleManager:ReleaseParticleIndex(b9)
+			ParticleManager:SetParticleControl(ba, 0, bX)
+			ParticleManager:SetParticleControl(ba, 1, Vector(bW, 0, 0))
+			ParticleManager:ReleaseParticleIndex(ba)
 		end
-		local c0 = GetLightningMultipleChance(self)
-		if PRD(nil, self, c0, "LightningStrike") then
+		local c1 = GetLightningMultipleChance(self)
+		if PRD(nil, self, c1, "LightningStrike") then
 			self:StartThink(0.25, "LightningStrike", function()
-				if IsValid(ax) then
-					self:LightningStrike(ax, ay, s)
+				if IsValid(ay) then
+					self:LightningStrike(ay, az, s)
 				end
 				return -1
 			end)
 		end
-		Event:Fire("lightning_strike", { caster = self, target = ax, damage = ay })
+		Event:Fire("lightning_strike", { caster = self, target = ay, damage = az })
 	end
-	CDOTA_BaseNPC.LightningStorm = function(self, ax, ay)
-		local E = ax:GetAbsOrigin()
-		local b9 = ParticleManager:CreateParticle(
+	CDOTA_BaseNPC.LightningStorm = function(self, ay, az)
+		local G = ay:GetAbsOrigin()
+		local ba = ParticleManager:CreateParticle(
 			"particles/units/benediction/leshrac_lightning_bolt.vpcf",
 			PATTACH_ABSORIGIN,
 			self
 		)
-		ParticleManager:SetParticleControl(b9, 0, E + Vector(0, 0, 1000))
-		ParticleManager:SetParticleControlEnt(b9, 1, ax, PATTACH_POINT_FOLLOW, "attach_hitloc", ax:GetAbsOrigin(), true)
-		ParticleManager:ReleaseParticleIndex(b9)
+		ParticleManager:SetParticleControl(ba, 0, G + Vector(0, 0, 1000))
+		ParticleManager:SetParticleControlEnt(ba, 1, ay, PATTACH_POINT_FOLLOW, "attach_hitloc", ay:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(ba)
 		self:EmitSound("Hero_Leshrac.Lightning_Storm")
 		self:DealDamage(
-			ax,
-			nil,
 			ay,
+			nil,
+			az,
 			EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 			EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE + EOM_DAMAGE_FLAGS.NO_EXPOSE
 		)
-		Event:Fire("lightning_storm", { caster = self, target = ax, damage = ay })
+		Event:Fire("lightning_storm", { caster = self, target = ay, damage = az })
 	end
-	CDOTA_BaseNPC.LightningCloud = function(self, S)
-		local c1 = S * (1 + GetLightningCloudDuration(self) * 0.01)
-		self:AddNewModifier(self, nil, "modifier_lightning_cloud", { duration = c1 })
+	CDOTA_BaseNPC.LightningCloud = function(self, U)
+		local c2 = U * (1 + GetLightningCloudDuration(self) * 0.01)
+		self:AddNewModifier(self, nil, "modifier_lightning_cloud", { duration = c2 })
 	end
-	CDOTA_BaseNPC.CallSword = function(self, bR, c2, c3, c4)
-		if c2 == nil then
-			c2 = 0
-		end
+	CDOTA_BaseNPC.CallSword = function(self, bS, c3, c4, c5)
 		if c3 == nil then
 			c3 = 0
 		end
 		if c4 == nil then
-			c4 = false
+			c4 = 0
+		end
+		if c5 == nil then
+			c5 = false
 		end
 		if self.__swordGroup == nil then
 			self.__swordGroup = {}
 		end
 		do
-			local au = #self.__swordGroup - 1
-			while au >= 0 do
-				local c5 = self.__swordGroup[au + 1]
-				if Bullet:GetBulletData(c5) == nil then
-					table.remove(self.__swordGroup, au)
+			local av = #self.__swordGroup - 1
+			while av >= 0 do
+				local c6 = self.__swordGroup[av + 1]
+				if Bullet:GetBulletData(c6) == nil then
+					table.remove(self.__swordGroup, av)
 				end
-				au = au - 1
+				av = av - 1
 			end
 		end
-		bR = math.min(bR, MAX_CALL_SWORD_GROUP_SIZE - #self.__swordGroup)
-		if bR <= 0 then
+		bS = math.min(bS, MAX_CALL_SWORD_GROUP_SIZE - #self.__swordGroup)
+		if bS <= 0 then
 			return
 		end
-		local N = self
-		local ay = SWORD_DAMAGE * (1 + c2 * 0.01)
-		local c6 = Bullet:CreateGroupSurroundBullet(bR, {
-			caster = N,
-			group = "CallSword" .. tostring(N:entindex()),
+		local P = self
+		local az = SWORD_DAMAGE * (1 + c3 * 0.01)
+		local c7 = Bullet:CreateGroupSurroundBullet(bS, {
+			caster = P,
+			group = "CallSword" .. tostring(P:entindex()),
 			circleRadius = 120,
 			angularVelocity = 180,
 			offset = 128,
 			lifeTime = 5,
 			interval = 1,
-			ParticleCreator = function(c7)
-				local b9 =
+			ParticleCreator = function(c8)
+				local ba =
 					ParticleManager:CreateParticle("particles/abilities/custom_sword.vpcf", PATTACH_CUSTOMORIGIN, nil)
 				ParticleManager:SetParticleControlEnt(
-					b9,
+					ba,
 					0,
-					c7.__thinker,
+					c8.__thinker,
 					PATTACH_ABSORIGIN_FOLLOW,
 					nil,
-					c7.__thinker:GetAbsOrigin(),
+					c8.__thinker:GetAbsOrigin(),
 					true
 				)
-				ParticleManager:SetParticleControlEnt(b9, 1, N, PATTACH_ABSORIGIN_FOLLOW, nil, N:GetAbsOrigin(), true)
-				return b9
+				ParticleManager:SetParticleControlEnt(ba, 1, P, PATTACH_ABSORIGIN_FOLLOW, nil, P:GetAbsOrigin(), true)
+				return ba
 			end,
-			OnIntervalThink = function(c7)
-				local ax = FindEnemiesInRadius(N, N:GetAbsOrigin(), 1200)[1]
-				if IsValid(ax) then
-					local c8 = c7.__position
-					c8.z = N:GetAbsOrigin().z + 128
+			OnIntervalThink = function(c8)
+				if not IsValid(P) then
+					return
+				end
+				local ay = FindEnemiesInRadius(P, P:GetAbsOrigin(), 1200)[1]
+				if IsValid(ay) then
+					local c9 = c8.__position
+					c9.z = P:GetAbsOrigin().z + 128
 					Bullet:CreateGuidedBullet({
-						caster = N,
-						target = ax,
-						direction = CalcDirection2D(c8, N),
+						caster = P,
+						target = ay,
+						direction = CalcDirection2D(c9, P),
 						effectName = "particles/generic_gameplay/talent_sword_projectile.vpcf",
-						spawnOrigin = c8,
+						spawnOrigin = c9,
 						angularVelocity = 360,
 						ignoreBlock = true,
 						radius = 64,
 						moveSpeed = 1500,
 						teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 						typeFilter = DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
-						OnBulletThink = function(E, c7)
-							c7.angularVelocity = c7.angularVelocity + 20
-							if IsValid(c7.target) and not c7.target:IsAlive() then
-								c7.target = nil
+						OnBulletThink = function(G, c8)
+							c8.angularVelocity = c8.angularVelocity + 20
+							if IsValid(c8.target) and not c8.target:IsAlive() then
+								c8.target = nil
 							end
 						end,
-						OnBulletHit = function(ac, E, c7)
-							N:DealDamage(
-								ac,
+						OnBulletHit = function(w, G, c8)
+							P:DealDamage(
+								w,
 								nil,
-								ay,
+								az,
 								EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 								EOM_DAMAGE_FLAGS.NO_CRIT + EOM_DAMAGE_FLAGS.SWORD
 							)
-							if c3 > 0 then
-								local c9 = c7.__thinker:GetAbsOrigin()
+							if c4 > 0 then
+								local ca = c8.__thinker:GetAbsOrigin()
 								DoCleaveAction(
-									N,
-									ac,
+									P,
+									w,
 									100,
 									200,
-									c3,
-									function(ca)
-										if ca == ac then
+									c4,
+									function(cb)
+										if cb == w then
 											return
 										end
-										N:DealDamage(
-											ca,
+										P:DealDamage(
+											cb,
 											nil,
-											ay,
+											az,
 											EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 											EOM_DAMAGE_FLAGS.NO_CRIT + EOM_DAMAGE_FLAGS.SWORD
 										)
@@ -1557,169 +1566,169 @@ if IsServer() then
 									DOTA_UNIT_TARGET_TEAM_ENEMY,
 									DOTA_UNIT_TARGET_CREEP + DOTA_UNIT_TARGET_HERO,
 									nil,
-									c9
+									ca
 								)
-								local cb = ParticleManager:CreateParticle(
+								local cc = ParticleManager:CreateParticle(
 									"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf",
 									PATTACH_WORLDORIGIN,
-									c7.__thinker
+									c8.__thinker
 								)
-								ParticleManager:SetParticleControl(cb, 0, c9)
-								ParticleManager:SetParticleControlForward(cb, 0, ac:GetAbsOrigin() - c9)
-								ParticleManager:ReleaseParticleIndex(cb)
+								ParticleManager:SetParticleControl(cc, 0, ca)
+								ParticleManager:SetParticleControlForward(cc, 0, w:GetAbsOrigin() - ca)
+								ParticleManager:ReleaseParticleIndex(cc)
 							end
-							Bullet:DestroyBullet(c7)
+							Bullet:DestroyBullet(c8)
 						end,
 					})
 					self:EmitSound("Hero_Pangolier.PreAttack")
-					Bullet:DestroyBulletByID(c7.__projIndex)
+					Bullet:DestroyBulletByID(c8.__projIndex)
 				end
 				return 0.1
 			end,
 		})
-		self.__swordGroup = j(self.__swordGroup, c6)
-		Event:Fire("call_sword", { caster = self, extra = c4 })
+		self.__swordGroup = j(self.__swordGroup, c7)
+		Event:Fire("call_sword", { caster = self, extra = c5 })
 	end
-	CDOTA_BaseNPC.SwordWave = function(self, cc, _, ay, cd)
-		if cd == nil then
-			cd = 0
+	CDOTA_BaseNPC.SwordWave = function(self, cd, a1, az, ce)
+		if ce == nil then
+			ce = 0
 		end
-		local N = self
-		local ce = 1 + GetBladeSpeedAmplify(N) * 0.01
-		local cf = ce > 1 and 5 or 0
-		local cg = 1 + cd * SWORD_INTENT_PCT_PER_STACK * 0.01
-		local a0 = 800 * cg * ce + GetBulletRange(self)
-		local ch = N:HasItem("item_crit_blade")
+		local P = self
+		local cf = 1 + GetBladeSpeedAmplify(P) * 0.01
+		local cg = cf > 1 and 5 or 0
+		local ch = 1 + ce * SWORD_INTENT_PCT_PER_STACK * 0.01
+		local a2 = 800 * ch * cf + GetBulletRange(self)
+		local ci = P:HasItem("item_crit_blade")
 		Bullet:CreateLinearBullet({
-			caster = N,
-			spawnOrigin = cc,
-			direction = _,
+			caster = P,
+			spawnOrigin = cd,
+			direction = a1,
 			moveSpeed = 3000,
-			distance = a0,
+			distance = a2,
 			destroyOnBounce = true,
-			bounce = cf,
+			bounce = cg,
 			effectName = "particles/units/benediction/invoker_deafening_blast.vpcf",
 			radius = 200,
 			teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			typeFilter = UNIT_AND_BUILDING,
-			OnBulletBounceEnd = function(c7)
-				ParticleManager:DestroyParticle(c7.__particleID, false)
-				local b9 = ParticleManager:CreateParticle(c7.effectName, PATTACH_CUSTOMORIGIN, c7.caster)
-				ParticleManager:SetParticleControlTransformForward(b9, 0, c7.__position, c7.__velocity:Normalized())
-				ParticleManager:SetParticleControl(b9, 1, c7.__velocity)
-				c7.__particleID = b9
+			OnBulletBounceEnd = function(c8)
+				ParticleManager:DestroyParticle(c8.__particleID, false)
+				local ba = ParticleManager:CreateParticle(c8.effectName, PATTACH_CUSTOMORIGIN, c8.caster)
+				ParticleManager:SetParticleControlTransformForward(ba, 0, c8.__position, c8.__velocity:Normalized())
+				ParticleManager:SetParticleControl(ba, 1, c8.__velocity)
+				c8.__particleID = ba
 			end,
-			OnBulletThink = function(E, c7)
-				if ch then
-					local ci = Bullet:GetBulletInLine(c7.__previous or c7.__position, c7.__position, 200)
-					N:ShootDown(ci)
+			OnBulletThink = function(G, c8)
+				if ci then
+					local cj = Bullet:GetBulletInLine(c8.__previous or c8.__position, c8.__position, 200)
+					P:ShootDown(cj)
 				end
 			end,
-			OnBulletHit = function(ax)
-				local cj = ay * cg * ce
-				local aK = {
-					attacker = N,
-					target = ax,
-					damage = cj,
+			OnBulletHit = function(ay)
+				local ck = az * ch * cf
+				local aL = {
+					attacker = P,
+					target = ay,
+					damage = ck,
 					damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 					damage_flags = EOM_DAMAGE_FLAGS.BLADE,
 					damage_category = DOTA_DAMAGE_CATEGORY_BARRIER,
 				}
-				N:DealDamage(
-					ax,
+				P:DealDamage(
+					ay,
 					nil,
-					cj * (1 + GetBladeDamageAmplify(N, aK) * 0.01),
+					ck * (1 + GetBladeDamageAmplify(P, aL) * 0.01),
 					EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 					EOM_DAMAGE_FLAGS.BLADE
 				)
 			end,
 		})
-		N:EmitSound("Hero_Kez.FalconRush.Sai.Target")
+		P:EmitSound("Hero_Kez.FalconRush.Sai.Target")
 	end
-	CDOTA_BaseNPC.SwordCircle = function(self, ay, cg)
-		if cg == nil then
-			cg = 1
+	CDOTA_BaseNPC.SwordCircle = function(self, az, ch)
+		if ch == nil then
+			ch = 1
 		end
-		local N = self
-		local ck = 300 * (1 + GetAoeAmplify(self) * 0.01)
-		local ch = N:HasItem("item_crit_blade")
-		local ce = 1 + GetBladeSpeedAmplify(N) * 0.01
-		local cl = ck * cg * ce
-		local cj = ay * cg * ce
-		local bB = FindEnemiesInRadius(N, N:GetAbsOrigin(), cl)
-		for aT, ax in ipairs(bB) do
-			local aK = {
-				attacker = N,
-				target = ax,
-				damage = cj,
+		local P = self
+		local cl = 300 * (1 + GetAoeAmplify(self) * 0.01)
+		local ci = P:HasItem("item_crit_blade")
+		local cf = 1 + GetBladeSpeedAmplify(P) * 0.01
+		local cm = cl * ch * cf
+		local ck = az * ch * cf
+		local bC = FindEnemiesInRadius(P, P:GetAbsOrigin(), cm)
+		for aU, ay in ipairs(bC) do
+			local aL = {
+				attacker = P,
+				target = ay,
+				damage = ck,
 				damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 				damage_flags = EOM_DAMAGE_FLAGS.BLADE,
 				damage_category = DOTA_DAMAGE_CATEGORY_BARRIER,
 			}
-			N:DealDamage(
-				ax,
+			P:DealDamage(
+				ay,
 				nil,
-				cj * (1 + GetBladeDamageAmplify(N, aK) * 0.01),
+				ck * (1 + GetBladeDamageAmplify(P, aL) * 0.01),
 				EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 				EOM_DAMAGE_FLAGS.BLADE
 			)
 		end
-		if ch then
-			local ci = Bullet:GetBulletInRadius(N:GetAbsOrigin(), cl)
-			N:ShootDown(ci)
+		if ci then
+			local cj = Bullet:GetBulletInRadius(P:GetAbsOrigin(), cm)
+			P:ShootDown(cj)
 		end
-		local b9 = ParticleManager:CreateParticle(
+		local ba = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_kez/kez_hungering_blades.vpcf",
 			PATTACH_ABSORIGIN,
-			N
+			P
 		)
-		ParticleManager:SetParticleControl(b9, 2, Vector(cl, 0, 0))
-		ParticleManager:ReleaseParticleIndex(b9)
-		N:EmitSound("Hero_Kez.RaptorDance.Katana.Slash")
+		ParticleManager:SetParticleControl(ba, 2, Vector(cm, 0, 0))
+		ParticleManager:ReleaseParticleIndex(ba)
+		P:EmitSound("Hero_Kez.RaptorDance.Katana.Slash")
 	end
-	CDOTA_BaseNPC.Frozen = function(self, ax, cm)
-		if cm == nil then
-			cm = 1
+	CDOTA_BaseNPC.Frozen = function(self, ay, cn)
+		if cn == nil then
+			cn = 1
 		end
-		if cm == 0 then
+		if cn == 0 then
 			return
 		end
-		local z = ax:AddNewModifier(self, nil, "modifier_frozen_debuff", { stack = cm, entIndex = self:entindex() })
-		local bK = IsValid(z) and z:GetStackCount() or 0
-		Event:Fire("frozen_event", { target = ax, caster = self, addStack = cm, stack = bK })
+		local B = ay:AddNewModifier(self, nil, "modifier_frozen_debuff", { stack = cn, entIndex = self:entindex() })
+		local bL = IsValid(B) and B:GetStackCount() or 0
+		Event:Fire("frozen_event", { target = ay, caster = self, addStack = cn, stack = bL })
 	end
 	CDOTA_BaseNPC.IsFrozen = function(self)
 		return self:HasModifier("modifier_frozen_debuff")
 	end
-	CDOTA_BaseNPC.Freeze = function(self, ax, S)
-		if ax:IsBoss() then
+	CDOTA_BaseNPC.Freeze = function(self, ay, U)
+		if ay:IsBoss() then
 			return
 		end
-		ax:AddNewModifier(self, nil, "modifier_freeze_debuff", { duration = S })
+		ay:AddNewModifier(self, nil, "modifier_freeze_debuff", { duration = U })
 	end
 	CDOTA_BaseNPC.IsFreeze = function(self)
 		return self:HasModifier("modifier_freeze_debuff")
 	end
 	CDOTA_BaseNPC.TriggerDecayOnce = function(self)
-		local z = self:FindModifierByName("modifier_frozen_debuff")
-		if IsValid(z) then
-			return z:TriggerDecayOnce()
+		local B = self:FindModifierByName("modifier_frozen_debuff")
+		if IsValid(B) then
+			return B:TriggerDecayOnce()
 		end
 	end
-	CDOTA_BaseNPC.GetFrozenStack = function(self, N)
-		local z = self:FindModifierByName("modifier_frozen_debuff")
-		if IsValid(z) then
-			return z:GetIceStack(N:entindex())
+	CDOTA_BaseNPC.GetFrozenStack = function(self, P)
+		local B = self:FindModifierByName("modifier_frozen_debuff")
+		if IsValid(B) then
+			return B:GetIceStack(P:entindex())
 		end
 		return 0
 	end
-	CDOTA_BaseNPC.FrozenBurst = function(self, ay, cn, E, c4)
-		if c4 == nil then
-			c4 = false
+	CDOTA_BaseNPC.FrozenBurst = function(self, az, co, G, c5)
+		if c5 == nil then
+			c5 = false
 		end
-		local bB = FindUnitsInRadius(
+		local bC = FindUnitsInRadius(
 			self:GetTeamNumber(),
-			E,
+			G,
 			nil,
 			200,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -1728,71 +1737,71 @@ if IsServer() then
 			FIND_ANY_ORDER,
 			false
 		)
-		local co = GetFrozenBurstStack(self)
-		local cp = cn + co
-		for au, ac in ipairs(bB) do
-			self:Frozen(ac, cn + co)
-			self:DealDamage(ac, nil, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+		local cp = GetFrozenBurstStack(self)
+		local cq = co + cp
+		for av, w in ipairs(bC) do
+			self:Frozen(w, co + cp)
+			self:DealDamage(w, nil, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
 		end
-		local b9 = ParticleManager:CreateParticle(
+		local ba = ParticleManager:CreateParticle(
 			"particles/units/benediction/lich_frost_nova.vpcf",
 			PATTACH_CUSTOMORIGIN,
 			nil
 		)
-		ParticleManager:SetParticleControl(b9, 0, E)
-		ParticleManager:SetParticleControl(b9, 1, Vector(200, 200, 200))
-		ParticleManager:ReleaseParticleIndex(b9)
+		ParticleManager:SetParticleControl(ba, 0, G)
+		ParticleManager:SetParticleControl(ba, 1, Vector(200, 200, 200))
+		ParticleManager:ReleaseParticleIndex(ba)
 		Event:Fire(
 			"frozen_burst",
-			{ caster = self, position = E, base_frozen_stack = cn, added_frozen = cp, targets = bB, extra = c4 }
+			{ caster = self, position = G, base_frozen_stack = co, added_frozen = cq, targets = bC, extra = c5 }
 		)
 	end
-	CDOTA_BaseNPC.CreateIceVortex = function(self, E, ay, cn, S)
-		local cq, cr = self, "__iceVortexThinkers"
-		if cq[cr] == nil then
-			cq[cr] = {}
+	CDOTA_BaseNPC.CreateIceVortex = function(self, G, az, co, U)
+		local cr, cs = self, "__iceVortexThinkers"
+		if cr[cs] == nil then
+			cr[cs] = {}
 		end
-		local cs = self.__iceVortexThinkers
-		local ct = {}
+		local ct = self.__iceVortexThinkers
+		local cu = {}
 		do
-			local aM = #cs - 1
-			while aM >= 0 do
+			local aN = #ct - 1
+			while aN >= 0 do
 				do
-					local cu = cs[aM + 1]
-					if not IsValid(cu) then
-						k(cs, aM, 1)
-						goto cv
+					local cv = ct[aN + 1]
+					if not IsValid(cv) then
+						k(ct, aN, 1)
+						goto cw
 					end
-					local cw = cu:FindModifierByName("modifier_ice_vortex_custom")
-					if not IsValid(cw) then
-						k(cs, aM, 1)
-						goto cv
+					local cx = cv:FindModifierByName("modifier_ice_vortex_custom")
+					if not IsValid(cx) then
+						k(ct, aN, 1)
+						goto cw
 					end
-					if cw:CanMerge(E) then
-						ct[#ct + 1] = cw
+					if cx:CanMerge(G) then
+						cu[#cu + 1] = cx
 					end
 				end
-				::cv::
-				aM = aM - 1
+				::cw::
+				aN = aN - 1
 			end
 		end
-		if #ct > 0 then
-			local cx = ct[1]
-			cx:Merge(E, ay, cn, S)
+		if #cu > 0 then
+			local cy = cu[1]
+			cy:Merge(G, az, co, U)
 			do
-				local aM = 1
-				while aM < #ct do
+				local aN = 1
+				while aN < #cu do
 					do
-						local cw = ct[aM + 1]
-						if not IsValid(cw) then
-							goto cy
+						local cx = cu[aN + 1]
+						if not IsValid(cx) then
+							goto cz
 						end
-						local cz = cw
-						cx:Merge(cz:GetParent():GetAbsOrigin(), cz.damage, cz.frozen, cz:GetRemainingTime(), cz.radius)
-						cz:Destroy()
+						local cA = cx
+						cy:Merge(cA:GetParent():GetAbsOrigin(), cA.damage, cA.frozen, cA:GetRemainingTime(), cA.radius)
+						cA:Destroy()
 					end
-					::cy::
-					aM = aM + 1
+					::cz::
+					aN = aN + 1
 				end
 			end
 			return
@@ -1801,266 +1810,266 @@ if IsServer() then
 			self,
 			nil,
 			"modifier_ice_vortex_custom",
-			{ entIndex = self:entindex(), damage = ay, frozen = cn, duration = S, radius = 275 },
-			E,
+			{ entIndex = self:entindex(), damage = az, frozen = co, duration = U, radius = 275 },
+			G,
 			self:GetTeamNumber(),
 			false
 		)
 	end
-	CDOTA_BaseNPC.ThrowBloodSpear = function(self, ax, H, ay, c4)
-		if c4 == nil then
-			c4 = false
+	CDOTA_BaseNPC.ThrowBloodSpear = function(self, ay, J, az, c5)
+		if c5 == nil then
+			c5 = false
 		end
-		if not IsValid(ax) or not ax:IsAlive() then
+		if not IsValid(ay) or not ay:IsAlive() then
 			return
 		end
 		Bullet:CreateTrackingBullet({
 			caster = self,
-			target = ax,
-			ability = H,
+			target = ay,
+			ability = J,
 			effectName = "particles/units/benediction/huskar_burning_spear.vpcf",
 			moveSpeed = 900,
 			spawnOrigin = self:GetAttachmentPosition("attach_hitloc"),
-			OnBulletHit = function(cA)
-				local cj = toFiniteNumber(ay)
-				self:Bleed(cA, cj)
-				if cj > 0 then
-					self:DealDamage(cA, H, cj, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE)
+			OnBulletHit = function(cB)
+				local ck = toFiniteNumber(az)
+				self:Bleed(cB, ck)
+				if ck > 0 then
+					self:DealDamage(cB, J, ck, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE)
 				end
-				Event:Fire("blood_spear", { caster = self, target = cA })
-				self:EmitSound("Hero_BrewMaster.CinderBrew.Ignite", cA:GetAbsOrigin())
+				Event:Fire("blood_spear", { caster = self, target = cB })
+				self:EmitSound("Hero_BrewMaster.CinderBrew.Ignite", cB:GetAbsOrigin())
 			end,
 		})
 	end
-	CDOTA_BaseNPC.ThrowSnowball = function(self, ax, H, cn, ay, c4)
-		if c4 == nil then
-			c4 = false
+	CDOTA_BaseNPC.ThrowSnowball = function(self, ay, J, co, az, c5)
+		if c5 == nil then
+			c5 = false
 		end
-		if not IsValid(ax) or not ax:IsAlive() then
+		if not IsValid(ay) or not ay:IsAlive() then
 			return
 		end
-		local cB = GetSnowballBounceCount(self)
+		local cC = GetSnowballBounceCount(self)
 		Bullet:CreateTrackingBullet({
 			caster = self,
-			target = ax,
+			target = ay,
 			ability = nil,
 			effectName = "particles/units/benediction/snowball_projectile.vpcf",
 			moveSpeed = 900,
 			spawnOrigin = self:GetAttachmentPosition("attach_hitloc"),
-			OnBulletHit = function(ax, E, c7)
-				self:Frozen(ax, cn)
-				local aG = toFiniteNumber(ay)
-				ay = aG + GetSnowballDamage(self, { target = ax, damage = aG })
-				if ay > 0 then
-					self:DealDamage(ax, H, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+			OnBulletHit = function(ay, G, c8)
+				self:Frozen(ay, co)
+				local aH = toFiniteNumber(az)
+				az = aH + GetSnowballDamage(self, { target = ay, damage = aH })
+				if az > 0 then
+					self:DealDamage(ay, J, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
 				end
-				self:EmitSound("FrostivusConsumable.Snowball.Target", ax:GetAbsOrigin())
-				if cB > 0 then
-					local bB = FindEnemiesInRadius(self, E, 500, FIND_CLOSEST)
-					ArrayRemove(bB, ax)
-					if #bB > 0 then
-						c7.target = bB[1]
-						if c7.__particleID ~= nil then
+				self:EmitSound("FrostivusConsumable.Snowball.Target", ay:GetAbsOrigin())
+				if cC > 0 then
+					local bC = FindEnemiesInRadius(self, G, 500, FIND_CLOSEST)
+					ArrayRemove(bC, ay)
+					if #bC > 0 then
+						c8.target = bC[1]
+						if c8.__particleID ~= nil then
 							ParticleManager:SetParticleControlTransformForward(
-								c7.__particleID,
+								c8.__particleID,
 								0,
-								E,
-								c7.__velocity:Normalized()
+								G,
+								c8.__velocity:Normalized()
 							)
 							ParticleManager:SetParticleControlEnt(
-								c7.__particleID,
+								c8.__particleID,
 								1,
-								c7.target,
+								c8.target,
 								PATTACH_POINT_FOLLOW,
 								"attach_hitloc",
-								c7.target:GetAbsOrigin(),
+								c8.target:GetAbsOrigin(),
 								false
 							)
 						end
-						cB = cB - 1
+						cC = cC - 1
 						return false
 					end
 				end
 			end,
 		})
-		Event:Fire("throw_snowball", { caster = self, target = ax, extra = c4 })
+		Event:Fire("throw_snowball", { caster = self, target = ay, extra = c5 })
 	end
-	CDOTA_BaseNPC.IceStrike = function(self, ax, H, ay, c4)
-		if ay == nil then
-			ay = 0
+	CDOTA_BaseNPC.IceStrike = function(self, ay, J, az, c5)
+		if az == nil then
+			az = 0
 		end
-		if c4 == nil then
-			c4 = false
+		if c5 == nil then
+			c5 = false
 		end
-		local b9 = ParticleManager:CreateParticle(
+		local ba = ParticleManager:CreateParticle(
 			"particles/generic_gameplay/sect_ice_freezing_attack.vpcf",
 			PATTACH_CUSTOMORIGIN,
 			nil
 		)
-		ParticleManager:SetParticleControlEnt(b9, 0, ax, PATTACH_ABSORIGIN_FOLLOW, nil, ax:GetAbsOrigin(), false)
+		ParticleManager:SetParticleControlEnt(ba, 0, ay, PATTACH_ABSORIGIN_FOLLOW, nil, ay:GetAbsOrigin(), false)
 		ParticleManager:SetParticleControl(
-			b9,
+			ba,
 			1,
-			ax:GetAbsOrigin() + RandomVector(RandomInt(0, 150)) + Vector(0, 0, 1200)
+			ay:GetAbsOrigin() + RandomVector(RandomInt(0, 150)) + Vector(0, 0, 1200)
 		)
-		ParticleManager:ReleaseParticleIndex(b9)
+		ParticleManager:ReleaseParticleIndex(ba)
 		self:StartThink(0.2, DoUniqueString("ice_delay"), function()
-			if IsValid(ax) and IsValid(self) then
-				local bd = self:GetPlayerOwnerID()
-				if Privilege:HasPrivilege("privilege_myth_005", bd) then
-					local bs = Privilege:GetPlayerDynamicValue("privilege_myth_005", bd, "value")
-					local cC = FindEnemiesInRadius(self, ax:GetAbsOrigin(), bs, FIND_CLOSEST)
-					self:DealDamage(cC, H, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+			if IsValid(ay) and IsValid(self) then
+				local be = self:GetPlayerOwnerID()
+				if Privilege:HasPrivilege("privilege_myth_005", be) then
+					local bt = Privilege:GetPlayerDynamicValue("privilege_myth_005", be, "value")
+					local cD = FindEnemiesInRadius(self, ay:GetAbsOrigin(), bt, FIND_CLOSEST)
+					self:DealDamage(cD, J, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
 				else
-					self:DealDamage(ax, H, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+					self:DealDamage(ay, J, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
 				end
-				self:EmitSound("Frostivus.Item.Snowball.Target", ax:GetAbsOrigin())
+				self:EmitSound("Frostivus.Item.Snowball.Target", ay:GetAbsOrigin())
 			end
 			return -1
 		end)
-		Event:Fire("ice_strike", { caster = self, target = ax, extra = c4 })
+		Event:Fire("ice_strike", { caster = self, target = ay, extra = c5 })
 	end
-	CDOTA_BaseNPC.Bleed = function(self, ax, bK)
-		ax:AddNewModifier(self, nil, "modifier_bleed", { stack = bK, entIndex = self:entindex() })
+	CDOTA_BaseNPC.Bleed = function(self, ay, bL)
+		ay:AddNewModifier(self, nil, "modifier_bleed", { stack = bL, entIndex = self:entindex() })
 	end
 	CDOTA_BaseNPC.IsBleed = function(self)
-		local z = self:FindModifierByName("modifier_bleed")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_bleed")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.GetBleedStack = function(self, N)
-		local z = self:FindModifierByName("modifier_bleed")
-		if IsValid(z) then
-			return z:GetBleedStack(N:entindex())
+	CDOTA_BaseNPC.GetBleedStack = function(self, P)
+		local B = self:FindModifierByName("modifier_bleed")
+		if IsValid(B) then
+			return B:GetBleedStack(P:entindex())
 		end
 		return 0
 	end
-	CDOTA_BaseNPC.TriggerBleed = function(self, N, cg)
-		if cg == nil then
-			cg = 1
+	CDOTA_BaseNPC.TriggerBleed = function(self, P, ch)
+		if ch == nil then
+			ch = 1
 		end
-		local z = self:FindModifierByName("modifier_bleed")
-		if IsValid(z) then
-			return z:TriggerBleed(N, cg)
+		local B = self:FindModifierByName("modifier_bleed")
+		if IsValid(B) then
+			return B:TriggerBleed(P, ch)
 		end
 	end
-	CDOTA_BaseNPC.Burning = function(self, ax, H, bK)
-		ax:AddNewModifier(
+	CDOTA_BaseNPC.Burning = function(self, ay, J, bL)
+		ay:AddNewModifier(
 			self,
-			H,
+			J,
 			"modifier_burning",
-			{ stack = math.floor(bK), entIndex = self:entindex(), duration = 5 }
+			{ stack = math.floor(bL), entIndex = self:entindex(), duration = 5 }
 		)
 	end
 	CDOTA_BaseNPC.IsBurning = function(self)
-		local z = self:FindModifierByName("modifier_burning")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_burning")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.GetBurningStack = function(self, N)
-		local z = self:FindModifierByName("modifier_burning")
-		if IsValid(z) then
-			return z:GetBurningStack(N:entindex())
+	CDOTA_BaseNPC.GetBurningStack = function(self, P)
+		local B = self:FindModifierByName("modifier_burning")
+		if IsValid(B) then
+			return B:GetBurningStack(P:entindex())
 		end
 		return 0
 	end
-	CDOTA_BaseNPC.TriggerBurning = function(self, N)
-		local z = self:FindModifierByName("modifier_burning")
-		if IsValid(z) then
-			return z:TriggerBurning(N)
+	CDOTA_BaseNPC.TriggerBurning = function(self, P)
+		local B = self:FindModifierByName("modifier_burning")
+		if IsValid(B) then
+			return B:TriggerBurning(P)
 		end
 	end
-	CDOTA_BaseNPC.AddInvulnerable = function(self, S)
-		self:AddNewModifier(self, nil, "modifier_invulnerable_buff", { duration = S })
+	CDOTA_BaseNPC.AddInvulnerable = function(self, U)
+		self:AddNewModifier(self, nil, "modifier_invulnerable_buff", { duration = U })
 	end
-	CDOTA_BaseNPC.CreateWisp = function(self, a8, aF)
-		local z = self:AddNewModifier(self, nil, "modifier_wisps", { unit_name = a8 })
-		if IsValid(z) then
-			return z:CreateWisp(a8, aF)
+	CDOTA_BaseNPC.CreateWisp = function(self, aa, aG)
+		local B = self:AddNewModifier(self, nil, "modifier_wisps", { unit_name = aa })
+		if IsValid(B) then
+			return B:CreateWisp(aa, aG)
 		end
 	end
-	CDOTA_BaseNPC.RemoveWisp = function(self, cD)
-		local z = self:FindModifierByName("modifier_wisps")
-		if IsValid(z) then
-			z:RemoveWisp(cD)
+	CDOTA_BaseNPC.RemoveWisp = function(self, cE)
+		local B = self:FindModifierByName("modifier_wisps")
+		if IsValid(B) then
+			B:RemoveWisp(cE)
 		end
 	end
-	CDOTA_BaseNPC.ShootDown = function(self, cE, cF)
-		if cF == nil then
-			cF = self:HasItem("item_holy_reflect")
+	CDOTA_BaseNPC.ShootDown = function(self, cF, cG)
+		if cG == nil then
+			cG = self:HasItem("item_holy_reflect")
 		end
-		local ay = GetReflectDamage(self)
-		for au, c7 in ipairs(cE) do
-			if IsValid(c7.caster) and Bullet:IsReflectable(c7) and not c7.caster:IsFriendly(self) then
-				if Bullet:IsLinearBullet(c7) then
-					if cF then
+		local az = GetReflectDamage(self)
+		for av, c8 in ipairs(cF) do
+			if IsValid(c8.caster) and Bullet:IsReflectable(c8) and not c8.caster:IsFriendly(self) then
+				if Bullet:IsLinearBullet(c8) then
+					if cG then
 						Bullet:CreateLinearBullet({
 							caster = self,
-							direction = -c7.direction:Normalized(),
-							spawnOrigin = c7.__position,
-							effectName = c7.effectName,
-							moveSpeed = c7.moveSpeed * 3,
-							radius = c7.radius,
-							distance = c7.distance,
+							direction = -c8.direction:Normalized(),
+							spawnOrigin = c8.__position,
+							effectName = c8.effectName,
+							moveSpeed = c8.moveSpeed * 3,
+							radius = c8.radius,
+							distance = c8.distance,
 							teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 							typeFilter = DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
-							OnBulletHit = function(ax, E, c7)
+							OnBulletHit = function(ay, G, c8)
 								self:DealDamage(
-									ax,
-									nil,
 									ay,
+									nil,
+									az,
 									EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 									EOM_DAMAGE_FLAGS.REFLECT_DAMAGE
 								)
 							end,
-							ParticleCreator = c7.ParticleCreator,
+							ParticleCreator = c8.ParticleCreator,
 						})
 					end
-					Bullet:DestroyBulletByID(c7.__projIndex)
-				elseif Bullet:IsGuidedBullet(c7) then
-					if cF then
+					Bullet:DestroyBulletByID(c8.__projIndex)
+				elseif Bullet:IsGuidedBullet(c8) then
+					if cG then
 						Bullet:CreateGuidedBullet({
 							caster = self,
-							direction = -c7.__velocity:Normalized(),
-							effectName = c7.effectName,
-							spawnOrigin = c7.__position,
-							moveSpeed = c7.moveSpeed * 3,
-							radius = c7.radius,
-							lifeTime = c7.lifeTime,
+							direction = -c8.__velocity:Normalized(),
+							effectName = c8.effectName,
+							spawnOrigin = c8.__position,
+							moveSpeed = c8.moveSpeed * 3,
+							radius = c8.radius,
+							lifeTime = c8.lifeTime,
 							teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 							typeFilter = DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
-							OnBulletHit = function(ax, E, c7)
-								self:DealDamage(ax, nil, ay)
+							OnBulletHit = function(ay, G, c8)
+								self:DealDamage(ay, nil, az)
 								return true
 							end,
-							ParticleCreator = c7.ParticleCreator,
+							ParticleCreator = c8.ParticleCreator,
 						})
 					end
-					Bullet:DestroyBulletByID(c7.__projIndex)
+					Bullet:DestroyBulletByID(c8.__projIndex)
 				end
 			end
 		end
-		if #cE > 0 then
+		if #cF > 0 then
 			Event:Fire("avoid_damage", { unit = self })
 		end
 	end
-	CDOTA_BaseNPC.Weaken = function(self, ax, bK)
-		if bK == nil then
-			bK = 1
+	CDOTA_BaseNPC.Weaken = function(self, ay, bL)
+		if bL == nil then
+			bL = 1
 		end
-		ax:AddNewModifier(self, nil, "modifier_weak_debuff", { stack = bK, duration = WEAK_DURATION })
+		ay:AddNewModifier(self, nil, "modifier_weak_debuff", { stack = bL, duration = WEAK_DURATION })
 	end
 	CDOTA_BaseNPC.IsWeaken = function(self)
-		local z = self:FindModifierByName("modifier_weak_debuff")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_weak_debuff")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.GetWeakenStack = function(self, N)
-		local z = self:FindModifierByName("modifier_weak_debuff")
-		if IsValid(z) then
-			return z:GetWeakenStack(N:entindex())
+	CDOTA_BaseNPC.GetWeakenStack = function(self, P)
+		local B = self:FindModifierByName("modifier_weak_debuff")
+		if IsValid(B) then
+			return B:GetWeakenStack(P:entindex())
 		end
 		return 0
 	end
-	CDOTA_BaseNPC.AddExecuteThreshold = function(self, ax, bK)
-		ax:AddNewModifier(self, nil, "modifier_execute_threshold", { stack = math.floor(bK), duration = 5 })
+	CDOTA_BaseNPC.AddExecuteThreshold = function(self, ay, bL)
+		ay:AddNewModifier(self, nil, "modifier_execute_threshold", { stack = math.floor(bL), duration = 5 })
 	end
 	CDOTA_BaseNPC.IsBoss = function(self)
 		return l(self:GetUnitLabel(), "boss")
@@ -2073,41 +2082,41 @@ if IsServer() then
 	end
 end
 if IsServer() then
-	CDOTA_BaseNPC.SimulateCast = function(self, cG)
+	CDOTA_BaseNPC.SimulateCast = function(self, cH)
 		self:RemoveModifierByName("modifier_simulate_cast")
-		local af = cG.castPoint or 0
-		local S = math.max(cG.duration or 0, af or 0)
-		local at = {
-			duration = S,
-			castPoint = af,
-			castAnimation = cG.castAnimation,
-			orderType = cG.orderType,
-			animationRate = cG.animationRate or 1,
-			animationFadeIn = cG.animationFadeIn,
-			animationFadeOut = cG.animationFadeOut,
-			position = cG.position and VectorToString(cG.position) or nil,
-			targetIndex = IsValid(cG.target) and cG.target:entindex() or nil,
-			activityModifier = cG.activityModifier,
+		local ag = cH.castPoint or 0
+		local U = math.max(cH.duration or 0, ag or 0)
+		local au = {
+			duration = U,
+			castPoint = ag,
+			castAnimation = cH.castAnimation,
+			orderType = cH.orderType,
+			animationRate = cH.animationRate or 1,
+			animationFadeIn = cH.animationFadeIn,
+			animationFadeOut = cH.animationFadeOut,
+			position = cH.position and VectorToString(cH.position) or nil,
+			targetIndex = IsValid(cH.target) and cH.target:entindex() or nil,
+			activityModifier = cH.activityModifier,
 		}
-		local z = self:AddNewModifier(self, nil, "modifier_simulate_cast", at)
-		if IsValid(z) then
-			z.OnSpellStart = cG.OnSpellStart
-			z.OnFinish = cG.OnFinish
+		local B = self:AddNewModifier(self, nil, "modifier_simulate_cast", au)
+		if IsValid(B) then
+			B.OnSpellStart = cH.OnSpellStart
+			B.OnFinish = cH.OnFinish
 		end
 	end
 end
 if IsServer() then
-	CDOTA_BaseNPC.PushOff = function(self, E)
+	CDOTA_BaseNPC.PushOff = function(self, G)
 		if self:HasState(StateEnum.KNOCKBACK_IMMUNE) then
 			return
 		end
-		self:SetAbsOrigin(E)
-		local cH = self:GetHullRadius() + 50
-		local cI = FindEnemiesInRadius(self, E, cH)
-		for aT, ax in ipairs(cI) do
-			ax:KnockBack(CalcDirection2D(ax, E), cH - CalcDistance(ax, E), 0, 0.06)
+		self:SetAbsOrigin(G)
+		local cI = self:GetHullRadius() + 50
+		local cJ = FindEnemiesInRadius(self, G, cI)
+		for aU, ay in ipairs(cJ) do
+			ay:KnockBack(CalcDirection2D(ay, G), cI - CalcDistance(ay, G), 0, 0.06)
 		end
-		FindClearSpaceForUnit(self, E, true)
+		FindClearSpaceForUnit(self, G, true)
 	end
 end
 if IsServer() then
@@ -2124,228 +2133,228 @@ end
 BaseNPC.IsLowHealth = function(self)
 	return self:GetHealthPercent() <= LOW_HEALTH_PCT
 end
-BaseNPC.IsCloseRange = function(self, ax)
-	return CalcDistance(self, ax) <= CLOSE_RANGE
+BaseNPC.IsCloseRange = function(self, ay)
+	return CalcDistance(self, ay) <= CLOSE_RANGE
 end
-BaseNPC.IsFarRange = function(self, ax)
-	return CalcDistance(self, ax) >= FAR_RANGE
+BaseNPC.IsFarRange = function(self, ay)
+	return CalcDistance(self, ay) >= FAR_RANGE
 end
 if IsServer() then
-	CDOTA_BaseNPC.Poison = function(self, ax, bK)
-		if bK <= 0 then
+	CDOTA_BaseNPC.Poison = function(self, ay, bL)
+		if bL <= 0 then
 			return
 		end
-		ax:AddNewModifier(self, nil, "modifier_poison_custom", { stack = bK, entIndex = self:entindex() })
-		Event:Fire("poison_event", { target = ax, caster = self, addStack = bK, stack = ax:GetPoisonStack(self) })
+		ay:AddNewModifier(self, nil, "modifier_poison_custom", { stack = bL, entIndex = self:entindex() })
+		Event:Fire("poison_event", { target = ay, caster = self, addStack = bL, stack = ay:GetPoisonStack(self) })
 	end
 	CDOTA_BaseNPC.IsPoisoned = function(self)
-		local z = self:FindModifierByName("modifier_poison_custom")
-		return IsValid(z)
+		local B = self:FindModifierByName("modifier_poison_custom")
+		return IsValid(B)
 	end
-	CDOTA_BaseNPC.GetPoisonStack = function(self, N)
-		local z = self:FindModifierByName("modifier_poison_custom")
-		if IsValid(z) then
-			return z:GetPoisonStack(N:entindex())
+	CDOTA_BaseNPC.GetPoisonStack = function(self, P)
+		local B = self:FindModifierByName("modifier_poison_custom")
+		if IsValid(B) then
+			return B:GetPoisonStack(P:entindex())
 		end
 		return 0
 	end
-	CDOTA_BaseNPC.TriggerPoison = function(self, N)
-		local z = self:FindModifierByName("modifier_poison_custom")
-		return z and z:TriggerPoison(N)
+	CDOTA_BaseNPC.TriggerPoison = function(self, P)
+		local B = self:FindModifierByName("modifier_poison_custom")
+		return B and B:TriggerPoison(P)
 	end
-	CDOTA_BaseNPC.PoisionBottle = function(self, S, cJ, bs, cK)
-		if bs == nil then
-			bs = 100
+	CDOTA_BaseNPC.PoisionBottle = function(self, U, cK, bt, cL)
+		if bt == nil then
+			bt = 100
 		end
-		if cK == nil then
-			cK = 180
+		if cL == nil then
+			cL = 180
 		end
 		if self.__poisonGroup == nil then
 			self.__poisonGroup = {}
 		end
-		local bd = self:GetPlayerOwnerID()
-		if Privilege:HasPrivilege("privilege_myth_024", bd) then
-			local bq = Privilege:GetPrivilegeSpecialValue("privilege_myth_024", 1, "value", self)
-			S = S * (1 + bq * 0.01)
-			cJ = cJ * (1 + bq * 0.01)
+		local be = self:GetPlayerOwnerID()
+		if Privilege:HasPrivilege("privilege_myth_024", be) then
+			local br = Privilege:GetPrivilegeSpecialValue("privilege_myth_024", 1, "value", self)
+			U = U * (1 + br * 0.01)
+			cK = cK * (1 + br * 0.01)
 		end
 		do
-			local au = #self.__poisonGroup - 1
-			while au >= 0 do
-				local cL = self.__poisonGroup[au + 1]
-				if Bullet:GetBulletData(cL) == nil then
-					k(self.__poisonGroup, au, 1)
+			local av = #self.__poisonGroup - 1
+			while av >= 0 do
+				local cM = self.__poisonGroup[av + 1]
+				if Bullet:GetBulletData(cM) == nil then
+					k(self.__poisonGroup, av, 1)
 				end
-				au = au - 1
+				av = av - 1
 			end
 		end
 		while POISON_BOTTLE_MAX_COUNT > 0 and #self.__poisonGroup >= POISON_BOTTLE_MAX_COUNT do
-			local cM = 0
-			local cN = math.huge
+			local cN = 0
+			local cO = math.huge
 			do
-				local au = 0
-				while au < #self.__poisonGroup do
-					local c7 = Bullet:GetBulletData(self.__poisonGroup[au + 1])
-					local cO = c7 and c7.__lifeTimeRemaining
-					if cO == nil then
-						cO = 0
+				local av = 0
+				while av < #self.__poisonGroup do
+					local c8 = Bullet:GetBulletData(self.__poisonGroup[av + 1])
+					local cP = c8 and c8.__lifeTimeRemaining
+					if cP == nil then
+						cP = 0
 					end
-					local cP = cO
-					if cP < cN then
-						cN = cP
-						cM = au
+					local cQ = cP
+					if cQ < cO then
+						cO = cQ
+						cN = av
 					end
-					au = au + 1
+					av = av + 1
 				end
 			end
-			local cL = self.__poisonGroup[cM + 1]
-			k(self.__poisonGroup, cM, 1)
-			Bullet:DestroyBulletByID(cL)
+			local cM = self.__poisonGroup[cN + 1]
+			k(self.__poisonGroup, cN, 1)
+			Bullet:DestroyBulletByID(cM)
 		end
-		local c6 = Bullet:CreateGroupSurroundBullet(1, {
+		local c7 = Bullet:CreateGroupSurroundBullet(1, {
 			caster = self,
 			group = "PoisionBottle" .. tostring(self:entindex()),
-			circleRadius = bs,
-			angularVelocity = cK,
+			circleRadius = bt,
+			angularVelocity = cL,
 			offset = 128,
-			lifeTime = S,
+			lifeTime = U,
 			effectName = "particles/abilities/dupingzi.vpcf",
 			interval = 1,
 			teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			typeFilter = DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
 			radius = 100,
-			OnBulletCreated = function(c7)
-				c7.poisionStack = cJ
+			OnBulletCreated = function(c8)
+				c8.poisionStack = cK
 			end,
-			OnBulletThink = function(E, c7)
-				if c7.circleRadius < bs then
-					c7.circleRadius = c7.circleRadius + 1
+			OnBulletThink = function(G, c8)
+				if c8.circleRadius < bt then
+					c8.circleRadius = c8.circleRadius + 1
 				end
 			end,
-			OnBulletHit = function(ax, cQ, c7)
-				local cR = toFiniteNumber(c7.poisionStack)
-				self:Poison(ax, cR)
+			OnBulletHit = function(ay, cR, c8)
+				local cS = toFiniteNumber(c8.poisionStack)
+				self:Poison(ay, cS)
 				if Privilege:HasPrivilege("privilege_suit_026", self:GetPlayerOwnerID()) then
-					c7.poisionStack = cR
+					c8.poisionStack = cS
 						+ Privilege:GetPrivilegeSpecialValue("privilege_suit_026", 1, "extra_count", self)
 				end
 			end,
-			OnBulletDestroy = function(c7)
-				c7.poisionStack = nil
+			OnBulletDestroy = function(c8)
+				c8.poisionStack = nil
 			end,
 		})
-		self.__poisonGroup = j(self.__poisonGroup, c6)
-		return c6
+		self.__poisonGroup = j(self.__poisonGroup, c7)
+		return c7
 	end
-	CDOTA_BaseNPC.ThrowPoisonBottle = function(self, E, H, cS, S)
-		local cc = self:GetAbsOrigin()
-		local a0 = CalcDistance(E, cc)
-		local cT = S or a0 / 900
-		local cU = cT > 0 and a0 / cT or 900
+	CDOTA_BaseNPC.ThrowPoisonBottle = function(self, G, J, cT, U)
+		local cd = self:GetAbsOrigin()
+		local a2 = CalcDistance(G, cd)
+		local cU = U or a2 / 900
+		local cV = cU > 0 and a2 / cU or 900
 		Bullet:CreateLinearBullet({
 			spawnOrigin = self:GetAbsOrigin(),
-			moveSpeed = cU,
-			direction = CalcDirection2D(E, self),
-			distance = a0,
+			moveSpeed = cV,
+			direction = CalcDirection2D(G, self),
+			distance = a2,
 			ParticleCreator = function()
-				local b9 = ParticleManager:CreateParticle(
+				local ba = ParticleManager:CreateParticle(
 					"particles/units/benediction/bottle_poison.vpcf",
 					PATTACH_CUSTOMORIGIN,
 					nil
 				)
-				ParticleManager:SetParticleControl(b9, 0, self:GetAbsOrigin())
-				ParticleManager:SetParticleControl(b9, 1, E)
-				ParticleManager:SetParticleControl(b9, 2, Vector(cU, 0, 0))
-				return b9
+				ParticleManager:SetParticleControl(ba, 0, self:GetAbsOrigin())
+				ParticleManager:SetParticleControl(ba, 1, G)
+				ParticleManager:SetParticleControl(ba, 2, Vector(cV, 0, 0))
+				return ba
 			end,
-			OnBulletDestroy = function(c7)
-				self:PoisonPool(c7.__position, toFiniteNumber(cS))
+			OnBulletDestroy = function(c8)
+				self:PoisonPool(c8.__position, toFiniteNumber(cT))
 			end,
 		})
 	end
-	CDOTA_BaseNPC.PoisonPool = function(self, E, bK, bs)
-		if bs == nil then
-			bs = 200
+	CDOTA_BaseNPC.PoisonPool = function(self, G, bL, bt)
+		if bt == nil then
+			bt = 200
 		end
 		CreateModifierThinker(
 			self,
 			nil,
 			"modifier_poison_pool",
-			{ entIndex = self:entindex(), duration = 3, radius = bs, stack = bK },
-			E,
+			{ entIndex = self:entindex(), duration = 3, radius = bt, stack = bL },
+			G,
 			self:GetTeamNumber(),
 			false
 		)
-		Event:Fire("poison_pool_event", { caster = self, position = E })
+		Event:Fire("poison_pool_event", { caster = self, position = G })
 	end
 end
 if IsServer() then
-	CDOTA_BaseNPC.Laser = function(self, _, ay, s)
+	CDOTA_BaseNPC.Laser = function(self, a1, az, s)
 		if s == nil then
 			s = EOM_DAMAGE_FLAGS.NONE
 		end
 		s = bit.bor(s, EOM_DAMAGE_FLAGS.SHIELD_DAMAGE)
-		local a0 = LASER_LENGTH + GetBulletRange(self)
-		local N = self
-		local cf = GetLaserBounceCount(N) + GetBounceCount(N)
-		print(GetLaserBounceCount(N), GetBounceCount(N))
-		local S = 0.1
-		local cV = N:HasItem("item_holy_auto")
-		local cW
-		cW = function(cX, cY, cZ)
+		local a2 = LASER_LENGTH + GetBulletRange(self)
+		local P = self
+		local cg = GetLaserBounceCount(P) + GetBounceCount(P)
+		print(GetLaserBounceCount(P), GetBounceCount(P))
+		local U = 0.1
+		local cW = P:HasItem("item_holy_auto")
+		local cX
+		cX = function(cY, cZ, c_)
 			Bullet:CreateLinearBullet({
-				caster = N,
-				spawnOrigin = cX,
-				direction = cY,
+				caster = P,
+				spawnOrigin = cY,
+				direction = cZ,
 				radius = LASER_WIDTH,
 				teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 				typeFilter = UNIT_AND_BUILDING,
 				flagFilter = DOTA_UNIT_TARGET_FLAG_NONE,
-				moveSpeed = a0 / S,
-				distance = a0,
+				moveSpeed = a2 / U,
+				distance = a2,
 				thinker = true,
-				bounce = cZ,
-				OnBulletHit = function(ac)
-					N:DealDamage(ac, nil, ay, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, s)
+				bounce = c_,
+				OnBulletHit = function(w)
+					P:DealDamage(w, nil, az, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, s)
 				end,
-				OnBulletBounceEnd = function(c7)
-					c7.__lifeTimeRemaining = S
-					local b9 = ParticleManager:CreateParticle(
+				OnBulletBounceEnd = function(c8)
+					c8.__lifeTimeRemaining = U
+					local ba = ParticleManager:CreateParticle(
 						"particles/units/benediction/holy_laser.vpcf",
 						PATTACH_CUSTOMORIGIN,
 						nil
 					)
-					ParticleManager:SetParticleControl(b9, 9, Bullet:GetData(c7.__projIndex, "bounce_position", cX))
-					ParticleManager:SetParticleControl(b9, 1, c7.__position)
-					Bullet:SaveData(c7.__projIndex, "bounce_position", c7.__position)
-					print("OnBulletBounceEnd", cZ)
+					ParticleManager:SetParticleControl(ba, 9, Bullet:GetData(c8.__projIndex, "bounce_position", cY))
+					ParticleManager:SetParticleControl(ba, 1, c8.__position)
+					Bullet:SaveData(c8.__projIndex, "bounce_position", c8.__position)
+					print("OnBulletBounceEnd", c_)
 				end,
-				OnBulletDestroy = function(c7)
-					local b9 = ParticleManager:CreateParticle(
+				OnBulletDestroy = function(c8)
+					local ba = ParticleManager:CreateParticle(
 						"particles/units/benediction/holy_laser.vpcf",
 						PATTACH_CUSTOMORIGIN,
 						nil
 					)
-					ParticleManager:SetParticleControl(b9, 9, Bullet:GetData(c7.__projIndex, "bounce_position", cX))
-					ParticleManager:SetParticleControl(b9, 1, c7.__position)
-					local c_ = c7.bounce or 0
-					if c_ <= 0 then
+					ParticleManager:SetParticleControl(ba, 9, Bullet:GetData(c8.__projIndex, "bounce_position", cY))
+					ParticleManager:SetParticleControl(ba, 1, c8.__position)
+					local d0 = c8.bounce or 0
+					if d0 <= 0 then
 						return
 					end
-					local d0 = c7.__position
-					local d1 = d0 + RandomVector(a0)
-					if cV then
-						local bB = FindEnemiesInRadius(N, d0, a0, FIND_ANY_ORDER)
-						local ax = GetRandomElement(bB)
-						if IsValid(ax) then
-							d1 = ax:GetAbsOrigin() + RandomVector(ax:GetHullRadius())
+					local d1 = c8.__position
+					local d2 = d1 + RandomVector(a2)
+					if cW then
+						local bC = FindEnemiesInRadius(P, d1, a2, FIND_ANY_ORDER)
+						local ay = GetRandomElement(bC)
+						if IsValid(ay) then
+							d2 = ay:GetAbsOrigin() + RandomVector(ay:GetHullRadius())
 						end
 					end
-					cW(d0, CalcDirection2D(d1, d0), c_ - 1)
+					cX(d1, CalcDirection2D(d2, d1), d0 - 1)
 				end,
 			})
 		end
-		N:EmitSound("Hero_Tinker.LaserImpact")
-		cW(N:GetAbsOrigin() + Vector(0, 0, 75), _, cf)
+		P:EmitSound("Hero_Tinker.LaserImpact")
+		cX(P:GetAbsOrigin() + Vector(0, 0, 75), a1, cg)
 	end
 end

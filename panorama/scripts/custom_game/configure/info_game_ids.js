@@ -6574,6 +6574,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "烬冕之主"
 	},
+	"1711003": {
+		item_id: 1711003,
+		type: "item",
+		name: "一镐暴富"
+	},
 	"1720001": {
 		item_id: 1720001,
 		type: "item",
@@ -7724,4 +7729,4 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "混沌·头盔图纸"
 	}
-};
+};

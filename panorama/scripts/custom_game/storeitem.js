@@ -13,45 +13,10 @@
 var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
 var EOM_Countdown = require('./EOM_Countdown.js');
+var EOM_ImageNumber = require('./EOM_ImageNumber.js');
 var EOM_Button = require('./EOM_Button.js');
 var Player = require('./Player.js');
 var equipment_utils = require('./equipment_utils.js');
-
-const EOM_ImageNumber = props => {
-  const merged = libs.mergeProps(props, {
-    class: "EOM_ImageNumber" + props.type
-  });
-  const [local, others] = libs.splitProps(merged, ["value", "type", "percentSign"]);
-  return (() => {
-    const _el$ = libs.createElement("Panel", others, null);
-    libs.spread(_el$, others, true);
-    libs.insert(_el$, libs.createComponent(libs.For, {
-      get each() {
-        return String(local.value).split("");
-      },
-      children: (num, index) => (() => {
-        const _el$3 = libs.createElement("Image", {
-          get ["class"]() {
-            return libs.classNames("EOM_NUM", "EOM_NUM_" + num);
-          }
-        }, null);
-        libs.effect(_$p => libs.setProp(_el$3, "class", libs.classNames("EOM_NUM", "EOM_NUM_" + num), _$p));
-        return _el$3;
-      })()
-    }), null);
-    libs.insert(_el$, libs.createComponent(libs.Show, {
-      get when() {
-        return local.percentSign;
-      },
-      get children() {
-        return libs.createElement("Image", {
-          "class": "EOM_PercentSign"
-        }, null);
-      }
-    }), null);
-    return _el$;
-  })();
-};
 
 const StoreItem = props => {
   const language = Language();
@@ -274,7 +239,7 @@ const StoreItem = props => {
         });
       }
     }), _el$7);
-    libs.insert(_el$1, libs.createComponent(EOM_ImageNumber, {
+    libs.insert(_el$1, libs.createComponent(EOM_ImageNumber.EOM_ImageNumber, {
       get value() {
         return itemData().discount;
       },
@@ -720,7 +685,7 @@ const StoreItemImage = props => {
   const tooltipItemID = libs.createMemo(() => {
     const productItems = KeyValues.info_shop_product[local.itemid]?.items;
     const itemList = Object.keys(productItems ?? {});
-    return itemList.length == 1 ? itemList[0] : local.itemid;
+    return itemList.length === 1 ? itemList[0] : local.itemid;
   });
   const customTooltip = libs.createMemo(() => local.hideTips ? undefined : GetStoreItemImageTooltipData(tooltipItemID(), src(), player_collections));
   return (() => {
@@ -905,7 +870,6 @@ const StoreItemCard = props => {
   }));
 };
 
-exports.EOM_ImageNumber = EOM_ImageNumber;
 exports.GetStoreItemImageTooltipData = GetStoreItemImageTooltipData;
 exports.StoreItem = StoreItem;
 exports.StoreItemBlock = StoreItemBlock;

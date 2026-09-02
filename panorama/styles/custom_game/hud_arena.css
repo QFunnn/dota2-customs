@@ -23,293 +23,615 @@
 	height: 100%;
 }
 
-.ArenaHud .ArenaStatusPill
+.ArenaTitle
 {
 	horizontal-align: center;
-	margin-top: 24px;
+	width: 416px;
+	height: 92px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_panel_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTitle .TitleLabel
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 18px;
+	color: #BFAA82;
+	font-size: 24px;
+}
+
+.ArenaExitButton
+{
+	align: right top;
+	margin-top: 113px;
+	margin-right: 121px;
+}
+
+#ArenaBattleCountdown
+{
+	align: center center;
+	height: 80px;
+	z-index: 20;
+}
+
+.ArenaScore
+{
+	horizontal-align: center;
+}
+
+.ArenaScore .ScoreBG
+{
+	align: center center;
+	width: 121px;
+	height: 23px;
+	margin-top: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.3, #000000a8), color-stop(0.7, #000000a8), to(#00000000));
+}
+
+.ArenaScore .ScoreFlow
+{
+	align: center center;
 	flow-children: right;
-	padding: 7px 16px;
-	background-color: #08111ae6;
-	border-bottom: 2px solid #b48a47;
+	x: -7px;
 }
 
-.ArenaHud .ArenaStatusPill .ArenaStatusTitle
+.ArenaScore .ArenaRankBadge
 {
-	color: #f1cf88;
-	font-size: 17px;
-	font-weight: bold;
-	letter-spacing: 2px;
-	margin-right: 16px;
+	width: 46px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/rank_badge/rank_1_s_png.vtex");
+	background-size: 100%;
 }
 
-.ArenaHud .ArenaStatusPill .ArenaStatusText
+.ArenaScore Label
 {
-	color: #d4e5ee;
-	font-size: 17px;
-}
-
-.ArenaHud .ArenaInfoPanel,.ArenaHud .ArenaOpponentPanel
-{
-	width: 330px;
-	max-height: 670px;
+	padding-top: 1px;
 	vertical-align: center;
-	flow-children: down;
-	background-color: #0a1520ed;
-	border: 1px solid #5c6c76;
-	border-left: 3px solid #b48a47;
-	box-shadow: 0px 8px 28px #000000aa;
-	padding: 18px 18px 16px;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-overflow: shrink;
 }
 
-.ArenaHud .ArenaInfoPanel
+.ArenaPower
 {
-	horizontal-align: left;
-	margin-left: 32px;
+	horizontal-align: center;
+	margin-top: 10px;
 }
 
-.ArenaHud .ArenaOpponentPanel
+.ArenaPower .PowerBG
+{
+	align: center center;
+	width: 121px;
+	height: 23px;
+	margin-top: 2px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.3, #000000a8), color-stop(0.7, #000000a8), to(#00000000));
+}
+
+.ArenaPower .PowerFlow
+{
+	align: center center;
+	flow-children: right;
+	x: -7px;
+}
+
+.ArenaPower .ArenaRankBadge
+{
+	width: 33px;
+	height: 33px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/power_png.vtex");
+	background-size: 100%;
+	wash-color: #f0af25;
+}
+
+.ArenaPower Label
+{
+	padding-top: 1px;
+	vertical-align: center;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+.ArenaLoadoutPanel
 {
 	horizontal-align: right;
-	margin-right: 32px;
-	border-left: 1px solid #5c6c76;
-	border-right: 3px solid #91485a;
+	margin-top: 78px;
+	margin-right: 20px;
+	height: 218px;
+	padding: 16px 20px 18px;
+	flow-children: down;
+	background-color: #0b1219f2;
+	border: 1px solid #6b5a3d;
+	border-top: 2px solid #b48a47;
+	box-shadow: 0px 6px 24px #000000cc;
 }
 
-.ArenaHud .ArenaPanelEyebrow
+.ArenaLoadoutPanel > VerticalScrollBar
 {
-	color: #8caeb7;
-	font-size: 13px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+	vertical-align: center;
+	height: 80%;
 }
 
-.ArenaHud .ArenaPanelTitle
+.ArenaLoadoutHeader
 {
-	color: #f0d39a;
-	font-size: 29px;
+	width: 100%;
+	height: 30px;
+	flow-children: right;
+	border-bottom: 1px solid #493e2e;
+}
+
+.ArenaLoadoutHeader .TitleContainer
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ArenaLoadoutHeader .ArenaLoadoutTitle
+{
+	vertical-align: center;
+	font-size: 21px;
 	font-weight: bold;
-	margin-top: 1px;
-	margin-bottom: 12px;
+	color: #FDEFC8;
 }
 
-.ArenaHud .ArenaFormationTabs,.ArenaHud .ArenaResultActions
+.ArenaLoadoutHeader .IconInfo
 {
+	vertical-align: center;
+	width: 21px;
+	height: 21px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 100%;
+	wash-color: #CEBA74;
+}
+
+.ArenaLoadoutHeader .IconInfo:hover
+{
+	brightness: 1.5;
+}
+
+.ArenaLoadoutHeader .ArenaLoadoutCounts
+{
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 15px;
+	color: #BFAA82;
+}
+
+.ArenaLoadoutContent
+{
+	margin-top: 10px;
+	flow-children: down;
+}
+
+.ArenaLoadoutItemsColumn
+{
+	width: 365px;
+	flow-children: down;
+}
+
+.ArenaLoadoutGroup
+{
+	width: 100%;
+	height: 67px;
+	flow-children: down;
+}
+
+.ArenaLoadoutGroupTitle
+{
+	font-size: 16px;
+	color: #D8BD83;
+}
+
+.ArenaLoadoutItemList
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 4px;
 	flow-children: right;
 }
 
-.ArenaHud .ArenaFormationTab,.ArenaHud .ArenaAction,.ArenaHud .ArenaExitButton
+.ArenaLoadoutItem
 {
-	background-color: #182b39;
-	border: 1px solid #526976;
-	padding: 8px 12px;
-	margin-right: 8px;
-	cursor: pointer;
-	transition-property: brightness, background-color, transform;
-	transition-duration: 0.14s;
+	width: 34px;
+	height: 34px;
+	margin-right: 5px;
 }
 
-.ArenaHud .ArenaFormationTab:hover,.ArenaHud .ArenaAction:hover,.ArenaHud .ArenaExitButton:hover
+.ArenaLoadoutDivider
 {
-	brightness: 1.45;
-	transform: translateY(-1px);
+	width: 1px;
+	height: 144px;
+	margin: 0px 18px;
+	background-color: #493e2e;
 }
 
-.ArenaHud .ArenaFormationTab.Selected,.ArenaHud .ArenaAction.Selected,.ArenaHud .ArenaExitButton.Selected
-{
-	background-color: #315f63;
-	border-color: #7ed2c9;
-}
-
-.ArenaHud .ArenaButtonLabel
-{
-	color: #eef4f4;
-	font-size: 17px;
-	font-weight: semi-bold;
-}
-
-.ArenaHud .ArenaDragHint,.ArenaHud .ArenaOpponentHint
-{
-	color: #a8bbc2;
-	font-size: 15px;
-	line-height: 20px;
-	margin-top: 12px;
-	white-space: normal;
-}
-
-.ArenaHud .ArenaDivider
-{
-	width: 100%;
-	height: 1px;
-	background-color: #42505a;
-	margin: 16px 0px 12px;
-}
-
-.ArenaHud .ArenaLoadoutHeader
+.ArenaUpgradeColumn
 {
 	width: 100%;
 	flow-children: down;
 }
 
-.ArenaHud .ArenaSectionTitle
-{
-	color: #e1c17a;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-.ArenaHud .ArenaLoadoutItems
+.ArenaUpgradeList
 {
 	width: 100%;
-	flow-children: right-wrap;
-	margin-top: 6px;
+	height: 132px;
+	margin-top: 4px;
+	flow-children: down;
 }
 
-.ArenaHud .ArenaLoadoutItem
+.ArenaUpgradeRow
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	border-bottom: 1px solid #302b24;
+}
+
+.ArenaUpgradeHeroName
+{
+	width: 128px;
+	vertical-align: center;
+	font-size: 14px;
+	color: #CEBDAB;
+	text-overflow: shrink;
+}
+
+.ArenaUpgradeIcons
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	flow-children: right;
+}
+
+.ArenaUpgradeIcon
 {
 	width: 28px;
 	height: 28px;
-	margin-right: 2px;
-	margin-bottom: 2px;
+	margin-right: 4px;
 }
 
-.ArenaHud .ArenaEmptyBuild
+.ArenaLoadoutPending
 {
-	color: #7f9199;
-	font-size: 15px;
-	margin-top: 9px;
+	align: center center;
+	font-size: 17px;
+	color: #8F8576;
 }
 
-.ArenaHud .ArenaUpgradeList
+.ArenaResult
+{
+	align: center center;
+	width: 890px;
+	height: 760px;
+	flow-children: down;
+	padding: 24px 28px 22px;
+	background-color: #0c1118f5;
+	border: 2px solid #d0a95f;
+	box-shadow: 0px 0px 32px #000000;
+}
+
+.ArenaResult .ArenaResultTitle
+{
+	horizontal-align: center;
+	font-size: 44px;
+	font-weight: bold;
+	color: #f0ce83;
+}
+
+.ArenaResultDamageHeader
 {
 	width: 100%;
-	max-height: 180px;
-	margin-top: 9px;
+	margin-top: 12px;
+	padding-bottom: 10px;
+	flow-children: right;
+	border-bottom: 1px solid #6a5738;
+}
+
+.ArenaResultDamageTitle
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #f4dfad;
+}
+
+.ArenaResultText
+{
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 15px;
+	color: #a89a86;
+	text-align: right;
+}
+
+.ArenaResultDamageContent
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 12px;
+	flow-children: right;
+}
+
+.ArenaDamagePlayer
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 12px 16px;
+	flow-children: down;
+	background-color: #111b27b8;
+	border-top: 2px solid #5e9ec4;
+}
+
+.ArenaDamagePlayer.Opponent
+{
+	background-color: #211519b8;
+	border-top-color: #c26a64;
+}
+
+.ArenaResultDamageDivider
+{
+	width: 1px;
+	height: 100%;
+	margin: 0px 12px;
+	background-color: #715d3e;
+}
+
+.ArenaDamagePlayerHeader
+{
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+}
+
+.ArenaDamagePlayerLabel
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #abd7ee;
+}
+
+.Opponent .ArenaDamagePlayerLabel
+{
+	color: #f1b2a7;
+}
+
+.ArenaDamageTotal
+{
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	color: #f8e6bd;
+}
+
+.ArenaDamageHeroHeader,.ArenaDamageHeroLine
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.ArenaDamageHeroHeader
+{
+	margin-top: 12px;
+	padding: 0px 46px 7px 50px;
+	border-bottom: 1px solid #3e4a55;
+}
+
+.ArenaDamageHeroHeader Label
+{
+	font-size: 13px;
+	color: #9f927d;
+}
+
+.ArenaDamageHeroHeader Label:first-child
+{
+	width: fill-parent-flow(1);
+}
+
+.ArenaDamageHeroHeader Label:last-child
+{
+	width: 76px;
+	text-align: right;
+}
+
+.ArenaDamageHeroList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
 	flow-children: down;
 	overflow: squish scroll;
 }
 
-.ArenaHud .ArenaUpgradeRow
+.ArenaDamageHeroRow
 {
 	width: 100%;
-	min-height: 36px;
+	height: 54px;
+	padding: 6px 0px;
 	flow-children: right;
-	padding: 5px 0px;
-	border-bottom: 1px solid #243744;
+	border-bottom: 1px solid #28333d;
 }
 
-.ArenaHud .ArenaHeroName
+.ArenaDamageHeroRow:hover,.ArenaDamageHeroRow.Expanded
 {
-	width: 93px;
-	color: #e1c17a;
-	font-size: 14px;
-	vertical-align: center;
+	background-color: #273947;
 }
 
-.ArenaHud .ArenaUpgradeIcons
+.ArenaDamageHeroEntry
+{
+	width: 100%;
+	flow-children: down;
+	border-bottom: 1px solid #28333d;
+}
+
+.ArenaDamageHeroEntry .ArenaDamageHeroRow
+{
+	border-bottom: 0px;
+}
+
+.ArenaDamageHeroIcon
+{
+	width: 42px;
+	height: 42px;
+	margin-right: 8px;
+}
+
+.ArenaDamageHeroContent
 {
 	width: fill-parent-flow(1);
-	flow-children: right;
-	vertical-align: center;
-}
-
-.ArenaHud .ArenaUpgradeIcon
-{
-	width: 26px;
-	height: 26px;
-	margin-right: 3px;
-}
-
-.ArenaHud .ArenaExitButton
-{
-	horizontal-align: left;
-	margin-top: 18px;
-	background-color: #2e2026;
-	border-color: #784353;
-}
-
-.ArenaHud .ArenaOpponentHint
-{
-	margin-top: -6px;
-	margin-bottom: 12px;
-}
-
-.ArenaHud .ArenaOpponentList
-{
-	width: 100%;
+	height: 100%;
 	flow-children: down;
 }
 
-.ArenaHud .ArenaOpponentCard
+.ArenaDamageHeroName
+{
+	width: fill-parent-flow(1);
+	font-size: 14px;
+	color: #d9d3c8;
+	text-overflow: shrink;
+}
+
+.ArenaDamageHeroValue
+{
+	horizontal-align: right;
+	font-size: 14px;
+	color: #f1deb4;
+}
+
+.ArenaDamageBarTrack
 {
 	width: 100%;
-	height: 88px;
-	flow-children: down;
-	background-color: #14232f;
-	border-left: 2px solid #596c76;
-	padding: 12px;
-	margin-bottom: 8px;
-	cursor: pointer;
-	transition-property: brightness, transform, background-color;
-	transition-duration: 0.14s;
-}
-
-.ArenaHud .ArenaOpponentCard:hover
-{
-	brightness: 1.38;
-	transform: translateX(-2px);
-}
-
-.ArenaHud .ArenaOpponentCard.Selected
-{
-	background-color: #4a2631;
-	border-color: #e07c88;
-}
-
-.ArenaHud .ArenaOpponentName
-{
-	color: #f0dfbd;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.ArenaHud .ArenaOpponentPower
-{
-	color: #a9c7df;
-	font-size: 15px;
+	height: 5px;
 	margin-top: 5px;
+	background-color: #25313b;
 }
 
-.ArenaHud .ArenaResult
+.ArenaDamageBarFill
+{
+	height: 100%;
+	background-color: #5eabc9;
+}
+
+.Opponent .ArenaDamageBarFill
+{
+	background-color: #d2746b;
+}
+
+.ArenaDamageHeroRatio
+{
+	width: 38px;
+	margin-left: 8px;
+	vertical-align: center;
+	text-align: right;
+	font-size: 13px;
+	color: #c8bda9;
+}
+
+.ArenaDamageAbilityList
+{
+	width: 100%;
+	padding: 3px 46px 6px 50px;
+	flow-children: down;
+	background-color: #1a252e;
+}
+
+.ArenaDamageAbilityRow
+{
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+	margin: 2px 0px;
+}
+
+.ArenaDamageAbilityIcon,.ArenaDamageAttackIcon
+{
+	width: 28px;
+	height: 28px;
+	margin: 3px 7px 0px 0px;
+	border: 1px solid #54636a;
+}
+
+.ArenaDamageAttackIcon
+{
+	padding-top: 6px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	color: #c9d1ce;
+	background-color: #34444c;
+}
+
+.ArenaDamageAbilityContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+}
+
+.ArenaDamageAbilityLine
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.ArenaDamageAbilityName
+{
+	width: fill-parent-flow(1);
+	font-size: 13px;
+	color: #b7c3c7;
+	text-overflow: shrink;
+}
+
+.ArenaDamageAbilityValue
+{
+	width: 68px;
+	text-align: right;
+	font-size: 13px;
+	color: #dccb9c;
+}
+
+.ArenaDamageAbilityBarTrack
+{
+	width: 100%;
+	height: 4px;
+	margin-top: 3px;
+	background-color: #303b43;
+}
+
+.ArenaDamageAbilityBarFill
+{
+	height: 100%;
+	background-color: #799fb1;
+}
+
+.Opponent .ArenaDamageAbilityBarFill
+{
+	background-color: #ba7770;
+}
+
+.ArenaDamageAbilityRatio
+{
+	width: 38px;
+	margin-left: 8px;
+	text-align: right;
+	font-size: 12px;
+	color: #8b9ca1;
+}
+
+.ArenaDamageEmpty
 {
 	horizontal-align: center;
 	vertical-align: center;
-	width: 420px;
-	background-color: #0c1724f5;
-	border: 2px solid #d8b665;
-	padding: 26px;
-	flow-children: down;
-	box-shadow: 0px 0px 32px #000000;
+	font-size: 15px;
+	color: #868b8c;
 }
 
-.ArenaHud .ArenaResultTitle
+.ArenaResultActions
 {
 	horizontal-align: center;
-	color: #f4d58d;
-	font-size: 42px;
-	font-weight: bold;
-}
-
-.ArenaHud .ArenaResultText
-{
-	horizontal-align: center;
-	color: #dce9f3;
-	font-size: 20px;
-	margin: 14px 0px;
-}
-
-.ArenaHud .ArenaResultActions
-{
-	horizontal-align: center;
+	margin-top: 16px;
+	flow-children: right;
 }
 
 .CommonItem
@@ -480,6 +802,507 @@
 .UpgradeIcon #Border.Rarity4
 {
 	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
+}
+
+.EOM_ImageNumber1
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber1 .EOM_NUM
+{
+	width: height-percentage(70.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber1 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_1/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber2 .EOM_NUM
+{
+	width: height-percentage(84.8%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/0_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/1_png.vtex");
+	background-size: 47% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/2_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/3_png.vtex");
+	background-size: 82.4% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/4_png.vtex");
+	background-size: 100% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/5_png.vtex");
+	background-size: 88.2% 100%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/6_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/7_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/8_png.vtex");
+	background-size: 88.2% 95.8%;
+}
+
+.EOM_ImageNumber2 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_2/9_png.vtex");
+	background-size: 94.1% 91.7%;
+}
+
+.EOM_ImageNumber3
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber3 .EOM_NUM
+{
+	width: height-percentage(81.5%);
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition-property: background-image;
+	transition-duration: 0.25s;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/0_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/1_png.vtex");
+	background-size: 100% 100%;
+	width: height-percentage(55%);
+}
+
+.EOM_ImageNumber3 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/2_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/3_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/4_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/5_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/6_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/7_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/8_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber3 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_3/9_png.vtex");
+	background-size: 100% 100%;
+}
+
+.EOM_ImageNumber4
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber4 .EOM_NUM
+{
+	width: height-percentage(77.78%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber4 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/0_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/1_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/2_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/3_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/4_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/5_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/6_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/7_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/8_png.vtex");
+}
+
+.EOM_ImageNumber4 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_4/9_png.vtex");
+}
+
+.EOM_ImageNumber5
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber5 .EOM_NUM
+{
+	width: height-percentage(73.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber5 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/0_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_1
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/1_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/2_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/3_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/4_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/5_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/6_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/7_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/8_png.vtex");
+}
+
+.EOM_ImageNumber5 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_5/9_png.vtex");
+}
+
+.EOM_ImageNumber6
+{
+	height: 43px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber6 .EOM_NUM
+{
+	width: height-percentage(55.81%);
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber6 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/0_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_1
+{
+	width: height-percentage(34.88%);
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/1_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/2_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/3_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/4_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/5_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/6_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/7_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/8_png.vtex");
+}
+
+.EOM_ImageNumber6 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/eom_design/image_number/type_6/9_png.vtex");
+}
+
+.EOM_ImageNumber7
+{
+	height: 22px;
+	flow-children: right;
+}
+
+.EOM_ImageNumber7 .EOM_NUM
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin: 0px -4px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+
+.EOM_ImageNumber7 .EOM_PercentSign
+{
+	width: height-percentage(90%);
+	height: 100%;
+	margin-left: -5px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_%_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_0
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_0_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_1
+{
+	background-size: 100% 100%;
+	width: height-percentage(62%);
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_1_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_2_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_3_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_4_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_5_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_6_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_7_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_8
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_8_png.vtex");
+}
+
+.EOM_ImageNumber7 .EOM_NUM_9
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_nub_9_png.vtex");
 }
 
 .EOM_BaseButton
@@ -706,4 +1529,1481 @@
 	height: 48px;
 	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_btn_close_png.vtex");
 	background-size: 100%;
+}
+
+.EOM_Currency
+{
+	vertical-align: bottom;
+	tooltip-position: bottom;
+	width: 180px;
+	margin: 0px 6px;
+}
+
+.EOM_Currency #Background
+{
+	width: 100%;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency.type_popup #Background
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_bar_currency_png.vtex");
+}
+
+.EOM_Currency .EOM_CurrencyRecharge
+{
+	align: right center;
+	width: 26px;
+	height: 26px;
+	margin-right: 19px;
+	background-image: url("s2r://panorama/images/custom_game/conv/top_navigation/conv_bar_currency_add_png.vtex");
+	background-size: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer
+{
+	vertical-align: center;
+	width: 100%;
+	margin-left: 30px;
+	margin-right: 44px;
+}
+
+.EOM_Currency .EOM_CurrencyLabelContainer Label
+{
+	align: center center;
+	font-size: 16px;
+	color: #FDEFC8;
+	text-overflow: shrink;
+	text-align: center;
+	width: 100%;
+}
+
+.EOM_Currency .EOM_CurrencyIcon
+{
+	margin-left: -3px;
+	vertical-align: center;
+	width: 35px;
+	height: 35px;
+	background-size: 100%;
+}
+
+.EOM_TextEntry
+{
+	width: 160px;
+	font-size: 16px;
+	height: 32px;
+	padding-top: 7px;
+}
+
+.EOM_TextEntry #PlaceholderText
+{
+	margin-top: 0px;
+	font-size: 16px;
+	color: #555555;
+}
+
+.AspectRatio4x3 .EOM_Currency
+{
+	width: 146px;
+}
+
+.AspectRatio4x3 .ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	background-size: 100%;
+}
+
+#RecentOrder
+{
+	vertical-align: center;
+	width: 300px;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+#RecentOrder:disabled
+{
+	saturation: 0;
+}
+
+#RecentOrder #RecentOrderLabel
+{
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.ExchangeEntry
+{
+	vertical-align: bottom;
+	margin-right: 20px;
+	flow-children: right;
+}
+
+.ExchangeEntry .EOM_TextEntry
+{
+	border-color: #473c2d;
+	background-color: #000000aa;
+	font-size: 18px;
+	color: #A5ADA2;
+	vertical-align: center;
+	width: 200px;
+	margin-right: 4px;
+}
+
+.ExchangeEntry #ExchangeTextEntry
+{
+	width: 200px;
+	height: 32px;
+	background-image: url("s2r://");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+.ExchangeEntry #ExchangeTextEntry #PlaceholderText
+{
+	vertical-align: center;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.ExchangeEntry #ExchangeBTN
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_attribute_png.vtex");
+	background-size: 100%;
+	height: 44px;
+	width: 44px;
+	align: right center;
+	margin: 0px;
+	margin-left: -39px;
+}
+
+.ExchangeEntry #ExchangeBTN #ExchangeLabel
+{
+	margin: 0px 8px;
+	width: 100%;
+	letter-spacing: 2px;
+	color: #FFFFFF;
+	align: center center;
+	text-align: center;
+	text-shadow: 0px 0px 5px 2 #000000;
+	text-overflow: shrink;
+}
+
+.CurrencyGroup
+{
+	flow-children: right;
+	horizontal-align: right;
+	margin-right: 105px;
+}
+
+.CurrencyIcon
+{
+	width: 40px;
+	height: 40px;
+	background-size: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	color: #E7DAB2;
+	text-shadow: 0px 0px 6px 3 black;
+	text-align: center;
+}
+
+.CurrencyIcon.0
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.PlayerAvatar
+{
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.AvatarBorderParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+	z-index: 2;
+}
+
+.PlayerTitle
+{
+	overflow: noclip;
+}
+
+.PlayerTitleImage,.PlayerTitleParticle
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	overflow: noclip;
+}
+
+.PlayerTitleImage
+{
+	z-index: 1;
+}
+
+.PlayerTitleParticle
+{
+	z-index: 2;
+}
+
+.EOM_Avatar
+{
+	width: 45px;
+	height: 45px;
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+.HeroCard
+{
+	width: 134.4px;
+	height: 146.4px;
+}
+
+.HeroCard.Selected #HeroCardBorder
+{
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.HeroCard.Selected .BorderParticle
+{
+	visibility: visible;
+}
+
+.HeroCard .EOM_HeroImage
+{
+	width: 110px;
+	height: 122px;
+	align: center center;
+}
+
+.HeroCard #HeroCardBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+	background-size: 100%;
+}
+
+.HeroCard .BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	overflow: noclip;
+}
+
+.ArenaFormationStage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ArenaFormationStage.Editing .ArenaTeamPanel
+{
+	width: 350px;
+}
+
+.ArenaFormationStage .BtnContainer
+{
+	align: center bottom;
+	margin-bottom: 5px;
+	flow-children: right;
+}
+
+.ArenaFormationStage .BtnContainer .EOM_Button
+{
+	vertical-align: center;
+	margin: 0px 2px;
+}
+
+.ArenaSidePanel
+{
+	vertical-align: center;
+	margin-left: 23px;
+	width: 330px;
+	height: 476px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_pop1_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+}
+
+.ArenaSelectedOpponent
+{
+	horizontal-align: left;
+	margin-left: 26px;
+}
+
+.ArenaSelectedOpponent .ArenaSelectedRank
+{
+	horizontal-align: center;
+	margin-top: 17px;
+	width: 184px;
+	height: 48px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_panel_rank_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaSelectedOpponent .ArenaSelectedRank .RankLabel
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	color: #BFAA82;
+	font-size: 22px;
+}
+
+.ArenaSelectedOpponent .ArenaSelectedAvatarRoot
+{
+	horizontal-align: center;
+	width: 126px;
+	height: 126px;
+	margin-top: 37px;
+	overflow: noclip;
+}
+
+.ArenaSelectedOpponent .ArenaSelectedAvatar
+{
+	width: 200%;
+	height: 200%;
+	align: center center;
+	overflow: noclip;
+	background-size: 100%;
+}
+
+.ArenaSelectedOpponent .ArenaSelectedName
+{
+	horizontal-align: center;
+	font-size: 22px;
+	margin-top: 15px;
+	color: #FFFFFF;
+}
+
+.ArenaSideTitle
+{
+	horizontal-align: center;
+	margin-top: 22px;
+	width: 316px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_paenl_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaSideTitle .TitleLabel
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 24px;
+	color: #FDEFC8;
+}
+
+.ArenaSelectedScore
+{
+	margin-top: 3px;
+}
+
+.ArenaSelectedCombatPower
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	font-size: 20px;
+	color: #BFAA82;
+}
+
+.ArenaTeamSelectionColumn
+{
+	align: right bottom;
+	margin-right: 20px;
+	flow-children: down;
+}
+
+.ArenaTeamSelection
+{
+	flow-children: right;
+}
+
+.ArenaTeamSelection .ArenaTeamNumberList
+{
+	vertical-align: center;
+	flow-children: down;
+	margin-right: 10px;
+}
+
+.ArenaTeamSelection.Editor .ArenaTeamPowerPanel
+{
+	height: 390px;
+}
+
+.ArenaTeamNumberButton
+{
+	width: 52px;
+	height: 52px;
+	margin: 4px 0px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_btn_tab_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamNumberButton.Selected
+{
+	saturation: 1;
+	brightness: 1.25;
+}
+
+.ArenaTeamNumberButton.Selected .SelectBorder
+{
+	opacity: 1;
+}
+
+.ArenaTeamNumberButton.Applied .AppliedTag
+{
+	opacity: 1;
+}
+
+.ArenaTeamNumberButton .SelectBorder
+{
+	opacity: 0;
+	width: 52px;
+	height: 52px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_btn_select_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamNumberButton .AppliedTag
+{
+	opacity: 0;
+	horizontal-align: right;
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamNumberButton Label
+{
+	align: center center;
+	font-size: 22px;
+	color: #E7D2A4;
+}
+
+.ArenaTeamPowerPanel
+{
+	width: 324px;
+	height: 304px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_pop2_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamPowerHeader
+{
+	horizontal-align: center;
+	margin-top: 22px;
+	width: 316px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_paenl_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamPowerHeader Label
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 24px;
+	color: #FDEFC8;
+}
+
+.ArenaTeamPowerHeader .EditName
+{
+	align: right center;
+	margin-right: 12px;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_edit_png.vtex");
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.ArenaTeamSelectionActions
+{
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 31px;
+}
+
+.ArenaTeamSelectionActions .EOM_Button
+{
+	margin-bottom: 10px;
+}
+
+.ArenaTeamPanel
+{
+	flow-children: down;
+	align: right center;
+	margin-right: 34px;
+	width: 330px;
+	height: 552px;
+}
+
+.ArenaTeamPanelBackground
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	border-image-source: url("s2r://panorama/images/custom_game/l2_ladder/l2_pop1_png.vtex");
+	border-image-slice: 220px 0px fill;
+	border-width: 220px 0px;
+	border-image-repeat: stretch;
+}
+
+.ArenaTeamHeader
+{
+	margin-top: 28px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ArenaTeamHeader Label
+{
+	vertical-align: center;
+}
+
+.ArenaTeamHeader .HeaderLabel
+{
+	color: #BFAA82;
+	font-size: 24px;
+}
+
+.ArenaTeamHeader .ArenaTeamCount
+{
+	horizontal-align: right;
+	color: #FDEFC8;
+	font-size: 24px;
+}
+
+.ArenaTeamHeader .HeaderLine
+{
+	horizontal-align: center;
+	margin-top: 5px;
+	width: 304px;
+	height: 2px;
+	background-image: url("s2r://panorama/images/custom_game/m4_mining/m4_line_divider_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamHeader .CustomInfoIcon
+{
+	margin-left: 5px;
+	vertical-align: center;
+	width: 36px;
+	height: 36px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_description_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTeamHeader .CustomInfoIcon:hover
+{
+	brightness: 2;
+}
+
+.ArenaTeamPower
+{
+	horizontal-align: center;
+	font-size: 21px;
+	color: #d28b44;
+	margin-top: 15px;
+}
+
+.ArenaHeroRoster
+{
+	horizontal-align: center;
+	height: 389px;
+}
+
+.ArenaHeroRoster .HeroList
+{
+	vertical-align: center;
+	flow-children: right-wrap;
+}
+
+.ArenaHeroRoster .CardItem
+{
+	flow-children: down;
+}
+
+.ArenaHeroRoster .CardItem .ArenaHeroCardContainer
+{
+	width: 134.4px;
+	height: 146.4px;
+}
+
+.ArenaHeroRoster .CardItem .ArenaHeroDeployedMark
+{
+	align: center center;
+	width: 63px;
+	height: 42px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaHeroRoster .CardItem .HeroName
+{
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	color: #CEBDAB;
+}
+
+.ArenaHeroRoster .CardItem .HeroLv
+{
+	horizontal-align: center;
+	width: 38px;
+	height: 40px;
+	background-image: url("s2r://panorama/images/custom_game/h2_hero/h2_img_diamond_1_png.vtex");
+	background-size: 100%;
+	margin-top: -42px;
+}
+
+.ArenaHeroRoster .CardItem .HeroLvLabel
+{
+	width: 100%;
+	padding-right: 3px;
+	vertical-align: center;
+	text-align: center;
+	font-size: 20px;
+	color: #CEBDAB;
+}
+
+.ArenaTeamSaveError
+{
+	horizontal-align: center;
+	font-size: 18px;
+	color: #e56f62;
+	margin-top: 6px;
+}
+
+.ArenaOpponentSelection
+{
+	align: center center;
+	flow-children: down;
+}
+
+.ArenaOpponentSelection .ArenaSelectionHeader
+{
+	margin-left: 27px;
+	flow-children: down;
+}
+
+.ArenaOpponentSelection .ArenaSelectionHeader .ArenaSelectionTaskTitle
+{
+	font-size: 20px;
+	color: #BFAA82;
+}
+
+.ArenaOpponentSelection .ArenaSelectionHeader .ArenaSelectionTaskText
+{
+	font-size: 20px;
+	margin-top: 6px;
+	color: #E1E1E1;
+}
+
+.ArenaOpponentSelection .ArenaOpponentCards
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 38px;
+}
+
+.ArenaOpponentSelection .ArenaTestArea
+{
+	margin-top: 81px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	flow-children: down;
+}
+
+.ArenaOpponentSelection .ArenaTestArea .ArenaTestOpponent
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaOpponentSelection .ArenaTestArea .ArenaTestOpponent .ArenaTestUidEntry
+{
+	width: 210px;
+	height: 36px;
+	margin-right: 8px;
+}
+
+.ArenaOpponentSelection .ArenaSelectionLoading
+{
+	width: 100%;
+	height: 100%;
+	background-color: #00000044;
+}
+
+.ArenaOpponentSelection .ArenaSelectionLoading Label
+{
+	align: center center;
+	padding: 15px 28px;
+	font-size: 23px;
+	background-color: #111a24ee;
+	border: 1px solid #ad8854;
+}
+
+.ArenaOpponentCard
+{
+	width: 294px;
+	height: 438px;
+	margin: 0px 13px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_img_flag_red2_png.vtex");
+	background-size: 100% 100%;
+	transition-property: brightness, transform, pre-transform-scale2d;
+	transition-duration: 0.14s;
+}
+
+.ArenaOpponentCard:not(:disabled):hover
+{
+	brightness: 1.35;
+	pre-transform-scale2d: 1.02;
+}
+
+.ArenaOpponentCard:disabled
+{
+	saturation: 0.4;
+	brightness: 0.65;
+}
+
+.ArenaOpponentCard .RankContainer
+{
+	horizontal-align: center;
+	width: 204px;
+	height: 65px;
+	margin-top: 31px;
+}
+
+.ArenaOpponentCard .ArenaOpponentRank
+{
+	width: 100%;
+	text-align: center;
+	vertical-align: center;
+	font-size: 24px;
+	color: #E6D4A4;
+}
+
+.ArenaOpponentCard .ArenaOpponentAvatarRoot
+{
+	horizontal-align: center;
+	width: 126px;
+	height: 126px;
+	margin-top: 34px;
+	overflow: noclip;
+}
+
+.ArenaOpponentCard .ArenaOpponentAvatar
+{
+	width: 200%;
+	height: 200%;
+	align: center center;
+	overflow: noclip;
+	background-size: 100%;
+}
+
+.ArenaOpponentCard .ArenaOpponentAvatarTips
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	z-index: 2;
+}
+
+.ArenaOpponentCard .ArenaOpponentNameRoot
+{
+	horizontal-align: center;
+	margin-top: 18px;
+	width: 190px;
+	height: 31px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000cc), to(#00000000));
+}
+
+.ArenaOpponentCard .ArenaOpponentNameRoot .ArenaOpponentName
+{
+	vertical-align: center;
+	width: 100%;
+	text-overflow: shrink;
+}
+
+.ArenaOpponentCard .ArenaOpponentNameRoot .ArenaOpponentName Label
+{
+	horizontal-align: center;
+	font-size: 22px;
+	text-align: center;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 0px 3 #00000088;
+}
+
+.ArenaOpponentScore
+{
+	margin-top: 11px;
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 60;
+}
+
+.ArenaHud
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ArenaTitle
+{
+	horizontal-align: center;
+	width: 416px;
+	height: 92px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/l2_panel_title_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaTitle .TitleLabel
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 18px;
+	color: #BFAA82;
+	font-size: 24px;
+}
+
+.ArenaExitButton
+{
+	align: right top;
+	margin-top: 113px;
+	margin-right: 121px;
+}
+
+#ArenaBattleCountdown
+{
+	align: center center;
+	height: 80px;
+	z-index: 20;
+}
+
+.ArenaScore
+{
+	horizontal-align: center;
+}
+
+.ArenaScore .ScoreBG
+{
+	align: center center;
+	width: 121px;
+	height: 23px;
+	margin-top: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.3, #000000a8), color-stop(0.7, #000000a8), to(#00000000));
+}
+
+.ArenaScore .ScoreFlow
+{
+	align: center center;
+	flow-children: right;
+	x: -7px;
+}
+
+.ArenaScore .ArenaRankBadge
+{
+	width: 46px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/conv/rank_badge/rank_1_s_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaScore Label
+{
+	padding-top: 1px;
+	vertical-align: center;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+.ArenaPower
+{
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.ArenaPower .PowerBG
+{
+	align: center center;
+	width: 121px;
+	height: 23px;
+	margin-top: 2px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.3, #000000a8), color-stop(0.7, #000000a8), to(#00000000));
+}
+
+.ArenaPower .PowerFlow
+{
+	align: center center;
+	flow-children: right;
+	x: -7px;
+}
+
+.ArenaPower .ArenaRankBadge
+{
+	width: 33px;
+	height: 33px;
+	background-image: url("s2r://panorama/images/custom_game/l2_ladder/power_png.vtex");
+	background-size: 100%;
+	wash-color: #f0af25;
+}
+
+.ArenaPower Label
+{
+	padding-top: 1px;
+	vertical-align: center;
+	font-size: 20px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+.ArenaLoadoutPanel
+{
+	horizontal-align: right;
+	margin-top: 78px;
+	margin-right: 20px;
+	height: 218px;
+	padding: 16px 20px 18px;
+	flow-children: down;
+	background-color: #0b1219f2;
+	border: 1px solid #6b5a3d;
+	border-top: 2px solid #b48a47;
+	box-shadow: 0px 6px 24px #000000cc;
+}
+
+.ArenaLoadoutPanel > VerticalScrollBar
+{
+	vertical-align: center;
+	height: 80%;
+}
+
+.ArenaLoadoutHeader
+{
+	width: 100%;
+	height: 30px;
+	flow-children: right;
+	border-bottom: 1px solid #493e2e;
+}
+
+.ArenaLoadoutHeader .TitleContainer
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ArenaLoadoutHeader .ArenaLoadoutTitle
+{
+	vertical-align: center;
+	font-size: 21px;
+	font-weight: bold;
+	color: #FDEFC8;
+}
+
+.ArenaLoadoutHeader .IconInfo
+{
+	vertical-align: center;
+	width: 21px;
+	height: 21px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 100%;
+	wash-color: #CEBA74;
+}
+
+.ArenaLoadoutHeader .IconInfo:hover
+{
+	brightness: 1.5;
+}
+
+.ArenaLoadoutHeader .ArenaLoadoutCounts
+{
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 15px;
+	color: #BFAA82;
+}
+
+.ArenaLoadoutContent
+{
+	margin-top: 10px;
+	flow-children: down;
+}
+
+.ArenaLoadoutItemsColumn
+{
+	width: 365px;
+	flow-children: down;
+}
+
+.ArenaLoadoutGroup
+{
+	width: 100%;
+	height: 67px;
+	flow-children: down;
+}
+
+.ArenaLoadoutGroupTitle
+{
+	font-size: 16px;
+	color: #D8BD83;
+}
+
+.ArenaLoadoutItemList
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 4px;
+	flow-children: right;
+}
+
+.ArenaLoadoutItem
+{
+	width: 34px;
+	height: 34px;
+	margin-right: 5px;
+}
+
+.ArenaLoadoutDivider
+{
+	width: 1px;
+	height: 144px;
+	margin: 0px 18px;
+	background-color: #493e2e;
+}
+
+.ArenaUpgradeColumn
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.ArenaUpgradeList
+{
+	width: 100%;
+	height: 132px;
+	margin-top: 4px;
+	flow-children: down;
+}
+
+.ArenaUpgradeRow
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	border-bottom: 1px solid #302b24;
+}
+
+.ArenaUpgradeHeroName
+{
+	width: 128px;
+	vertical-align: center;
+	font-size: 14px;
+	color: #CEBDAB;
+	text-overflow: shrink;
+}
+
+.ArenaUpgradeIcons
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	flow-children: right;
+}
+
+.ArenaUpgradeIcon
+{
+	width: 28px;
+	height: 28px;
+	margin-right: 4px;
+}
+
+.ArenaLoadoutPending
+{
+	align: center center;
+	font-size: 17px;
+	color: #8F8576;
+}
+
+.ArenaResult
+{
+	align: center center;
+	width: 890px;
+	height: 760px;
+	flow-children: down;
+	padding: 24px 28px 22px;
+	background-color: #0c1118f5;
+	border: 2px solid #d0a95f;
+	box-shadow: 0px 0px 32px #000000;
+}
+
+.ArenaResult .ArenaResultTitle
+{
+	horizontal-align: center;
+	font-size: 44px;
+	font-weight: bold;
+	color: #f0ce83;
+}
+
+.ArenaResultDamageHeader
+{
+	width: 100%;
+	margin-top: 12px;
+	padding-bottom: 10px;
+	flow-children: right;
+	border-bottom: 1px solid #6a5738;
+}
+
+.ArenaResultDamageTitle
+{
+	font-size: 20px;
+	font-weight: bold;
+	color: #f4dfad;
+}
+
+.ArenaResultText
+{
+	width: fill-parent-flow(1);
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 15px;
+	color: #a89a86;
+	text-align: right;
+}
+
+.ArenaResultDamageContent
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 12px;
+	flow-children: right;
+}
+
+.ArenaDamagePlayer
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	padding: 12px 16px;
+	flow-children: down;
+	background-color: #111b27b8;
+	border-top: 2px solid #5e9ec4;
+}
+
+.ArenaDamagePlayer.Opponent
+{
+	background-color: #211519b8;
+	border-top-color: #c26a64;
+}
+
+.ArenaResultDamageDivider
+{
+	width: 1px;
+	height: 100%;
+	margin: 0px 12px;
+	background-color: #715d3e;
+}
+
+.ArenaDamagePlayerHeader
+{
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+}
+
+.ArenaDamagePlayerLabel
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #abd7ee;
+}
+
+.Opponent .ArenaDamagePlayerLabel
+{
+	color: #f1b2a7;
+}
+
+.ArenaDamageTotal
+{
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	color: #f8e6bd;
+}
+
+.ArenaDamageHeroHeader,.ArenaDamageHeroLine
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.ArenaDamageHeroHeader
+{
+	margin-top: 12px;
+	padding: 0px 46px 7px 50px;
+	border-bottom: 1px solid #3e4a55;
+}
+
+.ArenaDamageHeroHeader Label
+{
+	font-size: 13px;
+	color: #9f927d;
+}
+
+.ArenaDamageHeroHeader Label:first-child
+{
+	width: fill-parent-flow(1);
+}
+
+.ArenaDamageHeroHeader Label:last-child
+{
+	width: 76px;
+	text-align: right;
+}
+
+.ArenaDamageHeroList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: down;
+	overflow: squish scroll;
+}
+
+.ArenaDamageHeroRow
+{
+	width: 100%;
+	height: 54px;
+	padding: 6px 0px;
+	flow-children: right;
+	border-bottom: 1px solid #28333d;
+}
+
+.ArenaDamageHeroRow:hover,.ArenaDamageHeroRow.Expanded
+{
+	background-color: #273947;
+}
+
+.ArenaDamageHeroEntry
+{
+	width: 100%;
+	flow-children: down;
+	border-bottom: 1px solid #28333d;
+}
+
+.ArenaDamageHeroEntry .ArenaDamageHeroRow
+{
+	border-bottom: 0px;
+}
+
+.ArenaDamageHeroIcon
+{
+	width: 42px;
+	height: 42px;
+	margin-right: 8px;
+}
+
+.ArenaDamageHeroContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+}
+
+.ArenaDamageHeroName
+{
+	width: fill-parent-flow(1);
+	font-size: 14px;
+	color: #d9d3c8;
+	text-overflow: shrink;
+}
+
+.ArenaDamageHeroValue
+{
+	horizontal-align: right;
+	font-size: 14px;
+	color: #f1deb4;
+}
+
+.ArenaDamageBarTrack
+{
+	width: 100%;
+	height: 5px;
+	margin-top: 5px;
+	background-color: #25313b;
+}
+
+.ArenaDamageBarFill
+{
+	height: 100%;
+	background-color: #5eabc9;
+}
+
+.Opponent .ArenaDamageBarFill
+{
+	background-color: #d2746b;
+}
+
+.ArenaDamageHeroRatio
+{
+	width: 38px;
+	margin-left: 8px;
+	vertical-align: center;
+	text-align: right;
+	font-size: 13px;
+	color: #c8bda9;
+}
+
+.ArenaDamageAbilityList
+{
+	width: 100%;
+	padding: 3px 46px 6px 50px;
+	flow-children: down;
+	background-color: #1a252e;
+}
+
+.ArenaDamageAbilityRow
+{
+	width: 100%;
+	height: 38px;
+	flow-children: right;
+	margin: 2px 0px;
+}
+
+.ArenaDamageAbilityIcon,.ArenaDamageAttackIcon
+{
+	width: 28px;
+	height: 28px;
+	margin: 3px 7px 0px 0px;
+	border: 1px solid #54636a;
+}
+
+.ArenaDamageAttackIcon
+{
+	padding-top: 6px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	color: #c9d1ce;
+	background-color: #34444c;
+}
+
+.ArenaDamageAbilityContent
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+}
+
+.ArenaDamageAbilityLine
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.ArenaDamageAbilityName
+{
+	width: fill-parent-flow(1);
+	font-size: 13px;
+	color: #b7c3c7;
+	text-overflow: shrink;
+}
+
+.ArenaDamageAbilityValue
+{
+	width: 68px;
+	text-align: right;
+	font-size: 13px;
+	color: #dccb9c;
+}
+
+.ArenaDamageAbilityBarTrack
+{
+	width: 100%;
+	height: 4px;
+	margin-top: 3px;
+	background-color: #303b43;
+}
+
+.ArenaDamageAbilityBarFill
+{
+	height: 100%;
+	background-color: #799fb1;
+}
+
+.Opponent .ArenaDamageAbilityBarFill
+{
+	background-color: #ba7770;
+}
+
+.ArenaDamageAbilityRatio
+{
+	width: 38px;
+	margin-left: 8px;
+	text-align: right;
+	font-size: 12px;
+	color: #8b9ca1;
+}
+
+.ArenaDamageEmpty
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	color: #868b8c;
+}
+
+.ArenaResultActions
+{
+	horizontal-align: center;
+	margin-top: 16px;
+	flow-children: right;
 }

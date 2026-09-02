@@ -22,6 +22,7 @@ var StoreItem = require('./StoreItem.js');
 var solid_utils = require('./solid_utils.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const daily_bounty_tasks = solid_utils.createServiceNetData("player_daily_bounty_tasks", {});

@@ -27,6 +27,7 @@ if IsServer() then
 	require("mechanics.game_mode_manager")
 	require("mechanics.dungeon_manager")
 	require("mechanics.damage_system.damage_system")
+	require("mechanics.combat_power")
 	require("mechanics.bless")
 	require("mechanics.bless_upgrade_choice")
 	require("mechanics.artifact")

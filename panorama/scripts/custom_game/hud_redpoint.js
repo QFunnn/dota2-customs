@@ -21,6 +21,7 @@ require('./EOM_RedMark.js');
 require('./EOM_Button.js');
 require('./StoreItem.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./Player.js');
 require('./EOM_TextEntry.js');
 
@@ -671,6 +672,50 @@ function useHeroRedPoints() {
   });
 }
 
+const ARENA_TASK_ID = 8001001;
+const WEEKLY_PVP_TASK_VIEWED_DAY_KEY = "rank_weekly_pvp_task_viewed_day";
+const BEIJING_TIME_OFFSET_SECONDS = 8 * 60 * 60;
+function getBeijingDayStart(timestamp) {
+  const seconds = Math.floor(timestamp);
+  return seconds - (seconds + BEIJING_TIME_OFFSET_SECONDS) % 86400;
+}
+const [locallyViewedDay, setLocallyViewedDay] = libs.createSignal();
+CustomUIConfig.__rankRedPointState = {
+  markWeeklyPvpTaskViewed: () => {
+    const today = getBeijingDayStart(CustomUIConfig.GetServerTimeStamp());
+    setLocallyViewedDay(today);
+    CallAction("/v1/key/save", {
+      type: "setting",
+      key: WEEKLY_PVP_TASK_VIEWED_DAY_KEY,
+      value: String(today)
+    });
+  }
+};
+function useRankRedPoints() {
+  defineRedPointRule("rank", () => {
+    const playerWeeklyPvpTasks = createRedPointServiceData("player_weekly_pvp_tasks", {});
+    const playerKeyValues = createRedPointServiceData("player_key_values", {});
+    const [serverTime, setServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
+    const serverTimeInterval = setInterval(() => {
+      setServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp()));
+    }, 60 * 1000);
+    libs.onCleanup(() => clearInterval(serverTimeInterval));
+    libs.createEffect(() => {
+      const task = Object.values(playerWeeklyPvpTasks()).find(task => task.task_id === ARENA_TASK_ID);
+      if (task === undefined) {
+        setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], false);
+        return;
+      }
+      const today = getBeijingDayStart(serverTime());
+      const savedViewedDay = Number(playerKeyValues()[WEEKLY_PVP_TASK_VIEWED_DAY_KEY]?.value);
+      const viewedToday = locallyViewedDay() === today || savedViewedDay === today;
+      const canReceive = task.receive_progress != 1 && task.progress >= task.target;
+      const needsGuide = task.receive_progress != 1 && task.progress < task.target && !viewedToday;
+      setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], canReceive || needsGuide);
+    });
+  });
+}
+
 function useMiningActivityRedPoints() {
   defineRedPointRule("activity_mining", () => {
     const playerMiningActivityData = createRedPointServiceData("player_mining_activity_data", {});
@@ -813,6 +858,7 @@ function RedPointCenter() {
   useEquipmentRedPoints();
   useFishingItemRedPoints();
   useHeroRedPoints();
+  useRankRedPoints();
   useMiningActivityRedPoints();
   useRuneRedPoints();
   useStoreRedPoints();

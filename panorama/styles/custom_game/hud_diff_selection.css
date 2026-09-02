@@ -3255,14 +3255,22 @@
 #DiffSelection #KeyListRoot #KeyFilterWindow
 {
 	width: 100%;
+	height: 100%;
 	flow-children: down;
+	overflow: squish scroll;
 	padding: 26px 22px;
 }
 
 #DiffSelection #KeyListRoot #KeyFilterWindow .Subheading
 {
+	margin-top: 20px;
 	font-size: 20px;
 	color: #B9B1A6;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow .Subheading.FirstHeading
+{
+	margin-top: 0px;
 }
 
 #DiffSelection #KeyListRoot #KeyFilterWindow .FilterLine
@@ -3297,6 +3305,93 @@
 #DiffSelection #KeyListRoot #KeyFilterWindow #RarityFilterList
 {
 	margin-top: 11px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList
+{
+	width: 100%;
+	height: fit-children;
+	margin-top: 11px;
+	padding-bottom: 12px;
+	flow-children: down;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow
+{
+	width: 100%;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 17px;
+	color: #B9B1A6;
+	text-overflow: shrink;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList
+{
+	width: 188px;
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right-wrap;
+	horizontal-align: right;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList Label
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption
+{
+	height: fit-children;
+	min-height: 30px;
+	flow-children: right;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton
+{
+	max-width: 150px;
+	height: fit-children;
+	min-height: 30px;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton Label
+{
+	max-width: 150px;
+	height: fit-children;
+	vertical-align: center;
+	text-align: center;
+	white-space: normal;
+	color: #766F69;
+	text-overflow: shrink;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.Selected Label
+{
+	color: #F1E7D0;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.KeyMainEntryFilterMode-include.Selected Label
+{
+	color: #86C985;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeButton.KeyMainEntryFilterMode-exclude.Selected Label
+{
+	color: #DD7770;
+}
+
+#DiffSelection #KeyListRoot #KeyFilterWindow #KeyMainEntryFilterList .KeyMainEntryFilterRow .KeyMainEntryFilterModeList .KeyMainEntryFilterModeOption .KeyMainEntryFilterModeSeparator
+{
+	margin: 0px 2px;
+	color: #766F69;
 }
 
 #DiffSelection #KeyListRoot #BtnsContainer

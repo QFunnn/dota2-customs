@@ -4211,6 +4211,32 @@ ToggleButton Label
 	text-overflow: shrink;
 }
 
+#CalcCombatPower #Copy
+{
+	width: 32px;
+	height: 26px;
+	margin-left: 8px;
+}
+
+#CalcCombatPower #Copy1
+{
+	width: 12px;
+	height: 16px;
+	background-color: #B0BCC2;
+	vertical-align: bottom;
+	border-radius: 4px;
+}
+
+#CalcCombatPower #Copy2
+{
+	width: 12px;
+	height: 16px;
+	margin-left: 3px;
+	margin-bottom: 3px;
+	border: 1px solid #B0BCC2;
+	border-radius: 4px;
+}
+
 .EOM_TextEntry
 {
 	width: 160px;
@@ -4888,6 +4914,175 @@ ToggleButton Label
 	width: 100%;
 	height: 100%;
 	border-top: 2px solid #32383677;
+}
+
+.UpgradeIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
+.UpgradeIcon.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.UpgradeIcon.large #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_big_png.vtex");
+}
+
+.UpgradeIcon.large #Border.Rarity3
+{
+	background-image: url("s2r://");
+}
+
+.UpgradeIcon.large #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_big_png.vtex");
+}
+
+.UpgradeIcon #UpgradeImage
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.UpgradeIcon #Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.UpgradeIcon #Border.Rarity0
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_golden_png.vtex");
+}
+
+.UpgradeIcon #Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
+}
+
+#RemoveAbilityUpgrade #SelectionList
+{
+	padding: 0px;
+}
+
+#RemoveAbilityUpgrade #RemoveUpgradePicker
+{
+	width: 100%;
+	height: 100%;
+	padding: 12px;
+}
+
+#RemoveAbilityUpgrade #RemoveUpgradeActions
+{
+	width: 100%;
+	height: 42px;
+	vertical-align: center;
+	border-bottom: 1px solid #59646177;
+	padding-bottom: 8px;
+}
+
+#RemoveAbilityUpgrade #RemoveUpgradeCount
+{
+	color: #c5cfcc;
+	font-size: 18px;
+	vertical-align: center;
+}
+
+#RemoveAbilityUpgrade .RemoveAllButton
+{
+	width: 110px;
+	height: 34px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#803a35), to(#512521));
+}
+
+#RemoveAbilityUpgrade #RemoveUpgradeList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding-top: 8px;
+	padding-right: 6px;
+}
+
+#RemoveAbilityUpgrade .RemoveUpgradeRow
+{
+	width: 100%;
+	height: 68px;
+	padding: 8px;
+	margin-bottom: 6px;
+	background-color: #151b1ddd;
+	border: 1px solid #49535188;
+}
+
+#RemoveAbilityUpgrade .RemoveUpgradeInfo
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	margin-left: 12px;
+	vertical-align: center;
+}
+
+#RemoveAbilityUpgrade .RemoveUpgradeName
+{
+	width: 100%;
+	color: white;
+	font-size: 19px;
+	text-overflow: shrink;
+}
+
+#RemoveAbilityUpgrade .RemoveUpgradeID
+{
+	width: 100%;
+	color: #899491;
+	font-size: 14px;
+	text-overflow: shrink;
+}
+
+#RemoveAbilityUpgrade .RemoveOneButton
+{
+	width: 84px;
+	height: 34px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#68403b), to(#402824));
+}
+
+#RemoveAbilityUpgrade #RemoveUpgradeEmpty
+{
+	color: #899491;
+	font-size: 20px;
+	horizontal-align: center;
+	vertical-align: center;
 }
 
 .CustomScrollBar
@@ -6901,82 +7096,6 @@ ToggleButton Label
 	text-shadow: 1px 1px 3px #000000;
 }
 
-.UpgradeIcon
-{
-	width: 64px;
-	height: 64px;
-}
-
-.UpgradeIcon.large
-{
-	width: 128px;
-	height: 128px;
-}
-
-.UpgradeIcon.large #Border.Rarity0
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_big_png.vtex");
-}
-
-.UpgradeIcon.large #Border.Rarity1
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_big_png.vtex");
-}
-
-.UpgradeIcon.large #Border.Rarity2
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_big_png.vtex");
-}
-
-.UpgradeIcon.large #Border.Rarity3
-{
-	background-image: url("s2r://");
-}
-
-.UpgradeIcon.large #Border.Rarity4
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_big_png.vtex");
-}
-
-.UpgradeIcon #UpgradeImage
-{
-	align: center center;
-	width: 68%;
-	height: width-percentage(100%);
-}
-
-.UpgradeIcon #Border
-{
-	width: 100%;
-	height: 100%;
-	background-size: 100%;
-}
-
-.UpgradeIcon #Border.Rarity0
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_green_png.vtex");
-}
-
-.UpgradeIcon #Border.Rarity1
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_blue_png.vtex");
-}
-
-.UpgradeIcon #Border.Rarity2
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_purple_png.vtex");
-}
-
-.UpgradeIcon #Border.Rarity3
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_golden_png.vtex");
-}
-
-.UpgradeIcon #Border.Rarity4
-{
-	background-image: url("s2r://panorama/images/custom_game/hud/h_skill_red_png.vtex");
-}
-
 #AddAbilityUpgrade #SelectionList
 {
 	flow-children: right;
@@ -7016,97 +7135,4 @@ ToggleButton Label
 	padding: 20px;
 	width: 100%;
 	flow-children: down;
-}
-
-#RemoveAbilityUpgrade #SelectionList
-{
-	padding: 0px;
-}
-
-#RemoveAbilityUpgrade #RemoveUpgradePicker
-{
-	width: 100%;
-	height: 100%;
-	padding: 12px;
-}
-
-#RemoveAbilityUpgrade #RemoveUpgradeActions
-{
-	width: 100%;
-	height: 42px;
-	vertical-align: center;
-	border-bottom: 1px solid #59646177;
-	padding-bottom: 8px;
-}
-
-#RemoveAbilityUpgrade #RemoveUpgradeCount
-{
-	color: #c5cfcc;
-	font-size: 18px;
-	vertical-align: center;
-}
-
-#RemoveAbilityUpgrade .RemoveAllButton
-{
-	width: 110px;
-	height: 34px;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#803a35), to(#512521));
-}
-
-#RemoveAbilityUpgrade #RemoveUpgradeList
-{
-	width: 100%;
-	height: fill-parent-flow(1);
-	padding-top: 8px;
-	padding-right: 6px;
-}
-
-#RemoveAbilityUpgrade .RemoveUpgradeRow
-{
-	width: 100%;
-	height: 68px;
-	padding: 8px;
-	margin-bottom: 6px;
-	background-color: #151b1ddd;
-	border: 1px solid #49535188;
-}
-
-#RemoveAbilityUpgrade .RemoveUpgradeInfo
-{
-	width: fill-parent-flow(1);
-	height: 100%;
-	margin-left: 12px;
-	vertical-align: center;
-}
-
-#RemoveAbilityUpgrade .RemoveUpgradeName
-{
-	width: 100%;
-	color: white;
-	font-size: 19px;
-	text-overflow: shrink;
-}
-
-#RemoveAbilityUpgrade .RemoveUpgradeID
-{
-	width: 100%;
-	color: #899491;
-	font-size: 14px;
-	text-overflow: shrink;
-}
-
-#RemoveAbilityUpgrade .RemoveOneButton
-{
-	width: 84px;
-	height: 34px;
-	vertical-align: center;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#68403b), to(#402824));
-}
-
-#RemoveAbilityUpgrade #RemoveUpgradeEmpty
-{
-	color: #899491;
-	font-size: 20px;
-	horizontal-align: center;
-	vertical-align: center;
 }

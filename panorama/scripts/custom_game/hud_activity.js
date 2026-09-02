@@ -27,6 +27,7 @@ var EOM_ProgressBar = require('./EOM_ProgressBar.js');
 require('./service_netdata_helper.js');
 require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const playerBPInfo$2 = solid_utils.createServiceNetData("player_battle_passes", {});

@@ -14,17 +14,18 @@ var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
 var common_item = require('./common_item.js');
 var upgrade_icon = require('./upgrade_icon.js');
-var StoreItem = require('./StoreItem.js');
+var EOM_ImageNumber = require('./EOM_ImageNumber.js');
 var EOM_Button = require('./EOM_Button.js');
 var Player = require('./Player.js');
 var portraitsFullBodyLoadout = require('./portraitsFullBodyLoadout.js');
 var server_rune_utils = require('./server_rune_utils.js');
 var rune_data = require('./rune_data.js');
-require('./EOM_Countdown.js');
-require('./equipment_utils.js');
+var StoreItem = require('./StoreItem.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./attribute_formatter.js');
+require('./equipment_utils.js');
+require('./EOM_Countdown.js');
 
 const localizeAbilityName = name => {
   if (name === undefined || name === "") {
@@ -1271,7 +1272,7 @@ const AbyssalSummary = props => {
       key: heroName,
       children: heroname => libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
         unit: heroname,
-        camera: "endscreen"
+        camera: "card"
       })
     }), _el$60);
     libs.insert(_el$64, libs.createComponent(Player.PlayerName, {
@@ -1519,7 +1520,7 @@ const AbyssalSummary = props => {
         return _el$116;
       })()
     }));
-    libs.insert(_el$48, libs.createComponent(StoreItem.EOM_ImageNumber, {
+    libs.insert(_el$48, libs.createComponent(EOM_ImageNumber.EOM_ImageNumber, {
       id: "CountDown",
       get visible() {
         return isCountDownActive();
@@ -2598,7 +2599,7 @@ const DungeonSummary = props => {
         return _el$68;
       })()
     }));
-    libs.insert(_el$, libs.createComponent(StoreItem.EOM_ImageNumber, {
+    libs.insert(_el$, libs.createComponent(EOM_ImageNumber.EOM_ImageNumber, {
       id: "CountDown",
       get visible() {
         return libs.memo(() => !!(props.visible && countDown() > 0))() && step() >= 3;

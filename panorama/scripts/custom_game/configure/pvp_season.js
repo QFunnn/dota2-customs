@@ -12,6 +12,6 @@ GameUI.CustomUIConfig().pvp_season = {
 	"1": {
 		sid: 1,
 		start_time: 1787559187,
-		end_time: 1789919999
+		end_time: 1790524799
 	}
-};
+};

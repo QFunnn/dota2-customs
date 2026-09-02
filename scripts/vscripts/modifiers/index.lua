@@ -62,6 +62,7 @@ for b, c in ipairs({
 	"modifier_first_dungeon_guide",
 	"modifier_fishing",
 	"modifier_hero",
+	"modifier_hero_npc",
 	"modifier_huge_damage",
 	"modifier_knockback_custom",
 	"modifier_loading_screen",
@@ -115,6 +116,7 @@ end
 for b, c in ipairs({
 	"modifier_arena_ai",
 	"modifier_arena_free_hero",
+	"modifier_arena_player_lock",
 	"modifier_boss_shrink",
 	"modifier_courier_explore_ui_lock",
 	"modifier_fake_preview",

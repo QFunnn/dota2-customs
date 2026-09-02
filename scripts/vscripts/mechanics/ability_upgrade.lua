@@ -47,7 +47,6 @@ function q.prototype.AddAbilityUpgrade(self, s, t, u, v)
 		v = ""
 	end
 	if not IsValid(s) then
-		print("[AbilityUpgrade] 无效的单位")
 		return
 	end
 	local w = self.kv[t]
@@ -56,7 +55,6 @@ function q.prototype.AddAbilityUpgrade(self, s, t, u, v)
 	end
 	local x = w
 	if x == nil then
-		print("[AbilityUpgrade] 找不到升级配置: " .. t)
 		return
 	end
 	local y = s:GetEntityIndex()
@@ -70,38 +68,15 @@ function q.prototype.AddAbilityUpgrade(self, s, t, u, v)
 	if A then
 		local D = tonumber(x.max)
 		if D ~= nil and A.level >= D then
-			print(((("[AbilityUpgrade] 升级 " .. t) .. " 已达到最大次数 (") .. tostring(D)) .. ")")
 			return
 		end
 		if not self:isUpgradeFromSource(y, t, v) then
-			print(
-				((("[AbilityUpgrade] 升级 " .. t) .. " 已存在且来源不同（当前来源: ") .. v)
-					.. "），无视"
-			)
 			return
 		end
 		if u < A.level then
-			print(
-				(
-					(((("[AbilityUpgrade] 升级 " .. t) .. " 等级更低（") .. tostring(u)) .. " < ")
-					.. tostring(A.level)
-				) .. "），不更新"
-			)
 			return
 		end
 		A.level = u
-		print(
-			(
-				(
-					(
-						(
-							((("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 更新技能升级等级: ") .. t)
-							.. " -> "
-						) .. tostring(u)
-					) .. " (来源: "
-				) .. (v or "无")
-			) .. ")"
-		)
 	else
 		local E = z.upgrades
 		E[#E + 1] = { name = t, level = u }
@@ -113,18 +88,6 @@ function q.prototype.AddAbilityUpgrade(self, s, t, u, v)
 		end
 		local F = self.upgradeSource[v][y]
 		F[#F + 1] = t
-		print(
-			(
-				(
-					(
-						(
-							((("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 添加技能升级: ") .. t)
-							.. " (等级: "
-						) .. tostring(u)
-					) .. ", 来源: "
-				) .. (v or "无")
-			) .. ")"
-		)
 		Event:Fire("ability_upgrade_added", { unit = s, upgradeName = t, level = u })
 	end
 	self:RefreshAbilityProperty(s, t)
@@ -179,7 +142,6 @@ function q.prototype.RemoveAbilityUpgrade(self, s, t, v)
 end
 function q.prototype.RemoveAbilityUpgradeBySource(self, s, v)
 	if not IsValid(s) then
-		print("[AbilityUpgrade] 无效的单位")
 		return 0
 	end
 	local y = s:GetEntityIndex()
@@ -207,7 +169,6 @@ function q.prototype.RemoveAbilityUpgradeBySource(self, s, v)
 	end
 	i(self.upgradeSource[v], y)
 	if L > 0 then
-		print((((("[AbilityUpgrade] entindex " .. tostring(y)) .. " removed source ") .. v) .. " : ") .. tostring(L))
 		self:SyncToClient(s)
 	end
 	return L
@@ -310,28 +271,41 @@ function q.prototype.ClearAbilityUpgrades(self, s)
 	i(self.unitUpgrades, y)
 	CustomNetTables:SetNetData("ability_upgrade", tostring(y), nil)
 	Event:Fire("ability_upgrades_cleared", { unit = s })
-	print(("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 技能升级已清除")
 end
 function q.prototype.IsServiceUpgrade(self, t)
 	return self.service_kv[t] ~= nil
 end
+function q.prototype.CanApplyAbilityUpgrade(self, s, t)
+	if not IsValid(s) then
+		return false
+	end
+	local a2 = self.kv[t]
+	if a2 == nil then
+		a2 = self.service_kv[t]
+	end
+	local S = a2
+	if S == nil or S.ability_name == nil then
+		return false
+	end
+	return IsValid(s:FindAbilityByName(S.ability_name))
+end
 function q.prototype.isUpgradeFromSource(self, y, t, v)
-	local a2 = self.upgradeSource[v]
-	local K = a2 and a2[y]
+	local a3 = self.upgradeSource[v]
+	local K = a3 and a3[y]
 	return K ~= nil and k(K, t)
 end
 function q.prototype.RefreshAbilityProperty(self, s, t)
-	local a3 = self.kv[t]
-	if a3 == nil then
-		a3 = self.service_kv[t]
+	local a4 = self.kv[t]
+	if a4 == nil then
+		a4 = self.service_kv[t]
 	end
-	local x = a3
+	local x = a4
 	if x ~= nil and x.ability_name ~= nil then
-		local a4 = s:FindAbilityByName(x.ability_name)
-		if a4 ~= nil then
-			a4:RefreshStaticProperty()
+		local a5 = s:FindAbilityByName(x.ability_name)
+		if a5 ~= nil then
+			a5:RefreshStaticProperty()
 			if x.AbilityValues ~= nil and x.AbilityValues.abilitycharges ~= nil then
-				a4:RefreshCharges()
+				a5:RefreshCharges()
 			end
 		end
 	end

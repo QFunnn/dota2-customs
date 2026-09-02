@@ -227,10 +227,7 @@ function h.prototype._CastAbilityOnTarget(self, t)
 	self:GetCaster():ExecuteOrder(DOTA_UNIT_ORDER_CAST_TARGET, self, t)
 end
 function h.prototype._IsReady(self)
-	if self:IsAbilityReady() then
-		return true
-	end
-	return false
+	return not self:GetCaster():HasState(StateEnum.AI_DISABLED) and self:IsAbilityReady()
 end
 function h.prototype.GetAOERadius(self)
 	return self.aoeRadius or 0

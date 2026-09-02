@@ -45,8 +45,8 @@ GameUI.CustomUIConfig().key_entry = {
 		id: 5,
 		entry_type: 1,
 		entry_name: "gem_roll_change",
-		value_min: 0.5,
-		value_max: 5,
+		value_min: 0.7,
+		value_max: 7,
 		ratio: 1
 	},
 	debuff_1: {
@@ -65,4 +65,4 @@ GameUI.CustomUIConfig().key_entry = {
 		value_max: 0,
 		ratio: 0
 	}
-};
+};

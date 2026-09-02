@@ -16,6 +16,7 @@ var EOM_Button = require('./EOM_Button.js');
 var StoreItem = require('./StoreItem.js');
 var solid_utils = require('./solid_utils.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./Player.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
@@ -195,13 +196,12 @@ const RequestPanel = props => {
       return "";
     }
     if (state === "success") {
-      return GetLocalization(isTeamRequest(data) ? data.text.success : props.successText ?? "");
+      return props.successText;
     }
     if (state === "failed") {
-      const text = isTeamRequest(data) ? getFailReason(data) === "rejected" ? data.text.rejected : data.text.timeout : getFailReason(data) === "rejected" ? props.rejectedText : props.timeoutText;
-      return GetLocalization(text ?? "");
+      return getFailReason(data) === "rejected" ? props.rejectedText : props.timeoutText;
     }
-    return GetLocalization(isTeamRequest(data) ? isInitiator() ? data.text.pendingInitiator : data.text.pendingOther : (isInitiator() ? props.pendingInitiatorText : props.pendingOtherText) ?? "");
+    return isInitiator() ? props.pendingInitiatorText : props.pendingOtherText;
   });
   const submitChoice = result => {
     if (!canChoose()) {
@@ -281,9 +281,7 @@ const RequestPanel = props => {
     libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_Button, {
       size: "Small",
       color: "Cancel",
-      get text() {
-        return GetLocalization(request()?.text?.cancel ?? "#Popup_Button_Cancel");
-      },
+      text: "#Popup_Button_Cancel",
       get enabled() {
         return canChoose();
       },
@@ -427,19 +425,34 @@ const RestartGameRequest = () => {
     timeoutText: "#RestartGameRequestTimeout"
   });
 };
-const TeamRequest = () => {
+const GemBattleRequest = () => {
   const request = solid_utils.createNetDataSignal("common", "team_request");
   const isVisible = libs.createMemo(() => {
     const data = request();
-    return isTeamRequest(data) && getRequestState(data) !== undefined;
+    return isTeamRequest(data) && data.requestType === "gem_enter" && getRequestState(data) !== undefined;
   });
   return libs.createComponent(RequestPanel, {
     requestKey: "team_request",
     eventName: "team_request_response",
-    panelID: "TeamRequest",
-    countDownID: "TeamRequestCountDown",
+    panelID: "GemBattleRequest",
+    countDownID: "GemBattleRequestCountDown",
     get isVisible() {
       return isVisible();
+    },
+    get pendingInitiatorText() {
+      return GetLocalization("#GemBattleRequestWaiting");
+    },
+    get pendingOtherText() {
+      return GetLocalization("#GemBattleRequestConfirm");
+    },
+    get successText() {
+      return GetLocalization("#GemBattleRequestAccepted");
+    },
+    get rejectedText() {
+      return GetLocalization("#GemBattleRequestRejected");
+    },
+    get timeoutText() {
+      return GetLocalization("#GemBattleRequestTimeout");
     },
     get children() {
       const _el$11 = libs.createElement("Panel", {
@@ -448,18 +461,18 @@ const TeamRequest = () => {
         _el$12 = libs.createElement("Label", {
           id: "RequestTitle",
           get text() {
-            return GetLocalization(request()?.text?.title ?? "");
+            return GetLocalization("#GemBattleRequestTitle");
           }
         }, _el$11),
         _el$13 = libs.createElement("Label", {
           id: "RequestSubtitle",
           get text() {
-            return GetLocalization(request()?.text?.subtitle ?? "");
+            return GetLocalization("#GemBattleRequestSubtitle");
           }
         }, _el$11);
       libs.effect(_p$ => {
-        const _v$1 = GetLocalization(request()?.text?.title ?? ""),
-          _v$10 = GetLocalization(request()?.text?.subtitle ?? "");
+        const _v$1 = GetLocalization("#GemBattleRequestTitle"),
+          _v$10 = GetLocalization("#GemBattleRequestSubtitle");
         _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$12, "text", _v$1, _p$._v$1));
         _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$13, "text", _v$10, _p$._v$10));
         return _p$;
@@ -581,7 +594,7 @@ const AbyssalEndRequest = () => {
     return _el$14;
   })();
 };
-const GameStartRequestLayer = () => [libs.createComponent(GameStartRequest, {}), libs.createComponent(TeamRequest, {}), libs.createComponent(DungeonStartWaitNotice, {}), libs.createComponent(AbyssalEndRequest, {})];
+const GameStartRequestLayer = () => [libs.createComponent(GameStartRequest, {}), libs.createComponent(GemBattleRequest, {}), libs.createComponent(DungeonStartWaitNotice, {}), libs.createComponent(AbyssalEndRequest, {})];
 libs.render(() => libs.createComponent(GameStartRequestLayer, {}), $("#GameStartRequestContainer"));
 libs.render(() => libs.createComponent(RestartGameRequest, {}), $("#RestartGameRequestContainer"));
 const SavingPotProgress = () => {

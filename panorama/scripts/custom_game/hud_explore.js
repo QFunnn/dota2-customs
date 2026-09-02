@@ -27,6 +27,7 @@ var courier_explore_time = require('./courier_explore_time.js');
 require('./EOM_TextEntry.js');
 require('./EOM_CostLabel.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const NORMAL_EXPLORE_SLOT_IDS = [1, 2, 3, 4, 5];

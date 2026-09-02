@@ -34,6 +34,7 @@ require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./attribute_formatter.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./EOM_HeroImage.js');
 
 const EMPTY_SLOT_NUM = 5;
@@ -2812,9 +2813,11 @@ const abilityDisplayMappings = [{
   heroAbilityIndex: 5,
   id: "Ability4"
 }];
+const RUNE_ADVERB_ENTRY_FILTER_MODES = ["default", "include", "exclude"];
 const RUNE_NEEDLV_LIST = Array.from(new Set(Object.values(KeyValues.rune_rarity_setting).map(setting => setting.need_level))).sort((a, b) => a - b);
 const RUNE_RARITY_LIST = Object.values(KeyValues.rune_rarity_setting).map(setting => setting.rarity).sort((a, b) => a - b);
 const ENGRAVING_RARITY_LIST = Object.values(KeyValues.engraving_rarity_setting).map(setting => setting.rarity).sort((a, b) => a - b);
+const RUNE_ADVERB_ENTRY_LIST = Object.values(GameUI.CustomUIConfig().rune_entry ?? {}).filter(entry => entry.entry_type === 2).sort((a, b) => a.id - b.id);
 const ENGRAVING_ENTRY_LIST = Object.values(KeyValues.engraving_entry).sort((a, b) => a.id - b.id);
 const RUNE_BREAK_SLOT_NUM = 5;
 const RUNE_BAG_MAX_CAPACITY = 400;
@@ -2835,8 +2838,8 @@ let filterRarity = () => ({});
 let setFilterRarity = () => ({});
 let filterSuit = () => ({});
 let setFilterSuit = () => ({});
-let runeFilterEngravingEntry = () => ({});
-let setRuneFilterEngravingEntry = () => ({});
+let runeFilterAdverbEntry = () => ({});
+let setRuneFilterAdverbEntry = () => ({});
 let engravingFilterRarity = () => ({});
 let setEngravingFilterRarity = () => ({});
 let engravingFilterEntry = () => ({});
@@ -2851,7 +2854,7 @@ function createRunePageState() {
   [filterNeedLv, setFilterNeedLv] = libs.createSignal({});
   [filterRarity, setFilterRarity] = libs.createSignal({});
   [filterSuit, setFilterSuit] = libs.createSignal({});
-  [runeFilterEngravingEntry, setRuneFilterEngravingEntry] = libs.createSignal({});
+  [runeFilterAdverbEntry, setRuneFilterAdverbEntry] = libs.createSignal({});
   [engravingFilterRarity, setEngravingFilterRarity] = libs.createSignal({});
   [engravingFilterEntry, setEngravingFilterEntry] = libs.createSignal({});
   [resetFilter, setResetFilter] = libs.createSignal(0);
@@ -3014,10 +3017,7 @@ function RuneFilterWindow() {
         });
       }
     }));
-    libs.insert(_el$, libs.createComponent(EngravingEntryFilterSection, {
-      filter: runeFilterEngravingEntry,
-      setFilter: setRuneFilterEngravingEntry
-    }), null);
+    libs.insert(_el$, libs.createComponent(RuneAdverbEntryFilterSection, {}), null);
     libs.effect(_p$ => {
       const _v$ = GetLocalization("#NeedLvFilter"),
         _v$2 = GetLocalization("#Equipment_Rarity"),
@@ -3034,24 +3034,28 @@ function RuneFilterWindow() {
     return _el$;
   })();
 }
-function EngravingEntryFilterSection(props) {
+function EntryFilterSection(props) {
   return [(() => {
     const _el$0 = libs.createElement("Label", {
       "class": "Subheading",
       get text() {
-        return GetLocalization("#RuneFilter_SelectEngraving");
+        return GetLocalization(props.title);
       }
     }, null);
-    libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#RuneFilter_SelectEngraving"), _$p));
+    libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization(props.title), _$p));
     return _el$0;
   })(), libs.createElement("Panel", {
     "class": "FilterLine"
   }, null), (() => {
     const _el$10 = libs.createElement("Panel", {
-      id: "EngravingEntryFilterList"
+      get id() {
+        return props.listID;
+      }
     }, null);
     libs.insert(_el$10, libs.createComponent(libs.For, {
-      each: ENGRAVING_ENTRY_LIST,
+      get each() {
+        return props.entries;
+      },
       children: entry => libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
         get checked() {
           return props.filter()[entry.entry_name] ?? false;
@@ -3075,31 +3079,141 @@ function EngravingEntryFilterSection(props) {
         }
       })
     }));
+    libs.effect(_$p => libs.setProp(_el$10, "id", props.listID, _$p));
     return _el$10;
   })()];
 }
+function RuneAdverbEntryFilterSection() {
+  const selectMode = (entryID, mode) => {
+    setRuneFilterAdverbEntry(prev => {
+      const next = {
+        ...prev
+      };
+      if (mode === "default") {
+        delete next[entryID];
+      } else {
+        next[entryID] = mode;
+      }
+      return next;
+    });
+  };
+  return [(() => {
+    const _el$11 = libs.createElement("Label", {
+      "class": "Subheading",
+      get text() {
+        return GetLocalization("#RuneFilter_SelectAdverbEntry");
+      }
+    }, null);
+    libs.effect(_$p => libs.setProp(_el$11, "text", GetLocalization("#RuneFilter_SelectAdverbEntry"), _$p));
+    return _el$11;
+  })(), libs.createElement("Panel", {
+    "class": "FilterLine"
+  }, null), (() => {
+    const _el$13 = libs.createElement("Panel", {
+      id: "RuneAdverbEntryFilterList"
+    }, null);
+    libs.insert(_el$13, libs.createComponent(libs.For, {
+      each: RUNE_ADVERB_ENTRY_LIST,
+      children: entry => {
+        const mode = () => runeFilterAdverbEntry()[entry.entry_name] ?? "default";
+        return (() => {
+          const _el$14 = libs.createElement("Panel", {
+              "class": "RuneAdverbEntryFilterRow"
+            }, null),
+            _el$15 = libs.createElement("Label", {
+              html: true,
+              "class": "RuneAdverbEntryName",
+              get text() {
+                return GetLocalization(`#property_${entry.entry_name}`).replace("%", "");
+              }
+            }, _el$14),
+            _el$16 = libs.createElement("Panel", {
+              "class": "RuneAdverbEntryMode"
+            }, _el$14);
+          libs.insert(_el$16, libs.createComponent(libs.For, {
+            each: RUNE_ADVERB_ENTRY_FILTER_MODES,
+            children: (filterMode, index) => (() => {
+              const _el$17 = libs.createElement("Panel", {
+                  "class": "RuneAdverbEntryModeOption"
+                }, null),
+                _el$18 = libs.createElement("Button", {
+                  get ["class"]() {
+                    return libs.classNames("RuneAdverbEntryModeButton", filterMode, {
+                      Selected: mode() === filterMode
+                    });
+                  }
+                }, _el$17),
+                _el$19 = libs.createElement("Label", {
+                  get text() {
+                    return GetLocalization(`#RuneFilter_AdverbEntryMode_${filterMode}`);
+                  }
+                }, _el$18);
+              libs.setProp(_el$18, "onactivate", () => selectMode(entry.entry_name, filterMode));
+              libs.insert(_el$17, libs.createComponent(libs.Show, {
+                get when() {
+                  return index() < RUNE_ADVERB_ENTRY_FILTER_MODES.length - 1;
+                },
+                get children() {
+                  return libs.createElement("Label", {
+                    "class": "RuneAdverbEntryModeSeparator",
+                    text: "/"
+                  }, null);
+                }
+              }), null);
+              libs.effect(_p$ => {
+                const _v$4 = libs.classNames("RuneAdverbEntryModeButton", filterMode, {
+                    Selected: mode() === filterMode
+                  }),
+                  _v$5 = GetLocalization(`#RuneFilter_AdverbEntryMode_${filterMode}`);
+                _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$18, "class", _v$4, _p$._v$4));
+                _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$19, "text", _v$5, _p$._v$5));
+                return _p$;
+              }, {
+                _v$4: undefined,
+                _v$5: undefined
+              });
+              return _el$17;
+            })()
+          }));
+          libs.effect(_$p => libs.setProp(_el$15, "text", GetLocalization(`#property_${entry.entry_name}`).replace("%", ""), _$p));
+          return _el$14;
+        })();
+      }
+    }));
+    return _el$13;
+  })()];
+}
+function EngravingEntryFilterSection() {
+  return libs.createComponent(EntryFilterSection, {
+    title: "#RuneFilter_SelectEngraving",
+    listID: "EngravingEntryFilterList",
+    entries: ENGRAVING_ENTRY_LIST,
+    filter: engravingFilterEntry,
+    setFilter: setEngravingFilterEntry
+  });
+}
 function EngravingFilterWindow() {
   return (() => {
-    const _el$11 = libs.createElement("Panel", {
+    const _el$21 = libs.createElement("Panel", {
         id: "EngravingFilterWindow",
         "class": "VerticalScrollStyle",
         scroll: "y"
       }, null),
-      _el$12 = libs.createElement("Label", {
+      _el$22 = libs.createElement("Label", {
         "class": "Subheading FirstFilterHeading",
         get text() {
           return GetLocalization("#Equipment_Rarity");
         }
-      }, _el$11);
+      }, _el$21);
       libs.createElement("Panel", {
         "class": "FilterLine"
-      }, _el$11);
-      const _el$14 = libs.createElement("Panel", {
+      }, _el$21);
+      const _el$24 = libs.createElement("Panel", {
         id: "EngravingRarityFilterList",
         "class": "CheckBoxList"
-      }, _el$11);
-    libs.setProp(_el$11, "scroll", "y");
-    libs.insert(_el$14, libs.createComponent(libs.For, {
+      }, _el$21);
+    libs.setProp(_el$21, "scroll", "y");
+    libs.insert(_el$24, libs.createComponent(libs.For, {
       each: ENGRAVING_RARITY_LIST,
       children: rarity => libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
         "class": `Rarity${rarity}`,
@@ -3125,12 +3239,9 @@ function EngravingFilterWindow() {
         }
       })
     }));
-    libs.insert(_el$11, libs.createComponent(EngravingEntryFilterSection, {
-      filter: engravingFilterEntry,
-      setFilter: setEngravingFilterEntry
-    }), null);
-    libs.effect(_$p => libs.setProp(_el$12, "text", GetLocalization("#Equipment_Rarity"), _$p));
-    return _el$11;
+    libs.insert(_el$21, libs.createComponent(EngravingEntryFilterSection, {}), null);
+    libs.effect(_$p => libs.setProp(_el$22, "text", GetLocalization("#Equipment_Rarity"), _$p));
+    return _el$21;
   })();
 }
 function RunePage() {
@@ -3228,7 +3339,7 @@ function RunePage() {
     const rarityFilter = filterRarity();
     const needLvFilter = filterNeedLv();
     const suitFilterMap = filterSuit();
-    const engravingEntryFilter = runeFilterEngravingEntry();
+    const adverbEntryFilter = runeFilterAdverbEntry();
     let result = runeList();
     if (filter !== "all") {
       result = result.filter(rune => rune.suitIDs.includes(filter));
@@ -3248,9 +3359,17 @@ function RunePage() {
     if (selectedSuit.length > 0) {
       result = result.filter(rune => rune.suitIDs.some(suitID => selectedSuit.includes(suitID)));
     }
-    const selectedEngravingEntries = Object.keys(engravingEntryFilter).filter(key => engravingEntryFilter[key]);
-    if (selectedEngravingEntries.length > 0) {
-      result = result.filter(rune => rune.inlay_engravings_data?.some(engraving => engraving.engraving_item_id != undefined && engraving.adverb_entry_data?.some(entry => selectedEngravingEntries.includes(entry.id))));
+    const includedAdverbEntries = [];
+    const excludedAdverbEntries = [];
+    for (const [entryID, mode] of Object.entries(adverbEntryFilter)) {
+      if (mode === "include") includedAdverbEntries.push(entryID);
+      if (mode === "exclude") excludedAdverbEntries.push(entryID);
+    }
+    if (includedAdverbEntries.length > 0 || excludedAdverbEntries.length > 0) {
+      result = result.filter(rune => {
+        const entryIDs = new Set((rune.adverb_entry_data ?? []).map(entry => entry.id));
+        return includedAdverbEntries.every(entryID => entryIDs.has(entryID)) && excludedAdverbEntries.every(entryID => !entryIDs.has(entryID));
+      });
     }
     return result;
   });
@@ -3419,7 +3538,7 @@ function RunePage() {
       setFilterNeedLv({});
       setFilterRarity({});
       setFilterSuit({});
-      setRuneFilterEngravingEntry({});
+      setRuneFilterAdverbEntry({});
       setResetFilter(prev => prev + 1);
     });
   };
@@ -4015,7 +4134,7 @@ function RunePage() {
         id: "RuneContent",
         get topbarChildren() {
           return (() => {
-            const _el$23 = libs.createElement("Panel", {
+            const _el$33 = libs.createElement("Panel", {
                 id: "BGRoot",
                 get ["class"]() {
                   return menuName() == "RuneDevour_Menu" ? "DevourPage" : "EmbedPage";
@@ -4025,16 +4144,16 @@ function RunePage() {
               libs.createElement("Panel", {
                 id: "CustomTopBottomBG",
                 hittest: false
-              }, _el$23);
-            libs.effect(_$p => libs.setProp(_el$23, "class", menuName() == "RuneDevour_Menu" ? "DevourPage" : "EmbedPage", _$p));
-            return _el$23;
+              }, _el$33);
+            libs.effect(_$p => libs.setProp(_el$33, "class", menuName() == "RuneDevour_Menu" ? "DevourPage" : "EmbedPage", _$p));
+            return _el$33;
           })();
         },
         get children() {
-          const _el$15 = libs.createElement("Panel", {
+          const _el$25 = libs.createElement("Panel", {
             id: "RuneContentMain"
           }, null);
-          libs.insert(_el$15, libs.createComponent(libs.Switch, {
+          libs.insert(_el$25, libs.createComponent(libs.Switch, {
             get children() {
               return [libs.createComponent(libs.Match, {
                 get when() {
@@ -4121,7 +4240,7 @@ function RunePage() {
               })];
             }
           }), null);
-          libs.insert(_el$15, libs.createComponent(libs.Show, {
+          libs.insert(_el$25, libs.createComponent(libs.Show, {
             get when() {
               return rightShowAttrInfo();
             },
@@ -4131,29 +4250,29 @@ function RunePage() {
               });
             }
           }), null);
-          libs.insert(_el$15, libs.createComponent(libs.Show, {
+          libs.insert(_el$25, libs.createComponent(libs.Show, {
             get when() {
               return !rightShowAttrInfo();
             },
             get children() {
-              const _el$16 = libs.createElement("Panel", {
+              const _el$26 = libs.createElement("Panel", {
                   id: "RuneBagRoot",
                   "class": "RuneRightBag"
                 }, null),
-                _el$17 = libs.createElement("Panel", {
+                _el$27 = libs.createElement("Panel", {
                   id: "RuneBagContent"
-                }, _el$16),
-                _el$18 = libs.createElement("Panel", {
+                }, _el$26),
+                _el$28 = libs.createElement("Panel", {
                   id: "RuneBagLeftArea"
-                }, _el$17),
-                _el$21 = libs.createElement("Panel", {
+                }, _el$27),
+                _el$31 = libs.createElement("Panel", {
                   id: "RuneBottomContainer"
-                }, _el$16),
-                _el$22 = libs.createElement("Button", {
+                }, _el$26),
+                _el$32 = libs.createElement("Button", {
                   id: "ResetBtn",
                   "class": "SecondaryButtonStates"
-                }, _el$21);
-              libs.insert(_el$18, libs.createComponent(libs.Show, {
+                }, _el$31);
+              libs.insert(_el$28, libs.createComponent(libs.Show, {
                 get when() {
                   return showFilter();
                 },
@@ -4175,16 +4294,16 @@ function RunePage() {
                   })];
                 }
               }), null);
-              libs.insert(_el$18, libs.createComponent(libs.Show, {
+              libs.insert(_el$28, libs.createComponent(libs.Show, {
                 get when() {
                   return !showFilter();
                 },
                 get children() {
                   return [(() => {
-                    const _el$19 = libs.createElement("Panel", {
+                    const _el$29 = libs.createElement("Panel", {
                       id: "RuneBagTabs"
                     }, null);
-                    libs.insert(_el$19, libs.createComponent(RuneBagTabButton, {
+                    libs.insert(_el$29, libs.createComponent(RuneBagTabButton, {
                       get ["class"]() {
                         return libs.classNames({
                           Full: isRuneBagFull()
@@ -4215,7 +4334,7 @@ function RunePage() {
                         });
                       }
                     }), null);
-                    libs.insert(_el$19, libs.createComponent(RuneBagTabButton, {
+                    libs.insert(_el$29, libs.createComponent(RuneBagTabButton, {
                       iconClass: "EngravingTabIcon",
                       get text() {
                         return GetLocalization("#MenuTabButton_Engraving");
@@ -4244,7 +4363,7 @@ function RunePage() {
                         });
                       }
                     }), null);
-                    return _el$19;
+                    return _el$29;
                   })(), libs.createComponent(libs.Show, {
                     get when() {
                       return bagType() === "engraving";
@@ -4267,7 +4386,7 @@ function RunePage() {
                           const engraving = data;
                           const isDragging = () => draggingEngravingID() === engraving().id;
                           return (() => {
-                            const _el$26 = libs.createElement("Panel", {
+                            const _el$36 = libs.createElement("Panel", {
                                 get ["class"]() {
                                   return libs.classNames(`EngravingBagItem Class${engraving().class}`, {
                                     Selected: selectedEngravingIDMap()[engraving().id] === true,
@@ -4276,38 +4395,38 @@ function RunePage() {
                                   });
                                 }
                               }, null),
-                              _el$27 = libs.createElement("Panel", {
+                              _el$37 = libs.createElement("Panel", {
                                 get ["class"]() {
                                   return libs.classNames(`EngravingBagItemIconRoot Rarity${engraving().rarity}`, {
                                     Dragging: isDragging(),
                                     Requesting: requesting()
                                   });
                                 }
-                              }, _el$26),
-                              _el$28 = libs.createElement("Image", {
+                              }, _el$36),
+                              _el$38 = libs.createElement("Image", {
                                 "class": "EngravingBagItemIcon",
                                 get src() {
                                   return server_rune_utils.getEngravingIconPath(engraving());
                                 }
-                              }, _el$27);
+                              }, _el$37);
                               libs.createElement("Panel", {
                                 "class": "SelectedBorder"
-                              }, _el$26);
+                              }, _el$36);
                               libs.createElement("Panel", {
                                 "class": "RuneNewRedPoint"
-                              }, _el$26);
+                              }, _el$36);
                               libs.createElement("Panel", {
                                 "class": "RuenLocked"
-                              }, _el$26);
-                            libs.setProp(_el$26, "onmouseover", panel => {
+                              }, _el$36);
+                            libs.setProp(_el$36, "onmouseover", panel => {
                               markEngravingRead(engraving().id);
                               server_rune_utils.ShowServerEngravingTooltip(panel, {
                                 id1: engraving().id
                               });
                             });
-                            libs.setProp(_el$26, "onmouseout", panel => HideCustomTooltip(panel, "server_engraving"));
-                            libs.setProp(_el$26, "onmouseactivate", () => handleEngravingActivate(engraving().id));
-                            libs.setProp(_el$26, "onDragStart", (panel, dragCallbacks) => {
+                            libs.setProp(_el$36, "onmouseout", panel => HideCustomTooltip(panel, "server_engraving"));
+                            libs.setProp(_el$36, "onmouseactivate", () => handleEngravingActivate(engraving().id));
+                            libs.setProp(_el$36, "onDragStart", (panel, dragCallbacks) => {
                               const isBreakDrag = menuName() === "RuneBreak_Menu" && bagType() === "engraving";
                               const isInlayDrag = menuName() === "RuneInlay_Menu" && bagType() === "engraving";
                               if (!isBreakDrag && !isInlayDrag || requesting() || isInlayDrag && inlayPreviewing()) {
@@ -4322,31 +4441,31 @@ function RunePage() {
                               setDraggingEngravingID(engraving().id);
                               const dragPanel = $.CreatePanel("Panel", $.GetContextPanel(), "engravingDragImage");
                               libs.render(() => (() => {
-                                const _el$32 = libs.createElement("Panel", {
+                                const _el$42 = libs.createElement("Panel", {
                                     "class": "RuneDragPreview"
                                   }, null),
-                                  _el$33 = libs.createElement("Panel", {
+                                  _el$43 = libs.createElement("Panel", {
                                     get ["class"]() {
                                       return `EngravingBagItemIconRoot Rarity${engraving().rarity}`;
                                     }
-                                  }, _el$32),
-                                  _el$34 = libs.createElement("Image", {
+                                  }, _el$42),
+                                  _el$44 = libs.createElement("Image", {
                                     "class": "EngravingBagItemIcon",
                                     get src() {
                                       return server_rune_utils.getEngravingIconPath(engraving());
                                     }
-                                  }, _el$33);
+                                  }, _el$43);
                                 libs.effect(_p$ => {
-                                  const _v$7 = `EngravingBagItemIconRoot Rarity${engraving().rarity}`,
-                                    _v$8 = server_rune_utils.getEngravingIconPath(engraving());
-                                  _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$33, "class", _v$7, _p$._v$7));
-                                  _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$34, "src", _v$8, _p$._v$8));
+                                  const _v$9 = `EngravingBagItemIconRoot Rarity${engraving().rarity}`,
+                                    _v$0 = server_rune_utils.getEngravingIconPath(engraving());
+                                  _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "class", _v$9, _p$._v$9));
+                                  _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "src", _v$0, _p$._v$0));
                                   return _p$;
                                 }, {
-                                  _v$7: undefined,
-                                  _v$8: undefined
+                                  _v$9: undefined,
+                                  _v$0: undefined
                                 });
-                                return _el$32;
+                                return _el$42;
                               })(), dragPanel);
                               dragCallbacks.displayPanel = dragPanel;
                               const position = GameUI.GetCursorPosition();
@@ -4359,7 +4478,7 @@ function RunePage() {
                               $.GetContextPanel().AddClass("Rune_Dragging");
                               return true;
                             });
-                            libs.setProp(_el$26, "onDragEnd", (panel, draggedPanel) => {
+                            libs.setProp(_el$36, "onDragEnd", (panel, draggedPanel) => {
                               if (draggedPanel !== undefined && draggedPanel.IsValid()) {
                                 draggedPanel.DeleteAsync(-1);
                               }
@@ -4367,28 +4486,28 @@ function RunePage() {
                               $.GetContextPanel().RemoveClass("Rune_Dragging");
                               clearDragState();
                             });
-                            libs.setProp(_el$26, "oncontextmenu", panel => handleEngravingContextMenu(panel, engraving().id));
+                            libs.setProp(_el$36, "oncontextmenu", panel => handleEngravingContextMenu(panel, engraving().id));
                             libs.effect(_p$ => {
-                              const _v$4 = libs.classNames(`EngravingBagItem Class${engraving().class}`, {
+                              const _v$6 = libs.classNames(`EngravingBagItem Class${engraving().class}`, {
                                   Selected: selectedEngravingIDMap()[engraving().id] === true,
                                   RedPoint: isEngravingNew(engraving().id),
                                   Locked: engraving().locked === true
                                 }),
-                                _v$5 = libs.classNames(`EngravingBagItemIconRoot Rarity${engraving().rarity}`, {
+                                _v$7 = libs.classNames(`EngravingBagItemIconRoot Rarity${engraving().rarity}`, {
                                   Dragging: isDragging(),
                                   Requesting: requesting()
                                 }),
-                                _v$6 = server_rune_utils.getEngravingIconPath(engraving());
-                              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$26, "class", _v$4, _p$._v$4));
-                              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$27, "class", _v$5, _p$._v$5));
-                              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$28, "src", _v$6, _p$._v$6));
+                                _v$8 = server_rune_utils.getEngravingIconPath(engraving());
+                              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$36, "class", _v$6, _p$._v$6));
+                              _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$37, "class", _v$7, _p$._v$7));
+                              _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$38, "src", _v$8, _p$._v$8));
                               return _p$;
                             }, {
-                              _v$4: undefined,
-                              _v$5: undefined,
-                              _v$6: undefined
+                              _v$6: undefined,
+                              _v$7: undefined,
+                              _v$8: undefined
                             });
-                            return _el$26;
+                            return _el$36;
                           })();
                         }
                       });
@@ -4424,7 +4543,7 @@ function RunePage() {
                           };
                           const isLocked = () => rune().locked === true;
                           return (() => {
-                            const _el$36 = libs.createElement("Panel", {
+                            const _el$46 = libs.createElement("Panel", {
                                 get ["class"]() {
                                   return libs.classNames("RuneBagItem", {
                                     Selected: selectedRuneIDMap()[rune().id] === true,
@@ -4434,47 +4553,47 @@ function RunePage() {
                                   });
                                 }
                               }, null),
-                              _el$37 = libs.createElement("Panel", {
+                              _el$47 = libs.createElement("Panel", {
                                 get ["class"]() {
                                   return libs.classNames(`RuneBagItemIconRoot Rarity${rune().rarity}`, {
                                     Dragging: isDragging(),
                                     Requesting: requesting()
                                   });
                                 }
-                              }, _el$36),
-                              _el$38 = libs.createElement("Image", {
+                              }, _el$46),
+                              _el$48 = libs.createElement("Image", {
                                 "class": "RuneBagItemIcon",
                                 get src() {
                                   return rune_data.getRuneIconPath(rune());
                                 }
-                              }, _el$37);
+                              }, _el$47);
                               libs.createElement("Image", {
                                 "class": "RunePeekIcon"
-                              }, _el$36);
+                              }, _el$46);
                               libs.createElement("Panel", {
                                 "class": "SelectedBorder"
-                              }, _el$36);
+                              }, _el$46);
                               libs.createElement("Panel", {
                                 "class": "RuneNewRedPoint"
-                              }, _el$36);
+                              }, _el$46);
                               libs.createElement("Panel", {
                                 "class": "RuenLocked"
-                              }, _el$36);
-                            libs.setProp(_el$36, "onmouseover", panel => {
+                              }, _el$46);
+                            libs.setProp(_el$46, "onmouseover", panel => {
                               markRuneRead(rune().id);
                               server_rune_utils.ShowServerRuneTooltip(panel, {
                                 id1: rune().id
                               });
                             });
-                            libs.setProp(_el$36, "onmouseout", panel => HideCustomTooltip(panel, "server_rune"));
-                            libs.setProp(_el$36, "onmouseactivate", () => {
+                            libs.setProp(_el$46, "onmouseout", panel => HideCustomTooltip(panel, "server_rune"));
+                            libs.setProp(_el$46, "onmouseactivate", () => {
                               if (isSelectionBlocked()) {
                                 showSelectionBlockedMessage();
                                 return;
                               }
                               handleRuneActivate(rune().id);
                             });
-                            libs.setProp(_el$36, "onDragStart", (panel, dragCallbacks) => {
+                            libs.setProp(_el$46, "onDragStart", (panel, dragCallbacks) => {
                               if (requesting()) {
                                 return false;
                               }
@@ -4486,31 +4605,31 @@ function RunePage() {
                               setDraggingRuneID(runeData.id);
                               const dragPanel = $.CreatePanel("Panel", $.GetContextPanel(), "runeDragImage");
                               const dispose = libs.render(() => (() => {
-                                const _el$43 = libs.createElement("Panel", {
+                                const _el$53 = libs.createElement("Panel", {
                                     "class": "RuneDragPreview"
                                   }, null),
-                                  _el$44 = libs.createElement("Panel", {
+                                  _el$54 = libs.createElement("Panel", {
                                     get ["class"]() {
                                       return `RuneBagItemIconRoot Rarity${runeData.rarity}`;
                                     }
-                                  }, _el$43),
-                                  _el$45 = libs.createElement("Image", {
+                                  }, _el$53),
+                                  _el$55 = libs.createElement("Image", {
                                     "class": "RuneBagItemIcon",
                                     get src() {
                                       return rune_data.getRuneIconPath(runeData);
                                     }
-                                  }, _el$44);
+                                  }, _el$54);
                                 libs.effect(_p$ => {
-                                  const _v$10 = `RuneBagItemIconRoot Rarity${runeData.rarity}`,
-                                    _v$11 = rune_data.getRuneIconPath(runeData);
-                                  _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$44, "class", _v$10, _p$._v$10));
-                                  _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$45, "src", _v$11, _p$._v$11));
+                                  const _v$12 = `RuneBagItemIconRoot Rarity${runeData.rarity}`,
+                                    _v$13 = rune_data.getRuneIconPath(runeData);
+                                  _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$54, "class", _v$12, _p$._v$12));
+                                  _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$55, "src", _v$13, _p$._v$13));
                                   return _p$;
                                 }, {
-                                  _v$10: undefined,
-                                  _v$11: undefined
+                                  _v$12: undefined,
+                                  _v$13: undefined
                                 });
-                                return _el$43;
+                                return _el$53;
                               })(), dragPanel);
                               SaveData(dragPanel, "_SOLIDJS_DISPOSE_", dispose);
                               dragCallbacks.displayPanel = dragPanel;
@@ -4524,7 +4643,7 @@ function RunePage() {
                               $.GetContextPanel().AddClass("Rune_Dragging");
                               return true;
                             });
-                            libs.setProp(_el$36, "onDragEnd", (panel, draggedPanel) => {
+                            libs.setProp(_el$46, "onDragEnd", (panel, draggedPanel) => {
                               if (draggedPanel !== undefined && draggedPanel.IsValid()) {
                                 const dispose = LoadData(draggedPanel, "_SOLIDJS_DISPOSE_");
                                 dispose?.();
@@ -4535,34 +4654,34 @@ function RunePage() {
                               $.GetContextPanel().RemoveClass("Rune_Dragging");
                               clearDragState();
                             });
-                            libs.setProp(_el$36, "oncontextmenu", panel => handleRuneContextMenu(panel, rune().id));
-                            libs.insert(_el$37, libs.createComponent(rune_components.RuneEngravingSlots, {
+                            libs.setProp(_el$46, "oncontextmenu", panel => handleRuneContextMenu(panel, rune().id));
+                            libs.insert(_el$47, libs.createComponent(rune_components.RuneEngravingSlots, {
                               get slots() {
                                 return rune().inlay_engravings_data;
                               }
                             }), null);
                             libs.effect(_p$ => {
-                              const _v$9 = libs.classNames("RuneBagItem", {
+                              const _v$1 = libs.classNames("RuneBagItem", {
                                   Selected: selectedRuneIDMap()[rune().id] === true,
                                   Peeked: isPeeked(),
                                   RedPoint: isRuneNew(rune().id),
                                   Locked: isLocked()
                                 }),
-                                _v$0 = libs.classNames(`RuneBagItemIconRoot Rarity${rune().rarity}`, {
+                                _v$10 = libs.classNames(`RuneBagItemIconRoot Rarity${rune().rarity}`, {
                                   Dragging: isDragging(),
                                   Requesting: requesting()
                                 }),
-                                _v$1 = rune_data.getRuneIconPath(rune());
-                              _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$36, "class", _v$9, _p$._v$9));
-                              _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$37, "class", _v$0, _p$._v$0));
-                              _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$38, "src", _v$1, _p$._v$1));
+                                _v$11 = rune_data.getRuneIconPath(rune());
+                              _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$46, "class", _v$1, _p$._v$1));
+                              _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$47, "class", _v$10, _p$._v$10));
+                              _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$48, "src", _v$11, _p$._v$11));
                               return _p$;
                             }, {
-                              _v$9: undefined,
-                              _v$0: undefined,
-                              _v$1: undefined
+                              _v$1: undefined,
+                              _v$10: undefined,
+                              _v$11: undefined
                             });
-                            return _el$36;
+                            return _el$46;
                           })();
                         }
                       });
@@ -4570,54 +4689,54 @@ function RunePage() {
                   })];
                 }
               }), null);
-              libs.insert(_el$17, libs.createComponent(libs.Show, {
+              libs.insert(_el$27, libs.createComponent(libs.Show, {
                 get when() {
                   return bagType() === "rune";
                 },
                 get children() {
-                  const _el$20 = libs.createElement("Panel", {
+                  const _el$30 = libs.createElement("Panel", {
                     id: "RuneBagFilter"
                   }, null);
-                  libs.insert(_el$20, libs.createComponent(libs.For, {
+                  libs.insert(_el$30, libs.createComponent(libs.For, {
                     get each() {
                       return filterTabs();
                     },
                     children: filter => {
                       return (() => {
-                        const _el$46 = libs.createElement("Button", {
+                        const _el$56 = libs.createElement("Button", {
                             get ["class"]() {
                               return libs.classNames("RuneBagFilterTab", {
                                 Selected: suitFilter() === filter
                               });
                             }
                           }, null),
-                          _el$47 = libs.createElement("Image", {
+                          _el$57 = libs.createElement("Image", {
                             "class": "RuneBagFilterIcon",
                             get src() {
                               return filterIcon(filter);
                             }
-                          }, _el$46);
-                        libs.setProp(_el$46, "onactivate", () => setSuitFilter(filter));
+                          }, _el$56);
+                        libs.setProp(_el$56, "onactivate", () => setSuitFilter(filter));
                         libs.effect(_p$ => {
-                          const _v$12 = libs.classNames("RuneBagFilterTab", {
+                          const _v$14 = libs.classNames("RuneBagFilterTab", {
                               Selected: suitFilter() === filter
                             }),
-                            _v$13 = filterIcon(filter);
-                          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$46, "class", _v$12, _p$._v$12));
-                          _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$47, "src", _v$13, _p$._v$13));
+                            _v$15 = filterIcon(filter);
+                          _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$56, "class", _v$14, _p$._v$14));
+                          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$57, "src", _v$15, _p$._v$15));
                           return _p$;
                         }, {
-                          _v$12: undefined,
-                          _v$13: undefined
+                          _v$14: undefined,
+                          _v$15: undefined
                         });
-                        return _el$46;
+                        return _el$56;
                       })();
                     }
                   }));
-                  return _el$20;
+                  return _el$30;
                 }
               }), null);
-              libs.insert(_el$21, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
+              libs.insert(_el$31, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
                 id: "FilterBtn",
                 get ["class"]() {
                   return libs.classNames({
@@ -4630,9 +4749,9 @@ function RunePage() {
                 onactivate: () => {
                   setShowFilter(prev => !prev);
                 }
-              }), _el$22);
-              libs.setProp(_el$22, "onactivate", handleResetFilter);
-              libs.insert(_el$21, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
+              }), _el$32);
+              libs.setProp(_el$32, "onactivate", handleResetFilter);
+              libs.insert(_el$31, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
                 id: "RuneLockBtn",
                 get text() {
                   return GetLocalization(selectedBagItemLocked() ? "#RuneItem_OptUnlock" : "#RuneItem_OptLock");
@@ -4642,10 +4761,10 @@ function RunePage() {
                 },
                 onactivate: handleSelectedBagItemLock
               }), null);
-              return _el$16;
+              return _el$26;
             }
           }), null);
-          return _el$15;
+          return _el$25;
         }
       })];
     }

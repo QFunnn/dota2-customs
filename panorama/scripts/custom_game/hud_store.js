@@ -26,6 +26,7 @@ var RecycleView = require('./RecycleView.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const TREASURE_RARITY_LEVEL_LIMIT_TOOLTIPS = {
@@ -2642,7 +2643,7 @@ const open_store = solid_utils.createServiceNetData("open_shop", {
 });
 const [targetPrivilegeItem, setTargetPrivilegeItem] = libs.createSignal();
 let targetPrivilegeItemKey = 0;
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const seaMysteryPoolID = "3001";
 const hasSeaMysteryPool = () => KeyValues.drawcards[seaMysteryPoolID] != undefined;

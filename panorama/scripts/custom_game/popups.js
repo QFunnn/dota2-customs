@@ -29,8 +29,11 @@ var EOM_Loading = require('./EOM_Loading.js');
 var EOMChildren = require('./EOMChildren.js');
 var EOM_DropDown = require('./EOM_DropDown.js');
 var EOM_SearchBox = require('./EOM_SearchBox.js');
+var EOM_Breadcrumb = require('./EOM_Breadcrumb.js');
+var EOM_ProgressBar = require('./EOM_ProgressBar.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 
 const BasePopup = props => {
   const merged = libs.mergeProps({
@@ -677,7 +680,7 @@ const Popup_ChooseDrawLucky = props => {
   });
 };
 
-const RECORDS_PER_PAGE = 5;
+const RECORDS_PER_PAGE$1 = 5;
 function getPlayerUID(playerID) {
   const steamID = Game.GetPlayerInfo(playerID)?.player_steamid;
   if (steamID == undefined || !/^\d+$/.test(steamID)) {
@@ -695,7 +698,7 @@ const parseItemNames = str => {
     };
   }).filter(item => item.name).sort((a, b) => b.rarity - a.rarity).map(item => item.name);
 };
-const formatTime = timestamp => {
+const formatTime$1 = timestamp => {
   if (!timestamp) return "";
   const d = new Date(timestamp * 1000);
   const month = String(d.getMonth() + 1).padStart(2, "0");
@@ -733,13 +736,13 @@ const Popup_CombatLog = props => {
   const totalPages = libs.createMemo(() => {
     const records = matchRecords();
     const len = Array.isArray(records) ? records.length : 0;
-    return Math.max(1, Math.ceil(len / RECORDS_PER_PAGE));
+    return Math.max(1, Math.ceil(len / RECORDS_PER_PAGE$1));
   });
   const pageRecords = libs.createMemo(() => {
     const records = matchRecords();
     if (!Array.isArray(records)) return [];
-    const start = (currentPage() - 1) * RECORDS_PER_PAGE;
-    return records.slice(start, start + RECORDS_PER_PAGE);
+    const start = (currentPage() - 1) * RECORDS_PER_PAGE$1;
+    return records.slice(start, start + RECORDS_PER_PAGE$1);
   });
   const goToPage = page => {
     const total = totalPages();
@@ -813,7 +816,7 @@ const Popup_CombatLog = props => {
                 _el$13 = libs.createElement("Label", {
                   "class": "Col ColTime",
                   get text() {
-                    return formatTime(record.start_time);
+                    return formatTime$1(record.start_time);
                   }
                 }, _el$12),
                 _el$14 = libs.createElement("Label", {
@@ -880,7 +883,7 @@ const Popup_CombatLog = props => {
                 })
               }));
               libs.effect(_p$ => {
-                const _v$ = formatTime(record.start_time),
+                const _v$ = formatTime$1(record.start_time),
                   _v$2 = libs.classNames("Col ColResult", record.pass ? "Win" : "Lose"),
                   _v$3 = record.pass ? "#CombatLog_Win" : "#CombatLog_Lose",
                   _v$4 = `${GetLocalization("#CombatLog_DiffPrefix")}${record.diff}`,
@@ -936,7 +939,8 @@ const Popup_CombatLog = props => {
 
 function Popup_CommonConfirm(props) {
   const merged = libs.mergeProps({
-    showCancel: true
+    showCancel: true,
+    size: "small"
   }, props);
   const items = libs.createMemo(() => props.items ?? []);
   let bConfirm = false;
@@ -953,7 +957,9 @@ function Popup_CommonConfirm(props) {
     get PopupID() {
       return props.PopupID;
     },
-    size: "small",
+    get size() {
+      return merged.size;
+    },
     get group() {
       return props.group;
     },
@@ -1015,17 +1021,22 @@ function Popup_CommonConfirm(props) {
           }
         }), null);
         libs.effect(_p$ => {
-          const _v$ = props.text,
-            _v$2 = props.vars,
-            _v$3 = props.text != "";
-          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "text", _v$, _p$._v$));
-          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$3, "vars", _v$2, _p$._v$2));
-          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$3, "visible", _v$3, _p$._v$3));
+          const _v$ = {
+              HideConfirm: props.hideconfirm == true
+            },
+            _v$2 = props.text,
+            _v$3 = props.vars,
+            _v$4 = props.text != "";
+          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "classList", _v$, _p$._v$));
+          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$3, "text", _v$2, _p$._v$2));
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$3, "vars", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$3, "visible", _v$4, _p$._v$4));
           return _p$;
         }, {
           _v$: undefined,
           _v$2: undefined,
-          _v$3: undefined
+          _v$3: undefined,
+          _v$4: undefined
         });
         return _el$;
       })(), (() => {
@@ -1048,6 +1059,9 @@ function Popup_CommonConfirm(props) {
         }), null);
         libs.insert(_el$5, libs.createComponent(EOM_Button.EOM_Button, {
           color: "Confirm",
+          get visible() {
+            return !props.hideconfirm;
+          },
           get text() {
             return props.confirm_text ?? "#Popup_Button_Confirm";
           },
@@ -4533,6 +4547,616 @@ const Popup_PaymentSuccess = props => {
   });
 };
 
+const RECORDS_PER_PAGE = 5;
+function formatTime(timestamp) {
+  const date = new Date(timestamp * 1000);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${month}/${day} ${hours}:${minutes}`;
+}
+function formatPower(value) {
+  if (value == "") return "-";
+  const power = Number(value);
+  return isNaN(power) ? value : FormatNumber(power, 2);
+}
+const Popup_PvpCombatLog = props => {
+  const [currentPage, setCurrentPage] = libs.createSignal(1);
+  const [recordSide, setRecordSide] = libs.createSignal("attack");
+  const [recordCache, setRecordCache] = libs.createSignal({});
+  const records = libs.createMemo(() => recordCache()[recordSide()] ?? []);
+  const totalPages = libs.createMemo(() => Math.max(1, Math.ceil(records().length / RECORDS_PER_PAGE)));
+  const pageRecords = libs.createMemo(() => {
+    const start = (currentPage() - 1) * RECORDS_PER_PAGE;
+    return records().slice(start, start + RECORDS_PER_PAGE);
+  });
+  libs.createEffect(() => {
+    const side = recordSide();
+    if (recordCache()[side] !== undefined) return;
+    CallActionRequest("/v1/pvp/fetch_records", {
+      season_id: props.seasonID,
+      limit: 10,
+      as_attacker: side === "attack"
+    }, result => {
+      if (result.code != 0) return;
+      setRecordCache(cache => ({
+        ...cache,
+        [side]: result.data.player_pvp_match_records ?? []
+      }));
+    }, undefined, false);
+  });
+  const selectRecordSide = side => {
+    setRecordSide(side);
+    setCurrentPage(1);
+  };
+  const goToPage = page => setCurrentPage(Math.max(1, Math.min(page, totalPages())));
+  return libs.createComponent(BasePopup, {
+    id: "Popup_PvpCombatLog",
+    size: "large",
+    get PopupID() {
+      return props.PopupID;
+    },
+    get group() {
+      return props.group;
+    },
+    get title() {
+      return GetLocalization("#PvpCombatLog_Title");
+    },
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Panel", {
+            id: "PvpCombatLogContent"
+          }, null),
+          _el$2 = libs.createElement("Panel", {
+            id: "PvpRecordHeader"
+          }, _el$),
+          _el$3 = libs.createElement("Label", {
+            "class": "PvpCol PvpColTime",
+            get text() {
+              return GetLocalization("#PvpCombatLog_Time");
+            }
+          }, _el$2),
+          _el$4 = libs.createElement("Label", {
+            "class": "PvpCol PvpColResult",
+            get text() {
+              return GetLocalization("#PvpCombatLog_Result");
+            }
+          }, _el$2),
+          _el$5 = libs.createElement("Label", {
+            "class": "PvpCol PvpColOpponent",
+            get text() {
+              return GetLocalization("#PvpCombatLog_Opponent");
+            }
+          }, _el$2),
+          _el$6 = libs.createElement("Label", {
+            "class": "PvpCol PvpColSelfPower",
+            get text() {
+              return GetLocalization("#PvpCombatLog_SelfPower");
+            }
+          }, _el$2),
+          _el$7 = libs.createElement("Label", {
+            "class": "PvpCol PvpColOpponentPower",
+            get text() {
+              return GetLocalization("#PvpCombatLog_OpponentPower");
+            }
+          }, _el$2),
+          _el$8 = libs.createElement("Label", {
+            "class": "PvpCol PvpColScore",
+            get text() {
+              return GetLocalization("#PvpCombatLog_Score");
+            }
+          }, _el$2);
+          libs.createElement("Panel", {
+            "class": "Line"
+          }, _el$);
+          const _el$0 = libs.createElement("Panel", {
+            id: "PvpRecordList"
+          }, _el$);
+        libs.insert(_el$, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
+          id: "PvpRecordTabs",
+          get list() {
+            return [GetLocalization("#PvpCombatLog_Attack"), GetLocalization("#PvpCombatLog_Defense")];
+          },
+          get selected() {
+            return recordSide() === "attack" ? 1 : 2;
+          },
+          onChange: index => selectRecordSide(index === 0 ? "attack" : "defense")
+        }), _el$2);
+        libs.insert(_el$0, libs.createComponent(libs.For, {
+          get each() {
+            return pageRecords();
+          },
+          children: record => {
+            const asAttacker = recordSide() === "attack";
+            const won = asAttacker ? record.win : !record.win;
+            const opponentUID = `${asAttacker ? record.target_uid : record.uid}`;
+            const opponentIsBot = asAttacker && record.target_is_bot;
+            const selfPower = asAttacker ? record.power : record.target_power;
+            const opponentPower = asAttacker ? record.target_power : record.power;
+            const scoreDelta = record.end_score - record.start_score;
+            return (() => {
+              const _el$12 = libs.createElement("Panel", {
+                  "class": "PvpRecordRow"
+                }, null),
+                _el$13 = libs.createElement("Label", {
+                  "class": "PvpCol PvpColTime",
+                  get text() {
+                    return formatTime(record.start_time);
+                  }
+                }, _el$12),
+                _el$14 = libs.createElement("Label", {
+                  get ["class"]() {
+                    return libs.classNames("PvpCol PvpColResult", won ? "Win" : "Lose");
+                  },
+                  get text() {
+                    return GetLocalization(won ? "#CombatLog_Win" : "#CombatLog_Lose");
+                  }
+                }, _el$12),
+                _el$15 = libs.createElement("Panel", {
+                  "class": "PvpCol PvpColOpponent"
+                }, _el$12),
+                _el$17 = libs.createElement("Label", {
+                  "class": "PvpCol PvpColSelfPower",
+                  get text() {
+                    return formatPower(selfPower);
+                  }
+                }, _el$12),
+                _el$18 = libs.createElement("Label", {
+                  "class": "PvpCol PvpColOpponentPower",
+                  get text() {
+                    return formatPower(opponentPower);
+                  }
+                }, _el$12),
+                _el$19 = libs.createElement("Panel", {
+                  "class": "PvpCol PvpColScore"
+                }, _el$12),
+                _el$20 = libs.createElement("Label", {
+                  "class": "ScoreRange",
+                  get text() {
+                    return `${record.start_score} → ${record.end_score}`;
+                  }
+                }, _el$19),
+                _el$21 = libs.createElement("Label", {
+                  get ["class"]() {
+                    return libs.classNames("ScoreDelta", scoreDelta >= 0 ? "Positive" : "Negative");
+                  },
+                  text: `(${scoreDelta >= 0 ? "+" : ""}${scoreDelta})`
+                }, _el$19);
+              libs.insert(_el$15, libs.createComponent(Player.AvatarBorder, {
+                borderid: "1710000",
+                get children() {
+                  return [libs.createComponent(Player.EOM_Avatar, {
+                    accountid: opponentIsBot ? "0" : opponentUID
+                  }), (() => {
+                    const _el$16 = libs.createElement("Panel", {
+                      "class": "TipsArea"
+                    }, null);
+                    libs.setProp(_el$16, "customTooltip", opponentIsBot ? undefined : {
+                      name: "player_info",
+                      steam_id: opponentUID
+                    });
+                    return _el$16;
+                  })()];
+                }
+              }), null);
+              libs.insert(_el$15, libs.createComponent(libs.Show, {
+                when: !opponentIsBot,
+                get fallback() {
+                  return (() => {
+                    const _el$22 = libs.createElement("Label", {
+                      "class": "OpponentName",
+                      get text() {
+                        return GetLocalization("#PvpCombatLog_Bot");
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$22, "text", GetLocalization("#PvpCombatLog_Bot"), _$p));
+                    return _el$22;
+                  })();
+                },
+                get children() {
+                  return libs.createComponent(Player.PlayerName, {
+                    "class": "OpponentName",
+                    accountid: opponentUID
+                  });
+                }
+              }), null);
+              libs.setProp(_el$21, "text", `(${scoreDelta >= 0 ? "+" : ""}${scoreDelta})`);
+              libs.effect(_p$ => {
+                const _v$7 = formatTime(record.start_time),
+                  _v$8 = libs.classNames("PvpCol PvpColResult", won ? "Win" : "Lose"),
+                  _v$9 = GetLocalization(won ? "#CombatLog_Win" : "#CombatLog_Lose"),
+                  _v$0 = formatPower(selfPower),
+                  _v$1 = formatPower(opponentPower),
+                  _v$10 = `${record.start_score} → ${record.end_score}`,
+                  _v$11 = libs.classNames("ScoreDelta", scoreDelta >= 0 ? "Positive" : "Negative");
+                _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$13, "text", _v$7, _p$._v$7));
+                _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$14, "class", _v$8, _p$._v$8));
+                _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$14, "text", _v$9, _p$._v$9));
+                _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$17, "text", _v$0, _p$._v$0));
+                _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$18, "text", _v$1, _p$._v$1));
+                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$20, "text", _v$10, _p$._v$10));
+                _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$21, "class", _v$11, _p$._v$11));
+                return _p$;
+              }, {
+                _v$7: undefined,
+                _v$8: undefined,
+                _v$9: undefined,
+                _v$0: undefined,
+                _v$1: undefined,
+                _v$10: undefined,
+                _v$11: undefined
+              });
+              return _el$12;
+            })();
+          }
+        }), null);
+        libs.insert(_el$0, libs.createComponent(libs.Show, {
+          get when() {
+            return pageRecords().length === 0;
+          },
+          get children() {
+            const _el$1 = libs.createElement("Label", {
+              "class": "EmptyPvpRecords",
+              get text() {
+                return GetLocalization("#PvpCombatLog_Empty");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$1, "text", GetLocalization("#PvpCombatLog_Empty"), _$p));
+            return _el$1;
+          }
+        }), null);
+        libs.effect(_p$ => {
+          const _v$ = GetLocalization("#PvpCombatLog_Time"),
+            _v$2 = GetLocalization("#PvpCombatLog_Result"),
+            _v$3 = GetLocalization("#PvpCombatLog_Opponent"),
+            _v$4 = GetLocalization("#PvpCombatLog_SelfPower"),
+            _v$5 = GetLocalization("#PvpCombatLog_OpponentPower"),
+            _v$6 = GetLocalization("#PvpCombatLog_Score");
+          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "text", _v$, _p$._v$));
+          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$5, "text", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$6, "text", _v$4, _p$._v$4));
+          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$7, "text", _v$5, _p$._v$5));
+          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$8, "text", _v$6, _p$._v$6));
+          return _p$;
+        }, {
+          _v$: undefined,
+          _v$2: undefined,
+          _v$3: undefined,
+          _v$4: undefined,
+          _v$5: undefined,
+          _v$6: undefined
+        });
+        return _el$;
+      })(), (() => {
+        const _el$10 = libs.createElement("Panel", {
+            id: "Pagination"
+          }, null),
+          _el$11 = libs.createElement("Label", {
+            "class": "PageText",
+            get text() {
+              return `${currentPage()}/${totalPages()}`;
+            }
+          }, _el$10);
+        libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "PageBtn PrevBtn",
+          get enabled() {
+            return currentPage() > 1;
+          },
+          onactivate: () => goToPage(currentPage() - 1)
+        }), _el$11);
+        libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "PageBtn NextBtn",
+          get enabled() {
+            return currentPage() < totalPages();
+          },
+          onactivate: () => goToPage(currentPage() + 1)
+        }), null);
+        libs.effect(_$p => libs.setProp(_el$11, "text", `${currentPage()}/${totalPages()}`, _$p));
+        return _el$10;
+      })()];
+    }
+  });
+};
+
+function Popup_PvpReward(props) {
+  const rewardTiers = libs.createMemo(() => {
+    const tiers = Object.entries(KeyValues.pvp_reward[String(props.seasonID)] ?? {}).map(([rank, reward]) => ({
+      rank: Number(rank),
+      textKey: reward.txt
+    })).filter(tier => Number.isFinite(tier.rank) && tier.rank > 0).sort((a, b) => a.rank - b.rank);
+    return tiers.map((tier, index) => ({
+      ...tier,
+      startRank: index === 0 ? 1 : tiers[index - 1].rank + 1
+    }));
+  });
+  return libs.createComponent(BasePopup, {
+    "class": "Popup_PvpReward",
+    get title() {
+      return GetLocalization("#PvpReward_Title");
+    },
+    get PopupID() {
+      return props.PopupID;
+    },
+    get group() {
+      return props.group;
+    },
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Label", {
+          "class": "RewardDescription",
+          html: true,
+          get text() {
+            return GetLocalization("#PvpReward_Description");
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$, "text", GetLocalization("#PvpReward_Description"), _$p));
+        return _el$;
+      })(), (() => {
+        const _el$2 = libs.createElement("Panel", {
+            id: "CenterBlock",
+            hittest: false
+          }, null),
+          _el$3 = libs.createElement("Panel", {
+            "class": "RewardTierList VerticalScrollStyle",
+            scroll: "y"
+          }, _el$2);
+        libs.setProp(_el$3, "scroll", "y");
+        libs.insert(_el$3, libs.createComponent(libs.For, {
+          get each() {
+            return rewardTiers();
+          },
+          children: tier => (() => {
+            const _el$5 = libs.createElement("Panel", {
+                "class": "RewardTier"
+              }, null),
+              _el$6 = libs.createElement("Panel", {
+                "class": "RankRequirement"
+              }, _el$5),
+              _el$7 = libs.createElement("Panel", {
+                "class": "RankRequirementContent"
+              }, _el$6),
+              _el$9 = libs.createElement("Label", {
+                get text() {
+                  return libs.memo(() => tier.startRank === tier.rank)() ? LocalizeWithVars("#PvpReward_Rank", {
+                    rank: tier.rank
+                  }) : LocalizeWithVars("#PvpReward_RankRange", {
+                    start: tier.startRank,
+                    end: tier.rank
+                  });
+                }
+              }, _el$7),
+              _el$0 = libs.createElement("Label", {
+                "class": "RewardText",
+                get text() {
+                  return GetLocalization(`#${tier.textKey}`);
+                }
+              }, _el$5);
+            libs.insert(_el$7, libs.createComponent(libs.Show, {
+              get when() {
+                return tier.startRank === tier.rank && tier.rank <= 3;
+              },
+              get children() {
+                const _el$8 = libs.createElement("Image", {
+                  get ["class"]() {
+                    return `RankIcon Rank${tier.rank}`;
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$8, "class", `RankIcon Rank${tier.rank}`, _$p));
+                return _el$8;
+              }
+            }), _el$9);
+            libs.effect(_p$ => {
+              const _v$ = libs.memo(() => tier.startRank === tier.rank)() ? LocalizeWithVars("#PvpReward_Rank", {
+                  rank: tier.rank
+                }) : LocalizeWithVars("#PvpReward_RankRange", {
+                  start: tier.startRank,
+                  end: tier.rank
+                }),
+                _v$2 = GetLocalization(`#${tier.textKey}`);
+              _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$9, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$0, "text", _v$2, _p$._v$2));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined
+            });
+            return _el$5;
+          })()
+        }), null);
+        libs.insert(_el$3, libs.createComponent(libs.Show, {
+          get when() {
+            return rewardTiers().length === 0;
+          },
+          get children() {
+            const _el$4 = libs.createElement("Label", {
+              "class": "EmptyReward",
+              get text() {
+                return GetLocalization("#PvpReward_Empty");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$4, "text", GetLocalization("#PvpReward_Empty"), _$p));
+            return _el$4;
+          }
+        }), null);
+        return _el$2;
+      })(), libs.createComponent(EOM_Button.EOM_Button, {
+        color: "Confirm",
+        get text() {
+          return GetLocalization("#Popup_Button_Confirm");
+        },
+        onactivate: () => {
+          ClosePopup(props.PopupID);
+        }
+      })];
+    }
+  });
+}
+
+const ARENA_TASK_ID = 8001001;
+const player_weekly_pvp_tasks = solid_utils.createServiceNetData("player_weekly_pvp_tasks", {});
+function Popup_PvpWeeklyTask(props) {
+  const [requesting, setRequesting] = libs.createSignal(false);
+  const taskConfig = KeyValues.task[ARENA_TASK_ID];
+  const taskDescriptionID = taskConfig.task_description == 1 ? taskConfig.task_id : taskConfig.event_id;
+  const weeklyTask = libs.createMemo(() => {
+    const serverTime = Math.floor(CustomUIConfig.GetServerTimeStamp());
+    let currentTask;
+    let latestStartedTask;
+    let earliestUpcomingTask;
+    for (const task of Object.values(player_weekly_pvp_tasks())) {
+      if (task.task_id !== ARENA_TASK_ID) continue;
+      if (task.start_time <= serverTime && serverTime <= task.end_time) {
+        if (currentTask === undefined || task.extra_id > currentTask.extra_id) currentTask = task;
+      } else if (task.start_time <= serverTime) {
+        if (latestStartedTask === undefined || task.extra_id > latestStartedTask.extra_id) latestStartedTask = task;
+      } else if (earliestUpcomingTask === undefined || task.extra_id < earliestUpcomingTask.extra_id) {
+        earliestUpcomingTask = task;
+      }
+    }
+    return currentTask ?? latestStartedTask ?? earliestUpcomingTask;
+  });
+  const taskProgress = () => weeklyTask()?.progress ?? 0;
+  const taskTarget = () => weeklyTask()?.target ?? taskConfig.target;
+  const taskState = libs.createMemo(() => {
+    const task = weeklyTask();
+    if (task?.receive_progress == 1) return "Received";
+    if (task !== undefined && task.progress >= task.target) return "CanReceive";
+    return "WaitReceive";
+  });
+  const taskButtonText = libs.createMemo(() => {
+    switch (taskState()) {
+      case "Received":
+        return GetLocalization("#TaskFinished");
+      case "WaitReceive":
+        return GetLocalization("#TaskUnFinished");
+      default:
+        return GetLocalization("#TaskReceive");
+    }
+  });
+  const rewards = Object.entries(taskConfig.rewards);
+  const taskIcon = getSrcPath(`task_icons/${taskConfig.icon || "pass"}.png`);
+  const receiveReward = () => {
+    const task = weeklyTask();
+    if (task === undefined || taskState() !== "CanReceive" || requesting()) return;
+    setRequesting(true);
+    CallActionRequest("/v1/task/receive_rewards", {
+      task_id: task.task_id,
+      extra_id: task.extra_id
+    }, () => setRequesting(false), () => setRequesting(false));
+  };
+  return libs.createComponent(BasePopup, {
+    "class": "Popup_PvpWeeklyTask",
+    get PopupID() {
+      return props.PopupID;
+    },
+    size: "small",
+    get group() {
+      return props.group;
+    },
+    get title() {
+      return GetLocalization("#LadderWeekTask");
+    },
+    get children() {
+      const _el$ = libs.createElement("Panel", {
+          id: "PvpWeeklyTaskContent"
+        }, null),
+        _el$2 = libs.createElement("Panel", {
+          id: "TaskRow",
+          get ["class"]() {
+            return taskState();
+          }
+        }, _el$),
+        _el$3 = libs.createElement("Image", {
+          id: "TaskIcon",
+          src: taskIcon
+        }, _el$2),
+        _el$4 = libs.createElement("Panel", {
+          id: "TaskInfo"
+        }, _el$2),
+        _el$5 = libs.createElement("Label", {
+          id: "TaskName",
+          get text() {
+            return GetLocalization(`#Task_Name_${taskDescriptionID}`);
+          }
+        }, _el$4),
+        _el$6 = libs.createElement("Label", {
+          id: "TaskDes",
+          get text() {
+            return LocalizeWithVars(`#Task_Desc_${taskDescriptionID}`, {
+              target: GetLocalization(String(taskConfig.target)),
+              v1: GetLocalization(String(taskConfig.param_1)),
+              v2: GetLocalization(String(taskConfig.param_2)),
+              v3: GetLocalization(String(taskConfig.param_3))
+            });
+          }
+        }, _el$4),
+        _el$8 = libs.createElement("Panel", {
+          id: "TaskRewardList"
+        }, _el$2);
+      libs.setProp(_el$3, "src", taskIcon);
+      libs.insert(_el$4, libs.createComponent(EOM_ProgressBar.EOM_ProgressBar, {
+        id: "TaskProgress",
+        get value() {
+          return Clamp(taskProgress() / taskTarget(), 0, 1) * 100;
+        },
+        get children() {
+          const _el$7 = libs.createElement("Label", {
+            id: "TaskProgressValue",
+            get text() {
+              return `${taskProgress()}/${taskTarget()}`;
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$7, "text", `${taskProgress()}/${taskTarget()}`, _$p));
+          return _el$7;
+        }
+      }), null);
+      libs.insert(_el$8, libs.createComponent(libs.For, {
+        each: rewards,
+        children: ([itemID, amount]) => libs.createComponent(StoreItem.StoreItemBlock, {
+          id: "TaskReward",
+          item_id: itemID,
+          amounts: amount
+        })
+      }));
+      libs.insert(_el$, libs.createComponent(EOM_Button.EOM_Button, {
+        id: "TaskBtn",
+        color: "Gold",
+        get enabled() {
+          return taskState() === "CanReceive";
+        },
+        get loading() {
+          return requesting();
+        },
+        get text() {
+          return taskButtonText();
+        },
+        onactivate: receiveReward
+      }), null);
+      libs.effect(_p$ => {
+        const _v$ = taskState(),
+          _v$2 = GetLocalization(`#Task_Name_${taskDescriptionID}`),
+          _v$3 = LocalizeWithVars(`#Task_Desc_${taskDescriptionID}`, {
+            target: GetLocalization(String(taskConfig.target)),
+            v1: GetLocalization(String(taskConfig.param_1)),
+            v2: GetLocalization(String(taskConfig.param_2)),
+            v3: GetLocalization(String(taskConfig.param_3))
+          });
+        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$2, "class", _v$, _p$._v$));
+        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$5, "text", _v$2, _p$._v$2));
+        _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$6, "text", _v$3, _p$._v$3));
+        return _p$;
+      }, {
+        _v$: undefined,
+        _v$2: undefined,
+        _v$3: undefined
+      });
+      return _el$;
+    }
+  });
+}
+
 const PopupComponents = {
   CommonConfirm: Popup_CommonConfirm,
   CommunitySurvey: Popup_CommunitySurvey,
@@ -4548,7 +5172,10 @@ const PopupComponents = {
   PropUse: Popup_PropUse,
   PaymentOrder: Popup_PaymentOrder,
   PaymentOrderCreater: Popup_PaymentOrderCreater,
-  PaymentSuccess: Popup_PaymentSuccess
+  PaymentSuccess: Popup_PaymentSuccess,
+  PvpReward: Popup_PvpReward,
+  PvpCombatLog: Popup_PvpCombatLog,
+  PvpWeeklyTask: Popup_PvpWeeklyTask
 };
 const StaticPopup = [];
 const Popups = () => {

@@ -9852,4 +9852,4 @@ GameUI.CustomUIConfig().task = {
 		pre_task: 0,
 		status: 1
 	}
-};
+};

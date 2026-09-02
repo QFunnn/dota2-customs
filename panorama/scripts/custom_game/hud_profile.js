@@ -21,6 +21,7 @@ var solid_utils = require('./solid_utils.js');
 var service_netdata_helper = require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 const essencesCfgs = {};

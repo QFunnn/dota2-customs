@@ -23,6 +23,7 @@ var solid_utils = require('./solid_utils.js');
 require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 class Vector2D {

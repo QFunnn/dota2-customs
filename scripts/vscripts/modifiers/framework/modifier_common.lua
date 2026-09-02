@@ -243,7 +243,12 @@ function l.prototype.EventListener(self)
 			if y.key ~= q:entindex() then
 				return
 			end
-			if f({ "health", "health_amplify", "defense_intensity" }, y.propertyId) then
+			if
+				f(
+					{ "health", "health_amplify", "defense_intensity", "hero_defense_boost", "final_defense" },
+					y.propertyId
+				)
+			then
 				if q:IsHero() then
 					q:CalculateStatBonus(true)
 				else

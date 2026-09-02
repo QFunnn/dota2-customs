@@ -26,6 +26,7 @@ function k.prototype.____constructor(self, ...)
 	self.overload = 0
 	self.overloadSpell = 0
 	self.overloadOther = 0
+	self.voiceEnabled = true
 	self.enableSound = true
 	self.nickName = ""
 	self.idleTime = 0
@@ -170,15 +171,26 @@ function k.prototype.EventListener(self)
 		end,
 	}
 end
-function k.prototype.EmitVoiceSound(self, v, y)
-	if y == nil then
-		y = false
+function k.prototype.SetVoiceEnabled(self, y)
+	self.voiceEnabled = y
+	if y then
+		self.enableSound = true
+		return
 	end
-	if not Service:GetPlayerSetting(self.playerID, "setting_switch_hero_voice", true) then
+	if self.lastSoundName ~= nil then
+		StopGlobalSound(self.lastSoundName)
+		self.lastSoundName = nil
+	end
+end
+function k.prototype.EmitVoiceSound(self, v, z)
+	if z == nil then
+		z = false
+	end
+	if not self.voiceEnabled or not Service:GetPlayerSetting(self.playerID, "setting_switch_hero_voice", true) then
 		return false
 	end
 	v = (((self.nickName .. ".") .. PlayerData:GetHeroVoiceType(self.playerID)) .. ".") .. v
-	if y or self.enableSound then
+	if z or self.enableSound then
 		self.enableSound = false
 		if self.lastSoundName ~= nil then
 			StopGlobalSound(self.lastSoundName)
@@ -216,4 +228,18 @@ k = f(
 	},
 	k
 )
+function g.SetHeroVoiceEnabled(self, A, y)
+	if not IsValid(A) then
+		return false
+	end
+	local B = A:FindModifierByName("modifier_hero")
+	if B == nil then
+		B = A:AddNewModifier(A, nil, "modifier_hero", nil)
+	end
+	if B == nil then
+		return false
+	end
+	B:SetVoiceEnabled(y)
+	return true
+end
 return g

@@ -24,6 +24,7 @@ var StoreItem = require('./StoreItem.js');
 var solid_utils = require('./solid_utils.js');
 require('./EOM_RedMark.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./Player.js');
 require('./EOM_TextEntry.js');
 

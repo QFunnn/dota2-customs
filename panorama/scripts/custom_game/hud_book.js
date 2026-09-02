@@ -36,6 +36,7 @@ var fishRod3DPreview = require('./fishRod3DPreview.js');
 var weapon3DPreview = require('./weapon3DPreview.js');
 var server_equipment = require('./server_equipment.js');
 require('./EOM_CostLabel.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 require('./EOM_Icon.js');
 require('./hotkey_label.js');

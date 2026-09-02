@@ -23,16 +23,17 @@ var common_box = require('./common_box.js');
 var EOMChildren = require('./EOMChildren.js');
 var EOM_TextEntry = require('./EOM_TextEntry.js');
 var server_equipment = require('./server_equipment.js');
+var upgrade_icon = require('./upgrade_icon.js');
 var RecycleView = require('./RecycleView.js');
 var StoreItem = require('./StoreItem.js');
 var portraitsFullBodyLoadout = require('./portraitsFullBodyLoadout.js');
 var upgrade_box = require('./upgrade_box.js');
-var upgrade_icon = require('./upgrade_icon.js');
 require('./hotkey_label.js');
 require('./EOM_GamePad.js');
 require('./EOM_HotKeyDisplay.js');
 require('./service_netdata_helper.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./Player.js');
 require('./equipment_utils.js');
 
@@ -2617,6 +2618,370 @@ const BlessPicker = props => {
   });
 };
 
+const [selectedHero, setSelectedHero] = libs.createSignal();
+const getSelectedHeroDetails = () => {
+  const hero = selectedHero();
+  if (hero === undefined) return "";
+  const heroName = GetLocalization("#" + hero.heroName, hero.heroName);
+  return [`英雄：${heroName}`, `英雄ID：${hero.heroID}`, `combatPower：${Math.floor(hero.combatPower)}`, `privilegeFactor：${hero.privilegeFactor.toFixed(3)}`, `sharedDamageFactor：${hero.sharedDamageFactor.toFixed(3)}`, `attackDps（共享前）：${hero.attackDps.toFixed(2)}`, `skillDps（共享前）：${hero.skillDps.toFixed(2)}`, `ehp：${hero.ehp.toFixed(2)}`, `utilityScore：${hero.utilityScore.toFixed(2)}`, `attributes：${JSON.stringify(hero.attributes ?? {})}`].join("\n");
+};
+const CombatPowerPicker = () => {
+  const result = solid_utils.createPlayerNetDataSignal("common", "combat_power");
+  const [targetUID, setTargetUID] = libs.createSignal("");
+  const calculate = () => {
+    const value = Math.floor(toFiniteNumber(targetUID(), 0));
+    console.log("[CombatPowerPicker] calculate targetUID", value);
+    FireEvent("CalcCombatPowerByPlayer", value > 0 ? String(value) : "");
+  };
+  return libs.createComponent(SelectionContainer, {
+    eventName: "CalcCombatPower",
+    title: "战斗力",
+    width: "720px",
+    height: "650px",
+    hasFilter: false,
+    hasRawMode: false,
+    hasToggleSize: false,
+    get children() {
+      const _el$ = libs.createElement("Panel", {
+          width: "100%",
+          height: "100%",
+          flowChildren: "down"
+        }, null),
+        _el$2 = libs.createElement("Panel", {
+          "class": "Row",
+          flowChildren: "right"
+        }, _el$),
+        _el$3 = libs.createElement("TextEntry", {
+          id: "SelectionSearchTextEntry",
+          width: "fill-parent-flow(1)",
+          height: "30px",
+          textmode: "numeric",
+          placeholder: "输入玩家UID"
+        }, _el$2);
+      libs.setProp(_el$, "width", "100%");
+      libs.setProp(_el$, "height", "100%");
+      libs.setProp(_el$, "flowChildren", "down");
+      libs.setProp(_el$2, "flowChildren", "right");
+      libs.setProp(_el$3, "width", "fill-parent-flow(1)");
+      libs.setProp(_el$3, "height", "30px");
+      libs.setProp(_el$3, "ontextentrychange", self => setTargetUID(self.text));
+      libs.setProp(_el$3, "oninputsubmit", calculate);
+      libs.setProp(_el$3, "onload", self => self.SetDisableFocusOnMouseDown(false));
+      libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        width: "100px",
+        "class": "DemoButton GreenButton",
+        onactivate: calculate,
+        get children() {
+          return libs.createElement("Label", {
+            text: "计算"
+          }, null);
+        }
+      }), null);
+      libs.insert(_el$, libs.createComponent(libs.Show, {
+        get when() {
+          return libs.memo(() => !!result())() && !result()?.error;
+        },
+        get children() {
+          return [(() => {
+            const _el$5 = libs.createElement("Label", {
+              get text() {
+                return `玩家UID：${result()?.targetUID ?? 0}`;
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$5, "text", `玩家UID：${result()?.targetUID ?? 0}`, _$p));
+            return _el$5;
+          })(), (() => {
+            const _el$6 = libs.createElement("Label", {
+              get text() {
+                return `总战力：${Math.floor(result()?.totalCombatPower ?? 0)}`;
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$6, "text", `总战力：${Math.floor(result()?.totalCombatPower ?? 0)}`, _$p));
+            return _el$6;
+          })(), (() => {
+            const _el$7 = libs.createElement("Panel", {
+                flowChildren: "right",
+                marginTop: "8px",
+                marginBottom: "4px"
+              }, null),
+              _el$8 = libs.createElement("Label", {
+                width: "60px",
+                text: "英雄ID"
+              }, _el$7),
+              _el$9 = libs.createElement("Label", {
+                width: "150px",
+                text: "英雄"
+              }, _el$7),
+              _el$0 = libs.createElement("Label", {
+                width: "80px",
+                text: "战力"
+              }, _el$7),
+              _el$1 = libs.createElement("Label", {
+                width: "80px",
+                text: "操作"
+              }, _el$7);
+            libs.setProp(_el$7, "flowChildren", "right");
+            libs.setProp(_el$7, "marginTop", "8px");
+            libs.setProp(_el$7, "marginBottom", "4px");
+            libs.setProp(_el$8, "width", "60px");
+            libs.setProp(_el$9, "width", "150px");
+            libs.setProp(_el$0, "width", "80px");
+            libs.setProp(_el$1, "width", "80px");
+            return _el$7;
+          })(), (() => {
+            const _el$10 = libs.createElement("Panel", {
+              width: "100%",
+              height: "180px",
+              scroll: "y",
+              flowChildren: "down"
+            }, null);
+            libs.setProp(_el$10, "width", "100%");
+            libs.setProp(_el$10, "height", "180px");
+            libs.setProp(_el$10, "scroll", "y");
+            libs.setProp(_el$10, "flowChildren", "down");
+            libs.insert(_el$10, libs.createComponent(libs.For, {
+              get each() {
+                return result()?.heroes ?? [];
+              },
+              children: hero => (() => {
+                const _el$32 = libs.createElement("Panel", {
+                    flowChildren: "right"
+                  }, null),
+                  _el$33 = libs.createElement("Label", {
+                    width: "60px",
+                    get text() {
+                      return String(hero.heroID);
+                    }
+                  }, _el$32),
+                  _el$34 = libs.createElement("Label", {
+                    width: "150px",
+                    get text() {
+                      return "#" + hero.heroName;
+                    }
+                  }, _el$32),
+                  _el$35 = libs.createElement("Label", {
+                    width: "80px",
+                    get text() {
+                      return String(Math.floor(hero.combatPower));
+                    }
+                  }, _el$32);
+                libs.setProp(_el$32, "flowChildren", "right");
+                libs.setProp(_el$33, "width", "60px");
+                libs.setProp(_el$34, "width", "150px");
+                libs.setProp(_el$35, "width", "80px");
+                libs.insert(_el$32, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  width: "80px",
+                  height: "30px",
+                  "class": "DemoButton",
+                  onactivate: () => {
+                    setSelectedHero(hero);
+                  },
+                  get children() {
+                    return libs.createElement("Label", {
+                      text: "详情"
+                    }, null);
+                  }
+                }), null);
+                libs.effect(_p$ => {
+                  const _v$9 = String(hero.heroID),
+                    _v$0 = "#" + hero.heroName,
+                    _v$1 = String(Math.floor(hero.combatPower));
+                  _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$33, "text", _v$9, _p$._v$9));
+                  _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$34, "text", _v$0, _p$._v$0));
+                  _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$35, "text", _v$1, _p$._v$1));
+                  return _p$;
+                }, {
+                  _v$9: undefined,
+                  _v$0: undefined,
+                  _v$1: undefined
+                });
+                return _el$32;
+              })()
+            }));
+            return _el$10;
+          })()];
+        }
+      }), null);
+      libs.insert(_el$, libs.createComponent(libs.Show, {
+        get when() {
+          return selectedHero();
+        },
+        get children() {
+          const _el$11 = libs.createElement("Panel", {
+              width: "100%",
+              height: "fill-parent-flow(1)",
+              marginTop: "8px",
+              padding: "8px",
+              scroll: "y",
+              flowChildren: "down",
+              backgroundColor: "#182333"
+            }, null),
+            _el$12 = libs.createElement("Panel", {
+              flowChildren: "right",
+              "class": "Row"
+            }, _el$11),
+            _el$13 = libs.createElement("Label", {
+              get text() {
+                return `英雄详情：#${selectedHero()?.heroName ?? ""}（${selectedHero()?.heroID ?? 0}）`;
+              }
+            }, _el$12),
+            _el$17 = libs.createElement("Panel", {
+              flowChildren: "right"
+            }, _el$11),
+            _el$18 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `combatPower：${Math.floor(selectedHero()?.combatPower ?? 0)}`;
+              }
+            }, _el$17),
+            _el$19 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `privilegeFactor：${(selectedHero()?.privilegeFactor ?? 0).toFixed(3)}`;
+              }
+            }, _el$17),
+            _el$20 = libs.createElement("Panel", {
+              flowChildren: "right"
+            }, _el$11),
+            _el$21 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `sharedDamageFactor：${(selectedHero()?.sharedDamageFactor ?? 1).toFixed(3)}`;
+              }
+            }, _el$20),
+            _el$22 = libs.createElement("Panel", {
+              flowChildren: "right"
+            }, _el$11),
+            _el$23 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `attackDps（共享前）：${(selectedHero()?.attackDps ?? 0).toFixed(2)}`;
+              }
+            }, _el$22),
+            _el$24 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `skillDps（共享前）：${(selectedHero()?.skillDps ?? 0).toFixed(2)}`;
+              }
+            }, _el$22),
+            _el$25 = libs.createElement("Panel", {
+              flowChildren: "right"
+            }, _el$11),
+            _el$26 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `ehp：${(selectedHero()?.ehp ?? 0).toFixed(2)}`;
+              }
+            }, _el$25),
+            _el$27 = libs.createElement("Label", {
+              width: "180px",
+              get text() {
+                return `utilityScore：${(selectedHero()?.utilityScore ?? 0).toFixed(2)}`;
+              }
+            }, _el$25);
+            libs.createElement("Label", {
+              text: "总战力 = 属性战力 × (1 + privilegeFactor)"
+            }, _el$11);
+            libs.createElement("Label", {
+              text: "属性战力 = floor(max(0, (attackDps × 1 + skillDps × 1) × sharedDamageFactor + ehp × 1 + utilityScore × 1))"
+            }, _el$11);
+            const _el$30 = libs.createElement("Panel", {
+              flowChildren: "down",
+              width: "100%"
+            }, _el$11);
+            libs.createElement("Label", {
+              text: "attributes："
+            }, _el$30);
+          libs.setProp(_el$11, "width", "100%");
+          libs.setProp(_el$11, "height", "fill-parent-flow(1)");
+          libs.setProp(_el$11, "marginTop", "8px");
+          libs.setProp(_el$11, "padding", "8px");
+          libs.setProp(_el$11, "scroll", "y");
+          libs.setProp(_el$11, "flowChildren", "down");
+          libs.setProp(_el$11, "backgroundColor", "#182333");
+          libs.setProp(_el$12, "flowChildren", "right");
+          libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            id: "Copy",
+            onactivate: () => {
+              $.DispatchEvent("CopyStringToClipboard", getSelectedHeroDetails(), null);
+            },
+            get children() {
+              const _el$14 = libs.createElement("Panel", {
+                  align: "center center"
+                }, null);
+                libs.createElement("Panel", {
+                  id: "Copy1"
+                }, _el$14);
+                libs.createElement("Panel", {
+                  id: "Copy2"
+                }, _el$14);
+              libs.setProp(_el$14, "align", "center center");
+              return _el$14;
+            }
+          }), null);
+          libs.setProp(_el$17, "flowChildren", "right");
+          libs.setProp(_el$18, "width", "180px");
+          libs.setProp(_el$19, "width", "180px");
+          libs.setProp(_el$20, "flowChildren", "right");
+          libs.setProp(_el$21, "width", "180px");
+          libs.setProp(_el$22, "flowChildren", "right");
+          libs.setProp(_el$23, "width", "180px");
+          libs.setProp(_el$24, "width", "180px");
+          libs.setProp(_el$25, "flowChildren", "right");
+          libs.setProp(_el$26, "width", "180px");
+          libs.setProp(_el$27, "width", "180px");
+          libs.setProp(_el$30, "flowChildren", "down");
+          libs.setProp(_el$30, "width", "100%");
+          libs.insert(_el$30, libs.createComponent(libs.For, {
+            get each() {
+              return Object.entries(selectedHero()?.attributes ?? {});
+            },
+            children: entry => (() => {
+              const _el$37 = libs.createElement("Label", {
+                get text() {
+                  return `${entry[0]}：${entry[1]}`;
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$37, "text", `${entry[0]}：${entry[1]}`, _$p));
+              return _el$37;
+            })()
+          }), null);
+          libs.effect(_p$ => {
+            const _v$ = `英雄详情：#${selectedHero()?.heroName ?? ""}（${selectedHero()?.heroID ?? 0}）`,
+              _v$2 = `combatPower：${Math.floor(selectedHero()?.combatPower ?? 0)}`,
+              _v$3 = `privilegeFactor：${(selectedHero()?.privilegeFactor ?? 0).toFixed(3)}`,
+              _v$4 = `sharedDamageFactor：${(selectedHero()?.sharedDamageFactor ?? 1).toFixed(3)}`,
+              _v$5 = `attackDps（共享前）：${(selectedHero()?.attackDps ?? 0).toFixed(2)}`,
+              _v$6 = `skillDps（共享前）：${(selectedHero()?.skillDps ?? 0).toFixed(2)}`,
+              _v$7 = `ehp：${(selectedHero()?.ehp ?? 0).toFixed(2)}`,
+              _v$8 = `utilityScore：${(selectedHero()?.utilityScore ?? 0).toFixed(2)}`;
+            _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$13, "text", _v$, _p$._v$));
+            _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$18, "text", _v$2, _p$._v$2));
+            _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$19, "text", _v$3, _p$._v$3));
+            _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$21, "text", _v$4, _p$._v$4));
+            _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$23, "text", _v$5, _p$._v$5));
+            _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$24, "text", _v$6, _p$._v$6));
+            _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$26, "text", _v$7, _p$._v$7));
+            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$27, "text", _v$8, _p$._v$8));
+            return _p$;
+          }, {
+            _v$: undefined,
+            _v$2: undefined,
+            _v$3: undefined,
+            _v$4: undefined,
+            _v$5: undefined,
+            _v$6: undefined,
+            _v$7: undefined,
+            _v$8: undefined
+          });
+          return _el$11;
+        }
+      }), null);
+      return _el$;
+    }
+  });
+};
+
 const DropPicker = props => {
   const getDropList = () => Object.keys(KeyValues.consumables).sort((a, b) => {
     return Number(KeyValues.consumables[a].Rarity) - Number(KeyValues.consumables[b].Rarity);
@@ -3950,6 +4315,143 @@ const PropertyPicker = () => {
           })();
         }
       }));
+      return _el$;
+    }
+  });
+};
+
+const RemoveUpgradePicker = () => {
+  const upgradeList = solid_utils.createPlayerNetDataSignal("common", "upgrade_list", {
+    upgrades: []
+  });
+  const upgrades = () => upgradeList().upgrades;
+  return libs.createComponent(SelectionContainer, {
+    eventName: "RemoveAbilityUpgrade",
+    get title() {
+      return GetLocalization("#Demo_RemoveAbilityUpgrade_Title");
+    },
+    hasFilter: false,
+    hasRawMode: false,
+    hasToggleSize: false,
+    width: "620px",
+    height: "520px",
+    get children() {
+      const _el$ = libs.createElement("Panel", {
+          id: "RemoveUpgradePicker",
+          flowChildren: "down"
+        }, null),
+        _el$2 = libs.createElement("Panel", {
+          id: "RemoveUpgradeActions",
+          flowChildren: "right"
+        }, _el$),
+        _el$3 = libs.createElement("Label", {
+          id: "RemoveUpgradeCount",
+          get text() {
+            return LocalizeWithVars("#Demo_RemoveAbilityUpgrade_Count", {
+              count: upgrades().length
+            });
+          }
+        }, _el$2),
+        _el$4 = libs.createElement("Panel", {
+          width: "fill-parent-flow(1)"
+        }, _el$2);
+      libs.setProp(_el$, "flowChildren", "down");
+      libs.setProp(_el$2, "flowChildren", "right");
+      libs.setProp(_el$4, "width", "fill-parent-flow(1)");
+      libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        "class": "DemoButton RemoveAllButton",
+        get enabled() {
+          return upgrades().length > 0;
+        },
+        onactivate: () => FireEvent("RemoveAllUpgrade"),
+        get children() {
+          const _el$5 = libs.createElement("Label", {
+            get text() {
+              return GetLocalization("#Demo_RemoveAbilityUpgrade_RemoveAll");
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$5, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_RemoveAll"), _$p));
+          return _el$5;
+        }
+      }), null);
+      libs.insert(_el$, libs.createComponent(libs.Show, {
+        get when() {
+          return upgrades().length > 0;
+        },
+        get fallback() {
+          return (() => {
+            const _el$7 = libs.createElement("Label", {
+              id: "RemoveUpgradeEmpty",
+              get text() {
+                return GetLocalization("#Demo_RemoveAbilityUpgrade_Empty");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$7, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_Empty"), _$p));
+            return _el$7;
+          })();
+        },
+        get children() {
+          const _el$6 = libs.createElement("Panel", {
+            id: "RemoveUpgradeList",
+            flowChildren: "down",
+            scroll: "y"
+          }, null);
+          libs.setProp(_el$6, "flowChildren", "down");
+          libs.setProp(_el$6, "scroll", "y");
+          libs.insert(_el$6, libs.createComponent(libs.For, {
+            get each() {
+              return upgrades();
+            },
+            children: upgradeID => (() => {
+              const _el$8 = libs.createElement("Panel", {
+                  "class": "RemoveUpgradeRow",
+                  flowChildren: "right"
+                }, null),
+                _el$9 = libs.createElement("Panel", {
+                  "class": "RemoveUpgradeInfo",
+                  flowChildren: "down"
+                }, _el$8),
+                _el$0 = libs.createElement("Label", {
+                  "class": "RemoveUpgradeName",
+                  get text() {
+                    return GetLocalization("#" + upgradeID, upgradeID);
+                  }
+                }, _el$9),
+                _el$1 = libs.createElement("Label", {
+                  "class": "RemoveUpgradeID",
+                  text: upgradeID
+                }, _el$9);
+              libs.setProp(_el$8, "flowChildren", "right");
+              libs.insert(_el$8, libs.createComponent(upgrade_icon.UpgradeIcon, {
+                upgradeID: upgradeID,
+                width: "52px",
+                height: "52px"
+              }), _el$9);
+              libs.setProp(_el$9, "flowChildren", "down");
+              libs.setProp(_el$1, "text", upgradeID);
+              libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                "class": "DemoButton RemoveOneButton",
+                onactivate: () => FireEvent("RemoveAbilityUpgrade", upgradeID),
+                get children() {
+                  const _el$10 = libs.createElement("Label", {
+                    get text() {
+                      return GetLocalization("#Demo_RemoveAbilityUpgrade_Remove");
+                    }
+                  }, null);
+                  libs.effect(_$p => libs.setProp(_el$10, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_Remove"), _$p));
+                  return _el$10;
+                }
+              }), null);
+              libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#" + upgradeID, upgradeID), _$p));
+              return _el$8;
+            })()
+          }));
+          return _el$6;
+        }
+      }), null);
+      libs.effect(_$p => libs.setProp(_el$3, "text", LocalizeWithVars("#Demo_RemoveAbilityUpgrade_Count", {
+        count: upgrades().length
+      }), _$p));
       return _el$;
     }
   });
@@ -6087,143 +6589,6 @@ const UpgradePicker = () => {
   });
 };
 
-const RemoveUpgradePicker = () => {
-  const upgradeList = solid_utils.createPlayerNetDataSignal("common", "upgrade_list", {
-    upgrades: []
-  });
-  const upgrades = () => upgradeList().upgrades;
-  return libs.createComponent(SelectionContainer, {
-    eventName: "RemoveAbilityUpgrade",
-    get title() {
-      return GetLocalization("#Demo_RemoveAbilityUpgrade_Title");
-    },
-    hasFilter: false,
-    hasRawMode: false,
-    hasToggleSize: false,
-    width: "620px",
-    height: "520px",
-    get children() {
-      const _el$ = libs.createElement("Panel", {
-          id: "RemoveUpgradePicker",
-          flowChildren: "down"
-        }, null),
-        _el$2 = libs.createElement("Panel", {
-          id: "RemoveUpgradeActions",
-          flowChildren: "right"
-        }, _el$),
-        _el$3 = libs.createElement("Label", {
-          id: "RemoveUpgradeCount",
-          get text() {
-            return LocalizeWithVars("#Demo_RemoveAbilityUpgrade_Count", {
-              count: upgrades().length
-            });
-          }
-        }, _el$2),
-        _el$4 = libs.createElement("Panel", {
-          width: "fill-parent-flow(1)"
-        }, _el$2);
-      libs.setProp(_el$, "flowChildren", "down");
-      libs.setProp(_el$2, "flowChildren", "right");
-      libs.setProp(_el$4, "width", "fill-parent-flow(1)");
-      libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
-        "class": "DemoButton RemoveAllButton",
-        get enabled() {
-          return upgrades().length > 0;
-        },
-        onactivate: () => FireEvent("RemoveAllUpgrade"),
-        get children() {
-          const _el$5 = libs.createElement("Label", {
-            get text() {
-              return GetLocalization("#Demo_RemoveAbilityUpgrade_RemoveAll");
-            }
-          }, null);
-          libs.effect(_$p => libs.setProp(_el$5, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_RemoveAll"), _$p));
-          return _el$5;
-        }
-      }), null);
-      libs.insert(_el$, libs.createComponent(libs.Show, {
-        get when() {
-          return upgrades().length > 0;
-        },
-        get fallback() {
-          return (() => {
-            const _el$7 = libs.createElement("Label", {
-              id: "RemoveUpgradeEmpty",
-              get text() {
-                return GetLocalization("#Demo_RemoveAbilityUpgrade_Empty");
-              }
-            }, null);
-            libs.effect(_$p => libs.setProp(_el$7, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_Empty"), _$p));
-            return _el$7;
-          })();
-        },
-        get children() {
-          const _el$6 = libs.createElement("Panel", {
-            id: "RemoveUpgradeList",
-            flowChildren: "down",
-            scroll: "y"
-          }, null);
-          libs.setProp(_el$6, "flowChildren", "down");
-          libs.setProp(_el$6, "scroll", "y");
-          libs.insert(_el$6, libs.createComponent(libs.For, {
-            get each() {
-              return upgrades();
-            },
-            children: upgradeID => (() => {
-              const _el$8 = libs.createElement("Panel", {
-                  "class": "RemoveUpgradeRow",
-                  flowChildren: "right"
-                }, null),
-                _el$9 = libs.createElement("Panel", {
-                  "class": "RemoveUpgradeInfo",
-                  flowChildren: "down"
-                }, _el$8),
-                _el$0 = libs.createElement("Label", {
-                  "class": "RemoveUpgradeName",
-                  get text() {
-                    return GetLocalization("#" + upgradeID, upgradeID);
-                  }
-                }, _el$9),
-                _el$1 = libs.createElement("Label", {
-                  "class": "RemoveUpgradeID",
-                  text: upgradeID
-                }, _el$9);
-              libs.setProp(_el$8, "flowChildren", "right");
-              libs.insert(_el$8, libs.createComponent(upgrade_icon.UpgradeIcon, {
-                upgradeID: upgradeID,
-                width: "52px",
-                height: "52px"
-              }), _el$9);
-              libs.setProp(_el$9, "flowChildren", "down");
-              libs.setProp(_el$1, "text", upgradeID);
-              libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_BaseButton, {
-                "class": "DemoButton RemoveOneButton",
-                onactivate: () => FireEvent("RemoveAbilityUpgrade", upgradeID),
-                get children() {
-                  const _el$10 = libs.createElement("Label", {
-                    get text() {
-                      return GetLocalization("#Demo_RemoveAbilityUpgrade_Remove");
-                    }
-                  }, null);
-                  libs.effect(_$p => libs.setProp(_el$10, "text", GetLocalization("#Demo_RemoveAbilityUpgrade_Remove"), _$p));
-                  return _el$10;
-                }
-              }), null);
-              libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#" + upgradeID, upgradeID), _$p));
-              return _el$8;
-            })()
-          }));
-          return _el$6;
-        }
-      }), null);
-      libs.effect(_$p => libs.setProp(_el$3, "text", LocalizeWithVars("#Demo_RemoveAbilityUpgrade_Count", {
-        count: upgrades().length
-      }), _$p));
-      return _el$;
-    }
-  });
-};
-
 function Demo() {
   const [demoSetting, _setDemoSetting] = libs.createSignal(CustomNetTables.GetTableValue("common", "demo_settings"));
   const settings = solid_utils.createNetDataSignal("common", "settings");
@@ -6270,7 +6635,7 @@ function Demo() {
             get itemNames() {
               return commonHeroList();
             }
-          }), libs.createComponent(UpgradePicker, {}), libs.createComponent(RemoveUpgradePicker, {}), libs.createComponent(PropertyPicker, {}), libs.createComponent(PrivilagePicker, {}), libs.createComponent(LoadoutPicker, {}), libs.createComponent(ServicePicker, {}), libs.createComponent(UnitInfo, {}), libs.createComponent(ServiceSwitch, {})];
+          }), libs.createComponent(UpgradePicker, {}), libs.createComponent(RemoveUpgradePicker, {}), libs.createComponent(PropertyPicker, {}), libs.createComponent(PrivilagePicker, {}), libs.createComponent(LoadoutPicker, {}), libs.createComponent(ServicePicker, {}), libs.createComponent(UnitInfo, {}), libs.createComponent(ServiceSwitch, {}), libs.createComponent(CombatPowerPicker, {})];
         },
         get children() {
           return [libs.createComponent(EOM_DebugTool_Category, {
@@ -6336,11 +6701,9 @@ function Demo() {
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddAbilityUpgrade",
                 text: "添加技能升级"
-              }), libs.createComponent(DemoSelectionButton, {
-                eventName: "RemoveAbilityUpgrade",
-                get text() {
-                  return GetLocalization("#Demo_RemoveAbilityUpgrade");
-                }
+              }), libs.createComponent(DemoButton, {
+                eventName: "RemoveAllUpgrade",
+                text: "移除技能升级"
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddAttribute",
                 text: "添加属性"
@@ -6453,6 +6816,9 @@ function Demo() {
               }), libs.createComponent(DemoTextEntry, {
                 eventName: "AbyssDiffUnlock",
                 text: "深渊解锁"
+              }), libs.createComponent(DemoSelectionButton, {
+                eventName: "CalcCombatPower",
+                text: "战斗力"
               })];
             }
           }), libs.createComponent(EOM_DebugTool_Category, {
@@ -6491,4 +6857,5 @@ function Demo() {
     }
   });
 }
+print("Demo loaded 2");
 libs.render(() => libs.createComponent(Demo, {}), $.GetContextPanel());
