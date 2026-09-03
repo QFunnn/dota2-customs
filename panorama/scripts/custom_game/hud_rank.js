@@ -1282,7 +1282,7 @@ function LadderLobby() {
     });
   };
   const pvpLoading = libs.createMemo(() => pvpRequest()?.loading ?? currentPvpData() === undefined);
-  const isLocalHost = libs.createMemo(() => settings()?.is_local_host === true);
+  libs.createMemo(() => settings()?.is_local_host === true);
   const remainingBattleCount = libs.createMemo(() => Math.max(0, DAILY_PVP_BATTLE_COUNT - (playerCounters()["daily_pvp_play"]?.count ?? 0)));
   const pvpReady = libs.createMemo(() => {
     const request = pvpRequest();
@@ -1536,7 +1536,7 @@ function LadderLobby() {
       libs.insert(_el$67, libs.createComponent(EOM_Button.EOM_BaseButton, {
         "class": "LadderBattleButton",
         get enabled() {
-          return libs.memo(() => !!(remainingBattleCount() > 0 && !pvpLoading()))() && !isLocalHost();
+          return libs.memo(() => remainingBattleCount() > 0)() && !pvpLoading();
         },
         onactivate: () => {
           if (!pvpReady()) {
@@ -1738,4 +1738,4 @@ function Rank() {
     }
   });
 }
-libs.render(() => libs.createComponent(Rank, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(Rank, {}), $.GetContextPanel());

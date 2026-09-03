@@ -701,12 +701,18 @@ function useRankRedPoints() {
     }, 60 * 1000);
     libs.onCleanup(() => clearInterval(serverTimeInterval));
     libs.createEffect(() => {
-      const task = Object.values(playerWeeklyPvpTasks()).find(task => task.task_id === ARENA_TASK_ID);
+      const currentTime = serverTime();
+      let task;
+      for (const weeklyTask of Object.values(playerWeeklyPvpTasks())) {
+        if (weeklyTask.task_id !== ARENA_TASK_ID) continue;
+        if (weeklyTask.start_time > currentTime || weeklyTask.end_time < currentTime) continue;
+        if (task === undefined || weeklyTask.extra_id > task.extra_id) task = weeklyTask;
+      }
       if (task === undefined) {
         setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], false);
         return;
       }
-      const today = getBeijingDayStart(serverTime());
+      const today = getBeijingDayStart(currentTime);
       const savedViewedDay = Number(playerKeyValues()[WEEKLY_PVP_TASK_VIEWED_DAY_KEY]?.value);
       const viewedToday = locallyViewedDay() === today || savedViewedDay === today;
       const canReceive = task.receive_progress != 1 && task.progress >= task.target;
@@ -868,4 +874,4 @@ function RedPointCenter() {
     hittest: false
   }, null);
 }
-libs.render(() => libs.createComponent(RedPointCenter, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(RedPointCenter, {}), $.GetContextPanel());

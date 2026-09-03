@@ -1299,5 +1299,35 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 		rarity: "5",
 		hide: 1,
 		model: "models/eom/hero/items/tinker_misc/tinker_misc.vmdl"
+	},
+	"1790001": {
+		id: 1790001,
+		name: "PVPS1冠军勋章",
+		type: "MEDAL",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		}
+	},
+	"1790002": {
+		id: 1790002,
+		name: "PVPS1亚军勋章",
+		type: "MEDAL",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		}
+	},
+	"1790003": {
+		id: 1790003,
+		name: "PVPS1季军军勋章",
+		type: "MEDAL",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10
+		}
 	}
-};
+};

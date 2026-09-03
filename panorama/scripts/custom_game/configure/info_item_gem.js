@@ -16,7 +16,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -27,7 +27,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	},
@@ -38,7 +38,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -49,7 +49,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	},
@@ -60,7 +60,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -71,7 +71,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	},
@@ -82,7 +82,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -93,7 +93,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	},
@@ -104,7 +104,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -115,7 +115,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	},
@@ -126,7 +126,7 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1005,
 		adverb_entry_pool: 2005,
 		make_cost: "120011:1400|120014:3",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:300|2:100",
 		icon: 1400001
 	},
@@ -137,8 +137,8 @@ GameUI.CustomUIConfig().info_item_gem = {
 		main_entry_pool: 1006,
 		adverb_entry_pool: 2006,
 		make_cost: "120011:2400|120014:6",
-		make_adverb_num: "2:100|3:50",
+		make_adverb_num: "2:100|3:10",
 		drop_adverb_num: "1:100|2:100|3:50",
 		icon: 1401001
 	}
-};
+};

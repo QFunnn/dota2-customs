@@ -16,6 +16,7 @@ var StoreItem = require('./StoreItem.js');
 var solid_utils = require('./solid_utils.js');
 var number_format = require('./number_format.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./EOM_Button.js');
 require('./Player.js');
 require('./service_netdata_helper.js');
@@ -186,4 +187,4 @@ function SetupTooltip() {
 (function () {
   tooltip_base.InitTooltipStyle(root, "BaseTooltip");
   root.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

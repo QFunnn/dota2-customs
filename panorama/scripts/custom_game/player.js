@@ -703,4 +703,4 @@ exports.EOM_Currency = EOM_Currency;
 exports.ExchangeEntry = ExchangeEntry;
 exports.PlayerAvatar = PlayerAvatar;
 exports.PlayerName = PlayerName;
-exports.PlayerTitle = PlayerTitle;
+exports.PlayerTitle = PlayerTitle;

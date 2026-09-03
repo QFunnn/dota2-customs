@@ -16,6 +16,7 @@ var tooltip_base = require('./tooltip_base.js');
 var service_netdata_helper = require('./service_netdata_helper.js');
 require('./solid_utils.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./EOM_Button.js');
 require('./Player.js');
 require('./EOM_TextEntry.js');
@@ -363,4 +364,4 @@ function SetupTooltip() {
 (function () {
   tooltip_base.InitTooltipStyle(root, "BaseTooltip");
   root.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

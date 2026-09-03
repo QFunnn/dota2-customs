@@ -15,6 +15,7 @@ var tooltip_base = require('./tooltip_base.js');
 var StoreItem = require('./StoreItem.js');
 require('./solid_utils.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./EOM_Button.js');
 require('./Player.js');
 require('./service_netdata_helper.js');
@@ -300,4 +301,4 @@ function SetupTooltip() {
 (function () {
   tooltip_base.InitTooltipStyle(root, "EmptyTooltip");
   root.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

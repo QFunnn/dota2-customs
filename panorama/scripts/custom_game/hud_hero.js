@@ -2618,4 +2618,4 @@ function HeroPage() {
     }
   });
 }
-libs.render(() => libs.createComponent(HudHero, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HudHero, {}), $.GetContextPanel());

@@ -44,6 +44,42 @@
 						relative_angles = [ -0.0, 0.0, 0.0 ]
 						weight = 1.0
 					},
+					{
+						_class = "Attachment"
+						name = "fish_01"
+						ignore_rotation = false
+						parent_bone = "fish_01"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.000005, 180.0, 180.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "eye_l"
+						ignore_rotation = false
+						parent_bone = "fish_07"
+						relative_origin = [ 6.0, 7.0, -9.0 ]
+						relative_angles = [ 35.0, 180.0, 180.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "eye_r"
+						ignore_rotation = false
+						parent_bone = "fish_07"
+						relative_origin = [ 6.0, 7.0, 9.0 ]
+						relative_angles = [ -50.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "mouse"
+						ignore_rotation = false
+						parent_bone = "fish_07"
+						relative_origin = [ 7.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
 				]
 			},
 			{
@@ -143,70 +179,86 @@
 				]
 			},
 			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "fishing_rod_10_fx"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"models/eom/props/fishing_rod/particles/fishing_rod_10_fx.vpcf"
+							config = "preview"
+						}
+					},
+				]
+			},
+			{
 				_class = "Skeleton"
 				children = 
 				[
 					{
 						_class = "Bone"
 						name = "Bip001_L_Hand"
-						origin = [ -10.670603, 3.64522, 7.308245 ]
-						angles = [ 61.300407, -3.163743, -178.695312 ]
+						origin = [ -10.670599, 3.645221, 7.308243 ]
+						angles = [ 61.300442, -3.163745, -178.695312 ]
 						do_not_discard = true
 						children = 
 						[
 							{
 								_class = "Bone"
 								name = "fish_01"
-								origin = [ 6.101687, 3.761182, 3.751059 ]
-								angles = [ 60.847504, -8.867757, -98.396339 ]
+								origin = [ 6.101689, 3.761184, 3.75107 ]
+								angles = [ 60.847527, -8.867818, -98.396851 ]
 								do_not_discard = true
 								children = 
 								[
 									{
 										_class = "Bone"
 										name = "fish_02"
-										origin = [ 36.347328, -0.000013, 0.000023 ]
-										angles = [ 0.029537, 0.119436, -0.000032 ]
+										origin = [ 36.347378, 0.000024, 0.000027 ]
+										angles = [ 0.029536, 0.119451, 0.000351 ]
 										do_not_discard = true
 										children = 
 										[
 											{
 												_class = "Bone"
 												name = "fish_03"
-												origin = [ 29.844278, -0.075859, 0.015403 ]
-												angles = [ -0.029549, -0.111731, 0.000089 ]
+												origin = [ 29.844381, -0.075821, 0.015408 ]
+												angles = [ -0.029547, -0.111712, 0.000174 ]
 												do_not_discard = true
 												children = 
 												[
 													{
 														_class = "Bone"
 														name = "fish_04"
-														origin = [ 32.333881, -0.012832, 0.000014 ]
-														angles = [ -0.000327, -0.002791, -0.00086 ]
+														origin = [ 32.334011, -0.012778, 0.000022 ]
+														angles = [ -0.000327, -0.002773, 0.000318 ]
 														do_not_discard = true
 														children = 
 														[
 															{
 																_class = "Bone"
 																name = "fish_05"
-																origin = [ 38.871025, -0.003461, -0.00013 ]
-																angles = [ 0.000306, -0.076039, 0.001352 ]
+																origin = [ 38.871132, -0.003387, -0.000117 ]
+																angles = [ 0.000302, -0.07602, -0.000803 ]
 																do_not_discard = true
 																children = 
 																[
 																	{
 																		_class = "Bone"
 																		name = "fish_06"
-																		origin = [ 32.781181, 0.040294, -0.000063 ]
-																		angles = [ 0.000061, 0.290942, -0.000485 ]
+																		origin = [ 32.781166, 0.040374, -0.00005 ]
+																		angles = [ 0.000052, 0.290961, 0.00014 ]
 																		do_not_discard = true
 																		children = 
 																		[
 																			{
 																				_class = "Bone"
 																				name = "fish_07"
-																				origin = [ 38.099976, -0.102128, 0.00003 ]
-																				angles = [ -0.000079, -0.168856, -0.000041 ]
+																				origin = [ 38.099609, -0.102026, 0.000043 ]
+																				angles = [ -0.000074, -0.168837, 0.00025 ]
 																				do_not_discard = true
 																			},
 																		]

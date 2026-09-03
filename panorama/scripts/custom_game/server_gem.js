@@ -166,10 +166,19 @@ function ServerGemDetail(props) {
           });
         }
       }, _el$5),
-      _el$7 = libs.createElement("Panel", {
+      _el$7 = libs.createElement("Label", {
+        id: "Change",
+        "class": "GemRollChange",
+        get text() {
+          return LocalizeWithVars("#Gem_Change", {
+            value: gemProps().gem_roll_change
+          });
+        }
+      }, _el$5),
+      _el$8 = libs.createElement("Panel", {
         id: "AttrList"
       }, _el$),
-      _el$0 = libs.createElement("Panel", {
+      _el$1 = libs.createElement("Panel", {
         id: "Bottom"
       }, _el$);
     libs.insert(_el$3, libs.createComponent(libs.Show, {
@@ -184,21 +193,21 @@ function ServerGemDetail(props) {
           children: data => {
             if (data().id.startsWith("privilege_")) {
               return (() => {
-                const _el$15 = libs.createElement("Panel", {
+                const _el$16 = libs.createElement("Panel", {
                     "class": "PrivilegeEntry"
                   }, null),
-                  _el$16 = libs.createElement("Label", {
+                  _el$17 = libs.createElement("Label", {
                     get text() {
                       return GetPrivilegeDesc(data().id, 1, {
                         value: data().value
                       });
                     },
                     html: true
-                  }, _el$15);
-                libs.effect(_$p => libs.setProp(_el$16, "text", GetPrivilegeDesc(data().id, 1, {
+                  }, _el$16);
+                libs.effect(_$p => libs.setProp(_el$17, "text", GetPrivilegeDesc(data().id, 1, {
                   value: data().value
                 }), _$p));
-                return _el$15;
+                return _el$16;
               })();
             }
             return libs.createComponent(equip_details.EquipmentAttrRow, {
@@ -214,7 +223,7 @@ function ServerGemDetail(props) {
         });
       }
     }), null);
-    libs.insert(_el$7, libs.createComponent(libs.Show, {
+    libs.insert(_el$8, libs.createComponent(libs.Show, {
       get when() {
         return gemProps().adverb_entry_data.length > 0;
       },
@@ -237,7 +246,7 @@ function ServerGemDetail(props) {
         })];
       }
     }), null);
-    libs.insert(_el$7, libs.createComponent(libs.Show, {
+    libs.insert(_el$8, libs.createComponent(libs.Show, {
       get when() {
         return showMythEntry() || showChaosEntry();
       },
@@ -256,11 +265,11 @@ function ServerGemDetail(props) {
               children: data => {
                 const entryKv = KeyValues.equip_entry[data().id];
                 return (() => {
-                  const _el$17 = libs.createElement("Panel", {
+                  const _el$18 = libs.createElement("Panel", {
                       "class": "MythEntry"
                     }, null);
-                    libs.createElement("Image", {}, _el$17);
-                    const _el$19 = libs.createElement("Label", {
+                    libs.createElement("Image", {}, _el$18);
+                    const _el$20 = libs.createElement("Label", {
                       get text() {
                         return GetPrivilegeDesc(data().id, 1, {
                           value: data().value,
@@ -269,13 +278,13 @@ function ServerGemDetail(props) {
                         });
                       },
                       html: true
-                    }, _el$17);
-                  libs.effect(_$p => libs.setProp(_el$19, "text", GetPrivilegeDesc(data().id, 1, {
+                    }, _el$18);
+                  libs.effect(_$p => libs.setProp(_el$20, "text", GetPrivilegeDesc(data().id, 1, {
                     value: data().value,
                     min: entryKv.value_min,
                     max: entryKv.value_max
                   }), _$p));
-                  return _el$17;
+                  return _el$18;
                 })();
               }
             });
@@ -290,29 +299,29 @@ function ServerGemDetail(props) {
                 return gemProps().chaos_entry_data;
               },
               children: data => (() => {
-                const _el$20 = libs.createElement("Panel", {
+                const _el$21 = libs.createElement("Panel", {
                     "class": `ChaosEntry`
                   }, null);
                   libs.createElement("Panel", {
                     id: "Point"
-                  }, _el$20);
-                  const _el$22 = libs.createElement("Label", {
+                  }, _el$21);
+                  const _el$23 = libs.createElement("Label", {
                     id: "EntryText",
                     get text() {
                       return equipment_utils.GetChaosRowInfo(data());
                     },
                     html: true
-                  }, _el$20);
-                libs.setProp(_el$20, "class", `ChaosEntry`);
-                libs.effect(_$p => libs.setProp(_el$22, "text", equipment_utils.GetChaosRowInfo(data()), _$p));
-                return _el$20;
+                  }, _el$21);
+                libs.setProp(_el$21, "class", `ChaosEntry`);
+                libs.effect(_$p => libs.setProp(_el$23, "text", equipment_utils.GetChaosRowInfo(data()), _$p));
+                return _el$21;
               })()
             });
           }
         })];
       }
     }), null);
-    libs.insert(_el$0, libs.createComponent(libs.Show, {
+    libs.insert(_el$1, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!isAlt())() && featureText();
       },
@@ -320,19 +329,19 @@ function ServerGemDetail(props) {
         return [libs.createElement("Panel", {
           "class": "Separator"
         }, null), (() => {
-          const _el$10 = libs.createElement("Label", {
+          const _el$11 = libs.createElement("Label", {
             id: "FeatureLabel",
             get text() {
               return featureText();
             },
             html: true
           }, null);
-          libs.effect(_$p => libs.setProp(_el$10, "text", featureText(), _$p));
-          return _el$10;
+          libs.effect(_$p => libs.setProp(_el$11, "text", featureText(), _$p));
+          return _el$11;
         })()];
       }
     }), null);
-    libs.insert(_el$0, libs.createComponent(libs.Show, {
+    libs.insert(_el$1, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!!isAlt())() && featureText();
       },
@@ -340,18 +349,18 @@ function ServerGemDetail(props) {
         return [libs.createElement("Panel", {
           "class": "Separator"
         }, null), (() => {
-          const _el$12 = libs.createElement("Panel", {
+          const _el$13 = libs.createElement("Panel", {
               id: "ModeDetailsTips"
             }, null);
             libs.createElement("Label", {
               id: "Tips",
               text: "#EquipmentTips_Details"
-            }, _el$12);
+            }, _el$13);
             libs.createElement("Label", {
               id: "Hotkey",
               text: "ALT"
-            }, _el$12);
-          return _el$12;
+            }, _el$13);
+          return _el$13;
         })()];
       }
     }), null);
@@ -360,15 +369,25 @@ function ServerGemDetail(props) {
         _v$2 = "#" + gemProps().gem_item_id,
         _v$3 = LocalizeWithVars("#Gem_Class", {
           value: gemClass()
+        }),
+        _v$4 = {
+          Active: toFiniteNumber(gemProps().gem_roll_change) > 0
+        },
+        _v$5 = LocalizeWithVars("#Gem_Change", {
+          value: gemProps().gem_roll_change
         });
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
       _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
       _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$6, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$7, "classList", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$7, "text", _v$5, _p$._v$5));
       return _p$;
     }, {
       _v$: undefined,
       _v$2: undefined,
-      _v$3: undefined
+      _v$3: undefined,
+      _v$4: undefined,
+      _v$5: undefined
     });
     return _el$;
   })();
@@ -379,26 +398,26 @@ function TooltipContents() {
       return gemData2();
     },
     get children() {
-      const _el$23 = libs.createElement("Panel", {
+      const _el$24 = libs.createElement("Panel", {
         id: "Detail2",
         "class": "DetailContainer"
       }, null);
-      libs.insert(_el$23, libs.createComponent(ServerGemDetail, {
+      libs.insert(_el$24, libs.createComponent(ServerGemDetail, {
         get data() {
           return gemData2();
         }
       }));
-      return _el$23;
+      return _el$24;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return gemData() != undefined;
     },
     get children() {
-      const _el$24 = libs.createElement("Panel", {
+      const _el$25 = libs.createElement("Panel", {
         "class": "DetailContainer"
       }, null);
-      libs.insert(_el$24, libs.createComponent(ServerGemDetail, {
+      libs.insert(_el$25, libs.createComponent(ServerGemDetail, {
         get data() {
           return gemData();
         },
@@ -406,7 +425,7 @@ function TooltipContents() {
           return gemData2();
         }
       }));
-      return _el$24;
+      return _el$25;
     }
   })];
 }
@@ -414,4 +433,4 @@ function TooltipContents() {
   libs.render(() => libs.createComponent(TooltipContents, {}), root);
   root.GetParent().style.overflow = "noclip";
   root.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

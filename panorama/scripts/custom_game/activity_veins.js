@@ -19,6 +19,7 @@ require('./service_netdata_helper.js');
 require('./EOM_Button.js');
 require('./EOM_TextEntry.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
 
 function ActivityVeinsTooltip(props) {
@@ -296,4 +297,4 @@ function SetupTooltip() {
 (function () {
   tooltip_base.InitTooltipStyle(root, "BaseTooltip");
   root.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

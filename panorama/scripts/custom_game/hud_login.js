@@ -75,9 +75,13 @@ function Root() {
     let password = authPassword().trim();
     if (password === "") return;
     setSubmittingAuth(true);
-    CallAction("/v1/player/auth_login", {
+    ServerRequest("player_auth_login", {
       password
-    });
+    }, result => {
+      if (result.code !== 0 && result.code !== 200) {
+        setSubmittingAuth(false);
+      }
+    }, undefined, () => setSubmittingAuth(false));
   };
   return [libs.createComponent(EOM_Button.EOM_BaseButton, {
     id: "Return",
@@ -400,4 +404,4 @@ function Root() {
 (() => {
   $.GetContextPanel().SetPanelEvent("onactivate", () => {});
   libs.render(() => libs.createComponent(Root, {}), $.GetContextPanel());
-})();
+})();

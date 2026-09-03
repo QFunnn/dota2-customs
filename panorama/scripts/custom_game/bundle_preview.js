@@ -16,6 +16,7 @@ var BackpackItem = require('./BackpackItem.js');
 require('./StoreItem.js');
 require('./solid_utils.js');
 require('./EOM_Countdown.js');
+require('./EOM_ImageNumber.js');
 require('./EOM_Button.js');
 require('./Player.js');
 require('./service_netdata_helper.js');
@@ -70,4 +71,4 @@ function SetupTooltip() {
 (() => {
   tooltip_base.InitTooltipStyle(pSelf);
   pSelf.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

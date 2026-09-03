@@ -65,5 +65,8 @@ GameUI.CustomUIConfig().version = {
 	},
 	"118": {
 		major: 118
+	},
+	"119": {
+		major: 119
 	}
-};
+};

@@ -37,7 +37,8 @@ require('./EOM_Countdown.js');
 require('./EOM_ImageNumber.js');
 require('./EOM_HeroImage.js');
 
-const EMPTY_SLOT_NUM = 5;
+const RUNE_BREAK_SLOT_NUM = 5;
+const RUNE_BREAK_MAX_SELECT_NUM = 30;
 const BREAK_ATTR_LIST = Object.values(KeyValues.rune_break_level_exp).sort((a, b) => a.level - b.level);
 const MAX_LEVEL = BREAK_ATTR_LIST[BREAK_ATTR_LIST.length - 1]?.level ?? 0;
 const FIRST_LEVEL_EXP = KeyValues.rune_break_level_exp[1]?.exp ?? BREAK_ATTR_LIST[0]?.exp ?? 0;
@@ -496,11 +497,11 @@ const RuneBreak = props => {
       }, _el$13),
       _el$15 = libs.createElement("Panel", {
         id: "BreakSlots"
-      }, _el$14);
-      libs.createElement("Panel", {
+      }, _el$14),
+      _el$17 = libs.createElement("Panel", {
         id: "CenterImage"
-      }, _el$14);
-      const _el$17 = libs.createElement("DOTAParticleScenePanel", {
+      }, _el$14),
+      _el$18 = libs.createElement("DOTAParticleScenePanel", {
         id: "BreakForgeParticle",
         particleName: "particles/ui/game/ui_game_equipment_interface_02_fx.vpcf",
         cameraOrigin: "0 0 250",
@@ -509,55 +510,55 @@ const RuneBreak = props => {
         hittest: false,
         squarePixels: true
       }, _el$14),
-      _el$18 = libs.createElement("Panel", {
+      _el$19 = libs.createElement("Panel", {
         id: "LevelInfo"
       }, _el$14),
-      _el$19 = libs.createElement("Panel", {
+      _el$20 = libs.createElement("Panel", {
         width: "100%",
         verticalAlign: "center",
         flowChildren: "down"
-      }, _el$18),
-      _el$20 = libs.createElement("Label", {
-        verticalAlign: "center",
-        text: "#RuneBreak_Level"
       }, _el$19),
       _el$21 = libs.createElement("Label", {
+        verticalAlign: "center",
+        text: "#RuneBreak_Level"
+      }, _el$20),
+      _el$22 = libs.createElement("Label", {
         get text() {
           return `Lv.${props.currentLevel()}${target().addedLevel > 0 ? ToColor(`+${target().addedLevel}`, "#53b646") : ""}`;
         },
         html: true
-      }, _el$19),
-      _el$22 = libs.createElement("Panel", {
+      }, _el$20),
+      _el$23 = libs.createElement("Panel", {
         "class": "ToolTipInfo",
         get onactivate() {
           return props.onToggleBreakAttrs;
         }
-      }, _el$18),
-      _el$23 = libs.createElement("Panel", {
+      }, _el$19),
+      _el$24 = libs.createElement("Panel", {
         id: "FastAdd"
       }, _el$13),
-      _el$25 = libs.createElement("Panel", {
+      _el$26 = libs.createElement("Panel", {
         id: "ExpBarContainer"
       }, _el$13),
-      _el$26 = libs.createElement("Image", {
-        id: "ExpAnimBar"
-      }, _el$25),
       _el$27 = libs.createElement("Image", {
+        id: "ExpAnimBar"
+      }, _el$26),
+      _el$28 = libs.createElement("Image", {
         id: "ExpBar"
-      }, _el$25),
-      _el$28 = libs.createElement("Label", {
+      }, _el$26),
+      _el$29 = libs.createElement("Label", {
         id: "CurExp",
         get text() {
           return libs.memo(() => props.currentLevel() < MAX_LEVEL)() ? `${props.currentExp()}/${currentMaxExp()}` : `${props.currentExp()}`;
         }
-      }, _el$25),
-      _el$29 = libs.createElement("Label", {
+      }, _el$26),
+      _el$30 = libs.createElement("Label", {
         id: "AddexExp",
         get text() {
           return `+${addedExp()}`;
         }
-      }, _el$25),
-      _el$31 = libs.createElement("Panel", {
+      }, _el$26),
+      _el$32 = libs.createElement("Panel", {
         id: "BreakReward",
         get ["class"]() {
           return libs.classNames({
@@ -568,19 +569,19 @@ const RuneBreak = props => {
       libs.createElement("Label", {
         id: "TipsText",
         text: "#RuneBreak_ItemReturn"
-      }, _el$31);
-      const _el$33 = libs.createElement("Panel", {
+      }, _el$32);
+      const _el$34 = libs.createElement("Panel", {
         id: "BreakRewardList",
         flowChildren: "right"
-      }, _el$31);
+      }, _el$32);
     libs.insert(_el$15, libs.createComponent(libs.For, {
       get each() {
-        return Array(EMPTY_SLOT_NUM);
+        return Array(RUNE_BREAK_SLOT_NUM);
       },
       children: (_, idx) => {
         const slotItem = () => props.breakItems()[idx()];
         return (() => {
-          const _el$34 = libs.createElement("Panel", {
+          const _el$35 = libs.createElement("Panel", {
               get id() {
                 return "BreakSlot" + idx();
               },
@@ -592,23 +593,23 @@ const RuneBreak = props => {
             }, null);
             libs.createElement("Panel", {
               id: "Selected"
-            }, _el$34);
-          libs.setProp(_el$34, "onDragEnter", (panel, draggedPanel) => {
+            }, _el$35);
+          libs.setProp(_el$35, "onDragEnter", (panel, draggedPanel) => {
             handleSlotDragEnter(panel, draggedPanel);
           });
-          libs.setProp(_el$34, "onDragLeave", panel => {
+          libs.setProp(_el$35, "onDragLeave", panel => {
             handleSlotDragLeave(panel);
           });
-          libs.setProp(_el$34, "onDragDrop", (panel, draggedPanel) => {
+          libs.setProp(_el$35, "onDragDrop", (panel, draggedPanel) => {
             handleSlotDragDrop(idx(), panel, draggedPanel);
           });
-          libs.setProp(_el$34, "onactivate", () => {
+          libs.setProp(_el$35, "onactivate", () => {
             props.onSelectBreakSlot(idx());
           });
-          libs.setProp(_el$34, "oncontextmenu", () => {
+          libs.setProp(_el$35, "oncontextmenu", () => {
             props.onClearBreakSlot(idx());
           });
-          libs.insert(_el$34, libs.createComponent(libs.Show, {
+          libs.insert(_el$35, libs.createComponent(libs.Show, {
             get when() {
               return slotItem();
             },
@@ -618,28 +619,28 @@ const RuneBreak = props => {
               }, null);
             },
             get children() {
-              const _el$36 = libs.createElement("Panel", {
+              const _el$37 = libs.createElement("Panel", {
                   get ["class"]() {
                     return `RuneBreakSlotIconRoot Rarity${slotItem().rarity}`;
                   }
                 }, null),
-                _el$37 = libs.createElement("Image", {
+                _el$38 = libs.createElement("Image", {
                   "class": "RuneBreakSlotIcon",
                   get src() {
                     return libs.memo(() => props.breakType() === "rune")() ? rune_data.getRuneIconPath(slotItem()) : server_rune_utils.getEngravingIconPath(slotItem());
                   }
-                }, _el$36);
+                }, _el$37);
               libs.effect(_p$ => {
                 const _v$10 = `RuneBreakSlotIconRoot Rarity${slotItem().rarity}`,
                   _v$11 = libs.memo(() => props.breakType() === "rune")() ? rune_data.getRuneIconPath(slotItem()) : server_rune_utils.getEngravingIconPath(slotItem());
-                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$36, "class", _v$10, _p$._v$10));
-                _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$37, "src", _v$11, _p$._v$11));
+                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$37, "class", _v$10, _p$._v$10));
+                _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$38, "src", _v$11, _p$._v$11));
                 return _p$;
               }, {
                 _v$10: undefined,
                 _v$11: undefined
               });
-              return _el$36;
+              return _el$37;
             }
           }), null);
           libs.effect(_p$ => {
@@ -647,25 +648,46 @@ const RuneBreak = props => {
               _v$13 = libs.classNames("BreakSlot", {
                 Select: idx() == props.selectedBreakSlot()
               });
-            _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$34, "id", _v$12, _p$._v$12));
-            _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$34, "class", _v$13, _p$._v$13));
+            _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$35, "id", _v$12, _p$._v$12));
+            _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$35, "class", _v$13, _p$._v$13));
             return _p$;
           }, {
             _v$12: undefined,
             _v$13: undefined
           });
-          return _el$34;
+          return _el$35;
         })();
       }
     }));
+    libs.insert(_el$14, libs.createComponent(libs.Show, {
+      get when() {
+        return selectedItems().length > RUNE_BREAK_SLOT_NUM;
+      },
+      get children() {
+        const _el$16 = libs.createElement("Label", {
+          id: "BreakSelectCount",
+          hittest: false,
+          text: "#RuneBreak_SelectedCount",
+          get vars() {
+            return {
+              value: selectedItems().length
+            };
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$16, "vars", {
+          value: selectedItems().length
+        }, _$p));
+        return _el$16;
+      }
+    }), _el$17);
     const _ref$ = breakParticle;
-    typeof _ref$ === "function" ? libs.use(_ref$, _el$17) : breakParticle = _el$17;
-    libs.setProp(_el$19, "width", "100%");
-    libs.setProp(_el$19, "verticalAlign", "center");
-    libs.setProp(_el$19, "flowChildren", "down");
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$18) : breakParticle = _el$18;
+    libs.setProp(_el$20, "width", "100%");
     libs.setProp(_el$20, "verticalAlign", "center");
-    libs.setProp(_el$22, "tooltip_text", "#RuneBreak_LevelDescription");
-    libs.insert(_el$23, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
+    libs.setProp(_el$20, "flowChildren", "down");
+    libs.setProp(_el$21, "verticalAlign", "center");
+    libs.setProp(_el$23, "tooltip_text", "#RuneBreak_LevelDescription");
+    libs.insert(_el$24, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
       "class": "BreakTypeBreadcrumb",
       get list() {
         return [GetLocalization("#MenuTabButton_Rune"), GetLocalization("#MenuTabButton_Engraving")];
@@ -675,7 +697,7 @@ const RuneBreak = props => {
       },
       onChange: index => props.onChangeBreakType(index == 1 ? "engraving" : "rune")
     }), null);
-    libs.insert(_el$23, libs.createComponent(libs.Show, {
+    libs.insert(_el$24, libs.createComponent(libs.Show, {
       get when() {
         return props.breakType() === "engraving";
       },
@@ -695,7 +717,7 @@ const RuneBreak = props => {
             }, null), libs.createComponent(libs.For, {
               each: RUNE_RARITY_OPTIONS,
               children: (rarity, idx) => (() => {
-                const _el$40 = libs.createElement("Label", {
+                const _el$41 = libs.createElement("Label", {
                   get style() {
                     return {
                       color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
@@ -710,14 +732,14 @@ const RuneBreak = props => {
                       color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
                     },
                     _v$15 = `#RuneBreak_RuneRarity${rarity.rarity}`;
-                  _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$40, "style", _v$14, _p$._v$14));
-                  _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$40, "text", _v$15, _p$._v$15));
+                  _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$41, "style", _v$14, _p$._v$14));
+                  _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$41, "text", _v$15, _p$._v$15));
                   return _p$;
                 }, {
                   _v$14: undefined,
                   _v$15: undefined
                 });
-                return _el$40;
+                return _el$41;
               })()
             })];
           }
@@ -739,7 +761,7 @@ const RuneBreak = props => {
             }, null), libs.createComponent(libs.For, {
               each: ENGRAVING_RARITY_OPTIONS,
               children: (rarity, idx) => (() => {
-                const _el$41 = libs.createElement("Label", {
+                const _el$42 = libs.createElement("Label", {
                   get style() {
                     return {
                       color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
@@ -754,21 +776,21 @@ const RuneBreak = props => {
                       color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
                     },
                     _v$17 = `#RuneBreak_RuneRarity${rarity.rarity}`;
-                  _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$41, "style", _v$16, _p$._v$16));
-                  _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$41, "text", _v$17, _p$._v$17));
+                  _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$42, "style", _v$16, _p$._v$16));
+                  _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$42, "text", _v$17, _p$._v$17));
                   return _p$;
                 }, {
                   _v$16: undefined,
                   _v$17: undefined
                 });
-                return _el$41;
+                return _el$42;
               })()
             })];
           }
         });
       }
     }), null);
-    libs.insert(_el$23, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
+    libs.insert(_el$24, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
       text: "#RuneBreak_FastAdd",
       get enabled() {
         return !props.requesting();
@@ -780,12 +802,12 @@ const RuneBreak = props => {
       }
     }), null);
     const _ref$2 = expAnimBar;
-    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$26) : expAnimBar = _el$26;
+    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$27) : expAnimBar = _el$27;
     const _ref$3 = expBar;
-    typeof _ref$3 === "function" ? libs.use(_ref$3, _el$27) : expBar = _el$27;
+    typeof _ref$3 === "function" ? libs.use(_ref$3, _el$28) : expBar = _el$28;
     const _ref$4 = expLabel;
-    typeof _ref$4 === "function" ? libs.use(_ref$4, _el$28) : expLabel = _el$28;
-    libs.insert(_el$25, libs.createComponent(libs.Show, {
+    typeof _ref$4 === "function" ? libs.use(_ref$4, _el$29) : expLabel = _el$29;
+    libs.insert(_el$26, libs.createComponent(libs.Show, {
       get when() {
         return target().addedLevel > 0;
       },
@@ -795,27 +817,27 @@ const RuneBreak = props => {
         }, null);
       }
     }), null);
-    libs.setProp(_el$33, "flowChildren", "right");
-    libs.insert(_el$33, libs.createComponent(libs.For, {
+    libs.setProp(_el$34, "flowChildren", "right");
+    libs.insert(_el$34, libs.createComponent(libs.For, {
       get each() {
         return rewardList();
       },
       children: reward => (() => {
-        const _el$42 = libs.createElement("Panel", {
+        const _el$43 = libs.createElement("Panel", {
             "class": "RewardItem"
           }, null),
-          _el$43 = libs.createElement("Label", {
+          _el$44 = libs.createElement("Label", {
             get text() {
               return reward.amount;
             }
-          }, _el$42);
-        libs.insert(_el$42, libs.createComponent(StoreItem.StoreItemImage, {
+          }, _el$43);
+        libs.insert(_el$43, libs.createComponent(StoreItem.StoreItemImage, {
           get itemid() {
             return reward.itemID;
           }
-        }), _el$43);
-        libs.effect(_$p => libs.setProp(_el$43, "text", reward.amount, _$p));
-        return _el$42;
+        }), _el$44);
+        libs.effect(_$p => libs.setProp(_el$44, "text", reward.amount, _$p));
+        return _el$43;
       })()
     }));
     libs.insert(_el$13, libs.createComponent(EOM_Button.EOM_Button, {
@@ -840,12 +862,12 @@ const RuneBreak = props => {
         });
       _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$12, "onactivate", _v$4, _p$._v$4));
       _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$13, "class", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$21, "text", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$22, "onactivate", _v$7, _p$._v$7));
-      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$28, "text", _v$8, _p$._v$8));
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$29, "visible", _v$9, _p$._v$9));
-      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "text", _v$0, _p$._v$0));
-      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$31, "class", _v$1, _p$._v$1));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$23, "onactivate", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$29, "text", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$30, "visible", _v$9, _p$._v$9));
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$30, "text", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$32, "class", _v$1, _p$._v$1));
       return _p$;
     }, {
       _v$4: undefined,
@@ -2819,7 +2841,6 @@ const RUNE_RARITY_LIST = Object.values(KeyValues.rune_rarity_setting).map(settin
 const ENGRAVING_RARITY_LIST = Object.values(KeyValues.engraving_rarity_setting).map(setting => setting.rarity).sort((a, b) => a - b);
 const RUNE_ADVERB_ENTRY_LIST = Object.values(GameUI.CustomUIConfig().rune_entry ?? {}).filter(entry => entry.entry_type === 2).sort((a, b) => a.id - b.id);
 const ENGRAVING_ENTRY_LIST = Object.values(KeyValues.engraving_entry).sort((a, b) => a.id - b.id);
-const RUNE_BREAK_SLOT_NUM = 5;
 const RUNE_BAG_MAX_CAPACITY = 400;
 const ENGRAVING_BAG_MAX_CAPACITY = 400;
 const CHAOS_RUNE_MIN_RARITY = 7;
@@ -2827,9 +2848,6 @@ const LOCKED_RUNE_BREAK_MESSAGE = "#RuneBreak_LockedErrorMessage";
 const LOCKED_ENGRAVING_BREAK_MESSAGE = "#RuneBreak_LockedEngravingErrorMessage";
 const EQUIPPED_RUNE_BREAK_MESSAGE = "#RuneBreak_EquippedTips";
 const EQUIPPED_RUNE_DEVOUR_MESSAGE = "#RuneDevour_EquippedRuneNotAllow";
-const createEmptyBreakSlots = () => Array.from({
-  length: RUNE_BREAK_SLOT_NUM
-}, () => undefined);
 let showFilter = () => false;
 let setShowFilter = () => false;
 let filterNeedLv = () => ({});
@@ -3290,7 +3308,7 @@ function RunePage() {
   const [inlayPreviewing, setInlayPreviewing] = libs.createSignal(false);
   const [selectedBreakSlot, setSelectedBreakSlot] = libs.createSignal(-1);
   const [showBreakAttrInfo, setShowBreakAttrInfo] = libs.createSignal(false);
-  const [breakItemIDs, setBreakItemIDs] = libs.createSignal(createEmptyBreakSlots());
+  const [breakItemIDs, setBreakItemIDs] = libs.createSignal([]);
   const [runeEmbedContext, setRuneEmbedContext] = libs.createSignal();
   const devourLeftRune = libs.createMemo(() => runeMap()[devourLeftRuneID() ?? 0]);
   const devourRightRune = libs.createMemo(() => runeMap()[devourRightRuneID() ?? 0]);
@@ -3450,18 +3468,18 @@ function RunePage() {
   libs.createEffect(() => {
     const currentBagType = bagType();
     setBreakItemIDs(prev => {
-      const next = prev.map(itemID => {
+      const next = prev.filter(itemID => {
         if (itemID == undefined) {
-          return undefined;
+          return false;
         }
         if (currentBagType === "engraving") {
           const engraving = engravingMap()[itemID];
-          return engraving != undefined && engraving.locked !== true ? itemID : undefined;
+          return engraving != undefined && engraving.locked !== true;
         }
         const rune = runeMap()[itemID];
-        return rune != undefined && rune.locked !== true && !isRuneEquipped(rune) ? itemID : undefined;
+        return rune != undefined && rune.locked !== true && !isRuneEquipped(rune);
       });
-      return next.some((itemID, index) => itemID !== prev[index]) ? next : prev;
+      return next.length != prev.length ? next : prev;
     });
   });
   libs.createEffect(() => {
@@ -3517,7 +3535,7 @@ function RunePage() {
     }
     libs.batch(() => {
       if (menuName() === "RuneBreak_Menu") {
-        setBreakItemIDs(createEmptyBreakSlots());
+        setBreakItemIDs([]);
         setSelectedBreakSlot(-1);
         setShowBreakAttrInfo(false);
         setShowFilter(false);
@@ -3579,53 +3597,37 @@ function RunePage() {
       return false;
     }
     setBreakItemIDs(prev => {
-      const next = [...prev];
-      const oldSlot = next.indexOf(itemID);
-      if (oldSlot >= 0) {
-        next[oldSlot] = undefined;
+      if (prev.includes(itemID)) {
+        return prev.filter(id => id != itemID);
       }
-      const targetSlot = slot != undefined ? slot : selectedBreakSlot() >= 0 ? selectedBreakSlot() : next.findIndex(id => id == undefined);
-      if (targetSlot < 0 || targetSlot >= RUNE_BREAK_SLOT_NUM) {
-        return prev;
+      const targetSlot = slot != undefined ? slot : selectedBreakSlot() >= 0 ? selectedBreakSlot() : undefined;
+      if (targetSlot != undefined && targetSlot >= 0 && targetSlot < RUNE_BREAK_SLOT_NUM) {
+        const next = [...prev];
+        next[targetSlot] = itemID;
+        return next;
       }
-      next[targetSlot] = itemID;
-      return next;
+      if (prev.length < RUNE_BREAK_MAX_SELECT_NUM) {
+        return [...prev, itemID];
+      }
+      return prev;
     });
     return true;
   };
   const removeItemFromBreakSlots = itemID => {
-    setBreakItemIDs(prev => {
-      const next = prev.map(id => id === itemID ? undefined : id);
-      return next.some((id, index) => id !== prev[index]) ? next : prev;
-    });
+    setBreakItemIDs(prev => prev.includes(itemID) ? prev.filter(id => id != itemID) : prev);
   };
   const handleFastAddBreakItems = rarity => {
     setSelectedBreakSlot(-1);
     setShowBreakAttrInfo(false);
     setShowFilter(false);
     setBreakItemIDs(prev => {
-      const selectedIDs = prev.filter(id => {
-        if (id == undefined) {
-          return false;
-        }
-        if (bagType() === "engraving") {
-          const engraving = engravingMap()[id];
-          return engraving != undefined && engraving.locked !== true;
-        }
-        const rune = runeMap()[id];
-        return rune != undefined && rune.locked !== true && !isRuneEquipped(rune);
-      });
-      const selectedIDMap = selectedIDs.reduce((result, id) => {
-        result[id] = true;
-        return result;
-      }, {});
-      const addList = [...selectedIDs];
+      const addList = [];
       const fastAddCandidates = bagType() === "engraving" ? [...engravingList()].sort((a, b) => a.rarity - b.rarity || a.engraving_item_id - b.engraving_item_id || a.id - b.id) : [...runeList()].sort((a, b) => a.rarity - b.rarity || a.rune_item_id - b.rune_item_id || a.id - b.id);
       for (const item of fastAddCandidates) {
-        if (addList.length >= RUNE_BREAK_SLOT_NUM) {
+        if (addList.length >= RUNE_BREAK_MAX_SELECT_NUM) {
           break;
         }
-        if (item.locked === true || selectedIDMap[item.id] === true) {
+        if (item.locked === true) {
           continue;
         }
         if (bagType() === "rune" && isRuneEquipped(item)) {
@@ -3635,14 +3637,8 @@ function RunePage() {
           continue;
         }
         addList.push(item.id);
-        selectedIDMap[item.id] = true;
       }
-      if (addList.length == 0) {
-        return prev;
-      }
-      return Array.from({
-        length: RUNE_BREAK_SLOT_NUM
-      }, (_, index) => addList[index]);
+      return addList.length > 0 ? addList : prev;
     });
   };
   const handleConfirmBreakItems = playSuccessEffect => {
@@ -3681,7 +3677,7 @@ function RunePage() {
         return;
       }
       playSuccessEffect();
-      setBreakItemIDs(createEmptyBreakSlots());
+      setBreakItemIDs([]);
     }, () => {
       setRequesting(false);
     });
@@ -3710,9 +3706,11 @@ function RunePage() {
   };
   const handleClearBreakSlot = slot => {
     setBreakItemIDs(prev => {
-      const next = [...prev];
-      next[slot] = undefined;
-      return next;
+      const itemID = prev[slot];
+      if (itemID == undefined) {
+        return prev;
+      }
+      return prev.filter(id => id != itemID);
     });
   };
   const handleDropBreakItem = (slot, itemID) => {
@@ -4092,7 +4090,7 @@ function RunePage() {
   libs.createEffect(libs.on(menuName, name => {
     libs.batch(() => {
       setSelectedBreakSlot(-1);
-      setBreakItemIDs(createEmptyBreakSlots());
+      setBreakItemIDs([]);
       setShowBreakAttrInfo(name === "RuneBreak_Menu");
       if (name !== "RuneEmbed_Menu") {
         setRuneEmbedContext(undefined);
@@ -4780,4 +4778,4 @@ function HudRune() {
     }
   });
 }
-libs.render(() => libs.createComponent(HudRune, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HudRune, {}), $.GetContextPanel());

@@ -3485,4 +3485,4 @@ var PROPERTY_TAGS = {
     ring_track_radius: ["Ring"],
     per_encounter_skill_damage_amplify: ["Skill"],
     per_encounter_ultimate_damage_amplify: ["Ultimate"],
-};
+};

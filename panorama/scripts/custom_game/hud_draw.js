@@ -1589,4 +1589,4 @@ function HudDraw() {
     }
   });
 }
-libs.render(HudDraw, $.GetContextPanel());
+libs.render(HudDraw, $.GetContextPanel());

@@ -2721,4 +2721,4 @@ const EndScreen = () => {
     return _el$;
   })();
 };
-libs.render(EndScreen, $.GetContextPanel());
+libs.render(EndScreen, $.GetContextPanel());

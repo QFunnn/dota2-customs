@@ -6589,11 +6589,6 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "头饰"
 	},
-	"1720003": {
-		item_id: 1720003,
-		type: "item",
-		name: "一镐暴富"
-	},
 	"1720401": {
 		item_id: 1720401,
 		type: "item",

@@ -43,7 +43,6 @@ require('./EOM_Loading.js');
 require('./EOM_Countdown.js');
 require('./EOM_ImageNumber.js');
 
-const EMPTY_SLOT_NUM = 5;
 const RARITY_SETTING = KeyValues.equip_rarity_setting;
 const BREAK_LEVEL_EXP = KeyValues.equip_break_level_exp;
 const BREAK_ATTR_LIST = Object.values(BREAK_LEVEL_EXP);
@@ -94,6 +93,7 @@ const EquipBreak = () => {
   const [hiddenItemList, setItemListIsHidden] = store.hiddenItemList;
   const [selectedItemTab, setSelectedItemTab] = store.selectedItemTab;
   const isGemMode = () => selectedItemTab() === "gem";
+  const selectedCount = libs.createMemo(() => selectedItemList().filter(id => id != null).length);
   const [fastAddRarity, setFastAddRarity] = libs.createSignal(0);
   const [rewardList, setRewardList] = libs.createSignal([]);
   const [addedExp, setAddedExp] = libs.createSignal(0);
@@ -719,11 +719,11 @@ const EquipBreak = () => {
         }, _el$17),
         _el$19 = libs.createElement("Panel", {
           id: "BreakSlots"
-        }, _el$18);
-        libs.createElement("Panel", {
+        }, _el$18),
+        _el$21 = libs.createElement("Panel", {
           id: "CenterImage"
-        }, _el$18);
-        const _el$21 = libs.createElement("DOTAParticleScenePanel", {
+        }, _el$18),
+        _el$22 = libs.createElement("DOTAParticleScenePanel", {
           id: "BreakForgeParticle",
           particleName: "particles/ui/game/ui_game_equipment_interface_02_fx.vpcf",
           cameraOrigin: "0 0 250",
@@ -732,43 +732,43 @@ const EquipBreak = () => {
           hittest: false,
           squarePixels: true
         }, _el$18),
-        _el$22 = libs.createElement("Panel", {
+        _el$23 = libs.createElement("Panel", {
           id: "LevelInfo"
         }, _el$18),
-        _el$23 = libs.createElement("Panel", {
+        _el$24 = libs.createElement("Panel", {
           width: "100%",
           verticalAlign: "center",
           flowChildren: "down"
-        }, _el$22),
-        _el$24 = libs.createElement("Label", {
+        }, _el$23),
+        _el$25 = libs.createElement("Label", {
           verticalAlign: "center",
           text: "#Equipment_BreakLvTips"
-        }, _el$23),
-        _el$26 = libs.createElement("Panel", {
-          "class": "ToolTipInfo"
-        }, _el$22),
+        }, _el$24),
         _el$27 = libs.createElement("Panel", {
+          "class": "ToolTipInfo"
+        }, _el$23),
+        _el$28 = libs.createElement("Panel", {
           id: "FastAdd"
         }, _el$17),
-        _el$31 = libs.createElement("Panel", {
+        _el$32 = libs.createElement("Panel", {
           id: "ExpBarContainer"
         }, _el$17),
-        _el$32 = libs.createElement("Image", {
-          id: "ExpAnimBar"
-        }, _el$31),
         _el$33 = libs.createElement("Image", {
+          id: "ExpAnimBar"
+        }, _el$32),
+        _el$34 = libs.createElement("Image", {
           id: "ExpBar"
-        }, _el$31),
-        _el$34 = libs.createElement("Label", {
-          id: "CurExp"
-        }, _el$31),
+        }, _el$32),
         _el$35 = libs.createElement("Label", {
+          id: "CurExp"
+        }, _el$32),
+        _el$36 = libs.createElement("Label", {
           id: "AddexExp",
           get text() {
             return `+${addedExp()}`;
           }
-        }, _el$31),
-        _el$37 = libs.createElement("Panel", {
+        }, _el$32),
+        _el$38 = libs.createElement("Panel", {
           id: "BreakReward",
           get ["class"]() {
             return libs.classNames({
@@ -779,20 +779,20 @@ const EquipBreak = () => {
         libs.createElement("Label", {
           id: "TipsText",
           text: "#Equipment_Breakreward"
-        }, _el$37);
-        const _el$39 = libs.createElement("Panel", {
+        }, _el$38);
+        const _el$40 = libs.createElement("Panel", {
           id: "BreakRewardList",
           flowChildren: "right"
-        }, _el$37),
-        _el$40 = libs.createElement("Panel", {
+        }, _el$38),
+        _el$41 = libs.createElement("Panel", {
           "class": "BtnList"
         }, _el$17),
-        _el$41 = libs.createElement("Panel", {
+        _el$42 = libs.createElement("Panel", {
           id: "AutoBreak",
           horizontalAlign: "center",
           flowChildren: "right"
         }, _el$17),
-        _el$42 = libs.createElement("Panel", {
+        _el$43 = libs.createElement("Panel", {
           id: "AttributeLvInfo"
         }, _el$15);
       libs.setProp(_el$16, "onactivate", () => {
@@ -801,7 +801,7 @@ const EquipBreak = () => {
       });
       libs.insert(_el$19, libs.createComponent(libs.For, {
         get each() {
-          return Array(5);
+          return Array(equipment_comp.BREAK_SLOT_NUM);
         },
         children: (_, idx) => {
           const slotData = () => {
@@ -813,7 +813,7 @@ const EquipBreak = () => {
             return player_equipments()[id];
           };
           return (() => {
-            const _el$44 = libs.createElement("Panel", {
+            const _el$45 = libs.createElement("Panel", {
                 get id() {
                   return "BreakSlot" + idx();
                 },
@@ -825,17 +825,17 @@ const EquipBreak = () => {
               }, null);
               libs.createElement("Panel", {
                 id: "Selected"
-              }, _el$44);
-            libs.setProp(_el$44, "onDragEnter", (pPanel, draggedPanel) => {
+              }, _el$45);
+            libs.setProp(_el$45, "onDragEnter", (pPanel, draggedPanel) => {
               const dragType = isGemMode() ? "gem" : "equip";
               if (LoadData(draggedPanel, dragType)) {
                 draggedPanel.AddClass("draggedPanel_drop_enter");
               }
             });
-            libs.setProp(_el$44, "onDragLeave", (pPanel, draggedPanel) => {
+            libs.setProp(_el$45, "onDragLeave", (pPanel, draggedPanel) => {
               draggedPanel.RemoveClass("draggedPanel_drop_enter");
             });
-            libs.setProp(_el$44, "onDragDrop", (panel, draggedPanel) => {
+            libs.setProp(_el$45, "onDragDrop", (panel, draggedPanel) => {
               if (isGemMode()) {
                 let gemId = LoadData(draggedPanel, "gem");
                 if (!gemId) return;
@@ -843,16 +843,12 @@ const EquipBreak = () => {
                   return;
                 }
                 if (selectedItemList().includes(gemId)) {
-                  setSelectedItemList(items => {
-                    const newItems = [...items];
-                    newItems[items.indexOf(gemId)] = undefined;
-                    return newItems;
-                  });
+                  setSelectedItemList(items => items.filter(i => i != gemId));
                   return;
                 }
                 setSelectedItemList(items => {
                   const slot = idx();
-                  if (slot >= 0 && slot < 5) {
+                  if (slot >= 0 && slot < equipment_comp.BREAK_SLOT_NUM) {
                     const newItems = [...items];
                     newItems[slot] = gemId;
                     return newItems;
@@ -860,7 +856,7 @@ const EquipBreak = () => {
                   if (items.includes(gemId)) {
                     return items.filter(i => i != gemId);
                   }
-                  if (items.length < 5) {
+                  if (items.length < equipment_comp.MAX_BREAK_SELECT_NUM) {
                     return [...items, gemId];
                   }
                   return items;
@@ -872,16 +868,12 @@ const EquipBreak = () => {
                   return;
                 }
                 if (selectedItemList().includes(equip)) {
-                  setSelectedItemList(items => {
-                    const newItems = [...items];
-                    newItems[items.indexOf(equip)] = undefined;
-                    return newItems;
-                  });
+                  setSelectedItemList(items => items.filter(i => i != equip));
                   return;
                 }
                 setSelectedItemList(items => {
                   const slot = idx();
-                  if (slot >= 0 && slot < 5) {
+                  if (slot >= 0 && slot < equipment_comp.BREAK_SLOT_NUM) {
                     const newItems = [...items];
                     newItems[slot] = equip;
                     return newItems;
@@ -889,28 +881,24 @@ const EquipBreak = () => {
                   if (items.includes(equip)) {
                     return items.filter(i => i != equip);
                   }
-                  if (items.length < 5) {
+                  if (items.length < equipment_comp.MAX_BREAK_SELECT_NUM) {
                     return [...items, equip];
                   }
                   return items;
                 });
               }
             });
-            libs.setProp(_el$44, "onactivate", () => {
+            libs.setProp(_el$45, "onactivate", () => {
               setSelectSlot(idx());
             });
-            libs.setProp(_el$44, "oncontextmenu", () => {
+            libs.setProp(_el$45, "oncontextmenu", () => {
               const slotIndex = idx();
-              const items = selectedItemList();
-              if (items[slotIndex]) {
-                setSelectedItemList(prev => {
-                  const newItems = [...prev];
-                  newItems[slotIndex] = undefined;
-                  return newItems;
-                });
+              const id = selectedItemList()[slotIndex];
+              if (id) {
+                setSelectedItemList(prev => prev.filter(i => i != id));
               }
             });
-            libs.insert(_el$44, libs.createComponent(libs.Show, {
+            libs.insert(_el$45, libs.createComponent(libs.Show, {
               get when() {
                 return slotData();
               },
@@ -938,52 +926,73 @@ const EquipBreak = () => {
                 _v$1 = libs.classNames("BreakSlot", {
                   Select: idx() == selectSlot()
                 });
-              _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "id", _v$0, _p$._v$0));
-              _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$44, "class", _v$1, _p$._v$1));
+              _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$45, "id", _v$0, _p$._v$0));
+              _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$45, "class", _v$1, _p$._v$1));
               return _p$;
             }, {
               _v$0: undefined,
               _v$1: undefined
             });
-            return _el$44;
+            return _el$45;
           })();
         }
       }));
+      libs.insert(_el$18, libs.createComponent(libs.Show, {
+        get when() {
+          return selectedCount() > equipment_comp.BREAK_SLOT_NUM;
+        },
+        get children() {
+          const _el$20 = libs.createElement("Label", {
+            id: "BreakSelectCount",
+            hittest: false,
+            text: "#Equipment_BreakSelectedCount",
+            get vars() {
+              return {
+                value: selectedCount()
+              };
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$20, "vars", {
+            value: selectedCount()
+          }, _$p));
+          return _el$20;
+        }
+      }), _el$21);
       const _ref$2 = breakParticle;
-      typeof _ref$2 === "function" ? libs.use(_ref$2, _el$21) : breakParticle = _el$21;
-      libs.setProp(_el$23, "width", "100%");
-      libs.setProp(_el$23, "verticalAlign", "center");
-      libs.setProp(_el$23, "flowChildren", "down");
+      typeof _ref$2 === "function" ? libs.use(_ref$2, _el$22) : breakParticle = _el$22;
+      libs.setProp(_el$24, "width", "100%");
       libs.setProp(_el$24, "verticalAlign", "center");
-      libs.insert(_el$23, libs.createComponent(libs.Show, {
+      libs.setProp(_el$24, "flowChildren", "down");
+      libs.setProp(_el$25, "verticalAlign", "center");
+      libs.insert(_el$24, libs.createComponent(libs.Show, {
         get when() {
           return currentLv() == MAX_LEVEL;
         },
         get fallback() {
           return (() => {
-            const _el$47 = libs.createElement("Label", {
+            const _el$48 = libs.createElement("Label", {
               get text() {
                 return `Lv.${currentLv()}${addedLv() > 0 ? ToColor(`+${addedLv()}`, '#53b646') : ''}`;
               },
               html: true
             }, null);
-            libs.effect(_$p => libs.setProp(_el$47, "text", `Lv.${currentLv()}${addedLv() > 0 ? ToColor(`+${addedLv()}`, '#53b646') : ''}`, _$p));
-            return _el$47;
+            libs.effect(_$p => libs.setProp(_el$48, "text", `Lv.${currentLv()}${addedLv() > 0 ? ToColor(`+${addedLv()}`, '#53b646') : ''}`, _$p));
+            return _el$48;
           })();
         },
         get children() {
-          const _el$25 = libs.createElement("Label", {
+          const _el$26 = libs.createElement("Label", {
             get text() {
               return `Lv.${currentLv()}`;
             },
             html: true
           }, null);
-          libs.effect(_$p => libs.setProp(_el$25, "text", `Lv.${currentLv()}`, _$p));
-          return _el$25;
+          libs.effect(_$p => libs.setProp(_el$26, "text", `Lv.${currentLv()}`, _$p));
+          return _el$26;
         }
       }), null);
-      libs.setProp(_el$26, "tooltip_text", "#Equipment_BreakTips");
-      libs.insert(_el$27, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
+      libs.setProp(_el$27, "tooltip_text", "#Equipment_BreakTips");
+      libs.insert(_el$28, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
         "class": "BreakTypeBreadcrumb",
         get list() {
           return [GetLocalization("#MenuTabButton_equipment"), GetLocalization("#MenuTabButton_gem")];
@@ -993,7 +1002,7 @@ const EquipBreak = () => {
         },
         onChange: changeBreakType
       }), null);
-      libs.insert(_el$27, libs.createComponent(libs.Show, {
+      libs.insert(_el$28, libs.createComponent(libs.Show, {
         get when() {
           return isGemMode();
         },
@@ -1017,7 +1026,7 @@ const EquipBreak = () => {
                 children: (_, idx) => {
                   const rarity = idx() + 1;
                   return (() => {
-                    const _el$49 = libs.createElement("Label", {
+                    const _el$50 = libs.createElement("Label", {
                       get style() {
                         return {
                           color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
@@ -1032,14 +1041,14 @@ const EquipBreak = () => {
                           color: equipment_utils.EQUIP_RARITY_COLOR[idx()]
                         },
                         _v$11 = GetLocalization("#Equipment_Rarity_" + rarity);
-                      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$49, "style", _v$10, _p$._v$10));
-                      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$49, "text", _v$11, _p$._v$11));
+                      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$50, "style", _v$10, _p$._v$10));
+                      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$50, "text", _v$11, _p$._v$11));
                       return _p$;
                     }, {
                       _v$10: undefined,
                       _v$11: undefined
                     });
-                    return _el$49;
+                    return _el$50;
                   })();
                 }
               })];
@@ -1059,7 +1068,7 @@ const EquipBreak = () => {
                   return kvA.rarity - kvB.rarity;
                 });
                 for (const [uid, equip] of list) {
-                  if (addList.length >= EMPTY_SLOT_NUM) break;
+                  if (addList.length >= equipment_comp.MAX_BREAK_SELECT_NUM) break;
                   let id = toFiniteNumber(uid);
                   if (equipment_utils.EquipmentHasStates(equip)) continue;
                   const kv = KeyValues.info_item_equipment[equip.equipment_item_id];
@@ -1088,7 +1097,7 @@ const EquipBreak = () => {
               return [libs.createElement("Label", {
                 text: "#ALL"
               }, null), (() => {
-                const _el$29 = libs.createElement("Label", {
+                const _el$30 = libs.createElement("Label", {
                   get style() {
                     return {
                       color: equipment_utils.EQUIP_RARITY_COLOR[4]
@@ -1103,16 +1112,16 @@ const EquipBreak = () => {
                       color: equipment_utils.EQUIP_RARITY_COLOR[4]
                     },
                     _v$2 = GetLocalization("#Equipment_Rarity_5");
-                  _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$29, "style", _v$, _p$._v$));
-                  _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$29, "text", _v$2, _p$._v$2));
+                  _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$30, "style", _v$, _p$._v$));
+                  _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$30, "text", _v$2, _p$._v$2));
                   return _p$;
                 }, {
                   _v$: undefined,
                   _v$2: undefined
                 });
-                return _el$29;
+                return _el$30;
               })(), (() => {
-                const _el$30 = libs.createElement("Label", {
+                const _el$31 = libs.createElement("Label", {
                   get style() {
                     return {
                       color: equipment_utils.EQUIP_RARITY_COLOR[5]
@@ -1127,14 +1136,14 @@ const EquipBreak = () => {
                       color: equipment_utils.EQUIP_RARITY_COLOR[5]
                     },
                     _v$4 = GetLocalization("#Equipment_Rarity_6");
-                  _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$30, "style", _v$3, _p$._v$3));
-                  _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$30, "text", _v$4, _p$._v$4));
+                  _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$31, "style", _v$3, _p$._v$3));
+                  _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$31, "text", _v$4, _p$._v$4));
                   return _p$;
                 }, {
                   _v$3: undefined,
                   _v$4: undefined
                 });
-                return _el$30;
+                return _el$31;
               })()];
             }
           }), libs.createComponent(equipment_comp.EquipmentCommonBtn, {
@@ -1146,8 +1155,7 @@ const EquipBreak = () => {
                 let gems = Object.values(player_gems());
                 gems.sort((a, b) => a.rarity - b.rarity);
                 for (const gem of gems) {
-                  if (addList.length >= EMPTY_SLOT_NUM) break;
-                  if (prev.includes(gem.id)) continue;
+                  if (addList.length >= equipment_comp.MAX_BREAK_SELECT_NUM) break;
                   if (equipment_utils.GemHasStates(gem)) continue;
                   if (fastAddRarity() == 0 || gem.rarity == fastAddRarity() + 4) {
                     addList.push(gem.id);
@@ -1160,12 +1168,12 @@ const EquipBreak = () => {
         }
       }), null);
       const _ref$3 = expAnimBar;
-      typeof _ref$3 === "function" ? libs.use(_ref$3, _el$32) : expAnimBar = _el$32;
+      typeof _ref$3 === "function" ? libs.use(_ref$3, _el$33) : expAnimBar = _el$33;
       const _ref$4 = expBar;
-      typeof _ref$4 === "function" ? libs.use(_ref$4, _el$33) : expBar = _el$33;
+      typeof _ref$4 === "function" ? libs.use(_ref$4, _el$34) : expBar = _el$34;
       const _ref$5 = expLabel;
-      typeof _ref$5 === "function" ? libs.use(_ref$5, _el$34) : expLabel = _el$34;
-      libs.insert(_el$31, libs.createComponent(libs.Show, {
+      typeof _ref$5 === "function" ? libs.use(_ref$5, _el$35) : expLabel = _el$35;
+      libs.insert(_el$32, libs.createComponent(libs.Show, {
         get when() {
           return addedLv() > 0;
         },
@@ -1175,35 +1183,35 @@ const EquipBreak = () => {
           }, null);
         }
       }), null);
-      libs.setProp(_el$39, "flowChildren", "right");
-      libs.insert(_el$39, libs.createComponent(libs.For, {
+      libs.setProp(_el$40, "flowChildren", "right");
+      libs.insert(_el$40, libs.createComponent(libs.For, {
         get each() {
           return rewardList();
         },
         children: reward => {
           return (() => {
-            const _el$50 = libs.createElement("Panel", {
+            const _el$51 = libs.createElement("Panel", {
                 "class": "RewardItem"
               }, null),
-              _el$51 = libs.createElement("Label", {
+              _el$52 = libs.createElement("Label", {
                 get text() {
                   return reward.amount;
                 }
-              }, _el$50);
-            libs.insert(_el$50, libs.createComponent(StoreItem.StoreItemImage, {
+              }, _el$51);
+            libs.insert(_el$51, libs.createComponent(StoreItem.StoreItemImage, {
               get itemid() {
                 return reward.itemID;
               }
-            }), _el$51);
-            libs.effect(_$p => libs.setProp(_el$51, "text", reward.amount, _$p));
-            return _el$50;
+            }), _el$52);
+            libs.effect(_$p => libs.setProp(_el$52, "text", reward.amount, _$p));
+            return _el$51;
           })();
         }
       }));
-      libs.insert(_el$40, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$41, libs.createComponent(EOM_Button.EOM_Button, {
         id: "ConfirmBtn",
         get enabled() {
-          return selectedItemList().length > 0;
+          return selectedCount() > 0;
         },
         color: "Confirm",
         text: "#Equipment_Break",
@@ -1249,9 +1257,9 @@ const EquipBreak = () => {
           }
         }
       }));
-      libs.setProp(_el$41, "horizontalAlign", "center");
-      libs.setProp(_el$41, "flowChildren", "right");
-      libs.insert(_el$41, libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
+      libs.setProp(_el$42, "horizontalAlign", "center");
+      libs.setProp(_el$42, "flowChildren", "right");
+      libs.insert(_el$42, libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
         id: "AutoBreakSwitch",
         get checked() {
           return autoBreakEnabled();
@@ -1259,7 +1267,7 @@ const EquipBreak = () => {
         text: "#Equipment_AutoBreak",
         onchecked: saveAutoBreakEnabled
       }), null);
-      libs.insert(_el$41, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$42, libs.createComponent(EOM_Button.EOM_Button, {
         id: "AutoBreakBtn",
         size: "Small",
         get ["class"]() {
@@ -1277,8 +1285,8 @@ const EquipBreak = () => {
         get children() {
           return libs.createComponent(AutoBreakWindow, {});
         }
-      }), _el$42);
-      libs.insert(_el$42, libs.createComponent(RecycleView.RecycleView, {
+      }), _el$43);
+      libs.insert(_el$43, libs.createComponent(RecycleView.RecycleView, {
         id: "LvInfoList",
         direction: "Vertical",
         handle: h => lvInfoListHandle = h,
@@ -1304,7 +1312,7 @@ const EquipBreak = () => {
             });
           });
           return (() => {
-            const _el$52 = libs.createElement("Panel", {
+            const _el$53 = libs.createElement("Panel", {
                 get style() {
                   return {
                     zIndex: MAX_LEVEL - dataAccessor().level
@@ -1318,38 +1326,38 @@ const EquipBreak = () => {
                   });
                 }
               }, null),
-              _el$53 = libs.createElement("Panel", {
+              _el$54 = libs.createElement("Panel", {
                 id: "LvInfo"
-              }, _el$52),
-              _el$54 = libs.createElement("Label", {
+              }, _el$53),
+              _el$55 = libs.createElement("Label", {
                 id: "Level",
                 get text() {
                   return dataAccessor().level;
                 }
-              }, _el$53),
-              _el$55 = libs.createElement("Panel", {
+              }, _el$54),
+              _el$56 = libs.createElement("Panel", {
                 align: "center center",
                 flowChildren: "down"
-              }, _el$53);
+              }, _el$54);
               libs.createElement("Panel", {
                 id: "Line"
-              }, _el$52);
-            libs.setProp(_el$55, "align", "center center");
-            libs.setProp(_el$55, "flowChildren", "down");
-            libs.insert(_el$55, libs.createComponent(libs.For, {
+              }, _el$53);
+            libs.setProp(_el$56, "align", "center center");
+            libs.setProp(_el$56, "flowChildren", "down");
+            libs.insert(_el$56, libs.createComponent(libs.For, {
               get each() {
                 return attrs();
               },
               children: attr => (() => {
-                const _el$57 = libs.createElement("Label", {
+                const _el$58 = libs.createElement("Label", {
                   id: "Attr",
                   get text() {
                     return GetPropertyLocalization(attr.name, attr.value);
                   },
                   html: true
                 }, null);
-                libs.effect(_$p => libs.setProp(_el$57, "text", GetPropertyLocalization(attr.name, attr.value), _$p));
-                return _el$57;
+                libs.effect(_$p => libs.setProp(_el$58, "text", GetPropertyLocalization(attr.name, attr.value), _$p));
+                return _el$58;
               })()
             }));
             libs.effect(_p$ => {
@@ -1362,20 +1370,20 @@ const EquipBreak = () => {
                   Last: dataAccessor().level == MAX_LEVEL
                 }),
                 _v$14 = dataAccessor().level;
-              _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$52, "style", _v$12, _p$._v$12));
-              _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$52, "class", _v$13, _p$._v$13));
-              _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$54, "text", _v$14, _p$._v$14));
+              _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$53, "style", _v$12, _p$._v$12));
+              _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$53, "class", _v$13, _p$._v$13));
+              _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$55, "text", _v$14, _p$._v$14));
               return _p$;
             }, {
               _v$12: undefined,
               _v$13: undefined,
               _v$14: undefined
             });
-            return _el$52;
+            return _el$53;
           })();
         }
       }), null);
-      libs.insert(_el$42, libs.createComponent(libs.Show, {
+      libs.insert(_el$43, libs.createComponent(libs.Show, {
         get when() {
           return addedAttr().length > 0;
         },
@@ -1384,31 +1392,31 @@ const EquipBreak = () => {
             id: "LvInfoSeparator",
             text: "#Equipment_AttributeLvInfo"
           }), (() => {
-            const _el$43 = libs.createElement("Panel", {
+            const _el$44 = libs.createElement("Panel", {
               id: "AddedAttrList",
               scroll: "y",
               "class": "VerticalScrollStyle"
             }, null);
-            libs.setProp(_el$43, "scroll", "y");
-            libs.insert(_el$43, libs.createComponent(libs.Index, {
+            libs.setProp(_el$44, "scroll", "y");
+            libs.insert(_el$44, libs.createComponent(libs.Index, {
               get each() {
                 return addedAttr();
               },
               children: data => {
                 return (() => {
-                  const _el$58 = libs.createElement("Label", {
+                  const _el$59 = libs.createElement("Label", {
                     "class": "AttrLabel",
                     get text() {
                       return GetPropertyLocalization(data().attrName, Number(data().value));
                     },
                     html: true
                   }, null);
-                  libs.effect(_$p => libs.setProp(_el$58, "text", GetPropertyLocalization(data().attrName, Number(data().value)), _$p));
-                  return _el$58;
+                  libs.effect(_$p => libs.setProp(_el$59, "text", GetPropertyLocalization(data().attrName, Number(data().value)), _$p));
+                  return _el$59;
                 })();
               }
             }));
-            return _el$43;
+            return _el$44;
           })()];
         }
       }), null);
@@ -1421,10 +1429,10 @@ const EquipBreak = () => {
           }),
           _v$9 = hiddenItemList() && !showAutoBreakWindow();
         _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$17, "class", _v$5, _p$._v$5));
-        _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$35, "visible", _v$6, _p$._v$6));
-        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$35, "text", _v$7, _p$._v$7));
-        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$37, "class", _v$8, _p$._v$8));
-        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$42, "visible", _v$9, _p$._v$9));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$36, "visible", _v$6, _p$._v$6));
+        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$36, "text", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$38, "class", _v$8, _p$._v$8));
+        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "visible", _v$9, _p$._v$9));
         return _p$;
       }, {
         _v$5: undefined,
@@ -9726,16 +9734,12 @@ function ItemsRoot() {
                         return;
                       }
                       if (selectedItemList().includes(id())) {
-                        setSelectedItemList(items => {
-                          const newItems = [...items];
-                          newItems[items.indexOf(id())] = undefined;
-                          return newItems;
-                        });
+                        setSelectedItemList(items => items.filter(i => i != id()));
                         return;
                       }
                       setSelectedItemList(items => {
                         const slot = selectBreakSlot();
-                        if (slot >= 0 && slot < 5) {
+                        if (slot >= 0 && slot < equipment_comp.BREAK_SLOT_NUM) {
                           const newItems = [...items];
                           newItems[slot] = id();
                           return newItems;
@@ -9743,7 +9747,13 @@ function ItemsRoot() {
                         if (items.includes(id())) {
                           return items.filter(i => i != id());
                         }
-                        if (items.length < 5) {
+                        const emptyIndex = items.findIndex(item => item == null);
+                        if (emptyIndex >= 0) {
+                          const newItems = [...items];
+                          newItems[emptyIndex] = id();
+                          return newItems;
+                        }
+                        if (items.length < equipment_comp.MAX_BREAK_SELECT_NUM) {
                           return [...items, id()];
                         }
                         return items;
@@ -9990,16 +10000,12 @@ function ItemsRoot() {
                       if (gray()) return;
                       if (equipment_utils.GemHasStates(gemData(), true)) return;
                       if (selectedItemList().includes(id)) {
-                        setSelectedItemList(items => {
-                          const newItems = [...items];
-                          newItems[items.indexOf(id)] = undefined;
-                          return newItems;
-                        });
+                        setSelectedItemList(items => items.filter(i => i != id));
                         return;
                       }
                       setSelectedItemList(items => {
                         const slot = selectBreakSlot();
-                        if (slot >= 0 && slot < 5) {
+                        if (slot >= 0 && slot < equipment_comp.BREAK_SLOT_NUM) {
                           const newItems = [...items];
                           newItems[slot] = id;
                           return newItems;
@@ -10007,7 +10013,13 @@ function ItemsRoot() {
                         if (items.includes(id)) {
                           return items.filter(i => i != id);
                         }
-                        if (items.length < 5) {
+                        const emptyIndex = items.findIndex(item => item == null);
+                        if (emptyIndex >= 0) {
+                          const newItems = [...items];
+                          newItems[emptyIndex] = id;
+                          return newItems;
+                        }
+                        if (items.length < equipment_comp.MAX_BREAK_SELECT_NUM) {
                           return [...items, id];
                         }
                         return items;
@@ -11263,4 +11275,4 @@ function EquipForge() {
     }
   });
 }
-libs.render(() => libs.createComponent(HudEquipment, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HudEquipment, {}), $.GetContextPanel());

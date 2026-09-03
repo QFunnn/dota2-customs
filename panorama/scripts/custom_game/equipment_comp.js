@@ -14,6 +14,8 @@ var libs = require('./libs.js');
 var EOM_Button = require('./EOM_Button.js');
 var equipment_utils = require('./equipment_utils.js');
 
+const BREAK_SLOT_NUM = 5;
+const MAX_BREAK_SELECT_NUM = 30;
 const MenuTabButton = props => {
   const merged = libs.mergeProps(props, {
     class: "MenuTabButton"
@@ -350,11 +352,13 @@ function calculateAttributeData(attrData, bonus) {
 exports.AttrContainer = AttrContainer;
 exports.AttrItem = AttrItem;
 exports.AttributeSelectBtn = AttributeSelectBtn;
+exports.BREAK_SLOT_NUM = BREAK_SLOT_NUM;
 exports.EquipSeparator = EquipSeparator;
 exports.EquipmentCommonBtn = EquipmentCommonBtn;
 exports.EquipmentContext = EquipmentContext;
+exports.MAX_BREAK_SELECT_NUM = MAX_BREAK_SELECT_NUM;
 exports.MenuTabButton = MenuTabButton;
 exports.calculateAttributeData = calculateAttributeData;
 exports.createEquipDetailSignal = createEquipDetailSignal;
 exports.createGemDetailSignal = createGemDetailSignal;
-exports.useEquipmentStore = useEquipmentStore;
+exports.useEquipmentStore = useEquipmentStore;
