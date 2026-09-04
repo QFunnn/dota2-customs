@@ -87,7 +87,15 @@ main() {
   fi
 
   MOD_DIR="$RUNNER_TEMP/mod"
+
+  rm -rf "$MOD_DIR"
+  rm -rf "$HOME/Steam/appcache"
+  rm -rf "$HOME/steamcmd/appcache"
+
+  mkdir -p "$MOD_DIR"
+
   "$STEAMCMD" \
+    +http_cache_clearall \
     +force_install_dir "$MOD_DIR" \
     +login "$STEAM_USERNAME" "$STEAM_PASSWORD" \
     +workshop_download_item "570" "$WORKSHOP_ID" validate \
