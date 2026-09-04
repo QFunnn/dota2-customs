@@ -25,6 +25,7 @@ var abyss_hud_shared = require('./abyss_hud_shared.js');
 var common_item = require('./common_item.js');
 var EOM_HeroImage = require('./EOM_HeroImage.js');
 var EOM_Loading = require('./EOM_Loading.js');
+var Player = require('./Player.js');
 var RankBadgeBanner = require('./RankBadgeBanner.js');
 var upgrade_box = require('./upgrade_box.js');
 var upgrade_icon = require('./upgrade_icon.js');
@@ -34,7 +35,6 @@ require('./attribute_formatter.js');
 require('./equipment_utils.js');
 require('./server_equipment.js');
 require('./drawing_attr_row.js');
-require('./Player.js');
 require('./EOM_TextEntry.js');
 
 const ArtifactSelection = () => {
@@ -2998,6 +2998,11 @@ const PlayerBar = props => {
   const playerInfo = service_netdata_helper.GetPlayerInfo({
     playerID: props.playerID
   });
+  const playerInfoData = libs.createMemo(() => playerInfo.data() ?? {});
+  const medalCosmeticID = libs.createMemo(() => {
+    const cosmeticID = playerInfoData().player_cosmetic_equips?.[COSMETIC_SLOT.MEDAL]?.cosmetic_id;
+    return cosmeticID != undefined && cosmeticID > 0 ? String(cosmeticID) : undefined;
+  });
   const heroID = libs.createMemo(() => {
     if (heroEntityIndex() < 0) return undefined;
     return GetHeroIDByHeroName(Entities.GetUnitName(heroEntityIndex()));
@@ -3039,15 +3044,31 @@ const PlayerBar = props => {
   });
   return (() => {
     const _el$4 = libs.createElement("Panel", {
-      id: "PlayerBar"
-    }, null);
+        id: "PlayerBar"
+      }, null),
+      _el$5 = libs.createElement("Panel", {
+        "class": "MedalList"
+      }, _el$4);
     libs.insert(_el$4, libs.createComponent(PlayerState, {
       get status() {
         return props.status;
       }
+    }), _el$5);
+    libs.insert(_el$5, libs.createComponent(libs.Show, {
+      get when() {
+        return medalCosmeticID();
+      },
+      keyed: true,
+      get children() {
+        return libs.createComponent(Player.PlayerMedal, {
+          get medalID() {
+            return medalCosmeticID();
+          }
+        });
+      }
     }), null);
-    libs.insert(_el$4, libs.createComponent(RankBadgeBanner.PlayerHeroRankBadge, {
-      data: () => playerInfo.data() ?? {},
+    libs.insert(_el$5, libs.createComponent(RankBadgeBanner.PlayerHeroRankBadge, {
+      data: playerInfoData,
       heroID: heroID
     }), null);
     libs.insert(_el$4, libs.createComponent(PlayerItem, {
@@ -3075,31 +3096,31 @@ const PlayerItem = props => {
   });
   const playerName = libs.createMemo(() => Players.GetPlayerName(props.playerID));
   return (() => {
-    const _el$5 = libs.createElement("Panel", {
+    const _el$6 = libs.createElement("Panel", {
         get id() {
           return "Player" + props.playerID;
         },
         "class": "PlayerItem",
         hittest: true
       }, null),
-      _el$6 = libs.createElement("Panel", {
+      _el$7 = libs.createElement("Panel", {
         "class": "PlayerHealthBarContainer"
-      }, _el$5),
-      _el$7 = libs.createElement("Image", {
+      }, _el$6),
+      _el$8 = libs.createElement("Image", {
         "class": "HealthBar",
         get style() {
           return {
             clip: `rect( 0%, ${props.healthPercent}%, 100%, 0% )`
           };
         }
-      }, _el$6),
-      _el$8 = libs.createElement("Label", {
+      }, _el$7),
+      _el$9 = libs.createElement("Label", {
         id: "PlayerName",
         get text() {
           return playerName();
         }
-      }, _el$5);
-    libs.insert(_el$5, libs.createComponent(PlayerAvatar, {
+      }, _el$6);
+    libs.insert(_el$6, libs.createComponent(PlayerAvatar, {
       get heroEntityIndex() {
         return props.heroEntityIndex;
       },
@@ -3118,23 +3139,23 @@ const PlayerItem = props => {
           }
         });
       }
-    }), _el$6);
+    }), _el$7);
     libs.effect(_p$ => {
       const _v$ = "Player" + props.playerID,
         _v$2 = {
           clip: `rect( 0%, ${props.healthPercent}%, 100%, 0% )`
         },
         _v$3 = playerName();
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$5, "id", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$7, "style", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$8, "text", _v$3, _p$._v$3));
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$6, "id", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$8, "style", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "text", _v$3, _p$._v$3));
       return _p$;
     }, {
       _v$: undefined,
       _v$2: undefined,
       _v$3: undefined
     });
-    return _el$5;
+    return _el$6;
   })();
 };
 const PlayerAvatar = props => {
@@ -3146,18 +3167,18 @@ const PlayerAvatar = props => {
     return Entities.GetUnitName(local.heroEntityIndex);
   });
   return (() => {
-    const _el$9 = libs.createElement("Panel", libs.mergeProps$1(other, {
+    const _el$0 = libs.createElement("Panel", libs.mergeProps$1(other, {
         get ["class"]() {
           return libs.classNames("PlayerAvatar", local.class);
         }
       }), null),
-      _el$0 = libs.createElement("Panel", {
+      _el$1 = libs.createElement("Panel", {
         id: "AvatarMask"
-      }, _el$9),
-      _el$1 = libs.createElement("Image", {
+      }, _el$0),
+      _el$10 = libs.createElement("Image", {
         id: "DisconnectIcon"
-      }, _el$0);
-    libs.spread(_el$9, libs.mergeProps$1(other, {
+      }, _el$1);
+    libs.spread(_el$0, libs.mergeProps$1(other, {
       get ["class"]() {
         return libs.classNames("PlayerAvatar", local.class);
       },
@@ -3167,15 +3188,15 @@ const PlayerAvatar = props => {
         };
       }
     }), true);
-    libs.insert(_el$0, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+    libs.insert(_el$1, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
       id: "HeroIcon",
       heroimagestyle: "icon",
       get heroname() {
         return heroName();
       }
-    }), _el$1);
-    libs.insert(_el$9, libs.createComponent(PlayerBorder, {}), null);
-    return _el$9;
+    }), _el$10);
+    libs.insert(_el$0, libs.createComponent(PlayerBorder, {}), null);
+    return _el$0;
   })();
 };
 const PlayerBorder = props => {
@@ -3186,17 +3207,17 @@ const PlayerBorder = props => {
   });
   const [local, other] = libs.splitProps(merged, ["borderID"]);
   return (() => {
-    const _el$10 = libs.createElement("Panel", other, null);
-    libs.spread(_el$10, other, false);
-    return _el$10;
+    const _el$11 = libs.createElement("Panel", other, null);
+    libs.spread(_el$11, other, false);
+    return _el$11;
   })();
 };
 const PlayerState = props => {
   return (() => {
-    const _el$11 = libs.createElement("Panel", {
+    const _el$12 = libs.createElement("Panel", {
       "class": "PlayerState"
     }, null);
-    libs.insert(_el$11, libs.createComponent(libs.Switch, {
+    libs.insert(_el$12, libs.createComponent(libs.Switch, {
       get children() {
         return [libs.createComponent(libs.Match, {
           get when() {
@@ -3232,7 +3253,7 @@ const PlayerState = props => {
         })];
       }
     }));
-    return _el$11;
+    return _el$12;
   })();
 };
 const TutorialTask = () => {
@@ -3257,17 +3278,17 @@ const TutorialTask = () => {
   });
   const isGamepad = () => inputMode().isGamepad === 1;
   return (() => {
-    const _el$16 = libs.createElement("Panel", {
+    const _el$17 = libs.createElement("Panel", {
         id: "TutorialTask",
         hittest: false
       }, null),
-      _el$17 = libs.createElement("Label", {
+      _el$18 = libs.createElement("Label", {
         id: "TaskTitle",
         get text() {
           return taskTitle();
         }
-      }, _el$16);
-    libs.insert(_el$16, libs.createComponent(libs.Index, {
+      }, _el$17);
+    libs.insert(_el$17, libs.createComponent(libs.Index, {
       get each() {
         return taskList();
       },
@@ -3275,7 +3296,7 @@ const TutorialTask = () => {
         const abilityName = () => getTutorialAbilityName(single().ability);
         const hotkey = () => getTutorialAbilityHotkey(single().ability);
         return (() => {
-          const _el$18 = libs.createElement("Panel", {
+          const _el$19 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("SingleTaskRow", libs.classNames({
                   Success: single().success
@@ -3284,57 +3305,57 @@ const TutorialTask = () => {
             }, null);
             libs.createElement("Image", {
               "class": "SingleTaskBox"
-            }, _el$18);
-            const _el$23 = libs.createElement("Label", {
+            }, _el$19);
+            const _el$24 = libs.createElement("Label", {
               "class": "TaskText",
               get text() {
                 return "#" + single().text;
               }
-            }, _el$18);
+            }, _el$19);
             libs.createElement("Panel", {
               "class": "finishLine",
               hittest: false
-            }, _el$18);
-          libs.insert(_el$18, libs.createComponent(libs.Show, {
+            }, _el$19);
+          libs.insert(_el$19, libs.createComponent(libs.Show, {
             get when() {
               return abilityName() !== undefined;
             },
             get children() {
               return [(() => {
-                const _el$20 = libs.createElement("Panel", {
+                const _el$21 = libs.createElement("Panel", {
                     "class": "TaskAbility"
                   }, null),
-                  _el$21 = libs.createElement("DOTAAbilityImage", {
+                  _el$22 = libs.createElement("DOTAAbilityImage", {
                     "class": "TaskAbilityIcon",
                     get abilityname() {
                       return abilityName();
                     },
                     showtooltip: false
-                  }, _el$20);
+                  }, _el$21);
                 libs.effect(_p$ => {
                   const _v$6 = abilityName(),
                     _v$7 = {
                       name: "hero_ability",
                       abilityName: abilityName()
                     };
-                  _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$21, "abilityname", _v$6, _p$._v$6));
-                  _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$21, "customTooltip", _v$7, _p$._v$7));
+                  _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "abilityname", _v$6, _p$._v$6));
+                  _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$22, "customTooltip", _v$7, _p$._v$7));
                   return _p$;
                 }, {
                   _v$6: undefined,
                   _v$7: undefined
                 });
-                return _el$20;
+                return _el$21;
               })(), (() => {
-                const _el$22 = libs.createElement("Panel", {
+                const _el$23 = libs.createElement("Panel", {
                   width: "40px",
                   margin: "0 10px",
                   verticalAlign: "center"
                 }, null);
-                libs.setProp(_el$22, "width", "40px");
-                libs.setProp(_el$22, "margin", "0 10px");
-                libs.setProp(_el$22, "verticalAlign", "center");
-                libs.insert(_el$22, libs.createComponent(libs.Show, {
+                libs.setProp(_el$23, "width", "40px");
+                libs.setProp(_el$23, "margin", "0 10px");
+                libs.setProp(_el$23, "verticalAlign", "center");
+                libs.insert(_el$23, libs.createComponent(libs.Show, {
                   get when() {
                     return isGamepad();
                   },
@@ -3355,23 +3376,23 @@ const TutorialTask = () => {
                     });
                   }
                 }));
-                return _el$22;
+                return _el$23;
               })()];
             }
-          }), _el$23);
+          }), _el$24);
           libs.effect(_p$ => {
             const _v$8 = libs.classNames("SingleTaskRow", libs.classNames({
                 Success: single().success
               })),
               _v$9 = "#" + single().text;
-            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$18, "class", _v$8, _p$._v$8));
-            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$23, "text", _v$9, _p$._v$9));
+            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$19, "class", _v$8, _p$._v$8));
+            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$24, "text", _v$9, _p$._v$9));
             return _p$;
           }, {
             _v$8: undefined,
             _v$9: undefined
           });
-          return _el$18;
+          return _el$19;
         })();
       }
     }), null);
@@ -3381,14 +3402,14 @@ const TutorialTask = () => {
           AllSuccess: allSuccess()
         },
         _v$5 = taskTitle();
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$16, "classList", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$17, "text", _v$5, _p$._v$5));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$17, "classList", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$18, "text", _v$5, _p$._v$5));
       return _p$;
     }, {
       _v$4: undefined,
       _v$5: undefined
     });
-    return _el$16;
+    return _el$17;
   })();
 };
 

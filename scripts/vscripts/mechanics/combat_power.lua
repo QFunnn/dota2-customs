@@ -14,12 +14,13 @@ local c = b.__TS__Class
 local d = b.__TS__ClassExtends
 local e = b.__TS__ObjectKeys
 local f = b.__TS__ObjectAssign
-local g = b.__TS__DecorateLegacy
-local h = b.__TS__New
-local i = {}
-local j = require("lib.tstl-utils")
-local k = j.reloadable
-local l = {
+local g = b.__TS__ObjectValues
+local h = b.__TS__DecorateLegacy
+local i = b.__TS__New
+local j = {}
+local k = require("lib.tstl-utils")
+local l = k.reloadable
+local m = {
 	attackCombatPowerPerDps = 1,
 	skillCombatPowerPerDps = 1,
 	ehpCombatPowerPerPoint = 1,
@@ -46,7 +47,7 @@ local l = {
 		ranged_damage_boost = 0.5,
 	},
 }
-local m = {
+local n = {
 	"aoe_amplify",
 	"attack_range",
 	"attack_range_melee",
@@ -59,174 +60,198 @@ local m = {
 	"buff_duration",
 	"debuff_duration",
 }
-local n = c()
-n.name = "CCombatPower"
-d(n, CModule)
-function n.prototype.init(self, o) end
-function n.prototype.GetPrivilegeCombatPowerFactor(self, p)
-	local q = 0
-	for r, s in ipairs({ { "effects", p.effects }, { "myth", p.myth } }) do
-		local t = s[1]
-		local u = s[2]
+local o = c()
+o.name = "CCombatPower"
+d(o, CModule)
+function o.prototype.init(self, p) end
+function o.prototype.GetPrivilegeCombatPowerFactor(self, q)
+	local r = 0
+	for s, t in ipairs({ { "effects", q.effects }, { "myth", q.myth } }) do
+		local u = t[1]
+		local v = t[2]
 		do
-			if u == nil then
-				goto v
+			if v == nil then
+				goto w
 			end
-			for r, w in ipairs(e(u)) do
+			for s, x in ipairs(e(v)) do
 				do
-					local x = toFiniteNumber(u[w], 0)
-					if x == 0 then
-						goto y
+					local y = toFiniteNumber(v[x], 0)
+					if y == 0 then
+						goto z
 					end
-					local z = toFiniteNumber
-					local A = KeyValues.privilegeKv
-					local B = A and A[w]
-					if B ~= nil then
-						B = B.CombatPowerFactor
+					local A = toFiniteNumber
+					local B = KeyValues.privilegeKv
+					local C = B and B[x]
+					if C ~= nil then
+						C = C.CombatPowerFactor
 					end
-					local C = z(B, 0)
-					q = q + C
+					local D = A(C, 0)
+					r = r + D
 				end
-				::y::
+				::z::
 			end
 		end
-		::v::
+		::w::
 	end
-	print("[combat_power] privilege_factor_total=" .. tostring(q))
-	return q
+	return r
 end
-function n.prototype.GetPropertyValue(self, D, E)
-	return toFiniteNumber(D[E], 0)
+function o.prototype.GetPropertyValue(self, E, F)
+	return toFiniteNumber(E[F], 0)
 end
-function n.prototype.SumProperties(self, D, F)
-	local G = 0
-	for r, E in ipairs(F) do
-		G = G + self:GetPropertyValue(D, E)
+function o.prototype.SumProperties(self, E, G)
+	local H = 0
+	for s, F in ipairs(G) do
+		H = H + self:GetPropertyValue(E, F)
 	end
-	return G
+	return H
 end
-function n.prototype.GetCritFactor(self, D, H)
-	local I = Clamp(
-		self:SumProperties(D, H and { "crit_chance", "spell_crit_chance" } or { "crit_chance", "attack_crit_chance" })
+function o.prototype.GetCritFactor(self, E, I)
+	local J = Clamp(
+		self:SumProperties(E, I and { "crit_chance", "spell_crit_chance" } or { "crit_chance", "attack_crit_chance" })
 			* 0.01,
 		0,
 		1
 	)
-	local J =
-		self:SumProperties(D, H and { "crit_damage", "spell_crit_damage" } or { "crit_damage", "attack_crit_damage" })
-	local K = 1 + self:GetPropertyValue(D, "crit_damage_mult") * 0.01
-	local L = (1 + self:GetPropertyValue(D, "crit_damage_amplify") * 0.01)
-		* (1 + self:GetPropertyValue(D, H and "spell_crit_damage_boost" or "attack_crit_damage_boost") * 0.01)
-	return 1 + I * (math.max(J * 0.01 * K * L, 1) - 1)
+	local K =
+		self:SumProperties(E, I and { "crit_damage", "spell_crit_damage" } or { "crit_damage", "attack_crit_damage" })
+	local L = 1 + self:GetPropertyValue(E, "crit_damage_mult") * 0.01
+	local M = (1 + self:GetPropertyValue(E, "crit_damage_amplify") * 0.01)
+		* (1 + self:GetPropertyValue(E, I and "spell_crit_damage_boost" or "attack_crit_damage_boost") * 0.01)
+	return 1 + J * (math.max(K * 0.01 * L * M, 1) - 1)
 end
-function n.prototype.GetCombatPowerFromSnapshot(self, M)
-	local D = f({}, M.attributes or {})
-	local N = (self:GetPropertyValue(D, "base_attack") + self:GetPropertyValue(D, "attack"))
-		* (1 + self:GetPropertyValue(D, "attack_amplify") * 0.01)
-	local O = INTENSITY_FACTOR
-		* self:GetPropertyValue(D, "damage_intensity")
-		* (1 + self:GetPropertyValue(D, "damage_intensity_boost") * 0.01)
-	local P = 1
-		+ CompoundIncrease(
-				CompoundIncrease(self:GetPropertyValue(D, "damage_boost"), self:GetPropertyValue(D, "damage_amplify")),
-				O,
-				self:GetPropertyValue(D, "hero_damage_boost"),
-				self:GetPropertyValue(D, "damage_boost_mult"),
-				self:GetPropertyValue(D, "final_damage"),
-				self:GetPropertyValue(D, "final_damage_101"),
-				self:GetPropertyValue(D, "final_damage_102"),
-				self:GetPropertyValue(D, "final_damage_103")
-			)
-			* 0.01
+function o.prototype.GetCombatPowerFromResolved(self, N)
+	local E = f({}, N.attributes or {})
+	local O = (self:GetPropertyValue(E, "base_attack") + self:GetPropertyValue(E, "attack"))
+		* (1 + self:GetPropertyValue(E, "attack_amplify") * 0.01)
+	local P = INTENSITY_FACTOR
+		* self:GetPropertyValue(E, "damage_intensity")
+		* (1 + self:GetPropertyValue(E, "damage_intensity_boost") * 0.01)
 	local Q = 1
 		+ CompoundIncrease(
+				CompoundIncrease(self:GetPropertyValue(E, "damage_boost"), self:GetPropertyValue(E, "damage_amplify")),
+				P,
+				self:GetPropertyValue(E, "hero_damage_boost"),
+				self:GetPropertyValue(E, "damage_boost_mult"),
+				self:GetPropertyValue(E, "final_damage"),
+				self:GetPropertyValue(E, "final_damage_101"),
+				self:GetPropertyValue(E, "final_damage_102"),
+				self:GetPropertyValue(E, "final_damage_103")
+			)
+			* 0.01
+	local R = 1
+		+ CompoundIncrease(
 				CompoundIncrease(
-					self:GetPropertyValue(D, "attack_damage_boost"),
-					self:GetPropertyValue(D, "attack_damage_amplify")
+					self:GetPropertyValue(E, "attack_damage_boost"),
+					self:GetPropertyValue(E, "attack_damage_amplify")
 				)
 			)
 			* 0.01
-	local R = CompoundIncrease(
-		self:GetPropertyValue(D, "physical_damage_boost"),
-		self:GetPropertyValue(D, "physical_damage_amplify")
-	)
 	local S = CompoundIncrease(
-		self:GetPropertyValue(D, "magical_damage_boost"),
-		self:GetPropertyValue(D, "magical_damage_amplify")
+		self:GetPropertyValue(E, "physical_damage_boost"),
+		self:GetPropertyValue(E, "physical_damage_amplify")
 	)
-	local T = 1 + (R * 0.5 + S * 0.5) * 0.01
-	local U = 0
-	for r, E in ipairs(e(l.conditionalCoverage)) do
-		U = U + self:GetPropertyValue(D, E) * l.conditionalCoverage[E]
+	local T = CompoundIncrease(
+		self:GetPropertyValue(E, "magical_damage_boost"),
+		self:GetPropertyValue(E, "magical_damage_amplify")
+	)
+	local U = 1 + (S * 0.5 + T * 0.5) * 0.01
+	local V = 0
+	for s, F in ipairs(e(m.conditionalCoverage)) do
+		V = V + self:GetPropertyValue(E, F) * m.conditionalCoverage[F]
 	end
-	local V = 1 + U * 0.01
-	local W = P * T * V
-	local X = self:GetPropertyValue(D, "attackspeed")
-		+ self:GetPropertyValue(D, "attack_speed_boost")
-		- self:GetPropertyValue(D, "attackspeed_reduction")
-	local Y = math.max(0.2, (100 + X) * 0.01)
-	local Z = N * self:GetCritFactor(D, false) * Q * Y
-	local _ = self:GetPropertyValue(D, "base_mana")
-	local a0 = self:GetPropertyValue(D, "mana")
-	local a1 = self:GetPropertyValue(D, "mana_amplify")
-	local a2 = _ ~= 0 or a0 ~= 0 or a1 ~= 0
-	local a3 = math.max(0, (_ + a0) * (1 + a1 * 0.01))
-	local a4 = math.max(0, a3 - l.standardSkillMana)
-	local a5 = a2 and Clamp(1 + a4 / math.max(l.standardSkillMana, 1) * l.skillManaEfficiency, 0.95, 1.25) or 1
-	local a6 = self:GetPropertyValue(D, "spell_damage_proc") + self:GetPropertyValue(D, "spell_damage_proc_target")
-	local a7 = CompoundIncrease(
-		self:GetPropertyValue(D, "spell_damage_boost"),
-		self:GetPropertyValue(D, "spell_damage_amplify")
+	local W = 1 + V * 0.01
+	local X = Q * U * W
+	local Y = self:GetPropertyValue(E, "attackspeed")
+		+ self:GetPropertyValue(E, "attack_speed_boost")
+		- self:GetPropertyValue(E, "attackspeed_reduction")
+	local Z = math.max(0.2, (100 + Y) * 0.01)
+	local _ = O * self:GetCritFactor(E, false) * R * Z
+	local a0 = self:GetPropertyValue(E, "base_mana")
+	local a1 = self:GetPropertyValue(E, "mana")
+	local a2 = self:GetPropertyValue(E, "mana_amplify")
+	local a3 = a0 ~= 0 or a1 ~= 0 or a2 ~= 0
+	local a4 = math.max(0, (a0 + a1) * (1 + a2 * 0.01))
+	local a5 = math.max(0, a4 - m.standardSkillMana)
+	local a6 = a3 and Clamp(1 + a5 / math.max(m.standardSkillMana, 1) * m.skillManaEfficiency, 0.95, 1.25) or 1
+	local a7 = self:GetPropertyValue(E, "spell_damage_proc") + self:GetPropertyValue(E, "spell_damage_proc_target")
+	local a8 = CompoundIncrease(
+		self:GetPropertyValue(E, "spell_damage_boost"),
+		self:GetPropertyValue(E, "spell_damage_amplify")
 	)
-	local a8 = (
+	local a9 = (
 		CompoundIncrease(
-			self:GetPropertyValue(D, "skill_damage_boost"),
-			self:GetPropertyValue(D, "skill_damage_amplify")
+			self:GetPropertyValue(E, "skill_damage_boost"),
+			self:GetPropertyValue(E, "skill_damage_amplify")
 		)
 		+ CompoundIncrease(
-			self:GetPropertyValue(D, "dodge_damage_boost"),
-			self:GetPropertyValue(D, "dodge_damage_amplify")
+			self:GetPropertyValue(E, "dodge_damage_boost"),
+			self:GetPropertyValue(E, "dodge_damage_amplify")
 		)
 		+ CompoundIncrease(
-			self:GetPropertyValue(D, "defense_damage_boost"),
-			self:GetPropertyValue(D, "defense_damage_amplify")
+			self:GetPropertyValue(E, "defense_damage_boost"),
+			self:GetPropertyValue(E, "defense_damage_amplify")
 		)
 		+ CompoundIncrease(
-			self:GetPropertyValue(D, "ultimate_damage_boost"),
-			self:GetPropertyValue(D, "ultimate_damage_amplify")
+			self:GetPropertyValue(E, "ultimate_damage_boost"),
+			self:GetPropertyValue(E, "ultimate_damage_amplify")
 		)
 	) * 0.25
-	local a9 = 1 + (a7 + a8) * 0.01
-	local aa = Clamp(self:GetPropertyValue(D, "cooldown_reduction"), 0, l.cooldownReductionCap)
-	local ab = 1 / math.max(1 - aa * 0.01, 0.05)
-	local ac = (l.standardSkillDps * self:GetCritFactor(D, true) + a6) * a9 * ab * a5
-	local ad = self:GetPropertyValue(D, "defense_intensity")
-		* (1 + self:GetPropertyValue(D, "defense_intensity_boost") * 0.01)
-	local ae = l.defenseIntensityBase
-	local af = (ae + ad)
-			* (1 + self:GetPropertyValue(D, "hero_defense_boost") * 0.01)
-			* (1 + self:GetPropertyValue(D, "final_defense") * 0.01)
-		- ae
-	local ag = (self:GetPropertyValue(D, "base_health") + self:GetPropertyValue(D, "health"))
-		* (1 + self:GetPropertyValue(D, "health_amplify") * 0.01)
-		* (1 + af * INTENSITY_FACTOR * 0.01)
-	local ah = math.max(
-		1 + (self:GetPropertyValue(D, "incoming_damage_amplify") - self:GetPropertyValue(D, "damage_reduction")) * 0.01,
+	local aa = 1 + (a8 + a9) * 0.01
+	local ab = Clamp(self:GetPropertyValue(E, "cooldown_reduction"), 0, m.cooldownReductionCap)
+	local ac = 1 / math.max(1 - ab * 0.01, 0.05)
+	local ad = (m.standardSkillDps * self:GetCritFactor(E, true) + a7) * aa * ac * a6
+	local ae = self:GetPropertyValue(E, "defense_intensity")
+		* (1 + self:GetPropertyValue(E, "defense_intensity_boost") * 0.01)
+	local af = m.defenseIntensityBase
+	local ag = (af + ae)
+			* (1 + self:GetPropertyValue(E, "hero_defense_boost") * 0.01)
+			* (1 + self:GetPropertyValue(E, "final_defense") * 0.01)
+		- af
+	local ah = (self:GetPropertyValue(E, "base_health") + self:GetPropertyValue(E, "health"))
+		* (1 + self:GetPropertyValue(E, "health_amplify") * 0.01)
+		* (1 + ag * INTENSITY_FACTOR * 0.01)
+	local ai = math.max(
+		1 + (self:GetPropertyValue(E, "incoming_damage_amplify") - self:GetPropertyValue(E, "damage_reduction")) * 0.01,
 		0.05
 	)
-	local ai = Clamp(self:GetPropertyValue(D, "evasion") * 0.01, 0, l.evasionCap)
-	local aj = ag * 1 / ah * 1 / math.max(1 - ai, 0.05) + (self:GetPropertyValue(D, "min_health") > 0 and 100 or 0)
-	local ak = self:SumProperties(D, m) + self:GetPropertyValue(D, "block") + self:GetPropertyValue(D, "avoid_damage")
-	local al = (Z * l.attackCombatPowerPerDps + ac * l.skillCombatPowerPerDps) * W
-	local am = aj * l.ehpCombatPowerPerPoint
-	local an = ak * l.utilityCombatPowerPerPoint
-	local ao = math.floor(math.max(0, al + am + an))
-	local ap = self:GetPrivilegeCombatPowerFactor(M)
-	local aq = math.floor(math.max(0, ao * (1 + ap)))
-	return { combatPower = aq, privilegeFactor = ap, attackDps = Z, skillDps = ac, sharedDamageFactor = W, ehp = aj, utilityScore = ak }
+	local aj = Clamp(self:GetPropertyValue(E, "evasion") * 0.01, 0, m.evasionCap)
+	local ak = ah * 1 / ai * 1 / math.max(1 - aj, 0.05) + (self:GetPropertyValue(E, "min_health") > 0 and 100 or 0)
+	local al = self:SumProperties(E, n) + self:GetPropertyValue(E, "block") + self:GetPropertyValue(E, "avoid_damage")
+	local am = (_ * m.attackCombatPowerPerDps + ad * m.skillCombatPowerPerDps) * X
+	local an = ak * m.ehpCombatPowerPerPoint
+	local ao = al * m.utilityCombatPowerPerPoint
+	local ap = math.floor(math.max(0, am + an + ao))
+	local aq = self:GetPrivilegeCombatPowerFactor(N)
+	local ar = math.floor(math.max(0, ap * (1 + aq)))
+	return { combatPower = ar, privilegeFactor = aq, attackDps = _, skillDps = ad, sharedDamageFactor = X, ehp = ak, utilityScore = al }
 end
-n = g({ k }, n)
+function o.prototype.CreateCombatSnapshotWithSkillRunes(self, N, as)
+	local E = f({}, N.attributes or {})
+	for s, at in ipairs(g(as)) do
+		local au = at.data
+		local av = au and au.hero_skill_rune
+		for s, aw in ipairs(e(av and av.attributes or {})) do
+			do
+				local H = toFiniteNumber(at.data.hero_skill_rune.attributes[aw], 0)
+				if H == 0 then
+					goto ax
+				end
+				local ay = E[aw]
+				E[aw] = ay == nil and H or PropertySystem:AggregatePropertyValues(aw, ay, H)
+			end
+			::ax::
+		end
+	end
+	return f({}, N, { attributes = E })
+end
+function o.prototype.GetCombatPowerFromSnapshot(self, N, as)
+	if as == nil then
+		as = {}
+	end
+	return self:GetCombatPowerFromResolved(self:CreateCombatSnapshotWithSkillRunes(N, as))
+end
+o = h({ l }, o)
 if CombatPower == nil then
-	CombatPower = h(n)
+	CombatPower = i(o)
 end
-return i
+return j

@@ -183,24 +183,6 @@ var CPlayerManager = /** @class */ (function () {
         }
         return result;
     };
-    CPlayerManager.prototype.ReconstructByCombineKey = function (data, keys) {
-        var result = {};
-        if (data == undefined)
-            return result;
-        var _loop_1 = function (value) {
-            if (value == undefined || typeof value != "object")
-                return "continue";
-            var id = keys.map(function (key) { return value[key]; }).join("-");
-            if (id == "")
-                return "continue";
-            result[id] = value;
-        };
-        for (var _i = 0, _a = Object.values(data); _i < _a.length; _i++) {
-            var value = _a[_i];
-            _loop_1(value);
-        }
-        return result;
-    };
     CPlayerManager.prototype.NormalizeShowRoomData = function (data) {
         var _a;
         var _b;
@@ -261,7 +243,7 @@ var CPlayerManager = /** @class */ (function () {
         var result = {};
         if (data == undefined)
             return result;
-        var _loop_2 = function (value) {
+        var _loop_1 = function (value) {
             if (value == undefined || value == "nil")
                 return "continue";
             if (Array.isArray(value)) {
@@ -279,14 +261,14 @@ var CPlayerManager = /** @class */ (function () {
         };
         for (var _i = 0, _a = Object.values(data); _i < _a.length; _i++) {
             var value = _a[_i];
-            _loop_2(value);
+            _loop_1(value);
         }
         return result;
     };
     CPlayerManager.prototype.NormalizePlayerInfoData = function (rawData, steamID) {
         var data = rawData !== null && rawData !== void 0 ? rawData : {};
         var showRoomData = this.ExtractShowRoomData(data);
-        return __assign(__assign({}, data), { steamID: steamID, player_account_levels: data.player_account_levels != undefined ? this.ReconstructByKey(data.player_account_levels, "account_type") : data.player_account_levels, player_heroes: data.player_heroes != undefined ? this.ReconstructByKey(data.player_heroes, "hero_id") : data.player_heroes, player_achievements: data.player_achievements != undefined ? this.ReconstructByKey(data.player_achievements, "task_id") : data.player_achievements, player_cosmetic_equips: data.player_cosmetic_equips != undefined ? this.ReconstructByCombineKey(data.player_cosmetic_equips, ["hero_id", "slot_id"]) : data.player_cosmetic_equips, player_key_values: data.player_key_values != undefined ? this.ReconstructByKey(data.player_key_values, "key") : data.player_key_values, player_idle_game_fishes: data.player_idle_game_fishes != undefined ? this.ReconstructByKey(data.player_idle_game_fishes, "id") : data.player_idle_game_fishes, player_weapons: data.player_weapons != undefined ? this.ReconstructByKey(data.player_weapons, "weapon_id") : data.player_weapons, player_couriers: data.player_couriers != undefined ? this.ReconstructByKey(data.player_couriers, "courier_id") : data.player_couriers, player_equipments: data.player_equipments != undefined ? this.NormalizeEquipments(data.player_equipments) : data.player_equipments, player_counters: data.player_counters != undefined ? this.ReconstructByKey(data.player_counters, "counter_type") : data.player_counters, player_show_rooms: this.NormalizeShowRoomData(showRoomData !== null && showRoomData !== void 0 ? showRoomData : {}) });
+        return __assign(__assign({}, data), { steamID: steamID, player_account_levels: data.player_account_levels != undefined ? this.ReconstructByKey(data.player_account_levels, "account_type") : data.player_account_levels, player_heroes: data.player_heroes != undefined ? this.ReconstructByKey(data.player_heroes, "hero_id") : data.player_heroes, player_achievements: data.player_achievements != undefined ? this.ReconstructByKey(data.player_achievements, "task_id") : data.player_achievements, player_cosmetic_equips: data.player_cosmetic_equips != undefined ? this.ReconstructByKey(data.player_cosmetic_equips, "slot_id") : data.player_cosmetic_equips, player_key_values: data.player_key_values != undefined ? this.ReconstructByKey(data.player_key_values, "key") : data.player_key_values, player_idle_game_fishes: data.player_idle_game_fishes != undefined ? this.ReconstructByKey(data.player_idle_game_fishes, "id") : data.player_idle_game_fishes, player_weapons: data.player_weapons != undefined ? this.ReconstructByKey(data.player_weapons, "weapon_id") : data.player_weapons, player_couriers: data.player_couriers != undefined ? this.ReconstructByKey(data.player_couriers, "courier_id") : data.player_couriers, player_equipments: data.player_equipments != undefined ? this.NormalizeEquipments(data.player_equipments) : data.player_equipments, player_counters: data.player_counters != undefined ? this.ReconstructByKey(data.player_counters, "counter_type") : data.player_counters, player_show_rooms: this.NormalizeShowRoomData(showRoomData !== null && showRoomData !== void 0 ? showRoomData : {}) });
     };
     return CPlayerManager;
 }());

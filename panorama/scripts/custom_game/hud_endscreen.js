@@ -1272,7 +1272,7 @@ const AbyssalSummary = props => {
       key: heroName,
       children: heroname => libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
         unit: heroname,
-        camera: "card"
+        camera: "endscreen"
       })
     }), _el$60);
     libs.insert(_el$64, libs.createComponent(Player.PlayerName, {
@@ -2721,4 +2721,4 @@ const EndScreen = () => {
     return _el$;
   })();
 };
-libs.render(EndScreen, $.GetContextPanel());
+libs.render(EndScreen, $.GetContextPanel());

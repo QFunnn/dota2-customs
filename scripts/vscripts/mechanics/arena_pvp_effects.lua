@@ -44,6 +44,7 @@ function l.prototype.PrepareUnit(self, n, s)
 	local t = s.resolvedHeroAttributes[n.heroID] or {}
 	local r = { applied = 0, skipped = 0 }
 	self:ApplyResolvedEffects(n, t, "spawn", r)
+	self:ApplyHeroSkillRunes(n, s.heroSkillOutsideAttributes[n.heroID])
 	self.pendingBattleEffects[tostring(n.unit:entindex())] = { context = n, data = t }
 end
 function l.prototype.OnBattleStart(self)
@@ -70,11 +71,22 @@ function l.prototype.RemoveUnit(self, w)
 		for m, z in ipairs(y.propertySources) do
 			PropertySystem:RemoveStaticProperty(w:entindex(), z)
 		end
+		for m, A in ipairs(y.abilityPropertySources) do
+			if IsValid(A.ability) then
+				PropertySystem:RemoveAbilityStaticProperty(A.ability, A.sourceID)
+			end
+		end
+		for m, B in ipairs(y.runeEffectItems) do
+			if IsValid(B) then
+				w:RemoveItem(B)
+			end
+		end
+		e(w, "__ArenaPvpRuneEffectItems")
 		for m, z in ipairs(y.abilityUpgradeSources) do
 			AbilityUpgrade:RemoveAbilityUpgradeBySource(w, z)
 		end
-		for m, A in ipairs(y.privilegeInstances) do
-			A:OnDestroy()
+		for m, C in ipairs(y.privilegeInstances) do
+			C:OnDestroy()
 		end
 		e(self.unitRecords, x)
 		AbilityUpgrade:ClearAbilityUpgrades(w)
@@ -83,8 +95,8 @@ function l.prototype.RemoveUnit(self, w)
 	end
 end
 function l.prototype.Dispose(self)
-	local B = d(self.unitRecords)
-	for m, y in ipairs(B) do
+	local D = d(self.unitRecords)
+	for m, y in ipairs(D) do
 		if IsValid(y.unit) then
 			self:RemoveUnit(y.unit)
 		end
@@ -92,111 +104,187 @@ function l.prototype.Dispose(self)
 	self.unitRecords = {}
 	self.pendingBattleEffects = {}
 end
-function l.prototype.ApplyResolvedEffects(self, n, s, C, r)
-	for D, E in pairs(self.effectHandlers) do
+function l.prototype.ApplyResolvedEffects(self, n, s, E, r)
+	for F, G in pairs(self.effectHandlers) do
 		do
-			if D == "attributes" ~= (C == "spawn") then
-				goto F
+			if F == "attributes" ~= (E == "spawn") then
+				goto H
 			end
-			local q = s[D]
-			if q ~= nil and E ~= nil then
-				E(nil, n, "resolved", "resolved", q, r)
+			local q = s[F]
+			if q ~= nil and G ~= nil then
+				G(nil, n, "resolved", "resolved", q, r)
 			end
 		end
-		::F::
+		::H::
 	end
 end
-function l.prototype.ApplyAttributes(self, n, o, p, G, r)
-	local z = (((((("arena_pvp_attribute:" .. n.side) .. ":") .. n.heroID) .. ":") .. o) .. ":") .. p
-	local H = false
-	for I, J in pairs(G) do
+function l.prototype.ApplyHeroSkillRunes(self, n, I)
+	if I == nil then
+		return
+	end
+	for J, K in pairs(I) do
 		do
-			local K = PropertySystem:GetScopeOfProperty(I)
-			if K == nil or K ~= PropertyScope.UNIT then
-				r.skipped = r.skipped + 1
-				goto L
+			local L = tonumber(J)
+			local M = K.data
+			local N = M and M.hero_skill_rune
+			if L == nil or L < AbilityTag.Attack or L > AbilityTag.Ultimate or N == nil then
+				goto O
 			end
-			local M = toFiniteNumber(J, 0)
-			if M == 0 then
-				goto L
+			local P = n.unit:GetAbilityByTag(L)
+			if not IsValid(P) then
+				goto O
 			end
-			if PropertySystem:AddStaticProperty(n.unit:entindex(), I, z, M) then
-				r.applied = r.applied + 1
-				H = true
+			local y = self:GetUnitRecord(n.unit)
+			local Q = 0
+			local R = 0
+			for S, T in pairs(N.attributes or {}) do
+				do
+					local U = toFiniteNumber(T, 0)
+					if U == 0 or PropertySystem:GetScopeOfProperty(S) ~= PropertyScope.UNIT then
+						goto V
+					end
+					local z = (
+						(
+							(
+								((((("arena_pvp_rune:" .. n.side) .. ":") .. tostring(n.targetUID)) .. ":") .. n.heroID)
+								.. ":"
+							) .. tostring(L)
+						) .. ":"
+					) .. S
+					if PropertySystem:AddAbilityStaticProperty(P, S, z, U, { source = "arena_pvp_rune" }) then
+						local W = y.abilityPropertySources
+						W[#W + 1] = { ability = P, sourceID = z }
+						Q = Q + 1
+					end
+				end
+				::V::
+			end
+			local X = {}
+			for Y, Z in pairs(N.effects or {}) do
+				do
+					local _ = toFiniteNumber(Z, 0)
+					if _ <= 0 or math.floor(_) ~= _ then
+						goto a0
+					end
+					local B = n.unit:AddItemByName(Y, _)
+					if B == nil or not IsValid(B) then
+						goto a0
+					end
+					B.abilityTag = L
+					local a1 = y.runeEffectItems
+					a1[#a1 + 1] = B
+					X[#X + 1] = B
+					R = R + 1
+				end
+				::a0::
+			end
+			for m, B in ipairs(X) do
+				if B.RefreshConfigData ~= nil then
+					B:RefreshConfigData()
+				end
 			end
 		end
-		::L::
+		::O::
 	end
-	if not H then
+end
+function l.prototype.ApplyAttributes(self, n, o, p, Q, r)
+	local z = (((((("arena_pvp_attribute:" .. n.side) .. ":") .. n.heroID) .. ":") .. o) .. ":") .. p
+	local a2 = false
+	for S, T in pairs(Q) do
+		do
+			local a3 = PropertySystem:GetScopeOfProperty(S)
+			if a3 == nil or a3 ~= PropertyScope.UNIT then
+				r.skipped = r.skipped + 1
+				goto a4
+			end
+			local U = toFiniteNumber(T, 0)
+			if U == 0 then
+				goto a4
+			end
+			if PropertySystem:AddStaticProperty(n.unit:entindex(), S, z, U) then
+				r.applied = r.applied + 1
+				a2 = true
+			end
+		end
+		::a4::
+	end
+	if not a2 then
 		return
 	end
 	local y = self:GetUnitRecord(n.unit)
 	if not f(y.propertySources, z) then
-		local N = y.propertySources
-		N[#N + 1] = z
+		local a5 = y.propertySources
+		a5[#a5 + 1] = z
 	end
 end
-function l.prototype.ApplyPrivileges(self, n, o, p, O, r)
-	for P, Q in pairs(O) do
+function l.prototype.ApplyPrivileges(self, n, o, p, a6, r)
+	for a7, Z in pairs(a6) do
 		do
-			local R = toFiniteNumber(Q, 0)
-			if R <= 0 or math.floor(R) ~= R then
+			local _ = toFiniteNumber(Z, 0)
+			if _ <= 0 or math.floor(_) ~= _ then
 				r.skipped = r.skipped + 1
-				goto S
+				goto a8
 			end
-			local T = self:CreatePrivilege(n, P, R)
-			if T == nil then
+			local a9 = self:CreatePrivilege(n, a7, _)
+			if a9 == nil then
 				r.skipped = r.skipped + 1
-				goto S
+				goto a8
 			end
 			local y = self:GetUnitRecord(n.unit)
-			T:OnCreated()
-			local U = y.privilegeInstances
-			U[#U + 1] = T
+			a9:OnCreated()
+			local aa = y.privilegeInstances
+			aa[#aa + 1] = a9
 			r.applied = r.applied + 1
 		end
-		::S::
+		::a8::
 	end
 end
-function l.prototype.ApplyMyths(self, n, o, p, V, r)
-	for P, M in pairs(V) do
+function l.prototype.ApplyMyths(self, n, o, p, ab, r)
+	for a7, U in pairs(ab) do
 		do
-			local W = toFiniteNumber(M, 0)
-			if W == 0 then
+			local ac = toFiniteNumber(U, 0)
+			if ac == 0 then
 				r.skipped = r.skipped + 1
-				goto X
+				goto ad
 			end
-			local T = self:CreatePrivilege(n, P, 1, { value = W })
-			if T == nil then
+			local a9 = self:CreatePrivilege(n, a7, 1, { value = ac })
+			if a9 == nil then
 				r.skipped = r.skipped + 1
-				goto X
+				goto ad
 			end
 			local y = self:GetUnitRecord(n.unit)
-			T:OnCreated()
-			local Y = y.privilegeInstances
-			Y[#Y + 1] = T
+			a9:OnCreated()
+			local ae = y.privilegeInstances
+			ae[#ae + 1] = a9
 			r.applied = r.applied + 1
 		end
-		::X::
+		::ad::
 	end
 end
-function l.prototype.CreatePrivilege(self, n, P, R, Z)
-	local _ = KeyValues.privilegeKv
-	local a0 = _ and _[P]
-	if a0 == nil or a0.IsNoScript == 1 then
+function l.prototype.CreatePrivilege(self, n, a7, _, af)
+	local ag = KeyValues.privilegeKv
+	local ah = ag and ag[a7]
+	if ah == nil or ah.IsNoScript == 1 then
 		return nil
 	end
-	local a1 = a0.ScriptFile
-	if a1 == nil then
-		a1 = P
+	local ai = ah.ScriptFile
+	if ai == nil then
+		ai = a7
 	end
-	local a2 = a1
+	local aj = ai
 	pcall(function()
-		return require("abilities.privilege." .. tostring(a2))
+		return require("abilities.privilege." .. tostring(aj))
 	end)
-	return j(nil, a2, P, R, n.unit:GetPlayerOwnerID(), n.unit, Z) or g(k, P, R, n.unit:GetPlayerOwnerID(), n.unit, Z)
+	return j(nil, aj, a7, _, n.unit:GetPlayerOwnerID(), n.unit, af) or g(
+		k,
+		a7,
+		_,
+		n.unit:GetPlayerOwnerID(),
+		n.unit,
+		af
+	)
 end
-function l.prototype.ApplyAbilityUpgrades(self, n, o, p, a3, r)
+function l.prototype.ApplyAbilityUpgrades(self, n, o, p, ak, r)
 	local z = (
 		(
 			(
@@ -207,40 +295,48 @@ function l.prototype.ApplyAbilityUpgrades(self, n, o, p, a3, r)
 			) .. o
 		) .. ":"
 	) .. p
-	local H = false
-	for a4, Q in pairs(a3) do
+	local a2 = false
+	for al, Z in pairs(ak) do
 		do
-			local R = toFiniteNumber(Q, 0)
+			local _ = toFiniteNumber(Z, 0)
 			if
-				R <= 0
-				or math.floor(R) ~= R
-				or not AbilityUpgrade:CanApplyAbilityUpgrade(n.unit, a4)
-				or AbilityUpgrade:HasAbilityUpgrade(n.unit, a4)
+				_ <= 0
+				or math.floor(_) ~= _
+				or not AbilityUpgrade:CanApplyAbilityUpgrade(n.unit, al)
+				or AbilityUpgrade:HasAbilityUpgrade(n.unit, al)
 			then
 				r.skipped = r.skipped + 1
-				goto a5
+				goto am
 			end
-			AbilityUpgrade:AddAbilityUpgrade(n.unit, a4, R, z)
+			AbilityUpgrade:AddAbilityUpgrade(n.unit, al, _, z)
 			r.applied = r.applied + 1
-			H = true
+			a2 = true
 		end
-		::a5::
+		::am::
 	end
-	if not H then
+	if not a2 then
 		return
 	end
 	local y = self:GetUnitRecord(n.unit)
 	if not f(y.abilityUpgradeSources, z) then
-		local a6 = y.abilityUpgradeSources
-		a6[#a6 + 1] = z
+		local an = y.abilityUpgradeSources
+		an[#an + 1] = z
 	end
 end
 function l.prototype.GetUnitRecord(self, w)
 	local x = tostring(w:entindex())
 	local y = self.unitRecords[x]
 	if y == nil then
-		y = { unit = w, propertySources = {}, abilityUpgradeSources = {}, privilegeInstances = {} }
+		y = {
+			unit = w,
+			propertySources = {},
+			abilityPropertySources = {},
+			runeEffectItems = {},
+			abilityUpgradeSources = {},
+			privilegeInstances = {},
+		}
 		self.unitRecords[x] = y
+		w.__ArenaPvpRuneEffectItems = y.runeEffectItems
 	end
 	return y
 end

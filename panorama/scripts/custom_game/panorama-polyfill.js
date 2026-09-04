@@ -1005,6 +1005,7 @@ var COSMETIC_TYPE;
     COSMETIC_TYPE["DEFENSE_SKILL_EFFECT"] = "DEFENSE_SKILL_EFFECT";
     COSMETIC_TYPE["ULTIMATE_SKILL_EFFECT"] = "ULTIMATE_SKILL_EFFECT";
     COSMETIC_TYPE["MISC"] = "MISC";
+    COSMETIC_TYPE["MEDAL"] = "MEDAL";
 })(COSMETIC_TYPE || (COSMETIC_TYPE = {}));
 var COSMETIC_SLOT;
 (function (COSMETIC_SLOT) {
@@ -1023,6 +1024,7 @@ var COSMETIC_SLOT;
     COSMETIC_SLOT[COSMETIC_SLOT["MISC"] = 13] = "MISC";
     COSMETIC_SLOT[COSMETIC_SLOT["BORDER"] = 14] = "BORDER";
     COSMETIC_SLOT[COSMETIC_SLOT["TITLE"] = 15] = "TITLE";
+    COSMETIC_SLOT[COSMETIC_SLOT["MEDAL"] = 16] = "MEDAL";
 })(COSMETIC_SLOT || (COSMETIC_SLOT = {}));
 /** 地牢房间类型 */
 var DungeonRoomType;
@@ -3485,4 +3487,4 @@ var PROPERTY_TAGS = {
     ring_track_radius: ["Ring"],
     per_encounter_skill_damage_amplify: ["Skill"],
     per_encounter_ultimate_damage_amplify: ["Ultimate"],
-};
+};

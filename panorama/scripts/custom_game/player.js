@@ -266,6 +266,31 @@ const PlayerTitle = props => {
     return _el$4;
   })();
 };
+const PlayerMedal = props => {
+  const [local, other] = libs.splitProps(props, ["medalID", "classList"]);
+  const medalID = libs.createMemo(() => String(local.medalID));
+  return (() => {
+    const _el$7 = libs.createElement("Panel", other, null),
+      _el$8 = libs.createElement("Image", {
+        "class": "PlayerMedalImage",
+        get src() {
+          return getSrcPath(`cosmetic/MEDAL/${Language()}/${medalID()}.png`);
+        },
+        scaling: "stretch-to-cover-preserve-aspect",
+        hittest: false
+      }, _el$7);
+    libs.spread(_el$7, libs.mergeProps$1({
+      get classList() {
+        return {
+          "PlayerMedal": true,
+          ...local.classList
+        };
+      }
+    }, other), true);
+    libs.effect(_$p => libs.setProp(_el$8, "src", getSrcPath(`cosmetic/MEDAL/${Language()}/${medalID()}.png`), _$p));
+    return _el$7;
+  })();
+};
 function GetPropNum(props, item_id) {
   if (!props) return 0;
   let num = 0;
@@ -376,11 +401,11 @@ const showCdkeyReceiveResult = data => {
 const ExchangeEntry = () => {
   const [key, setKey] = libs.createSignal("");
   return (() => {
-    const _el$7 = libs.createElement("Panel", {
+    const _el$9 = libs.createElement("Panel", {
       hittest: false
     }, null);
-    libs.setProp(_el$7, "className", "ExchangeEntry");
-    libs.insert(_el$7, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+    libs.setProp(_el$9, "className", "ExchangeEntry");
+    libs.insert(_el$9, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
       style: {
         border: "0px",
         backgroundColor: "none"
@@ -398,7 +423,7 @@ const ExchangeEntry = () => {
         }, showCdkeyReceiveResult);
       }
     }), null);
-    libs.insert(_el$7, libs.createComponent(EOM_Button.EOM_BaseButton, {
+    libs.insert(_el$9, libs.createComponent(EOM_Button.EOM_BaseButton, {
       id: "ExchangeBTN",
       onactivate: () => {
         CallActionRequest("/v1/cdkey/receive", {
@@ -406,7 +431,7 @@ const ExchangeEntry = () => {
         }, showCdkeyReceiveResult);
       }
     }), null);
-    return _el$7;
+    return _el$9;
   })();
 };
 const CurrencyGroup = props => {
@@ -415,13 +440,13 @@ const CurrencyGroup = props => {
   });
   const [local, others] = libs.splitProps(merged, ["tokens", "values", "exchangeButton", "recentOrder", "currencyType"]);
   return (() => {
-    const _el$8 = libs.createElement("Panel", libs.mergeProps$1(others, {
+    const _el$0 = libs.createElement("Panel", libs.mergeProps$1(others, {
       hittest: false
     }), null);
-    libs.spread(_el$8, libs.mergeProps$1(others, {
+    libs.spread(_el$0, libs.mergeProps$1(others, {
       "hittest": false
     }), true);
-    libs.insert(_el$8, libs.createComponent(libs.Show, {
+    libs.insert(_el$0, libs.createComponent(libs.Show, {
       get when() {
         return local.recentOrder;
       },
@@ -444,7 +469,7 @@ const CurrencyGroup = props => {
         });
       }
     }), null);
-    libs.insert(_el$8, libs.createComponent(libs.Show, {
+    libs.insert(_el$0, libs.createComponent(libs.Show, {
       get when() {
         return local.exchangeButton;
       },
@@ -452,7 +477,7 @@ const CurrencyGroup = props => {
         return libs.createComponent(ExchangeEntry, {});
       }
     }), null);
-    libs.insert(_el$8, libs.createComponent(libs.For, {
+    libs.insert(_el$0, libs.createComponent(libs.For, {
       get each() {
         return props.tokens;
       },
@@ -468,7 +493,7 @@ const CurrencyGroup = props => {
         });
       }
     }), null);
-    return _el$8;
+    return _el$0;
   })();
 };
 const CurrencyIcon = props => {
@@ -485,21 +510,21 @@ const CurrencyIcon = props => {
     },
     get fallback() {
       return (() => {
-        const _el$1 = libs.createElement("Image", libs.mergeProps$1(others, {
+        const _el$11 = libs.createElement("Image", libs.mergeProps$1(others, {
           get src() {
             return getSrcPath(`tokens/${props.tokenID}.png`);
           }
         }), null);
-        libs.spread(_el$1, libs.mergeProps$1(others, {
+        libs.spread(_el$11, libs.mergeProps$1(others, {
           get src() {
             return getSrcPath(`tokens/${props.tokenID}.png`);
           }
         }), false);
-        return _el$1;
+        return _el$11;
       })();
     },
     get children() {
-      const _el$0 = libs.createElement("Label", libs.mergeProps$1(others, {
+      const _el$10 = libs.createElement("Label", libs.mergeProps$1(others, {
         get text() {
           return (() => {
             const language = Language();
@@ -513,7 +538,7 @@ const CurrencyIcon = props => {
           })();
         }
       }), null);
-      libs.spread(_el$0, libs.mergeProps$1(others, {
+      libs.spread(_el$10, libs.mergeProps$1(others, {
         get text() {
           return (() => {
             const language = Language();
@@ -527,7 +552,7 @@ const CurrencyIcon = props => {
           })();
         }
       }), false);
-      return _el$0;
+      return _el$10;
     }
   });
 };
@@ -608,19 +633,19 @@ const PlayerName = props => {
     }
   });
   return (() => {
-    const _el$10 = libs.createElement("Panel", other, null),
-      _el$11 = libs.createElement("Label", {
+    const _el$12 = libs.createElement("Panel", other, null),
+      _el$13 = libs.createElement("Label", {
         get text() {
           return username();
         }
-      }, _el$10),
-      _el$12 = libs.createElement("DOTAUserName", {
+      }, _el$12),
+      _el$14 = libs.createElement("DOTAUserName", {
         get steamid() {
           return steamid();
         },
         hittest: false
-      }, _el$10);
-    libs.spread(_el$10, libs.mergeProps$1({
+      }, _el$12);
+    libs.spread(_el$12, libs.mergeProps$1({
       get classList() {
         return {
           "PlayerName": true,
@@ -629,19 +654,19 @@ const PlayerName = props => {
       }
     }, other), true);
     const _ref$ = userNamePanel;
-    typeof _ref$ === "function" ? libs.use(_ref$, _el$12) : userNamePanel = _el$12;
-    libs.insert(_el$10, resolved, null);
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$14) : userNamePanel = _el$14;
+    libs.insert(_el$12, resolved, null);
     libs.effect(_p$ => {
       const _v$ = username(),
         _v$2 = steamid();
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$11, "text", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$12, "steamid", _v$2, _p$._v$2));
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$13, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$14, "steamid", _v$2, _p$._v$2));
       return _p$;
     }, {
       _v$: undefined,
       _v$2: undefined
     });
-    return _el$10;
+    return _el$12;
   })();
 };
 const EOM_Avatar = props => {
@@ -675,23 +700,23 @@ const EOM_Avatar = props => {
     }
   });
   return (() => {
-    const _el$13 = libs.createElement("Panel", others, null),
-      _el$14 = libs.createElement("DOTAAvatarImage", {
+    const _el$15 = libs.createElement("Panel", others, null),
+      _el$16 = libs.createElement("DOTAAvatarImage", {
         get steamid() {
           return local.steamid;
         },
         width: "100%",
         height: "100%",
         hittest: false
-      }, _el$13);
-    libs.spread(_el$13, others, true);
+      }, _el$15);
+    libs.spread(_el$15, others, true);
     const _ref$2 = avatarImage;
-    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$14) : avatarImage = _el$14;
-    libs.setProp(_el$14, "width", "100%");
-    libs.setProp(_el$14, "height", "100%");
-    libs.insert(_el$13, () => local.children, null);
-    libs.effect(_$p => libs.setProp(_el$14, "steamid", local.steamid, _$p));
-    return _el$13;
+    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$16) : avatarImage = _el$16;
+    libs.setProp(_el$16, "width", "100%");
+    libs.setProp(_el$16, "height", "100%");
+    libs.insert(_el$15, () => local.children, null);
+    libs.effect(_$p => libs.setProp(_el$16, "steamid", local.steamid, _$p));
+    return _el$15;
   })();
 };
 
@@ -702,5 +727,6 @@ exports.EOM_Avatar = EOM_Avatar;
 exports.EOM_Currency = EOM_Currency;
 exports.ExchangeEntry = ExchangeEntry;
 exports.PlayerAvatar = PlayerAvatar;
+exports.PlayerMedal = PlayerMedal;
 exports.PlayerName = PlayerName;
-exports.PlayerTitle = PlayerTitle;
+exports.PlayerTitle = PlayerTitle;

@@ -1597,6 +1597,18 @@
 	overflow: noclip;
 }
 
+.PlayerMedal
+{
+	width: 86px;
+	height: 86px;
+}
+
+.PlayerMedalImage
+{
+	width: 100%;
+	height: 100%;
+}
+
 .PlayerTitleImage
 {
 	z-index: 1;
@@ -6893,21 +6905,25 @@
 	text-shadow: 0px 0px 2px 2 #000000;
 }
 
-#PlayerInfo #TopInfo #MedalList
+#PlayerInfo #TopInfo .MedalList
 {
-	opacity: 0;
-	horizontal-align: right;
-	vertical-align: center;
+	align: left bottom;
 	flow-children: right;
+	margin-left: 355px;
 }
 
-#PlayerInfo #TopInfo #MedalList .Medal
+#PlayerInfo #TopInfo .PlayerRankBadgeBanner
 {
-	width: 40px;
-	height: 40px;
-	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_add_png.vtex");
-	background-size: 100%;
-	margin: 0px 5px;
+	margin: 0px;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+}
+
+#PlayerInfo #TopInfo .PlayerMedal
+{
+	vertical-align: bottom;
+	width: 86px;
+	height: 86px;
 }
 
 #PlayerInfo #TopInfo #SteamID
@@ -6920,6 +6936,8 @@
 #PlayerInfo #TopInfo .EditIcon
 {
 	align: right bottom;
+	margin-right: -10px;
+	margin-bottom: -10px;
 }
 
 #PlayerInfo .EditIcon

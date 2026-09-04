@@ -6858,4 +6858,4 @@ function Demo() {
   });
 }
 print("Demo loaded 2");
-libs.render(() => libs.createComponent(Demo, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(Demo, {}), $.GetContextPanel());

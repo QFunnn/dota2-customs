@@ -2373,10 +2373,11 @@ const PlayerInfoContent = props => {
     };
   });
   const playerCosmeticID = slot => {
-    const cosmeticID = playerCosmeticEquips()[`0-${slot}`]?.cosmetic_id;
+    const cosmeticID = playerCosmeticEquips()[slot]?.cosmetic_id;
     return cosmeticID != undefined && cosmeticID > 0 ? String(cosmeticID) : undefined;
   };
   const borderCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.BORDER) ?? "1710000");
+  const medalCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.MEDAL));
   const isLocalPlayer = libs.createMemo(() => {
     if (props.playerID != undefined) {
       return props.playerID == Players.GetLocalPlayer();
@@ -2667,103 +2668,94 @@ const PlayerInfoContent = props => {
         }
       }, _el$0),
       _el$13 = libs.createElement("Panel", {
-        id: "MedalList"
-      }, _el$4);
-      libs.createElement("Panel", {
-        "class": "Medal"
-      }, _el$13);
-      libs.createElement("Panel", {
-        "class": "Medal"
-      }, _el$13);
-      libs.createElement("Panel", {
-        "class": "Medal"
-      }, _el$13);
-      const _el$17 = libs.createElement("Label", {
+        "class": "MedalList"
+      }, _el$4),
+      _el$14 = libs.createElement("Label", {
         id: "SteamID",
         get text() {
           return playerUID() ?? "";
         }
       }, _el$4),
-      _el$18 = libs.createElement("Panel", {
+      _el$15 = libs.createElement("Panel", {
         id: "HeroCards"
       }, _el$3),
-      _el$19 = libs.createElement("Panel", {
+      _el$16 = libs.createElement("Panel", {
         id: "InfoStat"
       }, _el$3),
-      _el$20 = libs.createElement("Panel", {
+      _el$17 = libs.createElement("Panel", {
         "class": "SettlementInfo"
       }, _el$3),
-      _el$21 = libs.createElement("Panel", {
+      _el$18 = libs.createElement("Panel", {
         id: "Title"
-      }, _el$20);
+      }, _el$17);
       libs.createElement("Label", {
         "class": "Row Row1",
         text: "#PlayerInfo_BattleResult"
-      }, _el$21);
+      }, _el$18);
       libs.createElement("Label", {
         "class": "Row Row2",
         text: "#PlayerInfo_UsedHero"
-      }, _el$21);
+      }, _el$18);
       libs.createElement("Label", {
         "class": "Row Row3",
         text: "#PlayerInfo_Difficulty"
-      }, _el$21);
+      }, _el$18);
       libs.createElement("Label", {
         "class": "Row Row4",
         text: "#PlayerInfo_Blessing"
-      }, _el$21);
+      }, _el$18);
       libs.createElement("Label", {
         "class": "Row Row5",
         text: "#PlayerInfo_Artifact"
-      }, _el$21);
-      const _el$27 = libs.createElement("Panel", {
+      }, _el$18);
+      const _el$24 = libs.createElement("Panel", {
         "class": "SettlementDesc"
-      }, _el$20),
-      _el$28 = libs.createElement("Label", {
+      }, _el$17),
+      _el$25 = libs.createElement("Label", {
         get ["class"]() {
           return libs.classNames("Row Row1", settlementInfo().ret);
         },
         get text() {
           return settlementInfo().ret;
         }
-      }, _el$27),
-      _el$29 = libs.createElement("Panel", {
+      }, _el$24),
+      _el$26 = libs.createElement("Panel", {
         "class": "Row Row2"
-      }, _el$27),
-      _el$30 = libs.createElement("Label", {
+      }, _el$24),
+      _el$27 = libs.createElement("Label", {
         "class": "Row Row3",
         get text() {
           return settlementInfo().diff;
         }
-      }, _el$27),
-      _el$31 = libs.createElement("Panel", {
+      }, _el$24),
+      _el$28 = libs.createElement("Panel", {
         "class": "Row Row4"
-      }, _el$27),
-      _el$32 = libs.createElement("Panel", {
+      }, _el$24),
+      _el$29 = libs.createElement("Panel", {
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$31),
-      _el$33 = libs.createElement("Panel", {
+      }, _el$28),
+      _el$30 = libs.createElement("Panel", {
         "class": "Row Row5"
-      }, _el$27),
-      _el$34 = libs.createElement("Panel", {
+      }, _el$24),
+      _el$31 = libs.createElement("Panel", {
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$33),
-      _el$35 = libs.createElement("Panel", {
+      }, _el$30),
+      _el$32 = libs.createElement("Panel", {
         id: "RightArea"
       }, _el$2),
-      _el$36 = libs.createElement("Panel", {
+      _el$33 = libs.createElement("Panel", {
         marginTop: "32px",
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$35),
-      _el$41 = libs.createElement("Panel", {
+      }, _el$32),
+      _el$38 = libs.createElement("Panel", {
         "class": "Row2",
         marginTop: "25px",
         horizontalAlign: "center",
         flowChildren: "right"
-      }, _el$35);
+      }, _el$32);
     libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return playerUID();
@@ -2798,7 +2790,20 @@ const PlayerInfoContent = props => {
         return playerUID();
       }
     }), null);
-    libs.insert(_el$4, libs.createComponent(RankBadgeBanner.PlayerRankBadgeBanner, {
+    libs.insert(_el$13, libs.createComponent(libs.Show, {
+      get when() {
+        return medalCosmeticID();
+      },
+      keyed: true,
+      get children() {
+        return libs.createComponent(Player.PlayerMedal, {
+          get medalID() {
+            return medalCosmeticID();
+          }
+        });
+      }
+    }), null);
+    libs.insert(_el$13, libs.createComponent(RankBadgeBanner.PlayerRankBadgeBanner, {
       data: playerInfoData,
       get active() {
         return props.show;
@@ -2820,27 +2825,27 @@ const PlayerInfoContent = props => {
     libs.insert(_el$3, libs.createComponent(TitleComp, {
       text: "#PlayerInfo_HeroSoul",
       marginTop: "15px"
-    }), _el$18);
-    libs.insert(_el$18, libs.createComponent(libs.For, {
+    }), _el$15);
+    libs.insert(_el$15, libs.createComponent(libs.For, {
       get each() {
         return heroCards();
       },
       children: (data, i) => {
         return (() => {
-          const _el$42 = libs.createElement("Panel", {
+          const _el$39 = libs.createElement("Panel", {
               "class": "HeroCardItem"
             }, null),
-            _el$43 = libs.createElement("Label", {
+            _el$40 = libs.createElement("Label", {
               "class": "Lv",
               get text() {
                 return data.lv;
               }
-            }, _el$42);
-          libs.insert(_el$42, libs.createComponent(hero_card.HeroCard, {
+            }, _el$39);
+          libs.insert(_el$39, libs.createComponent(hero_card.HeroCard, {
             get heroName() {
               return data.hero;
             }
-          }), _el$43);
+          }), _el$40);
           libs.effect(_p$ => {
             const _v$8 = {
                 name: "hero_info",
@@ -2849,64 +2854,64 @@ const PlayerInfoContent = props => {
                 show_next_soul: 0
               },
               _v$9 = data.lv;
-            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$42, "customTooltip", _v$8, _p$._v$8));
-            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "text", _v$9, _p$._v$9));
+            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$39, "customTooltip", _v$8, _p$._v$8));
+            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$40, "text", _v$9, _p$._v$9));
             return _p$;
           }, {
             _v$8: undefined,
             _v$9: undefined
           });
-          return _el$42;
+          return _el$39;
         })();
       }
     }));
     libs.insert(_el$3, libs.createComponent(TitleComp, {
       text: "#PlayerInfo_PersonalData",
       marginTop: "31px"
-    }), _el$19);
-    libs.insert(_el$19, libs.createComponent(libs.For, {
+    }), _el$16);
+    libs.insert(_el$16, libs.createComponent(libs.For, {
       get each() {
         return statInfos();
       },
       children: (data, i) => {
         return (() => {
-          const _el$44 = libs.createElement("Panel", {
+          const _el$41 = libs.createElement("Panel", {
               get ["class"]() {
                 return "StatItem " + data.type;
               }
             }, null),
-            _el$45 = libs.createElement("Panel", {
+            _el$42 = libs.createElement("Panel", {
               width: "100%",
               height: "45px"
-            }, _el$44),
-            _el$46 = libs.createElement("Label", {
+            }, _el$41),
+            _el$43 = libs.createElement("Label", {
               "class": "StatTitle",
               get text() {
                 return data.title;
               }
-            }, _el$45),
-            _el$47 = libs.createElement("Label", {
+            }, _el$42),
+            _el$44 = libs.createElement("Label", {
               "class": "StatValue",
               get text() {
                 return data.text;
               }
-            }, _el$44);
-          libs.setProp(_el$45, "width", "100%");
-          libs.setProp(_el$45, "height", "45px");
+            }, _el$41);
+          libs.setProp(_el$42, "width", "100%");
+          libs.setProp(_el$42, "height", "45px");
           libs.effect(_p$ => {
             const _v$0 = "StatItem " + data.type,
               _v$1 = data.title,
               _v$10 = data.text;
-            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "class", _v$0, _p$._v$0));
-            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$46, "text", _v$1, _p$._v$1));
-            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$47, "text", _v$10, _p$._v$10));
+            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$41, "class", _v$0, _p$._v$0));
+            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$43, "text", _v$1, _p$._v$1));
+            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$44, "text", _v$10, _p$._v$10));
             return _p$;
           }, {
             _v$0: undefined,
             _v$1: undefined,
             _v$10: undefined
           });
-          return _el$44;
+          return _el$41;
         })();
       }
     }));
@@ -2921,16 +2926,16 @@ const PlayerInfoContent = props => {
           });
         } : undefined;
       }
-    }), _el$20);
-    libs.insert(_el$29, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+    }), _el$17);
+    libs.insert(_el$26, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
       get heroname() {
         return settlementInfo().hero;
       },
       heroimagestyle: "icon"
     }));
-    libs.setProp(_el$32, "horizontalAlign", "center");
-    libs.setProp(_el$32, "flowChildren", "right");
-    libs.insert(_el$32, libs.createComponent(libs.For, {
+    libs.setProp(_el$29, "horizontalAlign", "center");
+    libs.setProp(_el$29, "flowChildren", "right");
+    libs.insert(_el$29, libs.createComponent(libs.For, {
       get each() {
         return settlementInfo().bless;
       },
@@ -2941,9 +2946,9 @@ const PlayerInfoContent = props => {
         });
       }
     }));
-    libs.setProp(_el$34, "horizontalAlign", "center");
-    libs.setProp(_el$34, "flowChildren", "right");
-    libs.insert(_el$34, libs.createComponent(libs.For, {
+    libs.setProp(_el$31, "horizontalAlign", "center");
+    libs.setProp(_el$31, "flowChildren", "right");
+    libs.insert(_el$31, libs.createComponent(libs.For, {
       get each() {
         return settlementInfo().artifact;
       },
@@ -2954,17 +2959,17 @@ const PlayerInfoContent = props => {
         });
       }
     }));
-    libs.insert(_el$35, libs.createComponent(TitleComp, {
+    libs.insert(_el$32, libs.createComponent(TitleComp, {
       "class": "ArrowTitle",
       text: "#Aquarium",
       type: "Large",
       onactivate: openAquarium,
       tooltip_text: "#PlayerInfo_Tips1"
-    }), _el$36);
-    libs.setProp(_el$36, "marginTop", "32px");
-    libs.setProp(_el$36, "horizontalAlign", "center");
-    libs.setProp(_el$36, "flowChildren", "right");
-    libs.insert(_el$36, libs.createComponent(DisplayItemComp, {
+    }), _el$33);
+    libs.setProp(_el$33, "marginTop", "32px");
+    libs.setProp(_el$33, "horizontalAlign", "center");
+    libs.setProp(_el$33, "flowChildren", "right");
+    libs.insert(_el$33, libs.createComponent(DisplayItemComp, {
       title: "#PlayerInfo_RareFish",
       get rarity() {
         return GetServiceItemRarity(highestRarityFish()?.fish_item_id);
@@ -2984,26 +2989,26 @@ const PlayerInfoContent = props => {
                 return Number(highestRarityFish().fish_item_id);
               }
             }), (() => {
-              const _el$37 = libs.createElement("Panel", {
+              const _el$34 = libs.createElement("Panel", {
                 "class": "FishStarList"
               }, null);
-              libs.insert(_el$37, libs.createComponent(libs.For, {
+              libs.insert(_el$34, libs.createComponent(libs.For, {
                 each: [1, 2, 3, 4, 5],
                 children: idx => (() => {
-                  const _el$48 = libs.createElement("Image", {
+                  const _el$45 = libs.createElement("Image", {
                     "class": "FishStarIcon"
                   }, null);
-                  libs.effect(_$p => libs.setProp(_el$48, "visible", fishStarCount() >= idx, _$p));
-                  return _el$48;
+                  libs.effect(_$p => libs.setProp(_el$45, "visible", fishStarCount() >= idx, _$p));
+                  return _el$45;
                 })()
               }));
-              return _el$37;
+              return _el$34;
             })()];
           }
         });
       }
     }), null);
-    libs.insert(_el$36, libs.createComponent(DisplayItemComp, {
+    libs.insert(_el$33, libs.createComponent(DisplayItemComp, {
       title: "#PlayerInfo_FishingGear",
       get rarity() {
         return KeyValues.idle_game_fish_rod[String(currentRodLevel())]?.rarity;
@@ -3036,7 +3041,7 @@ const PlayerInfoContent = props => {
         });
       }
     }), null);
-    libs.insert(_el$35, libs.createComponent(TitleComp, {
+    libs.insert(_el$32, libs.createComponent(TitleComp, {
       "class": "ArrowTitle",
       get text() {
         return GetLocalization("#PlayerInfo_ShowRoom");
@@ -3050,8 +3055,8 @@ const PlayerInfoContent = props => {
         return isLocalPlayer() ? openShowRoomSetting : undefined;
       },
       onactivate: () => openShowRoom()
-    }), _el$41);
-    libs.insert(_el$35, libs.createComponent(libs.Show, {
+    }), _el$38);
+    libs.insert(_el$32, libs.createComponent(libs.Show, {
       get when() {
         return libs.memo(() => !!isLocalPlayer())() && showRoomSettingOpen();
       },
@@ -3060,16 +3065,16 @@ const PlayerInfoContent = props => {
           "class": "ShowRoomSettingDismiss",
           onactivate: closeShowRoomSetting
         }), (() => {
-          const _el$38 = libs.createElement("Panel", {
+          const _el$35 = libs.createElement("Panel", {
               "class": "ShowRoomSettingDropdown"
             }, null);
             libs.createElement("Panel", {
               id: "DropdownBG"
-            }, _el$38);
-            const _el$40 = libs.createElement("Panel", {
+            }, _el$35);
+            const _el$37 = libs.createElement("Panel", {
               "class": "DropdownContainer"
-            }, _el$38);
-          libs.insert(_el$40, libs.createComponent(libs.For, {
+            }, _el$35);
+          libs.insert(_el$37, libs.createComponent(libs.For, {
             each: SHOW_ROOM_DISPLAY_TYPES,
             children: type => {
               const selected = () => showRoomDisplayTypes().includes(type);
@@ -3082,34 +3087,34 @@ const PlayerInfoContent = props => {
                 onactivate: () => selectShowRoomSettingType(type),
                 get children() {
                   return [(() => {
-                    const _el$49 = libs.createElement("Panel", {
+                    const _el$46 = libs.createElement("Panel", {
                         "class": "ShowRoomSettingCheckBox"
                       }, null);
                       libs.createElement("Panel", {
                         "class": "ShowRoomSettingCheckMark"
-                      }, _el$49);
-                    return _el$49;
+                      }, _el$46);
+                    return _el$46;
                   })(), (() => {
-                    const _el$51 = libs.createElement("Label", {
+                    const _el$48 = libs.createElement("Label", {
                       get text() {
                         return GetLocalization(SHOW_ROOM_TYPE_LOCALIZATION[type]);
                       }
                     }, null);
-                    libs.effect(_$p => libs.setProp(_el$51, "text", GetLocalization(SHOW_ROOM_TYPE_LOCALIZATION[type]), _$p));
-                    return _el$51;
+                    libs.effect(_$p => libs.setProp(_el$48, "text", GetLocalization(SHOW_ROOM_TYPE_LOCALIZATION[type]), _$p));
+                    return _el$48;
                   })()];
                 }
               });
             }
           }));
-          return _el$38;
+          return _el$35;
         })()];
       }
-    }), _el$41);
-    libs.setProp(_el$41, "marginTop", "25px");
-    libs.setProp(_el$41, "horizontalAlign", "center");
-    libs.setProp(_el$41, "flowChildren", "right");
-    libs.insert(_el$41, libs.createComponent(libs.For, {
+    }), _el$38);
+    libs.setProp(_el$38, "marginTop", "25px");
+    libs.setProp(_el$38, "horizontalAlign", "center");
+    libs.setProp(_el$38, "flowChildren", "right");
+    libs.insert(_el$38, libs.createComponent(libs.For, {
       get each() {
         return showRoomDisplayTypes();
       },
@@ -3128,10 +3133,10 @@ const PlayerInfoContent = props => {
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$9, "text", _v$, _p$._v$));
       _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$11, "width", _v$2, _p$._v$2));
       _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$12, "text", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$17, "text", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$28, "class", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$28, "text", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$30, "text", _v$7, _p$._v$7));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$14, "text", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$25, "class", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$25, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$27, "text", _v$7, _p$._v$7));
       return _p$;
     }, {
       _v$: undefined,
@@ -3148,7 +3153,7 @@ const PlayerInfoContent = props => {
 const DisplayItemComp = props => {
   const resolvedChildren = libs.children(() => libs.untrack(() => props.children));
   return (() => {
-    const _el$52 = libs.createElement("Panel", {
+    const _el$49 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames("DisplayItemComp", {
             IsEmpty: props.name == undefined,
@@ -3156,33 +3161,33 @@ const DisplayItemComp = props => {
           });
         }
       }, null),
-      _el$53 = libs.createElement("Label", {
+      _el$50 = libs.createElement("Label", {
         "class": "Title",
         get text() {
           return props.title;
         }
-      }, _el$52);
+      }, _el$49);
       libs.createElement("Panel", {
         "class": "SegmentLine"
-      }, _el$52);
-      const _el$55 = libs.createElement("Panel", {
+      }, _el$49);
+      const _el$52 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames("Frame", props.rarity ? `Rarity${props.rarity}` : undefined);
         }
-      }, _el$52),
-      _el$56 = libs.createElement("Label", {
+      }, _el$49),
+      _el$53 = libs.createElement("Label", {
         "class": "ItemName",
         get text() {
           return props.name;
         }
-      }, _el$52);
-    libs.insert(_el$55, resolvedChildren);
-    libs.insert(_el$52, libs.createComponent(libs.Show, {
+      }, _el$49);
+    libs.insert(_el$52, resolvedChildren);
+    libs.insert(_el$49, libs.createComponent(libs.Show, {
       get when() {
         return props.onactivate != undefined;
       },
       get children() {
-        const _el$57 = libs.createElement("Panel", {
+        const _el$54 = libs.createElement("Panel", {
           "class": "ClickLayer",
           get onactivate() {
             return props.onactivate;
@@ -3191,14 +3196,14 @@ const DisplayItemComp = props => {
         libs.effect(_p$ => {
           const _v$11 = props.onactivate,
             _v$12 = props.customTooltip;
-          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$57, "onactivate", _v$11, _p$._v$11));
-          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$57, "customTooltip", _v$12, _p$._v$12));
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$54, "onactivate", _v$11, _p$._v$11));
+          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$54, "customTooltip", _v$12, _p$._v$12));
           return _p$;
         }, {
           _v$11: undefined,
           _v$12: undefined
         });
-        return _el$57;
+        return _el$54;
       }
     }), null);
     libs.effect(_p$ => {
@@ -3210,11 +3215,11 @@ const DisplayItemComp = props => {
         _v$15 = libs.classNames("Frame", props.rarity ? `Rarity${props.rarity}` : undefined),
         _v$16 = props.customTooltip,
         _v$17 = props.name;
-      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$52, "class", _v$13, _p$._v$13));
-      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$53, "text", _v$14, _p$._v$14));
-      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$55, "class", _v$15, _p$._v$15));
-      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$55, "customTooltip", _v$16, _p$._v$16));
-      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$56, "text", _v$17, _p$._v$17));
+      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$49, "class", _v$13, _p$._v$13));
+      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$50, "text", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$52, "class", _v$15, _p$._v$15));
+      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$52, "customTooltip", _v$16, _p$._v$16));
+      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$53, "text", _v$17, _p$._v$17));
       return _p$;
     }, {
       _v$13: undefined,
@@ -3223,33 +3228,33 @@ const DisplayItemComp = props => {
       _v$16: undefined,
       _v$17: undefined
     });
-    return _el$52;
+    return _el$49;
   })();
 };
 const TitleComp = props => {
   const [local, other] = libs.splitProps(props, ["text", "class", "type", "setting"]);
   return (() => {
-    const _el$58 = libs.createElement("Panel", libs.mergeProps$1({
+    const _el$55 = libs.createElement("Panel", libs.mergeProps$1({
         get ["class"]() {
           return libs.classNames({
             CanClick: props.onactivate != undefined
           }, "TitleComp", local.type, local.class);
         }
       }, other), null),
-      _el$59 = libs.createElement("Label", {
+      _el$56 = libs.createElement("Label", {
         "class": "TitleLabel",
         get text() {
           return local.text;
         }
-      }, _el$58);
-    libs.spread(_el$58, libs.mergeProps$1({
+      }, _el$55);
+    libs.spread(_el$55, libs.mergeProps$1({
       get ["class"]() {
         return libs.classNames({
           CanClick: props.onactivate != undefined
         }, "TitleComp", local.type, local.class);
       }
     }, other), true);
-    libs.insert(_el$58, libs.createComponent(libs.Show, {
+    libs.insert(_el$55, libs.createComponent(libs.Show, {
       get when() {
         return local.setting;
       },
@@ -3262,8 +3267,8 @@ const TitleComp = props => {
         });
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$59, "text", local.text, _$p));
-    return _el$58;
+    libs.effect(_$p => libs.setProp(_el$56, "text", local.text, _$p));
+    return _el$55;
   })();
 };
 
@@ -3371,4 +3376,4 @@ function Book() {
     }
   });
 }
-libs.render(() => libs.createComponent(Book, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(Book, {}), $.GetContextPanel());

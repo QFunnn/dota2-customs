@@ -281,7 +281,7 @@ function getWeaponSoulDescription(weapon, star) {
 function isCosmeticEquippedOnPreview(cid) {
   const cosmeticKV = KeyValues.info_item_cosmetic[String(cid)];
   if (cosmeticKV == undefined) return false;
-  const isPlayerCosmetic = cosmeticKV.type == COSMETIC_TYPE.BORDER || cosmeticKV.type == COSMETIC_TYPE.TITLE;
+  const isPlayerCosmetic = cosmeticKV.type == COSMETIC_TYPE.BORDER || cosmeticKV.type == COSMETIC_TYPE.TITLE || cosmeticKV.type == COSMETIC_TYPE.MEDAL;
   if (!isPlayerCosmetic && previewHeroID() == undefined) return false;
   const equips = player_cosmetic_equips();
   const targetID = String(cid);
@@ -710,6 +710,18 @@ function Cosmetic(props) {
           }
         }), libs.createComponent(libs.Match, {
           get when() {
+            return libs.memo(() => !!hasDisplayableItem())() && secondTabName$1() == COSMETIC_TYPE.MEDAL;
+          },
+          get children() {
+            return libs.createComponent(Player.PlayerMedal, {
+              "class": "Preview_MEDAL",
+              get medalID() {
+                return cosmeticID();
+              }
+            });
+          }
+        }), libs.createComponent(libs.Match, {
+          get when() {
             return cosmeticPreviewType.includes(secondTabName$1()) || isHeroWeaponTab();
           },
           get children() {
@@ -1044,7 +1056,7 @@ function Cosmetic(props) {
               },
               onactivate: () => {
                 const isMisc = cosmeticData().type == COSMETIC_TYPE.MISC;
-                const isPlayerCosmetic = cosmeticData().type == COSMETIC_TYPE.BORDER || cosmeticData().type == COSMETIC_TYPE.TITLE;
+                const isPlayerCosmetic = cosmeticData().type == COSMETIC_TYPE.BORDER || cosmeticData().type == COSMETIC_TYPE.TITLE || cosmeticData().type == COSMETIC_TYPE.MEDAL;
                 if (cosmeticData().default == 1 || isCosmeticEquipped()) {
                   CallAction("/v1/cosmetic/equip", {
                     slot_id: isMisc ? findEquippedMiscSlot(cosmeticID()) : COSMETIC_SLOT[cosmeticData().type],
@@ -1135,6 +1147,12 @@ function CosmeticItem(props) {
     }
   });
   const icon = () => {
+    if (secondTabName$1() == "AVATAR_MEDAL") {
+      const language = Language();
+      if (language != "schinese") {
+        return getSrcPath(`store_items/${language}/${props.id}.png`);
+      }
+    }
     return getSrcPath("store_items/" + props.id + ".png");
   };
   const useSpecialEffectsImage = () => fakePreviewType.includes(props.type);
@@ -1837,7 +1855,7 @@ const EmptyFallback = () => {
 const MENU_LIST = {
   Props_Menu: [],
   Cosmetic_Hero: ["HERO_WEAPON", COSMETIC_TYPE.HEAD, COSMETIC_TYPE.SHOULDER, COSMETIC_TYPE.BACK, COSMETIC_TYPE.TAIL, COSMETIC_TYPE.WING, COSMETIC_TYPE.MISC, COSMETIC_TYPE.FOOTPRINT_EFFECT, COSMETIC_TYPE.AURA_EFFECT, COSMETIC_TYPE.ATTACK_EFFECT, COSMETIC_TYPE.SPECIAL_SKILL_EFFECT, COSMETIC_TYPE.DASH_SKILL_EFFECT, COSMETIC_TYPE.DEFENSE_SKILL_EFFECT, COSMETIC_TYPE.ULTIMATE_SKILL_EFFECT],
-  Cosmetic_Player: [COSMETIC_TYPE.BORDER, COSMETIC_TYPE.TITLE]
+  Cosmetic_Player: [COSMETIC_TYPE.BORDER, COSMETIC_TYPE.TITLE, COSMETIC_TYPE.MEDAL]
 };
 const {
   LayoutMenu,
@@ -1880,4 +1898,4 @@ function CosmeticRoot() {
     }
   });
 }
-libs.render(() => libs.createComponent(CosmeticRoot, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(CosmeticRoot, {}), $.GetContextPanel());

@@ -4572,6 +4572,9 @@ const Popup_PvpCombatLog = props => {
     return records().slice(start, start + RECORDS_PER_PAGE);
   });
   libs.createEffect(() => {
+    $.Msg(pageRecords());
+  });
+  libs.createEffect(() => {
     const side = recordSide();
     if (recordCache()[side] !== undefined) return;
     CallActionRequest("/v1/pvp/fetch_records", {
@@ -4646,11 +4649,17 @@ const Popup_PvpCombatLog = props => {
             get text() {
               return GetLocalization("#PvpCombatLog_Score");
             }
+          }, _el$2),
+          _el$9 = libs.createElement("Label", {
+            "class": "PvpCol PvpColScore",
+            get text() {
+              return GetLocalization("#PvpCombatLog_OpponentScore");
+            }
           }, _el$2);
           libs.createElement("Panel", {
             "class": "Line"
           }, _el$);
-          const _el$0 = libs.createElement("Panel", {
+          const _el$1 = libs.createElement("Panel", {
             id: "PvpRecordList"
           }, _el$);
         libs.insert(_el$, libs.createComponent(EOM_Breadcrumb.EOM_Breadcrumb, {
@@ -4663,7 +4672,7 @@ const Popup_PvpCombatLog = props => {
           },
           onChange: index => selectRecordSide(index === 0 ? "attack" : "defense")
         }), _el$2);
-        libs.insert(_el$0, libs.createComponent(libs.For, {
+        libs.insert(_el$1, libs.createComponent(libs.For, {
           get each() {
             return pageRecords();
           },
@@ -4674,84 +4683,100 @@ const Popup_PvpCombatLog = props => {
             const opponentIsBot = asAttacker && record.target_is_bot;
             const selfPower = asAttacker ? record.power : record.target_power;
             const opponentPower = asAttacker ? record.target_power : record.power;
-            const scoreDelta = record.end_score - record.start_score;
+            const selfStartScore = toFiniteNumber(asAttacker ? record.start_score : record.opponent_start_score);
+            const selfEndScore = toFiniteNumber(asAttacker ? record.end_score : record.opponent_end_score);
+            const opponentStartScore = toFiniteNumber(asAttacker ? record.opponent_start_score : record.start_score);
+            const opponentEndScore = toFiniteNumber(asAttacker ? record.opponent_end_score : record.end_score);
+            const selfScoreDelta = selfEndScore - selfStartScore;
+            const opponentScoreDelta = opponentEndScore - opponentStartScore;
             return (() => {
-              const _el$12 = libs.createElement("Panel", {
+              const _el$13 = libs.createElement("Panel", {
                   "class": "PvpRecordRow"
                 }, null),
-                _el$13 = libs.createElement("Label", {
+                _el$14 = libs.createElement("Label", {
                   "class": "PvpCol PvpColTime",
                   get text() {
                     return formatTime(record.start_time);
                   }
-                }, _el$12),
-                _el$14 = libs.createElement("Label", {
+                }, _el$13),
+                _el$15 = libs.createElement("Label", {
                   get ["class"]() {
                     return libs.classNames("PvpCol PvpColResult", won ? "Win" : "Lose");
                   },
                   get text() {
                     return GetLocalization(won ? "#CombatLog_Win" : "#CombatLog_Lose");
                   }
-                }, _el$12),
-                _el$15 = libs.createElement("Panel", {
+                }, _el$13),
+                _el$16 = libs.createElement("Panel", {
                   "class": "PvpCol PvpColOpponent"
-                }, _el$12),
-                _el$17 = libs.createElement("Label", {
+                }, _el$13),
+                _el$18 = libs.createElement("Label", {
                   "class": "PvpCol PvpColSelfPower",
                   get text() {
                     return formatPower(selfPower);
                   }
-                }, _el$12),
-                _el$18 = libs.createElement("Label", {
+                }, _el$13),
+                _el$19 = libs.createElement("Label", {
                   "class": "PvpCol PvpColOpponentPower",
                   get text() {
                     return formatPower(opponentPower);
                   }
-                }, _el$12),
-                _el$19 = libs.createElement("Panel", {
+                }, _el$13),
+                _el$20 = libs.createElement("Panel", {
                   "class": "PvpCol PvpColScore"
-                }, _el$12),
-                _el$20 = libs.createElement("Label", {
-                  "class": "ScoreRange",
-                  get text() {
-                    return `${record.start_score} → ${record.end_score}`;
-                  }
-                }, _el$19),
+                }, _el$13),
                 _el$21 = libs.createElement("Label", {
+                  "class": "ScoreRange",
+                  text: `${selfStartScore} → ${selfEndScore}`
+                }, _el$20),
+                _el$22 = libs.createElement("Label", {
                   get ["class"]() {
-                    return libs.classNames("ScoreDelta", scoreDelta >= 0 ? "Positive" : "Negative");
+                    return libs.classNames("ScoreDelta", selfScoreDelta >= 0 ? "Positive" : "Negative");
                   },
-                  text: `(${scoreDelta >= 0 ? "+" : ""}${scoreDelta})`
-                }, _el$19);
-              libs.insert(_el$15, libs.createComponent(Player.AvatarBorder, {
+                  text: `(${selfScoreDelta >= 0 ? "+" : ""}${selfScoreDelta})`
+                }, _el$20),
+                _el$23 = libs.createElement("Panel", {
+                  "class": "PvpCol PvpColScore"
+                }, _el$13),
+                _el$24 = libs.createElement("Label", {
+                  "class": "ScoreRange",
+                  text: `${opponentStartScore} → ${opponentEndScore}`
+                }, _el$23),
+                _el$25 = libs.createElement("Label", {
+                  get ["class"]() {
+                    return libs.classNames("ScoreDelta", opponentScoreDelta >= 0 ? "Positive" : "Negative");
+                  },
+                  text: `(${opponentScoreDelta >= 0 ? "+" : ""}${opponentScoreDelta})`
+                }, _el$23);
+              libs.insert(_el$16, libs.createComponent(Player.AvatarBorder, {
                 borderid: "1710000",
                 get children() {
                   return [libs.createComponent(Player.EOM_Avatar, {
                     accountid: opponentIsBot ? "0" : opponentUID
                   }), (() => {
-                    const _el$16 = libs.createElement("Panel", {
+                    const _el$17 = libs.createElement("Panel", {
                       "class": "TipsArea"
                     }, null);
-                    libs.setProp(_el$16, "customTooltip", opponentIsBot ? undefined : {
+                    libs.setProp(_el$17, "customTooltip", opponentIsBot ? undefined : {
                       name: "player_info",
                       steam_id: opponentUID
                     });
-                    return _el$16;
+                    return _el$17;
                   })()];
                 }
               }), null);
-              libs.insert(_el$15, libs.createComponent(libs.Show, {
+              libs.insert(_el$16, libs.createComponent(libs.Show, {
                 when: !opponentIsBot,
                 get fallback() {
                   return (() => {
-                    const _el$22 = libs.createElement("Label", {
+                    const _el$26 = libs.createElement("Label", {
                       "class": "OpponentName",
                       get text() {
                         return GetLocalization("#PvpCombatLog_Bot");
                       }
                     }, null);
-                    libs.effect(_$p => libs.setProp(_el$22, "text", GetLocalization("#PvpCombatLog_Bot"), _$p));
-                    return _el$22;
+                    libs.effect(_$p => libs.setProp(_el$26, "text", GetLocalization("#PvpCombatLog_Bot"), _$p));
+                    return _el$26;
                   })();
                 },
                 get children() {
@@ -4761,49 +4786,52 @@ const Popup_PvpCombatLog = props => {
                   });
                 }
               }), null);
-              libs.setProp(_el$21, "text", `(${scoreDelta >= 0 ? "+" : ""}${scoreDelta})`);
+              libs.setProp(_el$21, "text", `${selfStartScore} → ${selfEndScore}`);
+              libs.setProp(_el$22, "text", `(${selfScoreDelta >= 0 ? "+" : ""}${selfScoreDelta})`);
+              libs.setProp(_el$24, "text", `${opponentStartScore} → ${opponentEndScore}`);
+              libs.setProp(_el$25, "text", `(${opponentScoreDelta >= 0 ? "+" : ""}${opponentScoreDelta})`);
               libs.effect(_p$ => {
-                const _v$7 = formatTime(record.start_time),
-                  _v$8 = libs.classNames("PvpCol PvpColResult", won ? "Win" : "Lose"),
-                  _v$9 = GetLocalization(won ? "#CombatLog_Win" : "#CombatLog_Lose"),
-                  _v$0 = formatPower(selfPower),
-                  _v$1 = formatPower(opponentPower),
-                  _v$10 = `${record.start_score} → ${record.end_score}`,
-                  _v$11 = libs.classNames("ScoreDelta", scoreDelta >= 0 ? "Positive" : "Negative");
-                _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$13, "text", _v$7, _p$._v$7));
-                _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$14, "class", _v$8, _p$._v$8));
-                _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$14, "text", _v$9, _p$._v$9));
-                _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$17, "text", _v$0, _p$._v$0));
+                const _v$8 = formatTime(record.start_time),
+                  _v$9 = libs.classNames("PvpCol PvpColResult", won ? "Win" : "Lose"),
+                  _v$0 = GetLocalization(won ? "#CombatLog_Win" : "#CombatLog_Lose"),
+                  _v$1 = formatPower(selfPower),
+                  _v$10 = formatPower(opponentPower),
+                  _v$11 = libs.classNames("ScoreDelta", selfScoreDelta >= 0 ? "Positive" : "Negative"),
+                  _v$12 = libs.classNames("ScoreDelta", opponentScoreDelta >= 0 ? "Positive" : "Negative");
+                _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$14, "text", _v$8, _p$._v$8));
+                _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$15, "class", _v$9, _p$._v$9));
+                _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$15, "text", _v$0, _p$._v$0));
                 _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$18, "text", _v$1, _p$._v$1));
-                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$20, "text", _v$10, _p$._v$10));
-                _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$21, "class", _v$11, _p$._v$11));
+                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$19, "text", _v$10, _p$._v$10));
+                _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$22, "class", _v$11, _p$._v$11));
+                _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$25, "class", _v$12, _p$._v$12));
                 return _p$;
               }, {
-                _v$7: undefined,
                 _v$8: undefined,
                 _v$9: undefined,
                 _v$0: undefined,
                 _v$1: undefined,
                 _v$10: undefined,
-                _v$11: undefined
+                _v$11: undefined,
+                _v$12: undefined
               });
-              return _el$12;
+              return _el$13;
             })();
           }
         }), null);
-        libs.insert(_el$0, libs.createComponent(libs.Show, {
+        libs.insert(_el$1, libs.createComponent(libs.Show, {
           get when() {
             return pageRecords().length === 0;
           },
           get children() {
-            const _el$1 = libs.createElement("Label", {
+            const _el$10 = libs.createElement("Label", {
               "class": "EmptyPvpRecords",
               get text() {
                 return GetLocalization("#PvpCombatLog_Empty");
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$1, "text", GetLocalization("#PvpCombatLog_Empty"), _$p));
-            return _el$1;
+            libs.effect(_$p => libs.setProp(_el$10, "text", GetLocalization("#PvpCombatLog_Empty"), _$p));
+            return _el$10;
           }
         }), null);
         libs.effect(_p$ => {
@@ -4812,13 +4840,15 @@ const Popup_PvpCombatLog = props => {
             _v$3 = GetLocalization("#PvpCombatLog_Opponent"),
             _v$4 = GetLocalization("#PvpCombatLog_SelfPower"),
             _v$5 = GetLocalization("#PvpCombatLog_OpponentPower"),
-            _v$6 = GetLocalization("#PvpCombatLog_Score");
+            _v$6 = GetLocalization("#PvpCombatLog_Score"),
+            _v$7 = GetLocalization("#PvpCombatLog_OpponentScore");
           _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "text", _v$, _p$._v$));
           _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
           _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$5, "text", _v$3, _p$._v$3));
           _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$6, "text", _v$4, _p$._v$4));
           _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$7, "text", _v$5, _p$._v$5));
           _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$8, "text", _v$6, _p$._v$6));
+          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$9, "text", _v$7, _p$._v$7));
           return _p$;
         }, {
           _v$: undefined,
@@ -4826,35 +4856,36 @@ const Popup_PvpCombatLog = props => {
           _v$3: undefined,
           _v$4: undefined,
           _v$5: undefined,
-          _v$6: undefined
+          _v$6: undefined,
+          _v$7: undefined
         });
         return _el$;
       })(), (() => {
-        const _el$10 = libs.createElement("Panel", {
+        const _el$11 = libs.createElement("Panel", {
             id: "Pagination"
           }, null),
-          _el$11 = libs.createElement("Label", {
+          _el$12 = libs.createElement("Label", {
             "class": "PageText",
             get text() {
               return `${currentPage()}/${totalPages()}`;
             }
-          }, _el$10);
-        libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          }, _el$11);
+        libs.insert(_el$11, libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "PageBtn PrevBtn",
           get enabled() {
             return currentPage() > 1;
           },
           onactivate: () => goToPage(currentPage() - 1)
-        }), _el$11);
-        libs.insert(_el$10, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        }), _el$12);
+        libs.insert(_el$11, libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "PageBtn NextBtn",
           get enabled() {
             return currentPage() < totalPages();
           },
           onactivate: () => goToPage(currentPage() + 1)
         }), null);
-        libs.effect(_$p => libs.setProp(_el$11, "text", `${currentPage()}/${totalPages()}`, _$p));
-        return _el$10;
+        libs.effect(_$p => libs.setProp(_el$12, "text", `${currentPage()}/${totalPages()}`, _$p));
+        return _el$11;
       })()];
     }
   });
@@ -5241,4 +5272,4 @@ const Popups = () => {
     return _el$;
   })();
 };
-libs.render(() => Popups(), $.GetContextPanel());
+libs.render(() => Popups(), $.GetContextPanel());
