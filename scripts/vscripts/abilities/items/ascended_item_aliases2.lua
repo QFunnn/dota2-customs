@@ -1,0 +1,307 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____dota_ts_adapter = require("utils.dota_ts_adapter")
+local registerAbility = ____dota_ts_adapter.registerAbility
+local _____base_item = require("abilities.items._base_item")
+local BaseItem_CS = _____base_item.BaseItem_CS
+local ____item_0099 = require("abilities.items.item_0099")
+local item_0099 = ____item_0099.item_0099
+local ____item_0200 = require("abilities.items.item_0200")
+local item_0200 = ____item_0200.item_0200
+local ____item_0202 = require("abilities.items.item_0202")
+local item_0202 = ____item_0202.item_0202
+local ____item_0294 = require("abilities.items.item_0294")
+local item_0294 = ____item_0294.item_0294
+local ____item_0344 = require("abilities.items.item_0344")
+local item_0344 = ____item_0344.item_0344
+local ____item_0364 = require("abilities.items.item_0364")
+local item_0364 = ____item_0364.item_0364
+local ____item_0366 = require("abilities.items.item_0366")
+local item_0366 = ____item_0366.item_0366
+local ____item_0384 = require("abilities.items.item_0384")
+local item_0384 = ____item_0384.item_0384
+local ____item_0396 = require("abilities.items.item_0396")
+local item_0396 = ____item_0396.item_0396
+local ____item_0397 = require("abilities.items.item_0397")
+local item_0397 = ____item_0397.item_0397
+local ____item_0398 = require("abilities.items.item_0398")
+local item_0398 = ____item_0398.item_0398
+local ____item_0399 = require("abilities.items.item_0399")
+local item_0399 = ____item_0399.item_0399
+local ____item_0402 = require("abilities.items.item_0402")
+local item_0402 = ____item_0402.item_0402
+local ____item_0403 = require("abilities.items.item_0403")
+local item_0403 = ____item_0403.item_0403
+local ____item_0415 = require("abilities.items.item_0415")
+local item_0415 = ____item_0415.item_0415
+local ____item_0421 = require("abilities.items.item_0421")
+local item_0421 = ____item_0421.item_0421
+local ____item_0422 = require("abilities.items.item_0422")
+local item_0422 = ____item_0422.item_0422
+local ____item_0424 = require("abilities.items.item_0424")
+local item_0424 = ____item_0424.item_0424
+local ____item_0596 = require("abilities.items.item_0596")
+local item_0596 = ____item_0596.item_0596
+local ____item_0606 = require("abilities.items.item_0606")
+local item_0606 = ____item_0606.item_0606
+local ____item_0609 = require("abilities.items.item_0609")
+local item_0609 = ____item_0609.item_0609
+local ____item_0610 = require("abilities.items.item_0610")
+local item_0610 = ____item_0610.item_0610
+local ____item_0611 = require("abilities.items.item_0611")
+local item_0611 = ____item_0611.item_0611
+local ____item_0644 = require("abilities.items.item_0644")
+local item_0644 = ____item_0644.item_0644
+local ____item_0521 = require("abilities.items.item_0521")
+local item_0521 = ____item_0521.item_0521
+local ____item_0535 = require("abilities.items.item_0535")
+local item_0535 = ____item_0535.item_0535
+local ____item_0536 = require("abilities.items.item_0536")
+local item_0536 = ____item_0536.item_0536
+local ____item_0537 = require("abilities.items.item_0537")
+local item_0537 = ____item_0537.item_0537
+local ____item_0539 = require("abilities.items.item_0539")
+local item_0539 = ____item_0539.item_0539
+local ____item_0543 = require("abilities.items.item_0543")
+local item_0543 = ____item_0543.item_0543
+local ____item_0545 = require("abilities.items.item_0545")
+local item_0545 = ____item_0545.item_0545
+local ____item_0554 = require("abilities.items.item_0554")
+local item_0554 = ____item_0554.item_0554
+local ____item_0562 = require("abilities.items.item_0562")
+local item_0562 = ____item_0562.item_0562
+local ____item_0569 = require("abilities.items.item_0569")
+local item_0569 = ____item_0569.item_0569
+local ____item_0593 = require("abilities.items.item_0593")
+local item_0593 = ____item_0593.item_0593
+local ____item_0598 = require("abilities.items.item_0598")
+local item_0598 = ____item_0598.item_0598
+local ____item_0599 = require("abilities.items.item_0599")
+local item_0599 = ____item_0599.item_0599
+local ____item_0612 = require("abilities.items.item_0612")
+local item_0612 = ____item_0612.item_0612
+local ____item_0619 = require("abilities.items.item_0619")
+local item_0619 = ____item_0619.item_0619
+local ____item_0620 = require("abilities.items.item_0620")
+local item_0620 = ____item_0620.item_0620
+local ____item_0102 = require("abilities.items.item_0102")
+local item_0102 = ____item_0102.item_0102
+local ____item_0208 = require("abilities.items.item_0208")
+local item_0208 = ____item_0208.item_0208
+local ____item_0209 = require("abilities.items.item_0209")
+local item_0209 = ____item_0209.item_0209
+local ____item_0216 = require("abilities.items.item_0216")
+local item_0216 = ____item_0216.item_0216
+local ____item_0217 = require("abilities.items.item_0217")
+local item_0217 = ____item_0217.item_0217
+local ____item_0219 = require("abilities.items.item_0219")
+local item_0219 = ____item_0219.item_0219
+local ____item_0266 = require("abilities.items.item_0266")
+local item_0266 = ____item_0266.item_0266
+local ____item_0274 = require("abilities.items.item_0274")
+local item_0274 = ____item_0274.item_0274
+local ____item_0279 = require("abilities.items.item_0279")
+local item_0279 = ____item_0279.item_0279
+local ____item_0291 = require("abilities.items.item_0291")
+local item_0291 = ____item_0291.item_0291
+local ____item_0330 = require("abilities.items.item_0330")
+local item_0330 = ____item_0330.item_0330
+local ____item_0337 = require("abilities.items.item_0337")
+local item_0337 = ____item_0337.item_0337
+local ____item_0341 = require("abilities.items.item_0341")
+local item_0341 = ____item_0341.item_0341
+local ____item_0342 = require("abilities.items.item_0342")
+local item_0342 = ____item_0342.item_0342
+local ____item_0352 = require("abilities.items.item_0352")
+local item_0352 = ____item_0352.item_0352
+local ____item_0363 = require("abilities.items.item_0363")
+local item_0363 = ____item_0363.item_0363
+local ____item_0376 = require("abilities.items.item_0376")
+local item_0376 = ____item_0376.item_0376
+local ____item_0385 = require("abilities.items.item_0385")
+local item_0385 = ____item_0385.item_0385
+local ____item_0390 = require("abilities.items.item_0390")
+local item_0390 = ____item_0390.item_0390
+local ____item_0400 = require("abilities.items.item_0400")
+local item_0400 = ____item_0400.item_0400
+local ____item_0404 = require("abilities.items.item_0404")
+local item_0404 = ____item_0404.item_0404
+local ____item_0408 = require("abilities.items.item_0408")
+local item_0408 = ____item_0408.item_0408
+local ____item_0411 = require("abilities.items.item_0411")
+local item_0411 = ____item_0411.item_0411
+local ____item_0426 = require("abilities.items.item_0426")
+local item_0426 = ____item_0426.item_0426
+local ____item_0442 = require("abilities.items.item_0442")
+local item_0442 = ____item_0442.item_0442
+local ____item_0443 = require("abilities.items.item_0443")
+local item_0443 = ____item_0443.item_0443
+local ____item_0445 = require("abilities.items.item_0445")
+local item_0445 = ____item_0445.item_0445
+local ____item_0453 = require("abilities.items.item_0453")
+local item_0453 = ____item_0453.item_0453
+local ____item_0465 = require("abilities.items.item_0465")
+local item_0465 = ____item_0465.item_0465
+local ____item_0467 = require("abilities.items.item_0467")
+local item_0467 = ____item_0467.item_0467
+local ____item_0468 = require("abilities.items.item_0468")
+local item_0468 = ____item_0468.item_0468
+local ____item_0469 = require("abilities.items.item_0469")
+local item_0469 = ____item_0469.item_0469
+local ____item_0470 = require("abilities.items.item_0470")
+local item_0470 = ____item_0470.item_0470
+local ____item_0471 = require("abilities.items.item_0471")
+local item_0471 = ____item_0471.item_0471
+local ____item_0501 = require("abilities.items.item_0501")
+local item_0501 = ____item_0501.item_0501
+local ____item_0502 = require("abilities.items.item_0502")
+local item_0502 = ____item_0502.item_0502
+local ____item_0503 = require("abilities.items.item_0503")
+local item_0503 = ____item_0503.item_0503
+local ____item_0504 = require("abilities.items.item_0504")
+local item_0504 = ____item_0504.item_0504
+local ____item_0505 = require("abilities.items.item_0505")
+local item_0505 = ____item_0505.item_0505
+local ____item_0532 = require("abilities.items.item_0532")
+local item_0532 = ____item_0532.item_0532
+local ____item_0533 = require("abilities.items.item_0533")
+local item_0533 = ____item_0533.item_0533
+local ____item_0541 = require("abilities.items.item_0541")
+local item_0541 = ____item_0541.item_0541
+local ____item_0576 = require("abilities.items.item_0576")
+local item_0576 = ____item_0576.item_0576
+local ____item_0581 = require("abilities.items.item_0581")
+local item_0581 = ____item_0581.item_0581
+local ____item_0642 = require("abilities.items.item_0642")
+local item_0642 = ____item_0642.item_0642
+local ____item_0646 = require("abilities.items.item_0646")
+local item_0646 = ____item_0646.item_0646
+local ____item_0648 = require("abilities.items.item_0648")
+local item_0648 = ____item_0648.item_0648
+local ____item_0649 = require("abilities.items.item_0649")
+local item_0649 = ____item_0649.item_0649
+local ____item_0650 = require("abilities.items.item_0650")
+local item_0650 = ____item_0650.item_0650
+local ____items = require("abilities.items.items")
+local item_0195 = ____items.item_0195
+local item_0231 = ____items.item_0231
+local ASCENDED_ITEM_ALIASES_2 = {
+	{ "item_0801", item_0200 },
+	{ "item_0802", item_0202 },
+	{ "item_0803", item_0294 },
+	{ "item_0804", item_0344 },
+	{ "item_0805", item_0364 },
+	{ "item_0806", item_0366 },
+	{ "item_0807", item_0384 },
+	{ "item_0808", item_0396 },
+	{ "item_0809", item_0397 },
+	{ "item_0810", item_0398 },
+	{ "item_0811", item_0399 },
+	{ "item_0812", item_0403 },
+	{ "item_0813", item_0415 },
+	{ "item_0814", item_0421 },
+	{ "item_0815", item_0422 },
+	{ "item_0816", item_0424 },
+	{ "item_0817", item_0596 },
+	{ "item_0818", item_0606 },
+	{ "item_0819", item_0609 },
+	{ "item_0820", item_0610 },
+	{ "item_0821", item_0611 },
+	{ "item_0822", item_0644 },
+	{ "item_0785", item_0521 },
+	{ "item_0786", item_0535 },
+	{ "item_0787", item_0536 },
+	{ "item_0788", item_0537 },
+	{ "item_0789", item_0539 },
+	{ "item_0790", item_0543 },
+	{ "item_0791", item_0545 },
+	{ "item_0792", item_0554 },
+	{ "item_0793", item_0562 },
+	{ "item_0794", item_0569 },
+	{ "item_0795", item_0593 },
+	{ "item_0796", item_0598 },
+	{ "item_0797", item_0599 },
+	{ "item_0798", item_0612 },
+	{ "item_0799", item_0619 },
+	{ "item_0800", item_0620 },
+	{ "item_0823", item_0102 },
+	{ "item_0824", item_0266 },
+	{ "item_0825", item_0390 },
+	{ "item_0827", item_0646 },
+	{ "item_0829", item_0231 },
+	{ "item_0830", item_0208 },
+	{ "item_0831", item_0209 },
+	{ "item_0832", item_0274 },
+	{ "item_0833", item_0363 },
+	{ "item_0835", item_0400 },
+	{ "item_0837", item_0404 },
+	{ "item_0838", item_0411 },
+	{ "item_0839", item_0442 },
+	{ "item_0840", item_0453 },
+	{ "item_0841", item_0467 },
+	{ "item_0842", item_0468 },
+	{ "item_0843", item_0469 },
+	{ "item_0844", item_0470 },
+	{ "item_0845", item_0471 },
+	{ "item_0846", item_0501 },
+	{ "item_0847", item_0502 },
+	{ "item_0848", item_0503 },
+	{ "item_0849", item_0505 },
+	{ "item_0850", item_0341 },
+	{ "item_0851", item_0342 },
+	{ "item_0852", item_0195 },
+	{ "item_0853", item_0217 },
+	{ "item_0854", item_0330 },
+	{ "item_0855", item_0337 },
+	{ "item_0856", item_0352 },
+	{ "item_0857", item_0376 },
+	{ "item_0858", item_0385 },
+	{ "item_0859", item_0443 },
+	{ "item_0860", item_0445 },
+	{ "item_0861", item_0465 },
+	{ "item_0862", item_0532 },
+	{ "item_0863", item_0533 },
+	{ "item_0864", item_0216 },
+	{ "item_0865", item_0219 },
+	{ "item_0866", item_0408 },
+	{ "item_0867", item_0426 },
+	{ "item_0868", item_0504 },
+	{ "item_0869", item_0581 },
+	{ "item_0870", item_0279 },
+	{ "item_0871", item_0291 },
+	{ "item_0872", item_0576 },
+	{ "item_0873", item_0642 },
+	{ "item_0874", item_0648 },
+	{ "item_0876", item_0541 },
+	{ "item_0877", item_0649 },
+	{ "item_0878", item_0650 },
+	{ "item_0826", BaseItem_CS },
+	{ "item_0828", item_0099 },
+	{ "item_0836", item_0402 },
+	{ "item_0875", BaseItem_CS },
+}
+local function registerAscendedItem(self, itemName, SourceItem)
+	local ____class_0 = __TS__Class()
+	____class_0.name = "AscendedItem"
+	__TS__ClassExtends(____class_0, SourceItem)
+	local AscendedItem = ____class_0
+	registerAbility(nil, itemName)(nil, AscendedItem)
+end
+for ____, ____value in ipairs(ASCENDED_ITEM_ALIASES_2) do
+	local itemName = ____value[1]
+	local SourceItem = ____value[2]
+	registerAscendedItem(nil, itemName, SourceItem)
+end
+return ____exports

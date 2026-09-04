@@ -1,0 +1,182 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 80
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_bEnableNamedValues = true
+	m_flCullRadius = -1.0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 114.0, 255.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 100.0, 255.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/kez/kez_base.vmdl"
+				m_nModSpecificData = 818
+				m_sequenceName = "idle_loadout"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_PreEmissionOperators = [  ]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_MaintainEmitter"
+			m_nParticlesToMaintain = 1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_bUseOrientation = false
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+		},
+		{
+			_class = "C_INIT_RemapTransformToVector"
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+			m_LocalSpaceTransform = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_SetToCP"
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToRotations"
+		},
+		{
+			_class = "C_OP_SetFloat"
+			m_nOutputField = 4
+		},
+		{
+			_class = "C_OP_SetFloat"
+			m_nOutputField = 20
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flMaxTraceLength = 8192.0
+			m_flTolerance = 24.0
+			m_flLerpRate = 0.1
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 0
+			m_nLerpCP = 0
+			m_bIncludeWater = true
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_nFirstControlPoint = 5
+			m_bSetOrientation = true
+			m_nOrientation = "PARTICLE_ORIENTATION_ROTATION"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 4
+			}
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToYaw"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 4
+			}
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/ui_mouseactions/drag_selected_ringb0.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ui_mouseactions/drag_selected_ringb1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/ui_mouseactions/drag_selected_ringb2.vpcf"
+		},
+	]
+	m_NamedValueLocals = 
+	[
+		{
+			m_Name = "Initial radius CP2x"
+			m_DefaultConfig = 
+			{
+				m_ConfigName = ""
+				m_ConfigValue = 0.0
+				m_BoundValuePath = ""
+				m_iAttachType = "PATTACH_WORLDORIGIN"
+				m_strEntityScope = "self"
+				m_strAttachmentName = ""
+			}
+			m_ValueType = "PVAL_FLOAT"
+		},
+	]
+}

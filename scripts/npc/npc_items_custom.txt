@@ -1,0 +1,73 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+#base "ak_items.txt"
+#base "ak_items_potion.txt"
+#base "ak_items_equip.txt"
+#base "ak_items_formula.txt"
+#base "ak_items_change.txt"
+#base "ak_items_stone.txt"
+#base "ak_gems.txt"
+
+"abilities"
+{
+"item_tango"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SUPPRESS_ASSOCIATED_CONSUMABLE"
+		"Model"							"models/props_gameplay/tango.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_tango.vpcf"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"165"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"90"
+		"ItemShopTags"					"consumable;laning"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"3"
+		"ItemStockMax"					"10"
+		"ItemStockInitial"				"10"
+		"ItemStockTime"					"120"
+		"IsTempestDoubleClonable"		"0"
+		"SuggestPregame"				"1"
+		"SpeciallyBannedFromNeutralSlot"		"1"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				"health_regen"			"7.0"
+				"buff_duration"			"16.0"
+				"tooltip_charges"				"3"
+		}
+	}
+	"ak_dynamic_precache"
+	{
+		"BaseClass" "item_lua"
+		"ScriptFile" "abilities/items/ak_dynamic_precache"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemPurchasable" "0"
+		"ItemPermanent" "0"
+		"ItemDroppable" "0"
+		"ItemKillable" "0"
+		"ItemSellable" "0"
+		"SpeciallyBannedFromNeutralSlot" "1"
+	}
+}

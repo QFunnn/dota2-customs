@@ -1,0 +1,180 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_nGroupID = 3
+	m_flMaxDrawDistance = 2000.0
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 60
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 61
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 62
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 300.0, 300.0, 300.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_HSVShiftToCP"
+			m_DefaultHSVColor = [ 253, 254, 143, 255 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_RingWave"
+		},
+		{
+			m_flOpTimeOffsetMax = 1.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+			m_nOutputField = 7
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_flOpTimeOffsetMax = 1.0
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_Spin"
+			m_flOpTimeOffsetMax = 1.0
+			m_fSpinRateStopTime = 1.0
+			m_nSpinRateDegrees = 4
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flOpTimeOffsetMax = 1.0
+			m_flFadeBias = 0.35
+			m_bEaseInAndOut = false
+			m_flFadeOutTimeMax = 1.0
+			m_flFadeOutTimeMin = 1.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpTimeOffsetMax = 1.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.85
+			m_flEndScale = 2.0
+		},
+	]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calld.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calll.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callm.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callj.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callp.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calle.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calli.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callf.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calla.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callh.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_calln.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callc.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/hero/axe/axe_callk.vpcf"
+		},
+	]
+}

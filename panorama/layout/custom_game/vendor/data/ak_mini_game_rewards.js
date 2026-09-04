@@ -1,0 +1,11 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+GameUI.CustomUIConfig().__AK_PANORAMA_PUBLISH_DATA__("@/json/ak_mini_game_rewards.json",{"MG002_stage_1_gold":{"mini_game_id":"MG002","stage":1,"threshold_ratio":0.1667,"reward_type":"gold","reward_formula":"hero_level_squared*15"},"MG002_stage_1_daily_luck":{"mini_game_id":"MG002","stage":1,"threshold_ratio":0.1667,"reward_type":"daily_luck","reward_amount":1},"MG002_stage_2_gold":{"mini_game_id":"MG002","stage":2,"threshold_ratio":0.5,"reward_type":"gold","reward_formula":"hero_level_squared*15"},"MG002_stage_2_daily_luck":{"mini_game_id":"MG002","stage":2,"threshold_ratio":0.5,"reward_type":"daily_luck","reward_amount":2},"MG002_stage_3_gold":{"mini_game_id":"MG002","stage":3,"threshold_ratio":0.8333,"reward_type":"gold","reward_formula":"hero_level_squared*20"},"MG002_stage_3_daily_luck":{"mini_game_id":"MG002","stage":3,"threshold_ratio":0.8333,"reward_type":"daily_luck","reward_amount":2},"MG003_stage_1_gold":{"mini_game_id":"MG003","stage":1,"threshold_ratio":0.1667,"reward_type":"gold","reward_formula":"hero_level_squared*15"},"MG003_stage_1_daily_luck":{"mini_game_id":"MG003","stage":1,"threshold_ratio":0.1667,"reward_type":"daily_luck","reward_amount":1},"MG003_stage_2_gold":{"mini_game_id":"MG003","stage":2,"threshold_ratio":0.5,"reward_type":"gold","reward_formula":"hero_level_squared*15"},"MG003_stage_2_daily_luck":{"mini_game_id":"MG003","stage":2,"threshold_ratio":0.5,"reward_type":"daily_luck","reward_amount":2},"MG003_stage_3_gold":{"mini_game_id":"MG003","stage":3,"threshold_ratio":0.8333,"reward_type":"gold","reward_formula":"hero_level_squared*20"},"MG003_stage_3_daily_luck":{"mini_game_id":"MG003","stage":3,"threshold_ratio":0.8333,"reward_type":"daily_luck","reward_amount":2},"MG004_stage_1_gold":{"mini_game_id":"MG004","stage":1,"threshold_ratio":1,"reward_type":"gold","reward_amount":100},"MG004_stage_1_daily_luck":{"mini_game_id":"MG004","stage":1,"threshold_ratio":1,"reward_type":"daily_luck","reward_amount":1}});

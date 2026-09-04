@@ -1,0 +1,437 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+Tokens,Vietnamese
+hud_攻击,Tấn công
+hud_返回,Quay lại
+hud_设置,Cài đặt
+hud_邮件,Thư
+hud_请选择邮件查看,Vui lòng chọn thư để xem
+hud_攻击力,Sức tấn công:
+hud_攻击速度,Tốc độ tấn công:
+hud_攻击距离,Tầm đánh:
+hud_移动速度,Tốc độ di chuyển:
+hud_伤害增强,Tăng sát thương:
+hud_魔法恢复,Hồi phục mana:
+hud_攻击暴击,Chí mạng tấn công:
+hud_技能暴击,Chí mạng kỹ năng:
+hud_物理暴击,Chí mạng vật lý:
+hud_魔法暴击,Chí mạng phép:
+hud_伤害加成,Cộng thêm sát thương:
+hud_物理伤害,Sát thương vật lý:
+hud_魔法伤害,Sát thương phép:
+hud_暴击伤害,Sát thương chí mạng:
+hud_技能伤害,Sát thương kỹ năng:
+hud_攻击吸血,Hút máu tấn công:
+hud_物理吸血,Hút máu vật lý:
+hud_技能吸血,Hút máu kỹ năng:
+hud_魔法吸血,Hút máu phép:
+hud_伤害抵抗,Kháng sát thương:
+hud_额外施法距离,Tầm thi triển thêm:
+hud_视野范围,Tầm nhìn:
+hud_冷却缩减,Giảm thời gian hồi chiêu:
+hud_耗蓝减少,Giảm tiêu hao năng lượng:
+hud_防御,Phòng thủ
+hud_综合,Tổng hợp
+hud_特殊,Đặc biệt
+hud_生命值,Máu:
+hud_魔法值,Năng lượng:
+hud_护盾值,Lượng khiên:
+hud_护甲,Giáp:
+hud_物理抗性,Kháng vật lý:
+hud_魔法抗性,Kháng phép:
+hud_状态抗性,Kháng hiệu ứng:
+hud_减速抗性,Kháng làm chậm:
+hud_闪避,Né tránh:
+hud_格挡,Chặn đòn:
+hud_伤害减免,Giảm sát thương:
+hud_生命恢复,Hồi phục máu:
+hud_幸运值:,May mắn:
+ak_combat_notice_player_fallback,Người chơi
+ak_combat_notice_death_defeated,bị đánh bại
+ak_combat_notice_death_fallen,ngã xuống
+ak_combat_notice_death_killed_by_prefix,bị 
+ak_combat_notice_death_killed_by_suffix, đánh bại
+ak_combat_notice_unknown_boss,Boss chưa biết
+ak_combat_notice_unknown_rune,Chưa biết
+ak_combat_notice_entered,đã vào
+ak_combat_notice_evacuate,Sơ tán
+ak_combat_notice_success,Thành công
+ak_combat_notice_killed,Đã hạ gục 
+ak_combat_notice_craft_success,Chế tạo thành công
+ak_combat_notice_craft_start,Bắt đầu chế tạo
+ak_combat_notice_got_rune,Nhận được Rune:
+ak_combat_notice_rune_suffix,Rune
+ak_combat_notice_picked_up,đã nhặt
+ak_combat_notice_dropped,đã bỏ
+name_unknown_room,Phòng chưa biết
+ak_tooltip_term_poison_name,Trúng độc
+ak_tooltip_term_poison_desc,"Gây sát thương phép theo chu kỳ. Sát thương dựa trên tất cả thuộc tính của người thi triển, tất cả các cộng dồn cùng tham gia tính toán tổng sát thương độc."
+ak_tooltip_term_burn_name,Thiêu đốt
+ak_tooltip_term_burn_desc,"Gây sát thương thuần khiết theo chu kỳ. Mục tiêu thường chịu 15% máu hiện tại mỗi giây, tinh anh 7.5%, thủ lĩnh và cấp thủ lĩnh 1.5%."
+ak_tooltip_term_shield_name,Khiên
+ak_tooltip_term_shield_desc,"Chặn sát thương không thuần khiết. Không hồi phục trong 3 giây sau khi nhận sát thương; sau khi bắt đầu hồi phục, hồi 25% mỗi giây."
+ak_tooltip_term_bleed_name,Chảy máu
+ak_tooltip_term_bleed_desc,"Chảy máu chỉ có thể được kích hoạt bởi sát thương vật lý, gây sát thương thuần khiết theo chu kỳ. Sát thương dựa trên 70% sát thương cuối cùng của đòn kích hoạt chảy máu, đồng thời chỉ chịu ảnh hưởng từ sát thương chảy máu và tăng sát thương liên tục."
+ak_tooltip_term_ice_slow_name,Đóng băng
+ak_tooltip_term_ice_slow_desc,"Giảm tốc độ di chuyển và tốc độ tấn công. Mỗi cộng dồn giảm 3%, tối đa 10 cộng dồn."
+ak_tooltip_term_stun_name,Choáng
+ak_tooltip_term_stun_desc,"Không thể di chuyển, tấn công hoặc niệm phép. Thời gian chịu ảnh hưởng bởi kháng choáng."
+ak_tooltip_term_vulnerable_name,Dễ tổn thương
+ak_tooltip_term_vulnerable_desc,"Tăng tất cả sát thương phải chịu. Ban đầu tăng 20%, mỗi cộng dồn thêm 5%, tối đa 40%."
+ak_tooltip_term_attack_crit_name,Bạo kích tấn công
+ak_tooltip_term_crit_name,Bạo kích
+ak_tooltip_term_attack_crit_desc,"Đòn đánh thường có tỉ lệ gây sát thương cao hơn. Bạo kích ban đầu là 5%, sát thương bạo kích là 180%."
+ak_tooltip_term_ability_crit_name,Bạo kích kỹ năng
+ak_tooltip_term_ability_crit_desc,"Sát thương kỹ năng có tỉ lệ gây sát thương cao hơn. Sát thương bạo kích ban đầu là 180%. Khi kích hoạt, sử dụng tỉ lệ sát thương bạo kích hiện tại."
+ak_tooltip_term_omni_crit_name,Bạo kích toàn diện
+ak_tooltip_term_omni_crit_desc,Tăng xác suất chí mạng của tất cả.
+ak_tooltip_term_evasion_rate_name,Tỷ lệ né tránh
+ak_tooltip_term_evasion_name,Né tránh
+ak_tooltip_term_evasion_desc,Có xác suất né tránh đòn tấn công. Nhiều nguồn né tránh sẽ được tính riêng biệt.
+ak_tooltip_term_block_name,Chặn đòn
+ak_tooltip_term_block_desc,Giảm sát thương cuối cùng nhận phải.
+ak_tooltip_term_glow_name,Phát sáng
+ak_tooltip_term_glow_desc,"Tự phát sáng, có thể xua tan bóng tối."
+ak_tooltip_term_healing_reduction_name,Giảm hồi máu
+ak_tooltip_term_healing_reduction_desc,Hiệu quả hồi máu và hút máu nhận được bị giảm.
+ak_tooltip_term_omni_lifesteal_name,Hút máu toàn bộ
+ak_tooltip_term_omni_lifesteal_desc,Tăng tất cả hút máu.
+ak_tooltip_term_charge_name,Nạp năng lượng
+ak_tooltip_term_charge_desc,"Tiêu hao theo số lần nạp, không bị ảnh hưởng bởi giảm thời gian hồi chiêu."
+ak_tooltip_term_gold_storage_name,Lưu trữ
+ak_tooltip_term_gold_storage_desc,"Vàng lưu trữ sẽ không rơi ra khi chết, cũng không chiếm chỗ trong túi đồ."
+ak_tooltip_term_pure_damage_name,Sát thương thuần túy
+ak_tooltip_term_pure_damage_desc,"Sát thương thuần túy bỏ qua giáp và kháng phép, nhưng không thể chí mạng."
+ak_tooltip_term_skill_damage_amp_name,Sát thương kỹ năng
+ak_tooltip_term_skill_damage_amp_desc,Tăng sát thương do kỹ năng gây ra.
+ak_tooltip_term_magical_damage_bonus_name,Tăng sát thương phép
+ak_tooltip_term_magical_damage_bonus_desc,Tăng sát thương dạng phép gây ra.
+ak_tooltip_term_damage_bonus_name,Tăng sát thương
+ak_tooltip_term_damage_bonus_desc,Tăng toàn bộ sát thương gây ra.
+ak_ability_behavior_none,Không
+ak_ability_behavior_passive,Bị động
+ak_ability_behavior_no_target,Không mục tiêu
+ak_ability_behavior_unit_target,Mục tiêu đơn vị
+ak_ability_behavior_point,Mục tiêu điểm
+ak_ability_behavior_toggle,Bật/tắt
+ak_ability_behavior_channelled,Niệm liên tục
+ak_ability_behavior_autocast,Tự động thi triển
+ak_skill_type_active,Chủ động
+ak_skill_type_passive,Bị động
+ak_skill_type_damage,Sát thương
+ak_skill_type_buff,Tăng cường
+ak_skill_type_movement,Di chuyển
+ak_skill_type_charge,Nạp năng lượng
+ak_item_type_equip,Trang bị
+ak_item_type_material,Vật liệu
+ak_item_type_special,Đặc biệt
+ak_item_type_blueprint,Công thức
+ak_item_type_gem,Ấn phù
+ak_item_type_change,Biến hóa
+ak_item_type_potion,Thuốc
+ak_item_type_identity,Nhãn danh tính
+ak_gem_stat_charge_no_consume_chance,Hoàn trả nạp năng lượng
+ak_gem_stat_aoe,Phạm vi tác dụng
+ak_gem_stat_damage,Sát thương kỹ năng
+ak_gem_stat_duration,Thời gian duy trì
+ak_gem_stat_movement,Khoảng cách di chuyển
+ak_gem_stat_probability,Tăng xác suất kích hoạt
+ak_gem_stat_mana_cost,Tiêu hao mana
+ak_gem_stat_health_cost,Tiêu hao máu
+ak_gem_stat_cooldown,Thời gian hồi chiêu
+ak_gem_stat_cast_range,Tầm thi triển
+ak_gem_stat_charge_restore_time,Thời gian hồi phục nạp năng lượng
+ak_gem_stat_charge_count,Số lần nạp năng lượng
+ak_gem_stat_projectile_speed,Tốc độ đạn
+ak_gem_stat_heal,Lượng hồi máu
+ak_gem_stat_buff_power,Cường độ tăng cường
+ak_target_team_enemy,Kẻ địch
+ak_target_team_friendly,Đồng minh
+ak_target_team_both,Cả hai
+ak_target_team_custom,Tùy chỉnh
+ak_tooltip_reforge_none,Chưa tái tạo
+ak_tooltip_reforge_prefix,Tái tạo.
+ak_tooltip_neutral_tier_prefix,Cấp 
+ak_tooltip_neutral_tier_suffix, vật phẩm trung lập
+ak_tooltip_affect_skill_prefix,Ảnh hưởng đến kỹ năng: 
+ak_tooltip_skill_prefix,Kỹ năng: 
+ak_tooltip_profession_limit_prefix,Giới hạn nghề nghiệp: 
+ak_tooltip_affects_prefix,Ảnh hưởng: 
+ak_tooltip_unit_suffix, đơn vị
+ak_tooltip_all_skills,Tất cả kỹ năng
+ak_tooltip_skill_suffix, kỹ năng
+ak_tooltip_no_limit,Không giới hạn
+ak_tooltip_recipe_formula,Công thức chế tạo
+ak_tooltip_hold_alt_terms,Giữ Alt để xem giải thích thuật ngữ
+ak_tooltip_term_glossary_title,Giải thích thuật ngữ
+ak_tooltip_max_charge_points,Điểm năng lượng tối đa: 
+ak_tooltip_base_charge_restore_time,Thời gian hồi nạp cơ bản: 
+ak_tooltip_used_count_prefix,Số lượng đã sử dụng:
+ak_tooltip_daily_remaining_challenge_prefix,Số lần thử thách còn lại hôm nay: 
+ak_tooltip_sell_price_prefix,Giá bán: 
+custom_settings_title,Cài đặt
+custom_settings_cursor_move_hotkey,Phím tắt di chuyển liên tục
+custom_settings_cursor_move_hotkey_desc,"Khi giữ phím tắt đã đặt, anh hùng sẽ liên tục di chuyển đến vị trí trỏ chuột. Có thể bỏ chọn bất kỳ lúc nào để tạm dừng."
+custom_settings_cursor_move_hotkey_hint,"Sau khi xóa, cần đặt lại phím tắt để kích hoạt."
+custom_settings_show_other_player_pickup_info,Hiển thị thông tin nhặt của người khác
+custom_settings_show_other_player_pickup_info_desc,"Khi bật, sẽ hiển thị thông báo khi người chơi khác nhặt vật phẩm. Khi tắt, vẫn hiển thị thông tin nhặt của bạn."
+custom_settings_lock_camera_to_hero,Khóa camera vào tướng
+custom_settings_lock_camera_to_hero_desc,"Khi bật, camera sẽ theo dõi anh hùng của bạn. Khi tắt, trở về điều khiển camera thông thường."
+custom_settings_hide_tooltip_term_glossary,Ẩn mặc định giải thích thuật ngữ
+custom_settings_hide_tooltip_term_glossary_desc,"Khi bật, phần giải thích thuật ngữ trong mô tả kỹ năng và vật phẩm sẽ được thu gọn mặc định, chỉ mở ra khi giữ phím Alt."
+custom_settings_enable_bgm,Bật BGM
+custom_settings_enable_bgm_desc,"Khi bật, bản đồ sẽ phát BGM Axe King. Khi tắt, một vòng lặp nhạc im lặng sẽ được phát để chặn cả BGM gốc và BGM tùy chỉnh."
+custom_settings_show_normal_damage_numbers,Hiển thị số sát thương thường
+custom_settings_show_normal_damage_numbers_desc,"Khi bật, sát thương thường đã gộp sẽ được hiển thị. Số chí mạng và hiệu ứng trúng đòn luôn được hiển thị."
+custom_settings_open_dota_settings,Mở cài đặt DOTA2
+hud_task_tracker_title,Nhiệm vụ
+hud_task_tracker_mg002_title,Thu thập tất cả phần thưởng
+hud_task_tracker_floor_steps,Giẫm sàn
+hud_task_tracker_beans,Đậu
+hud_task_tracker_power_beans,Đậu lớn
+hud_task_tracker_fruit,Trái cây
+hud_task_tracker_revive,Hồi sinh
+hud_task_tracker_frightened,Thời điểm xua ma
+hud_task_tracker_value_remaining,Còn {count}
+hud_task_tracker_value_complete,Đã hoàn thành
+hud_task_tracker_value_ratio,{current} / {total}
+hud_task_tracker_value_available,Có thể thu thập
+hud_task_tracker_value_hidden,Chưa xuất hiện
+hud_task_tracker_value_eaten,Đã ăn
+hud_task_tracker_value_count,{count}
+hud_task_tracker_value_frightened,Ếch/Cá
+hud_task_tracker_mg001_title,Nhiệm vụ nhảy
+hud_task_tracker_mg001_exit,Nhảy đến đích
+hud_task_tracker_mg001_chest,Mở rương
+hud_task_tracker_mg001_open_treasure,Mở kho báu
+hud_task_tracker_time_remaining,Thời gian còn lại
+hud_task_tracker_mg002_revive_count,Số lần hồi sinh
+hud_mini_game_score_title,Điểm mini game
+hud_task_tracker_reward_gold_luck,{gold} Vàng / May mắn hàng ngày +{dailyLuck}
+hud_task_tracker_mg003_title,Thử thách bi-a
+hud_task_tracker_current_target,Mục tiêu hiện tại
+hud_task_tracker_mg003_pocket_progress,Tiến trình đưa vào lỗ
+hud_task_tracker_fail_condition,Điều kiện thất bại
+hud_task_tracker_mg003_target_group_all_pocketed,Đưa tất cả {group} vào lỗ {current}/{total}
+hud_task_tracker_mg003_fail_black8_before_target,Bóng đen 8 vào lỗ trước khi hoàn thành mục tiêu
+hud_task_tracker_mg003_fail_opponent_all_pocketed,{group} vào lỗ trước {current}/{total}
+hud_task_tracker_mg003_break_any_ball,Đánh bất kỳ quả bóng bi-a nào
+hud_task_tracker_mg003_group_solids,Quả bóng sọ
+hud_task_tracker_mg003_group_stripes,Quả bóng vân lửa
+hud_task_tracker_mg003_group_unassigned,Chưa phân bổ
+ak_combat_notice_treasure_grant_prefix,Nhận được bảo vật
+ak_combat_notice_treasure_to_warehouse,Đã bỏ vào kho
+ak_combat_notice_treasure_to_knapsack,Đã bỏ vào ba lô
+ak_combat_notice_treasure_to_ground,"Không đủ chỗ, đã rơi gần anh hùng"
+ak_combat_notice_treasure_formula_unlocked,Đã mở khóa bản vẽ
+ak_combat_notice_treasure_duplicate_formula_fragment,"Bản vẽ trùng lặp, đã chuyển thành mảnh vỡ bí ẩn"
+ak_combat_notice_shop_buy_prefix,Nhận được khi mua
+ak_combat_notice_craft_claim_prefix,Nhận sản phẩm chế tạo
+ak_combat_notice_item_to_warehouse,Đã bỏ vào kho
+ak_combat_notice_item_stored,Đã lưu
+ak_combat_notice_item_to_knapsack,Đã bỏ vào ba lô
+ak_combat_notice_item_to_ground,"Không đủ chỗ, đã rơi gần anh hùng"
+ak_combat_notice_item_formula_unlocked,Đã mở khóa bản vẽ
+ak_combat_notice_item_duplicate_formula_fragment,"Bản vẽ trùng lặp, đã chuyển thành mảnh vỡ bí ẩn"
+ak_combat_notice_item_count_prefix,Số lượng
+ak_combat_notice_item_sold_prefix,Đã bán
+ak_combat_notice_item_sold_gold_prefix,Nhận được
+ak_combat_notice_gold_suffix,Vàng
+ak_combat_notice_merchant_exchange_point_suffix,Vàng thưởng
+ak_combat_notice_merchant_exchange_prefix,Đổi từ thương nhân thu mua
+ak_combat_notice_merchant_submit_prefix,Nộp thu mua
+ak_combat_notice_exchange_list_prefix,Niêm yết sàn giao dịch
+ak_combat_notice_exchange_list_success_suffix,Niêm yết thành công
+ak_combat_notice_exchange_buy_prefix,Mua từ sàn giao dịch
+ak_combat_notice_exchange_buy_success_suffix,Mua thành công
+ak_combat_notice_chest_reward_prefix,Nhận từ rương
+ak_combat_notice_equipment_equipped_prefix,Đã trang bị
+ak_combat_notice_equipment_unequipped_prefix,Đã tháo
+ak_tooltip_term_dot_name,Sát thương liên tục
+ak_tooltip_term_dot_desc,"Không thể kích hoạt chí mạng, chịu ảnh hưởng từ tăng cường sát thương liên tục."
+ak_tooltip_term_thunderized_name,Lôi hóa
+ak_tooltip_term_thunderized_desc,"Truyền năng lượng bão vào cơ thể, tạm thời bước vào trạng thái Lôi hóa. Một số kỹ năng quái vật sẽ bị lớp điện tích này làm chệch hướng, tường sét cũng sẽ nhường đường cho bạn; sức mạnh này sẽ tan biến sau đòn tấn công chính tiếp theo."
+ak_tooltip_term_thunderized_counter_break_name,Lôi hóa phá chiêu
+ak_tooltip_term_thunderized_counter_break_desc,"Khi ở trạng thái Lôi hóa, thực hiện đòn tấn công chính có thể xé toạc cấu trúc ma lực hình thành khi quái vật thi triển kỹ năng. Nếu trúng mục tiêu thích hợp, kỹ năng của nó sẽ bị gián đoạn và rơi vào trạng thái mất cân bằng trong thời gian ngắn."
+ak_tooltip_term_perfect_thunderized_name,Lôi hóa chính xác
+ak_tooltip_term_perfect_thunderized_desc,"Vào trạng thái Lôi hóa vào khoảnh khắc then chốt khi kỹ năng quái vật sắp hoàn tất tích lũy. Nếu thời điểm đủ chính xác, cơn bão sẽ đáp lại trong thời gian ngắn, khiến di chuyển và đòn tấn công tiếp theo của bạn trở nên nguy hiểm hơn."
+ak_tooltip_term_ignite_name,Thiêu đốt
+ak_tooltip_term_ignite_desc,"Mỗi giây gây sát thương thuần túy cho kẻ địch dựa trên trí tuệ và sức mạnh, đồng thời giảm giáp và kháng phép của chúng."
+ak_item_type_pet,Thú cưng
+hud_充能速度,Tốc độ nạp năng lượng:
+hud_task_tracker_tutorial_title,Nhiệm vụ hướng dẫn
+hud_task_tracker_tutorial_talk_to_instructor,Nói chuyện với huấn luyện viên
+hud_task_tracker_tutorial_initial_waves,Đánh bại 3 đợt quái vật tấn công
+hud_task_tracker_tutorial_elite_trial,Tiêu diệt Tinh Anh Thử Thách
+hud_task_tracker_tutorial_profession,Hoàn thành bất kỳ chuyển nghề nào
+hud_task_tracker_tutorial_challenge,Hoàn thành bất kỳ thử thách nào
+hud_task_tracker_tutorial_continue_or_evacuate,Tiếp tục thử thách / Di tản khỏi phòng
+hud_task_tracker_post_tutorial_title,Nhiệm vụ tân thủ
+hud_task_tracker_post_tutorial_enter_m001,Vào hầm mỏ bỏ hoang
+hud_task_tracker_post_tutorial_evacuate_value,Di tản và mang ra vật phẩm trị giá 200
+hud_task_tracker_post_tutorial_destroy_tree,Phá hủy bia mộ bỏ hoang
+hud_task_tracker_post_tutorial_kill_boss,Tiêu diệt trùm: Tiny
+hud_task_tracker_post_tutorial_stay_alive,Hãy sống sót nhé!
+ak_tooltip_term_chilled_name,Đóng băng
+ak_tooltip_term_chilled_desc,Tốc độ tấn công và di chuyển của quái vật bị giảm.
+ak_tooltip_term_attack_effect_name,Hiệu ứng tấn công
+ak_tooltip_term_attack_effect_desc,Kích hoạt tất cả hiệu ứng khi tấn công.
+ak_tooltip_term_final_damage_name,Sát thương cuối cùng
+ak_tooltip_term_final_damage_desc,Tăng riêng một hệ số nhân vào khâu tính sát thương cuối cùng.
+ak_item_type_stone,Đá mệnh
+ak_tooltip_term_damage_resistance_name,Kháng sát thương
+ak_tooltip_term_damage_resistance_desc,"Sát thương cuối phải nhận = Sát thương ÷ (1 + Kháng sát thương). Khi tính, 100% kháng sát thương được tính là 1."
+custom_settings_knapsack_scale,Tỷ lệ thu phóng túi đồ
+custom_settings_minimap_scale,Tỷ lệ thu phóng bản đồ nhỏ
+custom_settings_camera_height,Độ cao camera
+custom_settings_unstuck_death,Thoát kẹt
+custom_settings_unstuck_death_desc,"Chỉ dùng khi tướng bị kẹt. Sau khi dùng, tướng sẽ chủ động tử trận và chịu hình phạt chết như bình thường, không kích hoạt hiệu ứng hồi sinh, miễn tử hay chống chết."
+custom_settings_unstuck_return_to_transfer_point_desc,"Bạn đang ở căn cứ. Nhấn để đưa tướng chính xác về điểm dịch chuyển của căn cứ mà không kích hoạt tử vong, hồi chiêu hoặc quyết toán."
+custom_settings_unstuck_death_ready,Sẵn sàng
+custom_settings_unstuck_death_cooldown,Hồi chiêu {time} giây
+custom_settings_unstuck_death_unavailable_scene,Chỉ có thể sử dụng trong bản đồ thường.
+custom_settings_unstuck_death_confirm_title,Xác nhận thoát kẹt
+custom_settings_unstuck_death_confirm_desc,"Tướng của bạn sẽ chủ động tử trận và chịu hình phạt tử vong như bình thường. Lần này sẽ không kích hoạt hiệu ứng hồi sinh, miễn tử hay chống chết."
+custom_settings_unstuck_death_cancel,Hủy
+custom_settings_unstuck_death_confirm,Xác nhận tử trận
+custom_settings_clear_ground_items,Xóa vật phẩm trên đất
+custom_settings_clear_ground_items_desc,Xóa mọi vật phẩm nhặt được trên đất quá 20 phút trên toàn bản đồ. Vật phẩm trong phạm vi 1000 quanh người chơi còn sống được bảo vệ. Hồi chiêu: 20 phút.
+custom_settings_clear_ground_items_cooldown,Hồi chiêu {time} giây
+custom_settings_clear_ground_items_confirm_title,Xác nhận xóa vật phẩm trên đất
+custom_settings_clear_ground_items_confirm_desc,Sẽ xóa mọi vật phẩm nhặt được trên đất quá 20 phút trên toàn bản đồ (gồm nguyên liệu và rơi khi chết). Vật phẩm trong phạm vi 1000 quanh người chơi còn sống được bảo vệ. Hồi chiêu 20 phút mỗi người.
+custom_settings_clear_ground_items_cancel,Hủy
+custom_settings_clear_ground_items_confirm,Xác nhận xóa
+ak_tooltip_charge_base_prefix,Cơ bản:
+ak_tooltip_charge_restore_time,Thời gian nạp năng lượng:
+ak_tooltip_divine_forged_description,Rèn Thần: Chỉ số và hiệu ứng trang bị đã được tăng cường!
+ak_tooltip_divine_forged,Rèn Thần
+ak_tooltip_fixed,Cố định
+ak_tooltip_enhanced,Cường hóa
+custom_settings_hide_own_hero_effects,Ẩn hiệu ứng anh hùng của mình
+custom_settings_hide_own_hero_effects_desc,"Khi bật, sẽ không còn hiển thị hiệu ứng kỹ năng và trang bị mới của anh hùng mình, hiệu ứng của người chơi khác, quái vật và hệ thống không bị ảnh hưởng."
+custom_settings_hide_other_hero_effects,Ẩn hiệu ứng của anh hùng khác
+custom_settings_hide_other_hero_effects_desc,"Khi bật, sẽ không hiển thị hiệu ứng kỹ năng và trang bị mới của anh hùng khác, hiệu ứng quái vật và hệ thống không bị ảnh hưởng."
+hud_profession_guide_instructor,Huấn luyện viên
+hud_profession_guide_trial_instructor,Huấn luyện viên thử thách
+hud_profession_guide_trial_character,Nhân vật trải nghiệm
+hud_profession_guide_options_choose_response,Chọn câu trả lời của bạn
+hud_profession_guide_choose_trial,Chọn thử thách
+hud_profession_guide_decided,Tôi đã quyết định
+hud_profession_guide_think_again,Tôi suy nghĩ lại
+hud_profession_guide_understood,Tôi hiểu rồi
+hud_profession_guide_intro_description,"Chào mừng đến với thế giới vũ khí, đây là một thử thách chiến đấu, bạn cần chứng minh năng lực của mình để nhận được chứng chỉ chuyển nghề."
+hud_profession_guide_intro_archetype,Thử thách chiến đấu · Khảo nghiệm nhập môn
+hud_profession_guide_intro_identity,Bắt đầu thử thách
+hud_profession_guide_intro_confirm,"Tôi hiểu rồi, đến đi..."
+hud_profession_guide_intro_reconsider,Tôi chưa sẵn sàng...
+hud_profession_guide_phantom_assassin_description,"Tôi giỏi dùng sự nhanh nhẹn và bộc phát để xé rách điểm yếu của kẻ địch. Chọn tôi, bạn sẽ có thân pháp linh hoạt và sát thương đơn mục tiêu cao, nhưng cũng cần nắm bắt thời cơ tiến thoái."
+hud_profession_guide_phantom_assassin_archetype,Nhanh nhẹn · Sát thủ bộc phát
+hud_profession_guide_axe_description,"Tôi dựa vào sức mạnh và sự bền bỉ để đứng ở vị trí nguy hiểm nhất. Chọn tôi, bạn sẽ giỏi chịu sát thương, thu hút kẻ địch và kiểm soát chiến trường bằng phản công."
+hud_profession_guide_axe_archetype,Sức mạnh · Cận chiến phản công
+hud_profession_guide_lina_description,"Tôi biến lửa và phép thuật thành sự bộc phát hủy diệt. Chọn tôi, bạn sẽ có sát thương diện rộng mạnh mẽ và khả năng dọn dẹp chiến trường, nhưng cần chú ý vị trí đứng và nhịp độ thi triển."
+hud_profession_guide_lina_archetype,Trí tuệ · Bộc phát diện rộng
+hud_profession_guide_combat_display_name,Gợi ý chiến đấu
+hud_profession_guide_combat_description,"Dùng Bình Máu [F2] hoặc Bình Mana [F3] để hồi phục. Nhấn [D] để lướt, giảm sát thương và né nguy hiểm."
+hud_profession_guide_combat_archetype,Kỹ năng sinh tồn · Thuốc và Lao
+hud_profession_guide_combat_speaker,Hướng dẫn chiến đấu
+hud_profession_guide_combat_identity,Chuẩn bị đợt 4
+hud_profession_guide_combat_countdown,Còn {seconds} giây nữa sẽ tự động tiếp tục
+hud_profession_guide_selection_description,"Chọn một nghề yêu thích để dùng thử, tiến hành thử thách cuối cùng, nếu thành công sẽ nhận được chứng chỉ chuyển nghề của nghề đó."
+hud_profession_guide_selection_archetype,Dùng thử nghề · Thử thách cuối cùng
+hud_profession_guide_selection_identity,Chọn nghề
+hud_profession_guide_selection_caption,Đến NPC nghề nghiệp để chọn
+hud_profession_guide_challenge_simple,Thử thách dễ
+hud_profession_guide_challenge_hard,Thử thách khó
+hud_profession_guide_challenge_extreme,Thử thách cực hạn
+hud_profession_guide_challenge_list_separator,", "
+hud_profession_guide_challenge_completed_summary, Đã hoàn thành: {challenges}.
+hud_profession_guide_challenge_success_description,"Thử thách thành công, bây giờ bạn có thể tiến hành thử thách cao hơn hoặc kết thúc hướng dẫn."
+hud_profession_guide_challenge_blessing_description,"Bạn nhận được phước lành của các bậc tiền bối, có thể tạm thời dùng năng lực của họ. Hoàn thành thêm một thử thách nữa, bạn sẽ nhận được chứng chỉ chuyển nghề của họ. Sau khi quyết định, hãy tiến hành thử thách nhé!{completed}"
+hud_profession_guide_challenge_archetype,Thử thách cuối cùng · Chọn độ khó
+hud_profession_guide_challenge_identity,Chọn thử thách
+hud_profession_guide_challenge_leave,Kết thúc và rời đi
+hud_save_status_saving,Đang lưu...
+hud_save_status_success,Lưu thành công
+hud_save_status_failure,Lưu thất bại: {message}; mã lỗi {errorCode}.
+hud_save_status_unknown_error,Lỗi không xác định
+hud_save_status_unknown_code,Không xác định
+hud_rune_choice_title,Chọn phước lành từ đền thờ
+hud_rune_choice_subtitle,"Ba sức mạnh, chỉ chọn được một"
+hud_rune_choice_max_stack,Đã đạt giới hạn khế ước
+hud_rune_choice_current_stack,Hiện tại {count} lớp
+hud_rune_damage_title,Thần phù tăng sát thương
+hud_rune_damage_description,Sau khi chọn sẽ nhận hiệu ứng thần phù tăng sát thương.
+hud_rune_haste_title,Thần phù tăng tốc
+hud_rune_haste_description,Sau khi chọn sẽ nhận hiệu ứng thần phù tăng tốc.
+hud_rune_regen_title,Thần phù hồi phục
+hud_rune_regen_description,Sau khi chọn sẽ nhận hiệu ứng thần phù hồi phục.
+hud_rune_shield_title,Thần phù lá chắn
+hud_rune_shield_description,Sau khi chọn sẽ nhận hiệu ứng thần phù lá chắn.
+hud_rune_arcane_title,Thần phù bí thuật
+hud_rune_arcane_description,Sau khi chọn sẽ nhận hiệu ứng thần phù bí thuật.
+hud_rune_purification_title,Thần phù thanh tẩy
+hud_rune_purification_description,Sau khi chọn sẽ kích hoạt hiệu ứng thần phù thanh tẩy.
+hud_rune_revive_title,Thần phù hồi sinh
+hud_rune_revive_description,Sau khi chọn sẽ nhận hiệu ứng thần phù hồi sinh.
+hud_m013_contract_gold_title,Vật chứa của khát vọng
+hud_m013_contract_gold_description,Tăng mạnh số lượng vật phẩm rơi ra nhưng phá rương sẽ gọi đến những người canh gác.
+hud_m013_contract_life_title,Sợi chỉ sự sống
+hud_m013_contract_life_description,Cho một cơ hội chống lại sát thương chí mạng và hồi đầy máu nhưng kẻ địch cũng sẽ hồi sinh.
+hud_m013_contract_power_title,Kẻ nuốt chửng thế giới
+hud_m013_contract_power_description,Tăng mạnh toàn bộ thuộc tính nhưng thiên thạch gây sát thương sẽ rơi xuống và phản phệ khế ước sẽ tích lũy.
+hud_item_bullet_received,Nhận được vật phẩm {item}!
+hud_chest_opening,Đang mở rương báu
+hud_chest_opened,Đã mở rương báu
+hud_chest_no_currency,Không có tinh hồn để mở
+hud_chest_click_to_open,Bấm để mở rương báu
+hud_chest_reset_tooltip,Khôi phục trạng thái ban đầu của rương báu
+hud_chest_reset,Khôi phục
+hud_yxjs_registration_duration,{days} ngày {hours} giờ
+hud_yxjs_body_1,"<font color='#88ff00'>Chúc mừng!!</font>Trải qua <font color='#88ff00'>{duration}</font>, bạn đã đánh bại Lãng Khách Kiếm Tâm <font color='#ffaa33'>Đạm Bạc Tuyệt Ảnh</font>! Tuy nhiên, hắn chắc chắn sẽ tái xuất……"
+hud_yxjs_body_2,"Bạn đã đến cuối nội dung phiên bản hiện tại! Tuy nhiên, hành trình của <font color='#ffaa00'>Tiểu Mã Tây</font> vẫn chưa kết thúc. Chúng tôi cần thêm thời gian để xây dựng một chương quan trọng khác của thế giới binh khí: <font color='#ffaa00'>Luyện Ngục Thí Luyện</font>. Cảm ơn bạn đã kiên nhẫn chờ đợi."
+hud_yxjs_body_3,"Trước khi mở ra cuộc phiêu lưu tiếp theo, bạn có thể tìm thêm thử thách trong <font color='#ffaa33'>DLC Mạt Ảnh</font> và <font color='#ffaa33'>Bí Cảnh Khuynh Thiên</font>. Cảm ơn bạn đã chơi <font color='#88ff00'>《AOW5》</font>!"
+hud_yxjs_title,Còn tiếp!
+hud_yxjs_confirm,Đã biết
+hud_number_ten_thousand_suffix,vạn
+hud_number_thousand_suffix,K
+hud_attribute_bonus_line,= +{value} {attribute}
+hud_attribute_bonus_primary_attack,Tấn công thuộc tính chính
+hud_attribute_bonus_health,Máu
+hud_attribute_bonus_health_regen,Hồi máu
+hud_attribute_bonus_attack_speed,Tốc độ tấn công
+hud_attribute_bonus_armor,Giáp
+hud_attribute_bonus_mana,Mana
+hud_attribute_bonus_mana_regen,Hồi mana
+hud_attribute_bonus_magic_resistance,Kháng phép
+hud_portrait_give_up,Từ bỏ chờ đợi
+hud_portrait_give_up_confirm_title,Xác nhận từ bỏ cứu hộ
+hud_portrait_give_up_confirm_desc,"Bạn sẽ không còn chờ đồng đội cứu hộ nữa, hành động này không thể hoàn tác."
+hud_portrait_give_up_cancel,Hủy
+hud_portrait_give_up_confirm,Xác nhận từ bỏ
+hud_task_tracker_mg003_target_black8_pocket,Đưa bi số 8 vào đúng lỗ quy định
+hud_mg003_guide_display_name,Huấn luyện viên Ogre Magi
+hud_mg003_guide_description,"Cú đánh đầu tiên khai cuộc, ngẫu nhiên chia nhóm bi cho bạn; đưa toàn bộ bi của mình vào lỗ, cuối cùng đưa bi số 8 vào lỗ để chiến thắng."
+hud_mg003_guide_archetype,Luật Minigame · Bi-a
+hud_mg003_guide_speaker,Hướng dẫn Minigame
+hud_mg003_guide_identity,Bắt đầu Bi-a
+hud_mg002_guide_display_name,Huấn luyện viên Rubick
+hud_mg002_guide_description,"Thu thập tất cả phần thưởng trên mặt đất dọc theo đường đi. Bóng ma sẽ liên tục đuổi theo bạn, sau khi ăn viên năng lượng có thể quay lại tiêu diệt bóng ma."
+hud_mg002_guide_archetype,Luật Minigame · Mê cung
+hud_mg002_guide_speaker,Hướng dẫn Minigame
+hud_mg002_guide_identity,Bắt đầu Mê cung
+hud_mg004_guide_display_name,Huấn luyện viên Vua Bách Hý
+hud_mg004_guide_description,"Mỗi vòng sẽ có bốn con quái vật xuất hiện từ bốn hướng. Quan sát hướng của chúng, đi về phía con quái vật <font color='#ff5a5a'><b>đang quay về phía bạn</b></font>. Trả lời đúng 3 vòng liên tiếp sẽ hoàn thành thử thách."
+hud_mg004_guide_archetype,Luật Minigame · Nhận diện hướng
+hud_mg004_guide_speaker,Hướng dẫn Minigame
+hud_mg004_guide_identity,Bắt đầu thử thách
+hud_fatigue_title,Mệt mỏi
+hud_fatigue_tooltip_drop,"Khi lượng mệt mỏi thấp hơn một ngưỡng nhất định, số lượng vật phẩm rơi trên bản đồ sẽ giảm."
+hud_fatigue_tooltip_refresh,Lượng mệt mỏi được làm mới lúc 0 giờ mỗi ngày theo giờ Bắc Kinh.

@@ -1,0 +1,372 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+@define petHoverBg: #0f1317f2;
+@define petHoverPanelBg: #15191df4;
+@define petHoverSoftBg: #11161a;
+@define petHoverRowBg: #171d22;
+@define petHoverBorder: #262b31;
+@define petHoverRowBorder: #2b3138;
+@define petHoverText: #e8ecef;
+@define petHoverTextSoft: #bcc4cb;
+@define petHoverMuted: #7e8790;
+@define petHoverAccent: #f0a45a;
+@define petHoverAccentSoft: #d4a65b;
+.pet_hover_tooltip_root
+{
+	width: fit-children;
+	flow-children: down;
+}
+
+.pet_hover_card
+{
+	width: fit-children;
+	flow-children: down;
+	border: 1px solid #30353b;
+	background-color: petHoverBg;
+	box-shadow: fill #00000099 0px 0px 22px 0px;
+	overflow: clip;
+}
+
+.pet_hover_header
+{
+	width: 100%;
+	height: 64px;
+	padding: 9px 12px;
+	flow-children: right;
+	border-bottom: 1px solid #272c32;
+	background-color: #13181df4;
+}
+
+.pet_hover_avatar_wrap
+{
+	width: 44px;
+	height: 44px;
+	margin-right: 10px;
+	padding: 2px;
+	vertical-align: center;
+	border-radius: 5px;
+	border: 1px solid #5a4930;
+	background-color: #1b2127;
+	overflow: clip;
+}
+
+.pet_hover_avatar
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: petHoverSoftBg;
+}
+
+.pet_hover_avatar.pet_hover_avatar_empty
+{
+	background-color: petHoverRowBg;
+}
+
+.pet_hover_name_block
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.pet_hover_name
+{
+	width: 100%;
+	margin-bottom: 4px;
+	color: #eef1f3;
+	font-size: 18px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-overflow: shrink;
+	text-shadow: none;
+}
+
+.pet_hover_status_chip
+{
+	width: fit-children;
+	height: 20px;
+	padding: 2px 7px;
+	flow-children: right;
+	border-radius: 3px;
+	border: 1px solid #343a40;
+	background-color: petHoverSoftBg;
+}
+
+.pet_hover_status_chip.on
+{
+	border: 1px solid #5a4930;
+	background-color: #1b2127;
+}
+
+.pet_hover_status_dot
+{
+	width: 6px;
+	height: 6px;
+	margin-right: 6px;
+	vertical-align: center;
+	border-radius: 1000px;
+	background-color: #606870;
+}
+
+.pet_hover_status_chip.on .pet_hover_status_dot
+{
+	background-color: petHoverAccent;
+}
+
+.pet_hover_status_text
+{
+	vertical-align: center;
+	color: petHoverMuted;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 0px;
+	text-shadow: none;
+}
+
+.pet_hover_status_chip.on .pet_hover_status_text
+{
+	color: petHoverAccentSoft;
+}
+
+.pet_hover_filter_section
+{
+	width: 100%;
+	padding: 8px;
+	flow-children: down;
+	background-color: petHoverBg;
+	transition-property: opacity, saturation;
+	transition-duration: 0.15s;
+}
+
+.pet_hover_tooltip_root.disabled .pet_hover_filter_section
+{
+	opacity: 0.45;
+	saturation: 0.3;
+}
+
+.pet_hover_filter_row
+{
+	width: 100%;
+	min-height: 34px;
+	margin-bottom: 5px;
+	padding: 5px 6px;
+	flow-children: right;
+	border-radius: 4px;
+	border: 1px solid petHoverBorder;
+	background-color: petHoverPanelBg;
+}
+
+.pet_hover_filter_row:last-child
+{
+	margin-bottom: 0px;
+}
+
+.pet_hover_filter_label
+{
+	width: 38px;
+	margin-right: 6px;
+	vertical-align: center;
+	color: petHoverTextSoft;
+	font-size: 12px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-overflow: shrink;
+	text-shadow: none;
+}
+
+.pet_hover_chip_grid
+{
+	width: fill-parent-flow(1);
+	flow-children: right-wrap;
+	vertical-align: center;
+}
+
+.pet_hover_chip
+{
+	height: 22px;
+	margin-right: 3px;
+	margin-bottom: 2px;
+	padding: 0px 5px;
+	border-radius: 3px;
+	border: 1px solid petHoverRowBorder;
+	background-color: petHoverRowBg;
+}
+
+.pet_hover_chip.off
+{
+	opacity: 0.42;
+	saturation: 0.35;
+}
+
+.pet_hover_chip.level_chip
+{
+	width: 28px;
+	padding: 0px 3px;
+}
+
+.pet_hover_chip.quality_chip
+{
+	min-width: 42px;
+}
+
+.pet_hover_chip.type_chip
+{
+	min-width: 42px;
+}
+
+.pet_hover_chip.preset_chip
+{
+	min-width: 86px;
+	border: 1px solid #5a4930;
+	background-color: #20272d;
+}
+
+.pet_hover_chip_label
+{
+	width: 100%;
+	align: center center;
+	color: petHoverMuted;
+	font-size: 11px;
+	font-weight: semi-bold;
+	letter-spacing: 0px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: none;
+}
+
+.pet_hover_chip.preset_chip .pet_hover_chip_label
+{
+	color: petHoverAccentSoft;
+}
+
+.pet_hover_chip.on.rarity_tone_1,.pet_hover_chip.on.quality_normal
+{
+	border: 1px solid #bfc5c9;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#34393d), to(#202529));
+}
+
+.pet_hover_chip.on.rarity_tone_1 .pet_hover_chip_label,.pet_hover_chip.on.quality_normal .pet_hover_chip_label
+{
+	color: #eef1f3;
+}
+
+.pet_hover_chip.on.rarity_tone_2,.pet_hover_chip.on.quality_uncommon
+{
+	border: 1px solid #55c455;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#21432a), to(#14261a));
+}
+
+.pet_hover_chip.on.rarity_tone_2 .pet_hover_chip_label,.pet_hover_chip.on.quality_uncommon .pet_hover_chip_label
+{
+	color: #9fe59f;
+}
+
+.pet_hover_chip.on.rarity_tone_3,.pet_hover_chip.on.quality_rare
+{
+	border: 1px solid #3b89d1;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#203b53), to(#132638));
+}
+
+.pet_hover_chip.on.rarity_tone_3 .pet_hover_chip_label,.pet_hover_chip.on.quality_rare .pet_hover_chip_label
+{
+	color: #86c7f0;
+}
+
+.pet_hover_chip.on.rarity_tone_4,.pet_hover_chip.on.quality_epic
+{
+	border: 1px solid #b34fbd;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#432347), to(#29162c));
+}
+
+.pet_hover_chip.on.rarity_tone_4 .pet_hover_chip_label,.pet_hover_chip.on.quality_epic .pet_hover_chip_label
+{
+	color: #dd8ee3;
+}
+
+.pet_hover_chip.on.rarity_tone_5,.pet_hover_chip.on.quality_legendary
+{
+	border: 1px solid #d49132;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#49351d), to(#2d2114));
+}
+
+.pet_hover_chip.on.rarity_tone_5 .pet_hover_chip_label,.pet_hover_chip.on.quality_legendary .pet_hover_chip_label
+{
+	color: #f0bd6b;
+}
+
+.pet_hover_chip.on.rarity_tone_6,.pet_hover_chip.on.quality_mythic
+{
+	border: 1px solid #c84d4d;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#492323), to(#2d1515));
+}
+
+.pet_hover_chip.on.rarity_tone_6 .pet_hover_chip_label,.pet_hover_chip.on.quality_mythic .pet_hover_chip_label
+{
+	color: #eb8d8d;
+}
+
+.pet_hover_chip.on.rarity_tone_7
+{
+	border: 1px solid #d13f83;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#4c1f45), color-stop(0.5, #49202d), to(#301417));
+}
+
+.pet_hover_chip.on.rarity_tone_7 .pet_hover_chip_label
+{
+	color: #f09fc5;
+}
+
+.pet_hover_chip.on.rarity_tone_8
+{
+	border: 1px solid #3ecfc4;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#1d3f3d), to(#142928));
+}
+
+.pet_hover_chip.on.rarity_tone_8 .pet_hover_chip_label
+{
+	color: #8deee6;
+}
+
+.pet_hover_chip.on.rarity_tone_9
+{
+	border: 1px solid #f0d060;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#4a3b16), to(#2d2410));
+}
+
+.pet_hover_chip.on.rarity_tone_9 .pet_hover_chip_label
+{
+	color: #ffe7a3;
+}
+
+.pet_hover_hint_block
+{
+	width: fit-children;
+	padding: 8px 12px 9px;
+	flow-children: down;
+	border-top: 1px solid #272c32;
+	background-color: #13181df4;
+}
+
+.pet_hover_hint_line
+{
+	width: fit-children;
+	margin-bottom: 2px;
+	color: #6f7881;
+	font-size: 12px;
+	letter-spacing: 0px;
+	text-overflow: shrink;
+	text-shadow: none;
+	white-space: nowrap;
+}

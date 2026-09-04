@@ -1,0 +1,146 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_ConstantColor = [ 255, 108, 0, 255 ]
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 90.0
+			}
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nOutputField = 10
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetChildControlPoints"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_RemapTransformToVelocity"
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+	]
+	m_ForceGenerators = [  ]
+	m_Renderers = [  ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_impact.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_lava.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_fire.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_model.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_fire_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_burst.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack_flare.vpcf"
+		},
+	]
+}

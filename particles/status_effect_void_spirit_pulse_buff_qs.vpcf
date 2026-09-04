@@ -1,0 +1,104 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_nConstantSequenceNumber = 1
+	m_nBehaviorVersion = 12
+	m_ConstantColor = [ 144, 144, 144, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_flDetail2Scale = 1.0
+			m_flColorWarpIntensity = 0.5
+			m_flAmbientScale = 1.0
+			m_specularColor = [ 0, 0, 0, null ]
+			m_flSpecularScale = 0.125
+			m_flSpecularExponent = 0.0
+			m_flSpecularExponentBlendToFull = 0.0
+			m_flSpecularBlendToFull = 0.0
+			m_rimLightColor = [ 97, 97, 97 ]
+			m_flRimLightScale = 25.0
+			m_flReflectionsTintByBaseBlendToNone = 1.0
+			m_flMetalnessBlendToFull = 0.05
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 119, 119, 119 ]
+			m_ColorMax = [ 212, 212, 212 ]
+			m_nFieldOutput = 22
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_Rate = [ 0.0, -8.0, 0.0 ]
+			m_Frequency = [ 0.0, 0.25, 0.0 ]
+			m_nField = 15
+			m_flOscAdd = 0.75
+			m_flOpStartFadeOutTime = 0.2
+			m_flOpEndFadeOutTime = 0.2
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_RampScalarSplineSimple"
+			m_Rate = 4.0
+			m_flEndTime = 0.25
+			m_nField = 4
+			m_bEaseOut = true
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 0, 0, 0 ]
+			m_flFadeEndTime = 0.125
+			m_nFieldOutput = 22
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 19, 22, 41, 0 ]
+			m_flFadeEndTime = 0.5
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = -4.0
+			m_flEndTime = 999999.0
+			m_nField = 4
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_ClampScalar"
+			m_nFieldOutput = 4
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_black.vtex"
+		},
+	]
+}

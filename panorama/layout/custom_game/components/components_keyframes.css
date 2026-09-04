@@ -1,0 +1,483 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+@keyframes 'Matrix_background_rotate'
+{
+	0%
+	{
+		pre-transform-rotate2d: 0deg;
+	}
+	
+	100%
+	{
+		pre-transform-rotate2d: 360deg;
+	}
+	
+}
+
+@keyframes 'Matrix_background_twinkle'
+{
+	0%
+	{
+		opacity: 0.4;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0.4;
+	}
+	
+}
+
+@keyframes 'FadeInSuccessMsg'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'FadeOutSuccessMsg'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'SlideInRight'
+{
+	0%
+	{
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'SlideOutRight'
+{
+	0%
+	{
+		transform: translateX(0);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'SlideInLeft'
+{
+	0%
+	{
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translateX(0);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'SlideOutLeft'
+{
+	0%
+	{
+		transform: translateX(0);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ZoomIn'
+{
+	0%
+	{
+		transform: scale3d(0.3, 0.3, 0.3);
+		opacity: 0;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'ZoomOut'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+	50%
+	{
+		opacity: 0.5;
+	}
+	
+	100%
+	{
+		transform: scale3d(0.3, 0.3, 0.3);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'BounceIn'
+{
+	0%
+	{
+		transform: scale3d(0.3, 0.3, 0.3);
+		opacity: 0;
+	}
+	
+	20%
+	{
+		transform: scale3d(1.1, 1.1, 1.1);
+		opacity: 0.7;
+	}
+	
+	40%
+	{
+		transform: scale3d(0.9, 0.9, 0.9);
+		opacity: 1;
+	}
+	
+	60%
+	{
+		transform: scale3d(1.03, 1.03, 1.03);
+		opacity: 1;
+	}
+	
+	80%
+	{
+		transform: scale3d(0.97, 0.97, 0.97);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'BounceOut'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+	
+	20%
+	{
+		transform: scale3d(0.9, 0.9, 0.9);
+		opacity: 1;
+	}
+	
+	50%
+	{
+		transform: scale3d(1.1, 1.1, 1.1);
+		opacity: 0.7;
+	}
+	
+	100%
+	{
+		transform: scale3d(0.3, 0.3, 0.3);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'FadeOutSuccessMsg'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	5%
+	{
+		pre-transform-scale2d: 1.2;
+	}
+	
+	10%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	80%
+	{
+		pre-transform-scale2d: 1;
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'PageOpenedAnimationCommon'
+{
+	0%
+	{
+		transform: scale3d(0.98, 0.98, 0.98);
+		blur: gaussian(25px);
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: scale3d(1, 1, 1);
+		blur: gaussian(0px);
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'PageClosedAnimationCommon'
+{
+	0%
+	{
+		transform: scale3d(1, 1, 1);
+		blur: gaussian(0px);
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: scale3d(0.9, 0.9, 0.9);
+		blur: gaussian(25px);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'TalentTreeLine'
+{
+	0%
+	{
+		transform: translate3d(0px, 0px, 0px);
+	}
+	
+	50%
+	{
+		transform: translate3d(10px, 0px, 0px);
+	}
+	
+	100%
+	{
+		transform: translate3d(20px, 0px, 0px);
+	}
+	
+}
+
+@keyframes 'TalentTreeResearching'
+{
+	0%
+	{
+		box-shadow: 0px 0px 1px 3px rgba(240, 180, 41, 0.3);
+		brightness: 1;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 5px 5px rgba(240, 180, 41, 0.5);
+		brightness: 1.1;
+	}
+	
+}
+
+@keyframes 'TalentNodeCanUnlock'
+{
+	0%
+	{
+		box-shadow: 0px 0px 2px 1px rgba(72, 212, 189, 0.123);
+		brightness: 1;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 4px 2px rgba(72, 212, 212, 0.35);
+		brightness: 1.06;
+	}
+	
+}
+
+@keyframes 'RedDotPulse'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.8;
+		opacity: 0.7;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.75;
+		opacity: 0.55;
+	}
+	
+}
+
+@keyframes 'ItemContextConfirmOverlayEnter'
+{
+	0%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'ItemContextConfirmOverlayLeave'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'ItemContextConfirmEnter'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.97;
+		transform: translateY(10px);
+		brightness: 0.85;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+		transform: translateY(0px);
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'ItemContextConfirmLeave'
+{
+	0%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+		transform: translateY(0px);
+		brightness: 1;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.98;
+		transform: translateY(8px);
+		brightness: 0.86;
+	}
+	
+}
+
+@keyframes 'BuyItemRecommendationEnter'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(-8px);
+		brightness: 0.88;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'WearableUniversalCardEnter'
+{
+	0%
+	{
+		opacity: 0;
+		pre-transform-scale2d: 0.96;
+		wash-color: #8fb8b5;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		pre-transform-scale2d: 1;
+		wash-color: white;
+	}
+	
+}

@@ -1,0 +1,363 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.item_border
+{
+	width: 100%;
+	height: 2px;
+	opacity: 0.8;
+	z-index: 5;
+}
+
+.item_border.quality_1
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#d3d3d3), to(#777777));
+}
+
+.item_border.quality_2
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#77ff55), to(#1a9624));
+}
+
+.item_border.quality_3
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#2fb3f0), to(#074b8b));
+}
+
+.item_border.quality_4
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#ff34ff), to(#9919a5));
+}
+
+.item_border.quality_5
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#ffb71c), to(#b87217));
+}
+
+.item_border.quality_6
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#ff0404), to(#b40909));
+}
+
+.item_border.quality_7
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#ff00ff), to(#ff0000));
+}
+
+#CostContainer
+{
+	min-width: 18px;
+	height: 16px;
+	align: right bottom;
+	margin: 1px;
+	margin-bottom: 3px;
+	background-color: #0000007c;
+}
+
+#CostContainer .item_stack_count
+{
+	font-size: 16px;
+	font-weight: bold;
+	horizontal-align: right;
+	vertical-align: bottom;
+	text-align: right;
+	align: center center;
+	text-shadow: 0px 0px 4px 3 #000000;
+	color: #f0f0f0;
+}
+
+.game_item_icon
+{
+	width: 100%;
+	height: 100%;
+	min-width: 50px;
+	min-height: 32px;
+}
+
+.game_item_icon .item_icon_mask
+{
+	width: 100%;
+	height: 100%;
+}
+
+.game_item_icon .can_use
+{
+	border: 1px solid #777777be;
+	box-shadow: inset 0px 0px 1px 0px #64646459;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#77777718), to(#63636300));
+}
+
+.game_item_icon .no_use
+{
+	box-shadow: inset 0px 0px 4px 1px #000000;
+	border: 1px solid #000000be;
+}
+
+.game_item_icon .item_treasure_icon
+{
+	y: -1px;
+	x: -4px;
+	width: 32px;
+	height: 32px;
+	background-image: url("s2r://panorama/images/custom_game/icon/bw_png.vtex");
+	background-img-opacity: 0.5;
+	wash-color: #dddddd;
+}
+
+.game_item_icon .level_label
+{
+	height: 14px;
+	font-size: 12px;
+	font-weight: bold;
+	horizontal-align: right;
+	vertical-align: bottom;
+	text-align: right;
+	text-shadow: 0px 0px 4px 3 #000000;
+	color: #f0f0f0;
+	margin-bottom: 2px;
+	margin-right: 4px;
+	z-index: 12;
+}
+
+.game_item_icon .item_gem_rank_icon
+{
+	width: 22px;
+	height: 22px;
+	horizontal-align: right;
+	vertical-align: top;
+	img-shadow: 0px 0px 4px 2 #000000;
+	z-index: 12;
+	opacity: 0.5;
+	margin-top: 3px;
+}
+
+.game_item_icon .item_formula_icon
+{
+	width: 100%;
+	height: 100%;
+	wash-color: #d89b4bff;
+	background-color: #000000;
+	opacity-mask: url("s2r://panorama/images/items/recipe_opacity_mask_nopurchase_psd.vtex");
+	overflow: clip;
+	contrast: 0.9;
+	z-index: 10;
+}
+
+.game_item_icon .item_formula_icon .formula_icon
+{
+	width: 100%;
+	height: 100%;
+	saturation: 0.35;
+	brightness: 2;
+	border-radius: 1px;
+	pre-transform-scale2d: 0.8;
+	transform: rotateZ(-7deg) rotateY(30deg) translateX(2px) translateY(1px);
+	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+}
+
+.game_item_icon .item_stone_icon
+{
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+	z-index: 4;
+}
+
+.game_item_icon .item_stone_icon .stone_equip_icon
+{
+	width: 100%;
+	height: 100%;
+	pre-transform-scale2d: 0.9;
+	opacity-mask: url("s2r://panorama/images/custom_game/mask/icon_make_png.vtex");
+	opacity: 0.8;
+}
+
+.game_item_icon .item_stone_icon .stone_icon_glow
+{
+	width: 100%;
+	height: 100%;
+}
+
+.item_dlc_badge
+{
+	width: 20px;
+	height: 12px;
+	ignore-parent-flow: true;
+	x: 0px;
+	y: 2px;
+	padding: 0px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#7f4ed6), to(#5a35a8));
+	border-radius: 3px;
+	z-index: 20;
+	align: right top;
+	opacity: 0.6;
+}
+
+.item_dlc_badge.is_aow
+{
+	width: 26px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#b66b25), to(#7d3f16));
+}
+
+.item_dlc_badge .item_dlc_badge_label
+{
+	font-size: 10px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 1px 1px 0px 1 #2d185f;
+	text-align: center;
+	align: center center;
+	line-height: 0px;
+	letter-spacing: 0px;
+}
+
+.alchemy_material_tooltip_root
+{
+	width: 360px;
+	flow-children: down;
+}
+
+.alchemy_material_tooltip_card
+{
+	width: 100%;
+	flow-children: down;
+	padding: 12px 14px 12px 14px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#20262b), color-stop(0.52, #13191f), to(#07090c));
+	background-image: url("s2r://panorama/images/custom_game/alchemy/alchemy_console_grain_png.vtex");
+	background-size: 128px 128px;
+	background-repeat: repeat;
+	background-img-opacity: 0.24;
+	border: 1px solid #46515a;
+	box-shadow: fill #00000099 0px 0px 18px 0px;
+}
+
+.alchemy_material_tooltip_header
+{
+	width: 100%;
+	flow-children: right;
+	padding-bottom: 10px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid #3b4650aa;
+}
+
+.alchemy_material_tooltip_header_icon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 8px;
+	vertical-align: center;
+	wash-color: #d0b16d;
+	img-shadow: 0px 0px 6px 1 #000000aa;
+}
+
+.alchemy_material_tooltip_header_text
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+}
+
+.alchemy_material_tooltip_title
+{
+	color: #e7dcc8;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0px 1px 4px #000000;
+}
+
+.alchemy_material_tooltip_desc
+{
+	margin-top: 2px;
+	color: #9aa5ae;
+	font-size: 13px;
+	text-shadow: 0px 1px 3px #000000;
+}
+
+.alchemy_material_tooltip_list
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.alchemy_material_tooltip_row
+{
+	width: 100%;
+	height: 54px;
+	flow-children: right;
+	margin-bottom: 6px;
+	padding: 5px 7px 5px 6px;
+	border-radius: 4px;
+	border: 1px solid #303942;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#090d10d8), color-stop(0.58, #151b20e8), to(#0c0f12e8));
+}
+
+.alchemy_material_tooltip_item_icon
+{
+	width: 58px;
+	height: 42px;
+	vertical-align: center;
+	border: 1px solid #303841;
+	background-color: #06090bcc;
+}
+
+.alchemy_material_tooltip_item_meta
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-left: 9px;
+	vertical-align: center;
+}
+
+.alchemy_material_tooltip_item_name
+{
+	width: 100%;
+	height: 20px;
+	color: #d9e1df;
+	font-size: 15px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px #000000;
+}
+
+.alchemy_material_tooltip_rate
+{
+	width: 82px;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.alchemy_material_tooltip_rate_label
+{
+	width: 100%;
+	color: #89949c;
+	font-size: 12px;
+	text-align: right;
+	text-shadow: 0px 1px 2px #000000;
+}
+
+.alchemy_material_tooltip_rate_value
+{
+	width: 100%;
+	margin-top: 2px;
+	color: #d0b16d;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: right;
+	text-shadow: 0px 1px 4px #000000;
+}
+
+.alchemy_material_tooltip_empty
+{
+	horizontal-align: center;
+	color: #9aa5ae;
+	font-size: 14px;
+	text-shadow: 0px 1px 3px #000000;
+}

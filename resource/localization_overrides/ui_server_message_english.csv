@@ -1,0 +1,493 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+Tokens,English
+msg_背包_背包没有可用空位_无法脱下,No free slots in backpack; cannot unequip.
+msg_背包_背包容量不足_物品_已掉落在英雄附近,Backpack is full; item {name} has been dropped near the hero.
+msg_背包_背包已满_邮件附件_已掉落在英雄附近,Backpack is full; mail attachment {itemName} has been dropped near the hero.
+msg_背包_次级英雄复制物品不能进入背包,Secondary hero copied items cannot enter the backpack.
+msg_背包_次级英雄复制物品不能拾取,Secondary hero copied items cannot be picked up.
+msg_背包_次级英雄复制物品不能移动到背包,Secondary hero copied items cannot be moved to the backpack.
+msg_背包_次级英雄复制物品不能移动到垃圾桶,Secondary hero copied items cannot be moved to the trash.
+msg_背包_该物品不属于你,This item does not belong to you.
+msg_背包_该物品正被重铸占用,This item is currently being reforged.
+msg_背包_晕眩或死亡状态下无法丢弃物品,Cannot drop items while stunned or dead.
+msg_仓库_仓库空间不足_剩余物品未存入,Not enough warehouse space; remaining items were not stored.
+msg_仓库_存入成功,Stored successfully.
+msg_宠物_背包和仓库都没有空间_无法放回原宠物蛋,No space in backpack or warehouse; cannot return the pet egg.
+msg_宠物_背包和仓库都没有空间_无法卸下宠物,No space in backpack or warehouse; cannot remove the pet.
+msg_宠物_宠物蛋装备失败,Failed to equip pet egg.
+msg_宠物_宠物拾取名单操作错误,Invalid pet pickup list operation.
+msg_宠物_宠物拾取名单类型错误,Invalid pet pickup list type.
+msg_宠物_宠物拾取最多设置个物品,Pet pickup list {listName} can set up to {limit} items.
+msg_宠物_该物品不能加入宠物拾取名单,This item cannot be added to the pet pickup list.
+msg_宠物_该物品不是宠物蛋,This item is not a pet egg.
+msg_宠物_获得宠物,Pet obtained: {value}
+msg_宠物_你尚未拥有该宠物,You do not own this pet yet.
+msg_宠物_请将宠物蛋拖拽到宠物槽上阵,Please drag the pet egg into the pet slot to deploy it.
+msg_宠物_未能创建宠物蛋,Failed to create pet egg.
+msg_宠物_未找到对应的宠物蛋,No matching pet egg found.
+msg_宠物_需要装备5级以上宠物才能设置拾取名单,Requires an equipped pet of level 5 or above to set the pickup list.
+msg_宠物_已切换出战宠物,Switched active pet: {value}
+msg_传送门_该地图已开启为难度_请选择对应传送,This map is open at {value} difficulty. Please choose the matching portal.
+msg_传送门_金币不足,Insufficient gold!
+msg_传送门_金币不足_无法支付传送费用_已返回基地,Insufficient gold to pay the portal fee. Returned to base.
+msg_传送门_需要先从该地图成功撤离一次才能使用传送,You must successfully extract from this map once before you can use the portal.
+msg_传送门_英雄未就绪_无法进入地图,Hero not ready. Cannot enter the map.
+msg_兑换码_背包或仓库空间不足_暂时无法发放奖励,Insufficient backpack or warehouse space. Rewards cannot be granted at this time.
+msg_兑换码_兑换码不存在或已失效,The redemption code does not exist or has expired.
+msg_兑换码_该兑换码奖励配置异常_请联系管理员,The reward configuration for this redemption code is abnormal. Please contact an administrator.
+msg_兑换码_该兑换码已经使用过了,This redemption code has already been used.
+msg_兑换码_请输入有效兑换码,Please enter a valid redemption code.
+msg_房间_材料已提交,Materials submitted.
+msg_房间_传送失败_已离开确认范围,Portal failed. You have left the confirmation area.
+msg_房间_没有可提交的材料,No materials to submit.
+msg_房间_请靠近信号塔后再提交材料,Please move closer to the signal tower before submitting materials.
+msg_房间_提交材料失败,Failed to submit materials.
+msg_房间_信号塔尚未启用,The signal tower is not yet activated.
+msg_会馆_未解锁传功能,Teleport function not unlocked!
+msg_会馆_未解锁会馆商人功能,Guild merchant function not unlocked!
+msg_会馆_未解锁交易所功能,Exchange function not unlocked!
+msg_会馆_未解锁炼金系统,Alchemy system not unlocked!
+msg_会馆_未解锁远古商店,Ancient shop not unlocked!
+msg_教程_别灰心_记得及时使用药剂,Don't lose heart—remember to use your potions in time.
+msg_教程_当前存档已完成新手教程,This save has already completed the tutorial.
+msg_教程_当前无法切换新手职业_请重新选择,"Unable to switch the beginner class right now, please select again."
+msg_教程_当前职业清理失败_请重新选择,"Failed to clear the current class, please select again."
+msg_教程_该挑战已经完成_请选择其他难度,"This challenge has already been completed, please choose a different difficulty."
+msg_教程_奖励发放失败_请整理背包后重新挑战,"{displayName} reward delivery failed, please organize your backpack and try the challenge again."
+msg_教程_教程补给恢复失败_请整理背包后重试,"Failed to restore tutorial supplies, please organize your backpack and try again."
+msg_教程_教程房间已完成,Tutorial room complete.
+msg_教程_教程进度写入失败_请重新进入撤离点重试,"Failed to save tutorial progress, please re-enter the extraction point and try again."
+msg_教程_教程完成状态写入失败_请再次从_M001_撤离,"Failed to save tutorial completion status, please extract from M001 again."
+msg_教程_教程中暂时不会死亡,You cannot die during the tutorial for now.
+msg_教程_首通记录写入失败_请重新挑战,"{displayName} first-clear record save failed, please try the challenge again."
+msg_教程_挑战奖励发放失败_未找到本轮临时职业,Challenge reward delivery failed: temporary class for this round not found.
+msg_教程_新手教程测试已完成,Tutorial test completed.
+msg_教程_新手教程初始化超时_请重新进入游戏,Tutorial initialization timed out. Please re-enter the game.
+msg_教程_新手教程已完成,Tutorial completed.
+msg_教程_新手职业创建失败_请重新选择,Failed to create starter class. Please choose again.
+msg_教程_已进入新手教程房间,You have entered the tutorial room.
+msg_教程_M001_教程进度写入失败_请重新进入_M001,M001: Failed to save tutorial progress. Please re-enter M001.
+msg_炼金_背包和仓库已满_物品已掉落在英雄附近,Backpack and stash are full. Items have been dropped near your hero.
+msg_炼金_背包或仓库中没有该材料,Material not found in backpack or stash.
+msg_炼金_材料已放入炼金法阵,Material placed in the alchemy circle.
+msg_炼金_材料已取出,Material removed.
+msg_炼金_存档加载中_请稍后再试,Save is loading. Please try again later.
+msg_炼金_放入材料失败,Failed to place material.
+msg_炼金_该材料不能用于炼金,This material cannot be used for alchemy!
+msg_炼金_该槽位已解锁,This slot is unlocked.
+msg_炼金_该槽位已有材料,This slot already contains a material.
+msg_炼金_该炼金法阵槽位已达上限,This alchemy circle has reached its slot limit.
+msg_炼金_该炼金法阵已解锁,This alchemy circle is unlocked.
+msg_炼金_该炼金法阵暂未开放,This alchemy circle is not yet available.
+msg_炼金_货币不足,Insufficient currency.
+msg_炼金_获得_个远古钱币,Obtained {claimAmount} ancient coins.
+msg_炼金_获得_个远古钱币_2,Obtained {total} ancient coins.
+msg_炼金_解锁材料不足,Insufficient unlock materials.
+msg_炼金_凯蒂斯遗物不足,Not enough Katis relics.
+msg_炼金_扣除解锁材料失败,Failed to deduct unlock materials.
+msg_炼金_扣除凯蒂斯遗物失败,Failed to deduct Katis relics.
+msg_炼金_扣除玛雅遗物失败,Failed to deduct Maya relics.
+msg_炼金_炼金法阵槽位已解锁,Alchemy circle slot unlocked.
+msg_炼金_炼金法阵已解锁,Alchemy circle unlocked.
+msg_炼金_炼金收益上限已提升,Alchemy income cap increased.
+msg_炼金_玛雅遗物不足,Not enough Maya relics.
+msg_炼金_目标格无法放入该材料,This material cannot be placed in the target slot.
+msg_炼金_请先解锁炼金法阵,Please unlock the alchemy circle first.
+msg_炼金_暂无可领取收益,No rewards available to claim.
+msg_内测码_操作太快了_请稍后再试,"Too fast, please try again later! (2352)"
+msg_内测码_获取激活码失败_请稍后重试,"Failed to get activation code, please try again later."
+msg_内测码_激活码验证失败_请稍后重试,"Failed to verify activation code, please try again later."
+msg_内测码_内测码已发放完毕,All beta keys have been distributed.
+msg_内测码_使用内测码成功,Beta key used successfully.
+msg_排行榜_排行榜标签设置失败,Failed to set leaderboard tag.
+msg_赛季商店_赛季个人贡献,Season Personal Contribution +{contribution}
+msg_商城_背包或仓库空间不足_奖励领取失败_请整理空间后再领取,Insufficient inventory or warehouse space. Failed to claim reward. Please free up some space and try again.
+msg_商城_背包或仓库空间不足_礼包奖励发放失败_请整理空间后联系管理员处理,Insufficient inventory or warehouse space. Failed to issue gift package rewards. Please free up some space and contact an administrator.
+msg_商城_背包或仓库空间不足_无法兑换该物品,Insufficient inventory or warehouse space. Unable to redeem this item.
+msg_商城_背包或仓库空间不足_无法领取额外奖励,Insufficient inventory or warehouse space. Unable to claim extra rewards.
+msg_商城_背包或仓库空间不足_赞助勋章发放失败_请整理空间后联系管理员处理,Insufficient inventory or warehouse space. Failed to issue sponsorship badge. Please free up some space and contact an administrator.
+msg_商城_背包与仓库空间不足_且无法将秘宝奖励掉落到地面,"Insufficient inventory and warehouse space, and the treasure reward cannot be dropped to the ground."
+msg_商城_操作太快了_请稍后再试,"Operation too fast, please try again later! (2351)"
+msg_商城_当前没有可领取的额外奖励,There are no extra rewards to claim at the moment.
+msg_商城_典藏秘宝饰品发放失败,Failed to issue collector's treasure cosmetic: {itemId}
+msg_商城_典藏秘宝饰品配置无效,Invalid collector's treasure cosmetic configuration: {itemId}
+msg_商城_额外奖励参数无效,Invalid extra reward parameters.
+msg_商城_额外奖励状态已刷新_请重新领取,Extra reward status refreshed. Please claim again.
+msg_商城_每日特惠购买失败,Failed to purchase the daily special.
+msg_商城_秘宝参数无效,Invalid treasure parameters.
+msg_商城_秘宝动态奖池配置无效_请检查奖励配置,Invalid dynamic treasure pool configuration. Please check the reward configuration.
+msg_商城_秘宝奖励创建失败,Failed to create treasure reward: {itemId}
+msg_商城_神秘碎片不足,Insufficient Mysterious Shards.
+msg_商城_神秘钥匙扣除失败,Failed to deduct Mysterious Keys.
+msg_商城_神秘钥匙数量不足,Insufficient Mysterious Keys.
+msg_商城_饰品兑换失败_碎片未扣除,"Cosmetic exchange failed, no fragments were deducted."
+msg_商城_饰品数据尚未加载完成_请稍后再试,"Cosmetic data has not finished loading, please try again later."
+msg_商城_碎片商城类型配置无效,Invalid fragment shop type configuration.
+msg_商城_碎片商城商品不存在或未上架,The fragment shop item does not exist or is not listed.
+msg_商城_碎片商城商品配置无效,Invalid fragment shop item configuration.
+msg_商店_快捷出售_件物品_获得_金币,Quick-sold {soldCount} items for {totalGold} gold.
+msg_商店_售出获得_金币,Sold for {price} gold.
+msg_商店_售出获得_金币_2,Sold for {Price} gold.
+msg_商店_已刷新商店_消耗_个行会契书,"Shop refreshed, costing {cost} guild charters."
+msg_商店_已刷新远古商贩_消耗_个行会契书,"Ancient vendor refreshed, costing {cost} guild charters."
+msg_商人_材料不足,Insufficient materials.
+msg_商人_当前没有可刷出的合格材料订单,There are currently no eligible material orders to refresh.
+msg_商人_兑换材料发放失败,Failed to deliver exchanged materials.
+msg_商人_兑换成功_消耗_个悬赏金币,"Exchange successful, costing {cost} bounty gold."
+msg_商人_兑换商品不存在或已刷新,The exchange item does not exist or has been refreshed.
+msg_商人_兑换商品库存不足,The exchange item is out of stock.
+msg_商人_该订单槽今日已完成上限_明日刷新,This order slot has reached its daily limit; it will refresh tomorrow.
+msg_商人_解锁材料不足_需要_个,Insufficient materials to unlock. {itemId} requires {count}.
+msg_商人_今日订单重置次数已用完_每天最多重置_个任务,You have used up today's order reset quota. A maximum of {MERCHANT_REFRESH_DAILY_LIMIT} orders can be reset per day.
+msg_商人_今日兑换商店刷新次数已用完_每天最多刷新_次,You have used up today's exchange shop refresh quota. A maximum of {MERCHANT_EXCHANGE_REFRESH_DAILY_LIMIT} refreshes per day.
+msg_商人_扣除材料失败,Failed to deduct materials.
+msg_商人_扣除解锁材料失败_x,Failed to deduct unlock materials: {itemId} x{count}
+msg_商人_扣除行会契书失败,Failed to deduct Guild Charter.
+msg_商人_没有可解锁的收购订单槽位,No acquisition order slots to unlock.
+msg_商人_每日收购任务奖励已领取_获得_个悬赏金币,"Daily acquisition quest reward claimed, obtained {rewardPoints} Bounty Coins."
+msg_商人_每日收购任务未完成_还需要完成_个订单,Daily acquisition quest not completed. Need to complete {count} more orders.
+msg_商人_收购订单槽位已全部解锁,All acquisition order slots have been unlocked.
+msg_商人_收购任务不存在,Acquisition quest does not exist.
+msg_商人_完成收购任务_获得_个悬赏金币,"Completed acquisition quest, obtained {gainedPoints} Bounty Coins."
+msg_商人_行会契书不足_刷新兑换商店需要_个,Insufficient Guild Charters. Refreshing exchange shop requires {refreshCost}.
+msg_商人_行会契书不足_重置订单需要_个,Insufficient Guild Charters. Resetting an order requires {refreshCost}.
+msg_商人_悬赏金币不足,Insufficient Bounty Coins.
+msg_商人_悬赏金币不足_解锁需要_个,Insufficient Bounty Coins. Unlocking requires {unlockCost}.
+msg_商人_已解锁第_个收购订单槽位_消耗,"Unlocked acquisition order slot {count}, costing {unlockCostText}."
+msg_商人_已刷新兑换商店_消耗_个行会契书,"Exchange shop refreshed, costing {refreshCost} Guild Charters."
+msg_商人_已重置收购订单_消耗_个行会契书,"Acquisition order reset, costing {refreshCost} Guild Charters."
+msg_饰品_饰品恢复默认请求无效,Invalid request to restore cosmetic to default.
+msg_饰品_饰品卸下请求无效,Invalid request to unequip cosmetic.
+msg_饰品_饰品装备请求无效,Invalid request to equip cosmetic.
+msg_贪婪洞窟_背包和仓库已满_奖励已掉落在英雄附近,Backpack and stash are full. Rewards dropped near the hero.
+msg_贪婪洞窟_件无尽奖励因空间不足进入待领取队列,{length} Endless rewards have been placed in the pending claim queue due to insufficient space.
+msg_贪婪洞窟_开启级宝箱成功,Successfully opened tier {tier} treasure chest.
+msg_贪婪洞窟_已进入倾天秘境,Entered the Heavenfall Secret Realm.
+msg_贪婪洞窟_已自动发放件无尽秘境待领取奖励,Automatically distributed {delivered} pending Endless Secret Realm rewards.
+msg_天赋_调试解锁天赋成功,Debug: Talent unlocked successfully.
+msg_天赋_调试锁定天赋成功,Debug: Talent locked successfully.
+msg_通用_背包没有可用空位_无法拆分,No free slots in inventory; cannot split.
+msg_通用_背包已满,Backpack is full.
+msg_通用_仓库已满,Warehouse is full.
+msg_通用_拆分数量无效,Invalid split quantity.
+msg_通用_次级英雄复制物品不能放入背包,Copied items from secondary heroes cannot be placed in the backpack.
+msg_通用_次级英雄复制物品不能装备到主英雄,Copied items from secondary heroes cannot be equipped on the main hero.
+msg_通用_存档尚未加载完成,Save data has not been fully loaded.
+msg_通用_当前地图未开放,Current map is not open.
+msg_通用_封印物品不能移动,Sealed items cannot be moved.
+msg_通用_该地图传送权已激活,This map's teleport access has been activated.
+msg_通用_该格子正在被重铸占用,This slot is occupied by Reforging.
+msg_通用_该物品无法拆分,This item cannot be split.
+msg_通用_该物品正在被重铸占用,This item is currently being used in Reforging.
+msg_通用_教程中无法穿脱装备,Cannot equip or unequip items during the tutorial.
+msg_通用_金币不足,Insufficient gold
+msg_通用_临时英雄无法穿脱装备,Cannot equip or unequip items on a temporary hero
+msg_通用_职业数据加载中_请稍后再试,"Class data is loading, please try again later"
+msg_通用_只有宠物可以放入宠物槽,Only pets can be placed in pet slots
+msg_通用_装备预设正在切换_请稍后再试,"Equipment presets are switching, please try again later"
+msg_脱离卡死_当前场景无法使用脱离卡死,Cannot use stuck escape in this area
+msg_脱离卡死_当前秘境状态无法使用脱离卡死,Cannot use stuck escape in the current realm state
+msg_清除地上物品_冷却中,Clear ground items is on cooldown
+msg_清除地上物品_清理进行中_请稍后再试,"Ground item cleanup is in progress, please try again later"
+msg_清除地上物品_已清除_件,Cleared {count} ground items
+msg_玩家_存档已关闭_请重进游戏,Saving is disabled. Please re-enter the game!
+msg_玩家_你没有权限启动离线模式,You do not have permission to start offline mode
+msg_玩家_玩家数据未初始化,Player data is not initialized
+msg_玩家_信号塔已激活_地图传送权已解锁,Signal tower activated. Map teleportation is now unlocked
+msg_玩家_职业技能数据加载中_请稍后再试,"Skill data is loading, please try again later"
+msg_物品使用_该物品不支持连续使用,This item does not support repeated use
+msg_物品使用_连续使用数量无效,Invalid number of repeated uses
+msg_系统_操作太快了,Too fast. Please slow down
+msg_系统_内部错误,Internal error
+msg_系统维护_服务器维护已开始_游戏即将结束,Server maintenance has begun. The game will end soon
+msg_系统维护_游戏版本过低_游戏即将结束,Game version is outdated. The game will end soon
+msg_邀请码_背包和仓库空间不足_请整理后重试,Insufficient inventory or storage space. Please free up space and try again
+msg_邀请码_存档状态暂不可写入_请稍后重试,Save state is currently unavailable. Please try again later
+msg_邀请码_该奖励规则当前不可用,This reward rule is currently unavailable.
+msg_邀请码_该奖励条件尚未达成,The reward conditions have not been met yet.
+msg_邀请码_该奖励已经领取,This reward has already been claimed.
+msg_邀请码_奖励配置异常_请联系管理员,"Reward configuration error, please contact the administrator."
+msg_邀请码_你已经绑定过邀请码了,You have already bound an invitation code.
+msg_邀请码_请输入有效的邀请码,Please enter a valid invitation code.
+msg_邀请码_刷新过于频繁_请在_秒后重试,"Refresh too frequent, please try again in {seconds} seconds."
+msg_邀请码_邀请码绑定成功_绑定奖励可在页面领取,Invitation code bound successfully. The binding reward can be claimed on the page.
+msg_邀请码_邀请码绑定失败,Failed to bind invitation code.
+msg_邀请码_邀请码奖励领取成功,Invitation code reward claimed successfully.
+msg_邮件_背包空间不足_无法领取邮件附件,"Insufficient backpack space, cannot claim email attachment."
+msg_邮件_请在基地内领取邮件,Please claim your mail in the base.
+msg_邮件_邮件状态保存失败_请稍后再试,"Failed to save email status, please try again later."
+msg_支付_背包和仓库空间不足,Insufficient backpack and warehouse space.
+msg_支付_每日特惠价格配置无效,Invalid daily deal price configuration.
+msg_支付_每日特惠礼包发放失败_请重新确认支付结果,"Failed to deliver the daily deal package, please reconfirm the payment result."
+msg_支付_每日特惠支付配置无效,Invalid daily deal payment configuration.
+msg_支付_你已被禁止赞助,You have been banned from recharging.
+msg_支付_请选择有效的地区和支付方式,Please select a valid region and payment method.
+msg_支付_玩家数据尚未加载完成_请稍后再试,"Player data has not finished loading, please try again later."
+msg_支付_未满足条件_无法领取奖励,Conditions not met. Cannot claim reward.
+msg_支付_支付过于频繁_请稍后再试,Payment too frequent. Please try again later.
+msg_支付_支付金额异常_请稍后再试,Invalid payment amount. Please try again later.
+msg_制作_背包和仓库空间不足_无法返还制作材料,Insufficient backpack and storage space. Crafting materials cannot be returned.
+msg_制作_背包和仓库空间不足_无法领取制作物品,Insufficient backpack and storage space. Cannot claim the crafted item.
+msg_制作_当前没有可保留的重铸结果,There is no reforge result to keep.
+msg_制作_当前没有可还原的重铸结果,There is no reforge result to revert.
+msg_制作_当前重铸不需要使用重铸石,The current reforge does not require a Reforge Stone.
+msg_制作_分解成功,Salvage successful.
+msg_制作_该物品无法分解,This item cannot be salvaged.
+msg_制作_该装备没有可用的命石升华配方,This equipment has no available Fate Stone Ascension recipe.
+msg_制作_该装备已达到重铸上限,This equipment has reached the reforge limit.
+msg_制作_仅品质_5_及以上装备可重铸,Only equipment of Quality 5 or above can be reforged.
+msg_制作_命石与目标装备不匹配,The Fate Stone does not match the target equipment.
+msg_制作_您不在家中,You are not at home.
+msg_制作_您没有足够的材料来制作该物品,You do not have enough materials to craft this item.
+msg_制作_请放入命石,Please insert a Fate Stone.
+msg_制作_请放入装备和对应命石,Please insert the equipment and the matching Fate Stone.
+msg_制作_请先放入同名装备,Please first insert equipment of the same name.
+msg_制作_请先放入重铸目标,Please first insert the reforge target.
+msg_制作_请先确认或还原当前重铸结果,Please confirm or revert the current reforge result first.
+msg_制作_请在基地中操作,Please do this at the base.
+msg_制作_升华成功_已获得先祖装备,Ascension successful. You have obtained Ancestral Equipment.
+msg_制作_升华随机种子生成失败,Failed to generate the Ascension random seed.
+msg_制作_升华所需的重铸精华不足,Insufficient Reforge Essence for Ascension.
+msg_制作_同一件物品不能占用两个升华槽位,The same item cannot occupy two Ascension slots.
+msg_制作_物品不存在,The item does not exist.
+msg_制作_物品数量不足,Insufficient item quantity.
+msg_制作_先祖装备创建失败,Failed to create Ancestral Equipment.
+msg_制作_先祖装备放入背包失败,Failed to place Ancestral Equipment into the backpack.
+msg_制作_已保留重铸结果,Reforge result kept.
+msg_制作_已还原重铸结果,Reforge result reverted.
+msg_制作_制作队列最多只能有个任务,The crafting queue can hold at most {MAX_MAKE_QUEUE} tasks.
+msg_制作_制作配方参数无效,Invalid crafting recipe parameters.
+msg_制作_制作数量无效,Invalid crafting quantity.
+msg_制作_重铸材料不能与目标是同一件物品,The reforge material cannot be the same item as the target.
+msg_制作_重铸材料不足,Insufficient reforge materials.
+msg_制作_重铸材料需为同名装备,Reforge material must be equipment of the same name.
+msg_制作_重铸材料已失效,The reforge material is no longer valid.
+msg_制作_重铸材料与目标装备不匹配,The reforge material does not match the target equipment.
+msg_制作_重铸中的物品无法分解,Items being reforged cannot be salvaged.
+msg_制作_装备重铸不需要副装备,Equipment reforge does not require a secondary item.
+msg_自定义物品栏_背包中没有该物品_无法使用,This item is not in the backpack and cannot be used.
+msg_自定义物品栏_背包中没有该物品_无法装备,This item is not in the backpack and cannot be equipped.
+msg_自定义物品栏_该物品已在自定义物品栏中,This item is already in the custom item bar.
+msg_自定义物品栏_只能将药水或可主动使用的材料放入自定义物品栏,Only potions or actively usable materials can be placed in the custom item bar.
+msg_自定义物品栏_自定义物品栏已满,The custom item bar is full.
+msg_仓库_没有可补充的锁定物品,No locked items to restock.
+msg_仓库_已补充锁定槽位,Replenished {count} locked slots.
+msg_兑换码_兑换码参数无效,Invalid redemption code parameters.
+msg_房间_传送失败_目标地图暂未开放,"Teleport failed, target map is not yet available"
+msg_房间_当前地图未开放,Current map is not yet available
+msg_房间_当前无法从该撤离点离开,Cannot leave from this extraction point right now
+msg_房间_地图加载失败_请重试,"Failed to load map, please retry"
+msg_房间_地图连续加载失败_请尝试重启游戏,"Failed to load map repeatedly, please try restarting the game"
+msg_房间_进入地图失败_请重试,"Failed to enter map, please retry"
+msg_房间_连续进入地图失败_请尝试重启游戏,"Failed to enter map repeatedly, please try restarting the game"
+msg_房间_某处的门打开了,A door somewhere has opened
+msg_交易所_查询条件无效,Invalid search criteria
+msg_交易所_订单参数无效,Invalid order parameters
+msg_交易所_购买成功,Purchase successful
+msg_交易所_购买数量无效,Invalid purchase quantity
+msg_交易所_交易所已禁用_请联系管理员,"Trading post is disabled, please contact the administrator"
+msg_交易所_每页数量无效,Invalid items per page
+msg_交易所_请求标识无效,Invalid request ID
+msg_交易所_上架成功,Listing successful
+msg_交易所_上架价格无效,Invalid listing price
+msg_交易所_上架失败,Failed to list item
+msg_交易所_上架数量无效,Invalid listing quantity
+msg_交易所_物品参数无效,Invalid item parameters
+msg_交易所_物品等级无效,Invalid item level
+msg_交易所_物品来源无效,Invalid item source
+msg_交易所_物品类型无效,Invalid item type
+msg_交易所_物品品质无效,Invalid item quality
+msg_交易所_下架成功,Item removed successfully
+msg_交易所_下架失败,Failed to remove item
+msg_交易所_页码无效,Invalid page number
+msg_教程_当前不在有效的新手教程中,Not currently in an active tutorial
+msg_教程_击败任意挑战后才能从这里撤离,You must defeat a challenge before extracting from here
+msg_教程_流程尚未就绪,The process is not ready yet
+msg_赛季商店_本赛季奖励已经领取,This season's reward has already been claimed
+msg_赛季商店_兑换保存失败_奖励与扣款均已撤销,Failed to save redemption; reward and deduction have been revoked
+msg_赛季商店_兑换保存失败_未扣除赛季币,Failed to save redemption; no season coins were deducted
+msg_赛季商店_兑换成功_账号级奖励已生效,Redemption successful; account-level reward has been applied
+msg_赛季商店_兑换请求异常_本次奖励已撤销,Redemption request error; this reward has been revoked
+msg_赛季商店_兑换请求异常_请刷新后确认结果,Redemption request error; please refresh to confirm the result
+msg_赛季商店_兑换数据打包失败_本次奖励已撤销,Failed to pack redemption data; this reward has been revoked
+msg_赛季商店_兑换已完成_但界面刷新异常,"Redemption completed, but the interface failed to refresh"
+msg_赛季商店_该商品已达到本赛季兑换上限,This item has reached the seasonal redemption limit
+msg_赛季商店_个人贡献等级达到指定等级后才能兑换,Requires personal contribution level {requiredLevel} to redeem
+msg_赛季商店_贡献保存失败_已返还资源,Failed to save contribution; resources have been returned
+msg_赛季商店_贡献数据打包失败_已返还资源,Failed to pack contribution data; resources have been returned
+msg_赛季商店_贡献已保存_请刷新界面,Contribution saved; please refresh the interface
+msg_赛季商店_建设贡献增加,Contribution +{contribution}
+msg_赛季商店_奖励发放失败_请整理背包或仓库后重试,Failed to deliver reward; please organize your inventory or storage and retry
+msg_赛季商店_结算请求异常_请刷新后重试,Settlement request error; please refresh and retry
+msg_赛季商店_另一项赛季操作正在处理中,Another season operation is currently in progress
+msg_赛季商店_赛季币不足_当前余额与所需数量,"Not enough season coins. Current: {current}, required: {required}"
+msg_赛季商店_赛季币余额尚未加载_请稍后重试,Season coin balance not loaded yet; please try again later
+msg_赛季商店_赛季贡献需求尚未加载,Season contribution requirement not loaded yet
+msg_赛季商店_赛季结算领取失败,Failed to claim season settlement.
+msg_赛季商店_赛季结算完成_获得赛季币,Season settlement complete. Received {reward} season coins.
+msg_赛季商店_赛季商品不存在或未开放,Season item does not exist or is not yet available.
+msg_赛季商店_赛季商品价格配置无效,Invalid price configuration for season item.
+msg_赛季商店_赛季商品奖励配置无效,Invalid reward configuration for season item.
+msg_赛季商店_赛季商品配置不存在,Season item configuration not found.
+msg_赛季商店_赛季尚未结束,The season has not ended yet.
+msg_赛季商店_赛季已结束_无法继续贡献资源,The season has ended. You can no longer contribute resources.
+msg_赛季商店_上一笔兑换正在保存_请稍候,Your previous exchange is being saved. Please wait.
+msg_赛季商店_提交异常_资源已返还,Submission error. Resources have been refunded.
+msg_赛季商店_玩家数据正在保存_请稍后提交,Player data is being saved. Please submit again later.
+msg_赛季商店_玩家数据正在保存_请稍后再兑换,Player data is being saved. Please exchange again later.
+msg_赛季商店_无效的贡献类型,Invalid contribution type.
+msg_赛季商店_远古币不足,Insufficient Ancient Coins.
+msg_商城_背包或仓库空间不足_扩展包物品发放失败_请整理空间后再购买,Insufficient backpack or warehouse space. Failed to issue expansion pack items. Please organize space and try again.
+msg_商城_背包或仓库空间不足_礼包奖励发放失败_请整理空间后再购买,Insufficient backpack or warehouse space. Failed to issue gift pack rewards. Please organize space and try again.
+msg_商城_背包或仓库空间不足_请整理后重新确认支付结果,Insufficient backpack or warehouse space. Please free up space and re-confirm the payment result.
+msg_商城_背包或仓库空间不足_赞助勋章发放失败_请整理空间后再购买,Insufficient backpack or warehouse space. Failed to issue sponsor badge. Please organize space and try again.
+msg_商城_本周特惠已购买,Weekly special already purchased.
+msg_商城_点券不足,Insufficient points.
+msg_商城_点券不足_当前余额与所需数量,"Insufficient points. Current balance: {current}, required: {required}."
+msg_商城_点券预占确认超时_已取消本次购买_请稍后重试,Point reservation confirmation timed out. Purchase canceled. Please try again later.
+msg_商城_点券预占失败_请稍后重试,Point reservation failed. Please try again later.
+msg_商城_该特惠商品不支持点券购买,This special item cannot be purchased with points.
+msg_商城_购买保存失败_数据将保留为待重试状态,Failed to save purchase. Data will be kept in a retry-pending state.
+msg_商城_购买保存异常_云端未确认扣款,Purchase save error. Cloud has not confirmed the deduction.
+msg_商城_购买失败_已达到购买上限,Purchase failed. Purchase limit reached.
+msg_商城_购买数据打包失败_本次变更尚未保存,Failed to package purchase data. This change has not been saved.
+msg_商城_激活M003信号塔后开放每日特惠,Daily specials become available after activating the M003 Signal Tower.
+msg_商城_今日特惠已购买,Today's special already purchased.
+msg_商城_礼包发放失败_请整理背包或仓库后重试,Gift pack issuance failed. Please organize your backpack or warehouse and try again.
+msg_商城_礼包奖励发放失败_请整理空间后再购买,Failed to issue gift pack rewards. Please organize space and purchase again.
+msg_商城_礼包奖励配置无效,Invalid gift pack reward configuration.
+msg_商城_礼包内部点券结算失败_请重新确认支付结果,Gift pack internal point settlement failed. Please re-confirm the payment result.
+msg_商城_礼包限购记录保存失败_请稍后重试,Failed to save gift pack purchase limit record. Please try again later.
+msg_商城_礼包限购记录保存失败_请重新确认支付结果,Failed to save gift pack purchase limit record. Please re-confirm the payment result.
+msg_商城_礼包支付配置无效,Invalid gift pack payment configuration.
+msg_商城_每日特惠每次只能购买一份,Only one daily special can be purchased at a time.
+msg_商城_每日特惠商品配置无效,Invalid daily special item configuration.
+msg_商城_上一笔购买正在保存_请稍候,Your previous purchase is being saved. Please wait.
+msg_商城_饰品碎片商城商品配置无效,Invalid item configuration in the Cosmetic Shard Shop.
+msg_商城_碎片不足,Insufficient shards.
+msg_商城_玩家不存在_无法发放礼包,Player does not exist. Unable to issue gift pack.
+msg_商城_玩家不存在_无法购买每日特惠,Player does not exist. Unable to purchase daily special.
+msg_商城_玩家数据正在保存_请稍后再购买,Player data is being saved. Please purchase again later.
+msg_商城_未找到该商品,Item not found.
+msg_商城_未找到每日特惠商品,Daily special item not found.
+msg_商城_已拥有该饰品,You already own this cosmetic.
+msg_贪婪洞窟_不属于当前无尽秘境队伍,You are not part of the current Endless Realm team.
+msg_贪婪洞窟_存档尚未加载完成_无法进入,Save data has not finished loading. Cannot enter.
+msg_贪婪洞窟_存档尚未加载完成_无法进入无尽秘境,Save data has not finished loading. Cannot enter the Endless Realm.
+msg_贪婪洞窟_当前不在有效挑战中,You are not currently in an active challenge.
+msg_贪婪洞窟_当前不在Boss战后商店层,You are not currently on the post-Boss shop floor.
+msg_贪婪洞窟_当前没有可追加的商品_请稍后再试,There are no additional items available. Please try again later.
+msg_贪婪洞窟_当前秘境暂时不能加入_请等待本轮结算,The current realm cannot be joined yet. Please wait for the round to settle.
+msg_贪婪洞窟_当前秘境正在进入下一层_请等待本轮结算,The current realm is entering the next floor. Please wait for the round to settle.
+msg_贪婪洞窟_当前秘境正在清理_请稍后再试,The current realm is being cleared. Please try again later.
+msg_贪婪洞窟_当前玩家状态无法撤离无尽秘境,Your current state prevents you from evacuating the Endless Realm.
+msg_贪婪洞窟_当前玩家状态无法提交撤离选择,Your current state prevents you from submitting an evacuation choice.
+msg_贪婪洞窟_当前无法拾取无尽秘境奖励,You cannot pick up Endless Realm rewards right now.
+msg_贪婪洞窟_当前无尽秘境会话已结束,The current Endless Realm session has ended.
+msg_贪婪洞窟_当前已有其他秘境正在进行,Another realm is already in progress.
+msg_贪婪洞窟_当前有教程正在进行_稍后再试,A tutorial is currently in progress. Please try again later.
+msg_贪婪洞窟_当前只开放1至3阶秘境邀请函,Only Tier 1-3 realm invitations are currently available.
+msg_贪婪洞窟_地图创建超时_邀请函未消耗,Map creation timed out. Invitation not consumed.
+msg_贪婪洞窟_地图创建失败_邀请函未消耗,Map creation failed. Invitation not consumed.
+msg_贪婪洞窟_地图进入超时_邀请函未消耗,Map entry timed out. Invitation not consumed.
+msg_贪婪洞窟_地图实体准备超时_邀请函未消耗,Map entity preparation timed out. Invitation not consumed.
+msg_贪婪洞窟_地图准备中_已加入等待队列,Map is being prepared. You have been added to the queue.
+msg_贪婪洞窟_该奖励已被其他玩家拾取,This reward has already been picked up by another player.
+msg_贪婪洞窟_个人背包已满_请先移出一件物品,Your personal inventory is full. Please remove an item first.
+msg_贪婪洞窟_个人背包中不存在该物品,This item is not in your personal inventory.
+msg_贪婪洞窟_公共仓库操作过于频繁_请稍后再试,Too many public stash operations. Please try again later.
+msg_贪婪洞窟_公共仓库中不存在该物品,This item is not in the public stash.
+msg_贪婪洞窟_会话已失效_邀请函未消耗,Session has expired. Invitation not consumed.
+msg_贪婪洞窟_奖励归属登记失败_已拒绝本次拾取,Reward ownership registration failed. Pickup denied.
+msg_贪婪洞窟_今日剩余挑战次数不足_无法进入秘境商店,Not enough challenge attempts remaining today to enter the realm shop.
+msg_贪婪洞窟_今日挑战次数已用完,You have used up all of today's challenge attempts.
+msg_贪婪洞窟_今日无尽挑战次数已用完,You have used up all of today's Endless challenge attempts.
+msg_贪婪洞窟_进入失败_邀请函未消耗,Entry failed. Invitation not consumed.
+msg_贪婪洞窟_开启宝箱失败_请检查奖励配置,Failed to open the chest. Please check the reward configuration.
+msg_贪婪洞窟_流程尚未就绪,The process is not ready yet.
+msg_贪婪洞窟_没有可开启宝箱的魂晶,No Soul Crystals to open the chest.
+msg_贪婪洞窟_秘晶不足,Not enough Mystic Crystals.
+msg_贪婪洞窟_秘晶收益商品数值无效,Invalid Mystic Crystal reward item value.
+msg_贪婪洞窟_其他地图正在创建_请稍后重试_邀请函未消耗,Another map is being created. Please try again later. Invitation not consumed.
+msg_贪婪洞窟_请在楼层结算阶段使用撤离点,Please use the evacuation point during the floor settlement phase.
+msg_贪婪洞窟_请在楼层结算时投票撤离,Please vote to evacuate during the floor settlement.
+msg_贪婪洞窟_入场请求已失效_邀请函未消耗,Entry request has expired. Invitation not consumed.
+msg_贪婪洞窟_入场校验未通过_邀请函未消耗,Entry verification failed. Invitation not consumed.
+msg_贪婪洞窟_商品不存在或已经售罄,The item does not exist or has been sold out.
+msg_贪婪洞窟_商品归属登记失败_本次未扣除秘晶,Item ownership registration failed. Mystic Crystals were not deducted.
+msg_贪婪洞窟_商品物品生成失败_请重新打开商店,Failed to generate the item. Please reopen the shop.
+msg_贪婪洞窟_挑战次数保存失败_请稍后再试,Failed to save challenge attempts. Please try again later.
+msg_贪婪洞窟_无法拿取该物品,Cannot take this item.
+msg_贪婪洞窟_无法拾取该无尽秘境奖励,Cannot pick up this Endless Realm reward.
+msg_贪婪洞窟_无法退回该物品,Cannot return this item.
+msg_贪婪洞窟_无尽秘境已经开始_无法中途加入,The Endless Realm has already started. You cannot join mid-way.
+msg_贪婪洞窟_无尽秘境只允许在首层开战前加入,The Endless Realm can only be joined before the first floor combat begins.
+msg_贪婪洞窟_无尽挑战次数保存失败,Failed to save Endless challenge attempts.
+msg_贪婪洞窟_无尽挑战次数保存失败_请稍后再试,Failed to save Endless Challenge attempts. Please try again later.
+msg_贪婪洞窟_无尽挑战已经结束_无法调整个人背包,The Endless Challenge has ended. Your personal inventory cannot be modified.
+msg_贪婪洞窟_物品归属校验失败_已拒绝本次操作,Item ownership verification failed. The operation has been rejected.
+msg_贪婪洞窟_物品状态已经变化_请按最新仓库状态重试,Item status has changed. Please retry with the latest warehouse state.
+msg_贪婪洞窟_缺少对应阶数邀请函,You do not have the matching invitation for this realm.
+msg_贪婪洞窟_邀请函阶数与当前秘境不匹配,The invitation tier does not match the current realm.
+msg_贪婪洞窟_邀请函已失效_无法进入,The invitation has expired. You cannot enter.
+msg_贪婪洞窟_已经参与过当前秘境,You have already participated in the current realm.
+msg_贪婪洞窟_英雄状态异常_无法进入,Your hero is in an abnormal state and cannot enter.
+msg_贪婪洞窟_游戏暂停中_暂时不能进行秘境选择,The game is paused. Realm selection is unavailable.
+msg_贪婪洞窟_暂时无法进入倾天秘境,You cannot enter the Skyfall Realm at this time.
+msg_贪婪洞窟_正在进入_请等待地图准备完成,Entering now. Please wait for the map to be prepared.
+msg_贪婪洞窟_正在准备地图_请稍候,Preparing the map. Please wait.
+msg_贪婪洞窟_只有在基地中才能使用邀请函,Invitations can only be used in the base.
+msg_天赋_存档未加载完成,Save data has not finished loading.
+msg_天赋_调试切换研究状态失败,Debug: failed to toggle research status.
+msg_天赋_该天赋研究中,This talent is currently being researched.
+msg_天赋_货币不足,Insufficient currency.
+msg_天赋_前置天赋未满足,Prerequisite talents not met.
+msg_天赋_天赋树未解锁,The talent tree is not unlocked.
+msg_天赋_同时研究数量达到上限,The limit for concurrent research is {max}.
+msg_天赋_无效天赋,Invalid talent.
+msg_天赋_研究失败,Research failed.
+msg_天赋_已研究完成,Research complete.
+msg_通用_宝石栏已满,The gem slot is full.
+msg_通用_宝物只能放入16号格,Treasures can only be placed in slot 16.
+msg_通用_背包和仓库空间不足,Not enough space in your backpack or warehouse.
+msg_通用_背包或仓库空间不足_请整理后再购买,Not enough space in your backpack or warehouse. Please organize before purchasing.
+msg_通用_背包或仓库空间不足_请整理后重试,Not enough space in your backpack or warehouse. Please organize and retry.
+msg_通用_材料不足,Insufficient materials.
+msg_通用_宠物槽已满,The pet slot is full.
+msg_通用_宠物只能放入17号格,Pets can only be placed in slot 17.
+msg_通用_兑换成功,Exchange successful.
+msg_通用_封印物品只能放入装备栏,Sealed items can only be placed in the equipment slots.
+msg_通用_封印物只能放入装备栏,Seals can only be placed in the equipment slots.
+msg_通用_符印只能放入装备栏6至8格,Sigils can only be placed in equipment slots 6 to 8.
+msg_通用_该物品不能放入这个槽位,This item cannot be placed in this slot.
+msg_通用_该物品无法脱下,This item cannot be unequipped.
+msg_通用_购买失败,Purchase failed.
+msg_通用_购买数量错误,Invalid purchase quantity.
+msg_通用_钱包栏已满,The wallet slot is full.
+msg_通用_钱包只能放入15号格,Wallet items can only be placed in slot 15.
+msg_通用_玩家数据不存在,Player data not found.
+msg_通用_只有宝物可以放入该槽位,Only treasures can be placed in this slot.
+msg_通用_只有钱包物品可以放入该槽位,Only wallet items can be placed in this slot.
+msg_通用_中立栏已满,The neutral item slot is full.
+msg_通用_装备栏已满,The equipment slots are full.
+msg_通用_穿戴失败,Failed to equip item.
+msg_通用_装备只能放入装备栏0至5格,Equipment can only be placed in equipment slots 0 to 5.
+msg_物品使用_无法使用该物品,This item cannot be used.
+msg_系统维护_当前服务器正在维护_建议退出_五分钟后强制结束,The server is under maintenance. It is recommended to exit. The game will force-end in five minutes.
+msg_系统维护_当前游戏版本过低_建议退出_五分钟后强制结束,Your game version is outdated. It is recommended to exit. The game will force-end in five minutes.
+msg_制作_分解参数无效,Invalid disassembly parameters
+msg_制作_升华材料已失效,Ascension material is no longer valid
+msg_制作_升华目标已失效,Ascension target is no longer valid
+msg_制作_升阶参数无效,Invalid upgrade parameters
+msg_制作_制作任务参数无效,Invalid crafting task parameters
+msg_制作_重铸参数无效,Invalid reforging parameters
+msg_制作_重铸目标已失效,Reforging target is no longer valid

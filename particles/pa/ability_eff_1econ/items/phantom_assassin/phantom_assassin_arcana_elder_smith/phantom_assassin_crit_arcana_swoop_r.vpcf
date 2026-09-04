@@ -1,0 +1,75 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 0
+	m_flConstantRadius = 300.0
+	m_flConstantLifespan = 0.6
+	m_ConstantColor = [ 60, 244, 255, 255 ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_NormalLock"
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_swoop_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_impact_model.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pa/ability_eff_1econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_crit_arcana_model_slash_a.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_nCP1 = 6
+			m_vecCP1Pos = [ 0.0, 0.0, 0.0 ]
+			m_bSetOnce = true
+		},
+		{
+			_class = "C_OP_SetControlPointOrientation"
+			m_vecRotation = [ 30.0, 30.0, 0.0 ]
+			m_nHeadLocation = 1
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 0.0, 0.0, 100.0 ]
+			m_bSetOnce = true
+			m_transformInput = 
+			{
+				m_nControlPoint = 1
+			}
+		},
+		{
+			_class = "C_OP_SetControlPointFromObjectScale"
+			m_nCPOutput = 2
+		},
+	]
+	m_nBehaviorVersion = 12
+}

@@ -1,0 +1,260 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 16
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 5
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 16.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_flNumToAssign = 16.0
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 2
+			}
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 143, 183, 248 ]
+			m_ColorMin = [ 85, 109, 255 ]
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.71
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 12.0
+				m_flRandomMax = 24.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 12.0, 12.0, 4.0 ]
+			m_OffsetMin = [ -12.0, -12.0, -4.0 ]
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax = [ 32.0, 32.0, 32.0 ]
+			m_vecOutputMin = [ -32.0, -32.0, -32.0 ]
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_INVALID"
+			}
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_flOutputMax = 0.5
+			m_flOutputMin = 3.0
+			m_flInputMax = 512.0
+			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_INIT_DistanceToCPInit"
+			m_flInputMin = 2.0
+			m_nFieldOutput = 7
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpStartFadeInTime = 2.0
+			m_flOpEndFadeInTime = 2.0
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMax = 0.7
+			m_flFadeOutTimeMin = 0.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 4.0
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Frequency = 8.0
+			m_Rate = -25.0
+			m_nField = 16
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flRange = 512.0
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_flOverbrightFactor = 15.0
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 400.0
+			m_flTextureVScrollRate = -400.0
+			m_nMaxTesselation = 3
+			m_nMinTesselation = 3
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/bendibeam2.vtex"
+					m_TextureControls = 
+					{
+						m_flFinalTextureScaleU = 
+						{
+							m_nType = "PF_TYPE_LITERAL"
+							m_flLiteralValue = -1.0
+						}
+					}
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_flDelay = 0.015
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_cored.vpcf"
+		},
+		{
+			m_flDelay = 0.01
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreh.vpcf"
+		},
+		{
+			m_flDelay = 0.002
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corej.vpcf"
+		},
+		{
+			m_flDelay = 0.008
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreh.vpcf"
+		},
+		{
+			m_flDelay = 0.015
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corej.vpcf"
+		},
+		{
+			m_flDelay = 0.02
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreh.vpcf"
+		},
+		{
+			m_flDelay = 0.006
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corej.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreb.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corea.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/zuus_thundergods_wrath_modglow.vpcf"
+		},
+		{
+			m_flDelay = 0.2
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corei.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corei.vpcf"
+		},
+		{
+			m_flDelay = 0.4
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_corei.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coree.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreg.vpcf"
+			m_flDelay = 0.2
+		},
+		{
+			m_ChildRef = resource:"particles/cc/guojia_thunder_hit_coreg.vpcf"
+			m_flDelay = 0.4
+		},
+	]
+}

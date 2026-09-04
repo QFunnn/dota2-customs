@@ -1,0 +1,35 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+--[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+return {
+	item_2014 = {
+		Level = 4,
+		ItemCost = 300,
+		AbilityTextureName = "item_ofrenda_01",
+		is_item_in_game = 0,
+		BaseClass = "item_lua",
+		AbilityValues = {},
+		itemType = "change",
+		ItemShareability = "ITEM_NOT_SHAREABLE",
+		ItemPurchasable = 0,
+		ItemPermanent = 1,
+		ItemCastOnPickup = 0,
+		ItemStackable = 1,
+		AbilityBehavior = "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		ItemInitialCharges = 1,
+		ItemQuality = 1,
+		ItemKillable = 0,
+		ItemSellable = 1,
+		ItemCarryLimit = 3,
+		SpeciallyBannedFromNeutralSlot = 1,
+		ItemDroppable = 1,
+	},
+}

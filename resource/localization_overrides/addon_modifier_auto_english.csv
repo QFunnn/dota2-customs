@@ -1,0 +1,748 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+Tokens,English
+DOTA_Tooltip_modifier_axe_002_passive,Heavy Strike
+DOTA_Tooltip_modifier_axe_002_passive_Description,Increases attack damage by 5%% of max health.
+DOTA_Tooltip_modifier_axe_005_self_buff,Armor Bonus
+DOTA_Tooltip_modifier_axe_005_self_buff_Description,Increases armor.
+DOTA_Tooltip_modifier_axe_006_berserk,Berserk Fury
+DOTA_Tooltip_modifier_axe_006_berserk_Description,"Grants immunity to most debuffs and greatly increases status resistance; increases max health and critical strike chance, but increases damage taken."
+DOTA_Tooltip_modifier_axe_007_berserkers_blood,Berserker's Blood
+DOTA_Tooltip_modifier_axe_007_berserkers_blood_Description,"The lower your current health, the higher your attack speed and health regeneration."
+DOTA_Tooltip_modifier_axe_008_blood_oath,Blood Oath
+DOTA_Tooltip_modifier_axe_008_blood_oath_Description,"Attack speed increased; each attack consumes current health and adds physical damage, with health kept at a minimum of 1 point."
+DOTA_Tooltip_modifier_axe_009_red_mist_supply,Red Mist Supply
+DOTA_Tooltip_modifier_axe_009_red_mist_supply_Description,"Each stack increases health regeneration by a percentage of max health. Multiple stacks can accumulate, and each stack has its own independent duration."
+DOTA_Tooltip_modifier_axe_010_glory_guard,Glory Guard
+DOTA_Tooltip_modifier_axe_010_glory_guard_Description,Each point of armor grants 10 bonus maximum health.
+DOTA_Tooltip_modifier_drow_004_extra_arrow,Freezing Arrow
+DOTA_Tooltip_modifier_drow_004_extra_arrow_Description,Attacks fire a freezing arrow.
+DOTA_Tooltip_modifier_lina_001_dragon_soul,Dragon Soul
+DOTA_Tooltip_modifier_lina_001_dragon_soul_Description,Each stack increases Dragon Slave damage. Recasting refreshes duration.
+DOTA_Tooltip_modifier_lina_003_fiery_soul_effect,Slow Burn
+DOTA_Tooltip_modifier_lina_003_fiery_soul_effect_Description,Stacks decay over time. Each stack increases damage dealt.
+DOTA_Tooltip_modifier_lina_011_fire_curse,Fire Curse Mark
+DOTA_Tooltip_modifier_lina_011_fire_curse_Description,"Each stack increases spell damage taken by the target, and decays by 1 stack per second."
+DOTA_Tooltip_modifier_lina_012_reheat_ring,Reheat Ring
+DOTA_Tooltip_modifier_lina_012_reheat_ring_Description,"Gains temporary max shield, and converts absorbed damage into Reheat value."
+DOTA_Tooltip_modifier_pa_003_mark_attacker,Mark Burst
+DOTA_Tooltip_modifier_pa_003_mark_attacker_Description,"On attack hit, adds a stackable mark to the target."
+DOTA_Tooltip_modifier_pa_003_mark_debuff,Mark
+DOTA_Tooltip_modifier_pa_003_mark_debuff_Description,"Upon reaching max stacks, triggers a burst of damage and clears the mark."
+DOTA_Tooltip_modifier_pa_005_insight,Insight
+DOTA_Tooltip_modifier_pa_005_insight_Description,Attacks stack agility. Decays 1 stack per second.
+DOTA_Tooltip_modifier_pa_007_blur,Phantom Blur
+DOTA_Tooltip_modifier_pa_007_blur_Description,"Phantom Assassin gains Blur state. After a basic attack hits an enemy, performs an additional attack."
+DOTA_Tooltip_modifier_pa_008_bing_shi,War Momentum
+DOTA_Tooltip_modifier_pa_008_bing_shi_Description,"On next basic attack hit, consumes all War Momentum to deal bonus magic damage equal to the amount consumed."
+DOTA_Tooltip_modifier_pa_008_gem_overheal_pool,Blood Reserve
+DOTA_Tooltip_modifier_pa_008_gem_overheal_pool_Description,"Lifesteal overheal is stored in a pool, which continuously converts into healing."
+DOTA_Tooltip_modifier_pa_011_dexterity_training,Dexterity Training
+DOTA_Tooltip_modifier_pa_011_dexterity_training_Description,Gains evasion. Triggers a move speed stack when evading.
+DOTA_Tooltip_modifier_item_0099_erosa_ritual,Erosa Ritual
+DOTA_Tooltip_modifier_item_0099_erosa_ritual_Description,"Taking attacks grants stacking mana regeneration, 0.2/sec per stack. Max 10 stacks. Decays by 1 stack every 3 seconds."
+DOTA_Tooltip_modifier_item_0209_doom,Doom
+DOTA_Tooltip_modifier_item_0209_doom_Description,Magic resistance reduced.
+DOTA_Tooltip_modifier_item_0221_soul_rend,Soul Rend
+DOTA_Tooltip_modifier_item_0221_soul_rend_Description,"At the end of duration, a portion of damage taken during this period is applied."
+DOTA_Tooltip_modifier_item_0240,Hardened
+DOTA_Tooltip_modifier_item_0240_Description,Damage bonus and damage resistance increased.
+DOTA_Tooltip_modifier_item_0241,Bloodthirst
+DOTA_Tooltip_modifier_item_0241_Description,"When at low health, gains attack speed, lifesteal and bonus attack damage."
+DOTA_Tooltip_modifier_item_0250_aura_effect,Cheers
+DOTA_Tooltip_modifier_item_0250_aura_effect_Description,Grants bonus movement speed.
+DOTA_Tooltip_modifier_item_0251_buff,Ribbit
+DOTA_Tooltip_modifier_item_0251_buff_Description,Continuously restores health.
+DOTA_Tooltip_modifier_item_0252_buff,Dormant Protocol
+DOTA_Tooltip_modifier_item_0252_buff_Description,Increases item drop luck.
+DOTA_Tooltip_modifier_item_0253,Duel
+DOTA_Tooltip_modifier_item_0253_Description,Increases attack speed based on the number of enemy units.
+DOTA_Tooltip_modifier_item_0255_self_slow,Battle Shield
+DOTA_Tooltip_modifier_item_0255_self_slow_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_item_0255_shield,Battle Shield
+DOTA_Tooltip_modifier_item_0255_shield_Description,Grants bonus max shield and current shield.
+DOTA_Tooltip_modifier_item_0256_buff,Dormant Protocol
+DOTA_Tooltip_modifier_item_0256_buff_Description,Increases attack damage.
+DOTA_Tooltip_modifier_item_0257_buff,Phantom Shift
+DOTA_Tooltip_modifier_item_0257_buff_Description,Increases movement speed.
+DOTA_Tooltip_modifier_item_0258,Soul Bind
+DOTA_Tooltip_modifier_item_0258_Description,Gain souls for killing units. Lose all souls upon death.
+DOTA_Tooltip_modifier_item_0265_exposed,Exposed
+DOTA_Tooltip_modifier_item_0265_exposed_Description,Increases all damage taken.
+DOTA_Tooltip_modifier_item_0266_serenity,Seedfall
+DOTA_Tooltip_modifier_item_0266_serenity_Description,Continuously heals allies in an area at the landing point.
+DOTA_Tooltip_modifier_item_0269_empowered_attack,Delayed Blast
+DOTA_Tooltip_modifier_item_0269_empowered_attack_Description,Next attack deals bonus magical damage and knocks back.
+DOTA_Tooltip_modifier_item_0270_dizzy_pollen,Dizzying Pollen
+DOTA_Tooltip_modifier_item_0270_dizzy_pollen_Description,Attacks have a chance to miss.
+DOTA_Tooltip_modifier_item_0271_psionic_surge,Psionic Surge
+DOTA_Tooltip_modifier_item_0271_psionic_surge_Description,Cooldown reduction increased.
+DOTA_Tooltip_modifier_item_0272_unyielding_shield,Unyielding
+DOTA_Tooltip_modifier_item_0272_unyielding_shield_Description,Gains bonus maximum shield capacity and temporary shield.
+DOTA_Tooltip_modifier_item_0274_chorus,Chorus
+DOTA_Tooltip_modifier_item_0274_chorus_Description,Gradually restores mana.
+DOTA_Tooltip_modifier_item_0275_shocked_slow,Bottled Lightning
+DOTA_Tooltip_modifier_item_0275_shocked_slow_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_item_0277_charged,Charged
+DOTA_Tooltip_modifier_item_0277_charged_Description,Next attack is a guaranteed critical hit and deals increased critical damage.
+DOTA_Tooltip_modifier_item_0278_resonant_armor,Resonant Armor
+DOTA_Tooltip_modifier_item_0278_resonant_armor_Description,"The more nearby enemies, the higher the damage reduction."
+DOTA_Tooltip_modifier_item_0280_bloodlust,Bloodlust
+DOTA_Tooltip_modifier_item_0280_bloodlust_Description,Base attack damage and lifesteal increased.
+DOTA_Tooltip_modifier_item_0283_free_mana,Mana Resonance
+DOTA_Tooltip_modifier_item_0283_free_mana_Description,Next spell cast costs no mana.
+DOTA_Tooltip_modifier_item_0284_fate_gaze,Fate's Gaze
+DOTA_Tooltip_modifier_item_0284_fate_gaze_Description,Magic resistance and armor reduced.
+DOTA_Tooltip_modifier_item_0286_armor_break,Corroding Armor
+DOTA_Tooltip_modifier_item_0286_armor_break_Description,Armor reduced.
+DOTA_Tooltip_modifier_item_0287_seismic_slow,Seismic Slow
+DOTA_Tooltip_modifier_item_0287_seismic_slow_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_item_0290_web_walk,Web Walk
+DOTA_Tooltip_modifier_item_0290_web_walk_Description,"Overrides movement speed and removes movement restrictions, also grants immunity to traps."
+DOTA_Tooltip_modifier_item_0293_holy_aura_effect,Holy Aura
+DOTA_Tooltip_modifier_item_0293_holy_aura_effect_Description,"Health regeneration increased, armor increased by a percentage."
+DOTA_Tooltip_modifier_item_0294_aggressive,Resonator (Offensive)
+DOTA_Tooltip_modifier_item_0294_aggressive_Description,"Increases damage dealt, but also increases damage taken."
+DOTA_Tooltip_modifier_item_0294_defensive,Resonator (Defensive)
+DOTA_Tooltip_modifier_item_0294_defensive_Description,"Increases armor and magic resistance, but reduces damage dealt."
+DOTA_Tooltip_modifier_item_0305_buff,Clumsiness
+DOTA_Tooltip_modifier_item_0305_buff_Description,"Movement speed reduced, maximum attack damage and maximum health increased."
+DOTA_Tooltip_modifier_item_0307_vortex,Vortex Snare
+DOTA_Tooltip_modifier_item_0307_vortex_Description,Movement speed reduced and taking magic damage per second.
+DOTA_Tooltip_modifier_item_0308_valor,Valor
+DOTA_Tooltip_modifier_item_0308_valor_Description,"Gains max health on hit, stacking up to a limit."
+DOTA_Tooltip_modifier_item_0314_emperor_crown_aura,Imperial Reign
+DOTA_Tooltip_modifier_item_0314_emperor_crown_aura_Description,Grants bonus all attributes.
+DOTA_Tooltip_modifier_item_0317_madness,Madness
+DOTA_Tooltip_modifier_item_0317_madness_Description,"Attack speed and movement speed increased, armor reduced."
+DOTA_Tooltip_modifier_item_0332_madness,Madness
+DOTA_Tooltip_modifier_item_0332_madness_Description,Attack speed and movement speed increased.
+DOTA_Tooltip_modifier_item_0336_sage_boots,Magic Amp
+DOTA_Tooltip_modifier_item_0336_sage_boots_Description,Magic damage bonus based on max mana.
+DOTA_Tooltip_modifier_item_0337_archmage_focus,Archmage Focus
+DOTA_Tooltip_modifier_item_0337_archmage_focus_Description,"Spell damage increased. At max stacks, releases an arcane burst."
+DOTA_Tooltip_modifier_item_0339_secret,Secret
+DOTA_Tooltip_modifier_item_0339_secret_Description,"Gain health and mana when casting abilities, with stacks decaying over time."
+DOTA_Tooltip_modifier_item_0340_charged,Ruinous Strike
+DOTA_Tooltip_modifier_item_0340_charged_Description,Next attack deals area damage and reduces enemy attack damage.
+DOTA_Tooltip_modifier_item_0340_destroyed,Ruin
+DOTA_Tooltip_modifier_item_0340_destroyed_Description,"Attack damage reduction, stacks."
+DOTA_Tooltip_modifier_item_0341_freeze,Frozen
+DOTA_Tooltip_modifier_item_0341_freeze_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_item_0348_butcher,Butcher
+DOTA_Tooltip_modifier_item_0348_butcher_Description,Gain bonus damage while missing health.
+DOTA_Tooltip_modifier_item_0349_boil_aura_effect,Boiling
+DOTA_Tooltip_modifier_item_0349_boil_aura_effect_Description,Attack speed increased.
+DOTA_Tooltip_modifier_item_0350_swift_aura_effect,Swiftness
+DOTA_Tooltip_modifier_item_0350_swift_aura_effect_Description,Movement speed and health regeneration increased.
+DOTA_Tooltip_modifier_item_0351_storm_ready,Storm Flurry
+DOTA_Tooltip_modifier_item_0351_storm_ready_Description,Next basic attack deals high bonus physical damage.
+DOTA_Tooltip_modifier_item_0352_sonic_barrier,Sonic Barrier
+DOTA_Tooltip_modifier_item_0352_sonic_barrier_Description,Attack speed and movement speed increased.
+DOTA_Tooltip_modifier_item_0360_hunt,Hunt
+DOTA_Tooltip_modifier_item_0360_hunt_Description,Gain attack damage when movement speed exceeds a threshold.
+DOTA_Tooltip_modifier_item_0364_torment,Torment
+DOTA_Tooltip_modifier_item_0364_torment_Description,Gain max health on taking damage. Stacks decay over time.
+DOTA_Tooltip_modifier_item_0365_corrosion,Corrosion
+DOTA_Tooltip_modifier_item_0365_corrosion_Description,Each poison stack reduces armor.
+DOTA_Tooltip_modifier_item_0367_momentum,Momentum
+DOTA_Tooltip_modifier_item_0367_momentum_Description,"Moving builds up attack damage, which then decays over time."
+DOTA_Tooltip_modifier_item_0367_sonic_barrier,Sonic Barrier
+DOTA_Tooltip_modifier_item_0367_sonic_barrier_Description,Increased attack speed and movement speed.
+DOTA_Tooltip_modifier_item_0370_shadow_haste,Feral
+DOTA_Tooltip_modifier_item_0370_shadow_haste_Description,Increased movement speed.
+DOTA_Tooltip_modifier_item_0375_slow,Slow
+DOTA_Tooltip_modifier_item_0375_slow_Description,Reduced movement speed.
+DOTA_Tooltip_modifier_item_0376_adventure,Adventure
+DOTA_Tooltip_modifier_item_0376_adventure_Description,"Increases luck, but also increases damage taken and reduces damage dealt."
+DOTA_Tooltip_modifier_item_0379_doom,Doom
+DOTA_Tooltip_modifier_item_0379_doom_Description,Reduced magic resistance.
+DOTA_Tooltip_modifier_item_0384_sage_cache,Sage's Cache
+DOTA_Tooltip_modifier_item_0384_sage_cache_Description,"After casting a spell, automatically restores mana when low."
+DOTA_Tooltip_modifier_item_0385_lionheart_barrier,Lionheart Barrier
+DOTA_Tooltip_modifier_item_0385_lionheart_barrier_Description,"After taking damage, automatically restores shield when it is low."
+DOTA_Tooltip_modifier_item_0392,Fearless
+DOTA_Tooltip_modifier_item_0392_Description,Damage bonus increased.
+DOTA_Tooltip_modifier_item_0393_stealth_haste,Concealment
+DOTA_Tooltip_modifier_item_0393_stealth_haste_Description,Attack speed increased. Stacks.
+DOTA_Tooltip_modifier_item_0406_storm_ready,Storm Flurry
+DOTA_Tooltip_modifier_item_0406_storm_ready_Description,Next basic attack deals bonus high physical damage.
+DOTA_Tooltip_modifier_item_0412_blood_haste,Bloodmist Mask
+DOTA_Tooltip_modifier_item_0412_blood_haste_Description,Restores a percentage of your max health.
+DOTA_Tooltip_modifier_item_0422_battle_standard_buff,Royal Banner
+DOTA_Tooltip_modifier_item_0422_battle_standard_buff_Description,Increases physical damage of nearby allies around the banner.
+DOTA_Tooltip_modifier_item_0424_thorn_energy,Thorn Crown
+DOTA_Tooltip_modifier_item_0424_thorn_energy_Description,Stores thorn energy when the shield absorbs damage.
+DOTA_Tooltip_modifier_item_0169_aura_effect,Shatter
+DOTA_Tooltip_modifier_item_0169_aura_effect_Description,Reduces armor.
+DOTA_Tooltip_modifier_item_0178_maim,Maim
+DOTA_Tooltip_modifier_item_0178_maim_Description,Reduces attack damage and movement speed.
+DOTA_Tooltip_modifier_item_0233_aura_effect,Gaze
+DOTA_Tooltip_modifier_item_0233_aura_effect_Description,Reduces attack speed.
+DOTA_Tooltip_modifier_item_0231_essence_ring,Vigor
+DOTA_Tooltip_modifier_item_0231_essence_ring_Description,Increases max health.
+DOTA_Tooltip_modifier_item_0224_shield,Sunflare
+DOTA_Tooltip_modifier_item_0224_shield_Description,Grants additional max shield and current shield.
+DOTA_Tooltip_modifier_item_0150_corrosion,Corrosion
+DOTA_Tooltip_modifier_item_0150_corrosion_Description,Reduces armor and movement speed.
+DOTA_Tooltip_modifier_item_0152_phase,Phase
+DOTA_Tooltip_modifier_item_0152_phase_Description,Increases movement speed and grants phased movement.
+DOTA_Tooltip_modifier_item_0155_madness,Madness
+DOTA_Tooltip_modifier_item_0155_madness_Description,"Increases attack speed and movement speed, reduces armor, and silences you."
+DOTA_Tooltip_modifier_item_0145_ghost,Ethereal
+DOTA_Tooltip_modifier_item_0145_ghost_Description,"Enters ethereal state, immune to physical damage, cannot attack, and takes extra magic damage."
+DOTA_Tooltip_modifier_item_0149_sacrifice,Sacrifice
+DOTA_Tooltip_modifier_item_0149_sacrifice_Description,Increases max mana.
+DOTA_Tooltip_item_P010_modifier,Warming Potion
+DOTA_Tooltip_item_P010_modifier_Description,Grants immunity to frostbite and slowly restores health.
+DOTA_Tooltip_item_P017_modifier,Revival
+DOTA_Tooltip_item_P017_modifier_Description,"If you take lethal damage within 120 seconds, you are saved from death and restored to 50% of max health. Removed after triggering."
+DOTA_Tooltip_item_P017_invulnerable,Revival Shield
+DOTA_Tooltip_item_P017_invulnerable_Description,Gain full damage immunity for a short duration.
+DOTA_Tooltip_item_P019_modifier,Strength Potion
+DOTA_Tooltip_item_P019_modifier_Description,Grants 50% bonus base strength for 120 seconds.
+DOTA_Tooltip_item_P049_modifier,Glow Potion
+DOTA_Tooltip_item_P049_modifier_Description,Makes your body glow for 360 seconds.
+DOTA_Tooltip_modifier_item_P221_winner_blessing,Winner's Blessing
+DOTA_Tooltip_modifier_item_P221_winner_blessing_Description,"Upon a successful drop, has a chance to roll an additional drop."
+DOTA_Tooltip_modifier_item_P222_ender_special,Ender's Special
+DOTA_Tooltip_modifier_item_P222_ender_special_Description,Increases evasion.
+DOTA_Tooltip_modifier_item_P223_hunting_blood,Hunting Blood
+DOTA_Tooltip_modifier_item_P223_hunting_blood_Description,Increases attack damage.
+DOTA_Tooltip_modifier_item_potion_generic,Potion Effect
+DOTA_Tooltip_modifier_item_potion_generic_Description,Temporary buff provided by a potion.
+DOTA_Tooltip_modifier_item_P006_potion,Defense Potion
+DOTA_Tooltip_modifier_item_P006_potion_Description,Use: Fortify Armor. Increases armor by 5 for 120 seconds.
+DOTA_Tooltip_modifier_item_P007_potion,Glimmer Potion
+DOTA_Tooltip_modifier_item_P007_potion_Description,"Use: Shimmer. Causes the user to glow, increasing health regeneration by 3 for 240 seconds."
+DOTA_Tooltip_modifier_item_P008_potion,Swiftness Potion
+DOTA_Tooltip_modifier_item_P008_potion_Description,Use: Swiftness. Increases movement speed by 25% for 60 seconds.
+DOTA_Tooltip_modifier_item_P009_potion,Fury Potion
+DOTA_Tooltip_modifier_item_P009_potion_Description,Use: Fury. Increases attack damage by 10 and attack speed by 30 for 120 seconds.
+DOTA_Tooltip_modifier_item_P011_potion,Fortitude Potion
+DOTA_Tooltip_modifier_item_P011_potion_Description,Use: Fortitude. Increases max health by 25% for 120 seconds.
+DOTA_Tooltip_modifier_item_P012_potion,Arcane Potion
+DOTA_Tooltip_modifier_item_P012_potion_Description,Use: Serenity. Increases cooldown reduction by 10% and mana regeneration by 1 for 120 seconds.
+DOTA_Tooltip_modifier_item_P014_potion,Mystic Potion
+DOTA_Tooltip_modifier_item_P014_potion_Description,Use: Arcana. Increases max mana by 20 and mana regeneration by 2 for 120 seconds.
+DOTA_Tooltip_modifier_item_P015_potion,Frenzy Potion
+DOTA_Tooltip_modifier_item_P015_potion_Description,"Use: Frenzy. Increases attack speed by 30, grants 10% critical strike chance, 6% spell critical chance and 50% critical damage for 240 seconds."
+DOTA_Tooltip_modifier_item_P016_potion,Warding Potion
+DOTA_Tooltip_modifier_item_P016_potion_Description,Use: Warding. Increases damage reduction by 20% for 240 seconds.
+DOTA_Tooltip_modifier_item_P018_potion,Chaos Potion
+DOTA_Tooltip_modifier_item_P018_potion_Description,Use: Chaos. Increases damage taken by 25% and damage dealt by 30% for 60 seconds.
+DOTA_Tooltip_modifier_item_P020_potion,Bloodthirst Potion
+DOTA_Tooltip_modifier_item_P020_potion_Description,Use: Bloodthirst. Grants 20% attack lifesteal and 10% spell lifesteal for 120 seconds.
+DOTA_Tooltip_modifier_item_P021_potion,Magic Resistance Potion
+DOTA_Tooltip_modifier_item_P021_potion_Description,Use: Magic Resistance. Grants magic resistance for a duration.
+DOTA_Tooltip_modifier_item_P022_potion,Greater Defense Potion
+DOTA_Tooltip_modifier_item_P022_potion_Description,Use: Defense II. Increases armor by 10 for 120 seconds.
+DOTA_Tooltip_modifier_item_P023_potion,Superior Defense Potion
+DOTA_Tooltip_modifier_item_P023_potion_Description,Use: Defense III. Increases armor by 15 for 240 seconds.
+DOTA_Tooltip_modifier_item_P024_potion,Stone Shield Elixir
+DOTA_Tooltip_modifier_item_P024_potion_Description,Use: Stone Shield. Increases armor by 20% and damage reduction by 15% for 600 seconds.
+DOTA_Tooltip_modifier_item_P025_potion,Greater Recovery Potion
+DOTA_Tooltip_modifier_item_P025_potion_Description,Use: Recovery II. Increases health regeneration by 10 for 120 seconds.
+DOTA_Tooltip_modifier_item_P026_potion,Superior Recovery Potion
+DOTA_Tooltip_modifier_item_P026_potion_Description,Use: Recovery III. Increases health regeneration by 20 for 240 seconds.
+DOTA_Tooltip_modifier_item_P027_potion,Nourishing Elixir
+DOTA_Tooltip_modifier_item_P027_potion_Description,Use: Nourish. Restores 2% of max health per second and increases max health by 500 for 600 seconds.
+DOTA_Tooltip_modifier_item_P028_potion,Rage Potion
+DOTA_Tooltip_modifier_item_P028_potion_Description,Use: Rage. Increases attack damage by 30 and attack speed by 40% for 240 seconds.
+DOTA_Tooltip_modifier_item_P029_potion,Deathmatch Elixir
+DOTA_Tooltip_modifier_item_P029_potion_Description,"Use: Deathmatch. Increases attack damage by 20% and attack speed by 50%, lasts 600 seconds"
+DOTA_Tooltip_modifier_item_P030_potion,Elixir of Enlightenment
+DOTA_Tooltip_modifier_item_P030_potion_Description,"Use: Enlightenment. Increases experience gain by 5%, lasts 120 seconds"
+DOTA_Tooltip_modifier_item_P031_potion,Greater Elixir of Enlightenment
+DOTA_Tooltip_modifier_item_P031_potion_Description,"Use: Enlightenment II. Increases experience gain by 10%, lasts 120 seconds"
+DOTA_Tooltip_modifier_item_P032_potion,Grand Elixir of Enlightenment
+DOTA_Tooltip_modifier_item_P032_potion_Description,"Use: Enlightenment III. Increases experience gain by 15%, lasts 240 seconds"
+DOTA_Tooltip_modifier_item_P033_potion,Endless Knowledge Elixir
+DOTA_Tooltip_modifier_item_P033_potion_Description,"Use: Knowledge. Increases experience gain by 25%, +80 max mana, lasts 600 seconds"
+DOTA_Tooltip_modifier_item_P034_potion,Spell Mastery Elixir
+DOTA_Tooltip_modifier_item_P034_potion_Description,"Use: Spell Power. Increases spell damage by 15%, lasts 120 seconds"
+DOTA_Tooltip_modifier_item_P035_potion,Greater Spell Mastery Elixir
+DOTA_Tooltip_modifier_item_P035_potion_Description,"Use: Spell Power II. Increases spell damage by 20%, lasts 120 seconds"
+DOTA_Tooltip_modifier_item_P036_potion,Grand Spell Mastery Elixir
+DOTA_Tooltip_modifier_item_P036_potion_Description,"Use: Spell Power III. Increases spell damage by 25%, lasts 240 seconds"
+DOTA_Tooltip_modifier_item_P037_potion,Arcane Storm Elixir
+DOTA_Tooltip_modifier_item_P037_potion_Description,"Use: Arcane. Increases spell damage by 30% and spell critical strike chance by 15%, lasts 600 seconds"
+DOTA_Tooltip_modifier_item_P040_potion,Greater Swiftness Elixir
+DOTA_Tooltip_modifier_item_P040_potion_Description,"Use: Swiftness II. Increases movement speed by 30%, lasts 120 seconds"
+DOTA_Tooltip_modifier_item_P041_potion,Potent Swiftness Potion
+DOTA_Tooltip_modifier_item_P041_potion_Description,"Use: Swiftness III. On use, increases movement speed by 35% for 240 seconds."
+DOTA_Tooltip_modifier_item_P042_potion,Windwalk Elixir
+DOTA_Tooltip_modifier_item_P042_potion_Description,"Use: Windwalk. On use, increases movement speed by 50% and dodge chance by 20% for 600 seconds."
+DOTA_Tooltip_modifier_item_P043_potion,Mana Regeneration Potion
+DOTA_Tooltip_modifier_item_P043_potion_Description,"Use: Mana Regeneration. On use, increases mana regeneration by 2 per second for 120 seconds."
+DOTA_Tooltip_modifier_item_P044_potion,Greater Mana Regeneration Potion
+DOTA_Tooltip_modifier_item_P044_potion_Description,"Use: Mana Regeneration II. On use, increases mana regeneration by 5 per second for 120 seconds."
+DOTA_Tooltip_modifier_item_P045_potion,Potent Mana Regeneration Potion
+DOTA_Tooltip_modifier_item_P045_potion_Description,"Use: Mana Regeneration III. On use, increases mana regeneration by 10 per second for 240 seconds."
+DOTA_Tooltip_modifier_item_P046_potion,Meditation Elixir
+DOTA_Tooltip_modifier_item_P047_potion,Fortune Potion
+DOTA_Tooltip_modifier_item_P047_potion_Description,"Use: Good Fortune. On use, increases luck by 35 points for 120 seconds."
+DOTA_Tooltip_modifier_item_M112_buff,Glowing
+DOTA_Tooltip_modifier_item_M112_buff_Description,Emits light in dark environments.
+DOTA_Tooltip_modifier_item_P038_source,Primordial
+DOTA_Tooltip_modifier_item_P038_source_Description,"When dealing damage, additionally inflicts pure damage."
+DOTA_Tooltip_modifier_item_P039_unyielding,Unyielding
+DOTA_Tooltip_modifier_item_P039_unyielding_Description,Converts a portion of direct damage into delayed bleeding damage.
+DOTA_Tooltip_modifier_boss_006_execute_stack,Storm Mark
+DOTA_Tooltip_modifier_boss_006_execute_stack_Description,Grants countdown stacks upon ability launch. Each Cyclone hit removes 1 stack. Triggers execution at 0 stacks.
+DOTA_Tooltip_modifier_boss_kez_3_pull,Void Pull
+DOTA_Tooltip_modifier_boss_kez_3_pull_Description,Continuously pulls nearby enemies toward you.
+DOTA_Tooltip_modifier_boss_kez_3_buff,Into Shadows
+DOTA_Tooltip_modifier_boss_kez_3_buff_Description,"Increases attack damage, attack speed, and movement speed. Attacks deal bonus damage."
+DOTA_Tooltip_modifier_boss_kez_4_parry,Parry
+DOTA_Tooltip_modifier_boss_kez_4_parry_Description,Blocks all projectiles.
+DOTA_Tooltip_modifier_boss_legion_1_mark,Duel Mark
+DOTA_Tooltip_modifier_boss_legion_1_mark_Description,"After the countdown, Legion will continuously dash to hunt you."
+DOTA_Tooltip_modifier_boss_legion_1_duel_caster,Forced Duel
+DOTA_Tooltip_modifier_boss_legion_1_duel_caster_Description,Legion is forced to attack the duel target.
+DOTA_Tooltip_modifier_boss_legion_1_duel_target,Forced Duel
+DOTA_Tooltip_modifier_boss_legion_1_duel_target_Description,Forced into a duel with Legion. Continually attacks Legion.
+DOTA_Tooltip_modifier_boss_night_005_buff,Night Illusion
+DOTA_Tooltip_modifier_boss_night_005_buff_Description,Invulnerable during the illusion phase. Destroying the illusion reduces the final heal.
+DOTA_Tooltip_modifier_boss_night_007_wound,Devouring Wound
+DOTA_Tooltip_modifier_boss_storm_spirit_4_storm,Eye of the Storm
+DOTA_Tooltip_modifier_boss_storm_spirit_4_storm_Description,Periodically strikes the nearby enemy with the lowest health.
+DOTA_Tooltip_modifier_boss_storm_spirit_4_armor,Eye of the Storm Armor Reduction
+DOTA_Tooltip_modifier_boss_storm_spirit_4_armor_Description,Armor reduced.
+DOTA_Tooltip_modifier_elite_030_hooked,Spider Hooked
+DOTA_Tooltip_modifier_elite_030_hooked_Description,"Hit by Spider Hook, unable to act, continuously dragged towards the caster, and attracts nearby enemies to attack."
+DOTA_Tooltip_modifier_elite_030_hooked_aura_buff,Pack Frenzy
+DOTA_Tooltip_modifier_elite_030_hooked_aura_buff_Description,"Inspired by the hooked target, increasing attack damage, attack speed, and movement speed."
+DOTA_Tooltip_modifier_elite_036_stack,Bash Mark
+DOTA_Tooltip_modifier_elite_036_stack_Description,"Stacks from basic attacks of this unit. When stacks exceed 5, the target is stunned and stacks reset."
+DOTA_Tooltip_modifier_elite_044_reflect,Damage Reflection
+DOTA_Tooltip_modifier_elite_044_reflect_Description,Reflects damage back to attackers when taking damage.
+DOTA_Tooltip_modifier_elite_046_dash,Dash
+DOTA_Tooltip_modifier_elite_046_dash_Description,"Dash forward quickly, dealing damage to enemies along the path."
+DOTA_Tooltip_modifier_elite_050_stone_skin,Stone Skin Tremors
+DOTA_Tooltip_modifier_elite_050_stone_skin_Description,Increases armor and periodically shocks nearby enemies.
+DOTA_Tooltip_modifier_elite_056_frenzy,Crystalline Frenzy
+DOTA_Tooltip_modifier_elite_056_frenzy_Description,Grants bonus movement and attack speed. Attacks deal additional crystal blade damage in a small area.
+DOTA_Tooltip_modifier_elite_062_no_heal,Frost Healing Block
+DOTA_Tooltip_modifier_elite_062_no_heal_Description,Cannot receive any healing.
+DOTA_Tooltip_modifier_elite_066_crit_aura,Chaos Rift
+DOTA_Tooltip_modifier_elite_066_crit_aura_Description,Allies around the caster gain increased critical strike chance.
+DOTA_Tooltip_modifier_elite_066_crit_buff,Chaos Critical Strike
+DOTA_Tooltip_modifier_elite_066_crit_buff_Description,Critical strike chance increased.
+DOTA_Tooltip_modifier_elite_067_root,Frost Web Bind
+DOTA_Tooltip_modifier_elite_067_root_Description,"Entangled in a frost web, unable to move and suffering from intense cold."
+DOTA_Tooltip_modifier_elite_068_latched,Ice Spider Latch
+DOTA_Tooltip_modifier_elite_068_latched_Description,"An ice spider latches onto your back, dealing an attack each second."
+DOTA_Tooltip_modifier_elite_070_ice_guard,Frost Valley Ward
+DOTA_Tooltip_modifier_elite_070_ice_guard_Description,"Frozen in protective ice, unable to act. Immune to physical damage and continuously regenerates health."
+DOTA_Tooltip_modifier_elite_103_plasma_slow,Plasma Field
+DOTA_Tooltip_modifier_elite_103_plasma_slow_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_elite_109_thunder_strike_slow,Wind and Thunder Strike
+DOTA_Tooltip_modifier_elite_109_thunder_strike_slow_Description,Movement speed and attack speed reduced.
+DOTA_Tooltip_modifier_elite_111_sleep,Sleepwalking
+DOTA_Tooltip_modifier_elite_111_sleep_Description,"Trapped in a nightmare sleep, unable to act and continuously taking damage."
+DOTA_Tooltip_modifier_elite_126_unholy_aura_buff,Unholy Aura
+DOTA_Tooltip_modifier_elite_126_unholy_aura_buff_Description,Health regeneration increased.
+DOTA_Tooltip_modifier_normal_018_cultist_buff,Sacrificial Body
+DOTA_Tooltip_modifier_normal_018_cultist_buff_Description,"Permanently increases health, attack damage and movement speed; body size increased by up to 60%."
+DOTA_Tooltip_modifier_normal_034_slow,Leaping Shock Slow
+DOTA_Tooltip_modifier_normal_034_slow_Description,Movement speed reduced by 50%.
+DOTA_Tooltip_modifier_normal_041_dark_slow,Extinguished Slow
+DOTA_Tooltip_modifier_normal_041_dark_slow_Description,Movement speed reduced by 80%.
+DOTA_Tooltip_modifier_normal_042_wound,Shadow-Eaten Wound
+DOTA_Tooltip_modifier_normal_042_wound_Description,Reduces healing received by 20%% per stack.
+DOTA_Tooltip_modifier_normal_043_berserk,Berserk
+DOTA_Tooltip_modifier_normal_043_berserk_Description,"Movement speed increased by 100%, attack speed increased by 100."
+DOTA_Tooltip_modifier_normal_044_berserk,Berserk
+DOTA_Tooltip_modifier_normal_044_berserk_Description,"Movement speed increased by 50%, attack speed increased by 50."
+DOTA_Tooltip_modifier_energy_shield_recharge_cooldown,Shield Recharge Cooldown
+DOTA_Tooltip_modifier_energy_shield_recharge_cooldown_Description,Shield Recharging
+DOTA_Tooltip_modifier_base_energy_shield,Shield
+DOTA_Tooltip_modifier_base_energy_shield_Description,"Blocks most damage, but cannot block Pure damage. Does not recover for 3 seconds after taking damage; once recovery begins, restores 25% per second."
+DOTA_Tooltip_modifier_generic_bleed,Bleed
+DOTA_Tooltip_modifier_generic_bleed_Description,Takes periodic damage. Damage is based on the final damage that caused the bleed; reapplying increases total bleed damage over time.
+DOTA_Tooltip_modifier_generic_burning,Burn
+DOTA_Tooltip_modifier_generic_burning_Description,"Takes periodic Pure damage. Normal targets take 15% of current health per second, elites 7.5%, bosses and leaders 1.5%."
+DOTA_Tooltip_modifier_generic_poison,Poison
+DOTA_Tooltip_modifier_generic_poison_Description,Takes periodic magical damage. Damage based on the caster's total attributes; all stacks contribute to total poison damage.
+DOTA_Tooltip_modifier_generic_slow,Freeze
+DOTA_Tooltip_modifier_generic_slow_Description,"Reduces movement and attack speed. Each stack reduces by 3%, up to 10 stacks."
+DOTA_Tooltip_modifier_generic_vulnerable,Vulnerable
+DOTA_Tooltip_modifier_generic_vulnerable_Description,"Increases all damage taken. Initially increases by 20%, each additional stack increases by 5%, up to 40%."
+DOTA_Tooltip_modifier_game_dda_daily_luck,Daily Luck
+DOTA_Tooltip_modifier_game_dda_daily_luck_Description,Increases item drop luck. Consumes 1 point each time you enter a map.
+DOTA_Tooltip_modifier_env_darkness,Darkness
+DOTA_Tooltip_modifier_env_darkness_Description,"Reduced vision. Damage dealt reduced by 30%%, damage taken increased by 30%%. Monsters' abilities are more powerful in darkness."
+DOTA_Tooltip_modifier_env_monster_darkness,Dark Shelter
+DOTA_Tooltip_modifier_env_monster_darkness_Description,Darkness
+DOTA_Tooltip_modifier_no_heal,Healing Block
+DOTA_Tooltip_modifier_no_heal_Description,Cannot receive any healing.
+DOTA_Tooltip_modifier_ak_rune_arcane,Arcane Rune
+DOTA_Tooltip_modifier_ak_rune_arcane_Description,25% Cooldown reduction and 30% Mana cost reduction.
+DOTA_Tooltip_modifier_ak_rune_damage,Damage Rune
+DOTA_Tooltip_modifier_ak_rune_haste,Haste Rune
+DOTA_Tooltip_modifier_ak_rune_regen,Regeneration Rune
+DOTA_Tooltip_modifier_ak_rune_shield,Shield Rune
+DOTA_Tooltip_modifier_ak_rune_shield_Description,Grants a large shield capacity.
+DOTA_Tooltip_modifier_item_0225_guard,Guard
+DOTA_Tooltip_modifier_item_0225_guard_Description,Grants temporary max shield and reduces movement speed.
+DOTA_Tooltip_modifier_item_P050_potion,Attack Potion
+DOTA_Tooltip_modifier_item_P050_potion_Description,Attack damage increased.
+DOTA_Tooltip_modifier_boss_rubick_sand_4_center_slow,Seismic Core
+DOTA_Tooltip_modifier_ak_rune_damage_Description,"Base attack damage increased by 80%%, spell damage by 15%%."
+DOTA_Tooltip_modifier_ak_rune_haste_Description,"Movement speed increased by 100%%, attack speed increased by 100."
+DOTA_Tooltip_modifier_ak_rune_regen_Description,Restores 5%% health and 5%% mana per second.
+DOTA_Tooltip_modifier_lina_013_light_strike_stack,Light Strike Array Afterglow
+DOTA_Tooltip_modifier_lina_013_light_strike_stack_Description,Each stack increases movement speed.
+DOTA_Tooltip_modifier_lina_013_light_strike_overload,Divine Status
+DOTA_Tooltip_modifier_lina_013_light_strike_overload_Description,"Increases damage, reduces damage taken, and boosts attack speed and movement speed."
+DOTA_Tooltip_modifier_elite_027_revive_buff,Eternal Revival
+DOTA_Tooltip_modifier_elite_027_revive_buff_Description,"Gains enhancement after revival, increasing attack damage, attack speed, and movement speed by 100%%."
+DOTA_Tooltip_modifier_elite_138_overgrowth_root,Tree Realm Entangle
+DOTA_Tooltip_modifier_elite_138_overgrowth_root_Description,"Entangled by the roots of the Tree Realm, unable to move."
+DOTA_Tooltip_modifier_elite_138_overgrowth_form,Bane Tree Descent
+DOTA_Tooltip_modifier_elite_138_overgrowth_form_Description,"Increases size, doubles movement speed and attack damage."
+DOTA_Tooltip_modifier_elite_139_earthshock_slow,Earthshock Slow
+DOTA_Tooltip_modifier_elite_139_earthshock_slow_Description,Movement speed is greatly reduced.
+DOTA_Tooltip_modifier_elite_140_overpower,Rage Overcharge
+DOTA_Tooltip_modifier_elite_140_overpower_Description,"Greatly increases attack speed, stacking attack damage on each attack hit."
+DOTA_Tooltip_modifier_item_P046_potion_Description,Meditation. Increases mana regeneration by 18 per second and reduces skill mana cost by 15% for 600 seconds {包括血蓝}
+DOTA_Tooltip_modifier_pa_012_assassination,Assassination
+DOTA_Tooltip_modifier_pa_012_assassination_Description,Increases base attack damage based on agility.
+DOTA_Tooltip_modifier_item_0144_shadow_barrier,Shadow Barrier
+DOTA_Tooltip_modifier_item_0144_shadow_barrier_Description,Immune to poison effects.
+DOTA_Tooltip_modifier_item_0204_valor,Valor
+DOTA_Tooltip_modifier_item_0204_valor_Description,"Grants max health when attacking or casting spells, stacking up to a specified number of times."
+DOTA_Tooltip_modifier_item_0209_spellblade_dot,Spellblade Combo
+DOTA_Tooltip_modifier_item_0209_spellblade_dot_Description,Takes magical damage per second based on the caster's all attributes. Re-applying triggers an immediate damage instance.
+DOTA_Tooltip_modifier_item_0211_inertia,Inertial Potential
+DOTA_Tooltip_modifier_item_0211_inertia_Description,Increases attack speed when movement speed exceeds a threshold.
+DOTA_Tooltip_modifier_item_0212_psionic_conversion,Psionic Conversion
+DOTA_Tooltip_modifier_item_0212_psionic_conversion_Description,Grants intelligence after casting a spell. Stacks decay over time.
+DOTA_Tooltip_modifier_item_0220_wingbeat_buff,Wingbeat
+DOTA_Tooltip_modifier_item_0220_wingbeat_buff_Description,Increases global critical strike chance. Stacks decay over time.
+DOTA_Tooltip_modifier_item_0312_heal,Heal
+DOTA_Tooltip_modifier_item_0312_heal_Description,Recovers max health and shield amount per second.
+DOTA_Tooltip_modifier_item_0315_king_backpack_aura,Royal Presence
+DOTA_Tooltip_modifier_item_0315_king_backpack_aura_Description,Gains bonus all attributes.
+DOTA_Tooltip_modifier_item_0352_empowered_strike,Empowered Strike
+DOTA_Tooltip_modifier_item_0352_empowered_strike_Description,The next attack deals area physical damage based on health.
+DOTA_Tooltip_modifier_item_0446_assault,Assault
+DOTA_Tooltip_modifier_item_0446_assault_Description,Increases attack speed and attack damage (stacks).
+DOTA_Tooltip_modifier_item_0447_assault,Assault
+DOTA_Tooltip_modifier_item_0447_assault_Description,Increases attack speed and attack damage (stacks).
+DOTA_Tooltip_modifier_item_0459_psionic_conversion,Psionic Conversion
+DOTA_Tooltip_modifier_item_0459_psionic_conversion_Description,Grants intelligence after casting a spell. Stacks decay over time.
+DOTA_Tooltip_modifier_item_0461,Fearless
+DOTA_Tooltip_modifier_item_0461_Description,Damage bonus increased.
+DOTA_Tooltip_modifier_item_0465,Blood Rift
+DOTA_Tooltip_modifier_item_0465_Description,"The lower the health, the higher the damage reduction."
+DOTA_Tooltip_modifier_item_0466_shadow_wisdom,Shadow Wisdom
+DOTA_Tooltip_modifier_item_0466_shadow_wisdom_Description,"Gained on magic crit. Each stack grants +1% spell damage, max 20 stacks, loses 1 stack per second."
+DOTA_Tooltip_modifier_item_0468_thunderstorm,Thunderstorm
+DOTA_Tooltip_modifier_item_0468_thunderstorm_Description,Basic attacks trigger a lightning strike in an area. Reduces damage taken.
+DOTA_Tooltip_modifier_item_0469_swift_thunder,Swift Thunder
+DOTA_Tooltip_modifier_item_0469_swift_thunder_Description,Greatly increases attack speed.
+DOTA_Tooltip_modifier_item_0473_swift_thunder,Swift Thunder
+DOTA_Tooltip_modifier_item_0473_swift_thunder_Description,Greatly increases attack speed.
+DOTA_Tooltip_modifier_item_0502_assault,Assault
+DOTA_Tooltip_modifier_item_0502_assault_Description,Increases attack speed and attack damage (stacks).
+DOTA_Tooltip_modifier_item_0503_charge,Charge
+DOTA_Tooltip_modifier_item_0503_charge_Description,Your next attack deals bonus physical damage. Can store multiple charges.
+DOTA_Tooltip_modifier_item_0504,Blood Pool Echo
+DOTA_Tooltip_modifier_item_0504_Description,"When your bleed deals damage to an enemy, a portion of that bleed damage is directly dealt as physical damage, bypassing the bleed pool."
+DOTA_Tooltip_modifier_item_0505_shadow_wisdom,Sage Wisdom
+DOTA_Tooltip_modifier_item_0505_shadow_wisdom_Description,"Acquired on magic crit. Each stack grants +1% spell damage, up to 20 stacks, losing 1 stack per second."
+DOTA_Tooltip_modifier_item_0515,Bloodthirsty Edge
+DOTA_Tooltip_modifier_item_0515_Description,"Accumulates attack damage when lifesteal triggers, then decays per second."
+DOTA_Tooltip_modifier_item_0516,Demon Resonance
+DOTA_Tooltip_modifier_item_0516_Description,Each [Demon] set item increases attack damage.
+DOTA_Tooltip_modifier_item_0523_afterimage,Afterimage Strike
+DOTA_Tooltip_modifier_item_0523_afterimage_Description,"After accumulating movement distance, summon an afterimage to strike the fixed location beneath the enemy."
+DOTA_Tooltip_modifier_item_0524_fire_spirits,Fire Spirits
+DOTA_Tooltip_modifier_item_0524_fire_spirits_Description,"Accumulate Fire Spirits stacks while moving; when an enemy is nearby, consume a stack to launch a fireball dealing magic damage equal to max mana and potentially burning."
+DOTA_Tooltip_modifier_item_0525,Arcane Furnace
+DOTA_Tooltip_modifier_item_0525_Description,All non-attack physical damage is converted to magic damage.
+DOTA_Tooltip_modifier_item_0526,Sage Resonance
+DOTA_Tooltip_modifier_item_0526_Description,"The more Sage items you wear, the higher the mana and spell damage bonuses (mana cost also increases)."
+DOTA_Tooltip_modifier_item_0528,Edge Charge
+DOTA_Tooltip_modifier_item_0528_Description,"When you apply vulnerability, there is a chance to add an extra stack. When the target's vulnerability reaches max stacks, it detonates and removes all vulnerability."
+DOTA_Tooltip_modifier_item_0530_blast,Blast Combat
+DOTA_Tooltip_modifier_item_0530_blast_Description,Shield is emptied and cannot recover. Max shield value is converted into attack power.
+DOTA_Tooltip_modifier_item_0532_mortal_wound,Mortal Wound
+DOTA_Tooltip_modifier_item_0532_mortal_wound_Description,Healing and regeneration effects are reduced.
+DOTA_Tooltip_modifier_item_0533_unholy_frenzy,Unholy Frenzy
+DOTA_Tooltip_modifier_item_0533_unholy_frenzy_Description,Physical and magical lifesteal are doubled.
+DOTA_Tooltip_modifier_item_0540_brand,Ignition
+DOTA_Tooltip_modifier_item_0540_brand_Description,"Armor reduced and magical damage taken increased, scaling with ignition stacks."
+DOTA_Tooltip_modifier_item_0541,Transmutation Prism
+DOTA_Tooltip_modifier_item_0541_Description,Converts physical damage bonus into magical damage bonus.
+DOTA_Tooltip_modifier_item_0544_judgment,Judgment
+DOTA_Tooltip_modifier_item_0544_judgment_Description,Attack damage reduced and cannot receive any healing effects.
+DOTA_Tooltip_modifier_item_0548,Diamond Body
+DOTA_Tooltip_modifier_item_0548_Description,All magical damage taken is converted into physical damage.
+DOTA_Tooltip_modifier_item_0549,Shadow Body
+DOTA_Tooltip_modifier_item_0549_Description,All physical damage taken is converted into magical damage.
+DOTA_Tooltip_modifier_item_0550,Fury of the Last Stand
+DOTA_Tooltip_modifier_item_0550_Description,"When health is below the threshold, damage dealt is significantly increased."
+DOTA_Tooltip_modifier_item_0561,Quench of Misfortune
+DOTA_Tooltip_modifier_item_0561_Description,Gain bonus damage and damage reduction for each negative status effect received.
+DOTA_Tooltip_modifier_item_0561_curse_slow,Stagger
+DOTA_Tooltip_modifier_item_0561_curse_slow_Description,Movement speed reduced.
+DOTA_Tooltip_modifier_item_0561_curse_mind,Mind Fracture
+DOTA_Tooltip_modifier_item_0561_curse_mind_Description,Magic resistance reduced.
+DOTA_Tooltip_modifier_item_0561_curse_decay,Foul Nourishment
+DOTA_Tooltip_modifier_item_0561_curse_decay_Description,Heal and regen reduced.
+DOTA_Tooltip_modifier_item_0563,Cave Curse
+DOTA_Tooltip_modifier_item_0563_Description,"Evasion no longer works. On attack hit, for each Shadow Set item, deal bonus physical damage equal to (evasion chance × agility) to the target."
+DOTA_Tooltip_modifier_item_0564,Psychic Continuance
+DOTA_Tooltip_modifier_item_0564_Description,"On attack hit, there is a chance to restore 1 charge to a random skill that is not fully charged."
+DOTA_Tooltip_modifier_item_0565,A Single Spark
+DOTA_Tooltip_modifier_item_0565_Description,"When dealing damage to an ignited enemy, there is a chance to apply 1 additional stack of ignite based on the number of Inferno Set items equipped."
+DOTA_Tooltip_modifier_item_0566_meltarmor,Melting Armor
+DOTA_Tooltip_modifier_item_0566_meltarmor_Description,Armor reduced and incoming magic damage increased.
+DOTA_Tooltip_modifier_item_0567_mark,Hunting Mark
+DOTA_Tooltip_modifier_item_0567_mark_Description,"Takes increased damage from the mark applier, scaling with the number of stacks."
+DOTA_Tooltip_modifier_item_0569_pact,Blood Pact
+DOTA_Tooltip_modifier_item_0569_pact_Description,The delayed portion of incoming damage is slowly draining.
+DOTA_Tooltip_modifier_item_0570,Curse Resonance
+DOTA_Tooltip_modifier_item_0570_Description,"When negative status effects reach a threshold, gain global critical strike chance."
+DOTA_Tooltip_modifier_item_0574,Equilibrium Charge
+DOTA_Tooltip_modifier_item_0574_Description,"Consumes mana to build up charges; the next skill damage consumes all charges, each increasing that damage."
+DOTA_Tooltip_modifier_item_0575,Corrosion Rings
+DOTA_Tooltip_modifier_item_0575_Description,"Each time your damage over time ticks, reduce the cooldown of all your non-charged abilities."
+DOTA_Tooltip_modifier_item_0576,Cursed Fire
+DOTA_Tooltip_modifier_item_0576_Description,"For each negative status effect you suffer, your damage over time is increased."
+DOTA_Tooltip_modifier_item_0577,Tome of Soul Erosion
+DOTA_Tooltip_modifier_item_0577_Description,"When your damage over time ticks, there is a chance to apply a stack of Soul Erosion Curse to yourself."
+DOTA_Tooltip_modifier_item_0577_curse,Soul Erosion
+DOTA_Tooltip_modifier_item_0577_curse_Description,"Reduces movement speed; if wearing the Curse & Erosion two-piece set, each stack also increases skill damage."
+DOTA_Tooltip_modifier_item_0578,Universal Attraction
+DOTA_Tooltip_modifier_item_0578_Description,"When applying a damage over time effect, there is a chance to add a random damage over time effect that the target does not already have."
+DOTA_Tooltip_modifier_item_0579,Seal of Four Plagues
+DOTA_Tooltip_modifier_item_0579_Description,"Targets suffering from your Bleed, Poison, Burn, and Ignite effects have each of their damage over time ticks also deal an additional instance of physical damage."
+DOTA_Tooltip_modifier_item_0580,Shared Suffering
+DOTA_Tooltip_modifier_item_0580_Description,The negative status effects you suffer are also applied to nearby enemies proportionally.
+DOTA_Tooltip_modifier_item_0580_mirror,Shared Misfortune
+DOTA_Tooltip_modifier_item_0580_mirror_Description,Suffers negative status effects transferred from the Bell of Crossing Calamity holder.
+DOTA_Tooltip_modifier_item_0581,Judgment of Calamity
+DOTA_Tooltip_modifier_item_0581_Description,Deals increased damage per negative status on the target.
+DOTA_Tooltip_modifier_item_0593_erode,Erosion
+DOTA_Tooltip_modifier_item_0593_erode_Description,Continuous damage builds stacks. Each stack increases global critical chance and critical damage. Loses a few stacks per second.
+DOTA_Tooltip_modifier_item_0594,Lord of Solitude
+DOTA_Tooltip_modifier_item_0594_Description,Targets with no other enemies nearby: you deal increased damage to them and take reduced damage from them.
+DOTA_Tooltip_modifier_item_0596_ritual,Blood Ritual
+DOTA_Tooltip_modifier_item_0596_ritual_Description,Increases damage dealt. Life lost to burning cannot be recovered during the duration.
+DOTA_Tooltip_modifier_item_0597,All-In Dice
+DOTA_Tooltip_modifier_item_0597_Description,Dice form (stacks): 1 [Fury] increases physical damage; 2 [Arcane] increases spell damage; 3 [Destiny] increases global critical chance; 4 [Boulder] reduces damage taken.
+DOTA_Tooltip_modifier_item_0598_link,Soul Link
+DOTA_Tooltip_modifier_item_0598_link_Description,Linked to the caster's soul: becomes the target of their reflected physical damage.
+DOTA_Tooltip_modifier_item_0599,Shadow Dance
+DOTA_Tooltip_modifier_item_0599_Description,Evasion exceeding the threshold is converted into increased damage dealt. Current bonus shown in stacks.
+DOTA_Tooltip_modifier_item_0602_surge,Overflow
+DOTA_Tooltip_modifier_item_0602_surge_Description,Each stack increases mana cost and spell damage. Loses one stack every interval.
+DOTA_Tooltip_modifier_item_0602_distill,Distill
+DOTA_Tooltip_modifier_item_0602_distill_Description,Each stack increases mana regeneration but reduces spell damage. Loses one stack every interval.
+DOTA_Tooltip_modifier_item_0603,Hexapole
+DOTA_Tooltip_modifier_item_0603_Description,"When Strength, Agility, and Intelligence all meet thresholds, damage dealt is increased and damage taken is reduced (stacks = number of dimensions currently meeting thresholds)."
+DOTA_Tooltip_modifier_item_0604,Overheat
+DOTA_Tooltip_modifier_item_0604_Description,Gain one Overheat stack for each high-stack buff: each stack increases spell damage and burns current health per second.
+DOTA_Tooltip_modifier_item_0607_mark,Cursebind
+DOTA_Tooltip_modifier_item_0607_mark_Description,"Increases spell damage taken from the mark applier, scaling with stacks."
+DOTA_Tooltip_modifier_item_0608,Paranoia
+DOTA_Tooltip_modifier_item_0608_Description,"Enhances the highest attribute and weakens the other two (1=Strength, 2=Agility, 3=Intelligence)."
+DOTA_Tooltip_modifier_item_0609,Pact of Chaos
+DOTA_Tooltip_modifier_item_0609_Description,Most of the max health is taken by the pact and converted into an equivalently amplified shield max.
+DOTA_Tooltip_modifier_item_0610_excess,Overcap
+DOTA_Tooltip_modifier_item_0610_excess_Description,Converts the portion exceeding the critical strike chance cap into critical strike damage (stacks = current bonus percentage).
+DOTA_Tooltip_modifier_item_0611,All Benefits
+DOTA_Tooltip_modifier_item_0611_Description,Each buff on the unit increases damage dealt (stacks = number of buffs currently counted).
+DOTA_Tooltip_modifier_item_0612,Cooldown Overcap
+DOTA_Tooltip_modifier_item_0612_Description,Converts the portion exceeding the cooldown reduction cap into spell damage (stacks = current bonus percentage).
+DOTA_Tooltip_modifier_item_0613,Fire Ward
+DOTA_Tooltip_modifier_item_0613_Description,Immune to burning.
+DOTA_Tooltip_modifier_item_0614_debt,Debt
+DOTA_Tooltip_modifier_item_0614_debt_Description,"Debt stacks (max 40). If no new debt is incurred for 5 consecutive seconds, automatically repay 2 stacks per second."
+DOTA_Tooltip_modifier_item_0615,Usury
+DOTA_Tooltip_modifier_item_0615_Description,"Increases magic damage; when Debt is maxed out, this damage bonus is suspended until debt is repaid to free up space."
+DOTA_Tooltip_modifier_item_0619,Solar Furnace
+DOTA_Tooltip_modifier_item_0619_Description,Converts non-basic attack physical damage into proportional magic damage.
+DOTA_Tooltip_modifier_item_0622,Starbreak
+DOTA_Tooltip_modifier_item_0622_Description,"When physical damage crits, has a chance to apply 1 stack of Vulnerability to the target."
+DOTA_Tooltip_modifier_item_P051_nature_gift,Nature's Elixir
+DOTA_Tooltip_modifier_item_P051_nature_gift_Description,Increases base health and grants immunity to poison effects.
+DOTA_Tooltip_modifier_item_P052_antidote,Antidote
+DOTA_Tooltip_modifier_item_P052_antidote_Description,Reduces poison damage taken significantly.
+DOTA_Tooltip_modifier_item_P053_lightning_potion,Lightning Potion
+DOTA_Tooltip_modifier_item_P053_lightning_potion_Description,Unleashes a lightning chain on primary attack hit.
+DOTA_Tooltip_modifier_item_P054_thunderclap_potion,Thunderclap
+DOTA_Tooltip_modifier_item_P054_thunderclap_potion_Description,Stuns the monster on the next primary attack hit; forcibly triggers a counter if the monster is casting.
+DOTA_Tooltip_modifier_item_P055_potion,Magic Resistance Potion
+DOTA_Tooltip_modifier_item_P055_potion_Description,Magic resistance increased.
+DOTA_Tooltip_modifier_item_M223_thunderized,Thunderized
+DOTA_Tooltip_modifier_item_M223_thunderized_Description,Greatly reduces lightning damage taken and allows passing through lightning walls.
+DOTA_Tooltip_modifier_boss_storm_phase_summon_slow,Thunder Burst Slow
+DOTA_Tooltip_modifier_boss_storm_phase_summon_slow_Description,Move speed reduced.
+DOTA_Tooltip_modifier_elite_029_web_aura_effect,Web Domain
+DOTA_Tooltip_modifier_elite_029_web_aura_effect_Description,"Allied spiders within the web gain move speed and attack speed, enemies' move speed reduced by 20%."
+DOTA_Tooltip_modifier_elite_043_slow,Void Erosion
+DOTA_Tooltip_modifier_elite_043_slow_Description,"Eroded by void energy, move speed reduced by 75%."
+DOTA_Tooltip_modifier_elite_060_slow,Arctic Pursuit
+DOTA_Tooltip_modifier_elite_060_slow_Description,Move speed reduced by 40%.
+DOTA_Tooltip_modifier_elite_063_no_heal,Frost Blood Drain
+DOTA_Tooltip_modifier_elite_063_no_heal_Description,Lifesteal effect reduced by 50%.
+DOTA_Tooltip_modifier_elite_136_bramble_slow,Resentful Root Slow
+DOTA_Tooltip_modifier_elite_136_bramble_slow_Description,"Severely slowed by roots, move speed reduced by 90%."
+DOTA_Tooltip_modifier_elite_137_feast,Cannibal Flower Bite
+DOTA_Tooltip_modifier_elite_137_feast_Description,"Rooted and silenced by the cannibal flower, taking continuous damage."
+DOTA_Tooltip_modifier_elite_144_empowered_attacks,Empowered Attacks
+DOTA_Tooltip_modifier_elite_144_empowered_attacks_Description,The next 3 attacks gain 50% attack speed and restore 15% of max health on hit.
+DOTA_Tooltip_modifier_elite_305_borrowed_time,Borrowed Time
+DOTA_Tooltip_modifier_elite_305_borrowed_time_Description,Takes no damage; damage taken is converted to healing.
+DOTA_Tooltip_modifier_elite_306_swarm_latch,Swarm Latch
+DOTA_Tooltip_modifier_elite_306_swarm_latch_Description,"A bug attaches to the target, dealing damage over time. Defeating the bug removes the effect early."
+DOTA_Tooltip_modifier_elite_307_collision_slow,Collision Slow
+DOTA_Tooltip_modifier_elite_307_collision_slow_Description,Movement speed briefly reduced to a minimum by a Time Slip clone.
+DOTA_Tooltip_modifier_elite_308_ground_leash,Ground Leash
+DOTA_Tooltip_modifier_elite_308_ground_leash_Description,"Bound near the dart's landing point. Movement speed gradually decreases when moving away from the anchor, and cannot move further beyond the range."
+DOTA_Tooltip_modifier_elite_325_guard,Vision Guard
+DOTA_Tooltip_modifier_elite_329_non_item_heal_reduction,Frost Heal Reduction
+DOTA_Tooltip_modifier_elite_329_non_item_heal_reduction_Description,Health regeneration from non-item sources reduced by 50%.
+DOTA_Tooltip_modifier_normal_022_13005_debuff,Fervent Wound
+DOTA_Tooltip_modifier_normal_022_13005_debuff_Description,Healing received reduced by 50%%.
+DOTA_Tooltip_modifier_normal_022_13005_slow,Fervent Slow
+DOTA_Tooltip_modifier_normal_022_13005_slow_Description,Movement speed reduced by 50%%.
+DOTA_Tooltip_modifier_normal_029_mana_slow,Void Slow
+DOTA_Tooltip_modifier_normal_029_mana_slow_Description,Movement speed reduced by 50%.
+DOTA_Tooltip_modifier_normal_042_shield_suppress,Shield Suppression
+DOTA_Tooltip_modifier_normal_042_shield_suppress_Description,Basic shield cannot recover.
+DOTA_Tooltip_modifier_normal_046_damage_reduction,Flash Guard
+DOTA_Tooltip_modifier_normal_046_damage_reduction_Description,Grants 80%% damage reduction.
+DOTA_Tooltip_modifier_normal_049_weaken,Weaken
+DOTA_Tooltip_modifier_normal_049_weaken_Description,Cannot deal critical strikes.
+DOTA_Tooltip_modifier_roshan_003_grabbed,Roshan Grab
+DOTA_Tooltip_modifier_roshan_003_grabbed_Description,Grabbed by Roshan and about to be thrown.
+DOTA_Tooltip_modifier_generic_ignite,Ignite
+DOTA_Tooltip_modifier_generic_ignite_Description,Periodically takes pure damage. Each stack deals a percentage of the caster's (Intelligence + Strength) per second. Stacks can be stacked. Reapplying the burn refreshes the duration.
+DOTA_Tooltip_modifier_env_dark_gaze,Dark Gaze
+DOTA_Tooltip_modifier_env_dark_gaze_Description,Each stack drains 2%% max health per second. Death at over 10 stacks.
+DOTA_Tooltip_modifier_m013_contract_gold,Vessel of Greed
+DOTA_Tooltip_modifier_m013_contract_gold_Description,<h1>Reward</h1>Drop quantity greatly increased.<br><br><h1>Cost</h1>At 1 stack: Breaking chests may cause guardians to chase.
+DOTA_Tooltip_modifier_m013_contract_gold_2,Vessel of Greed
+DOTA_Tooltip_modifier_m013_contract_gold_2_Description,<h1>Reward</h1>Drop quantity massively increased.<br><br><h1>Cost</h1>At 1 stack: Breaking chests may cause guardians to chase.<br>At 2 stacks: Killing elite monsters may cause guardians to chase.
+DOTA_Tooltip_modifier_m013_contract_life,Thread of Life
+DOTA_Tooltip_modifier_m013_contract_life_Description,<h1>Reward</h1>Each contract stack grants 1 chance to block fatal damage and restore to full health.<br><br><h1>Cost</h1>At 1 stack: Elite monsters gain 1 revival.
+DOTA_Tooltip_modifier_m013_contract_life_boss_phase,Thread of Life
+DOTA_Tooltip_modifier_m013_contract_life_boss_phase_Description,Enters Phase 2 upon death.
+DOTA_Tooltip_modifier_m013_contract_life_2,Thread of Life
+DOTA_Tooltip_modifier_m013_contract_life_2_Description,<h1>Reward</h1>Each stack of the contract grants 1 chance to block a fatal hit and restore to full health.<br><br><h1>Cost</h1>At 1 stack: Elite monsters gain 1 revive.<br>At 2 stacks: Bosses gain 1 revive.
+DOTA_Tooltip_modifier_m013_contract_life_revive,Weave Revive
+DOTA_Tooltip_modifier_m013_contract_life_revive_Description,Currently has %dMODIFIER_PROPERTY_TOOLTIP% revive chance(s); triggers to restore full health and enter a 3-second invulnerable recovery state.
+DOTA_Tooltip_modifier_m013_contract_life_recovering,Contract Recovery
+DOTA_Tooltip_modifier_m013_contract_life_recovering_Description,"Death's footsteps, held back by an unseen hand."
+DOTA_Tooltip_modifier_m013_contract_power,World Eater
+DOTA_Tooltip_modifier_m013_contract_power_Description,"<h1>Reward</h1>All stats increased by %dMODIFIER_PROPERTY_TOOLTIP%%, base health increased by %dMODIFIER_PROPERTY_TOOLTIP2%%.<br><br><h1>Cost</h1>At 1 stack: Being hit by elite monster skills adds 5 stacks of backlash.<br>Each stack of backlash reduces all stats and base health by 1%%."
+DOTA_Tooltip_modifier_m013_contract_power_2,World Eater
+DOTA_Tooltip_modifier_m013_contract_power_2_Description,"<h1>Reward</h1>All stats increased by %dMODIFIER_PROPERTY_TOOLTIP%%, base health increased by %dMODIFIER_PROPERTY_TOOLTIP2%%.<br><br><h1>Cost</h1>At 1 stack: Being hit by elite monster skills adds 5 stacks of backlash.<br>At 2 stacks: Boss and mini-boss skills also add 5 stacks of backlash.<br>Each stack of backlash reduces all stats and base health by 1%%."
+DOTA_Tooltip_modifier_m013_contract_power_debt,Contract Backlash
+DOTA_Tooltip_modifier_m013_contract_power_debt_Description,All stats and base health reduced by %dMODIFIER_PROPERTY_TOOLTIP%%.
+DOTA_Tooltip_modifier_greed_cave_player_poison,Cave Venom
+DOTA_Tooltip_modifier_greed_cave_player_poison_Description,Overwhelming Affix: Periodically lose health during combat.
+DOTA_Tooltip_modifier_greed_cave_healing_down,Healing Reduction
+DOTA_Tooltip_modifier_greed_cave_healing_down_Description,Overwhelming Affix: Reduces incoming healing and recovery effects.
+DOTA_Tooltip_modifier_greed_cave_monster_berserk,Cave Frenzy
+DOTA_Tooltip_modifier_greed_cave_monster_berserk_Description,Overwhelming Affix: Monsters deal increased damage and have increased attack speed.
+DOTA_Tooltip_modifier_greed_cave_monster_tough,Cave Hardening
+DOTA_Tooltip_modifier_greed_cave_monster_tough_Description,Overwhelming Affix: Monsters gain additional damage resistance.
+DOTA_Tooltip_modifier_item_0554_blood_curse,Bloodseeker's Curse
+DOTA_Tooltip_modifier_item_0554_blood_curse_Description,Increases the charge restore time of your movement abilities; but grants movement speed and damage resistance.
+DOTA_Tooltip_modifier_axe_003_helix_attack_speed,Whirl Dance
+DOTA_Tooltip_modifier_axe_003_helix_attack_speed_Description,"After Counter Helix is triggered by an attack, grants attack speed. Stacks."
+DOTA_Tooltip_modifier_item_0217_pojun,Ruin
+DOTA_Tooltip_modifier_item_0217_pojun_Description,Physical critical strikes have a chance to apply Vulnerability and stack Armor Break.
+DOTA_Tooltip_modifier_item_0217_armor_break,Armor Break
+DOTA_Tooltip_modifier_item_0217_armor_break_Description,Armor reduced per stack.
+DOTA_Tooltip_modifier_item_0371_corrosion,Corrosion
+DOTA_Tooltip_modifier_item_0371_corrosion_Description,"Reduces physical armor, scaling with stacks."
+DOTA_Tooltip_modifier_item_0382_chaos_poison,Chaos Poison
+DOTA_Tooltip_modifier_item_0382_chaos_poison_Description,"Whenever a debuff is applied to the target, has a chance to apply 1 stack of Poison."
+DOTA_Tooltip_modifier_item_0385_lionheart_reduction,Lionheart Bulwark
+DOTA_Tooltip_modifier_item_0385_lionheart_reduction_Description,Damage taken is greatly reduced.
+DOTA_Tooltip_item_0402_modifier,Poison Thorns
+DOTA_Tooltip_item_0402_modifier_Description,"Whenever Poison is applied, immediately deals Poison damage."
+DOTA_Tooltip_modifier_item_0420_blood_moon,Blood Moon
+DOTA_Tooltip_modifier_item_0420_blood_moon_Description,Carries the Blood Moon mark: attacks apply Vulnerability.
+DOTA_Tooltip_modifier_item_0421_void_scale,Void Scale
+DOTA_Tooltip_modifier_item_0421_void_scale_Description,Increases mana cost and spell damage.
+DOTA_Tooltip_modifier_item_0424_shield_loss,Thorn Energy Leak
+DOTA_Tooltip_modifier_item_0424_shield_loss_Description,Loses a portion of max shield every 0.5 seconds.
+DOTA_Tooltip_modifier_item_0426_stasis,Stasis
+DOTA_Tooltip_modifier_item_0426_stasis_Description,Take reduced damage and gain universal lifesteal.
+DOTA_Tooltip_modifier_item_0536_passive,Armor Shred
+DOTA_Tooltip_modifier_item_0536_passive_Description,Take increased damage and gain final damage amplification based on current total armor.
+DOTA_Tooltip_modifier_item_0551_clear_spring_debuff,Clear Spring Spirit
+DOTA_Tooltip_modifier_item_0551_clear_spring_debuff_Description,Reduced attack speed and movement speed.
+DOTA_Tooltip_modifier_item_0620_frost_main,Frost Erosion
+DOTA_Tooltip_modifier_item_0620_frost_main_Description,"Direct attacks against frozen targets trigger frostbite when freeze stacks reach the cap; while you are frozen, gain damage reduction and attack speed."
+DOTA_Tooltip_modifier_item_0620_frostbite,Frostbite
+DOTA_Tooltip_modifier_item_0620_frostbite_Description,Takes magic damage per second based on a percentage of the applier's total attributes.
+DOTA_Tooltip_modifier_item_0620_cold_boon,Biting Cold
+DOTA_Tooltip_modifier_item_0620_cold_boon_Description,"While frozen, take reduced damage and gain attack speed."
+DOTA_Tooltip_modifier_item_0644_world_curse,World Erosion Curse
+DOTA_Tooltip_modifier_item_0644_world_curse_Description,"While above 50% HP, become poisoned and take reduced poison damage; poison can critically strike for magic damage."
+DOTA_Tooltip_modifier_item_0646_heavenly_punishment,Heavenly Punishment
+DOTA_Tooltip_modifier_item_0646_heavenly_punishment_Description,"Calls down a lightning bolt on a random nearby enemy every second, dealing pure damage based on total attributes."
+DOTA_Tooltip_modifier_item_0649_phase,Phase
+DOTA_Tooltip_modifier_item_0649_phase_Description,"Immune to damage, but can still act, attack, be attacked, and be controlled."
+DOTA_Tooltip_modifier_elite_072_slow,Shadow Poison Mist
+DOTA_Tooltip_modifier_elite_072_slow_Description,Movement speed reduced by 50%.
+DOTA_Tooltip_modifier_elite_332_material_change,Material Color Change
+DOTA_Tooltip_modifier_elite_332_material_change_Description,Material Color Change
+DOTA_Tooltip_modifier_elite_333_haste,Swift Inspiration
+DOTA_Tooltip_modifier_game_dda_daily_fatigue,Fatigue
+DOTA_Tooltip_modifier_game_dda_daily_fatigue_Description,"Current fatigue is insufficient, map drop count reduced by %dMODIFIER_PROPERTY_TOOLTIP%%%. Daily fatigue resets at midnight Beijing time."
+DOTA_Tooltip_modifier_env_m010_erosion,Erosion
+DOTA_Tooltip_modifier_env_m010_erosion_Description,Health and mana are continuously draining.
+DOTA_Tooltip_modifier_m013_contract_life_post_revive_protection,Revive Protection
+DOTA_Tooltip_modifier_m013_contract_life_post_revive_protection_Description,Incoming damage reduced by 80%%.
+DOTA_Tooltip_modifier_ak_rune_purification,Purification Rune
+DOTA_Tooltip_modifier_ak_rune_purification_Description,Temporarily immune to Erosion effects.
+DOTA_Tooltip_modifier_ak_rune_revive,Revive Rune
+DOTA_Tooltip_modifier_ak_rune_revive_Description,"While active, lethal damage consumes this first, entering the revive process and restoring 50%% max health and mana."
+DOTA_Tooltip_modifier_cs_boss_attack_vulnerability_debuff,Vulnerability
+DOTA_Tooltip_modifier_elite_333_haste_Description,Attack speed increased by 10% and movement speed by 50%.
+DOTA_Tooltip_modifier_cs_boss_attack_vulnerability_debuff_Description,Each stack increases damage taken by 5%. All stacks are removed if no Boss attack is received for 1.5 seconds.
+DOTA_Tooltip_modifier_item_0374_focus_buff,Focus
+DOTA_Tooltip_modifier_item_0374_focus_buff_Description,Standing still increases all damage.
+DOTA_Tooltip_modifier_item_0391_frost_slow_debuff,Frost Chill
+DOTA_Tooltip_modifier_item_0391_frost_slow_debuff_Description,Reduces attack speed and movement speed.
+DOTA_Tooltip_modifier_item_0391_frost_stats_buff,Aura Support
+DOTA_Tooltip_modifier_item_0391_frost_stats_buff_Description,Grants bonus to all attributes.
+DOTA_Tooltip_modifier_item_0650_archmage,Archmage
+DOTA_Tooltip_modifier_item_0650_archmage_Description,"Periodically consumes current mana to channel an area blast, which counts as a spell cast."
+DOTA_Tooltip_modifier_item_0651_shadow_resonance,Shadow Resonance
+DOTA_Tooltip_modifier_item_0651_shadow_resonance_Description,"Each piece of the Swift Shadow set increases attack speed and movement speed, up to 3 pieces (stacks = number of active pieces)."
+DOTA_Tooltip_modifier_item_P056_potion,Attack Potion II
+DOTA_Tooltip_modifier_item_P056_potion_Description,Increases attack damage.
+DOTA_Tooltip_modifier_item_P057_potion,Defense Potion II
+DOTA_Tooltip_modifier_item_P057_potion_Description,Increases armor.
+DOTA_Tooltip_modifier_item_0348_mark,Slaughter
+DOTA_Tooltip_modifier_item_0348_mark_Description,"Takes increased damage from the caster of the mark. The lower the health, the stronger the effect."
+DOTA_Tooltip_modifier_boss_brewmaster_1_speed_buff,Drunken Haste
+DOTA_Tooltip_modifier_boss_brewmaster_1_speed_buff_Description,Increases movement speed by 50% and attack speed by 50%.
+DOTA_Tooltip_modifier_wearable_aura_1_effect,Submerged Mana Regen Aura
+DOTA_Tooltip_modifier_wearable_aura_1_effect_Description,Restores 1%% of maximum mana per second.
+DOTA_Tooltip_modifier_wearable_aura_2_effect,Divine Armor Aura
+DOTA_Tooltip_modifier_wearable_aura_2_effect_Description,Increases armor by 5%%.
+DOTA_Tooltip_modifier_wearable_aura_3_effect,Creeping Critical Aura
+DOTA_Tooltip_modifier_wearable_aura_3_effect_Description,Increases global critical strike chance by 3%%.
+DOTA_Tooltip_modifier_wearable_aura_4_effect,Crystal Lifesteal Aura
+DOTA_Tooltip_modifier_wearable_aura_4_effect_Description,Increases global lifesteal by 3%%.

@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_flConstantRadius = 180.0
+	m_flConstantLifespan = 0.5
+	m_ConstantColor = [ 123, 179, 255, 90 ]
+	m_flStopSimulationAfterTime = 10000000000.0
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/medusa/medusa.vmdl"
+				m_nModSpecificData = 381
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+				m_materialGroupName = "default"
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/dd/medusa_mana_shield_buff_ground.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/dd/medusa_mana_shield_buff_edge.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/dd/medusa_mana_shield_buff_burst.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/dd/f4lina_flame_cloak_shield.vpcf"
+		},
+	]
+}

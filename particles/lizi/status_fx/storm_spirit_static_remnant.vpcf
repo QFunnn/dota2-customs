@@ -1,0 +1,84 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_nDetail2Combo = "DETAIL_2_COMBO_ADD"
+			m_flDetail2Scale = 5.0
+			m_flDetail2BlendFactor = 5.0
+			m_flColorWarpIntensity = 1.0
+			m_flAmbientScale = 25.0
+			m_specularColor = [ 0, 255, 255 ]
+			m_flSpecularScale = 5.0
+			m_flSpecularExponent = 0.5
+			m_flSpecularExponentBlendToFull = 5.0
+			m_flSpecularBlendToFull = 1.0
+			m_flSelfIllumBlendToFull = 0.5
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 0.5
+			m_Frequency = 13.0
+			m_nField = 3
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 0.125
+			m_Frequency = 0.5
+			m_nField = 3
+			m_flOscAdd = 0.75
+		},
+		{
+			_class = "C_OP_OscillateVectorSimple"
+			m_Rate = [ 0.0, 0.0, 2.0 ]
+			m_Frequency = [ 0.0, 0.0, 2.0 ]
+			m_nField = 15
+			m_bOffset = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureDetail2 = resource:"materials/models/heroes/statuseffects/electric.vtex"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_staticremnant_colorwarp3d_z000_tga_eea6f267.vtex"
+		},
+	]
+	m_nInitialParticles = 1
+	m_nMaxParticles = 1
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_flConstantRadius = 0.0
+	m_nConstantSequenceNumber = 1
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/storm_spirit/storm_spirit.vmdl"
+				m_sequenceName = "idle"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_bShouldHitboxesFallbackToRenderBounds = false
+}

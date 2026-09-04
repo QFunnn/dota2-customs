@@ -1,0 +1,75 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+"CustomEvents"
+{
+    "restart"
+    {}
+    "reload_script"
+    {}
+    "s2c_debug_set_client_weather"
+    {
+        "weather"           "string"
+    }
+    "c2c_debug_set_client_weather"
+    {
+        "weather"           "string"
+    }
+    "s2c_debug_bgm_client_start_sound_event"
+    {
+        "eventName"         "string"
+    }
+    "c2c_debug_bgm_client_start_sound_event"
+    {
+        "eventName"         "string"
+    }
+    "s2c_debug_bgm_client_stop_sound_event"
+    {}
+    "c2c_debug_bgm_client_stop_sound_event"
+    {}
+    "c2c_server_client_event"
+    {
+        "type"              "short"
+        "data"              "string"
+    }
+    "s2c_player_activity_trace_start"
+    {
+        "traceId"           "string"
+        "mode"              "string"
+        "durationSec"       "float"
+        "hz"                "short"
+        "longEdge"          "short"
+        "chunkSec"          "float"
+        "debug"             "short"
+    }
+    "c2s_player_activity_trace_chunk"
+    {
+        "traceId"           "string"
+        "seq"               "short"
+        "mode"              "string"
+        "hz"                "short"
+        "startedAt"         "float"
+        "screenW"           "short"
+        "screenH"           "short"
+        "quantW"            "short"
+        "quantH"            "short"
+        "data"              "string"
+        "sampleCount"       "short"
+        "totalSampleCount"  "short"
+    }
+    "c2s_player_activity_trace_debug"
+    {
+        "traceId"           "string"
+        "phase"             "string"
+        "seq"               "short"
+        "sampleCount"       "short"
+        "message"           "string"
+    }
+}

@@ -1,0 +1,386 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#debug_loading_root
+{
+	width: 100%;
+	height: 100%;
+	z-index: 20000;
+	opacity: 1;
+}
+
+#debug_loading_root .debug_loading_panel
+{
+	width: 100%;
+	height: 100%;
+}
+
+#debug_loading_root .debug_loading_minimized
+{
+	width: 120px;
+	height: 40px;
+	align: left center;
+}
+
+#debug_loading_root .minimized_btn
+{
+	background-color: #0e1a27f4;
+	border: 1px solid #3f5f7c;
+	box-shadow: #000000aa 0px 0px 24px 0px;
+	padding: 5px;
+}
+
+#debug_loading_root .minimized_btn:hover
+{
+	background-color: #1a2a3a;
+}
+
+#debug_loading_root .minimized_btn Label
+{
+	font-size: 16px;
+	color: #f0f6ff;
+}
+
+#debug_loading_root .close_btn
+{
+	width: 36px;
+	height: 36px;
+	margin-left: 8px;
+	background-color: #183248;
+	border: 1px solid #486c8b;
+	align: center center;
+}
+
+#debug_loading_root .close_btn:hover
+{
+	background-color: #2a4a68;
+}
+
+#debug_loading_root .close_btn Label
+{
+	font-size: 24px;
+	color: #d8ebff;
+	align: center center;
+}
+
+#debug_loading_root .loading_shell
+{
+	margin: 10px;
+	width: 400px;
+	height: fit-children;
+	max-height: 700px;
+	align: left center;
+	flow-children: down;
+	padding: 10px;
+	background-color: #2c2c2cf4;
+	border: 1px solid #1f1f1f;
+	box-shadow: #000000aa 0px 0px 24px 0px;
+}
+
+#debug_loading_root .loading_header
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 0px;
+}
+
+#debug_loading_root .loading_header_right
+{
+	flow-children: right;
+	align: right center;
+}
+
+#debug_loading_root .loading_eyebrow
+{
+	font-size: 14px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #7ea4c8;
+}
+
+#debug_loading_root .loading_title
+{
+	margin-top: 2px;
+	font-size: 25px;
+	color: #f0f6ff;
+	font-weight: bold;
+}
+
+#debug_loading_root .loading_badge
+{
+	padding: 8px 12px;
+	background-color: #2c333a;
+	border: 1px solid #486c8b;
+	vertical-align: center;
+}
+
+#debug_loading_root .loading_badge Label
+{
+	font-size: 16px;
+	color: #d8ebff;
+}
+
+#debug_loading_root .loading_badge.is_error
+{
+	background-color: #4b1f28;
+	border-color: #a65567;
+}
+
+#debug_loading_root .loading_summary
+{
+	width: 100%;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #bfd5eb;
+}
+
+#debug_loading_root .loading_section
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 5px;
+	padding: 10px;
+	background-color: #1f252b;
+	border: 1px solid #29445b;
+}
+
+#debug_loading_root .section_header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#debug_loading_root .section_title
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #f0f6ff;
+}
+
+#debug_loading_root .section_value
+{
+	font-size: 16px;
+	color: #86f0c9;
+	text-align: right;
+}
+
+#debug_loading_root .progress_track
+{
+	width: 100%;
+	height: 10px;
+	margin-top: 10px;
+	background-color: #08131d;
+	border: 1px solid #284259;
+}
+
+#debug_loading_root .progress_fill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2aa198), to(#8ce0b3));
+}
+
+#debug_loading_root .progress_fill.is_error
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#9d364f), to(#e36a77));
+}
+
+#debug_loading_root .progress_fill.player_fill
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#4f89ff), to(#8fc5ff));
+}
+
+#debug_loading_root .section_meta
+{
+	width: 100%;
+	flow-children: right;
+	margin-top: 8px;
+}
+
+#debug_loading_root .section_meta Label
+{
+	width: fill-parent-flow(1);
+	font-size: 14px;
+	color: #8ea6bb;
+}
+
+#debug_loading_root .player_card
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 10px;
+	padding: 12px;
+	background-color: #0c1824;
+	border: 1px solid #20384b;
+}
+
+#debug_loading_root .player_card.is_error
+{
+	border-color: #aa5768;
+}
+
+#debug_loading_root .player_card_header
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#debug_loading_root .player_status
+{
+	font-size: 18px;
+	color: #f0f6ff;
+	font-weight: bold;
+}
+
+#debug_loading_root .player_label
+{
+	margin-top: 4px;
+	font-size: 15px;
+	color: #a6bfd4;
+}
+
+#debug_loading_root .player_error
+{
+	margin-top: 8px;
+	font-size: 14px;
+	color: #ff9cab;
+}
+
+#debug_loading_root .stage_list
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 10px;
+	max-height: 200px;
+	overflow: squish scroll;
+}
+
+#debug_loading_root .stage_group
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 8px;
+	padding: 10px;
+	background-color: #0c1824;
+	border: 1px solid #1d3345;
+}
+
+#debug_loading_root .stage_group.status_loading
+{
+	background-color: #142638;
+	border-color: #3d6b90;
+}
+
+#debug_loading_root .stage_group.status_completed
+{
+	background-color: #102a23;
+	border-color: #2f7d69;
+}
+
+#debug_loading_root .stage_group.status_error
+{
+	background-color: #34141d;
+	border-color: #a65567;
+}
+
+#debug_loading_root .stage_header
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#debug_loading_root .stage_heading
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+}
+
+#debug_loading_root .stage_code
+{
+	width: 28px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #f6d48a;
+}
+
+#debug_loading_root .stage_name
+{
+	width: fill-parent-flow(1);
+	font-size: 16px;
+	color: #f0f6ff;
+	font-weight: bold;
+}
+
+#debug_loading_root .stage_status
+{
+	font-size: 14px;
+	text-align: right;
+	color: #98b4ca;
+}
+
+#debug_loading_root .steps_list
+{
+	width: 100%;
+	flow-children: down;
+	overflow: squish scroll;
+	margin-top: 8px;
+}
+
+#debug_loading_root .step_row
+{
+	width: 100%;
+	height: 30px;
+	flow-children: right;
+	margin-bottom: 4px;
+	padding: 4px 8px;
+	background-color: #0c1824;
+	border: 1px solid #1d3345;
+}
+
+#debug_loading_root .step_row.status_loading
+{
+	background-color: #15273a;
+	border-color: #3d6b90;
+}
+
+#debug_loading_root .step_row.status_completed
+{
+	background-color: #123129;
+	border-color: #2f7d69;
+}
+
+#debug_loading_root .step_row.status_error
+{
+	background-color: #3a1720;
+	border-color: #a65567;
+}
+
+#debug_loading_root .step_seq
+{
+	width: 52px;
+	font-size: 15px;
+	color: #89a3ba;
+}
+
+#debug_loading_root .step_name
+{
+	width: fill-parent-flow(1);
+	font-size: 15px;
+	color: #e0ecf9;
+}
+
+#debug_loading_root .step_status
+{
+	width: 72px;
+	font-size: 14px;
+	text-align: right;
+	color: #98b4ca;
+}

@@ -1,0 +1,190 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.OverheadBar_a_root
+{
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+}
+
+#OverheadBar_Root
+{
+	width: 100%;
+	height: 100%;
+}
+
+.OverheadBarContainer
+{
+	width: 180px;
+	height: fit-children;
+	background-color: none;
+	overflow: noclip noclip;
+	opacity: 1;
+	transition: opacity 0.4s ease-in-out 0s;
+}
+
+.OverheadBarContainer.OverheadBar_FadeOut
+{
+	opacity: 0;
+}
+
+.OverheadBar
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+}
+
+#OverheadBar_name
+{
+	text-align: center;
+	text-shadow: 0px 0px 3px 2 #000000;
+	color: white;
+	font-family: monospaceNumbersFont;
+	font-size: 16px;
+	horizontal-align: center;
+	height: 20px;
+	text-overflow: shrink;
+	overflow: noclip;
+}
+
+#OverheadBar_name.boss
+{
+	color: #df2e2e;
+	text-shadow: 0px 0px 3px 2 #5c2e2e;
+	font-size: 20px;
+	height: 24px;
+}
+
+.OverheadBar_Particle
+{
+	width: 100%;
+	height: 60px;
+	opacity-mask: url("s2r://");
+	opacity-mask-scale: 100% 100%;
+}
+
+#OverheadhpBar
+{
+	border-radius: 3px;
+	background-color: #2c2c2cab;
+	box-shadow: 0px 0px 3px 1px #00000056;
+	border: 1px solid #424242;
+	height: 14px;
+	width: 140px;
+	horizontal-align: center;
+}
+
+#OverheadhpBar #hp_maxhp
+{
+	align: center center;
+	text-shadow: 0px 0px 3px 2 #000000;
+	color: white;
+	font-family: monospaceNumbersFont;
+	font-size: 13px;
+	text-overflow: shrink;
+	overflow: noclip;
+}
+
+#OverheadhpBar #OverheadhpBar_BG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#d12121), color-stop(0.5, #e63e3e), to(#891c1c));
+	border-top: 1px solid #ff6666;
+	border-bottom: 1px solid #5f0000;
+	height: 100%;
+	border-radius: 2px;
+	transition: width 0.1s ease-in-out 0s;
+}
+
+#ChannelBarContainer
+{
+	height: 24px;
+	width: 150px;
+	background-color: none;
+	horizontal-align: center;
+}
+
+#ChannelBarContainer #OverheadChannelBar
+{
+	border-radius: 2px;
+	background-color: rgba(0, 0, 0, 0.884);
+	align: center center;
+	border-color: black;
+	border-style: solid;
+	border-width: 3px;
+	height: 100%;
+	width: 100%;
+	visibility: collapse;
+}
+
+#ChannelBarContainer #OverheadChannelBar.bShowBar
+{
+	visibility: visible;
+}
+
+#ChannelBarContainer #OverheadChannelBar #channel_ability_name
+{
+	align: center center;
+	text-shadow: 0px 0px 4px 5 #000000;
+	color: white;
+	font-family: monospaceNumbersFont;
+	font-size: 17px;
+}
+
+#ChannelBarContainer #OverheadChannelBar #OverheadChannelBar_BG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b2c2c), color-stop(0.5, #7e7e7e), to(#2b2c2c));
+	height: 100%;
+	overflow: noclip;
+}
+
+#OverheadBuffBar
+{
+	width: 170px;
+	height: 30px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+#OverheadBuffBar .CustomBuff
+{
+	width: 30px;
+	height: 30px;
+}
+
+#OverheadBuffBar .CustomBuff .BuffBorder
+{
+	background-color: black;
+	padding: 3px;
+}
+
+#OverheadBuffBar .CustomBuff #CircularDuration
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000dc;
+}
+
+#OverheadBuffBar .CustomBuff #BuffTime
+{
+	margin-top: 10px;
+	margin-right: 3px;
+	align: right top;
+	overflow: noclip noclip;
+	text-overflow: shrink;
+	text-align: center;
+	text-shadow: 0px 0px 4px 6 #000000;
+	color: white;
+	font-family: monospaceNumbersFont;
+	font-size: 14px;
+}

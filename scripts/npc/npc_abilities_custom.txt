@@ -1,0 +1,105 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+#base "ak_abilities.txt"
+#base "ak_monster_abilities.txt"
+
+"abilities"
+{
+    //投射物接收技能实例
+    "projectile_system_ability" {
+		"MaxLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "100"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityCastPoint" "0"
+		"AbilityValues" {
+		}
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType" "SELL_IMMUNITY_ENEMIES_YES"
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/system/projectile_system_ability"
+	}
+	// 怪物线性攻击标记技能（空白，被动，只用于标记）
+	"monster_linear_projectile_attack" {
+		"MaxLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName" "generic_hidden"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint" "0"
+		"AbilityValues" {
+		}
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/system/monster_linear_projectile_attack"
+	}
+	
+	// 怪物近战特殊攻击标记技能（空白，被动，只用于标记）
+	"monster_melee_special_attack" {
+		"MaxLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName" "generic_hidden"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint" "0"
+		"AbilityValues" {
+		}
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/system/monster_melee_special_attack"
+	}
+
+	// 无敌状态
+	"no_player"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"Modifiers"
+		{
+			"modifier_no_player"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					// "MODIFIER_STATE_NO_UNIT_COLLISION"   "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	"item_proxy_cast"
+	{
+		"MaxLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "generic_hidden"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityCastPoint" "0"
+		"AbilityValues" {
+		}
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/system/item_proxy_cast"
+	}
+
+}

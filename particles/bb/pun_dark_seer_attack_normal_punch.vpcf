@@ -1,0 +1,83 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build ec5ff63 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 9
+	m_flConstantRadius = 300.0
+	m_ConstantColor = [ 180, 180, 180, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/dark_seer/dark_seer.vmdl"
+				m_nModSpecificData = 348
+				m_sequenceName = "attack_normal_punch"
+				m_nFireParticleOnSequenceFrame = 15
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+		{
+			m_name = "absorigin"
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/dark_seer/dark_seer.vmdl"
+				m_nModSpecificData = 348
+				m_sequenceName = "attack_normal_punch"
+				m_nFireParticleOnSequenceFrame = 15
+				m_hitboxSetName = "default"
+				m_bAnimationNonLooping = true
+			}
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/bb/dark_seer_normal_punch_rays_red.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bb/dark_seer_normal_punch_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bb/dark_seer_normal_punch_ring2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bb/pun_marci_unleash_pulse.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bb/pun_mars_shield_of_mars_sparks_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bb/pun_mars_shield_of_mars_sparks.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/mars_arena_of_blood_spear.vpcf"
+		},
+	]
+}
