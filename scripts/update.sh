@@ -97,8 +97,8 @@ main() {
     -path "*/steamapps/workshop/content/570/$WORKSHOP_ID" | head -n1)
   [[ -n "$CONTENT" ]] || { echo "Workshop content missing"; exit 1; }
 
-  VPK=$(find "$CONTENT" -type f -name "*_dir.vpk" | sort | head -n1)
-  [[ -n "$VPK" ]] || { echo "No VPK found"; exit 1; }
+  VPK="$CONTENT/$WORKSHOP_ID.vpk"
+  [[ -f "$VPK" ]] || { echo "No VPK found: $VPK"; exit 1; }
 
   OUT="$RUNNER_TEMP/extract"
   rm -rf "$OUT"; mkdir -p "$OUT"
