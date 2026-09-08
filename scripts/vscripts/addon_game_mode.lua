@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -15097,13 +15097,13 @@ function RandomDrawChessNew(team_id, unlock, draw_type)
 						end
 					end
 					local remainder_this_chess = _G.chess_remainder_table[this_chess] or 0
-					if remainder_max - remainder_this_chess == 0 then 
+					if remainder_max - remainder_this_chess <= 2 then 
 						force_price = _G.chess_2_mana[this_chess] or 1
 						force_price = force_price - 2
 						if force_price < 0 then
 							force_price = 0
 						end
-					elseif remainder_max - remainder_this_chess <= 4 then 
+					elseif remainder_max - remainder_this_chess <= 8 then 
 						force_price = _G.chess_2_mana[this_chess] or 1
 						force_price = force_price - 1
 						if force_price < 0 then
@@ -19945,7 +19945,7 @@ function HoorayAndMechHuman(team)
 			end
 		end
 		if mech_level == 2 then
-			local prob = (hero:GetLevel()-5)*0.25
+			local prob = (hero:GetLevel()-5)*0.2
 			if RandomFloat(0,1) < prob then
 				table.insert(hero.hooray_loot_table, 'item_jixiezhixin_gold')
 				for _, unit in pairs(alive_mech) do
@@ -20696,7 +20696,7 @@ function ExtendReincarnationFlags(x_dead, x_born)
 end
 
 function AqirDeathRattle(u)
-	Timers:CreateTimer(0.5, function()
+	Timers:CreateTimer(0.1, function()
 		local AQIR_CHESS_LIST = {
 			[1] = {},
 			[2] = {},
