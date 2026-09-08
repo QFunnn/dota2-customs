@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -29,4 +29,4 @@ GameUI.CustomUIConfig().key_level_setting = {
 		intensity_bonus: 0.6,
 		main_bonus: 0.3
 	}
-};
+};

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -93,4 +93,4 @@ GameUI.CustomUIConfig().activity_mining_template = {
 		tamplate_layout: "21222111|12200021|12200021|12200021|12200021",
 		desc: "大空腔2"
 	}
-};
+};

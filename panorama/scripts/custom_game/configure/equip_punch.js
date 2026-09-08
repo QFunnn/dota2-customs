@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -51,4 +51,4 @@ GameUI.CustomUIConfig().equip_punch = {
 		punch_num: 1,
 		cost: "120008:1000|120009:200|120010:200"
 	}
-};
+};

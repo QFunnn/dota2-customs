@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -30,7 +30,9 @@ return {
 		"models/eom/hero/shooter_1/particles/shooter_1_elude_fx.vpcf",
 		"models/eom/hero/shooter_1/particles/shooter_1_elude_fx_ice_01.vpcf",
 		"models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx.vpcf",
+		"models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx_giant.vpcf",
 		"models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx_ice_01.vpcf",
+		"models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx_ice_01_giant.vpcf",
 		"models/eom/hero/shooter_1/particles/shooter_1_unique_skill_fx.vpcf",
 		"models/eom/hero/shooter_1/particles/shooter_1_unique_skill_fx_ice_01.vpcf",
 		"models/eom/hero/witch_1/particles/witch_1_ice_base_attack_fx.vpcf",

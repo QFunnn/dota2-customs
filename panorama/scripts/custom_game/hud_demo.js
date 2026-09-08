@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -6322,7 +6322,7 @@ const UpgradePicker = () => {
   const eventName = "AddAbilityUpgrade";
   const title = "添加技能升级";
   const getUpgradeList = () => {
-    return Object.keys(kv());
+    return Object.keys(kv()).filter(upgradeID => Number(KeyValues.ability_upgrades[upgradeID]?.Hidden) !== 1);
   };
   const [itemList, setItemList] = libs.createSignal(getUpgradeList());
   const [filterWord, setFilterWord] = libs.createSignal("");
@@ -6701,9 +6701,11 @@ function Demo() {
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddAbilityUpgrade",
                 text: "添加技能升级"
-              }), libs.createComponent(DemoButton, {
-                eventName: "RemoveAllUpgrade",
-                text: "移除技能升级"
+              }), libs.createComponent(DemoSelectionButton, {
+                eventName: "RemoveAbilityUpgrade",
+                get text() {
+                  return GetLocalization("#Demo_RemoveAbilityUpgrade");
+                }
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddAttribute",
                 text: "添加属性"

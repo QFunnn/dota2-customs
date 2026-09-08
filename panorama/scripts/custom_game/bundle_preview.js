@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -61,7 +61,7 @@ function TooltipContents({
 }
 function SetupTooltip() {
   pSelf.RemoveAndDeleteChildren();
-  let item_list = JSON.parseSafe(pSelf.GetAttributeString("item_list", ""));
+  let item_list = JSON.parseSafe(pSelf.GetAttributeString("item_list", "")) ?? {};
   if (Object.keys(item_list).length > 0) {
     libs.render(() => libs.createComponent(TooltipContents, {
       item_list: item_list
@@ -71,4 +71,4 @@ function SetupTooltip() {
 (() => {
   tooltip_base.InitTooltipStyle(pSelf);
   pSelf.SetPanelEvent("ontooltiploaded", SetupTooltip);
-})();
+})();

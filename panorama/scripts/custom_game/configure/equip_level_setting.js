@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -164,4 +164,4 @@ GameUI.CustomUIConfig().equip_level_setting = {
 		main_bonus: 0.75,
 		adverb_bonus: 0.75
 	}
-};
+};

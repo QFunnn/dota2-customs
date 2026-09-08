@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -49,11 +49,12 @@ function TooltipContents(props) {
   });
   const playerCosmeticEquips = libs.createMemo(() => playerInfoData().player_cosmetic_equips ?? {});
   const playerCosmeticID = slot => {
-    const cosmeticID = playerCosmeticEquips()[`0-${slot}`]?.cosmetic_id;
+    const cosmeticID = playerCosmeticEquips()[slot]?.cosmetic_id;
     return cosmeticID != undefined && cosmeticID > 0 ? String(cosmeticID) : undefined;
   };
   const borderCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.BORDER) ?? DEFAULT_AVATAR_BORDER_ID);
   const titleCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.TITLE) ?? "");
+  const medalCosmeticID = libs.createMemo(() => playerCosmeticID(COSMETIC_SLOT.MEDAL));
   const maxLevel = Object.keys(KeyValues.hero_level_exp).length;
   const maxExp = libs.createMemo(() => KeyValues.hero_level_exp[Math.min(accountLvData().level, maxLevel)]?.exp ?? 1);
   const maxExpText = libs.createMemo(() => maxExp() == 0 ? "\u221e" : String(maxExp()));
@@ -166,29 +167,34 @@ function TooltipContents(props) {
           return _el$2;
         })(), (() => {
           const _el$10 = libs.createElement("Panel", {
-              id: "MedalList"
-            }, null);
-            libs.createElement("Panel", {
-              "class": "Medal"
-            }, _el$10);
-            libs.createElement("Panel", {
-              "class": "Medal"
-            }, _el$10);
-            libs.createElement("Panel", {
-              "class": "Medal"
-            }, _el$10);
+            "class": "MedalList"
+          }, null);
+          libs.insert(_el$10, libs.createComponent(libs.Show, {
+            get when() {
+              return medalCosmeticID();
+            },
+            keyed: true,
+            get children() {
+              return libs.createComponent(Player.PlayerMedal, {
+                get medalID() {
+                  return medalCosmeticID();
+                }
+              });
+            }
+          }), null);
+          libs.insert(_el$10, libs.createComponent(RankBadgeBanner.PlayerRankBadgeBanner, {
+            data: playerInfoData
+          }), null);
           return _el$10;
-        })(), libs.createComponent(RankBadgeBanner.PlayerRankBadgeBanner, {
-          data: playerInfoData
-        }), (() => {
-          const _el$14 = libs.createElement("Label", {
+        })(), (() => {
+          const _el$11 = libs.createElement("Label", {
             id: "SteamID",
             get text() {
               return playerInfo.steamID() ?? "";
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$14, "text", playerInfo.steamID() ?? "", _$p));
-          return _el$14;
+          libs.effect(_$p => libs.setProp(_el$11, "text", playerInfo.steamID() ?? "", _$p));
+          return _el$11;
         })()];
       }
     }));

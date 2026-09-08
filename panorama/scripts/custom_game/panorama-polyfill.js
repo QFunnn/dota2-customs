@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -2415,14 +2415,14 @@ Entities.GetHealthBarHeight = function (iUnitEntIndex) {
     return finiteNumber(Number(Entities.GetUnitData(iUnitEntIndex, "GetHealthBarHeight")), -1);
 };
 Entities.GetPropertyValue = function (key, propertyId, fallbackToPlayer) {
-    if (fallbackToPlayer === void 0) { fallbackToPlayer = true; }
     // 0 = UNIT scope
     var unitKey = "0_".concat(key);
     var unitData = CustomNetTables.GetTableValue("property_system", unitKey);
     if (unitData && unitData[propertyId] != undefined) {
         return toFiniteNumber(Float(unitData[propertyId]), 0);
     }
-    if (fallbackToPlayer) {
+    // 单位 scope 未命中时，允许回退的属性名列表；undefined 表示回退所有属性
+    if (fallbackToPlayer === undefined || fallbackToPlayer.includes(propertyId)) {
         //fallback: 1 = PLAYER scope，用单位的所有者 playerID 查
         var playerID = Entities.GetPlayerOwnerID(key);
         if (playerID !== -1) {

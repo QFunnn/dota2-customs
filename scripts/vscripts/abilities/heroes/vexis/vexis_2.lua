@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -112,90 +112,31 @@ function j.prototype.EventListener(self)
 		dash_end = function(q, r)
 			local k = self:GetCaster()
 			if k == r.caster then
-				if AbilityUpgrade:HasAbilityUpgrade(k, "vexis_upgrade_4") then
-					local z = CalcDistance(r.start, r["end"])
-					local B = 0.5
-					local C = self:GetSpecialValueFor("grenade_damage")
-					local D = self:GetSpecialValueFor("grenade_radius")
-					local E = self:GetSpecialValueFor("grenade_count")
-					local F = self:GetSpecialValueFor("grenade_knockback")
-					do
-						local G = 0
-						while G < E do
-							local o = G == 0 and r.start or r.start + RandomVector(150)
-							local H = ParticleManager:CreateParticle(
-								"models/eom/hero/shooter_1/particles/shooter_1_elude_01_fx.vpcf",
-								PATTACH_CUSTOMORIGIN,
-								nil
-							)
-							ParticleManager:SetParticleControl(H, 0, r["end"])
-							ParticleManager:SetParticleControl(H, 1, Vector(z / B, 0, 0))
-							ParticleManager:SetParticleControl(H, 5, o)
-							self:StartThink(B + G * 0.15, DoUniqueString("dash_end"), function()
-								if k:HasAbilityUpgrade("vexis_upgrade_4_2") then
-									Bullet:CreateCustomBullet({
-										caster = k,
-										spawnOrigin = o,
-										lifeTime = 10,
-										radius = D,
-										teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
-										typeFilter = DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
-										OnBulletHit = function(t)
-											return true
-										end,
-										FuncUnitFinder = function(u, o, v, t)
-											return FindEnemiesInRadius(k, o, v)
-										end,
-										OnBulletDestroy = function(t)
-											ParticleManager:DestroyParticle(H, false)
-											local A = FindUnitsInRadiusWithAbility(k, o, D, self)
-											for I, w in ipairs(A) do
-												k:DealDamage(w, self, C)
-												w:KnockBack(CalcDirection2D(w, o), F, 0, 0.3)
-											end
-											k:EmitSound("Hero_Sniper.ConcussiveGrenade")
-										end,
-									})
-								else
-									ParticleManager:DestroyParticle(H, false)
-									local A = FindUnitsInRadiusWithAbility(k, o, D, self)
-									for I, w in ipairs(A) do
-										k:DealDamage(w, self, C)
-										w:KnockBack(CalcDirection2D(w, o), F, 0, 0.3)
-									end
-									k:EmitSound("Hero_Sniper.ConcussiveGrenade")
-								end
-								return -1
-							end)
-							G = G + 1
-						end
-					end
-				end
 				if AbilityUpgrade:HasAbilityUpgrade(k, "vexis_upgrade_13") then
-					local J = k:GetAbilityByTag(AbilityTag.Skill)
-					if IsValid(J) then
-						J:PowerShot(k:GetAttachmentPosition("attach_attack3"), CalcDirection2D(r.start, r["end"]), 1)
+					local B = k:GetAbilityByTag(AbilityTag.Skill)
+					if IsValid(B) then
+						B:PowerShot(k:GetAttachmentPosition("attach_attack3"), CalcDirection2D(r.start, r["end"]), 1)
 						Event:Fire(
 							"ability_cast_complete",
 							{
-								ability = J,
+								ability = B,
 								caster = k,
-								position = J:GetCursorPosition(),
-								abilityTag = J:GetAbilityTag(),
+								position = B:GetCursorPosition(),
+								abilityTag = B:GetAbilityTag(),
 								record = "vexis_upgrade_13",
 							}
 						)
 					end
 				end
 				if k:HasAbilityUpgrade("vexis_upgrade_poison_1") then
-					local E = 1
+					local C = 1
 					do
-						local G = 0
-						while G < E do
-							local B = 0.5 + G * 0.15
-							local o = G == 0 and r.start or r.start + RandomVector(150)
-							k:ThrowPoisonBottle(o, self, 2, B)
-							G = G + 1
+						local D = 0
+						while D < C do
+							local E = 0.5 + D * 0.15
+							local o = D == 0 and r.start or r.start + RandomVector(150)
+							k:ThrowPoisonBottle(o, self, 2, E)
+							D = D + 1
 						end
 					end
 				end
@@ -217,17 +158,17 @@ function j.prototype.OnSpellStart(self)
 	k:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 	local n = CalcDirection2D(o, k:GetAbsOrigin())
 	k:SetForwardVector(n)
-	local H = ParticleManager:CreateParticle(
+	local F = ParticleManager:CreateParticle(
 		"models/eom/hero/shooter_1/particles/shooter_1_elude_fx.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		k
 	)
-	ParticleManager:SetParticleControlTransformForward(H, 1, k:GetAbsOrigin(), n)
+	ParticleManager:SetParticleControlTransformForward(F, 1, k:GetAbsOrigin(), n)
 	local z = math.min(self:GetSpecialValueFor("distance"), CalcDistance(o, k))
-	local K = self:GetSpecialValueFor("speed")
-	local B = z / K
-	local L = 0
-	k:Dash(n, z, L, B)
+	local G = self:GetSpecialValueFor("speed")
+	local E = z / G
+	local H = 0
+	k:Dash(n, z, H, E)
 	k:EmitSound("Hero_QueenOfPain.Blink_in.Layer")
 end
 j = e({ i(nil) }, j)

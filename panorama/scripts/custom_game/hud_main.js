@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -358,6 +358,7 @@ const ArtifactSelection = () => {
   })();
 };
 
+const PLAYER_FALLBACK_PROPERTIES = ["equip_drop_pct", "equip_drop_num_pct", "equip_rarity_chance"];
 const AttributeSummary = () => {
   const [refreshTick, setRefreshTick] = libs.createSignal(0);
   const [show, setShow] = libs.createSignal(false);
@@ -380,7 +381,7 @@ const AttributeSummary = () => {
       cachedEntIndex = entIndex;
     }
     return PROPERTY_LIST.map(id => {
-      const value = Entities.GetPropertyValue(entIndex, id, false);
+      const value = Entities.GetPropertyValue(entIndex, id, PLAYER_FALLBACK_PROPERTIES);
       const cached = attrCache.get(id);
       if (cached && cached.value === value) {
         return cached;
@@ -454,7 +455,9 @@ const AttributeSummary = () => {
           children: attr => libs.createComponent(equip_details.EquipmentAttrRow, {
             data: attr,
             type: "Main",
-            attributNameColor: "#BFAA82",
+            get attributNameColor() {
+              return PLAYER_FALLBACK_PROPERTIES.includes(attr.id) ? "#4472CE" : "#BFAA82";
+            },
             showAttributeRange: false
           })
         });

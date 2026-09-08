@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -460,7 +460,7 @@ GameUI.CustomUIConfig().ability_upgrades = {
 		"ability_name": "vexis_3",
 		"max": 1,
 		"AbilityValues": {
-			"count": "12 24 36"
+			"count": 4
 		},
 		"AbilityTextureName": "vexis_upgrade_1"
 	},
@@ -482,39 +482,34 @@ GameUI.CustomUIConfig().ability_upgrades = {
 		"AbilityTextureName": "vexis_upgrade_3"
 	},
 	"vexis_upgrade_4": {
-		"Note": "临别赠礼",
-		"Description": "<HotkeyOnly|Dodge/><Ability|vexis_2/>在原地留下手雷",
-		"ability_name": "vexis_2",
+		"Note": "贴耳低语",
+		"Description": "<HotkeyOnly|Skill/><Ability|vexis_1/>所有伤害视为近距离，始终享受近距离伤害增幅",
+		"ability_name": "vexis_1",
 		"max": 1,
 		"AbilityValues": {
-			"grenade_damage": 24,
-			"grenade_radius": {
-				"value": 200,
-				"*aoe_amplify": 1
-			},
-			"grenade_knockback": 100,
-			"grenade_count": 1
+			"always_melee_damage": 1
 		},
-		"AbilityTextureName": "vexis_upgrade_4"
+		"AbilityTextureName": "vexis_upgrade_4_whisper"
 	},
 	"vexis_upgrade_4_1": {
-		"Note": "厚礼谢",
-		"Description": "<Mark|临别赠礼/>手雷数量增加%grenade_count%",
-		"ability_name": "vexis_2",
-		"RequireUpgrades": "vexis_upgrade_4",
-		"max": 2,
-		"AbilityTextureName": "vexis_upgrade_4",
+		"Note": "遥寄祷言",
+		"Description": "<HotkeyOnly|Skill/><Ability|vexis_1/>所有伤害视为远距离，始终享受远距离伤害增幅",
+		"ability_name": "vexis_1",
+		"max": 1,
+		"AbilityTextureName": "vexis_upgrade_4_1_prayer",
 		"AbilityValues": {
-			"grenade_count": "2 4"
+			"always_ranged_damage": 1
 		}
 	},
 	"vexis_upgrade_4_2": {
-		"Note": "背弃之礼",
-		"Description": "<Mark|临别赠礼/>的手雷在敌人靠近后才会引爆",
-		"ability_name": "vexis_2",
-		"RequireUpgrades": "vexis_upgrade_4",
+		"Note": "虔诚一击",
+		"Description": "<HotkeyOnly|Skill/><Ability|vexis_1/>伤害额外提高%prayer_damage_boost%%",
+		"ability_name": "vexis_1",
 		"max": 1,
-		"AbilityTextureName": "vexis_upgrade_4"
+		"AbilityTextureName": "vexis_upgrade_4_2_devotion",
+		"AbilityValues": {
+			"prayer_damage_boost": 25
+		}
 	},
 	"vexis_upgrade_5": {
 		"Note": "枪斗术",
@@ -632,6 +627,18 @@ GameUI.CustomUIConfig().ability_upgrades = {
 			"arrow_count_tooltip": 6
 		}
 	},
+	"vexis_upgrade_14_1_1": {
+		"Note": "巨型弹药",
+		"Description": "<HotkeyOnly|Skill/><Ability|vexis_1/>保留<Split:散射/>，但将所有子弹合并为1枚巨型弹药。每额外有1枚子弹，体型+%giant_scale_per_arrow%%，伤害+%giant_damage_per_arrow%%",
+		"ability_name": "vexis_1",
+		"RequireUpgrades": "vexis_upgrade_14",
+		"max": 1,
+		"AbilityTextureName": "vexis_upgrade_holy_1",
+		"AbilityValues": {
+			"giant_scale_per_arrow": 50,
+			"giant_damage_per_arrow": 120
+		}
+	},
 	"vexis_upgrade_15": {
 		"Note": "点射",
 		"Description": "<HotkeyOnly|Ultimate/><Ability|vexis_4/>的怒气消耗和冷却降低%effect_reduce%%，但是持续时间也会减少%effect_reduce%%",
@@ -697,6 +704,7 @@ GameUI.CustomUIConfig().ability_upgrades = {
 		"Note": "恶魔交易",
 		"Description": "可以消耗%health_cost%%代替%instead_fury%点怒气释放<HotkeyOnly|Ultimate/><Ability|vexis_4/>",
 		"ability_name": "vexis_4",
+		"Hidden": 1,
 		"max": 1,
 		"AbilityValues": {
 			"health_cost": {
@@ -799,6 +807,7 @@ GameUI.CustomUIConfig().ability_upgrades = {
 		"Note": "雷霆连弹",
 		"Description": "<HotkeyOnly|Attack/><Ability|vexis_attack/>召唤伤害%lightning_damage%的<Mark|雷击/>",
 		"ability_name": "vexis_attack",
+		"Hidden": 1,
 		"RequireBless1": "item_zeus_skill|item_zeus_dodge|item_zeus_return|item_zeus_consume",
 		"max": 1,
 		"AbilityValues": {

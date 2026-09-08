@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -93,4 +93,4 @@ GameUI.CustomUIConfig().fish_consume = {
 		effect: "idle_fish_escape_speed_pct:10|idle_fish_crit_chance:10|idle_fish_total_profit_pct:30",
 		required_rod_level: 2
 	}
-};
+};

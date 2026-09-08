@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -228,6 +228,9 @@ const BattlePass = () => {
   };
   const selectBPSeason = season => {
     setSelectedBPSeason(season);
+    CallAction("/v1/battle_pass/fetch", {
+      season
+    });
     SetNextSpecial(10);
     setCanScrollLeft(false);
     setCanScrollRight(true);
@@ -5533,7 +5536,7 @@ function VeinsRank() {
 }
 
 const ACTIVITY_VEINS_ID = 1001;
-const ACTIVITY_MENU_GRACE_SECONDS = 7 * 24 * 60 * 60;
+const ACTIVITY_MENU_GRACE_SECONDS$1 = 7 * 24 * 60 * 60;
 function getVeinsStoreItems(infoProducts) {
   const result = [];
   const now = Date.now() / 1000;
@@ -5600,7 +5603,7 @@ function VeinsStore() {
           icon: true,
           text: "#ActivityVeins_VeinsStore_TimeLimit",
           get endTime() {
-            return activityData().end_time + ACTIVITY_MENU_GRACE_SECONDS;
+            return activityData().end_time + ACTIVITY_MENU_GRACE_SECONDS$1;
           }
         }), null);
         libs.effect(_p$ => {
@@ -7179,6 +7182,2689 @@ const RewardItem = itemInfo => {
   })();
 };
 
+const DICE_EVENT_KEYS = ["move_dice", "move_pos", "move_neg", "move_start", "add_slot_exp", "add_type_exp", "receive_rewards", "receive_box", "generate_box", "reward_next_slot"];
+const SORTED_DICE_EVENT_KEYS = [...DICE_EVENT_KEYS].sort((left, right) => right.length - left.length);
+const DICE_EVENT_ARG_COUNTS = {
+  move_dice: 1,
+  move_pos: 1,
+  move_neg: 1,
+  move_start: 0,
+  add_slot_exp: 2,
+  add_type_exp: 2,
+  receive_rewards: 1,
+  receive_box: 3,
+  generate_box: 1,
+  reward_next_slot: 1
+};
+const getMatchedDiceEventKey = event => {
+  return SORTED_DICE_EVENT_KEYS.find(key => event == key || event.startsWith(`${key}_`));
+};
+const getRawArgs = (event, key) => {
+  if (event == key) {
+    return [];
+  }
+  return event.slice(key.length + 1).split("_");
+};
+const parseNumberArgs = rawArgs => {
+  const args = [];
+  for (const rawArg of rawArgs) {
+    if (!/^-?\d+$/.test(rawArg)) {
+      return {
+        args,
+        reason: `invalid number arg: ${rawArg}`
+      };
+    }
+    args.push(Number(rawArg));
+  }
+  return {
+    args
+  };
+};
+const parseDiceEvent = event => {
+  const key = getMatchedDiceEventKey(event);
+  if (key == undefined) {
+    return {
+      raw: event,
+      key: "unknown",
+      matched: false,
+      valid: false,
+      args: [],
+      reason: "unknown dice event key"
+    };
+  }
+  const rawArgs = getRawArgs(event, key);
+  const numberArgsResult = parseNumberArgs(rawArgs);
+  const args = numberArgsResult.args;
+  if (numberArgsResult.reason != undefined) {
+    return {
+      raw: event,
+      key,
+      matched: true,
+      valid: false,
+      args,
+      reason: numberArgsResult.reason
+    };
+  }
+  const expectedArgCount = DICE_EVENT_ARG_COUNTS[key];
+  if (args.length != expectedArgCount) {
+    return {
+      raw: event,
+      key,
+      matched: true,
+      valid: false,
+      args,
+      reason: `invalid arg count: expected ${expectedArgCount}, got ${args.length}`
+    };
+  }
+  return {
+    raw: event,
+    key,
+    matched: true,
+    valid: true,
+    args: args
+  };
+};
+const parseDicePlayResult = result => {
+  return (result ?? []).map((item, index) => ({
+    index,
+    slotID: item.slot_id,
+    event: parseDiceEvent(item.event),
+    raw: item
+  }));
+};
+
+const ACTIVITY_DICE_ID$3 = 801;
+const DICE_ROLL_ONCE_TIMES = 1;
+const DICE_ROLL_TEN_TIMES = 10;
+const DICE_TILE_FINISH_EFFECT_DURATION_SECONDS = 3;
+const DICE_TILE_LEVEL_UP_EFFECT_DURATION_SECONDS = 1.5;
+const DICE_BOX_PREVIEW_DURATION_SECONDS = 2;
+const SLOT_TYPE_START = 1;
+const SLOT_TYPE_TOKEN = 2;
+const SLOT_TYPE_EVENT = 3;
+const SLOT_TYPE_REWARD = 4;
+const DEFAULT_SLOT_LEVEL = 0;
+const DEFAULT_TILE_CONFIG = {
+  tileType: "stone",
+  decorationType: "none",
+  iconType: "none"
+};
+const STOREITEMIMAGE_SRCPATH = {
+  [110013]: getSrcPath("activity/a4_dice/a4_product_token.png"),
+  [110014]: getSrcPath("activity/a4_dice/a4_product_dice.png")
+};
+const SLOT_TYPE_TILE_CONFIG = {
+  [SLOT_TYPE_START]: {
+    tileType: "grass",
+    decorationType: "start"
+  },
+  [SLOT_TYPE_EVENT]: {
+    tileType: "grass",
+    decorationType: "que"
+  }
+};
+const SLOT_LEVEL_TILE_CONFIG = {
+  0: "stone",
+  1: "level1",
+  2: "level2",
+  3: "level3"
+};
+const SLOT_LEVEL_RARITY_CONFIG = {
+  0: 1,
+  1: 3,
+  2: 4,
+  3: 5
+};
+const REWARD_SLOT_ICON_CONFIG = {
+  110011: "icon3",
+  110006: "icon3",
+  110009: "icon2",
+  110010: "icon2",
+  110013: "icon1",
+  120001: "icon1",
+  120002: "icon1",
+  120003: "icon1",
+  120008: "icon1"
+};
+const PLAYER_IDLE_SEQUENCE_FRAMES = [getSrcPath("activity/a4_dice/player_idle/1_1.png"), getSrcPath("activity/a4_dice/player_idle/1_2.png"), getSrcPath("activity/a4_dice/player_idle/1_3.png"), getSrcPath("activity/a4_dice/player_idle/1_4.png"), getSrcPath("activity/a4_dice/player_idle/1_5.png"), getSrcPath("activity/a4_dice/player_idle/1_6.png"), getSrcPath("activity/a4_dice/player_idle/1_7.png"), getSrcPath("activity/a4_dice/player_idle/1_8.png")];
+const PLAYER_JUMP_SEQUENCE_FRAMES = [getSrcPath("activity/a4_dice/player_jump/2_1.png"), getSrcPath("activity/a4_dice/player_jump/2_2.png"), getSrcPath("activity/a4_dice/player_jump/2_3.png"), getSrcPath("activity/a4_dice/player_jump/2_4.png"), getSrcPath("activity/a4_dice/player_jump/2_5.png"), getSrcPath("activity/a4_dice/player_jump/2_6.png"), getSrcPath("activity/a4_dice/player_jump/2_7.png"), getSrcPath("activity/a4_dice/player_jump/2_8.png")];
+const DICE_SEQUENCE_FRAMES = [getSrcPath("activity/a4_dice/dice_cube/1.png"), getSrcPath("activity/a4_dice/dice_cube/2.png"), getSrcPath("activity/a4_dice/dice_cube/3.png"), getSrcPath("activity/a4_dice/dice_cube/4.png"), getSrcPath("activity/a4_dice/dice_cube/5.png"), getSrcPath("activity/a4_dice/dice_cube/6.png"), getSrcPath("activity/a4_dice/dice_cube/7.png"), getSrcPath("activity/a4_dice/dice_cube/8.png"), getSrcPath("activity/a4_dice/dice_cube/9.png"), getSrcPath("activity/a4_dice/dice_cube/10.png"), getSrcPath("activity/a4_dice/dice_cube/11.png")];
+const DICE_RESULT_FRAME_BY_VALUE = {
+  1: getSrcPath("activity/a4_dice/dice_cube/end_1.png"),
+  2: getSrcPath("activity/a4_dice/dice_cube/end_2.png"),
+  3: getSrcPath("activity/a4_dice/dice_cube/end_3.png"),
+  4: getSrcPath("activity/a4_dice/dice_cube/end_4.png"),
+  5: getSrcPath("activity/a4_dice/dice_cube/end_5.png"),
+  6: getSrcPath("activity/a4_dice/dice_cube/end_6.png")
+};
+const SUMMARY_EVENT = {
+  "add_type_exp": "#ActivityDice_SummaryEvent_AddTypeExp",
+  "move_pos": "#ActivityDice_SummaryEvent_MovePos",
+  "move_neg": "#ActivityDice_SummaryEvent_MoveNeg",
+  "move_start": "#ActivityDice_SummaryEvent_MoveStart",
+  "receive_box": "#ActivityDice_SummaryEvent_ReceiveBox",
+  "generate_box": "#ActivityDice_SummaryEvent_GenerateBox"
+};
+const isDiceSummaryEventKey = key => key in SUMMARY_EVENT;
+const PLAYER_SEQUENCE_FRAME_IDLE_INTERVAL = 130;
+const PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL = 70;
+const DICE_SEQUENCE_FRAME_INTERVAL = 65;
+const FAST_PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL = 20;
+const NORMAL_DICE_PLAYBACK_CONFIG = {
+  playerJumpFrameIntervalMs: PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL,
+  diceFrameIntervalMs: DICE_SEQUENCE_FRAME_INTERVAL,
+  playerMoveStepDurationSeconds: PLAYER_JUMP_SEQUENCE_FRAMES.length * PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL / 1000,
+  moveEventDelaySeconds: 1,
+  eventLayerDisplayDurationSeconds: 2.5
+};
+const FAST_DICE_PLAYBACK_CONFIG = {
+  playerJumpFrameIntervalMs: FAST_PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL,
+  diceFrameIntervalMs: 32,
+  playerMoveStepDurationSeconds: PLAYER_JUMP_SEQUENCE_FRAMES.length * FAST_PLAYER_SEQUENCE_FRAME_JUMP_INTERVAL / 1000,
+  moveEventDelaySeconds: 0,
+  eventLayerDisplayDurationSeconds: 0.2
+};
+const DICE_BOARD_COLUMN_COUNT = 8;
+const DICE_BOARD_ROW_COUNT = 7;
+const DICE_BOARD_CELL_WIDTH = 96;
+const DICE_BOARD_CELL_HEIGHT = 82;
+const DICE_BOARD_ROW_OFFSET_X_LIST = [150, 100, 50, 0, -50, -100, -150];
+const DICE_PLAYER_PIECE_SIZE = 400 * 0.5;
+const DICE_PLAYER_ANCHOR_X = DICE_PLAYER_PIECE_SIZE / 2 + 50;
+const DICE_PLAYER_ANCHOR_Y = DICE_PLAYER_PIECE_SIZE;
+const DICE_PLAYER_OFFSET_X = 0;
+const DICE_PLAYER_OFFSET_Y = 30;
+const DICE_EVENT_LAYER_OFFSET_X = 12;
+const DICE_EVENT_LAYER_OFFSET_Y = 0;
+const TilePath = [8, 9, 10, 2, 3, 4, 5, 13, 14, 22, 30, 31, 39, 47, 46, 54, 53, 52, 51, 50, 42, 41, 33, 25, 24, 16];
+const getBoardSlotConfigMap = activityID => {
+  const boardSlotRewardConfig = KeyValues.activity_boardslot_reward ?? {};
+  return Object.values(boardSlotRewardConfig).reduce((slotConfigMap, slotConfig) => {
+    if (slotConfig.activity_id == activityID) {
+      slotConfigMap[slotConfig.slot_id] = slotConfig;
+    }
+    return slotConfigMap;
+  }, {});
+};
+const getBoardSlotConfigBySlotID = (activityID, slotID) => {
+  return getBoardSlotConfigMap(activityID)[slotID];
+};
+const parseDiceNumberList = value => {
+  if (value == undefined || value.length == 0) {
+    return [];
+  }
+  return value.split("|").map(item => Number(item)).filter(item => Number.isFinite(item));
+};
+const getRewardNumList = slotConfig => {
+  return parseDiceNumberList(slotConfig?.reward_num);
+};
+const getLevelupExpList = slotConfig => {
+  return parseDiceNumberList(slotConfig?.levelup_exp);
+};
+const getSlotMaxLevel = slotConfig => {
+  const rewardNumList = getRewardNumList(slotConfig);
+  const levelupExpList = getLevelupExpList(slotConfig);
+  return Math.max(DEFAULT_SLOT_LEVEL, rewardNumList.length > 0 ? rewardNumList.length - 1 : levelupExpList.length);
+};
+const clampSlotLevel = (slotConfig, level) => {
+  const maxLevel = getSlotMaxLevel(slotConfig);
+  const normalizedLevel = Number.isFinite(level) ? Math.trunc(Number(level)) : DEFAULT_SLOT_LEVEL;
+  return Math.max(DEFAULT_SLOT_LEVEL, Math.min(maxLevel, normalizedLevel));
+};
+const calculateSlotLevelExp = (slotConfig, currentLevel, currentExp, addExp) => {
+  const levelupExpList = getLevelupExpList(slotConfig);
+  const maxLevel = getSlotMaxLevel(slotConfig);
+  let level = clampSlotLevel(slotConfig, currentLevel);
+  let exp = Math.max(0, Number(currentExp) || 0) + Math.max(0, addExp);
+  while (level < maxLevel) {
+    const needExp = levelupExpList[level];
+    if (needExp == undefined || needExp <= 0 || exp < needExp) {
+      break;
+    }
+    exp -= needExp;
+    level += 1;
+  }
+  return {
+    level,
+    exp
+  };
+};
+const getSlotRewardAmount = (slotConfig, level) => {
+  const rewardNumList = getRewardNumList(slotConfig);
+  if (rewardNumList.length == 0) {
+    return 0;
+  }
+  const rewardLevel = clampSlotLevel(slotConfig, level);
+  return rewardNumList[rewardLevel] ?? 0;
+};
+const isRewardSlot = slotConfig => {
+  return slotConfig.slot_type == SLOT_TYPE_REWARD;
+};
+const isLevelableSlot = slotConfig => {
+  return slotConfig.slot_type == SLOT_TYPE_TOKEN || slotConfig.slot_type == SLOT_TYPE_REWARD;
+};
+const getSlotTileType = (slotConfig, slotData) => {
+  const level = clampSlotLevel(slotConfig, slotData?.level);
+  return SLOT_LEVEL_TILE_CONFIG[level] ?? DEFAULT_TILE_CONFIG.tileType;
+};
+const getSlotRarity = level => {
+  return SLOT_LEVEL_RARITY_CONFIG[level] ?? SLOT_LEVEL_RARITY_CONFIG[DEFAULT_SLOT_LEVEL];
+};
+const getTileConfigBySlotConfig = (slotConfig, slotData) => {
+  if (slotConfig == undefined) {
+    return DEFAULT_TILE_CONFIG;
+  }
+  const tileConfig = SLOT_TYPE_TILE_CONFIG[slotConfig.slot_type];
+  if (tileConfig !== undefined) {
+    return {
+      ...tileConfig,
+      decorationType: slotData?.with_box ? "box" : tileConfig.decorationType
+    };
+  }
+  if (isLevelableSlot(slotConfig)) {
+    const rewardID = Number(slotConfig.reward_id);
+    return {
+      tileType: getSlotTileType(slotConfig, slotData),
+      iconType: isRewardSlot(slotConfig) ? REWARD_SLOT_ICON_CONFIG[rewardID] ?? "none" : "none",
+      decorationType: slotData?.with_box ? "box" : slotConfig.slot_type == SLOT_TYPE_TOKEN ? "token" : "none"
+    };
+  }
+  return DEFAULT_TILE_CONFIG;
+};
+const buildTileConfigMap = (activityID, activitySlotData) => {
+  const slotConfigMap = getBoardSlotConfigMap(activityID);
+  return TilePath.reduce((tileConfigMap, _tileIndex, index) => {
+    const slotID = index + 1;
+    const slotData = activitySlotData?.[slotID];
+    tileConfigMap[slotID] = getTileConfigBySlotConfig(slotConfigMap[slotID], slotData);
+    return tileConfigMap;
+  }, {});
+};
+const getActivitySlotData = slotData => {
+  return Object.values(slotData ?? {}).reduce((activitySlotData, data) => {
+    if (data.activity_id == ACTIVITY_DICE_ID$3) {
+      activitySlotData[data.slot_id] = data;
+    }
+    return activitySlotData;
+  }, {});
+};
+const getActivityGameData = gameData => {
+  return gameData?.[ACTIVITY_DICE_ID$3];
+};
+const getActivityBoardslotConfig = activityID => {
+  return KeyValues.activity_boardslot?.[activityID];
+};
+const getDiceSlotTooltipData = (activityID, slotID, slotData) => {
+  const slotConfig = getBoardSlotConfigBySlotID(activityID, slotID);
+  if (slotConfig == undefined) {
+    return undefined;
+  }
+  const levelable = isLevelableSlot(slotConfig);
+  const level = clampSlotLevel(slotConfig, slotData?.level);
+  const maxLevel = getSlotMaxLevel(slotConfig);
+  const levelupExpList = getLevelupExpList(slotConfig);
+  const requiredExp = levelupExpList[level] ?? 0;
+  const currentExp = Math.max(0, Number(slotData?.extra_exp) || 0);
+  const rewardID = Number(slotConfig.reward_id);
+  const rewardAmount = getSlotRewardAmount(slotConfig, level);
+  const rewards = [];
+  const nextRewards = [];
+  if (Number.isFinite(rewardID) && rewardAmount > 0) {
+    rewards.push({
+      item_id: rewardID,
+      amount: rewardAmount,
+      src_path: STOREITEMIMAGE_SRCPATH[rewardID]
+    });
+  }
+  if (slotData?.with_box) {
+    const boxID = 1800008;
+    if (Number.isFinite(boxID) && boxID > 0) {
+      rewards.push({
+        item_id: boxID,
+        amount: 1,
+        src_path: STOREITEMIMAGE_SRCPATH[boxID]
+      });
+    }
+  }
+  const nextLevel = level + 1;
+  const nextRewardAmount = levelable && level < maxLevel ? getSlotRewardAmount(slotConfig, nextLevel) : 0;
+  if (Number.isFinite(rewardID) && nextRewardAmount > 0) {
+    nextRewards.push({
+      item_id: rewardID,
+      amount: nextRewardAmount,
+      src_path: STOREITEMIMAGE_SRCPATH[rewardID]
+    });
+  }
+  const hasNextReward = nextRewards.length > 0;
+  const nextRequiredExp = levelupExpList[nextLevel] ?? 0;
+  const description = slotConfig.slot_type == SLOT_TYPE_START || slotConfig.slot_type == SLOT_TYPE_EVENT ? GetLocalization(`#ActivityDice_TileDescription_${slotConfig.slot_type}`) : "";
+  return {
+    title: GetLocalization(`#ActivityDice_TileType_${slotConfig.slot_type}`),
+    level_key: levelable ? GetLocalization(`#ActivityDice_RewardRarity_${level}`) : undefined,
+    rarity: levelable ? getSlotRarity(level) : undefined,
+    exp_desc: levelable && level < maxLevel && requiredExp > 0 ? LocalizeWithVars(`#ActivityDice_DiceTooltip_ExpDesc`, {
+      current_exp: currentExp,
+      exp_max: requiredExp
+    }) : "",
+    description,
+    rewards,
+    next_level_key: hasNextReward ? GetLocalization(`#ActivityDice_RewardRarity_${nextLevel}`) : undefined,
+    next_rarity: hasNextReward ? getSlotRarity(nextLevel) : undefined,
+    next_exp_desc: hasNextReward && nextLevel < maxLevel && nextRequiredExp > 0 ? LocalizeWithVars(`#ActivityDice_DiceTooltip_ExpDesc`, {
+      current_exp: 0,
+      exp_max: nextRequiredExp
+    }) : "",
+    next_rewards: nextRewards
+  };
+};
+const getPlayerPathIndexBySlotID = slotID => {
+  if (slotID == undefined) {
+    return 0;
+  }
+  const index = slotID - 1;
+  if (index < 0 || index >= TilePath.length) {
+    return 0;
+  }
+  return index;
+};
+const getDiceBoardRowOffsetX = rowIndex => {
+  return DICE_BOARD_ROW_OFFSET_X_LIST[rowIndex] ?? 0;
+};
+const getDiceBoardPiecePosition = tileIndex => {
+  const rowIndex = Math.floor(tileIndex / DICE_BOARD_COLUMN_COUNT);
+  const columnIndex = tileIndex % DICE_BOARD_COLUMN_COUNT;
+  return {
+    left: columnIndex * DICE_BOARD_CELL_WIDTH + getDiceBoardRowOffsetX(rowIndex),
+    top: rowIndex * DICE_BOARD_CELL_HEIGHT
+  };
+};
+const normalizePlayerPathIndex = index => {
+  return (index % TilePath.length + TilePath.length) % TilePath.length;
+};
+const isPlayerSlotFacingForward = pathIndex => {
+  const slotID = normalizePlayerPathIndex(pathIndex) + 1;
+  return slotID <= 6 || slotID >= 20;
+};
+const isDiceValue = value => {
+  return value != undefined && value >= 1 && value <= 6;
+};
+const getValidDiceRollValue = parsedResult => {
+  const {
+    event
+  } = parsedResult;
+  if (event.key != "move_dice" || !event.valid) {
+    return undefined;
+  }
+  const diceValue = event.args[0];
+  return isDiceValue(diceValue) ? diceValue : undefined;
+};
+const getValidDiceRollValues = parsedResults => {
+  return parsedResults.map(getValidDiceRollValue).filter(diceValue => diceValue != undefined);
+};
+const getBatchLastMovement = (startPathIndex, parsedResults) => {
+  let currentPathIndex = startPathIndex;
+  let lastMovement;
+  for (const parsedResult of parsedResults) {
+    const {
+      event
+    } = parsedResult;
+    if (!event.matched || !event.valid) {
+      continue;
+    }
+    switch (event.key) {
+      case "move_dice":
+        if (!isDiceValue(event.args[0])) {
+          break;
+        }
+        currentPathIndex = normalizePlayerPathIndex(currentPathIndex + event.args[0]);
+        lastMovement = {
+          eventIndex: parsedResult.index,
+          pathIndex: currentPathIndex
+        };
+        break;
+      case "move_pos":
+        currentPathIndex = normalizePlayerPathIndex(currentPathIndex + event.args[0]);
+        lastMovement = {
+          eventIndex: parsedResult.index,
+          pathIndex: currentPathIndex
+        };
+        break;
+      case "move_neg":
+        currentPathIndex = normalizePlayerPathIndex(currentPathIndex - event.args[0]);
+        lastMovement = {
+          eventIndex: parsedResult.index,
+          pathIndex: currentPathIndex
+        };
+        break;
+      case "move_start":
+        currentPathIndex = 0;
+        lastMovement = {
+          eventIndex: parsedResult.index,
+          pathIndex: currentPathIndex
+        };
+        break;
+    }
+  }
+  return lastMovement;
+};
+const buildDiceBoardLayoutRows = () => {
+  const slotIDByTileIndex = TilePath.reduce((slotIDMap, tileIndex, index) => {
+    slotIDMap[tileIndex] = index + 1;
+    return slotIDMap;
+  }, {});
+  return Array.from({
+    length: DICE_BOARD_ROW_COUNT
+  }, (_, rowIndex) => Array.from({
+    length: DICE_BOARD_COLUMN_COUNT
+  }, (_, columnIndex) => {
+    const tileIndex = rowIndex * DICE_BOARD_COLUMN_COUNT + columnIndex;
+    const id = tileIndex + 1;
+    const slotID = slotIDByTileIndex[tileIndex];
+    const progress = `${tileIndex}/${DICE_BOARD_COLUMN_COUNT * DICE_BOARD_ROW_COUNT - 1}`;
+    if (slotID === undefined) {
+      return {
+        id,
+        tileIndex,
+        progress,
+        shouldRenderPiece: false
+      };
+    }
+    return {
+      id,
+      tileIndex,
+      progress,
+      shouldRenderPiece: true,
+      slotID
+    };
+  }));
+};
+const DICE_BOARD_LAYOUT_ROWS = buildDiceBoardLayoutRows();
+const cloneDiceNetDataRecord = data => {
+  if (data == undefined) {
+    return undefined;
+  }
+  return Object.keys(data).reduce((clonedData, key) => {
+    const numericKey = Number(key);
+    clonedData[numericKey] = {
+      ...data[numericKey]
+    };
+    return clonedData;
+  }, {});
+};
+const getDiceTaskState = task => {
+  if (task.receive_progress == 1) {
+    return "Received";
+  }
+  if (task.progress >= task.target) {
+    return "Claimable";
+  }
+  return "InProgress";
+};
+const isDiceTaskClaimable = task => getDiceTaskState(task) == "Claimable";
+const isDiceTaskActive = (task, timestamp) => {
+  const isActive = task.start_time <= timestamp && task.end_time >= timestamp;
+  return isActive;
+};
+const getDiceTaskSortWeight = task => {
+  switch (getDiceTaskState(task)) {
+    case "Claimable":
+      return 0;
+    case "InProgress":
+      return 1;
+    case "Received":
+      return 2;
+  }
+};
+const getDiceTaskKey = task => `${task.task_id}_${task.extra_id}`;
+const shouldShowDiceTaskGroup = tasks => tasks.some(task => getDiceTaskState(task) != "Received");
+const player_activity_tasks$1 = solid_utils.createServiceNetData("player_activity_tasks", {});
+const [diceTaskServerTime, setDiceTaskServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
+setInterval(() => {
+  setDiceTaskServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp()));
+}, 1000);
+const diceTasksByType = libs.createMemo(() => {
+  const timestamp = diceTaskServerTime();
+  const taskGroups = {
+    6: [],
+    7: []
+  };
+  Object.values(player_activity_tasks$1()).forEach(task => {
+    const taskConfig = KeyValues.task[task.task_id];
+    if (!taskConfig || taskConfig.activity_id != ACTIVITY_DICE_ID$3) return;
+    if (taskConfig.type != 6 && taskConfig.type != 7) return;
+    if (!isDiceTaskActive(task, timestamp)) return;
+    taskGroups[taskConfig.type].push(task);
+  });
+  taskGroups[6].sort((a, b) => getDiceTaskSortWeight(a) - getDiceTaskSortWeight(b) || a.index - b.index || a.task_id - b.task_id);
+  taskGroups[7].sort((a, b) => getDiceTaskSortWeight(a) - getDiceTaskSortWeight(b) || a.index - b.index || a.task_id - b.task_id);
+  return taskGroups;
+});
+libs.createEffect(() => {
+  const hasClaimableTask = diceTasksByType()[6].some(isDiceTaskClaimable) || diceTasksByType()[7].some(isDiceTaskClaimable);
+  CustomUIConfig.SetRedPoint(hasClaimableTask, "activity", "boardslot", "dice_game");
+});
+function DiceTaskItem(props) {
+  const taskConfig = libs.createMemo(() => KeyValues.task[props.task.task_id]);
+  const reward = libs.createMemo(() => Object.entries(taskConfig().rewards ?? {})[0]);
+  const taskState = libs.createMemo(() => getDiceTaskState(props.task));
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+        get ["class"]() {
+          return libs.classNames("DiceTaskItem", taskState(), {
+            Claiming: props.claiming
+          });
+        }
+      }, null);
+      libs.createElement("Image", {
+        "class": "DiceTaskItemBG"
+      }, _el$);
+      const _el$3 = libs.createElement("Panel", {
+        "class": "DiceTaskItemLayer"
+      }, _el$),
+      _el$4 = libs.createElement("Panel", {
+        "class": "DiceTaskContent"
+      }, _el$3),
+      _el$5 = libs.createElement("Panel", {
+        "class": "DiceTaskHeader"
+      }, _el$4),
+      _el$6 = libs.createElement("Label", {
+        "class": "DiceTaskTitle",
+        get text() {
+          return GetLocalization(`#Task_Name_${props.task.task_id}`);
+        }
+      }, _el$5),
+      _el$7 = libs.createElement("Label", {
+        "class": "DiceTaskProgress",
+        get text() {
+          return `(${Math.min(props.task.progress, props.task.target)}/${props.task.target})`;
+        }
+      }, _el$5),
+      _el$8 = libs.createElement("Label", {
+        "class": "DiceTaskDescription",
+        get text() {
+          return LocalizeWithVars(`#Task_Desc_${props.task.task_id}`, {
+            target: GetLocalization(String(taskConfig().target)),
+            v1: GetLocalization(String(taskConfig().param_1)),
+            v2: GetLocalization(String(taskConfig().param_2)),
+            v3: GetLocalization(String(taskConfig().param_3))
+          });
+        }
+      }, _el$4);
+      libs.createElement("Panel", {
+        "class": "DiceTaskItemBottomLine"
+      }, _el$);
+    libs.setProp(_el$, "onactivate", () => {
+      if (!isDiceTaskClaimable(props.task) || props.claiming) {
+        return;
+      }
+      props.onClaim(props.task);
+    });
+    libs.insert(_el$3, libs.createComponent(libs.Show, {
+      get when() {
+        return reward();
+      },
+      children: rewardEntry => (() => {
+        const _el$0 = libs.createElement("Panel", {
+            "class": "DiceTaskReward"
+          }, null);
+          libs.createElement("Image", {
+            "class": "DiceTaskRewardBG"
+          }, _el$0);
+          const _el$11 = libs.createElement("Label", {
+            "class": "DiceTaskRewardValue",
+            get text() {
+              return String(rewardEntry()[1]);
+            }
+          }, _el$0);
+        libs.insert(_el$0, libs.createComponent(libs.Show, {
+          get when() {
+            return taskState() == "Claimable";
+          },
+          get children() {
+            return libs.createElement("Image", {
+              "class": "DiceTaskBorder"
+            }, null);
+          }
+        }), _el$11);
+        libs.insert(_el$0, libs.createComponent(StoreItem.StoreItemImage, {
+          "class": "DiceTaskRewardIcon",
+          get itemid() {
+            return rewardEntry()[0];
+          },
+          get src() {
+            return STOREITEMIMAGE_SRCPATH[Number(rewardEntry()[0])];
+          }
+        }), _el$11);
+        libs.effect(_$p => libs.setProp(_el$11, "text", String(rewardEntry()[1]), _$p));
+        return _el$0;
+      })()
+    }), null);
+    libs.effect(_p$ => {
+      const _v$ = libs.classNames("DiceTaskItem", taskState(), {
+          Claiming: props.claiming
+        }),
+        _v$2 = GetLocalization(`#Task_Name_${props.task.task_id}`),
+        _v$3 = `(${Math.min(props.task.progress, props.task.target)}/${props.task.target})`,
+        _v$4 = LocalizeWithVars(`#Task_Desc_${props.task.task_id}`, {
+          target: GetLocalization(String(taskConfig().target)),
+          v1: GetLocalization(String(taskConfig().param_1)),
+          v2: GetLocalization(String(taskConfig().param_2)),
+          v3: GetLocalization(String(taskConfig().param_3))
+        });
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "text", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$7, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$8, "text", _v$4, _p$._v$4));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined,
+      _v$3: undefined,
+      _v$4: undefined
+    });
+    return _el$;
+  })();
+}
+function DiceTaskGroup(props) {
+  return (() => {
+    const _el$12 = libs.createElement("Panel", {
+        "class": "DiceTaskGroup"
+      }, null),
+      _el$13 = libs.createElement("Panel", {
+        "class": "DiceTaskGroupTitle"
+      }, _el$12);
+      libs.createElement("Image", {
+        "class": "DiceTaskGroupTitleBG"
+      }, _el$13);
+      const _el$15 = libs.createElement("Label", {
+        get text() {
+          return GetLocalization(`#ActivityDice_TaskTitleType_${props.taskType}`);
+        }
+      }, _el$13),
+      _el$16 = libs.createElement("Panel", {
+        "class": "DiceTaskGroupContent"
+      }, _el$12);
+    libs.insert(_el$16, libs.createComponent(libs.For, {
+      get each() {
+        return props.tasks;
+      },
+      children: task => libs.createComponent(DiceTaskItem, {
+        task: task,
+        get claiming() {
+          return props.claimingTaskKey == getDiceTaskKey(task);
+        },
+        get onClaim() {
+          return props.onClaim;
+        }
+      })
+    }));
+    libs.effect(_$p => libs.setProp(_el$15, "text", GetLocalization(`#ActivityDice_TaskTitleType_${props.taskType}`), _$p));
+    return _el$12;
+  })();
+}
+function DiceGamePiece(props) {
+  return (() => {
+    const _el$17 = libs.createElement("Panel", {
+        "class": "DiceGamePiece"
+      }, null),
+      _el$18 = libs.createElement("Panel", {
+        "class": "DiceGameTileRotate"
+      }, _el$17),
+      _el$19 = libs.createElement("Image", {
+        get ["class"]() {
+          return libs.classNames("DiceGamePieceBG", `PieceType_${props.tileType}`);
+        }
+      }, _el$18),
+      _el$20 = libs.createElement("Image", {
+        get ["class"]() {
+          return libs.classNames("DiceGamePieceIcon", `IconType_${props.iconType}`);
+        }
+      }, _el$18),
+      _el$21 = libs.createElement("Image", {
+        get ["class"]() {
+          return libs.classNames("DiceGamePieceDecoration", `DecorationType_${props.decorationType}`);
+        }
+      }, _el$18);
+    libs.insert(_el$17, libs.createComponent(libs.Show, {
+      get when() {
+        return props.finishEffectToken;
+      },
+      keyed: true,
+      children: () => libs.createElement("DOTAParticleScenePanel", {
+        "class": "DiceGameTileEffect1",
+        particleName: "particles/ui/game/ui_game_checkerboard/ui_game_checkerboard_fx.vpcf",
+        cameraOrigin: "0 0 320",
+        lookAt: "0 0 0",
+        fov: 90,
+        hittest: false
+      }, null)
+    }), null);
+    libs.insert(_el$17, libs.createComponent(libs.Show, {
+      get when() {
+        return props.levelUpEffectToken;
+      },
+      keyed: true,
+      children: () => libs.createElement("DOTAParticleScenePanel", {
+        "class": "DiceGameTileEffectLevelUp",
+        particleName: "particles/ui/game/ui_game_checkerboard/ui_game_checkerboard_up_fx.vpcf",
+        cameraOrigin: "0 0 320",
+        lookAt: "0 0 0",
+        fov: 90,
+        hittest: false
+      }, null)
+    }), null);
+    libs.effect(_p$ => {
+      const _v$5 = libs.classNames("DiceGamePieceBG", `PieceType_${props.tileType}`),
+        _v$6 = libs.classNames("DiceGamePieceIcon", `IconType_${props.iconType}`),
+        _v$7 = libs.classNames("DiceGamePieceDecoration", `DecorationType_${props.decorationType}`);
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$19, "class", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$20, "class", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$21, "class", _v$7, _p$._v$7));
+      return _p$;
+    }, {
+      _v$5: undefined,
+      _v$6: undefined,
+      _v$7: undefined
+    });
+    return _el$17;
+  })();
+}
+function DiceGamePiecePlaceholder() {
+  return libs.createElement("Panel", {
+    "class": "DiceGamePiecePlaceholder"
+  }, null);
+}
+function DiceGamePlayerPiece(props) {
+  const IdleSequenceFrame = props.IdleSequenceFrame;
+  const JumpSequenceFrame = props.JumpSequenceFrame;
+  return (() => {
+    const _el$25 = libs.createElement("Panel", {
+      get ["class"]() {
+        return libs.classNames("DiceGamePlayerPiece", {
+          PlayerMoving: props.positionTransitionEnabled,
+          FastForward: props.fastForward,
+          FacingForward: props.facingForward
+        });
+      },
+      get style() {
+        return {
+          position: props.position
+        };
+      }
+    }, null);
+    libs.insert(_el$25, libs.createComponent(IdleSequenceFrame, {
+      "class": "DiceGamePlayerSequenceFrame",
+      get visible() {
+        return !props.moving;
+      }
+    }), null);
+    libs.insert(_el$25, libs.createComponent(JumpSequenceFrame, {
+      "class": "DiceGamePlayerSequenceFrame",
+      get visible() {
+        return props.moving;
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$8 = libs.classNames("DiceGamePlayerPiece", {
+          PlayerMoving: props.positionTransitionEnabled,
+          FastForward: props.fastForward,
+          FacingForward: props.facingForward
+        }),
+        _v$9 = {
+          position: props.position
+        };
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$25, "class", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$25, "style", _v$9, _p$._v$9));
+      return _p$;
+    }, {
+      _v$8: undefined,
+      _v$9: undefined
+    });
+    return _el$25;
+  })();
+}
+function DiceGameDiceCube(props) {
+  const SequenceFrame = props.SequenceFrame;
+  return (() => {
+    const _el$26 = libs.createElement("Panel", {
+      id: "DiceGameDiceCube",
+      hittest: false,
+      hittestchildren: false
+    }, null);
+    libs.insert(_el$26, libs.createComponent(SequenceFrame, {
+      "class": "DiceGameDiceSequenceFrame"
+    }));
+    libs.effect(_$p => libs.setProp(_el$26, "visible", props.visible, _$p));
+    return _el$26;
+  })();
+}
+function Dice() {
+  const logoLang = libs.createMemo(() => {
+    const lang = Language();
+    if (lang == "schinese") {
+      return "Language_schinese";
+    } else if (lang == "russian") {
+      return "Language_russian";
+    } else {
+      return "Language_english";
+    }
+  });
+  const [isMultiRollPlaying, setIsMultiRollPlaying] = libs.createSignal(false);
+  const dicePlaybackConfig = libs.createMemo(() => isMultiRollPlaying() ? FAST_DICE_PLAYBACK_CONFIG : NORMAL_DICE_PLAYBACK_CONFIG);
+  const playerIdle = createSequenceFrame({
+    frames: PLAYER_IDLE_SEQUENCE_FRAMES,
+    interval: PLAYER_SEQUENCE_FRAME_IDLE_INTERVAL,
+    isLoop: true,
+    autoPlay: true
+  });
+  const playerJump = createSequenceFrame({
+    frames: PLAYER_JUMP_SEQUENCE_FRAMES,
+    interval: () => dicePlaybackConfig().playerJumpFrameIntervalMs,
+    isLoop: false,
+    autoPlay: false
+  });
+  const [diceResult, setDiceResult] = libs.createSignal(1);
+  const diceSequence = createSequenceFrame({
+    frames: () => [...DICE_SEQUENCE_FRAMES, DICE_RESULT_FRAME_BY_VALUE[diceResult()]],
+    interval: () => dicePlaybackConfig().diceFrameIntervalMs,
+    isLoop: false,
+    autoPlay: false
+  });
+  const activityData = libs.createMemo(() => KeyValues.activity_data[ACTIVITY_DICE_ID$3]);
+  const [claimingTaskKey, setClaimingTaskKey] = libs.createSignal();
+  const receiveDiceTaskReward = task => {
+    const timestamp = Math.floor(CustomUIConfig.GetServerTimeStamp());
+    if (!isDiceTaskActive(task, timestamp) || !isDiceTaskClaimable(task) || claimingTaskKey() != undefined) {
+      return;
+    }
+    setClaimingTaskKey(getDiceTaskKey(task));
+    CallActionRequest("/v1/task/receive_rewards", {
+      task_id: task.task_id,
+      extra_id: task.extra_id
+    }, () => {
+      setClaimingTaskKey(undefined);
+    }, () => {
+      setClaimingTaskKey(undefined);
+    });
+  };
+  const diceTileData = solid_utils.createServiceNetData("player_boardslot_activity_slot_data", {});
+  const diceGameData = solid_utils.createServiceNetData("player_boardslot_activity_data", {});
+  const playerTokens = solid_utils.createServiceNetData("player_tokens", {});
+  const playerProps = solid_utils.createServiceNetData("player_props", {});
+  const [displayTileData, setDisplayTileData] = libs.createSignal(cloneDiceNetDataRecord(diceTileData()));
+  const [displayGameData, setDisplayGameData] = libs.createSignal(cloneDiceNetDataRecord(diceGameData()));
+  const [isDisplaySyncPaused, setIsDisplaySyncPaused] = libs.createSignal(false);
+  const activityBoardslotConfig = libs.createMemo(() => getActivityBoardslotConfig(ACTIVITY_DICE_ID$3));
+  const diceTicketID = libs.createMemo(() => activityBoardslotConfig()?.ticket_id ?? 0);
+  const diceTicketCount = libs.createMemo(() => {
+    playerTokens();
+    playerProps();
+    return GetServiceItemCount(diceTicketID());
+  });
+  const maxDiceRollTimes = libs.createMemo(() => Math.min(DICE_ROLL_TEN_TIMES, Math.max(0, Math.trunc(diceTicketCount()))));
+  const diceRoll10ButtonTimes = libs.createMemo(() => maxDiceRollTimes() >= DICE_ROLL_ONCE_TIMES ? maxDiceRollTimes() : DICE_ROLL_TEN_TIMES);
+  const hasEnoughDiceTicket = playTimes => diceTicketCount() >= playTimes;
+  const activitySlotData = libs.createMemo(() => getActivitySlotData(displayTileData()));
+  const activityGameData = libs.createMemo(() => getActivityGameData(displayGameData()));
+  const nextSlotExtraExp = libs.createMemo(() => Math.max(0, Number(activityGameData()?.next_slot_extra_exp) || 0));
+  const hasPlayerEvent = libs.createMemo(() => nextSlotExtraExp() > 0);
+  const tileConfigMap = libs.createMemo(() => buildTileConfigMap(ACTIVITY_DICE_ID$3, activitySlotData()));
+  const [diceEventQueue, setDiceEventQueue] = libs.createSignal([]);
+  const [currentDiceEvent, setCurrentDiceEvent] = libs.createSignal();
+  const [isExecutingDiceEvents, setIsExecutingDiceEvents] = libs.createSignal(false);
+  const [currentBatchLastMovement, setCurrentBatchLastMovement] = libs.createSignal();
+  const [playerPathIndex, setPlayerPathIndex] = libs.createSignal(0);
+  const [remainingMoveSteps, setRemainingMoveSteps] = libs.createSignal(0);
+  const [isPlayerMoveStepping, setIsPlayerMoveStepping] = libs.createSignal(false);
+  const [playerMoveDirection, setPlayerMoveDirection] = libs.createSignal(0);
+  const [isDiceVisible, setIsDiceVisible] = libs.createSignal(false);
+  const [isRollRequesting, setIsRollRequesting] = libs.createSignal(false);
+  const [isDiceEventLayerVisible, setIsDiceEventLayerVisible] = libs.createSignal(false);
+  const [diceEventLayerPosition, setDiceEventLayerPosition] = libs.createSignal("0px 0px 0px");
+  const [diceEventLayerTitle, setDiceEventLayerTitle] = libs.createSignal(GetLocalization("#ActivityDice_DiceEventTitle"));
+  const [diceEventLayerDescription, setDiceEventLayerDescription] = libs.createSignal("");
+  const [diceEventLayerType, setDiceEventLayerType] = libs.createSignal("good");
+  const [isMultiRollPointLayerVisible, setIsMultiRollPointLayerVisible] = libs.createSignal(false);
+  const [multiRollPointValue, setMultiRollPointValue] = libs.createSignal(1);
+  const [multiRollCurrentIndex, setMultiRollCurrentIndex] = libs.createSignal(0);
+  const [multiRollTotalCount, setMultiRollTotalCount] = libs.createSignal(0);
+  const [multiRollSummaryItems, setMultiRollSummaryItems] = libs.createSignal([]);
+  const [isMultiRollSummaryLayerVisible, setIsMultiRollSummaryLayerVisible] = libs.createSignal(false);
+  const [isBoxPreviewLayerVisible, setIsBoxPreviewLayerVisible] = libs.createSignal(false);
+  const [boxPreviewReward, setBoxPreviewReward] = libs.createSignal();
+  const [finishTileEffect, setFinishTileEffect] = libs.createSignal();
+  const [levelUpTileEffectTokens, setLevelUpTileEffectTokens] = libs.createSignal({});
+  let moveScheduleID;
+  let diceEventDelayScheduleID;
+  let boxPreviewScheduleID;
+  let finishTileEffectScheduleID;
+  let nextTileEffectToken = 0;
+  let diceEventRunID = 0;
+  let finishDiceRoll;
+  const pendingRewardItems = new Map();
+  const levelUpTileEffectScheduleIDs = new Map();
+  const clearMoveSchedule = () => {
+    if (moveScheduleID !== undefined) {
+      $.CancelScheduled(moveScheduleID);
+      moveScheduleID = undefined;
+    }
+  };
+  const clearDiceEventDelaySchedule = () => {
+    if (diceEventDelayScheduleID !== undefined) {
+      $.CancelScheduled(diceEventDelayScheduleID);
+      diceEventDelayScheduleID = undefined;
+    }
+  };
+  const clearBoxPreview = () => {
+    if (boxPreviewScheduleID !== undefined) {
+      $.CancelScheduled(boxPreviewScheduleID);
+      boxPreviewScheduleID = undefined;
+    }
+    setIsBoxPreviewLayerVisible(false);
+    setBoxPreviewReward(undefined);
+  };
+  const clearFinishTileEffectSchedule = () => {
+    if (finishTileEffectScheduleID !== undefined) {
+      $.CancelScheduled(finishTileEffectScheduleID);
+      finishTileEffectScheduleID = undefined;
+    }
+  };
+  const showFinishTileEffect = slotID => {
+    clearFinishTileEffectSchedule();
+    const token = ++nextTileEffectToken;
+    setFinishTileEffect({
+      slotID,
+      token
+    });
+    finishTileEffectScheduleID = $.Schedule(DICE_TILE_FINISH_EFFECT_DURATION_SECONDS, () => {
+      finishTileEffectScheduleID = undefined;
+      setFinishTileEffect(currentEffect => currentEffect?.token == token ? undefined : currentEffect);
+    });
+  };
+  const showLevelUpTileEffect = slotID => {
+    const currentScheduleID = levelUpTileEffectScheduleIDs.get(slotID);
+    if (currentScheduleID !== undefined) {
+      $.CancelScheduled(currentScheduleID);
+    }
+    const token = ++nextTileEffectToken;
+    setLevelUpTileEffectTokens(currentTokens => ({
+      ...currentTokens,
+      [slotID]: token
+    }));
+    const scheduleID = $.Schedule(DICE_TILE_LEVEL_UP_EFFECT_DURATION_SECONDS, () => {
+      levelUpTileEffectScheduleIDs.delete(slotID);
+      setLevelUpTileEffectTokens(currentTokens => {
+        if (currentTokens[slotID] != token) {
+          return currentTokens;
+        }
+        const nextTokens = {
+          ...currentTokens
+        };
+        delete nextTokens[slotID];
+        return nextTokens;
+      });
+    });
+    levelUpTileEffectScheduleIDs.set(slotID, scheduleID);
+  };
+  const clearTileEffectSchedules = () => {
+    clearFinishTileEffectSchedule();
+    for (const scheduleID of levelUpTileEffectScheduleIDs.values()) {
+      $.CancelScheduled(scheduleID);
+    }
+    levelUpTileEffectScheduleIDs.clear();
+  };
+  const syncDisplayDataFromNetData = () => {
+    setDisplayTileData(cloneDiceNetDataRecord(diceTileData()));
+    setDisplayGameData(cloneDiceNetDataRecord(diceGameData()));
+  };
+  const pauseDisplaySync = () => {
+    syncDisplayDataFromNetData();
+    setIsDisplaySyncPaused(true);
+  };
+  const resumeDisplaySync = () => {
+    setIsDisplaySyncPaused(false);
+    syncDisplayDataFromNetData();
+  };
+  const resetMultiRollState = () => {
+    setIsMultiRollPlaying(false);
+    setIsMultiRollPointLayerVisible(false);
+    setMultiRollPointValue(1);
+    setMultiRollCurrentIndex(0);
+    setMultiRollTotalCount(0);
+  };
+  const clearMultiRollSummary = () => {
+    setMultiRollSummaryItems([]);
+    setIsMultiRollSummaryLayerVisible(false);
+  };
+  const clearPendingRewardItems = () => {
+    pendingRewardItems.clear();
+  };
+  const initializePendingRewardItems = rewardItems => {
+    clearPendingRewardItems();
+    if (!Array.isArray(rewardItems)) {
+      console.log("[DiceReward] missing add_items.common", rewardItems);
+      return;
+    }
+    for (const rewardItem of rewardItems) {
+      const {
+        item_id: itemID,
+        amounts,
+        item_rarity: itemRarity
+      } = rewardItem;
+      if (!Number.isInteger(itemID) || itemID <= 0 || !Number.isFinite(amounts) || amounts <= 0) {
+        console.log("[DiceReward] invalid reward item", rewardItem);
+        continue;
+      }
+      const normalizedRarity = Number.isFinite(itemRarity) ? itemRarity : GetServiceItemRarity(itemID);
+      if (!Number.isFinite(itemRarity)) {
+        console.log("[DiceReward] invalid item rarity", rewardItem);
+      }
+      const pendingRewardItem = pendingRewardItems.get(itemID);
+      if (pendingRewardItem == undefined) {
+        pendingRewardItems.set(itemID, {
+          item_id: itemID,
+          amounts,
+          item_rarity: normalizedRarity
+        });
+        continue;
+      }
+      if (pendingRewardItem.item_rarity != normalizedRarity) {
+        console.log("[DiceReward] inconsistent item rarity", pendingRewardItem, rewardItem);
+      }
+      pendingRewardItems.set(itemID, {
+        ...pendingRewardItem,
+        amounts: pendingRewardItem.amounts + amounts
+      });
+    }
+  };
+  const getPendingRewardItems = () => Array.from(pendingRewardItems.values()).filter(rewardItem => rewardItem.amounts > 0);
+  const emitDiceRewardToast = rewardItems => {
+    if (rewardItems.length == 0) {
+      return;
+    }
+    ClientSideEvent("ReceiveRewards", {
+      json: JSON.stringify(rewardItems)
+    });
+  };
+  const consumePendingRewardItem = rewardItem => {
+    const pendingRewardItem = pendingRewardItems.get(rewardItem.item_id);
+    if (pendingRewardItem == undefined) {
+      console.log("[DiceReward] displayed reward missing from pending rewards", rewardItem);
+      return;
+    }
+    if (rewardItem.amounts >= pendingRewardItem.amounts) {
+      if (rewardItem.amounts > pendingRewardItem.amounts) {
+        console.log("[DiceReward] displayed reward exceeds pending amount", rewardItem, pendingRewardItem);
+      }
+      pendingRewardItems.delete(rewardItem.item_id);
+      return;
+    }
+    pendingRewardItems.set(rewardItem.item_id, {
+      ...pendingRewardItem,
+      amounts: pendingRewardItem.amounts - rewardItem.amounts
+    });
+  };
+  const showAndConsumeDiceRewards = rewardItems => {
+    emitDiceRewardToast(rewardItems);
+    for (const rewardItem of rewardItems) {
+      consumePendingRewardItem(rewardItem);
+    }
+  };
+  const finishPendingRewardItems = () => {
+    const remainingRewardItems = getPendingRewardItems();
+    if (remainingRewardItems.length > 0) {
+      console.log("[DiceReward] rewards remain after normal playback", remainingRewardItems);
+    }
+    clearPendingRewardItems();
+  };
+  const finishMultiRollState = () => {
+    const shouldShowSummary = isMultiRollPlaying() && multiRollSummaryItems().length > 0;
+    resetMultiRollState();
+    setIsMultiRollSummaryLayerVisible(shouldShowSummary);
+  };
+  const syncPlayerPathIndexFromDisplayData = () => {
+    setPlayerPathIndex(getPlayerPathIndexBySlotID(getActivityGameData(displayGameData())?.now_slot_id));
+  };
+  const updateDisplaySlotExp = (slotID, addExp) => {
+    const slotConfig = getBoardSlotConfigBySlotID(ACTIVITY_DICE_ID$3, slotID);
+    if (slotConfig == undefined) {
+      console.log("[DiceEvent] missing slot config for add exp", slotID);
+      return;
+    }
+    let didLevelUp = false;
+    setDisplayTileData(currentData => {
+      const nextData = cloneDiceNetDataRecord(currentData) ?? {};
+      const currentSlotData = nextData[slotID];
+      const currentSlotExp = currentSlotData?.extra_exp;
+      const currentLevel = clampSlotLevel(slotConfig, currentSlotData?.level);
+      const nextLevelExp = calculateSlotLevelExp(slotConfig, currentSlotData?.level, currentSlotExp, addExp);
+      didLevelUp = nextLevelExp.level > currentLevel;
+      nextData[slotID] = {
+        ...(currentSlotData ?? {}),
+        activity_id: ACTIVITY_DICE_ID$3,
+        slot_id: slotID,
+        level: nextLevelExp.level,
+        extra_exp: nextLevelExp.exp
+      };
+      return nextData;
+    });
+    if (didLevelUp) {
+      showLevelUpTileEffect(slotID);
+    }
+  };
+  const getUpgradedSlotIDs = (currentData, finalData) => {
+    const currentActivitySlotData = getActivitySlotData(currentData);
+    const finalActivitySlotData = getActivitySlotData(finalData);
+    const slotConfigMap = getBoardSlotConfigMap(ACTIVITY_DICE_ID$3);
+    return Object.values(slotConfigMap).filter(slotConfig => isLevelableSlot(slotConfig)).filter(slotConfig => {
+      const slotID = slotConfig.slot_id;
+      const currentLevel = clampSlotLevel(slotConfig, currentActivitySlotData[slotID]?.level);
+      const finalLevel = clampSlotLevel(slotConfig, finalActivitySlotData[slotID]?.level);
+      return finalLevel > currentLevel;
+    }).map(slotConfig => slotConfig.slot_id);
+  };
+  const updateDisplaySlotTypeExp = (slotType, addExp) => {
+    const slotConfigMap = getBoardSlotConfigMap(ACTIVITY_DICE_ID$3);
+    for (const slotConfig of Object.values(slotConfigMap)) {
+      if (slotConfig.slot_type != slotType) {
+        continue;
+      }
+      updateDisplaySlotExp(slotConfig.slot_id, addExp);
+    }
+  };
+  const updateDisplaySlotBox = (slotID, withBox) => {
+    if (getBoardSlotConfigBySlotID(ACTIVITY_DICE_ID$3, slotID) == undefined) {
+      console.log("[DiceEvent] missing slot config for box update", slotID);
+      return;
+    }
+    setDisplayTileData(currentData => {
+      const nextData = cloneDiceNetDataRecord(currentData) ?? {};
+      const currentSlotData = nextData[slotID];
+      nextData[slotID] = {
+        ...(currentSlotData ?? {}),
+        activity_id: ACTIVITY_DICE_ID$3,
+        slot_id: slotID,
+        with_box: withBox
+      };
+      return nextData;
+    });
+  };
+  const showDiceReceiveRewardToast = slotID => {
+    const slotConfig = getBoardSlotConfigBySlotID(ACTIVITY_DICE_ID$3, slotID);
+    if (slotConfig == undefined || slotConfig.reward_id == undefined || slotConfig.reward_id.length == 0) {
+      console.log("[DiceEvent] missing reward config", slotID);
+      return;
+    }
+    const slotData = activitySlotData()[slotID];
+    const rewardID = Number(slotConfig.reward_id);
+    const rewardAmount = getSlotRewardAmount(slotConfig, slotData?.level);
+    if (!Number.isFinite(rewardID) || rewardAmount <= 0) {
+      console.log("[DiceEvent] invalid reward data", slotID, slotConfig);
+      return;
+    }
+    const rewardItem = {
+      item_id: rewardID,
+      amounts: rewardAmount,
+      item_rarity: pendingRewardItems.get(rewardID)?.item_rarity ?? GetServiceItemRarity(rewardID)
+    };
+    showAndConsumeDiceRewards([rewardItem]);
+  };
+  const showDiceReceiveBoxToast = (itemID, amounts) => {
+    const rewardItem = {
+      item_id: itemID,
+      amounts,
+      item_rarity: pendingRewardItems.get(itemID)?.item_rarity ?? GetServiceItemRarity(itemID)
+    };
+    showAndConsumeDiceRewards([rewardItem]);
+  };
+  const playerPiecePosition = libs.createMemo(() => {
+    const tileIndex = TilePath[playerPathIndex()];
+    const piecePosition = getDiceBoardPiecePosition(tileIndex);
+    const targetLeft = piecePosition.left + DICE_BOARD_CELL_WIDTH / 2;
+    const targetTop = piecePosition.top + DICE_BOARD_CELL_HEIGHT / 2;
+    const left = targetLeft - DICE_PLAYER_ANCHOR_X + DICE_PLAYER_OFFSET_X;
+    const top = targetTop - DICE_PLAYER_ANCHOR_Y + DICE_PLAYER_OFFSET_Y;
+    return `${left}px ${top}px 0px`;
+  });
+  const isPlayerPieceFacingForward = libs.createMemo(() => {
+    const slotFacingForward = isPlayerSlotFacingForward(playerPathIndex());
+    const isMovingBackward = playerMoveDirection() == -1;
+    return slotFacingForward != isMovingBackward;
+  });
+  const showDiceEventLayer = () => {
+    setIsDiceEventLayerVisible(true);
+  };
+  const hideDiceEventLayer = () => {
+    setIsDiceEventLayerVisible(false);
+  };
+  const setDiceEventLayerContent = (description, eventType = "good") => {
+    setDiceEventLayerTitle(GetLocalization("#ActivityDice_DiceEventTitle"));
+    setDiceEventLayerDescription(description);
+    setDiceEventLayerType(eventType);
+  };
+  const setDiceEventLayerPositionToSlot = slotID => {
+    const pathIndex = getPlayerPathIndexBySlotID(slotID);
+    const tileIndex = TilePath[pathIndex];
+    const piecePosition = getDiceBoardPiecePosition(tileIndex);
+    const left = piecePosition.left + DICE_BOARD_CELL_WIDTH + DICE_EVENT_LAYER_OFFSET_X;
+    const top = piecePosition.top + DICE_EVENT_LAYER_OFFSET_Y;
+    setDiceEventLayerPosition(`${left}px ${top}px 0px`);
+  };
+  const setupDiceEventLayer = (parsedResult, description, eventType = "good") => {
+    setDiceEventLayerContent(description, eventType);
+    setDiceEventLayerPositionToSlot(parsedResult.slotID);
+  };
+  const getDiceTileTypeLocalization = slotType => {
+    return GetLocalization(`#ActivityDice_TileType_${slotType}`);
+  };
+  const getDiceEventDescription = parsedResult => {
+    const {
+      event
+    } = parsedResult;
+    if (!event.matched || !event.valid) {
+      return "";
+    }
+    switch (event.key) {
+      case "add_type_exp":
+        return LocalizeWithVars("#ActivityDice_DiceEvent_AddTypeExp", {
+          slot_type: getDiceTileTypeLocalization(event.args[0]),
+          slot_exp: event.args[1]
+        });
+      case "add_slot_exp":
+        {
+          const slotConfig = getBoardSlotConfigBySlotID(ACTIVITY_DICE_ID$3, event.args[0]);
+          return LocalizeWithVars("#ActivityDice_DiceEvent_AddTypeExp", {
+            slot_type: getDiceTileTypeLocalization(slotConfig?.slot_type ?? 0),
+            slot_exp: event.args[1]
+          });
+        }
+      case "move_pos":
+        return LocalizeWithVars("#ActivityDice_DiceEvent_MovePos", {
+          step: event.args[0]
+        });
+      case "move_neg":
+        return LocalizeWithVars("#ActivityDice_DiceEvent_MoveNeg", {
+          step: event.args[0]
+        });
+      case "move_start":
+        return GetLocalization("#ActivityDice_DiceEvent_MoveStart");
+      case "reward_next_slot":
+        return GetLocalization("#ActivityDice_DiceEvent_RewardNextSlot");
+      default:
+        return "";
+    }
+  };
+  const formatAddTypeExpSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "add_type_exp" || !event.valid) {
+      return undefined;
+    }
+    return LocalizeWithVars(localizationKey, {
+      slot_type: getDiceTileTypeLocalization(event.args[0]),
+      slot_exp: event.args[1]
+    });
+  };
+  const formatMovePosSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_pos" || !event.valid) {
+      return undefined;
+    }
+    return LocalizeWithVars(localizationKey, {
+      step: event.args[0]
+    });
+  };
+  const formatMoveNegSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_neg" || !event.valid) {
+      return undefined;
+    }
+    return LocalizeWithVars(localizationKey, {
+      step: event.args[0]
+    });
+  };
+  const formatMoveStartSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_start" || !event.valid) {
+      return undefined;
+    }
+    return GetLocalization(localizationKey);
+  };
+  const formatReceiveBoxSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "receive_box" || !event.valid) {
+      return undefined;
+    }
+    return LocalizeWithVars(localizationKey, {
+      item_name: GetLocalization(`#${event.args[1]}`),
+      item_amount: event.args[2]
+    });
+  };
+  const formatGenerateBoxSummary = (parsedResult, localizationKey) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "generate_box" || !event.valid) {
+      return undefined;
+    }
+    return LocalizeWithVars(localizationKey, {
+      slot: event.args[0]
+    });
+  };
+  const diceSummaryEventFormatters = {
+    add_type_exp: formatAddTypeExpSummary,
+    move_pos: formatMovePosSummary,
+    move_neg: formatMoveNegSummary,
+    move_start: formatMoveStartSummary,
+    receive_box: formatReceiveBoxSummary,
+    generate_box: formatGenerateBoxSummary
+  };
+  const getDiceSummaryEventDescription = parsedResult => {
+    const {
+      event
+    } = parsedResult;
+    if (!event.matched || !event.valid || !isDiceSummaryEventKey(event.key)) {
+      return undefined;
+    }
+    return diceSummaryEventFormatters[event.key](parsedResult, SUMMARY_EVENT[event.key]);
+  };
+  const buildDiceMultiRollSummary = parsedResults => {
+    return parsedResults.map(getDiceSummaryEventDescription).filter(description => description != undefined && description.length > 0);
+  };
+  const isCurrentDiceEventRun = runID => {
+    return runID == diceEventRunID;
+  };
+  const clearDiceAnimation = () => {
+    finishDiceRoll = undefined;
+    diceSequence.stop();
+    setIsDiceVisible(false);
+  };
+  const movePlayerInstantlyToPathIndex = pathIndex => {
+    clearMoveSchedule();
+    playerJump.stop();
+    setIsPlayerMoveStepping(false);
+    setPlayerMoveDirection(0);
+    setPlayerPathIndex(normalizePlayerPathIndex(pathIndex));
+    setRemainingMoveSteps(0);
+  };
+  const movePlayerBySteps = (steps, done, runID) => {
+    if (!isCurrentDiceEventRun(runID)) {
+      return;
+    }
+    clearMoveSchedule();
+    let remainingSteps = Math.abs(steps);
+    const stepDirection = steps >= 0 ? 1 : -1;
+    if (remainingSteps == 0) {
+      setPlayerMoveDirection(0);
+      done();
+      return;
+    }
+    setRemainingMoveSteps(remainingSteps);
+    setPlayerMoveDirection(stepDirection);
+    const startNextMoveStep = () => {
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      if (remainingSteps <= 0) {
+        setRemainingMoveSteps(0);
+        setIsPlayerMoveStepping(false);
+        setPlayerMoveDirection(0);
+        playerJump.stop();
+        done();
+        return;
+      }
+      setIsPlayerMoveStepping(true);
+      setPlayerPathIndex(index => normalizePlayerPathIndex(index + stepDirection));
+      playerJump.replay();
+      Game.EmitSound("Hero_Zuus.Taunt.Jump");
+      moveScheduleID = $.Schedule(dicePlaybackConfig().playerMoveStepDurationSeconds, () => {
+        moveScheduleID = undefined;
+        if (!isCurrentDiceEventRun(runID)) {
+          return;
+        }
+        remainingSteps -= 1;
+        setRemainingMoveSteps(remainingSteps);
+        setIsPlayerMoveStepping(false);
+        if (remainingSteps <= 0) {
+          setPlayerMoveDirection(0);
+          playerJump.stop();
+          done();
+          return;
+        }
+        startNextMoveStep();
+      });
+    };
+    startNextMoveStep();
+  };
+  const movePlayerToPathIndex = (targetPathIndex, done, runID) => {
+    if (!isCurrentDiceEventRun(runID)) {
+      return;
+    }
+    movePlayerInstantlyToPathIndex(targetPathIndex);
+    done();
+  };
+  const playDiceRoll = (value, done, runID) => {
+    if (!isCurrentDiceEventRun(runID)) {
+      return;
+    }
+    clearMoveSchedule();
+    setDiceResult(value);
+    setIsDiceVisible(true);
+    diceSequence.replay();
+    Game.EmitSound("UI.Dice.Roll");
+    finishDiceRoll = () => {
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      done();
+    };
+  };
+  const resetDiceEventExecutionState = () => {
+    clearMoveSchedule();
+    clearDiceEventDelaySchedule();
+    clearBoxPreview();
+    clearDiceAnimation();
+    playerJump.stop();
+    hideDiceEventLayer();
+    setRemainingMoveSteps(0);
+    setIsPlayerMoveStepping(false);
+    setPlayerMoveDirection(0);
+    setCurrentDiceEvent(undefined);
+    setDiceEventQueue([]);
+    setIsExecutingDiceEvents(false);
+  };
+  const skipDiceEvents = () => {
+    if (!isExecutingDiceEvents()) {
+      return;
+    }
+    diceEventRunID += 1;
+    const batchLastMovement = currentBatchLastMovement();
+    const finalPathIndex = batchLastMovement?.pathIndex ?? playerPathIndex();
+    const finalSlotID = normalizePlayerPathIndex(finalPathIndex) + 1;
+    const upgradedSlotIDs = getUpgradedSlotIDs(displayTileData(), diceTileData());
+    const remainingRewardItems = getPendingRewardItems();
+    resetDiceEventExecutionState();
+    finishMultiRollState();
+    movePlayerInstantlyToPathIndex(finalPathIndex);
+    setCurrentBatchLastMovement(undefined);
+    resumeDisplaySync();
+    syncPlayerPathIndexFromDisplayData();
+    emitDiceRewardToast(remainingRewardItems);
+    clearPendingRewardItems();
+    if (batchLastMovement != undefined) {
+      showFinishTileEffect(finalSlotID);
+    }
+    for (const slotID of upgradedSlotIDs) {
+      showLevelUpTileEffect(slotID);
+    }
+  };
+  const finishCurrentDiceEvent = runID => {
+    if (!isCurrentDiceEventRun(runID)) {
+      return;
+    }
+    const finishedEvent = currentDiceEvent();
+    const isLastEvent = diceEventQueue().length <= 1;
+    const batchLastMovement = currentBatchLastMovement();
+    if (finishedEvent?.event.key == "move_dice") {
+      clearDiceAnimation();
+    }
+    if (batchLastMovement != undefined && finishedEvent?.index == batchLastMovement.eventIndex) {
+      const finalSlotID = normalizePlayerPathIndex(batchLastMovement.pathIndex) + 1;
+      showFinishTileEffect(finalSlotID);
+    }
+    setDiceEventQueue(queue => queue.slice(1));
+    setCurrentDiceEvent(undefined);
+    setIsExecutingDiceEvents(false);
+    if (isLastEvent) {
+      finishMultiRollState();
+      setCurrentBatchLastMovement(undefined);
+      resumeDisplaySync();
+      syncPlayerPathIndexFromDisplayData();
+      finishPendingRewardItems();
+    }
+  };
+  const executeMoveDiceEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_dice" || !event.valid) {
+      done();
+      return;
+    }
+    const diceValue = event.args[0];
+    if (!isDiceValue(diceValue)) {
+      console.log("[DiceEvent] invalid dice value", parsedResult);
+      done();
+      return;
+    }
+    if (isMultiRollPointLayerVisible()) {
+      const remainingRollCount = getValidDiceRollValues(diceEventQueue()).length;
+      const currentRollIndex = multiRollTotalCount() - remainingRollCount + 1;
+      setMultiRollPointValue(diceValue);
+      setMultiRollCurrentIndex(Math.max(1, Math.min(multiRollTotalCount(), currentRollIndex)));
+    }
+    playDiceRoll(diceValue, () => {
+      movePlayerBySteps(diceValue, done, runID);
+    }, runID);
+  };
+  const executeMovePosEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_pos" || !event.valid) {
+      done();
+      return;
+    }
+    if (isMultiRollPlaying()) {
+      movePlayerBySteps(event.args[0], done, runID);
+      return;
+    }
+    setupDiceEventLayer(parsedResult, getDiceEventDescription(parsedResult), "good");
+    showDiceEventLayer();
+    clearDiceEventDelaySchedule();
+    diceEventDelayScheduleID = $.Schedule(dicePlaybackConfig().moveEventDelaySeconds, () => {
+      diceEventDelayScheduleID = undefined;
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      movePlayerBySteps(event.args[0], () => {
+        hideDiceEventLayer();
+        done();
+      }, runID);
+    });
+  };
+  const executeMoveNegEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_neg" || !event.valid) {
+      done();
+      return;
+    }
+    if (isMultiRollPlaying()) {
+      movePlayerBySteps(-event.args[0], done, runID);
+      return;
+    }
+    setupDiceEventLayer(parsedResult, getDiceEventDescription(parsedResult), "bad");
+    showDiceEventLayer();
+    clearDiceEventDelaySchedule();
+    diceEventDelayScheduleID = $.Schedule(dicePlaybackConfig().moveEventDelaySeconds, () => {
+      diceEventDelayScheduleID = undefined;
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      movePlayerBySteps(-event.args[0], () => {
+        hideDiceEventLayer();
+        done();
+      }, runID);
+    });
+  };
+  const executeMoveStartEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "move_start" || !event.valid) {
+      done();
+      return;
+    }
+    if (isMultiRollPlaying()) {
+      movePlayerToPathIndex(0, done, runID);
+      return;
+    }
+    setupDiceEventLayer(parsedResult, getDiceEventDescription(parsedResult), "good");
+    showDiceEventLayer();
+    clearDiceEventDelaySchedule();
+    diceEventDelayScheduleID = $.Schedule(dicePlaybackConfig().moveEventDelaySeconds, () => {
+      diceEventDelayScheduleID = undefined;
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      movePlayerToPathIndex(0, () => {
+        hideDiceEventLayer();
+        done();
+      }, runID);
+    });
+  };
+  const executeTimedDiceEvent = (parsedResult, done, runID) => {
+    if (isMultiRollPlaying()) {
+      done();
+      return;
+    }
+    setupDiceEventLayer(parsedResult, getDiceEventDescription(parsedResult), "good");
+    showDiceEventLayer();
+    clearDiceEventDelaySchedule();
+    diceEventDelayScheduleID = $.Schedule(dicePlaybackConfig().eventLayerDisplayDurationSeconds, () => {
+      diceEventDelayScheduleID = undefined;
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      hideDiceEventLayer();
+      done();
+    });
+  };
+  const executeAddSlotExpEvent = (parsedResult, done, _runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "add_slot_exp" || !event.valid) {
+      done();
+      return;
+    }
+    updateDisplaySlotExp(event.args[0], event.args[1]);
+    done();
+  };
+  const executeAddTypeExpEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "add_type_exp" || !event.valid) {
+      done();
+      return;
+    }
+    updateDisplaySlotTypeExp(event.args[0], event.args[1]);
+    executeTimedDiceEvent(parsedResult, done, runID);
+  };
+  const executeReceiveRewardsEvent = (parsedResult, done) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "receive_rewards" || !event.valid) {
+      done();
+      return;
+    }
+    showDiceReceiveRewardToast(event.args[0]);
+    done();
+  };
+  const executeReceiveBoxEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "receive_box" || !event.valid) {
+      done();
+      return;
+    }
+    const [slotID, itemID, itemAmounts] = event.args;
+    if (!Number.isInteger(slotID) || slotID <= 0 || !Number.isInteger(itemID) || itemID <= 0 || !Number.isFinite(itemAmounts) || itemAmounts <= 0) {
+      console.log("[DiceEvent] invalid receive box data", parsedResult);
+      done();
+      return;
+    }
+    updateDisplaySlotBox(slotID, false);
+    showDiceReceiveBoxToast(itemID, itemAmounts);
+    Game.EmitSound("UI.Dice.Treasure");
+    if (isMultiRollPlaying()) {
+      done();
+      return;
+    }
+    clearBoxPreview();
+    setBoxPreviewReward({
+      item_id: itemID,
+      amounts: itemAmounts,
+      item_rarity: pendingRewardItems.get(itemID)?.item_rarity ?? GetServiceItemRarity(itemID)
+    });
+    setIsBoxPreviewLayerVisible(true);
+    boxPreviewScheduleID = $.Schedule(DICE_BOX_PREVIEW_DURATION_SECONDS, () => {
+      boxPreviewScheduleID = undefined;
+      if (!isCurrentDiceEventRun(runID)) {
+        return;
+      }
+      setIsBoxPreviewLayerVisible(false);
+      setBoxPreviewReward(undefined);
+      done();
+    });
+  };
+  const executeGenerateBoxEvent = (parsedResult, done) => {
+    const {
+      event
+    } = parsedResult;
+    if (event.key != "generate_box" || !event.valid) {
+      done();
+      return;
+    }
+    updateDisplaySlotBox(event.args[0], true);
+    done();
+  };
+  const diceEventExecutors = {
+    move_dice: executeMoveDiceEvent,
+    add_type_exp: executeAddTypeExpEvent,
+    add_slot_exp: executeAddSlotExpEvent,
+    receive_rewards: executeReceiveRewardsEvent,
+    receive_box: executeReceiveBoxEvent,
+    generate_box: executeGenerateBoxEvent,
+    move_pos: executeMovePosEvent,
+    move_neg: executeMoveNegEvent,
+    move_start: executeMoveStartEvent,
+    reward_next_slot: executeTimedDiceEvent
+  };
+  const executeDiceEvent = (parsedResult, done, runID) => {
+    const {
+      event
+    } = parsedResult;
+    if (!event.matched || !event.valid) {
+      console.log("[DiceEvent] invalid or unknown event", parsedResult);
+      done();
+      return;
+    }
+    const executor = diceEventExecutors[event.key];
+    if (executor == undefined) {
+      console.log("[DiceEvent] unhandled event", parsedResult);
+      done();
+      return;
+    }
+    executor(parsedResult, done, runID);
+  };
+  const requestRollDice = playTimes => {
+    if (isRollRequesting() || isExecutingDiceEvents() || diceEventQueue().length > 0) {
+      return;
+    }
+    const actualPlayTimes = Math.min(Math.max(0, Math.trunc(playTimes)), Math.max(0, Math.trunc(diceTicketCount())));
+    if (actualPlayTimes < DICE_ROLL_ONCE_TIMES) {
+      ErrorMessage(GetLocalization("#ActivityDice_RollTokenNotAllow"));
+      return;
+    }
+    resetMultiRollState();
+    clearMultiRollSummary();
+    clearBoxPreview();
+    clearPendingRewardItems();
+    setCurrentBatchLastMovement(undefined);
+    pauseDisplaySync();
+    const gameData = activityGameData();
+    setIsRollRequesting(true);
+    CallActionRequest("/v1/activity/play_boardslot", {
+      activity_id: ACTIVITY_DICE_ID$3,
+      play_times: actualPlayTimes,
+      play_num: gameData?.play_num ?? 0
+    }, result => {
+      setIsRollRequesting(false);
+      if (result.code != 0 && result.code != 200) {
+        console.log("[DiceEvent] roll dice request failed");
+        resetMultiRollState();
+        clearMultiRollSummary();
+        clearPendingRewardItems();
+        resumeDisplaySync();
+        syncPlayerPathIndexFromDisplayData();
+        if (result.message != undefined) {
+          ErrorMessage(result.message);
+        }
+        return;
+      }
+      const gameResult = result.data?.player_boardslot_activity_play_result;
+      if (!Array.isArray(gameResult) || gameResult.length == 0) {
+        console.log("[DiceEvent] roll dice request returned empty result");
+        resetMultiRollState();
+        clearMultiRollSummary();
+        clearPendingRewardItems();
+        resumeDisplaySync();
+        syncPlayerPathIndexFromDisplayData();
+        return;
+      }
+      const parsedResults = parseDicePlayResult(gameResult);
+      if (parsedResults.length == 0) {
+        console.log("[DiceEvent] roll dice request returned no valid events");
+        resetMultiRollState();
+        clearMultiRollSummary();
+        clearPendingRewardItems();
+        resumeDisplaySync();
+        syncPlayerPathIndexFromDisplayData();
+        return;
+      }
+      const diceRollValues = getValidDiceRollValues(parsedResults);
+      initializePendingRewardItems(result.data?.add_items?.common);
+      if (actualPlayTimes > DICE_ROLL_ONCE_TIMES && diceRollValues.length > DICE_ROLL_ONCE_TIMES) {
+        setIsMultiRollPlaying(true);
+        setMultiRollPointValue(diceRollValues[0]);
+        setMultiRollCurrentIndex(1);
+        setMultiRollTotalCount(diceRollValues.length);
+        setIsMultiRollPointLayerVisible(true);
+        setMultiRollSummaryItems(buildDiceMultiRollSummary(parsedResults));
+        setIsMultiRollSummaryLayerVisible(false);
+      } else {
+        resetMultiRollState();
+        clearMultiRollSummary();
+      }
+      setCurrentBatchLastMovement(getBatchLastMovement(playerPathIndex(), parsedResults));
+      setDiceEventQueue(currentQueue => [...currentQueue, ...parsedResults]);
+    }, () => {
+      console.log("[DiceEvent] roll dice request failed (network error) ");
+      setIsRollRequesting(false);
+      resetMultiRollState();
+      clearMultiRollSummary();
+      clearPendingRewardItems();
+      resumeDisplaySync();
+      syncPlayerPathIndexFromDisplayData();
+    }, false);
+  };
+  libs.createEffect(() => {
+    const latestTileData = diceTileData();
+    const latestGameData = diceGameData();
+    if (isDisplaySyncPaused()) {
+      return;
+    }
+    setDisplayTileData(cloneDiceNetDataRecord(latestTileData));
+    setDisplayGameData(cloneDiceNetDataRecord(latestGameData));
+  });
+  libs.createEffect(() => {
+    if (isExecutingDiceEvents()) {
+      return;
+    }
+    const nextEvent = diceEventQueue()[0];
+    if (nextEvent == undefined) {
+      return;
+    }
+    const runID = diceEventRunID;
+    setCurrentDiceEvent(nextEvent);
+    setIsExecutingDiceEvents(true);
+    executeDiceEvent(nextEvent, () => finishCurrentDiceEvent(runID), runID);
+  });
+  libs.createEffect(() => {
+    if (!isDiceVisible() || !diceSequence.isFinished()) {
+      return;
+    }
+    finishDiceRoll?.();
+    finishDiceRoll = undefined;
+  });
+  const isPlayerMoving = libs.createMemo(() => remainingMoveSteps() > 0);
+  const isRollBusy = libs.createMemo(() => isRollRequesting() || isExecutingDiceEvents() || diceEventQueue().length > 0 || isDisplaySyncPaused());
+  const canRollDice = libs.createMemo(() => !isRollBusy());
+  libs.createEffect(() => {
+    if (isDisplaySyncPaused()) {
+      return;
+    }
+    if (isExecutingDiceEvents()) {
+      return;
+    }
+    syncPlayerPathIndexFromDisplayData();
+  });
+  libs.onCleanup(() => {
+    clearMoveSchedule();
+    clearDiceEventDelaySchedule();
+    clearBoxPreview();
+    clearTileEffectSchedules();
+    clearPendingRewardItems();
+  });
+  return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+    id: "SubMenu_dice",
+    get children() {
+      return [(() => {
+        const _el$27 = libs.createElement("Panel", {
+            id: "DiceTopRight"
+          }, null),
+          _el$28 = libs.createElement("Panel", {
+            id: "DiceTopTitle"
+          }, _el$27),
+          _el$29 = libs.createElement("Image", {
+            id: "DiceTopTitleIcon",
+            get ["class"]() {
+              return logoLang();
+            }
+          }, _el$28),
+          _el$30 = libs.createElement("Image", {
+            id: "DiceTopTitleTooltipIcon",
+            get ["class"]() {
+              return logoLang();
+            }
+          }, _el$28),
+          _el$31 = libs.createElement("Panel", {
+            id: "DiceTopSubTitle"
+          }, _el$27);
+          libs.createElement("Image", {
+            id: "DiceTopSubTitleBG"
+          }, _el$31);
+          const _el$33 = libs.createElement("Panel", {
+            id: "DiceActivityTask"
+          }, _el$27);
+          libs.createElement("Image", {
+            id: "DiceActivityTaskBG"
+          }, _el$33);
+          const _el$35 = libs.createElement("Panel", {
+            id: "DiceActivityTaskContent",
+            scroll: "y"
+          }, _el$33);
+        libs.insert(_el$31, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#ActivityDice_TimeLimit",
+          get endTime() {
+            return activityData().end_time;
+          }
+        }), null);
+        libs.setProp(_el$35, "scroll", "y");
+        libs.insert(_el$35, libs.createComponent(DiceTaskGroup, {
+          taskType: 7,
+          get tasks() {
+            return diceTasksByType()[7];
+          },
+          get claimingTaskKey() {
+            return claimingTaskKey();
+          },
+          onClaim: receiveDiceTaskReward
+        }), null);
+        libs.insert(_el$35, libs.createComponent(libs.Show, {
+          get when() {
+            return shouldShowDiceTaskGroup(diceTasksByType()[6]);
+          },
+          get children() {
+            return libs.createComponent(DiceTaskGroup, {
+              taskType: 6,
+              get tasks() {
+                return diceTasksByType()[6];
+              },
+              get claimingTaskKey() {
+                return claimingTaskKey();
+              },
+              onClaim: receiveDiceTaskReward
+            });
+          }
+        }), null);
+        libs.effect(_p$ => {
+          const _v$0 = logoLang(),
+            _v$1 = logoLang(),
+            _v$10 = GetLocalization("#ActivityDice_TitleTooltip");
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "class", _v$0, _p$._v$0));
+          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$30, "class", _v$1, _p$._v$1));
+          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$30, "tooltip_text", _v$10, _p$._v$10));
+          return _p$;
+        }, {
+          _v$0: undefined,
+          _v$1: undefined,
+          _v$10: undefined
+        });
+        return _el$27;
+      })(), (() => {
+        const _el$36 = libs.createElement("Panel", {
+            id: "DiceGameContainer"
+          }, null),
+          _el$37 = libs.createElement("Panel", {
+            id: "DiceGameBoardLocation"
+          }, _el$36);
+          libs.createElement("Image", {
+            id: "DiceGameBoardBG"
+          }, _el$37);
+          const _el$39 = libs.createElement("Panel", {
+            id: "DiceGamePieceLayerRotated"
+          }, _el$37),
+          _el$40 = libs.createElement("Panel", {
+            id: "DiceGamePieceGrid"
+          }, _el$39),
+          _el$41 = libs.createElement("Panel", {
+            id: "DiceGamePlayerLayer",
+            hittest: false,
+            hittestchildren: false
+          }, _el$39),
+          _el$42 = libs.createElement("Panel", {
+            id: "DiceEventLayer",
+            "class": "DiceLayer",
+            get style() {
+              return {
+                position: diceEventLayerPosition()
+              };
+            },
+            hittest: false,
+            hittestchildren: false
+          }, _el$37);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBG"
+          }, _el$42);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBorder"
+          }, _el$42);
+          const _el$45 = libs.createElement("Image", {
+            id: "DiceEventHeadIcon",
+            get ["class"]() {
+              return libs.classNames({
+                DiceEventGoodEvent: diceEventLayerType() == "good",
+                DiceEventBadEvent: diceEventLayerType() == "bad"
+              });
+            }
+          }, _el$42),
+          _el$46 = libs.createElement("Panel", {
+            "class": "DiceLayerContent"
+          }, _el$42),
+          _el$47 = libs.createElement("Panel", {
+            "class": "DiceLayerTitleContent"
+          }, _el$46),
+          _el$48 = libs.createElement("Label", {
+            "class": "DiceLayerTitleContentText",
+            get text() {
+              return diceEventLayerTitle();
+            }
+          }, _el$47),
+          _el$49 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$46),
+          _el$50 = libs.createElement("Label", {
+            "class": "DiceLayerContentDesc",
+            get text() {
+              return diceEventLayerDescription();
+            }
+          }, _el$49),
+          _el$51 = libs.createElement("Panel", {
+            id: "DiceMultiRollPointLayer",
+            "class": "DiceLayer",
+            hittest: false,
+            hittestchildren: false
+          }, _el$37);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBG"
+          }, _el$51);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBorder"
+          }, _el$51);
+          const _el$54 = libs.createElement("Panel", {
+            "class": "DiceLayerContent"
+          }, _el$51),
+          _el$55 = libs.createElement("Panel", {
+            "class": "DiceLayerTitleContent"
+          }, _el$54),
+          _el$56 = libs.createElement("Label", {
+            "class": "DiceLayerTitleContentText",
+            get text() {
+              return GetLocalization("#ActivityDice_MultiRollPointTitle");
+            }
+          }, _el$55),
+          _el$57 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$54),
+          _el$58 = libs.createElement("Label", {
+            id: "DiceMultiRollPointValue",
+            "class": "DiceLayerContentDesc",
+            get text() {
+              return `${multiRollPointValue()}`;
+            }
+          }, _el$57),
+          _el$59 = libs.createElement("Label", {
+            id: "DiceMultiRollPointProgress",
+            "class": "DiceLayerContentDesc",
+            get text() {
+              return `${multiRollCurrentIndex()}/${multiRollTotalCount()}`;
+            }
+          }, _el$57),
+          _el$60 = libs.createElement("Panel", {
+            id: "DiceMultiBoxPreviewLayer",
+            "class": "DiceLayer",
+            hittest: false,
+            hittestchildren: true
+          }, _el$37);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBG"
+          }, _el$60);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBorder"
+          }, _el$60);
+          const _el$63 = libs.createElement("Panel", {
+            "class": "DiceLayerContent"
+          }, _el$60),
+          _el$64 = libs.createElement("Panel", {
+            "class": "DiceLayerTitleContent"
+          }, _el$63),
+          _el$65 = libs.createElement("Label", {
+            "class": "DiceLayerTitleContentText",
+            get text() {
+              return GetLocalization("#ActivityDice_BoxRewardPreviewTitle");
+            }
+          }, _el$64),
+          _el$66 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$63),
+          _el$67 = libs.createElement("Label", {
+            "class": "DiceLayerContentDesc",
+            get text() {
+              return GetLocalization("#ActivityDice_BoxRewardPreviewContent");
+            }
+          }, _el$66),
+          _el$68 = libs.createElement("Panel", {
+            "class": "DiceTaskReward"
+          }, _el$66);
+          libs.createElement("Image", {
+            "class": "DiceTaskRewardBG"
+          }, _el$68);
+          const _el$70 = libs.createElement("Label", {
+            "class": "DiceTaskRewardValue",
+            get text() {
+              return boxPreviewReward()?.amounts ?? 0;
+            }
+          }, _el$68),
+          _el$71 = libs.createElement("Panel", {
+            id: "DiceMultiRollSummaryLayer",
+            "class": "DiceLayer",
+            hittest: true,
+            hittestchildren: true
+          }, _el$37);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBG"
+          }, _el$71);
+          libs.createElement("Panel", {
+            "class": "DiceLayerBorder"
+          }, _el$71);
+          const _el$74 = libs.createElement("Panel", {
+            "class": "DiceLayerContent"
+          }, _el$71),
+          _el$75 = libs.createElement("Panel", {
+            "class": "DiceLayerTitleContent"
+          }, _el$74),
+          _el$76 = libs.createElement("Label", {
+            "class": "DiceLayerTitleContentText",
+            get text() {
+              return GetLocalization("#ActivityDice_MultiRollSummaryTitle");
+            }
+          }, _el$75),
+          _el$77 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$74),
+          _el$78 = libs.createElement("Panel", {
+            id: "DiceGameOperation"
+          }, _el$36),
+          _el$79 = libs.createElement("Panel", {
+            id: "DiceGamePlayerEventContainer",
+            get hittest() {
+              return hasPlayerEvent();
+            },
+            get hittestchildren() {
+              return hasPlayerEvent();
+            }
+          }, _el$78),
+          _el$80 = libs.createElement("Label", {
+            id: "DiceGamePlayerEventTitle",
+            get text() {
+              return GetLocalization("#ActivityDice_PlayerEventTitle");
+            }
+          }, _el$79),
+          _el$81 = libs.createElement("Panel", {
+            id: "DiceGamePlayerEventContent"
+          }, _el$79),
+          _el$82 = libs.createElement("Panel", {
+            "class": "DiceGamePlayerEventItem"
+          }, _el$81);
+          libs.createElement("Image", {
+            id: "DiceGamePlayerEventBG"
+          }, _el$82);
+          const _el$84 = libs.createElement("Panel", {
+            "class": "DiceGamePlayerEventItemContent"
+          }, _el$82),
+          _el$85 = libs.createElement("Label", {
+            "class": "DiceGamePlayerEventDesc",
+            get text() {
+              return GetLocalization("#ActivityDice_PlayerEvent_RewardNextSlot");
+            }
+          }, _el$84),
+          _el$87 = libs.createElement("Panel", {
+            id: "DiceGameRollButtonContainer"
+          }, _el$78),
+          _el$88 = libs.createElement("Panel", {
+            id: "DiceGameCostInfo"
+          }, _el$87);
+          libs.createElement("Image", {
+            id: "DiceGameCostInfoBG"
+          }, _el$88);
+          const _el$90 = libs.createElement("Panel", {
+            id: "DiceGameCostInfoContent"
+          }, _el$88),
+          _el$91 = libs.createElement("Label", {
+            id: "DiceGameCostValue",
+            text: `x${DICE_ROLL_ONCE_TIMES}`
+          }, _el$90);
+        libs.insert(_el$40, libs.createComponent(libs.For, {
+          each: DICE_BOARD_LAYOUT_ROWS,
+          children: (row, index) => (() => {
+            const _el$98 = libs.createElement("Panel", {
+              get ["class"]() {
+                return `DiceGamePieceRow DiceGamePieceRow_${index()}`;
+              }
+            }, null);
+            libs.insert(_el$98, libs.createComponent(libs.For, {
+              each: row,
+              children: piece => {
+                const tileConfig = () => piece.shouldRenderPiece ? tileConfigMap()[piece.slotID] ?? DEFAULT_TILE_CONFIG : DEFAULT_TILE_CONFIG;
+                return (() => {
+                  const _el$99 = libs.createElement("Panel", {
+                    "class": "DiceGamePieceCell"
+                  }, null);
+                  libs.insert(_el$99, (() => {
+                    const _c$ = libs.memo(() => !!piece.shouldRenderPiece);
+                    return () => _c$() ? libs.createComponent(DiceGamePiece, {
+                      get id() {
+                        return piece.id;
+                      },
+                      get tileIndex() {
+                        return piece.tileIndex;
+                      },
+                      get progress() {
+                        return piece.progress;
+                      },
+                      get shouldRenderPiece() {
+                        return piece.shouldRenderPiece;
+                      },
+                      get tileType() {
+                        return tileConfig().tileType;
+                      },
+                      get decorationType() {
+                        return tileConfig().decorationType ?? "none";
+                      },
+                      get iconType() {
+                        return tileConfig().iconType ?? "none";
+                      },
+                      get finishEffectToken() {
+                        return libs.memo(() => finishTileEffect()?.slotID == piece.slotID)() ? finishTileEffect()?.token : undefined;
+                      },
+                      get levelUpEffectToken() {
+                        return levelUpTileEffectTokens()[piece.slotID];
+                      }
+                    }) : libs.createComponent(DiceGamePiecePlaceholder, {});
+                  })());
+                  libs.effect(_$p => libs.setProp(_el$99, "customTooltip", piece.shouldRenderPiece ? (() => {
+                    const tooltipData = getDiceSlotTooltipData(ACTIVITY_DICE_ID$3, piece.slotID, activitySlotData()[piece.slotID]);
+                    if (tooltipData == undefined) {
+                      return undefined;
+                    }
+                    const tooltipParams = {
+                      ...tooltipData,
+                      rewards: JSON.stringify(tooltipData.rewards),
+                      next_rewards: JSON.stringify(tooltipData.next_rewards)
+                    };
+                    const definedTooltipParams = Object.entries(tooltipParams).reduce((params, [key, value]) => {
+                      if (typeof value == "string" || typeof value == "number") {
+                        params[key] = value;
+                      }
+                      return params;
+                    }, {});
+                    return {
+                      name: "activity_dice",
+                      ...definedTooltipParams
+                    };
+                  })() : undefined, _$p));
+                  return _el$99;
+                })();
+              }
+            }));
+            libs.effect(_$p => libs.setProp(_el$98, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
+            return _el$98;
+          })()
+        }));
+        libs.insert(_el$41, libs.createComponent(DiceGamePlayerPiece, {
+          get position() {
+            return playerPiecePosition();
+          },
+          get moving() {
+            return isPlayerMoving();
+          },
+          get positionTransitionEnabled() {
+            return isPlayerMoveStepping();
+          },
+          get fastForward() {
+            return isMultiRollPlaying();
+          },
+          get facingForward() {
+            return isPlayerPieceFacingForward();
+          },
+          get IdleSequenceFrame() {
+            return playerIdle.SequenceFrame;
+          },
+          get JumpSequenceFrame() {
+            return playerJump.SequenceFrame;
+          }
+        }));
+        libs.insert(_el$37, libs.createComponent(DiceGameDiceCube, {
+          get visible() {
+            return isDiceVisible();
+          },
+          get SequenceFrame() {
+            return diceSequence.SequenceFrame;
+          }
+        }), _el$42);
+        libs.insert(_el$68, libs.createComponent(StoreItem.StoreItemImage, {
+          "class": "DiceTaskRewardIcon",
+          get itemid() {
+            return boxPreviewReward()?.item_id ?? 1800008;
+          }
+        }), _el$70);
+        libs.insert(_el$77, libs.createComponent(libs.For, {
+          get each() {
+            return multiRollSummaryItems();
+          },
+          children: summaryText => (() => {
+            const _el$100 = libs.createElement("Label", {
+              "class": "DiceLayerContentDesc",
+              text: summaryText
+            }, null);
+            libs.setProp(_el$100, "text", summaryText);
+            return _el$100;
+          })()
+        }));
+        libs.insert(_el$84, libs.createComponent(libs.Show, {
+          get when() {
+            return nextSlotExtraExp() > 1;
+          },
+          get children() {
+            const _el$86 = libs.createElement("Label", {
+              "class": "DiceGamePlayerEventValue",
+              get text() {
+                return `x${nextSlotExtraExp()}`;
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$86, "text", `x${nextSlotExtraExp()}`, _$p));
+            return _el$86;
+          }
+        }), null);
+        libs.insert(_el$90, libs.createComponent(StoreItem.StoreItemImage, {
+          get itemid() {
+            return diceTicketID();
+          },
+          get src() {
+            return STOREITEMIMAGE_SRCPATH[diceTicketID()];
+          }
+        }), _el$91);
+        libs.setProp(_el$91, "text", `x${DICE_ROLL_ONCE_TIMES}`);
+        libs.insert(_el$87, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          id: "DiceGameRollButton",
+          "class": "DiceGameActionButton",
+          get enabled() {
+            return canRollDice();
+          },
+          onactivate: () => requestRollDice(DICE_ROLL_ONCE_TIMES),
+          get children() {
+            return [libs.createElement("Image", {
+              "class": "DiceGameActionButtonBG"
+            }, null), libs.createElement("Label", {
+              "class": "DiceGameActionButtonText",
+              text: "#ActivityDice_RollAction"
+            }, null)];
+          }
+        }), null);
+        libs.insert(_el$78, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "DiceGameRollMiniButton",
+          get enabled() {
+            return !isRollBusy();
+          },
+          onactivate: () => requestRollDice(maxDiceRollTimes()),
+          get children() {
+            return [libs.createElement("Image", {
+              "class": "DiceGameRollMiniButtonBG"
+            }, null), (() => {
+              const _el$95 = libs.createElement("Label", {
+                "class": "DiceGameRollMiniButtonText",
+                get text() {
+                  return `x${diceRoll10ButtonTimes()}`;
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$95, "text", `x${diceRoll10ButtonTimes()}`, _$p));
+              return _el$95;
+            })()];
+          }
+        }), null);
+        libs.insert(_el$78, libs.createComponent(libs.Show, {
+          get when() {
+            return isExecutingDiceEvents();
+          },
+          get children() {
+            return libs.createComponent(EOM_Button.EOM_BaseButton, {
+              id: "DiceGameSkipButton",
+              "class": "DiceGameRollMiniButton",
+              enabled: true,
+              onactivate: skipDiceEvents,
+              get children() {
+                return [libs.createElement("Image", {
+                  "class": "DiceGameRollMiniButtonBG"
+                }, null), libs.createElement("Label", {
+                  "class": "DiceGameRollMiniButtonText",
+                  text: "#ActivityDice_SkipAction"
+                }, null)];
+              }
+            });
+          }
+        }), null);
+        libs.effect(_p$ => {
+          const _v$11 = isDiceEventLayerVisible(),
+            _v$12 = {
+              position: diceEventLayerPosition()
+            },
+            _v$13 = libs.classNames({
+              DiceEventGoodEvent: diceEventLayerType() == "good",
+              DiceEventBadEvent: diceEventLayerType() == "bad"
+            }),
+            _v$14 = diceEventLayerTitle(),
+            _v$15 = diceEventLayerDescription(),
+            _v$16 = isMultiRollPointLayerVisible(),
+            _v$17 = GetLocalization("#ActivityDice_MultiRollPointTitle"),
+            _v$18 = `${multiRollPointValue()}`,
+            _v$19 = `${multiRollCurrentIndex()}/${multiRollTotalCount()}`,
+            _v$20 = isBoxPreviewLayerVisible(),
+            _v$21 = GetLocalization("#ActivityDice_BoxRewardPreviewTitle"),
+            _v$22 = GetLocalization("#ActivityDice_BoxRewardPreviewContent"),
+            _v$23 = boxPreviewReward()?.amounts ?? 0,
+            _v$24 = isMultiRollSummaryLayerVisible(),
+            _v$25 = GetLocalization("#ActivityDice_MultiRollSummaryTitle"),
+            _v$26 = {
+              NoEvents: !hasPlayerEvent()
+            },
+            _v$27 = hasPlayerEvent(),
+            _v$28 = hasPlayerEvent(),
+            _v$29 = GetLocalization("#ActivityDice_PlayerEventTitle"),
+            _v$30 = GetLocalization("#ActivityDice_PlayerEvent_RewardNextSlot"),
+            _v$31 = {
+              NotEnough: !hasEnoughDiceTicket(DICE_ROLL_ONCE_TIMES)
+            };
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$42, "visible", _v$11, _p$._v$11));
+          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$42, "style", _v$12, _p$._v$12));
+          _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$45, "class", _v$13, _p$._v$13));
+          _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$48, "text", _v$14, _p$._v$14));
+          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$50, "text", _v$15, _p$._v$15));
+          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$51, "visible", _v$16, _p$._v$16));
+          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$56, "text", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$58, "text", _v$18, _p$._v$18));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$59, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$60, "visible", _v$20, _p$._v$20));
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$65, "text", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$67, "text", _v$22, _p$._v$22));
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$70, "text", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$71, "visible", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$76, "text", _v$25, _p$._v$25));
+          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$79, "classList", _v$26, _p$._v$26));
+          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$79, "hittest", _v$27, _p$._v$27));
+          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$79, "hittestchildren", _v$28, _p$._v$28));
+          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$80, "text", _v$29, _p$._v$29));
+          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$85, "text", _v$30, _p$._v$30));
+          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$91, "classList", _v$31, _p$._v$31));
+          return _p$;
+        }, {
+          _v$11: undefined,
+          _v$12: undefined,
+          _v$13: undefined,
+          _v$14: undefined,
+          _v$15: undefined,
+          _v$16: undefined,
+          _v$17: undefined,
+          _v$18: undefined,
+          _v$19: undefined,
+          _v$20: undefined,
+          _v$21: undefined,
+          _v$22: undefined,
+          _v$23: undefined,
+          _v$24: undefined,
+          _v$25: undefined,
+          _v$26: undefined,
+          _v$27: undefined,
+          _v$28: undefined,
+          _v$29: undefined,
+          _v$30: undefined,
+          _v$31: undefined
+        });
+        return _el$36;
+      })()];
+    }
+  });
+}
+
+const ACTIVITY_DICE_ID$2 = 801;
+function getDiceStoreItems$1(infoProducts) {
+  const result = [];
+  const now = Date.now() / 1000;
+  for (const itemname in KeyValues.info_shop_product) {
+    const itemdata = KeyValues.info_shop_product[itemname];
+    const info_product = infoProducts[itemdata.id];
+    const effective_start_time = info_product ? info_product.start_time : itemdata.start_time;
+    const effective_end_time = info_product ? info_product.end_time : itemdata.end_time;
+    if ((effective_start_time < now || effective_start_time == 0) && (effective_end_time > now || effective_end_time == 0) && (itemdata.hide_time > now || !itemdata.hide_time) && itemdata.hide == 0 || itemdata.tag == "Privilege") {
+      const tags = itemdata.tag.split("|");
+      if (tags.includes("BoardSlotGift")) {
+        result.push(itemdata);
+      }
+    }
+  }
+  result.sort((a, b) => b.orderby - a.orderby);
+  return result;
+}
+function DiceGift() {
+  const activityData = libs.createMemo(() => KeyValues.activity_data[ACTIVITY_DICE_ID$2]);
+  const infoProducts = solid_utils.createGlobalServiceNetData("info_products", {});
+  const purchasedProduct = solid_utils.createServiceNetData("player_shop_product_limits", {});
+  const storeItems = libs.createMemo(() => getDiceStoreItems$1(infoProducts()));
+  return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+    id: "DiceGift",
+    "class": "DiceStoreGift",
+    shadow_border: true,
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Panel", {
+            id: "DiceGiftTitleTime",
+            "class": "DiceStoreGiftTitleTime"
+          }, null);
+          libs.createElement("Image", {
+            id: "DiceTopSubTitleBG",
+            "class": "DiceStoreGiftTitleTimeBG"
+          }, _el$);
+          const _el$3 = libs.createElement("Panel", {
+            "class": "DiceStoreGiftTitleTimeContent"
+          }, _el$),
+          _el$4 = libs.createElement("Image", {
+            "class": "DiceStoreGiftTitleTooltipIcon"
+          }, _el$3);
+        libs.insert(_el$3, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#ActivityDice_DiceGift_TimeLimit",
+          get endTime() {
+            return activityData().end_time;
+          }
+        }), _el$4);
+        libs.effect(_$p => libs.setProp(_el$4, "tooltip_text", GetLocalization("#ActivityDice_DiceGift_TimeTooltip"), _$p));
+        return _el$;
+      })(), (() => {
+        const _el$5 = libs.createElement("Panel", {
+          id: "DiceGiftList",
+          "class": "VerticalScrollStyle DiceStoreGiftList",
+          scroll: "y"
+        }, null);
+        libs.setProp(_el$5, "scroll", "y");
+        libs.insert(_el$5, libs.createComponent(libs.Index, {
+          get each() {
+            return storeItems();
+          },
+          children: data => {
+            return libs.createComponent(StoreItem.StoreItem, {
+              get itemid() {
+                return data().id;
+              },
+              get purchased_num() {
+                return purchasedProduct()[data().id];
+              },
+              endTime: 0
+            });
+          }
+        }));
+        return _el$5;
+      })()];
+    }
+  });
+}
+
+const ACTIVITY_DICE_ID$1 = 801;
+const ACTIVITY_MENU_GRACE_SECONDS = 7 * 24 * 60 * 60;
+function getDiceStoreItems(infoProducts) {
+  const result = [];
+  const now = Date.now() / 1000;
+  for (const itemname in KeyValues.info_shop_product) {
+    const itemdata = KeyValues.info_shop_product[itemname];
+    const info_product = infoProducts[itemdata.id];
+    const effective_start_time = info_product ? info_product.start_time : itemdata.start_time;
+    const effective_end_time = info_product ? info_product.end_time : itemdata.end_time;
+    if ((effective_start_time < now || effective_start_time == 0) && (effective_end_time > now || effective_end_time == 0) && (itemdata.hide_time > now || !itemdata.hide_time) && itemdata.hide == 0 || itemdata.tag == "Privilege") {
+      const tags = itemdata.tag.split("|");
+      if (tags.includes("BoardSlot")) {
+        result.push(itemdata);
+      }
+    }
+  }
+  result.sort((a, b) => b.orderby - a.orderby);
+  return result;
+}
+function DiceStore() {
+  const activityData = libs.createMemo(() => KeyValues.activity_data[ACTIVITY_DICE_ID$1]);
+  const infoProducts = solid_utils.createGlobalServiceNetData("info_products", {});
+  const purchasedProduct = solid_utils.createServiceNetData("player_shop_product_limits", {});
+  const storeItems = libs.createMemo(() => getDiceStoreItems(infoProducts()));
+  return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+    id: "DiceStore",
+    shadow_border: true,
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Panel", {
+            id: "DiceGiftTitleTime",
+            "class": "DiceStoreGiftTitleTime"
+          }, null);
+          libs.createElement("Image", {
+            "class": "DiceStoreGiftTitleTimeBG"
+          }, _el$);
+          const _el$3 = libs.createElement("Panel", {
+            "class": "DiceStoreGiftTitleTimeContent"
+          }, _el$),
+          _el$4 = libs.createElement("Image", {
+            "class": "DiceStoreGiftTitleTooltipIcon"
+          }, _el$3);
+        libs.insert(_el$3, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#ActivityDice_DiceStore_TimeLimit",
+          get endTime() {
+            return activityData().end_time + ACTIVITY_MENU_GRACE_SECONDS;
+          }
+        }), _el$4);
+        libs.effect(_$p => libs.setProp(_el$4, "tooltip_text", GetLocalization("#ActivityDice_DiceStore_TimeTooltip"), _$p));
+        return _el$;
+      })(), (() => {
+        const _el$5 = libs.createElement("Panel", {
+          id: "DiceStoreList",
+          "class": "VerticalScrollStyle",
+          scroll: "y"
+        }, null);
+        libs.setProp(_el$5, "scroll", "y");
+        libs.insert(_el$5, libs.createComponent(libs.Index, {
+          get each() {
+            return storeItems();
+          },
+          children: data => {
+            return libs.createComponent(StoreItem.StoreItem, {
+              get itemid() {
+                return data().id;
+              },
+              get purchased_num() {
+                return purchasedProduct()[data().id];
+              },
+              endTime: 0
+            });
+          }
+        }));
+        return _el$5;
+      })()];
+    }
+  });
+}
+
 let activityDataMap = {};
 for (const activity_id in KeyValues.activity_data) {
   const activity_data = KeyValues.activity_data[activity_id];
@@ -7192,6 +9878,7 @@ const MENU_LIST = {
   growth_fund: ["growth_fund_301"],
   starsea: [],
   seven_days: [],
+  boardslot: ["dice_game", "dice_store", "dice_gift"],
   mining: ["veins_game", "veins_rank", "veins_store", "veins_gift"]
 };
 const player_activity_tasks = solid_utils.createServiceNetData("player_activity_tasks", {});
@@ -7350,6 +10037,27 @@ function ActivityRoot() {
             },
             get children() {
               return libs.createComponent(SevenDaysRoot, {});
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return secondTabName() == "dice_game";
+            },
+            get children() {
+              return libs.createComponent(Dice, {});
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return secondTabName() == "dice_store";
+            },
+            get children() {
+              return libs.createComponent(DiceStore, {});
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return secondTabName() == "dice_gift";
+            },
+            get children() {
+              return libs.createComponent(DiceGift, {});
             }
           }), libs.createComponent(libs.Match, {
             get when() {

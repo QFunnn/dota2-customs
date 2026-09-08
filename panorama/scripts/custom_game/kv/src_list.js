@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -3223,6 +3223,9 @@ GameUI.CustomUIConfig().src_list = [
 	"resource/flash3/images/spellicons/vexis_upgrade_28.png",
 	"resource/flash3/images/spellicons/vexis_upgrade_3.png",
 	"resource/flash3/images/spellicons/vexis_upgrade_4.png",
+	"resource/flash3/images/spellicons/vexis_upgrade_4_1_prayer.png",
+	"resource/flash3/images/spellicons/vexis_upgrade_4_2_devotion.png",
+	"resource/flash3/images/spellicons/vexis_upgrade_4_whisper.png",
 	"resource/flash3/images/spellicons/vexis_upgrade_5.png",
 	"resource/flash3/images/spellicons/vexis_upgrade_6.png",
 	"resource/flash3/images/spellicons/vexis_upgrade_7.png",

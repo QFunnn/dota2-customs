@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -77,4 +77,4 @@ GameUI.CustomUIConfig().collection_total_level_reward = {
 		effect: "idle_max_power:400|idle_fish_normalbox_chance:20",
 		"效果备注": "渔场等级+1，体力上限增加，宝箱出现概率"
 	}
-};
+};

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -24,6 +24,15 @@ local m = l.registerEOMAbility
 local n = c()
 n.name = "vexis_1"
 d(n, k)
+function n.prototype.DynamicProperty(self)
+	return {
+		[PropertyFunction.DAMAGE_BOOST_MULT] = function(o, p)
+			if (p and p.ability) == self then
+				return self:GetSpecialValueFor("prayer_damage_boost")
+			end
+		end,
+	}
+end
 function n.prototype.GetAICastRange(self)
 	return self:GetSpecialValueFor("distance")
 end
@@ -42,105 +51,134 @@ function n.prototype.GetBehavior(self)
 	end
 	return k.prototype.GetBehavior(self)
 end
-function n.prototype.GetCooldown(self, o)
-	return math.max(k.prototype.GetCooldown(self, o) - self:GetSpecialValueFor("cooldown_reduction"), 0)
+function n.prototype.GetCooldown(self, q)
+	return math.max(k.prototype.GetCooldown(self, q) - self:GetSpecialValueFor("cooldown_reduction"), 0)
 end
 function n.prototype.GetPlaybackRateOverride(self)
 	return 0.4 / self:GetSpecialValueFor("channel_duration")
 end
 function n.prototype.OnAbilityPhaseStart(self)
-	local p = self:GetCaster()
-	p:EmitSound("Ability.AssassinateLoad")
+	local r = self:GetCaster()
+	r:EmitSound("Ability.AssassinateLoad")
 	return true
 end
 function n.prototype.OnSpellStart(self)
-	local p = self:GetCaster()
-	p:StopSound("Ability.PowershotPull")
-	local q = self:GetSupportCastPoint()
-	local r = CalcDirection(q or vec3_bottom, p:GetAbsOrigin())
-	self:PowerShot(p:GetAttachmentPosition("attach_attack3"), r, 1)
-	if p:HasAbilityUpgrade("vexis_upgrade_2") then
-		p:StartGesture(ACT_DOTA_CAST_ABILITY_2_END)
+	local r = self:GetCaster()
+	r:StopSound("Ability.PowershotPull")
+	local s = self:GetSupportCastPoint()
+	local t = CalcDirection(s or vec3_bottom, r:GetAbsOrigin())
+	self:PowerShot(r:GetAttachmentPosition("attach_attack3"), t, 1)
+	if r:HasAbilityUpgrade("vexis_upgrade_2") then
+		r:StartGesture(ACT_DOTA_CAST_ABILITY_2_END)
 	end
 end
-function n.prototype.PowerShot(self, s, t, u, v)
-	if v == nil then
-		v = false
+function n.prototype.PowerShot(self, u, v, w, x)
+	if x == nil then
+		x = false
 	end
-	local p = self:GetCaster()
-	local w = self:GetSpecialValueFor("distance_pct")
-	local x = p:HasAbilityUpgrade("vexis_1_upgrade_8") and 1 or (w > 0 and w * 0.01 or 1)
-	local y = self:GetSpecialValueFor("distance") * u * x
-	local z = self:GetSpecialValueFor("arrow_count")
-	local A = self:GetSpecialValueFor("bounce_count")
-	local B = p:HasAbilityUpgrade("vexis_1_upgrade_7")
-	local C = B and self:GetSpecialValueFor("return_damage_boost") or 0
-	local D = self:GetSpecialValueFor("damage")
-	local E = D * u
-	local F = z > 1 and EOM_DAMAGE_FLAGS.SPLIT_DAMAGE or EOM_DAMAGE_FLAGS.NONE
-	local G = self:GetSpecialValueFor("angle")
-	local H = G / z
-	Bullet:SplitAction(t, z, H, function(I, J)
+	local r = self:GetCaster()
+	local y = self:GetSpecialValueFor("distance_pct")
+	local z = r:HasAbilityUpgrade("vexis_1_upgrade_8") and 1 or (y > 0 and y * 0.01 or 1)
+	local A = self:GetSpecialValueFor("distance") * w * z
+	local B = self:GetSpecialValueFor("arrow_count")
+	local C = r:HasAbilityUpgrade("vexis_upgrade_14_1_1")
+	local D = math.max(B - 1, 0)
+	local E = C and 1 + D * self:GetSpecialValueFor("giant_scale_per_arrow") * 0.01 or 1
+	local F = C and 1 + D * self:GetSpecialValueFor("giant_damage_per_arrow") * 0.01 or 1
+	local G = C and 1 or B
+	local H = self:GetSpecialValueFor("bounce_count")
+	local I = r:HasAbilityUpgrade("vexis_1_upgrade_7")
+	local J = I and self:GetSpecialValueFor("return_damage_boost") or 0
+	local K = self:GetSpecialValueFor("damage")
+	local L = K * w * F
+	local M = B > 1 and EOM_DAMAGE_FLAGS.SPLIT_DAMAGE or EOM_DAMAGE_FLAGS.NONE
+	local N = self:GetSpecialValueFor("angle")
+	local O = N / G
+	Bullet:SplitAction(v, G, O, function(o, P)
 		self:FireBullet({
-			start = s,
-			direction = J,
-			distance = y,
-			damage = E,
-			damageFlags = F,
-			bounceCount = A,
-			canReturn = B,
-			returnDamagePct = C,
+			start = u,
+			direction = P,
+			distance = A,
+			damage = L,
+			damageFlags = M,
+			widthScale = E,
+			particleScale = E,
+			useGiantParticle = C,
+			bounceCount = H,
+			canReturn = I,
+			returnDamagePct = J,
 		})
 	end)
-	p:EmitSound("Ability.Assassinate")
-	if p:HasAbilityUpgrade("vexis_upgrade_29") and not v then
-		local K = p:GetAbilityByTag(AbilityTag.Attack)
-		local v = K.wisp
-		if IsValid(v) then
-			local L = FindEnemiesInRadius(p, p:GetAbsOrigin(), 1200)
-			local M = IsValid(L[1]) and CalcDirection2D(L[1], v) or t
-			v:SetLocalAngles(0, VectorToAngles(M).y, 0)
-			self:PowerShot(v:GetAttachmentPosition("attach_attack1") + Vector(0, 0, 75), M, u, true)
+	r:EmitSound("Ability.Assassinate")
+	if r:HasAbilityUpgrade("vexis_upgrade_29") and not x then
+		local Q = r:GetAbilityByTag(AbilityTag.Attack)
+		local x = Q.wisp
+		if IsValid(x) then
+			local R = FindEnemiesInRadius(r, r:GetAbsOrigin(), 1200)
+			local S = IsValid(R[1]) and CalcDirection2D(R[1], x) or v
+			x:SetLocalAngles(0, VectorToAngles(S).y, 0)
+			self:PowerShot(x:GetAttachmentPosition("attach_attack1") + Vector(0, 0, 75), S, w, true)
 		end
 	end
 end
-function n.prototype.FireBullet(self, N)
-	local p = self:GetCaster()
-	local O = self:GetSpecialValueFor("speed")
-	local P = self:GetSpecialValueFor("width")
+function n.prototype.FireBullet(self, T)
+	local r = self:GetCaster()
+	local U = self:GetSpecialValueFor("speed")
+	local V = self:GetSpecialValueFor("width") * T.widthScale
+	local W = T.useGiantParticle and "models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx_giant.vpcf"
+		or "models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx.vpcf"
 	Bullet:CreateGuidedBullet({
-		caster = p,
+		caster = r,
 		ability = self,
-		effectName = "models/eom/hero/shooter_1/particles/shooter_1_special_skill_fx.vpcf",
-		spawnOrigin = N.start,
-		direction = N.direction,
-		lifeTime = N.distance / O,
-		moveSpeed = O,
-		radius = P,
-		bounce = N.bounceCount,
-		ignoreBlock = N.bounceCount <= 0 and not N.canReturn,
+		effectName = W,
+		spawnOrigin = T.start,
+		direction = T.direction,
+		lifeTime = T.distance / U,
+		moveSpeed = U,
+		radius = V,
+		ParticleCreator = T.useGiantParticle and function(X)
+			local Y = ParticleManager:CreateParticle(W, PATTACH_CUSTOMORIGIN, r)
+			ParticleManager:SetParticleControlTransformForward(Y, 0, T.start, X.__velocity:Normalized())
+			ParticleManager:SetParticleControlEnt(
+				Y,
+				1,
+				X.__thinker,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				X.__thinker:GetAbsOrigin(),
+				false
+			)
+			ParticleManager:SetParticleControl(Y, 2, Vector(X.moveSpeed, 0, 0))
+			ParticleManager:SetParticleControl(Y, 10, Vector(T.particleScale, 0, 0))
+			return Y
+		end or nil,
+		bounce = T.bounceCount,
+		ignoreBlock = T.bounceCount <= 0 and not T.canReturn,
 		teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		typeFilter = UNIT_AND_BUILDING,
 		flagFilter = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE,
-		OnBulletHit = function(Q)
-			p:DealDamage(Q, self, N.damage, nil, N.damageFlags)
+		OnBulletHit = function(Z)
+			r:DealDamage(Z, self, T.damage, nil, T.damageFlags)
 		end,
-		OnBulletDestroy = N.canReturn and function(R)
-			if not IsValid(p) then
+		OnBulletDestroy = T.canReturn and function(X)
+			if not IsValid(r) then
 				return
 			end
-			local S = R.__position
-			local T = p:GetAbsOrigin()
-			local U = CalcDistance(S, T)
-			if U <= 0 then
+			local _ = X.__position
+			local a0 = r:GetAbsOrigin()
+			local a1 = CalcDistance(_, a0)
+			if a1 <= 0 then
 				return
 			end
 			self:FireBullet({
-				start = S,
-				direction = CalcDirection(T, S),
-				distance = U,
-				damage = N.damage * N.returnDamagePct * 0.01,
-				damageFlags = N.damageFlags,
+				start = _,
+				direction = CalcDirection(a0, _),
+				distance = a1,
+				damage = T.damage * T.returnDamagePct * 0.01,
+				damageFlags = T.damageFlags,
+				widthScale = T.widthScale,
+				particleScale = T.particleScale,
+				useGiantParticle = T.useGiantParticle,
 				bounceCount = 0,
 				canReturn = false,
 				returnDamagePct = 0,
@@ -152,21 +190,21 @@ n = e(
 	{
 		m(nil, {
 			searchBehavior = AI_SEARCH_BEHAVIOR.AI_SEARCH_BEHAVIOR_MOST_LINE_TARGET,
-			funcCondition = function(I, K)
-				return K:GetAutoCastState()
+			funcCondition = function(o, Q)
+				return Q:GetAutoCastState()
 			end,
 		}),
 	},
 	n
 )
-local V = c()
-V.name = "modifier_vexis_1"
-d(V, h)
-V = e(
+local a2 = c()
+a2.name = "modifier_vexis_1"
+d(a2, h)
+a2 = e(
 	{ i(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	V
+	a2
 )
 return f

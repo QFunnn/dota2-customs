@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -41,4 +41,4 @@ GameUI.CustomUIConfig().rune_class_setting = {
 		rune_class: 8,
 		adverb_weight: "0|0|0|0|100|150|123|72|56|14|8"
 	}
-};
+};

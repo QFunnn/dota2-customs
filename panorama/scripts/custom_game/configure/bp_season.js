@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -45,4 +45,4 @@ GameUI.CustomUIConfig().bp_season = {
 		read_start_time: "2026-08-23 16:00:00",
 		read_end_time: "2026-10-04 15:59:59"
 	}
-};
+};

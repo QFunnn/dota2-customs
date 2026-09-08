@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -168,13 +168,13 @@ GameUI.CustomUIConfig().hero_abilities = {
 		"AbilityCooldown": 4,
 		"AbilityValues": {
 			"movespeed": 400,
-			"damage": 10,
+			"damage": 16,
 			"distance": {
 				"value": 800,
 				"+bullet_range": 1
 			},
 			"duration": 0.24,
-			"count": 12,
+			"count": 6,
 			"bounce_count": {
 				"value": 0,
 				"+bounce_count": 1

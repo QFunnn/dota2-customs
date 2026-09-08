@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -21,7 +21,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 			"1": 100
 		},
 		devour_exp: 0,
-		level_max: 0
+		level_max: 0,
+		break_bonus: "200001:10"
 	},
 	"2": {
 		rarity: 2,
@@ -35,7 +36,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 			"1": 100
 		},
 		devour_exp: 0,
-		level_max: 0
+		level_max: 0,
+		break_bonus: "200001:10"
 	},
 	"3": {
 		rarity: 3,
@@ -49,7 +51,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 			"1": 100
 		},
 		devour_exp: 0,
-		level_max: 0
+		level_max: 0,
+		break_bonus: "200001:10"
 	},
 	"4": {
 		rarity: 4,
@@ -63,7 +66,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 			"1": 100
 		},
 		devour_exp: 0,
-		level_max: 0
+		level_max: 0,
+		break_bonus: "200001:10"
 	},
 	"5": {
 		rarity: 5,
@@ -81,7 +85,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 		level_max: 1,
 		level_exp: {
 			"1": 3
-		}
+		},
+		break_bonus: "200001:20"
 	},
 	"6": {
 		rarity: 6,
@@ -101,7 +106,8 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 		level_exp: {
 			"1": 5,
 			"2": 5
-		}
+		},
+		break_bonus: "200001:40"
 	},
 	"7": {
 		rarity: 7,
@@ -124,6 +130,7 @@ GameUI.CustomUIConfig().key_rarity_setting = {
 			"1": 10,
 			"2": 10,
 			"3": 10
-		}
+		},
+		break_bonus: "200001:60"
 	}
-};
+};

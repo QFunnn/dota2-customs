@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -133,4 +133,4 @@ GameUI.CustomUIConfig().activity_data = {
 		description: "永恒矿脉（挖矿活动）",
 		tokens: "110003|110020|110001"
 	}
-};
+};
