@@ -498,4 +498,4 @@ GameUI.CustomUIConfig().talent = {
 			c11: 2
 		}
 	}
-};
+};

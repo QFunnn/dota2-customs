@@ -73,4 +73,4 @@ GameUI.CustomUIConfig().rune_suit_effect = {
 		},
 		suit_icon: "item_rune_circle"
 	}
-};
+};

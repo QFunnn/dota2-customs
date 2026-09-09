@@ -2019,4 +2019,4 @@ GameUI.CustomUIConfig().idle_game_fish_type = {
 			}
 		]
 	}
-};
+};

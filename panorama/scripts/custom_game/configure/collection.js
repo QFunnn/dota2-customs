@@ -804,4 +804,4 @@ GameUI.CustomUIConfig().collection = {
 		length_min: 250,
 		length_max: 500
 	}
-};
+};

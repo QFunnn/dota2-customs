@@ -41,4 +41,4 @@ GameUI.CustomUIConfig().rune_class_setting = {
 		rune_class: 8,
 		adverb_weight: "0|0|0|0|100|150|123|72|56|14|8"
 	}
-};
+};

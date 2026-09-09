@@ -725,4 +725,4 @@ GameUI.CustomUIConfig().hero_talent = {
 		y: 735,
 		requires: "d18:3"
 	}
-};
+};

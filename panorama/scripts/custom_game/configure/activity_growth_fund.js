@@ -14,4 +14,4 @@ GameUI.CustomUIConfig().activity_growth_fund = {
 		progress_type: "hero_level",
 		product_id: 890001
 	}
-};
+};

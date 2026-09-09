@@ -1809,4 +1809,4 @@ GameUI.CustomUIConfig().equip_drop = {
 		drop_base: 100,
 		drop_num: 1
 	}
-};
+};

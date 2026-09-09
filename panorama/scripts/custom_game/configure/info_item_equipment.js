@@ -5889,4 +5889,4 @@ GameUI.CustomUIConfig().info_item_equipment = {
 		rarity: 7,
 		icon: 901087
 	}
-};
+};

@@ -23,4 +23,4 @@ GameUI.CustomUIConfig().equip_forge_setting = {
 		potential_cost_max: 10,
 		consume: "120008:30|120010:10"
 	}
-};
+};

@@ -77,4 +77,4 @@ GameUI.CustomUIConfig().collection_total_level_reward = {
 		effect: "idle_max_power:400|idle_fish_normalbox_chance:20",
 		"效果备注": "渔场等级+1，体力上限增加，宝箱出现概率"
 	}
-};
+};

@@ -49,4 +49,4 @@ GameUI.CustomUIConfig().hero = {
 		type: 1,
 		hero_fragment: 510004
 	}
-};
+};

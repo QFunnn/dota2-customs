@@ -370,4 +370,4 @@ GameUI.CustomUIConfig().payments = {
 		pay_type: 8000,
 		names: "payermax"
 	}
-};
+};

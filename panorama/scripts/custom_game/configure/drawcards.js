@@ -219,4 +219,4 @@ GameUI.CustomUIConfig().drawcards = {
 		choose: 0,
 		inheritance_lucky: 3001
 	}
-};
+};

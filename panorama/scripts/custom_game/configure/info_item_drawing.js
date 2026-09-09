@@ -1185,4 +1185,4 @@ GameUI.CustomUIConfig().info_item_drawing = {
 		rarity: 7,
 		icon: 2010087
 	}
-};
+};

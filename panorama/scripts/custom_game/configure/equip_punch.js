@@ -51,4 +51,4 @@ GameUI.CustomUIConfig().equip_punch = {
 		punch_num: 1,
 		cost: "120008:1000|120009:200|120010:200"
 	}
-};
+};

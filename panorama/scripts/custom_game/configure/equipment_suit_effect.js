@@ -65,4 +65,4 @@ GameUI.CustomUIConfig().equipment_suit_effect = {
 		lv6: "privilege_suit_026",
 		suit_icon: "alchemist_berserk_potion"
 	}
-};
+};

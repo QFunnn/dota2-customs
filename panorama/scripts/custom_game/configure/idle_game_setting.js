@@ -25,4 +25,4 @@ GameUI.CustomUIConfig().idle_game_setting = {
 		key: "aquarium_slot",
 		value: "1"
 	}
-};
+};

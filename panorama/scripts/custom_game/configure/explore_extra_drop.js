@@ -149,4 +149,4 @@ GameUI.CustomUIConfig().explore_extra_drop = {
 		drop_num_max: 1,
 		drop_weight: 100
 	}
-};
+};

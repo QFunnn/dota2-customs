@@ -145,4 +145,4 @@ GameUI.CustomUIConfig().gem_drop_entry = {
 		weight: 100,
 		effect_limit: 30
 	}
-};
+};

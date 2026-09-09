@@ -14,4 +14,4 @@ GameUI.CustomUIConfig().default_item = {
 		item_id: 110009,
 		item_num: 10
 	}
-};
+};

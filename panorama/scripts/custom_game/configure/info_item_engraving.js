@@ -429,4 +429,4 @@ GameUI.CustomUIConfig().info_item_engraving = {
 		rarity: 7,
 		icon: 2101007
 	}
-};
+};

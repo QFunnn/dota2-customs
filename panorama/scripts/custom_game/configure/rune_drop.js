@@ -247,4 +247,4 @@ GameUI.CustomUIConfig().rune_drop = {
 			"190001": 2
 		}
 	}
-};
+};

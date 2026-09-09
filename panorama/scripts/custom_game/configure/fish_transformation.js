@@ -45,4 +45,4 @@ GameUI.CustomUIConfig().fish_transformation = {
 			"110003": 216
 		}
 	}
-};
+};

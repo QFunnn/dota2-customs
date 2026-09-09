@@ -135,4 +135,4 @@ GameUI.CustomUIConfig().explore_reward = {
 			}
 		}
 	}
-};
+};

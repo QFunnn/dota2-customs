@@ -235,4 +235,4 @@ GameUI.CustomUIConfig().activity_growth_fund_rewards = {
 			reward_id: 28
 		}
 	}
-};
+};

@@ -29562,4 +29562,4 @@ GameUI.CustomUIConfig().collection_treasure = {
 			level_cost: 20
 		}
 	}
-};
+};

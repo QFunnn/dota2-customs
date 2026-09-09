@@ -33,4 +33,4 @@ GameUI.CustomUIConfig().pay_config = {
 			"7001": 1
 		}
 	}
-};
+};

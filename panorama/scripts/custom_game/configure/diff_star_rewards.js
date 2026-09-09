@@ -197,4 +197,4 @@ GameUI.CustomUIConfig().diff_star_rewards = {
 			"190001": 2
 		}
 	}
-};
+};

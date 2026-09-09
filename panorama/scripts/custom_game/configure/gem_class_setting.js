@@ -39,4 +39,4 @@ GameUI.CustomUIConfig().gem_class_setting = {
 		main_bonus: 1,
 		adverb_bonus: 1
 	}
-};
+};

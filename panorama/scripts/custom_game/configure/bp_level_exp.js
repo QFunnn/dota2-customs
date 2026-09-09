@@ -1101,4 +1101,4 @@ GameUI.CustomUIConfig().bp_level_exp = {
 			exp: 1000
 		}
 	}
-};
+};

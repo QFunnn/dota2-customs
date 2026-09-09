@@ -834,4 +834,4 @@ GameUI.CustomUIConfig().service_courier = {
 			equip_rarity_chance: 20
 		}
 	}
-};
+};

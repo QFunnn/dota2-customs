@@ -93,4 +93,4 @@ GameUI.CustomUIConfig().fish_consume = {
 		effect: "idle_fish_escape_speed_pct:10|idle_fish_crit_chance:10|idle_fish_total_profit_pct:30",
 		required_rod_level: 2
 	}
-};
+};

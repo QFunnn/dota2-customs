@@ -19,4 +19,4 @@ GameUI.CustomUIConfig().recharge_rewards = {
 		recharge_num: 50000,
 		rewards: "110001:50000|1711002:1"
 	}
-};
+};

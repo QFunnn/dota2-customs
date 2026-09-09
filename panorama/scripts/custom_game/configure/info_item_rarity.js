@@ -9776,4 +9776,4 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 2110007,
 		rarity: 7
 	}
-};
+};

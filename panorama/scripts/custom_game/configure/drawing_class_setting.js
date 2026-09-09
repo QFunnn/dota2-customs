@@ -119,4 +119,4 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		},
 		adverb_weight: "0|0|0|0|0|60|60|40|30|15|5"
 	}
-};
+};

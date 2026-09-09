@@ -48,4 +48,4 @@ GameUI.CustomUIConfig().game_setting = {
 	adventure_lock: {
 		key: "adventure_lock"
 	}
-};
+};

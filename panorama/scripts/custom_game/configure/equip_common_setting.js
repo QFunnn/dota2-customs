@@ -21,4 +21,4 @@ GameUI.CustomUIConfig().equip_common_setting = {
 		key: "potential_transform_upgrade_chance_max",
 		value: "50"
 	}
-};
+};

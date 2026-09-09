@@ -14,4 +14,4 @@ GameUI.CustomUIConfig().default_idle_game_items = {
 		id: 1100100,
 		name: "破旧鱼竿"
 	}
-};
+};

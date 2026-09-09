@@ -41,4 +41,4 @@ GameUI.CustomUIConfig().engraving_class_setting = {
 		engraving_class: 8,
 		adverb_weight: "0|0|0|0|20|70|220|300|180|110|70"
 	}
-};
+};

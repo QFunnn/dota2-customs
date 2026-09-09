@@ -88,4 +88,4 @@ GameUI.CustomUIConfig().gem_level = {
 		entry_probability: 0,
 		decompose: "120011:183"
 	}
-};
+};

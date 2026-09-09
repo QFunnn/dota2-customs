@@ -673,4 +673,4 @@ GameUI.CustomUIConfig().equip_entry = {
 		value_max: 15,
 		ratio: 1
 	}
-};
+};

@@ -1170,4 +1170,4 @@ GameUI.CustomUIConfig().activity_starsea = {
 			show: 0
 		}
 	}
-};
+};

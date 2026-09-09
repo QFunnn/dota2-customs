@@ -218,4 +218,4 @@ GameUI.CustomUIConfig().collection_treasure_level_reward = {
 			"1760001": 1
 		}
 	}
-};
+};

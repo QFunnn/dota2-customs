@@ -164,4 +164,4 @@ GameUI.CustomUIConfig().equip_level_setting = {
 		main_bonus: 0.75,
 		adverb_bonus: 0.75
 	}
-};
+};

@@ -2535,4 +2535,4 @@ GameUI.CustomUIConfig().bp_rewards = {
 			}
 		}
 	}
-};
+};

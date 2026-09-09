@@ -489,4 +489,4 @@ GameUI.CustomUIConfig().idle_game_drop_privilege = {
 		itemid: 1800005,
 		num: 1
 	}
-};
+};

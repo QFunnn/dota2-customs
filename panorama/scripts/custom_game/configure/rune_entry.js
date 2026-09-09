@@ -153,4 +153,4 @@ GameUI.CustomUIConfig().rune_entry = {
 		value_max: 0,
 		ratio: 0
 	}
-};
+};
