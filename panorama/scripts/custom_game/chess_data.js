@@ -157,6 +157,7 @@ var CHESS_2_HERO = {
 
     chess_phx: 'npc_dota_hero_phoenix',
     chess_aa: 'npc_dota_hero_ancient_apparition',
+    chess_sil: 'npc_dota_hero_silencer',
 };
 var CHESS_2_LEVEL = {
     chess_tusk: 1,
@@ -301,6 +302,7 @@ var CHESS_2_LEVEL = {
 
     chess_phx: 4,
     chess_aa: 1,
+    chess_sil: 5,
 };
 var CHESS_2_SPEC_CLASS = {
     // 1
@@ -445,6 +447,7 @@ var CHESS_2_SPEC_CLASS = {
 
     chess_aa: 'is_element,is_mage',
     chess_phx: 'is_element,is_mage',
+    chess_sil: 'is_human,is_warlock',
 };
 var BUFF_LIST_1 = {
     is_troll: [2, 4, 6],
@@ -619,6 +622,7 @@ var CHESS_2_ABILITY = {
     chess_naix: 'life_stealer_rage',
     chess_au: 'au_portal',
     chess_largo: 'largo_frogstomp',
+    chess_sil: 'sil_silence_all',
 };
 var SPARE_CHESS_LIST = [
     ['chess_ww', 'chess_clinkz', 'chess_abaddon' ],

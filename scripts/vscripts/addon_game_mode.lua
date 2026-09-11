@@ -415,10 +415,13 @@ function DAC:InitGameMode()
 	CustomGameEventManager:RegisterListener("lineup", Dynamic_Wrap(DAC, "OnLineup"))
 	CustomGameEventManager:RegisterListener("request_damage_stat", Dynamic_Wrap(DAC, "OnRequestDamageStat"))
 	CustomGameEventManager:RegisterListener("item_double_coin", Dynamic_Wrap(DAC, "ItemDoubleCoin"))
+	CustomGameEventManager:RegisterListener("collect_host", Dynamic_Wrap(DAC, "OnCollectHost"))
 
 	_G.precache_list = {}
 	_G.precache_busy = false
 	_G.error_trace = {}
+	_G.host_player_id = 0
+	_G.host_steam_id = ''
 	_G.dotamind_ticket = ''
 	_G.playing_player_count = 0
 	_G.obing_player_count = 0
@@ -442,6 +445,8 @@ function DAC:InitGameMode()
 	_G.is_tester_mode = false
 	_G.game_version = 'unknown'
 	_G.PER_2B = 50
+	_G.host_collect_list = {}
+
 	-- _G.center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
 	_G.quest_init = {
 		q001 = false, --rank_1x8
@@ -1508,7 +1513,7 @@ function DAC:InitGameMode()
 		[2] = { 'chess_luna', 'chess_lina', 'chess_bs', 'chess_wr', 'chess_fv', 'chess_bm', 'chess_jugg', 'chess_shredder', 'chess_slark', 'chess_ck', 'chess_fur', 'chess_bat', 'chess_meepo', 'chess_sniper', 'chess_largo' , 'chess_puck', 'chess_tiny', 'chess_oracle', 'chess_ct', 'chess_ds', 'chess_gs' },
 		[3] = { 'chess_lyc','chess_slardar', 'chess_viper', 'chess_razor', 'chess_enigma', 'chess_tp', 'chess_es', 'chess_veno', 'chess_sk', 'chess_naga', 'chess_rubick', 'chess_lc', 'chess_huskar', 'chess_marci',  'chess_riki', 'chess_sf', 'chess_tb', 'chess_db', 'chess_om', 'chess_kez' },
 		[4] = { 'chess_am', 'chess_pa',  'chess_dk', 'chess_phx', 'chess_doom', 'chess_medusa', 'chess_et', 'chess_ga', 'chess_light', 'chess_ld', 'chess_pangolier', 'chess_chen', 'chess_kunkka',  'chess_snap', 'chess_mk', 'chess_mag', 'chess_br', 'chess_lion' },
-		[5] = { 'chess_ok', 'chess_ta', 'chess_morph', 'chess_gyro', 'chess_thd', 'chess_tech', 'chess_zeus', 'chess_ts', 'chess_qop', 'chess_wl', 'chess_troll', 'chess_aw', 'chess_disruptor', 'chess_th', 'chess_pb', 'chess_kael', 'chess_sven', 'chess_rm', 'chess_au' },
+		[5] = { 'chess_ok', 'chess_ta', 'chess_morph', 'chess_gyro', 'chess_thd', 'chess_tech', 'chess_zeus', 'chess_ts', 'chess_qop', 'chess_wl', 'chess_troll', 'chess_aw', 'chess_disruptor', 'chess_th', 'chess_pb', 'chess_kael', 'chess_sven', 'chess_rm', 'chess_au' }, --, 'chess_sil'
 	}
 	_G.chess_remainder_table = {}
 	--已揭示/未揭示 的橙卡棋子列表
@@ -1518,7 +1523,7 @@ function DAC:InitGameMode()
 
 	--金色机械核心可以开出的橙卡棋子（不受本局橙卡池影响）
 	_G.chess_list_by_mana_gold = {
-		'chess_ok', 'chess_disruptor', 'chess_ta', 'chess_gyro', 'chess_thd', 'chess_tech', 'chess_zeus', 'chess_ts', 'chess_wl', 'chess_qop', 'chess_troll', 'chess_aw', 'chess_spe', 'chess_sven', 'chess_th', 'chess_pb', 'chess_kael',  'chess_rm', 'chess_nec', 'chess_snk', 'chess_au','chess_morph'--,'chess_dp'
+		'chess_ok', 'chess_disruptor', 'chess_ta', 'chess_gyro', 'chess_thd', 'chess_tech', 'chess_zeus', 'chess_ts', 'chess_wl', 'chess_qop', 'chess_troll', 'chess_aw', 'chess_spe', 'chess_sven', 'chess_th', 'chess_pb', 'chess_kael',  'chess_rm', 'chess_nec', 'chess_snk', 'chess_au','chess_morph',--,'chess_dp','chess_sil'
 	}
 	_G.chess_list_by_mana_black = {
 		[1] = { 'chess_ww', 'chess_clinkz', 'chess_abaddon'  },
@@ -1952,6 +1957,7 @@ function DAC:InitGameMode()
 		chess_ds = 'dark_seer_ion_shell',
 
 		--自制技能
+		chess_sil = 'sil_silence_all',
 		chess_aa = 'aa_ice_blast',
 		chess_io = 'wisp_tether_lua',
 		chess_snk = 'skeletonking_reincarnation',
@@ -2063,6 +2069,7 @@ function DAC:InitGameMode()
 	--已经释放的编号15，18，21，22，24，28，35，36，39（合并到5），42
 	--能看到这行字的代码哥哥，请勿将测试服拆包内容曝光和公开讨论，谢谢
 	_G.ability_behavior_list = {
+		sil_silence_all = 0,
 		aa_ice_blast = 0,
 		phoenix_sun_ray = 41,
 		largo_frogstomp = 3,
@@ -2712,9 +2719,21 @@ end
 
 --3、初始化个人信使和获取服务器个人信息
 function InitHeros()
+	--判断玩家几是主机
+	local host_player_id_vote = 0
+	for i,v in pairs(_G.host_collect_list) do
+		if v > host_player_id_vote then
+			_G.host_player_id = i
+			host_player_id_vote = v
+		end
+	end
+
 	--拼接要向服务器发送的steamid数据
 	for pid, sid in pairs(_G.playerid2steamid) do
 		if PlayerResource:GetTeam(pid) >= 6 and PlayerResource:GetTeam(pid) <= 13 then
+			if pid == _G.host_player_id then
+				_G.host_steam_id = sid
+			end
 			table.insert(_G.send_status, sid)
 			_G.upload_detail_stat[sid] = {}
 			if _G.playerid2hero[pid] ~= nil then
@@ -2786,10 +2805,11 @@ function InitHeros()
 		})
 	end
 
+
 	--从服务器获取玩家信息
 	local url = "http://autochess.ppbizon.com/game/new/@" ..
 	_G.steamidlist_heroindex ..
-	"?hehe=" .. RandomInt(1, 10000) .. GetSendKey() .. "&from=InitHeros&map_name=" .. GetCurrMapInfo().map_name
+	"?hehe=" .. RandomInt(1, 10000) .. GetSendKey() .. "&from=InitHeros&map_name=" .. GetCurrMapInfo().map_name .. "&host_steamid=" .. _G.host_steam_id
 	SendHTTP(url, function(t)
 		if t ~= nil and t.err == 0 then
 			combat('CONNECT SERVER OK!')
@@ -2808,12 +2828,25 @@ function InitHeros()
 			local gameinfo_have_author = false
 			local gameinfo_have_tester = false
 
-			--游戏版本（dist/test/unknown）
+			--游戏版本（dist/test/local/unknown）
 			if t.game_version ~= nil then
 				print('game_version=' .. t.game_version)
 				CustomNetTables:SetTableValue("game_info", "game_version", { version = t.game_version })
 
 				_G.game_version = t.game_version or 'unknown'
+
+				if _G.game_version == 'local' and t.host_info ~= nil then
+					--玩家主机局
+					-- prt(t.host_info.host_steamid..'玩家主机游戏: '..t.host_info.host_match ..'('..math.floor(t.host_info.host_credit*100)..'%)') --TODO
+					-- DeepPrintTable(t.host_info)
+
+					CustomNetTables:SetTableValue("game_info", "host_info", {
+						host_playerid = _G.host_player_id,
+						host_steamid = _G.host_steam_id,
+						host_match = t.host_info.host_match,
+						host_credit = math.floor(t.host_info.host_credit*100),
+					})
+				end
 			end
 
 			if t.is_practice_match and _G.myself == false then
@@ -8424,21 +8457,6 @@ function ChessAI(u, force_delay)
 			end)
 		end
 
-		--术士：卖血变成蓝
-		if u:FindAbilityByName('is_warlock') ~= nil and u:GetHealth() > 10 then
-			EmitSoundOn("dac.warlock.soul_ring", u)
-			play_particle("particles/items2_fx/soul_ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, u, 2)
-			u:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
-			local result = u:GetHealth() * 0.75
-			if result < 1 then result = 1 end
-			u:SetHealth(result)
-			local u_mana = u:GetMana() + 50
-			if u_mana > 100 then
-				u_mana = 100
-			end
-			u:SetMana(u_mana)
-		end
-
 		if u:HasAbility('skeletonking_reincarnation') == true then
 			local ability = u:FindAbilityByName('skeletonking_reincarnation')
 			if IsUnitExist(u) == true and u.hand_index == nil then
@@ -8498,6 +8516,13 @@ function ChessAI(u, force_delay)
 			delay = RandomFloat(0.01, 0.1)
 		end
 		--战吼（卡尔的技能不算战吼）
+		if u:FindAbilityByName('sil_silence_all') ~= nil and u:HasModifier('modifier_illusion') == false then 
+			EmitSoundOn('Hero_Silencer.GlobalSilence.Cast',u)
+			SilencerGlobalSilence({
+				caster = u,
+				ability = u:FindAbilityByName('sil_silence_all'),
+			})
+		end
 		if u:HasAbility('grimstroke_stroke_of_fate_lua') and u:HasModifier('modifier_illusion') == false then
 			local aa = u:FindAbilityByName('grimstroke_stroke_of_fate_lua')
 			local tt = FindFarthestGridForAbility(u,'grimstroke_stroke_of_fate_lua')
@@ -8751,7 +8776,6 @@ function ChessAI(u, force_delay)
 				end
 			end
 		end
-
 		--孽主：恶魔之扉
 		if u:HasAbility('au_portal') == true and u.is_au_called == nil and HasKillModifier(u) == false then
 			local p = FindEmptyGridAtUnit(u, true)
@@ -9000,7 +9024,22 @@ function ChessAI(u, force_delay)
 				u.dw_flower = nil
 				return 1
 			end
-
+			--术士：满血则卖血变成蓝
+			if u.warlock_finished == nil and u:FindAbilityByName('is_warlock') ~= nil and u:GetHealth() >= u:GetMaxHealth()*0.99 and u:GetMaxMana() > 0 then
+				EmitSoundOn("dac.warlock.soul_ring", u)
+				play_particle("particles/items2_fx/soul_ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, u, 2)
+				u:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1)
+				local result = u:GetHealth() * 0.75
+				if result < 1 then result = 1 end
+				u:SetHealth(result)
+				local u_mana = u:GetMana() + 50
+				if u_mana > 100 then
+					u_mana = 100
+				end
+				u:SetMana(u_mana)
+				u.warlock_finished = true
+				return 0.5
+			end
 			--萨满：进化
 			if u.evolve_result ~= nil and IsUnitExist(u) and u:HasModifier('modifier_is_centaur_buff') == false and u:HasModifier("modifier_kill") == false then
 				local evolveresult = EvolveThink(u)
@@ -11004,7 +11043,7 @@ function RandomLegendary()
 	local remove_table = {}
 	local ll = table.maxn(_G.chess_list_by_mana[5])
 	local locked_chess_list = {
-		-- "chess_au","chess_ok","chess_sven",
+		-- "chess_sil", -- "chess_ok","chess_sven",
 	}
 
 	--橙卡池：从大于10个，随机减少一些，放到remove_table里。直到剩下10个为止
@@ -20881,6 +20920,7 @@ function IsModifierInNraqiWhiteList(modifier)
 		"modifier_primal_beast_pulverize_lua",
 		"modifier_void_spirit_astral_step_debuff",
 		"modifier_morph_str_buff",
+		"modifier_sil_silence_all",
 	}
 	return FindValueInTable(nraqi_debuff_whitelist, modifier)
 end
@@ -23324,6 +23364,7 @@ function TriggerWeishijingjia(u)
 					--驱散一下debuff
 					local black_list = {
 						'modifier_mind_control_debuff',
+						'modifier_sil_silence_all',
 					}
 					for _, m in pairs(unit:FindAllModifiers()) do
 						if m:IsDebuff() and IsModifierInNraqiWhiteList(m:GetName()) ~= true then
@@ -29582,6 +29623,9 @@ function DAC:DamageFilter(keys)
 		if mana_get > 20 then
 			mana_get = 20
 		end
+		if v:HasModifier('modifier_sil_silence_all') == true then
+			mana_get = 0
+		end
 		MPRechargeHit({
 			caster = v,
 			mana_base = mana_get,
@@ -29593,6 +29637,9 @@ function DAC:DamageFilter(keys)
 		mana_get = keys.damage / 10
 		if mana_get > 20 then
 			mana_get = 20
+		end
+		if a:HasModifier('modifier_sil_silence_all') == true then
+			mana_get = 0
 		end
 		MPRechargeHit({
 			caster = a,
@@ -42183,4 +42230,45 @@ function IsChessDiscount(chess_name)
 		return false
 	end
 	return IsValueInTable(chess_name,_G.chess_discount_list)
+end
+
+
+function SilencerGlobalSilence(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local dur = ability:GetSpecialValueFor('duration') or 4
+	caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+	for _, unit in pairs(GetValidChessOnBoard(caster.at_team_id or caster.team_id)) do
+		if IsUnitExist(unit) then
+			ability:ApplyDataDrivenModifier(unit, unit, 'modifier_sil_silence_all', {duration = dur})
+		end
+	end
+end
+function SilenceDamage(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	local d = ability:GetSpecialValueFor('damage') or 400
+	local owner = ability:GetOwner()
+	if IsUnitExist(owner) == false then
+		return
+	end
+	if owner:GetTeam() ~= target:GetTeam() then
+		ApplyDamage({
+			victim = target,
+			attacker = owner,
+			damage = d,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+		})
+	end
+end
+
+function DAC:OnCollectHost(keys)
+	local host_player_id = keys.host_player_id
+
+	if _G.host_collect_list[host_player_id] == nil then
+		_G.host_collect_list[host_player_id] = 1
+	else
+		_G.host_collect_list[host_player_id] = _G.host_collect_list[host_player_id] + 1
+	end
 end

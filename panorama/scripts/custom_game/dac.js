@@ -57,7 +57,6 @@ GameEvents.Subscribe("update_my_money", UpdateMyMoney);
 GameEvents.Subscribe("show_double_coin_confirm", DoubleCoinComfirm);
 GameEvents.Subscribe("show_2b_per", OnShow2bPer);
 
-
 CustomNetTables.SubscribeNetTableListener("dac_table", DACTableChanged);
 CustomNetTables.SubscribeNetTableListener("player_info_table", PlayerInfoTableChanged);
 CustomNetTables.SubscribeNetTableListener("ranking_top_table", RankingTopTableChanged);
@@ -797,8 +796,12 @@ function OnMouseOut() {
     $.DispatchEvent("DOTAHideTitleTextTooltip");
 }
 
-change_camera_2_player_ground(Players.GetLocalPlayer());
+var my_team6 = Players.GetTeam(Players.GetLocalPlayer())-6;
+change_camera_2_player_ground(my_team6);
+$.Msg('>>>>>>>>>>>>>>>>>>>>>>'+my_team6);
+
 function change_camera_2_player_ground(player_id) {
+    $.Msg('========'+Players.GetLocalPlayer());
     CURR_CAMERA_PLAYER_ID = player_id;
     GameUI.SetCameraTargetPosition(CENTER_ENTITY_INDEX[CURR_CAMERA_PLAYER_ID + 6], 0.2);
 
@@ -848,6 +851,9 @@ function GameInfoTableChanged(table, key, data) {
                 ShowTalentTreeBox();
             });
         }
+    }
+    if (key == 'host_info') {
+        ShowHostInfo();
     }
 }
 
@@ -2962,7 +2968,7 @@ function OnPlayerReconnect(data) {
             UpdateTalentTree(PORTRAIT_COURIER_PLAYER_ID);
         }
     });
-
+    ShowHostInfo();
 }
 
 
@@ -3281,6 +3287,11 @@ function OnShowGameover(keys) {
     close_panel_draw_card();
     SetTalentTreeActive(false);
     HideTalentTreeBox();
+
+    var data = CustomNetTables.GetTableValue("game_info", "host_info");
+    if (local_id == data.host_steamid){
+        showPanelHost();
+    }
 }
 
 function UpdateGameoverCourierLevel(t, exp, level_old) {
@@ -4103,10 +4114,10 @@ function refresh_shop_goods_status() {
 function OnRequestPlayerLanguage(data) {
     if (!CheckClientKey(data.key)) return;
     GameEvents.SendCustomGameEventToServer("player_language",
-        {
-            "hehe": Date.now(),
-            "language": $.Language(),
-        });
+    {
+        "hehe": Date.now(),
+        "language": $.Language(),
+    });
 }
 
 function show_ban_panel_chess_list() {
@@ -10211,6 +10222,10 @@ function DoubleCoinComfirm(keys) {
     });
 }
 
+function close_panel_host() {
+    $('#panel_host').style['position'] = '-500px 0px 0px';
+}
+
 function close_panel_gameover() {
     $('#panel_gameover').style['position'] = '-500px 0px 0px';
 }
@@ -10861,4 +10876,34 @@ function ShowMvpChess(panel, name, item){
 function OnShow2bPer(keys){
     var per_2b = parseInt(keys.per);
     $('#text_talent_tree_2b').text = $.Localize('#talent_2b_description').replace('%per%',per_2b);
+}
+
+
+function tips_over_host(pos) {
+    var text = $.Localize('#text_is_host').replace('<s1>',HOST_MATCH).replace('<s2>',HOST_CREDIT);
+    $.DispatchEvent("DOTAShowTitleTextTooltip", $("#" + pos), $.Localize('#title_is_host'), text);
+}
+var HOST_MATCH = 0;
+var HOST_CREDIT = 0;
+function ShowHostInfo(){
+    var data = CustomNetTables.GetTableValue("game_info", "host_info");
+    var player_index = GetPlayerIndexByPlayerID(data.host_playerid);
+    $('#panel_host_'+player_index).SetHasClass('invisible',false);
+    HOST_MATCH = data.host_match;
+    HOST_CREDIT = data.host_credit;
+
+    if (local_id == data.host_steamid){
+        showPanelHost();
+    }
+}
+// CustomGameEventManager:Send_ServerToAllClients("show_host_info", {
+//     hehe = RandomFloat(1, 10000),
+//     host_playerid = _G.host_player_id,
+//     host_steamid = _G.host_steam_id,
+//     host_match = t.host_info.host_match,
+//     host_credit = math.floor(t.host_info.host_credit*100),
+// })
+
+function showPanelHost(){
+    $('#panel_host').style['position'] = '0px 0px 0px';
 }

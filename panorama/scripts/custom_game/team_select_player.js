@@ -81,6 +81,14 @@ function OnPlayerDetailsChanged() {
 
 	$.GetContextPanel().SetHasClass("player_is_local", playerInfo.player_is_local);
 	$.GetContextPanel().SetHasClass("player_has_host_privileges", playerInfo.player_has_host_privileges);
+
+	if (playerInfo.player_has_host_privileges){
+		GameEvents.SendCustomGameEventToServer("collect_host",
+		{
+			"hehe": Date.now(),
+			"host_player_id": playerId,
+		});
+	}
 }
 
 function GetCurrMapMinMMrlevelLimit() {

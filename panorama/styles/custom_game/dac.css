@@ -1710,6 +1710,7 @@ Label
 	position: 1480px 0px 0px;
 	transition-property: position, opacity;
 	transition-duration: 0.3s;
+	overflow: noclip noclip;
 }
 
 #board_right.wh1610
@@ -1746,6 +1747,22 @@ Label
 	transition-property: transform;
 	transition-duration: 0.3s;
 	img-shadow: 0px 0px 4px 0.0 #000;
+}
+
+.player_host
+{
+	horizontal-align: left;
+	margin-left: 289px;
+	margin-top: 30px;
+	height: 30px;
+	width: 30px;
+	z-index: 11;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	img-shadow: 0px 0px 4px 0.0 #000;
+	background-image: url("s2r://panorama/images/custom_game/host_png.vtex");
+	background-size: 100% 100%;
+	tooltip-position: top;
 }
 
 .player_badge:hover
@@ -2095,9 +2112,9 @@ Label
 	width: 100%;
 	height: 100%;
 	z-index: 10;
-	brightness: 0.1;
+	brightness: 0.2;
 	saturation: 0.5;
-	background-image: url("s2r://panorama/images/custom_game/loading/s44_loading_jpg.vtex");
+	background-image: url("s2r://panorama/images/custom_game/loading/s45_loading_png.vtex");
 	background-size: 100% 105%;
 }
 
@@ -5122,6 +5139,43 @@ Label
 	background-position: center center;
 }
 
+#panel_host
+{
+	width: 350px;
+	height: 180px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#8dc0f2ee), color-stop(0.00, #0e1318fe), to(#0e1318ff));
+	z-index: 500;
+	opacity: 1;
+	margin-top: 130px;
+	horizontal-align: left;
+	transition-property: position;
+	transition-duration: 0.5s;
+	position: -500px 0px 0px;
+}
+
+.panel_host_title
+{
+	width: 350px;
+	height: 50px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 30px;
+	margin-left: 0px;
+	flow-children: right;
+}
+
+.panel_host_content
+{
+	width: 350px;
+	height: 100px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 65px;
+	margin-left: 0px;
+	flow-children: right;
+	padding:20px;
+}
+
 #panel_gameover
 {
 	width: 350px;
@@ -5134,7 +5188,7 @@ Label
 	background-repeat: no-repeat;
 	z-index: 500;
 	opacity: 1;
-	margin-top: 130px;
+	margin-top: 320px;
 	horizontal-align: left;
 	transition-property: position;
 	transition-duration: 0.5s;
@@ -6329,7 +6383,8 @@ DOTAHUDShop DOTAShopItem
 .panel_with_border
 {
 	background-image: url("s2r://panorama/images/custom_game/ui/ability_bg_psd2_png.vtex");
-	background-size: 100% 100%;
+	background-size: 800px 600px;
+	background-repeat: no-repeat round;
 	box-shadow: black 0px 0px 4px 0px;
 	border: 1px solid #5e6869;
 }

@@ -347,7 +347,17 @@
 				<Panel id="panel_popup_box_player_details_buff" class="race_col36" style="width:400px;" />
 			</Panel>
 		</Panel>
-		<Panel id="panel_gameover" hittest="true">
+		<Panel id="panel_host" class="panel_with_border" hittest="true">
+			<Image id="image_close_panel_host" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_panel_host();" style="margin-top:20px;margin-right:20px;width:20px;height:20px;" />
+			<Panel class="panel_host_title">
+				<Image src="s2r://panorama/images/custom_game/host_png.vtex" style="margin-left:35px;width:35px;height:35px;horizontal-align:left;vertical-align:center;" />
+				<Label text="#title_is_host" style="margin-left:10px;font-size:28px;horizontal-align:left;vertical-align:center;" />
+			</Panel>
+			<Panel class="panel_host_content">
+				<Label text="#text_is_host_desc" style="width:290px;height:100%;margin-left:10px;font-size:20px;horizontal-align:left;vertical-align:top;color:#bbb;white-space:normal;" />
+			</Panel>
+		</Panel>
+		<Panel id="panel_gameover" class="panel_with_border" hittest="true">
 			<Image id="image_close_panel_gameover" class="image_close" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="close_panel_gameover();" style="margin-top:20px;margin-right:20px;width:20px;height:20px;" />
 			<Label id="gameover_text_lost" class="gameover_text_lost" text="#txt_you_dead" />
 			<Panel id="gameover_panel_rank">
@@ -782,6 +792,7 @@
 				<Label id="player_board_title_damage" text="#text_stat_title_damage" />
 			</Panel>
 			<Panel id="outer_player_board_0" class="outer_player_board">
+				<Panel id="panel_host_0" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_0&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_0" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_0" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_0" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -849,6 +860,7 @@
 				<Panel id="panel_chat_bubble_arrow_0" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_1" class="outer_player_board">
+				<Panel id="panel_host_1" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_1&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_1" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_1" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_1" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -916,6 +928,7 @@
 				<Panel id="panel_chat_bubble_arrow_1" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_2" class="outer_player_board">
+				<Panel id="panel_host_2" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_2&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_2" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_2" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_2" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -983,6 +996,7 @@
 				<Panel id="panel_chat_bubble_arrow_2" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_3" class="outer_player_board">
+				<Panel id="panel_host_3" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_3&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_3" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_3" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_3" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -1050,6 +1064,7 @@
 				<Panel id="panel_chat_bubble_arrow_3" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_4" class="outer_player_board">
+				<Panel id="panel_host_4" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_4&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_4" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_4" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_4" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -1117,6 +1132,7 @@
 				<Panel id="panel_chat_bubble_arrow_4" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_5" class="outer_player_board">
+				<Panel id="panel_host_5" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_5&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_5" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_5" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_5" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -1184,6 +1200,7 @@
 				<Panel id="panel_chat_bubble_arrow_5" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_6" class="outer_player_board">
+				<Panel id="panel_host_6" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_6&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_6" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_6" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_6" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />
@@ -1251,6 +1268,7 @@
 				<Panel id="panel_chat_bubble_arrow_6" class="player_chat_bubble_arrow" />
 			</Panel>
 			<Panel id="outer_player_board_7" class="outer_player_board">
+				<Panel id="panel_host_7" class="player_host invisible" onmouseover="tips_over_host(&apos;panel_host_7&apos;)" onmouseout="tips_out()" />
 				<Panel id="panel_badge_7" class="player_badge" style="background-size:100% 100%;" />
 				<DOTAScenePanel id="panel_winstreak_effect_7" class="player_winstreak_effect invisible" tabindex="auto" hittest="false" map="maps/scenes/hud/levelupburst.vmap" camera="default_camera" light="global_light" antialias="true" renderdeferred="false" particleonly="false" />
 				<Panel id="avatar_player_vip_badge_7" class="dota_avatar_vip_badge invisible" onmouseover="DOTAShowTextTooltip(&apos;#txt_dac_vip&apos;)" onmouseout="DOTAHideTextTooltip()" />

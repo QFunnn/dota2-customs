@@ -774,6 +774,12 @@ const DIALOGUE_LIST = {
 		merge: "chess_phx.merge",
 		thanks: "chess_phx.thanks",
 	},
+	chess_sil: {
+		spawn: "chess_sil.spawn",
+		win: "chess_sil.win",
+		merge: "chess_sil.merge",
+		thanks: "chess_sil.thanks",
+	},
 };
 
 function OnPlayChessDialogue(keys) {

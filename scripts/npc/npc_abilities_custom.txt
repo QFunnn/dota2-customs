@@ -794,6 +794,7 @@
 		"AbilityCastPoint"	"0.3"
 		"AbilityManaCost"	"100"
 		"AbilityCastRange"	"9999"
+		"AbilityCooldown"	"8 7 6"
 		"AbilityValues"
 		{
 			"damage"
@@ -18793,6 +18794,57 @@
 			{
 				"value"							"10 20 40"
 			}
+		}
+	}
+
+	"sil_silence_all"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"silencer_global_silence"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"3"
+		"AbilityCooldown"	"0.0"
+		"AbilityManaCost"	"0"
+		"Modifiers"
+		{
+			"modifier_sil_silence_all"
+			{
+				"Passive"	"0"
+				"IsHidden"	"0"
+				"TextureName"	"silencer_global_silence"
+				"States"	{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"IsDebuff"	"1"
+				"Properties"	{}
+				"IsPurgable"	"0"
+				"EffectName"	"particles/generic_gameplay/generic_silence.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"		"TARGET"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"		"SilenceDamage"
+					}
+				}
+				// "OnIntervalThink"
+				// {
+				// 	"RunScript"
+				// 	{
+				// 		"Target"		"CASTER"
+				// 		"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				// 		"Function"		"ClearGridOccupation"
+				// 	}
+				// }
+				// "ThinkInterval"	"2"
+			}
+		}
+		"AbilityValues"
+		{
+			"duration" 		"6 8 12"
+			"damage"		"400 600 800"
 		}
 	}
 }
