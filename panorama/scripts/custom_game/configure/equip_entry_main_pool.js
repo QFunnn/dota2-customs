@@ -49,4 +49,4 @@ GameUI.CustomUIConfig().equip_entry_main_pool = {
 		equip_part: 8,
 		entry_id: "defense_intensity"
 	}
-};
+};

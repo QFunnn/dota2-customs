@@ -14,4 +14,4 @@ GameUI.CustomUIConfig().courier_set = {
 		set_requirement: 6,
 		effect: "equipment_pool_1_3"
 	}
-};
+};

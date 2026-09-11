@@ -12,9 +12,10 @@
 
 var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
+var dig_veins_logic = require('./dig_veins_logic.js');
+var dice_logic = require('./dice_logic.js');
 var equipment_utils = require('./equipment_utils.js');
 var service_netdata_helper = require('./service_netdata_helper.js');
-var dig_veins_logic = require('./dig_veins_logic.js');
 var StoreTagPage = require('./StoreTagPage.js');
 require('./EOM_MenuLayout.js');
 require('./EOM_RedMark.js');
@@ -76,6 +77,21 @@ function useActivityRedPoints() {
       const status = activityData?.status ?? 0;
       const canJoin = activityData != undefined && status == 0 && (playerCounters()["dragonboat_daily_join"]?.count ?? 0) < 1;
       setRedPoint(["activity", "football"], !footballRedPointViewed() && (status == 3 || canJoin));
+    });
+  });
+}
+
+function useDiceActivityRedPoints() {
+  defineRedPointRule("activity_dice", () => {
+    const activities = createRedPointServiceData("player_boardslot_activity_data", {});
+    const tasks = createRedPointServiceData("player_activity_tasks", {});
+    const tokens = createRedPointServiceData("player_tokens", {});
+    const [serverTime, setServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
+    const interval = setInterval(() => setServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp())), 1000);
+    libs.onCleanup(() => clearInterval(interval));
+    libs.createEffect(() => {
+      const claimable = dice_logic.hasClaimableDiceTask(tasks(), serverTime()) || dice_logic.hasClaimableDiceMilestone(activities()[dig_veins_logic.ACTIVITY_DICE_ID], tokens());
+      setRedPoint(["activity", "boardslot", "dice_game"], claimable);
     });
   });
 }
@@ -860,6 +876,7 @@ function useStoreRedPoints() {
 
 function RedPointCenter() {
   useActivityRedPoints();
+  useDiceActivityRedPoints();
   useCosmeticRedPoints();
   useEquipmentRedPoints();
   useFishingItemRedPoints();

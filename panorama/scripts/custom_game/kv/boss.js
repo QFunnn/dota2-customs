@@ -1630,4 +1630,4 @@ GameUI.CustomUIConfig().boss = {
 			}
 		}
 	}
-};
+};

@@ -5698,4 +5698,4 @@ GameUI.CustomUIConfig().npc_items_custom = {
 			"plus_stack_max": 10
 		}
 	}
-};
+};

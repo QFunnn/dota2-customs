@@ -28,5 +28,21 @@ GameUI.CustomUIConfig().bounty_setting = {
 	week_refresh_num: {
 		key: "week_refresh_num",
 		value: "3"
+	},
+	daily_pay_refresh_num: {
+		key: "daily_pay_refresh_num",
+		value: "3"
+	},
+	week_pay_refresh_num: {
+		key: "week_pay_refresh_num",
+		value: "3"
+	},
+	daily_pay_refresh_cost: {
+		key: "daily_pay_refresh_cost",
+		value: "110007:30"
+	},
+	week_pay_refresh_cost: {
+		key: "week_pay_refresh_cost",
+		value: "110007:30"
 	}
 };

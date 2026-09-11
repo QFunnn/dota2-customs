@@ -79,4 +79,4 @@ GameUI.CustomUIConfig().engraving_entry = {
 		value_max: 10,
 		ratio: 1
 	}
-};
+};

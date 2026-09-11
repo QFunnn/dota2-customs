@@ -349,6 +349,12 @@ GameUI.CustomUIConfig().privilege = {
 			"valid_count": 2
 		}
 	},
+	"privilege_044": {
+		"Note": "每日可领取悬赏福利",
+		"IsNoScript": 1,
+		"IsGlobal": 0,
+		"IsStackable": 0
+	},
 	"privilege_102": {
 		"Note": "钓鱼宝藏一定是传说宝藏",
 		"CombatPowerFactor": 0.002,
@@ -405,6 +411,12 @@ GameUI.CustomUIConfig().privilege = {
 	"privilege_116": {
 		"Note": "可以装配神话鱼饵，钓神话珍鱼",
 		"CombatPowerFactor": 0.002
+	},
+	"privilege_117": {
+		"Note": "刷新一定不会出现更低稀有度悬赏任务",
+		"IsNoScript": 1,
+		"IsGlobal": 0,
+		"IsStackable": 0
 	},
 	"privilege_suit_001": {
 		"Note": "飞剑击中额外获得%mana_amount%点怒气",
@@ -1613,11 +1625,11 @@ GameUI.CustomUIConfig().privilege = {
 		}
 	},
 	"privilege_bless_029": {
-		"Note": "每局游戏前%count%次属性书获得双倍效果",
+		"Note": "每局游戏前%count%次属性书获得双倍效果（包括额外属性）",
 		"IsGlobal": 0,
 		"IsStackable": 0,
 		"AbilityValues": {
-			"count": 3
+			"count": 6
 		}
 	},
 	"privilege_treasure_001": {

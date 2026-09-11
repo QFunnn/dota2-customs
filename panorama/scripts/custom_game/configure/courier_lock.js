@@ -33,4 +33,4 @@ GameUI.CustomUIConfig().courier_lock = {
 		location: 6,
 		lock: 30
 	}
-};
+};

@@ -2041,27 +2041,33 @@ const ControlGuide = props => {
         id: "KeyDes",
         text: "#ControlGuide_CastSkill"
       }, _el$60);
-      const _el$63 = libs.createElement("Panel", {
+      const _el$63 = libs.createElement("Label", {
+        id: "AutoCastTip",
+        get text() {
+          return GetLocalization("#ControlGuide_AutoCastTip");
+        }
+      }, _el$56),
+      _el$64 = libs.createElement("Panel", {
         id: "MoveKeys",
         "class": "KeysContainer FoldUpShow"
       }, _el$55),
-      _el$64 = libs.createElement("Panel", {
+      _el$65 = libs.createElement("Panel", {
         "class": "KeyList"
-      }, _el$63);
+      }, _el$64);
       libs.createElement("Label", {
         id: "KeyDes",
         text: "#ControlGuide_Move"
-      }, _el$63);
+      }, _el$64);
     libs.insert(_el$58, libs.createComponent(libs.For, {
       get each() {
         return movekeys();
       },
       children: key => {
         return (() => {
-          const _el$66 = libs.createElement("Panel", {
+          const _el$67 = libs.createElement("Panel", {
             "class": "KeyContainer"
           }, null);
-          libs.insert(_el$66, libs.createComponent(libs.Show, {
+          libs.insert(_el$67, libs.createComponent(libs.Show, {
             when: key,
             get children() {
               return libs.createComponent(EOM_HotKeyDisplay.EOM_HotKeyDisplay, {
@@ -2069,7 +2075,7 @@ const ControlGuide = props => {
               });
             }
           }));
-          return _el$66;
+          return _el$67;
         })();
       }
     }));
@@ -2082,10 +2088,10 @@ const ControlGuide = props => {
           return key == "MOUSE0" || key == "MOUSE1" ? getSrcPath("hud/h_key_mouse_big_01.png") : key;
         };
         return (() => {
-          const _el$67 = libs.createElement("Panel", {
+          const _el$68 = libs.createElement("Panel", {
             "class": "KeyContainer"
           }, null);
-          libs.insert(_el$67, libs.createComponent(libs.Show, {
+          libs.insert(_el$68, libs.createComponent(libs.Show, {
             get when() {
               return replaceKey();
             },
@@ -2098,7 +2104,7 @@ const ControlGuide = props => {
               });
             }
           }));
-          return _el$67;
+          return _el$68;
         })();
       }
     }));
@@ -2119,17 +2125,17 @@ const ControlGuide = props => {
           SetRequesting(false);
         });
       }
-    }), null);
-    libs.insert(_el$64, libs.createComponent(libs.For, {
+    }), _el$63);
+    libs.insert(_el$65, libs.createComponent(libs.For, {
       get each() {
         return movekeys();
       },
       children: key => {
         return (() => {
-          const _el$68 = libs.createElement("Panel", {
+          const _el$69 = libs.createElement("Panel", {
             "class": "KeyContainer"
           }, null);
-          libs.insert(_el$68, libs.createComponent(libs.Show, {
+          libs.insert(_el$69, libs.createComponent(libs.Show, {
             when: key,
             get children() {
               return libs.createComponent(EOM_HotKeyDisplay.EOM_HotKeyDisplay, {
@@ -2137,14 +2143,23 @@ const ControlGuide = props => {
               });
             }
           }));
-          return _el$68;
+          return _el$69;
         })();
       }
     }));
-    libs.effect(_$p => libs.setProp(_el$55, "class", libs.classNames({
-      Hide: hide(),
-      FoldUp: Boolean(player_key_values()[show_control_guide_key]?.value ?? false)
-    }), _$p));
+    libs.effect(_p$ => {
+      const _v$28 = libs.classNames({
+          Hide: hide(),
+          FoldUp: Boolean(player_key_values()[show_control_guide_key]?.value ?? false)
+        }),
+        _v$29 = GetLocalization("#ControlGuide_AutoCastTip");
+      _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$55, "class", _v$28, _p$._v$28));
+      _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$63, "text", _v$29, _p$._v$29));
+      return _p$;
+    }, {
+      _v$28: undefined,
+      _v$29: undefined
+    });
     return _el$55;
   })();
 };
@@ -2175,18 +2190,18 @@ const InteractInfo = props => {
   };
   const isShopItem = () => props.interactInfo?.type === "ShopItem";
   return (() => {
-    const _el$69 = libs.createElement("Panel", {
+    const _el$70 = libs.createElement("Panel", {
         id: "InteractInfo"
       }, null),
-      _el$74 = libs.createElement("Panel", {
+      _el$75 = libs.createElement("Panel", {
         id: "InteractInfoContainer"
-      }, _el$69);
-    libs.insert(_el$69, libs.createComponent(libs.Show, {
+      }, _el$70);
+    libs.insert(_el$70, libs.createComponent(libs.Show, {
       get when() {
         return npcIconPath() !== undefined;
       },
       get children() {
-        const _el$70 = libs.createElement("Panel", {
+        const _el$71 = libs.createElement("Panel", {
             id: "NpcIcon"
           }, null);
           libs.createElement("DOTAParticleScenePanel", {
@@ -2197,14 +2212,14 @@ const InteractInfo = props => {
             lookAt: "0 0 0",
             hittest: false,
             squarePixels: true
-          }, _el$70);
-          const _el$72 = libs.createElement("Image", {
+          }, _el$71);
+          const _el$73 = libs.createElement("Image", {
             get src() {
               return npcIconPath();
             },
             scaling: "stretch-to-fit-preserve-aspect"
-          }, _el$70),
-          _el$73 = libs.createElement("DOTAParticleScenePanel", {
+          }, _el$71),
+          _el$74 = libs.createElement("DOTAParticleScenePanel", {
             opacity: "0.2",
             id: "SelectParticle",
             particleName: "particles/ui/game/ui_game_general_special_effects_02_fx.vpcf",
@@ -2213,13 +2228,13 @@ const InteractInfo = props => {
             lookAt: "0 0 0",
             hittest: false,
             squarePixels: true
-          }, _el$70);
-        libs.setProp(_el$73, "opacity", "0.2");
-        libs.effect(_$p => libs.setProp(_el$72, "src", npcIconPath(), _$p));
-        return _el$70;
+          }, _el$71);
+        libs.setProp(_el$74, "opacity", "0.2");
+        libs.effect(_$p => libs.setProp(_el$73, "src", npcIconPath(), _$p));
+        return _el$71;
       }
-    }), _el$74);
-    libs.insert(_el$74, libs.createComponent(libs.Show, {
+    }), _el$75);
+    libs.insert(_el$75, libs.createComponent(libs.Show, {
       get when() {
         return showItemInfo();
       },
@@ -2233,10 +2248,10 @@ const InteractInfo = props => {
           hittest: false,
           squarePixels: true
         }, null), (() => {
-          const _el$76 = libs.createElement("Panel", {
+          const _el$77 = libs.createElement("Panel", {
             id: "InteractInfoItemBox"
           }, null);
-          libs.insert(_el$76, libs.createComponent(common_box.CommonBox, {
+          libs.insert(_el$77, libs.createComponent(common_box.CommonBox, {
             get itemName() {
               return props.interactInfo?.itemName ?? "item_discount_card";
             },
@@ -2253,11 +2268,11 @@ const InteractInfo = props => {
               return isShopItem();
             }
           }));
-          return _el$76;
+          return _el$77;
         })()];
       }
     }), null);
-    libs.insert(_el$74, libs.createComponent(InteractInfoRow, {
+    libs.insert(_el$75, libs.createComponent(InteractInfoRow, {
       get hotkey() {
         return props.hotkey;
       },
@@ -2274,7 +2289,7 @@ const InteractInfo = props => {
         return props.isGamepad;
       }
     }), null);
-    libs.insert(_el$74, libs.createComponent(libs.Show, {
+    libs.insert(_el$75, libs.createComponent(libs.Show, {
       get when() {
         return showSecondaryRow();
       },
@@ -2302,8 +2317,8 @@ const InteractInfo = props => {
         });
       }
     }), null);
-    libs.effect(_$p => libs.setProp(_el$69, "visible", props.interactInfo !== undefined, _$p));
-    return _el$69;
+    libs.effect(_$p => libs.setProp(_el$70, "visible", props.interactInfo !== undefined, _$p));
+    return _el$70;
   })();
 };
 

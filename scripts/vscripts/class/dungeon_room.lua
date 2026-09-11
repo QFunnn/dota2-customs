@@ -107,6 +107,7 @@ function K.prototype.____constructor(self, L, M, N, O, P, Q, R, S, T, U, V, W)
 	self.difficultyDamageAmplify = 0
 	self.difficultyCooldownReduction = 0
 	self.difficultyBossGapAmplify = 0
+	self.difficultyBossDamageAmplify = 0
 	self.wishingPoolCount = 1
 	self.shopRefreshCount = 0
 	self.isSecretRoomCreated = false
@@ -1691,6 +1692,9 @@ function K.prototype.CreateBoss(self)
 			end
 			if self.difficultyBossGapAmplify ~= 0 then
 				d4:AddProperty(PropertyFunction.BOSS_GAP_AMPLIFY, self.difficultyBossGapAmplify)
+			end
+			if self.difficultyBossDamageAmplify ~= 0 then
+				d4:AddProperty(PropertyFunction.FINAL_DAMAGE, self.difficultyBossDamageAmplify)
 			end
 			print(
 				(
@@ -4216,6 +4220,7 @@ function K.prototype.CalculateDifficultyModifiers(self)
 	self.difficultyDamageAmplify = (hN - 1) * 100
 	self.difficultyCooldownReduction = DIFFICULTY_COOLDOWN_REDUCTION[hK] or 0
 	self.difficultyBossGapAmplify = DIFFICULTY_BOSS_GAP_AMPLIFY[hK] or 0
+	self.difficultyBossDamageAmplify = DIFFICULTY_BOSS_DAMAGE_AMPLIFY[hK] or 0
 	print(
 		(
 			(
@@ -4233,23 +4238,30 @@ function K.prototype.CalculateDifficultyModifiers(self)
 															(
 																(
 																	(
-																		("[DungeonRoom " .. tostring(self.roomID))
-																		.. "] 难度系数已计算 - 难度:"
-																	) .. tostring(hK)
-																) .. " 玩家:"
-															) .. tostring(hP)
-														) .. " 血量:"
-													) .. t(hM, 2)
-												) .. "x("
-											) .. t(self.difficultyHealthAmplify, 1)
-										) .. "%) 伤害:"
-									) .. t(hN, 2)
-								) .. "x("
-							) .. t(self.difficultyDamageAmplify, 1)
-						) .. "%) 冷却缩减:"
-					) .. tostring(self.difficultyCooldownReduction)
-				) .. "% Boss间隔增幅:"
-			) .. tostring(self.difficultyBossGapAmplify)
+																		(
+																			(
+																				(
+																					"[DungeonRoom "
+																					.. tostring(self.roomID)
+																				)
+																				.. "] 难度系数已计算 - 难度:"
+																			) .. tostring(hK)
+																		) .. " 玩家:"
+																	) .. tostring(hP)
+																) .. " 血量:"
+															) .. t(hM, 2)
+														) .. "x("
+													) .. t(self.difficultyHealthAmplify, 1)
+												) .. "%) 伤害:"
+											) .. t(hN, 2)
+										) .. "x("
+									) .. t(self.difficultyDamageAmplify, 1)
+								) .. "%) 冷却缩减:"
+							) .. tostring(self.difficultyCooldownReduction)
+						) .. "% Boss间隔增幅:"
+					) .. tostring(self.difficultyBossGapAmplify)
+				) .. "% Boss最终伤害:"
+			) .. tostring(self.difficultyBossDamageAmplify)
 		) .. "%"
 	)
 end

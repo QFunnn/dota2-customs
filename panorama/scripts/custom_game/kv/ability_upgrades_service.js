@@ -1431,4 +1431,4 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 			"damage": "damage_pct_z"
 		}
 	}
-};
+};

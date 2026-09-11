@@ -71,4 +71,4 @@ GameUI.CustomUIConfig().drawing_entry_main = {
 		value_1: 1,
 		select: "chaos_entry_ids"
 	}
-};
+};

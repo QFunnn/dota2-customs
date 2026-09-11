@@ -1898,4 +1898,4 @@ function CosmeticRoot() {
     }
   });
 }
-libs.render(() => libs.createComponent(CosmeticRoot, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(CosmeticRoot, {}), $.GetContextPanel());

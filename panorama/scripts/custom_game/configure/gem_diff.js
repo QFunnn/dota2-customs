@@ -39,4 +39,4 @@ GameUI.CustomUIConfig().gem_diff = {
 		layers_limit: 30,
 		class: 5
 	}
-};
+};

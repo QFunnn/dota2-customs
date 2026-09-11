@@ -93,4 +93,4 @@ GameUI.CustomUIConfig().activity_mining_template = {
 		tamplate_layout: "21222111|12200021|12200021|12200021|12200021",
 		desc: "大空腔2"
 	}
-};
+};

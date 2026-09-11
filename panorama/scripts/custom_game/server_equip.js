@@ -119,7 +119,10 @@ function TooltipContents() {
         }, _el$);
       libs.insert(_el$, libs.createComponent(equip_details.ServerEquipDetail, {
         get data() {
-          return equipData2();
+          return libs.memo(() => !!equipData2())() ? {
+            ...equipData2(),
+            hideExtraValue: equipData() != undefined
+          } : undefined;
         }
       }), _el$3);
       libs.effect(_$p => libs.setProp(_el$, "class", libs.classNames("DetailContainer", {

@@ -29,4 +29,4 @@ GameUI.CustomUIConfig().key_level_setting = {
 		intensity_bonus: 0.6,
 		main_bonus: 0.3
 	}
-};
+};

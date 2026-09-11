@@ -164,4 +164,4 @@ GameUI.CustomUIConfig().equip_class_setting = {
 		rarity_upgrade_max: 7,
 		ischange: 0
 	}
-};
+};

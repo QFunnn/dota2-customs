@@ -2370,34 +2370,45 @@
 
 #TaskBoard #CenterBlock
 {
-	width: 1386px;
-	height: 800px;
+	width: 1675px;
+	height: 900px;
 	align: center center;
-	margin-right: 140px;
-	overflow: noclip;
+	margin-top: 20px;
 }
 
-#TaskBoard #TaskBoardCountdown
+#TaskBoard #CenterBlock.MyBountyView .CountdownContainer
 {
-	align: center top;
-	flow-children: down;
-	width: 406px;
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_plate_png.vtex");
-	background-size: 100%;
+	opacity: 0;
 }
 
-#TaskBoard #TaskBoardCountdown .EOM_CountdownIcon
+#TaskBoard #TitleArea
+{
+	horizontal-align: center;
+	flow-children: down;
+	min-height: 67px;
+}
+
+#TaskBoard #TitleArea .EOM_CountdownIcon
 {
 	width: 36px;
 	height: 36px;
 }
 
-#TaskBoard #TaskBoardCountdown .EOM_Countdown
+#TaskBoard #TitleArea .CountdownContainer
+{
+	width: 406px;
+	height: 45px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_plate_png.vtex");
+	background-size: 100%;
+	horizontal-align: center;
+}
+
+#TaskBoard #TitleArea .EOM_Countdown
 {
 	align: center center;
 }
 
-#TaskBoard #TaskBoardCountdown .EOM_Countdown Label
+#TaskBoard #TitleArea .EOM_Countdown Label
 {
 	font-size: 24px;
 }
@@ -2405,16 +2416,32 @@
 #TaskBoard #ProgressLabelShow
 {
 	horizontal-align: center;
-	color: red;
-	font-size: 22px;
+	color: #F23F3F;
+	font-size: 18px;
+}
+
+#TaskBoard #BountyExpiryHint
+{
+	horizontal-align: center;
+	color: #F23F3F;
+	font-size: 14px;
+}
+
+#TaskBoard #ProgressLabelShow2
+{
+	margin: 3px 0px;
+	horizontal-align: center;
+	color: #F2B93F;
+	font-size: 18px;
 }
 
 #TaskBoard #TaskBoardContent
 {
+	horizontal-align: center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+	margin-top: -7px;
 	width: 100%;
-	height: 600px;
-	align: center center;
-	margin-bottom: 60px;
+	padding: 20px 20px 100px 20px;
 }
 
 #TaskBoard #PagePrev,#TaskBoard #PageNext
@@ -2444,6 +2471,87 @@
 {
 	width: 276px;
 	height: 492px;
+	animation-duration: 0.56s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskSlot1
+{
+	x: 112px;
+	y: 20px;
+	transform: rotateZ(-4deg);
+	z-index: 1;
+	animation-delay: 0.04s;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskSlot2
+{
+	x: 378px;
+	y: 72px;
+	transform: rotateZ(4deg);
+	animation-delay: 0.13s;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskSlot3
+{
+	x: 646px;
+	y: 28px;
+	transform: rotateZ(-4deg);
+	z-index: 1;
+	animation-delay: 0.22s;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskSlot4
+{
+	x: 910px;
+	y: 86px;
+	transform: rotateZ(4deg);
+	animation-delay: 0.31s;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskSlot5
+{
+	x: 1180px;
+	y: 4px;
+	transform: rotateZ(-4deg);
+	animation-delay: 0.4s;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot1,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot3,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot5
+{
+	animation-name: TaskBoardPinToWallLeft;
+}
+
+#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot2,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot4
+{
+	animation-name: TaskBoardPinToWallRight;
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity1 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_05_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity2 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_04_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity3 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_03_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity4 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_02_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity5 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_01_png.vtex");
 }
 
 #TaskBoard .TaskBoxWrapper.Received .TaskBox
@@ -2465,6 +2573,21 @@
 	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_reward_paper_png.vtex");
 	background-size: 100%;
 	overflow: noclip;
+}
+
+#TaskBoard .TaskTag
+{
+	margin-top: 79px;
+	flow-children: down;
+}
+
+#TaskBoard .TaskTag .TagIcon
+{
+	horizontal-align: center;
+	width: 88px;
+	height: 92px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_05_png.vtex");
+	background-size: 100%;
 }
 
 #TaskBoard #TaskBoxHoverFrame
@@ -2503,6 +2626,7 @@
 
 #TaskBoard #TaskBoxTitle
 {
+	margin-top: 5px;
 	horizontal-align: center;
 	width: 100%;
 	text-align: center;
@@ -2653,6 +2777,7 @@
 	color: #E7A74A;
 	font-size: 24px;
 	text-align: center;
+	text-overflow: shrink;
 }
 
 #TaskBoard #DoingIconRight
@@ -2665,7 +2790,7 @@
 	transform: scaleX(-1);
 }
 
-#TaskBoard #TaskBoxGetButton
+#TaskBoard #TaskBoxGetButton,#TaskBoard #TaskDonateButton,#TaskBoard #TaskCompleteButton
 {
 	horizontal-align: center;
 	margin-top: 8px;
@@ -2675,9 +2800,448 @@
 	background-size: 100%;
 }
 
-#TaskBoard #TaskBoxGetButton Label
+#TaskBoard #TaskBoxGetButton Label,#TaskBoard #TaskDonateButton Label,#TaskBoard #TaskCompleteButton Label
 {
 	color: #74D443;
 	font-size: 24px;
 	text-align: center;
+	margin-bottom: 5px;
+}
+
+#TaskBoard .MineTaskActionRow
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	height: 42px;
+	flow-children: right;
+}
+
+#TaskBoard .MineTaskActionRow #TaskDonateButton,#TaskBoard .MineTaskActionRow #TaskCompleteButton
+{
+	margin-top: 0px;
+}
+
+#TaskBoard .MineTaskActionRow.HasDonateAction #TaskDonateButton,#TaskBoard .MineTaskActionRow.HasDonateAction #TaskCompleteButton
+{
+	width: 118px;
+	margin: 0px 5px;
+}
+
+#TaskBoard .MineTaskActionRow.HasDonateAction #TaskDonateButton Label,#TaskBoard .MineTaskActionRow.HasDonateAction #TaskCompleteButton Label
+{
+	font-size: 16px;
+}
+
+#TaskBoard #TitleArea
+{
+	overflow: noclip;
+}
+
+#TaskBoard #RefreshCountPlate
+{
+	margin-left: 1147px;
+	width: 190px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_refresh_plate_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+#TaskBoard #RefreshCountPlate:hover
+{
+	brightness: 1.2;
+}
+
+#TaskBoard #RefreshCountPlate Label
+{
+	padding-left: 21px;
+	background-image: url("s2r://panorama/images/custom_game/conv/icon/icon_info_png.vtex");
+	background-size: 21px 21px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	text-overflow: shrink;
+	align: center center;
+	wash-color: #e6ce94;
+	font-size: 18px;
+}
+
+#TaskBoard .TaskPeriodTag
+{
+	horizontal-align: center;
+	width: 50px;
+	height: 28px;
+	margin-top: -13px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_daily_tag_png.vtex");
+	background-size: 100%;
+}
+
+#TaskBoard .TaskPeriodTag Label
+{
+	align: center center;
+	color: #E6D4A4;
+	font-size: 15px;
+}
+
+#TaskBoard .TaskActionRow
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	flow-children: right;
+}
+
+#TaskBoard .TaskSmallButton
+{
+	width: 104px;
+	height: 42px;
+	margin: 0px 3px;
+	background-size: 100%;
+}
+
+#TaskBoard .TaskSmallButton Label
+{
+	align: center center;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 3px 3 #000000;
+	font-size: 17px;
+}
+
+#TaskBoard .RefreshTaskButton
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_button_01_png.vtex");
+}
+
+#TaskBoard .RefreshTaskButton .FreeRefreshText
+{
+	font-size: 15px;
+}
+
+#TaskBoard .RefreshTaskButton .PaidRefreshContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+#TaskBoard .RefreshTaskButton .PaidRefreshContent Label
+{
+	horizontal-align: left;
+	vertical-align: center;
+	font-size: 16px;
+}
+
+#TaskBoard .RefreshTaskButton .PaidRefreshCost
+{
+	vertical-align: center;
+	margin-left: 2px;
+	flow-children: right;
+}
+
+#TaskBoard .RefreshTaskButton .PaidRefreshCost .StoreItemImage
+{
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+}
+
+#TaskBoard .RefreshTaskButton .PaidRefreshCost Label
+{
+	margin-left: 1px;
+	font-size: 16px;
+}
+
+#TaskBoard .AcceptButton
+{
+	margin-left: 4px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_button_02_png.vtex");
+}
+
+#TaskBoard #TaskAcceptedText,#TaskBoard #TaskReceivedText
+{
+	horizontal-align: center;
+	margin-top: 13px;
+	color: #2E1606;
+	font-size: 22px;
+}
+
+#TaskBoard #AcceptedSummaryPanel
+{
+	horizontal-align: right;
+	vertical-align: center;
+	padding-top: 14px;
+	width: 179px;
+	height: 423px;
+	background-color: #000000d8;
+	flow-children: down;
+}
+
+#TaskBoard #AcceptedSummaryTitle
+{
+	horizontal-align: center;
+	width: 100%;
+	text-align: center;
+	color: #E6D4A4;
+	font-size: 18px;
+}
+
+#TaskBoard #AcceptedSummaryList
+{
+	margin-top: 9px;
+	width: 100%;
+	height: 300px;
+	flow-children: down;
+}
+
+#TaskBoard #AcceptedSummaryEmpty
+{
+	align: center center;
+	width: 220px;
+	text-align: center;
+	color: #A9906D;
+	font-size: 16px;
+}
+
+#TaskBoard .AcceptedTaskSummary
+{
+	horizontal-align: center;
+	width: 100%;
+	padding-left: 9px;
+	flow-children: down;
+}
+
+#TaskBoard .AcceptedTaskPeriod
+{
+	min-width: 50px;
+	height: 28px;
+	text-align: center;
+	color: #E6D4A4;
+	font-size: 16px;
+	border-image-source: url("s2r://panorama/images/custom_game/r2_reward/r2_daily_tag_png.vtex");
+	border-width: 6px 6px 6px 6px;
+	border-image-slice: 8px 8px 8px 8px fill;
+	border-image-repeat: stretch;
+	border-color: none;
+}
+
+#TaskBoard .AcceptedTaskName
+{
+	margin-top: 5px;
+	horizontal-align: center;
+	color: #E6D4A4;
+	font-size: 16px;
+}
+
+#TaskBoard .ProgressContainer
+{
+	width: 170px;
+	height: 20px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_progress_bg_png.vtex");
+	background-size: 100%;
+}
+
+#TaskBoard .ProgressContainer .ProgressBarBG
+{
+	align: center center;
+	width: 156px;
+	height: 4px;
+}
+
+#TaskBoard .ProgressContainer .ProgressBar
+{
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_progress_png.vtex");
+	background-size: 100%;
+}
+
+#TaskBoard .AcceptedTaskProgressText
+{
+	horizontal-align: center;
+	color: #E6D4A4;
+	font-size: 16px;
+}
+
+#TaskBoard #GoToMyBounty
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#TaskBoard #GoToMyBounty Label
+{
+	vertical-align: center;
+	color: #E6D4A4;
+	font-size: 16px;
+}
+
+#TaskBoard .GoToArrow
+{
+	vertical-align: center;
+	width: 19px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/custom_game/conv/button/conv_btn_arrow_right_png.vtex");
+	background-size: 100%;
+	margin-left: 8px;
+}
+
+#TaskBoard #MyBountyContent
+{
+	width: 100%;
+}
+
+#TaskBoard #MyBountyGroupHeaders
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#TaskBoard .MyBountyGroupHeader
+{
+	width: 324px;
+	height: 54px;
+	margin-left: 26px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_bounty_plate_png.vtex");
+	background-size: 100% 100%;
+	margin: 0px 47px;
+}
+
+#TaskBoard .MyBountyGroupHeader Label
+{
+	align: center center;
+	color: #E8C978;
+	font-size: 22px;
+}
+
+#TaskBoard #MyBountyList
+{
+	width: 100%;
+	margin-top: 25px;
+	padding: 20px 20px 100px 20px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#TaskBoard #MyBountyEmpty
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 470px;
+	margin-top: 138px;
+}
+
+#TaskBoard #MyBountyEmpty #MyBountyEmptyMark
+{
+	align: center center;
+	width: 150px;
+	height: 454px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/empty_mark_png.vtex");
+	background-size: 100%;
+}
+
+#TaskBoard #MyBountyEmpty Label
+{
+	align: center center;
+	color: #BCA47D;
+	font-size: 24px;
+}
+
+#TaskBoard .EndTimeArea
+{
+	align: center bottom;
+	flow-children: down;
+	height: 180px;
+}
+
+#TaskBoard .EndTimeArea .EOM_Countdown
+{
+	horizontal-align: center;
+	margin: 0px 100px;
+}
+
+#TaskBoard .EndTimeArea #BountyExpiryHint
+{
+	margin-top: 20px;
+	font-size: 22px;
+}
+
+@keyframes 'TaskBoardPinToWallLeft'
+{
+	0%
+	{
+		opacity: 0;
+		brightness: 1.8;
+		pre-transform-scale2d: 1.28;
+		transform: translateY(-70px) rotateZ(-11deg);
+	}
+	
+	46%
+	{
+		opacity: 1;
+		brightness: 1.45;
+		pre-transform-scale2d: 0.96;
+		transform: translateY(5px) rotateZ(-2deg);
+	}
+	
+	64%
+	{
+		brightness: 1.12;
+		pre-transform-scale2d: 1.025;
+		transform: translateY(-2px) rotateZ(-5.2deg);
+	}
+	
+	82%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 0.99;
+		transform: translateY(1px) rotateZ(-3.5deg);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		brightness: 1;
+		pre-transform-scale2d: 1;
+		transform: translateY(0px) rotateZ(-4deg);
+	}
+	
+}
+
+@keyframes 'TaskBoardPinToWallRight'
+{
+	0%
+	{
+		opacity: 0;
+		brightness: 1.8;
+		pre-transform-scale2d: 1.28;
+		transform: translateY(-70px) rotateZ(11deg);
+	}
+	
+	46%
+	{
+		opacity: 1;
+		brightness: 1.45;
+		pre-transform-scale2d: 0.96;
+		transform: translateY(5px) rotateZ(2deg);
+	}
+	
+	64%
+	{
+		brightness: 1.12;
+		pre-transform-scale2d: 1.025;
+		transform: translateY(-2px) rotateZ(5.2deg);
+	}
+	
+	82%
+	{
+		brightness: 1;
+		pre-transform-scale2d: 0.99;
+		transform: translateY(1px) rotateZ(3.5deg);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		brightness: 1;
+		pre-transform-scale2d: 1;
+		transform: translateY(0px) rotateZ(4deg);
+	}
+	
 }

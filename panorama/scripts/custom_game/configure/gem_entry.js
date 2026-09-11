@@ -699,4 +699,4 @@ GameUI.CustomUIConfig().gem_entry = {
 		max: 2,
 		ratio: 2
 	}
-};
+};

@@ -2127,4 +2127,4 @@ GameEvents.Subscribe("cast_on_position", data => {
       ShowEffects: showEffects
     });
   }
-});
+});

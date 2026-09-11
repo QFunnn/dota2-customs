@@ -561,4 +561,4 @@ GameUI.CustomUIConfig().attribute_list_client = {
 		"decimal": 1,
 		"fight": 100
 	}
-};
+};

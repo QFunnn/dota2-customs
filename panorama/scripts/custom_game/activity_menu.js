@@ -13,21 +13,11 @@
 var dig_veins_logic = require('./dig_veins_logic.js');
 
 const ACTIVITY_LOGIN_ID = 101;
-const ACTIVITY_DICE_ID = 801;
 const ACTIVITY_MENU_GRACE_SECONDS = 7 * 24 * 60 * 60;
 function isLoginActivityCompleted(context) {
   const rewardCount = Object.keys(KeyValues.activity_login[ACTIVITY_LOGIN_ID] ?? {}).length;
   const loginActivity = context.loginActivities[ACTIVITY_LOGIN_ID];
   return rewardCount > 0 && loginActivity != undefined && loginActivity.step >= rewardCount;
-}
-function hasClaimableDiceTask(tasks) {
-  return Object.values(tasks).some(task => {
-    const taskConfig = KeyValues.task[task.task_id];
-    if (!taskConfig || taskConfig.activity_id != ACTIVITY_DICE_ID) return false;
-    if (taskConfig.type != 6 && taskConfig.type != 7) return false;
-    const isClaimable = task.progress >= task.target && task.receive_progress != 1;
-    return isClaimable;
-  });
 }
 function isBeforeEndTime(now, endTime) {
   return endTime == 0 || now < endTime;
@@ -61,7 +51,7 @@ function shouldShowPrimaryMenu(menu, config, context) {
     return !isLoginActivityCompleted(context);
   }
   if (menu == "boardslot") {
-    const endTime = KeyValues.activity_data[ACTIVITY_DICE_ID]?.end_time ?? 0;
+    const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.end_time ?? 0;
     return isBeforeActivityMenuGraceEnd(context.now, endTime);
   }
   if (menu == "mining") {
@@ -71,13 +61,13 @@ function shouldShowPrimaryMenu(menu, config, context) {
   return true;
 }
 function shouldShowSecondaryMenu(secondMenu, context) {
-  const diceEndTime = KeyValues.activity_data[ACTIVITY_DICE_ID]?.end_time ?? 0;
+  const diceEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.end_time ?? 0;
   const miningEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]?.end_time ?? 0;
   if (secondMenu == "dice_gift") {
     return isBeforeEndTime(context.now, diceEndTime);
   }
-  if (secondMenu == "dice_game") {
-    return isBeforeEndTime(context.now, diceEndTime) || hasClaimableDiceTask(context.tasks);
+  if (secondMenu == "dice_store") {
+    return false;
   }
   if (secondMenu == "veins_gift") {
     return isBeforeEndTime(context.now, miningEndTime);

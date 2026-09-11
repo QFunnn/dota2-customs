@@ -997,123 +997,6 @@
 	text-shadow: 0px 0px 2px 2 black;
 }
 
-.EOM_HeroImage.icon
-{
-	width: 38px;
-	height: 38px;
-}
-
-.EOM_HeroImage.portrait
-{
-	width: 180px;
-	height: 200px;
-}
-
-.EOM_HeroImage.landscape
-{
-	width: 127px;
-	height: 72px;
-}
-
-.HeroCard
-{
-	width: 134.4px;
-	height: 146.4px;
-}
-
-.HeroCard.Selected #HeroCardBorder
-{
-	margin: 5px;
-	width: 100%;
-	height: 100%;
-	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
-	border-width: 15px 15px 15px 15px;
-	border-image-slice: 15px 15px 15px 15px;
-	border-image-repeat: stretch;
-}
-
-.HeroCard.Selected .BorderParticle
-{
-	visibility: visible;
-}
-
-.HeroCard .EOM_HeroImage
-{
-	width: 110px;
-	height: 122px;
-	align: center center;
-}
-
-.HeroCard #HeroCardBG
-{
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
-	background-size: 100%;
-}
-
-.HeroCard .BorderParticle
-{
-	align: center center;
-	width: 100%;
-	height: 100%;
-	visibility: collapse;
-	overflow: noclip;
-}
-
-#Popup_ChooseDrawLucky #ChosenTip
-{
-	margin-top: 58px;
-	horizontal-align: center;
-	font-size: 24px;
-	color: #B9B1A6;
-}
-
-#Popup_ChooseDrawLucky #CardList
-{
-	horizontal-align: center;
-	margin-top: 112px;
-	max-width: 663px;
-	flow-children: right;
-}
-
-#Popup_ChooseDrawLucky #CardList HorizontalScrollBar
-{
-	opacity: 0;
-}
-
-#Popup_ChooseDrawLucky #CardList .HeroCard
-{
-	width: 156px;
-	height: 170px;
-}
-
-#Popup_ChooseDrawLucky #CardList .CourierCard
-{
-	width: 156px;
-	height: 170px;
-}
-
-#Popup_ChooseDrawLucky #CardList .WeaponCard
-{
-	width: 156px;
-	height: 170px;
-}
-
-#Popup_ChooseDrawLucky #CardList .StoreItemCard
-{
-	width: 156px;
-	height: 170px;
-}
-
-#Popup_ChooseDrawLucky #SelectTip
-{
-	horizontal-align: center;
-	margin-top: 310px;
-	color: #B9B1A6;
-	font-size: 18px;
-}
-
 .EOM_Countdown
 {
 	flow-children: right;
@@ -2139,6 +2022,355 @@
 		transform: scale3d(0.95, 0.95, 1);
 	}
 	
+}
+
+.Popup_BountyDonate .EOM_PopupMain.normal #CenterBlock
+{
+	height: fill-parent-flow(1);
+}
+
+.Popup_BountyDonate #CenterBlock
+{
+	width: 100%;
+	height: 220px;
+	vertical-align: center;
+}
+
+.Popup_BountyDonate #CenterBlock #DonateContent
+{
+	align: center center;
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard
+{
+	width: 248px;
+	height: 300px;
+	margin: 10px;
+	background-size: 100%;
+	background-image: url("s2r://");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_grey_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_green_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_blue_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_yellow_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_red_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_purple_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard:hover .StoreItemImage
+{
+	pre-transform-scale2d: 1.05;
+	brightness: 1.5;
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard #ItemName
+{
+	width: 100%;
+	height: 20px;
+	margin-top: 24px;
+	color: #E6D4A4;
+	font-size: 16px;
+	text-align: center;
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard #SplitLine
+{
+	horizontal-align: center;
+	width: 157px;
+	height: 7px;
+	margin-top: 41px;
+	background-image: url("s2r://panorama/images/custom_game/s1_shop/s1_panel_line_png.vtex");
+}
+
+.Popup_BountyDonate #CenterBlock .BountyDonateRewardCard .StoreItemImage
+{
+	align: center center;
+	width: 130px;
+	height: 130px;
+	margin-top: 30px;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc
+{
+	width: 420px;
+	height: 300px;
+	margin-left: 35px;
+	vertical-align: center;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label
+{
+	vertical-align: center;
+	margin: 0px 8px;
+	font-size: 24px;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label.Rarity1
+{
+	color: #9D9D9D;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label.Rarity2
+{
+	color: #6DC65F;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label.Rarity3
+{
+	color: #5F98FF;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label.Rarity4
+{
+	color: #B77CFF;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title Label.Rarity5
+{
+	color: #F0C64D;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title .TitleLine
+{
+	vertical-align: bottom;
+	width: 108px;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_line_02_png.vtex");
+	background-size: 100%;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .Title #TitleLine2
+{
+	transform: scaleX(-1);
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo
+{
+	horizontal-align: center;
+	width: 350px;
+	margin-top: 24px;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo .DonateInfoRow
+{
+	width: 100%;
+	height: 38px;
+	border-bottom: 1px solid #806B4F55;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo .DonateInfoRow Label
+{
+	vertical-align: center;
+	font-size: 20px;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo .DonateInfoRow .InfoName
+{
+	width: 230px;
+	color: #D8C79C;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo .DonateInfoRow .InfoValue
+{
+	width: fill-parent-flow(1);
+	color: #E6D4A4;
+	text-align: right;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .DonateInfo .DonateInfoRow .InfoValue.Owned
+{
+	color: #78C978;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .FixedDonateAmount
+{
+	horizontal-align: center;
+	margin-top: 28px;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .FixedDonateAmount .FixedAmountTitle
+{
+	horizontal-align: center;
+	color: #D8C79C;
+	font-size: 20px;
+}
+
+.Popup_BountyDonate #CenterBlock .DonateDesc .FixedDonateAmount .FixedAmountValue
+{
+	horizontal-align: center;
+	width: 160px;
+	height: 36px;
+	margin-top: 5px;
+	padding-top: 5px;
+	background-color: #080604CC;
+	color: #E6D4A4;
+	font-size: 22px;
+	text-align: center;
+}
+
+.Popup_BountyDonate #BottomButtons
+{
+	align: center bottom;
+	flow-children: right;
+}
+
+.Popup_BountyDonate #BottomButtons .EOM_Button
+{
+	margin: 0px 12.5px;
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+.HeroCard
+{
+	width: 134.4px;
+	height: 146.4px;
+}
+
+.HeroCard.Selected #HeroCardBorder
+{
+	margin: 5px;
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/h2_hero/h2_select_png.vtex");
+	border-width: 15px 15px 15px 15px;
+	border-image-slice: 15px 15px 15px 15px;
+	border-image-repeat: stretch;
+}
+
+.HeroCard.Selected .BorderParticle
+{
+	visibility: visible;
+}
+
+.HeroCard .EOM_HeroImage
+{
+	width: 110px;
+	height: 122px;
+	align: center center;
+}
+
+.HeroCard #HeroCardBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/item_hero_golden_png.vtex");
+	background-size: 100%;
+}
+
+.HeroCard .BorderParticle
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	overflow: noclip;
+}
+
+#Popup_ChooseDrawLucky #ChosenTip
+{
+	margin-top: 58px;
+	horizontal-align: center;
+	font-size: 24px;
+	color: #B9B1A6;
+}
+
+#Popup_ChooseDrawLucky #CardList
+{
+	horizontal-align: center;
+	margin-top: 112px;
+	max-width: 663px;
+	flow-children: right;
+}
+
+#Popup_ChooseDrawLucky #CardList HorizontalScrollBar
+{
+	opacity: 0;
+}
+
+#Popup_ChooseDrawLucky #CardList .HeroCard
+{
+	width: 156px;
+	height: 170px;
+}
+
+#Popup_ChooseDrawLucky #CardList .CourierCard
+{
+	width: 156px;
+	height: 170px;
+}
+
+#Popup_ChooseDrawLucky #CardList .WeaponCard
+{
+	width: 156px;
+	height: 170px;
+}
+
+#Popup_ChooseDrawLucky #CardList .StoreItemCard
+{
+	width: 156px;
+	height: 170px;
+}
+
+#Popup_ChooseDrawLucky #SelectTip
+{
+	horizontal-align: center;
+	margin-top: 310px;
+	color: #B9B1A6;
+	font-size: 18px;
 }
 
 .CourierCard.EOM_Button
@@ -4535,7 +4767,7 @@
 
 #StoreBuyItemPopup #CenterBlock #ItemInfo
 {
-	margin: 37px 39px 0px 43.5px;
+	margin: 27px 39px 0px 43.5px;
 	flow-children: down;
 	width: 100%;
 }

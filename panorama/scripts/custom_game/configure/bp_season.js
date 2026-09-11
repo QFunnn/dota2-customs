@@ -45,4 +45,4 @@ GameUI.CustomUIConfig().bp_season = {
 		read_start_time: "2026-08-23 16:00:00",
 		read_end_time: "2026-10-04 15:59:59"
 	}
-};
+};

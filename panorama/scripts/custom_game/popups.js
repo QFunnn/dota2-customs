@@ -15,9 +15,9 @@ var EOM_Popup = require('./EOM_Popup.js');
 var EOM_Button = require('./EOM_Button.js');
 var Player = require('./Player.js');
 var solid_utils = require('./solid_utils.js');
+var StoreItem = require('./StoreItem.js');
 var hero_card = require('./hero_card.js');
 var courier_card = require('./courier_card.js');
-var StoreItem = require('./StoreItem.js');
 var EOM_HeroImage = require('./EOM_HeroImage.js');
 var common_item = require('./common_item.js');
 require('./EOM_MultiDropDown.js');
@@ -433,6 +433,212 @@ const Popup_AvatarEdit = props => {
     });
   }
 };
+
+const BOUNTY_RARITY_TOKENS = ["#TaskBoard_Rarity_C", "#TaskBoard_Rarity_B", "#TaskBoard_Rarity_A", "#TaskBoard_Rarity_S", "#TaskBoard_Rarity_SS"];
+function Popup_BountyDonate(props) {
+  let confirmed = false;
+  libs.onCleanup(() => {
+    if (confirmed) props.onconfirm?.();
+  });
+  return libs.createComponent(BasePopup, {
+    "class": "Popup_BountyDonate",
+    get title() {
+      return GetLocalization("#TaskBoard_DonateTitle");
+    },
+    get PopupID() {
+      return props.PopupID;
+    },
+    get group() {
+      return props.group;
+    },
+    get children() {
+      return [(() => {
+        const _el$ = libs.createElement("Panel", {
+            id: "CenterBlock",
+            hittest: false
+          }, null),
+          _el$2 = libs.createElement("Panel", {
+            id: "DonateContent",
+            flowChildren: "right"
+          }, _el$),
+          _el$3 = libs.createElement("Panel", {
+            get ["class"]() {
+              return `BountyDonateRewardCard Rarity${GetServiceItemRarity(props.itemID)}`;
+            }
+          }, _el$2),
+          _el$4 = libs.createElement("Label", {
+            id: "ItemName",
+            get text() {
+              return GetLocalization("#" + props.itemID);
+            }
+          }, _el$3);
+          libs.createElement("Image", {
+            id: "SplitLine"
+          }, _el$3);
+          const _el$6 = libs.createElement("Panel", {
+            "class": "DonateDesc",
+            flowChildren: "down"
+          }, _el$2),
+          _el$7 = libs.createElement("Panel", {
+            "class": "Title"
+          }, _el$6);
+          libs.createElement("Panel", {
+            "class": "TitleLine"
+          }, _el$7);
+          const _el$9 = libs.createElement("Label", {
+            get ["class"]() {
+              return `Rarity${props.rarity}`;
+            },
+            get text() {
+              return LocalizeWithVars("#TaskBoard_BountyRarityTitle", {
+                rarity: GetLocalization(BOUNTY_RARITY_TOKENS[Math.max(0, Math.min(4, props.rarity - 1))])
+              });
+            }
+          }, _el$7);
+          libs.createElement("Panel", {
+            id: "TitleLine2",
+            "class": "TitleLine"
+          }, _el$7);
+          const _el$1 = libs.createElement("Panel", {
+            "class": "DonateInfo",
+            flowChildren: "down"
+          }, _el$6),
+          _el$10 = libs.createElement("Panel", {
+            "class": "DonateInfoRow",
+            flowChildren: "right"
+          }, _el$1),
+          _el$11 = libs.createElement("Label", {
+            "class": "InfoName",
+            get text() {
+              return GetLocalization("#TaskBoard_DonateRequirement");
+            }
+          }, _el$10),
+          _el$12 = libs.createElement("Label", {
+            "class": "InfoValue",
+            get text() {
+              return LocalizeWithVars("#TaskBoard_DonateValue", {
+                value: FormatNumber(props.amount)
+              });
+            }
+          }, _el$10),
+          _el$13 = libs.createElement("Panel", {
+            "class": "DonateInfoRow",
+            flowChildren: "right"
+          }, _el$1),
+          _el$14 = libs.createElement("Label", {
+            "class": "InfoName",
+            get text() {
+              return GetLocalization("#TaskBoard_DonateOwned");
+            }
+          }, _el$13),
+          _el$15 = libs.createElement("Label", {
+            "class": "InfoValue Owned",
+            get text() {
+              return LocalizeWithVars("#TaskBoard_DonateValue", {
+                value: FormatNumber(props.ownedAmount)
+              });
+            }
+          }, _el$13),
+          _el$16 = libs.createElement("Panel", {
+            "class": "FixedDonateAmount",
+            flowChildren: "down"
+          }, _el$6),
+          _el$17 = libs.createElement("Label", {
+            "class": "FixedAmountTitle",
+            get text() {
+              return GetLocalization("#TaskBoard_DonateAmount");
+            }
+          }, _el$16),
+          _el$18 = libs.createElement("Label", {
+            "class": "FixedAmountValue",
+            get text() {
+              return LocalizeWithVars("#TaskBoard_DonateValue", {
+                value: FormatNumber(props.amount)
+              });
+            }
+          }, _el$16);
+        libs.setProp(_el$2, "flowChildren", "right");
+        libs.insert(_el$3, libs.createComponent(StoreItem.StoreItemImage, {
+          get itemid() {
+            return props.itemID;
+          }
+        }), null);
+        libs.setProp(_el$6, "flowChildren", "down");
+        libs.setProp(_el$1, "flowChildren", "down");
+        libs.setProp(_el$10, "flowChildren", "right");
+        libs.setProp(_el$13, "flowChildren", "right");
+        libs.setProp(_el$16, "flowChildren", "down");
+        libs.effect(_p$ => {
+          const _v$ = `BountyDonateRewardCard Rarity${GetServiceItemRarity(props.itemID)}`,
+            _v$2 = GetLocalization("#" + props.itemID),
+            _v$3 = `Rarity${props.rarity}`,
+            _v$4 = LocalizeWithVars("#TaskBoard_BountyRarityTitle", {
+              rarity: GetLocalization(BOUNTY_RARITY_TOKENS[Math.max(0, Math.min(4, props.rarity - 1))])
+            }),
+            _v$5 = GetLocalization("#TaskBoard_DonateRequirement"),
+            _v$6 = LocalizeWithVars("#TaskBoard_DonateValue", {
+              value: FormatNumber(props.amount)
+            }),
+            _v$7 = GetLocalization("#TaskBoard_DonateOwned"),
+            _v$8 = LocalizeWithVars("#TaskBoard_DonateValue", {
+              value: FormatNumber(props.ownedAmount)
+            }),
+            _v$9 = GetLocalization("#TaskBoard_DonateAmount"),
+            _v$0 = LocalizeWithVars("#TaskBoard_DonateValue", {
+              value: FormatNumber(props.amount)
+            });
+          _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "class", _v$, _p$._v$));
+          _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "class", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$9, "text", _v$4, _p$._v$4));
+          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$11, "text", _v$5, _p$._v$5));
+          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$12, "text", _v$6, _p$._v$6));
+          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$14, "text", _v$7, _p$._v$7));
+          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$15, "text", _v$8, _p$._v$8));
+          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$17, "text", _v$9, _p$._v$9));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$18, "text", _v$0, _p$._v$0));
+          return _p$;
+        }, {
+          _v$: undefined,
+          _v$2: undefined,
+          _v$3: undefined,
+          _v$4: undefined,
+          _v$5: undefined,
+          _v$6: undefined,
+          _v$7: undefined,
+          _v$8: undefined,
+          _v$9: undefined,
+          _v$0: undefined
+        });
+        return _el$;
+      })(), (() => {
+        const _el$19 = libs.createElement("Panel", {
+          id: "BottomButtons",
+          hittest: false
+        }, null);
+        libs.insert(_el$19, libs.createComponent(EOM_Button.EOM_Button, {
+          id: "Cancel",
+          color: "Cancel",
+          get text() {
+            return GetLocalization("#Popup_Button_Cancel");
+          },
+          onactivate: () => ClosePopup(props.PopupID)
+        }), null);
+        libs.insert(_el$19, libs.createComponent(EOM_Button.EOM_Button, {
+          color: "Confirm",
+          get text() {
+            return GetLocalization("#TaskBoard_ConfirmDonate");
+          },
+          onactivate: () => {
+            confirmed = true;
+            ClosePopup(props.PopupID);
+          }
+        }), null);
+        return _el$19;
+      })()];
+    }
+  });
+}
 
 const WeaponCard = props => {
   return libs.createComponent(EOM_Button.EOM_BaseButton, libs.mergeProps$1(() => libs.mergeProps(props, {
@@ -5190,6 +5396,7 @@ function Popup_PvpWeeklyTask(props) {
 
 const PopupComponents = {
   CommonConfirm: Popup_CommonConfirm,
+  BountyDonate: Popup_BountyDonate,
   CommunitySurvey: Popup_CommunitySurvey,
   EquipmentCapacityDialog: Popup_EquipmentCapacityDialog,
   StoreBuyItem: Popup_StoreBuyItem,

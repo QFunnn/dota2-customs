@@ -24,4 +24,4 @@ GameUI.CustomUIConfig().activity_mining = {
 		coin_num: 80,
 		durability: "1|2"
 	}
-};
+};

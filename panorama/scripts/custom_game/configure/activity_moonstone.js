@@ -43,4 +43,4 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			}
 		}
 	}
-};
+};

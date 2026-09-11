@@ -89,19 +89,19 @@ function ServerEquipDetailLoaded(props) {
   };
   const compareMainMap = libs.createMemo(() => {
     const compare = props.compareData;
-    if (!compare) return {};
+    if (!compare) return undefined;
     const map = {};
-    getEnhancedEntries(compare, "Main").forEach(entry => {
-      map[entry.id] = entry.value;
+    compare.main_entry_data.forEach(entry => {
+      map[entry.id] = entry.base_value ?? entry.value;
     });
     return map;
   });
   const compareAdverbMap = libs.createMemo(() => {
     const compare = props.compareData;
-    if (!compare) return {};
+    if (!compare) return undefined;
     const map = {};
-    getEnhancedEntries(compare, "Adverb").forEach(entry => {
-      map[entry.id] = entry.value;
+    compare.adverb_entry_data.forEach(entry => {
+      map[entry.id] = entry.base_value ?? entry.value;
     });
     return map;
   });
@@ -279,6 +279,9 @@ function ServerEquipDetailLoaded(props) {
             type: "Main",
             get compareMap() {
               return compareMainMap();
+            },
+            get hideExtraValue() {
+              return props.hideExtraValue;
             }
           })
         })];
@@ -302,6 +305,9 @@ function ServerEquipDetailLoaded(props) {
             type: "Adverb",
             get compareMap() {
               return compareAdverbMap();
+            },
+            get hideExtraValue() {
+              return props.hideExtraValue;
             }
           })
         })];
@@ -826,13 +832,14 @@ function EquipSuitList(props) {
   })();
 }
 function EquipmentAttrRow(props) {
-  const info = libs.createMemo(() => GetAttrRowInfo(props.data, props.attributNameColor, props.showAttributeRange, props.hideZeroBaseValue));
+  const info = libs.createMemo(() => GetAttrRowInfo(props.data, props.attributNameColor, props.showAttributeRange, props.hideZeroBaseValue, props.compareMap != undefined || props.hideExtraValue));
   const isUp = () => {
     if (!props.compareMap) return undefined;
     const compareValue = props.compareMap[props.data.id];
     if (compareValue === undefined) return undefined;
-    if (props.data.value === compareValue) return undefined;
-    return props.data.value > compareValue;
+    const baseValue = props.data.base_value ?? props.data.value;
+    if (baseValue === compareValue) return undefined;
+    return baseValue > compareValue;
   };
   return (() => {
     const _el$63 = libs.createElement("Panel", {
@@ -892,7 +899,7 @@ function EquipmentAttrRow(props) {
     return _el$63;
   })();
 }
-function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange = true, hideZeroBaseValue = false) {
+function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange = true, hideZeroBaseValue = false, hideExtraValue = false) {
   const id = data.id;
   const kv = KeyValues.equip_entry[id];
   const info = attribute_formatter.formatAttributeDisplay(data, {
@@ -903,7 +910,8 @@ function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange 
     },
     attributeNameColor: attributNameColor,
     showAttributeRange,
-    hideZeroBaseValue
+    hideZeroBaseValue,
+    hideExtraValue
   });
   return {
     text: info.valueText,

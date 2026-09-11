@@ -217,4 +217,4 @@ GameUI.CustomUIConfig().idle_game_fish_rod = {
 		fish_weight_min: 60,
 		fish_weight_max: 100
 	}
-};
+};

@@ -192,4 +192,4 @@ GameUI.CustomUIConfig().courier_abilities = {
 			"duration": 2
 		}
 	}
-};
+};

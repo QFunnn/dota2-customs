@@ -114,4 +114,4 @@ GameUI.CustomUIConfig().equip_rarity_setting = {
 		entry_refine: 1,
 		break_bonus: "200001:100"
 	}
-};
+};

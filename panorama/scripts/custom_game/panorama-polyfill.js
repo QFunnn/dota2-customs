@@ -1261,14 +1261,33 @@ var DIFFICULTY_COOLDOWN_REDUCTION = {
     5: -20,
     6: -10,
 };
-/** 难度对应的Boss技能间隔增幅，key为难度等级 */
+/**
+ * 难度对应的 Boss 技能间隔增幅，key 为难度等级。
+ *
+ * 数值会作为 AI 行动间隔的百分比附加值：35 表示间隔为基础值的 1.35 倍。
+ * 与 DIFFICULTY_BOSS_DAMAGE_AMPLIFY 配对，使提高施法频率后平均输出保持不变。
+ */
 var DIFFICULTY_BOSS_GAP_AMPLIFY = {
-    1: 80,
-    2: 60,
-    3: 45,
-    4: 30,
-    5: 15,
-    6: 5,
+// 1: 35,
+// 2: 28,
+// 3: 20,
+// 4: 14,
+// 5: 8,
+// 6: 3,
+};
+/**
+ * Boss 全部伤害的最终修正，key 为难度等级。
+ *
+ * 计算式为 newGapMultiplier / oldGapMultiplier - 1；它与上面的间隔倍率互为倒数，
+ * 因而在不考虑技能自身冷却、未命中和机制差异时，单位时间的理论输出不变。
+ */
+var DIFFICULTY_BOSS_DAMAGE_AMPLIFY = {
+// 1: -25,
+// 2: -20,
+// 3: -18,
+// 4: -12,
+// 5: -6,
+// 6: -2,
 };
 /** 难度对应的陷阱伤害 */
 var DIFFICULTY_TRAP_DAMAGE_REDUCTION = {
@@ -3437,6 +3456,16 @@ var PROPERTY_LIST = [
     "total_drop_num_pct",
     "refine_inc_pct",
     "abyssal_free",
+    "daily_bounty_free_count",
+    "weekly_bounty_free_count",
+    "daily_bounty_complete_count",
+    "weekly_bounty_complete_count",
+    "daily_bounty_num",
+    "week_bounty_num",
+    "daily_rarity4_num",
+    "daily_rarity5_num",
+    "week_rarity4_num",
+    "week_rarity5_num",
     "drawing_drop_chance",
     "gem_roll_change",
     "explore_extra_chance",

@@ -287,6 +287,19 @@ GameUI.CustomUIConfig().npc_units_custom = {
 		"UnitLabel": "courier",
 		"Skin": 1
 	},
+	"600023": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/coco_the_courageous/coco_the_courageous.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
 	"test": {
 		"Name": "木桩测试",
 		"Filter": "zone",

@@ -635,83 +635,103 @@ PropertyFunction.REFINE_INC_PCT = 710
 PropertyFunction[PropertyFunction.REFINE_INC_PCT] = "REFINE_INC_PCT"
 PropertyFunction.ABYSSAL_FREE = 711
 PropertyFunction[PropertyFunction.ABYSSAL_FREE] = "ABYSSAL_FREE"
-PropertyFunction.DRAWING_DROP_CHANCE = 712
+PropertyFunction.DAILY_BOUNTY_FREE_COUNT = 712
+PropertyFunction[PropertyFunction.DAILY_BOUNTY_FREE_COUNT] = "DAILY_BOUNTY_FREE_COUNT"
+PropertyFunction.WEEKLY_BOUNTY_FREE_COUNT = 713
+PropertyFunction[PropertyFunction.WEEKLY_BOUNTY_FREE_COUNT] = "WEEKLY_BOUNTY_FREE_COUNT"
+PropertyFunction.DAILY_BOUNTY_COMPLETE_COUNT = 714
+PropertyFunction[PropertyFunction.DAILY_BOUNTY_COMPLETE_COUNT] = "DAILY_BOUNTY_COMPLETE_COUNT"
+PropertyFunction.WEEKLY_BOUNTY_COMPLETE_COUNT = 715
+PropertyFunction[PropertyFunction.WEEKLY_BOUNTY_COMPLETE_COUNT] = "WEEKLY_BOUNTY_COMPLETE_COUNT"
+PropertyFunction.DAILY_BOUNTY_NUM = 716
+PropertyFunction[PropertyFunction.DAILY_BOUNTY_NUM] = "DAILY_BOUNTY_NUM"
+PropertyFunction.WEEK_BOUNTY_NUM = 717
+PropertyFunction[PropertyFunction.WEEK_BOUNTY_NUM] = "WEEK_BOUNTY_NUM"
+PropertyFunction.DAILY_RARITY4_NUM = 718
+PropertyFunction[PropertyFunction.DAILY_RARITY4_NUM] = "DAILY_RARITY4_NUM"
+PropertyFunction.DAILY_RARITY5_NUM = 719
+PropertyFunction[PropertyFunction.DAILY_RARITY5_NUM] = "DAILY_RARITY5_NUM"
+PropertyFunction.WEEK_RARITY4_NUM = 720
+PropertyFunction[PropertyFunction.WEEK_RARITY4_NUM] = "WEEK_RARITY4_NUM"
+PropertyFunction.WEEK_RARITY5_NUM = 721
+PropertyFunction[PropertyFunction.WEEK_RARITY5_NUM] = "WEEK_RARITY5_NUM"
+PropertyFunction.DRAWING_DROP_CHANCE = 722
 PropertyFunction[PropertyFunction.DRAWING_DROP_CHANCE] = "DRAWING_DROP_CHANCE"
-PropertyFunction.GEM_ROLL_CHANCE = 713
+PropertyFunction.GEM_ROLL_CHANCE = 723
 PropertyFunction[PropertyFunction.GEM_ROLL_CHANCE] = "GEM_ROLL_CHANCE"
-PropertyFunction.EXPLORE_EXTRA_CHANCE = 714
+PropertyFunction.EXPLORE_EXTRA_CHANCE = 724
 PropertyFunction[PropertyFunction.EXPLORE_EXTRA_CHANCE] = "EXPLORE_EXTRA_CHANCE"
-PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT = 715
+PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT = 725
 PropertyFunction[PropertyFunction.EXPLORE_EXTRA_PROFIT_PCT] = "EXPLORE_EXTRA_PROFIT_PCT"
-PropertyFunction.RUNE_RARITY_CHANCE = 716
+PropertyFunction.RUNE_RARITY_CHANCE = 726
 PropertyFunction[PropertyFunction.RUNE_RARITY_CHANCE] = "RUNE_RARITY_CHANCE"
-PropertyFunction.RUNE_DEVOUR_LOCK = 717
+PropertyFunction.RUNE_DEVOUR_LOCK = 727
 PropertyFunction[PropertyFunction.RUNE_DEVOUR_LOCK] = "RUNE_DEVOUR_LOCK"
-PropertyFunction.EXPLORE_LIMIT = 718
+PropertyFunction.EXPLORE_LIMIT = 728
 PropertyFunction[PropertyFunction.EXPLORE_LIMIT] = "EXPLORE_LIMIT"
-PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL = 719
+PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL = 729
 PropertyFunction[PropertyFunction.ATTACK_DAMAGE_BOOST_PER_LEVEL] = "ATTACK_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL = 720
+PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL = 730
 PropertyFunction[PropertyFunction.SPELL_DAMAGE_BOOST_PER_LEVEL] = "SPELL_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL = 721
+PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL = 731
 PropertyFunction[PropertyFunction.SKILL_DAMAGE_BOOST_PER_LEVEL] = "SKILL_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL = 722
+PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL = 732
 PropertyFunction[PropertyFunction.DODGE_DAMAGE_BOOST_PER_LEVEL] = "DODGE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL = 723
+PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL = 733
 PropertyFunction[PropertyFunction.DEFENSE_DAMAGE_BOOST_PER_LEVEL] = "DEFENSE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL = 724
+PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL = 734
 PropertyFunction[PropertyFunction.ULTIMATE_DAMAGE_BOOST_PER_LEVEL] = "ULTIMATE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL = 725
+PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL = 735
 PropertyFunction[PropertyFunction.LIGHTNING_DAMAGE_BOOST_PER_LEVEL] = "LIGHTNING_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL = 726
+PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL = 736
 PropertyFunction[PropertyFunction.FREEZE_DAMAGE_BOOST_PER_LEVEL] = "FREEZE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL = 727
+PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL = 737
 PropertyFunction[PropertyFunction.POISON_DAMAGE_BOOST_PER_LEVEL] = "POISON_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL = 728
+PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL = 738
 PropertyFunction[PropertyFunction.BLEED_DAMAGE_BOOST_PER_LEVEL] = "BLEED_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL = 729
+PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL = 739
 PropertyFunction[PropertyFunction.BLADE_DAMAGE_BOOST_PER_LEVEL] = "BLADE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL = 730
+PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL = 740
 PropertyFunction[PropertyFunction.HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL] = "HOLY_SHIELD_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL = 731
+PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL = 741
 PropertyFunction[PropertyFunction.RING_DAMAGE_BOOST_PER_LEVEL] = "RING_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL = 732
+PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL = 742
 PropertyFunction[PropertyFunction.SPLASH_DAMAGE_BOOST_PER_LEVEL] = "SPLASH_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL = 733
+PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL = 743
 PropertyFunction[PropertyFunction.MELEE_DAMAGE_BOOST_PER_LEVEL] = "MELEE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL = 734
+PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL = 744
 PropertyFunction[PropertyFunction.RANGED_DAMAGE_BOOST_PER_LEVEL] = "RANGED_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL = 735
+PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL = 745
 PropertyFunction[PropertyFunction.ELITE_DAMAGE_BOOST_PER_LEVEL] = "ELITE_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL = 736
+PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL = 746
 PropertyFunction[PropertyFunction.BOSS_DAMAGE_BOOST_PER_LEVEL] = "BOSS_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL = 737
+PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL = 747
 PropertyFunction[PropertyFunction.BARRIER_DAMAGE_BOOST_PER_LEVEL] = "BARRIER_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL = 738
+PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL = 748
 PropertyFunction[PropertyFunction.BACKSTAB_DAMAGE_BOOST_PER_LEVEL] = "BACKSTAB_DAMAGE_BOOST_PER_LEVEL"
-PropertyFunction.IDLE_FISH_MYTH_FISH_CHANCE = 739
+PropertyFunction.IDLE_FISH_MYTH_FISH_CHANCE = 749
 PropertyFunction[PropertyFunction.IDLE_FISH_MYTH_FISH_CHANCE] = "IDLE_FISH_MYTH_FISH_CHANCE"
-PropertyFunction.ENGRAVING_1_TRANSFER = 740
+PropertyFunction.ENGRAVING_1_TRANSFER = 750
 PropertyFunction[PropertyFunction.ENGRAVING_1_TRANSFER] = "ENGRAVING_1_TRANSFER"
-PropertyFunction.ENGRAVING_2_TRANSFER = 741
+PropertyFunction.ENGRAVING_2_TRANSFER = 751
 PropertyFunction[PropertyFunction.ENGRAVING_2_TRANSFER] = "ENGRAVING_2_TRANSFER"
-PropertyFunction.ENGRAVING_3_TRANSFER = 742
+PropertyFunction.ENGRAVING_3_TRANSFER = 752
 PropertyFunction[PropertyFunction.ENGRAVING_3_TRANSFER] = "ENGRAVING_3_TRANSFER"
-PropertyFunction.ENGRAVING_4_TRANSFER = 743
+PropertyFunction.ENGRAVING_4_TRANSFER = 753
 PropertyFunction[PropertyFunction.ENGRAVING_4_TRANSFER] = "ENGRAVING_4_TRANSFER"
-PropertyFunction.ENGRAVING_5_TRANSFER = 744
+PropertyFunction.ENGRAVING_5_TRANSFER = 754
 PropertyFunction[PropertyFunction.ENGRAVING_5_TRANSFER] = "ENGRAVING_5_TRANSFER"
-PropertyFunction.ENGRAVING_1_STRENGTHEN = 745
+PropertyFunction.ENGRAVING_1_STRENGTHEN = 755
 PropertyFunction[PropertyFunction.ENGRAVING_1_STRENGTHEN] = "ENGRAVING_1_STRENGTHEN"
-PropertyFunction.ENGRAVING_2_STRENGTHEN = 746
+PropertyFunction.ENGRAVING_2_STRENGTHEN = 756
 PropertyFunction[PropertyFunction.ENGRAVING_2_STRENGTHEN] = "ENGRAVING_2_STRENGTHEN"
-PropertyFunction.ENGRAVING_3_STRENGTHEN = 747
+PropertyFunction.ENGRAVING_3_STRENGTHEN = 757
 PropertyFunction[PropertyFunction.ENGRAVING_3_STRENGTHEN] = "ENGRAVING_3_STRENGTHEN"
-PropertyFunction.ENGRAVING_4_STRENGTHEN = 748
+PropertyFunction.ENGRAVING_4_STRENGTHEN = 758
 PropertyFunction[PropertyFunction.ENGRAVING_4_STRENGTHEN] = "ENGRAVING_4_STRENGTHEN"
-PropertyFunction.ENGRAVING_5_STRENGTHEN = 749
+PropertyFunction.ENGRAVING_5_STRENGTHEN = 759
 PropertyFunction[PropertyFunction.ENGRAVING_5_STRENGTHEN] = "ENGRAVING_5_STRENGTHEN"
-PropertyFunction.LAST = 750
+PropertyFunction.LAST = 760
 PropertyFunction[PropertyFunction.LAST] = "LAST"
 PROPERTY_MAP = {
 	health = PropertyFunction.HEALTH,
@@ -1026,6 +1046,16 @@ PROPERTY_MAP = {
 	total_drop_num_pct = PropertyFunction.TOTAL_DROP_NUM_PCT,
 	refine_inc_pct = PropertyFunction.REFINE_INC_PCT,
 	abyssal_free = PropertyFunction.ABYSSAL_FREE,
+	daily_bounty_free_count = PropertyFunction.DAILY_BOUNTY_FREE_COUNT,
+	weekly_bounty_free_count = PropertyFunction.WEEKLY_BOUNTY_FREE_COUNT,
+	daily_bounty_complete_count = PropertyFunction.DAILY_BOUNTY_COMPLETE_COUNT,
+	weekly_bounty_complete_count = PropertyFunction.WEEKLY_BOUNTY_COMPLETE_COUNT,
+	daily_bounty_num = PropertyFunction.DAILY_BOUNTY_NUM,
+	week_bounty_num = PropertyFunction.WEEK_BOUNTY_NUM,
+	daily_rarity4_num = PropertyFunction.DAILY_RARITY4_NUM,
+	daily_rarity5_num = PropertyFunction.DAILY_RARITY5_NUM,
+	week_rarity4_num = PropertyFunction.WEEK_RARITY4_NUM,
+	week_rarity5_num = PropertyFunction.WEEK_RARITY5_NUM,
 	drawing_drop_chance = PropertyFunction.DRAWING_DROP_CHANCE,
 	gem_roll_change = PropertyFunction.GEM_ROLL_CHANCE,
 	explore_extra_chance = PropertyFunction.EXPLORE_EXTRA_CHANCE,
@@ -3309,6 +3339,76 @@ PropertySystem:RegisterProperty({
 	enableCache = false,
 })
 PropertySystem:RegisterProperty({
+	id = "daily_bounty_free_count",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "weekly_bounty_free_count",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "daily_bounty_complete_count",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "weekly_bounty_complete_count",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "daily_bounty_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "week_bounty_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "daily_rarity4_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "daily_rarity5_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "week_rarity4_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "week_rarity5_num",
+	scope = PropertyScope.PLAYER,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
 	id = "drawing_drop_chance",
 	scope = PropertyScope.PLAYER,
 	valueType = PropertyValueType.PERCENTAGE,
@@ -4385,6 +4485,36 @@ end
 function GetAbyssalFree(f, e)
 	return PropertySystem:GetPropertyValue(f, "abyssal_free", e)
 end
+function GetDailyBountyFreeCount(f, e)
+	return PropertySystem:GetPropertyValue(f, "daily_bounty_free_count", e)
+end
+function GetWeeklyBountyFreeCount(f, e)
+	return PropertySystem:GetPropertyValue(f, "weekly_bounty_free_count", e)
+end
+function GetDailyBountyCompleteCount(f, e)
+	return PropertySystem:GetPropertyValue(f, "daily_bounty_complete_count", e)
+end
+function GetWeeklyBountyCompleteCount(f, e)
+	return PropertySystem:GetPropertyValue(f, "weekly_bounty_complete_count", e)
+end
+function GetDailyBountyNum(f, e)
+	return PropertySystem:GetPropertyValue(f, "daily_bounty_num", e)
+end
+function GetWeekBountyNum(f, e)
+	return PropertySystem:GetPropertyValue(f, "week_bounty_num", e)
+end
+function GetDailyRarity4Num(f, e)
+	return PropertySystem:GetPropertyValue(f, "daily_rarity4_num", e)
+end
+function GetDailyRarity5Num(f, e)
+	return PropertySystem:GetPropertyValue(f, "daily_rarity5_num", e)
+end
+function GetWeekRarity4Num(f, e)
+	return PropertySystem:GetPropertyValue(f, "week_rarity4_num", e)
+end
+function GetWeekRarity5Num(f, e)
+	return PropertySystem:GetPropertyValue(f, "week_rarity5_num", e)
+end
 function GetDrawingDropChance(f, e)
 	return PropertySystem:GetPropertyValue(f, "drawing_drop_chance", e)
 end
@@ -4757,6 +4887,16 @@ PROPERTY_FUNCTION_MAP = {
 	total_drop_num_pct = GetTotalDropNumPct,
 	refine_inc_pct = GetRefineIncPct,
 	abyssal_free = GetAbyssalFree,
+	daily_bounty_free_count = GetDailyBountyFreeCount,
+	weekly_bounty_free_count = GetWeeklyBountyFreeCount,
+	daily_bounty_complete_count = GetDailyBountyCompleteCount,
+	weekly_bounty_complete_count = GetWeeklyBountyCompleteCount,
+	daily_bounty_num = GetDailyBountyNum,
+	week_bounty_num = GetWeekBountyNum,
+	daily_rarity4_num = GetDailyRarity4Num,
+	daily_rarity5_num = GetDailyRarity5Num,
+	week_rarity4_num = GetWeekRarity4Num,
+	week_rarity5_num = GetWeekRarity5Num,
 	drawing_drop_chance = GetDrawingDropChance,
 	gem_roll_change = GetGemRollChance,
 	explore_extra_chance = GetExploreExtraChance,

@@ -830,6 +830,7 @@ return {
 		"models/items/courier/blue_lightning_horse/blue_lightning_horse.vmdl",
 		"models/items/courier/bookwyrm/bookwyrm.vmdl",
 		"models/items/courier/captain_bamboo/captain_bamboo.vmdl",
+		"models/items/courier/coco_the_courageous/coco_the_courageous.vmdl",
 		"models/items/courier/courier_ti10_radiant/courier_ti10_radiant.vmdl",
 		"models/items/courier/courier_ti9/courier_ti9_lvl7/courier_ti9_lvl7_flying.vmdl",
 		"models/items/courier/devourling/devourling_flying.vmdl",

@@ -180,7 +180,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"22": {
 		id: 22,
 		activity_id: 802,
-		coin_num: 1950,
+		coin_num: 2100,
 		reward: {
 			"190002": 3
 		}
@@ -188,7 +188,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"23": {
 		id: 23,
 		activity_id: 802,
-		coin_num: 2100,
+		coin_num: 2300,
 		reward: {
 			"1800010": 1
 		}
@@ -196,7 +196,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"24": {
 		id: 24,
 		activity_id: 802,
-		coin_num: 2400,
+		coin_num: 2600,
 		reward: {
 			"1800010": 2
 		}
@@ -204,7 +204,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"25": {
 		id: 25,
 		activity_id: 802,
-		coin_num: 3800,
+		coin_num: 3500,
 		reward: {
 			"120004": 150
 		}
@@ -212,7 +212,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"26": {
 		id: 26,
 		activity_id: 802,
-		coin_num: 4400,
+		coin_num: 4000,
 		reward: {
 			"190001": 5
 		}
@@ -220,7 +220,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"27": {
 		id: 27,
 		activity_id: 802,
-		coin_num: 5000,
+		coin_num: 4600,
 		reward: {
 			"120003": 300
 		}
@@ -228,7 +228,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"28": {
 		id: 28,
 		activity_id: 802,
-		coin_num: 5600,
+		coin_num: 5200,
 		reward: {
 			"120008": 150
 		}
@@ -236,7 +236,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"29": {
 		id: 29,
 		activity_id: 802,
-		coin_num: 6200,
+		coin_num: 5800,
 		reward: {
 			"1800005": 5
 		}
@@ -244,7 +244,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"30": {
 		id: 30,
 		activity_id: 802,
-		coin_num: 6800,
+		coin_num: 6500,
 		reward: {
 			"1800011": 1
 		}
@@ -252,7 +252,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"31": {
 		id: 31,
 		activity_id: 802,
-		coin_num: 7400,
+		coin_num: 7200,
 		reward: {
 			"190006": 5
 		}
@@ -334,7 +334,7 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 		activity_id: 802,
 		coin_num: 15000,
 		reward: {
-			"120010": 500
+			"1800012": 1
 		}
 	},
 	"42": {
@@ -364,41 +364,41 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"45": {
 		id: 45,
 		activity_id: 802,
-		coin_num: 25000,
+		coin_num: 24300,
 		reward: {
-			"120005": 200
+			"190006": 10
 		}
 	},
 	"46": {
 		id: 46,
 		activity_id: 802,
-		coin_num: 27000,
+		coin_num: 25600,
 		reward: {
-			"1800006": 5
+			"190005": 10
 		}
 	},
 	"47": {
 		id: 47,
 		activity_id: 802,
-		coin_num: 29000,
+		coin_num: 26900,
 		reward: {
-			"190006": 5
+			"190004": 10
 		}
 	},
 	"48": {
 		id: 48,
 		activity_id: 802,
-		coin_num: 31000,
+		coin_num: 28200,
 		reward: {
-			"190004": 5
+			"190006": 10
 		}
 	},
 	"49": {
 		id: 49,
 		activity_id: 802,
-		coin_num: 33000,
+		coin_num: 29500,
 		reward: {
-			"1800012": 1
+			"190005": 10
 		}
 	},
 	"50": {
@@ -406,13 +406,13 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 		activity_id: 802,
 		coin_num: 36000,
 		reward: {
-			"1800006": 10
+			"190004": 10
 		}
 	},
 	"51": {
 		id: 51,
 		activity_id: 802,
-		coin_num: 39000,
+		coin_num: 32100,
 		reward: {
 			"190006": 10
 		}
@@ -420,17 +420,73 @@ GameUI.CustomUIConfig().activity_boardslot_node = {
 	"52": {
 		id: 52,
 		activity_id: 802,
-		coin_num: 42000,
+		coin_num: 33400,
 		reward: {
-			"1800012": 1
+			"190005": 10
 		}
 	},
 	"53": {
 		id: 53,
 		activity_id: 802,
-		coin_num: 46000,
+		coin_num: 34700,
 		reward: {
 			"190004": 10
+		}
+	},
+	"54": {
+		id: 54,
+		activity_id: 802,
+		coin_num: 36000,
+		reward: {
+			"190006": 10
+		}
+	},
+	"55": {
+		id: 55,
+		activity_id: 802,
+		coin_num: 37300,
+		reward: {
+			"190005": 10
+		}
+	},
+	"56": {
+		id: 56,
+		activity_id: 802,
+		coin_num: 38600,
+		reward: {
+			"190004": 10
+		}
+	},
+	"57": {
+		id: 57,
+		activity_id: 802,
+		coin_num: 39900,
+		reward: {
+			"190006": 10
+		}
+	},
+	"58": {
+		id: 58,
+		activity_id: 802,
+		coin_num: 41200,
+		reward: {
+			"190005": 10
+		}
+	},
+	"59": {
+		id: 59,
+		activity_id: 802,
+		coin_num: 42500,
+		reward: {
+			"190004": 10
+		}
+	},
+	"60": {
+		id: 60,
+		activity_id: 802,
+		coin_num: 43800,
+		reward: {
+			"190006": 10
 		}
 	}
 };

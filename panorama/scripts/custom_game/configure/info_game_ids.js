@@ -29,6 +29,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "bless",
 		name: "探险之证"
 	},
+	"105": {
+		item_id: 105,
+		type: "bless",
+		name: "悬赏之证"
+	},
 	"224": {
 		item_id: 224,
 		type: "hero",
@@ -239,6 +244,16 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "bless",
 		name: "觉醒圣契"
 	},
+	"539": {
+		item_id: 539,
+		type: "bless",
+		name: "智慧圣契"
+	},
+	"540": {
+		item_id: 540,
+		type: "bless",
+		name: "月羽圣契"
+	},
 	"2001": {
 		item_id: 2001,
 		type: "pools",
@@ -368,6 +383,16 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 110020,
 		type: "item",
 		name: "星辉尘"
+	},
+	"110023": {
+		item_id: 110023,
+		type: "item",
+		name: "星光"
+	},
+	"110024": {
+		item_id: 110024,
+		type: "item",
+		name: "奇遇骰"
 	},
 	"120001": {
 		item_id: 120001,
@@ -569,6 +594,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "探险之证"
 	},
+	"310105": {
+		item_id: 310105,
+		type: "item",
+		name: "悬赏之证"
+	},
 	"310501": {
 		item_id: 310501,
 		type: "item",
@@ -758,6 +788,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 310539,
 		type: "item",
 		name: "智慧圣契"
+	},
+	"310540": {
+		item_id: 310540,
+		type: "item",
+		name: "月羽圣契"
 	},
 	"340101": {
 		item_id: 340101,
@@ -1843,6 +1878,41 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 802311,
 		type: "products",
 		name: "烈性炸药"
+	},
+	"802401": {
+		item_id: 802401,
+		type: "products",
+		name: "大富翁2期初遇星匣礼包"
+	},
+	"802402": {
+		item_id: 802402,
+		type: "products",
+		name: "大富翁2期启程巡游礼包"
+	},
+	"802403": {
+		item_id: 802403,
+		type: "products",
+		name: "大富翁2期星光背囊礼包"
+	},
+	"802404": {
+		item_id: 802404,
+		type: "products",
+		name: "大富翁2期星光背囊礼包"
+	},
+	"802405": {
+		item_id: 802405,
+		type: "products",
+		name: "大富翁2期月光巡礼礼包"
+	},
+	"802406": {
+		item_id: 802406,
+		type: "products",
+		name: "大富翁2期奇遇幻想礼包"
+	},
+	"802407": {
+		item_id: 802407,
+		type: "products",
+		name: "大富翁2期奇遇骰"
 	},
 	"803001": {
 		item_id: 803001,
@@ -7168,6 +7238,21 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 1800008,
 		type: "item",
 		name: "奇遇巡游活动宝箱"
+	},
+	"1800010": {
+		item_id: 1800010,
+		type: "item",
+		name: "小型通契宝箱"
+	},
+	"1800011": {
+		item_id: 1800011,
+		type: "item",
+		name: "中型通契宝箱"
+	},
+	"1800012": {
+		item_id: 1800012,
+		type: "item",
+		name: "大型通契宝箱"
 	},
 	"1801001": {
 		item_id: 1801001,

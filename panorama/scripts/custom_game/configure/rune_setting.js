@@ -24,4 +24,4 @@ GameUI.CustomUIConfig().rune_setting = {
 		value: "120015:90",
 		name: "技能符文吞噬消耗"
 	}
-};
+};

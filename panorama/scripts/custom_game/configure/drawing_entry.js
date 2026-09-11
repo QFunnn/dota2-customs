@@ -180,4 +180,4 @@ GameUI.CustomUIConfig().drawing_entry = {
 		value_max: 20,
 		ratio: 1
 	}
-};
+};

@@ -73,4 +73,4 @@ GameUI.CustomUIConfig().engraving_drop = {
 		class: "7:0|8:100",
 		rarity: "5:562|6:218|7:220"
 	}
-};
+};

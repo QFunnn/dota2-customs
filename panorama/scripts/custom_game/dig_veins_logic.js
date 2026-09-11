@@ -10,6 +10,8 @@
 
 'use strict'; const exports = {}; GameUI.__loadModule('dig_veins_logic', exports); const require = GameUI.__require;
 
+const ACTIVITY_DICE_ID = 802;
+
 const ACTIVITY_MINING_ID = 1001;
 const getDigVeinsTaskState = task => {
   if (task.receive_progress == 1) {
@@ -44,6 +46,7 @@ const hasClaimableDigVeinsDepthReward = activityData => {
   });
 };
 
+exports.ACTIVITY_DICE_ID = ACTIVITY_DICE_ID;
 exports.ACTIVITY_MINING_ID = ACTIVITY_MINING_ID;
 exports.getDigVeinsTaskState = getDigVeinsTaskState;
 exports.hasClaimableDigVeinsDepthReward = hasClaimableDigVeinsDepthReward;

@@ -345,4 +345,4 @@ GameUI.CustomUIConfig().idle_game_box = {
 		drop_item: "180205:2",
 		drop_weight: 60
 	}
-};
+};

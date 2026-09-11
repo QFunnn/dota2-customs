@@ -371,5 +371,368 @@ GameUI.CustomUIConfig().activity_boardslot_reward = {
 		reward_id: "110013",
 		reward_num: "35|40|45|50",
 		levelup_exp: "1|1|1"
+	},
+	"27": {
+		id: 27,
+		activity_id: 802,
+		slot_id: 1,
+		slot_type: 1,
+		description: "起始格",
+		trigger_type: 1,
+		event: {
+			add_type_exp_4_2: 100
+		},
+		reward_id: "110023",
+		reward_num: "15"
+	},
+	"28": {
+		id: 28,
+		activity_id: 802,
+		slot_id: 2,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_2_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"29": {
+		id: 29,
+		activity_id: 802,
+		slot_id: 3,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_3_2: 100
+		},
+		reward_id: "120002",
+		reward_num: "5|10|20|35",
+		levelup_exp: "3|6|11"
+	},
+	"30": {
+		id: 30,
+		activity_id: 802,
+		slot_id: 4,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_4_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"31": {
+		id: 31,
+		activity_id: 802,
+		slot_id: 5,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_5_2: 100
+		},
+		reward_id: "120003",
+		reward_num: "2|4|6|10",
+		levelup_exp: "5|12|22"
+	},
+	"32": {
+		id: 32,
+		activity_id: 802,
+		slot_id: 6,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_6_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"33": {
+		id: 33,
+		activity_id: 802,
+		slot_id: 7,
+		slot_type: 3,
+		description: "事件格",
+		trigger_type: 2,
+		event: {
+			move_pos_2: 400,
+			move_neg_3: 300,
+			move_start: 150,
+			reward_next_slot_2: 150
+		}
+	},
+	"34": {
+		id: 34,
+		activity_id: 802,
+		slot_id: 8,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_8_2: 100
+		},
+		reward_id: "110010",
+		reward_num: "5|12|25|50",
+		levelup_exp: "3|6|11"
+	},
+	"35": {
+		id: 35,
+		activity_id: 802,
+		slot_id: 9,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_9_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"36": {
+		id: 36,
+		activity_id: 802,
+		slot_id: 10,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_10_2: 100
+		},
+		reward_id: "120002",
+		reward_num: "2|4|6|10",
+		levelup_exp: "5|12|22"
+	},
+	"37": {
+		id: 37,
+		activity_id: 802,
+		slot_id: 11,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_11_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"38": {
+		id: 38,
+		activity_id: 802,
+		slot_id: 12,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_12_2: 100
+		},
+		reward_id: "110009",
+		reward_num: "1|2|3|5",
+		levelup_exp: "5|12|22"
+	},
+	"39": {
+		id: 39,
+		activity_id: 802,
+		slot_id: 13,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_13_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"40": {
+		id: 40,
+		activity_id: 802,
+		slot_id: 14,
+		slot_type: 3,
+		description: "事件格",
+		trigger_type: 2,
+		event: {
+			move_pos_2: 400,
+			move_neg_3: 300,
+			move_start: 150,
+			reward_next_slot_2: 150
+		}
+	},
+	"41": {
+		id: 41,
+		activity_id: 802,
+		slot_id: 15,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_15_2: 100
+		},
+		reward_id: "120003",
+		reward_num: "1|2|3|5",
+		levelup_exp: "7|17|26"
+	},
+	"42": {
+		id: 42,
+		activity_id: 802,
+		slot_id: 16,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_16_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"43": {
+		id: 43,
+		activity_id: 802,
+		slot_id: 17,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_17_2: 100
+		},
+		reward_id: "120008",
+		reward_num: "10|20|40|70",
+		levelup_exp: "5|12|22"
+	},
+	"44": {
+		id: 44,
+		activity_id: 802,
+		slot_id: 18,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_18_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"45": {
+		id: 45,
+		activity_id: 802,
+		slot_id: 19,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_19_2: 100
+		},
+		reward_id: "120001",
+		reward_num: "5|10|20|35",
+		levelup_exp: "3|6|11"
+	},
+	"46": {
+		id: 46,
+		activity_id: 802,
+		slot_id: 20,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_20_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"47": {
+		id: 47,
+		activity_id: 802,
+		slot_id: 21,
+		slot_type: 3,
+		description: "事件格",
+		trigger_type: 2,
+		event: {
+			move_pos_2: 400,
+			move_neg_3: 300,
+			move_start: 150,
+			reward_next_slot_2: 150
+		}
+	},
+	"48": {
+		id: 48,
+		activity_id: 802,
+		slot_id: 22,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_22_2: 100
+		},
+		reward_id: "110011",
+		reward_num: "1|1|1|2",
+		levelup_exp: "7|17|26"
+	},
+	"49": {
+		id: 49,
+		activity_id: 802,
+		slot_id: 23,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_23_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"50": {
+		id: 50,
+		activity_id: 802,
+		slot_id: 24,
+		slot_type: 4,
+		description: "奖励格",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_24_2: 100
+		},
+		reward_id: "110010",
+		reward_num: "5|12|25|50",
+		levelup_exp: "3|6|11"
+	},
+	"51": {
+		id: 51,
+		activity_id: 802,
+		slot_id: 25,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_25_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
+	},
+	"52": {
+		id: 52,
+		activity_id: 802,
+		slot_id: 26,
+		slot_type: 2,
+		description: "代币格子",
+		trigger_type: 2,
+		event: {
+			add_slot_exp_26_1: 100
+		},
+		reward_id: "110023",
+		reward_num: "25|30|35|40",
+		levelup_exp: "1|1|1"
 	}
 };

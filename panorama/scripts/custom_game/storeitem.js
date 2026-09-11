@@ -576,7 +576,7 @@ function getStoreProductRewardTooltipData(itemID, image) {
     return getCourierTooltipData(itemID);
   }
   if (isBlessItem(itemID)) {
-    const ids = [340101, 310102, 310103, 310104];
+    const ids = [340101, 310102, 310103, 310104, 310105];
     if (ids.includes(Number(itemID))) {
       const defaultText = GetDefaultToolTipText(itemID);
       if (defaultText) {
@@ -636,7 +636,7 @@ function GetStoreItemImageTooltipData(itemID, image, player_collections = () => 
   if (isBlessItem(itemID)) {
     const id = String(itemID);
     const numId = Number(id);
-    const ids = [340101, 310102, 310103, 310104];
+    const ids = [340101, 310102, 310103, 310104, 310105];
     if (ids.includes(numId)) {
       const defaultText = GetDefaultToolTipText(id);
       if (defaultText) {

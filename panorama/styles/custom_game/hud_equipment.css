@@ -4553,6 +4553,75 @@
 	color: #E1E1E1;
 }
 
+.EOM_Switch
+{
+	width: 56px;
+	height: 28px;
+	transition-property: brightness, opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Switch:hover
+{
+	brightness: 1.15;
+}
+
+.EOM_Switch:active
+{
+	brightness: 0.85;
+	sound: "ui_generic_button_click";
+}
+
+.EOM_Switch:disabled
+{
+	opacity: 0.4;
+	saturation: 0;
+}
+
+.EOM_Switch .EOM_Switch_Track
+{
+	width: 56px;
+	height: 28px;
+	border-radius: 14px;
+	background-color: #473c2d;
+	box-shadow: fill #000000bb 0px 0px 10px 0px;
+	flow-children: right;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Switch .EOM_Switch_Track .EOM_Switch_Spacer
+{
+	width: 3px;
+	height: 22px;
+	vertical-align: center;
+	transition-property: width;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.EOM_Switch .EOM_Switch_Track .EOM_Switch_Thumb
+{
+	width: 22px;
+	height: 22px;
+	border-radius: 11px;
+	box-shadow: fill black 1px 1px 13px 0px;
+	background-color: gradient(radial, 50% 50%, -5% -5%, 60% 60%, from(#8d8569), to(#473c2d));
+	vertical-align: center;
+}
+
+.EOM_Switch:selected .EOM_Switch_Track
+{
+	background-color: #645139;
+}
+
+.EOM_Switch:selected .EOM_Switch_Track .EOM_Switch_Spacer
+{
+	width: 31px;
+}
+
 .EOM_Breadcrumb
 {
 	flow-children: right;
@@ -6192,9 +6261,14 @@
 	margin-right: 0px;
 }
 
-#EquipBreakRoot #BreakSlotsContainer
+#EquipBreakRoot #BreakSelectionContainer
 {
 	horizontal-align: center;
+	height: 600px;
+}
+
+#EquipBreakRoot #BreakSlotsContainer
+{
 	width: 600px;
 	height: 600px;
 }
@@ -6211,6 +6285,86 @@
 #EquipBreakRoot #BreakSlotsContainer #BreakForgeParticle.Show
 {
 	visibility: visible;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer
+{
+	width: 620px;
+	height: 550px;
+	padding: 30px 12px 20px 12px;
+	background-color: #090b0ed9;
+	border: 1px solid #7b674780;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemsTitle
+{
+	horizontal-align: center;
+	font-size: 26px;
+	color: #FFE791;
+	text-shadow: 0px 0px 4px 3 #000000;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemsCount
+{
+	horizontal-align: center;
+	margin-top: 38px;
+	font-size: 19px;
+	color: #B9B1A6;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemsEmpty
+{
+	align: center center;
+	font-size: 22px;
+	color: #777777;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList
+{
+	margin-top: 76px;
+	width: 100%;
+	height: 484px;
+	padding: 8px;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem
+{
+	width: 94px;
+	height: 94px;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem:hover
+{
+	brightness: 1.7;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem:active
+{
+	brightness: 0.6;
+	sound: "ui_generic_button_click";
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Equipment,#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Gem
+{
+	align: center center;
+	width: 88px;
+	height: 88px;
+}
+
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .RemoveSelectedItemIcon
+{
+	align: right top;
+	width: 22px;
+	height: 22px;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 14px 14px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #8e302fee;
+	border-radius: 50%;
 }
 
 #EquipBreakRoot #CenterImage
@@ -6331,9 +6485,29 @@
 	y: 408px;
 }
 
+#EquipBreakRoot #BreakViewToggle
+{
+	horizontal-align: center;
+	margin-top: -46px;
+	flow-children: right;
+	margin-bottom: 5px;
+}
+
+#EquipBreakRoot #BreakViewToggle Label
+{
+	vertical-align: center;
+	margin-right: 8px;
+	font-size: 18px;
+	color: #fcfbfb;
+}
+
+#EquipBreakRoot #BreakViewToggle .EOM_Switch
+{
+	vertical-align: center;
+}
+
 #EquipBreakRoot #FastAdd
 {
-	margin-top: -37px;
 	horizontal-align: center;
 	flow-children: right;
 }
@@ -8760,6 +8934,339 @@
 }
 
 #EquipmentKeyRoot .EquipListGrid
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+#EquipmentKeyBreakRoot #BGLight
+{
+	x: -250px;
+	width: 100%;
+	height: 100%;
+}
+
+#EquipmentKeyBreakRoot #CenterBlock
+{
+	align: center center;
+	flow-children: right;
+}
+
+#EquipmentKeyBreakRoot #BreakPanel
+{
+	vertical-align: center;
+	margin-left: 180px;
+	margin-right: 240px;
+	width: 662px;
+	height: 848px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/d2_paper_recast_panel_png.vtex");
+	background-size: 100%;
+	flow-children: down;
+	animation-name: SlideInBottom;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-out;
+}
+
+#EquipmentKeyBreakRoot .KeyBreakSectionRow
+{
+	horizontal-align: center;
+	flow-children: right;
+	height: 20px;
+}
+
+#EquipmentKeyBreakRoot .KeyBreakSectionRow .KeyBreakSectionLine
+{
+	width: 218px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/d2_line_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#EquipmentKeyBreakRoot .KeyBreakSectionRow .KeyBreakSectionLineLeft
+{
+	transform: scaleX(-1);
+}
+
+#EquipmentKeyBreakRoot .KeyBreakTitleRow
+{
+	margin-top: 44px;
+}
+
+#EquipmentKeyBreakRoot .KeyBreakInfoRow
+{
+	margin-top: 30px;
+}
+
+#EquipmentKeyBreakRoot #BreakTitle,#EquipmentKeyBreakRoot #RewardTitle
+{
+	margin: 0px 15px;
+	font-size: 20px;
+	color: #B9B1A6;
+}
+
+#EquipmentKeyBreakRoot #SelectedKeyList
+{
+	horizontal-align: center;
+	margin-top: 18px;
+	width: 564px;
+	height: 368px;
+	flow-children: right-wrap;
+}
+
+#EquipmentKeyBreakRoot #SelectedKeyList .SelectedKeySlot
+{
+	width: 88px;
+	height: 88px;
+	margin: 2px;
+}
+
+#EquipmentKeyBreakRoot #SelectedKeyList .SelectedKeySlot .DungeonKey
+{
+	width: 88px;
+	height: 88px;
+}
+
+#EquipmentKeyBreakRoot #BreakReward
+{
+	horizontal-align: center;
+	margin-top: 14px;
+	width: 554px;
+	height: fill-parent-flow(1);
+	min-height: 82px;
+	opacity: 0;
+	flow-children: down;
+}
+
+#EquipmentKeyBreakRoot #BreakReward.Show
+{
+	opacity: 1;
+}
+
+#EquipmentKeyBreakRoot #BreakReward #RewardList
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#EquipmentKeyBreakRoot #BreakReward .RewardItem
+{
+	width: 58px;
+	height: 58px;
+	margin-right: 10px;
+}
+
+#EquipmentKeyBreakRoot #BreakReward .RewardItem .StoreItemBlock
+{
+	width: 58px;
+	height: 58px;
+}
+
+#EquipmentKeyBreakRoot #BreakReward .RewardItem Label
+{
+	align: right bottom;
+	font-size: 16px;
+	color: white;
+	text-shadow: 1px 1px 2px 2 black;
+}
+
+#EquipmentKeyBreakRoot #FastAdd
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 18px;
+}
+
+#EquipmentKeyBreakRoot #FastAdd .EquipmentDropDown
+{
+	vertical-align: center;
+	width: 200px;
+}
+
+#EquipmentKeyBreakRoot #FastAdd .EquipmentCommonBtn
+{
+	vertical-align: center;
+	margin-left: 14px;
+}
+
+#EquipmentKeyBreakRoot #BreakFooter
+{
+	width: 100%;
+	height: 64px;
+	margin-bottom: 40px;
+}
+
+#EquipmentKeyBreakRoot #BreakFooter #ConfirmBreak
+{
+	horizontal-align: center;
+	height: 64px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot
+{
+	flow-children: down;
+	horizontal-align: right;
+	margin-top: 25px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyListTop
+{
+	width: 168px;
+	height: 32px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyListTop #KeyListTopBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_mask_text_png.vtex");
+	background-size: 100%;
+	wash-color: #000000;
+	opacity: 0.6;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyListTop #KeyListTopTitle
+{
+	max-width: 90%;
+	font-size: 24px;
+	color: #BFAA82;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyListTop #KeyListTopTitle.Full
+{
+	color: #FF4C4C;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyListBox
+{
+	width: 488px;
+	height: 762px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_panel_itembg_png.vtex");
+	background-size: 100%;
+	padding: 11px 8px 8px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item
+{
+	width: 88px;
+	height: 88px;
+	overflow: noclip;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item:not(.Locked):hover
+{
+	brightness: 1.8;
+	sound: "UI.HeroCard.Hover";
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item.Locked
+{
+	brightness: 0.45;
+	saturation: 0.5;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item.Selected .SelectedBorder
+{
+	opacity: 1;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item.New #NewTag
+{
+	visibility: visible;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item .DungeonKey
+{
+	width: 88px;
+	height: 88px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeysList .Item #NewTag
+{
+	align: right top;
+	margin-right: -10px;
+	margin-top: -10px;
+	width: 53px;
+	height: 29px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_new_02_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow
+{
+	width: 100%;
+	height: 100%;
+	padding: 26px 22px;
+	flow-children: down;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow .Subheading
+{
+	font-size: 20px;
+	color: #B9B1A6;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow .FilterLine
+{
+	width: 100%;
+	height: 2px;
+	margin: 8px -11px 11px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider2_png.vtex");
+	background-size: 100%;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow #RarityFilterList
+{
+	flow-children: right-wrap;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow #RarityFilterList .EOM_CheckBox2
+{
+	width: 136px;
+	margin: 6.5px 3px;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow #RarityFilterList .EOM_CheckBox2 .FeatureLabel
+{
+	text-decoration: none;
+	color: #B9B1A6;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #KeyFilterWindow #RarityFilterList .EOM_CheckBox2 .CheckLabel
+{
+	text-overflow: shrink;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #BtnsContainer
+{
+	width: 488px;
+	margin-top: 14px;
+	flow-children: right;
+}
+
+#EquipmentKeyBreakRoot #KeyListRoot #BtnsContainer #ResetBtn
+{
+	vertical-align: center;
+	margin-left: 7px;
+	width: 44px;
+	height: 44px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_refresh_png.vtex");
+}
+
+#EquipmentKeyBreakRoot .KeyListGrid
 {
 	width: 88px;
 	height: 88px;

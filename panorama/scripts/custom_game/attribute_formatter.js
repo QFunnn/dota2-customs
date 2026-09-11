@@ -66,7 +66,7 @@ function formatAttributeDisplay(data, options) {
     extraValueText += "%";
   }
   let valueText = options?.hideZeroBaseValue && Round(baseValue, decimal) === 0 ? "" : `+${baseValueText}`;
-  if (extraValue > 0) {
+  if (extraValue > 0 && !options?.hideExtraValue) {
     valueText += ToColor(`+${extraValueText}`, "#61C441");
   }
   const nameInfo = formatAttributeNameHtml(data, options);

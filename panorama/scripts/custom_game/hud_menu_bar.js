@@ -30,7 +30,7 @@ const STATIC_MENU_LIST = {
     growth_fund: ["growth_fund_301"],
     starsea: [],
     seven_days: [],
-    boardslot: ["dice_game", "dice_store", "dice_gift"],
+    boardslot: ["dice_game", "dice_gift"],
     mining: ["veins_game", "veins_rank", "veins_store", "veins_gift"]
   },
   hero: {
@@ -43,7 +43,7 @@ const STATIC_MENU_LIST = {
     EquipmentTab_part_levelup: [],
     EquipmentTab_forge2: [],
     EquipmentTab_break: [],
-    EquipmentTab_key: [],
+    EquipmentTab_key: ["EquipmentTab_key_devour", "EquipmentTab_key_break"],
     EquipmentTab_drawing: ["EquipmentTab_drawing_make", "EquipmentTab_drawing_recast"]
   },
   cosmetic: {

@@ -107,4 +107,4 @@ GameUI.CustomUIConfig().rune_rarity_setting = {
 			"200002": 30
 		}
 	}
-};
+};

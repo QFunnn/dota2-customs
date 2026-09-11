@@ -19,4 +19,4 @@ GameUI.CustomUIConfig().engraving_setting = {
 		value: "120015:150",
 		name: "符文镶嵌刻印消耗"
 	}
-};
+};

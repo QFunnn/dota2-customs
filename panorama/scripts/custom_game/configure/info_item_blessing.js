@@ -65,6 +65,22 @@ GameUI.CustomUIConfig().info_item_blessing = {
 		blessing_effect: "privilege_idle_explore_043|privilege_idle_explore_044|privilege_039|privilege_036|privilege_explore_slot",
 		hide: 0
 	},
+	"105": {
+		id: 105,
+		name: "悬赏之证",
+		attribute: {
+			daily_bounty_free_count: 2,
+			weekly_bounty_free_count: 2,
+			daily_bounty_complete_count: 1,
+			weekly_bounty_complete_count: 1,
+			daily_bounty_num: 1,
+			week_bounty_num: 1,
+			daily_rarity4_num: 1,
+			week_rarity5_num: 1
+		},
+		blessing_effect: "privilege_044|privilege_117",
+		hide: 0
+	},
 	"501": {
 		id: 501,
 		name: "启示圣契",
@@ -518,6 +534,17 @@ GameUI.CustomUIConfig().info_item_blessing = {
 			hero_damage_boost: 5
 		},
 		blessing_effect: "privilege_weapon_041",
+		hide: 0
+	},
+	"540": {
+		id: 540,
+		name: "月羽圣契",
+		attribute: {
+			damage_intensity: 15,
+			defense_intensity: 15,
+			hero_damage_boost: 12
+		},
+		blessing_effect: "privilege_bless_029",
 		hide: 0
 	}
 };

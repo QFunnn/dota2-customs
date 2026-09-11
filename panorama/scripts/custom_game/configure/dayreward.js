@@ -13,4 +13,4 @@ GameUI.CustomUIConfig().dayreward = {
 		task_num: 4,
 		rewards: "190004:1|190001:1"
 	}
-};
+};

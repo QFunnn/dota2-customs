@@ -459,4 +459,4 @@ GameUI.CustomUIConfig().rune_break_level_exp = {
 			rune_rarity_chance: 0.5
 		}
 	}
-};
+};

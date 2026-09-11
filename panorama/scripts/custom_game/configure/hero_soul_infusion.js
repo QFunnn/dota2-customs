@@ -105,4 +105,4 @@ GameUI.CustomUIConfig().hero_soul_infusion = {
 		soul_infusion: "注魂15级消耗",
 		soul_infusion_cost: 60
 	}
-};
+};

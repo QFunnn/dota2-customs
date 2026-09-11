@@ -4813,4 +4813,4 @@ GameUI.CustomUIConfig().hero_talent_effect = {
 			lock: 100
 		}
 	}
-};
+};
