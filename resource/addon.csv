@@ -3,12 +3,16 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
 ﻿Tokens,Schinese,English,Russian,
+match_admission_rejected,本场比赛未能开始,Match could not start,Не удалось начать матч,
+match_admission_player_count,比赛需要 {required} 名已连接的真人玩家；当前符合条件的人数为 {actual}。观战与机器人不计入。本场比赛已结束且不会结算。,This match requires {required} connected human players; {actual} currently qualify. Spectators and bots do not count. The match has ended without results or rewards.,Для начала матча требуется {required} подключённых игроков-людей; сейчас требованиям соответствуют {actual}. Наблюдатели и боты не учитываются. Матч завершён без результатов и наград.,
+match_admission_not_ready,等待玩家资料超时。本场比赛已结束且不会结算。请重新创建比赛。,Player information was not ready in time. The match has ended without results or rewards. Please create a new match.,Время ожидания данных игроков истекло. Матч завершён без результатов и наград. Создайте новый матч.,
+match_admission_cheats,本场比赛启用了作弊模式且不在开发工具中运行。比赛已结束且不会结算。,Cheats are enabled outside Workshop Tools. The match has ended without results or rewards.,Читы включены вне Workshop Tools. Матч завершён без результатов и наград.,
 addon_game_name,福佑大乱斗,Blessing Brawl,Бойня благословений,
 hs_team_hero_pool_title,可用,Available,Доступно,
 hs_enemy_hero_pool_title,敌方英雄,Enemy Heroes,Вражеские герои,
@@ -159,7 +163,7 @@ exit_game_cancel,返回游戏,Return to Game,Вернуться к игре.,秒
 exit_game_tips_1, ● 25分钟前首个彻底离开比赛，或者泉水挂机3分钟未造成伤害，视为逃跑。<br>,● AFK at fountain for 3m is considered desertion.<br>,● АФК на фонтане 3 мин. считается побегом.<br>,秒退提示
 exit_game_tips_2, ● 逃跑时，扣除5次每日胜场代币奖励（10元），并将禁赛：信誉分处于8-9000禁赛10分钟，7-8000禁赛1小时，6-7000禁赛24小时，6000以下禁赛3天。<br>," ● Upon desertion: -20 tokens from 5 wins & ban: 9000-10000 free pass once, 8-9000 10m ban, 7-8000 1h ban, 6-7000 24h ban, <6000 3d ban.<br>"," ● При побеге: -20 жетонов за 5 побед и бан: 9000-10000 1 раз без штрафа, 8-9000 бан 10 мин., 7-8000 бан 1 ч., 6-7000 бан 24 ч., <6000 бан 3 дня.<br>",秒退提示
 exit_game_tips_3, ● 信誉分逃跑-900/场，正常对局+30/场。<br>," ● Credit: -900/desertion, +30/normal match.<br>"," ● Кредит: -900/побег, +30/матч.<br>",秒退提示
-exit_game_tips_4, ● 无效局：20分钟前一方全部退出 / 炸房，无效局返还刷新代币，无效局首位彻底离开比赛者不返还代币，逃跑者与其组队队友判负结算，其他人不结算，逃跑者与其队友共同扣除信誉分，逃跑者双倍扣除天梯分。<br>," ● If all quit <20m / wrong player count / room crash: Invalid match, tokens refunded. First to leave normal matches gets no refund.<br>"," ● Если все вышли <20 мин. / неверное число игроков / краш: матч недействителен, жетоны вернут. Первому ливнувшему в обычном матче возврата нет.<br>",秒退提示
+exit_game_tips_4, ● 无效局：20分钟前一方全部退出 / 炸房，无效局返还刷新代币，无效局首位彻底离开比赛者不返还代币，逃跑者与其组队队友判负结算，其他人不结算，逃跑者与其队友共同扣除信誉分，逃跑者双倍扣除天梯分。<br>," ● If all quit 20 minutes ago / wrong player count / room crash: Invalid match, tokens refunded. First to leave normal matches gets no refund.<br>"," ● Если все вышли 20 минут назад / неверное число игроков / краш: матч недействителен, жетоны вернут. Первому ливнувшему в обычном матче возврата нет.<br>",秒退提示
 exit_game_score_tips,*信誉分高于9000可以立刻返回主菜单，您当前的信誉积分:{score},"*If Credit >9000, you can return to menu immediately. Current Credit: {score}","*Если Кредит >9000, можно сразу выйти в меню. Текущий Кредит: {score}",
 settle_back_penalty_count,扣除,Penalty Matches, Штрафные матчи,
 settle_back_penalty_count_tooltip,剩余扣除场次:{count}<br>逃跑时，扣除5次每日胜场代币奖励。<br>每日前5次胜利可以清扣除次数。<br><font color='#8e8e8e'>当日先输5局再赢5局也能清。</font> <br><font color='#8e8e8e'>当日先赢3局→逃跑扣除→再赢10局，也只能清2局还剩3局扣除次数。</font> ,"Remaining Penalty Matches: {count}<br>Abandoning deduces 5 Daily Bonus Tokens.<br>First 5 daily wins clear penalty matches.<br><font color='#8e8e8e'>Losing 5 then winning 5 in a day also clears them.</font> <br><font color='#8e8e8e'>Winning 3, abandoning (-5), then winning 10 only clears 2 penalty matches.</font>","Осталось штрафных матчей: {count}<br>При покидании игры снимается 5 ежедневных бонусных жетонов.<br>Первые 5 побед за день списывают штрафные матчи.<br><font color='#8e8e8e'>5 поражений, а затем 5 побед за день также списывают штраф.</font> <br><font color='#8e8e8e'>Если сначала победить 3 раза, покинуть игру (-5), а затем победить 10 раз, спишется только 2 штрафных матча.</font>",
@@ -204,4 +208,4 @@ match_history_bless,组合,Blessing,Благословение,
 match_history_matchTime,时间,Time,Время,
 match_history_win,胜利,Win,Победа,
 match_history_lose,失败,Lose,Поражение,
-Loading,加载中...,Loading...,Загрузка...
+Loading,加载中...,Loading...,Загрузка...

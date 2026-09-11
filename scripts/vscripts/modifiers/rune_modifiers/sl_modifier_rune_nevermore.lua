@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -194,20 +194,14 @@ function sl_modifier_rune_nevermore.prototype._OnShadowraze(self, parent, abilit
 		false
 	)
 	for ____, enemy in ipairs(enemies) do
-		do
-			if enemy:IsMagicImmune() then
-				goto __continue29
-			end
-			enemy:AddSLModifier(____exports.sl_modifier_rune_nevermore_fear, {
-				caster = parent,
-				ability = ability,
-				duration = fear,
-				calculate_status_resistance = true,
-				no_error = true,
-				modifierTable = { center_x = center.x, center_y = center.y, center_z = center.z },
-			})
-		end
-		::__continue29::
+		enemy:AddSLModifier(____exports.sl_modifier_rune_nevermore_fear, {
+			caster = parent,
+			ability = ability,
+			duration = fear,
+			calculate_status_resistance = true,
+			no_error = true,
+			modifierTable = { center_x = center.x, center_y = center.y, center_z = center.z },
+		})
 	end
 end
 function sl_modifier_rune_nevermore.prototype.OnDestroy(self)
@@ -274,6 +268,9 @@ function sl_modifier_rune_nevermore_fear.prototype.OnIntervalThink(self)
 	end
 	local parent = self:GetParent()
 	if not IsValidAlive(parent) then
+		return
+	end
+	if parent:IsDebuffImmune() then
 		return
 	end
 	local origin = parent:GetAbsOrigin()

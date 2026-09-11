@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -1131,10 +1131,9 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render),
 /* harmony export */   useGameEvent: () => (/* binding */ useGameEvent)
 /* harmony export */ });
-/* unused harmony exports createPortal, useNetTableKey, useNetTableValues, useRegisterForUnhandledEvent */
+/* unused harmony exports createPortal, render, useNetTableKey, useNetTableValues, useRegisterForUnhandledEvent */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../node_modules/react/index.js");
 /* harmony import */ var panorama_polyfill_x_lib_console__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! panorama-polyfill-x/lib/console */ "../../../node_modules/panorama-polyfill-x/lib/console.js");
 /* harmony import */ var panorama_polyfill_x_lib_timers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! panorama-polyfill-x/lib/timers */ "../../../node_modules/panorama-polyfill-x/lib/timers.js");
@@ -23342,7 +23341,8 @@ function LoadingErrorPanel() {
     if (!isLoadingError) {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
     }
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "LoadingError" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: $.Localize("#loading_error_info") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
+    const gameStateClass = `state-${Game.GetState()}`;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative " }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingError ${gameStateClass}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: $.Localize("#loading_error_info") }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
                             Game.Disconnect();
                         } }) }))] })) })));
 }
@@ -23358,6 +23358,7 @@ function LoadingErrorPanel() {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NoMatchTeamNoticPanel: () => (/* binding */ NoMatchTeamNoticPanel),
 /* harmony export */   NoticePanel: () => (/* binding */ NoticePanel)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "../../../node_modules/react/jsx-runtime.js");
@@ -23385,9 +23386,25 @@ function NoticePanel() {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
     }
     const gameStateClass = `state-${Game.GetState()}`;
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingError ${gameStateClass}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "title" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: $.Localize(`#loading_error_title`) }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: $.Localize(`#loading_error_settlement_type_${settlementType}`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingError ${gameStateClass}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: $.Localize(`#loading_error_settlement_type_${settlementType}`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
                             Game.Disconnect();
                         } }) }))] })) })));
+}
+/**黑店退出提示 */
+function NoMatchTeamNoticPanel() {
+    const [noMatchTeam, setNoMatchTeam] = (0,_commonLib_hooks_useStateIfMounted__WEBPACK_IMPORTED_MODULE_1__["default"])(false);
+    (0,react_panorama_x__WEBPACK_IMPORTED_MODULE_3__.useGameEvent)("s2c_non_host_same_team", data => {
+        setNoMatchTeam(true);
+    }, []);
+    if (!noMatchTeam) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
+    }
+    const gameStateClass = `state-${Game.GetState()}`;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingError ${gameStateClass}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: $.Localize(`#loading_error_no_match_team`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "btnList" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_continue`), onactivate: () => {
+                                setNoMatchTeam(false);
+                            } }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
+                                Game.Disconnect();
+                            } })] }))] })) })));
 }
 
 
@@ -23412,7 +23429,8 @@ function NoticePanel() {
 
 // 封禁
 function PlayerLockPanel() {
-    const playerInfo = Game.DataHub.PlayerInfoMgr.GetPlayerInfo();
+    var _a, _b;
+    const playerInfo = (_b = (_a = Game.DataHub) === null || _a === void 0 ? void 0 : _a.PlayerInfoMgr) === null || _b === void 0 ? void 0 : _b.GetPlayerInfo();
     const playerLock = playerInfo === null || playerInfo === void 0 ? void 0 : playerInfo.locked;
     if (!playerLock) {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
@@ -23422,7 +23440,8 @@ function PlayerLockPanel() {
     const unlockTime = (0,_commonLib_utils_localize_utils__WEBPACK_IMPORTED_MODULE_1__.getFormatLocalize)(`loading_error_unlock_time`, {
         time: dayjs__WEBPACK_IMPORTED_MODULE_2___default()(Number(lockExpiration)).format("YYYY年MM月DD日 HH:mm:ss"),
     });
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative", id: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "LoadingError" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "title" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { text: $.Localize(`#loading_error_title`) }) })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: `content`, html: true, text: localize }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "unlock-time", text: unlockTime, html: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
+    const gameStateClass = `state-${Game.GetState()}`;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: `playerNegative`, id: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingError ${gameStateClass}` }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: `content`, html: true, text: localize }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "unlock-time", text: unlockTime, html: true }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
                             Game.Disconnect();
                         } }) }))] })) })));
 }
@@ -23522,40 +23541,43 @@ var __webpack_exports__ = {};
 /*!*****************************************!*\
   !*** ./loading_error/loading_error.tsx ***!
   \*****************************************/
+/* unused harmony export LoadingError */
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "../../../node_modules/react/jsx-runtime.js");
 /* harmony import */ var _loadingErrorMap_LoadingErrorPanel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadingErrorMap/LoadingErrorPanel */ "./loading_error/loadingErrorMap/LoadingErrorPanel.tsx");
-/* harmony import */ var react_panorama_x__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-panorama-x */ "../../../node_modules/react-panorama-x/dist/esm/react-panorama.development.js");
-/* harmony import */ var _commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @commonLib/hooks/useMakeRender */ "./commonLib/hooks/useMakeRender.ts");
-/* harmony import */ var _loadingErrorMap_PlayerLockPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loadingErrorMap/PlayerLockPanel */ "./loading_error/loadingErrorMap/PlayerLockPanel.tsx");
-/* harmony import */ var _loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./loadingErrorMap/NoticePanel */ "./loading_error/loadingErrorMap/NoticePanel.tsx");
-
+/* harmony import */ var _commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @commonLib/hooks/useMakeRender */ "./commonLib/hooks/useMakeRender.ts");
+/* harmony import */ var _loadingErrorMap_PlayerLockPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loadingErrorMap/PlayerLockPanel */ "./loading_error/loadingErrorMap/PlayerLockPanel.tsx");
+/* harmony import */ var _loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loadingErrorMap/NoticePanel */ "./loading_error/loadingErrorMap/NoticePanel.tsx");
 
 
 
 
 
 function LoadingError() {
-    (0,_commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_3__.useMakeRenderOnLocalEvent)("on_player_info_change");
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingErrorPanel`, hittest: false }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_LoadingErrorPanel__WEBPACK_IMPORTED_MODULE_1__.LoadingErrorPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_PlayerLockPanel__WEBPACK_IMPORTED_MODULE_4__.PlayerLockPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(UnLockPlayerPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_5__.NoticePanel, {})] })));
+    (0,_commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_2__.useMakeRenderOnLocalEvent)("on_player_info_change");
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: `LoadingErrorPanel`, hittest: false }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_LoadingErrorPanel__WEBPACK_IMPORTED_MODULE_1__.LoadingErrorPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_4__.NoticePanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_PlayerLockPanel__WEBPACK_IMPORTED_MODULE_3__.PlayerLockPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(UnLockPlayerPanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_4__.NoticePanel, {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_loadingErrorMap_NoticePanel__WEBPACK_IMPORTED_MODULE_4__.NoMatchTeamNoticPanel, {})] })));
 }
 /* 队伍里有逃跑超过1次的 */
 function UnLockPlayerPanel() {
+    var _a, _b, _c;
     const localplayer = Game.GetLocalPlayerID();
-    const allPlayerInfo = Game.DataHub.PlayerInfoMgr.GetLockedPlayersInfo();
+    (0,_commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_2__.useMakeRenderOnLocalEvent)("on_locked_player_info_change");
+    const allPlayerInfo = (_c = (_b = (_a = Game.DataHub) === null || _a === void 0 ? void 0 : _a.PlayerInfoMgr) === null || _b === void 0 ? void 0 : _b.GetLockedPlayersInfo()) !== null && _c !== void 0 ? _c : [];
+    if (!allPlayerInfo.length) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
+    }
     const teamLockPlayersID = allPlayerInfo.filter(playerInfo => playerInfo.locked).map(playerInfo => playerInfo.playerId);
     const teamLockPlayersNamesList = teamLockPlayersID.map(playerId => {
         var _a;
         return (_a = Game === null || Game === void 0 ? void 0 : Game.GetPlayerInfo(Number(playerId))) === null || _a === void 0 ? void 0 : _a.player_name;
     });
     const teamLockPlayersNames = teamLockPlayersNamesList.join(",");
-    (0,_commonLib_hooks_useMakeRender__WEBPACK_IMPORTED_MODULE_3__.useMakeRenderOnLocalEvent)("on_locked_player_info_change");
     if (!teamLockPlayersNames || teamLockPlayersID.includes(localplayer))
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {});
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "playerNegative", id: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "LoadingError" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: `${$.Localize(`#loading_error_negative_2`)} ${teamLockPlayersNames}` }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
+    const gameStateClass = `state-${Game.GetState()}`;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: `playerNegative ${gameStateClass}`, id: "playerNegative" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Panel, Object.assign({ className: "LoadingError" }, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "title", text: $.Localize(`#loading_error_title`) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, { className: "logo" }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "content", text: `${$.Localize(`#loading_error_negative_2`)} ${teamLockPlayersNames}` }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Panel, Object.assign({ className: "btnList" }, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, { className: "exit", text: $.Localize(`#loading_error_button`), onactivate: () => {
                             Game.Disconnect();
                         } }) }))] })) })));
 }
-(0,react_panorama_x__WEBPACK_IMPORTED_MODULE_2__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(LoadingError, {}), $.GetContextPanel());
 
 })();
 

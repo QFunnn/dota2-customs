@@ -3,12 +3,18 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
 /* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.match-admission-error
+{
+	z-index: 10000;
+	ignore-parent-flow: true;
+}
 
 .LoadingErrorRoot
 {
@@ -179,6 +185,76 @@
 	color: #fff;
 	margin-top: 40px;
 	align: right top;
+}
+
+.match-host-panel
+{
+	width: 100%;
+	height: 104px;
+	margin: 6px;
+	flow-children: down;
+	padding: 10px 14px;
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#25303bf5), to(#151d26f5));
+	border: 1px solid #46545f;
+	border-top: 2px solid #8f7753;
+}
+
+.match-host-panel .match-host-heading
+{
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.match-host-panel .match-host-heading .match-host-title
+{
+	color: #dfba78;
+	font-size: 18px;
+}
+
+.match-host-panel .match-host-heading .match-host-kind
+{
+	align: right center;
+	color: #a1a9b0;
+	font-size: 13px;
+}
+
+.match-host-panel .match-host-row
+{
+	width: 100%;
+	height: 25px;
+	flow-children: right;
+}
+
+.match-host-panel .match-host-label
+{
+	width: 98px;
+	color: #a1a9b0;
+	font-size: 16px;
+	vertical-align: center;
+}
+
+.match-host-panel .match-host-avatar
+{
+	width: 24px;
+	height: 24px;
+	margin-right: 6px;
+	vertical-align: center;
+	border-radius: 2px;
+}
+
+.match-host-panel .match-host-value
+{
+	width: fill-parent-flow(1);
+	color: #e4e8eb;
+	font-size: 18px;
+	vertical-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.match-host-panel .match-host-steam-id
+{
+	font-size: 17px;
 }
 
 #CustomHudElements
