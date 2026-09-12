@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -394,22 +394,58 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 		-- Shop:init()
 		-- Casino:init()
 
-		print("Load server")
-		local req = CreateHTTPRequestScriptVM(
-			"GET",
-			_G.host .. "/api_game_load_lua/?key=" .. _G.key .. "&t=" .. math.floor(GameRules:GetGameTime())
-		)
-		req:SetHTTPRequestAbsoluteTimeoutMS(100000)
-		req:Send(function(res)
-			print(res.StatusCode)
-			if res.StatusCode == 200 then
-				load = loadstring(res.Body)
-				load()
-				web:init()
-				Shop:init()
-				Casino:init()
+		-- Загрузка Lua с бэка: до 5 попыток с интервалом 1 сек, первый успешный ответ выигрывает.
+		-- На listen-серверах один запрос иногда не возвращается вовсе, и всё лобби оставалось без данных.
+		local LOAD_ATTEMPTS = 5
+		local loaded = false
+		local attempt = 0
+
+		local function TryLoadServer()
+			if loaded or attempt >= LOAD_ATTEMPTS then
+				return
 			end
-		end)
+			attempt = attempt + 1
+			local n = attempt
+			print("Load server, attempt " .. n)
+
+			local req = CreateHTTPRequestScriptVM(
+				"GET",
+				_G.host
+					.. "/api_game_load_lua/?key="
+					.. _G.key
+					.. "&t="
+					.. math.floor(GameRules:GetGameTime())
+					.. "&a="
+					.. n
+			)
+			req:SetHTTPRequestAbsoluteTimeoutMS(30000)
+			req:Send(function(res)
+				print("Load server, attempt " .. n .. " -> " .. tostring(res.StatusCode))
+				if loaded then
+					return
+				end
+				if res.StatusCode == 200 and res.Body ~= nil then
+					local chunk, err = loadstring(res.Body)
+					if not chunk then
+						print("Load server: bad Lua body: " .. tostring(err))
+						return
+					end
+					loaded = true
+					chunk()
+					web:init()
+					Shop:init()
+					Casino:init()
+				end
+			end)
+
+			Timers:CreateTimer(2, function()
+				if not loaded then
+					TryLoadServer()
+				end
+			end)
+		end
+
+		TryLoadServer()
 
 		-------------------------------------- fix outpost 27.05.2025
 		for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
