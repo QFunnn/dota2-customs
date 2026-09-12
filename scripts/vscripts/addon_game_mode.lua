@@ -9,7 +9,7 @@
 
 
 _G.ONLINE_TEST_MODE = false
-_G.PUBLISH_TIMESTAMP = "2026-09-11T06:41:18.856Z"
+_G.PUBLISH_TIMESTAMP = "2026-09-11T08:46:51.141Z"
 -- 发布入口只预载资源；业务必须同时等到 Activate 与地图分片。
 if not IsServer() then
 	return

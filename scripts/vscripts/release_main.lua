@@ -8,7 +8,7 @@
 ]]
 
 
-print("loading addon dota_super_mid compiled@2026-9-11 14:40:39")
+print("loading addon dota_super_mid compiled@2026-9-11 16:46:43")
 local ____lualib = require("lualib_bundle")
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local ____exports = {}
