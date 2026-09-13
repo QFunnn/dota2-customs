@@ -58,14 +58,14 @@ require("hero_builder")
 require("player_summary")
 require("hats")
 
--- require('www/acc')
--- require("www/web")
--- require('www/guilds')
--- require('www/drop')
--- require('www/shop')
--- require("www/quest_system")
--- require("www/inventory")
--- require("www/casino")
+require("www/acc")
+require("www/web")
+require("www/guilds")
+require("www/drop")
+require("www/shop")
+require("www/quest_system")
+require("www/inventory")
+require("www/casino")
 
 _G.key = GetDedicatedServerKeyV3("BSAKEY1")
 _G.host = "https://boss-survival-adventure.com"
@@ -390,62 +390,47 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-		-- web:init()
-		-- Shop:init()
-		-- Casino:init()
+		web:init()
+		Shop:init()
+		Casino:init()
 
-		-- Загрузка Lua с бэка: до 5 попыток с интервалом 1 сек, первый успешный ответ выигрывает.
-		-- На listen-серверах один запрос иногда не возвращается вовсе, и всё лобби оставалось без данных.
-		local LOAD_ATTEMPTS = 5
-		local loaded = false
-		local attempt = 0
+		-- local LOAD_ATTEMPTS = 5
+		-- local loaded = false
+		-- local attempt = 0
 
-		local function TryLoadServer()
-			if loaded or attempt >= LOAD_ATTEMPTS then
-				return
-			end
-			attempt = attempt + 1
-			local n = attempt
-			print("Load server, attempt " .. n)
+		-- local function TryLoadServer()
+		-- 	if loaded or attempt >= LOAD_ATTEMPTS then return end
+		-- 	attempt = attempt + 1
+		-- 	local n = attempt
+		-- 	print("Load server, attempt " .. n)
 
-			local req = CreateHTTPRequestScriptVM(
-				"GET",
-				_G.host
-					.. "/api_game_load_lua/?key="
-					.. _G.key
-					.. "&t="
-					.. math.floor(GameRules:GetGameTime())
-					.. "&a="
-					.. n
-			)
-			req:SetHTTPRequestAbsoluteTimeoutMS(30000)
-			req:Send(function(res)
-				print("Load server, attempt " .. n .. " -> " .. tostring(res.StatusCode))
-				if loaded then
-					return
-				end
-				if res.StatusCode == 200 and res.Body ~= nil then
-					local chunk, err = loadstring(res.Body)
-					if not chunk then
-						print("Load server: bad Lua body: " .. tostring(err))
-						return
-					end
-					loaded = true
-					chunk()
-					web:init()
-					Shop:init()
-					Casino:init()
-				end
-			end)
+		-- 	local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key.."&t="..math.floor(GameRules:GetGameTime()) .. "&a=" .. n )
+		-- 	req:SetHTTPRequestAbsoluteTimeoutMS(30000)
+		-- 	req:Send(function(res)
+		-- 		print("Load server, attempt " .. n .. " -> " .. tostring(res.StatusCode))
+		-- 		if loaded then return end
+		-- 		if res.StatusCode == 200 and res.Body ~= nil then
+		-- 			local chunk, err = loadstring(res.Body)
+		-- 			if not chunk then
+		-- 				print("Load server: bad Lua body: " .. tostring(err))
+		-- 				return
+		-- 			end
+		-- 			loaded = true
+		-- 			chunk()
+		-- 			web:init()
+		-- 			Shop:init()
+		-- 			Casino:init()
+		-- 		end
+		-- 	end)
 
-			Timers:CreateTimer(2, function()
-				if not loaded then
-					TryLoadServer()
-				end
-			end)
-		end
+		-- 	Timers:CreateTimer(2, function()
+		-- 		if not loaded then
+		-- 			TryLoadServer()
+		-- 		end
+		-- 	end)
+		-- end
 
-		TryLoadServer()
+		-- TryLoadServer()
 
 		-------------------------------------- fix outpost 27.05.2025
 		for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
