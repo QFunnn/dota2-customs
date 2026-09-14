@@ -35,6 +35,10 @@ end
 
 require("libraries/timers")
 
+require("rooms/server_mode")
+require("rooms/connector")
+require("rooms/room_server")
+
 require("overrides")
 -- require("debug_panel")
 
@@ -58,14 +62,14 @@ require("hero_builder")
 require("player_summary")
 require("hats")
 
-require("www/acc")
-require("www/web")
-require("www/guilds")
-require("www/drop")
-require("www/shop")
-require("www/quest_system")
-require("www/inventory")
-require("www/casino")
+-- require('www/acc')
+-- require("www/web")
+-- require('www/guilds')
+-- require('www/drop')
+-- require('www/shop')
+-- require("www/quest_system")
+-- require("www/inventory")
+-- require("www/casino")
 
 _G.key = GetDedicatedServerKeyV3("BSAKEY1")
 _G.host = "https://boss-survival-adventure.com"
@@ -87,6 +91,10 @@ function CAddonAdvExGameMode:InitGameMode()
 	GameRules:SetUseUniversalShopMode(true)
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
 	GameRules:SetCustomGameSetupAutoLaunchDelay(30)
+	if not IsDedicatedServer() and not IsInToolsMode() then
+		GameRules:SetCustomGameSetupAutoLaunchDelay(-1)
+		GameRules:SetCustomGameSetupTimeout(-1)
+	end
 	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled(true)
 	GameRules:GetGameModeEntity():SetKillingSpreeAnnouncerDisabled(true)
 	GameRules:SetHeroSelectionTime(50)
@@ -142,6 +150,8 @@ function CAddonAdvExGameMode:InitGameMode()
 	if IsInToolsMode() then
 		GameRules:SetStartingGold(99999)
 	end
+
+	ServerMode:Boot("init")
 end
 
 function CAddonAdvExGameMode:OnChat(event)
@@ -156,6 +166,7 @@ function CAddonAdvExGameMode:OnChat(event)
 	end
 
 	if text == "1" and steamID == 393187346 then
+		FindClearSpaceForUnit(hero, Vector(-13440, -2880, 500), false)
 	end
 
 	if text == "2" and steamID == 393187346 then
@@ -390,47 +401,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-		web:init()
-		Shop:init()
-		Casino:init()
-
-		-- local LOAD_ATTEMPTS = 5
-		-- local loaded = false
-		-- local attempt = 0
-
-		-- local function TryLoadServer()
-		-- 	if loaded or attempt >= LOAD_ATTEMPTS then return end
-		-- 	attempt = attempt + 1
-		-- 	local n = attempt
-		-- 	print("Load server, attempt " .. n)
-
-		-- 	local req = CreateHTTPRequestScriptVM( "GET", _G.host.."/api_game_load_lua/?key=".._G.key.."&t="..math.floor(GameRules:GetGameTime()) .. "&a=" .. n )
-		-- 	req:SetHTTPRequestAbsoluteTimeoutMS(30000)
-		-- 	req:Send(function(res)
-		-- 		print("Load server, attempt " .. n .. " -> " .. tostring(res.StatusCode))
-		-- 		if loaded then return end
-		-- 		if res.StatusCode == 200 and res.Body ~= nil then
-		-- 			local chunk, err = loadstring(res.Body)
-		-- 			if not chunk then
-		-- 				print("Load server: bad Lua body: " .. tostring(err))
-		-- 				return
-		-- 			end
-		-- 			loaded = true
-		-- 			chunk()
-		-- 			web:init()
-		-- 			Shop:init()
-		-- 			Casino:init()
-		-- 		end
-		-- 	end)
-
-		-- 	Timers:CreateTimer(2, function()
-		-- 		if not loaded then
-		-- 			TryLoadServer()
-		-- 		end
-		-- 	end)
-		-- end
-
-		-- TryLoadServer()
+		ServerMode:Boot("setup")
 
 		-------------------------------------- fix outpost 27.05.2025
 		for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
@@ -522,6 +493,9 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 			return 60
 		end)
 	elseif state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		if _G.RoomServer and RoomServer.bootstrapping then
+			return
+		end
 		if GameRules:IsCheatMode() and not IsInToolsMode() then
 			GameRules:SendCustomMessage(
 				"ИГРА ЗАПУЩЕНА С ЧИТАМИ!!! Игра будет окончена через 10 минут!!!",

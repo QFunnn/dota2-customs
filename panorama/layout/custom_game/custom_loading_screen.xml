@@ -15,6 +15,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen.js" />
+		<include src="s2r://panorama/layout/custom_game/custom_loading_screen/custom_loading_screen_rooms.js" />
 	</scripts>
 	<Panel class="AddonLoadingRoot">
 		<Image hittest="false" style="height:100%;width:100%;" src="s2r://panorama/images/custom_game/loading_screen/map2_png.vtex" />
@@ -23,5 +24,13 @@
 			<Image id="don-back" class="images-back" src="s2r://panorama/images/custom_game/loading_screen/back.png" />
 		</Button>
 		<Panel id="Diff_container" />
+		<Panel id="RoomPanel" hittest="false">
+			<Label id="RoomPanelTitle" text="" />
+			<Panel id="RoomPanelPlayers" />
+			<Label id="RoomPanelStatus" text="" />
+			<Button id="RoomPanelStart" onactivate="RoomStart()">
+				<Label id="RoomPanelStartLabel" text="" />
+			</Button>
+		</Panel>
 	</Panel>
 </root>

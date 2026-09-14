@@ -18,6 +18,7 @@
 	</styles>
 	<scripts>
 		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/team_select/team_select_rooms.js" />
 	</scripts>
 	<Panel hittest="false" class="TeamSelect">
 		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
@@ -51,6 +52,9 @@
 					<Label text="#custom_game_team_select_cancel_unlock" />
 				</Button>
 			</Panel>
+		</Panel>
+		<Panel id="RoomStatus" hittest="false">
+			<Label id="RoomStatusText" text="" />
 		</Panel>
 	</Panel>
 </root>
