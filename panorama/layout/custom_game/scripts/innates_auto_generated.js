@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -135,4 +135,4 @@ const INNATES = {
 	npc_dota_hero_ringmaster: "ringmaster_dark_carnival_souvenirs",
 	npc_dota_hero_kez: "kez_switch_weapons",
 	npc_dota_hero_largo: "largo_encore",
-};
+};

@@ -3,13 +3,22 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
 "npc_dota_hero_bristleback"
 {
+	"bristleback_prickly"
+	{
+		"amp_pct"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
 	"bristleback_viscous_nasal_goo"
 	{
 		"cooldown_and_manacost"
@@ -69,19 +78,22 @@
 	{
 		"side_damage_reduction"
 		{
-			"value" "3"
+			"value" "2"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"24"
-		}
-		"back_damage_reduction"
-		{
-			"value" "3"
-			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"back_damage_reduction"
+				{
+					"value" "2"
+					"operator" "OP_MULTIPLY"
 
-			"multiplicative_target"			"100"
-			"multiplicative_base_value"		"48"
+					"multiplicative_target"			"100"
+					"multiplicative_base_value"		"48"
+				}
+			}
 		}
 	}
 	"bristleback_hairball"
@@ -112,4 +124,4 @@
 			"max_count" "5"
 		}
 	}
-}
+}

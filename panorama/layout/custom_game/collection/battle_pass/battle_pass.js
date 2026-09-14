@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -42,7 +42,11 @@ function SetBPTimeReamining(end_season_time) {
 	Object.entries(DATE_MULTIPLIERS).forEach(([format, _v]) => {
 		const diff_by_format = Math.floor(diff / _v);
 		if (diff_by_format > 0 && format_count-- > 0) {
-			line += ` ${diff_by_format} ${$.Localize(`#bp_timer_remaining_${format}`, diff_by_format, CONTEXT)}`;
+			line += ` ${diff_by_format} ${$.LocalizePlural(
+				`#bp_timer_remaining_${format}:p`,
+				diff_by_format,
+				CONTEXT,
+			)}`;
 			diff -= diff_by_format * _v;
 			b_has_format = true;
 		}
@@ -366,4 +370,4 @@ function ShowLockLine() {
 
 	frame.SubscribeProtected("BattlePass:set_rewards_data", FillItemsRewards);
 	frame.SubscribeProtected("BattlePass:update", UpdatePlayerData);
-})();
+})();

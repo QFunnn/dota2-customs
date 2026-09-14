@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_nBehaviorVersion = 12
@@ -26,7 +26,7 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_CreateWithinSphereTransform"
+			_class = "C_INIT_CreateWithinSphere"
 		},
 	]
 	m_Operators = 
@@ -36,12 +36,8 @@
 		},
 		{
 			_class = "C_OP_MaxVelocity"
-			m_flMaxVelocity = 
-			{
-				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
-				m_nControlPoint = 2
-				m_nVectorComponent = 0
-			}
+			m_flMaxVelocity = 600.0
+			m_nOverrideCP = 2
 		},
 		{
 			_class = "C_OP_Decay"
@@ -73,11 +69,7 @@
 				m_flLiteralValue = 1000000.0
 			}
 			m_fFalloffPower = 0.0
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-				m_bUseOrientation = false
-			}
+			m_nControlPointNumber = 1
 		},
 	]
 	m_Renderers = 
@@ -91,9 +83,6 @@
 				},
 			]
 			m_bForceLoopingAnimation = true
-			m_modelInput = 
-			{
-			}
 		},
 	]
 	m_controlPointConfigurations = 

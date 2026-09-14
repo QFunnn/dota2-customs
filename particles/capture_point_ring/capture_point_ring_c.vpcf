@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -54,17 +54,9 @@
 		},
 		{
 			_class = "C_OP_LockToBone"
+			m_nControlPointNumber = 1
 			m_flOpEndFadeInTime = 0.05
 			m_flOpStartFadeInTime = 0.05
-			m_transformInput = 
-			{
-				m_nControlPoint = 1
-			}
-			m_modelInput = 
-			{
-				m_nType = "PM_TYPE_CONTROL_POINT"
-				m_nControlPoint = 1
-			}
 		},
 		{
 			_class = "C_OP_FadeAndKill"
@@ -176,24 +168,13 @@
 			m_vecOutputMin = [ 0.0, 0.0, 100.0 ]
 			m_vecOutputMax = [ 1.0, 1.0, 500.0 ]
 			m_flNoiseScaleLoc = 0.1
-			m_TransformInput = 
-			{
-				m_nType = "PT_TYPE_INVALID"
-			}
 		},
 		{
-			_class = "C_INIT_RemapTransformToVector"
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 3
 			m_nFieldOutput = 6
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
-			m_LocalSpaceTransform = 
-			{
-				m_nType = "PT_TYPE_INVALID"
-			}
 		},
 	]
 	m_Emitters = 

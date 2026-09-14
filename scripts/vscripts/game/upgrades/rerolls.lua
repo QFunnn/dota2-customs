@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,7 +12,7 @@ UpgradeRerolls = UpgradeRerolls or class({})
 
 function UpgradeRerolls:Init()
 	UpgradeRerolls.current_free_rerolls = {}
-	UpgradeRerolls.free_rerolls = IsInToolsMode() or GetMapName() == "ot3_demo"
+	UpgradeRerolls.free_rerolls = false -- IsInToolsMode() or GetMapName() == "ot3_demo"
 
 	UpgradeRerolls.used_rerolls = {}
 
@@ -20,8 +20,8 @@ function UpgradeRerolls:Init()
 end
 
 function UpgradeRerolls:PreparePlayer(player_id)
-	UpgradeRerolls.current_free_rerolls[player_id] = WebPlayer:GetSubscriptionTier(player_id) * 4
-	local current_consumable_rerolls = WebInventory:GetItemCount(player_id, "bp_reroll")
+	UpgradeRerolls.current_free_rerolls[player_id] = 30 -- WebPlayer:GetSubscriptionTier(player_id) * 4
+	local current_consumable_rerolls = 0 -- WebInventory:GetItemCount(player_id, "bp_reroll")
 
 	if UpgradeRerolls.free_rerolls then
 		UpgradeRerolls.current_free_rerolls[player_id] = 99999
@@ -44,7 +44,7 @@ end
 function UpgradeRerolls:_ConsumeRerolls(player_id, rarity)
 	-- check if we have enough of free rerolls to spend
 	local current_free_rerolls = UpgradeRerolls.current_free_rerolls[player_id] or 0
-	local current_consumable_rerolls = WebInventory:GetItemCount(player_id, "bp_reroll")
+	local current_consumable_rerolls = 0 -- WebInventory:GetItemCount(player_id, "bp_reroll")
 
 	-- disabled consumable rerolls in tournament mode
 	if HostOptions:GetOption(HOST_OPTION.TOURNAMENT) then
@@ -103,7 +103,7 @@ end
 
 function UpgradeRerolls:UpdateRerollCount(player_id)
 	local current_free_rerolls = UpgradeRerolls.current_free_rerolls[player_id] or 0
-	local current_consumable_rerolls = WebInventory:GetItemCount(player_id, "bp_reroll")
+	local current_consumable_rerolls = 0 -- WebInventory:GetItemCount(player_id, "bp_reroll")
 
 	if HostOptions:GetOption(HOST_OPTION.TOURNAMENT) or UpgradeRerolls.free_rerolls then
 		current_consumable_rerolls = 0

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -31,4 +31,4 @@ function FormatSeconds(v, b_hours) {
 	return `${b_hours ? hours.toString() + ":" : ""}${minutes.toString().padStart(2, "0")}:${Math.floor(v)
 		.toString()
 		.padStart(2, "0")}`;
-}
+}

@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -155,6 +155,7 @@
 		},
 		{
 			_class = "C_INIT_RingWave"
+			m_nControlPointNumber = 3
 			m_flInitialRadius = 
 			{
 				m_nType = "PF_TYPE_LITERAL"
@@ -290,10 +291,6 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
 		},
 		{
 			_class = "C_INIT_InitFloat"
@@ -311,10 +308,8 @@
 			_class = "C_INIT_InitialVelocityNoise"
 			m_vecOutputMax = [ 224.0, 224.0, 0.0 ]
 			m_vecOutputMin = [ -224.0, -224.0, 0.0 ]
+			m_bLocalSpace = true
 			m_flNoiseScaleLoc = 0.8
-			m_TransformInput = 
-			{
-			}
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"

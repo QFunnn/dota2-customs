@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -20,7 +20,7 @@ const TABS = {
 	cosmetics: true,
 	gift_codes: true,
 	subscription: true,
-	profile: true,
+	profile: !B_LOCAL_LOBBY,
 };
 
 const TABS_FIRST_OPEN_CALLBACKS = {
@@ -76,4 +76,4 @@ const additional_currency_packs = {
 	// 		$.Msg(1);
 	// 	},
 	// },
-};
+};

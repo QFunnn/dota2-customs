@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -53,10 +53,7 @@
 			m_flEndTime_min = 2.0
 			m_flStartTime_max = 0.0
 			m_flStartTime_min = 0.0
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
+			m_nControlPointNumber = 3
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
@@ -90,14 +87,11 @@
 			m_nOutputField = 1
 		},
 		{
-			_class = "C_INIT_CreateWithinSphereTransform"
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 3
 			m_fRadiusMax = 1.0
 			m_LocalCoordinateSystemSpeedMin = [ -5.0, 0.0, 0.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ -5.0, 0.0, 0.0 ]
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -408,9 +402,7 @@
 					m_Stops = [  ]
 				}
 			}
-			m_TransformInput = 
-			{
-			}
+			m_bLocalSpace = true
 		},
 		{
 			_class = "C_INIT_PositionOffset"

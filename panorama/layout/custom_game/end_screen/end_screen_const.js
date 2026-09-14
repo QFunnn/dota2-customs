@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -155,4 +155,4 @@ const PROMO_GAME_LINKS = {
 	angel_arena_classic: 3295624094,
 	"12v12": 1576297063,
 };
-const CURRENT_PROMO_GAME = "angel_arena_classic";
+const CURRENT_PROMO_GAME = "angel_arena_classic";

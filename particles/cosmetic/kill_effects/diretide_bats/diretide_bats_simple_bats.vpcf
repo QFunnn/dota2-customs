@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -189,7 +189,8 @@
 			m_nForceInModel = 1
 		},
 		{
-			_class = "C_INIT_RemapTransformToVector"
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 15
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_nFieldOutput = 6
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
@@ -204,27 +205,11 @@
 				m_flOutput0 = 0.0
 				m_flOutput1 = 1.0
 			}
-			m_TransformInput = 
-			{
-				m_nControlPoint = 15
-			}
-			m_LocalSpaceTransform = 
-			{
-				m_nType = "PT_TYPE_INVALID"
-			}
 		},
 		{
 			_class = "C_INIT_VelocityRadialRandom"
-			m_fSpeedMin = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 300.0
-			}
-			m_fSpeedMax = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 500.0
-			}
+			m_fSpeedMin = -300.0
+			m_fSpeedMax = -500.0
 		},
 	]
 	m_Operators = 
@@ -376,6 +361,7 @@
 		},
 		{
 			_class = "C_OP_AttractToControlPoint"
+			m_nControlPointNumber = 2
 			m_fFalloffPower = 0.2
 			m_fForceAmount = 
 			{
@@ -446,11 +432,6 @@
 					m_vDomainMaxs = [ 1.5, 2000.0 ]
 				}
 			}
-			m_TransformInput = 
-			{
-				m_nControlPoint = 2
-				m_bUseOrientation = false
-			}
 		},
 	]
 	m_Constraints = [  ]
@@ -468,9 +449,6 @@
 			m_bScaleAnimationRate = true
 			m_bForceLoopingAnimation = true
 			m_nLOD = 1
-			m_modelInput = 
-			{
-			}
 		},
 	]
 }

@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -75,10 +75,7 @@
 			m_flEndTime_min = 2.0
 			m_flStartTime_max = 0.0
 			m_flStartTime_min = 0.0
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-			}
+			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
@@ -129,14 +126,11 @@
 			m_nOutputField = 7
 		},
 		{
-			_class = "C_INIT_CreateWithinSphereTransform"
+			_class = "C_INIT_CreateWithinSphere"
 			m_bLocalCoords = true
+			m_nControlPointNumber = 1
 			m_fRadiusMax = 10.0
 			m_vecDistanceBias = [ 0.0, 1.0, 1.0 ]
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-			}
 		},
 		{
 			_class = "C_INIT_InitFloat"
@@ -153,15 +147,15 @@
 			_class = "C_INIT_InitialVelocityNoise"
 			m_flNoiseScaleLoc = 0.1
 			m_flNoiseScale = 4.0
+			m_nControlPointNumber = 1
 			m_vecOutputMin = [ 62.0, -46.0, -26.0 ]
 			m_vecOutputMax = [ 94.0, 46.0, 46.0 ]
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-			}
+			m_bLocalSpace = true
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
+			m_bLocalSpace = true
+			m_nControlPointNumber = 1
 			m_flOpTimeOffsetMax = 5.0
 			m_nOpTimeOffsetSeed = 32
 			m_flNoiseScale = 12.0
@@ -170,10 +164,6 @@
 			m_vecOffsetLoc = [ 123.0, 150.0, 23.0 ]
 			m_vecOutputMin = [ -70.0, -150.0, -100.0 ]
 			m_vecOutputMax = [ 70.0, 80.0, 0.0 ]
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-			}
 		},
 	]
 	m_Emitters = 

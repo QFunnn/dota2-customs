@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -226,4 +226,5 @@ function AddChallengeToStrategyScreen() {
 	frame.SubscribeProtected("HeroChallenges:set_challenges", CreateChallenges);
 
 	GameEvents.SendToServerEnsured("HeroChallenges:get_challenges", {});
-})();
+	dotaHud.SetHasClass("BLocalLobby", B_LOCAL_LOBBY);
+})();

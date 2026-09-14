@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf45:version{73c3d623-a141-4df2-b548-41dd786e6300} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -46,11 +46,8 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_CreateWithinSphereTransform"
-			m_TransformInput = 
-			{
-				m_nControlPoint = 4
-			}
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 4
 		},
 		{
 			_class = "C_INIT_InitFloat"
@@ -340,10 +337,7 @@
 	[
 		{
 			_class = "C_OP_PositionLock"
-			m_TransformInput = 
-			{
-				m_nControlPoint = 4
-			}
+			m_nControlPointNumber = 4
 		},
 		{
 			_class = "C_OP_Decay"

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -21,4 +21,4 @@ const HUD = {
 const GetC_Image = (extended_path) => {
 	return `file://{images}/custom_game/collection/${extended_path}.png`;
 };
-const MAX_TIER_SUB = 3;
+const MAX_TIER_SUB = 3;

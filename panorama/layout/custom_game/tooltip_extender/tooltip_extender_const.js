@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -69,4 +69,4 @@ const BOSS_ITEMS_COST = {
 	item_angels_armor: 15,
 	item_dead_boots: 10,
 	item_icarus: 50,
-};
+};

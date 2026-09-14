@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 const LOCAL_PLAYER_ID = Game.GetLocalPlayerID();
 const LOCAL_STEAM_ID = Game.GetLocalPlayerInfo() ? Game.GetLocalPlayerInfo().player_steamid : "0";
 const MAP_NAME = Game.GetMapInfo().map_display_name;
+const B_LOCAL_LOBBY = true;
 
 Object.defineProperties(Array.prototype, {
 	random: {
@@ -755,4 +756,4 @@ Game.IsDemoMode = () => {
 };
 function RemoveChildrenByID(parent, id) {
 	for (const c of parent.Children()) if (c.id == id) c.DeleteAsync(0);
-}
+}

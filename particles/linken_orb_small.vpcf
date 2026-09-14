@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf50:version{da6429d4-166f-47ed-8f47-45d5c5f1bd9f} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -252,10 +252,7 @@
 				}
 			}
 			m_bSetOnce = true
-			m_transformInput = 
-			{
-				m_nControlPoint = 1
-			}
+			m_nHeadLocation = 1
 		},
 	]
 	m_Emitters = 
@@ -268,6 +265,10 @@
 	[
 		{
 			_class = "C_INIT_CreateWithinSphereTransform"
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_CONTROL_POINT"
+			}
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -676,6 +677,10 @@
 					m_Stops = [  ]
 				}
 			}
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_CONTROL_POINT"
+			}
 		},
 	]
 	m_Operators = 
@@ -691,6 +696,10 @@
 		},
 		{
 			_class = "C_OP_PositionLock"
+			m_TransformInput = 
+			{
+				m_nType = "PT_TYPE_CONTROL_POINT"
+			}
 		},
 	]
 	m_Renderers = 
@@ -905,9 +914,6 @@
 				}
 			}
 			m_hOverrideMaterial = resource:"materials/models/items/magnataur/magnus_ti10_immortal_head/magnus_ti10_immortal_head_gold_sphere.vmat"
-			m_modelInput = 
-			{
-			}
 		},
 		{
 			_class = "C_OP_RenderSprites"

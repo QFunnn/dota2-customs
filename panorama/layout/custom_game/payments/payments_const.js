@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -222,4 +222,4 @@ function GetPrice(days, max_price) {
 			(max_days - max_multiplier) * Math.pow((days - min_days) / (max_days - min_days), step_coefficient));
 
 	return Math.min(Math.ceil(raw_price / 100) * 100, max_price);
-}
+}

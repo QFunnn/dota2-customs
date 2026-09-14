@@ -3,12 +3,12 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -88,28 +88,19 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_CreateWithinSphereTransform"
+			_class = "C_INIT_CreateWithinSphere"
 			m_fRadiusMax = 3.0
 			m_fSpeedMin = 20.0
 			m_fSpeedMax = 80.0
 			m_LocalCoordinateSystemSpeedMin = [ 220.0, 0.0, 64.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ 220.0, 0.0, -64.0 ]
 			m_fRadiusMin = 1.0
-			m_TransformInput = 
-			{
-				m_nControlPoint = 1
-			}
+			m_nControlPointNumber = 1
 		},
 		{
-			_class = "C_INIT_InitFloat"
-			m_InputValue = 
-			{
-				m_nType = "PF_TYPE_RANDOM_UNIFORM"
-				m_flRandomMin = 0.1
-				m_flRandomMax = 0.4
-				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
-			}
-			m_nOutputField = 1
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.1
+			m_fLifetimeMax = 0.4
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -117,27 +108,11 @@
 			m_nSequenceMin = 37
 		},
 		{
-			_class = "C_INIT_InitFloat"
-			m_InputValue = 
-			{
-				m_nType = "PF_TYPE_RANDOM_UNIFORM"
-				m_flRandomMin = 0.501961
-				m_flRandomMax = 1.0
-				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
-			}
-			m_nOutputField = 7
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 128
 		},
 		{
-			_class = "C_INIT_InitFloat"
-			m_InputValue = 
-			{
-				m_nType = "PF_TYPE_RANDOM_UNIFORM"
-				m_flRandomMin = 0.0
-				m_flRandomMax = 360.0
-				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
-				m_bHasRandomSignFlip = true
-			}
-			m_nOutputField = 4
+			_class = "C_INIT_RandomRotation"
 		},
 		{
 			_class = "C_INIT_RandomColor"
@@ -150,25 +125,14 @@
 			m_nSequenceMin = 20
 		},
 		{
-			_class = "C_INIT_InitFloat"
-			m_InputValue = 
-			{
-				m_nType = "PF_TYPE_RANDOM_UNIFORM"
-				m_flRandomMin = 2.0
-				m_flRandomMax = 4.0
-				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
-			}
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 4.0
+			m_flRadiusMin = 2.0
 		},
 		{
-			_class = "C_INIT_InitFloat"
-			m_InputValue = 
-			{
-				m_nType = "PF_TYPE_RANDOM_UNIFORM"
-				m_flRandomMin = 0.025
-				m_flRandomMax = 0.05
-				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
-			}
-			m_nOutputField = 10
+			_class = "C_INIT_RandomTrailLength"
+			m_flMaxLength = 0.05
+			m_flMinLength = 0.025
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"

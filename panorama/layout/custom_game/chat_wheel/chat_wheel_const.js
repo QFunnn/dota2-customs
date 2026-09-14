@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -14,4 +14,4 @@ const HUD = {
 	PHRASES_CONTAINER_CENTER: $("#CW_PhrasesContainer_Center"),
 	PHRASES_CONTAINER_RIGHT: $("#CW_PhrasesContainer_Right"),
 	PHRASES_CONTAINER_LEFT: $("#CW_PhrasesContainer_Left"),
-};
+};

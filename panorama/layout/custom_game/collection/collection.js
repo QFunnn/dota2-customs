@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -261,6 +261,7 @@ function CreateCurrencyBundle(name, definition, button_text, image_extention, ad
 	if (additional_class) button.AddClass(additional_class);
 
 	button.SetPanelEvent("onactivate", () => {
+		if (B_LOCAL_LOBBY) return;
 		if (definition.callback) definition.callback();
 		else GameUI.InitiatePaymentFor(name);
 		GameUI.Collection.CloseSubPanels();
@@ -369,4 +370,4 @@ function TimeLeftParse(ms) {
 
 	GameUI.Player.RegisterForPlayerDataChanges(UpdatePlayerData);
 	HUD.CONTEXT.SetHasClass("BProPlayer", true);
-})();
+})();

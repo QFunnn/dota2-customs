@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -71,4 +71,4 @@ const W_SOURCE_TYPE = {
 	CURRENCY: 0,
 	TREASURE: 1,
 };
-const W_SOURCE_TYPE_NAMES = Object.fromEntries(Object.entries(W_SOURCE_TYPE).map((a) => a.reverse()));
+const W_SOURCE_TYPE_NAMES = Object.fromEntries(Object.entries(W_SOURCE_TYPE).map((a) => a.reverse()));

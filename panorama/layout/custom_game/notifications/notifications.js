@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -98,4 +98,4 @@ function DisplayLeaderOverthrowAlert(event) {
 	KILLSTREAK_ROOT.style.marginTop = "100px";
 	const kill_streak_container = FindDotaHudElement("StreakContainer");
 	kill_streak_container.style.preTransformScale2d = "0.75";
-})();
+})();
