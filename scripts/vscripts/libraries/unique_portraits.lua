@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -97,6 +97,11 @@ PORTRAITS_BY_STYLES = {
 	["models/heroes/crystal_maiden_persona/crystal_maiden_persona.vmdl"] = "npc_dota_hero_crystal_maiden_persona1",
 	["models/heroes/mirana_persona/mirana_persona_base.vmdl"] = "npc_dota_hero_mirana_persona1",
 	["models/items/vengefulspirit/imperia/imperia.vmdl"] = "npc_dota_hero_vengefulspirit_alt3",
+	["models/items/legion_commander/dark_carnival_legion_commander/dark_carnival_legion_commander_base.vmdl"] = "npc_dota_hero_legion_commander_carnival",
+	["models/items/bristleback/bristlebot/bristlebot.vmdl"] = "npc_dota_hero_bristleback_carnival",
+	["models/items/morphling/morphling_automaton/morphling_automaton.vmdl"] = "npc_dota_hero_morphling_carnival",
+	["models/items/oracle/oracle_carnival/oracle_carnival_base_body.vmdl"] = "npc_dota_hero_oracle_carnival",
+	["models/items/axe/axe_carnival/axe_carnival_base.vmdl"] = "npc_dota_hero_axe_carnival",
 
 	-- Crutches because with this set noone model has any material diff from default WR
 	["models/items/windrunner/mh_windrunner_zinogre/mh_windrunner_zinogre_shoulder_refit.vmdl"] = "npc_dota_hero_windrunner_alt1",

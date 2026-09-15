@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -865,6 +865,12 @@ VerticalScrollBar
 	background-image: url("s2r://panorama/images/custom_game/collection/button_confirm_png.vtex");
 }
 
+.BLocalLobby #CI_PayByCurrency_ConfirmButton,.BLocalLobby #CI_Treasure_Preview_ConfirmButton
+{
+	saturation: 0;
+	wash-color: #cdcdcd;
+}
+
 #CI_PayByCurrency_CancelButton,#CI_Treasure_Preview_CancelButton,#CI_ItemUseChecker_CancelButton
 {
 	background-image: url("s2r://panorama/images/custom_game/collection/button_cancel_png.vtex");
@@ -1375,4 +1381,31 @@ VerticalScrollBar
 #CI_Treasure_Preview_List .BChatWheelContent.BOwned .CI_ChatWheel_Preview_State.Owned,#CI_Treasure_Preview_List .BChatWheelContent:not(.BOwned) .CI_ChatWheel_Preview_State.NotOwned
 {
 	visibility: visible;
+}
+
+.GloryPurchasesLocalLobby
+{
+	align: center center;
+	text-align: center;
+	margin-bottom: 15px;
+	color: rgb(246, 50, 66);
+	visibility: collapse;
+}
+
+.BLocalLobby .GloryPurchasesLocalLobby
+{
+	visibility: visible;
+}
+
+.CI_Treasure_Preview_ButtonsRoot .GloryPurchasesLocalLobby
+{
+	ignore-parent-flow: true;
+	margin-bottom: 0;
+	margin-top: 44px;
+}
+
+.BLocalLobby .CI_Treasure_Preview_ButtonsRoot
+{
+	margin-top: -13px;
+	margin-bottom: 4px;
 }

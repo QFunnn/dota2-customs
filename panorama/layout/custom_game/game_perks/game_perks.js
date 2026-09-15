@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -70,6 +70,7 @@ function InitPerks(data) {
 		const unlock_button = tier_root.FindChildTraverse("UnlockTierBySuppButton");
 		unlock_button.SetPanelEvent("onactivate", () => {
 			if (tier == 0 || tier == 3) return;
+			if (B_LOCAL_LOBBY) return;
 
 			GameUI.InitiatePaymentFor(`subscription_tier_${tier}`);
 		});
@@ -235,4 +236,4 @@ function UpdateSearch() {
 		CACHED_DATA.supp_level = new_supp_level;
 		InitPerks(CACHED_DATA);
 	});
-})();
+})();

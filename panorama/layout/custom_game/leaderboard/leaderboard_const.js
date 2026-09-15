@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -103,4 +103,4 @@ function GetRewardsByTopPlace(rank, current_season) {
 function GetClassNameByTopPlace(place, current_season) {
 	UpdateRewardsTable(current_season);
 	for (const [start, end, items] of REWARDS_BY_TOP_PLACES) if (place >= start && place <= end) return `Top${start}`;
-}
+}

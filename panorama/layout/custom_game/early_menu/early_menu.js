@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -49,6 +49,7 @@ function _RegisterItem(item_name) {
 	panel.SetDialogVariableLocString("item_name", item_name);
 
 	let items_count = GameUI.Inventory.GetItemCount(item_name);
+	if (B_LOCAL_LOBBY) items_count = 0;
 
 	panel.FindChildTraverse("EC_FI_Image").SetImage(`file://{images}/custom_game/collection/${item_name}_icon.png`);
 	panel.SetDialogVariable("items_count", Math.max(items_count, 0));
@@ -86,6 +87,8 @@ function UpdateTimeLimit() {
 }
 
 function UpdateEarlyConsumablesMenuState(data) {
+	if (B_LOCAL_LOBBY) return;
+
 	const is_player_used_double_mmr = data.is_player_used_double_mmr == 1;
 	// const no_double_tokens = current_items_count?.double_mmr_token <= 0;
 
@@ -145,4 +148,4 @@ function UpdateVisibleState() {
 	});
 
 	InjectChatWheelKeybind();
-})();
+})();

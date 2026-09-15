@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 5e0d361 
   ~ auto-generated — do not edit
 ]]
 
@@ -340,6 +340,7 @@ function UpdatePlayerData(player_data) {
 	});
 }
 GameUI.Cosmetics.BuyItems = () => {
+	if (B_LOCAL_LOBBY) return;
 	if (!current_item_for_purchaing) return;
 	GameUI.Collection.CloseSubPanels();
 	GameUI.Inventory.BuyItem(current_item_for_purchaing, current_items_count);
@@ -599,6 +600,7 @@ function SetItemInWheel(focus_item, cached_item, b_prize) {
 	});
 }
 function OpenMoreTreasure() {
+	if (B_LOCAL_LOBBY) return;
 	GameUI.Inventory.ConsumeItem(current_preview_treasure.item_name);
 }
 function StartTreaureOpening(data) {
@@ -779,4 +781,4 @@ function FillChatWheelBasedContent(
 
 	const frame = GameEvents.NewProtectedFrame($.GetContextPanel());
 	frame.SubscribeProtected("WebTreasure:roll_result", StartTreaureOpening);
-})();
+})();
