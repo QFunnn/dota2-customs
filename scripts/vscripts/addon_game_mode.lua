@@ -397,24 +397,33 @@ end
 
 start_defeat = false
 
+-- fix outpost 27.05.2025. На своих серверах комната не заходит в CUSTOM_GAME_SETUP,
+-- поэтому зовётся ещё и в PRE_GAME; флаг не даёт создать точки дважды.
+function CAddonAdvExGameMode:FixOutposts()
+	if self.outposts_fixed then
+		return
+	end
+	self.outposts_fixed = true
+	for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
+		local activation_point = CreateUnitByName(
+			"npc_dota_watch_tower_activation_point",
+			watch_tower:GetOrigin(),
+			false,
+			nil,
+			nil,
+			DOTA_TEAM_GOODGUYS
+		)
+		activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
+	end
+end
+
 function CAddonAdvExGameMode:OnGameStateChanged()
 	local state = GameRules:State_Get()
 
 	if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 		ServerMode:Boot("setup")
 
-		-------------------------------------- fix outpost 27.05.2025
-		for _, watch_tower in pairs(Entities:FindAllByClassname("npc_dota_watch_tower")) do
-			local activation_point = CreateUnitByName(
-				"npc_dota_watch_tower_activation_point",
-				watch_tower:GetOrigin(),
-				false,
-				nil,
-				nil,
-				DOTA_TEAM_GOODGUYS
-			)
-			activation_point:AddNewModifier(activation_point, nil, "modifier_outpost_activation", {})
-		end
+		CAddonAdvExGameMode:FixOutposts()
 	end
 
 	if state == DOTA_GAMERULES_STATE_STRATEGY_TIME then
@@ -459,6 +468,7 @@ function CAddonAdvExGameMode:OnGameStateChanged()
 			end
 		end
 	elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+		CAddonAdvExGameMode:FixOutposts()
 		for pid = 0, DOTA_MAX_TEAM_PLAYERS do
 			local hPlayer = PlayerResource:GetPlayer(pid)
 			if hPlayer then

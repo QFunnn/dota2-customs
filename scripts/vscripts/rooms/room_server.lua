@@ -14,7 +14,7 @@ end
 
 RoomServer.HB_IDLE = 5
 RoomServer.HB_GAME = 15
-RoomServer.GATHER_TIMEOUT = 60
+RoomServer.GATHER_TIMEOUT = 300 -- страховка: столько ждём последнего, если он так и не пришёл
 RoomServer.DIFF_WINDOW = 25
 RoomServer.HOLD_KICK = 6
 RoomServer.MAX_PLAYERS = 5
@@ -269,6 +269,12 @@ function RoomServer:Admit(pid)
 	self.first_arrival = self.first_arrival or Time()
 	PlayerResource:SetCustomTeamAssignment(pid, DOTA_TEAM_GOODGUYS)
 	self:Publish()
+	-- Пришёл после загрузки профилей, но до старта: перечитываем профили, иначе
+	-- у него не будет магазина. Повторный api_game_start бэкенд не засчитывает.
+	if self.gathered and not self.starting and _G.Shop and Shop.get_db_info then
+		print("[Room] опоздавший pid=" .. pid .. ", перечитываю профили")
+		Shop:get_db_info()
+	end
 	self:CheckGather()
 end
 
@@ -330,10 +336,18 @@ function RoomServer:CheckGather()
 	if present == 0 then
 		return
 	end
+	-- Ждём всех забронированных: кто-то грузится дольше, и стартовать без него нельзя.
 	if present >= expected then
 		return self:Gather(false)
 	end
 	if self.first_arrival and Time() - self.first_arrival >= self.GATHER_TIMEOUT then
+		print(
+			"[Room] не дождались "
+				.. (expected - present)
+				.. " игроков за "
+				.. self.GATHER_TIMEOUT
+				.. "с, стартуем"
+		)
 		return self:Gather(false)
 	end
 	if not self.gather_check then
@@ -360,20 +374,6 @@ function RoomServer:Gather(force)
 	print(
 		"[Room] gathered " .. present .. "/" .. expected .. ", match " .. fmt_id(self.match_id) .. ", loading profiles"
 	)
-	local frozen, list = {}, {}
-	for pid, sid in pairs(self.arrived) do
-		if self.allowed[sid] and self:IsHuman(pid) then
-			frozen[sid] = true
-			list[#list + 1] = sid
-		end
-	end
-	self.allowed = frozen
-	self.gathered_sids = list
-	for pid, sid in pairs(self.arrived) do
-		if not frozen[sid] and self:IsHuman(pid) then
-			self:Kick(pid, "arrived too late")
-		end
-	end
 	web:init()
 	self:Publish()
 	Timers:CreateTimer({
@@ -426,7 +426,18 @@ function RoomServer:Start()
 		return self:ResetIdle()
 	end
 	self.starting = true
+	-- Состав фиксируем только сейчас: до самого старта опоздавший ещё успевает.
+	local list = {}
+	for pid, sid in pairs(self.arrived) do
+		if self.allowed[sid] and self:IsHuman(pid) then
+			list[#list + 1] = sid
+		end
+	end
+	self.gathered_sids = list
 	self:Publish()
+	if self.loaded then
+		self:Heartbeat()
+	end
 	local st = self:State()
 	print("[Room] start, state " .. self:StateName())
 	if st == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
