@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -16,7 +16,8 @@ RoomServer.HB_IDLE = 5
 RoomServer.HB_GAME = 15
 RoomServer.GATHER_TIMEOUT = 300 -- страховка: столько ждём последнего, если он так и не пришёл
 RoomServer.DIFF_WINDOW = 25
-RoomServer.HOLD_KICK = 6
+RoomServer.HOLD_KICK = 45 -- столько терпим чужого, если бэкенд так и не признал группу
+RoomServer.CLAIM_RETRY = 5
 RoomServer.MAX_PLAYERS = 5
 
 local STATE_NAMES = {}
@@ -59,6 +60,9 @@ function RoomServer:Init()
 	self.first_arrival = nil
 	self.hb_timer = nil
 	self.gather_check = nil
+	self.sent_away = {}
+	self.claiming = false
+	self.in_queue = false
 
 	ListenToGameEvent("player_connect_full", function(e)
 		self:OnConnectFull(e)
@@ -162,17 +166,29 @@ function RoomServer:Heartbeat()
 	}
 	self.reset_pending = false
 	self.gathered_sids = nil
-	local req = CreateHTTPRequestScriptVM("POST", _G.host .. "/api_room_heartbeat/?key=" .. _G.key)
-	req:SetHTTPRequestGetOrPostParameter("arr", json.encode(body))
-	req:SetHTTPRequestAbsoluteTimeoutMS(10000)
-	req:Send(function(res)
-		local ok, data = pcall(json.decode, res.Body or "")
-		if res.StatusCode == 200 and ok and type(data) == "table" then
-			self:OnHeartbeat(data)
-		else
-			print("[Room] heartbeat failed: http " .. tostring(res.StatusCode))
-		end
+
+	-- Движок изредка отдаёт пустоту вместо запроса. Раньше это роняло колбэк
+	-- таймера, сердцебиение больше не повторялось и комната пропадала из
+	-- дашборда живой. Теперь сбой переживаем и шлём заново через период.
+	local sent, err = pcall(function()
+		local req = CreateHTTPRequestScriptVM("POST", _G.host .. "/api_room_heartbeat/?key=" .. _G.key)
+		req:SetHTTPRequestGetOrPostParameter("arr", json.encode(body))
+		req:SetHTTPRequestAbsoluteTimeoutMS(10000)
+		req:Send(function(res)
+			local ok, data = pcall(json.decode, res.Body or "")
+			if res.StatusCode == 200 and ok and type(data) == "table" then
+				self:OnHeartbeat(data)
+			else
+				print("[Room] heartbeat failed: http " .. tostring(res.StatusCode))
+			end
+		end)
 	end)
+	if not sent then
+		-- Запрос не ушёл: возвращаем то, что успели пометить отправленным.
+		print("[Room] heartbeat не создался: " .. tostring(err))
+		self.reset_pending = body.reset == 1
+		self.gathered_sids = body.gathered
+	end
 
 	if self:IsIdleState() and next(self.admitted) ~= nil then
 		self:Publish()
@@ -227,6 +243,9 @@ function RoomServer:OnConnectFull(e)
 		self:Admit(pid)
 		return
 	end
+	-- Брони нет: группу прислали сюда вслепую, потому что спросить бэкенд с
+	-- машины хоста больше нельзя. Спрашиваем сами.
+	self:Claim()
 	if self.loaded then
 		self:Heartbeat()
 	end
@@ -234,11 +253,112 @@ function RoomServer:OnConnectFull(e)
 		endTime = self.HOLD_KICK,
 		useGameTime = false,
 		callback = function()
-			if self.arrived[pid] == sid and not self.allowed[sid] then
-				self:Kick(pid, "not reserved for this room")
+			if self.arrived[pid] == sid and not self.allowed[sid] and not self.sent_away[pid] and not self.in_queue then
+				self:Kick(pid, "бэкенд не признал эту группу")
 			end
 		end,
 	})
+end
+
+-- Спрашиваем бэкенд, что делать с приехавшей группой: оставить у себя,
+-- отправить в свободную комнату или подержать в очереди.
+function RoomServer:Claim()
+	if self.claiming or self.gathered or not self:IsIdleState() then
+		return
+	end
+	local sids = {}
+	for pid, sid in pairs(self.arrived) do
+		if self:IsHuman(pid) and not self.allowed[sid] then
+			sids[#sids + 1] = sid
+		end
+	end
+	if #sids == 0 then
+		return
+	end
+	self.claiming = true
+
+	local body = { port = Convars:GetInt("hostport"), sids = sids, host_sid = sids[1] }
+	local sent, err = pcall(function()
+		local req = CreateHTTPRequestScriptVM("POST", _G.host .. "/api_room_claim/?key=" .. _G.key)
+		req:SetHTTPRequestGetOrPostParameter("arr", json.encode(body))
+		req:SetHTTPRequestAbsoluteTimeoutMS(10000)
+		req:Send(function(res)
+			self.claiming = false
+			local ok, data = pcall(json.decode, res.Body or "")
+			if res.StatusCode ~= 200 or not ok or type(data) ~= "table" then
+				print("[Room] claim failed: http " .. tostring(res.StatusCode))
+				return self:ClaimRetry()
+			end
+			self:OnClaim(data)
+		end)
+	end)
+	if not sent then
+		self.claiming = false
+		print("[Room] claim не создался: " .. tostring(err))
+		self:ClaimRetry()
+	end
+end
+
+function RoomServer:ClaimRetry()
+	if self.gathered then
+		return
+	end
+	Timers:CreateTimer({
+		endTime = self.CLAIM_RETRY,
+		useGameTime = false,
+		callback = function()
+			self:Claim()
+		end,
+	})
+end
+
+function RoomServer:OnClaim(data)
+	self.in_queue = false
+	if data.status == "keep" then
+		print("[Room] группа остаётся здесь, match " .. tostring(data.match_id))
+		self.match_id = tonumber(data.match_id) or self.match_id
+		local sids = {}
+		if type(data.sids) == "table" then
+			for _, v in pairs(data.sids) do
+				sids[tostring(v)] = true
+			end
+		end
+		self.allowed = sids
+		CustomNetTables:SetTableValue("server", "room", { state = "gathering", updated = Time() })
+		for pid, sid in pairs(self.arrived) do
+			if self.allowed[sid] then
+				self:Admit(pid)
+			end
+		end
+		return self:CheckGather()
+	end
+
+	if data.status == "move" and type(data.address) == "string" and data.address ~= "" then
+		print("[Room] комната занята, отправляю группу дальше")
+		for pid, sid in pairs(self.arrived) do
+			if not self.allowed[sid] and self:IsHuman(pid) and not self.sent_away[pid] then
+				self.sent_away[pid] = true
+				FireGameEvent("bsa_connect", { player_id = pid, address = data.address })
+			end
+		end
+		return
+	end
+
+	if data.status == "queued" then
+		local pos = tonumber(data.position) or 0
+		self.in_queue = true
+		print("[Room] свободных комнат нет, место в очереди " .. pos)
+		CustomNetTables:SetTableValue("server", "room", {
+			state = "queued",
+			position = pos,
+			free = tonumber(data.free) or 0,
+			updated = Time(),
+		})
+		return self:ClaimRetry()
+	end
+
+	print("[Room] непонятный ответ claim: " .. tostring(data.status))
+	self:ClaimRetry()
 end
 
 function RoomServer:OnDisconnect(e)
@@ -279,15 +399,19 @@ function RoomServer:Admit(pid)
 end
 
 function RoomServer:Kick(pid, reason)
-	local player = PlayerResource:GetPlayer(pid)
-	if not player then
-		return
-	end
 	print("[Room] kick pid=" .. pid .. ": " .. tostring(reason))
-	pcall(function()
-		SendToServerConsole("kickid " .. player:GetUserID() .. " " .. tostring(reason))
-	end)
 	self.arrived[pid] = nil
+	self.admitted[pid] = nil
+	-- GetUserID у игрока в этой сборке нет, старый kickid молча не срабатывал,
+	-- и посторонние оставались в матче. DisconnectClient есть и работает.
+	local ok = pcall(DisconnectClient, pid, true)
+	if not ok then
+		local player = PlayerResource:GetPlayer(pid)
+		if player and player.GetUserID then
+			pcall(SendToServerConsole, "kickid " .. player:GetUserID() .. " " .. tostring(reason))
+		end
+		print("[Room] kick pid=" .. pid .. ": DisconnectClient не сработал")
+	end
 end
 
 function RoomServer:Publish()
@@ -410,6 +534,9 @@ function RoomServer:ResetIdle()
 	self.arrived = {}
 	self.admitted = {}
 	self.match_id = nil
+	self.sent_away = {}
+	self.claiming = false
+	self.in_queue = false
 	self.reset_pending = true
 	CustomNetTables:SetTableValue("server", "room", { state = "", updated = Time() })
 	if self.loaded then

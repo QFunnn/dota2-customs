@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -87,7 +87,7 @@ ListenToGameEvent("bsa_connect", function(event)
 	if ok and lid ~= nil and event.player_id ~= nil and tostring(lid) ~= tostring(event.player_id) then
 		return
 	end
-	print("[bsa_connect] " .. address)
+	print("[bsa_connect] переключаюсь на комнату")
 	if type(SendToConsole) == "function" then
 		pcall(SendToConsole, "connect " .. address)
 	end

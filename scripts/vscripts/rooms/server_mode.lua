@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -131,33 +131,48 @@ function ServerMode:LoadServerLua(max_tries, cb, skip_web_init)
 			.. "&a="
 			.. attempt
 		print("[ServerMode] load server lua, attempt " .. attempt)
-		local req = CreateHTTPRequestScriptVM("GET", url)
-		req:SetHTTPRequestAbsoluteTimeoutMS(30000)
-		req:Send(function(res)
-			if loaded then
-				return
-			end
-			local chunk, err
-			if res.StatusCode == 200 and res.Body then
-				chunk, err = loadstring(res.Body)
-			else
-				err = "http " .. tostring(res.StatusCode)
-			end
-			if chunk then
-				loaded = true
-				chunk()
-				if not skip_web_init then
-					web:init()
+		-- На локальном сервере игрока движок может не дать делать запросы.
+		-- Ловим это здесь, иначе падение выглядит как безымянная ошибка VM.
+		local sent, err = pcall(function()
+			local req = CreateHTTPRequestScriptVM("GET", url)
+			req:SetHTTPRequestAbsoluteTimeoutMS(30000)
+			req:Send(function(res)
+				if loaded then
+					return
 				end
-				Shop:init()
-				Casino:init()
-				print("[ServerMode] server lua loaded")
-				if cb then
-					cb(true)
+				local chunk, err
+				if res.StatusCode == 200 and res.Body then
+					chunk, err = loadstring(res.Body)
+				else
+					err = "http " .. tostring(res.StatusCode)
 				end
-				return
-			end
-			print("[ServerMode] load failed: " .. tostring(err))
+				if chunk then
+					loaded = true
+					chunk()
+					if not skip_web_init then
+						web:init()
+					end
+					Shop:init()
+					Casino:init()
+					print("[ServerMode] server lua loaded")
+					if cb then
+						cb(true)
+					end
+					return
+				end
+				print("[ServerMode] load failed: " .. tostring(err))
+				if max_tries and attempt >= max_tries then
+					if cb then
+						cb(false)
+					end
+					return
+				end
+				Timers:CreateTimer({ endTime = ServerMode.LOAD_RETRY_SEC, useGameTime = false, callback = try })
+			end)
+		end)
+		if not sent then
+			-- Тот же разовый сбой движка: не сдаёмся, пробуем ещё раз.
+			print("[ServerMode] запрос не создался: " .. tostring(err))
 			if max_tries and attempt >= max_tries then
 				if cb then
 					cb(false)
@@ -165,7 +180,7 @@ function ServerMode:LoadServerLua(max_tries, cb, skip_web_init)
 				return
 			end
 			Timers:CreateTimer({ endTime = ServerMode.LOAD_RETRY_SEC, useGameTime = false, callback = try })
-		end)
+		end
 	end
 	try()
 end
