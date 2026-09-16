@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -107,6 +107,7 @@ for id = 0, 24 do
 		items = {},
 		team = -1,
 		buffs = {},
+		playerName = "",
 		isLeaver = false,
 		ratingChange = 0,
 		lost_game = false,
@@ -177,7 +178,13 @@ function GetPenalty(table)
 end
 
 function HTTP.GetMatchId()
-	return HTTP.MATCH_ID == "0" and tostring(GameRules:Script_GetMatchID()) or HTTP.MATCH_ID
+	if not HTTP.MATCH_ID or HTTP.MATCH_ID == 0 or HTTP.MATCH_ID == "0" then
+		HTTP.MATCH_ID = tostring(GameRules:Script_GetMatchID())
+		if HTTP.MATCH_ID == "0" then
+			HTTP.MATCH_ID = Convars:GetStr("matchId")
+		end
+	end
+	return HTTP.MATCH_ID
 end
 
 function HTTP.GetAccountPlayerId(playerId)
@@ -827,6 +834,10 @@ function ChangeUserData(array, new_array)
 end
 
 function HTTP.Request(url, data, cb, tries, isStats)
+	if true then
+		return
+	end
+
 	if not isStats then
 		data.matchId = HTTP.GetMatchId()
 		data.matchKey = HTTP.MATCH_KEY
@@ -865,7 +876,7 @@ function HTTP.Request(url, data, cb, tries, isStats)
 		else
 			if url ~= "/http-errors" then
 				HTTP.Request("/http-errors", {
-					matchId = tostring(GameRules:Script_GetMatchID()),
+					matchId = HTTP.GetMatchId(),
 					matchKey = HTTP.MATCH_KEY,
 					Url = tostring(url),
 					StatusCode = StatusCode,
@@ -956,7 +967,7 @@ table.insert(steamIDs, 5)
 	end, not IsInToolsMode() and 50 or nil)
 
 	HTTP.Request("/match_start", {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		cluster = HTTP.MATCH_CLUSTER,
 		region = HTTP.MATCH_REGION,
@@ -1361,13 +1372,13 @@ function HTTP.PlayerEnd(id)
 	print("the last", id)
 
 	HTTP.Request("/end", {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		teamId = player_data.team,
 		lpCount = lp_games,
 		isWrongMap = player_data.wrong_map_status > 0,
 		playerId = tostring(PlayerResource:GetSteamAccountID(id)),
-		playerName = PlayerResource:GetPlayerName(id),
+		playerName = player_data.playerName,
 		partyId = tostring(PlayerResource:GetPartyID(id)),
 		heroName = PlayerResource:GetSelectedHeroName(id),
 		mainTalent = player_data.firstOrangeTalent,
@@ -1433,7 +1444,7 @@ function HTTP.PlayerLeave(id)
 		isWrongMap = wrong_map_status == 2,
 		isSafeToLeave = data.switch_safetoleave,
 		leaveTime = GameRules:GetDOTATime(false, false),
-		playerName = PlayerResource:GetPlayerName(id),
+		playerName = HTTP.playersData[id].playerName,
 		lpCount = data.lp_games_remaining,
 		savedData = {
 			subData = subData,
@@ -1445,7 +1456,7 @@ function HTTP.Report(reporter, reported1, reported2, t)
 	print("HTTP.PlayerEnd", id)
 
 	HTTP.Request("/report", {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		reporter = tostring(PlayerResource:GetSteamAccountID(reporter)),
 		reported1 = tostring(PlayerResource:GetSteamAccountID(reported1)),
@@ -1593,8 +1604,10 @@ function HTTP.FreeItemBuild(playerId)
 end
 
 function HTTP.GetItemBuild(name, playerID)
+	ItemBuilds[name] = {}
+
 	HTTP.Request("/get_item_builds", {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		heroName = name,
 	}, function(data)
@@ -1609,7 +1622,7 @@ function HTTP.GetTalentsBuild()
 	end
 
 	HTTP.Request("/get_offered_talents", {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		heroName = names,
 	}, function(data)
@@ -1782,7 +1795,7 @@ function HTTP.FillTalentsData(id, name, offered_talents)
 	if not HTTP.TalentsData[key] then
 		HTTP.TalentsData[key] = {}
 		HTTP.TalentsData[key].player_id = PlayerResource:GetSteamAccountID(id)
-		HTTP.TalentsData[key].match_id = tostring(GameRules:Script_GetMatchID())
+		HTTP.TalentsData[key].match_id = HTTP.GetMatchId()
 		HTTP.TalentsData[key].map_name = GetMapName()
 		HTTP.TalentsData[key].hero_name = hero:GetUnitName()
 		HTTP.TalentsData[key].place = -1
@@ -1838,7 +1851,7 @@ function HTTP.FillItemsData(id, place)
 	end
 
 	data.player_id = PlayerResource:GetSteamAccountID(id)
-	data.match_id = tostring(GameRules:Script_GetMatchID())
+	data.match_id = HTTP.GetMatchId()
 	data.place = place
 	data.hero_name = hero:GetUnitName()
 	data.main_talent = HTTP.playersData[id].firstOrangeTalent or "0"

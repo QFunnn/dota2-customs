@@ -3,26 +3,703 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
 
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
-	Kunkka.Innate_switch_fire = 
+	Kunkka.Tidebringer_target_spawn = 
 	{
 		vsnd_files = 
 		[
-			"sounds/items/smoke_end.vsnd",
+			"sounds/weapons/hero/centaur/mount_target.vsnd",
 		]
-		volume = 0.6
+		volume = 1
+		pitch_rand_min = 0.7
+		pitch_rand_max = 0.7
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Tidebringer_target_spawn2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/kraken_shell.vsnd",
+		]
+		volume = 0.5
+		pitch_rand_min = 0
+		pitch_rand_max = 0.15
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Tidebringer_target_hit = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/largo/attack02.vsnd",
+		]
+		volume = 0.85
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.1
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Tidebringer_target_death = 
+	{
+		vsnd_files = 
+		[
+			"sounds/physics/damage/engines/dire_engine_destruction_02.vsnd",
+			"sounds/physics/damage/engines/dire_engine_destruction_03.vsnd",
+		]
+		volume = 0.7
+		pitch_rand_min = 0.2
+		pitch_rand_max = 0.2
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Ghostship_proj = 
+	{
+		type = "dota_update_default"
+		volume = 0.75
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		volume_fade_in = 0.5
+		volume_fade_out = 1
+		use_entity_position = 1
+		volume_use_FOW = 1
+		volume_FOW_radius = 600.0
+		volume_FOW_filter_vel = 0.6
+		vsnd_files = "sounds/weapons/hero/kunkka/ability_ghost_ship.vsnd"
+		vsnd_duration = 4.425873
+	}
+	Kunkka.Innate_shield = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/kraken_shell.vsnd",
+		]
+		volume = 1
 		pitch_rand_min = -0.1
 		pitch_rand_max = -0.1
 		type = "dota_src1_3d"
 		soundlevel = 100
 		distance_max = 1600
 		pitch = 1
+	}
+	Ability.Ghostship.bell = 
+	{
+		type = "dota_update_default"
+		volume = 0.5
+		pitch = 1.0
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		vsnd_files = "sounds/weapons/hero/kunkka/ability_ghost_ship_bell.vsnd"
+		vsnd_duration = 3.72576
+	}
+	Kunkka.Innate_proc = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/brewmaster/brawler_cast.vsnd",
+		]
+		volume = 1.2
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.2
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Innate_proc2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/kraken_shell.vsnd",
+		]
+		volume = 0.9
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Ship_delayed_damage = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/tidehunter_gush.vsnd",
+		]
+		volume = 1
+		pitch_rand_min = 0
+		pitch_rand_max = 0.1
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.XmarK_blink_start = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/antimage/blink_out.vsnd",
+		]
+		volume = 1
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.XmarK_blink_end = 
+	{
+		vsnd_files = 
+		[
+			"sounds/items/blink_nailed.vsnd",
+		]
+		volume = 0.9
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		soundevent_layer2 = "Kunkka.XmarK_blink_end_layer"
+		soundevent_layer2_on = 1.0
+		pitch = 1
+	}
+	Kunkka.XmarK_blink_end_layer = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/slark/pounce_impact.vsnd",
+		]
+		volume = 0.65
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.1
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.XMark_double_attack = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/kraken_shell.vsnd",
+		]
+		volume = 0.6
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.2
+		volume_fade_out = 0.5
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Tidebringer_root_target = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/naga_siren/ensnare_target.vsnd",
+		]
+		volume = 0.85
+		pitch_rand_min = 0.05
+		pitch_rand_max = 0.15
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		soundevent_layer2 = "Kunkka.Tidebringer_root_target2"
+		soundevent_layer2_on = 1.0
+		pitch = 1
+	}
+	Hero_Kunkka.TidalWave = 
+	{
+		type = "dota_update_default"
+		volume = 0.8
+		pitch = 0.85
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		volume_fade_in = 1.0
+		volume_fade_out = 0.5
+		spread_radius = 300.0
+		use_entity_position = 0.0
+		volume_use_FOW = 1.0
+		volume_FOW_radius = 300.0
+		volume_FOW_filter_vel = 0.6
+		vsnd_files = "sounds/weapons/hero/tidehunter/gush_projectile.vsnd"
+		vsnd_duration = 3.009524
+	}
+	Hero_Kunkka.TidalWave_2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/tidebringer_attack01.vsnd",
+			"sounds/weapons/hero/kunkka/tidebringer_attack02.vsnd",
+		]
+		volume = 0.75
+		pitch_rand_min = -0.1
+		pitch_rand_max = -0.2
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Hero_Kunkka.Tidebringer.MaxArmor = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/kraken_shell.vsnd",
+		]
+		volume = 0.9
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0.0
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Tidebringer_refresh = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/dead_water_cast.vsnd",
+		]
+		volume = 0.7
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.2
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Tidebringer_legendary_ready = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/tidehunter_gush.vsnd",
+		]
+		volume = 0.7
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.2
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundevent_layer2 = "Kunkka.Tidebringer_legendary_ready2"
+		soundevent_layer2_on = 1
+		soundevent_layer3 = "Kunkka.Tidebringer_legendary_ready3"
+		soundevent_layer3_on = 1
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Tidebringer_legendary_ready2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/naga_siren/riptide01.vsnd",
+			"sounds/weapons/hero/naga_siren/riptide02.vsnd",
+			"sounds/weapons/hero/naga_siren/riptide03.vsnd",
+		]
+		volume = 0.6
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Tidebringer_legendary_ready3 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/tidebringer.vsnd",
+		]
+		volume = 1
+		pitch_rand_min = 0.1
+		pitch_rand_max = 0.1
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Ghostship_legendary_loop = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ambient/soundscapes/river_med_lp_01.vsnd",
+		]
+		volume = 1.5
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		use_entity_position = 1
+		volume_use_FOW = 1
+		type = "dota_update_default"
+		soundlevel = 100
+		distance_max = 3000
+	}
+	Kunkka.Ghostship_legendary_loop2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ambient/soundscapes/boat_lap_lp.vsnd",
+		]
+		volume = 2
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		use_entity_position = 1
+		volume_use_FOW = 1
+		type = "dota_update_default"
+		soundlevel = 100
+		distance_max = 3000
+	}
+	Kunkka.Ghostship_legendary_loop3 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/music/jlin_01/music/battle_01.vsnd",
+		]
+		volume = 1.5
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		use_entity_position = 1
+		volume_use_FOW = 1
+		type = "dota_update_default"
+		soundlevel = 100
+		distance_max = 3000
+	}
+	Kunkka.Ghostship_legendary_wave = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/tidehunter/gush_projectile.vsnd",
+		]
+		volume = 0.8
+		pitch = 0.85
+		pitch_rand_min = -0.15
+		pitch_rand_max = 0.15
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		volume_fade_in = 0.5
+		volume_fade_out = 0.5
+		use_entity_position = 1.0
+		volume_use_FOW = 1.0
+		volume_FOW_radius = 300.0
+		volume_FOW_filter_vel = 0.6
+		type = "dota_update_default"
+		distance_max = 3000
+	}
+	Kunkka.Ghostship_legendary_collide = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ambient/tut_fencesmash_small.vsnd",
+		]
+		volume = 1.5
+		pitch_rand_min = -0.2
+		pitch_rand_max = -0.1
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundevent_layer2 = "Kunkka.Ghostship_legendary_collide2"
+		soundevent_layer2_on = 1
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Ghostship_legendary_collide2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/physics/body/water_splash_large.vsnd",
+		]
+		volume = 1.7
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Torrent_legendary = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/sharkship_impact.vsnd",
+		]
+		volume = 1
+		pitch_rand_min = -0.1
+		pitch_rand_max = -0.1
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundevent_layer2 = "Kunkka.Torrent_legendary2"
+		soundevent_layer2_on = 1
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Torrent_legendary2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/slark/dark_pact_cast.vsnd",
+		]
+		volume = 0.8
+		pitch_rand_min = -0.2
+		pitch_rand_max = -0.2
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.innate_scepter_damage = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/templar_assassin/refraction_absorb.vsnd",
+		]
+		volume = 1.5
+		pitch_rand_min = -0.2
+		pitch_rand_max = -0.1
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Hero_Kunkka.TidalWave_target = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/watersword_crit_01.vsnd",
+			"sounds/weapons/hero/kunkka/watersword_crit_02.vsnd",
+		]
+		volume = 0.8
+		pitch_rand_min = -0.1
+		pitch_rand_max = 0
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+	}
+	Kunkka.Tidebringer_root_target2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/naga_siren/riptide01.vsnd",
+			"sounds/weapons/hero/naga_siren/riptide02.vsnd",
+			"sounds/weapons/hero/naga_siren/riptide03.vsnd",
+		]
+		volume = 0.7
+		pitch_rand_min = 0.3
+		pitch_rand_max = 0.4
+		volume_fade_out = 0.3
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Hero_Kunkka.Attack = 
+	{
+		type = "dota_update_default"
+		volume = 0
+		vsnd_files = 
+		[
+			"sounds/sound.vsnd",
+			"sounds/sound.vsnd",
+		]
+		vsnd_duration = 0.754649
+	}
+	Ability.Ghostship.Cannon.Target = 
+	{
+		type = "dota_src1_3d"
+		volume_rand_min = -0.1
+		volume_rand_max = 0.1
+		volume = 1.2
+		pitch = 1.5
+		soundlevel = 100.0
+		distance_max = 2000.0
+		mixgroup = "Weapons"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/techies/land_mine01.vsnd",
+			"sounds/weapons/hero/techies/land_mine02.vsnd",
+		]
+		vsnd_duration = 2.480453
+	}
+	Ability.Ghostship.Cannon.Fire = 
+	{
+		type = "dota_update_default"
+		volume = 1.8
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 100.0
+		distance_max = 2500.0
+		mixgroup = "Weapons"
+		vsnd_files = "sounds/weapons/hero/kunkka/ghostship_cannon.vsnd"
+		vsnd_duration = 3.028594
+	}
+	Kunkka.Attack_custom = 
+	{
+		type = "dota_update_default"
+		volume = 0.699707
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Kunkka.Attack.Rip"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Hero_Kunkka.Attack.Ring"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/attack01.vsnd",
+			"sounds/weapons/hero/kunkka/attack02.vsnd",
+		]
+		vsnd_duration = 0.508163
+	}
+	Kunkka.Attack_custom_auto = 
+	{
+		type = "dota_update_default"
+		volume = 0.6
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.3
+		soundlevel = 78.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Kunkka.Attack.Rip"
+		soundevent_layer2_on = 1.0
+		soundevent_layer3 = "Hero_Kunkka.Attack.Ring"
+		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/attack01.vsnd",
+			"sounds/weapons/hero/kunkka/attack02.vsnd",
+		]
+		vsnd_duration = 0.508163
+	}
+	Kunkka.Treasure_reward = 
+	{
+		vsnd_files = 
+		[
+			"sounds/items/neutral_loot_drop01.vsnd",
+		]
+		volume = 1.3
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.Treasure_reward2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/coins.vsnd",
+		]
+		volume = 1.1
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
+		soundlevel = 100
+		distance_max = 1600
+		pitch = 1
+	}
+	Kunkka.UI_close = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/menu/chat_close.vsnd",
+		]
+		volume = 1
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_open = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/menu/chat_open.vsnd",
+		]
+		volume = 1
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_close_shop = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/menu/shortwhoosh.vsnd",
+		]
+		volume = 1
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_open_shop = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/menu/settings_open.vsnd",
+		]
+		volume = 1
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_start = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/menu/pick_captains_vs.vsnd",
+		]
+		volume = 1.2
+		pitch_rand_min = -0.05
+		pitch_rand_max = -0.05
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_buy = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/ui_message_popup_fast_01.vsnd",
+		]
+		volume = 0.8
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_buy2 = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/coins.vsnd",
+		]
+		volume = 1.1
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
+	}
+	Kunkka.UI_buy_legendary = 
+	{
+		vsnd_files = 
+		[
+			"sounds/ui/comp_lvl_up.vsnd",
+		]
+		volume = 1.2
+		pitch_rand_min = 0
+		pitch_rand_max = 0
+		type = "dota_src1_3d"
 	}
 	DoubleRating.npc_dota_hero_kunkka = 
 	{
@@ -38,9 +715,9 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_laugh_01.vsnd",
-			"sounds/vo/jakiro/jak_laugh_03.vsnd",
-			"sounds/vo/jakiro/jak_laugh_05.vsnd",
+			"sounds/vo/kunkka/kunk_laugh_02.vsnd",
+			"sounds/vo/kunkka/kunk_laugh_04.vsnd",
+			"sounds/vo/kunkka/kunk_laugh_06.vsnd",
 		]
 		volume = 1.6
 	}
@@ -49,7 +726,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_ability_dual_05.vsnd",
+			"sounds/vo/kunkka/kunk_kill_04.vsnd",
 		]
 		volume = 1.6
 	}
@@ -58,7 +735,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_attack_04.vsnd",
+			"sounds/vo/kunkka/kunk_attack_08.vsnd",
 		]
 		volume = 1.6
 	}
@@ -67,7 +744,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_level_05.vsnd",
+			"sounds/vo/kunkka/kunk_kill_10.vsnd",
 		]
 		volume = 1.6
 	}
@@ -76,7 +753,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_bottle_03.vsnd",
+			"sounds/vo/kunkka/kunk_rival_25.vsnd",
 		]
 		volume = 1.6
 	}
@@ -85,7 +762,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_level_04.vsnd",
+			"sounds/vo/kunkka/kunk_spawn_05.vsnd",
 		]
 		volume = 1.6
 	}
@@ -94,7 +771,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_immort_02.vsnd",
+			"sounds/vo/kunkka/kunk_rival_18.vsnd",
 		]
 		volume = 1.6
 	}
@@ -103,7 +780,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_brother_03.vsnd",
+			"sounds/vo/kunkka/kunk_ally_06.vsnd",
 		]
 		volume = 1.6
 	}
@@ -112,8 +789,9 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/jakiro/jak_brother_04.vsnd",
+			"sounds/heroes/kunkka/tiku_ann_kill_holy_01.vsnd",
 		]
-		volume = 2.5
+		volume = 3.6
+		vsnd_duration = 1.462857
 	}
 }

@@ -3,20 +3,20 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
 
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<scripts>
 		<include src="s2r://panorama/scripts/custom_game/keybinds.vjs_c" />
 	</scripts>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.css" />
-		<include src="s2r://panorama/styles/custom_game/keybinds.vcss_c"/>
+		<include src="s2r://panorama/styles/custom_game/keybinds.vcss_c" />
 	</styles>
-
 	<snippets>
 		<snippet name="KeyRegister">
 			<Panel class="CustomKeybind">
@@ -41,26 +41,23 @@
 			</Panel>
 		</snippet>
 	</snippets>
-
 	<Panel hittest="false" class="SettingsHud">
 		<Panel id="SettingsTop">
 			<Button id="SettingsOpen" class="TopBarIcon" onactivate="OnSettingsOpen()" />
 			<Panel class="TopBarIcon" id="TopMenuIcon_Feedback">
-				<Panel class="TopMenuButtonShadow" id="FeedbackShadow"/>
-				<Panel class="TopMenuButtonColor" id="FeedbackColor"/>
+				<Panel class="TopMenuButtonShadow" id="FeedbackShadow" />
+				<Panel class="TopMenuButtonColor" id="FeedbackColor" />
 			</Panel>
 		</Panel>
 		<Panel id="SettingsRoot">
-			<Button id="SettingsClose" onactivate="OnSettingsClose()"/>
+			<Button id="SettingsClose" onactivate="OnSettingsClose()" />
 			<Panel id="SettingsContent">
-				<Panel id="SettingsKeybinds" >
+				<Panel id="SettingsKeybinds">
 					<Label class="SettingsSectionTitle" text="#custom_keybindings" />
 					<Button id="SettingsKeybindReset" onactivate="ResetKeybinds()">
 						<Label text="#ui_reset_keybinds" />
 					</Button>
-					<Panel id="SettingsKeybindsList">
-						<!--                                     -->
-					</Panel>
+					<Panel id="SettingsKeybindsList" />
 				</Panel>
 			</Panel>
 		</Panel>

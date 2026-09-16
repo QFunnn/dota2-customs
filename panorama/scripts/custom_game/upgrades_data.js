@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -49,6 +49,7 @@ GameEvents.OnLoaded(() => {
   GameEvents.Subscribe_custom('select_unit_custom', select_unit_custom)
   GameEvents.Subscribe_custom('send_arcana_icons', send_arcana_icons)
   GameEvents.Subscribe_custom('print_names', print_names)
+  GameEvents.Subscribe_custom('get_player_names', get_player_names)
 
 
   GameEvents.SendCustomGameEventToServer_custom("RequestAchivments", {})
@@ -98,6 +99,11 @@ function SendAchivments(data)
 	}
 }
 
+function get_player_names(data)
+{
+	let name = Players.GetPlayerName(data.id)
+  	GameEvents.SendCustomGameEventToServer_custom("GetPlayerNames", {name : name, id : data.id})
+}
 
 function SendSubscribed(data)
 {

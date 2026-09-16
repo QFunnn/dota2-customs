@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,8 @@
 if dota1x6 == nil then
 	_G.dota1x6 = class({})
 end
+
+Convars:RegisterConvar("matchId", "", "123", 0)
 
 _G.test_pick_stage = false
 _G.Time_to_pick_Hero = 25
@@ -852,6 +854,33 @@ r:Send( function( res ) end)
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(hero_select, "PlayerConnected"), hero_select)
 	ListenToGameEvent("dota_item_purchased", Dynamic_Wrap(self, "ItemPurchased"), self)
 
+	local loaded = {}
+	local reset_done = false
+
+	ListenToGameEvent("player_connect_full", function(kv)
+		if reset_done then
+			return
+		end
+		if not kv.PlayerID then
+			return
+		end
+
+		loaded[kv.PlayerID] = true
+
+		local count = 0
+
+		for _ in pairs(loaded) do
+			count = count + 1
+		end
+
+		if count < max_teams * players_in_team then
+			return
+		end
+
+		reset_done = true
+		GameRules:ResetToCustomGameSetup()
+	end, nil)
+
 	if IsInToolsMode() then
 		ListenToGameEvent("player_chat", Dynamic_Wrap(self, "OnPlayerChatDebug"), self)
 	end
@@ -926,6 +955,7 @@ r:Send( function( res ) end)
 	CustomGameEventManager:RegisterListener("get_patrol_position", Dynamic_Wrap(self, "GetPatrolPosition"))
 	CustomGameEventManager:RegisterListener("ChangeCustomRules", Dynamic_Wrap(self, "ChangeCustomRules"))
 	CustomGameEventManager:RegisterListener("RequestCustomRules", Dynamic_Wrap(self, "RequestCustomRules"))
+	CustomGameEventManager:RegisterListener("GetPlayerNames", Dynamic_Wrap(self, "GetPlayerNames"))
 
 	CustomNetTables:SetTableValue(
 		"custom_pick",
@@ -1709,9 +1739,9 @@ function dota1x6:OnGameRulesStateChange()
 	end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-		if not IsSoloMode() then
-			for id = 0, 24 do
-				if ValidId(id) and PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
+		for id = 0, 24 do
+			if ValidId(id) then
+				if not IsSoloMode() and PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
 					local teams = { 2, 3, 6, 7 }
 					for _, team in pairs(teams) do
 						if PlayerResource:GetPlayerCountForTeam(team) < players_in_team then
@@ -1720,6 +1750,11 @@ function dota1x6:OnGameRulesStateChange()
 						end
 					end
 				end
+				CustomGameEventManager:Send_ServerToPlayer(
+					PlayerResource:GetPlayer(id),
+					"get_player_names",
+					{ id = id }
+				)
 			end
 		end
 
@@ -2113,6 +2148,9 @@ end
 function dota1x6:ActivateOrbShrines(override_wave)
 	local wave = override_wave and override_wave or dota1x6.current_wave
 	if wave < orb_shrines_wave then
+		return
+	end
+	if not IsSoloMode() then
 		return
 	end
 

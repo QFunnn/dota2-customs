@@ -1,0 +1,88 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build c158db4 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/layout/custom_game/kunkka_panel/kunkka_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/kunkka_panel/kunkka_panel.vjs_c" />
+	</scripts>
+	<Panel class="KunkkaPanel" hittest="false">
+		<Panel id="KunkkaPanel_Shop" class="panel_hidden" hittest="true">
+			<Panel id="KunkkaPanel_shop_back" />
+			<Panel id="KunkkaPanel_shop_close" class="KunkkaPanel_shop_close_button" onactivate="change_shop();" />
+			<Label id="KunkkaPanel_shop_header" text="#kunkka_shop_header" />
+			<Panel id="KunkkaPanel_shop_content">
+				<Panel id="KunkkaPanel_shop_content_legendary" class="KunkkaPanel_shop_content_row">
+					<Panel class="KunkkaPanel_shop_cost_panel">
+						<Panel id="KunkkaPanel_shop_cost_back_legendary" class="KunkkaPanel_shop_cost_back">
+							<Label id="KunkkaPanel_shop_cost_text_legendary" class="KunkkaPanel_shop_cost_text" />
+							<Panel class="KunkkaPanel_shop_cost_icon" />
+						</Panel>
+					</Panel>
+					<Panel class="KunkkaPanel_shop_items_panel">
+						<Panel id="KunkkaPanel_shop_items_content_legendary" class="KunkkaPanel_shop_items_content" />
+					</Panel>
+				</Panel>
+				<Panel id="KunkkaPanel_shop_content_purple" class="KunkkaPanel_shop_content_row">
+					<Panel class="KunkkaPanel_shop_cost_panel">
+						<Panel id="KunkkaPanel_shop_cost_back_purple" class="KunkkaPanel_shop_cost_back">
+							<Label id="KunkkaPanel_shop_cost_text_purple" class="KunkkaPanel_shop_cost_text" />
+							<Panel class="KunkkaPanel_shop_cost_icon" />
+						</Panel>
+					</Panel>
+					<Panel class="KunkkaPanel_shop_items_panel">
+						<Panel id="KunkkaPanel_shop_items_content_purple" class="KunkkaPanel_shop_items_content" />
+					</Panel>
+				</Panel>
+				<Panel id="KunkkaPanel_shop_content_blue" class="KunkkaPanel_shop_content_row">
+					<Panel class="KunkkaPanel_shop_cost_panel">
+						<Panel id="KunkkaPanel_shop_cost_back_blue" class="KunkkaPanel_shop_cost_back">
+							<Label id="KunkkaPanel_shop_cost_text_blue" class="KunkkaPanel_shop_cost_text" />
+							<Panel class="KunkkaPanel_shop_cost_icon" />
+						</Panel>
+					</Panel>
+					<Panel class="KunkkaPanel_shop_items_panel">
+						<Panel id="KunkkaPanel_shop_items_content_blue" class="KunkkaPanel_shop_items_content" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="KunkkaPanel_parent" class="panel_hidden">
+			<Panel class="KunkkaPanel_close" id="KunkkaPanel_close" onactivate="change_state();">
+				<Panel id="KunkkaPanel_close_icon" />
+			</Panel>
+			<Panel id="KunkkaPanel_main" class="KunkkaPanel_main_right panel_hidden" hittest="true">
+				<Panel id="KunkkaPanel_main_back" />
+				<Panel id="KunkkaPanel_main_close" class="KunkkaPanel_main_close" onactivate="change_state();" />
+				<Panel id="KunkkaPanel_gold_panel">
+					<Panel id="KunkkaPanel_gold_icon" />
+					<Label id="KunkkaPanel_gold_text" />
+				</Panel>
+				<Panel id="KunkkaPanel_compass_panel">
+					<Panel id="KunkkaPanel_compass">
+						<Panel id="KunkkaPanel_distance_panel">
+							<Label id="KunkkaPanel_distance_text" text="0" />
+						</Panel>
+						<Panel id="KunkkaPanel_arrow" />
+					</Panel>
+				</Panel>
+				<Panel class="KunkkaPanel_currency" id="KunkkaPanel_currency">
+					<Panel id="KunkkaPanel_button" hittest="true" onactivate="change_shop();">
+						<Label id="KunkkaPanel_button_text" text="#open_chest" />
+						<Panel id="KunkkaPanel_icon_image" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

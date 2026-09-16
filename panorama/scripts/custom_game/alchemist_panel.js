@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,8 +13,8 @@ $.GetContextPanel().SetParent(parentHUDElements);
 
 function init()
 {
-	GameEvents.Subscribe('alchemist_progress_update', OnProgress)
-	GameEvents.Subscribe('alchemist_progress_close', OnClose)
+	GameEvents.Subscribe_custom('alchemist_progress_update', OnProgress)
+	GameEvents.Subscribe_custom('alchemist_progress_close', OnClose)
 	FlipInit()
 }
 

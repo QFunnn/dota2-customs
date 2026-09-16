@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,8 +11,8 @@
 
 function init()
 {
-  GameEvents.Subscribe('pa_hunt_think', pa_hunt_think)
-  GameEvents.Subscribe('pa_hunt_end', pa_hunt_end)
+  GameEvents.Subscribe_custom('pa_hunt_think', pa_hunt_think)
+  GameEvents.Subscribe_custom('pa_hunt_end', pa_hunt_end)
 }
 
 function pa_hunt_think(kv)

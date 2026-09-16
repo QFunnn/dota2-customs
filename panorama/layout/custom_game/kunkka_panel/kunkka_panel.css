@@ -1,0 +1,707 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build c158db4 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.KunkkaPanel
+{
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+}
+
+@keyframes 'KunkkaPanel_open_anim'
+{
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+	}
+	
+	0%
+	{
+		transform: translate3d( 250px, 0, 0px );
+	}
+	
+}
+
+@keyframes 'KunkkaPanel_close_anim'
+{
+	100%
+	{
+		transform: translate3d( 250px, 0, 0px );
+	}
+	
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+	}
+	
+}
+
+.KunkkaPanel_anim_open
+{
+	animation-name: KunkkaPanel_open_anim;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.KunkkaPanel_anim_close
+{
+	animation-name: KunkkaPanel_close_anim;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.panel_hidden
+{
+	visibility: collapse;
+}
+
+#KunkkaPanel_parent
+{
+	flow-children: right;
+	margin-top: 180px;
+	align: right center;
+}
+
+.HUDFlipped #KunkkaPanel_parent
+{
+	flow-children: left;
+	align: left center;
+}
+
+.HUDFlipped .KunkkaPanel_close
+{
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-left-width: 0px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-right: 1px solid #93712f;
+}
+
+.HUDFlipped #KunkkaPanel_close_icon
+{
+	transform: scaleX(-1);
+}
+
+.HUDFlipped #KunkkaPanel_main
+{
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-left-width: 0px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-right: 2px solid #93712f;
+}
+
+.HUDFlipped .KunkkaPanel_main_close
+{
+	horizontal-align: right;
+	margin-left: 0px;
+	margin-right: 3px;
+}
+
+.HUDFlipped .KunkkaPanel_anim_open
+{
+	animation-name: KunkkaPanel_open_anim_left;
+}
+
+.HUDFlipped .KunkkaPanel_anim_close
+{
+	animation-name: KunkkaPanel_close_anim_left;
+}
+
+@keyframes 'KunkkaPanel_open_anim_left'
+{
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+	}
+	
+	0%
+	{
+		transform: translate3d( -250px, 0, 0px );
+	}
+	
+}
+
+@keyframes 'KunkkaPanel_close_anim_left'
+{
+	100%
+	{
+		transform: translate3d( -250px, 0, 0px );
+	}
+	
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+	}
+	
+}
+
+.KunkkaPanel_close
+{
+	width: 30px;
+	height: 60px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 90% 100%, from(#0f1820), to(#203342));
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-left: 1px solid #a65f39;
+	border-top: 1px solid #a65f39;
+	border-bottom: 1px solid #a65f39;
+	border-color: #93712f;
+}
+
+#KunkkaPanel_close_icon
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/control_icons/chevron-sharp-left_png.vtex");
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+	wash-color: #f0c065;
+}
+
+.KunkkaPanel_close:hover
+{
+	brightness: 1.6;
+}
+
+#KunkkaPanel_main
+{
+	width: 205px;
+	height: 235px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 90% 100%, from(#0f1820), to(#203342));
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-left: 2px solid #a65f39;
+	border-top: 1px solid #a65f39;
+	border-bottom: 1px solid #a65f39;
+	border-color: #93712f;
+	box-shadow: fill #000 0px 0px 10px -3px;
+}
+
+.KunkkaPanel_main_close
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 3px;
+	margin-top: 3px;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	brightness: 2;
+	z-index: 999;
+	horizontal-align: left;
+	ignore-parent-flow: true;
+	wash-color: #a6864a;
+}
+
+.KunkkaPanel_main_close:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.1;
+}
+
+#KunkkaPanel_compass_panel
+{
+	margin-top: 10px;
+	margin-left: 15px;
+	width: 175px;
+	height: 175px;
+}
+
+#KunkkaPanel_main_back
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/loadout_backgrounds/loadout_bg_water_002_jpg.vtex");
+	brightness: 0.4;
+	background-size: 100% 100%;
+	opacity: 0.3;
+	z-index: -1;
+	blur: gaussian( 10 );
+}
+
+#KunkkaPanel_compass
+{
+	width: 175px;
+	height: 175px;
+	horizontal-align: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/ui_elements/kunkka/compass_circle_png.vtex");
+}
+
+#KunkkaPanel_arrow
+{
+	width: 120px;
+	height: 120px;
+	align: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url("s2r://panorama/images/ui_elements/kunkka/compass_arrow_png.vtex");
+}
+
+#KunkkaPanel_distance_panel
+{
+	width: 38px;
+	height: 20px;
+	align: center bottom;
+	margin-bottom: 19px;
+	border-radius: 4px;
+	border: 1px solid #855828;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0c0e14), to(#293040));
+}
+
+#KunkkaPanel_distance_text
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	brightness: 0.7;
+	text-shadow: 0px 1px 0px 2 #00000077;
+	font-size: 11px;
+	align: center center;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.KunkkaPanel_currency
+{
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
+.KunkkaPanel_currency:hover
+{
+	brightness: 2;
+}
+
+#KunkkaPanel_button
+{
+	height: 32px;
+	align: center center;
+	flow-children: right;
+	border-radius: 3px;
+	border: 1px solid #93712f;
+	box-shadow: fill #000 0px 0px 14px -2px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1d2328), to(#343d45));
+	padding: 0px 10px;
+}
+
+#KunkkaPanel_icon_image
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin-left: 2px;
+	margin-top: 1px;
+	background-image: url("s2r://panorama/images/ui_elements/kunkka/shop_icon_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+}
+
+#KunkkaPanel_gold_panel
+{
+	height: 32px;
+	min-width: 64px;
+	border-radius: 2px;
+	margin-right: 3px;
+	ignore-parent-flow: true;
+	align: right top;
+	flow-children: left;
+}
+
+.HUDFlipped #KunkkaPanel_gold_panel
+{
+	margin-right: 0px;
+	margin-left: 3px;
+	align: left top;
+	flow-children: right;
+}
+
+.HUDFlipped #KunkkaPanel_gold_text
+{
+	text-align: left;
+}
+
+#KunkkaPanel_gold_icon
+{
+	width: 20px;
+	height: 20px;
+	align: right center;
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-right: 6px;
+	wash-color: #e0d5c3;
+}
+
+#KunkkaPanel_gold_text
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	text-shadow: 0px 1px 0px 2.0 #00000077;
+	font-size: 18px;
+	vertical-align: center;
+	text-align: right;
+	margin-right: 3px;
+	text-overflow: shrink;
+}
+
+#KunkkaPanel_button_text
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	text-shadow: 0px 1px 0px 2.0 #00000077;
+	font-size: 16px;
+	text-align: center;
+	align: center center;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-right: 2px;
+}
+
+#KunkkaPanel_Shop
+{
+	width: 470px;
+	height: 350px;
+	background-color: red;
+	margin-top: 185px;
+	margin-right: 230px;
+	align: right center;
+	background-color: gradient(linear, 0% 0%, 90% 100%, from(#0f1820), to(#203342));
+	border-radius: 5px;
+	border: 2px solid #93712f;
+	flow-children: down;
+}
+
+.HUDFlipped #KunkkaPanel_Shop
+{
+	margin-right: 0px;
+	margin-left: 230px;
+	align: left center;
+}
+
+#KunkkaPanel_shop_back
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/loadout_backgrounds/loadout_bg_water_001_jpg.vtex");
+	brightness: 0.2;
+	background-size: 100% 100%;
+	opacity: 0.2;
+	z-index: -1;
+	blur: gaussian( 10 );
+}
+
+@keyframes 'KunkkaPanel_open_shop'
+{
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	0%
+	{
+		transform: translate3d( 0, -150px, 0px );
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'KunkkaPanel_close_shop'
+{
+	100%
+	{
+		transform: translate3d( 0, -150px, 0px );
+		opacity: 0;
+	}
+	
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+.KunkkaPanel_shop_open
+{
+	animation-name: KunkkaPanel_open_shop;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.KunkkaPanel_shop_close
+{
+	animation-name: KunkkaPanel_close_shop;
+	animation-duration: 0.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.KunkkaPanel_shop_opened
+{
+	box-shadow: fill #000 0px 0px 12px -3px;
+}
+
+.KunkkaPanel_shop_close_button
+{
+	width: 30px;
+	height: 30px;
+	margin-left: 4px;
+	margin-top: 4px;
+	background-image: url("s2r://panorama/images/custom_game/close_pass_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition-property: pre-transform-scale2d, brightness;
+	transition-duration: 0.2s;
+	brightness: 2;
+	z-index: 999;
+	horizontal-align: left;
+	ignore-parent-flow: true;
+	wash-color: #a6864a;
+}
+
+.KunkkaPanel_shop_close_button:hover
+{
+	brightness: 6;
+	pre-transform-scale2d: 1.1;
+}
+
+#KunkkaPanel_shop_header
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	text-shadow: 0px 1px 0px 2.0 #00000077;
+	font-size: 22px;
+	text-align: center;
+	horizontal-align: center;
+	letter-spacing: 2px;
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+
+#KunkkaPanel_shop_content
+{
+	margin-top: 10px;
+	width: 100%;
+	flow-children: down;
+}
+
+.KunkkaPanel_shop_content_row
+{
+	margin-top: 14px;
+	width: 100%;
+	height: 80px;
+	border-top: 1px solid #4c4436;
+	border-bottom: 1px solid #4c4436;
+	border-color: #4c4436;
+	box-shadow: fill #00000033 0px 0px 18px -1px;
+	flow-children: right;
+}
+
+.KunkkaPanel_shop_content_row_can_buy
+{
+	border-color: #a98e5a;
+}
+
+#KunkkaPanel_shop_content_blue
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#00050daa), to(#041735aa));
+}
+
+#KunkkaPanel_shop_content_purple
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0e011aaa), to(#200337aa));
+}
+
+#KunkkaPanel_shop_content_legendary
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0d0600aa), to(#2e1702aa));
+}
+
+.KunkkaPanel_shop_cost_panel
+{
+	width: 24%;
+	height: 100%;
+	border-right: 1px solid #888071;
+	border-brush: gradient( radial, 65% 50%, 0% 0%, 60% 60%, from( white ), to( #fff0 ) );
+}
+
+.KunkkaPanel_shop_cost_back
+{
+	height: 32px;
+	align: center center;
+	flow-children: right;
+	border-radius: 3px;
+	border: 1px solid #93712f;
+	box-shadow: fill #000 0px 0px 10px -2px;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#1d2328), to(#343d45));
+	padding: 0px 10px;
+}
+
+.KunkkaPanel_shop_cost_text
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	text-shadow: 0px 1px 0px 2.0 #00000077;
+	font-size: 18px;
+	vertical-align: center;
+	text-align: right;
+	margin-right: 5px;
+	text-overflow: shrink;
+}
+
+.KunkkaPanel_shop_cost_icon
+{
+	width: 20px;
+	height: 20px;
+	align: right center;
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	wash-color: #e0d5c3;
+}
+
+.KunkkaPanel_shop_items_panel
+{
+	width: 76%;
+	height: 100%;
+}
+
+.KunkkaPanel_shop_items_content
+{
+	flow-children: right;
+	align: center center;
+	height: 100%;
+}
+
+.KunkkaPanel_shop_item
+{
+	height: 100%;
+	margin: 0px 0px;
+	width: 70px;
+}
+
+.KunkkaPanel_shop_item_back
+{
+	width: 50px;
+	align: center center;
+	background-color: black;
+	flow-children: down;
+	border-radius: 3px;
+	border: 1px solid #575144;
+}
+
+.KunkkaPanel_shop_item_icon
+{
+	width: 36px;
+	height: 36px;
+	background-color: gray;
+	horizontal-align: center;
+	margin-top: 7px;
+	border: 1px solid #7b7260;
+}
+
+.KunkkaPanel_shop_item_level
+{
+	width: 40px;
+	height: 12px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111 ), to( #222 ) );
+	margin-top: 4px;
+	margin: 5px;
+	padding: 2px 0px;
+	border: 1px solid #443e32;
+}
+
+.KunkkaPanel_shop_item_level_fill
+{
+	height: 100%;
+	margin-left: 4%;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #755b32 ), to( #b98f4d ) );
+}
+
+.KunkkaPanel_shop_item_level_fill_can_buy
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #9a7845 ), to( #d9b06f ) );
+}
+
+.KunkkaPanel_shop_no_gold
+{
+	wash-color: #777;
+	saturation: 0.4;
+}
+
+.KunkkaPanel_shop_can_buy
+{
+	animation-name: KunkkaPanelCanBuy;
+	animation-iteration-count: infinite;
+	animation-duration: 1.2s;
+	transition-property: opacity, transform, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	border: 1px solid #d5bf96;
+}
+
+.KunkkaPanel_shop_has_item
+{
+	box-shadow: fill #c2994b 0px 0px 7px -3px;
+	border: 1px solid #af8e53;
+}
+
+@keyframes 'KunkkaPanelCanBuy'
+{
+	0%
+	{
+		box-shadow: fill #bb9356 0px 0px 4px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #bb9356 0px 0px 8px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #bb9356 0px 0px 4px -1px;
+	}
+	
+}
+
+.KunkkaPanel_shop_can_buy:hover
+{
+	brightness: 1.4;
+	pre-transform-scale2d: 1.06;
+}
+
+.KunkkaPanel_shop_can_buy:active
+{
+	brightness: 0.7;
+	pre-transform-scale2d: 0.95;
+}

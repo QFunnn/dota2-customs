@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -425,7 +425,7 @@ function test_mode:AddHero(data, full_test)
 			dota1x6:initiate_player(unit, true)
 
 			HTTP.Request("/get_offered_talents", {
-				matchId = tostring(GameRules:Script_GetMatchID()),
+				matchId = HTTP.GetMatchId(),
 				matchKey = HTTP.MATCH_KEY,
 				heroName = { data.value },
 			}, function(data)

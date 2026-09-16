@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -99,7 +99,7 @@ class PanoramaKeybind {
         const newPanel = $.CreatePanel("Panel", parent, "");
         newPanel.BLoadLayoutSnippet("CustomKeyRegister");
         const title = newPanel.FindChild("CustomKeybindTitle");
-        title.text = $.Localize("keybind_" + name);
+        title.text = $.Localize("#keybind_" + name);
         const preview = newPanel.FindChildTraverse("title");
         preview.text = this.localizePreviewLetter();
         this.keyLabel = newPanel.FindChildTraverse("value");
@@ -133,7 +133,7 @@ class PanoramaKeybind {
         }
         this.key = newKey;
         AddNewKeybind(newKey, this.name, this.callback);
-        GameEvents.SendCustomGameEventToServer("custom_keybind_changed", { name: this.name, newKey: newKey });
+        GameEvents.SendCustomGameEventToServer_custom("custom_keybind_changed", { name: this.name, newKey: newKey });
     }
     updateCallback(callback) {
         if (callback === this.callback)
@@ -142,7 +142,7 @@ class PanoramaKeybind {
     }
     localizePreviewLetter() {
         let previewLetter
-        previewLetter = $.Localize("keybind_" + this.name).slice(0, 1);
+        previewLetter = $.Localize("#keybind_" + this.name).slice(0, 1);
         return "";
     }
 }
@@ -585,4 +585,4 @@ function CastAbilitySentry() {
     }
 
     Abilities.ExecuteAbility(ability_id, Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), false);
-}
+}

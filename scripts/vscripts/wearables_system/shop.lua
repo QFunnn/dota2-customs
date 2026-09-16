@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -801,7 +801,7 @@ function shop:send_promo_code(data)
 		return
 	end
 	local send_data = {
-		matchId = tostring(GameRules:Script_GetMatchID()),
+		matchId = HTTP.GetMatchId(),
 		matchKey = HTTP.MATCH_KEY,
 		code = data.text,
 		playerId = tostring(PlayerResource:GetSteamAccountID(id)),
@@ -896,7 +896,7 @@ function shop:accept_gift(js_data)
 	for _, data in pairs(gifts_data) do
 		if data.giftId == giftId then
 			HTTP.Request("/accept_gift", {
-				matchId = tostring(GameRules:Script_GetMatchID()),
+				matchId = HTTP.GetMatchId(),
 				matchKey = HTTP.MATCH_KEY,
 				playerId = tostring(PlayerResource:GetSteamAccountID(id)),
 				giftId = giftId,
