@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var EOM_Button = require('./EOM_Button.js');
 var CosmeticCard = require('./CosmeticCard.js');
 var CosmeticPreview = require('./CosmeticPreview.js');
 var EOM_Panel = require('./EOM_Panel.js');
@@ -18,7 +19,6 @@ var EOM_Icon = require('./EOM_Icon.js');
 var EOM_Image = require('./EOM_Image.js');
 var EOM_Label = require('./EOM_Label.js');
 var EOM_Loading = require('./EOM_Loading.js');
-var EOM_Button = require('./EOM_Button.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
 var EOM_Separator = require('./EOM_Separator.js');
 var GenericPanel = require('./GenericPanel.js');
@@ -620,6 +620,7 @@ if (!isSpectator()) {
     };
   };
   const Cosmetic = () => {
+    const productAvailable = EOM_Button.createProductAvailable();
     const {
       show,
       tag,
@@ -1380,6 +1381,9 @@ if (!isSpectator()) {
                                                 return libs.createComponent(EOM_Button.EOM_Button, {
                                                   color: "Blue",
                                                   text: "#CosmeticGet",
+                                                  get visible() {
+                                                    return previewAccessInfo().access != "store" || productAvailable(previewAccessInfo().storeID?.split(",")[0]);
+                                                  },
                                                   onactivate: () => {
                                                     if (previewAccessInfo().access == "coloring") {
                                                       getAccessWay(previewAccessInfo().access, previewID());

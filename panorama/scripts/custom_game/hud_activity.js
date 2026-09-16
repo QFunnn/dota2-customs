@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -16171,7 +16171,7 @@ if (!isSpectator()) {
     ["21002"]: "Activity_Football",
     ["22001"]: "Activity_NewPlayerCheck"
   };
-  let residentList = ["Activity_arena", "Activity_GiftPack", "Activity_TIActivity"];
+  let residentList = ["Activity_arena", "Activity_GiftPack"];
   const activityOrders = {
     ["Activity_login7day"]: -1,
     ["Activity_NewPlayer"]: 2,

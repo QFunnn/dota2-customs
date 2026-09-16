@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,17 +11,38 @@
 'use strict'; const exports = {}; GameUI.__loadModule('EOM_Button', exports); const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var netdata_utils = require('./netdata_utils.js');
 var GenericPanel = require('./GenericPanel.js');
 var EOM_Icon = require('./EOM_Icon.js');
 var EOM_Panel = require('./EOM_Panel.js');
 
+function createRechargeOpen() {
+  const payment = netdata_utils.createPlayerNetData("open_payment", Players.GetLocalPlayer(), {
+    open: false,
+    recharge: false
+  });
+  return () => payment().recharge === true;
+}
+function isRechargeOpen() {
+  return getNetDataCache("open_payment", Players.GetLocalPlayer())?.recharge === true;
+}
+function isProductAllowed(product) {
+  return isRechargeOpen() || product.real_price == 0 || product.pay_type != undefined && product.pay_type != PayType.MONEY;
+}
+function createProductAvailable() {
+  const catalog = netdata_utils.createNetData("info_shop_product_group_by_tag", {});
+  return id => Object.values(catalog()).some(list => list.some(product => product.id == Number(id)));
+}
+
 const EOM_Button = props => {
+  const productAvailable = "purchaseProductID" in props ? createProductAvailable() : undefined;
+  const purchaseVisible = () => (props.visible ?? true) && (!productAvailable || productAvailable(props.purchaseProductID));
   const merged = libs.mergeProps$1({
     loading: false,
     type: EOM_Panel.ADDON_NAME,
     color: "Green"
   }, props);
-  const [local, others] = libs.splitProps(props, ["loading", "icon", "type", "text", "color", "dialogVariables", "children", "backgroundImage"]);
+  const [local, others] = libs.splitProps(props, ["purchaseProductID", "loading", "icon", "type", "text", "color", "dialogVariables", "children", "backgroundImage"]);
   const _icon = libs.children(() => local.icon);
   const resolved = libs.children(() => local.children);
   return (() => {
@@ -44,7 +65,10 @@ const EOM_Button = props => {
         backgroundImage: local.backgroundImage
       }
     }), {
-      "text": ""
+      "text": "",
+      get visible() {
+        return purchaseVisible();
+      }
     }), true);
     libs.setProp(_el$2, "className", "EOM_Button_Text");
     libs.insert(_el$2, _icon, null);
@@ -62,7 +86,9 @@ const EOM_Button = props => {
   })();
 };
 const EOM_BaseButton = props => {
-  const [local, others] = libs.splitProps(props, ["children"]);
+  const productAvailable = "purchaseProductID" in props ? createProductAvailable() : undefined;
+  const purchaseVisible = () => (props.visible ?? true) && (!productAvailable || productAvailable(props.purchaseProductID));
+  const [local, others] = libs.splitProps(props, ["purchaseProductID", "children"]);
   const resolved = libs.children(() => local.children);
   return (() => {
     const _el$3 = libs.createElement("Button", libs.mergeProps(() => EOM_Panel.EOMProps(others, {
@@ -70,13 +96,19 @@ const EOM_BaseButton = props => {
     })), null);
     libs.spread(_el$3, libs.mergeProps(() => EOM_Panel.EOMProps(others, {
       className: "EOM_Button EOM_BaseButton"
-    })), true);
+    }), {
+      get visible() {
+        return purchaseVisible();
+      }
+    }), true);
     libs.insert(_el$3, resolved);
     return _el$3;
   })();
 };
 const EOM_IconButton = props => {
-  const [local, others] = libs.splitProps(props, ["icon", "children"]);
+  const productAvailable = "purchaseProductID" in props ? createProductAvailable() : undefined;
+  const purchaseVisible = () => (props.visible ?? true) && (!productAvailable || productAvailable(props.purchaseProductID));
+  const [local, others] = libs.splitProps(props, ["purchaseProductID", "icon", "children"]);
   const icons = libs.children(() => local.icon);
   const revolved = libs.children(() => local.children);
   return (() => {
@@ -85,7 +117,11 @@ const EOM_IconButton = props => {
     })), null);
     libs.spread(_el$4, libs.mergeProps(() => EOM_Panel.EOMProps(others, {
       className: "EOM_IconButton"
-    })), true);
+    }), {
+      get visible() {
+        return purchaseVisible();
+      }
+    }), true);
     libs.insert(_el$4, icons, null);
     libs.insert(_el$4, revolved, null);
     return _el$4;
@@ -147,3 +183,7 @@ exports.EOM_Button = EOM_Button;
 exports.EOM_CloseButton = EOM_CloseButton;
 exports.EOM_DiamondButton = EOM_DiamondButton;
 exports.EOM_IconButton = EOM_IconButton;
+exports.createProductAvailable = createProductAvailable;
+exports.createRechargeOpen = createRechargeOpen;
+exports.isProductAllowed = isProductAllowed;
+exports.isRechargeOpen = isRechargeOpen;

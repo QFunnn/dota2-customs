@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -22,6 +22,7 @@ var AbilityDescription = require('./AbilityDescription.js');
 var AbilityImage = require('./AbilityImage.js');
 var GenericPanel = require('./GenericPanel.js');
 var ShardAbility = require('./ShardAbility.js');
+require('./netdata_utils.js');
 require('./Heroes.js');
 
 const BasePopupMain = props => {

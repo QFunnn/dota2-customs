@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -612,11 +612,15 @@ if (!isSpectator()) {
                         const medal_count = () => getMedalCount(hero_data().hid);
                         const collected = () => collectedHeroes().includes(heroName());
                         const proficiency_level = () => local.hero_medal_level?.[hero_data().hid.toString()] ?? 0;
+                        const visible = () => (sectFilter() == '' || (KeyValues.UnitsCommonKv[heroName()].Sect ?? '').includes(sectFilter())) && (!collectionFiltered() || collected());
                         return libs.createComponent(EOM_Button.EOM_BaseButton, {
                           get className() {
                             return libs.classNames('HeroCardButton', {
-                              Show: (sectFilter() == '' || (KeyValues.UnitsCommonKv[heroName()].Sect ?? '').includes(sectFilter())) && (!collectionFiltered() || collected())
+                              Show: visible()
                             });
+                          },
+                          get visible() {
+                            return visible();
                           },
                           get enabled() {
                             return !(heroLockEditing() && local.player_lock_list.includes(hero_data().hid.toString()));
@@ -806,12 +810,16 @@ if (!isSpectator()) {
                       },
                       children: (heroName, index) => {
                         const hero_data = () => local.locked_data[heroName()];
+                        const visible = () => (sectFilter() == '' || (KeyValues.UnitsCommonKv[heroName()].Sect ?? '').includes(sectFilter())) && !collectionFiltered();
                         return libs.createComponent(EOM_Button.EOM_BaseButton, {
                           get className() {
                             return libs.classNames('HeroCardButton', {
                               Locked: !freeHero(),
-                              Show: (sectFilter() == '' || (KeyValues.UnitsCommonKv[heroName()].Sect ?? '').includes(sectFilter())) && !collectionFiltered()
+                              Show: visible()
                             });
+                          },
+                          get visible() {
+                            return visible();
                           },
                           onactivate: () => libs.batch(() => {
                             setShowDetail(true);
@@ -930,6 +938,7 @@ if (!isSpectator()) {
                           Selected: sectFilter() == sectName
                         });
                       },
+                      hittestchildren: false,
                       onactivate: self => {
                         if (sectFilter() == sectName) {
                           setSectFilter('');
@@ -1351,6 +1360,9 @@ if (!isSpectator()) {
                           },
                           get children() {
                             return libs.createComponent(EOM_Button.EOM_Button, {
+                              get purchaseProductID() {
+                                return storeID();
+                              },
                               id: "GetButton",
                               color: 'Blue',
                               text: '#Popup_Button_Buy',

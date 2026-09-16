@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var EOM_Button = require('./EOM_Button.js');
 var EOM_Panel = require('./EOM_Panel.js');
 var CosmeticCard = require('./CosmeticCard.js');
 var EOM_Label = require('./EOM_Label.js');
@@ -20,7 +21,6 @@ var netdata_utils = require('./netdata_utils.js');
 var EOM_Popup = require('./EOM_Popup.js');
 var EOM_Countdown = require('./EOM_Countdown.js');
 var EOM_Image = require('./EOM_Image.js');
-var EOM_Button = require('./EOM_Button.js');
 var ProductImage = require('./ProductImage.js');
 var CosmeticPreview = require('./CosmeticPreview.js');
 var EOM_PortraitFullBody = require('./EOM_PortraitFullBody.js');
@@ -9431,6 +9431,7 @@ const StoreBuyItemContainer = props => {
     return local.itemData.limit_type > 0 ? local.itemData.limit_count : 999;
   };
   const buyItem = () => {
+    if (!EOM_Button.isProductAllowed(local.itemData)) return;
     if (local.custom_buy_callback) {
       local.custom_buy_callback();
       closePopup(PopupID);
@@ -9708,6 +9709,7 @@ const StoreBuyItemContainer = props => {
 };
 
 const Popup_StoreBuyItemResult = props => {
+  const rechargeOpen = EOM_Button.createRechargeOpen();
   const [local, others] = libs.splitProps(props, ["result", "PopupID", "group"]);
   const getTitle = () => {
     switch (local.result) {
@@ -9815,18 +9817,25 @@ const Popup_StoreBuyItemResult = props => {
                 get children() {
                   return [libs.createComponent(GenericPanel.CLabel, {
                     id: "ErrorMsg",
-                    text: "#no_enough_moon"
+                    get text() {
+                      return rechargeOpen() ? "#no_enough_moon" : "#no_enough_moon_no_recharge";
+                    }
                   }), libs.createComponent(EOM_Panel.EOM_Panel, {
                     align: "center bottom",
                     flowChildren: "right",
                     get children() {
                       return [libs.createComponent(EOM_Button.EOM_Button, {
                         color: "Gray",
-                        text: "#no_thanks",
+                        get text() {
+                          return rechargeOpen() ? "#no_thanks" : "#GameUI_Close";
+                        },
                         onactivate: () => {
                           closePopup(local.PopupID);
                         }
                       }), libs.createComponent(EOM_Button.EOM_Button, {
+                        get visible() {
+                          return rechargeOpen();
+                        },
                         color: "Blue",
                         text: "#go_buy",
                         onactivate: () => {
@@ -10558,6 +10567,15 @@ const Popups = () => {
           PopupID,
           popupName
         }, GameUI.CustomUIConfig()._PopupPropsList[PopupID] ?? {});
+        if (!EOM_Button.isRechargeOpen() && ["PaymentOrder", "PaymentOrderCreater", "StoreMoneyPayment"].includes(popupName)) {
+          delete GameUI.CustomUIConfig()._PopupPropsList[PopupID];
+          return;
+        }
+        if (popupName == "StoreBuyItemMult") data.itemData = data.itemData.filter(EOM_Button.isProductAllowed);
+        if (popupName == "StoreBuyItem" && !EOM_Button.isProductAllowed(data.itemData) || popupName == "StoreBuyItemMult" && data.itemData.length == 0) {
+          delete GameUI.CustomUIConfig()._PopupPropsList[PopupID];
+          return;
+        }
         if (data.popupName && PopupComponents[data.popupName]) {
           setPopupData(data.PopupID, data);
         } else {

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -31,6 +31,7 @@ require('./SectAbility.js');
 require('./HeroCard.js');
 require('./EOM_Portrait.js');
 require('./TalentTree.js');
+require('./netdata_utils.js');
 
 const EOM_DebugTool = props => {
   const [fps, setFps] = libs.createSignal("0");

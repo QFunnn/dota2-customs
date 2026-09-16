@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -18,6 +18,7 @@ require('./EOM_Panel.js');
 require('./EOM_Countdown.js');
 require('./GenericPanel.js');
 require('./EOM_Label.js');
+require('./netdata_utils.js');
 require('./EOM_Icon.js');
 require('./ProductImage.js');
 

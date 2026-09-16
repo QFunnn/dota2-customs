@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -28,8 +28,8 @@ var Player = require('./Player.js');
 var RankTierIcon = require('./RankTierIcon.js');
 var game_utils = require('./game_utils.js');
 require('./EOM_Countdown.js');
-require('./red_point_utils.js');
 require('./netdata_utils.js');
+require('./red_point_utils.js');
 
 if (!isSpectator()) {
   const RegionSelectEnable = (() => {

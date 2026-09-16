@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -618,6 +618,9 @@ if (!isSpectator()) {
                           }
                         }), _el$7);
                         libs.insert(_el$6, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                          get purchaseProductID() {
+                            return battle_pass_config.BP_SEASON_CONFIG[season()]?.exp ?? bpExpStoreID;
+                          },
                           id: "ExpAdd",
                           onactivate: () => {
                             clientSideEvent("directly_purchase", {
@@ -668,6 +671,9 @@ if (!isSpectator()) {
                                 marginLeft: "32px",
                                 get children() {
                                   return [libs.createComponent(EOM_Button.EOM_Button, {
+                                    get purchaseProductID() {
+                                      return battle_pass_config.BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID;
+                                    },
                                     align: "center bottom",
                                     id: "BuyLadderPassButton",
                                     color: "Gold",
@@ -739,6 +745,9 @@ if (!isSpectator()) {
                                 flowChildren: "up",
                                 get children() {
                                   return [libs.createComponent(EOM_Button.EOM_Button, {
+                                    get purchaseProductID() {
+                                      return battle_pass_config.BP_SEASON_CONFIG[season()]?.rush ?? bpRushStoreID;
+                                    },
                                     get backgroundImage() {
                                       return getImagePath("eom_design/common/C4/button_red_02.png");
                                     },
@@ -1376,6 +1385,9 @@ if (!isSpectator()) {
             }
           }), null);
           libs.insert(_el$15, libs.createComponent(EOM_Button.EOM_Button, {
+            get purchaseProductID() {
+              return battle_pass_config.BP_SEASON_CONFIG[season()]?.plus ?? bpPlusStoreID;
+            },
             id: "BuyLadderPassButton",
             align: "center bottom",
             marginBottom: "50px",

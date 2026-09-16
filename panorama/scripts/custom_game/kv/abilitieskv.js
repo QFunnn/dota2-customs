@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5809,8 +5809,8 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"crit_chance": 10,
-			"attack_bonus_pct": 75,
+			"crit_chance": 8,
+			"attack_bonus_pct": 70,
 		},
 	},
 	"jugg_talent_4": {
@@ -9752,7 +9752,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"AbilityValues": {
-			"bonus_chaos_dmg": 60,
+			"bonus_chaos_dmg": 90,
 			"convert_pct": 50,
 		},
 	},
@@ -9766,7 +9766,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"AbilityValues": {
-			"interval_reduce": 0.5,
+			"interval_reduce": 0.6,
 		},
 	},
 	"shredder_talent_7": {
@@ -15104,7 +15104,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"Hero": "jugg",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/jugg",
-		"ShardLevel": 1,
+		"ShardLevel": 2,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",

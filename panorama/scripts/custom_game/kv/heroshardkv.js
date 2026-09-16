@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -172,7 +172,7 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"Hero": "jugg",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/jugg",
-		"ShardLevel": 1,
+		"ShardLevel": 2,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",

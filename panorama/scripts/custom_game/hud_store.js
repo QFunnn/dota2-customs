@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,13 +11,13 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var EOM_Button = require('./EOM_Button.js');
 var CosmeticCard = require('./CosmeticCard.js');
 var CosmeticPreview = require('./CosmeticPreview.js');
 var EOM_Panel = require('./EOM_Panel.js');
 var EOM_Countdown = require('./EOM_Countdown.js');
 var EOM_Image = require('./EOM_Image.js');
 var EOM_Label = require('./EOM_Label.js');
-var EOM_Button = require('./EOM_Button.js');
 var EOM_NumberAdjust = require('./EOM_NumberAdjust.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
 var EOM_Separator = require('./EOM_Separator.js');
@@ -29,12 +29,12 @@ var red_point_utils = require('./red_point_utils.js');
 var netdata_utils = require('./netdata_utils.js');
 var game_utils = require('./game_utils.js');
 var StoreItem = require('./StoreItem.js');
+require('./EOM_Icon.js');
 require('./CourierTitle.js');
 require('./EOM_PortraitFullBody.js');
 require('./WinStreak.js');
 require('./Heroes.js');
 require('./profile_info.js');
-require('./EOM_Icon.js');
 require('./MenuMarkIcon.js');
 require('./StoreItemImage.js');
 
@@ -62,6 +62,7 @@ const dataMap = {
   }
 };
 function FirstRecharge() {
+  const rechargeOpen = EOM_Button.createRechargeOpen();
   const [show, setShow] = libs.createSignal(false);
   const [rewardInfoList, setRewardInfoList] = libs.createSignal([]);
   const [loginActivityData, setLoginActivityData] = libs.createSignal();
@@ -189,6 +190,9 @@ function FirstRecharge() {
             },
             get children() {
               return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                get visible() {
+                  return rechargeOpen();
+                },
                 id: "UnlockButton",
                 onactivate: () => {
                   clientSideEvent("toggle_store_tag", {
@@ -421,6 +425,7 @@ if (!isSpectator()) {
     let netTableIDList = [];
     gameEventIDList.push(useToggleWindow("MenuButton_store", show, setShow));
     gameEventIDList.push(useClientSideEvent("toggle_store_tag", event => {
+      if (!EOM_Button.isRechargeOpen() && (event.menu == "Resource" || event.menu == "MenuButton_recharge" || menuKeys()[event.tabIndex ?? -1] == "Resource")) return;
       if (event.tabIndex) {
         setTabIndex(event.tabIndex);
         ToggleWindows("MenuButton_store", true);
@@ -466,6 +471,7 @@ if (!isSpectator()) {
           for (const tag in cache) {
             const itemList = cache[tag];
             for (const itemData of itemList) {
+              if (!EOM_Button.isProductAllowed(itemData)) continue;
               let index = list.indexOf(itemData.id);
               if (index != -1) {
                 if (itemData.real_price == 0) {
@@ -604,6 +610,7 @@ if (!isSpectator()) {
         for (let i = 0; i < list.length; i++) {
           let id = list[i];
           const stepData = stepProductDataList[id];
+          if (!stepData) continue;
           let item_data = stepData.data;
           let purchased_num = _purchased_product?.[id] ?? 0;
           all_purchased_num += purchased_num;
@@ -642,6 +649,7 @@ if (!isSpectator()) {
     return result;
   };
   const useStoreData = () => {
+    const rechargeOpen = EOM_Button.createRechargeOpen();
     const [paymentOpen, setPaymentOpen] = libs.createSignal(false);
     const [player_hero, setPlayerHero] = libs.createSignal({});
     const [player_token, setPlayerToken] = libs.createSignal({});
@@ -660,7 +668,7 @@ if (!isSpectator()) {
     const [previewID, setPreviewID] = libs.createSignal(5100008);
     const defaultPage = () => {
       const page = [];
-      if (!newPlayerFinish()) {
+      if (rechargeOpen() && !newPlayerFinish()) {
         page.push("MenuButton_recharge");
       }
       return page;
@@ -674,7 +682,7 @@ if (!isSpectator()) {
         setStoreItemData(handleProduceData(cache, isToolMode()));
       }
     }));
-    libs.createEffect(libs.on(storeItemData, store_item_data => {
+    libs.createEffect(libs.on([storeItemData, rechargeOpen], ([store_item_data]) => {
       const storeItemKeys = Object.keys(store_item_data);
       if (storeItemKeys.length > 0 && directlyPurchaseEvents.length > 0) {
         directlyPurchaseEvents.forEach(data => {
@@ -685,6 +693,7 @@ if (!isSpectator()) {
       const list = {};
       const isInBlackList = isBlackList(getPlayerData(Players.GetLocalPlayer(), "steamID"));
       const sortedTags = storeItemKeys.filter(tag => {
+        if (!rechargeOpen() && tag == "Resource") return false;
         if (isInBlackList) {
           return tag != "Resource";
         }
@@ -733,6 +742,7 @@ if (!isSpectator()) {
         setPlayerHero(data);
       }, Players.GetLocalPlayer()));
       gameEventIDList.push(useClientSideEvent("toggle_store_tag", event => {
+        if (!EOM_Button.isRechargeOpen() && (event.menu == "Resource" || event.menu == "MenuButton_recharge" || menuKeys()[event.tabIndex ?? -1] == "Resource")) return;
         if (event.tabIndex) {
           setTabIndex(event.tabIndex);
           ToggleWindows("MenuButton_store", true);
@@ -742,6 +752,7 @@ if (!isSpectator()) {
         }
       }));
       gameEventIDList.push(useClientSideEvent("store_preview", event => {
+        if (!EOM_Button.isProductAllowed(event.itemData)) return;
         setPackItemData(event.itemData);
         if (event.itemData.items) {
           for (const iterator of event.itemData.items) {

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -16,6 +16,7 @@ var EOM_Label = require('./EOM_Label.js');
 var EOM_Button = require('./EOM_Button.js');
 var Heroes = require('./Heroes.js');
 var SectIcon = require('./SectIcon.js');
+require('./netdata_utils.js');
 require('./GenericPanel.js');
 require('./EOM_Icon.js');
 require('./EOM_Image.js');

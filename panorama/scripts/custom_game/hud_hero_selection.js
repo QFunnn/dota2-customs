@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,7 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var EOM_Button = require('./EOM_Button.js');
 var CityDescription = require('./CityDescription.js');
 var CityImage = require('./CityImage.js');
 var EOM_Panel = require('./EOM_Panel.js');
@@ -19,7 +20,6 @@ var EOM_Image = require('./EOM_Image.js');
 var EOM_Label = require('./EOM_Label.js');
 var EOM_Loading = require('./EOM_Loading.js');
 var EOM_Portrait = require('./EOM_Portrait.js');
-var EOM_Button = require('./EOM_Button.js');
 var GenericPanel = require('./GenericPanel.js');
 var HeroCard = require('./HeroCard.js');
 var Heroes = require('./Heroes.js');
@@ -1497,6 +1497,7 @@ const HeroSelection = () => {
   })();
 };
 const HeroSelectAndBan = props => {
+  const productAvailable = EOM_Button.createProductAvailable();
   const localPlayerID = Players.GetLocalPlayer();
   const [game_state, setGameState] = libs.createSignal(getGameState());
   const [customMatchType, setCustomMatchType] = libs.createSignal(CustomNetTables.GetTableValue("common", "custom_match_type")?.type ?? 0);
@@ -1984,6 +1985,9 @@ const HeroSelectAndBan = props => {
                             hittest: false,
                             get children() {
                               return [libs.createComponent(EOM_Image.EOM_Image, {
+                                get visible() {
+                                  return productAvailable(9900286);
+                                },
                                 get className() {
                                   return libs.classNames("SeasonHeightIcon");
                                 },

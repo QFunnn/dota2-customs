@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -993,7 +993,7 @@ GameUI.CustomUIConfig().UnitsCommonKv = {
 		"Sect": "sect_crit|sect_attack",
 		"Icon": "file://{images}/heroes/icons/npc_dota_hero_juggernaut.png",
 		"AttributeType": "DAMAGE",
-		"StatusHealth": 1050,
+		"StatusHealth": 1000,
 		"StatusHealthRegen": 0,
 		"StatusMana": 100,
 		"ManaRegen": 10,
@@ -3210,11 +3210,11 @@ GameUI.CustomUIConfig().UnitsCommonKv = {
 		"StatusHealthRegen": 0,
 		"StatusMana": 100,
 		"ManaRegen": 12,
-		"AttackDamage": 25,
+		"AttackDamage": 23,
 		"AttackRate": 0.9,
 		"PhysicalCritChance": 15,
 		"PhysicalCritDamage": 150,
-		"Evasion": 11,
+		"Evasion": 14,
 		"AttackAnimationPoint": 0.35,
 		"AttackRange": 900,
 		"AttackAcquisitionRange": 900,
@@ -3981,15 +3981,15 @@ GameUI.CustomUIConfig().UnitsCommonKv = {
 		"Access": "store",
 		"Sect": "sect_chaos|sect_regen",
 		"Icon": "file://{images}/heroes/icons/npc_dota_hero_shredder.png",
-		"StatusHealth": 1100,
+		"StatusHealth": 1200,
 		"StatusHealthRegen": 0,
 		"StatusMana": 100,
-		"ManaRegen": 10,
-		"AttackDamage": 25,
+		"ManaRegen": 11,
+		"AttackDamage": 22,
 		"AttackRate": 1.03,
-		"PhysicalCritChance": 15,
+		"PhysicalCritChance": 12,
 		"PhysicalCritDamage": 150,
-		"Evasion": 15,
+		"Evasion": 18,
 		"AttackAnimationPoint": 0.36,
 		"AttackRange": 900,
 		"AttackAcquisitionRange": 900,

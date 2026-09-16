@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,9 +11,9 @@
 'use strict'; const exports = {}; GameUI.__loadModule('Player', exports); const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var EOM_Button = require('./EOM_Button.js');
 var EOM_Panel = require('./EOM_Panel.js');
 var GenericPanel = require('./GenericPanel.js');
-var EOM_Button = require('./EOM_Button.js');
 var EOM_Image = require('./EOM_Image.js');
 var EOM_Label = require('./EOM_Label.js');
 
@@ -72,6 +72,7 @@ const EOM_Avatar = props => {
 };
 
 const EOM_Currency = props => {
+  const rechargeOpen = EOM_Button.createRechargeOpen();
   const merged = libs.mergeProps$1({
     hasFeedback: false,
     type: EOM_Panel.ADDON_NAME
@@ -86,7 +87,7 @@ const EOM_Currency = props => {
     })), true);
     libs.insert(_el$, libs.createComponent(libs.Show, {
       get when() {
-        return local.hasFeedback;
+        return libs.memo(() => !!local.hasFeedback)() && rechargeOpen();
       },
       get children() {
         const _el$2 = libs.createElement("TextButton", {
@@ -552,6 +553,7 @@ const PlayerAvatar = props => {
   })();
 };
 const PlayerCurrency = props => {
+  const rechargeOpen = EOM_Button.createRechargeOpen();
   const [value, setValue] = libs.createSignal(0);
   const [tokenAccess, setTokenAccess] = libs.createSignal();
   const icon = libs.createMemo(() => {
@@ -574,7 +576,7 @@ const PlayerCurrency = props => {
   };
   const hasAddbutton = () => {
     if (props.type == "moonstone") {
-      return true;
+      return rechargeOpen();
     } else if (tokenAccess() != undefined) {
       return true;
     }
@@ -745,6 +747,7 @@ const ExchangeEntry = () => {
   });
 };
 const CurrencyGroup = props => {
+  const rechargeOpen = EOM_Button.createRechargeOpen();
   const [local, other] = libs.splitProps(props, ["children"]);
   return libs.createComponent(EOM_Panel.EOM_Panel, libs.mergeProps(() => EOM_Panel.EOMProps(other, {
     className: "CurrencyGroup"
@@ -757,12 +760,13 @@ const CurrencyGroup = props => {
     get children() {
       return [libs.createComponent(libs.Show, {
         get when() {
-          return props.recentOrder;
+          return libs.memo(() => !!props.recentOrder)() && rechargeOpen();
         },
         get children() {
           return libs.createComponent(EOM_Button.EOM_BaseButton, {
             id: "RecentOrder",
             onactivate: self => {
+              if (!rechargeOpen()) return;
               callAction("recent_order_query", {});
               self.enabled = false;
             },

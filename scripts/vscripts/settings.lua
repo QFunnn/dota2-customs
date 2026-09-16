@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -239,7 +239,7 @@ function k.prototype.init(self, l)
 			if IsCompetitionMode(nil) or IsGroupMode(nil) then
 				GameRules:SetCustomGameSetupAutoLaunchDelay(30)
 			else
-				GameRules:SetCustomGameSetupAutoLaunchDelay(0)
+				GameRules:SetCustomGameSetupAutoLaunchDelay(3)
 			end
 		end
 		GameRules:SetUseUniversalShopMode(true)
