@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -798,10 +798,7 @@ function OnMouseOut() {
 
 var my_team6 = Players.GetTeam(Players.GetLocalPlayer())-6;
 change_camera_2_player_ground(my_team6);
-$.Msg('>>>>>>>>>>>>>>>>>>>>>>'+my_team6);
-
 function change_camera_2_player_ground(player_id) {
-    $.Msg('========'+Players.GetLocalPlayer());
     CURR_CAMERA_PLAYER_ID = player_id;
     GameUI.SetCameraTargetPosition(CENTER_ENTITY_INDEX[CURR_CAMERA_PLAYER_ID + 6], 0.2);
 
@@ -8148,11 +8145,12 @@ function FillStoreV5(data) {
             $('#store_panel_v5_title').SetHasClass('spring_festival', true);
             $('#text_panel_shop_title').text = $.Localize('#text_panel_shop_title_spring_festival');
         }
+        $.Msg('-----');
+        $.Msg(SHOP_INFO_V5.debug_link);
+        $.Msg(SHOP_INFO_V5.spring_festival);
         if (SHOP_INFO_V5.debug_link && ($.Language() == 'schinese' || $.Language() == 'tchinese')) {
             DEBUG_LINK = SHOP_INFO_V5.debug_link;
-            if (SHOP_INFO_V5.spring_festival) {
-                $('#store_link').SetHasClass('invisible', false);
-            }
+            $('#store_link').SetHasClass('invisible', false);
         }
     }
     else {

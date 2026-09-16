@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -1214,3 +1214,23 @@ function SetMouseTips(panel,tip_title,tip_text){
 		}
 	);
 }
+
+
+function OnConnectServer(){
+	var ip = $('#textentry_ip_connect_test').text;
+	GameEvents.SendCustomGameEventToServer("connect_server", {
+		"ip": ip,
+	});
+}
+
+
+// 主机玩家显示服务器测试按钮
+// if (Game.GetPlayerInfo(Players.GetLocalPlayer()).player_has_host_privileges){
+// 	// GameEvents.SendCustomGameEventToServer("collect_host",
+// 	// {
+// 	// 	"hehe": Date.now(),
+// 	// 	"host_player_id": playerId,
+// 	// });
+
+// 	$('#panel_connect_autochess_server').SetHasClass('invisible',false);
+// }

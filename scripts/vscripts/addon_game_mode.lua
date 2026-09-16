@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -305,6 +305,14 @@ end
 --1、初始化变量和监听
 function DAC:InitGameMode()
 
+	--判断是不是官方服务器/自建服务器/玩家主机
+	-- local config = LoadKeyValues("dac_config.txt")
+	-- if config.IsAutochessServer == 1 then
+	-- 	AutochessServerWait()
+	-- end
+	-- IsDedicatedServer()
+	-- IsInToolsMode()
+
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 0)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 0)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_CUSTOM_1, 1)
@@ -415,8 +423,16 @@ function DAC:InitGameMode()
 	CustomGameEventManager:RegisterListener("lineup", Dynamic_Wrap(DAC, "OnLineup"))
 	CustomGameEventManager:RegisterListener("request_damage_stat", Dynamic_Wrap(DAC, "OnRequestDamageStat"))
 	CustomGameEventManager:RegisterListener("item_double_coin", Dynamic_Wrap(DAC, "ItemDoubleCoin"))
-	CustomGameEventManager:RegisterListener("collect_host", Dynamic_Wrap(DAC, "OnCollectHost"))
+	-- CustomGameEventManager:RegisterListener("collect_host", Dynamic_Wrap(DAC, "OnCollectHost"))
+	-- CustomGameEventManager:RegisterListener("connect_server", Dynamic_Wrap(DAC, "OnConnectServer"))
 
+	CustomGameEventManager:RegisterListener("connect_server",
+		function(eventSourceIndex, keys) 
+			DAC:OnConnectServerRequest(eventSourceIndex, keys)
+		end
+	)
+
+	_G.game_id = ''
 	_G.precache_list = {}
 	_G.precache_busy = false
 	_G.error_trace = {}
@@ -2691,6 +2707,7 @@ function DAC:OnPlayerPickHero(keys)
 		combat("PLAYER JOINED: " .. playercount .. "/" .. _G.playing_player_count)
 
 		if playercount == all_playing_player_count then
+
 			--所有玩家都连进来了，准备开始游戏
 			InitPlayerIDTable()
 			InitChessboards()
@@ -2720,20 +2737,29 @@ end
 --3、初始化个人信使和获取服务器个人信息
 function InitHeros()
 	--判断玩家几是主机
-	local host_player_id_vote = 0
-	for i,v in pairs(_G.host_collect_list) do
-		if v > host_player_id_vote then
-			_G.host_player_id = i
-			host_player_id_vote = v
+	-- local host_player_id_vote = 0
+	-- for i,v in pairs(_G.host_collect_list) do
+	-- 	if v > host_player_id_vote then
+	-- 		_G.host_player_id = i
+	-- 		host_player_id_vote = v
+	-- 	end
+	-- end
+
+	for player_id,steam_id in pairs(_G.playerid2steamid) do
+		if GameRules:PlayerHasCustomGameHostPrivileges(PlayerResource:GetPlayer(player_id)) then
+			_G.host_player_id = player_id
+			_G.host_steam_id = steam_id
+			print('host_player_id='..host_player_id)
+			print('host_steam_id='..host_steam_id)
 		end
 	end
 
 	--拼接要向服务器发送的steamid数据
 	for pid, sid in pairs(_G.playerid2steamid) do
 		if PlayerResource:GetTeam(pid) >= 6 and PlayerResource:GetTeam(pid) <= 13 then
-			if pid == _G.host_player_id then
-				_G.host_steam_id = sid
-			end
+			-- if pid == _G.host_player_id then
+			-- 	_G.host_steam_id = sid
+			-- end
 			table.insert(_G.send_status, sid)
 			_G.upload_detail_stat[sid] = {}
 			if _G.playerid2hero[pid] ~= nil then
@@ -2827,6 +2853,11 @@ function InitHeros()
 
 			local gameinfo_have_author = false
 			local gameinfo_have_tester = false
+
+			if t.game_id ~= nil then
+				print('game_id='..t.game_id)
+				_G.game_id = t.game_id
+			end
 
 			--游戏版本（dist/test/local/unknown）
 			if t.game_version ~= nil then
@@ -4081,6 +4112,9 @@ function StartAPrepareRound()
 				--EmitGlobalSound("Frostivus.PointScored.Enemy")
 				EmitGlobalSound("dac.season.liuju")
 				_G.is_game_ended = true
+
+				LiujuRequest()
+
 				prt('GAME OVER')
 				PostGame()
 				Timers:CreateTimer(3, function()
@@ -42263,12 +42297,68 @@ function SilenceDamage(keys)
 	end
 end
 
-function DAC:OnCollectHost(keys)
-	local host_player_id = keys.host_player_id
+-- function DAC:OnCollectHost(keys)
+-- 	local host_player_id = keys.host_player_id
 
-	if _G.host_collect_list[host_player_id] == nil then
-		_G.host_collect_list[host_player_id] = 1
-	else
-		_G.host_collect_list[host_player_id] = _G.host_collect_list[host_player_id] + 1
+-- 	if _G.host_collect_list[host_player_id] == nil then
+-- 		_G.host_collect_list[host_player_id] = 1
+-- 	else
+-- 		_G.host_collect_list[host_player_id] = _G.host_collect_list[host_player_id] + 1
+-- 	end
+-- end
+
+function DAC:OnConnectServerRequest(eventSourceIndex, keys)
+	print("[SERVER] connect request")
+	print("[SERVER] ip =", tostring(keys.ip))
+	print("[SERVER] source =", tostring(eventSourceIndex))
+	
+	AutochessClientWait(tostring(keys.ip))
+end
+
+function AutochessServerWait()
+	print('[AUTOCHESS SERVER] AutochessServer Init')
+	Timers:CreateTimer(3,function()
+		print('[AUTOCHESS SERVER] waiting for players '..PlayerResource:GetPlayerCount()..'/8')
+		if PlayerResource:GetPlayerCount() == 1 then
+			pcall(function()
+				GameRules:ResetToCustomGameSetup()
+			end)
+			return
+		end
+		return 3
+	end)
+end
+function AutochessClientWait(ip)
+	print('[AUTOCHESS CLIENT] AutochessClient Init')
+	Timers:CreateTimer(0,function()
+		local curr_player_count = 0
+		for player_id,steam_id in pairs(_G.playerid2steamid) do
+			if PlayerResource:GetConnectionState(player_id) == 2 then
+				curr_player_count = curr_player_count + 1
+				if player_id ~= _G.host_player_id then
+					FireGameEvent("client_connect_server",{
+						ip = tostring(ip),
+						player_id = player_id
+					})
+				end
+			end
+		end
+		print('[AUTOCHESS CLIENT] waiting for players left: '..curr_player_count)
+		if curr_player_count == 1 then
+			print('[AUTOCHESS CLIENT] host leave!')
+			FireGameEvent("client_connect_server",{
+				ip = tostring(ip),
+				player_id = _G.host_player_id
+			})
+		end
+		return 3
+	end)
+end
+	
+function LiujuRequest()
+	if _G.game_id ~= nil then
+		local url = "http://autochess.ppbizon.com/game/giveup/@".._G.game_id
+		SendHTTP(url, function(t)
+		end)
 	end
 end
