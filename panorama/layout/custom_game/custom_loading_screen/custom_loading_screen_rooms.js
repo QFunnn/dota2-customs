@@ -16,6 +16,7 @@ function RoomStart() {
 	var RU = {
 		title: "Ваша группа",
 		gathering: "Ждём игроков: {p} из {e}",
+		queued: "Все комнаты заняты. Вы {n}-й в очереди",
 		difficulty: "Выберите сложность",
 		starting: "Запускаем…",
 		start: "НАЧАТЬ ИГРУ",
@@ -24,6 +25,7 @@ function RoomStart() {
 	var EN = {
 		title: "Your party",
 		gathering: "Waiting for players: {p} of {e}",
+		queued: "All rooms are busy. You are #{n} in line",
 		difficulty: "Choose difficulty",
 		starting: "Starting…",
 		start: "START GAME",
@@ -45,7 +47,10 @@ function RoomStart() {
 		$("#RoomPanelTitle").text = T.title;
 
 		var status = T[v.state] || "";
-		$("#RoomPanelStatus").text = status.replace("{p}", String(v.present || 0)).replace("{e}", String(v.expected || 0));
+		$("#RoomPanelStatus").text = status
+			.replace("{p}", String(v.present || 0))
+			.replace("{e}", String(v.expected || 0))
+			.replace("{n}", String(v.position || 1));
 
 		var list = $("#RoomPanelPlayers");
 		list.RemoveAndDeleteChildren();

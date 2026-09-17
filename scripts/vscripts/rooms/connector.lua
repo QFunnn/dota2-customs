@@ -12,55 +12,58 @@ if Connector == nil then
 	_G.Connector = class({})
 end
 
-Connector.SETTLE_SEC = 4
-Connector.FALLBACK_SEC = 999999
+Connector.QUIET_SEC = 4 -- тишина в лобби перед запросом комнаты (ждём, пока зайдут все)
+Connector.FALLBACK_SEC = 90 -- хост-панель молчит так долго -> играем локально
 Connector.HOST_DELAY = 1.5
-Connector.CHOICE_SEC = 30 -- сколько ждём выбора хоста, потом уходим на сервер
 
+-- Спросить бэкенд с машины хоста Lua больше не может (Valve режет HTTP на
+-- listen-сервере). За адресом комнаты ходит Panorama хоста через HTML-мост
+-- (team_select_rooms.js) и присылает результат сюда событием.
+--
+-- Пати: друг заходит в лобби позже хоста. Чтобы комната не забронировалась и
+-- не стартовала без него, мост дёргаем НЕ сразу, а после QUIET_SEC тишины
+-- (никто не заходил) — к этому моменту в лобби уже вся группа, и бронь сразу
+-- на всех. Опоздавших после этого домердживаем и досылаем отдельно.
 function Connector:Init()
 	self.address = nil
 	self.fallback_done = false
+	self.published = false
 	self.started_at = Time()
+	self.last_join = Time()
 	self.sent = {}
 	self.host_pid = nil
-	self.settle = nil
+	self.cur_state = "connecting"
+	self.group_sids = ""
+	self.group_host = ""
 
 	GameRules:SetCustomGameSetupAutoLaunchDelay(-1)
 	GameRules:SetCustomGameSetupTimeout(-1)
 	GameRules:SetCustomGameSetupRemainingTime(9999)
-	self.chosen = nil
 
-	-- Хост выбирает, где играть: на своей машине или на нашем сервере.
-	-- Не выбрал за CHOICE_SEC — уходим на сервер.
-	self.choice_left = self.CHOICE_SEC
-	self:SetStatus("choice", { left = self.choice_left })
-	CustomGameEventManager:RegisterListener("bsa_mode_choice", function(_, t)
+	self:SetStatus("connecting")
+
+	CustomGameEventManager:RegisterListener("bsa_room_addr", function(_, t)
 		local pid = tonumber(t and t.PlayerID)
 		if pid ~= self.host_pid then
 			return
 		end
-		if tostring(t.mode) == "local" then
-			self:ChooseLocal()
-		else
-			self:ChooseServer()
+		local addr = tostring(t.address or "")
+		if addr == "" or self.address then
+			return
 		end
+		self.address = addr
+		self:SetStatus("ready")
+		print("[Connector] хост прислал комнату, рассылаю группу")
+		self:SendAll()
 	end)
-	Timers:CreateTimer({
-		endTime = 1,
-		useGameTime = false,
-		callback = function()
-			if self.chosen then
-				return nil
-			end
-			self.choice_left = self.choice_left - 1
-			if self.choice_left <= 0 then
-				self:ChooseServer()
-				return nil
-			end
-			self:SetStatus("choice", { left = self.choice_left })
-			return 1
-		end,
-	})
+
+	CustomGameEventManager:RegisterListener("bsa_room_queue", function(_, t)
+		local pid = tonumber(t and t.PlayerID)
+		if pid ~= self.host_pid or self.address then
+			return
+		end
+		self:SetStatus("queued", { position = tonumber(t.position) or 0 })
+	end)
 
 	for pid = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
 		if self:IsHuman(pid) and self.host_pid == nil then
@@ -78,38 +81,46 @@ function Connector:Init()
 		if self.host_pid == nil then
 			self.host_pid = e.PlayerID
 		end
-		if self.chosen ~= "server" then
-			return
-		end
-		if self.address then
-			self:SendConnect(e.PlayerID)
-		else
-			self:Schedule()
+		self.last_join = Time()
+		if self.published then
+			-- Группу уже запросили: опоздавший обновляет состав (мост дозабронирует)
+			-- и, если комната уже есть, едет сразу.
+			self:RefreshGroup()
+			if self.address then
+				self:SendConnect(e.PlayerID)
+			end
 		end
 	end, nil)
-end
 
--- Играем на нашем сервере. Спросить бэкенд отсюда нельзя, поэтому берём
--- адрес из зашитого списка и отправляем туда всю группу одним адресом:
--- решение принимает хост, значит все попадут в одну комнату.
-function Connector:ChooseServer()
-	if self.chosen then
-		return
-	end
-	self.chosen = "server"
-	print("[Connector] выбран сервер BSA")
-	self:SetStatus("waiting")
-	self:Schedule()
-end
+	-- Ждём тишины, потом один раз публикуем полный состав хосту.
+	Timers:CreateTimer({
+		endTime = 1,
+		useGameTime = false,
+		callback = function()
+			if self.fallback_done then
+				return nil
+			end
+			if self.published then
+				return nil
+			end
+			if #self:Sids() > 0 and Time() - self.last_join >= self.QUIET_SEC then
+				self.published = true
+				self:RefreshGroup()
+				return nil
+			end
+			return 1
+		end,
+	})
 
--- Играем здесь же, на машине хоста, как до появления своих серверов.
-function Connector:ChooseLocal()
-	if self.chosen then
-		return
-	end
-	self.chosen = "local"
-	print("[Connector] выбрана игра на машине хоста")
-	self:Fallback("выбор хоста")
+	Timers:CreateTimer({
+		endTime = self.FALLBACK_SEC,
+		useGameTime = false,
+		callback = function()
+			if not self.address and not self.fallback_done then
+				self:Fallback("хост-панель не ответила")
+			end
+		end,
+	})
 end
 
 function Connector:IsHuman(pid)
@@ -119,7 +130,12 @@ function Connector:IsHuman(pid)
 end
 
 function Connector:SetStatus(state, extra)
+	self.cur_state = state
 	local t = { state = state, updated = Time() }
+	if self.group_sids ~= "" then
+		t.sids = self.group_sids
+		t.host = self.group_host
+	end
 	for k, v in pairs(extra or {}) do
 		t[k] = v
 	end
@@ -140,40 +156,28 @@ function Connector:Sids()
 	return sids, pids
 end
 
-function Connector:Schedule()
-	if self.address or self.fallback_done then
+-- Публикуем актуальный состав хосту -> его Panorama (пере)запрашивает комнату
+-- мостом. Бэкенд домердживает новых в ту же бронь по общему host_sid.
+function Connector:RefreshGroup()
+	if self.fallback_done then
 		return
 	end
-	if self.settle then
-		Timers:RemoveTimer(self.settle)
-	end
-	self.settle = Timers:CreateTimer({
-		endTime = self.SETTLE_SEC,
-		useGameTime = false,
-		callback = function()
-			self.settle = nil
-			self:Dispatch()
-		end,
-	})
-end
-
-function Connector:Dispatch()
-	if self.address or self.fallback_done then
+	local sids = self:Sids()
+	if #sids == 0 then
 		return
 	end
-	local sids, pids = self:Sids()
-	if #pids == 0 then
-		print("[Connector] пока некого отправлять")
+	local host_sid = sids[1]
+	if self.host_pid ~= nil and self:IsHuman(self.host_pid) then
+		host_sid = tostring(PlayerResource:GetSteamID(self.host_pid))
+	end
+	local csv = table.concat(sids, ",")
+	if csv == self.group_sids then
 		return
 	end
-	local addr = RoomList:Pick()
-	if not addr then
-		return self:Fallback("список комнат пуст")
-	end
-	self.address = addr
-	self:SetStatus("ready")
-	print("[Connector] отправляю " .. #pids .. " игроков в комнату")
-	self:SendAll()
+	self.group_sids = csv
+	self.group_host = host_sid
+	print("[Connector] публикую состав: " .. #sids .. " игроков")
+	self:SetStatus(self.cur_state)
 end
 
 function Connector:SendAll()

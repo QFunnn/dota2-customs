@@ -35,7 +35,6 @@ end
 
 require("libraries/timers")
 
-require("rooms/room_list")
 require("rooms/server_mode")
 require("rooms/connector")
 require("rooms/room_server")
