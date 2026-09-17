@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,9 +12,8 @@
 local ____exports = {}
 require("utils.multi_extends")
 require("utils.aeslua")
+require("utils.decrypt")
 require("utils.json")
 require("utils.md5")
 _G.SHA = require("utils.sha")
-require("utils.release_crypto")
-require("utils.decrypt")
 return ____exports
