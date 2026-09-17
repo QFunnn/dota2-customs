@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6568,6 +6568,225 @@ class StoreItemImage extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODU
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -7192,19 +7411,21 @@ var __webpack_exports__ = {};
   !*** ./hud_store/script.tsx ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_TextEntry_EOM_TextEntry__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_TextEntry/EOM_TextEntry */ "./EOMDesign/Inputs/EOM_TextEntry/EOM_TextEntry.tsx");
-/* harmony import */ var _EOMDesign_Navigation_EOM_Breadcrumb_EOM_Breadcrumb__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../EOMDesign/Navigation/EOM_Breadcrumb/EOM_Breadcrumb */ "./EOMDesign/Navigation/EOM_Breadcrumb/EOM_Breadcrumb.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var _StoreItem_StoreItem__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./StoreItem/StoreItem */ "./hud_store/StoreItem/StoreItem.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_TextEntry_EOM_TextEntry__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_TextEntry/EOM_TextEntry */ "./EOMDesign/Inputs/EOM_TextEntry/EOM_TextEntry.tsx");
+/* harmony import */ var _EOMDesign_Navigation_EOM_Breadcrumb_EOM_Breadcrumb__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../EOMDesign/Navigation/EOM_Breadcrumb/EOM_Breadcrumb */ "./EOMDesign/Navigation/EOM_Breadcrumb/EOM_Breadcrumb.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _StoreItem_StoreItem__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./StoreItem/StoreItem */ "./hud_store/StoreItem/StoreItem.tsx");
+
 
 
 
@@ -7218,17 +7439,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let pSelf = $.GetContextPanel();
-class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
+class Store extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
     constructor() {
         var _a, _b, _c, _d, _e, _f, _g;
         super(...arguments);
         this.state = {
             tabIndex: 1,
             show: false,
-            storeItemData: this.getStoreItemData((_a = CustomNetTables.GetTableValue("service", "product_list")) !== null && _a !== void 0 ? _a : {}),
+            storeItemData: this.getStoreItemData((_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "product_list")) !== null && _a !== void 0 ? _a : {}),
             player_wallet: {
-                moonstone: (_d = (_c = (_b = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()]) === null || _c === void 0 ? void 0 : _c.moonstone) !== null && _d !== void 0 ? _d : 0,
-                starlight: (_g = (_f = (_e = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) === null || _f === void 0 ? void 0 : _f.starlight) !== null && _g !== void 0 ? _g : 0,
+                moonstone: (_d = (_c = (_b = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()]) === null || _c === void 0 ? void 0 : _c.moonstone) !== null && _d !== void 0 ? _d : 0,
+                starlight: (_g = (_f = (_e = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) === null || _f === void 0 ? void 0 : _f.starlight) !== null && _g !== void 0 ? _g : 0,
             }
         };
         this.gameEventIDList = [];
@@ -7253,12 +7474,12 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
         return list;
     }
     componentDidMount() {
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.SubscribeClientSideEvent)("toggle_store_tag", (event) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.SubscribeClientSideEvent)("toggle_store_tag", (event) => {
             if (event.tabIndex) {
                 this.setState({ tabIndex: event.tabIndex });
             }
         }));
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.SubscribeToogleWindow)("MenuButton_Hud_Store", (show) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.SubscribeToogleWindow)("MenuButton_Hud_Store", (show) => {
             if (show == "toggle") {
                 this.setState({ show: !this.state.show });
             }
@@ -7266,7 +7487,7 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                 this.setState({ show: show });
             }
         }));
-        this.netTableIDList.push(CustomNetTables.SubscribeNetTableListener("service", (tableName, key, value) => {
+        this.netTableIDList.push(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.Subscribe("service", (tableName, key, value) => {
             var _a, _b, _c, _d;
             if (key == "player_wallet") {
                 this.setState({
@@ -7288,7 +7509,7 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             GameEvents.Unsubscribe(id);
         }
         for (const id of this.netTableIDList) {
-            CustomNetTables.UnsubscribeNetTableListener(id);
+            id();
         }
     }
     getStoreItemProps(itemData) {
@@ -7299,7 +7520,7 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             tagName: this.getTagName(itemData),
             labels: this.getLabels(itemData),
             onBuyItem: () => {
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItem", { itemData: itemData });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItem", { itemData: itemData });
             }
         };
     }
@@ -7350,32 +7571,32 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             return { color: "Purple", text: dollarMark + price.toFixed(2) };
         }
         else if (itemData.pay_type == PayType.MOON) {
-            return { color: "Gold", text: String(Round((_g = itemData.real_price) !== null && _g !== void 0 ? _g : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_6__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getImagePath)("money_icon/moon.png"), width: "20px", height: "20px" }) };
+            return { color: "Gold", text: String(Round((_g = itemData.real_price) !== null && _g !== void 0 ? _g : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getImagePath)("money_icon/moon.png"), width: "20px", height: "20px" }) };
         }
         else if (itemData.pay_type == PayType.STAR) {
-            return { color: "Gold", text: String(Round((_h = itemData.real_price) !== null && _h !== void 0 ? _h : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_6__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getImagePath)("money_icon/star.png"), width: "20px", height: "20px" }) };
+            return { color: "Gold", text: String(Round((_h = itemData.real_price) !== null && _h !== void 0 ? _h : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getImagePath)("money_icon/star.png"), width: "20px", height: "20px" }) };
         }
         else if (itemData.pay_type == PayType.SHARD) {
-            return { color: "Gold", text: String(Round((_j = itemData.real_price) !== null && _j !== void 0 ? _j : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_6__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getImagePath)("money_icon/shard.png"), width: "20px", height: "20px" }) };
+            return { color: "Gold", text: String(Round((_j = itemData.real_price) !== null && _j !== void 0 ? _j : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getImagePath)("money_icon/shard.png"), width: "20px", height: "20px" }) };
         }
         else if (itemData.pay_type == PayType.FUNNY) {
-            return { color: "Gold", text: String(Round((_k = itemData.real_price) !== null && _k !== void 0 ? _k : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_6__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getImagePath)("money_icon/coin.png"), width: "20px", height: "20px" }) };
+            return { color: "Gold", text: String(Round((_k = itemData.real_price) !== null && _k !== void 0 ? _k : 0, 2)), icon: react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { backgroundImage: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getImagePath)("money_icon/coin.png"), width: "20px", height: "20px" }) };
         }
     }
     render() {
         const { show, tabIndex, player_wallet, storeItemData } = this.state;
-        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__["default"], { type: "P2", id: "Store", title: "#Store", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ EOM_PopupMainShow: show }), verticalAlign: "top", marginTop: "120px", onClose: () => this.setState({ show: false }) },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "EOM_PopupContent", width: "100%", height: "100%", margin: "0px" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { width: "100%" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Navigation_EOM_Breadcrumb_EOM_Breadcrumb__WEBPACK_IMPORTED_MODULE_9__["default"], { group: "Store", selected: tabIndex, list: Object.keys(storeItemData).map(tag => { return "#StorePage_" + tag; }), onChange: (index) => { this.setState({ tabIndex: index }); } }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "right", horizontalAlign: "right", marginTop: "7px", marginRight: "420px" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_TextEntry_EOM_TextEntry__WEBPACK_IMPORTED_MODULE_8__.EOM_TextEntry, { placeholder: "#Inventory_exchange_placeholder" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_7__["default"], { type: "P2", color: "Blue", width: "74px", height: "34px", verticalAlign: "bottom", margin: "0px", localizedText: "#Inventory_exchange" })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/coin.png", value: player_wallet.moonstone, marginTop: "10px", onaddbuttonactivate: () => { (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ClientSideEvent)("toggle_store_tag", { tabIndex: 1 }); }, titleTooltip: { title: "#1000001", text: "#1000001_description" } }))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { width: "100%", height: "100%" }, Object.keys(storeItemData).map((tag, tagIndex) => {
-                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: tagIndex, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("StoreItemContainer", { Show: tabIndex == tagIndex + 1 }), flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, storeItemData[tag] && storeItemData[tag].map((item, index) => {
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_StoreItem_StoreItem__WEBPACK_IMPORTED_MODULE_11__.StoreItem, Object.assign({ key: index }, this.getStoreItemProps(item)));
+        return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", id: "Store", title: "#Store", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ EOM_PopupMainShow: show }), verticalAlign: "top", marginTop: "120px", onClose: () => this.setState({ show: false }) },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "EOM_PopupContent", width: "100%", height: "100%", margin: "0px" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { width: "100%" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Navigation_EOM_Breadcrumb_EOM_Breadcrumb__WEBPACK_IMPORTED_MODULE_10__["default"], { group: "Store", selected: tabIndex, list: Object.keys(storeItemData).map(tag => { return "#StorePage_" + tag; }), onChange: (index) => { this.setState({ tabIndex: index }); } }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "right", horizontalAlign: "right", marginTop: "7px", marginRight: "420px" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_TextEntry_EOM_TextEntry__WEBPACK_IMPORTED_MODULE_9__.EOM_TextEntry, { placeholder: "#Inventory_exchange_placeholder" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_8__["default"], { type: "P2", color: "Blue", width: "74px", height: "34px", verticalAlign: "bottom", margin: "0px", localizedText: "#Inventory_exchange" })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/coin.png", value: player_wallet.moonstone, marginTop: "10px", onaddbuttonactivate: () => { (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ClientSideEvent)("toggle_store_tag", { tabIndex: 1 }); }, titleTooltip: { title: "#1000001", text: "#1000001_description" } }))),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { width: "100%", height: "100%" }, Object.keys(storeItemData).map((tag, tagIndex) => {
+                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: tagIndex, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("StoreItemContainer", { Show: tabIndex == tagIndex + 1 }), flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, storeItemData[tag] && storeItemData[tag].map((item, index) => {
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_StoreItem_StoreItem__WEBPACK_IMPORTED_MODULE_12__.StoreItem, Object.assign({ key: index }, this.getStoreItemProps(item)));
                     })));
                 })))));
     }
@@ -7383,7 +7604,7 @@ class Store extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
 Store.defaultProps = {
     storeItemData: {}
 };
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(Store, null), pSelf);
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(Store, null), pSelf);
 
 })();
 

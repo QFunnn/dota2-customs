@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -35,6 +35,7 @@ function Wearable_System:Init()
 
 	self.ItemEffect = {}
 	self.HeroSkin = {}
+	self.DebugHeroSkin = {}
 	for iPlayerID = 0, CHC_MAX_PLAYER_COUNT do
 		self.ItemEffect[iPlayerID] = {}
 		self.HeroSkin[iPlayerID] = {}
@@ -44,9 +45,12 @@ end
 if IsServer() then
 	function Wearable_System:ChangeHeroSkin(iPlayerID, params)
 		local heroName = params.tag
-		local skinID = params.id
+		local skinID = params.id ~= nil and tostring(params.id) or nil
 		self.HeroSkin[iPlayerID][heroName] = skinID
 		local hHero = PlayerResource:GetSelectedHeroEntity(iPlayerID)
+		self:RefreshHeroSkin(hHero)
+	end
+	function Wearable_System:RefreshHeroSkin(hHero)
 		if IsValid(hHero) then
 			hHero:RemoveModifierByName("modifier_wearable_model")
 			if not hHero:IsAlive() then
@@ -60,16 +64,22 @@ if IsServer() then
 	end
 	-- 获取玩家为该英雄装备的皮肤
 	function Wearable_System:GetPlayerHeroSkin(iPlayerID, heroName)
+		if IsInToolsMode() and self.DebugHeroSkin and self.DebugHeroSkin[iPlayerID] then
+			local skinID = self.DebugHeroSkin[iPlayerID][heroName]
+			if skinID then
+				return skinID
+			end
+		end
 		if self.HeroSkin and self.HeroSkin[iPlayerID] then
 			if self.HeroSkin[iPlayerID][heroName] then
 				return self.HeroSkin[iPlayerID][heroName]
 			else
 				self.HeroSkin[iPlayerID][heroName] = nil
-				local Data = CustomNetTables:GetTableValue("service", "skin_list")
-				if Data and Data[tostring(iPlayerID)] then
-					for id, info in pairs(Data[tostring(iPlayerID)]) do
-						if info.tag == heroName and info.is_equip == 1 then
-							self.HeroSkin[iPlayerID][heroName] = id
+				local Data = Service.tNettableData["skin_list"]
+				if Data and Data[iPlayerID] then
+					for id, info in pairs(Data[iPlayerID]) do
+						if info.tag == heroName and (info.is_equip == true or info.is_equip == 1) then
+							self.HeroSkin[iPlayerID][heroName] = tostring(id)
 							break
 						end
 					end
@@ -81,7 +91,7 @@ if IsServer() then
 	end
 	function Wearable_System:ChangeItemEffect(iPlayerID, params)
 		local itemName = params.tag
-		local effectID = params.id
+		local effectID = params.id ~= nil and tostring(params.id) or nil
 		self.ItemEffect[iPlayerID][itemName] = effectID
 	end
 	-- 获取玩家为该英雄装备的皮肤
@@ -91,11 +101,11 @@ if IsServer() then
 				return self.ItemEffect[iPlayerID][itemName]
 			else
 				self.ItemEffect[iPlayerID][itemName] = nil
-				local Data = CustomNetTables:GetTableValue("service", "material_effect_list")
-				if Data and Data[tostring(iPlayerID)] then
-					for id, info in pairs(Data[tostring(iPlayerID)]) do
-						if info.tag == itemName and info.is_equip == 1 then
-							self.ItemEffect[iPlayerID][itemName] = id
+				local Data = Service.tNettableData["material_effect_list"]
+				if Data and Data[iPlayerID] then
+					for id, info in pairs(Data[iPlayerID]) do
+						if info.tag == itemName and (info.is_equip == true or info.is_equip == 1) then
+							self.ItemEffect[iPlayerID][itemName] = tostring(id)
 							break
 						end
 					end

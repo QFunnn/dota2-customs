@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -21,7 +21,8 @@ function ShowActorPanel(keys) {
 
      var target_player_id = keys.target_player_id
      var targetPlayerInfo = Game.GetPlayerInfo(target_player_id);
-     let vip_data = CustomNetTables.GetTableValue("service", "player_vip")
+     var netData = GameUI.CustomUIConfig().NetData;
+     let vip_data = netData && netData.GetTableValue("service", "player_vip")
      if (vip_data != undefined && vip_data[String(Players.GetLocalPlayer())] != undefined) {
           if (vip_data[String(Players.GetLocalPlayer())].level == 1) {
                max_time = 3

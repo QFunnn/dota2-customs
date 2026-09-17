@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6313,7 +6313,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Handbook: () => (/* binding */ Handbook)
 /* harmony export */ });
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
@@ -6354,10 +6354,10 @@ const BidTreasureMap = {
     ["1300003"]: 3,
     ["1300004"]: 4,
 };
-const EconList = CustomNetTables.GetAllTableValuesKV("econ_list");
+const EconList = GameUI.CustomUIConfig().EconListKv;
 function Handbook() {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-    const passData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_vip");
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y;
+    const passData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     const bPASS = (((_a = passData === null || passData === void 0 ? void 0 : passData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.level) == 1);
     const CosmeticData = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
         const data = {};
@@ -6388,45 +6388,19 @@ function Handbook() {
         }
         return -1;
     });
-    const moneyData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_wallet");
-    const [Econdata_Barrage, set_Econdata_Barrage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Barrage" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_AttackEffect, set_Econdata_AttackEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "AttackEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Wearable, set_Econdata_Wearable] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Wearable" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Pet, set_Econdata_Pet] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Pet" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_KillSound, set_Econdata_KillSound] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "KillSound" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_KillEffect, set_Econdata_KillEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "KillEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_BlinkEffect, set_Econdata_BlinkEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "BlinkEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_CosmeticsAbility, set_Econdata_CosmeticsAbility] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "CosmeticsAbility" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Particle, set_Econdata_Particle] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Particle" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Avatar, set_Econdata_Avatar] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Avatar" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_PetParticle, set_Econdata_PetParticle] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "PetParticle" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-        let a = CustomNetTables.SubscribeNetTableListener("econ", (_, sKeyName, t) => {
-            if (sKeyName == "Barrage" + String(Players.GetLocalPlayer()))
-                set_Econdata_Barrage(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "AttackEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_AttackEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Wearable" + String(Players.GetLocalPlayer()))
-                set_Econdata_Wearable(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Pet" + String(Players.GetLocalPlayer()))
-                set_Econdata_Pet(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "KillSound" + String(Players.GetLocalPlayer()))
-                set_Econdata_KillSound(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "KillEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_KillEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "BlinkEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_BlinkEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "CosmeticsAbility" + String(Players.GetLocalPlayer()))
-                set_Econdata_CosmeticsAbility(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Particle" + String(Players.GetLocalPlayer()))
-                set_Econdata_Particle(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Avatar" + String(Players.GetLocalPlayer()))
-                set_Econdata_Avatar(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "PetParticle" + String(Players.GetLocalPlayer()))
-                set_Econdata_PetParticle(t !== null && t !== void 0 ? t : {});
-        });
-        return () => CustomNetTables.UnsubscribeNetTableListener(a);
-    }, []);
+    const moneyData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_wallet");
+    const localPlayerID = String(Players.GetLocalPlayer());
+    const Econdata_Barrage = (_b = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Barrage" + localPlayerID)) !== null && _b !== void 0 ? _b : {};
+    const Econdata_AttackEffect = (_c = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "AttackEffect" + localPlayerID)) !== null && _c !== void 0 ? _c : {};
+    const Econdata_Wearable = (_d = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Wearable" + localPlayerID)) !== null && _d !== void 0 ? _d : {};
+    const Econdata_Pet = (_e = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Pet" + localPlayerID)) !== null && _e !== void 0 ? _e : {};
+    const Econdata_KillSound = (_f = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "KillSound" + localPlayerID)) !== null && _f !== void 0 ? _f : {};
+    const Econdata_KillEffect = (_g = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "KillEffect" + localPlayerID)) !== null && _g !== void 0 ? _g : {};
+    const Econdata_BlinkEffect = (_h = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "BlinkEffect" + localPlayerID)) !== null && _h !== void 0 ? _h : {};
+    const Econdata_CosmeticsAbility = (_j = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "CosmeticsAbility" + localPlayerID)) !== null && _j !== void 0 ? _j : {};
+    const Econdata_Particle = (_k = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Particle" + localPlayerID)) !== null && _k !== void 0 ? _k : {};
+    const Econdata_Avatar = (_l = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Avatar" + localPlayerID)) !== null && _l !== void 0 ? _l : {};
+    const Econdata_PetParticle = (_m = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "PetParticle" + localPlayerID)) !== null && _m !== void 0 ? _m : {};
     let PlayerEconData = {};
     {
         let list = {};
@@ -6439,7 +6413,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_b = EconInfo.IsTemp) !== null && _b !== void 0 ? _b : 0) == 1
+                temp: ((_o = EconInfo.IsTemp) !== null && _o !== void 0 ? _o : 0) == 1
             };
         }
         for (const index in Econdata_AttackEffect) {
@@ -6448,7 +6422,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_c = EconInfo.IsTemp) !== null && _c !== void 0 ? _c : 0) == 1
+                temp: ((_p = EconInfo.IsTemp) !== null && _p !== void 0 ? _p : 0) == 1
             };
         }
         for (const index in Econdata_Wearable) {
@@ -6457,7 +6431,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_d = EconInfo.IsTemp) !== null && _d !== void 0 ? _d : 0) == 1
+                temp: ((_q = EconInfo.IsTemp) !== null && _q !== void 0 ? _q : 0) == 1
             };
         }
         for (const index in Econdata_Pet) {
@@ -6466,7 +6440,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_e = EconInfo.IsTemp) !== null && _e !== void 0 ? _e : 0) == 1
+                temp: ((_r = EconInfo.IsTemp) !== null && _r !== void 0 ? _r : 0) == 1
             };
         }
         for (const index in Econdata_KillSound) {
@@ -6475,7 +6449,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_f = EconInfo.IsTemp) !== null && _f !== void 0 ? _f : 0) == 1
+                temp: ((_s = EconInfo.IsTemp) !== null && _s !== void 0 ? _s : 0) == 1
             };
         }
         for (const index in Econdata_KillEffect) {
@@ -6484,7 +6458,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_g = EconInfo.IsTemp) !== null && _g !== void 0 ? _g : 0) == 1
+                temp: ((_t = EconInfo.IsTemp) !== null && _t !== void 0 ? _t : 0) == 1
             };
         }
         for (const index in Econdata_BlinkEffect) {
@@ -6493,7 +6467,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_h = EconInfo.IsTemp) !== null && _h !== void 0 ? _h : 0) == 1
+                temp: ((_u = EconInfo.IsTemp) !== null && _u !== void 0 ? _u : 0) == 1
             };
         }
         for (const index in Econdata_CosmeticsAbility) {
@@ -6502,7 +6476,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_j = EconInfo.IsTemp) !== null && _j !== void 0 ? _j : 0) == 1
+                temp: ((_v = EconInfo.IsTemp) !== null && _v !== void 0 ? _v : 0) == 1
             };
         }
         for (const index in Econdata_Particle) {
@@ -6511,7 +6485,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_k = EconInfo.IsTemp) !== null && _k !== void 0 ? _k : 0) == 1
+                temp: ((_w = EconInfo.IsTemp) !== null && _w !== void 0 ? _w : 0) == 1
             };
         }
         for (const index in Econdata_Avatar) {
@@ -6520,7 +6494,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_l = EconInfo.IsTemp) !== null && _l !== void 0 ? _l : 0) == 1
+                temp: ((_x = EconInfo.IsTemp) !== null && _x !== void 0 ? _x : 0) == 1
             };
         }
         for (const index in Econdata_PetParticle) {
@@ -6529,7 +6503,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_m = EconInfo.IsTemp) !== null && _m !== void 0 ? _m : 0) == 1
+                temp: ((_y = EconInfo.IsTemp) !== null && _y !== void 0 ? _y : 0) == 1
             };
         }
         PlayerEconData = list;
@@ -6776,6 +6750,225 @@ function CustomerService() {
                 $.DispatchEvent('ExternalBrowserGoToURL', "https://discord.gg/2pp5qyFdqh");
             } }),
         react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "qrcode_desc", text: $.Localize("#Customer_service") }));
+}
+
+
+/***/ },
+
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
 }
 
 
@@ -7406,17 +7599,19 @@ var __webpack_exports__ = {};
   \**********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CustomerService: () => (/* reexport safe */ _hud_customer_service_script__WEBPACK_IMPORTED_MODULE_6__.CustomerService)
+/* harmony export */   CustomerService: () => (/* reexport safe */ _hud_customer_service_script__WEBPACK_IMPORTED_MODULE_7__.CustomerService)
 /* harmony export */ });
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
-/* harmony import */ var _handbook_script__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../handbook/script */ "./handbook/script.tsx");
-/* harmony import */ var _hud_customer_service_script__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hud_customer_service/script */ "./hud_customer_service/script.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
+/* harmony import */ var _handbook_script__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../handbook/script */ "./handbook/script.tsx");
+/* harmony import */ var _hud_customer_service_script__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../hud_customer_service/script */ "./hud_customer_service/script.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+
 
 
 
@@ -7447,18 +7642,18 @@ function hasProductWithTag(productData, tag) {
 }
 function Inventory() {
     var _a, _b, _c, _d, _e, _f;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useToggleWindow)("Hud_Inventory");
-    const [Page, SetPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("HandBook");
-    const moneyData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_wallet");
-    const productData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "product_list");
-    const player_shop_product_limit = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_shop_product_limit");
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.useToggleWindow)("Hud_Inventory");
+    const [Page, SetPage] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("HandBook");
+    const moneyData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_wallet");
+    const productData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "product_list");
+    const player_shop_product_limit = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_shop_product_limit");
     const hasPurchaseProducts = hasProductWithTag(productData, "Resource");
     const hasLimitProducts = hasProductWithTag(productData, "xianshi");
     const visiblePages = Pages.filter((PageName) => {
         return (PageName != "PurchasePage" || hasPurchaseProducts)
             && (PageName != "LimitPage" || hasLimitProducts);
     });
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if ((Page == "PurchasePage" && !hasPurchaseProducts) || (Page == "LimitPage" && !hasLimitProducts)) {
             SetPage("HandBook");
         }
@@ -7471,7 +7666,7 @@ function Inventory() {
     });
     let player_id = Players.GetLocalPlayer();
     let bCanPay = false;
-    const TotalRankData = CustomNetTables.GetTableValue("service", "total_rank");
+    const TotalRankData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "total_rank");
     if (TotalRankData != undefined) {
         bCanPay = ((TotalRankData === null || TotalRankData === void 0 ? void 0 : TotalRankData[player_id]) >= CAN_PAY_LIMIT);
     }
@@ -7479,70 +7674,70 @@ function Inventory() {
         bCanPay = true;
     }
     return (!windowState ?
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)
         :
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_root", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: windowState }) },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_hud_customer_service_script__WEBPACK_IMPORTED_MODULE_6__.CustomerService, null),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_total" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_main" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "Inventory_close_button", onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_root", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: windowState }) },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_hud_customer_service_script__WEBPACK_IMPORTED_MODULE_7__.CustomerService, null),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_total" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_main" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "Inventory_close_button", onactivate: () => {
                                 toggleWindow(false);
                             } }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Inventory_title", text: $.Localize("#Inventory_title") }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_topbar" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PageButtonPanel" }, visiblePages.map((PageName, index) => {
-                                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: index, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("PageButton", { Selected: Page == PageName }), onactivate: () => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Inventory_title", text: $.Localize("#Inventory_title") }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_topbar" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PageButtonPanel" }, visiblePages.map((PageName, index) => {
+                                return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { key: index, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("PageButton", { Selected: Page == PageName }), onactivate: () => {
                                         SetPage(PageName);
                                     } },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#" + PageName) })));
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#" + PageName) })));
                             })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "repair_order", text: "#repair_order", onactivate: () => {
-                                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("repair_order", {}, (response) => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "repair_order", text: "#repair_order", onactivate: () => {
+                                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.Send2ServerCallback)("repair_order", {}, (response) => {
                                     });
                                 } }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_exchange" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextEntry, { id: "exchange_entry", textmode: "normal", maxchars: 16, placeholder: $.Localize("#Inventory_exchange_placeholder") }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "exchange_button", text: $.Localize("#Inventory_exchange"), onactivate: () => {
-                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("exchange", { key: ($("#exchange_entry").text) }, (response) => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_exchange" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextEntry, { id: "exchange_entry", textmode: "normal", maxchars: 16, placeholder: $.Localize("#Inventory_exchange_placeholder") }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "exchange_button", text: $.Localize("#Inventory_exchange"), onactivate: () => {
+                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.Send2ServerCallback)("exchange", { key: ($("#exchange_entry").text) }, (response) => {
                                             if (response.result != undefined && response.result == -1) {
-                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_exchange_fail")) });
+                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_exchange_fail")) });
                                             }
                                             else {
-                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowPopup)("RewardPopup", "reward", { response_str: JSON.stringify(response) });
+                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowPopup)("RewardPopup", "reward", { response_str: JSON.stringify(response) });
                                             }
                                         });
                                     } })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_money" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_4__["default"], { value: (_b = (_a = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.starlight) !== null && _b !== void 0 ? _b : 0, titleTooltip: { title: "#item_starlight", text: "#item_starlight_description" }, icon: "file://{images}/custom_game/icon/shard.png" }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_4__["default"], { value: (_d = (_c = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _c === void 0 ? void 0 : _c.moonstone) !== null && _d !== void 0 ? _d : 0, titleTooltip: { title: "#item_moonstone", text: "#item_moonstone_description" }, icon: "file://{images}/custom_game/icon/coin.png", onaddbuttonactivate: () => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_money" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { value: (_b = (_a = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.starlight) !== null && _b !== void 0 ? _b : 0, titleTooltip: { title: "#item_starlight", text: "#item_starlight_description" }, icon: "file://{images}/custom_game/icon/shard.png" }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { value: (_d = (_c = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _c === void 0 ? void 0 : _c.moonstone) !== null && _d !== void 0 ? _d : 0, titleTooltip: { title: "#item_moonstone", text: "#item_moonstone_description" }, icon: "file://{images}/custom_game/icon/coin.png", onaddbuttonactivate: () => {
                                         if (Page != "PurchasePage") {
                                             SetPage("PurchasePage");
                                         }
                                     } }))),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "div" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_Page_content_root" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory_Page_content" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "content_LotteryDraw", visibility: Page == "LotteryDraw" ? "visible" : "collapse" }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "content_HandBook", visibility: Page == "HandBook" ? "visible" : "collapse" }, Page == "HandBook" ?
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_handbook_script__WEBPACK_IMPORTED_MODULE_5__.Handbook, null)
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "div" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_Page_content_root" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory_Page_content" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "content_LotteryDraw", visibility: Page == "LotteryDraw" ? "visible" : "collapse" }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "content_HandBook", visibility: Page == "HandBook" ? "visible" : "collapse" }, Page == "HandBook" ?
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_handbook_script__WEBPACK_IMPORTED_MODULE_6__.Handbook, null)
                                     :
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "content_PassPage", visibility: Page == "PassPage" ? "visible" : "collapse" }, Page == "PassPage" ?
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(PassPage, { money: (_f = (_e = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e["moonstone"]) !== null && _f !== void 0 ? _f : 0, productData: productData, canPay: bCanPay })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "content_PassPage", visibility: Page == "PassPage" ? "visible" : "collapse" }, Page == "PassPage" ?
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(PassPage, { money: (_f = (_e = moneyData === null || moneyData === void 0 ? void 0 : moneyData[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e["moonstone"]) !== null && _f !== void 0 ? _f : 0, productData: productData, canPay: bCanPay })
                                     :
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "content_PurchasePage", visibility: Page == "PurchasePage" ? "visible" : "collapse" }, Page == "PurchasePage" ?
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(PurchasePage, { productData: productData, canPay: bCanPay })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "content_PurchasePage", visibility: Page == "PurchasePage" ? "visible" : "collapse" }, Page == "PurchasePage" ?
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(PurchasePage, { productData: productData, canPay: bCanPay })
                                     :
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "content_LimitPage", visibility: Page == "LimitPage" ? "visible" : "collapse" }, Page == "LimitPage" ?
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(LimitPage, { productData: productData, productLimitData: player_shop_product_limit, canPay: bCanPay })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "content_LimitPage", visibility: Page == "LimitPage" ? "visible" : "collapse" }, Page == "LimitPage" ?
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(LimitPage, { productData: productData, productLimitData: player_shop_product_limit, canPay: bCanPay })
                                     :
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null))))))));
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null))))))));
 }
 function PassPage({ money, productData, canPay }) {
     var _a, _b, _c, _d, _e;
-    const passData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_vip");
+    const passData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     let player_id = Players.GetLocalPlayer();
     let pass_duration_text = "";
     if (((_b = (_a = passData === null || passData === void 0 ? void 0 : passData[player_id]) === null || _a === void 0 ? void 0 : _a.level) !== null && _b !== void 0 ? _b : 0) == 1) {
@@ -7578,33 +7773,33 @@ function PassPage({ money, productData, canPay }) {
             }
         }
     }
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Pass_main" },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PassContent" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PassTitle", text: $.Localize("#Pass_main_title") }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PassDescription", text: $.Localize("#Pass_description"), html: true })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PassDuration", text: pass_duration_text }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "BuyPanel1", className: "BuyPanel" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ItemName", text: $.Localize("#Goods_1100004"), html: true }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "BuyBtn", enabled: money >= 5000, onactivate: () => {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("product_buy", {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Pass_main" },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PassContent" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PassTitle", text: $.Localize("#Pass_main_title") }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PassDescription", text: $.Localize("#Pass_description"), html: true })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PassDuration", text: pass_duration_text }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "BuyPanel1", className: "BuyPanel" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ItemName", text: $.Localize("#Goods_1100004"), html: true }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "BuyBtn", enabled: money >= 5000, onactivate: () => {
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.Send2ServerCallback)("product_buy", {
                         product_id: 1100004,
                         product_num: 1
                     }, (response) => {
                         if (response.code == 0) {
-                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_buy_success")) });
+                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_buy_success")) });
                         }
                     });
                 } },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ItemPrice", text: $.Localize("#Goods_1100004_Buy_Coin") }))),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ItemPrice", text: $.Localize("#Goods_1100004_Buy_Coin") }))),
         product_cash.map((product_info, i) => {
-            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "BuyPanel" + (i + 2), key: i, className: "BuyPanel" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ItemName", text: $.Localize("#Goods_" + product_info.id), html: true }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "BuyBtn", onactivate: () => {
+            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "BuyPanel" + (i + 2), key: i, className: "BuyPanel" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ItemName", text: $.Localize("#Goods_" + product_info.id), html: true }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "BuyBtn", onactivate: () => {
                         if (canPay) {
-                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("StoreBuyItem", { itemData: product_cash[i] });
+                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("StoreBuyItem", { itemData: product_cash[i] });
                         }
                         else {
-                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonNotice", {
+                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("CommonNotice", {
                                 title: "",
                                 top: ($.Localize("#Unique_no_pay_button_desc_top")),
                                 main: ($.Localize("#Unique_no_pay_button_desc_main")),
@@ -7614,7 +7809,7 @@ function PassPage({ money, productData, canPay }) {
                             });
                         }
                     } },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ItemPrice", text: canPay ? product_info.price_to_show : $.Localize("#Unique_no_pay_button"), html: true })));
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ItemPrice", text: canPay ? product_info.price_to_show : $.Localize("#Unique_no_pay_button"), html: true })));
         }));
 }
 function PurchasePage({ productData, canPay }) {
@@ -7654,24 +7849,24 @@ function PurchasePage({ productData, canPay }) {
             }
         }
     }
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PurchasePage_main" }, store_items.map((itemInfo, index) => {
-        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: index, className: "item_panel" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "item_main", className: "item_main" + (itemInfo.id - 1100000) },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "item_image" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: "file://{resources}/images/custom_game/store_items/" + itemInfo.id + ".png" })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TopBar" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "item_title", text: $.Localize("#Goods_" + itemInfo.id) })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Main" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "item_list" }, (itemInfo.items).map((v, i) => {
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { key: i, id: "item_desc", text: $.Localize("#StoreItem_" + v.item_id) + " x" + v.amounts });
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PurchasePage_main" }, store_items.map((itemInfo, index) => {
+        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, className: "item_panel" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "item_main", className: "item_main" + (itemInfo.id - 1100000) },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "item_image" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: "file://{resources}/images/custom_game/store_items/" + itemInfo.id + ".png" })),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TopBar" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "item_title", text: $.Localize("#Goods_" + itemInfo.id) })),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Main" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "item_list" }, (itemInfo.items).map((v, i) => {
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { key: i, id: "item_desc", text: $.Localize("#StoreItem_" + v.item_id) + " x" + v.amounts });
                     }))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BottmBar" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "item_purchase_button", text: canPay ? $.Localize("#purchase") + itemInfo.price : $.Localize("#Unique_no_pay_button"), onactivate: () => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BottmBar" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "item_purchase_button", text: canPay ? $.Localize("#purchase") + itemInfo.price : $.Localize("#Unique_no_pay_button"), onactivate: () => {
                             if (canPay) {
-                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("StoreBuyItem", { itemData: itemInfo.fulldata });
+                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("StoreBuyItem", { itemData: itemInfo.fulldata });
                             }
                             else {
-                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonNotice", {
+                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("CommonNotice", {
                                     title: "",
                                     top: ($.Localize("#Unique_no_pay_button_desc_top")),
                                     main: ($.Localize("#Unique_no_pay_button_desc_main")),
@@ -7681,9 +7876,9 @@ function PurchasePage({ productData, canPay }) {
                                 });
                             }
                         } }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "item_discount", visibility: itemInfo.discount > 0 ? "visible" : "collapse" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "discount", text: $.Localize("#discount") }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "discount_number", text: itemInfo.discount + "%" })));
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "item_discount", visibility: itemInfo.discount > 0 ? "visible" : "collapse" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "discount", text: $.Localize("#discount") }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "discount_number", text: itemInfo.discount + "%" })));
     })));
 }
 function getLimitPayTypeIcon(payType) {
@@ -7717,25 +7912,25 @@ function LimitPage({ productData, productLimitData, canPay }) {
         }
     }
     store_items.sort((a, b) => a.id - b.id);
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "LimitPage_main" }, store_items.map((itemInfo) => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "LimitPage_main" }, store_items.map((itemInfo) => {
         var _a;
         const limitCount = itemInfo.limit_count;
         const hasLimit = itemInfo.limit_type !== undefined && limitCount !== undefined;
         const boughtCount = (_a = productLimitCounts[String(itemInfo.id)]) !== null && _a !== void 0 ? _a : 0;
         const remaining = hasLimit ? Math.max(0, limitCount - boughtCount) : 1;
         const payTypeIcon = getLimitPayTypeIcon(itemInfo.pay_type);
-        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: itemInfo.id, className: "limit_item_panel" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "limit_item_title", text: $.Localize("#Goods_" + itemInfo.id) }),
-            itemInfo.end_time ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Countdown, { id: "limit_item_countdown", endTime: itemInfo.end_time, "server-time": true },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "limit_item_countdown_label", localizedText: "{t:d:t:countdown_time}" }))) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "limit_item_countdown_placeholder" })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "limit_item_icon", src: "file://{resources}/images/custom_game/store_items/" + itemInfo.id + ".png" }),
-            hasLimit ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "limit_item_count", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ limit_reached: remaining <= 0 }), text: $.Localize("#limit_purchase_count") + ": " + remaining + "/" + limitCount })) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "limit_item_count_placeholder" })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "limit_purchase_button", enabled: remaining > 0, onactivate: () => {
+        return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: itemInfo.id, className: "limit_item_panel" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "limit_item_title", text: $.Localize("#Goods_" + itemInfo.id) }),
+            itemInfo.end_time ? (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Countdown, { id: "limit_item_countdown", endTime: itemInfo.end_time, "server-time": true },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "limit_item_countdown_label", localizedText: "{t:d:t:countdown_time}" }))) : (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "limit_item_countdown_placeholder" })),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "limit_item_icon", src: "file://{resources}/images/custom_game/store_items/" + itemInfo.id + ".png" }),
+            hasLimit ? (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "limit_item_count", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ limit_reached: remaining <= 0 }), text: $.Localize("#limit_purchase_count") + ": " + remaining + "/" + limitCount })) : (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "limit_item_count_placeholder" })),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "limit_purchase_button", enabled: remaining > 0, onactivate: () => {
                     if (canPay) {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("StoreBuyItem", { itemData: itemInfo });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("StoreBuyItem", { itemData: itemInfo });
                     }
                     else {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonNotice", {
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.ShowCustomPopup)("CommonNotice", {
                             title: "",
                             top: ($.Localize("#Unique_no_pay_button_desc_top")),
                             main: ($.Localize("#Unique_no_pay_button_desc_main")),
@@ -7745,12 +7940,12 @@ function LimitPage({ productData, productLimitData, canPay }) {
                         });
                     }
                 } },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "limit_purchase_button_content" },
-                    canPay && payTypeIcon !== "" && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "limit_purchase_pay_icon", src: payTypeIcon }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: canPay ? (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.getStoreItemCost)(itemInfo) : $.Localize("#Unique_no_pay_button") })))));
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "limit_purchase_button_content" },
+                    canPay && payTypeIcon !== "" && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "limit_purchase_pay_icon", src: payTypeIcon }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: canPay ? (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.getStoreItemCost)(itemInfo) : $.Localize("#Unique_no_pay_button") })))));
     })));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(Inventory, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(Inventory, null), $.GetContextPanel());
 
 
 })();

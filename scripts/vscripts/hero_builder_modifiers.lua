@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,8 +13,6 @@
 LinkLuaModifier("modifier_aegis", "heroes/modifier_aegis", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_aegis_buff", "heroes/modifier_aegis_buff", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_generic_muted_lua", "heroes/modifier_generic_muted_lua", LUA_MODIFIER_MOTION_NONE)
--- LinkLuaModifier("modifier_skywrath_mage_shard_lua", "heroes/hero_skywrath_mage/modifier_skywrath_mage_shard_lua", LUA_MODIFIER_MOTION_NONE)
--- LinkLuaModifier("modifier_skywrath_mage_shard_bonus_counter_lua", "heroes/hero_skywrath_mage/modifier_skywrath_mage_shard_lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_legion_commander_duel_creep",
 	"heroes/hero_legion_commander/legion_commander_duel",

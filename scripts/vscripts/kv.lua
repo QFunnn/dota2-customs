@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,14 +13,7 @@ if KeyValues == nil then
 end
 
 if IsServer() then
-	-- KeyValues.ReservoirsKv = LoadKeyValues("scripts/npc/kv/reservoirs.kv")
-	-- KeyValues.PoolsKv = LoadKeyValues("scripts/npc/kv/pools.kv")
-
-	-- KeyValues.HerolistKv = LoadKeyValues("scripts/npc/herolist.txt")
-	KeyValues.UnitsKv = LoadKeyValues("scripts/npc/npc_units_custom.txt")
-	-- KeyValues.AbilitiesKv = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-	-- KeyValues.ItemsKv = TableReplace(TableOverride(LoadKeyValues("scripts/npc/items.txt"), LoadKeyValues("scripts/npc/npc_items_custom.txt")), LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
-	-- KeyValues.HeroesKv = {}
+	require("utils/keyvalues")
 else
 	-- KeyValues.AbilitiesKv = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 	-- KeyValues.ItemsKv = TableReplace(TableOverride(LoadKeyValues("scripts/npc/items.txt"), LoadKeyValues("scripts/npc/npc_items_custom.txt")), LoadKeyValues("scripts/npc/npc_abilities_override.txt"))

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5761,6 +5761,225 @@ if (false) // removed by dead control flow
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6385,21 +6604,31 @@ var __webpack_exports__ = {};
   !*** ./hud_pig/script.tsx ***!
   \****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 function Root() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_2__.useToggleWindow)("Hud_Pig", ((_b = (_a = CustomNetTables.GetTableValue("service", "player_bank_coin")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.is_show) == 1 && ((_d = (_c = CustomNetTables.GetTableValue("service", "setting")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) === null || _d === void 0 ? void 0 : _d.auto_bank_coin_page) == 1);
-    const player_bank_coin = (_e = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_bank_coin")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()];
-    const player_setting = (_f = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "setting")) === null || _f === void 0 ? void 0 : _f[Players.GetLocalPlayer()];
-    const productData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "product_list");
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.useToggleWindow)("Hud_Pig", ((_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_bank_coin")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.is_show) == 1 && ((_d = (_c = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "setting")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) === null || _d === void 0 ? void 0 : _d.auto_bank_coin_page) == 1);
+    const player_bank_coin = (_e = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_bank_coin")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()];
+    const player_setting = (_f = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "setting")) === null || _f === void 0 ? void 0 : _f[Players.GetLocalPlayer()];
+    const initialDataApplied = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(false);
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+        if (initialDataApplied.current || !player_bank_coin || !player_setting)
+            return;
+        initialDataApplied.current = true;
+        if (player_bank_coin.is_show == 1 && player_setting.auto_bank_coin_page == 1)
+            toggleWindow(true);
+    }, [player_bank_coin, player_setting]);
+    const productData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "product_list");
     const CAN_RECEIVE_LIMIT = 160;
     const PRODUCT_ID = 1100010;
     let expire_time = ((_g = player_bank_coin === null || player_bank_coin === void 0 ? void 0 : player_bank_coin.expire_time) !== null && _g !== void 0 ? _g : 0);
@@ -6436,37 +6665,37 @@ function Root() {
             .replace("{hour}", hours.toString().padStart(2, '0'))
             .replace("{min}", minutes.toString().padStart(2, '0'));
     }
-    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Hud_Pig", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({ show: windowState }) },
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { id: "Close", onactivate: () => {
+    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Hud_Pig", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_4___default()({ show: windowState }) },
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "Close", onactivate: () => {
                 toggleWindow(false);
             } }),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "PigTitle", className: $.Language().toLocaleLowerCase() }),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "PigContent" }, (expire_time > 0 && !buyed) && react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Countdown" },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "CountdownIcon" }),
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "CountdownText", text: countdown }))),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Dialog" },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#pig_info") })),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Progress" },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "ProgressInner", style: { width: `${550 * Math.min(joker_coin / CAN_RECEIVE_LIMIT, 1)}px` } })),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "ProgressText", text: `${joker_coin}/${CAN_RECEIVE_LIMIT}` }),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "BuyButton", enabled: !buyed || (joker_coin >= CAN_RECEIVE_LIMIT), onactivate: () => {
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PigTitle", className: $.Language().toLocaleLowerCase() }),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PigContent" }, (expire_time > 0 && !buyed) && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Countdown" },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CountdownIcon" }),
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "CountdownText", text: countdown }))),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Dialog" },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#pig_info") })),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Progress" },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ProgressInner", style: { width: `${550 * Math.min(joker_coin / CAN_RECEIVE_LIMIT, 1)}px` } })),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ProgressText", text: `${joker_coin}/${CAN_RECEIVE_LIMIT}` }),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "BuyButton", enabled: !buyed || (joker_coin >= CAN_RECEIVE_LIMIT), onactivate: () => {
                 if (!buyed) {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_2__.ShowCustomPopup)("StoreBuyItem", { itemData: productInfo });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("StoreBuyItem", { itemData: productInfo });
                 }
                 else {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_2__.Send2ServerCallback)("PigReceive", {}, (response) => {
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.Send2ServerCallback)("PigReceive", {}, (response) => {
                         if (response.result != undefined && response.result == -1) {
-                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_2__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_receive_fail")) });
+                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_receive_fail")) });
                         }
                         else {
-                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_2__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_receive_success")) });
+                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "#dota_dashboard_tips", content: ($.Localize("#common_receive_success")) });
                             toggleWindow(false);
                         }
                     });
                 }
             } },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "BuyButtonText", text: buyed ? $.Localize("#pig_receive") : price })),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(ToggleButton, { id: "ToggleBtn", selected: (player_setting === null || player_setting === void 0 ? void 0 : player_setting.auto_bank_coin_page) == 0, onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "BuyButtonText", text: buyed ? $.Localize("#pig_receive") : price })),
+        react__WEBPACK_IMPORTED_MODULE_2__.createElement(ToggleButton, { id: "ToggleBtn", selected: (player_setting === null || player_setting === void 0 ? void 0 : player_setting.auto_bank_coin_page) == 0, onactivate: () => {
                 let new_data = {
                     barrage_opacity: player_setting === null || player_setting === void 0 ? void 0 : player_setting.barrage_opacity,
                     auto_view_duel: player_setting === null || player_setting === void 0 ? void 0 : player_setting.auto_view_duel,
@@ -6476,9 +6705,9 @@ function Root() {
                 };
                 GameEvents.SendCustomGameEventToServer("UpdateSetting", new_data);
             } },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#Settings_show_activity") })));
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_show_activity") })));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_1__.createElement(Root, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(Root, null), $.GetContextPanel());
 
 })();
 

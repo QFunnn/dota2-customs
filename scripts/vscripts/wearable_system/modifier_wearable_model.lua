@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -35,10 +35,7 @@ function modifier_wearable_model:DeclareFunctions()
 	if IsServer() then
 		local hParent = self:GetParent()
 		local skinID = Wearable_System:GetPlayerHeroSkin(hParent:GetPlayerOwnerID(), hParent:GetUnitName())
-		-- 测试英雄皮肤
-		if IsInToolsMode() then
-			-- skinID = "17000028"
-		end
+		self.skinID = skinID
 		local skin = HeroSkinKV[skinID]
 
 		local funcs = {}
@@ -92,6 +89,8 @@ function modifier_wearable_model:OnCreated()
 		self.particles = {}
 		if self.model then
 			hParent:NotifyWearablesOfModelChange(false)
+			-- 重复应用同一模型时也需要重新创建皮肤特效。
+			self:StartIntervalThink(FrameTime())
 		end
 	end
 end
@@ -133,11 +132,11 @@ end
 
 function modifier_wearable_model:OnIntervalThink()
 	local hParent = self:GetParent()
-	local skinID = Wearable_System:GetPlayerHeroSkin(hParent:GetPlayerOwnerID(), hParent:GetUnitName())
-	-- if IsInToolsMode() then
-	-- 	skinID = "17000017"
-	-- end
-	local skin = HeroSkinKV[skinID]
+	self:StartIntervalThink(-1)
+	if hParent:GetModelName() ~= self.model then
+		return
+	end
+	local skin = HeroSkinKV[self.skinID]
 	if skin then
 		if next(self.particles) == nil then
 			for i = 1, 100 do
@@ -162,8 +161,6 @@ function modifier_wearable_model:OnIntervalThink()
 				end
 			end
 		end
-
-		self:StartIntervalThink(-1)
 	end
 end
 

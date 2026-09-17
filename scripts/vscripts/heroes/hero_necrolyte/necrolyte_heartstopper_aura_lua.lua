@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -19,7 +19,6 @@ LinkLuaModifier(
 	"heroes/hero_necrolyte/necrolyte_heartstopper_aura_lua",
 	LUA_MODIFIER_MOTION_NONE
 )
--- LinkLuaModifier("modifier_necrolyte_heartstopper_aura_lua_counter", "heroes/hero_necrolyte/modifier_necrolyte_heartstopper_aura_lua_counter", LUA_MODIFIER_MOTION_NONE)
 
 --------------------------------------------------------------------------------
 -- Passive Modifier

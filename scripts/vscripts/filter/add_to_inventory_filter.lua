@@ -3,9 +3,9 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
 
-assert(IsServer(), "encrypted server module loaded on client") return (decryptModule("a1524e0edb8c5f85962c97cf7aac027b5fdf346161fef563538e4a478b41c638787489fcf89a4b17937a11a702d111b07a5c06a2a3b43d27414581aa35454b179e279c687899b06028b99d8c53014eaea6ad2aaa9383ee65c47280637baaa93d", ...))
+assert(IsServer(), "encrypted server module loaded on client") return (decryptModule("10789647d084e13dbb583a0478666f0c4d0f5d435de077fc8eb63c28a857f1f228d7fe43d86cff8e3a6186d448cb5d5f191e470fed2e1ada5157ab423b060a6d80e4093919205a93bab5f633755ff7819444cafc50d37420e6cd917c29c61ac3", ...))

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6215,6 +6215,225 @@ const DEFAULT_ICON_SIZE = "32px";
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6842,7 +7061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Handbook: () => (/* binding */ Handbook)
 /* harmony export */ });
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
@@ -6883,10 +7102,10 @@ const BidTreasureMap = {
     ["1300003"]: 3,
     ["1300004"]: 4,
 };
-const EconList = CustomNetTables.GetAllTableValuesKV("econ_list");
+const EconList = GameUI.CustomUIConfig().EconListKv;
 function Handbook() {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-    const passData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_vip");
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y;
+    const passData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     const bPASS = (((_a = passData === null || passData === void 0 ? void 0 : passData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.level) == 1);
     const CosmeticData = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
         const data = {};
@@ -6917,45 +7136,19 @@ function Handbook() {
         }
         return -1;
     });
-    const moneyData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_wallet");
-    const [Econdata_Barrage, set_Econdata_Barrage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Barrage" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_AttackEffect, set_Econdata_AttackEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "AttackEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Wearable, set_Econdata_Wearable] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Wearable" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Pet, set_Econdata_Pet] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Pet" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_KillSound, set_Econdata_KillSound] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "KillSound" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_KillEffect, set_Econdata_KillEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "KillEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_BlinkEffect, set_Econdata_BlinkEffect] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "BlinkEffect" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_CosmeticsAbility, set_Econdata_CosmeticsAbility] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "CosmeticsAbility" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Particle, set_Econdata_Particle] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Particle" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_Avatar, set_Econdata_Avatar] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "Avatar" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    const [Econdata_PetParticle, set_Econdata_PetParticle] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => { var _a; return (_a = CustomNetTables.GetTableValue("econ", "PetParticle" + String(Players.GetLocalPlayer()))) !== null && _a !== void 0 ? _a : {}; });
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-        let a = CustomNetTables.SubscribeNetTableListener("econ", (_, sKeyName, t) => {
-            if (sKeyName == "Barrage" + String(Players.GetLocalPlayer()))
-                set_Econdata_Barrage(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "AttackEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_AttackEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Wearable" + String(Players.GetLocalPlayer()))
-                set_Econdata_Wearable(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Pet" + String(Players.GetLocalPlayer()))
-                set_Econdata_Pet(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "KillSound" + String(Players.GetLocalPlayer()))
-                set_Econdata_KillSound(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "KillEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_KillEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "BlinkEffect" + String(Players.GetLocalPlayer()))
-                set_Econdata_BlinkEffect(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "CosmeticsAbility" + String(Players.GetLocalPlayer()))
-                set_Econdata_CosmeticsAbility(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Particle" + String(Players.GetLocalPlayer()))
-                set_Econdata_Particle(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "Avatar" + String(Players.GetLocalPlayer()))
-                set_Econdata_Avatar(t !== null && t !== void 0 ? t : {});
-            if (sKeyName == "PetParticle" + String(Players.GetLocalPlayer()))
-                set_Econdata_PetParticle(t !== null && t !== void 0 ? t : {});
-        });
-        return () => CustomNetTables.UnsubscribeNetTableListener(a);
-    }, []);
+    const moneyData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_wallet");
+    const localPlayerID = String(Players.GetLocalPlayer());
+    const Econdata_Barrage = (_b = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Barrage" + localPlayerID)) !== null && _b !== void 0 ? _b : {};
+    const Econdata_AttackEffect = (_c = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "AttackEffect" + localPlayerID)) !== null && _c !== void 0 ? _c : {};
+    const Econdata_Wearable = (_d = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Wearable" + localPlayerID)) !== null && _d !== void 0 ? _d : {};
+    const Econdata_Pet = (_e = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Pet" + localPlayerID)) !== null && _e !== void 0 ? _e : {};
+    const Econdata_KillSound = (_f = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "KillSound" + localPlayerID)) !== null && _f !== void 0 ? _f : {};
+    const Econdata_KillEffect = (_g = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "KillEffect" + localPlayerID)) !== null && _g !== void 0 ? _g : {};
+    const Econdata_BlinkEffect = (_h = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "BlinkEffect" + localPlayerID)) !== null && _h !== void 0 ? _h : {};
+    const Econdata_CosmeticsAbility = (_j = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "CosmeticsAbility" + localPlayerID)) !== null && _j !== void 0 ? _j : {};
+    const Econdata_Particle = (_k = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Particle" + localPlayerID)) !== null && _k !== void 0 ? _k : {};
+    const Econdata_Avatar = (_l = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Avatar" + localPlayerID)) !== null && _l !== void 0 ? _l : {};
+    const Econdata_PetParticle = (_m = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "PetParticle" + localPlayerID)) !== null && _m !== void 0 ? _m : {};
     let PlayerEconData = {};
     {
         let list = {};
@@ -6968,7 +7161,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_b = EconInfo.IsTemp) !== null && _b !== void 0 ? _b : 0) == 1
+                temp: ((_o = EconInfo.IsTemp) !== null && _o !== void 0 ? _o : 0) == 1
             };
         }
         for (const index in Econdata_AttackEffect) {
@@ -6977,7 +7170,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_c = EconInfo.IsTemp) !== null && _c !== void 0 ? _c : 0) == 1
+                temp: ((_p = EconInfo.IsTemp) !== null && _p !== void 0 ? _p : 0) == 1
             };
         }
         for (const index in Econdata_Wearable) {
@@ -6986,7 +7179,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_d = EconInfo.IsTemp) !== null && _d !== void 0 ? _d : 0) == 1
+                temp: ((_q = EconInfo.IsTemp) !== null && _q !== void 0 ? _q : 0) == 1
             };
         }
         for (const index in Econdata_Pet) {
@@ -6995,7 +7188,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_e = EconInfo.IsTemp) !== null && _e !== void 0 ? _e : 0) == 1
+                temp: ((_r = EconInfo.IsTemp) !== null && _r !== void 0 ? _r : 0) == 1
             };
         }
         for (const index in Econdata_KillSound) {
@@ -7004,7 +7197,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_f = EconInfo.IsTemp) !== null && _f !== void 0 ? _f : 0) == 1
+                temp: ((_s = EconInfo.IsTemp) !== null && _s !== void 0 ? _s : 0) == 1
             };
         }
         for (const index in Econdata_KillEffect) {
@@ -7013,7 +7206,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_g = EconInfo.IsTemp) !== null && _g !== void 0 ? _g : 0) == 1
+                temp: ((_t = EconInfo.IsTemp) !== null && _t !== void 0 ? _t : 0) == 1
             };
         }
         for (const index in Econdata_BlinkEffect) {
@@ -7022,7 +7215,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_h = EconInfo.IsTemp) !== null && _h !== void 0 ? _h : 0) == 1
+                temp: ((_u = EconInfo.IsTemp) !== null && _u !== void 0 ? _u : 0) == 1
             };
         }
         for (const index in Econdata_CosmeticsAbility) {
@@ -7031,7 +7224,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_j = EconInfo.IsTemp) !== null && _j !== void 0 ? _j : 0) == 1
+                temp: ((_v = EconInfo.IsTemp) !== null && _v !== void 0 ? _v : 0) == 1
             };
         }
         for (const index in Econdata_Particle) {
@@ -7040,7 +7233,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_k = EconInfo.IsTemp) !== null && _k !== void 0 ? _k : 0) == 1
+                temp: ((_w = EconInfo.IsTemp) !== null && _w !== void 0 ? _w : 0) == 1
             };
         }
         for (const index in Econdata_Avatar) {
@@ -7049,7 +7242,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_l = EconInfo.IsTemp) !== null && _l !== void 0 ? _l : 0) == 1
+                temp: ((_x = EconInfo.IsTemp) !== null && _x !== void 0 ? _x : 0) == 1
             };
         }
         for (const index in Econdata_PetParticle) {
@@ -7058,7 +7251,7 @@ function Handbook() {
                 equip: EconInfo.equip == "1" ? "true" : "false",
                 type: EconInfo.item_type,
                 name: EconInfo.item_name,
-                temp: ((_m = EconInfo.IsTemp) !== null && _m !== void 0 ? _m : 0) == 1
+                temp: ((_y = EconInfo.IsTemp) !== null && _y !== void 0 ? _y : 0) == 1
             };
         }
         PlayerEconData = list;

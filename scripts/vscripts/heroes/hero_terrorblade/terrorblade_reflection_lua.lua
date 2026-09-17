@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -152,7 +152,7 @@ end
 function modifier_terrorblade_reflection_creep_damage_lua:OnCreated(keys)
 	self.illusion_outgoing_tooltip = self:GetAbilitySpecialValueFor("illusion_outgoing_tooltip")
 	local hParent = self:GetParent()
-	local bat = hParent:GetBaseAttackTime()
+	local bat = hParent:GetBaseAttackTime(true)
 	local fAttackPerSecond = hParent:GetAttacksPerSecond(false)
 	local fInterval = 1 / fAttackPerSecond
 	bat = math.max(bat, 0.32)

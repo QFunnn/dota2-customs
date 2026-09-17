@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5961,6 +5961,225 @@ class EOM_PureComponent extends react__WEBPACK_IMPORTED_MODULE_1__.PureComponent
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "?559b"
 /*!********************************!*\
   !*** ./util.inspect (ignored) ***!
@@ -6070,33 +6289,35 @@ var __webpack_exports__ = {};
   !*** ./hud_damage_counter/script.tsx ***!
   \***************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+
 
 
 
 
 function DamageData() {
     var _a;
-    const [Data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+    const [Data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
         max: 0,
         total: 0,
         list: []
     });
-    const [Show, setShow] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
-    const passData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_vip");
+    const [Show, setShow] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
+    const passData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     let bPASS = (((_a = passData === null || passData === void 0 ? void 0 : passData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.level) == 1);
-    const [ShowDetails, setShowDetails] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(bPASS);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DOTAHUDShopOpened", (a, b) => {
+    const [ShowDetails, setShowDetails] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(bPASS);
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DOTAHUDShopOpened", (a, b) => {
         setShow(false);
     });
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DOTAHUDShopClosed", (a, b) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DOTAHUDShopClosed", (a, b) => {
         setShow(true);
     });
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("UpdateDamageData", (data) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("UpdateDamageData", (data) => {
         let max = 0;
         let list = [];
         let total = 0;
@@ -6123,9 +6344,9 @@ function DamageData() {
     }, []);
     let totaldamage = FixNumber(Data.total);
     let flip = Game.IsHUDFlipped();
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DamageData", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: Show, Flip: flip }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "summary" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "toggle", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: ShowDetails }), onactivate: (self) => {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DamageData", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: Show, Flip: flip }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "summary" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "toggle", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: ShowDetails }), onactivate: (self) => {
                     if (bPASS) {
                         setShowDetails(!ShowDetails);
                     }
@@ -6136,8 +6357,8 @@ function DamageData() {
                 }, onmouseout: (p) => {
                     $.DispatchEvent("DOTAHideTextTooltip", p);
                 } }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TotalDamage", text: $.Localize("#Hud_DamageCounter_CurrentTotal") + totaldamage })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "details", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: ShowDetails }) }, Data.list.map((info, i) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TotalDamage", text: $.Localize("#Hud_DamageCounter_CurrentTotal") + totaldamage })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "details", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: ShowDetails }) }, Data.list.map((info, i) => {
             let name = "";
             if (info.abilityName.match("AttackDamage") != null) {
                 name = $.Localize(`#${info.abilityName.replace("AttackDamage", "")}`) + $.Localize("#DOTA_Tooltip_ability_default_attack");
@@ -6156,10 +6377,10 @@ function DamageData() {
             if (damage_number > Data.max * 0.001) {
                 pct = (damage_number / (Data.total == 0 ? 1 : Data.total) * 100);
             }
-            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "DataEntry" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Bar", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("DamageType" + info.damage_type), width: `${pct}%` }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "AbilityName", html: true, text: name }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Damage", text: damage + `(${(Math.floor((pct) * 10) / 10).toFixed(1)}%)` }));
+            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "DataEntry" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Bar", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("DamageType" + info.damage_type), width: `${pct}%` }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "AbilityName", html: true, text: name }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Damage", text: damage + `(${(Math.floor((pct) * 10) / 10).toFixed(1)}%)` }));
         })));
 }
 function FixNumber(num) {
@@ -6191,7 +6412,7 @@ function FixNumber(num) {
     }
     return damage + unit;
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(DamageData, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(DamageData, null), $.GetContextPanel());
 
 })();
 

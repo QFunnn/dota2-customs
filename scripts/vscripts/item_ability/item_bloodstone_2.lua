@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -156,16 +156,6 @@ function modifier_item_bloodstone_2:OnCreated()
 	self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_item_bloodstone", {})
 
 	-- Use Secondary Charges system to make mana loss reduction and CDR not stack with multiple Bloodstones
-	for _, mod in pairs(self:GetCaster():FindAllModifiersByName(self:GetName())) do
-		mod:GetAbility():SetSecondaryCharges(_)
-	end
-end
-
-function modifier_item_bloodstone_2:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
 	for _, mod in pairs(self:GetCaster():FindAllModifiersByName(self:GetName())) do
 		mod:GetAbility():SetSecondaryCharges(_)
 	end

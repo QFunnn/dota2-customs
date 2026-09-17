@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5761,6 +5761,225 @@ if (false) // removed by dead control flow
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6388,18 +6607,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   RankPanel: () => (/* binding */ RankPanel)
 /* harmony export */ });
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+
 
 
 
 
 function RankPanel() {
     var _a, _b, _c, _d, _e;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.useToggleWindow)("RankPanel");
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.useToggleWindow)("RankPanel");
     const rankListGroup = {
         pve: {
             Mode: "PveMode",
@@ -6422,12 +6643,12 @@ function RankPanel() {
             Tiles: []
         },
     };
-    const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const rankListData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableValues)("rank_list");
-    const player_rank_info = (_a = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_rank_info")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
-    const player_score_info = (_b = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_score_info")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()];
-    const steamID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ConvertToSteamId32)(((_c = Game.GetPlayerInfo(Players.GetLocalPlayer())) === null || _c === void 0 ? void 0 : _c.player_steamid) || "0");
-    const econAvatarData = (_d = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("econ", "Avatar" + String(Players.GetLocalPlayer()))) !== null && _d !== void 0 ? _d : {};
+    const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const rankListData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableValues)("rank_list");
+    const player_rank_info = (_a = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_rank_info")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+    const player_score_info = (_b = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_score_info")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()];
+    const steamID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ConvertToSteamId32)(((_c = Game.GetPlayerInfo(Players.GetLocalPlayer())) === null || _c === void 0 ? void 0 : _c.player_steamid) || "0");
+    const econAvatarData = (_d = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("econ", "Avatar" + String(Players.GetLocalPlayer()))) !== null && _d !== void 0 ? _d : {};
     let localAvatarFrameId = 0;
     for (const key in econAvatarData) {
         const item = econAvatarData[key];
@@ -6436,7 +6657,7 @@ function RankPanel() {
             break;
         }
     }
-    const forbidden_name_list = (_e = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "forbidden_name_list")) !== null && _e !== void 0 ? _e : {};
+    const forbidden_name_list = (_e = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "forbidden_name_list")) !== null && _e !== void 0 ? _e : {};
     const banList = Object.values(forbidden_name_list);
     if (rankListData != undefined) {
         for (const rankList in rankListData) {
@@ -6447,39 +6668,39 @@ function RankPanel() {
             }
         }
     }
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "RankPanel", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: windowState }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RankTitle", text: $.Localize("#HUD_Topmenu_rankpanel") }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "CloseBtn", onactivate: () => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "RankPanel", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: windowState }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RankTitle", text: $.Localize("#HUD_Topmenu_rankpanel") }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "CloseBtn", onactivate: () => {
                 toggleWindow(false);
             } }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "RankPanelBody" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "RankSidebar" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "RankListTabGroup" }, Object.keys(rankListGroup).map((type, index) => {
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: index, id: type, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("TabButton", { Selected: index == selected }), onactivate: self => {
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "RankPanelBody" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "RankSidebar" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "RankListTabGroup" }, Object.keys(rankListGroup).map((type, index) => {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { key: index, id: type, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("TabButton", { Selected: index == selected }), onactivate: self => {
                             if (selected != index) {
                                 setSelected(index);
                             }
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#" + rankListGroup[type]["Mode"]) }));
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#" + rankListGroup[type]["Mode"]) }));
                 })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "SidebarSpacer" })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "RankContent" }, Object.keys(rankListGroup).map((type, index) => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "SidebarSpacer" })),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "RankContent" }, Object.keys(rankListGroup).map((type, index) => {
                 var _a, _b, _c;
-                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: index, id: type, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("RankList", { Selected: index == selected }) },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListHeader" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "HeaderRank", text: $.Localize("#Hud_Rank_rank") }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "HeaderPlayer", text: $.Localize("#Hud_Rank_player") }),
-                        type == "pve" && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "HeaderScorePve", text: $.Localize("#Hud_Rank_level") }),
-                        type == "pve" && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "HeaderTime", text: $.Localize("#Hud_Rank_time") }),
-                        type != "pve" && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "HeaderScore", text: type.includes("first") ? $.Localize("#Hud_Rank_first") : $.Localize("#Hud_Rank_score") })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListDivider" }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListItemsContainer" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListItems" }, rankListGroup[type]["Tiles"].map((tile, i) => {
-                            return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(RankListTile, { key: i, tileType: type, rank: i + 1, data: tile }));
+                return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { key: index, id: type, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("RankList", { Selected: index == selected }) },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListHeader" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "HeaderRank", text: $.Localize("#Hud_Rank_rank") }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "HeaderPlayer", text: $.Localize("#Hud_Rank_player") }),
+                        type == "pve" && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "HeaderScorePve", text: $.Localize("#Hud_Rank_level") }),
+                        type == "pve" && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "HeaderTime", text: $.Localize("#Hud_Rank_time") }),
+                        type != "pve" && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "HeaderScore", text: type.includes("first") ? $.Localize("#Hud_Rank_first") : $.Localize("#Hud_Rank_score") })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListDivider" }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListItemsContainer" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListItems" }, rankListGroup[type]["Tiles"].map((tile, i) => {
+                            return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(RankListTile, { key: i, tileType: type, rank: i + 1, data: tile }));
                         })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListShadow", hittest: false })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "RankListSelfFooter" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(RankListTile, { tileType: type, rank: (player_rank_info === null || player_rank_info === void 0 ? void 0 : player_rank_info["self_" + type + "_rank"]) > 0 ? player_rank_info === null || player_rank_info === void 0 ? void 0 : player_rank_info["self_" + type + "_rank"] : "-", data: {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListShadow", hittest: false })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "RankListSelfFooter" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(RankListTile, { tileType: type, rank: (player_rank_info === null || player_rank_info === void 0 ? void 0 : player_rank_info["self_" + type + "_rank"]) > 0 ? player_rank_info === null || player_rank_info === void 0 ? void 0 : player_rank_info["self_" + type + "_rank"] : "-", data: {
                                 uid: steamID,
                                 score: (_a = player_score_info === null || player_score_info === void 0 ? void 0 : player_score_info[type + "_score"]) !== null && _a !== void 0 ? _a : "-",
                                 round_num: (_b = player_score_info === null || player_score_info === void 0 ? void 0 : player_score_info[type + "_round_num"]) !== null && _b !== void 0 ? _b : "-",
@@ -6487,29 +6708,29 @@ function RankPanel() {
                                 avatar_frame_id: localAvatarFrameId
                             }, isSelf: true }))));
             }))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "SeasonInfoBtn", onactivate: () => {
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("SeasonInfo", {});
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "SeasonInfoBtn", onactivate: () => {
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ShowCustomPopup)("SeasonInfo", {});
             } },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Hud_Rank_season_info") }))));
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Hud_Rank_season_info") }))));
 }
 function RankListTile({ tileType, rank, data, isSelf }) {
     const isTop3 = typeof rank === 'number' && rank <= 3 && !isSelf;
     const rankTagClass = `RankTag${isTop3 ? rank : 4}`;
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("RankListTile", { "PVE": tileType == "pve", "Self": isSelf }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Ranking" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("RankTag", rankTagClass) },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: rank, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ "Top3Rank": isTop3, "OtherRank": !isTop3 }) }))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PlayerInfo" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("AvatarContainer", { HasFrame: Number(data.avatar_frame_id) > 0 }) },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAvatarImage, { className: "AvatarImage", style: { "height": "50px", "width": "50px", "margin": "2px", verticalAlign: "center" }, steamid: data.uid, onload: self => { self.accountid = data.uid; } }),
-                Number(data.avatar_frame_id) > 0 && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "AvatarFrame", src: `file://{images}/custom_game/new_rank/avatar/${data.avatar_frame_id}.png`, hittest: false }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAUserName, { style: { marginLeft: "10px", verticalAlign: "center" }, steamid: data.uid, hittest: false, hittestchildren: false })),
-        tileType == "pve" ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Score" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: data.round_num !== undefined ? data.round_num : "-", className: "ColumnScorePve" }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: data.time_cost ? FormatSeconds(data.time_cost) : "-", className: "ColumnTime" }))) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Score" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: data.score !== undefined ? data.score : "-", className: "ColumnScore" })))));
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("RankListTile", { "PVE": tileType == "pve", "Self": isSelf }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Ranking" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("RankTag", rankTagClass) },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: rank, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ "Top3Rank": isTop3, "OtherRank": !isTop3 }) }))),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PlayerInfo" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("AvatarContainer", { HasFrame: Number(data.avatar_frame_id) > 0 }) },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAvatarImage, { className: "AvatarImage", style: { "height": "50px", "width": "50px", "margin": "2px", verticalAlign: "center" }, steamid: data.uid, onload: self => { self.accountid = data.uid; } }),
+                Number(data.avatar_frame_id) > 0 && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: "AvatarFrame", src: `file://{images}/custom_game/new_rank/avatar/${data.avatar_frame_id}.png`, hittest: false }))),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAUserName, { style: { marginLeft: "10px", verticalAlign: "center" }, steamid: data.uid, hittest: false, hittestchildren: false })),
+        tileType == "pve" ? (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Score" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: data.round_num !== undefined ? data.round_num : "-", className: "ColumnScorePve" }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: data.time_cost ? FormatSeconds(data.time_cost) : "-", className: "ColumnTime" }))) : (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Score" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: data.score !== undefined ? data.score : "-", className: "ColumnScore" })))));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(RankPanel, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(RankPanel, null), $.GetContextPanel());
 
 })();
 

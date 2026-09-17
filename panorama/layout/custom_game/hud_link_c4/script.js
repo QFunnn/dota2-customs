@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5761,6 +5761,225 @@ if (false) // removed by dead control flow
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6385,11 +6604,13 @@ var __webpack_exports__ = {};
   !*** ./hud_link_c4/script.tsx ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+
 
 
 
@@ -6408,14 +6629,14 @@ function getItemImage(item_id) {
 }
 function HudLink() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.useToggleWindow)("Hud_link");
-    const TaskData = (_a = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "linkage_activity_data")) !== null && _a !== void 0 ? _a : [{}];
-    const activityData = (_b = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "progress_activity")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()];
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.useToggleWindow)("Hud_link");
+    const TaskData = (_a = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "linkage_activity_data")) !== null && _a !== void 0 ? _a : [{}];
+    const activityData = (_b = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "progress_activity")) === null || _b === void 0 ? void 0 : _b[Players.GetLocalPlayer()];
     const reward_tiers = (_c = activityData === null || activityData === void 0 ? void 0 : activityData.reward_tiers) !== null && _c !== void 0 ? _c : {};
     const rewardTiersArray = Object.values(reward_tiers).sort((a, b) => a.target_num - b.target_num);
     const currentProgress = (_d = activityData === null || activityData === void 0 ? void 0 : activityData.current_progress) !== null && _d !== void 0 ? _d : 0;
     const progressItemId = (_e = activityData === null || activityData === void 0 ? void 0 : activityData.progress_item_id) !== null && _e !== void 0 ? _e : 18000002;
-    const player_items = ((_g = (_f = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_items")) === null || _f === void 0 ? void 0 : _f[Players.GetLocalPlayer()]) !== null && _g !== void 0 ? _g : {});
+    const player_items = ((_g = (_f = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_items")) === null || _f === void 0 ? void 0 : _f[Players.GetLocalPlayer()]) !== null && _g !== void 0 ? _g : {});
     const exchangePoint = (_j = (_h = player_items["18000002"]) === null || _h === void 0 ? void 0 : _h.item_num) !== null && _j !== void 0 ? _j : 0;
     let PlayerTaskData = TaskData[Players.GetLocalPlayer()];
     const language = $.Language().toLocaleLowerCase();
@@ -6426,31 +6647,31 @@ function HudLink() {
             return `file://{images}/custom_game/new_link/t_ru.png`;
         return `file://{images}/custom_game/new_link/t_en.png`;
     })();
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "HudLinkC4Root", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ show: windowState }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "CloseBtn", onactivate: () => {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "HudLinkC4Root", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ show: windowState }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "CloseBtn", onactivate: () => {
                 toggleWindow(false);
             } }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkBg" }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkIcon" }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "LinkTitle", src: titleImage }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkCountdown" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CountdownInner", style: { flowChildren: "right", align: "center center" } },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TimeIcon", style: { marginLeft: "0px" } }),
-                (activityData === null || activityData === void 0 ? void 0 : activityData.end_time) && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Countdown, { id: "Countdown", endTime: activityData.end_time, "server-time": true, style: { verticalAlign: "center", marginLeft: "10px" } },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { localizedText: "{t:d:t:countdown_time}", style: { fontSize: "16px", color: "#FFD79B", fontFamily: "Reaver" } }))))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkInfo", onactivate: (p) => {
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkBg" }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkIcon" }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "LinkTitle", src: titleImage }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkCountdown" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "CountdownInner", style: { flowChildren: "right", align: "center center" } },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TimeIcon", style: { marginLeft: "0px" } }),
+                (activityData === null || activityData === void 0 ? void 0 : activityData.end_time) && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Countdown, { id: "Countdown", endTime: activityData.end_time, "server-time": true, style: { verticalAlign: "center", marginLeft: "10px" } },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { localizedText: "{t:d:t:countdown_time}", style: { fontSize: "16px", color: "#FFD79B", fontFamily: "Reaver" } }))))),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkInfo", onactivate: (p) => {
                 $.DispatchEvent('DOTAShowCustomGamePage', p, 2331812965);
                 $.DispatchEvent('DOTASubscribeToCustomGame', p, 2331812965);
             } },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "InfoText", text: $.Localize("#HUD_link_c1_info"), html: true }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "tips" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#HUD_link_goto") }))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkRightPanel" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkExchangeList" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ExchangePoint" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: `file://{images}/custom_game/store_items/${progressItemId}.png` }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: exchangePoint })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ExchangeList" }, rewardTiersArray.map((tier, i) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "InfoText", text: $.Localize("#HUD_link_c1_info"), html: true }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "tips" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#HUD_link_goto") }))),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkRightPanel" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkExchangeList" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ExchangePoint" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: `file://{images}/custom_game/store_items/${progressItemId}.png` }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: exchangePoint })),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ExchangeList" }, rewardTiersArray.map((tier, i) => {
                     var _a, _b;
                     const reward_item = (_b = Object.values((_a = tier.reward_items) !== null && _a !== void 0 ? _a : {})[0]) !== null && _b !== void 0 ? _b : { item_id: 0, amounts: 0 };
                     const src = getItemImage(reward_item.item_id);
@@ -6462,71 +6683,71 @@ function HudLink() {
                     const prevPoint = i === 0 ? 0 : rewardTiersArray[i - 1].target_num;
                     const diff = point - prevPoint;
                     const widthPercent = Clamp((exchangePoint - prevPoint) / diff, 0, 1) * 100;
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ExchangeItem", key: tier.reward_id, style: { zIndex: 5 - i } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(TaskReward, { rarity: rarity, src: src, received: received, finished: finished, amount: amount, onactivate: () => {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ExchangeItem", key: tier.reward_id, style: { zIndex: 5 - i } },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(TaskReward, { rarity: rarity, src: src, received: received, finished: finished, amount: amount, onactivate: () => {
                                 if (finished) {
-                                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.Send2ServerCallback)("ActivityReceive", {
+                                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.Send2ServerCallback)("ActivityReceive", {
                                         activity_id: 1001,
                                         reward_id: tier.reward_id,
                                     }, (response) => {
                                         if (response && response.code === 0) {
-                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_success")) });
+                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_success")) });
                                         }
                                         else {
-                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_fail")) });
+                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_fail")) });
                                         }
                                     });
                                 }
                             } }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ExchangeProgress" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ProgressBar" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ProgressInner", style: { width: `${widthPercent}%` } })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Star", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ "active": exchangePoint >= point }) })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ExchangePointText", text: point }));
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ExchangeProgress" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ProgressBar" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ProgressInner", style: { width: `${widthPercent}%` } })),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Star", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ "active": exchangePoint >= point }) })),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ExchangePointText", text: point }));
                 }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LinkTaskList" }, Object.values(PlayerTaskData).map((info, i) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LinkTaskList" }, Object.values(PlayerTaskData).map((info, i) => {
                 const received = info.Received == 1;
                 const finished = !received && info.Progress >= info.Total;
                 const receiveFunc = () => {
                     if (!received && finished) {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.Send2ServerCallback)("ReceiveLinkReward", {
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.Send2ServerCallback)("ReceiveLinkReward", {
                             project: "p2", task: info.TaskId,
                         }, (response) => {
                             if (response.code == 0) {
-                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_success")) });
+                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_success")) });
                             }
                             else {
-                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_fail")) });
+                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ShowCustomPopup)("CommonMsg", { title: "", content: ($.Localize("#common_exchange_fail")) });
                             }
                         });
                     }
                 };
-                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskRow", key: i, onactivate: () => {
+                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskRow", key: i, onactivate: () => {
                         receiveFunc();
                     } },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskLeft" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TaskInfo", text: $.Localize(`#HUD_c1_link_task_${info.TaskId}`), html: true }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskProgressRoot" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskProgress", hittest: false },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskProgressFill", hittest: false, style: {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskLeft" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TaskInfo", text: $.Localize(`#HUD_c1_link_task_${info.TaskId}`), html: true }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskProgressRoot" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskProgress", hittest: false },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskProgressFill", hittest: false, style: {
                                         width: `${Clamp(info.Progress / info.Total, 0, 1) * 100}%`
                                     } })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TaskProgressText", text: info.Progress + "/" + info.Total }))),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskRewards" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(TaskReward, { rarity: 2, src: `file://{images}/custom_game/store_items/18000002.png`, received: received, finished: finished, amount: 5, onactivate: () => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TaskProgressText", text: info.Progress + "/" + info.Total }))),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskRewards" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(TaskReward, { rarity: 2, src: `file://{images}/custom_game/store_items/18000002.png`, received: received, finished: finished, amount: 5, onactivate: () => {
                                 receiveFunc();
                             } })));
             }))));
 }
 function TaskReward({ rarity, src, received, finished, amount, onactivate }) {
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskReward", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`Rarity${rarity}`, { Received: received, finished }), onactivate: onactivate },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskRewardContent" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "TaskRewardImage", src: src }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TaskRewardAmount", text: amount }),
-            finished && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskFinishBorder" })),
-        received && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TaskRewardReceived" }));
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskReward", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(`Rarity${rarity}`, { Received: received, finished }), onactivate: onactivate },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskRewardContent" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "TaskRewardImage", src: src }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TaskRewardAmount", text: amount }),
+            finished && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskFinishBorder" })),
+        received && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TaskRewardReceived" }));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(HudLink, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(HudLink, null), $.GetContextPanel());
 
 })();
 

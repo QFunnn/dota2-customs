@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -7246,18 +7246,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   OpenBoxResultItem: () => (/* binding */ OpenBoxResultItem)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 function CheckIsCollectible(item_id) {
     var _a;
-    const econList = CustomNetTables.GetAllTableValuesKV("econ_list");
+    const econList = GameUI.CustomUIConfig().EconListKv;
     for (const item_type in econList) {
         const list = econList[item_type];
         if (list != undefined) {
@@ -7269,7 +7271,7 @@ function CheckIsCollectible(item_id) {
             }
         }
     }
-    const skinList = (_a = CustomNetTables.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+    const skinList = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
     if (skinList != undefined) {
         const skin = skinList[String(item_id)] || skinList[Number(item_id)];
         if (skin != undefined) {
@@ -7278,7 +7280,7 @@ function CheckIsCollectible(item_id) {
     }
     return false;
 }
-class OpenBoxResultItem extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+class OpenBoxResultItem extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
     render() {
         const { item_id, amount, item_name, rarity, decomposition, whether_decomposition, item_type, is_collection } = this.props;
         const is_collectible = this.props.is_collectible;
@@ -7322,20 +7324,20 @@ class OpenBoxResultItem extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                 descStr = (fallback !== `#item_${tokenTypeStr}_description` && fallback !== `#${tokenTypeStr}_description`) ? fallback : "";
             }
         }
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_3___default()("OpenBoxResultItem", "Rarity" + rarity_to_show) },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(DOTAParticleScenePanel, { id: "receive", className: classnames__WEBPACK_IMPORTED_MODULE_3___default()("Rarity" + rarity_to_show, `RarityWashColor${rarity_to_show}`), particleName: "particles/ui/draw_reward_3.vpcf", cameraOrigin: [50, 0, 0], lookAt: [0, 0, 0], fov: 120, particleonly: true, antialias: true }),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { id: "Main" },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { id: "BG", className: classnames__WEBPACK_IMPORTED_MODULE_3___default()("Rarity" + rarity_to_show) }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(Label, { id: "itemName", className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(`RarityColor${rarity_to_show}`), text: Name }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(Label, { id: "itemRarity", className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(`RarityGradientColor${rarity_to_show}`), text: $.Localize(`#Rarity_${rarity_to_show}`) }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_3___default()("Container") },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_3___default()("Content"), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity_to_show), item_type: item_type } },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(Image, { id: "itemImage", scaling: "stretch-to-fit-preserve-aspect", src: `file://{images}/custom_game/items/item_${item_id}.png` }),
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "itemBG" })),
-                    showCollectionTag && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Image, { className: "ItemTag", src: $.Language() === "schinese" ? "file://{images}/custom_game/new_draw/tag_mythic_zh.png" : "file://{images}/custom_game/new_draw/tag_mythic_en.png" })))),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { className: "Convert", visibility: whether_decomposition ? "visible" : "collapse", flowChildren: "right", titleTooltip: { title: titleStr, text: descStr } },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(Image, { id: "ConvertImage", src: convertImg }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(Label, { id: "ConvertLabel", text: " x" + (decomposition === null || decomposition === void 0 ? void 0 : decomposition.number) }))));
+        return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_4___default()("OpenBoxResultItem", "Rarity" + rarity_to_show) },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(DOTAParticleScenePanel, { id: "receive", className: classnames__WEBPACK_IMPORTED_MODULE_4___default()("Rarity" + rarity_to_show, `RarityWashColor${rarity_to_show}`), particleName: "particles/ui/draw_reward_3.vpcf", cameraOrigin: [50, 0, 0], lookAt: [0, 0, 0], fov: 120, particleonly: true, antialias: true }),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "Main" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "BG", className: classnames__WEBPACK_IMPORTED_MODULE_4___default()("Rarity" + rarity_to_show) }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "itemName", className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(`RarityColor${rarity_to_show}`), text: Name }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "itemRarity", className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(`RarityGradientColor${rarity_to_show}`), text: $.Localize(`#Rarity_${rarity_to_show}`) }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_4___default()("Container") },
+                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_4___default()("Content"), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity_to_show), item_type: item_type } },
+                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { id: "itemImage", scaling: "stretch-to-fit-preserve-aspect", src: `file://{images}/custom_game/items/item_${item_id}.png` }),
+                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "itemBG" })),
+                    showCollectionTag && (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "ItemTag", src: $.Language() === "schinese" ? "file://{images}/custom_game/new_draw/tag_mythic_zh.png" : "file://{images}/custom_game/new_draw/tag_mythic_en.png" })))),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: "Convert", visibility: whether_decomposition ? "visible" : "collapse", flowChildren: "right", titleTooltip: { title: titleStr, text: descStr } },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { id: "ConvertImage", src: convertImg }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "ConvertLabel", text: " x" + (decomposition === null || decomposition === void 0 ? void 0 : decomposition.number) }))));
     }
 }
 
@@ -7520,18 +7522,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Popup_StoreBuyItem: () => (/* binding */ Popup_StoreBuyItem)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Label/EOM_Label */ "./EOMDesign/DataDisplay/EOM_Label/EOM_Label.tsx");
-/* harmony import */ var _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../EOMDesign/EOM_BaseComponent */ "./EOMDesign/EOM_BaseComponent.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_NumberAdjust_EOM_NumberAdjust__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_NumberAdjust/EOM_NumberAdjust */ "./EOMDesign/Inputs/EOM_NumberAdjust/EOM_NumberAdjust.tsx");
-/* harmony import */ var _EOMDesign_Layout_EOM_Separator_EOM_Separator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../EOMDesign/Layout/EOM_Separator/EOM_Separator */ "./EOMDesign/Layout/EOM_Separator/EOM_Separator.tsx");
-/* harmony import */ var _hud_store_StoreItemImage_StoreItemImage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../hud_store/StoreItemImage/StoreItemImage */ "./hud_store/StoreItemImage/StoreItemImage.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var _base_popup__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../base_popup */ "./hud_popup/base_popup.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Label/EOM_Label */ "./EOMDesign/DataDisplay/EOM_Label/EOM_Label.tsx");
+/* harmony import */ var _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../EOMDesign/EOM_BaseComponent */ "./EOMDesign/EOM_BaseComponent.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_NumberAdjust_EOM_NumberAdjust__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_NumberAdjust/EOM_NumberAdjust */ "./EOMDesign/Inputs/EOM_NumberAdjust/EOM_NumberAdjust.tsx");
+/* harmony import */ var _EOMDesign_Layout_EOM_Separator_EOM_Separator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../EOMDesign/Layout/EOM_Separator/EOM_Separator */ "./EOMDesign/Layout/EOM_Separator/EOM_Separator.tsx");
+/* harmony import */ var _hud_store_StoreItemImage_StoreItemImage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../hud_store/StoreItemImage/StoreItemImage */ "./hud_store/StoreItemImage/StoreItemImage.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _base_popup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../base_popup */ "./hud_popup/base_popup.tsx");
 
 
 
@@ -7544,21 +7547,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Popup_StoreBuyItem extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_5__["default"] {
+
+class Popup_StoreBuyItem extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_6__["default"] {
     constructor() {
         var _a, _b, _c, _d, _e, _f;
         super(...arguments);
         this.state = {
             count: 1,
-            payTypeIcon: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getPayTypeIconPath)(this.props.itemData.pay_type),
+            payTypeIcon: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getPayTypeIconPath)(this.props.itemData.pay_type),
             player_wallet: {
-                moonstone: (_c = (_b = (_a = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.moonstone) !== null && _c !== void 0 ? _c : 0,
-                starlight: (_f = (_e = (_d = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e.starlight) !== null && _f !== void 0 ? _f : 0,
+                moonstone: (_c = (_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.moonstone) !== null && _c !== void 0 ? _c : 0,
+                starlight: (_f = (_e = (_d = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e.starlight) !== null && _f !== void 0 ? _f : 0,
             }
         };
     }
     getCost() {
-        return (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getStoreItemCost)(this.props.itemData, this.state.count);
+        return (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.getStoreItemCost)(this.props.itemData, this.state.count);
     }
     getMaxCount() {
         if (this.props.itemData.id == 1100010) {
@@ -7570,74 +7574,74 @@ class Popup_StoreBuyItem extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_
         const itemData = this.props.itemData;
         switch (itemData.pay_type) {
             case PayType.MONEY:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
                 break;
             case PayType.MOON:
-                let PopupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "loading", group: String(itemData.id) });
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.Send2ServerCallback)("product_buy", {
+                let PopupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "loading", group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.Send2ServerCallback)("product_buy", {
                     product_id: itemData.id,
                     product_num: this.state.count
                 }, (res) => {
                     if (res.status == 0) {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", PopupID: PopupID, group: String(itemData.id) });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", PopupID: PopupID, group: String(itemData.id) });
                     }
                     else {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", PopupID: PopupID, group: String(itemData.id) });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", PopupID: PopupID, group: String(itemData.id) });
                     }
                 });
                 break;
             case PayType.FUNNY:
-                let FunnyPopupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "loading", group: String(itemData.id) });
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.Send2ServerCallback)("product_buy", {
+                let FunnyPopupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "loading", group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.Send2ServerCallback)("product_buy", {
                     product_id: itemData.id,
                     product_num: this.state.count
                 }, (res) => {
                     if (res.code == 0) {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", PopupID: FunnyPopupID, group: String(itemData.id) });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", PopupID: FunnyPopupID, group: String(itemData.id) });
                     }
                     else {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", PopupID: FunnyPopupID, group: String(itemData.id) });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", PopupID: FunnyPopupID, group: String(itemData.id) });
                     }
                 });
                 break;
             case PayType.STAR:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
                 break;
             case PayType.SHARD:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
                 break;
             default:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ShowCustomPopup)("StoreMoneyPayment", { itemData: itemData, count: this.state.count, group: String(itemData.id) });
                 break;
         }
     }
     jumpCharge() {
-        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ClientSideEvent)("toggle_store_tag", { tabIndex: 3 });
-        (0,_base_popup__WEBPACK_IMPORTED_MODULE_11__.ClosePopup)(this.props.PopupID);
+        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_11__.ClientSideEvent)("toggle_store_tag", { tabIndex: 3 });
+        (0,_base_popup__WEBPACK_IMPORTED_MODULE_12__.ClosePopup)(this.props.PopupID);
     }
     render() {
         const { itemData, PopupID } = this.props;
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_11__.BasePopup, { group: String(itemData.id), title: "#Popup_StoreBuyItem_title" },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { horizontalAlign: "right", flowChildren: "right", marginTop: "10px", marginRight: "40px" },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_2__["default"], { type: "P2", icon: "file://{images}/custom_game/money_icon/coin.png", value: this.state.player_wallet.moonstone, onaddbuttonactivate: () => this.jumpCharge() })),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { width: "90%", flowChildren: "right", marginTop: "20px", horizontalAlign: "center" },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_hud_store_StoreItemImage_StoreItemImage__WEBPACK_IMPORTED_MODULE_9__.StoreItemImage, { itemName: $.Localize("#Goods_" + itemData.id), backgroundImage: "file://{images}/custom_game/store_items/" + itemData.id + ".png", itemImage: "" }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { flowChildren: "down", width: "100%", marginLeft: "40px" },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { html: true, height: "170px", text: $.Localize("#Goods_" + itemData.id + "_description") }),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Layout_EOM_Separator_EOM_Separator__WEBPACK_IMPORTED_MODULE_8__["default"], { direction: "horizontal", length: "100%" }),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { marginTop: "20px", flowChildren: "right" },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { flowChildren: "down", width: "200px" },
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { localizedText: "#Popup_StoreBuyItem_cost" }),
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { flowChildren: "right" },
+        return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_12__.BasePopup, { group: String(itemData.id), title: "#Popup_StoreBuyItem_title" },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { horizontalAlign: "right", flowChildren: "right", marginTop: "10px", marginRight: "40px" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_3__["default"], { type: "P2", icon: "file://{images}/custom_game/money_icon/coin.png", value: this.state.player_wallet.moonstone, onaddbuttonactivate: () => this.jumpCharge() })),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { width: "90%", flowChildren: "right", marginTop: "20px", horizontalAlign: "center" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_hud_store_StoreItemImage_StoreItemImage__WEBPACK_IMPORTED_MODULE_10__.StoreItemImage, { itemName: $.Localize("#Goods_" + itemData.id), backgroundImage: "file://{images}/custom_game/store_items/" + itemData.id + ".png", itemImage: "" }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { flowChildren: "down", width: "100%", marginLeft: "40px" },
+                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_5__["default"], { html: true, height: "170px", text: $.Localize("#Goods_" + itemData.id + "_description") }),
+                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Layout_EOM_Separator_EOM_Separator__WEBPACK_IMPORTED_MODULE_9__["default"], { direction: "horizontal", length: "100%" }),
+                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { marginTop: "20px", flowChildren: "right" },
+                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { flowChildren: "down", width: "200px" },
+                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_5__["default"], { localizedText: "#Popup_StoreBuyItem_cost" }),
+                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { flowChildren: "right" },
                                 this.state.payTypeIcon != "" &&
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_3__["default"], { src: this.state.payTypeIcon, width: "29px", height: "29px", marginTop: "10px" }),
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "#FFD05F", fontSize: "24px", marginTop: "10px", text: this.getCost() }))),
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { flowChildren: "down", width: "200px" },
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { localizedText: "#Popup_StoreBuyItem_count" }),
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Inputs_EOM_NumberAdjust_EOM_NumberAdjust__WEBPACK_IMPORTED_MODULE_7__.EOM_NumberAdjust, { marginTop: "10px", value: 1, onvaluechanged: self => { this.setState({ count: self.value }); }, min: 1, max: this.getMaxCount() }))))),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_1__["default"], { width: "50%", horizontalAlign: "center", marginTop: "60px" },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", color: "Gray", text: "#Popup_Button_Cancel", onactivate: self => (0,_base_popup__WEBPACK_IMPORTED_MODULE_11__.ClosePopup)(PopupID) }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_6__["default"], { horizontalAlign: "right", type: "P2", color: "Gold", text: "#Popup_Button_Buy", onactivate: self => this.buyItem() }))));
+                                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_4__["default"], { src: this.state.payTypeIcon, width: "29px", height: "29px", marginTop: "10px" }),
+                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_5__["default"], { color: "#FFD05F", fontSize: "24px", marginTop: "10px", text: this.getCost() }))),
+                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { flowChildren: "down", width: "200px" },
+                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_5__["default"], { localizedText: "#Popup_StoreBuyItem_count" }),
+                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Inputs_EOM_NumberAdjust_EOM_NumberAdjust__WEBPACK_IMPORTED_MODULE_8__.EOM_NumberAdjust, { marginTop: "10px", value: 1, onvaluechanged: self => { this.setState({ count: self.value }); }, min: 1, max: this.getMaxCount() }))))),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { width: "50%", horizontalAlign: "center", marginTop: "60px" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_7__["default"], { type: "P2", color: "Gray", text: "#Popup_Button_Cancel", onactivate: self => (0,_base_popup__WEBPACK_IMPORTED_MODULE_12__.ClosePopup)(PopupID) }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_7__["default"], { horizontalAlign: "right", type: "P2", color: "Gold", text: "#Popup_Button_Buy", onactivate: self => this.buyItem() }))));
     }
 }
 
@@ -7719,18 +7723,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Popup_StoreMoneyPayment: () => (/* binding */ Popup_StoreMoneyPayment)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Label/EOM_Label */ "./EOMDesign/DataDisplay/EOM_Label/EOM_Label.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Loading/EOM_Loading */ "./EOMDesign/DataDisplay/EOM_Loading/EOM_Loading.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_QRCode/EOM_QRCode */ "./EOMDesign/DataDisplay/EOM_QRCode/EOM_QRCode.tsx");
-/* harmony import */ var _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../EOMDesign/EOM_BaseComponent */ "./EOMDesign/EOM_BaseComponent.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_DropDown_EOM_DropDown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_DropDown/EOM_DropDown */ "./EOMDesign/Inputs/EOM_DropDown/EOM_DropDown.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_SearchBox_EOM_SearchBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_SearchBox/EOM_SearchBox */ "./EOMDesign/Inputs/EOM_SearchBox/EOM_SearchBox.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var _base_popup__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../base_popup */ "./hud_popup/base_popup.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Label/EOM_Label */ "./EOMDesign/DataDisplay/EOM_Label/EOM_Label.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_Loading/EOM_Loading */ "./EOMDesign/DataDisplay/EOM_Loading/EOM_Loading.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../EOMDesign/DataDisplay/EOM_QRCode/EOM_QRCode */ "./EOMDesign/DataDisplay/EOM_QRCode/EOM_QRCode.tsx");
+/* harmony import */ var _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../EOMDesign/EOM_BaseComponent */ "./EOMDesign/EOM_BaseComponent.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_DropDown_EOM_DropDown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_DropDown/EOM_DropDown */ "./EOMDesign/Inputs/EOM_DropDown/EOM_DropDown.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_SearchBox_EOM_SearchBox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../EOMDesign/Inputs/EOM_SearchBox/EOM_SearchBox */ "./EOMDesign/Inputs/EOM_SearchBox/EOM_SearchBox.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _base_popup__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../base_popup */ "./hud_popup/base_popup.tsx");
+
 
 
 
@@ -7863,7 +7869,7 @@ function GetPaymentLists(language) {
     paymentsRegions.push("Global");
     return { mainPaymentList, otherDefaultList, paymentsRegions };
 }
-class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_6__["default"] {
+class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_7__["default"] {
     constructor(props) {
         var _a, _b;
         super(props);
@@ -7880,7 +7886,7 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
             filteredPayments: [],
             searchText: "",
             regionFilter: "",
-            email: (_b = (_a = CustomNetTables.GetTableValue("service", "email")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : "eomstudio@163.com",
+            email: (_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "email")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : "eomstudio@163.com",
             username: Players.GetPlayerName(Players.GetLocalPlayer()),
         };
         const currentLanguage = $.Language().toLowerCase();
@@ -7892,7 +7898,7 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
     }
     componentDidMount() {
         const { itemData, count } = this.props;
-        this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.Send2ServerCallback)("order_create", {
+        this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.Send2ServerCallback)("order_create", {
             title: $.Localize("#" + itemData.id),
             body: $.Localize("#" + itemData.id + "_description"),
             product_id: itemData.id,
@@ -7908,7 +7914,7 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
                 });
             }
         }));
-        this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.Send2ServerCallback)("order_create", {
+        this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.Send2ServerCallback)("order_create", {
             title: $.Localize("#" + itemData.id),
             body: $.Localize("#" + itemData.id + "_description"),
             product_id: itemData.id,
@@ -7949,15 +7955,15 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
             }
             else if (event.order_id == this.state.passion.order) {
                 if (event.status == 0) {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "success", PopupID: this.overseaPupupID, group: this.props.group });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "success", PopupID: this.overseaPupupID, group: this.props.group });
                     this.onPaymentEnd(0);
                 }
                 else if (event.status == 1) {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "gotoUrl", PopupID: this.overseaPupupID, group: this.props.group });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "gotoUrl", PopupID: this.overseaPupupID, group: this.props.group });
                     this.onPaymentEnd(1);
                 }
                 else if (event.status == 2) {
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "failure", PopupID: this.overseaPupupID, group: this.props.group });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "failure", PopupID: this.overseaPupupID, group: this.props.group });
                     this.onPaymentEnd(2);
                 }
             }
@@ -7972,15 +7978,15 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
         this.setState({ status: status });
         switch (status) {
             case 1:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", group: this.props.group });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "success", group: this.props.group });
                 break;
             default:
-                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", group: this.props.group });
+                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreBuyItemResult", { result: "failure", group: this.props.group });
                 break;
         }
     }
     componentWillUnmount() {
-        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.print)("componentWillUnmount");
+        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.print)("componentWillUnmount");
         for (const requestID of this.requestIDList) {
             CancelRequest(requestID);
         }
@@ -8012,17 +8018,17 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
         }
         if (paytype == 1000) {
             if (this.state.alipay.link != "") {
-                this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreQRCodePayment", { result: "loading", link: this.state.alipay.link, logo: "file://{images}/custom_game/icon/alipay_logo.png", group: this.props.group });
+                this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreQRCodePayment", { result: "loading", link: this.state.alipay.link, logo: "file://{images}/custom_game/icon/alipay_logo.png", group: this.props.group });
             }
         }
         else if (paytype == 2000) {
             if (this.state.wxpay.link != "") {
-                this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreQRCodePayment", { result: "loading", link: this.state.wxpay.link, logo: "file://{images}/custom_game/icon/wxpay_logo.png", group: this.props.group });
+                this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreQRCodePayment", { result: "loading", link: this.state.wxpay.link, logo: "file://{images}/custom_game/icon/wxpay_logo.png", group: this.props.group });
             }
         }
         else {
-            this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "loading", group: this.props.group });
-            this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.Send2ServerCallback)("order_create", {
+            this.overseaPupupID = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "loading", group: this.props.group });
+            this.requestIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.Send2ServerCallback)("order_create", {
                 title: $.Localize("#Goods_" + itemData.id),
                 body: $.Localize("#Goods_" + itemData.id + "_description"),
                 product_id: itemData.id,
@@ -8040,11 +8046,11 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
                         }
                     });
                     $.DispatchEvent("ExternalBrowserGoToURL", res.data.payment_order.link);
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "gotoUrl", link: res.data.payment_order.link, PopupID: this.overseaPupupID, group: this.props.group });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "gotoUrl", link: res.data.payment_order.link, PopupID: this.overseaPupupID, group: this.props.group });
                 }
                 else {
                     if (((_b = res === null || res === void 0 ? void 0 : res.data) === null || _b === void 0 ? void 0 : _b.payment_order) != undefined) {
-                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.ShowCustomPopup)("StoreOverseaPayment", { result: "failure", link: res.data.payment_order.link, PopupID: this.overseaPupupID, group: this.props.group });
+                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.ShowCustomPopup)("StoreOverseaPayment", { result: "failure", link: res.data.payment_order.link, PopupID: this.overseaPupupID, group: this.props.group });
                     }
                 }
             }));
@@ -8053,10 +8059,10 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
     render() {
         const { itemData, count, group } = this.props;
         const { alipay, wxpay, status, payTab, filteredPayments } = this.state;
-        return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_10__.BasePopup, { width: "960px", height: "580px", group: group, title: "#Popup_StoreMoneyPayment_Title", closeOnClickOuter: status != -1, closeOnEsc: status != -1 },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { horizontalAlign: "center", width: "100%", marginTop: "10px" },
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: "PaymentRegionFilter", visibility: payTab == "right" ? "visible" : "collapse", horizontalAlign: "left", verticalAlign: "center" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Inputs_EOM_DropDown_EOM_DropDown__WEBPACK_IMPORTED_MODULE_7__.EOM_DropDown, { id: "PaymentRegionFilter", placeholder: "#Popup_StoreMoneyPayment_Region_Placeholder", onChange: (_index, item) => {
+        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_11__.BasePopup, { width: "960px", height: "580px", group: group, title: "#Popup_StoreMoneyPayment_Title", closeOnClickOuter: status != -1, closeOnEsc: status != -1 },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { horizontalAlign: "center", width: "100%", marginTop: "10px" },
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "PaymentRegionFilter", visibility: payTab == "right" ? "visible" : "collapse", horizontalAlign: "left", verticalAlign: "center" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_DropDown_EOM_DropDown__WEBPACK_IMPORTED_MODULE_8__.EOM_DropDown, { id: "PaymentRegionFilter", placeholder: "#Popup_StoreMoneyPayment_Region_Placeholder", onChange: (_index, item) => {
                             const regionFilter = item.id;
                             this.setState({
                                 regionFilter,
@@ -8068,50 +8074,50 @@ class Popup_StoreMoneyPayment extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPO
                                 filteredPayments: this.filterPayments(this.state.searchText, ""),
                             });
                         } },
-                        this.paymentsRegions.map(region => (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { key: region, id: region, localizedText: `#PaymentRegion_${region}` }))),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "EOM_DropDown_Clear", localizedText: "#PaymentRegion_All" }))),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { horizontalAlign: "center", verticalAlign: "center", flowChildren: "right" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_3__["default"], { fontSize: "16px", verticalAlign: "center", text: $.Localize("#Popup_StoreBuyItem_cost") }),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_3__["default"], { color: "#FFD05F", fontSize: "24px", text: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_9__.getStoreItemCost)(itemData, count) })),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Inputs_EOM_SearchBox_EOM_SearchBox__WEBPACK_IMPORTED_MODULE_8__.EOM_SearchBox, { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(payTab), onSearch: text => this.setState({
+                        this.paymentsRegions.map(region => (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { key: region, id: region, localizedText: `#PaymentRegion_${region}` }))),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "EOM_DropDown_Clear", localizedText: "#PaymentRegion_All" }))),
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { horizontalAlign: "center", verticalAlign: "center", flowChildren: "right" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { fontSize: "16px", verticalAlign: "center", text: $.Localize("#Popup_StoreBuyItem_cost") }),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Label_EOM_Label__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "#FFD05F", fontSize: "24px", text: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_10__.getStoreItemCost)(itemData, count) })),
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_SearchBox_EOM_SearchBox__WEBPACK_IMPORTED_MODULE_9__.EOM_SearchBox, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(payTab), onSearch: text => this.setState({
                         searchText: text,
                         filteredPayments: this.filterPayments(text),
                     }) })),
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(payTab), width: "100%", height: "300px", margin: "20px" },
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_10__.PopupBox, { id: "NormalType", width: "100%", height: "100%" },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(payTab), width: "100%", height: "300px", margin: "20px" },
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_11__.PopupBox, { id: "NormalType", width: "100%", height: "100%" },
                     (this.language == "schinese" && status == -1) &&
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null,
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], { align: "left center", marginLeft: "160px", type: "Wave" }),
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], { align: "right center", marginRight: "160px", type: "Wave" })),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], { align: "left center", marginLeft: "160px", type: "Wave" }),
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Loading_EOM_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], { align: "right center", marginRight: "160px", type: "Wave" })),
                     (this.language == "schinese" && status == -1) && alipay.link != "" &&
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_5__.EOM_QRCode, { align: "left center", marginLeft: "100px", value: alipay.link, qrcodesize: 200, imageSrc: "file://{images}/custom_game/icon/alipay_logo.png" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_6__.EOM_QRCode, { align: "left center", marginLeft: "100px", value: alipay.link, qrcodesize: 200, imageSrc: "file://{images}/custom_game/icon/alipay_logo.png" }),
                     (this.language == "schinese" && status == -1) && wxpay.link != "" &&
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_5__.EOM_QRCode, { align: "right center", marginRight: "100px", value: wxpay.link, qrcodesize: 200, imageSrc: "file://{images}/custom_game/icon/wxpay_logo.png" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_QRCode_EOM_QRCode__WEBPACK_IMPORTED_MODULE_6__.EOM_QRCode, { align: "right center", marginRight: "100px", value: wxpay.link, qrcodesize: 200, imageSrc: "file://{images}/custom_game/icon/wxpay_logo.png" }),
                     this.language != "schinese" &&
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { align: "center center", flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, this.mainPaymentList.map((pay_name) => {
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { align: "center center", flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, this.mainPaymentList.map((pay_name) => {
                             const payType = PAYMENTS_ORDER[pay_name].pid;
-                            return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { key: pay_name, className: "PaytypeMain", onactivate: () => this.requestLinkAndOpen(payType, pay_name) },
-                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { src: `file://{images}/custom_game/paymentways/${pay_name}.png` })));
+                            return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: pay_name, className: "PaytypeMain", onactivate: () => this.requestLinkAndOpen(payType, pay_name) },
+                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: `file://{images}/custom_game/paymentways/${pay_name}.png` })));
                         }))),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_10__.PopupBox, { id: "MoreType", width: "100%", height: "100%", flowChildren: "right-wrap", scroll: "y" }, filteredPayments.map((pay_name) => {
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_base_popup__WEBPACK_IMPORTED_MODULE_11__.PopupBox, { id: "MoreType", width: "100%", height: "100%", flowChildren: "right-wrap", scroll: "y" }, filteredPayments.map((pay_name) => {
                     const payType = PAYMENTS_ORDER[pay_name].pid;
-                    return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { key: pay_name, className: "Paytype", onactivate: self => {
+                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: pay_name, className: "Paytype", onactivate: self => {
                             if (payType == 1000 || payType == 2000) {
                             }
                             this.requestLinkAndOpen(payType, pay_name);
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { src: `file://{images}/custom_game/paymentways/${pay_name}.png` })));
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: `file://{images}/custom_game/paymentways/${pay_name}.png` })));
                 }))),
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { horizontalAlign: "center", marginTop: "20px" },
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "PaymentToggleButtonContainer" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(TabButton, { className: "PaymentToggleButtonLeft", selected: true, id: "default", group: "Payment", onselect: () => this.setState({ payTab: "left" }) },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "PaymentToggleButtonBG" }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { localizedText: "#PaymentNormalType" })),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(TabButton, { className: "PaymentToggleButtonRight", selected: false, id: "more", group: "Payment", onselect: () => this.setState({ payTab: "right" }) },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "PaymentToggleButtonBG" }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { style: { flowChildren: "right", verticalAlign: "center", horizontalAlign: "center" } },
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { localizedText: "#PaymentMoreType" }),
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "PaymentTrangleIcon" })))))));
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { horizontalAlign: "center", marginTop: "20px" },
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "PaymentToggleButtonContainer" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(TabButton, { className: "PaymentToggleButtonLeft", selected: true, id: "default", group: "Payment", onselect: () => this.setState({ payTab: "left" }) },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "PaymentToggleButtonBG" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { localizedText: "#PaymentNormalType" })),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(TabButton, { className: "PaymentToggleButtonRight", selected: false, id: "more", group: "Payment", onselect: () => this.setState({ payTab: "right" }) },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "PaymentToggleButtonBG" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { style: { flowChildren: "right", verticalAlign: "center", horizontalAlign: "center" } },
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { localizedText: "#PaymentMoreType" }),
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "PaymentTrangleIcon" })))))));
     }
 }
 
@@ -8282,6 +8288,170 @@ class StoreItemImage extends _EOMDesign_EOM_BaseComponent__WEBPACK_IMPORTED_MODU
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("StoreItemRarityImage", rarity) })));
     }
 }
+
+
+/***/ },
+
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
 
 
 /***/ },
@@ -8892,6 +9062,61 @@ var qrcodegen;
     })(QrSegment = qrcodegen.QrSegment || (qrcodegen.QrSegment = {}));
 })(qrcodegen || (qrcodegen = {}));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (qrcodegen);
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
 
 
 /***/ },

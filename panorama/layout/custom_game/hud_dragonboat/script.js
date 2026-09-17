@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6119,6 +6119,225 @@ class EOM_IconButton extends _EOM_BaseComponent__WEBPACK_IMPORTED_MODULE_2__.EOM
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6743,14 +6962,16 @@ var __webpack_exports__ = {};
   !*** ./hud_dragonboat/script.tsx ***!
   \***********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Avatar_EOM_Avatar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Avatar/EOM_Avatar */ "./EOMDesign/DataDisplay/EOM_Avatar/EOM_Avatar.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Avatar_EOM_Avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Avatar/EOM_Avatar */ "./EOMDesign/DataDisplay/EOM_Avatar/EOM_Avatar.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+
 
 
 
@@ -6795,7 +7016,7 @@ function getLocalUid() {
     if (!(info === null || info === void 0 ? void 0 : info.player_steamid)) {
         return 0;
     }
-    return (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ConvertToSteamId32)(info.player_steamid);
+    return (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ConvertToSteamId32)(info.player_steamid);
 }
 function isPlaceholderPlayerName(name) {
     return name === "" || /^玩家\d+$/.test(name) || /^Player\s*\d+$/i.test(name);
@@ -6808,7 +7029,7 @@ function requestPersonaName(accountid, callback) {
         return undefined;
     }
     try {
-        return SteamFriends.RequestPersonaName((0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ConvertToSteamid64)(accountid), callback);
+        return SteamFriends.RequestPersonaName((0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ConvertToSteamid64)(accountid), callback);
     }
     catch (_a) {
         return undefined;
@@ -6816,17 +7037,17 @@ function requestPersonaName(accountid, callback) {
 }
 function DragonBoatPlayerName({ steamID, playerID = -1, fallbackName }) {
     const accountid = String(steamID !== null && steamID !== void 0 ? steamID : "0");
-    const [playerName, setPlayerName] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(fallbackName || accountid);
-    const userNamePanel = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(undefined);
-    const mountedRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(true);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    const [playerName, setPlayerName] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(fallbackName || accountid);
+    const userNamePanel = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(undefined);
+    const mountedRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(true);
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         mountedRef.current = true;
         return () => {
             mountedRef.current = false;
             userNamePanel.current = undefined;
         };
     }, []);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         const fallback = fallbackName || accountid;
         if (accountid.indexOf("11111111111") !== -1) {
             const botName = Players.GetPlayerName(playerID);
@@ -6886,9 +7107,9 @@ function DragonBoatPlayerName({ steamID, playerID = -1, fallbackName }) {
             safeCancelSchedule(tick);
         };
     }, [accountid, fallbackName, playerID]);
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PlayerName", className: "PlayerName" },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayerNameLabel", text: playerName }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAUserName, { className: "HiddenUserName", ref: (panel) => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PlayerName", className: "PlayerName" },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayerNameLabel", text: playerName }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAUserName, { className: "HiddenUserName", ref: (panel) => {
                 userNamePanel.current = panel;
                 if (panel && accountid.indexOf("11111111111") === -1 && isValidAccountID(accountid)) {
                     try {
@@ -6901,7 +7122,7 @@ function DragonBoatPlayerName({ steamID, playerID = -1, fallbackName }) {
 }
 function requestDragonBoat(path, callback) {
     const eventName = path === "info" ? "DragonBoatInfo" : path === "join" ? "DragonBoatJoin" : "DragonBoatReceive";
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)(eventName, {
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)(eventName, {
         activity_id: ACTIVITY_ID,
     }, callback, 15);
 }
@@ -6988,7 +7209,7 @@ function normalizeActivityState(activity) {
     return activity;
 }
 function showMessage(success, fallbackToken) {
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", {
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", {
         title: "",
         content: $.Localize(success ? "#common_exchange_success" : fallbackToken),
     });
@@ -6997,24 +7218,24 @@ function HudDragonBoat() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
     const language = $.Language().toLowerCase();
     const localUid = getLocalUid();
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.useToggleWindow)("Hud_DragonBoat");
-    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [now, setNow] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(Math.floor(Date.now() / 1000));
-    const [matchSuccess, setMatchSuccess] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [matchNotExist, setMatchNotExist] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [rewardClaimed, setRewardClaimed] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const lastState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)();
-    const localMatchingStartTime = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(0);
-    const matchEstimateExtraSeconds = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(10 + Round(Math.random() * 30));
-    const mountedRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(true);
-    const windowStateRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(windowState);
-    const playerItems = ((_b = (_a = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_items")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {});
-    const playerBoxes = ((_d = (_c = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_boxes")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) !== null && _d !== void 0 ? _d : {});
-    const playerWallet = ((_f = (_e = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_wallet")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) !== null && _f !== void 0 ? _f : {});
-    const dragonBoatNetData = (_g = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "dragonboat_activity")) === null || _g === void 0 ? void 0 : _g[Players.GetLocalPlayer()];
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useToggleWindow)("Hud_DragonBoat");
+    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const [now, setNow] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(Math.floor(Date.now() / 1000));
+    const [matchSuccess, setMatchSuccess] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const [matchNotExist, setMatchNotExist] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const [rewardClaimed, setRewardClaimed] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const lastState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)();
+    const localMatchingStartTime = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(0);
+    const matchEstimateExtraSeconds = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(10 + Round(Math.random() * 30));
+    const mountedRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(true);
+    const windowStateRef = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(windowState);
+    const playerItems = ((_b = (_a = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_items")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {});
+    const playerBoxes = ((_d = (_c = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_boxes")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) !== null && _d !== void 0 ? _d : {});
+    const playerWallet = ((_f = (_e = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_wallet")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) !== null && _f !== void 0 ? _f : {});
+    const dragonBoatNetData = (_g = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "dragonboat_activity")) === null || _g === void 0 ? void 0 : _g[Players.GetLocalPlayer()];
     const ticketCount = (_k = (_j = (_h = playerItems[String(TICKET_ID)]) === null || _h === void 0 ? void 0 : _h.item_num) !== null && _j !== void 0 ? _j : playerBoxes[String(TICKET_ID)]) !== null && _k !== void 0 ? _k : 0;
-    const activity = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => dragonBoatNetData ? normalizeActivityState(dragonBoatNetData) : undefined, [dragonBoatNetData]);
-    const players = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => normalizePlayers(activity), [activity]);
+    const activity = (0,react__WEBPACK_IMPORTED_MODULE_3__.useMemo)(() => dragonBoatNetData ? normalizeActivityState(dragonBoatNetData) : undefined, [dragonBoatNetData]);
+    const players = (0,react__WEBPACK_IMPORTED_MODULE_3__.useMemo)(() => normalizePlayers(activity), [activity]);
     const hasPlayerData = normalizePlayerList(activity === null || activity === void 0 ? void 0 : activity.player_datas).length > 0;
     const state = (_l = activity === null || activity === void 0 ? void 0 : activity.state) !== null && _l !== void 0 ? _l : 0;
     const startTime = (_m = activity === null || activity === void 0 ? void 0 : activity.start_time) !== null && _m !== void 0 ? _m : 0;
@@ -7032,13 +7253,13 @@ function HudDragonBoat() {
     const selfRaceRank = (_p = selfRacePlayer === null || selfRacePlayer === void 0 ? void 0 : selfRacePlayer.rank) !== null && _p !== void 0 ? _p : selfRaceIndex + 1;
     const selfRaceProgress = (_r = (_q = selfRacePlayer === null || selfRacePlayer === void 0 ? void 0 : selfRacePlayer.progress) !== null && _q !== void 0 ? _q : selfRacePlayer === null || selfRacePlayer === void 0 ? void 0 : selfRacePlayer.game_count) !== null && _r !== void 0 ? _r : 0;
     const rewardEnable = !loading && !rewardClaimed && !matchNotExist && matchOver && !!selfRacePlayer;
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         mountedRef.current = true;
         return () => {
             mountedRef.current = false;
         };
     }, []);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         windowStateRef.current = windowState;
     }, [windowState]);
     const applyActivityState = (nextActivity) => {
@@ -7063,10 +7284,10 @@ function HudDragonBoat() {
     const refresh = () => {
         requestDragonBoat("info", () => { });
     };
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         applyActivityState(activity);
     }, [activity]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (state === 1) {
             localMatchingStartTime.current = startTime > 0 ? startTime : (localMatchingStartTime.current || now);
         }
@@ -7075,7 +7296,7 @@ function HudDragonBoat() {
             matchEstimateExtraSeconds.current = 10 + Round(Math.random() * 30);
         }
     }, [state, startTime, now]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         var _a, _b;
         if (!windowState) {
             return;
@@ -7099,7 +7320,7 @@ function HudDragonBoat() {
             safeCancelSchedule(tick);
         };
     }, [windowState]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (!windowState || !activity) {
             return;
         }
@@ -7125,7 +7346,7 @@ function HudDragonBoat() {
             safeCancelSchedule(handle);
         };
     }, [windowState, activity === null || activity === void 0 ? void 0 : activity.state, raceTimeOver]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (!windowState || !activity || activity.state !== 3) {
             return;
         }
@@ -7182,42 +7403,42 @@ function HudDragonBoat() {
             }
         });
     };
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "DragonBoatRoot", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ show: windowState }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "DragonBoatCloseBtn", onactivate: () => toggleWindow(false) }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "DragonBoatScale" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Activity_DragonBoat" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CurrencyTopBar" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: tokenImage(TICKET_ID), value: ticketCount, titleTooltip: { title: `#item_${TICKET_ID}`, text: `#item_${TICKET_ID}_description` } }))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "CollaborationLogo", src: "file://{images}/custom_game/activity/dragonboat/football/ld2.png", hittest: false }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ActivityMainContent" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "DragonBoatBackground", hittest: false }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "ActivityTitle", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(language), hittest: false }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TimeBG", style: { flowChildren: "right" } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TimeIcon" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TimeText", text: (activity === null || activity === void 0 ? void 0 : activity.end_time) ? formatActivityTopDuration(secondsToEnd) : "--:--" })),
-                    state === 0 && !matchNotExist && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "JoinButton", enabled: canJoin, onactivate: join },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TextJoin", text: $.Localize(loading ? "#DragonBoat_Loading" : "#DragonBoatJoin") })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TextBG" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { style: { align: "center center", flowChildren: "right" } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "JoinText", text: `${$.Localize("#DragonBoatJoinText")} x1` }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "JoinTicketIcon", src: tokenImage(TICKET_ID) }))))),
-                    !showBoatList && state !== 0 && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "MatchingContent", hittest: false }, matchSuccess ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "MatchingIcon Checked" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "LoadingText", text: $.Localize("#DragonBoatJoinSuccess") }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "WaitBG", className: "Success", onactivate: () => setMatchSuccess(false) },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { style: { align: "center center", flowChildren: "down" } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "WaitText", text: $.Localize("#Popup_Button_Confirm") }))))) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "MatchingIcon Loading" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "LoadingText", text: $.Localize("#LoadingText") }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "WaitBG", enabled: false },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { style: { align: "center center", flowChildren: "down" } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "WaitTime", text: formatMinuteSecond(matchWaitingTime) }))),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "EstimateText", text: $.Localize("#DragonBoatMatchTime").replace("{min}", matchEstimate.min).replace("{sec}", matchEstimate.sec) }))))),
-                    showBoatList && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "CompetitionScene", hittest: false },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "BoatPosition", hittest: false },
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "DragonBoatRoot", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ show: windowState }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "DragonBoatCloseBtn", onactivate: () => toggleWindow(false) }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "DragonBoatScale" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Activity_DragonBoat" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "CurrencyTopBar" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: tokenImage(TICKET_ID), value: ticketCount, titleTooltip: { title: `#item_${TICKET_ID}`, text: `#item_${TICKET_ID}_description` } }))),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "CollaborationLogo", src: "file://{images}/custom_game/activity/dragonboat/football/ld2.png", hittest: false }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ActivityMainContent" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "DragonBoatBackground", hittest: false }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "ActivityTitle", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(language), hittest: false }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TimeBG", style: { flowChildren: "right" } },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TimeIcon" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TimeText", text: (activity === null || activity === void 0 ? void 0 : activity.end_time) ? formatActivityTopDuration(secondsToEnd) : "--:--" })),
+                    state === 0 && !matchNotExist && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "JoinButton", enabled: canJoin, onactivate: join },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TextJoin", text: $.Localize(loading ? "#DragonBoat_Loading" : "#DragonBoatJoin") })),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TextBG" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { style: { align: "center center", flowChildren: "right" } },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "JoinText", text: `${$.Localize("#DragonBoatJoinText")} x1` }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "JoinTicketIcon", src: tokenImage(TICKET_ID) }))))),
+                    !showBoatList && state !== 0 && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "MatchingContent", hittest: false }, matchSuccess ? (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "MatchingIcon Checked" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "LoadingText", text: $.Localize("#DragonBoatJoinSuccess") }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "WaitBG", className: "Success", onactivate: () => setMatchSuccess(false) },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { style: { align: "center center", flowChildren: "down" } },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "WaitText", text: $.Localize("#Popup_Button_Confirm") }))))) : (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { className: "MatchingIcon Loading" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "LoadingText", text: $.Localize("#LoadingText") }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "WaitBG", enabled: false },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { style: { align: "center center", flowChildren: "down" } },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "WaitTime", text: formatMinuteSecond(matchWaitingTime) }))),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "EstimateText", text: $.Localize("#DragonBoatMatchTime").replace("{min}", matchEstimate.min).replace("{sec}", matchEstimate.sec) }))))),
+                    showBoatList && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "CompetitionScene", hittest: false },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "BoatPosition", hittest: false },
                                 players.map((player, index) => {
                                     var _a, _b, _c, _d, _e, _f;
                                     const rawProgress = (_a = player.progress) !== null && _a !== void 0 ? _a : 0;
@@ -7225,39 +7446,39 @@ function HudDragonBoat() {
                                     const rank = (_b = player.rank) !== null && _b !== void 0 ? _b : index + 1;
                                     const isSelf = String((_c = player.uid) !== null && _c !== void 0 ? _c : "") === String(localUid);
                                     const accountid = String((_e = (player.is_robot ? Number((_d = player.uid) !== null && _d !== void 0 ? _d : 0) + 1 : player.uid)) !== null && _e !== void 0 ? _e : "");
-                                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PlayerRoad", key: `${(_f = player.uid) !== null && _f !== void 0 ? _f : index}`, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`Index_${index}`), hittest: false },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "PlayerBG", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ self: isSelf }) },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Avatar_EOM_Avatar__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Avatar", accountid: accountid, hittest: false, hittestchildren: false }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DragonBoatPlayerName, { steamID: player.uid, fallbackName: player.name })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Road", hittest: false },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "UpRope", hittest: false })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "BoatContainer", onmouseover: (self) => { var _a; return $.DispatchEvent("DOTAShowTextTooltip", self, $.Localize("#Activity_DragonBoat_progress").replace("{value}", `${(_a = player.game_count) !== null && _a !== void 0 ? _a : rawProgress}`)); }, onmouseout: (self) => $.DispatchEvent("DOTAHideTextTooltip", self), style: { transform: `translateX(${progress * 0.01 * RACE_TRACK_TRAVEL}px)` } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Boat", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`Hero${index % 4 + 1}`, { self: isSelf }), hittest: false }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "RankInfo", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ self: isSelf }) },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: `${Round(rawProgress)}` })),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "Wave", hittest: false })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Rank", className: `Rank${rank}`, customTooltip: { name: "reward_tooltip", reward_list: JSON.stringify(getTestRewardList(rank)) }, style: { opacity: state === 2 || state === 3 || rawProgress > 0 ? "1" : "0" } })));
+                                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PlayerRoad", key: `${(_f = player.uid) !== null && _f !== void 0 ? _f : index}`, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(`Index_${index}`), hittest: false },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "PlayerBG", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ self: isSelf }) },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Avatar_EOM_Avatar__WEBPACK_IMPORTED_MODULE_5__["default"], { id: "Avatar", accountid: accountid, hittest: false, hittestchildren: false }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DragonBoatPlayerName, { steamID: player.uid, fallbackName: player.name })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Road", hittest: false },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "UpRope", hittest: false })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "BoatContainer", onmouseover: (self) => { var _a; return $.DispatchEvent("DOTAShowTextTooltip", self, $.Localize("#Activity_DragonBoat_progress").replace("{value}", `${(_a = player.game_count) !== null && _a !== void 0 ? _a : rawProgress}`)); }, onmouseout: (self) => $.DispatchEvent("DOTAHideTextTooltip", self), style: { transform: `translateX(${progress * 0.01 * RACE_TRACK_TRAVEL}px)` } },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Boat", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(`Hero${index % 4 + 1}`, { self: isSelf }), hittest: false }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "RankInfo", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ self: isSelf }) },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: `${Round(rawProgress)}` })),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "Wave", hittest: false })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Rank", className: `Rank${rank}`, customTooltip: { name: "reward_tooltip", reward_list: JSON.stringify(getTestRewardList(rank)) }, style: { opacity: state === 2 || state === 3 || rawProgress > 0 ? "1" : "0" } })));
                                 }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "LastUpRope" }))),
-                        matchOver && selfRacePlayer && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "RewardButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`Reward${selfRaceRank}`, { Received: matchNotExist || rewardClaimed }), style: { opacity: state === 2 || state === 3 || selfRaceProgress > 0 ? "1" : "0" }, enabled: rewardEnable, onactivate: receive },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RewardBox", customTooltip: { name: "reward_tooltip", reward_list: JSON.stringify(getTestRewardList(selfRaceRank)) } }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RewardButtonText", text: $.Localize("#DragonBoat_Receive") }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "Checked", hittest: false }))),
-                        !matchOver && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "MatchCountDown", enabled: matchNotExist, onactivate: () => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "LastUpRope" }))),
+                        matchOver && selfRacePlayer && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "RewardButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(`Reward${selfRaceRank}`, { Received: matchNotExist || rewardClaimed }), style: { opacity: state === 2 || state === 3 || selfRaceProgress > 0 ? "1" : "0" }, enabled: rewardEnable, onactivate: receive },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RewardBox", customTooltip: { name: "reward_tooltip", reward_list: JSON.stringify(getTestRewardList(selfRaceRank)) } }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RewardButtonText", text: $.Localize("#DragonBoat_Receive") }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "Checked", hittest: false }))),
+                        !matchOver && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "MatchCountDown", enabled: matchNotExist, onactivate: () => {
                                 setMatchNotExist(false);
                             } },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "MatchCountdownBG" }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "MatchCountdownMain", style: { align: "center center", flowChildren: "down" }, hittest: false },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "EndCountDownLabel", text: $.Localize("#Activity_DragonBoat_Countdown") }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RaceCountdownText", text: formatDuration(secondsToRaceEnd) }))))))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "InfoButton", customTooltip: {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "MatchCountdownBG" }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "MatchCountdownMain", style: { align: "center center", flowChildren: "down" }, hittest: false },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "EndCountDownLabel", text: $.Localize("#Activity_DragonBoat_Countdown") }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RaceCountdownText", text: formatDuration(secondsToRaceEnd) }))))))),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "InfoButton", customTooltip: {
                         name: "long_text",
                         title: "#ActivityRule",
                         text: "#Activity_DragonBoat_infodesc",
                     } },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "InfoButtonIcon" }))))));
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: "InfoButtonIcon" }))))));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(HudDragonBoat, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(HudDragonBoat, null), $.GetContextPanel());
 
 })();
 

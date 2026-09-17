@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -155,6 +155,17 @@
 	flow-children: down;
 }
 
+#HUD_PVP #Bottom #Content #MainPage #DuelNotice
+{
+	horizontal-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	font-size: 22px;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f8e7a5), to(dotaPlusLightGold));
+	text-shadow: 0px 0px 8px #B7894688;
+}
+
 #HUD_PVP #Bottom #Content #History
 {
 	width: fit-children;
@@ -184,6 +195,66 @@
 	overflow: squish scroll;
 	margin-bottom: 10px;
 	flow-children: down;
+}
+
+#HUD_PVP.TeamPVP #Bottom #Tags
+{
+	width: 100%;
+}
+
+#HUD_PVP.TeamPVP #Bottom #TeamMatchup
+{
+	flow-children: right;
+}
+
+#HUD_PVP.TeamPVP #Bottom #TeamMatchup #Team
+{
+	vertical-align: top;
+}
+
+#HUD_PVP.TeamPVP #Bottom #TeamMatchup #TeamMain
+{
+	flow-children: down;
+}
+
+#HUD_PVP.TeamPVP #Bottom #TeamMatchup #TeamRight
+{
+	height: 150px;
+	horizontal-align: center;
+	margin-right: 0px;
+}
+
+#HUD_PVP.TeamPVP #Bottom #TeamMatchup #Versus
+{
+	width: 64px;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#TeamMatchup
+{
+	width: fit-children;
+	height: fit-children;
+	flow-children: down;
+}
+
+#TeamMatchup #Versus
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	background-color: #1d191192;
+}
+
+#TeamMatchup #Versus #VersusLabel
+{
+	font-size: 22px;
+	align: center center;
+	font-weight: bold;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#f8e7a5), to(dotaPlusLightGold));
+	text-shadow: 0px 0px 8px #B7894688;
 }
 
 #Team
@@ -768,26 +839,6 @@
 {
 	background-color: #e65d5d;
 	border-top: 1px solid #ffffff11;
-}
-
-#Team #Versus
-{
-	width: 100%;
-	height: 40px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	background-color: #1d191192;
-}
-
-#Team #Versus #VersusLabel
-{
-	width: fit-children;
-	height: 26px;
-	font-size: 22px;
-	align: center center;
-	font-weight: bold;
-	color: gradient(linear, 0% 0%, 0% 100%, from(#f8e7a5), to(dotaPlusLightGold));
-	text-shadow: 0px 0px 8px #B7894688;
 }
 
 #BetRecord

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6117,6 +6117,225 @@ const DEFAULT_ICON_SIZE = "32px";
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6744,13 +6963,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   HeroInfoCard: () => (/* binding */ HeroInfoCard)
 /* harmony export */ });
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
 var __rest = (undefined && undefined.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -6762,6 +6982,7 @@ var __rest = (undefined && undefined.__rest) || function (s, e) {
         }
     return t;
 };
+
 
 
 
@@ -6803,15 +7024,15 @@ function GetHeroNameByAbility(ability_name) {
 }
 function BanPhase() {
     var _a, _b, _c, _d, _e;
-    const banTimes = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("action_times", String(Players.GetLocalPlayer()));
-    const RecentBan_abilities_table = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_ban_ability");
-    const RecentBan_heroes_table = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_ban_hero");
-    const [CurrentHero, SetCurrentHero] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
-    const [CurrentSelectAbility, SetCurrentSelectAbility] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
-    const ban_abilities_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("hero_info", "ban_abilities");
-    const ban_heroes_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("hero_info", "ban_heroes");
-    const [PhaseTime, SetPhaseTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({ phase: PHASE_ID.NONE, min: -1, sec: -1 });
-    const HeroSelectInfo = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("hero_select", String(Players.GetLocalPlayer()));
+    const banTimes = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("action_times", String(Players.GetLocalPlayer()));
+    const RecentBan_abilities_table = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_ban_ability");
+    const RecentBan_heroes_table = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_ban_hero");
+    const [CurrentHero, SetCurrentHero] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+    const [CurrentSelectAbility, SetCurrentSelectAbility] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+    const ban_abilities_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("hero_info", "ban_abilities");
+    const ban_heroes_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("hero_info", "ban_heroes");
+    const [PhaseTime, SetPhaseTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({ phase: PHASE_ID.NONE, min: -1, sec: -1 });
+    const HeroSelectInfo = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("hero_select", String(Players.GetLocalPlayer()));
     let HeroList = GameUI.CustomUIConfig().HeroListKv;
     let Heroes = GameUI.CustomUIConfig().HeroesKv;
     let HeroAbility = GameUI.CustomUIConfig().HeroAbilityKv;
@@ -6911,7 +7132,7 @@ function BanPhase() {
             }
         }
     }
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("UpdatePhaseTime", (data) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("UpdatePhaseTime", (data) => {
         var _a;
         let time = (_a = data.time) !== null && _a !== void 0 ? _a : -1;
         if (time >= 0) {
@@ -6939,25 +7160,25 @@ function BanPhase() {
     }
     let PlayerHeroID = Players.GetSelectedHeroID(Players.GetLocalPlayer());
     let PlayerHeroName = GetHeroNameByHeroID(PlayerHeroID);
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BanPhase", hittest: true, onactivate: () => { } },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BanPhaseBG" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAScenePanel, { id: "BGScene", hittest: false, map: "backgrounds/pregame_phase", camera: "shot_cameraA" })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Main", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: PhaseTime.sec >= 0 || PhaseTime.min >= 0 }) },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BanPhaseTopBar" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Banned" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BannedTitle" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "BannedTitle_text", text: $.Localize("#HUD_Ban_already_ban") })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BannedMain" }, Array(BAN_SLOT_LIMIT).fill("").map((abilityName, index) => {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BanPhase", hittest: true, onactivate: () => { } },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BanPhaseBG" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAScenePanel, { id: "BGScene", hittest: false, map: "backgrounds/pregame_phase", camera: "shot_cameraA" })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Main", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: PhaseTime.sec >= 0 || PhaseTime.min >= 0 }) },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BanPhaseTopBar" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Banned" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BannedTitle" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "BannedTitle_text", text: $.Localize("#HUD_Ban_already_ban") })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BannedMain" }, Array(BAN_SLOT_LIMIT).fill("").map((abilityName, index) => {
                         if (ban_abilities[index] != "") {
                             abilityName = ban_abilities[index];
                         }
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BannedAbility", key: index, hittest: false, hittestchildren: true },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "BannedAbility_img", abilityname: abilityName, showtooltip: true }));
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BannedAbility", key: index, hittest: false, hittestchildren: true },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "BannedAbility_img", abilityname: abilityName, showtooltip: true }));
                     }))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PhaseTitle" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PhaseTitle_text", text: PhaseTime.phase == PHASE_ID.BAN ? $.Localize("#DOTA_LoadingBanPhase") : $.Localize("#DOTA_Hero_Selection_ChooseHero") }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PhaseTitle_time", text: PhaseTime.min + " : " + PhaseTime.sec }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "SelectPhaseMain", visibility: PhaseTime.phase == PHASE_ID.SELECT ? "visible" : "collapse" }, allherolist.map((v, i) => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PhaseTitle" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PhaseTitle_text", text: PhaseTime.phase == PHASE_ID.BAN ? $.Localize("#DOTA_LoadingBanPhase") : $.Localize("#DOTA_Hero_Selection_ChooseHero") }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PhaseTitle_time", text: PhaseTime.min + " : " + PhaseTime.sec }))),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "SelectPhaseMain", visibility: PhaseTime.phase == PHASE_ID.SELECT ? "visible" : "collapse" }, allherolist.map((v, i) => {
                 var _a;
                 const heroName = GetHeroNameByHeroID(Number(v));
                 let heroInfo = {};
@@ -6975,7 +7196,7 @@ function BanPhase() {
                 heroInfo.projectile_speed = heroInfo.AttackCapabilities == "DOTA_UNIT_CAP_MELEE_ATTACK" ? "" : ((_a = Heroes[heroName].ProjectileSpeed) !== null && _a !== void 0 ? _a : "");
                 heroInfo.attack_speed2 = Heroes[heroName].AttackRate;
                 if (!select_done || (select_done && PlayerHeroName == heroName)) {
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(HeroInfoCard, Object.assign({ key: i }, {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(HeroInfoCard, Object.assign({ key: i }, {
                         heroName: heroName,
                         heroInfo: heroInfo,
                         ban_abilities: ban_abilities,
@@ -6983,26 +7204,26 @@ function BanPhase() {
                     }));
                 }
             })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BanPhaseMain", visibility: PhaseTime.phase == PHASE_ID.BAN ? "visible" : "collapse" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroList" }, AttributeType.map((value, index) => {
-                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroGroup", key: index },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroGroupIcon" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "HeroGroupIcon_img", src: `file://{resources}/images/custom_game/hero_select/${value.toLowerCase()}.png` }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "HeroGroupIcon_text", text: $.Localize("#DOTA_HeroSelectorCategory_PrimaryAttribute_" + (value == "INTELLECT" ? "Intelligence" : value)) })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroGroupMain" }, HeroGroups[value].map((hero_name, i) => {
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "HeroIconContainer", onmouseover: (p) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BanPhaseMain", visibility: PhaseTime.phase == PHASE_ID.BAN ? "visible" : "collapse" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroList" }, AttributeType.map((value, index) => {
+                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroGroup", key: index },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroGroupIcon" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "HeroGroupIcon_img", src: `file://{resources}/images/custom_game/hero_select/${value.toLowerCase()}.png` }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "HeroGroupIcon_text", text: $.Localize("#DOTA_HeroSelectorCategory_PrimaryAttribute_" + (value == "INTELLECT" ? "Intelligence" : value)) })),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroGroupMain" }, HeroGroups[value].map((hero_name, i) => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "HeroIconContainer", onmouseover: (p) => {
                                 }, onmouseout: (p) => {
                                 }, onactivate: () => {
                                     SetCurrentHero(hero_name);
                                     SetCurrentSelectAbility("");
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "HeroIcon" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "HeroIcon_img", heroname: hero_name, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroIcon_RecentBannedOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: RecentBan_heroes.indexOf(hero_name) != -1 && ban_heroes.indexOf(hero_name) == -1 }) }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroIcon_BannedOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: ban_heroes.indexOf(hero_name) != -1 }) })));
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "HeroIcon" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "HeroIcon_img", heroname: hero_name, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroIcon_RecentBannedOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: RecentBan_heroes.indexOf(hero_name) != -1 && ban_heroes.indexOf(hero_name) == -1 }) }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroIcon_BannedOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: ban_heroes.indexOf(hero_name) != -1 }) })));
                         }))));
                 })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(HeroInfoCard, Object.assign({}, {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(HeroInfoCard, Object.assign({}, {
                     heroName: CurrentHero,
                     heroInfo: CurrentHeroInfo,
                     ban_abilities: ban_abilities,
@@ -7015,73 +7236,73 @@ function BanPhase() {
                     },
                     phase: PhaseTime.phase,
                 }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BanPhaseBottomBar", visibility: PhaseTime.phase == PHASE_ID.BAN ? "visible" : "collapse" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RecentBan" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RecentBanTop" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RecentBanTopTitle", text: $.Localize("#HUD_Ban_recent_ban") })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RecentBanMain" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RecentBanHeroContainer" }, RecentBan_heroes.map((hero_name, index) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BanPhaseBottomBar", visibility: PhaseTime.phase == PHASE_ID.BAN ? "visible" : "collapse" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RecentBan" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RecentBanTop" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RecentBanTopTitle", text: $.Localize("#HUD_Ban_recent_ban") })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RecentBanMain" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RecentBanHeroContainer" }, RecentBan_heroes.map((hero_name, index) => {
                             let HeroName = hero_name;
                             if (HeroName.indexOf("npc_dota_hero_") == -1) {
                                 HeroName = "npc_dota_hero_" + HeroName;
                             }
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: index, id: "RecentBanHero", onactivate: () => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, id: "RecentBanHero", onactivate: () => {
                                     SetCurrentHero(HeroName);
                                     SetCurrentSelectAbility("");
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "RecentBanHero_img", heroname: HeroName, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroBanned_Overlay", visibility: ban_heroes.indexOf(HeroName) != -1 ? "visible" : "collapse" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroBanouter" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroBanbar" })));
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "RecentBanHero_img", heroname: HeroName, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroBanned_Overlay", visibility: ban_heroes.indexOf(HeroName) != -1 ? "visible" : "collapse" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroBanouter" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroBanbar" })));
                         })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RecentBanAbilityContainer" }, RecentBan_abilities.map((ability_name, index) => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RecentBanAbilityContainer" }, RecentBan_abilities.map((ability_name, index) => {
                             let Banned = ban_abilities.indexOf(ability_name) != -1;
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: index, id: "RecentBanAbility", hittest: true, onactivate: () => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, id: "RecentBanAbility", hittest: true, onactivate: () => {
                                     let hero_name = GetHeroNameByAbility(ability_name);
                                     if (hero_name) {
                                         SetCurrentHero("npc_dota_hero_" + hero_name);
                                         SetCurrentSelectAbility(ability_name);
                                     }
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "RecentBanAbility_img", abilityname: ability_name, showtooltip: true }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanned_Overlay", visibility: Banned ? "visible" : "collapse" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanouter" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanbar" })));
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "RecentBanAbility_img", abilityname: ability_name, showtooltip: true }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanned_Overlay", visibility: Banned ? "visible" : "collapse" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanouter" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanbar" })));
                         })))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBan" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanTop" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayerBanTopTitle", text: $.Localize("#HUD_Ban_your_bans") })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanMain" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanHeroContainer" }, PlayerBanHero.map((HeroName, index) => {
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanHero", key: index }, HeroName == "" ?
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanHero_img_empty" })
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBan" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanTop" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayerBanTopTitle", text: $.Localize("#HUD_Ban_your_bans") })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanMain" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanHeroContainer" }, PlayerBanHero.map((HeroName, index) => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanHero", key: index }, HeroName == "" ?
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanHero_img_empty" })
                                 :
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "PlayerBanHero_img", heroname: HeroName, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }));
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "PlayerBanHero_img", heroname: HeroName, heroimagestyle: "portrait", scaling: "stretch-to-cover-preserve-aspect" }));
                         })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanAbilityContainer" }, PlayerBanAbility.map((AbilityName, index) => {
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBanAbility", key: index, hittest: false, hittestchildren: true },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "PlayerBanAbility_img", abilityname: AbilityName, showtooltip: true }));
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanAbilityContainer" }, PlayerBanAbility.map((AbilityName, index) => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBanAbility", key: index, hittest: false, hittestchildren: true },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "PlayerBanAbility_img", abilityname: AbilityName, showtooltip: true }));
                         }))))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "SelectPhaseBottomBar", visibility: PhaseTime.phase == PHASE_ID.SELECT ? "visible" : "collapse" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Reroll" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "Blue", html: true, text: $.Localize("#HeroSelect_repick") + RerollCount, enabled: RerollCount > 0 && select_done == 0, onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "SelectPhaseBottomBar", visibility: PhaseTime.phase == PHASE_ID.SELECT ? "visible" : "collapse" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Reroll" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__["default"], { color: "Blue", html: true, text: $.Localize("#HeroSelect_repick") + RerollCount, enabled: RerollCount > 0 && select_done == 0, onactivate: () => {
                             GameEvents.SendCustomGameEventToServer("RerollHeroes", {});
                         } })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerSelect" }, TeamPlayerList.map((TeamInfo, i) => {
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "TeamContainer" }, TeamInfo.TeamPlayers.map((v, j) => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerSelect" }, TeamPlayerList.map((TeamInfo, i) => {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "TeamContainer" }, TeamInfo.TeamPlayers.map((v, j) => {
                         let iPlayerID = v;
                         if (Players.IsValidPlayerID(iPlayerID)) {
                             let SelectHeroName = Players.GetPlayerSelectedHero(iPlayerID);
                             let team = Players.GetTeam(iPlayerID);
                             let color = TeamColors[team];
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: j, id: "PlayerHeroContainer" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerHero" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerColor", style: { backgroundColor: color } }),
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: j, id: "PlayerHeroContainer" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerHero" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerColor", style: { backgroundColor: color } }),
                                     SelectHeroName == "" ?
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: "s2r://panorama/images/custom_game/unassigned.png" })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: "s2r://panorama/images/custom_game/unassigned.png" })
                                         :
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "PlayerHeroImage", heroname: SelectHeroName })),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayerName", text: Players.GetPlayerName(iPlayerID), style: { color: color } }));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "PlayerHeroImage", heroname: SelectHeroName })),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayerName", text: Players.GetPlayerName(iPlayerID), style: { color: color } }));
                         }
                     }));
                 })))));
@@ -7089,7 +7310,7 @@ function BanPhase() {
 function HeroInfoCard(_a) {
     var _b, _c, _d, _e, _f, _g, _h, _j, _k;
     var data = __rest(_a, []);
-    const passData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "player_vip");
+    const passData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     let heroInfo = (_b = data.heroInfo) !== null && _b !== void 0 ? _b : {};
     let heroName = (_c = data.heroName) !== null && _c !== void 0 ? _c : "";
     let CurrentHeroBanned = (_d = data.CurrentHeroBanned) !== null && _d !== void 0 ? _d : false;
@@ -7113,23 +7334,23 @@ function HeroInfoCard(_a) {
             bFreeSelect = true;
         }
     }
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfo" },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoMiddle" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoMiddleName" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "HeroInfo_PrimaryAttr", src: `file://{resources}/images/custom_game/hero_select/${heroInfo.AttributePrimary}.png` }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "HeroInfoName", text: $.Localize(heroName != "" ? "#" + heroName : "#DOTA_HeroSelect") })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoMiddleMain" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoMovieContainer" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "HeroInfoMovie", heroname: heroName, heroimagestyle: "portrait" }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoMovieBanOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: CurrentHeroBanned }) },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroBanouter" }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroBanbar" })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "HeroInfo_banButton", visible: !bFreeSelect && heroName != "" && phase == PHASE_ID.BAN, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" && phase == PHASE_ID.BAN }), enabled: BanHeroTimes > 0 && !CurrentHeroBanned, text: $.Localize("#DOTA_Bans"), onactivate: () => {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfo" },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoMiddle" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoMiddleName" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "HeroInfo_PrimaryAttr", src: `file://{resources}/images/custom_game/hero_select/${heroInfo.AttributePrimary}.png` }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "HeroInfoName", text: $.Localize(heroName != "" ? "#" + heroName : "#DOTA_HeroSelect") })),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoMiddleMain" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoMovieContainer" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "HeroInfoMovie", heroname: heroName, heroimagestyle: "portrait" }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoMovieBanOverlay", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: CurrentHeroBanned }) },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroBanouter" }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroBanbar" })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "HeroInfo_banButton", visible: !bFreeSelect && heroName != "" && phase == PHASE_ID.BAN, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" && phase == PHASE_ID.BAN }), enabled: BanHeroTimes > 0 && !CurrentHeroBanned, text: $.Localize("#DOTA_Bans"), onactivate: () => {
                             if (!CurrentHeroBanned) {
                                 GameEvents.SendCustomGameEventToServer("BanHero", { heroName: heroName.replace("npc_dota_hero_", "") });
                             }
                         } }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "HeroInfo_selectButton", visible: bFreeSelect && heroName != "" && phase == PHASE_ID.BAN, enabled: BanHeroTimes > 0 && !CurrentHeroBanned, text: $.Localize("#DOTA_Guide_Select"), onactivate: () => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "HeroInfo_selectButton", visible: bFreeSelect && heroName != "" && phase == PHASE_ID.BAN, enabled: BanHeroTimes > 0 && !CurrentHeroBanned, text: $.Localize("#DOTA_Guide_Select"), onactivate: () => {
                             if (!CurrentHeroBanned && !selectDone) {
                                 if (heroName.indexOf("npc_dota_hero_") == -1) {
                                     heroName = "npc_dota_hero_" + heroName;
@@ -7139,57 +7360,57 @@ function HeroInfoCard(_a) {
                                 });
                             }
                         } })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoData" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Talent" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TalentMain", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" }), onmouseover: (p) => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoData" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Talent" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TalentMain", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" }), onmouseover: (p) => {
                             }, onmouseout: (p) => {
                             } })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Attributes" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AttributesList", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" }) }, ["Strength", "Agility", "Intellect"].map((AttrName, index) => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Attributes" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AttributesList", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" }) }, ["Strength", "Agility", "Intellect"].map((AttrName, index) => {
                             let base = heroInfo["AttributeBase" + AttrName];
                             let gain = heroInfo["Attribute" + AttrName + "Gain"];
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AttrInfo", key: index, onmouseover: (p) => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AttrInfo", key: index, onmouseover: (p) => {
                                     $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#DOTA_" + AttrName.substring(0, 3).toUpperCase()));
                                 }, onmouseout: (p) => {
                                     $.DispatchEvent("DOTAHideTextTooltip", p);
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "AttrInfo_icon", src: `file://{resources}/images/custom_game/hero_select/${AttrName.toLowerCase()}.png` }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "AttrInfo_num", text: base + "  +  " + gain }));
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "AttrInfo_icon", src: `file://{resources}/images/custom_game/hero_select/${AttrName.toLowerCase()}.png` }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "AttrInfo_num", text: base + "  +  " + gain }));
                         }))),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BonusStats" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BonusStatsList", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" }) }, ["speed", "attack_range", "projectile_speed", "attack_speed2"].map((AttrName, index) => {
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "StatInfo", key: index, onmouseover: (p) => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BonusStats" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BonusStatsList", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" }) }, ["speed", "attack_range", "projectile_speed", "attack_speed2"].map((AttrName, index) => {
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "StatInfo", key: index, onmouseover: (p) => {
                                     $.DispatchEvent("DOTAShowTitleTextTooltip", p, $.Localize("#" + BonusStatsLocMap.get(AttrName)[0]), $.Localize("#" + BonusStatsLocMap.get(AttrName)[1]));
                                 }, onmouseout: (p) => {
                                     $.DispatchEvent("DOTAHideTitleTextTooltip", p);
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "StatInfo_icon", src: `s2r://panorama/images/hud/reborn/icon_${AttrName}_psd.vtex` }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "StatInfo_num", text: heroInfo[AttrName] }));
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "StatInfo_icon", src: `s2r://panorama/images/hud/reborn/icon_${AttrName}_psd.vtex` }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "StatInfo_num", text: heroInfo[AttrName] }));
                         })))))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoBottom" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroInfoAbilities" },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoBottom" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroInfoAbilities" },
                 InnateAbility != undefined ?
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Ability", hittest: false, hittestchildren: true },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "AbilityImage", abilityname: InnateAbility.AbilityName, showtooltip: true }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "InnateIcon", src: "s2r://panorama/images/status_icons/challenge_locked_psd.vtex" }))
-                    : react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Ability", hittest: false, hittestchildren: true },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "AbilityImage", abilityname: InnateAbility.AbilityName, showtooltip: true }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "InnateIcon", src: "s2r://panorama/images/status_icons/challenge_locked_psd.vtex" }))
+                    : react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null),
                 heroName != "" ? Object.entries(HeroAbility[heroName.replace("npc_dota_hero_", "")]).map((value, index) => {
                     let abilityName = String(value[1]);
                     let Banned = ban_abilities.indexOf(abilityName) != -1;
                     if (Number(value[0]).toString() != "NaN") {
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Ability", key: index, hittest: false, hittestchildren: true },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "AbilityImage", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Selected: CurrentSelectAbility == abilityName }), abilityname: abilityName, showtooltip: true, onactivate: () => {
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Ability", key: index, hittest: false, hittestchildren: true },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "AbilityImage", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Selected: CurrentSelectAbility == abilityName }), abilityname: abilityName, showtooltip: true, onactivate: () => {
                                     SetFunction(abilityName);
                                 } }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanned_Overlay", visibility: Banned ? "visible" : "collapse", hittest: false },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanouter" }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "AbilityBanbar" })));
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanned_Overlay", visibility: Banned ? "visible" : "collapse", hittest: false },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanouter" }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "AbilityBanbar" })));
                     }
-                }) : react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "HeroInfo_banAbilityButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" && phase == PHASE_ID.BAN }), enabled: BanAbilityTimes > 0 && CurrentSelectAbility != "" && ban_abilities.indexOf(CurrentSelectAbility) == -1, text: $.Localize("#HUD_Ban_ban_ability"), onactivate: () => {
+                }) : react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "HeroInfo_banAbilityButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" && phase == PHASE_ID.BAN }), enabled: BanAbilityTimes > 0 && CurrentSelectAbility != "" && ban_abilities.indexOf(CurrentSelectAbility) == -1, text: $.Localize("#HUD_Ban_ban_ability"), onactivate: () => {
                     GameEvents.SendCustomGameEventToServer("BanAbility", { abilityName: CurrentSelectAbility });
                 } }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "HeroInfoSelectButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: heroName != "" && phase == PHASE_ID.SELECT && (!selectDone) }), enabled: !selectDone, text: $.Localize("#DOTA_Guide_Select") + "  " + $.Localize("#" + heroName), onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "HeroInfoSelectButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: heroName != "" && phase == PHASE_ID.SELECT && (!selectDone) }), enabled: !selectDone, text: $.Localize("#DOTA_Guide_Select") + "  " + $.Localize("#" + heroName), onactivate: () => {
                     if (!selectDone) {
                         GameEvents.SendCustomGameEventToServer("HeroSelected", {
                             hero_name: heroName,
@@ -7202,12 +7423,12 @@ function StrategyPhase() {
     let Heroes = GameUI.CustomUIConfig().HeroesKv;
     let HeroAbility = GameUI.CustomUIConfig().HeroAbilityKv;
     let heroName = (_a = Players.GetPlayerSelectedHero(Players.GetLocalPlayer())) !== null && _a !== void 0 ? _a : "";
-    const ban_abilities_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("hero_info", "ban_abilities");
-    const [PhaseTime, SetPhaseTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({ phase: PHASE_ID.NONE, min: 0, sec: 0 });
-    const SkinData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("service", "skin_list");
-    const [Show, SetShow] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [SkinList, SetSkinList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(GetSkinList());
-    const [CurrentSkin, SetCurrentSkin] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
+    const ban_abilities_obj = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("hero_info", "ban_abilities");
+    const [PhaseTime, SetPhaseTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({ phase: PHASE_ID.NONE, min: 0, sec: 0 });
+    const SkinData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "skin_list");
+    const [Show, SetShow] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const [SkinList, SetSkinList] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(GetSkinList());
+    const [CurrentSkin, SetCurrentSkin] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
     let heroInfo = {};
     if (heroName != "") {
         heroInfo.HeroID = Heroes[heroName].HeroID;
@@ -7224,7 +7445,7 @@ function StrategyPhase() {
         heroInfo.projectile_speed = heroInfo.AttackCapabilities == "DOTA_UNIT_CAP_MELEE_ATTACK" ? "" : ((_b = Heroes[heroName].ProjectileSpeed) !== null && _b !== void 0 ? _b : "");
         heroInfo.attack_speed2 = Heroes[heroName].AttackRate;
     }
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("UpdatePhaseTime", (data) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("UpdatePhaseTime", (data) => {
         var _a;
         let time = (_a = data.time) !== null && _a !== void 0 ? _a : -1;
         if (time >= 0) {
@@ -7240,7 +7461,7 @@ function StrategyPhase() {
             }
         }
     }, []);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (SkinData != undefined) {
             SetSkinList(GetSkinList());
         }
@@ -7288,7 +7509,7 @@ function StrategyPhase() {
         }
         return List;
     }
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         for (let i = 0; i < SkinList.length; i++) {
             const SkinInfo = SkinList[i];
             if (SkinInfo.is_equip == 1) {
@@ -7297,7 +7518,7 @@ function StrategyPhase() {
             }
         }
     }, [SkinList]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (PhaseTime.phase == PHASE_ID.STRATEGY && (PhaseTime.min > 0 || PhaseTime.sec > 0)) {
             if (SkinList != undefined) {
                 const SkinInfo = SkinList[CurrentSkin];
@@ -7329,25 +7550,25 @@ function StrategyPhase() {
         TitleText = $.Localize("#item_" + SkinList[CurrentSkin].id);
     }
     TitleText = TitleText;
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "StrategyPhaseRoot", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: (PhaseTime.min > 0 || PhaseTime.sec > 0) }), hittest: true, onactivate: () => { } },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "StrategyPhaseBG" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAScenePanel, { id: "BGScene", hittest: false, map: "backgrounds/pregame_phase", camera: "shot_cameraA" })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Main", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: PhaseTime.phase == PHASE_ID.STRATEGY && (PhaseTime.min > 0 || PhaseTime.sec > 0) }) },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "StrategyPhaseMain" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Left" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroSkin" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroSkinList" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ArrowLeft", visibility: SkinList.length > 1 ? "visible" : "collapse", onactivate: () => {
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "StrategyPhaseRoot", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: (PhaseTime.min > 0 || PhaseTime.sec > 0) }), hittest: true, onactivate: () => { } },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "StrategyPhaseBG" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAScenePanel, { id: "BGScene", hittest: false, map: "backgrounds/pregame_phase", camera: "shot_cameraA" })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Main", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: PhaseTime.phase == PHASE_ID.STRATEGY && (PhaseTime.min > 0 || PhaseTime.sec > 0) }) },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "StrategyPhaseMain" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Left" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroSkin" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroSkinList" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ArrowLeft", visibility: SkinList.length > 1 ? "visible" : "collapse", onactivate: () => {
                                     if (CurrentSkin > 0)
                                         SetCurrentSkin(CurrentSkin - 1);
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: `file://{images}/custom_game/hud/arrow_left.png`, scaling: "none" })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ArrowRight", visibility: SkinList.length > 1 ? "visible" : "collapse", onactivate: () => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: `file://{images}/custom_game/hud/arrow_left.png`, scaling: "none" })),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ArrowRight", visibility: SkinList.length > 1 ? "visible" : "collapse", onactivate: () => {
                                     if (CurrentSkin < SkinList.length - 1)
                                         SetCurrentSkin(CurrentSkin + 1);
                                 } },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: `file://{images}/custom_game/hud/arrow_right.png`, scaling: "none" })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "List" }, SkinList.map((SkinInfo, index) => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: `file://{images}/custom_game/hud/arrow_right.png`, scaling: "none" })),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "List" }, SkinList.map((SkinInfo, index) => {
                                 var _a;
                                 let Selected = index == CurrentSkin;
                                 let PositionClassName;
@@ -7360,54 +7581,54 @@ function StrategyPhase() {
                                 else {
                                     PositionClassName = "RightofSelected";
                                 }
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: index, id: "HeroSkinContainer", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(PositionClassName, { Selected: Selected }), onmouseover: (self) => {
+                                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, id: "HeroSkinContainer", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(PositionClassName, { Selected: Selected }), onmouseover: (self) => {
                                         var _a, _b;
                                         if (SkinInfo.id != "") {
-                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.ShowCustomTooltip)(self, "tooltip_econ", { iEconID: (_a = SkinInfo.id) !== null && _a !== void 0 ? _a : 1000001, rarity: (_b = SkinInfo.rarity) !== null && _b !== void 0 ? _b : 1, item_type: "skin" });
+                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomTooltip)(self, "tooltip_econ", { iEconID: (_a = SkinInfo.id) !== null && _a !== void 0 ? _a : 1000001, rarity: (_b = SkinInfo.rarity) !== null && _b !== void 0 ? _b : 1, item_type: "skin" });
                                         }
                                     }, onmouseout: (self) => {
-                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.HideCustomTooltip)(self, "tooltip_econ");
+                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.HideCustomTooltip)(self, "tooltip_econ");
                                     } },
                                     SkinInfo.id == "" ?
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "HeroSkinCardSmall", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Selected: Selected }), src: `file://{images}/custom_game/card/${heroName}.png`, scaling: "stretch-to-fit-preserve-aspect" })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "HeroSkinCardSmall", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Selected: Selected }), src: `file://{images}/custom_game/card/${heroName}.png`, scaling: "stretch-to-fit-preserve-aspect" })
                                         :
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "HeroSkinCardSmall", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Selected: Selected }), src: `file://{images}/custom_game/items/item_${SkinInfo.id}.png`, scaling: "stretch-to-cover-preserve-aspect" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NotHaveOverLay", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: SkinInfo.is_have == 0 }) },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "icon", visible: Selected, src: "s2r://panorama/images/status_icons/challenge_locked_psd.vtex" })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroSkinTitle", visibility: Selected ? "visible" : "collapse" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "HeroSkinTitleText", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(`RarityColor${(_a = SkinList[CurrentSkin]) === null || _a === void 0 ? void 0 : _a.rarity}`), text: TitleText })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroSkinBorder" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("HeroSkinBorderImageCurrent", { Selected: Selected }), src: "file://{images}/custom_game/hero_select/current_skin_border.png" }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("HeroSkinBorderImageOther", { Selected: Selected }), src: "file://{images}/custom_game/hero_select/other_skin_border.png" })));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "HeroSkinCardSmall", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Selected: Selected }), src: `file://{images}/custom_game/items/item_${SkinInfo.id}.png`, scaling: "stretch-to-cover-preserve-aspect" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NotHaveOverLay", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: SkinInfo.is_have == 0 }) },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "icon", visible: Selected, src: "s2r://panorama/images/status_icons/challenge_locked_psd.vtex" })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroSkinTitle", visibility: Selected ? "visible" : "collapse" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "HeroSkinTitleText", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(`RarityColor${(_a = SkinList[CurrentSkin]) === null || _a === void 0 ? void 0 : _a.rarity}`), text: TitleText })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroSkinBorder" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("HeroSkinBorderImageCurrent", { Selected: Selected }), src: "file://{images}/custom_game/hero_select/current_skin_border.png" }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("HeroSkinBorderImageOther", { Selected: Selected }), src: "file://{images}/custom_game/hero_select/other_skin_border.png" })));
                             }))))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Right" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PhaseTitle" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PhaseTitle_text", text: $.Localize("#DOTA_TutorialTitle_PrepareForBattle") }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PhaseTitle_time", text: PhaseTime.min + " : " + PhaseTime.sec })),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Right" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PhaseTitle" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PhaseTitle_text", text: $.Localize("#DOTA_TutorialTitle_PrepareForBattle") }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PhaseTitle_time", text: PhaseTime.min + " : " + PhaseTime.sec })),
                     heroName != "" ?
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(HeroInfoCard, Object.assign({}, {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(HeroInfoCard, Object.assign({}, {
                             heroName: heroName,
                             heroInfo: heroInfo,
                             ban_abilities: ban_abilities,
                             phase: PHASE_ID.STRATEGY
                         }))
-                        : react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "StrategyPhaseBottomBar" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerSelect" }, TeamPlayerList.map((TeamInfo, i) => {
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "TeamContainer" }, TeamInfo.TeamPlayers.map((v, j) => {
+                        : react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null))),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "StrategyPhaseBottomBar" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerSelect" }, TeamPlayerList.map((TeamInfo, i) => {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "TeamContainer" }, TeamInfo.TeamPlayers.map((v, j) => {
                         let iPlayerID = v;
                         if (Players.IsValidPlayerID(iPlayerID)) {
                             let SelectHeroName = Players.GetPlayerSelectedHero(iPlayerID);
                             let team = Players.GetTeam(iPlayerID);
                             let color = TeamColors[team];
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: j, id: "PlayerHeroContainer" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerHero" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerColor", style: { backgroundColor: color } }),
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: j, id: "PlayerHeroContainer" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerHero" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerColor", style: { backgroundColor: color } }),
                                     SelectHeroName == "" ?
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: "s2r://panorama/images/custom_game/unassigned.png" })
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: "s2r://panorama/images/custom_game/unassigned.png" })
                                         :
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "PlayerHeroImage", heroname: SelectHeroName })),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayerName", text: Players.GetPlayerName(iPlayerID), style: { color: color } }));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "PlayerHeroImage", heroname: SelectHeroName })),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayerName", text: Players.GetPlayerName(iPlayerID), style: { color: color } }));
                         }
                     }));
                 })))));
@@ -7453,8 +7674,8 @@ function StrategyPhase() {
         }
     }
     if (PreGame != null) {
-        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(BanPhase, null), $.GetContextPanel());
-        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(StrategyPhase, null), PreGame);
+        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(BanPhase, null), $.GetContextPanel());
+        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(StrategyPhase, null), PreGame);
     }
 })();
 

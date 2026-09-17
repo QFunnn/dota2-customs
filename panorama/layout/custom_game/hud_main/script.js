@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6157,9 +6157,9 @@ const DEFAULT_ICON_SIZE = "32px";
 
 /***/ },
 
-/***/ "./manifest.tsx"
+/***/ "./utils/hud.ts"
 /*!**********************!*\
-  !*** ./manifest.tsx ***!
+  !*** ./utils/hud.ts ***!
   \**********************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -6168,89 +6168,232 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FindDotaHudElement: () => (/* binding */ FindDotaHudElement)
 /* harmony export */ });
-GameUI.CustomUIConfig().team_logo_xml = "file://{resources}/layout/custom_game/team_icon.xml";
-GameUI.CustomUIConfig().team_logo_large_xml = "file://{resources}/layout/custom_game/team_icon_large.xml";
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ACTION_MINIMAP, false);
-GameUI.CustomUIConfig().team_colors = {
-    [DOTATeam_t.DOTA_TEAM_GOODGUYS]: "#3dd296;",
-    [DOTATeam_t.DOTA_TEAM_BADGUYS]: "#F3C909;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_1]: "#c54da8;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_2]: "#FF6C00;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_3]: "#3455FF;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_4]: "#65d413;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_5]: "#815336;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_6]: "#1bc0d8;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_7]: "#c7e40d;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_8]: "#8c2af4;",
-    [DOTATeam_t.DOTA_TEAM_NEUTRALS]: "",
-};
-GameUI.CustomUIConfig().team_icons = {
-    [DOTATeam_t.DOTA_TEAM_GOODGUYS]: "s2r://panorama/images/custom_game/team_icons/team_icon_tiger_01.png",
-    [DOTATeam_t.DOTA_TEAM_BADGUYS]: "s2r://panorama/images/custom_game/team_icons/team_icon_monkey_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_1]: "file://{images}/custom_game/team_icons/team_icon_dragon_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_2]: "file://{images}/custom_game/team_icons/team_icon_dog_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_3]: "file://{images}/custom_game/team_icons/team_icon_rooster_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_4]: "file://{images}/custom_game/team_icons/team_icon_ram_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_5]: "file://{images}/custom_game/team_icons/team_icon_rat_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_6]: "file://{images}/custom_game/team_icons/team_icon_boar_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_7]: "file://{images}/custom_game/team_icons/team_icon_snake_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_8]: "file://{images}/custom_game/team_icons/team_icon_horse_01.png",
-    [DOTATeam_t.DOTA_TEAM_NEUTRALS]: "",
-};
-let pHud = $.GetContextPanel();
-while (pHud != null && pHud.id != "Hud") {
-    pHud = pHud.GetParent();
+let hud = $.GetContextPanel();
+while (hud !== null && hud.id !== "Hud") {
+    hud = hud.GetParent();
 }
 function FindDotaHudElement(id) {
-    return pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse(id);
+    return hud === null || hud === void 0 ? void 0 : hud.FindChildTraverse(id);
 }
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDay')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDayBG')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('DayGlow')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('NightGlow')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeUntil')).style.horizontalAlign = 'left';
-const offset = "300px";
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDay')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDayBG')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('DayGlow')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('NightGlow')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeUntil')).style.marginLeft = offset;
-function SetSecurityKey(keys) {
-    if (pHud && pHud.SECURITY_KEY == undefined) {
-        var netTable = CustomNetTables.GetTableValue('player_info', 'net_table_security_key_' + Game.GetLocalPlayerID());
-        if (netTable && netTable.net_table_security_key && netTable.net_table_security_key == keys.net_table_security_key) {
-            pHud.SECURITY_KEY = keys.security_key;
-            GameEvents.SendCustomGameEventToServer('SecurityKeyConfirmed', { security_key: keys.security_key });
+
+
+/***/ },
+
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
         }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
     }
+    return next;
 }
-GameEvents.Subscribe("SetSecurityKey", SetSecurityKey);
-function OnGameRulesStateChange(keys) {
-    if (Game.GameStateIsBefore(3)) {
-        (pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse("PreGame")).style.opacity = "0";
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
     }
-    else {
-        (pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse("PreGame")).style.opacity = "1";
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
     }
-}
-GameEvents.Subscribe("game_rules_state_change", OnGameRulesStateChange);
-function KickPlayer(keys) {
-    if (Players.GetLocalPlayer() == keys.player_id) {
-        if (pHud && pHud.SECURITY_KEY == keys.security_key) {
-            while (true) {
-                keys.player_id = keys.player_id + 1;
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
             }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
         }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
     }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
 }
-GameEvents.Subscribe("KickPlayer", KickPlayer);
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
 
 
 /***/ },
@@ -6879,15 +7022,19 @@ var __webpack_exports__ = {};
   !*** ./hud_main/script.tsx ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar */ "./EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar.tsx");
-/* harmony import */ var _manifest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../manifest */ "./manifest.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_Button/EOM_Button */ "./EOMDesign/Inputs/EOM_Button/EOM_Button.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar */ "./EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar.tsx");
+/* harmony import */ var _utils_hud__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/hud */ "./utils/hud.ts");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_net_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/net_data */ "./utils/net_data.ts");
+
+
 
 
 
@@ -6910,7 +7057,7 @@ function HudMain() {
         TormentorTimerContainer.enabled = false;
         TormentorTimerContainer.style.visibility = "collapse";
     }
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("SendCustomErrorMessage", (params) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("SendCustomErrorMessage", (params) => {
         let msg = $.Localize(`#${params.msg}`);
         if (params.player_id !== undefined) {
             let playerName = Players.GetPlayerName(params.player_id);
@@ -6918,7 +7065,7 @@ function HudMain() {
         }
         ErrorMessage(msg, "General.InvalidTarget_Invulnerable");
     }, []);
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useSchedule)(() => {
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.useSchedule)(() => {
         if (Players.GetLocalPlayer() == -1) {
             return 0.5;
         }
@@ -6930,11 +7077,11 @@ function HudMain() {
             lang: language,
         });
     }, []);
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(RoundInfo, null),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DrawAbility, null),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DrawNeutralItem, null),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(MiniMap, null)));
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(RoundInfo, null),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DrawAbility, null),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DrawNeutralItem, null),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(MiniMap, null)));
 }
 const unremovableAbilities = {
     "monkey_king_wukongs_command": true,
@@ -6946,12 +7093,12 @@ const AbilitySelectState = {
     HIDE: 3,
 };
 function DrawAbility() {
-    var _a;
-    const [collapse, setCollapse] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
-    const [saveBook, setSaveBook] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [sideAlign, setSideAlign] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(((_a = (CustomNetTables.GetTableValue("player_info", "setting_data_" + Players.GetLocalPlayer()))) === null || _a === void 0 ? void 0 : _a.right_ability_selection) == "1");
-    const [show_link_abilities, setShow_link_abilities] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const SelectData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("ability_select", String(Players.GetLocalPlayer()));
+    const [collapse, setCollapse] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
+    const [saveBook, setSaveBook] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const settingKey = "setting_data_" + Players.GetLocalPlayer();
+    const [sideAlign, setSideAlign] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(() => { var _a; return ((_a = _utils_net_data__WEBPACK_IMPORTED_MODULE_9__.NetData.GetTableValue("player_info", settingKey)) === null || _a === void 0 ? void 0 : _a.right_ability_selection) == "1"; });
+    const [show_link_abilities, setShow_link_abilities] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const SelectData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("ability_select", String(Players.GetLocalPlayer()));
     let Drawtitle = $.Localize("#HUD_Abilityselect_ChoseaAbility");
     let show = false;
     let CurrentAction = AbilitySelectState.NONE;
@@ -6981,7 +7128,7 @@ function DrawAbility() {
             }
         }
     }
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         var _a;
         if (SelectData != undefined) {
             if (Number((_a = SelectData === null || SelectData === void 0 ? void 0 : SelectData.state) !== null && _a !== void 0 ? _a : 0) != AbilitySelectState.NONE) {
@@ -6989,18 +7136,26 @@ function DrawAbility() {
             }
         }
     }, [SelectData]);
-    const settingData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("player_info", "setting_data_" + Players.GetLocalPlayer());
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-        if (settingData != undefined) {
-            setSideAlign(settingData.right_ability_selection == "1");
-        }
-    }, [settingData]);
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { hittest: false, id: "DrawAbility", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ collapse: collapse, Show: show, Side: sideAlign }) },
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+        const updateSetting = () => {
+            const settingData = _utils_net_data__WEBPACK_IMPORTED_MODULE_9__.NetData.GetTableValue("player_info", settingKey);
+            if (settingData != undefined) {
+                setSideAlign(settingData.right_ability_selection == "1");
+            }
+        };
+        const unsubscribe = _utils_net_data__WEBPACK_IMPORTED_MODULE_9__.NetData.Subscribe((name, key) => {
+            if (name === "player_info" && key === settingKey)
+                updateSetting();
+        });
+        updateSetting();
+        return unsubscribe;
+    }, [settingKey]);
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { hittest: false, id: "DrawAbility", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ collapse: collapse, Show: show, Side: sideAlign }) },
         !collapse &&
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "DrawAbilityTitle", text: Drawtitle }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawAbilityList", flowChildren: "right-wrap", horizontalAlign: "center" }, abilityList.map((ability_info, index) => {
-                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__.EOM_BaseButton, { key: index, flowChildren: "down", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("AbilityButton"), onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null,
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "DrawAbilityTitle", text: Drawtitle }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawAbilityList", flowChildren: "right-wrap", horizontalAlign: "center" }, abilityList.map((ability_info, index) => {
+                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__.EOM_BaseButton, { key: index, flowChildren: "down", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("AbilityButton"), onactivate: () => {
                             if (CurrentAction == AbilitySelectState.ADD) {
                                 GameEvents.SendCustomGameEventToServer("AbilitySelected", {
                                     ability_name: ability_info.abilityName,
@@ -7026,16 +7181,16 @@ function DrawAbility() {
                                 setShow_link_abilities(false);
                             }
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ability_icon" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "main_icon", abilityname: ability_info.abilityName, showtooltip: true }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "linked_abilities", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ has_link_ability: (ability_info.linkedAbilityName.length > 0) }) }, ability_info.linkedAbilityName.map((linked_ability_name, index) => {
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { key: index + linked_ability_name, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("linked_ability", { ["show_link_abilities" + index]: show_link_abilities }), abilityname: linked_ability_name, showtooltip: true });
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ability_icon" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "main_icon", abilityname: ability_info.abilityName, showtooltip: true }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "linked_abilities", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ has_link_ability: (ability_info.linkedAbilityName.length > 0) }) }, ability_info.linkedAbilityName.map((linked_ability_name, index) => {
+                                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { key: index + linked_ability_name, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("linked_ability", { ["show_link_abilities" + index]: show_link_abilities }), abilityname: linked_ability_name, showtooltip: true });
                             }))),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "DrawAbilityListAbilityName", text: $.Localize("#DOTA_Tooltip_ability_" + ability_info.abilityName) })));
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: "DrawAbilityListAbilityName", text: $.Localize("#DOTA_Tooltip_ability_" + ability_info.abilityName) })));
                 })),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawAbilityButtons" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawAbilityClose" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "Blue", localizedText: "#AbilitySelection_Close", tooltip: CurrentAction == AbilitySelectState.ADD ? "#AbilitySelection_Close_Description" : "#AbilityRelearnSelection_Description", onactivate: () => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawAbilityButtons" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawAbilityClose" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__["default"], { color: "Blue", localizedText: "#AbilitySelection_Close", tooltip: CurrentAction == AbilitySelectState.ADD ? "#AbilitySelection_Close_Description" : "#AbilityRelearnSelection_Description", onactivate: () => {
                                 if (CurrentAction == AbilitySelectState.ADD) {
                                     GameEvents.SendCustomGameEventToServer("AbilitySelected", {});
                                 }
@@ -7046,17 +7201,17 @@ function DrawAbility() {
                                     GameEvents.SendCustomGameEventToServer("SpellBookAbilitySelected", {});
                                 }
                             } }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "Green", localizedText: "#AbilitySelection_Hide", onactivate: () => setCollapse(true) })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawAbilityToggleList" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(ToggleButton, { className: "DrawAbilityToggleButton", localizedText: "#right_ability_select", selected: sideAlign, onactivate: self => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__["default"], { color: "Green", localizedText: "#AbilitySelection_Hide", onactivate: () => setCollapse(true) })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawAbilityToggleList" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(ToggleButton, { className: "DrawAbilityToggleButton", localizedText: "#right_ability_select", selected: sideAlign, onactivate: self => {
                                 setSideAlign(self.IsSelected());
                             } })))),
         collapse &&
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawAbilityShow", color: "Green", text: "#DOTA_Show", onactivate: () => setCollapse(false) })));
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__["default"], { id: "DrawAbilityShow", color: "Green", text: "#DOTA_Show", onactivate: () => setCollapse(false) })));
 }
 function DrawNeutralItem() {
     var _a;
-    const ItemData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("item_select", String(Players.GetLocalPlayer()));
+    const ItemData = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useNetTableKey)("item_select", String(Players.GetLocalPlayer()));
     let ItemList = [];
     let Show = false;
     let Tier = 0;
@@ -7074,13 +7229,13 @@ function DrawNeutralItem() {
     let title = Reroll ? $.Localize("#HUD_ItemSelect_Reroll") : $.Localize("#HUD_ItemSelect_Chose");
     title = title.replace("{value}", String(Tier));
     return ItemList.length > 0 ?
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { hittest: false, id: "DrawNeutralItem", visibility: Show ? "visible" : "collapse", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({}) },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItemTop" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("title"), text: title })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItemMain" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItemContianer" }, ItemList.map((ItemName, i) => {
-                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "NeutralItemSlot" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAItemImage, { id: "NeutralItemImage", itemname: ItemName, onactivate: () => {
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { hittest: false, id: "DrawNeutralItem", visibility: Show ? "visible" : "collapse", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({}) },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItemTop" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("title"), text: title })),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItemMain" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItemContianer" }, ItemList.map((ItemName, i) => {
+                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "NeutralItemSlot" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAItemImage, { id: "NeutralItemImage", itemname: ItemName, onactivate: () => {
                                 GameEvents.SendCustomEventToServer("NeutralItemSelected", {
                                     tier: Tier,
                                     itemName: ItemName,
@@ -7088,26 +7243,26 @@ function DrawNeutralItem() {
                                 });
                             } }));
                 }))),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItemBottom" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItemButtons" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__["default"], { color: "Green", localizedText: "#AbilitySelection_Hide", onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItemBottom" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItemButtons" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__["default"], { color: "Green", localizedText: "#AbilitySelection_Hide", onactivate: () => {
                             GameEvents.SendCustomEventToServer("HideNeutralItemSelect", {
                                 tier: Tier,
                             });
                         } }))))
-        : react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null);
+        : react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null);
 }
 function RoundInfo() {
-    const [roundName, setRoundName] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
-    const [roundNumber, setRoundNumber] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1);
-    const [time, setTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(100);
-    const [totalTime, setTotalTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(100);
-    const [count, setCount] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [totalCount, setTotalCount] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [abilityList, setAbilityList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
-    const [showReady, setShowReady] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [showRoundInfo, setShowRoundInfo] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("CreateQuest", (event) => {
+    const [roundName, setRoundName] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+    const [roundNumber, setRoundNumber] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(1);
+    const [time, setTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(100);
+    const [totalTime, setTotalTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(100);
+    const [count, setCount] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const [totalCount, setTotalCount] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const [abilityList, setAbilityList] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+    const [showReady, setShowReady] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const [showRoundInfo, setShowRoundInfo] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("CreateQuest", (event) => {
         var _a;
         if (event.name == "RoundPrepare") {
             if (event.text_value) {
@@ -7144,7 +7299,7 @@ function RoundInfo() {
             }
         }
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("RefreshQuest", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("RefreshQuest", (event) => {
         if (event.name == "RoundPrepare") {
             if (event.text_value) {
                 setRoundNumber(event.text_value);
@@ -7182,7 +7337,7 @@ function RoundInfo() {
             setShowRoundInfo(true);
         }
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("UpdateReadyButton", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("UpdateReadyButton", (event) => {
         if (!Players.IsSpectator(Players.GetLocalPlayer())) {
             setShowReady(event.visible);
         }
@@ -7198,37 +7353,37 @@ function RoundInfo() {
             game_time_minutes: String(fMinutes)
         };
     };
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("EndQuest", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("EndQuest", (event) => {
         setShowRoundInfo(false);
     });
     let flip = Game.IsHUDFlipped();
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RoundInfo", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: showRoundInfo, Flip: flip }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RoundNumberContainer" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RoundNumberTitle", text: $.Localize("#Round") }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RoundNumberLabel", text: roundNumber })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_5__["default"], { value: time, max: totalTime },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RoundRemainingTime", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: time >= 0 }), localizedText: "{s:game_time_minutes}:{s:game_time_seconds}", dialogVariables: formatTime() }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RoundExpireTime", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: time < 0 }), text: $.Localize("#Hud_Round_berserk") + ": " + (-time) })),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_4__.EOM_BaseButton, { id: "ReadyGrid", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: showReady }), onactivate: () => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RoundInfo", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: showRoundInfo, Flip: flip }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RoundNumberContainer" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RoundNumberTitle", text: $.Localize("#Round") }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RoundNumberLabel", text: roundNumber })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_6__["default"], { value: time, max: totalTime },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RoundRemainingTime", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: time >= 0 }), localizedText: "{s:game_time_minutes}:{s:game_time_seconds}", dialogVariables: formatTime() }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RoundExpireTime", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: time < 0 }), text: $.Localize("#Hud_Round_berserk") + ": " + (-time) })),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_Button_EOM_Button__WEBPACK_IMPORTED_MODULE_5__.EOM_BaseButton, { id: "ReadyGrid", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: showReady }), onactivate: () => {
                 GameEvents.SendCustomGameEventToServer("PlayerReady", {});
             } },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { align: "center center", flowChildren: "right" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { localizedText: "#Ready" }))),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "RoundName", text: $.Localize(roundName) + (totalCount > 0 ? `(${count}/${totalCount})` : "") }),
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RoundAbilityList", flowChildren: "left", hittest: false }, abilityList.split(",").map((abilityName, index) => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { align: "center center", flowChildren: "right" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { localizedText: "#Ready" }))),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "RoundName", text: $.Localize(roundName) + (totalCount > 0 ? `(${count}/${totalCount})` : "") }),
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RoundAbilityList", flowChildren: "left", hittest: false }, abilityList.split(",").map((abilityName, index) => {
             if (abilityName != "") {
-                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { key: index, abilityname: abilityName, showtooltip: true });
+                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { key: index, abilityname: abilityName, showtooltip: true });
             }
         }))));
 }
 function MiniMap() {
     let flip = Game.IsHUDFlipped();
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useHeartBeat)(1);
-    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "MiniMap", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Flip: flip }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(GenericPanel, { type: "DOTAMinimap", style: { width: "260px", height: "260px", margin: "4px" } }));
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.useHeartBeat)(1);
+    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "MiniMap", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Flip: flip }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(GenericPanel, { type: "DOTAMinimap", style: { width: "260px", height: "260px", margin: "4px" } }));
 }
 {
-    const banData = CustomNetTables.GetTableValue("service", "forbidden_talk");
+    const banData = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "forbidden_talk");
     if (banData) {
         Object.entries(banData).map(([key, value]) => {
             let playerId = Number(key);
@@ -7240,7 +7395,7 @@ function MiniMap() {
 }
 {
     let timer;
-    const lower_hud = (0,_manifest__WEBPACK_IMPORTED_MODULE_6__.FindDotaHudElement)("lower_hud");
+    const lower_hud = (0,_utils_hud__WEBPACK_IMPORTED_MODULE_7__.FindDotaHudElement)("lower_hud");
     if (lower_hud) {
         if (timer) {
             $.CancelScheduled(timer);
@@ -7261,7 +7416,7 @@ function MiniMap() {
         GameEvents.SendCustomEventToServer("CustomPauseGame", {});
     });
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(HudMain, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(HudMain, null), $.GetContextPanel());
 
 })();
 

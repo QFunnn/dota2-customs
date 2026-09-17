@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5761,6 +5761,136 @@ if (false) // removed by dead control flow
 
 /***/ },
 
+/***/ "./hud_shop/config.ts"
+/*!****************************!*\
+  !*** ./hud_shop/config.ts ***!
+  \****************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SHOP_CONFIG_CHUNK_PREFIX: () => (/* binding */ SHOP_CONFIG_CHUNK_PREFIX),
+/* harmony export */   SHOP_CONFIG_MANIFEST_KEY: () => (/* binding */ SHOP_CONFIG_MANIFEST_KEY),
+/* harmony export */   readShopConfig: () => (/* binding */ readShopConfig)
+/* harmony export */ });
+const SHOP_CONFIG_MANIFEST_KEY = "shop_config_manifest";
+const SHOP_CONFIG_CHUNK_PREFIX = "shop_config_chunk_";
+function readShopConfig() {
+    const read = (key) => CustomNetTables.GetTableValue("common", key);
+    const manifest = read(SHOP_CONFIG_MANIFEST_KEY);
+    if (!(manifest === null || manifest === void 0 ? void 0 : manifest.c)) {
+        return undefined;
+    }
+    const chunks = [];
+    for (let chunkIndex = 1; chunkIndex <= manifest.c; chunkIndex++) {
+        const chunk = read(`${SHOP_CONFIG_CHUNK_PREFIX}${chunkIndex}`);
+        if ((chunk === null || chunk === void 0 ? void 0 : chunk.v) !== manifest.v || typeof chunk.d !== "string") {
+            return undefined;
+        }
+        chunks.push(chunk.d);
+    }
+    return JSON.parse(chunks.join(""));
+}
+
+
+/***/ },
+
+/***/ "./hud_shop/stock.ts"
+/*!***************************!*\
+  !*** ./hud_shop/stock.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   applyShopStockMessage: () => (/* binding */ applyShopStockMessage),
+/* harmony export */   useShopStock: () => (/* binding */ useShopStock)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+
+function applyShopStockMessage(current, message) {
+    const sameTeam = (current === null || current === void 0 ? void 0 : current.team) === message.team;
+    if (sameTeam && message.v < current.v) {
+        return current;
+    }
+    if (message.full === 1) {
+        return { team: message.team, v: message.v, items: message.items || {} };
+    }
+    if (!sameTeam || message.v !== current.v + 1) {
+        return current;
+    }
+    const items = Object.assign({}, current.items);
+    for (const itemName of Object.keys(message.items || {})) {
+        const item = message.items[itemName];
+        if (item.c < 0) {
+            delete items[itemName];
+        }
+        else {
+            items[itemName] = item;
+        }
+    }
+    return { team: message.team, v: message.v, items };
+}
+function getLocalShopTeam() {
+    const playerID = Players.GetLocalPlayer();
+    return playerID >= 0 ? Players.GetTeam(playerID) : -1;
+}
+function useShopStock() {
+    const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        let current;
+        let requestedTeam = -1;
+        let pending = false;
+        const requestState = (force = false) => {
+            const team = getLocalShopTeam();
+            if (team !== requestedTeam) {
+                current = undefined;
+                setState(undefined);
+                pending = false;
+                requestedTeam = team;
+            }
+            if (team < 2 || (!force && (pending || current))) {
+                return;
+            }
+            pending = true;
+            GameEvents.SendCustomGameEventToServer("custom_shop_request_state", {});
+        };
+        const listeners = [
+            GameEvents.Subscribe("custom_shop_state", (message) => {
+                if (message.team !== getLocalShopTeam()) {
+                    return;
+                }
+                if ((current === null || current === void 0 ? void 0 : current.team) !== message.team) {
+                    current = undefined;
+                }
+                if (message.full !== 1 && (!current || message.v > current.v + 1)) {
+                    if (!pending) {
+                        requestState(true);
+                    }
+                    return;
+                }
+                const next = applyShopStockMessage(current, message);
+                if (message.full === 1) {
+                    pending = false;
+                }
+                if (next !== current) {
+                    current = next;
+                    setState(next);
+                }
+            }),
+            GameEvents.Subscribe("dota_player_update_assigned_hero", () => requestState()),
+        ];
+        requestState();
+        return () => listeners.forEach((listener) => GameEvents.Unsubscribe(listener));
+    }, []);
+    return state;
+}
+
+
+/***/ },
+
 /***/ "?559b"
 /*!********************************!*\
   !*** ./util.inspect (ignored) ***!
@@ -5874,6 +6004,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _stock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stock */ "./hud_shop/stock.ts");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ "./hud_shop/config.ts");
+
+
 
 
 
@@ -5882,7 +6016,6 @@ const SHOP_RECIPE_MANIFEST_KEY = "shop_recipe_manifest";
 const SHOP_RECIPE_CHUNK_PREFIX = "shop_recipe_chunk_";
 const SHOP_ITEM_COST_MANIFEST_KEY = "shop_item_cost_manifest";
 const SHOP_ITEM_COST_CHUNK_PREFIX = "shop_item_cost_chunk_";
-const SHOP_STOCK_KEY_PREFIX = "shop_stock_";
 const SHOP_PURCHASE_EVENT = "custom_shop_purchase_item";
 const SHOP_PURCHASE_SUCCESS_EVENT = "custom_shop_purchase_success";
 const AGHANIMS_SCEPTER_ITEM = "item_ultimate_scepter";
@@ -6275,39 +6408,6 @@ function readShopItemCosts() {
     }
     return itemCosts;
 }
-function getShopProfile(config, mapNames) {
-    const candidates = [];
-    for (let mapIndex = 0; mapIndex < mapNames.length; mapIndex++) {
-        const mapName = mapNames[mapIndex];
-        if (!mapName) {
-            continue;
-        }
-        const fileName = mapName.replace(/^.*[\\/]/, "").replace(/\.vmap_c$/, "").replace(/\.vmap$/, "");
-        const withoutAddonPrefix = fileName.replace(/^custom_chaos_/, "");
-        const withoutVersion = withoutAddonPrefix.replace(/_v\d+$/, "");
-        const normalizedNames = [mapName, fileName, withoutAddonPrefix, withoutVersion];
-        for (let nameIndex = 0; nameIndex < normalizedNames.length; nameIndex++) {
-            const normalizedName = normalizedNames[nameIndex];
-            if (normalizedName && candidates.indexOf(normalizedName) < 0) {
-                candidates.push(normalizedName);
-            }
-        }
-    }
-    for (let index = 0; index < candidates.length; index++) {
-        if (config.profiles[candidates[index]]) {
-            return config.profiles[candidates[index]];
-        }
-    }
-    const profileNames = Object.keys(config.profiles);
-    for (let profileIndex = 0; profileIndex < profileNames.length; profileIndex++) {
-        for (let candidateIndex = 0; candidateIndex < candidates.length; candidateIndex++) {
-            if (candidates[candidateIndex].endsWith(profileNames[profileIndex])) {
-                return config.profiles[profileNames[profileIndex]];
-            }
-        }
-    }
-    return config.profiles[config.defaultProfile] || {};
-}
 function includeAghanimsBlessingRecipe(profile) {
     const categoryIds = Object.keys(profile);
     let targetCategoryId = "";
@@ -6333,10 +6433,6 @@ function includeAghanimsBlessingRecipe(profile) {
 function getLocalizedItemName(itemName) {
     const localizedName = $.Localize(`#DOTA_Tooltip_ability_${itemName}`);
     return localizedName.startsWith("#") ? itemName : localizedName;
-}
-function getShopStockKey() {
-    const playerId = Players.GetLocalPlayer();
-    return `${SHOP_STOCK_KEY_PREFIX}${playerId >= 0 ? Players.GetTeam(playerId) : -1}`;
 }
 function isLoneDruidSpiritBear(entityIndex) {
     const playerId = Players.GetLocalPlayer();
@@ -6736,12 +6832,11 @@ function CustomQuickBuy({ goals, recipeIndex, stockItems, itemCosts, currentGold
 }
 function CustomShop() {
     var _a;
-    const config = GameUI.CustomUIConfig().ShopItemsKv;
-    const mapInfo = Game.GetMapInfo();
-    const mapName = (mapInfo === null || mapInfo === void 0 ? void 0 : mapInfo.map_name) || "";
-    const mapDisplayName = (mapInfo === null || mapInfo === void 0 ? void 0 : mapInfo.map_display_name) || "";
+    const [config, setConfig] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => (0,_config__WEBPACK_IMPORTED_MODULE_4__.readShopConfig)() || {
+        itemIds: {}, categories: [], profile: {}, stockDefinitions: {},
+    });
     const itemIds = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => (Object.assign(Object.assign({}, config.itemIds), { [AGHANIMS_BLESSING_RECIPE]: AGHANIMS_BLESSING_RECIPE_ID })), [config]);
-    const profile = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => includeAghanimsBlessingRecipe(getShopProfile(config, [mapName, mapDisplayName])), [config, mapName, mapDisplayName]);
+    const profile = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => includeAghanimsBlessingRecipe(config.profile), [config]);
     const categories = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => config.categories.filter((category) => { var _a; return (((_a = profile[category.id]) === null || _a === void 0 ? void 0 : _a.length) || 0) > 0; }), [config, profile]);
     const availableTabs = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => TAB_DEFINITIONS.filter((tab) => tab.id === "neutral" || categories.some((category) => category.tab === tab.id)), [categories]);
     const itemOrder = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
@@ -6776,7 +6871,7 @@ function CustomShop() {
     const customRecipeSelectionBaseline = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
     const [recipeIndex, setRecipeIndex] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(readShopRecipeIndex);
     const [itemCosts, setItemCosts] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(readShopItemCosts);
-    const [stockState, setStockState] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => getCommonNetTableValue(getShopStockKey()) || {});
+    const stockState = (0,_stock__WEBPACK_IMPORTED_MODULE_3__.useShopStock)();
     const [currentGold, setCurrentGold] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(getLocalPlayerGold);
     const [quickBuyGoals, setQuickBuyGoals] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(() => {
         const storedGoals = GameUI.CustomUIConfig().CustomShopQuickBuyGoals;
@@ -6793,6 +6888,11 @@ function CustomShop() {
     });
     const [nativeNeutralOpen, setNativeNeutralOpen] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+        if (availableTabs.length > 0 && !availableTabs.some((tab) => tab.id === activeTab)) {
+            setActiveTab(availableTabs[0].id);
+        }
+    }, [activeTab, availableTabs]);
+    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
         const selectedRecipe = recipeIndex.byResult[selectedItem];
         const isUpgradeItem = !!selectedRecipe && selectedRecipe.upgradeLevel > 0;
         if (!selectedItem || (itemOrder[selectedItem] === undefined && !isUpgradeItem)) {
@@ -6800,18 +6900,26 @@ function CustomShop() {
         }
     }, [defaultSelectedItem, itemOrder, recipeIndex, selectedItem]);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-        const stockKey = getShopStockKey();
         const listener = CustomNetTables.SubscribeNetTableListener(SHOP_RECIPE_NET_TABLE, (_tableName, key) => {
-            if (key === SHOP_RECIPE_MANIFEST_KEY) {
+            if (key === SHOP_RECIPE_MANIFEST_KEY || key.startsWith(SHOP_RECIPE_CHUNK_PREFIX)) {
                 setRecipeIndex(readShopRecipeIndex());
             }
-            else if (key === SHOP_ITEM_COST_MANIFEST_KEY) {
+            else if (key === SHOP_ITEM_COST_MANIFEST_KEY || key.startsWith(SHOP_ITEM_COST_CHUNK_PREFIX)) {
                 setItemCosts(readShopItemCosts());
             }
-            else if (key === stockKey) {
-                setStockState(getCommonNetTableValue(stockKey) || {});
+            else if (key === _config__WEBPACK_IMPORTED_MODULE_4__.SHOP_CONFIG_MANIFEST_KEY || key.startsWith(_config__WEBPACK_IMPORTED_MODULE_4__.SHOP_CONFIG_CHUNK_PREFIX)) {
+                const nextConfig = (0,_config__WEBPACK_IMPORTED_MODULE_4__.readShopConfig)();
+                if (nextConfig) {
+                    setConfig(nextConfig);
+                }
             }
         });
+        const latestConfig = (0,_config__WEBPACK_IMPORTED_MODULE_4__.readShopConfig)();
+        if (latestConfig) {
+            setConfig(latestConfig);
+        }
+        setRecipeIndex(readShopRecipeIndex());
+        setItemCosts(readShopItemCosts());
         return () => CustomNetTables.UnsubscribeNetTableListener(listener);
     }, []);
     (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
@@ -6909,7 +7017,7 @@ function CustomShop() {
             setSearch("");
             setActiveTab(matchingTab);
         }
-    }, []);
+    }, [availableTabs]);
     (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DOTAHUDShopClosed", () => {
         var _a;
         const resetToDefaultTab = nativeShopPassthrough;
@@ -6919,7 +7027,7 @@ function CustomShop() {
         }
         setNativeNeutralOpen(false);
         setOpen(false);
-    }, []);
+    }, [availableTabs]);
     const recipeTree = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => buildRecipeTree(selectedItem, recipeIndex, itemOrder), [itemOrder, recipeIndex, selectedItem]);
     const searchText = search.trim().toLocaleLowerCase();
     const itemPlacements = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
@@ -6951,7 +7059,16 @@ function CustomShop() {
         return result;
     }, [activeTab, categories, itemIds, profile, searchText]);
     const visibleItemCount = Object.keys(itemPlacements).length;
-    const stockItems = stockState.items || {};
+    const stockItems = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
+        const items = {};
+        for (const itemName of Object.keys(config.stockDefinitions)) {
+            const item = stockState === null || stockState === void 0 ? void 0 : stockState.items[itemName];
+            if (item) {
+                items[itemName] = item;
+            }
+        }
+        return items;
+    }, [config.stockDefinitions, stockState]);
     const selectDisplayedItem = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)((itemName) => {
         var _a;
         customRecipeSelectionBaseline.current = ((_a = latestNativeRecipeSelection.current) === null || _a === void 0 ? void 0 : _a.refreshSignature) || "";

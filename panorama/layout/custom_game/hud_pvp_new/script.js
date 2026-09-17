@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6001,6 +6001,225 @@ EOM_ProgressBar.defaultProps = {
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6625,13 +6844,15 @@ var __webpack_exports__ = {};
   !*** ./hud_pvp_new/script.tsx ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar */ "./EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar */ "./EOMDesign/Inputs/EOM_ProgressBar/EOM_ProgressBar.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+
 
 
 
@@ -6685,18 +6906,20 @@ function PVPPingItem(Hero, index, iPlayerID) {
 }
 function PVP() {
     var _a, _b;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.useToggleWindow)("HUD_PVP");
-    const [DataList, SetDataList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({});
-    const [ShowBet, SetShowBet] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true);
-    const [BetTime, SetBetTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [Page, SetPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [BetMap, SetBetMap] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({});
-    const PassData = CustomNetTables.GetTableValue("service", "player_vip");
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.useToggleWindow)("HUD_PVP");
+    const [DataList, SetDataList] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({});
+    const [ShowBet, SetShowBet] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(true);
+    const [BetTime, SetBetTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const [Page, SetPage] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const [BetMap, SetBetMap] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({});
+    const TeamIDs = Object.keys(DataList).filter(teamID => DataList[teamID] != undefined);
+    const TeamPVP = TeamIDs.some(teamID => DataList[teamID].length > 1);
+    const PassData = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "player_vip");
     let BetTotalReward = 0;
     let BetHistory = [];
     bPass = (((_a = PassData === null || PassData === void 0 ? void 0 : PassData[Players.GetLocalPlayer()]) === null || _a === void 0 ? void 0 : _a.level) == 1);
     const HistoryLimit = bPass ? 500 : 3;
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("ShowPvpBet", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("ShowPvpBet", (event) => {
         if (event != undefined) {
             if (event.dataList) {
                 let List = {};
@@ -6725,22 +6948,22 @@ function PVP() {
             }
         }
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("UpdateConfirmButton", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("UpdateConfirmButton", (event) => {
         SetBetTime(event.totalTime - event.currentTime);
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("CreateQuest", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("CreateQuest", (event) => {
         if (!event.bRoundStart) {
             if (SelfPVP) {
                 toggleWindow(false);
             }
         }
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("ShowPvpBrief", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("ShowPvpBrief", (event) => {
         SetBetMap(event.betMap);
         SetShowBet(false);
         toggleWindow(true);
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("TeamWin", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("TeamWin", (event) => {
         toggleWindow(false);
     }, []);
     let Record = CustomNetTables.GetTableValue("pvp_record", String(Players.GetLocalPlayer()));
@@ -6761,65 +6984,65 @@ function PVP() {
             BetHistory = BetHistory.reverse();
         }
     }
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HUD_PVP", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Flip: bFlip }) },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Top" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "ToggleButton", onactivate: () => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HUD_PVP", hittest: false, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Flip: bFlip, TeamPVP }) },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Top" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "ToggleButton", onactivate: () => {
                     toggleWindow();
                 } },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ButtonText", text: $.Localize("#PvP_main_button") }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "ToggleImage", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: windowState }) }))),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ButtonText", text: $.Localize("#PvP_main_button") }),
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "ToggleImage", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: windowState }) }))),
         !windowState ?
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)
             :
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Bottom", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: windowState }) },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Tags" }, [0, 1].map((v, i) => {
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "Tag", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Selected: Page == v }), onactivate: () => {
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Bottom", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: windowState }) },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Tags" }, [0, 1].map((v, i) => {
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "Tag", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Selected: Page == v }), onactivate: () => {
                                 SetPage(v);
                             } },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TagLabel", text: $.Localize(`#PvP_Page_${v}`) }));
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TagLabel", text: $.Localize(`#PvP_Page_${v}`) }));
                     })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Content" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "MainPage", visibility: Page == 0 ? "visible" : "collapse" }, Object.keys(DataList).map((teamID, teamIndex) => {
-                            const teamInfo = DataList[teamID];
-                            if (teamInfo != undefined) {
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(PVPTeam, { key: teamIndex, teamID: Number(teamID), teamIndex: teamIndex, teamInfo: teamInfo, BetTime: BetTime, Show: windowState, ShowBet: ShowBet, BetSummary: BetMap[teamID], SetShowBet: (b) => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Content" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "MainPage", visibility: Page == 0 ? "visible" : "collapse" },
+                            TeamPVP && SelfPVP && react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "DuelNotice", text: $.Localize("#PvP_WillPVPTag_text") }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TeamMatchup" }, TeamIDs.map((teamID, teamIndex) => (react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, { key: teamID },
+                                teamIndex > 0 && react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Versus" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "VersusLabel", text: $.Localize(SelfPVP && !TeamPVP ? "#PvP_WillPVPTag_text" : "#PvP_bet_History_entry_versus") })),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(PVPTeam, { teamID: Number(teamID), teamInfo: DataList[teamID], BetTime: BetTime, Show: windowState, ShowBet: ShowBet, BetSummary: BetMap[teamID], SetShowBet: (b) => {
                                         SetShowBet(b);
-                                    } });
-                            }
-                        })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "History", visibility: Page == 1 ? "visible" : "collapse" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BetSummary" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "SummaryLabel", text: $.Localize("#PvP_bet_History_summary") + BetTotalReward })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BetList" }, BetHistory.map((RecordInfo, i) => {
+                                    } })))))),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "History", visibility: Page == 1 ? "visible" : "collapse" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BetSummary" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "SummaryLabel", text: $.Localize("#PvP_bet_History_summary") + BetTotalReward })),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BetList" }, BetHistory.map((RecordInfo, i) => {
                                 var _a, _b, _c;
                                 const winners = (_a = RecordInfo === null || RecordInfo === void 0 ? void 0 : RecordInfo.winners) !== null && _a !== void 0 ? _a : {};
                                 const losers = (_b = RecordInfo === null || RecordInfo === void 0 ? void 0 : RecordInfo.losers) !== null && _b !== void 0 ? _b : {};
                                 const RecordValue = (_c = RecordInfo === null || RecordInfo === void 0 ? void 0 : RecordInfo.value) !== null && _c !== void 0 ? _c : 0;
                                 if (i < HistoryLimit) {
-                                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "BetRecord" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Players" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Winners", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("PlayerList") }, Object.keys(winners).map((v, i) => {
+                                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "BetRecord" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Players" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Winners", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("PlayerList") }, Object.keys(winners).map((v, i) => {
                                                 const iPlayerID = winners[v];
                                                 if (iPlayerID != -1) {
-                                                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { key: i, id: "HeroImage", heroimagestyle: "icon", heroname: Players.GetPlayerSelectedHero(iPlayerID) });
+                                                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { key: i, id: "HeroImage", heroimagestyle: "icon", heroname: Players.GetPlayerSelectedHero(iPlayerID) });
                                                 }
                                             })),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Versus" }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Losers", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("PlayerList") }, Object.keys(losers).map((v, i) => {
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Versus" }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Losers", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("PlayerList") }, Object.keys(losers).map((v, i) => {
                                                 const iPlayerID = losers[v];
                                                 if (iPlayerID != -1) {
-                                                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { key: i, id: "HeroImage", heroimagestyle: "icon", heroname: Players.GetPlayerSelectedHero(iPlayerID) });
+                                                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { key: i, id: "HeroImage", heroimagestyle: "icon", heroname: Players.GetPlayerSelectedHero(iPlayerID) });
                                                 }
                                             }))),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Values" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "BetValue", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Win: RecordValue > 0 }), text: RecordValue > 0 ? "+" + RecordValue : RecordValue })));
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Values" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "BetValue", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Win: RecordValue > 0 }), text: RecordValue > 0 ? "+" + RecordValue : RecordValue })));
                                 }
                             })))))));
 }
-function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSummary, SetShowBet, }) {
-    const refBetTextEntry = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const [fTime, SetTime] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(Game.Time());
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("CreateQuest", (event) => {
+function PVPTeam({ teamID, teamInfo, BetTime, Show, ShowBet, BetSummary, SetShowBet, }) {
+    const refBetTextEntry = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+    const [fTime, SetTime] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(Game.Time());
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("CreateQuest", (event) => {
         if (!event.bRoundStart) {
             if (refBetTextEntry.current) {
                 refBetTextEntry.current.text = "";
@@ -6839,17 +7062,17 @@ function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSumma
             }
         }
     }
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.useSchedule)(() => {
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.useSchedule)(() => {
         if (Show) {
             SetTime(Game.Time());
         }
         return 1;
     }, [Show]);
     return (Show ?
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Team" },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TeamMain" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TeamLeft" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TeamHeroList" }, teamInfo.map((info, i) => {
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Team" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TeamMain" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TeamLeft" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TeamHeroList" }, teamInfo.map((info, i) => {
                         var _a, _b, _c, _d, _e;
                         const iPlayerID = ((_a = info === null || info === void 0 ? void 0 : info.iPlayerID) !== null && _a !== void 0 ? _a : -1);
                         const tRankData = (_b = info === null || info === void 0 ? void 0 : info.tRankData) !== null && _b !== void 0 ? _b : {};
@@ -6881,12 +7104,12 @@ function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSumma
                                     ItemList.push(item);
                                 }
                             }
-                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "PlayerInfo" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Title" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerName" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayerNameText", text: Players.GetPlayerName(iPlayerID) })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Party_info", visible: bPass },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Party_info_text", text: $.Localize("#PVP_Same_Party") + ":" }),
+                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "PlayerInfo" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Title" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerName" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayerNameText", text: Players.GetPlayerName(iPlayerID) })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Party_info", visible: bPass },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Party_info_text", text: $.Localize("#PVP_Same_Party") + ":" }),
                                         (() => {
                                             let party_map = CustomNetTables.GetTableValue("hero_info", "party_map");
                                             let party_list = [];
@@ -6904,72 +7127,72 @@ function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSumma
                                                 }
                                             }
                                             return (party_list.map((info, index) => {
-                                                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { key: index, className: "SamePartyHeroIcon", heroname: info.heroname || "npc_dota_hero_axe", heroimagestyle: "icon", onmouseover: (p) => {
+                                                return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { key: index, className: "SamePartyHeroIcon", heroname: info.heroname || "npc_dota_hero_axe", heroimagestyle: "icon", onmouseover: (p) => {
                                                         $.DispatchEvent("DOTAShowTextTooltip", p, info.playername);
                                                     }, onmouseout: (p) => {
                                                         $.DispatchEvent("DOTAHideTextTooltip", p);
                                                     } }));
                                             }));
                                         })())),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Top" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Hero", onactivate: () => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Top" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Hero", onactivate: () => {
                                             GameUI.SetCameraTargetPosition(Entities.GetAbsOrigin(Hero), 0.01);
                                         } },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "HeroImage", heroname: Entities.GetUnitName(Hero), heroimagestyle: "landscape" }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroLevelOuter" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HeroLevelContainer" },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "LevelNumber", text: Entities.GetLevel(Hero) })))),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ScepterShard" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "scepter", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Active: hasScepter }) }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "shard", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Active: hasShard }) })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PlayerBonusInfo", visibility: (bPass && ShowBet) ? "visible" : "collapse" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Rank", text: $.Localize("#Score") + ":" + ((_c = tRankData === null || tRankData === void 0 ? void 0 : tRankData.score) !== null && _c !== void 0 ? _c : "?") }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PlayTime", text: $.Localize("#play_time") + ((_d = tRankData === null || tRankData === void 0 ? void 0 : tRankData.play_time) !== null && _d !== void 0 ? _d : "?") }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Actor", text: $.Localize("#actor") + ((_e = tRankData === null || tRankData === void 0 ? void 0 : tRankData.actor) !== null && _e !== void 0 ? _e : "?") })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "HPMana", visibility: ShowBet ? "collapse" : "visible" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HP", value: HP, max: MaxHP },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "HPLabel", text: `${HP} / ${MaxHP}` })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "HeroImage", heroname: Entities.GetUnitName(Hero), heroimagestyle: "landscape" }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroLevelOuter" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HeroLevelContainer" },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "LevelNumber", text: Entities.GetLevel(Hero) })))),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ScepterShard" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "scepter", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Active: hasScepter }) }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "shard", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Active: hasShard }) })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PlayerBonusInfo", visibility: (bPass && ShowBet) ? "visible" : "collapse" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Rank", text: $.Localize("#Score") + ":" + ((_c = tRankData === null || tRankData === void 0 ? void 0 : tRankData.score) !== null && _c !== void 0 ? _c : "?") }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PlayTime", text: $.Localize("#play_time") + ((_d = tRankData === null || tRankData === void 0 ? void 0 : tRankData.play_time) !== null && _d !== void 0 ? _d : "?") }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Actor", text: $.Localize("#actor") + ((_e = tRankData === null || tRankData === void 0 ? void 0 : tRankData.actor) !== null && _e !== void 0 ? _e : "?") })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "HPMana", visibility: ShowBet ? "collapse" : "visible" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_5__["default"], { id: "HP", value: HP, max: MaxHP },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "HPLabel", text: `${HP} / ${MaxHP}` })),
                                         MaxMana != undefined && MaxMana > 0 &&
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Mana", value: Mana, max: MaxMana },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "ManaLabel", text: `${Mana} / ${MaxMana}` })))),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Main" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Items" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Inventory" }, ItemList.map((index, i) => {
-                                            return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Item", key: i, onactivate: () => {
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Inputs_EOM_ProgressBar_EOM_ProgressBar__WEBPACK_IMPORTED_MODULE_5__["default"], { id: "Mana", value: Mana, max: MaxMana },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "ManaLabel", text: `${Mana} / ${MaxMana}` })))),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Main" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Items" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Inventory" }, ItemList.map((index, i) => {
+                                            return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Item", key: i, onactivate: () => {
                                                     if (GameUI.IsAltDown()) {
                                                         PVPPingItem(Hero, index, iPlayerID);
                                                     }
                                                 } },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAItemImage, { id: "ItemImage", itemname: Abilities.GetAbilityName(index), showtooltip: true }));
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAItemImage, { id: "ItemImage", itemname: Abilities.GetAbilityName(index), showtooltip: true }));
                                         })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralSmoke" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "NeutralItem", onactivate: () => {
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralSmoke" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "NeutralItem", onactivate: () => {
                                                     if (GameUI.IsAltDown()) {
                                                         PVPPingItem(Hero, NeutralItem, iPlayerID);
                                                     }
                                                 } }, NeutralItem == -1 ?
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)
                                                 :
-                                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAItemImage, { id: "NeutralItemImage", itemname: Abilities.GetAbilityName(NeutralItem), showtooltip: true })))),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Abilities" }, AbilityList.map((index, i) => {
+                                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAItemImage, { id: "NeutralItemImage", itemname: Abilities.GetAbilityName(NeutralItem), showtooltip: true })))),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Abilities" }, AbilityList.map((index, i) => {
                                         let fCooldown = Math.floor(Abilities.GetCooldownTimeRemaining(index));
                                         let sAbilityName = Abilities.GetAbilityName(index);
                                         let iAbilityLevel = Abilities.GetLevel(index);
-                                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Ability", key: i, onactivate: () => {
+                                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Ability", key: i, onactivate: () => {
                                                 if (GameUI.IsAltDown()) {
                                                     PVPPingAbility(Hero, index, iPlayerID);
                                                 }
                                             } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { id: "AbilityImage", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ UnLearned: iAbilityLevel <= 0 }), abilityname: sAbilityName, showtooltip: true }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "CooldownOverlay", hittest: false, visibility: (fCooldown > 0 && !SelfPVP) ? "visible" : "collapse" }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "CooldownLabel", visible: fCooldown > 0 && !SelfPVP, text: fCooldown }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "LevelOverlay", hittest: false, visible: !SelfPVP },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "LevelContainer" },
-                                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "LevelLabel", text: iAbilityLevel }))));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { id: "AbilityImage", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ UnLearned: iAbilityLevel <= 0 }), abilityname: sAbilityName, showtooltip: true }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "CooldownOverlay", hittest: false, visibility: (fCooldown > 0 && !SelfPVP) ? "visible" : "collapse" }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "CooldownLabel", visible: fCooldown > 0 && !SelfPVP, text: fCooldown }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "LevelOverlay", hittest: false, visible: !SelfPVP },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "LevelContainer" },
+                                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "LevelLabel", text: iAbilityLevel }))));
                                     }))));
                         }
                     })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "BetList", visibility: SelfPVP ? "collapse" : "visible" }, BetSummary ?
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "BetList", visibility: SelfPVP ? "collapse" : "visible" }, BetSummary ?
                         Object.keys(BetSummary).map((v, i) => {
                             var _a, _b;
                             const Info = BetSummary[v];
@@ -6977,38 +7200,38 @@ function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSumma
                             const iGold = (_b = Info === null || Info === void 0 ? void 0 : Info.nValue) !== null && _b !== void 0 ? _b : 0;
                             if (iPlayerID != -1) {
                                 let HeroName = Players.GetPlayerSelectedHero(iPlayerID);
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "BetRecord" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAHeroImage, { id: "HeroIcon", heroname: HeroName, heroimagestyle: "icon" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "GoldIcon", src: "s2r://panorama/images/hud/reborn/gold_small_psd.vtex" }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "BetGold", text: iGold }));
+                                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "BetRecord" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAHeroImage, { id: "HeroIcon", heroname: HeroName, heroimagestyle: "icon" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "GoldIcon", src: "s2r://panorama/images/hud/reborn/gold_small_psd.vtex" }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "BetGold", text: iGold }));
                             }
-                        }) : react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null))),
+                        }) : react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null))),
                 ShowBet ?
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TeamRight", visibility: ShowBet ? "visible" : "collapse" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Bet" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Top" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "bet_decrease", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("BetChangeButton"), onactivate: () => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TeamRight", visibility: ShowBet ? "visible" : "collapse" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Bet" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Top" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "bet_decrease", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("BetChangeButton"), onactivate: () => {
                                         if (refBetTextEntry.current && refBetTextEntry.current.text != undefined) {
                                             const num_cur = Number(refBetTextEntry.current.text);
                                             refBetTextEntry.current.text = num_cur - 100 < 0 ? String(0) : String(num_cur - 100);
                                         }
                                     } }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextEntry, { ref: refBetTextEntry, id: "bet_input_entry", placeholder: $.Localize("#PvP_bet_text_entry_placeholder"), maxchars: 5, textmode: "numeric", ontextentrychange: (p) => { OnBetNumberChange(Number(p.text) || 0); } }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "bet_increase", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("BetChangeButton"), onactivate: () => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextEntry, { ref: refBetTextEntry, id: "bet_input_entry", placeholder: $.Localize("#PvP_bet_text_entry_placeholder"), maxchars: 5, textmode: "numeric", ontextentrychange: (p) => { OnBetNumberChange(Number(p.text) || 0); } }),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "bet_increase", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("BetChangeButton"), onactivate: () => {
                                         if (refBetTextEntry.current && refBetTextEntry.current.text != undefined) {
                                             const player_gold = Players.GetGold(Players.GetLocalPlayer());
                                             const num_cur = Number(refBetTextEntry.current.text);
                                             refBetTextEntry.current.text = num_cur + 100 > Math.floor(player_gold * 0.5) ? String(Math.floor(player_gold * 0.5)) : String(num_cur + 100);
                                         }
                                     } })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Bottom" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "MaxButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("BetButtons"), text: $.Localize("#PvP_bet_all_in") + "(" + Math.floor(Players.GetGold(Players.GetLocalPlayer()) * 0.5) + ")", onactivate: () => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Bottom" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "MaxButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("BetButtons"), text: $.Localize("#PvP_bet_all_in") + "(" + Math.floor(Players.GetGold(Players.GetLocalPlayer()) * 0.5) + ")", onactivate: () => {
                                         if (refBetTextEntry.current != undefined) {
                                             const player_gold = Players.GetGold(Players.GetLocalPlayer());
                                             refBetTextEntry.current.text = String(Math.floor(player_gold * 0.5));
                                         }
                                     } }),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(TextButton, { id: "BetButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("BetButtons"), text: $.Localize("#PvP_bet_timer").replace("[d:time]", String(BetTime)), onactivate: (self) => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(TextButton, { id: "BetButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("BetButtons"), text: $.Localize("#PvP_bet_timer").replace("[d:time]", String(BetTime)), onactivate: (self) => {
                                         let bet_value = 0;
                                         if (refBetTextEntry.current && refBetTextEntry.current.text != undefined) {
                                             bet_value = Number(refBetTextEntry.current.text) || 0;
@@ -7022,13 +7245,11 @@ function PVPTeam({ teamID, teamIndex, teamInfo, BetTime, Show, ShowBet, BetSumma
                                         }
                                     } }))))
                     :
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Versus", visibility: teamIndex == 0 ? "visible" : "collapse" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "VersusLabel", text: SelfPVP ? $.Localize("#PvP_WillPVPTag_text") : $.Localize("#PvP_bet_History_entry_versus") })))
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)))
         :
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null));
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(PVP, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(PVP, null), $.GetContextPanel());
 
 })();
 

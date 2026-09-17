@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -209,11 +209,6 @@ function modifier_tusk_snowball_lua:OnDestroy()
 		end
 	end
 	-- RemoveModifierEvents(MODIFIER_EVENT_ON_ORDER, self)
-end
-function modifier_tusk_snowball_lua:DeclareFunctions()
-	return {
-		MODIFIER_EVENT_ON_ORDER,
-	}
 end
 function modifier_tusk_snowball_lua:Launch()
 	local hParent = self:GetParent()

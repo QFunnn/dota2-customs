@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6078,20 +6078,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function CustomLoadingScreen() {
     return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "CustomLoadingScreen", className: $.Language().toLowerCase() },
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Logo" }),
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "LoadingBg", onactivate: (p) => {
-                $.DispatchEvent('DOTAShowCustomGamePage', p, 2331812965);
-                $.DispatchEvent('DOTASubscribeToCustomGame', p, 2331812965);
-            } },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "LinkContainer" },
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "LoadingLogo" }),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "LinkTitle" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "LinkTitleLabel", text: $.Localize("#LoadingScreen_link_text") })),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "Search" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "SearchTitle", text: $.Localize("#LoadingScreen_link_search") }),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "SearchEntry" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "SearchEntryLabel", text: $.Localize("#LoadingScreen_link_search_text") }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { id: "SearchIcon", src: `file://{resources}/images/custom_game/activity/loading_search_icon.png` }))))));
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Logo" }));
 }
 function adjustChatPanel() {
     let pHud = $.GetContextPanel();

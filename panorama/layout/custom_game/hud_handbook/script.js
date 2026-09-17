@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6056,18 +6056,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ProfilePanel: () => (/* binding */ ProfilePanel)
 /* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/utils */ "./utils/utils.ts");
 
 
 
 
-class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
+
+class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
+    componentDidMount() {
+        const refresh = () => {
+            if (!this.state.isEditingSkin)
+                this.setState({ selectedSkinId: String(this.getNetTableValue("show_skin_id")) });
+            else
+                this.forceUpdate();
+        };
+        this.dataSubscriptions = [_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.Subscribe("service", refresh), _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.Subscribe("econ", refresh)];
+        refresh();
+    }
+    componentWillUnmount() {
+        this.dataSubscriptions.forEach(unsubscribe => unsubscribe());
+    }
     constructor(props) {
         super(props);
+        this.dataSubscriptions = [];
         this.state = {
             isEditingSkin: false,
             selectedSkinId: String(this.getNetTableValue("show_skin_id"))
@@ -6075,7 +6091,7 @@ class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
     }
     getNetTableValue(key) {
         var _a, _b, _c;
-        const val = (_a = CustomNetTables.GetTableValue("service", key)) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+        const val = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", key)) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
         if (typeof val === "object" && val !== null) {
             return (_b = val.value) !== null && _b !== void 0 ? _b : 0;
         }
@@ -6096,7 +6112,7 @@ class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
         const season_total_first_place = this.getNetTableValue("season_total_first_place");
         const season_total_top_four = this.getNetTableValue("season_total_top_four");
         const show_skin_id = String(this.getNetTableValue("show_skin_id"));
-        const econAvatarData = (_c = CustomNetTables.GetTableValue("econ", ("Avatar" + String(localPlayer)))) !== null && _c !== void 0 ? _c : {};
+        const econAvatarData = (_c = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("econ", ("Avatar" + String(localPlayer)))) !== null && _c !== void 0 ? _c : {};
         let localAvatarFrameId = 0;
         for (const key in econAvatarData) {
             const item = econAvatarData[key];
@@ -6105,7 +6121,7 @@ class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
                 break;
             }
         }
-        const player_score_info = ((_d = CustomNetTables.GetTableValue("service", "player_score_info")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) || {};
+        const player_score_info = ((_d = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_score_info")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) || {};
         if (selectedSkinId != "") {
             GameEvents.SendEventClientSide("change_profile_skin", { skin_id: selectedSkinId });
         }
@@ -6118,62 +6134,62 @@ class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
             { name: "career_total_login_days", value: career_total_login_days },
             { name: "career_total_matches", value: career_total_matches },
         ];
-        const skin_list_raw = (_f = (_e = CustomNetTables.GetTableValue("service", "skin_list")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) !== null && _f !== void 0 ? _f : {};
+        const skin_list_raw = (_f = (_e = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _e === void 0 ? void 0 : _e[Players.GetLocalPlayer()]) !== null && _f !== void 0 ? _f : {};
         let all_skins = Object.keys(skin_list_raw);
-        return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("ProfileContainer", { Show: visible }), width: "100%", height: "100%" },
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileLeft" }, isEditingSkin ? (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { className: "ProfileSkinGrid", scroll: "y", flowChildren: "right-wrap" }, all_skins.map((skin_id, i) => {
+        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("ProfileContainer", { Show: visible }), width: "100%", height: "100%" },
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileLeft" }, isEditingSkin ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "ProfileSkinGrid", scroll: "y", flowChildren: "right-wrap" }, all_skins.map((skin_id, i) => {
                 var _a;
-                return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { key: i, className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("ProfileSkinCard", { Selected: selectedSkinId === skin_id }), onactivate: () => this.setState({ selectedSkinId: skin_id }) },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "ProfileSkinImage", src: `file://{images}/custom_game/items/item_${skin_id}.png`, scaling: "stretch-to-cover-preserve-aspect" }),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileSkinNameLabel" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize(`#item_${skin_id}`) })),
-                    ((_a = skin_list_raw[skin_id]) === null || _a === void 0 ? void 0 : _a.is_have) != 1 && (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileSkinNotHave" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#DOTA_Diretide2020_Cosmetics_Not_Owned") })))));
-            }))) : (react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null,
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileNameCard" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()("ProfileAvatarWrapper", { HasFrame: localAvatarFrameId > 0 }) },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(DOTAAvatarImage, { steamid: steamID, style: { width: "68px", height: "68px", align: "center center" }, hittest: false, onload: self => { self.accountid = steamID; } }),
-                        localAvatarFrameId > 0 && (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "AvatarFrame", src: `file://{images}/custom_game/new_rank/avatar/${localAvatarFrameId}.png`, hittest: false }))),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileNameInfo" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfilePlayerName", text: playerName }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileFriendID", text: `${$.Localize("#friend_id")} ${(0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.ConvertToSteamId32)(steamID)}` })),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileIconsRow" }, [0, 1, 2, 3].map((i) => (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { key: i, className: "ProfileIconItem" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "ProfileIconImg", src: `file://{images}/custom_game/handbook/profile/p1_icon_a${i + 1}.png`, scaling: "stretch-to-fit-preserve-aspect" }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileIconCount", text: $.Localize("#" + icon_data_list[i].name) }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileIconCount", text: icon_data_list[i].value })))))),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileSeasonSelector" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileSeasonText", text: $.Localize("#current_season") })),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileStatsArea" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileFlagPanel" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileWinRateHeader" },
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileWinRateTitle", text: $.Localize("#season_win_rate") })),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileWinRateValue", text: `${winRate}%` }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileDividerLine" }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileCareerStats" },
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileCareerStatItem" },
-                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileCareerStatLabel", text: $.Localize("#all_matches") }),
-                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileCareerStatValue", text: `${season_total_matches}` })),
-                            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileCareerStatItem" },
-                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileCareerStatLabel", text: $.Localize("#win_count") }),
-                                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileCareerStatValue", text: `${season_total_first_place}` })))),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileRankPanel" }, [
+                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: i, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("ProfileSkinCard", { Selected: selectedSkinId === skin_id }), onactivate: () => this.setState({ selectedSkinId: skin_id }) },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "ProfileSkinImage", src: `file://{images}/custom_game/items/item_${skin_id}.png`, scaling: "stretch-to-cover-preserve-aspect" }),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileSkinNameLabel" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize(`#item_${skin_id}`) })),
+                    ((_a = skin_list_raw[skin_id]) === null || _a === void 0 ? void 0 : _a.is_have) != 1 && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileSkinNotHave" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#DOTA_Diretide2020_Cosmetics_Not_Owned") })))));
+            }))) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null,
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileNameCard" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("ProfileAvatarWrapper", { HasFrame: localAvatarFrameId > 0 }) },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAvatarImage, { steamid: steamID, style: { width: "68px", height: "68px", align: "center center" }, hittest: false, onload: self => { self.accountid = steamID; } }),
+                        localAvatarFrameId > 0 && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "AvatarFrame", src: `file://{images}/custom_game/new_rank/avatar/${localAvatarFrameId}.png`, hittest: false }))),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileNameInfo" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfilePlayerName", text: playerName }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileFriendID", text: `${$.Localize("#friend_id")} ${(0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.ConvertToSteamId32)(steamID)}` })),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileIconsRow" }, [0, 1, 2, 3].map((i) => (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: i, className: "ProfileIconItem" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "ProfileIconImg", src: `file://{images}/custom_game/handbook/profile/p1_icon_a${i + 1}.png`, scaling: "stretch-to-fit-preserve-aspect" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileIconCount", text: $.Localize("#" + icon_data_list[i].name) }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileIconCount", text: icon_data_list[i].value })))))),
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileSeasonSelector" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileSeasonText", text: $.Localize("#current_season") })),
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileStatsArea" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileFlagPanel" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileWinRateHeader" },
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileWinRateTitle", text: $.Localize("#season_win_rate") })),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileWinRateValue", text: `${winRate}%` }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileDividerLine" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileCareerStats" },
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileCareerStatItem" },
+                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileCareerStatLabel", text: $.Localize("#all_matches") }),
+                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileCareerStatValue", text: `${season_total_matches}` })),
+                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileCareerStatItem" },
+                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileCareerStatLabel", text: $.Localize("#win_count") }),
+                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileCareerStatValue", text: `${season_total_first_place}` })))),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileRankPanel" }, [
                         { icon: "p1_icon_1", label: $.Localize("#rank_single"), value: player_score_info.solo_score },
                         { icon: "p1_icon_2", label: $.Localize("#rank_duo"), value: player_score_info.duos_score },
                         { icon: "p1_icon_3", label: $.Localize("#rank_single_top1"), value: player_score_info.solo_first_score },
                         { icon: "p1_icon_4", label: $.Localize("#rank_duo_top1"), value: player_score_info.duos_first_score },
-                    ].map((rank, index) => (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { key: index, className: "ProfileRankItem" },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { className: "ProfileRankIcon", src: `file://{images}/custom_game/handbook/profile/${rank.icon}.png`, scaling: "stretch-to-fit-preserve-aspect" }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileRankLabel", text: rank.label }),
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "ProfileRankValue", text: rank.value }))))))))),
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileHeroArea" },
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(DOTAScenePanel, { key: selectedSkinId, className: "ProfileHeroScene", particleonly: false, camera: "camera_1", map: "maps/scene/skin_preview", squarePixels: true, renderwaterreflections: true, deferredalpha: true, renderdeferred: true, rendershadows: true, allowsuspendrepaint: true, allowrotation: true }),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileHeroMask" }),
-                this.state.selectedSkinId == "0" && react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "NoSkinPreview" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#No_Skin_Preview") })),
-                isEditingSkin ? (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "ProfileEditActionContainer" },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { className: "ProfileCancelBtn", onactivate: () => this.setState({ isEditingSkin: false, selectedSkinId: show_skin_id }) },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#show_skin_cancel") })),
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { className: "ProfileSaveBtn", onactivate: () => {
+                    ].map((rank, index) => (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: index, className: "ProfileRankItem" },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "ProfileRankIcon", src: `file://{images}/custom_game/handbook/profile/${rank.icon}.png`, scaling: "stretch-to-fit-preserve-aspect" }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileRankLabel", text: rank.label }),
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { className: "ProfileRankValue", text: rank.value }))))))))),
+            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileHeroArea" },
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAScenePanel, { key: selectedSkinId, className: "ProfileHeroScene", particleonly: false, camera: "camera_1", map: "maps/scene/skin_preview", squarePixels: true, renderwaterreflections: true, deferredalpha: true, renderdeferred: true, rendershadows: true, allowsuspendrepaint: true, allowrotation: true }),
+                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileHeroMask" }),
+                this.state.selectedSkinId == "0" && react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "NoSkinPreview" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#No_Skin_Preview") })),
+                isEditingSkin ? (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { className: "ProfileEditActionContainer" },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { className: "ProfileCancelBtn", onactivate: () => this.setState({ isEditingSkin: false, selectedSkinId: show_skin_id }) },
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#show_skin_cancel") })),
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { className: "ProfileSaveBtn", onactivate: () => {
                             var _a;
                             if (((_a = skin_list_raw[this.state.selectedSkinId]) === null || _a === void 0 ? void 0 : _a.is_have) != 1) {
                                 ErrorMessage("error_no_have_skin");
@@ -6184,9 +6200,228 @@ class ProfilePanel extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
                                 GameEvents.SendCustomEventToServer("set_show_skin", { skin_id: this.state.selectedSkinId });
                             }
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#show_skin_save") })))) : (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { className: "ProfileEditBtn", onactivate: () => this.setState({ isEditingSkin: true }) },
-                    react__WEBPACK_IMPORTED_MODULE_1__.createElement(Image, { src: "file://{images}/custom_game/handbook/profile/p1_btn_edit.png", scaling: "stretch-to-fit-preserve-aspect" }))))));
+                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#show_skin_save") })))) : (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { className: "ProfileEditBtn", onactivate: () => this.setState({ isEditingSkin: true }) },
+                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: "file://{images}/custom_game/handbook/profile/p1_btn_edit.png", scaling: "stretch-to-fit-preserve-aspect" }))))));
     }
+}
+
+
+/***/ },
+
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
 }
 
 
@@ -6816,14 +7051,16 @@ var __webpack_exports__ = {};
   !*** ./hud_handbook/script.tsx ***!
   \*********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var _ItemList_ItemList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ItemList/ItemList */ "./hud_handbook/ItemList/ItemList.tsx");
-/* harmony import */ var _ProfilePanel_ProfilePanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ProfilePanel/ProfilePanel */ "./hud_handbook/ProfilePanel/ProfilePanel.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _ItemList_ItemList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ItemList/ItemList */ "./hud_handbook/ItemList/ItemList.tsx");
+/* harmony import */ var _ProfilePanel_ProfilePanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProfilePanel/ProfilePanel */ "./hud_handbook/ProfilePanel/ProfilePanel.tsx");
+
 
 
 
@@ -6832,7 +7069,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let pSelf = $.GetContextPanel();
-class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
+class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
     constructor() {
         var _a, _b, _c, _d;
         super(...arguments);
@@ -6840,9 +7077,9 @@ class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             show: false,
             tabIndex: 1,
             handbookItemData: {
-                skin: this.getList((_b = (_a = CustomNetTables.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {}),
+                skin: this.getList((_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {}),
             },
-            skin_count: this.getSkinCount(this.getList((_d = (_c = CustomNetTables.GetTableValue("service", "skin_list")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) !== null && _d !== void 0 ? _d : {})),
+            skin_count: this.getSkinCount(this.getList((_d = (_c = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _c === void 0 ? void 0 : _c[Players.GetLocalPlayer()]) !== null && _d !== void 0 ? _d : {})),
             preview_skin: ""
         };
         this.gameEventIDList = [];
@@ -6882,12 +7119,12 @@ class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
         return `${has_skin_count}/${total_skin_count}`;
     }
     componentDidMount() {
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.SubscribeClientSideEvent)("toggle_pool", (event) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.SubscribeClientSideEvent)("toggle_pool", (event) => {
             if (event.poolIndex) {
                 this.setState({ poolIndex: event.poolIndex });
             }
         }));
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.SubscribeToogleWindow)("MenuButton_Hud_Handbook", (show) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.SubscribeToogleWindow)("MenuButton_Hud_Handbook", (show) => {
             if (show == "toggle") {
                 this.setState({ show: !this.state.show });
             }
@@ -6895,10 +7132,10 @@ class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                 this.setState({ show: show });
             }
         }));
-        this.netTableIDList.push(CustomNetTables.SubscribeNetTableListener("service", (tableName, key, value) => {
+        this.netTableIDList.push(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.Subscribe("service", (tableName, key, value) => {
             var _a, _b;
             if (key == "skin_list") {
-                const skin_list = this.getList((_b = (_a = CustomNetTables.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {});
+                const skin_list = this.getList((_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) !== null && _b !== void 0 ? _b : {});
                 this.setState({
                     handbookItemData: {
                         skin: skin_list,
@@ -6913,34 +7150,34 @@ class HandbookNew extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             GameEvents.Unsubscribe(id);
         }
         for (const id of this.netTableIDList) {
-            CustomNetTables.UnsubscribeNetTableListener(id);
+            id();
         }
     }
     render() {
         const { show, tabIndex, handbookItemData } = this.state;
         const menus = ["skin", "self_profile"];
-        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Handbook", verticalAlign: "center", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ show }) },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "HandbookTitle", text: $.Localize("#Handbook") }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "CloseBtn", onactivate: () => {
+        return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Handbook", verticalAlign: "center", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ show }) },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "HandbookTitle", text: $.Localize("#Handbook") }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "CloseBtn", onactivate: () => {
                     this.setState({ show: false });
                 } }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "TabBtnList" }, menus.map((menu, index) => {
-                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { key: index, onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "TabBtnList" }, menus.map((menu, index) => {
+                return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { key: index, onactivate: () => {
                         this.setState({ tabIndex: index + 1 });
-                    }, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("TabBtn", { active: tabIndex == index + 1 }) },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#" + menu) })));
+                    }, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("TabBtn", { active: tabIndex == index + 1 }) },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#" + menu) })));
             })),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "div" }),
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { id: "HandbookContent" },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "div" }),
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { id: "HandbookContent" },
                 Object.keys(handbookItemData).map((item_type, tagIndex) => {
-                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: tagIndex, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("ItemContainer", { Show: tabIndex == tagIndex + 1 }), flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, handbookItemData[item_type] && Object.keys(handbookItemData[item_type]).map((tag, index) => {
-                        return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_ItemList_ItemList__WEBPACK_IMPORTED_MODULE_5__.ItemList, { key: index, name: tag, item_type: item_type, List: handbookItemData[item_type][tag] });
+                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: tagIndex, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("ItemContainer", { Show: tabIndex == tagIndex + 1 }), flowChildren: "right-wrap", width: "100%", height: "100%", scroll: "y" }, handbookItemData[item_type] && Object.keys(handbookItemData[item_type]).map((tag, index) => {
+                        return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_ItemList_ItemList__WEBPACK_IMPORTED_MODULE_6__.ItemList, { key: index, name: tag, item_type: item_type, List: handbookItemData[item_type][tag] });
                     })));
                 }),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_ProfilePanel_ProfilePanel__WEBPACK_IMPORTED_MODULE_6__.ProfilePanel, { visible: tabIndex == Object.keys(handbookItemData).length + 1, skin_count: this.state.skin_count }))));
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_ProfilePanel_ProfilePanel__WEBPACK_IMPORTED_MODULE_7__.ProfilePanel, { visible: tabIndex == Object.keys(handbookItemData).length + 1, skin_count: this.state.skin_count }))));
     }
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(HandbookNew, null), pSelf);
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(HandbookNew, null), pSelf);
 
 })();
 

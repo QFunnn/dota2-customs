@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6277,6 +6277,225 @@ const DEFAULT_ICON_SIZE = "32px";
 
 /***/ },
 
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
+        }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
+    }
+    return next;
+}
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
+    }
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
+    }
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
+            }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
+        }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
+    }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
+}
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
+
+
+/***/ },
+
 /***/ "./utils/utils.ts"
 /*!************************!*\
   !*** ./utils/utils.ts ***!
@@ -6901,15 +7120,17 @@ var __webpack_exports__ = {};
   !*** ./hud_draw/script.tsx ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
-/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Currency/EOM_Currency */ "./EOMDesign/DataDisplay/EOM_Currency/EOM_Currency.tsx");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../EOMDesign/DataDisplay/EOM_Image/EOM_Image */ "./EOMDesign/DataDisplay/EOM_Image/EOM_Image.tsx");
+
 
 
 
@@ -6921,7 +7142,7 @@ __webpack_require__.r(__webpack_exports__);
 let pSelf = $.GetContextPanel();
 function FindItemTypeAndName(item_id) {
     var _a;
-    const econList = CustomNetTables.GetAllTableValuesKV("econ_list");
+    const econList = GameUI.CustomUIConfig().EconListKv;
     for (const item_type in econList) {
         const list = econList[item_type];
         if (list != undefined) {
@@ -6937,7 +7158,7 @@ function FindItemTypeAndName(item_id) {
             }
         }
     }
-    const skinList = (_a = CustomNetTables.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+    const skinList = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
     if (skinList != undefined) {
         const skin = skinList[String(item_id)] || skinList[Number(item_id)];
         if (skin != undefined) {
@@ -6952,7 +7173,7 @@ function FindItemTypeAndName(item_id) {
 }
 function FindItemTypeRarityAndName(item_id) {
     var _a;
-    const econList = CustomNetTables.GetAllTableValuesKV("econ_list");
+    const econList = GameUI.CustomUIConfig().EconListKv;
     for (const item_type in econList) {
         const list = econList[item_type];
         if (list != undefined) {
@@ -6969,7 +7190,7 @@ function FindItemTypeRarityAndName(item_id) {
             }
         }
     }
-    const skinList = (_a = CustomNetTables.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+    const skinList = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "skin_list")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
     if (skinList != undefined) {
         const skin = skinList[String(item_id)] || skinList[Number(item_id)];
         if (skin != undefined) {
@@ -6988,11 +7209,11 @@ function PlayerHasItem(item_id, item_type) {
     const localPlayerId = Players.GetLocalPlayer();
     const itemIdStr = String(item_id);
     if (item_type === "skin" || item_type === "material_effect") {
-        const list = (_a = CustomNetTables.GetTableValue("service", item_type + "_list")) === null || _a === void 0 ? void 0 : _a[localPlayerId];
+        const list = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", item_type + "_list")) === null || _a === void 0 ? void 0 : _a[localPlayerId];
         return ((_b = list === null || list === void 0 ? void 0 : list[itemIdStr]) === null || _b === void 0 ? void 0 : _b.is_have) == 1;
     }
     else if (item_type) {
-        const list = CustomNetTables.GetTableValue("econ", item_type + String(localPlayerId));
+        const list = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("econ", item_type + String(localPlayerId));
         if (list) {
             for (const key in list) {
                 if (String((_c = list[key]) === null || _c === void 0 ? void 0 : _c.item_id) === itemIdStr) {
@@ -7031,7 +7252,7 @@ function GetPayTypeIcon(pay_type) {
 const DROP_CONTENT_TO_ITEM_ID = {
     "diancang_qiuxinmeijue": 17000027,
 };
-class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
+class HudDraw extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
     constructor() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
         super(...arguments);
@@ -7041,17 +7262,17 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             poolIndex: 1,
             rareItemIndex: 0,
             player_wallet: {
-                moonstone: (_c = (_b = (_a = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.moonstone) !== null && _c !== void 0 ? _c : 0,
-                starlight: (_f = (_e = (_d = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e.starlight) !== null && _f !== void 0 ? _f : 0,
-                token1: (_j = (_h = (_g = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _g === void 0 ? void 0 : _g[Players.GetLocalPlayer()]) === null || _h === void 0 ? void 0 : _h.token1) !== null && _j !== void 0 ? _j : 0,
-                token2: (_m = (_l = (_k = CustomNetTables.GetTableValue("service", "player_wallet")) === null || _k === void 0 ? void 0 : _k[Players.GetLocalPlayer()]) === null || _l === void 0 ? void 0 : _l.token2) !== null && _m !== void 0 ? _m : 0,
+                moonstone: (_c = (_b = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()]) === null || _b === void 0 ? void 0 : _b.moonstone) !== null && _c !== void 0 ? _c : 0,
+                starlight: (_f = (_e = (_d = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _d === void 0 ? void 0 : _d[Players.GetLocalPlayer()]) === null || _e === void 0 ? void 0 : _e.starlight) !== null && _f !== void 0 ? _f : 0,
+                token1: (_j = (_h = (_g = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _g === void 0 ? void 0 : _g[Players.GetLocalPlayer()]) === null || _h === void 0 ? void 0 : _h.token1) !== null && _j !== void 0 ? _j : 0,
+                token2: (_m = (_l = (_k = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_wallet")) === null || _k === void 0 ? void 0 : _k[Players.GetLocalPlayer()]) === null || _l === void 0 ? void 0 : _l.token2) !== null && _m !== void 0 ? _m : 0,
             },
-            player_boxes: (_p = (_o = CustomNetTables.GetTableValue("service", "player_boxes")) === null || _o === void 0 ? void 0 : _o[Players.GetLocalPlayer()]) !== null && _p !== void 0 ? _p : {},
+            player_boxes: (_p = (_o = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "player_boxes")) === null || _o === void 0 ? void 0 : _o[Players.GetLocalPlayer()]) !== null && _p !== void 0 ? _p : {},
             inRequest: false,
-            treasure_list: this.getTreasureList(CustomNetTables.GetTableValue("service", "treasure_list")),
-            pool_list: this.getTreasureList(CustomNetTables.GetTableValue("service", "pool_list")),
-            redeem_list: this.getOldRedeemList((_q = CustomNetTables.GetTableValue("service", "redeem_list")) === null || _q === void 0 ? void 0 : _q[Players.GetLocalPlayer()]),
-            product_list: this.getProductList(CustomNetTables.GetTableValue("service", "product_list")),
+            treasure_list: this.getTreasureList(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "treasure_list")),
+            pool_list: this.getTreasureList(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "pool_list")),
+            redeem_list: this.getOldRedeemList((_q = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "redeem_list")) === null || _q === void 0 ? void 0 : _q[Players.GetLocalPlayer()]),
+            product_list: this.getProductList(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "product_list")),
             token_index: 0,
         };
         this.gameEventIDList = [];
@@ -7082,13 +7303,13 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                             });
                         }
                     }
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("OpenBoxResult", { title: "", result: resultList });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("OpenBoxResult", { title: "", result: resultList });
                 }
             }
             else {
                 if (res.message == "The token is not enough") {
                     const itemName = FindItemTypeAndName(token_type).item_name || $.Localize(`#${token_type}`);
-                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#Draw_fail"), content: itemName + $.Localize("#Draw_token_not_enough") });
+                    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#Draw_fail"), content: itemName + $.Localize("#Draw_token_not_enough") });
                 }
             }
         };
@@ -7139,12 +7360,12 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
         return list;
     }
     componentDidMount() {
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.SubscribeClientSideEvent)("toggle_draw_pool", (event) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.SubscribeClientSideEvent)("toggle_draw_pool", (event) => {
             if (event.poolIndex) {
                 this.setState({ poolIndex: event.poolIndex });
             }
         }));
-        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.SubscribeToogleWindow)("MenuButton_Hud_Draw", (show) => {
+        this.gameEventIDList.push((0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.SubscribeToogleWindow)("MenuButton_Hud_Draw", (show) => {
             if (show == "toggle") {
                 this.setState({ show: !this.state.show });
             }
@@ -7152,7 +7373,7 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                 this.setState({ show: show });
             }
         }));
-        this.netTableIDList.push(CustomNetTables.SubscribeNetTableListener("service", (tableName, key, value) => {
+        this.netTableIDList.push(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.Subscribe("service", (tableName, key, value) => {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j;
             if (key == "player_wallet") {
                 this.setState({
@@ -7166,12 +7387,12 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             }
             if (key == "treasure_list") {
                 this.setState({
-                    treasure_list: this.getTreasureList(CustomNetTables.GetTableValue("service", "treasure_list"))
+                    treasure_list: this.getTreasureList(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "treasure_list"))
                 });
             }
             if (key == "pool_list") {
                 this.setState({
-                    pool_list: this.getTreasureList(CustomNetTables.GetTableValue("service", "pool_list"))
+                    pool_list: this.getTreasureList(_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "pool_list"))
                 });
             }
             if (key == "player_boxes") {
@@ -7196,7 +7417,7 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             GameEvents.Unsubscribe(id);
         }
         for (const id of this.netTableIDList) {
-            CustomNetTables.UnsubscribeNetTableListener(id);
+            id();
         }
     }
     render() {
@@ -7253,71 +7474,71 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
             ? `file://{resources}/images/custom_game/store_items/${token_type}.png`
             : `file://{images}/custom_game/store/${token_type}.png`;
         let PostItem = DropList[0];
-        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__["default"], { type: "P2", id: "Draw", showBG: false, hittest: true, onactivate: () => { }, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ EOM_PopupMainShow: show, "exchangeTab": tabIndex == 1 }), verticalAlign: "top", onClose: () => this.setState({ show: false }), backgroundImage: `url('file://{images}/custom_game/new_draw/${(_c = PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id) !== null && _c !== void 0 ? _c : 0}/main.png')`, BgMask: `file://{images}/custom_game/new_draw/r1_bg_mask.png` },
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "EOM_PopupContent", width: "100%", height: "100%", margin: "0px" },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { width: "100%" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/coin.png", value: player_wallet.moonstone, marginTop: "10px", hasFeedback: false, titleTooltip: { title: "#item_moonstone", text: "#item_moonstone_description" }, onaddbuttonactivate: () => {
+        return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", id: "Draw", showBG: false, hittest: true, onactivate: () => { }, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ EOM_PopupMainShow: show, "exchangeTab": tabIndex == 1 }), verticalAlign: "top", onClose: () => this.setState({ show: false }), backgroundImage: `url('file://{images}/custom_game/new_draw/${(_c = PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id) !== null && _c !== void 0 ? _c : 0}/main.png')`, BgMask: `file://{images}/custom_game/new_draw/r1_bg_mask.png` },
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "EOM_PopupContent", width: "100%", height: "100%", margin: "0px" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { width: "100%" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "right", horizontalAlign: "right", marginRight: "80px" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/coin.png", value: player_wallet.moonstone, marginTop: "10px", hasFeedback: false, titleTooltip: { title: "#item_moonstone", text: "#item_moonstone_description" }, onaddbuttonactivate: () => {
                                 ToggleWindows("Hud_Inventory");
                                 GameEvents.SendEventClientSide("hud_inventory_change_page", { page: "PurchasePage" });
                             } }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/shard.png", value: player_wallet.starlight, titleTooltip: { title: "#item_starlight", text: "#item_starlight_description" } }),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: "file://{images}/custom_game/store/token1.png", value: player_wallet.token1, titleTooltip: { title: "#item_token1", text: "#item_token1_description" } }),
-                        CurrentTreasureData && CurrentTreasureData.bid && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: `file://{resources}/images/custom_game/store_items/${CurrentTreasureData.bid}.png`, value: (_d = player_boxes[String(CurrentTreasureData.bid)]) !== null && _d !== void 0 ? _d : 0, titleTooltip: {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: "file://{images}/custom_game/icon/shard.png", value: player_wallet.starlight, titleTooltip: { title: "#item_starlight", text: "#item_starlight_description" } }),
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: "file://{images}/custom_game/store/token1.png", value: player_wallet.token1, titleTooltip: { title: "#item_token1", text: "#item_token1_description" } }),
+                        CurrentTreasureData && CurrentTreasureData.bid && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: `file://{resources}/images/custom_game/store_items/${CurrentTreasureData.bid}.png`, value: (_d = player_boxes[String(CurrentTreasureData.bid)]) !== null && _d !== void 0 ? _d : 0, titleTooltip: {
                                 title: `#item_${CurrentTreasureData.bid}`,
                                 text: `#item_${CurrentTreasureData.bid}_description`
                             } })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_5__["default"], { type: "P2", icon: "file://{resources}/images/custom_game/store_items/19000001.png", value: (_e = player_boxes["19000001"]) !== null && _e !== void 0 ? _e : 0, titleTooltip: {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Currency_EOM_Currency__WEBPACK_IMPORTED_MODULE_6__["default"], { type: "P2", icon: "file://{resources}/images/custom_game/store_items/19000001.png", value: (_e = player_boxes["19000001"]) !== null && _e !== void 0 ? _e : 0, titleTooltip: {
                                 title: FindItemTypeAndName("19000001").item_name || $.Localize("#item_19000001"),
                                 text: `#item_19000001_description`
                             } }))),
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Contents", width: "100%", height: "100%" },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Contents", width: "100%", height: "100%" },
                     tabIndex == 0 &&
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawPage", width: "100%", height: "100%", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: tabIndex == 0 }) },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "TreasureListContainer", align: "left top", marginTop: "175px", marginLeft: "30px" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { width: "250px", horizontalAlign: "center", flowChildren: "down", scroll: "y" }, combinedList.map((v, i) => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawPage", width: "100%", height: "100%", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: tabIndex == 0 }) },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "TreasureListContainer", align: "left top", marginTop: "175px", marginLeft: "30px" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { width: "250px", horizontalAlign: "center", flowChildren: "down", scroll: "y" }, combinedList.map((v, i) => {
                                     var _a, _b, _c;
                                     let postItem_id = (_c = (_b = (_a = v === null || v === void 0 ? void 0 : v.drop_list) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.item_id) !== null && _c !== void 0 ? _c : 0;
                                     const isCollectionPool = v && ("pool" in v);
-                                    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, className: "BoxItemBannerContainer", onactivate: () => {
+                                    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, className: "BoxItemBannerContainer", onactivate: () => {
                                             this.setState({ token_index: 0 });
                                             this.setState({ poolIndex: i + 1 });
                                         } },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("BoxItemBanner", { Selected: poolIndex == i + 1 }) },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "BoxItemImage", src: `file://{images}/custom_game/new_draw/${postItem_id}/small.png`, scaling: "stretch" }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "BoxItemSelect", src: `file://{images}/custom_game/new_draw/r1_select.png`, scaling: "stretch" })),
-                                        isCollectionPool && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { className: "BoxItemTag", src: $.Language() === "schinese" ? "file://{images}/custom_game/new_draw/tag_mythic_zh.png" : "file://{images}/custom_game/new_draw/tag_mythic_en.png" }))));
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("BoxItemBanner", { Selected: poolIndex == i + 1 }) },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: "BoxItemImage", src: `file://{images}/custom_game/new_draw/${postItem_id}/small.png`, scaling: "stretch" }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: "BoxItemSelect", src: `file://{images}/custom_game/new_draw/r1_select.png`, scaling: "stretch" })),
+                                        isCollectionPool && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { className: "BoxItemTag", src: $.Language() === "schinese" ? "file://{images}/custom_game/new_draw/tag_mythic_zh.png" : "file://{images}/custom_game/new_draw/tag_mythic_en.png" }))));
                                 }))),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PoolRightInfo", align: "right top", marginTop: "130px", marginRight: "40px", flowChildren: "down" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PoolSkin" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PoolSkinLabel", text: $.Localize(`#item_${PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id}`) })),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: 'PoolMovie', visibility: PostItem != undefined ? "visible" : "collapse" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(GenericPanel, { key: Number((_f = PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id) !== null && _f !== void 0 ? _f : 0), style: { width: "100%", height: "100%", align: "center center" }, type: 'MoviePanel', src: `file://{resources}/videos/custom_game/${PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id}.webm`, repeat: true, autoplay: "onload" })),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PoolTimeInfo", visibility: ((CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.treasure_id) == 1 || !(CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time)) ? "collapse" : "visible" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Title" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TitleLabel", localizedText: "#Draw_PoolCountDownTitle" })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_g = CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time) !== null && _g !== void 0 ? _g : 0) * (isCollectionPool ? 1 : 0.001), "server-time": true },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: "{t:d:t:countdown_time}" })))),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawActionBottom", height: "fit-children", align: "center bottom", marginBottom: "50px" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ToggleCost" }, token_type_list.map((v, i) => {
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PoolRightInfo", align: "right top", marginTop: "130px", marginRight: "40px", flowChildren: "down" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PoolSkin" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PoolSkinLabel", text: $.Localize(`#item_${PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id}`) })),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: 'PoolMovie', visibility: PostItem != undefined ? "visible" : "collapse" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(GenericPanel, { key: Number((_f = PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id) !== null && _f !== void 0 ? _f : 0), style: { width: "100%", height: "100%", align: "center center" }, type: 'MoviePanel', src: `file://{resources}/videos/custom_game/${PostItem === null || PostItem === void 0 ? void 0 : PostItem.item_id}.webm`, repeat: true, autoplay: "onload" })),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PoolTimeInfo", visibility: ((CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.treasure_id) == 1 || !(CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time)) ? "collapse" : "visible" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Title" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TitleLabel", localizedText: "#Draw_PoolCountDownTitle" })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_g = CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time) !== null && _g !== void 0 ? _g : 0) * (isCollectionPool ? 1 : 0.001), "server-time": true },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: "{t:d:t:countdown_time}" })))),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawActionBottom", height: "fit-children", align: "center bottom", marginBottom: "50px" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ToggleCost" }, token_type_list.map((v, i) => {
                                     const icon_src = (isCollectionPool && bid)
                                         ? `file://{resources}/images/custom_game/store_items/${v}.png`
                                         : `file://{images}/custom_game/store/${v}.png`;
                                     const name = (isCollectionPool && bid)
                                         ? (FindItemTypeAndName(v).item_name || $.Localize("#item_" + v))
                                         : $.Localize("#item_" + v);
-                                    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: i, id: "TokenRadioButton", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Selected: token_index == i }), onactivate: () => {
+                                    return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: i, id: "TokenRadioButton", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Selected: token_index == i }), onactivate: () => {
                                             if (token_type_list.length > 1) {
                                                 this.setState({ token_index: (token_index + 1) % token_type_list.length });
                                             }
                                         }, titleTooltip: { title: name, text: (isCollectionPool && bid) ? ("#item_" + bid + "_description") : $.Localize("#item_" + v + "_description") } },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "CheckButton" }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "TokenIcon", src: icon_src }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TokenName", text: name }));
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "CheckButton" }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "TokenIcon", src: icon_src }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TokenName", text: name }));
                                 })),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "DrawButtons", flowChildren: "right", horizontalAlign: "center" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "down", className: "DrawButtonContainer" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { className: "DrawBtnBlue", enabled: (!inRequest) && current_balance >= cost_1, onactivate: () => {
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "DrawButtons", flowChildren: "right", horizontalAlign: "center" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "down", className: "DrawButtonContainer" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { className: "DrawBtnBlue", enabled: (!inRequest) && current_balance >= cost_1, onactivate: () => {
                                                 var _a;
                                                 let TimeStamp = Date.parse(new Date().toString());
                                                 const rawEndTime = (_a = CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time) !== null && _a !== void 0 ? _a : 0;
@@ -7325,14 +7546,14 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                 if (endTime === 0 || TimeStamp < endTime) {
                                                     this.setState({ inRequest: true });
                                                     if (CurrentTreasureData && "pool" in CurrentTreasureData) {
-                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("PoolDraw", {
+                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("PoolDraw", {
                                                             bid: CurrentTreasureData.bid,
                                                             pool: CurrentTreasureData.pool,
                                                             amounts: 1,
                                                         }, (res) => this.handleDrawResult(res, token_type));
                                                     }
                                                     else {
-                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("OpenBoxNewOne", {
+                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("OpenBoxNewOne", {
                                                             treasure_id: CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.treasure_id,
                                                             token_type: token_type,
                                                             token_cost: cost_1,
@@ -7340,12 +7561,12 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                     }
                                                 }
                                             } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Draw_do_1") })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "TokenCost", flowChildren: "right", horizontalAlign: "center" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: token_icon_src }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: `${current_balance}/${cost_1}`, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Insufficient: current_balance < cost_1 }) }))),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { flowChildren: "down", className: "DrawButtonContainer", marginLeft: "30px" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { className: "DrawBtnYellow", enabled: (!inRequest) && current_balance >= cost_10, onactivate: () => {
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Draw_do_1") })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "TokenCost", flowChildren: "right", horizontalAlign: "center" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: token_icon_src }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: `${current_balance}/${cost_1}`, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Insufficient: current_balance < cost_1 }) }))),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { flowChildren: "down", className: "DrawButtonContainer", marginLeft: "30px" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { className: "DrawBtnYellow", enabled: (!inRequest) && current_balance >= cost_10, onactivate: () => {
                                                 var _a, _b;
                                                 let TimeStamp = Date.parse(new Date().toString());
                                                 const rawEndTime = (_a = CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.end_time) !== null && _a !== void 0 ? _a : 0;
@@ -7353,14 +7574,14 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                 if (endTime === 0 || TimeStamp < endTime) {
                                                     this.setState({ inRequest: true });
                                                     if (CurrentTreasureData && "pool" in CurrentTreasureData) {
-                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("PoolDraw", {
+                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("PoolDraw", {
                                                             bid: CurrentTreasureData.bid,
                                                             pool: CurrentTreasureData.pool,
                                                             amounts: 10,
                                                         }, (res) => this.handleDrawResult(res, token_type));
                                                     }
                                                     else {
-                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("OpenBoxNewTen", {
+                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("OpenBoxNewTen", {
                                                             treasure_id: (_b = CurrentTreasureData === null || CurrentTreasureData === void 0 ? void 0 : CurrentTreasureData.treasure_id) !== null && _b !== void 0 ? _b : 0,
                                                             token_type: token_type,
                                                             token_cost: cost_10,
@@ -7368,18 +7589,18 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                     }
                                                 }
                                             } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Draw_do_10") })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "TokenCost", flowChildren: "right", horizontalAlign: "center" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { src: token_icon_src }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: `${current_balance}/${cost_10}`, className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Insufficient: current_balance < cost_10 }) })))),
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Preview", onactivate: () => {
-                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("OpenBoxInfo", { title: $.Localize("#DOTA_Treasure_PreviewContents"), drop_list: [...DropList].sort((a, b) => (b.rarity || 0) - (a.rarity || 0)) });
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Draw_do_10") })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "TokenCost", flowChildren: "right", horizontalAlign: "center" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { src: token_icon_src }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: `${current_balance}/${cost_10}`, className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Insufficient: current_balance < cost_10 }) })))),
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Preview", onactivate: () => {
+                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("OpenBoxInfo", { title: $.Localize("#DOTA_Treasure_PreviewContents"), drop_list: [...DropList].sort((a, b) => (b.rarity || 0) - (a.rarity || 0)) });
                                     } },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "PreviewIcon", src: `file://{images}/custom_game/draw/preview_info.png` }),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PreviewLabel", text: $.Localize("#DOTA_Treasure_PreviewContents") })))),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "PreviewIcon", src: `file://{images}/custom_game/draw/preview_info.png` }),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PreviewLabel", text: $.Localize("#DOTA_Treasure_PreviewContents") })))),
                     tabIndex == 1 &&
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemPage", width: "100%", height: "100%", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: tabIndex == 1 }), flowChildren: "down" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemList" }, isCollectionPool ? ((product_list !== null && product_list !== void 0 ? product_list : []).map((redeemInfo, i) => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemPage", width: "100%", height: "100%", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: tabIndex == 1 }), flowChildren: "down" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemList" }, isCollectionPool ? ((product_list !== null && product_list !== void 0 ? product_list : []).map((redeemInfo, i) => {
                                 var _a;
                                 const firstItem = Array.isArray(redeemInfo.items) ? redeemInfo.items[0] : (redeemInfo.items ? Object.values(redeemInfo.items)[0] : undefined);
                                 if (!firstItem)
@@ -7394,26 +7615,26 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                 const price = redeemInfo.real_price;
                                 const balance = GetPayTypeBalance(payType, player_wallet, player_boxes);
                                 const payIcon = GetPayTypeIcon(payType);
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemContainer", key: i },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemInfo" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "itemContainer", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ AlreadyHave: whether_have }), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity), item_type: item_type } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "itemImage", scaling: "stretch-to-cover-preserve-aspect", src: "file://{resources}/images/custom_game/items/item_" + item_id + ".png" }),
-                                            firstItem.amounts && firstItem.amounts > 1 && (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "itemNumber", text: "x" + firstItem.amounts }))),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemTimeInfo", visibility: ((redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) == undefined || (redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) == 0) ? "collapse" : "visible" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TitleLabel", localizedText: "#DOTA_Trivia_TimeRemaining" }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_a = redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) !== null && _a !== void 0 ? _a : 0) * 0.001, "server-time": true },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: ":{t:d:t:countdown_time}" }))),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "itemNameLabel", text: $.Localize(`#item_${item_id}`) }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { src: `file://{images}/custom_game/new_draw/r1_line_divider.png`, align: "center top", marginTop: "70px" }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "RedeemButton", enabled: !inRequest && !whether_have && (balance >= price), onactivate: () => {
+                                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemContainer", key: i },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemInfo" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "itemContainer", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ AlreadyHave: whether_have }), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity), item_type: item_type } },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "itemImage", scaling: "stretch-to-cover-preserve-aspect", src: "file://{resources}/images/custom_game/items/item_" + item_id + ".png" }),
+                                            firstItem.amounts && firstItem.amounts > 1 && (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "itemNumber", text: "x" + firstItem.amounts }))),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemTimeInfo", visibility: ((redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) == undefined || (redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) == 0) ? "collapse" : "visible" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TitleLabel", localizedText: "#DOTA_Trivia_TimeRemaining" }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_a = redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) !== null && _a !== void 0 ? _a : 0) * 0.001, "server-time": true },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: ":{t:d:t:countdown_time}" }))),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "itemNameLabel", text: $.Localize(`#item_${item_id}`) }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_8__["default"], { src: `file://{images}/custom_game/new_draw/r1_line_divider.png`, align: "center top", marginTop: "70px" }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "RedeemButton", enabled: !inRequest && !whether_have && (balance >= price), onactivate: () => {
                                                 this.setState({ inRequest: true });
-                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("product_buy", {
+                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("product_buy", {
                                                     product_id: redeemInfo.id,
                                                     product_num: 1,
                                                 }, (res) => {
                                                     this.setState({ inRequest: false });
                                                     if (res.code == 0) {
-                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("OpenBoxResult", {
+                                                        (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("OpenBoxResult", {
                                                             title: "",
                                                             result: [{
                                                                     item_id: item_id,
@@ -7428,20 +7649,20 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                     }
                                                     else {
                                                         if (res.message == "your token number is not enough" || res.message == "The token is not enough") {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_token_not_enough") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_token_not_enough") });
                                                         }
                                                         else if (res.message == "you redeem more then limit") {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_reach_limit") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_reach_limit") });
                                                         }
                                                         else {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize(res.message || "#common_buy_fail") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize(res.message || "#common_buy_fail") });
                                                         }
                                                     }
                                                 });
                                             } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "CostDisplay" },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "CostIcon", visible: !whether_have, src: payIcon }),
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "CostNum", text: whether_have ? $.Localize("#Draw_redeem_already_have") : " x" + price })))));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "CostDisplay" },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "CostIcon", visible: !whether_have, src: payIcon }),
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "CostNum", text: whether_have ? $.Localize("#Draw_redeem_already_have") : " x" + price })))));
                             })) : ((redeem_list !== null && redeem_list !== void 0 ? redeem_list : []).map((redeemInfo, i) => {
                                 var _a, _b, _c;
                                 let iteminfo = (_a = redeemInfo.item_list) === null || _a === void 0 ? void 0 : _a[1];
@@ -7452,20 +7673,20 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                 let rarity = iteminfo.rarity;
                                 let item_type = iteminfo.type;
                                 let whether_have = (item_type !== "token") && PlayerHasItem(item_id, item_type);
-                                return react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemContainer", key: i },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemInfo" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "itemContainer", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ AlreadyHave: whether_have }), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity), item_type: item_type } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "itemImage", scaling: "stretch-to-cover-preserve-aspect", src: "file://{resources}/images/custom_game/items/item_" + item_id + ".png" })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "RedeemTimeInfo" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "TitleLabel", localizedText: "#DOTA_Trivia_TimeRemaining" }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_b = redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) !== null && _b !== void 0 ? _b : 0) * 0.001, "server-time": true },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: ":{t:d:t:countdown_time}" }))),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "itemNameLabel", text: $.Localize(`#item_${item_id}`) }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_7__["default"], { src: `file://{images}/custom_game/new_draw/r1_line_divider.png`, align: "center top", marginTop: "70px" }),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "RedeemButton", enabled: !inRequest && !whether_have && (((_c = player_wallet === null || player_wallet === void 0 ? void 0 : player_wallet.starlight) !== null && _c !== void 0 ? _c : 0) >= redeemInfo.token_cost), onactivate: () => {
+                                return react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemContainer", key: i },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemInfo" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "itemContainer", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ AlreadyHave: whether_have }), customTooltip: { name: "tooltip_econ", iEconID: String(item_id), rarity: String(rarity), item_type: item_type } },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "itemImage", scaling: "stretch-to-cover-preserve-aspect", src: "file://{resources}/images/custom_game/items/item_" + item_id + ".png" })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "RedeemTimeInfo" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "TitleLabel", localizedText: "#DOTA_Trivia_TimeRemaining" }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Countdown, { id: "PoolTimeCountDown", endTime: ((_b = redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.end_time) !== null && _b !== void 0 ? _b : 0) * 0.001, "server-time": true },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "PoolTimeCountDownLabel", localizedText: ":{t:d:t:countdown_time}" }))),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "itemNameLabel", text: $.Localize(`#item_${item_id}`) }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_DataDisplay_EOM_Image_EOM_Image__WEBPACK_IMPORTED_MODULE_8__["default"], { src: `file://{images}/custom_game/new_draw/r1_line_divider.png`, align: "center top", marginTop: "70px" }),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "RedeemButton", enabled: !inRequest && !whether_have && (((_c = player_wallet === null || player_wallet === void 0 ? void 0 : player_wallet.starlight) !== null && _c !== void 0 ? _c : 0) >= redeemInfo.token_cost), onactivate: () => {
                                                 var _a;
                                                 this.setState({ inRequest: true });
-                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.Send2ServerCallback)("RedeemDo", {
+                                                (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.Send2ServerCallback)("RedeemDo", {
                                                     redeem_id: (_a = redeemInfo === null || redeemInfo === void 0 ? void 0 : redeemInfo.redeem_id) !== null && _a !== void 0 ? _a : 0,
                                                     item_type: item_type,
                                                     item_name: item_name,
@@ -7475,38 +7696,38 @@ class HudDraw extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
                                                     if (res.code == 0) {
                                                         let data = res.data;
                                                         if (data != undefined) {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("OpenBoxResult", { title: "", content: "", result: [iteminfo] });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("OpenBoxResult", { title: "", content: "", result: [iteminfo] });
                                                         }
                                                     }
                                                     else {
                                                         if (res.message == "your token number is not enough") {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: ($.Localize(`#item_starlight`)) + $.Localize("#Draw_token_not_enough") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: ($.Localize(`#item_starlight`)) + $.Localize("#Draw_token_not_enough") });
                                                         }
                                                         else if (res.message == "you redeem more then limit") {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_reach_limit") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize("#Draw_reach_limit") });
                                                         }
                                                         else {
-                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_6__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize(res.message || "#common_buy_fail") });
+                                                            (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.ShowCustomPopup)("CommonMsg", { title: $.Localize("#common_exchange_fail"), content: $.Localize(res.message || "#common_buy_fail") });
                                                         }
                                                     }
                                                 });
                                             } },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "CostDisplay" },
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Image, { id: "CostIcon", visible: !whether_have, src: "file://{images}/custom_game/icon/shard.png" }),
-                                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "CostNum", text: whether_have ? $.Localize("#Draw_redeem_already_have") : " x" + redeemInfo.token_cost })))));
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "CostDisplay" },
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Image, { id: "CostIcon", visible: !whether_have, src: "file://{images}/custom_game/icon/shard.png" }),
+                                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "CostNum", text: whether_have ? $.Localize("#Draw_redeem_already_have") : " x" + redeemInfo.token_cost })))));
                             })))),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PageLeft", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("PageButtonRedeem"), visible: tabIndex > 0, onactivate: () => {
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PageLeft", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("PageButtonRedeem"), visible: tabIndex > 0, onactivate: () => {
                             this.setState({ tabIndex: Math.max(0, tabIndex - 1) });
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Draw_go_draw") })),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "PageRight", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("PageButtonRedeem"), visible: tabIndex < 1, onactivate: () => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Draw_go_draw") })),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "PageRight", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("PageButtonRedeem"), visible: tabIndex < 1, onactivate: () => {
                             GameEvents.SendCustomEventToServer("refresh_redeem_list", {});
                             this.setState({ tabIndex: Math.min(1, tabIndex + 1) });
                         } },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Draw_go_redeem") }))))));
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Draw_go_redeem") }))))));
     }
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(HudDraw, null), pSelf);
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(HudDraw, null), pSelf);
 
 })();
 

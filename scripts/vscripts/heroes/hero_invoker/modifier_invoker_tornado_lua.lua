@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -17,10 +17,6 @@ function modifier_invoker_tornado_lua:IsHidden()
 end
 
 function modifier_invoker_tornado_lua:IsDebuff()
-	return true
-end
-
-function modifier_invoker_tornado_lua:IsStunDebuff()
 	return true
 end
 

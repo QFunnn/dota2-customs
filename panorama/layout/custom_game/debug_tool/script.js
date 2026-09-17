@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -9848,6 +9848,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function HeroSkinPicker() {
+    const skins = (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useNetTableKey)("common", "debug_hero_skins");
+    const [search, setSearch] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+    const skinList = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => Object.keys(skins !== null && skins !== void 0 ? skins : {}).sort((a, b) => Number(a) - Number(b)).map(skinID => {
+        const token = "item_" + skinID;
+        const localizedName = $.Localize("#" + token);
+        const name = localizedName == token || localizedName == "#" + token ? skinID : localizedName;
+        return { skinID, name, model: skins[skinID] };
+    }), [skins]);
+    const query = search.trim().toLowerCase();
+    return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.SelectContainer, { eventName: "SwitchHeroSkin", title: $.Localize("#HUD_SwitchHeroSkin"), hasRawMode: false, onSearch: setSearch },
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "HeroSkinPicker" },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "HeroSkinPickerHint", localizedText: "#HUD_DebugHeroSkinHint" }),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "HeroSkinPickerRestore" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoButton, { eventName: "SwitchHeroSkin", text: $.Localize("#HUD_RestoreHeroSkin") })),
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { className: "HeroSkinPickerList" }, skinList.filter(skin => (skin.skinID + " " + skin.name + " " + skin.model).toLowerCase().includes(query)).map(skin => (react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { key: skin.skinID, className: "HeroSkinPickerItem" },
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoButton, { eventName: "SwitchHeroSkin", str: skin.skinID, text: skin.name == skin.skinID ? skin.skinID : skin.name + "\n" + skin.skinID }))))))));
+}
 function DebugTool() {
     const getItemList = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
         let items = [];
@@ -9894,7 +9912,8 @@ function DebugTool() {
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_DebugTool_IconPicker, null),
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_DebugTool_AbilityPicker, { title: $.Localize("#HUD_AddAbility"), eventName: "AddAbilityButtonPressed", abilityNames: abilityList }),
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_DebugTool_HeroPicker, { title: $.Localize("#HUD_ReplaceHero"), eventName: "SwitchHero", unitNames: Object.keys(GameUI.CustomUIConfig().HeroListKv) }),
-            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_UnitInfo, null)) },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_UnitInfo, null),
+            Game.IsInToolsMode() && react__WEBPACK_IMPORTED_MODULE_1__.createElement(HeroSkinPicker, null)) },
         react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_DebugTool_Category, { title: $.Localize("#HUD_Category_Game"), col: 2 },
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoTextEntry, { eventName: "ChangeHostTimescale", text: $.Localize("#HUD_GameSpeed") }),
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoTextEntry, { eventName: "ChangeCurrentRound", text: $.Localize("#HUD_JumptoRound") }),
@@ -9917,11 +9936,12 @@ function DebugTool() {
             react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.EOM_DebugTool_Category, { title: "\u5176\u4ED6" },
                 react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoButton, { eventName: "RestartButtonPressed", color: "RedButton", text: "\u91CD\u5F00\u6E38\u620F" }),
                 react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoButton, { eventName: "ReloadScriptButtonPressed", color: "GreenButton", text: "\u91CD\u8F7D\u811A\u672C" }),
-                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoToggle, { eventName: "GameTimeFrozenButtonPressed", text: "\u51BB\u7ED3\u6E38\u620F" }))
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoToggle, { eventName: "GameTimeFrozenButtonPressed", text: "\u51BB\u7ED3\u6E38\u620F" }),
+                react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Other_EOM_DebugTool_EOM_DebugTool__WEBPACK_IMPORTED_MODULE_2__.DemoSelectionButton, { eventName: "SwitchHeroSkin", text: $.Localize("#HUD_SwitchHeroSkin") }))
             :
                 react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null)));
 }
-if (Game.GetConvarInt("sv_cheats") == 1) {
+if (Game.IsInToolsMode() || Game.GetConvarInt("sv_cheats") == 1) {
     (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_1__.createElement(DebugTool, null), $.GetContextPanel());
 }
 

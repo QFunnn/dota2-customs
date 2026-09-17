@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -6594,9 +6594,9 @@ const DEFAULT_ICON_SIZE = "32px";
 
 /***/ },
 
-/***/ "./manifest.tsx"
+/***/ "./utils/hud.ts"
 /*!**********************!*\
-  !*** ./manifest.tsx ***!
+  !*** ./utils/hud.ts ***!
   \**********************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -6605,89 +6605,232 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FindDotaHudElement: () => (/* binding */ FindDotaHudElement)
 /* harmony export */ });
-GameUI.CustomUIConfig().team_logo_xml = "file://{resources}/layout/custom_game/team_icon.xml";
-GameUI.CustomUIConfig().team_logo_large_xml = "file://{resources}/layout/custom_game/team_icon_large.xml";
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_FLYOUT_SCOREBOARD, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
-GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ACTION_MINIMAP, false);
-GameUI.CustomUIConfig().team_colors = {
-    [DOTATeam_t.DOTA_TEAM_GOODGUYS]: "#3dd296;",
-    [DOTATeam_t.DOTA_TEAM_BADGUYS]: "#F3C909;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_1]: "#c54da8;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_2]: "#FF6C00;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_3]: "#3455FF;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_4]: "#65d413;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_5]: "#815336;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_6]: "#1bc0d8;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_7]: "#c7e40d;",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_8]: "#8c2af4;",
-    [DOTATeam_t.DOTA_TEAM_NEUTRALS]: "",
-};
-GameUI.CustomUIConfig().team_icons = {
-    [DOTATeam_t.DOTA_TEAM_GOODGUYS]: "s2r://panorama/images/custom_game/team_icons/team_icon_tiger_01.png",
-    [DOTATeam_t.DOTA_TEAM_BADGUYS]: "s2r://panorama/images/custom_game/team_icons/team_icon_monkey_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_1]: "file://{images}/custom_game/team_icons/team_icon_dragon_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_2]: "file://{images}/custom_game/team_icons/team_icon_dog_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_3]: "file://{images}/custom_game/team_icons/team_icon_rooster_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_4]: "file://{images}/custom_game/team_icons/team_icon_ram_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_5]: "file://{images}/custom_game/team_icons/team_icon_rat_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_6]: "file://{images}/custom_game/team_icons/team_icon_boar_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_7]: "file://{images}/custom_game/team_icons/team_icon_snake_01.png",
-    [DOTATeam_t.DOTA_TEAM_CUSTOM_8]: "file://{images}/custom_game/team_icons/team_icon_horse_01.png",
-    [DOTATeam_t.DOTA_TEAM_NEUTRALS]: "",
-};
-let pHud = $.GetContextPanel();
-while (pHud != null && pHud.id != "Hud") {
-    pHud = pHud.GetParent();
+let hud = $.GetContextPanel();
+while (hud !== null && hud.id !== "Hud") {
+    hud = hud.GetParent();
 }
 function FindDotaHudElement(id) {
-    return pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse(id);
+    return hud === null || hud === void 0 ? void 0 : hud.FindChildTraverse(id);
 }
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDay')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDayBG')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('DayGlow')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('NightGlow')).style.horizontalAlign = 'left';
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeUntil')).style.horizontalAlign = 'left';
-const offset = "300px";
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDay')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeOfDayBG')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('DayGlow')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('NightGlow')).style.marginLeft = offset;
-(pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse('TimeUntil')).style.marginLeft = offset;
-function SetSecurityKey(keys) {
-    if (pHud && pHud.SECURITY_KEY == undefined) {
-        var netTable = CustomNetTables.GetTableValue('player_info', 'net_table_security_key_' + Game.GetLocalPlayerID());
-        if (netTable && netTable.net_table_security_key && netTable.net_table_security_key == keys.net_table_security_key) {
-            pHud.SECURITY_KEY = keys.security_key;
-            GameEvents.SendCustomGameEventToServer('SecurityKeyConfirmed', { security_key: keys.security_key });
+
+
+/***/ },
+
+/***/ "./utils/net_data.ts"
+/*!***************************!*\
+  !*** ./utils/net_data.ts ***!
+  \***************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NetData: () => (/* binding */ NetData),
+/* harmony export */   createNetData: () => (/* binding */ createNetData)
+/* harmony export */ });
+function applyMessage(current, message) {
+    if (message.full === 1)
+        return message.data;
+    const next = Object.assign({}, current);
+    for (const change of message.changes || []) {
+        if (!Array.isArray(change.p) || change.p.length < 1 || change.p.some(key => typeof key !== "string" || key === "__proto__" || key === "prototype" || key === "constructor")) {
+            throw new Error("Invalid NetData path");
         }
+        let parent = next;
+        for (let i = 0; i < change.p.length - 1; i++) {
+            const key = change.p[i];
+            parent[key] = Object.assign({}, parent[key]);
+            parent = parent[key];
+        }
+        const key = change.p[change.p.length - 1];
+        if (change.d === 1)
+            delete parent[key];
+        else
+            parent[key] = change.v;
     }
+    return next;
 }
-GameEvents.Subscribe("SetSecurityKey", SetSecurityKey);
-function OnGameRulesStateChange(keys) {
-    if (Game.GameStateIsBefore(3)) {
-        (pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse("PreGame")).style.opacity = "0";
+function createNetData() {
+    let tables = {};
+    let version = 0;
+    let request = "";
+    let sequence = 0;
+    let waiting = true;
+    let receiver;
+    let watchdog;
+    let partial;
+    let listeners = new Set();
+    function armWatchdog() {
+        if (watchdog !== undefined)
+            $.CancelScheduled(watchdog);
+        watchdog = $.Schedule(10, () => {
+            watchdog = undefined;
+            requestSnapshot();
+        });
     }
-    else {
-        (pHud === null || pHud === void 0 ? void 0 : pHud.FindChildTraverse("PreGame")).style.opacity = "1";
+    function requestSnapshot() {
+        request = `${Date.now()}:${++sequence}`;
+        waiting = true;
+        partial = undefined;
+        armWatchdog();
+        if (Players.GetLocalPlayer() < 0)
+            return;
+        GameEvents.SendCustomGameEventToServer("net_data_request", { request });
     }
-}
-GameEvents.Subscribe("game_rules_state_change", OnGameRulesStateChange);
-function KickPlayer(keys) {
-    if (Players.GetLocalPlayer() == keys.player_id) {
-        if (pHud && pHud.SECURITY_KEY == keys.security_key) {
-            while (true) {
-                keys.player_id = keys.player_id + 1;
+    function receive(packet) {
+        if (packet.request !== request || !Number.isInteger(packet.id) || packet.id <= version ||
+            !Number.isInteger(packet.count) || packet.count < 1 || !Number.isInteger(packet.index) ||
+            packet.index < 1 || packet.index > packet.count || typeof packet.data !== "string")
+            return;
+        let encoded;
+        if (packet.count === 1) {
+            encoded = packet.data;
+        }
+        else {
+            if (!partial || partial.id !== packet.id) {
+                if (partial && packet.id < partial.id)
+                    return;
+                partial = { id: packet.id, count: packet.count, parts: {}, received: 0 };
             }
+            if (partial.count !== packet.count) {
+                requestSnapshot();
+                return;
+            }
+            if (partial.parts[packet.index] === undefined) {
+                partial.parts[packet.index] = packet.data;
+                partial.received++;
+                armWatchdog();
+            }
+            if (partial.received !== partial.count)
+                return;
+            const parts = [];
+            for (let i = 1; i <= partial.count; i++)
+                parts.push(partial.parts[i]);
+            encoded = parts.join("");
         }
+        let next;
+        let message;
+        try {
+            message = JSON.parse(encoded);
+            if (message.version !== packet.id || (message.full !== 0 && message.full !== 1))
+                throw new Error("Invalid NetData message");
+            if (message.full !== 1 && (waiting || message.base !== version)) {
+                requestSnapshot();
+                return;
+            }
+            if (message.full === 1 && (!message.data || typeof message.data !== "object"))
+                throw new Error("Invalid snapshot");
+            next = applyMessage(tables, message);
+        }
+        catch (_) {
+            requestSnapshot();
+            return;
+        }
+        const previous = tables;
+        tables = next;
+        version = message.version;
+        waiting = false;
+        if (!partial || partial.id <= version) {
+            partial = undefined;
+            if (watchdog !== undefined)
+                $.CancelScheduled(watchdog);
+            watchdog = undefined;
+        }
+        const names = new Set([...Object.keys(previous), ...Object.keys(next)]);
+        names.forEach(name => {
+            const keys = new Set([...Object.keys(previous[name] || {}), ...Object.keys(next[name] || {})]);
+            keys.forEach(key => {
+                var _a, _b;
+                if (((_a = previous[name]) === null || _a === void 0 ? void 0 : _a[key]) !== ((_b = next[name]) === null || _b === void 0 ? void 0 : _b[key]))
+                    listeners.forEach(listener => {
+                        var _a;
+                        try {
+                            listener(name, key, (_a = next[name]) === null || _a === void 0 ? void 0 : _a[key]);
+                        }
+                        catch (error) {
+                            $.Msg("NetData listener: ", error);
+                        }
+                    });
+            });
+        });
     }
+    return {
+        Initialize() {
+            if (receiver !== undefined) {
+                GameEvents.Unsubscribe(receiver);
+                listeners.clear();
+                listeners = new Set();
+            }
+            receiver = GameEvents.Subscribe("net_data", receive);
+            version = 0;
+            requestSnapshot();
+        },
+        RequestSnapshot: requestSnapshot,
+        GetTableValue(name, key) { var _a; return (_a = tables[name]) === null || _a === void 0 ? void 0 : _a[key]; },
+        Subscribe(listener) {
+            const subscriptions = listeners;
+            subscriptions.add(listener);
+            return () => { subscriptions.delete(listener); };
+        },
+    };
 }
-GameEvents.Subscribe("KickPlayer", KickPlayer);
+const config = GameUI.CustomUIConfig();
+const NetData = config.NetData || (config.NetData = createNetData());
+
+
+/***/ },
+
+/***/ "./utils/service_data.ts"
+/*!*******************************!*\
+  !*** ./utils/service_data.ts ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ServiceData: () => (/* binding */ ServiceData),
+/* harmony export */   useServiceData: () => (/* binding */ useServiceData)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _net_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./net_data */ "./utils/net_data.ts");
+
+
+const publicKeys = new Set([
+    "settings", "bpConfig", "product_list", "treasure_list", "pool_list",
+    "pve", "solo", "duos", "limited", "player_rank",
+    "forbidden_talk", "forbidden_name_list",
+]);
+const ServiceData = {
+    GetTableValue(name, key) {
+        if (name === "service" && publicKeys.has(key))
+            return CustomNetTables.GetTableValue(name, key);
+        return _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.GetTableValue(name, key);
+    },
+    Subscribe(name, listener) {
+        const unsubscribe = _net_data__WEBPACK_IMPORTED_MODULE_1__.NetData.Subscribe((table, key, value) => { if (table === name)
+            listener(name, key, value); });
+        const publicListener = name === "service" ? CustomNetTables.SubscribeNetTableListener("service", (_, key, value) => {
+            if (publicKeys.has(String(key)))
+                listener(name, String(key), value);
+        }) : undefined;
+        return () => {
+            unsubscribe();
+            if (publicListener !== undefined)
+                CustomNetTables.UnsubscribeNetTableListener(publicListener);
+        };
+    },
+};
+function useServiceData(name, key) {
+    const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ServiceData.GetTableValue(name, key));
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const unsubscribe = ServiceData.Subscribe(name, (_, changedKey, next) => { if (changedKey === key)
+            setValue(next); });
+        setValue(ServiceData.GetTableValue(name, key));
+        return unsubscribe;
+    }, [name, key]);
+    return value;
+}
 
 
 /***/ },
@@ -7316,16 +7459,18 @@ var __webpack_exports__ = {};
   !*** ./hud_settings/script.tsx ***!
   \*********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
-/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
-/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
-/* harmony import */ var _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Other/EOM_KeyBinder/EOM_KeyBinder */ "./EOMDesign/Other/EOM_KeyBinder/EOM_KeyBinder.tsx");
-/* harmony import */ var _manifest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../manifest */ "./manifest.tsx");
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
+/* harmony import */ var _utils_service_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/service_data */ "./utils/service_data.ts");
+/* harmony import */ var _demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @demon673/react-panorama */ "../../../../../node_modules/@demon673/react-panorama/dist/esm/react-panorama.development.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "../../../../../node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../../../../../node_modules/react/index.js");
+/* harmony import */ var _EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Panel/EOM_Panel */ "./EOMDesign/Container/EOM_Panel/EOM_Panel.tsx");
+/* harmony import */ var _EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../EOMDesign/Container/EOM_Popup/EOM_Popup */ "./EOMDesign/Container/EOM_Popup/EOM_Popup.tsx");
+/* harmony import */ var _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../EOMDesign/Other/EOM_KeyBinder/EOM_KeyBinder */ "./EOMDesign/Other/EOM_KeyBinder/EOM_KeyBinder.tsx");
+/* harmony import */ var _utils_hud__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/hud */ "./utils/hud.ts");
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/utils */ "./utils/utils.ts");
 var _a, _b;
+
 
 
 
@@ -7398,13 +7543,15 @@ function GetRegisterAbilitySlot(rawIndex, abilityList) {
 }
 function Settings() {
     var _a;
-    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useToggleWindow)("Hud_Settings");
+    const [windowState, toggleWindow] = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.useToggleWindow)("Hud_Settings");
     const banAbilities = Object.entries((_a = CustomNetTables.GetTableValue("hero_info", "ban_abilities")) !== null && _a !== void 0 ? _a : []);
-    const [AbilityList, SetAbilityList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-    const [SettingData, SetSettingData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(UpdateSetting);
-    const [KeyBindMap, SetKeyBindMap] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(initKeyBind);
+    const [AbilityList, SetAbilityList] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
+    const [SettingData, SetSettingData] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(UpdateSetting);
+    const settingsSnapshot = (0,_utils_service_data__WEBPACK_IMPORTED_MODULE_0__.useServiceData)("service", "setting");
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => { SetSettingData(UpdateSetting()); }, [settingsSnapshot]);
+    const [KeyBindMap, SetKeyBindMap] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(initKeyBind);
     const bindableAbilitySlots = GetBindableAbilitySlots(AbilityList);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         if (!windowState && dragPanel != undefined) {
             dragPanel.DeleteAsync(-1);
             dragPanel = undefined;
@@ -7421,7 +7568,7 @@ function Settings() {
     }
     function UpdateSetting() {
         var _a;
-        let settingsData = (_a = CustomNetTables.GetTableValue("service", "setting")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
+        let settingsData = (_a = _utils_service_data__WEBPACK_IMPORTED_MODULE_0__.ServiceData.GetTableValue("service", "setting")) === null || _a === void 0 ? void 0 : _a[Players.GetLocalPlayer()];
         let new_data = { barrage_opacity: 100, auto_view_duel: 1, auto_view_creep: 0, auto_bank_coin_page: 0 };
         if (settingsData != undefined) {
             new_data.barrage_opacity = Number(settingsData.barrage_opacity || 100);
@@ -7430,7 +7577,7 @@ function Settings() {
             new_data.auto_bank_coin_page = settingsData.auto_bank_coin_page;
             GameEvents.SendCustomGameEventToServer("ToggleAutoDuel", { selected: (new_data.auto_view_duel == 1) });
             GameEvents.SendCustomGameEventToServer("ToggleAutoCreep", { selected: (new_data.auto_view_creep == 1) });
-            let BarrgeMain = (0,_manifest__WEBPACK_IMPORTED_MODULE_6__.FindDotaHudElement)("BarrgeMainPanel");
+            let BarrgeMain = (0,_utils_hud__WEBPACK_IMPORTED_MODULE_7__.FindDotaHudElement)("BarrgeMainPanel");
             if (BarrgeMain != null) {
                 BarrgeMain.style.opacity = String(((settingsData === null || settingsData === void 0 ? void 0 : settingsData.barrage_opacity) || 100) * 0.01);
             }
@@ -7455,7 +7602,7 @@ function Settings() {
                 const customKey = (_b = (_a = KeyBindMap[bindableSlot.rawIndex]) === null || _a === void 0 ? void 0 : _a.key_name) !== null && _b !== void 0 ? _b : "";
                 if (isCustomBindingSlot && customKey != "" && (keyBind == undefined || keyBind == "")) {
                     if (HotkeyContainer == null || HotkeyContainer == undefined) {
-                        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(CustomHotkeyContainer, { sKeyName: customKey }), container);
+                        (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(CustomHotkeyContainer, { sKeyName: customKey }), container);
                         HotkeyContainer = container.FindChildTraverse("CustomHotkeyContainer");
                     }
                     if (HotkeyContainer && !HotkeyContainer.visible) {
@@ -7476,7 +7623,7 @@ function Settings() {
             }
         }
     }
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
         var _a;
         let t = [];
         for (const slot of bindableAbilitySlots) {
@@ -7488,7 +7635,7 @@ function Settings() {
         updateCastbar();
         return () => t.forEach(_ => UnregisterAbilityKeyEvent(_));
     }, [KeyBindMap, AbilityList]);
-    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_7__.useSchedule)(() => {
+    (0,_utils_utils__WEBPACK_IMPORTED_MODULE_8__.useSchedule)(() => {
         let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
         let abilities = [];
         if (Game.GetState() >= DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) {
@@ -7501,21 +7648,21 @@ function Settings() {
         return 0.5;
     }, []);
     return (!windowState ?
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null)
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(react__WEBPACK_IMPORTED_MODULE_3__.Fragment, null)
         :
-            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_root", className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({ Show: windowState }), hittest: false },
-                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { align: "center center" },
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_4__.EOM_PopupBG, { hasTitle: true }),
-                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_main" },
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_title" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "Settings_title_text", text: $.Localize("#Settings_title_text") }),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Button, { id: "Hud_settings_close_button", onactivate: () => {
+            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_root", className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({ Show: windowState }), hittest: false },
+                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { align: "center center" },
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Popup_EOM_Popup__WEBPACK_IMPORTED_MODULE_5__.EOM_PopupBG, { hasTitle: true }),
+                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_main" },
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_title" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "Settings_title_text", text: $.Localize("#Settings_title_text") }),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Button, { id: "Hud_settings_close_button", onactivate: () => {
                                     toggleWindow(false);
                                 } })),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_content" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_content_left" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_basic" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(ToggleButton, { id: "Settings_auto_watch_duel", selected: SettingData.auto_view_duel == 1, onactivate: () => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_content" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_content_left" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_basic" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(ToggleButton, { id: "Settings_auto_watch_duel", selected: SettingData.auto_view_duel == 1, onactivate: () => {
                                             let new_data = {
                                                 barrage_opacity: SettingData.barrage_opacity,
                                                 auto_view_duel: SettingData.auto_view_duel == 1 ? 0 : 1,
@@ -7527,8 +7674,8 @@ function Settings() {
                                             GameEvents.SendCustomGameEventToServer("ToggleAutoDuel", { selected: (new_data.auto_view_duel == 1) });
                                             GameEvents.SendCustomGameEventToServer("UpdateSetting", new_data);
                                         } },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_auto_watch_duel") })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(ToggleButton, { id: "Settings_auto_watch_jungle", selected: SettingData.auto_view_creep == 1, onactivate: () => {
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Settings_auto_watch_duel") })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(ToggleButton, { id: "Settings_auto_watch_jungle", selected: SettingData.auto_view_creep == 1, onactivate: () => {
                                             let new_data = {
                                                 barrage_opacity: ((SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity) || 100),
                                                 auto_view_duel: SettingData === null || SettingData === void 0 ? void 0 : SettingData.auto_view_duel,
@@ -7540,13 +7687,13 @@ function Settings() {
                                             GameEvents.SendCustomGameEventToServer("ToggleAutoDuel", { selected: (new_data.auto_view_creep == 1) });
                                             GameEvents.SendCustomGameEventToServer("UpdateSetting", new_data);
                                         } },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_auto_watch_jungle") })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_barrageOpacity" },
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_barrageOpacity_labels" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "barrageOpacity_text_left", text: $.Localize("#Settings_barrageOpacity") }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "barrageOpacity_text_right", text: `${(SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity).toFixed(0)}%` })),
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Slider, { id: "Settings_barrageOpacitySlider", direction: "horizontal", className: "HorizontalSlider", min: 0, max: 100, value: (SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity), onvaluechanged: (event) => {
-                                                let BarrgeMain = (0,_manifest__WEBPACK_IMPORTED_MODULE_6__.FindDotaHudElement)("BarrgeMainPanel");
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Settings_auto_watch_jungle") })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_barrageOpacity" },
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_barrageOpacity_labels" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "barrageOpacity_text_left", text: $.Localize("#Settings_barrageOpacity") }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "barrageOpacity_text_right", text: `${(SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity).toFixed(0)}%` })),
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Slider, { id: "Settings_barrageOpacitySlider", direction: "horizontal", className: "HorizontalSlider", min: 0, max: 100, value: (SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity), onvaluechanged: (event) => {
+                                                let BarrgeMain = (0,_utils_hud__WEBPACK_IMPORTED_MODULE_7__.FindDotaHudElement)("BarrgeMainPanel");
                                                 if (BarrgeMain != null) {
                                                     BarrgeMain.style.opacity = String((SettingData === null || SettingData === void 0 ? void 0 : SettingData.barrage_opacity) * 0.01);
                                                 }
@@ -7560,29 +7707,29 @@ function Settings() {
                                                 SetSettingData({ barrage_opacity: event.value, auto_view_duel: SettingData.auto_view_duel, auto_view_creep: SettingData.auto_view_creep, auto_bank_coin_page: SettingData.auto_bank_coin_page });
                                                 GameEvents.SendCustomGameEventToServer("UpdateSetting", new_data);
                                             } })))),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_content_right" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_ability_banned" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_ability_banned_title" }, banAbilities.length > 0 ?
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_ability_banned") })
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_content_right" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_ability_banned" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_ability_banned_title" }, banAbilities.length > 0 ?
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Settings_ability_banned") })
                                         :
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_ability_banned_empty") })),
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "ability_banned_list" }, banAbilities.map((value, index) => {
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Settings_ability_banned_empty") })),
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "ability_banned_list" }, banAbilities.map((value, index) => {
                                         let abilityName = value[1];
-                                        return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: index, className: "ability_banned" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { className: "ability_banned_img", abilityname: abilityName, showtooltip: true }),
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "ability_banned_overlay", hittest: false })));
+                                        return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: index, className: "ability_banned" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { className: "ability_banned_img", abilityname: abilityName, showtooltip: true }),
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "ability_banned_overlay", hittest: false })));
                                     }))))),
-                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_abilities" },
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_abilities_title" },
-                                react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: $.Localize("#Settings_abilities_title") })),
-                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "Settings_abilitylist" }, bindableAbilitySlots.map((slot) => {
+                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_abilities" },
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_abilities_title" },
+                                react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: $.Localize("#Settings_abilities_title") })),
+                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "Settings_abilitylist" }, bindableAbilitySlots.map((slot) => {
                                 var _a, _b, _c;
-                                return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { key: slot.rawIndex, className: "abilityContainer" },
-                                    react__WEBPACK_IMPORTED_MODULE_2__.createElement(Settings_ability, { abilityName: slot.abilityName }),
+                                return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { key: slot.rawIndex, className: "abilityContainer" },
+                                    react__WEBPACK_IMPORTED_MODULE_3__.createElement(Settings_ability, { abilityName: slot.abilityName }),
                                     slot.rawIndex > 5 ?
-                                        react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "KebBinderContainer" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.EOM_KeyBinder, { key: `keybinder_${slot.rawIndex}_${(_b = (_a = KeyBindMap[slot.rawIndex]) === null || _a === void 0 ? void 0 : _a.key_name) !== null && _b !== void 0 ? _b : ""}`, type: _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.KeyBinderType.Normal, initKey: (_c = Object.keys(_EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.KeyCode).find(key => { var _a; return ((_a = KeyBindMap[slot.rawIndex]) === null || _a === void 0 ? void 0 : _a.key_name) == _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.KeyCode[key]; })) !== null && _c !== void 0 ? _c : "", checkFunc: (key) => {
-                                                    let sKeyName = _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.KeyCode[key];
+                                        react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "KebBinderContainer" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.EOM_KeyBinder, { key: `keybinder_${slot.rawIndex}_${(_b = (_a = KeyBindMap[slot.rawIndex]) === null || _a === void 0 ? void 0 : _a.key_name) !== null && _b !== void 0 ? _b : ""}`, type: _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.KeyBinderType.Normal, initKey: (_c = Object.keys(_EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.KeyCode).find(key => { var _a; return ((_a = KeyBindMap[slot.rawIndex]) === null || _a === void 0 ? void 0 : _a.key_name) == _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.KeyCode[key]; })) !== null && _c !== void 0 ? _c : "", checkFunc: (key) => {
+                                                    let sKeyName = _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.KeyCode[key];
                                                     let exist_in_defult = bindableAbilitySlots.some(bindableSlot => {
                                                         return bindableSlot.rawIndex < 6 && Abilities.GetKeybind(bindableSlot.ability) == sKeyName;
                                                     });
@@ -7592,7 +7739,7 @@ function Settings() {
                                                     return !exist_in_defult;
                                                 }, callback: (key, bInit, _, bIsContrlDown, bIsShiftDown) => {
                                                     var _a;
-                                                    let sKeyName = key ? ((_a = _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_5__.KeyCode[key]) !== null && _a !== void 0 ? _a : "") : "";
+                                                    let sKeyName = key ? ((_a = _EOMDesign_Other_EOM_KeyBinder_EOM_KeyBinder__WEBPACK_IMPORTED_MODULE_6__.KeyCode[key]) !== null && _a !== void 0 ? _a : "") : "";
                                                     if (bIsShiftDown && sKeyName != "") {
                                                         sKeyName = sKeyName + "+shift";
                                                     }
@@ -7607,26 +7754,26 @@ function Settings() {
                                                         SetKeyBindMap(map_array);
                                                     }
                                                 } }))
-                                        : react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { className: "ability_keybind_defult" },
-                                            react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { text: Abilities.GetKeybind(slot.ability) }))));
+                                        : react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { className: "ability_keybind_defult" },
+                                            react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { text: Abilities.GetKeybind(slot.ability) }))));
                             })))))));
 }
 function CustomHotkeyContainer({ sKeyName }) {
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_3__["default"], { id: "CustomHotkeyContainer" },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(Label, { id: "CustomHotkeyContainer_text", text: sKeyName !== null && sKeyName !== void 0 ? sKeyName : "" })));
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_4__["default"], { id: "CustomHotkeyContainer" },
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(Label, { id: "CustomHotkeyContainer_text", text: sKeyName !== null && sKeyName !== void 0 ? sKeyName : "" })));
 }
 function Settings_ability({ abilityName }) {
-    const refAbilityPanel = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const [swap_ui_secret, Setswap_ui_secret] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("");
+    const refAbilityPanel = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+    const [swap_ui_secret, Setswap_ui_secret] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("");
     if (refAbilityPanel.current != undefined) {
         refAbilityPanel.current.abilityName = abilityName;
     }
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useGameEvent)("RefreshAbilityOrder", (event) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useGameEvent)("RefreshAbilityOrder", (event) => {
         if (refAbilityPanel.current != undefined) {
             Setswap_ui_secret(event.swap_ui_secret);
         }
     });
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DragStart", (p, Callback) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DragStart", (p, Callback) => {
         if (refAbilityPanel.current && p == refAbilityPanel.current) {
             let drag_img = $.CreatePanel("Panel", p, "Settings_ability_drag_img");
             drag_img.AddClass("");
@@ -7635,17 +7782,17 @@ function Settings_ability({ abilityName }) {
             Callback.displayPanel = drag_img;
             Callback.offsetX = 0;
             Callback.offsetY = 0;
-            (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { abilityname: refAbilityPanel.current.abilityName, showtooltip: false }), Callback.displayPanel);
+            (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { abilityname: refAbilityPanel.current.abilityName, showtooltip: false }), Callback.displayPanel);
             $.DispatchEvent("DOTAHideAbilityTooltip", p);
         }
     }, []);
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DragEnter", (p, pDraggedPanel) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DragEnter", (p, pDraggedPanel) => {
         if (refAbilityPanel.current && p == refAbilityPanel.current) {
             return true;
         }
         return false;
     });
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DragDrop", (p, pDraggedPanel) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DragDrop", (p, pDraggedPanel) => {
         if (refAbilityPanel.current && p == refAbilityPanel.current) {
             GameEvents.SendCustomGameEventToServer("SwapAbility", {
                 swap_1: p.abilityName,
@@ -7656,21 +7803,21 @@ function Settings_ability({ abilityName }) {
         }
         return false;
     });
-    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.useRegisterForUnhandledEvent)("DragEnd", (p, pDraggedPanel) => {
+    (0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.useRegisterForUnhandledEvent)("DragEnd", (p, pDraggedPanel) => {
         if (refAbilityPanel.current && p == refAbilityPanel.current) {
             pDraggedPanel.DeleteAsync(-1);
             dragPanel = undefined;
         }
     }, []);
-    return (react__WEBPACK_IMPORTED_MODULE_2__.createElement(Panel, { ref: refAbilityPanel, className: "abilityPanel", draggable: true, hittest: true, hittestchildren: false, onmouseover: (p) => {
+    return (react__WEBPACK_IMPORTED_MODULE_3__.createElement(Panel, { ref: refAbilityPanel, className: "abilityPanel", draggable: true, hittest: true, hittestchildren: false, onmouseover: (p) => {
             $.DispatchEvent("DOTAShowAbilityTooltip", p, abilityName);
         }, onmouseout: (p) => {
             $.DispatchEvent("DOTAHideAbilityTooltip", p);
         }, onactivate: () => {
         } },
-        react__WEBPACK_IMPORTED_MODULE_2__.createElement(DOTAAbilityImage, { className: "ability_banned_img", abilityname: abilityName, showtooltip: true })));
+        react__WEBPACK_IMPORTED_MODULE_3__.createElement(DOTAAbilityImage, { className: "ability_banned_img", abilityname: abilityName, showtooltip: true })));
 }
-(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_0__.render)(react__WEBPACK_IMPORTED_MODULE_2__.createElement(Settings, null), $.GetContextPanel());
+(0,_demon673_react_panorama__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_3__.createElement(Settings, null), $.GetContextPanel());
 
 })();
 
