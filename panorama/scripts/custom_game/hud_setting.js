@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -1320,6 +1320,15 @@ function Setting() {
           },
           get hotkey() {
             return getKeyForFunction(KeyFunction.Attribute, false);
+          }
+        }), null);
+        libs.insert(_el$20, libs.createComponent(KeyBinder, {
+          text: "#Hotkey_ToggleAutoCast",
+          get func() {
+            return KeyFunction.ToggleAutoCast;
+          },
+          get hotkey() {
+            return getKeyForFunction(KeyFunction.ToggleAutoCast, false);
           }
         }), null);
         libs.setProp(_el$21, "scroll", "y");

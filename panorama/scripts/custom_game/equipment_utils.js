@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -212,7 +212,7 @@ function EquipmentHasStates(equip, showTips) {
     state = "#EquipmentError_2";
   }
   if (equip.in_check && equip.in_check !== "") {
-    state = "#EquipmentError_InCheck";
+    state = equip.in_check === "gem_fusion" ? "#EquipmentError_GemFusionInCheck" : "#EquipmentError_InCheck";
   }
   let hasState = state != "";
   if (showTips && hasState) {

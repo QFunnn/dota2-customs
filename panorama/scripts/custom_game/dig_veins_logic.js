@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -54,4 +54,4 @@ exports.hasClaimableDigVeinsTask = hasClaimableDigVeinsTask;
 exports.hasClaimableDigVeinsTaskForMenu = hasClaimableDigVeinsTaskForMenu;
 exports.isDigVeinsTask = isDigVeinsTask;
 exports.isDigVeinsTaskActive = isDigVeinsTaskActive;
-exports.isDigVeinsTaskClaimable = isDigVeinsTaskClaimable;
+exports.isDigVeinsTaskClaimable = isDigVeinsTaskClaimable;

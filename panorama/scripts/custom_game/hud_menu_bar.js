@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -70,7 +70,7 @@ const STATIC_MENU_LIST = {
     Guide3: []
   }
 };
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop", "Resource"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const storeMenuOrder = ["Privilege", "Hot", "Gift", "Resource", "collection_vip", "collection_treasure", "Moon", "Universe"];
 const open_store = solid_utils.createServiceNetData("open_shop", {
@@ -88,6 +88,9 @@ const getStoreMenuList = () => {
   const now = Date.now() / 1000;
   for (const itemname in KeyValues.info_shop_product) {
     const itemdata = KeyValues.info_shop_product[itemname];
+    if (itemdata.pay_type == PayType.MONEY) {
+      continue;
+    }
     if ((itemdata.start_time < now || itemdata.start_time == 0) && (itemdata.end_time > now || itemdata.end_time == 0) && itemdata.hide == 0 || itemdata.tag == "Privilege") {
       for (const tag of itemdata.tag.split("|")) {
         if (!separatedStoreTags.has(tag)) {
@@ -722,4 +725,4 @@ const DropdownItem = props => {
     }
   });
 };
-libs.render(() => libs.createComponent(MenuBar, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(MenuBar, {}), $.GetContextPanel());

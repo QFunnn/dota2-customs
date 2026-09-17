@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -1428,6 +1428,7 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/i1_illustration/i1_panel_book.png",
 	"panorama/images/custom_game/i1_illustration/i1_plate.png",
 	"panorama/images/custom_game/i1_illustration/i1_plate_selected.png",
+	"panorama/images/custom_game/jewel/point_jewel_chaos.png",
 	"panorama/images/custom_game/jewel/point_jewel_dark.png",
 	"panorama/images/custom_game/jewel/point_jewel_red.png",
 	"panorama/images/custom_game/jewel/point_jewel_yellow.png",
@@ -2202,6 +2203,7 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/store_items/120013.png",
 	"panorama/images/custom_game/store_items/120014.png",
 	"panorama/images/custom_game/store_items/120015.png",
+	"panorama/images/custom_game/store_items/120016.png",
 	"panorama/images/custom_game/store_items/1300001.png",
 	"panorama/images/custom_game/store_items/1300002.png",
 	"panorama/images/custom_game/store_items/1300003.png",
@@ -2231,6 +2233,14 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/store_items/1401010.png",
 	"panorama/images/custom_game/store_items/1401011.png",
 	"panorama/images/custom_game/store_items/1401012.png",
+	"panorama/images/custom_game/store_items/1402001.png",
+	"panorama/images/custom_game/store_items/1402002.png",
+	"panorama/images/custom_game/store_items/1402003.png",
+	"panorama/images/custom_game/store_items/1402004.png",
+	"panorama/images/custom_game/store_items/1402005.png",
+	"panorama/images/custom_game/store_items/1402006.png",
+	"panorama/images/custom_game/store_items/1402007.png",
+	"panorama/images/custom_game/store_items/1402008.png",
 	"panorama/images/custom_game/store_items/1551001.png",
 	"panorama/images/custom_game/store_items/1551002.png",
 	"panorama/images/custom_game/store_items/1551003.png",
@@ -2719,6 +2729,14 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/suit_icons/equipment_suit_05.png",
 	"panorama/images/custom_game/suit_icons/equipment_suit_08.png",
 	"panorama/images/custom_game/suit_icons/equipment_suit_09.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_1.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_2.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_3.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_4.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_5.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_6.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_7.png",
+	"panorama/images/custom_game/suit_icons/gem_suit_8.png",
 	"panorama/images/custom_game/suit_icons/suit_1.png",
 	"panorama/images/custom_game/suit_icons/suit_2.png",
 	"panorama/images/custom_game/suit_icons/suit_3.png",
@@ -2975,6 +2993,7 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/tokens/120013.png",
 	"panorama/images/custom_game/tokens/120014.png",
 	"panorama/images/custom_game/tokens/120015.png",
+	"panorama/images/custom_game/tokens/120016.png",
 	"panorama/images/custom_game/tokens/1300001.png",
 	"panorama/images/custom_game/tokens/190001.png",
 	"panorama/images/custom_game/tokens/190002.png",
@@ -3078,6 +3097,7 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/x1_newcomer/guide3_cn.png",
 	"panorama/images/custom_game/x1_newcomer/guide3_en.png",
 	"panorama/images/custom_game/x1_newcomer/guide3_ru.png",
+	"panorama/images/custom_game/宝石小图标和混沌格子/g1_tile_chaos.png",
 	"resource/flash3/images/items/relic_treasure.png",
 	"resource/flash3/images/spellicons/ancient_beast_heart.png",
 	"resource/flash3/images/spellicons/apocalypse_sigil.png",

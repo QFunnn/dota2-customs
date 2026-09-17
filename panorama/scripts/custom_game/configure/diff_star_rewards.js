@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -189,6 +189,30 @@ GameUI.CustomUIConfig().diff_star_rewards = {
 		difficulty: 15,
 		star_reward1: {
 			"210001": 1450
+		},
+		star_reward2: {
+			"190001": 1
+		},
+		star_reward3: {
+			"190001": 2
+		}
+	},
+	"16": {
+		difficulty: 16,
+		star_reward1: {
+			"210001": 1600
+		},
+		star_reward2: {
+			"190001": 1
+		},
+		star_reward3: {
+			"190001": 2
+		}
+	},
+	"17": {
+		difficulty: 17,
+		star_reward1: {
+			"210001": 1750
 		},
 		star_reward2: {
 			"190001": 1

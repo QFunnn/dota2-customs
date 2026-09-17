@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -804,4 +804,4 @@ GameUI.CustomUIConfig().collection = {
 		length_min: 250,
 		length_max: 500
 	}
-};
+};

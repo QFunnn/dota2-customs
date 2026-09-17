@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -1572,10 +1572,10 @@ GameUI.CustomUIConfig().bless = {
 		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HEROES_AND_CREEPS",
 		"AbilityValues": {
 			"damage": {
-				"value": 30,
+				"value": "30 60 90 120",
 				"*frozen_damage_amplify": 1
 			},
-			"count": "1 2 3 4"
+			"count": 1
 		}
 	},
 	"item_ice_curse": {
@@ -2334,4 +2334,4 @@ GameUI.CustomUIConfig().bless = {
 		},
 		"ExcludeFromRandom": 1
 	}
-};
+};

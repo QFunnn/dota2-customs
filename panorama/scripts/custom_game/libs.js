@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -2108,4 +2108,4 @@ function handleError(err, owner = Owner) {
   let msg = err.stack ?? err;
   GameEvents.SendEventClientSide("pui_error_msg", {error: msg});
   throw err;
-}
+}

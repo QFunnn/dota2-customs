@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -119,10 +119,7 @@ function TooltipContents() {
         }, _el$);
       libs.insert(_el$, libs.createComponent(equip_details.ServerEquipDetail, {
         get data() {
-          return libs.memo(() => !!equipData2())() ? {
-            ...equipData2(),
-            hideExtraValue: equipData() != undefined
-          } : undefined;
+          return equipData2();
         }
       }), _el$3);
       libs.effect(_$p => libs.setProp(_el$, "class", libs.classNames("DetailContainer", {

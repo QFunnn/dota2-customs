@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -2144,4 +2144,4 @@ const FishGameUI = props => {
     return _el$53;
   })();
 };
-libs.render(FishRoot, $.GetContextPanel());
+libs.render(FishRoot, $.GetContextPanel());

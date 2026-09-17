@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -5885,6 +5885,790 @@ GameUI.CustomUIConfig().info_item_equipment = {
 	"915087": {
 		id: 915087,
 		class: 15,
+		equip_part: 8,
+		rarity: 7,
+		icon: 901087
+	},
+	"916011": {
+		id: 916011,
+		class: 16,
+		equip_part: 1,
+		rarity: 1,
+		icon: 901011
+	},
+	"916012": {
+		id: 916012,
+		class: 16,
+		equip_part: 1,
+		rarity: 2,
+		icon: 901012
+	},
+	"916013": {
+		id: 916013,
+		class: 16,
+		equip_part: 1,
+		rarity: 3,
+		icon: 901013
+	},
+	"916014": {
+		id: 916014,
+		class: 16,
+		equip_part: 1,
+		rarity: 4,
+		icon: 901014
+	},
+	"916015": {
+		id: 916015,
+		class: 16,
+		equip_part: 1,
+		rarity: 5,
+		icon: 901015
+	},
+	"916016": {
+		id: 916016,
+		class: 16,
+		equip_part: 1,
+		rarity: 6,
+		icon: 901016
+	},
+	"916017": {
+		id: 916017,
+		class: 16,
+		equip_part: 1,
+		rarity: 7,
+		icon: 901017
+	},
+	"916021": {
+		id: 916021,
+		class: 16,
+		equip_part: 2,
+		rarity: 1,
+		icon: 901021
+	},
+	"916022": {
+		id: 916022,
+		class: 16,
+		equip_part: 2,
+		rarity: 2,
+		icon: 901022
+	},
+	"916023": {
+		id: 916023,
+		class: 16,
+		equip_part: 2,
+		rarity: 3,
+		icon: 901023
+	},
+	"916024": {
+		id: 916024,
+		class: 16,
+		equip_part: 2,
+		rarity: 4,
+		icon: 901024
+	},
+	"916025": {
+		id: 916025,
+		class: 16,
+		equip_part: 2,
+		rarity: 5,
+		icon: 901025
+	},
+	"916026": {
+		id: 916026,
+		class: 16,
+		equip_part: 2,
+		rarity: 6,
+		icon: 901026
+	},
+	"916027": {
+		id: 916027,
+		class: 16,
+		equip_part: 2,
+		rarity: 7,
+		icon: 901027
+	},
+	"916031": {
+		id: 916031,
+		class: 16,
+		equip_part: 3,
+		rarity: 1,
+		icon: 901031
+	},
+	"916032": {
+		id: 916032,
+		class: 16,
+		equip_part: 3,
+		rarity: 2,
+		icon: 901032
+	},
+	"916033": {
+		id: 916033,
+		class: 16,
+		equip_part: 3,
+		rarity: 3,
+		icon: 901033
+	},
+	"916034": {
+		id: 916034,
+		class: 16,
+		equip_part: 3,
+		rarity: 4,
+		icon: 901034
+	},
+	"916035": {
+		id: 916035,
+		class: 16,
+		equip_part: 3,
+		rarity: 5,
+		icon: 901035
+	},
+	"916036": {
+		id: 916036,
+		class: 16,
+		equip_part: 3,
+		rarity: 6,
+		icon: 901036
+	},
+	"916037": {
+		id: 916037,
+		class: 16,
+		equip_part: 3,
+		rarity: 7,
+		icon: 901037
+	},
+	"916041": {
+		id: 916041,
+		class: 16,
+		equip_part: 4,
+		rarity: 1,
+		icon: 901041
+	},
+	"916042": {
+		id: 916042,
+		class: 16,
+		equip_part: 4,
+		rarity: 2,
+		icon: 901042
+	},
+	"916043": {
+		id: 916043,
+		class: 16,
+		equip_part: 4,
+		rarity: 3,
+		icon: 901043
+	},
+	"916044": {
+		id: 916044,
+		class: 16,
+		equip_part: 4,
+		rarity: 4,
+		icon: 901044
+	},
+	"916045": {
+		id: 916045,
+		class: 16,
+		equip_part: 4,
+		rarity: 5,
+		icon: 901045
+	},
+	"916046": {
+		id: 916046,
+		class: 16,
+		equip_part: 4,
+		rarity: 6,
+		icon: 901046
+	},
+	"916047": {
+		id: 916047,
+		class: 16,
+		equip_part: 4,
+		rarity: 7,
+		icon: 901047
+	},
+	"916051": {
+		id: 916051,
+		class: 16,
+		equip_part: 5,
+		rarity: 1,
+		icon: 901051
+	},
+	"916052": {
+		id: 916052,
+		class: 16,
+		equip_part: 5,
+		rarity: 2,
+		icon: 901052
+	},
+	"916053": {
+		id: 916053,
+		class: 16,
+		equip_part: 5,
+		rarity: 3,
+		icon: 901053
+	},
+	"916054": {
+		id: 916054,
+		class: 16,
+		equip_part: 5,
+		rarity: 4,
+		icon: 901054
+	},
+	"916055": {
+		id: 916055,
+		class: 16,
+		equip_part: 5,
+		rarity: 5,
+		icon: 901055
+	},
+	"916056": {
+		id: 916056,
+		class: 16,
+		equip_part: 5,
+		rarity: 6,
+		icon: 901056
+	},
+	"916057": {
+		id: 916057,
+		class: 16,
+		equip_part: 5,
+		rarity: 7,
+		icon: 901057
+	},
+	"916061": {
+		id: 916061,
+		class: 16,
+		equip_part: 6,
+		rarity: 1,
+		icon: 901061
+	},
+	"916062": {
+		id: 916062,
+		class: 16,
+		equip_part: 6,
+		rarity: 2,
+		icon: 901062
+	},
+	"916063": {
+		id: 916063,
+		class: 16,
+		equip_part: 6,
+		rarity: 3,
+		icon: 901063
+	},
+	"916064": {
+		id: 916064,
+		class: 16,
+		equip_part: 6,
+		rarity: 4,
+		icon: 901064
+	},
+	"916065": {
+		id: 916065,
+		class: 16,
+		equip_part: 6,
+		rarity: 5,
+		icon: 901065
+	},
+	"916066": {
+		id: 916066,
+		class: 16,
+		equip_part: 6,
+		rarity: 6,
+		icon: 901066
+	},
+	"916067": {
+		id: 916067,
+		class: 16,
+		equip_part: 6,
+		rarity: 7,
+		icon: 901067
+	},
+	"916071": {
+		id: 916071,
+		class: 16,
+		equip_part: 7,
+		rarity: 1,
+		icon: 901071
+	},
+	"916072": {
+		id: 916072,
+		class: 16,
+		equip_part: 7,
+		rarity: 2,
+		icon: 901072
+	},
+	"916073": {
+		id: 916073,
+		class: 16,
+		equip_part: 7,
+		rarity: 3,
+		icon: 901073
+	},
+	"916074": {
+		id: 916074,
+		class: 16,
+		equip_part: 7,
+		rarity: 4,
+		icon: 901074
+	},
+	"916075": {
+		id: 916075,
+		class: 16,
+		equip_part: 7,
+		rarity: 5,
+		icon: 901075
+	},
+	"916076": {
+		id: 916076,
+		class: 16,
+		equip_part: 7,
+		rarity: 6,
+		icon: 901076
+	},
+	"916077": {
+		id: 916077,
+		class: 16,
+		equip_part: 7,
+		rarity: 7,
+		icon: 901077
+	},
+	"916081": {
+		id: 916081,
+		class: 16,
+		equip_part: 8,
+		rarity: 1,
+		icon: 901081
+	},
+	"916082": {
+		id: 916082,
+		class: 16,
+		equip_part: 8,
+		rarity: 2,
+		icon: 901082
+	},
+	"916083": {
+		id: 916083,
+		class: 16,
+		equip_part: 8,
+		rarity: 3,
+		icon: 901083
+	},
+	"916084": {
+		id: 916084,
+		class: 16,
+		equip_part: 8,
+		rarity: 4,
+		icon: 901084
+	},
+	"916085": {
+		id: 916085,
+		class: 16,
+		equip_part: 8,
+		rarity: 5,
+		icon: 901085
+	},
+	"916086": {
+		id: 916086,
+		class: 16,
+		equip_part: 8,
+		rarity: 6,
+		icon: 901086
+	},
+	"916087": {
+		id: 916087,
+		class: 16,
+		equip_part: 8,
+		rarity: 7,
+		icon: 901087
+	},
+	"917011": {
+		id: 917011,
+		class: 17,
+		equip_part: 1,
+		rarity: 1,
+		icon: 901011
+	},
+	"917012": {
+		id: 917012,
+		class: 17,
+		equip_part: 1,
+		rarity: 2,
+		icon: 901012
+	},
+	"917013": {
+		id: 917013,
+		class: 17,
+		equip_part: 1,
+		rarity: 3,
+		icon: 901013
+	},
+	"917014": {
+		id: 917014,
+		class: 17,
+		equip_part: 1,
+		rarity: 4,
+		icon: 901014
+	},
+	"917015": {
+		id: 917015,
+		class: 17,
+		equip_part: 1,
+		rarity: 5,
+		icon: 901015
+	},
+	"917016": {
+		id: 917016,
+		class: 17,
+		equip_part: 1,
+		rarity: 6,
+		icon: 901016
+	},
+	"917017": {
+		id: 917017,
+		class: 17,
+		equip_part: 1,
+		rarity: 7,
+		icon: 901017
+	},
+	"917021": {
+		id: 917021,
+		class: 17,
+		equip_part: 2,
+		rarity: 1,
+		icon: 901021
+	},
+	"917022": {
+		id: 917022,
+		class: 17,
+		equip_part: 2,
+		rarity: 2,
+		icon: 901022
+	},
+	"917023": {
+		id: 917023,
+		class: 17,
+		equip_part: 2,
+		rarity: 3,
+		icon: 901023
+	},
+	"917024": {
+		id: 917024,
+		class: 17,
+		equip_part: 2,
+		rarity: 4,
+		icon: 901024
+	},
+	"917025": {
+		id: 917025,
+		class: 17,
+		equip_part: 2,
+		rarity: 5,
+		icon: 901025
+	},
+	"917026": {
+		id: 917026,
+		class: 17,
+		equip_part: 2,
+		rarity: 6,
+		icon: 901026
+	},
+	"917027": {
+		id: 917027,
+		class: 17,
+		equip_part: 2,
+		rarity: 7,
+		icon: 901027
+	},
+	"917031": {
+		id: 917031,
+		class: 17,
+		equip_part: 3,
+		rarity: 1,
+		icon: 901031
+	},
+	"917032": {
+		id: 917032,
+		class: 17,
+		equip_part: 3,
+		rarity: 2,
+		icon: 901032
+	},
+	"917033": {
+		id: 917033,
+		class: 17,
+		equip_part: 3,
+		rarity: 3,
+		icon: 901033
+	},
+	"917034": {
+		id: 917034,
+		class: 17,
+		equip_part: 3,
+		rarity: 4,
+		icon: 901034
+	},
+	"917035": {
+		id: 917035,
+		class: 17,
+		equip_part: 3,
+		rarity: 5,
+		icon: 901035
+	},
+	"917036": {
+		id: 917036,
+		class: 17,
+		equip_part: 3,
+		rarity: 6,
+		icon: 901036
+	},
+	"917037": {
+		id: 917037,
+		class: 17,
+		equip_part: 3,
+		rarity: 7,
+		icon: 901037
+	},
+	"917041": {
+		id: 917041,
+		class: 17,
+		equip_part: 4,
+		rarity: 1,
+		icon: 901041
+	},
+	"917042": {
+		id: 917042,
+		class: 17,
+		equip_part: 4,
+		rarity: 2,
+		icon: 901042
+	},
+	"917043": {
+		id: 917043,
+		class: 17,
+		equip_part: 4,
+		rarity: 3,
+		icon: 901043
+	},
+	"917044": {
+		id: 917044,
+		class: 17,
+		equip_part: 4,
+		rarity: 4,
+		icon: 901044
+	},
+	"917045": {
+		id: 917045,
+		class: 17,
+		equip_part: 4,
+		rarity: 5,
+		icon: 901045
+	},
+	"917046": {
+		id: 917046,
+		class: 17,
+		equip_part: 4,
+		rarity: 6,
+		icon: 901046
+	},
+	"917047": {
+		id: 917047,
+		class: 17,
+		equip_part: 4,
+		rarity: 7,
+		icon: 901047
+	},
+	"917051": {
+		id: 917051,
+		class: 17,
+		equip_part: 5,
+		rarity: 1,
+		icon: 901051
+	},
+	"917052": {
+		id: 917052,
+		class: 17,
+		equip_part: 5,
+		rarity: 2,
+		icon: 901052
+	},
+	"917053": {
+		id: 917053,
+		class: 17,
+		equip_part: 5,
+		rarity: 3,
+		icon: 901053
+	},
+	"917054": {
+		id: 917054,
+		class: 17,
+		equip_part: 5,
+		rarity: 4,
+		icon: 901054
+	},
+	"917055": {
+		id: 917055,
+		class: 17,
+		equip_part: 5,
+		rarity: 5,
+		icon: 901055
+	},
+	"917056": {
+		id: 917056,
+		class: 17,
+		equip_part: 5,
+		rarity: 6,
+		icon: 901056
+	},
+	"917057": {
+		id: 917057,
+		class: 17,
+		equip_part: 5,
+		rarity: 7,
+		icon: 901057
+	},
+	"917061": {
+		id: 917061,
+		class: 17,
+		equip_part: 6,
+		rarity: 1,
+		icon: 901061
+	},
+	"917062": {
+		id: 917062,
+		class: 17,
+		equip_part: 6,
+		rarity: 2,
+		icon: 901062
+	},
+	"917063": {
+		id: 917063,
+		class: 17,
+		equip_part: 6,
+		rarity: 3,
+		icon: 901063
+	},
+	"917064": {
+		id: 917064,
+		class: 17,
+		equip_part: 6,
+		rarity: 4,
+		icon: 901064
+	},
+	"917065": {
+		id: 917065,
+		class: 17,
+		equip_part: 6,
+		rarity: 5,
+		icon: 901065
+	},
+	"917066": {
+		id: 917066,
+		class: 17,
+		equip_part: 6,
+		rarity: 6,
+		icon: 901066
+	},
+	"917067": {
+		id: 917067,
+		class: 17,
+		equip_part: 6,
+		rarity: 7,
+		icon: 901067
+	},
+	"917071": {
+		id: 917071,
+		class: 17,
+		equip_part: 7,
+		rarity: 1,
+		icon: 901071
+	},
+	"917072": {
+		id: 917072,
+		class: 17,
+		equip_part: 7,
+		rarity: 2,
+		icon: 901072
+	},
+	"917073": {
+		id: 917073,
+		class: 17,
+		equip_part: 7,
+		rarity: 3,
+		icon: 901073
+	},
+	"917074": {
+		id: 917074,
+		class: 17,
+		equip_part: 7,
+		rarity: 4,
+		icon: 901074
+	},
+	"917075": {
+		id: 917075,
+		class: 17,
+		equip_part: 7,
+		rarity: 5,
+		icon: 901075
+	},
+	"917076": {
+		id: 917076,
+		class: 17,
+		equip_part: 7,
+		rarity: 6,
+		icon: 901076
+	},
+	"917077": {
+		id: 917077,
+		class: 17,
+		equip_part: 7,
+		rarity: 7,
+		icon: 901077
+	},
+	"917081": {
+		id: 917081,
+		class: 17,
+		equip_part: 8,
+		rarity: 1,
+		icon: 901081
+	},
+	"917082": {
+		id: 917082,
+		class: 17,
+		equip_part: 8,
+		rarity: 2,
+		icon: 901082
+	},
+	"917083": {
+		id: 917083,
+		class: 17,
+		equip_part: 8,
+		rarity: 3,
+		icon: 901083
+	},
+	"917084": {
+		id: 917084,
+		class: 17,
+		equip_part: 8,
+		rarity: 4,
+		icon: 901084
+	},
+	"917085": {
+		id: 917085,
+		class: 17,
+		equip_part: 8,
+		rarity: 5,
+		icon: 901085
+	},
+	"917086": {
+		id: 917086,
+		class: 17,
+		equip_part: 8,
+		rarity: 6,
+		icon: 901086
+	},
+	"917087": {
+		id: 917087,
+		class: 17,
 		equip_part: 8,
 		rarity: 7,
 		icon: 901087

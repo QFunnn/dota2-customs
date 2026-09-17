@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -787,6 +787,9 @@ function buildStoreItemData(infoProducts) {
   const now = Date.now() / 1000;
   for (const itemname in KeyValues.info_shop_product) {
     const itemdata = KeyValues.info_shop_product[itemname];
+    if (itemdata.pay_type == PayType.MONEY) {
+      continue;
+    }
     const infoProduct = infoProducts[itemdata.id];
     const effectiveStartTime = infoProduct ? infoProduct.start_time : itemdata.start_time;
     const effectiveEndTime = infoProduct ? infoProduct.end_time : itemdata.end_time;
@@ -839,7 +842,6 @@ function useStoreRedPoints() {
     const playerCollectionTreasures = createRedPointServiceData("player_collection_treasures", {});
     const playerAccountLevels = createRedPointServiceData("player_account_levels", {});
     const rewardReceiveRecordsRaw = createRedPointServiceData("player_account_level_rewards_receive_records", {});
-    const playerMoonstoneActivityData = createRedPointServiceData("player_moonstone_activity_data", {});
     const storeItemData = libs.createMemo(() => buildStoreItemData(infoProducts()));
     const menuKeys = libs.createMemo(() => Array.from(new Set([...Object.keys(storeItemData()).filter(tag => !separatedStoreTags.has(tag)), ...staticStoreMenus])).sort((a, b) => getStoreMenuOrder(a) - getStoreMenuOrder(b)));
     libs.createEffect(libs.on([storeItemData, purchasedProduct, playerPrivileges], () => {
@@ -861,16 +863,7 @@ function useStoreRedPoints() {
     libs.createEffect(() => {
       setRedPoint(["store", "collection_vip"], hasClaimableVipReward(playerAccountLevels(), rewardReceiveRecordsRaw()));
     });
-    libs.createEffect(() => {
-      const activityID = "901";
-      const rewards = Object.values(KeyValues.activity_moonstone[activityID] ?? {});
-      const activityData = playerMoonstoneActivityData()[activityID];
-      const received = activityData?.received;
-      const receivedRewardIDs = Array.isArray(received) ? received.map(Number) : String(received ?? "").split(",").filter(Boolean).map(Number);
-      const progress = Number(activityData?.extra_num ?? 0);
-      const hasClaimableReward = KeyValues.drawcards["3001"] != undefined && rewards.some(reward => !receivedRewardIDs.includes(reward.reward_id) && progress >= reward.num);
-      setRedPoint(["store", "Universe", "SeaMysteryTask"], hasClaimableReward);
-    });
+    setRedPoint(["store", "Universe", "SeaMysteryTask"], false);
   });
 }
 
@@ -891,4 +884,4 @@ function RedPointCenter() {
     hittest: false
   }, null);
 }
-libs.render(() => libs.createComponent(RedPointCenter, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(RedPointCenter, {}), $.GetContextPanel());

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -954,4 +954,4 @@ exports.RuneBondItem = RuneBondItem;
 exports.RuneDetailCard = RuneDetailCard;
 exports.RuneDetailEngravingRow = RuneDetailEngravingRow;
 exports.RuneEngravingSlots = RuneEngravingSlots;
-exports.RuneSlotItem = RuneSlotItem;
+exports.RuneSlotItem = RuneSlotItem;

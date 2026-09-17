@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -73,7 +73,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 16,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.8,
+		adverb_bonus: 0.9,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -83,7 +83,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 17,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.8,
+		adverb_bonus: 1,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -93,7 +93,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 18,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.8,
+		adverb_bonus: 1,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -103,7 +103,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 19,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.8,
+		adverb_bonus: 1,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -113,7 +113,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 20,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.8,
+		adverb_bonus: 1,
 		drawing_cost: {
 			"120008": 2000
 		},

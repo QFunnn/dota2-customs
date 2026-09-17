@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -426,6 +426,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		id: 1072,
 		item_id: 120015,
 		rarity: 4
+	},
+	"120016": {
+		id: 2070,
+		item_id: 120016,
+		rarity: 7
 	},
 	"180101": {
 		id: 24,
@@ -1203,6 +1208,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 600022,
 		rarity: 5
 	},
+	"600023": {
+		id: 1941,
+		item_id: 600023,
+		rarity: 4
+	},
 	"700001": {
 		id: 1184,
 		item_id: 700001,
@@ -1336,6 +1346,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"800026": {
 		id: 1188,
 		item_id: 800026,
+		rarity: 5
+	},
+	"800027": {
+		id: 1942,
+		item_id: 800027,
 		rarity: 5
 	},
 	"800106": {
@@ -1768,6 +1783,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 802004,
 		rarity: 5
 	},
+	"802005": {
+		id: 1943,
+		item_id: 802005,
+		rarity: 5
+	},
 	"802201": {
 		id: 1209,
 		item_id: 802201,
@@ -1857,6 +1877,41 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		id: 1533,
 		item_id: 802311,
 		rarity: 4
+	},
+	"802401": {
+		id: 1944,
+		item_id: 802401,
+		rarity: 5
+	},
+	"802402": {
+		id: 1945,
+		item_id: 802402,
+		rarity: 5
+	},
+	"802403": {
+		id: 1946,
+		item_id: 802403,
+		rarity: 5
+	},
+	"802404": {
+		id: 1947,
+		item_id: 802404,
+		rarity: 5
+	},
+	"802405": {
+		id: 1948,
+		item_id: 802405,
+		rarity: 5
+	},
+	"802406": {
+		id: 1949,
+		item_id: 802406,
+		rarity: 5
+	},
+	"802407": {
+		id: 1950,
+		item_id: 802407,
+		rarity: 5
 	},
 	"803001": {
 		id: 1043,
@@ -2033,6 +2088,21 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 805007,
 		rarity: 5
 	},
+	"805008": {
+		id: 1951,
+		item_id: 805008,
+		rarity: 5
+	},
+	"805009": {
+		id: 1952,
+		item_id: 805009,
+		rarity: 5
+	},
+	"806001": {
+		id: 1953,
+		item_id: 806001,
+		rarity: 4
+	},
 	"808001": {
 		id: 1024,
 		item_id: 808001,
@@ -2146,6 +2216,21 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"811011": {
 		id: 1228,
 		item_id: 811011,
+		rarity: 5
+	},
+	"811012": {
+		id: 1954,
+		item_id: 811012,
+		rarity: 5
+	},
+	"811013": {
+		id: 1955,
+		item_id: 811013,
+		rarity: 5
+	},
+	"811014": {
+		id: 1956,
+		item_id: 811014,
 		rarity: 5
 	},
 	"880101": {
@@ -6428,6 +6513,566 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 915087,
 		rarity: 7
 	},
+	"916011": {
+		id: 1957,
+		item_id: 916011,
+		rarity: 1
+	},
+	"916012": {
+		id: 1958,
+		item_id: 916012,
+		rarity: 2
+	},
+	"916013": {
+		id: 1959,
+		item_id: 916013,
+		rarity: 3
+	},
+	"916014": {
+		id: 1960,
+		item_id: 916014,
+		rarity: 4
+	},
+	"916015": {
+		id: 1961,
+		item_id: 916015,
+		rarity: 5
+	},
+	"916016": {
+		id: 1962,
+		item_id: 916016,
+		rarity: 6
+	},
+	"916017": {
+		id: 1963,
+		item_id: 916017,
+		rarity: 7
+	},
+	"916021": {
+		id: 1964,
+		item_id: 916021,
+		rarity: 1
+	},
+	"916022": {
+		id: 1965,
+		item_id: 916022,
+		rarity: 2
+	},
+	"916023": {
+		id: 1966,
+		item_id: 916023,
+		rarity: 3
+	},
+	"916024": {
+		id: 1967,
+		item_id: 916024,
+		rarity: 4
+	},
+	"916025": {
+		id: 1968,
+		item_id: 916025,
+		rarity: 5
+	},
+	"916026": {
+		id: 1969,
+		item_id: 916026,
+		rarity: 6
+	},
+	"916027": {
+		id: 1970,
+		item_id: 916027,
+		rarity: 7
+	},
+	"916031": {
+		id: 1971,
+		item_id: 916031,
+		rarity: 1
+	},
+	"916032": {
+		id: 1972,
+		item_id: 916032,
+		rarity: 2
+	},
+	"916033": {
+		id: 1973,
+		item_id: 916033,
+		rarity: 3
+	},
+	"916034": {
+		id: 1974,
+		item_id: 916034,
+		rarity: 4
+	},
+	"916035": {
+		id: 1975,
+		item_id: 916035,
+		rarity: 5
+	},
+	"916036": {
+		id: 1976,
+		item_id: 916036,
+		rarity: 6
+	},
+	"916037": {
+		id: 1977,
+		item_id: 916037,
+		rarity: 7
+	},
+	"916041": {
+		id: 1978,
+		item_id: 916041,
+		rarity: 1
+	},
+	"916042": {
+		id: 1979,
+		item_id: 916042,
+		rarity: 2
+	},
+	"916043": {
+		id: 1980,
+		item_id: 916043,
+		rarity: 3
+	},
+	"916044": {
+		id: 1981,
+		item_id: 916044,
+		rarity: 4
+	},
+	"916045": {
+		id: 1982,
+		item_id: 916045,
+		rarity: 5
+	},
+	"916046": {
+		id: 1983,
+		item_id: 916046,
+		rarity: 6
+	},
+	"916047": {
+		id: 1984,
+		item_id: 916047,
+		rarity: 7
+	},
+	"916051": {
+		id: 1985,
+		item_id: 916051,
+		rarity: 1
+	},
+	"916052": {
+		id: 1986,
+		item_id: 916052,
+		rarity: 2
+	},
+	"916053": {
+		id: 1987,
+		item_id: 916053,
+		rarity: 3
+	},
+	"916054": {
+		id: 1988,
+		item_id: 916054,
+		rarity: 4
+	},
+	"916055": {
+		id: 1989,
+		item_id: 916055,
+		rarity: 5
+	},
+	"916056": {
+		id: 1990,
+		item_id: 916056,
+		rarity: 6
+	},
+	"916057": {
+		id: 1991,
+		item_id: 916057,
+		rarity: 7
+	},
+	"916061": {
+		id: 1992,
+		item_id: 916061,
+		rarity: 1
+	},
+	"916062": {
+		id: 1993,
+		item_id: 916062,
+		rarity: 2
+	},
+	"916063": {
+		id: 1994,
+		item_id: 916063,
+		rarity: 3
+	},
+	"916064": {
+		id: 1995,
+		item_id: 916064,
+		rarity: 4
+	},
+	"916065": {
+		id: 1996,
+		item_id: 916065,
+		rarity: 5
+	},
+	"916066": {
+		id: 1997,
+		item_id: 916066,
+		rarity: 6
+	},
+	"916067": {
+		id: 1998,
+		item_id: 916067,
+		rarity: 7
+	},
+	"916071": {
+		id: 1999,
+		item_id: 916071,
+		rarity: 1
+	},
+	"916072": {
+		id: 2000,
+		item_id: 916072,
+		rarity: 2
+	},
+	"916073": {
+		id: 2001,
+		item_id: 916073,
+		rarity: 3
+	},
+	"916074": {
+		id: 2002,
+		item_id: 916074,
+		rarity: 4
+	},
+	"916075": {
+		id: 2003,
+		item_id: 916075,
+		rarity: 5
+	},
+	"916076": {
+		id: 2004,
+		item_id: 916076,
+		rarity: 6
+	},
+	"916077": {
+		id: 2005,
+		item_id: 916077,
+		rarity: 7
+	},
+	"916081": {
+		id: 2006,
+		item_id: 916081,
+		rarity: 1
+	},
+	"916082": {
+		id: 2007,
+		item_id: 916082,
+		rarity: 2
+	},
+	"916083": {
+		id: 2008,
+		item_id: 916083,
+		rarity: 3
+	},
+	"916084": {
+		id: 2009,
+		item_id: 916084,
+		rarity: 4
+	},
+	"916085": {
+		id: 2010,
+		item_id: 916085,
+		rarity: 5
+	},
+	"916086": {
+		id: 2011,
+		item_id: 916086,
+		rarity: 6
+	},
+	"916087": {
+		id: 2012,
+		item_id: 916087,
+		rarity: 7
+	},
+	"917011": {
+		id: 2013,
+		item_id: 917011,
+		rarity: 1
+	},
+	"917012": {
+		id: 2014,
+		item_id: 917012,
+		rarity: 2
+	},
+	"917013": {
+		id: 2015,
+		item_id: 917013,
+		rarity: 3
+	},
+	"917014": {
+		id: 2016,
+		item_id: 917014,
+		rarity: 4
+	},
+	"917015": {
+		id: 2017,
+		item_id: 917015,
+		rarity: 5
+	},
+	"917016": {
+		id: 2018,
+		item_id: 917016,
+		rarity: 6
+	},
+	"917017": {
+		id: 2019,
+		item_id: 917017,
+		rarity: 7
+	},
+	"917021": {
+		id: 2020,
+		item_id: 917021,
+		rarity: 1
+	},
+	"917022": {
+		id: 2021,
+		item_id: 917022,
+		rarity: 2
+	},
+	"917023": {
+		id: 2022,
+		item_id: 917023,
+		rarity: 3
+	},
+	"917024": {
+		id: 2023,
+		item_id: 917024,
+		rarity: 4
+	},
+	"917025": {
+		id: 2024,
+		item_id: 917025,
+		rarity: 5
+	},
+	"917026": {
+		id: 2025,
+		item_id: 917026,
+		rarity: 6
+	},
+	"917027": {
+		id: 2026,
+		item_id: 917027,
+		rarity: 7
+	},
+	"917031": {
+		id: 2027,
+		item_id: 917031,
+		rarity: 1
+	},
+	"917032": {
+		id: 2028,
+		item_id: 917032,
+		rarity: 2
+	},
+	"917033": {
+		id: 2029,
+		item_id: 917033,
+		rarity: 3
+	},
+	"917034": {
+		id: 2030,
+		item_id: 917034,
+		rarity: 4
+	},
+	"917035": {
+		id: 2031,
+		item_id: 917035,
+		rarity: 5
+	},
+	"917036": {
+		id: 2032,
+		item_id: 917036,
+		rarity: 6
+	},
+	"917037": {
+		id: 2033,
+		item_id: 917037,
+		rarity: 7
+	},
+	"917041": {
+		id: 2034,
+		item_id: 917041,
+		rarity: 1
+	},
+	"917042": {
+		id: 2035,
+		item_id: 917042,
+		rarity: 2
+	},
+	"917043": {
+		id: 2036,
+		item_id: 917043,
+		rarity: 3
+	},
+	"917044": {
+		id: 2037,
+		item_id: 917044,
+		rarity: 4
+	},
+	"917045": {
+		id: 2038,
+		item_id: 917045,
+		rarity: 5
+	},
+	"917046": {
+		id: 2039,
+		item_id: 917046,
+		rarity: 6
+	},
+	"917047": {
+		id: 2040,
+		item_id: 917047,
+		rarity: 7
+	},
+	"917051": {
+		id: 2041,
+		item_id: 917051,
+		rarity: 1
+	},
+	"917052": {
+		id: 2042,
+		item_id: 917052,
+		rarity: 2
+	},
+	"917053": {
+		id: 2043,
+		item_id: 917053,
+		rarity: 3
+	},
+	"917054": {
+		id: 2044,
+		item_id: 917054,
+		rarity: 4
+	},
+	"917055": {
+		id: 2045,
+		item_id: 917055,
+		rarity: 5
+	},
+	"917056": {
+		id: 2046,
+		item_id: 917056,
+		rarity: 6
+	},
+	"917057": {
+		id: 2047,
+		item_id: 917057,
+		rarity: 7
+	},
+	"917061": {
+		id: 2048,
+		item_id: 917061,
+		rarity: 1
+	},
+	"917062": {
+		id: 2049,
+		item_id: 917062,
+		rarity: 2
+	},
+	"917063": {
+		id: 2050,
+		item_id: 917063,
+		rarity: 3
+	},
+	"917064": {
+		id: 2051,
+		item_id: 917064,
+		rarity: 4
+	},
+	"917065": {
+		id: 2052,
+		item_id: 917065,
+		rarity: 5
+	},
+	"917066": {
+		id: 2053,
+		item_id: 917066,
+		rarity: 6
+	},
+	"917067": {
+		id: 2054,
+		item_id: 917067,
+		rarity: 7
+	},
+	"917071": {
+		id: 2055,
+		item_id: 917071,
+		rarity: 1
+	},
+	"917072": {
+		id: 2056,
+		item_id: 917072,
+		rarity: 2
+	},
+	"917073": {
+		id: 2057,
+		item_id: 917073,
+		rarity: 3
+	},
+	"917074": {
+		id: 2058,
+		item_id: 917074,
+		rarity: 4
+	},
+	"917075": {
+		id: 2059,
+		item_id: 917075,
+		rarity: 5
+	},
+	"917076": {
+		id: 2060,
+		item_id: 917076,
+		rarity: 6
+	},
+	"917077": {
+		id: 2061,
+		item_id: 917077,
+		rarity: 7
+	},
+	"917081": {
+		id: 2062,
+		item_id: 917081,
+		rarity: 1
+	},
+	"917082": {
+		id: 2063,
+		item_id: 917082,
+		rarity: 2
+	},
+	"917083": {
+		id: 2064,
+		item_id: 917083,
+		rarity: 3
+	},
+	"917084": {
+		id: 2065,
+		item_id: 917084,
+		rarity: 4
+	},
+	"917085": {
+		id: 2066,
+		item_id: 917085,
+		rarity: 5
+	},
+	"917086": {
+		id: 2067,
+		item_id: 917086,
+		rarity: 6
+	},
+	"917087": {
+		id: 2068,
+		item_id: 917087,
+		rarity: 7
+	},
 	"1000001": {
 		id: 715,
 		item_id: 1000001,
@@ -6788,6 +7433,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		id: 1727,
 		item_id: 1400506,
 		rarity: 6
+	},
+	"1400507": {
+		id: 2069,
+		item_id: 1400507,
+		rarity: 7
 	},
 	"1401001": {
 		id: 1300,

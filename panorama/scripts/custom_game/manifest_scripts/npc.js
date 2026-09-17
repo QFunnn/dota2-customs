@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -395,4 +395,4 @@ else {
 // 	$.Msg("  6. 使用 CustomUIConfig.NpcManager.GetNpcList() 获取完整NPC列表");
 // 	$.Msg("  7. 使用 CustomUIConfig.NpcManager.DestroyAllParticles() 销毁所有粒子");
 // 	$.Msg("  8. NPC粒子配置在 npc.ts 的 npcConfigs 中定义");
-// }
+// }

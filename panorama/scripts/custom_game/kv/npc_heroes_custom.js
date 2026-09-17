@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -207,4 +207,4 @@ GameUI.CustomUIConfig().npc_heroes_custom = {
 		"Model2D": "models/eom/hero/paladin_1_2d/paladin_1_2d.vmdl",
 		"ModelScale": 0.9
 	}
-};
+};

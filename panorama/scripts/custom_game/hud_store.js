@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -2623,6 +2623,9 @@ const getStoreItemData = () => {
   const now = Date.now() / 1000;
   for (const itemname in KeyValues.info_shop_product) {
     const itemdata = KeyValues.info_shop_product[itemname];
+    if (itemdata.pay_type == PayType.MONEY) {
+      continue;
+    }
     const info_product = info_products()[itemdata.id];
     const effective_start_time = info_product ? info_product.start_time : itemdata.start_time;
     const effective_end_time = info_product ? info_product.end_time : itemdata.end_time;
@@ -2643,7 +2646,7 @@ const open_store = solid_utils.createServiceNetData("open_shop", {
 });
 const [targetPrivilegeItem, setTargetPrivilegeItem] = libs.createSignal();
 let targetPrivilegeItemKey = 0;
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop", "Resource"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const seaMysteryPoolID = "3001";
 const hasSeaMysteryPool = () => KeyValues.drawcards[seaMysteryPoolID] != undefined;
@@ -2659,7 +2662,7 @@ const menuList = libs.createMemo(() => {
     list[tag] = [];
   }
   if (hasSeaMysteryPool()) {
-    list.Universe = ["SeaMysteryTurntable", "SeaMysteryTask"];
+    list.Universe = ["SeaMysteryTurntable"];
   }
   return list;
 }, {}, {
@@ -2901,7 +2904,8 @@ function Store() {
                 get id() {
                   return menuName();
                 },
-                show: true
+                show: true,
+                hideMoneyProducts: true
               });
             }
           })];

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -24,4 +24,4 @@ GameUI.CustomUIConfig().rune_setting = {
 		value: "120015:90",
 		name: "技能符文吞噬消耗"
 	}
-};
+};
