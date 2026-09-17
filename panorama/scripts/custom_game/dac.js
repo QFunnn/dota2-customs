@@ -8145,9 +8145,6 @@ function FillStoreV5(data) {
             $('#store_panel_v5_title').SetHasClass('spring_festival', true);
             $('#text_panel_shop_title').text = $.Localize('#text_panel_shop_title_spring_festival');
         }
-        $.Msg('-----');
-        $.Msg(SHOP_INFO_V5.debug_link);
-        $.Msg(SHOP_INFO_V5.spring_festival);
         if (SHOP_INFO_V5.debug_link && ($.Language() == 'schinese' || $.Language() == 'tchinese')) {
             DEBUG_LINK = SHOP_INFO_V5.debug_link;
             $('#store_link').SetHasClass('invisible', false);

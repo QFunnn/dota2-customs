@@ -2287,32 +2287,20 @@
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "AddLinKen"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "300"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "AddLinKen"
+                        "modmaxhp"      "300"
                     }
                 }
                 "OnDestroy"
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "RemoveLinKen"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "-300"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "RemoveLinKen"
+                        "modmaxhp"      "-300"
                     }
                 }
                 "OnIntervalThink"
@@ -2767,15 +2755,9 @@
                     {
                         "Target" "CASTER"
                         "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "600"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
                         "Function" "SetSpecialProjectile"
                         "projectile" "particles/items2_fx/skadi_projectile.vpcf"
+                        "modmaxhp"      "600"
                     }
                 }
                 "OnDestroy"
@@ -2784,15 +2766,9 @@
                     {
                         "Target" "CASTER"
                         "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "-600"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
                         "Function" "RemoveSpecialProjectile"
                         "projectile" "particles/items2_fx/skadi_projectile.vpcf"
+                        "modmaxhp"      "-600"
                     }
                 }
             }
@@ -2885,17 +2861,11 @@
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "600"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "SyncPermanentStackCount"
-                        "stack_name" "xuejingshi"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "SyncPermanentStackCount"
+                        "stack_name"    "xuejingshi"
+                        "modmaxhp"      "600"
                     }
                 }
                 "OnDestroy"
@@ -4050,34 +4020,22 @@
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "600"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "AddSynergy"
-                        "synergy" "is_nraqi"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "AddSynergy"
+                        "synergy"       "is_nraqi"
+                        "modmaxhp"      "600"
                     }
                 }
                 "OnDestroy"
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "-600"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "RemoveSynergy"
-                        "synergy" "is_nraqi"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "RemoveSynergy"
+                        "synergy"       "is_nraqi"
+                        "modmaxhp"      "-600"
                     }
                 }
                 "OnTakeDamage"
@@ -4377,13 +4335,7 @@
                         "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
                         "Function" "AddSynergy"
                         "synergy" "is_ogre"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "900"
+                        "modmaxhp"  "900"
                     }
                 }
                 "OnDestroy"
@@ -4394,13 +4346,7 @@
                         "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
                         "Function" "RemoveSynergy"
                         "synergy" "is_ogre"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "-900"
+                        "modmaxhp"  "-900"
                     }
                 }
             }
@@ -6378,27 +6324,21 @@
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "CheckItemOwner"
-                        "modifier1" "modifier_item_buxiuzhishouhu"
-                    }
-                    "RunScript"
-                    {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "600"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "CheckItemOwner"
+                        "modifier1"     "modifier_item_buxiuzhishouhu"
+                        "modmaxhp"      "600"
                     }
                 }
                 "OnDestroy"
                 {
                     "RunScript"
                     {
-                        "Target" "CASTER"
-                        "ScriptFile" "scripts/vscripts/addon_game_mode.lua"
-                        "Function" "ModMaxHP"
-                        "const" "-600"
+                        "Target"        "CASTER"
+                        "ScriptFile"    "scripts/vscripts/addon_game_mode.lua"
+                        "Function"      "ModMaxHP"
+                        "const"         "-600"
                     }
                 }
             }

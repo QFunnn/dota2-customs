@@ -25325,6 +25325,13 @@ function SyncPermanentStackCount(keys)
 	if count > 0 then
 		u[stack_name .. '_count'] = count
 	end
+
+	if keys.modmaxhp ~= nil then
+        ModMaxHP({
+            caster = u,
+            const = keys.modmaxhp,
+        })
+    end
 end
 
 --【装饰】
@@ -26033,6 +26040,13 @@ function SetSpecialProjectile(keys)
 	end
 	table.insert(caster.projectile_priority, pp)
 	caster:SetRangedProjectileName(caster.projectile_priority[table.maxn(caster.projectile_priority)])
+
+	if keys.modmaxhp ~= nil then 
+		ModMaxHP({
+			caster = caster,
+			const = keys.modmaxhp
+		})
+	end
 end
 
 function RemoveSpecialProjectile(keys)
@@ -26043,6 +26057,13 @@ function RemoveSpecialProjectile(keys)
 	end
 	RemoveOneValueInTable(caster.projectile_priority, pp)
 	caster:SetRangedProjectileName(caster.projectile_priority[table.maxn(caster.projectile_priority)])
+
+	if keys.modmaxhp ~= nil then 
+		ModMaxHP({
+			caster = caster,
+			const = keys.modmaxhp
+		})
+	end
 end
 
 --【触发监听事件】
@@ -30233,6 +30254,14 @@ function AddSynergy(keys)
 			caster.jiubei_buff = true
 			caster:FindAbilityByName('dac_guai_base'):ApplyDataDrivenModifier(caster, caster,'modifier_attackspeed_buff',{})
 		end
+		if keys.modmaxhp ~= nil then
+			ModMaxHP({
+				caster = caster,
+				const = keys.modmaxhp
+			})
+		end
+
+
 		AddAbilityAndSetLevel(caster, synergy, 1)
 		-- caster:FindAbilityByName(synergy):SetHidden(true)
 		StatClassCount(caster:GetTeam())
@@ -30247,6 +30276,12 @@ function RemoveSynergy(keys)
 		StatClassCount(caster:GetTeam())
 		if synergy == 'is_dragon' then 
 			caster.is_dragon_zhanhou = nil
+		end
+		if keys.modmaxhp ~= nil then
+			ModMaxHP({
+				caster = caster,
+				const = keys.modmaxhp
+			})
 		end
 	end
 end
@@ -31360,12 +31395,24 @@ function AddLinKen(keys)
 		-- caster:AddNewModifier(caster,FindItemAbility(caster,'item_linkenfaqiu'),"modifier_item_sphere_target",{})
 		ability:ApplyDataDrivenModifier(caster, caster, 'modifier_item_linkenfaqiu_buff', {})
 	end
+	if keys.modmaxhp ~= nil then
+		ModMaxHP({
+			caster = caster,
+			const = keys.modmaxhp,
+		})
+	end
 end
 
 function RemoveLinKen(keys)
 	local caster = keys.caster
 	if caster:HasModifier("modifier_item_linkenfaqiu_buff") == true then
 		caster:RemoveModifierByName("modifier_item_linkenfaqiu_buff")
+	end
+	if keys.modmaxhp ~= nil then
+		ModMaxHP({
+			caster = caster,
+			const = keys.modmaxhp,
+		})
 	end
 end
 
@@ -31389,19 +31436,19 @@ function ThinkLinKen(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	if IsUnitExist(caster) == true and caster:IsHero() == false and caster:HasModifier("modifier_item_linkenfaqiu_buff") == false then
-		if ability.cd == nil then
-			ability.cd = true
-			ability:StartCooldown(10)
+		-- if ability.cd == nil then
+		-- 	ability.cd = true
+		-- 	ability:StartCooldown(10)
+		-- else
+		if ability:IsCooldownReady() == true then
+			--冷却好了，加上buff
+			ability.cd = nil
+			-- caster:AddNewModifier(caster,nil,"modifier_item_linkenfaqiu_buff",{})
+			ability:ApplyDataDrivenModifier(caster, caster, 'modifier_item_linkenfaqiu_buff', {})
 		else
-			if ability:IsCooldownReady() == true then
-				--冷却好了，加上buff
-				ability.cd = nil
-				-- caster:AddNewModifier(caster,nil,"modifier_item_linkenfaqiu_buff",{})
-				ability:ApplyDataDrivenModifier(caster, caster, 'modifier_item_linkenfaqiu_buff', {})
-			else
-				return
-			end
+			return
 		end
+		-- end
 	end
 end
 
@@ -40513,7 +40560,12 @@ function CheckItemOwner(keys)
 		end
 		return 3
 	end)
-	
+	if keys.modmaxhp ~= nil then
+        ModMaxHP({
+            caster = caster,
+            const = keys.modmaxhp,
+        })
+    end
 end
 
 function OnDraeneiThink(keys)
