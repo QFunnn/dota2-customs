@@ -3,13 +3,13 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
 
 --宝石TD
---@author 萌小虾
+--@author lobster
 if GemTD == nil then
 	GemTD = class({})
 end
@@ -14663,6 +14663,12 @@ function StartGame()
 		CustomNetTables:SetTableValue("game_state", "disable_all_repick", { hehe = RandomInt(1, 10000) })
 	end
 
+	-- 使用
+	-- if IsPlayerHost(0) then
+	-- 	-- 房主执行逻辑
+	-- 	prt('IS HOST!!!')
+	-- end
+
 	Timers:CreateTimer(1, function()
 		local is_all_precache_finished = true
 		for i = 0, PlayerResource:GetPlayerCount() - 1 do
@@ -15269,3 +15275,14 @@ function GemTD:OnLeftClick(keys)
 	local unit = EntIndexToHScript(entity_index)
 	unit.target_position = target_pos
 end
+
+-- function IsPlayerHost(nPlayerID)
+--     if IsDedicatedServer() then
+--         return false -- 专用服务器无房主
+--     end
+--     local hHost = GetListenServerHost()
+--     if not hHost or hHost:IsNull() then
+--         return false
+--     end
+--     return hHost:GetPlayerID() == nPlayerID
+-- end

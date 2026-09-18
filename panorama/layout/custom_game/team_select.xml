@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -32,8 +32,8 @@
 						<Label id="MapInfoLabel" text="#LoadingScreenMapInfo" />
 					</Panel>
 					<Panel class="select-block" id="team-block" hittest="true">
-						<Label class="select-title" text="#player_list" />
-						<Panel class="select-block-inner" id="team-block-inner" hittest="true">
+						<Label class="select-title invisible" id="team-block-title" text="#player_list" />
+						<Panel class="select-block-inner invisible" id="team-block-inner" hittest="true">
 							<Panel class="my_courier_list_line">
 								<Panel id="team_select_player_panel_0" class="player_list_one invisible">
 									<Panel class="player_info_one">
@@ -73,34 +73,44 @@
 								</Panel>
 							</Panel>
 						</Panel>
-					</Panel>
-					<Panel id="StartGameCountdownTimer">
-						<Image id="TimerBg" src="s2r://" />
-						<Image id="TimerRing" src="s2r://" />
-						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
-						<Panel id="TimerLabelBox">
-							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
-							<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
+						<Panel id="panel_connect_autochess_server" class="" style="width:500px;height:500px;flow-children:down;margin-top:20px;">
+							<Panel style="width:500px;height:300px;">
+								<Image src="s2r://panorama/images/custom_game/bird_sang_png.vtex" style="horizontal-align:center;vertical-align:center;brightness:0.1;saturation:0;" />
+								<Label id="" text="#text_cannot_connect_server" style="width:500px;height:50px;horizontal-align:center;vertical-align:center;color:#888;margin-top:210px;text-align:center;font-size:22px;" />
+							</Panel>
+							<TextEntry id="textentry_ip_connect_test" text="dota_launch_custom_game 474619917 gemtd_coop" />
+							<Label id="text_ip_connect" text="#text_copy_order_to_clipboard" />
 						</Panel>
 					</Panel>
-					<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
-						<Label text="#start_game" />
-					</Button>
-					<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
-						<Label text="#cancel_start_game" />
-					</Button>
-					<Panel id="UnassignedPlayerPanel" style="visibility:collapse;">
-						<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
-							<Panel id="UnassignedPlayersHeader">
-								<Label text="#custom_game_team_select_unassigned_players" />
+					<Panel id="panel_start_button" style="flow-children:down;horizontal-align:right;" class="invisible">
+						<Panel id="StartGameCountdownTimer">
+							<Image id="TimerBg" src="s2r://" />
+							<Image id="TimerRing" src="s2r://" />
+							<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
+							<Panel id="TimerLabelBox">
+								<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
+								<Label id="TimerLabelGameStart" text="#custom_game_team_select_starting" />
 							</Panel>
-							<Panel id="UnassignedPlayersDivider" />
-							<Panel id="UnassignedPlayersContainer" />
+						</Panel>
+						<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+							<Label text="#start_game" />
 						</Button>
-						<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
-							<Image src="s2r://" />
-							<Label text="#custom_game_team_select_auto_assign" />
+						<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
+							<Label text="#cancel_start_game" />
 						</Button>
+						<Panel id="UnassignedPlayerPanel" style="visibility:collapse;">
+							<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">
+								<Panel id="UnassignedPlayersHeader">
+									<Label text="#custom_game_team_select_unassigned_players" />
+								</Panel>
+								<Panel id="UnassignedPlayersDivider" />
+								<Panel id="UnassignedPlayersContainer" />
+							</Button>
+							<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
+								<Image src="s2r://" />
+								<Label text="#custom_game_team_select_auto_assign" />
+							</Button>
+						</Panel>
 					</Panel>
 					<Panel id="TeamsListGroup" style="visibility:collapse;">
 						<Panel id="TeamListHeader">

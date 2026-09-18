@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build c158db4 
   ~ auto-generated — do not edit
 ]]
 
@@ -354,7 +354,6 @@ $.RegisterForUnhandledEvent("DOTAGame_TeamPlayerListChanged", OnTeamPlayerListCh
 // Register a listener for the event which is broadcast whenever a player attempts to pick a team
 $.RegisterForUnhandledEvent("DOTAGame_PlayerSelectedCustomTeam", OnPlayerSelectedTeam);
 
-$.Msg('player_start_team_select');
 CustomNetTables.SubscribeNetTableListener("player_info_table", OnPlayerInfoUpdate);
 GameEvents.Subscribe("player_choose_hero", OnPlayerChooseHero);
 GameEvents.SendCustomGameEventToServer("player_start_team_select", {});
@@ -367,6 +366,11 @@ var click_cd = false;
 var MY_INFO = null;
 // 接收用户信息，展示英雄选择界面
 function OnPlayerInfoUpdate(table,key,data) {
+	$('#team-block-title').SetHasClass('invisible',false);
+	$('#team-block-inner').SetHasClass('invisible',false);
+	$('#panel_start_button').SetHasClass('invisible',false);
+	$('#panel_connect_autochess_server').SetHasClass('invisible',true);
+
 	// 展示我的英雄列表选择
 	var local_id = Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
  
