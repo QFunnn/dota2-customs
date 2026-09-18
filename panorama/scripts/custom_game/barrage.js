@@ -212,16 +212,6 @@ function FireBullet(keys) {
                panel.FindChildTraverse("Content").text = $.Localize("#bot_take_over")
           }
 
-          if (keys.type == "settle_pumpkin_king") {
-               var playerInfo = Game.GetPlayerInfo(keys.playerId);
-               panel.BLoadLayoutSnippet("SettlePumpkinKing");
-               var heroName = Players.GetPlayerSelectedHero(keys.playerId);
-               panel.FindChildTraverse("HeroIcon").SetImage("file://{images}/heroes/icons/" + heroName + ".png");
-               panel.FindChildTraverse("PlayerName").text = playerInfo.player_name + " "//+GetEarlyLeaver(keys.playerId)+" "
-               panel.FindChildTraverse("DamageValue").text = (keys.damage / 1000).toFixed(1)
-               panel.FindChildTraverse("GoldValue").text = keys.gold_value
-          }
-
           var offset = lineNumber * 80
           linesUsing[lineNumber] = true
           panel.style.marginTop = offset + "px";

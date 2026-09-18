@@ -1,0 +1,93 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build c158db4 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/rank_panel.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.css" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/util.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/rank_panel.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="PvePlayer">
+			<Panel class="LadderPlayerRoot">
+				<Panel class="RankIndex">
+					<Label text="99" id="rank_index" />
+				</Panel>
+				<Panel class="RankPlayerAvatar">
+					<DOTAAvatarImage steamid="local" id="player_avatar" />
+				</Panel>
+				<Panel class="RankPlayerName">
+					<DOTAUserName steamid="local" id="player_user_name" />
+				</Panel>
+				<Panel class="RankMaxRound">
+					<Label text="9999" id="rank_max_round" />
+				</Panel>
+				<Panel class="RankTimeCost">
+					<Label text="9999" id="rank_time_cost" />
+				</Panel>
+			</Panel>
+		</snippet>
+		<snippet name="PvpPlayer">
+			<Panel class="LadderPlayerRoot">
+				<Panel class="RankIndex">
+					<Label text="99" id="rank_index" />
+				</Panel>
+				<Panel class="RankPlayerAvatar">
+					<DOTAAvatarImage steamid="local" id="player_avatar" />
+				</Panel>
+				<Panel class="RankPlayerName">
+					<DOTAUserName steamid="local" id="player_user_name" />
+				</Panel>
+				<Panel class="RankRating">
+					<Label text="9999" id="rank_text" />
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel style="width:100%;height:100%;z-index:1;" hittest="false">
+		<Panel class="MenuPage Rank Hidden" id="page_rank">
+			<Panel class="RankTop">
+				<Panel class="RankTitleAndSeason">
+					<Label class="WorldRankTitle" text="#WorldRank" id="world_rank_title" />
+					<Label class="WorldRankSeason" text="#CurrentSeason" id="current_season" />
+				</Panel>
+				<Button class="RankCloseButton" onactivate="CloseRank()" />
+			</Panel>
+			<Panel class="WorldRanks">
+				<Panel class="WorldRankPanel" id="solo_mode_panel">
+					<Label class="WorldRank_MapName" text="#SoloMode" />
+					<Panel class="WorldRankInstruction">
+						<Label class="Instruction_Score" text="#Score" />
+					</Panel>
+					<Panel class="WorldRankPlayers" id="solo_mode_players" />
+				</Panel>
+				<Panel class="WorldRankPanel" id="duos_mode_panel">
+					<Label class="WorldRank_MapName" text="#DuosMode" />
+					<Panel class="WorldRankInstruction">
+						<Label class="Instruction_Score" text="#Score" />
+					</Panel>
+					<Panel class="WorldRankPlayers" id="duos_mode_players" />
+				</Panel>
+				<Panel class="WorldRankPanel" id="pve_mode_panel">
+					<Label class="WorldRank_MapName" text="#PveMode" />
+					<Panel class="WorldRankInstruction">
+						<Label class="Instruction_Max_Round" text="#MaxRound" />
+						<Label class="Instruction_Time_Cost" text="#TimeCost" />
+					</Panel>
+					<Panel class="WorldRankPlayers" id="pve_mode_players" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

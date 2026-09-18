@@ -605,14 +605,6 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			"duration": 15.0,
 		},
 	},
-	"pumpkin_king_passive": {
-		"BaseClass": "ability_lua",
-		"ScriptFile": "creature_ability/pumpkin_king_passive",
-		"AbilityTextureName": "tiny_craggy_exterior",
-		"MaxLevel": 1,
-		"AbilityType": "DOTA_ABILITY_TYPE_BASIC",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN",
-	},
 	"spray_tooltip": {
 		"BaseClass": "ability_lua",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",

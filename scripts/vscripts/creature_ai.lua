@@ -31,9 +31,6 @@ function Spawn(entityKeyValues)
 					Timers:CreateTimer({
 						endTime = 0.45,
 						callback = function()
-							if GetMapName() == "5v5" then
-								hAbility:SetLevel(1)
-							end
 							if GetMapName() == "2x6" then
 								hAbility:SetLevel(2)
 							end

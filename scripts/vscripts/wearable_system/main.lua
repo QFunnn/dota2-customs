@@ -8,7 +8,7 @@
 ]]
 
 
-require("Wearable_System.itemEffect_config")
+require("Wearable_System.ItemEffect_config")
 require("Wearable_System.skin_particle")
 require("Wearable_System.skin_texture")
 

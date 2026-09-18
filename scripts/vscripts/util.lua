@@ -37,19 +37,6 @@ function IsValid(h)
 end
 
 function Util:ChooseObservingTarget(nPlayerID)
-	-- 如果5v5并且 单人PVP未结束
-	if GetMapName() == "5v5" and GameMode.autoDuelMap[nPlayerID] and not PvpModule.bEnd then
-		for _, nPvpPlayerID in ipairs(PvpModule.currentSinglePair) do
-			--观战本队玩家
-			if PlayerResource:GetTeam(nPvpPlayerID) == PlayerResource:GetTeam(nPlayerID) then
-				local hTempTargetHero = PlayerResource:GetSelectedHeroEntity(nPvpPlayerID)
-				if hTempTargetHero and (hTempTargetHero:IsAlive() or hTempTargetHero:IsReincarnating()) then
-					return hTempTargetHero
-				end
-			end
-		end
-	end
-
 	--观战PVP区域
 	if PvpModule.nHomeTeamID and GameMode.autoDuelMap[nPlayerID] and not PvpModule.bEnd then
 		for i = 1, PlayerResource:GetPlayerCountForTeam(PvpModule.nHomeTeamID) do
@@ -515,9 +502,6 @@ end
 --电子围栏，循环判断玩家位置是否正确 不正确进行传送
 function Util:InitHeroFence()
 	Util.flFenceRadius = 3000
-	if GetMapName() == "5v5" then
-		Util.flFenceRadius = 4100
-	end
 
 	--		Util.supposedLocations = {}
 
@@ -664,13 +648,6 @@ function Util:IsInRoom(hUnit, sRoomName, vPos)
 			center_8 = 2240,
 			center_9 = 2240,
 			prepare = 2600,
-		},
-		["5v5"] = {
-			center_single_pvp = 1792,
-			center_2 = 3500,
-			center_3 = 3500,
-			center_4 = 3640,
-			prepare = 3600,
 		},
 	}
 

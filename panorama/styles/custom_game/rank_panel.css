@@ -1,0 +1,267 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build c158db4 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+Label
+{
+	color:#939da0;
+	font-family:Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 1px 1px 1px 1.0 #000000ff;
+}
+
+@keyframes 'links-and-more-button-focus'
+{
+	from
+	{
+		background-color: gradient( linear, 0% 0%, 0% 100%, from( #a9c8daee ), to( #000000ee ) );
+	}
+	
+	50%
+	{
+		background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+	}
+	
+	to
+	{
+		background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+	}
+	
+}
+
+.MenuPage.Rank
+{
+	width: 1600px;
+	height: 900px;
+	vertical-align: center;
+	horizontal-align: center;
+	animation-name: links-and-more-button-focus;
+	animation-duration: 0.6s;
+	animation-delay: 0.0s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	box-shadow: #172a2f -4px -4px 8px 8px;
+	background-color:gradient( linear, 0% 0%, 0% 100%, from( #272d2e ), to( #121212 ) );
+	padding: 20px;
+	transition-property: transform, opacity;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
+	flow-children: down;
+}
+
+.MenuPage.Rank.Hidden
+{
+	transform: translatex(-1000px);
+	opacity:0.0;
+}
+
+.RankTitleAndSeason
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 20px;
+}
+
+.RankTop
+{
+	width: 100%;
+}
+
+.WorldRankSeason
+{
+	margin-left: 20px;
+	vertical-align: bottom;
+	font-size: 20px;
+	margin-bottom: 25px;
+}
+
+.WorldRankTitle
+{
+	margin-top: 10px;
+	height:80px;
+	font-size: 50px;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+.WorldRanks
+{
+	flow-children: right;
+	width:100%;
+	height: 100%;
+}
+
+.WorldRankPanel
+{
+	flow-children: down;
+	width: fill-parent-flow(1.0);
+	height: 100%;
+	width: 23%;
+	margin: 1%;
+}
+
+.WorldRank_MapName
+{
+	horizontal-align: center;
+	font-size: 30px;
+}
+
+.WorldRankPlayers
+{
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+	overflow: squish scroll;
+}
+
+.LadderPlayerRoot
+{
+	width: 100%;
+	height: 40px;
+	flow-children: right;
+	border: 1px solid black;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.RankIndex
+{
+	width: 52px;
+	height: 40px;
+	border: 1px solid black;
+}
+
+.RankIndex Label
+{
+	font-size: 30px;
+	font-weight: bold;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+.RankPlayerAvatar
+{
+	width: 40px;
+	height: 40px;
+}
+
+.RankPlayerAvatar DOTAAvatarImage
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 5px;
+}
+
+.RankPlayerName
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+}
+
+.RankPlayerName #player_user_name
+{
+	font-size: 20px;
+	vertical-align: center;
+	margin-left: 10px;
+}
+
+.RankRating
+{
+	width: 80px;
+	border: 1px solid black;
+	margin-right: 15px;
+}
+
+.RankRating Label
+{
+	font-size: 25px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.RankCloseButton
+{
+	horizontal-align:right;
+	background-color:#333333;
+	wash-color:white;
+	border-radius:50%;
+	border:1px solid #333333;
+	width:30px;
+	height:30px;
+	box-shadow:#000000 0px 0px 3px 3px;
+	z-index:555;
+	background-image:url("s2r://panorama/images/custom_game/extract/x_close_png.vtex");
+	background-size:30px 30px;
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+	margin:4px;
+	margin-top:6px;
+	transition-property:wash-color, pre-transform-scale2d, background-color;
+	transition-duration:0.1s;
+	transition-timing-function:ease-in;
+}
+
+.RankCloseButton:active
+{
+	background-size:36px 36px;
+	sound:"ui_friends_slide_in";
+}
+
+.RankMaxRound
+{
+	width: 80px;
+	height: 40px;
+	border: 1px solid black;
+}
+
+.RankMaxRound Label
+{
+	font-size: 25px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.RankTimeCost
+{
+	width: 80px;
+	height: 40px;
+	border: 1px solid black;
+}
+
+.RankTimeCost Label
+{
+	font-size: 25px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.WorldRankInstruction
+{
+	horizontal-align: right;
+	flow-children: right;
+}
+
+.WorldRankInstruction
+{
+	horizontal-align: right;
+	margin-right:20px;
+}
+
+.WorldRankInstruction
+{
+	horizontal-align: right;
+	margin-right:20px;
+}
+
+.Instruction_Max_Round
+{
+	margin-right:20px;
+}
