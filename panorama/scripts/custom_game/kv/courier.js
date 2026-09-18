@@ -300,4 +300,4 @@ GameUI.CustomUIConfig().courier = {
 		"UnitLabel": "courier",
 		"Skin": 1
 	}
-};
+};

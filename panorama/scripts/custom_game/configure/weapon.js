@@ -922,4 +922,4 @@ GameUI.CustomUIConfig().weapon = {
 		},
 		star_privilege2: "privilege_weapon_024"
 	}
-};
+};

@@ -1322,15 +1322,6 @@ function Setting() {
             return getKeyForFunction(KeyFunction.Attribute, false);
           }
         }), null);
-        libs.insert(_el$20, libs.createComponent(KeyBinder, {
-          text: "#Hotkey_ToggleAutoCast",
-          get func() {
-            return KeyFunction.ToggleAutoCast;
-          },
-          get hotkey() {
-            return getKeyForFunction(KeyFunction.ToggleAutoCast, false);
-          }
-        }), null);
         libs.setProp(_el$21, "scroll", "y");
         libs.insert(_el$21, libs.createComponent(GamepadKeyBinder, {
           text: "#Hotkey_Up",
@@ -2136,4 +2127,4 @@ GameEvents.Subscribe("cast_on_position", data => {
       ShowEffects: showEffects
     });
   }
-});
+});

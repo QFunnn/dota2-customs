@@ -1617,4 +1617,4 @@ GameUI.CustomUIConfig().hero_level_grow = {
 			}
 		}
 	}
-};
+};

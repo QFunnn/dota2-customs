@@ -675,12 +675,19 @@ function s.prototype.SyncEntityBatch(self, aM, a_)
 		b1 = {}
 	end
 	local b2 = b1
+	local b3 = b0 == nil
 	for D, aI in ipairs(a_) do
 		local aJ, aK, H = unpack(k(aI, "|"), 1, 3)
 		local Z = l(aJ)
 		local G = l(aK)
 		local J = self:GetPropertyValueInternal(Z, G, H)
+		if b2[H] ~= J then
+			b3 = true
+		end
 		b2[H] = J
+	end
+	if not b3 then
+		return
 	end
 	CustomNetTables:SetTableValue(self.NETTABLE_NAME, aM, b2)
 end
@@ -697,12 +704,12 @@ function s.prototype.ListenPropertyChange(self, Z, G, H, ab)
 		self:print("Warning: ListenPropertyChange should only be called on client")
 		return nil
 	end
-	local b3 = self:GetPropertyValueFromNetTable(Z, G, H)
+	local b4 = self:GetPropertyValueFromNetTable(Z, G, H)
 	return Timer:GameTimer(0.1, function()
 		local P = self:GetPropertyValueFromNetTable(Z, G, H)
-		if P ~= b3 then
-			ab(b3, P)
-			b3 = P
+		if P ~= b4 then
+			ab(b4, P)
+			b4 = P
 		end
 		return 0.1
 	end)
@@ -715,10 +722,10 @@ function s.prototype.CleanupUnitProperties(self, aZ)
 	if not aZ then
 		return
 	end
-	local b4 = aZ:GetEntityIndex()
-	self:ClearEntityDirtyKeys(PropertyScope.UNIT, b4)
-	self:ClearEntityNetTable(PropertyScope.UNIT, b4)
-	self:CleanupStorage(PropertyScope.UNIT, b4)
+	local b5 = aZ:GetEntityIndex()
+	self:ClearEntityDirtyKeys(PropertyScope.UNIT, b5)
+	self:ClearEntityNetTable(PropertyScope.UNIT, b5)
+	self:CleanupStorage(PropertyScope.UNIT, b5)
 	local _ = aZ:GetPlayerOwnerID()
 	if _ ~= -1 then
 		self:ClearDynamicPropertyCache(PropertyScope.PLAYER, _)
@@ -731,22 +738,22 @@ function s.prototype.CleanupPlayerProperties(self, _)
 	self:CleanupStorage(PropertyScope.PLAYER, _)
 end
 function s.prototype.CleanupStorage(self, Z, G)
-	local b5 = Z == PropertyScope.PLAYER and PropertyData.playerStorage or PropertyData.unitStorage
-	local L = b5[G]
+	local b6 = Z == PropertyScope.PLAYER and PropertyData.playerStorage or PropertyData.unitStorage
+	local L = b6[G]
 	if L ~= nil then
 		L.static = {}
 		L.dynamic = {}
 		L.staticCache = {}
 		L.runtimeCache = {}
-		h(b5, G)
+		h(b6, G)
 	end
 end
 function s.prototype.ClearEntityDirtyKeys(self, Z, G)
-	local b6 = ((tostring(Z) .. "|") .. tostring(G)) .. "|"
+	local b7 = ((tostring(Z) .. "|") .. tostring(G)) .. "|"
 	for aI in pairs(PropertyData.dirtyKeys) do
-		local b7 = aI
-		if string.sub(b7, 1, string.len(b6)) == b6 then
-			h(PropertyData.dirtyKeys, b7)
+		local b8 = aI
+		if string.sub(b8, 1, string.len(b7)) == b7 then
+			h(PropertyData.dirtyKeys, b8)
 		end
 	end
 end
@@ -758,68 +765,68 @@ function s.prototype.ClearEntityNetTable(self, Z, G)
 	CustomNetTables:SetTableValue(self.NETTABLE_NAME, aM, nil)
 end
 function s.prototype.CleanupInvalidModifiers(self)
-	local b8 = 0
+	local b9 = 0
 	for D, L in pairs(PropertyData.playerStorage) do
-		b8 = b8 + self:CleanupStorageInvalidModifiers(L)
+		b9 = b9 + self:CleanupStorageInvalidModifiers(L)
 	end
 	for D, L in pairs(PropertyData.unitStorage) do
-		b8 = b8 + self:CleanupStorageInvalidModifiers(L)
+		b9 = b9 + self:CleanupStorageInvalidModifiers(L)
 	end
-	if b8 > 0 then
-		self:print(("Cleaned up " .. tostring(b8)) .. " invalid modifiers")
+	if b9 > 0 then
+		self:print(("Cleaned up " .. tostring(b9)) .. " invalid modifiers")
 	end
-	return b8
+	return b9
 end
 function s.prototype.CleanupStorageInvalidModifiers(self, L)
 	return 0
 end
 function s.prototype.CleanupEmptyStorages(self)
-	local b8 = 0
+	local b9 = 0
 	for G, L in pairs(PropertyData.playerStorage) do
 		if self:IsStorageEmpty(L) then
 			h(PropertyData.playerStorage, G)
-			b8 = b8 + 1
+			b9 = b9 + 1
 		end
 	end
 	for G, L in pairs(PropertyData.unitStorage) do
-		local b4 = toFiniteNumber(G, -1)
-		local b9
-		if b4 ~= -1 then
-			b9 = EntIndexToHScript(b4)
+		local b5 = toFiniteNumber(G, -1)
+		local ba
+		if b5 ~= -1 then
+			ba = EntIndexToHScript(b5)
 		else
-			b9 = nil
+			ba = nil
 		end
-		local ba = b9
-		if not IsValid(ba) then
-			self:ClearEntityDirtyKeys(PropertyScope.UNIT, b4)
-			self:ClearEntityNetTable(PropertyScope.UNIT, b4)
+		local bb = ba
+		if not IsValid(bb) then
+			self:ClearEntityDirtyKeys(PropertyScope.UNIT, b5)
+			self:ClearEntityNetTable(PropertyScope.UNIT, b5)
 			h(PropertyData.unitStorage, G)
-			b8 = b8 + 1
+			b9 = b9 + 1
 		elseif self:IsStorageEmpty(L) then
 			h(PropertyData.unitStorage, G)
-			b8 = b8 + 1
+			b9 = b9 + 1
 		end
 	end
-	return b8
+	return b9
 end
 function s.prototype.IsStorageEmpty(self, L)
-	local bb = 0
-	for aF in pairs(L.static) do
-		bb = bb + 1
-	end
 	local bc = 0
-	for aF in pairs(L.dynamic) do
+	for aF in pairs(L.static) do
 		bc = bc + 1
 	end
 	local bd = 0
-	for aF in pairs(L.staticCache) do
+	for aF in pairs(L.dynamic) do
 		bd = bd + 1
 	end
 	local be = 0
-	for aF in pairs(L.runtimeCache) do
+	for aF in pairs(L.staticCache) do
 		be = be + 1
 	end
-	return bb == 0 and bc == 0 and bd == 0 and be == 0
+	local bf = 0
+	for aF in pairs(L.runtimeCache) do
+		bf = bf + 1
+	end
+	return bc == 0 and bd == 0 and be == 0 and bf == 0
 end
 function s.prototype.StartAutoCleanup(self)
 	Timer:GameTimer(self.autoCleanupInterval, function()
@@ -837,42 +844,42 @@ function s.prototype.ResetSystem(self)
 end
 function s.prototype.EstimateEntityNetTableSize(self, Z, G)
 	local L = self:GetStorage(Z, G)
-	local bf = 50
+	local bg = 50
 	for H in pairs(L.static) do
 		local T = H
-		bf = bf + #T + 10
+		bg = bg + #T + 10
 	end
 	for H in pairs(L.dynamic) do
 		local T = H
-		bf = bf + #T + 10
+		bg = bg + #T + 10
 	end
-	return bf
+	return bg
 end
 function s.prototype.GetNetTableSizeStats(self)
-	local bg = {}
 	local bh = {}
-	local bi = 0
+	local bi = {}
+	local bj = 0
 	for _ in pairs(PropertyData.playerStorage) do
 		local T = _
-		local bf = self:EstimateEntityNetTableSize(PropertyScope.PLAYER, T)
+		local bg = self:EstimateEntityNetTableSize(PropertyScope.PLAYER, T)
 		local G = "PLAYER_" .. tostring(T)
-		bg[G] = bf
-		bi = bi + bf
-		if bf > self.MAX_NETTABLE_SIZE then
-			bh[#bh + 1] = ((G .. " exceeds size limit: ") .. tostring(bf)) .. " bytes"
+		bh[G] = bg
+		bj = bj + bg
+		if bg > self.MAX_NETTABLE_SIZE then
+			bi[#bi + 1] = ((G .. " exceeds size limit: ") .. tostring(bg)) .. " bytes"
 		end
 	end
-	for b4 in pairs(PropertyData.unitStorage) do
-		local bj = b4
-		local bf = self:EstimateEntityNetTableSize(PropertyScope.UNIT, bj)
-		local G = "UNIT_" .. tostring(bj)
-		bg[G] = bf
-		bi = bi + bf
-		if bf > self.MAX_NETTABLE_SIZE then
-			bh[#bh + 1] = ((G .. " exceeds size limit: ") .. tostring(bf)) .. " bytes"
+	for b5 in pairs(PropertyData.unitStorage) do
+		local bk = b5
+		local bg = self:EstimateEntityNetTableSize(PropertyScope.UNIT, bk)
+		local G = "UNIT_" .. tostring(bk)
+		bh[G] = bg
+		bj = bj + bg
+		if bg > self.MAX_NETTABLE_SIZE then
+			bi[#bi + 1] = ((G .. " exceeds size limit: ") .. tostring(bg)) .. " bytes"
 		end
 	end
-	return { total = bi, entities = bg, warnings = bh }
+	return { total = bj, entities = bh, warnings = bi }
 end
 function s.prototype.RegisterEventPropertyResponses(self)
 	Event:Register("dungeon_room_complete", function(D, a6)
@@ -880,37 +887,37 @@ function s.prototype.RegisterEventPropertyResponses(self)
 			return
 		end
 		Game:EachPlayer(function(D, V)
-			local bk = PlayerResource:GetSelectedHeroEntity(V)
-			self:ProcessPropertyEventResponse("dungeon_room_complete", a6.room:GetRoomKey(), V, bk and bk:entindex())
-			local bl = GetExpRewardPerEncounter(V)
-			local bm = GetGoldRewardPerEncounter(V)
+			local bl = PlayerResource:GetSelectedHeroEntity(V)
+			self:ProcessPropertyEventResponse("dungeon_room_complete", a6.room:GetRoomKey(), V, bl and bl:entindex())
+			local bm = GetExpRewardPerEncounter(V)
+			local bn = GetGoldRewardPerEncounter(V)
+			if bn > 0 then
+				Player:ModifyGold(V, bn)
+			end
 			if bm > 0 then
-				Player:ModifyGold(V, bm)
+				Player:AddExperience(V, bm)
 			end
-			if bl > 0 then
-				Player:AddExperience(V, bl)
-			end
-			local bn = GetHpRegenPerEncounter(V)
-			if IsValid(bk) and bn > 0 then
-				bk:Heal(bn, nil)
-				local bo = ParticleManager:CreateParticleForce(
+			local bo = GetHpRegenPerEncounter(V)
+			if IsValid(bl) and bo > 0 then
+				bl:Heal(bo, nil)
+				local bp = ParticleManager:CreateParticleForce(
 					"particles/items3_fx/fish_bones_active.vpcf",
 					PATTACH_ABSORIGIN_FOLLOW,
-					bk
+					bl
 				)
-				ParticleManager:ReleaseParticleIndex(bo)
-				bk:EmitSound("DOTA_Item.HealingSalve.Activate")
+				ParticleManager:ReleaseParticleIndex(bp)
+				bl:EmitSound("DOTA_Item.HealingSalve.Activate")
 			end
-			local bp = GetManaRegenPerEncounter(V)
-			if IsValid(bk) and bp > 0 then
-				bk:GiveMana(bp)
-				local bo = ParticleManager:CreateParticleForce(
+			local bq = GetManaRegenPerEncounter(V)
+			if IsValid(bl) and bq > 0 then
+				bl:GiveMana(bq)
+				local bp = ParticleManager:CreateParticleForce(
 					"particles/items3_fx/fury_active.vpcf",
 					PATTACH_ABSORIGIN_FOLLOW,
-					bk
+					bl
 				)
-				ParticleManager:ReleaseParticleIndex(bo)
-				bk:EmitSound("DOTA_Item.HealingSalve.Activate")
+				ParticleManager:ReleaseParticleIndex(bp)
+				bl:EmitSound("DOTA_Item.HealingSalve.Activate")
 			end
 		end)
 	end)
@@ -919,16 +926,16 @@ function s.prototype.RegisterEventPropertyResponses(self)
 		self:ProcessPropertyEventResponse("hero_level_up", a6.level, V, a6.unit:entindex())
 	end)
 end
-function s.prototype.ProcessPropertyEventResponse(self, bq, br, V, W)
-	local bs = PropertyData.eventPropertyResponses[bq]
-	if not bs or #bs == 0 then
+function s.prototype.ProcessPropertyEventResponse(self, br, bs, V, W)
+	local bt = PropertyData.eventPropertyResponses[br]
+	if not bt or #bt == 0 then
 		return
 	end
-	local I = (bq .. "_") .. tostring(br)
-	for D, E in ipairs(bs) do
-		local bt = self:GetPropertyValueEx(E.sourcePropertyId, V, W)
-		if bt > 0 then
-			self:AddStaticPropertyEx(E.targetPropertyId, I, bt, V, W)
+	local I = (br .. "_") .. tostring(bs)
+	for D, E in ipairs(bt) do
+		local bu = self:GetPropertyValueEx(E.sourcePropertyId, V, W)
+		if bu > 0 then
+			self:AddStaticPropertyEx(E.targetPropertyId, I, bu, V, W)
 		end
 	end
 end
@@ -945,84 +952,84 @@ function s.prototype.RegisterDebugCommands(self)
 	end, "Reset performance statistics", 0)
 	Convars:RegisterCommand("property_list", function()
 		self:print("=== Registered Properties ===")
-		for bu, u in pairs(PropertyData.configs) do
-			local X = bu
+		for bv, u in pairs(PropertyData.configs) do
+			local X = bv
 			self:print((((X .. ": scope=") .. PropertyScope[u.scope]) .. ", type=") .. PropertyValueType[u.valueType])
 		end
 	end, "List all registered properties", 0)
 	Convars:RegisterCommand("property_cleanup", function()
-		local bv = self:CleanupInvalidModifiers()
-		local bw = self:CleanupEmptyStorages()
-		self:print(((("Cleaned: " .. tostring(bv)) .. " modifiers, ") .. tostring(bw)) .. " storages")
+		local bw = self:CleanupInvalidModifiers()
+		local bx = self:CleanupEmptyStorages()
+		self:print(((("Cleaned: " .. tostring(bw)) .. " modifiers, ") .. tostring(bx)) .. " storages")
 	end, "Force cleanup invalid modifiers", 0)
 	Convars:RegisterCommand("property_nettable_size", function()
-		local bx = self:GetNetTableSizeStats()
+		local by = self:GetNetTableSizeStats()
 		self:print("=== NetTable Size Stats ===")
-		self:print(("Total: " .. tostring(bx.total)) .. " bytes")
-		self:print("Entities: " .. tostring(bx.entities.size))
-		if #bx.warnings > 0 then
+		self:print(("Total: " .. tostring(by.total)) .. " bytes")
+		self:print("Entities: " .. tostring(by.entities.size))
+		if #by.warnings > 0 then
 			self:print("⚠️ WARNINGS:")
-			for D, by in ipairs(bx.warnings) do
-				self:print("  " .. by)
+			for D, bz in ipairs(by.warnings) do
+				self:print("  " .. bz)
 			end
 		end
-		local bz = {}
-		for bA, bB in pairs(bx.entities) do
-			bz[#bz + 1] = { bA, bB }
+		local bA = {}
+		for bB, bC in pairs(by.entities) do
+			bA[#bA + 1] = { bB, bC }
 		end
-		local bC = i(bz, function(D, ad, ae)
+		local bD = i(bA, function(D, ad, ae)
 			return ae[2] - ad[2]
 		end)
 		self:print("\nTop 10 largest entities:")
 		do
-			local bD = 0
-			while bD < math.min(10, #bC) do
-				self:print(((("  " .. bC[bD + 1][1]) .. ": ") .. tostring(bC[bD + 1][2])) .. " bytes")
-				bD = bD + 1
+			local bE = 0
+			while bE < math.min(10, #bD) do
+				self:print(((("  " .. bD[bE + 1][1]) .. ": ") .. tostring(bD[bE + 1][2])) .. " bytes")
+				bE = bE + 1
 			end
 		end
 	end, "Show NetTable size statistics", 0)
 	self:print("Debug commands registered")
 end
 function s.prototype.PrintSystemStatus(self)
-	local bE = 0
-	for aF in pairs(PropertyData.configs) do
-		bE = bE + 1
-	end
 	local bF = 0
-	for aF in pairs(PropertyData.playerStorage) do
+	for aF in pairs(PropertyData.configs) do
 		bF = bF + 1
 	end
 	local bG = 0
-	for aF in pairs(PropertyData.unitStorage) do
+	for aF in pairs(PropertyData.playerStorage) do
 		bG = bG + 1
+	end
+	local bH = 0
+	for aF in pairs(PropertyData.unitStorage) do
+		bH = bH + 1
 	end
 	local aE = 0
 	for aF in pairs(PropertyData.dirtyKeys) do
 		aE = aE + 1
 	end
 	self:print("=== Property System Status ===")
-	self:print("Registered Properties: " .. tostring(bE))
-	self:print("Player Storages: " .. tostring(bF))
-	self:print("Unit Storages: " .. tostring(bG))
+	self:print("Registered Properties: " .. tostring(bF))
+	self:print("Player Storages: " .. tostring(bG))
+	self:print("Unit Storages: " .. tostring(bH))
 	self:print("Dirty Keys: " .. tostring(aE))
 	self:print(("Last Sync: " .. m(PropertyData.lastSyncTime, 2)) .. "s")
 end
 function s.prototype.PrintPerformanceStats(self)
-	local bx = PropertyData.stats
-	local bH = bx.totalReads > 0 and m(bx.cacheHits / bx.totalReads * 100, 2) or "0.00"
+	local by = PropertyData.stats
+	local bI = by.totalReads > 0 and m(by.cacheHits / by.totalReads * 100, 2) or "0.00"
 	self:print("=== Performance Stats ===")
-	self:print("Total Reads: " .. tostring(bx.totalReads))
-	self:print(((("Cache Hits: " .. tostring(bx.cacheHits)) .. " (") .. bH) .. "%)")
-	self:print("Total Writes: " .. tostring(bx.totalWrites))
-	self:print("Sync Count: " .. tostring(bx.syncCount))
+	self:print("Total Reads: " .. tostring(by.totalReads))
+	self:print(((("Cache Hits: " .. tostring(by.cacheHits)) .. " (") .. bI) .. "%)")
+	self:print("Total Writes: " .. tostring(by.totalWrites))
+	self:print("Sync Count: " .. tostring(by.syncCount))
 end
 function s.prototype.GetStorage(self, Z, G)
-	local b5 = Z == PropertyScope.PLAYER and PropertyData.playerStorage or PropertyData.unitStorage
-	local L = b5[G]
+	local b6 = Z == PropertyScope.PLAYER and PropertyData.playerStorage or PropertyData.unitStorage
+	local L = b6[G]
 	if not L then
 		L = { static = {}, dynamic = {}, staticCache = {}, runtimeCache = {} }
-		b5[G] = L
+		b6[G] = L
 	end
 	return L
 end
@@ -1033,12 +1040,12 @@ function s.prototype.GetScopeOfProperty(self, H)
 	local u = self:GetConfig(H)
 	return u and u.scope or nil
 end
-function s.prototype.AggregatePropertyValues(self, H, bI, J)
+function s.prototype.AggregatePropertyValues(self, H, bJ, J)
 	local u = PropertyData.configs[H]
 	if u == nil then
-		return bI + J
+		return bJ + J
 	end
-	return self:AggregateValues(u.aggregation, bI, J, u.customAggregator)
+	return self:AggregateValues(u.aggregation, bJ, J, u.customAggregator)
 end
 function s.prototype.ValidateProperty(self, H)
 	if PropertyData.configs[H] == nil then
@@ -1047,75 +1054,75 @@ function s.prototype.ValidateProperty(self, H)
 	end
 	return true
 end
-function s.prototype.GetEntityContext(self, ba)
-	if not ba or not IsValid(ba) then
+function s.prototype.GetEntityContext(self, bb)
+	if not bb or not IsValid(bb) then
 		return nil
 	end
-	if ba.IsPlayer and ba:IsPlayer() then
-		local _ = ba:GetPlayerID()
+	if bb.IsPlayer and bb:IsPlayer() then
+		local _ = bb:GetPlayerID()
 		return { PropertyScope.PLAYER, _ }
 	end
-	if ba.IsBaseNPC and ba:IsBaseNPC() then
-		return { PropertyScope.UNIT, ba:GetEntityIndex() }
+	if bb.IsBaseNPC and bb:IsBaseNPC() then
+		return { PropertyScope.UNIT, bb:GetEntityIndex() }
 	end
 	return nil
 end
-function s.prototype.AggregateValues(self, bJ, bI, J, bK)
+function s.prototype.AggregateValues(self, bK, bJ, J, bL)
 	repeat
-		local bL = bJ
-		local bM = bL == AggregationStrategy.SUM
-		if bM then
-			return bI + J
+		local bM = bK
+		local bN = bM == AggregationStrategy.SUM
+		if bN then
+			return bJ + J
 		end
-		bM = bM or bL == AggregationStrategy.MULTIPLY
-		if bM then
-			return ((1 + bI * 0.01) * (1 + J * 0.01) - 1) * 100
+		bN = bN or bM == AggregationStrategy.MULTIPLY
+		if bN then
+			return ((1 + bJ * 0.01) * (1 + J * 0.01) - 1) * 100
 		end
-		bM = bM or bL == AggregationStrategy.DECMUL
-		if bM then
-			return (1 - (1 - bI * 0.01) * (1 - J * 0.01)) * 100
+		bN = bN or bM == AggregationStrategy.DECMUL
+		if bN then
+			return (1 - (1 - bJ * 0.01) * (1 - J * 0.01)) * 100
 		end
-		bM = bM or bL == AggregationStrategy.MAX
-		if bM then
-			return math.max(bI, J)
+		bN = bN or bM == AggregationStrategy.MAX
+		if bN then
+			return math.max(bJ, J)
 		end
-		bM = bM or bL == AggregationStrategy.MIN
-		if bM then
-			return math.min(bI, J)
+		bN = bN or bM == AggregationStrategy.MIN
+		if bN then
+			return math.min(bJ, J)
 		end
-		bM = bM or bL == AggregationStrategy.FIRST
-		if bM then
-			return bI ~= 0 and bI or J
+		bN = bN or bM == AggregationStrategy.FIRST
+		if bN then
+			return bJ ~= 0 and bJ or J
 		end
-		bM = bM or bL == AggregationStrategy.LAST
-		if bM then
+		bN = bN or bM == AggregationStrategy.LAST
+		if bN then
 			return J
 		end
-		bM = bM or bL == AggregationStrategy.CUSTOM
-		if bM then
-			if bK then
-				return bK(nil, bI, J)
+		bN = bN or bM == AggregationStrategy.CUSTOM
+		if bN then
+			if bL then
+				return bL(nil, bJ, J)
 			end
-			return bI + J
+			return bJ + J
 		end
 		do
-			return bI + J
+			return bJ + J
 		end
 	until true
 end
-function s.prototype.GetAggregationInitialValue(self, bJ, av)
+function s.prototype.GetAggregationInitialValue(self, bK, av)
 	repeat
-		local bN = bJ
-		local bO = bN == AggregationStrategy.MAX
-		if bO then
+		local bO = bK
+		local bP = bO == AggregationStrategy.MAX
+		if bP then
 			return -math.huge
 		end
-		bO = bO or bN == AggregationStrategy.MIN
-		if bO then
+		bP = bP or bO == AggregationStrategy.MIN
+		if bP then
 			return math.huge
 		end
-		bO = bO or (bN == AggregationStrategy.FIRST or bN == AggregationStrategy.LAST)
-		if bO then
+		bP = bP or (bO == AggregationStrategy.FIRST or bO == AggregationStrategy.LAST)
+		if bP then
 			return av
 		end
 		do
@@ -1140,20 +1147,20 @@ function s.prototype.ForceSyncAllDirty(self)
 	if not IsServer() then
 		return
 	end
-	local bP = 0
-	for aF in pairs(PropertyData.dirtyKeys) do
-		bP = bP + 1
-	end
-	if bP == 0 then
-		return
-	end
-	self:print(("[ForceSyncAllDirty] Syncing " .. tostring(bP)) .. " dirty properties...")
-	self:SyncDirtyProperties()
 	local bQ = 0
 	for aF in pairs(PropertyData.dirtyKeys) do
 		bQ = bQ + 1
 	end
-	self:print("[ForceSyncAllDirty] Sync completed, remaining: " .. tostring(bQ))
+	if bQ == 0 then
+		return
+	end
+	self:print(("[ForceSyncAllDirty] Syncing " .. tostring(bQ)) .. " dirty properties...")
+	self:SyncDirtyProperties()
+	local bR = 0
+	for aF in pairs(PropertyData.dirtyKeys) do
+		bR = bR + 1
+	end
+	self:print("[ForceSyncAllDirty] Sync completed, remaining: " .. tostring(bR))
 end
 s = n({ r }, s)
 if PropertySystem == nil then

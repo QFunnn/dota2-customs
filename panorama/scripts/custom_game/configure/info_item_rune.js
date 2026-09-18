@@ -345,4 +345,4 @@ GameUI.CustomUIConfig().info_item_rune = {
 		rarity: 7,
 		icon: 1551007
 	}
-};
+};

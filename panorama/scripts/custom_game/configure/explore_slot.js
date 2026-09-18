@@ -53,4 +53,4 @@ GameUI.CustomUIConfig().explore_slot = {
 			explore_profit_110005_pct: 40
 		}
 	}
-};
+};

@@ -144,45 +144,5 @@ GameUI.CustomUIConfig().gem_drop_entry = {
 		rarity: 3,
 		weight: 100,
 		effect_limit: 30
-	},
-	"18": {
-		id: 18,
-		effect_key: "gem_rarity_7",
-		effect_name: "获得2个随机混沌宝石",
-		rarity: 6,
-		weight: 100,
-		effect_limit: 2
-	},
-	"19": {
-		id: 19,
-		effect_key: "gem_per_cell_3",
-		effect_name: "每激活8个格子额外获得1个混沌宝石",
-		rarity: 6,
-		weight: 100,
-		effect_limit: 1
-	},
-	"20": {
-		id: 20,
-		effect_key: "gem_rarity_up_2",
-		effect_name: "将4个随机传奇宝石提升为1个随机混沌宝石",
-		rarity: 6,
-		weight: 100,
-		effect_limit: 10
-	},
-	"21": {
-		id: 21,
-		effect_key: "item_120016_1",
-		effect_name: "获得1个混沌精制材料",
-		rarity: 6,
-		weight: 100,
-		effect_limit: 10
-	},
-	"22": {
-		id: 22,
-		effect_key: "cost_action",
-		effect_name: "花费2个行动点获得2个混沌宝石",
-		rarity: 6,
-		weight: 100,
-		effect_limit: 5
 	}
 };

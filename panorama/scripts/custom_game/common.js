@@ -1431,4 +1431,4 @@ exports.usePlayerAchievements = usePlayerAchievements;
 exports.usePlayerCouriers = usePlayerCouriers;
 exports.usePlayerMaxAbyssalDiff = usePlayerMaxAbyssalDiff;
 exports.usePlayerMaxDiff = usePlayerMaxDiff;
-exports.useTalentLevels = useTalentLevels;
+exports.useTalentLevels = useTalentLevels;

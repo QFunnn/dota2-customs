@@ -79,4 +79,4 @@ GameUI.CustomUIConfig().activity_mining_node = {
 		reward: "110018:1|110019:1|110020:800",
 		coin_rate: 400
 	}
-};
+};

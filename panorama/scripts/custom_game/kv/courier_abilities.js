@@ -191,31 +191,5 @@ GameUI.CustomUIConfig().courier_abilities = {
 			"damage_up_pct": "15 30 45 60 75 90",
 			"duration": 2
 		}
-	},
-	"courier_600024": {
-		"Name": "纯金贪魔",
-		"Description": "释放<HotkeyOnly|Dodge/>冲刺后+%damage_up_pct%%特技伤害，持续%duration%秒，重复触发刷新持续时间",
-		"BaseClass": "ability_lua",
-		"ScriptFile": "abilities/courier/courier_600024",
-		"AbilityTextureName": "primal_beast_onslaught_release",
-		"MaxLevel": 6,
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"AbilityValues": {
-			"attribute_pct": "1 2 3 4 5 6",
-			"stack_max": 10
-		}
-	},
-	"courier_600025": {
-		"Name": "咬人箱",
-		"Description": "每拥有1件遗物物理伤害倍增1%/2%/3%/4%/5%/6%[x]，最多累加10次。",
-		"BaseClass": "ability_lua",
-		"ScriptFile": "abilities/courier/courier_600025",
-		"AbilityTextureName": "primal_beast_onslaught_release",
-		"MaxLevel": 6,
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"AbilityValues": {
-			"attribute_pct": "1 2 3 4 5 6",
-			"stack_max": 10
-		}
 	}
-};
+};

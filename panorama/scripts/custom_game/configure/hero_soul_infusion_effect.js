@@ -681,4 +681,4 @@ GameUI.CustomUIConfig().hero_soul_infusion_effect = {
 			reward: null
 		}
 	}
-};
+};

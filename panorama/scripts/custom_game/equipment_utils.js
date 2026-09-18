@@ -212,7 +212,7 @@ function EquipmentHasStates(equip, showTips) {
     state = "#EquipmentError_2";
   }
   if (equip.in_check && equip.in_check !== "") {
-    state = equip.in_check === "gem_fusion" ? "#EquipmentError_GemFusionInCheck" : "#EquipmentError_InCheck";
+    state = "#EquipmentError_InCheck";
   }
   let hasState = state != "";
   if (showTips && hasState) {
@@ -281,4 +281,4 @@ exports.HeroID2Name = HeroID2Name;
 exports.MAX_EQUIPMENT_RARITY = MAX_EQUIPMENT_RARITY;
 exports.ParseEquipment = ParseEquipment;
 exports.ShowServerEquipTooltip = ShowServerEquipTooltip;
-exports.ShowServerGemTooltip = ShowServerGemTooltip;
+exports.ShowServerGemTooltip = ShowServerGemTooltip;

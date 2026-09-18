@@ -1,0 +1,417 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build c158db4 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#HuntIntelligenceRoot
+{
+	width: 640px;
+	height: 410px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 100px;
+	z-index: 100;
+}
+
+@keyframes 'HuntIntelligenceCardReveal'
+{
+	0%
+	{
+		transform: translateY(18px) rotateY(-90deg);
+	}
+	
+	100%
+	{
+		transform: translateY(0px) rotateY(0deg);
+	}
+	
+}
+
+@keyframes 'HuntIntelligenceBackgroundReveal'
+{
+	0%
+	{
+		opacity: 0;
+		brightness: 1.8;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'HuntIntelligenceContentReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
+}
+
+#HuntIntelligenceContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 20px 52px 18px 52px;
+}
+
+#CardMain
+{
+	width: 202px;
+	height: 250px;
+	horizontal-align: center;
+	margin-top: 16px;
+	opacity: 1;
+	animation-name: HuntIntelligenceCardReveal;
+	animation-duration: 0.56s;
+	animation-delay: 0.24s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: backwards;
+}
+
+#RarityBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_gray_png.vtex");
+	background-size: 100%;
+	opacity: 1;
+	brightness: 1;
+	animation-name: HuntIntelligenceBackgroundReveal;
+	animation-duration: 0.28s;
+	animation-delay: 0.44s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#CardMain.Rarity_5 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_golden_png.vtex");
+}
+
+#CardMain.Rarity_4 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_purple_png.vtex");
+}
+
+#CardMain.Rarity_3 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_blue_png.vtex");
+}
+
+#HuntIntelligenceCardText
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding-top: 58px;
+	animation-name: HuntIntelligenceContentReveal;
+	animation-duration: 0.24s;
+	animation-delay: 0.48s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+.HuntIntelligenceCardRarity,.HuntIntelligenceCardAmount,.HuntIntelligenceCardState
+{
+	width: 100%;
+	text-align: center;
+	text-shadow: 0px 2px 4px 2 #000000;
+}
+
+.HuntIntelligenceCardRarity
+{
+	font-size: 22px;
+	color: #f8f3e8;
+}
+
+.HuntIntelligenceCardAmount
+{
+	margin-top: 28px;
+	font-size: 34px;
+	font-family: monospaceNumbersFont;
+	font-weight: bold;
+	color: #fff4d4;
+}
+
+.HuntIntelligenceCardState
+{
+	height: 28px;
+	margin-top: 30px;
+	font-size: 15px;
+	color: #ffffff;
+}
+
+#HuntIntelligenceProgress
+{
+	width: 420px;
+	height: 94px;
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 12px;
+	animation-name: HuntIntelligenceContentReveal;
+	animation-duration: 0.26s;
+	animation-delay: 0.58s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#HuntIntelligenceProgressValue
+{
+	width: 100%;
+	text-align: center;
+}
+
+#HuntIntelligenceProgressTrack
+{
+	width: 100%;
+	height: 14px;
+	margin-top: 8px;
+	background-color: #0b0b0b;
+	border: 1px solid #8b7651;
+}
+
+#HuntIntelligenceProgressFill
+{
+	width: 0%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#5b9ed1), to(#c4e7f5));
+	transition-property: width;
+	transition-duration: 0.05s;
+}
+
+#HuntIntelligenceProgressValue
+{
+	margin-top: 6px;
+	font-size: 19px;
+	font-family: monospaceNumbersFont;
+	color: #efe2bd;
+}
+
+.CustomHudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#HuntIntelligenceRoot
+{
+	width: 640px;
+	height: 410px;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 100px;
+	z-index: 100;
+}
+
+@keyframes 'HuntIntelligenceCardReveal'
+{
+	0%
+	{
+		transform: translateY(18px) rotateY(-90deg);
+	}
+	
+	100%
+	{
+		transform: translateY(0px) rotateY(0deg);
+	}
+	
+}
+
+@keyframes 'HuntIntelligenceBackgroundReveal'
+{
+	0%
+	{
+		opacity: 0;
+		brightness: 1.8;
+	}
+	
+	100%
+	{
+		opacity: 1;
+		brightness: 1;
+	}
+	
+}
+
+@keyframes 'HuntIntelligenceContentReveal'
+{
+	0%
+	{
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	
+	100%
+	{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
+}
+
+#HuntIntelligenceContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 20px 52px 18px 52px;
+}
+
+#CardMain
+{
+	width: 202px;
+	height: 250px;
+	horizontal-align: center;
+	margin-top: 16px;
+	opacity: 1;
+	animation-name: HuntIntelligenceCardReveal;
+	animation-duration: 0.56s;
+	animation-delay: 0.24s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: backwards;
+}
+
+#RarityBG
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_gray_png.vtex");
+	background-size: 100%;
+	opacity: 1;
+	brightness: 1;
+	animation-name: HuntIntelligenceBackgroundReveal;
+	animation-duration: 0.28s;
+	animation-delay: 0.44s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#CardMain.Rarity_5 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_golden_png.vtex");
+}
+
+#CardMain.Rarity_4 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_purple_png.vtex");
+}
+
+#CardMain.Rarity_3 #RarityBG
+{
+	background-image: url("s2r://panorama/images/custom_game/r1_raffle/r1_result/r1_result_blue_png.vtex");
+}
+
+#HuntIntelligenceCardText
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding-top: 58px;
+	animation-name: HuntIntelligenceContentReveal;
+	animation-duration: 0.24s;
+	animation-delay: 0.48s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+.HuntIntelligenceCardRarity,.HuntIntelligenceCardAmount,.HuntIntelligenceCardState
+{
+	width: 100%;
+	text-align: center;
+	text-shadow: 0px 2px 4px 2 #000000;
+}
+
+.HuntIntelligenceCardRarity
+{
+	font-size: 22px;
+	color: #f8f3e8;
+}
+
+.HuntIntelligenceCardAmount
+{
+	margin-top: 28px;
+	font-size: 34px;
+	font-family: monospaceNumbersFont;
+	font-weight: bold;
+	color: #fff4d4;
+}
+
+.HuntIntelligenceCardState
+{
+	height: 28px;
+	margin-top: 30px;
+	font-size: 15px;
+	color: #ffffff;
+}
+
+#HuntIntelligenceProgress
+{
+	width: 420px;
+	height: 94px;
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 12px;
+	animation-name: HuntIntelligenceContentReveal;
+	animation-duration: 0.26s;
+	animation-delay: 0.58s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: backwards;
+}
+
+#HuntIntelligenceProgressValue
+{
+	width: 100%;
+	text-align: center;
+}
+
+#HuntIntelligenceProgressTrack
+{
+	width: 100%;
+	height: 14px;
+	margin-top: 8px;
+	background-color: #0b0b0b;
+	border: 1px solid #8b7651;
+}
+
+#HuntIntelligenceProgressFill
+{
+	width: 0%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#5b9ed1), to(#c4e7f5));
+	transition-property: width;
+	transition-duration: 0.05s;
+}
+
+#HuntIntelligenceProgressValue
+{
+	margin-top: 6px;
+	font-size: 19px;
+	font-family: monospaceNumbersFont;
+	color: #efe2bd;
+}

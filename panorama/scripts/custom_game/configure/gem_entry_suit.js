@@ -15,7 +15,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "猎手·物伤",
 		suit_type: 1,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_002: {
@@ -24,7 +25,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "猎手·灵动",
 		suit_type: 1,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_003: {
@@ -33,7 +35,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "猎手·律动",
 		suit_type: 1,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_004: {
@@ -43,7 +46,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "1:5|2:5",
+		suit_unlock: "1:50|2:50",
+		suit_limit: 50,
 		suit_icon: "gem_suit_5"
 	},
 	privilege_gem_suit_005: {
@@ -52,7 +56,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "猎手·冲杀",
 		suit_type: 1,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_006: {
@@ -61,7 +66,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "狂暴·迅锋",
 		suit_type: 2,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_007: {
@@ -70,7 +76,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "狂暴·散射",
 		suit_type: 2,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_008: {
@@ -79,7 +86,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "狂暴·威势",
 		suit_type: 2,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_009: {
@@ -88,7 +96,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "狂暴·攻击",
 		suit_type: 2,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_010: {
@@ -97,7 +106,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "施法·法伤",
 		suit_type: 3,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_011: {
@@ -106,7 +116,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "施法·余势",
 		suit_type: 3,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_012: {
@@ -115,7 +126,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "施法·散射",
 		suit_type: 3,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_013: {
@@ -124,7 +136,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "施法·蓄势",
 		suit_type: 3,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_014: {
@@ -133,7 +146,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "神圣·御能",
 		suit_type: 4,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_015: {
@@ -142,7 +156,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "神圣·远攻",
 		suit_type: 4,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_016: {
@@ -151,7 +166,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "神圣·减伤",
 		suit_type: 4,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_017: {
@@ -160,7 +176,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		name: "神圣·祷战",
 		suit_type: 4,
 		base_suit: 1,
-		upgrade_suit: 0.1,
+		upgrade_suit: 1,
+		suit_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_018: {
@@ -170,7 +187,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "3:5|4:5",
+		suit_unlock: "3:50|4:50",
+		suit_limit: 50,
 		suit_icon: "gem_suit_6"
 	},
 	privilege_gem_suit_019: {
@@ -180,7 +198,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "1:5|3:5",
+		suit_unlock: "1:50|3:50",
+		suit_limit: 50,
 		suit_icon: "gem_suit_7"
 	},
 	privilege_gem_suit_020: {
@@ -190,7 +209,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "2:5|4:5",
+		suit_unlock: "2:50|4:50",
+		suit_limit: 50,
 		suit_icon: "gem_suit_8"
 	}
 };

@@ -54,4 +54,4 @@ exports.hasClaimableDigVeinsTask = hasClaimableDigVeinsTask;
 exports.hasClaimableDigVeinsTaskForMenu = hasClaimableDigVeinsTaskForMenu;
 exports.isDigVeinsTask = isDigVeinsTask;
 exports.isDigVeinsTaskActive = isDigVeinsTaskActive;
-exports.isDigVeinsTaskClaimable = isDigVeinsTaskClaimable;
+exports.isDigVeinsTaskClaimable = isDigVeinsTaskClaimable;

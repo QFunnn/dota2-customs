@@ -3465,4 +3465,4 @@ GameUI.CustomUIConfig().drawcards_pond = {
 			drop_weight: 100
 		}
 	]
-};
+};

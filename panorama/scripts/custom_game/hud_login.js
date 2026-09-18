@@ -146,7 +146,7 @@ function Root() {
           return loginState()?.[playerID()]?.state ?? PlayerLoginState.None;
         };
         return (() => {
-          const _el$30 = libs.createElement("Panel", {
+          const _el$34 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("PlayerReadySlot", {
                   Accepted: state() == PlayerLoginState.Success,
@@ -154,7 +154,7 @@ function Root() {
                 });
               }
             }, null),
-            _el$31 = libs.createElement("DOTAAvatarImage", {
+            _el$35 = libs.createElement("DOTAAvatarImage", {
               id: "AvatarImage",
               get steamid() {
                 return playerSteamID();
@@ -162,31 +162,31 @@ function Root() {
               width: "100%",
               height: "100%",
               hittest: false
-            }, _el$30);
+            }, _el$34);
             libs.createElement("Panel", {
               "class": "AcceptedMatch",
               hittest: false
-            }, _el$30);
+            }, _el$34);
             libs.createElement("Panel", {
               "class": "DeclinedMatch",
               hittest: false
-            }, _el$30);
-          libs.setProp(_el$31, "width", "100%");
-          libs.setProp(_el$31, "height", "100%");
+            }, _el$34);
+          libs.setProp(_el$35, "width", "100%");
+          libs.setProp(_el$35, "height", "100%");
           libs.effect(_p$ => {
             const _v$3 = libs.classNames("PlayerReadySlot", {
                 Accepted: state() == PlayerLoginState.Success,
                 Declined: state() != PlayerLoginState.Success
               }),
               _v$4 = playerSteamID();
-            _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$30, "class", _v$3, _p$._v$3));
-            _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$31, "steamid", _v$4, _p$._v$4));
+            _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$34, "class", _v$3, _p$._v$3));
+            _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$35, "steamid", _v$4, _p$._v$4));
             return _p$;
           }, {
             _v$3: undefined,
             _v$4: undefined
           });
-          return _el$30;
+          return _el$34;
         })();
       }
     }));
@@ -196,15 +196,15 @@ function Root() {
       return localPlayerSteps();
     },
     children: () => (() => {
-      const _el$34 = libs.createElement("Panel", {
+      const _el$38 = libs.createElement("Panel", {
         id: "LoginStepsContainer"
       }, null);
-      libs.insert(_el$34, libs.createComponent(libs.For, {
+      libs.insert(_el$38, libs.createComponent(libs.For, {
         each: LOGIN_FLOW_STEPS,
         children: (step, index) => {
           const completed = () => localPlayerSteps()?.[step.key] ?? false;
           return (() => {
-            const _el$35 = libs.createElement("Panel", {
+            const _el$39 = libs.createElement("Panel", {
                 get ["class"]() {
                   return libs.classNames("LoginStepItem", {
                     Completed: completed()
@@ -213,35 +213,35 @@ function Root() {
               }, null);
               libs.createElement("Panel", {
                 "class": "LoginStepIndicator"
-              }, _el$35);
-              const _el$37 = libs.createElement("Label", {
+              }, _el$39);
+              const _el$41 = libs.createElement("Label", {
                 "class": "LoginStepLabel",
                 color: "white",
                 get text() {
                   return `${index() + 1}. ${GetLocalization(step.label)}`;
                 }
-              }, _el$35);
+              }, _el$39);
             libs.effect(_p$ => {
               const _v$5 = libs.classNames("LoginStepItem", {
                   Completed: completed()
                 }),
                 _v$6 = `${index() + 1}. ${GetLocalization(step.label)}`;
-              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$35, "class", _v$5, _p$._v$5));
-              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$37, "text", _v$6, _p$._v$6));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$39, "class", _v$5, _p$._v$5));
+              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$41, "text", _v$6, _p$._v$6));
               return _p$;
             }, {
               _v$5: undefined,
               _v$6: undefined
             });
-            return _el$35;
+            return _el$39;
           })();
         }
       }));
-      return _el$34;
+      return _el$38;
     })()
   }), libs.createComponent(libs.Show, {
     get when() {
-      return localPlayerLoginState() == PlayerLoginState.None;
+      return localPlayerLoginState() == PlayerLoginState.MatchIDPre;
     },
     get children() {
       const _el$7 = libs.createElement("Panel", {
@@ -249,7 +249,9 @@ function Root() {
         }, null),
         _el$8 = libs.createElement("Label", {
           color: "white",
-          text: "#Login_Loading",
+          get text() {
+            return GetLocalization("#Login_MatchIDPreparing");
+          },
           horizontalAlign: "center",
           marginTop: "20px"
         }, _el$7);
@@ -258,39 +260,80 @@ function Root() {
       }), _el$8);
       libs.setProp(_el$8, "horizontalAlign", "center");
       libs.setProp(_el$8, "marginTop", "20px");
+      libs.effect(_$p => libs.setProp(_el$8, "text", GetLocalization("#Login_MatchIDPreparing"), _$p));
       return _el$7;
+    }
+  }), libs.createComponent(libs.Show, {
+    get when() {
+      return localPlayerLoginState() == PlayerLoginState.Failed;
+    },
+    get children() {
+      const _el$9 = libs.createElement("Panel", {
+          id: "LoadingContainer"
+        }, null),
+        _el$0 = libs.createElement("Label", {
+          color: "white",
+          get text() {
+            return GetLocalization("#Login_MatchIDFailed");
+          },
+          horizontalAlign: "center"
+        }, _el$9);
+      libs.setProp(_el$0, "horizontalAlign", "center");
+      libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#Login_MatchIDFailed"), _$p));
+      return _el$9;
+    }
+  }), libs.createComponent(libs.Show, {
+    get when() {
+      return localPlayerLoginState() == PlayerLoginState.None;
+    },
+    get children() {
+      const _el$1 = libs.createElement("Panel", {
+          id: "LoadingContainer"
+        }, null),
+        _el$10 = libs.createElement("Label", {
+          color: "white",
+          text: "#Login_Loading",
+          horizontalAlign: "center",
+          marginTop: "20px"
+        }, _el$1);
+      libs.insert(_el$1, libs.createComponent(EOM_Loading.EOM_Loading, {
+        id: "Loading"
+      }), _el$10);
+      libs.setProp(_el$10, "horizontalAlign", "center");
+      libs.setProp(_el$10, "marginTop", "20px");
+      return _el$1;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return previewLocalAuth() || isLocalHost() && localPlayerLoginState() == PlayerLoginState.NeedAuth;
     },
     get children() {
-      const _el$9 = libs.createElement("Panel", {
+      const _el$11 = libs.createElement("Panel", {
           id: "InviteKey"
         }, null),
-        _el$0 = libs.createElement("Panel", {
+        _el$12 = libs.createElement("Panel", {
           id: "InviteKeyContainer"
-        }, _el$9),
-        _el$1 = libs.createElement("Label", {
+        }, _el$11),
+        _el$13 = libs.createElement("Label", {
           id: "InviteKeyTitle",
           get text() {
             return GetLocalization("#Login_LocalAuth_Title");
           }
-        }, _el$0),
-        _el$10 = libs.createElement("Label", {
+        }, _el$12),
+        _el$14 = libs.createElement("Label", {
           id: "InviteKeyDesc",
           html: true,
           get text() {
             return GetLocalization("#Login_LocalAuth_Desc");
           }
-        }, _el$0),
-        _el$11 = libs.createElement("Panel", {
+        }, _el$12),
+        _el$15 = libs.createElement("Panel", {
           id: "InviteKeyForm"
-        }, _el$0),
-        _el$12 = libs.createElement("Panel", {
+        }, _el$12),
+        _el$16 = libs.createElement("Panel", {
           id: "LocalAuthActions"
-        }, _el$0);
-      libs.insert(_el$11, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+        }, _el$12);
+      libs.insert(_el$15, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
         id: "InviteKeyEntry",
         textmode: "password",
         get text() {
@@ -302,7 +345,7 @@ function Root() {
         onChange: (self, _, text) => setAuthPassword(text),
         oninputsubmit: submitAuthPassword
       }), null);
-      libs.insert(_el$11, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$15, libs.createComponent(EOM_Button.EOM_Button, {
         id: "InviteKeyConfirm",
         get enabled() {
           return libs.memo(() => !!(!previewLocalAuth() && !submittingAuth()))() && authPassword().trim() !== "";
@@ -313,7 +356,7 @@ function Root() {
         },
         onactivate: submitAuthPassword
       }), null);
-      libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$16, libs.createComponent(EOM_Button.EOM_Button, {
         id: "SetPassword",
         size: "Small",
         get text() {
@@ -325,7 +368,7 @@ function Root() {
           }
         }
       }), null);
-      libs.insert(_el$12, libs.createComponent(libs.Show, {
+      libs.insert(_el$16, libs.createComponent(libs.Show, {
         get when() {
           return previewLocalAuth();
         },
@@ -343,56 +386,56 @@ function Root() {
           });
         }
       }), null);
-      libs.insert(_el$0, libs.createComponent(libs.Show, {
+      libs.insert(_el$12, libs.createComponent(libs.Show, {
         get when() {
           return previewLocalAuth();
         },
         get children() {
-          const _el$13 = libs.createElement("Label", {
+          const _el$17 = libs.createElement("Label", {
             id: "LocalAuthPreviewHint",
             get text() {
               return GetLocalization("#Login_LocalAuth_PreviewHint");
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$13, "text", GetLocalization("#Login_LocalAuth_PreviewHint"), _$p));
-          return _el$13;
+          libs.effect(_$p => libs.setProp(_el$17, "text", GetLocalization("#Login_LocalAuth_PreviewHint"), _$p));
+          return _el$17;
         }
       }), null);
       libs.effect(_p$ => {
         const _v$ = GetLocalization("#Login_LocalAuth_Title"),
           _v$2 = GetLocalization("#Login_LocalAuth_Desc");
-        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$1, "text", _v$, _p$._v$));
-        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$10, "text", _v$2, _p$._v$2));
+        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$13, "text", _v$, _p$._v$));
+        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$14, "text", _v$2, _p$._v$2));
         return _p$;
       }, {
         _v$: undefined,
         _v$2: undefined
       });
-      return _el$9;
+      return _el$11;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerLoginState() == PlayerLoginState.NoPermission;
     },
     get children() {
-      const _el$14 = libs.createElement("Panel", {
+      const _el$18 = libs.createElement("Panel", {
           id: "InviteKey"
         }, null),
-        _el$15 = libs.createElement("Panel", {
+        _el$19 = libs.createElement("Panel", {
           id: "InviteKeyContainer"
-        }, _el$14);
+        }, _el$18);
         libs.createElement("Label", {
           id: "InviteKeyTitle",
           text: "#Login_NoPermission_Title"
-        }, _el$15);
+        }, _el$19);
         libs.createElement("Label", {
           id: "InviteKeyDesc",
           text: "#Login_NoPermission_Desc"
-        }, _el$15);
-        const _el$18 = libs.createElement("Panel", {
+        }, _el$19);
+        const _el$22 = libs.createElement("Panel", {
           id: "InviteKeyForm"
-        }, _el$15);
-      libs.insert(_el$18, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+        }, _el$19);
+      libs.insert(_el$22, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
         id: "InviteKeyEntry",
         get text() {
           return inviteKey();
@@ -401,7 +444,7 @@ function Root() {
         onChange: (self, _, text) => setInviteKey(text),
         oninputsubmit: submitInviteKey
       }), null);
-      libs.insert(_el$18, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$22, libs.createComponent(EOM_Button.EOM_Button, {
         id: "InviteKeyConfirm",
         get enabled() {
           return libs.memo(() => !!!submittingInviteKey())() && inviteKey().trim() !== "";
@@ -412,7 +455,7 @@ function Root() {
         },
         onactivate: submitInviteKey
       }), null);
-      return _el$14;
+      return _el$18;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
@@ -431,40 +474,40 @@ function Root() {
             text: "#Login_Banned_Content",
             html: true
           }, null), (() => {
-            const _el$20 = libs.createElement("Panel", {
+            const _el$24 = libs.createElement("Panel", {
                 id: "BanCountdownContainer"
               }, null);
               libs.createElement("Label", {
                 text: "#Login_Banned_Endtime"
-              }, _el$20);
-            libs.insert(_el$20, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+              }, _el$24);
+            libs.insert(_el$24, libs.createComponent(EOM_Countdown.EOM_Countdown, {
               id: "BanCountdown",
               get endTime() {
                 return loginState()?.[Players.GetLocalPlayer()]?.ban_end_time ?? 0;
               }
             }), null);
-            return _el$20;
+            return _el$24;
           })(), (() => {
-            const _el$22 = libs.createElement("Panel", {
+            const _el$26 = libs.createElement("Panel", {
                 flowChildren: "down",
                 align: "right bottom",
                 marginBottom: "20px"
               }, null),
-              _el$23 = libs.createElement("Panel", {
+              _el$27 = libs.createElement("Panel", {
                 id: "BanQrCode",
                 get ["class"]() {
                   return Language();
                 }
-              }, _el$22);
+              }, _el$26);
               libs.createElement("Label", {
                 id: "BanContact",
                 text: "#BanContact"
-              }, _el$22);
-            libs.setProp(_el$22, "flowChildren", "down");
-            libs.setProp(_el$22, "align", "right bottom");
-            libs.setProp(_el$22, "marginBottom", "20px");
-            libs.effect(_$p => libs.setProp(_el$23, "class", Language(), _$p));
-            return _el$22;
+              }, _el$26);
+            libs.setProp(_el$26, "flowChildren", "down");
+            libs.setProp(_el$26, "align", "right bottom");
+            libs.setProp(_el$26, "marginBottom", "20px");
+            libs.effect(_$p => libs.setProp(_el$27, "class", Language(), _$p));
+            return _el$26;
           })()];
         }
       });
@@ -474,46 +517,46 @@ function Root() {
       return showPasswordBrowser();
     },
     get children() {
-      const _el$25 = libs.createElement("Panel", {
+      const _el$29 = libs.createElement("Panel", {
           id: "PasswordBrowserOverlay",
           hittest: true
         }, null),
-        _el$26 = libs.createElement("Panel", {
+        _el$30 = libs.createElement("Panel", {
           id: "PasswordBrowserWindow"
-        }, _el$25),
-        _el$27 = libs.createElement("Panel", {
+        }, _el$29),
+        _el$31 = libs.createElement("Panel", {
           id: "PasswordBrowserHeader"
-        }, _el$26),
-        _el$28 = libs.createElement("Label", {
+        }, _el$30),
+        _el$32 = libs.createElement("Label", {
           id: "PasswordBrowserTitle",
           get text() {
             return GetLocalization("#Login_SetPassword");
           }
-        }, _el$27),
-        _el$29 = libs.createElement("GenericPanel", {
+        }, _el$31),
+        _el$33 = libs.createElement("GenericPanel", {
           id: "PasswordBrowserContent",
           type: "DOTAHTMLPanel",
           url: SET_PASSWORD_URL,
           acceptsinput: true,
           hittest: true
-        }, _el$26);
-      libs.setProp(_el$25, "onactivate", () => {});
-      libs.insert(_el$27, libs.createComponent(EOM_Button.EOM_CloseButton, {
+        }, _el$30);
+      libs.setProp(_el$29, "onactivate", () => {});
+      libs.insert(_el$31, libs.createComponent(EOM_Button.EOM_CloseButton, {
         id: "PasswordBrowserClose",
         onactivate: () => setShowPasswordBrowser(false)
       }), null);
-      libs.setProp(_el$29, "url", SET_PASSWORD_URL);
-      libs.setProp(_el$29, "onload", self => {
+      libs.setProp(_el$33, "url", SET_PASSWORD_URL);
+      libs.setProp(_el$33, "onload", self => {
         self.SetAcceptsFocus(true);
         self.SetIgnoreCursor(false);
         self.SetFocus();
       });
-      libs.effect(_$p => libs.setProp(_el$28, "text", GetLocalization("#Login_SetPassword"), _$p));
-      return _el$25;
+      libs.effect(_$p => libs.setProp(_el$32, "text", GetLocalization("#Login_SetPassword"), _$p));
+      return _el$29;
     }
   })];
 }
 (() => {
   $.GetContextPanel().SetPanelEvent("onactivate", () => {});
   libs.render(() => libs.createComponent(Root, {}), $.GetContextPanel());
-})();
+})();

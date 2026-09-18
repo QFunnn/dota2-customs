@@ -944,9 +944,6 @@ const BottomBar = () => {
     mode: "keyboard",
     isGamepad: 0
   });
-  const autoCastState = solid_utils.createPlayerNetDataSignal("common", "autocast_enabled", {
-    enabled: 1
-  });
   const playerResource = solid_utils.createPlayerNetDataSignal("player_data", "resource");
   const interactHold = solid_utils.createPlayerNetDataSignal("common", "interact_hold", {
     active: 0,
@@ -990,7 +987,6 @@ const BottomBar = () => {
   const [gamepadBindings, setGamepadBindings] = libs.createSignal({
     ...DEFAULT_GAMEPAD_BINDINGS
   });
-  const autoCastHotkey = libs.createMemo(() => keyBindings()[KeyFunction.ToggleAutoCast] ?? DEFAULT_KEYBOARD_BINDINGS[KeyFunction.ToggleAutoCast] ?? "");
   const isGamepad = libs.createMemo(() => inputMode().isGamepad == 1);
   libs.createEffect(libs.on(player_key_values, data => {
     const mode = data?.["move_mode"]?.value ?? MOVE_MODE_KEYBOARD;
@@ -1324,24 +1320,24 @@ const BottomBar = () => {
       _el$20 = libs.createElement("Panel", {
         id: "UnitPanel"
       }, _el$),
-      _el$22 = libs.createElement("Panel", {
+      _el$21 = libs.createElement("Panel", {
         id: "PortraitContainer",
         hittest: false,
         hittestchildren: false
       }, _el$20);
       libs.createElement("Panel", {
         id: "PortraitBG"
-      }, _el$22);
-      const _el$24 = libs.createElement("Panel", {
+      }, _el$21);
+      const _el$23 = libs.createElement("Panel", {
         id: "AbilityBar"
       }, _el$20);
       libs.createElement("Image", {
         id: "AbilityBarBG"
-      }, _el$24);
-      const _el$26 = libs.createElement("Panel", {
+      }, _el$23);
+      const _el$25 = libs.createElement("Panel", {
         id: "AbilityList"
-      }, _el$24),
-      _el$27 = libs.createElement("Panel", {
+      }, _el$23),
+      _el$26 = libs.createElement("Panel", {
         id: "ResourceList"
       }, _el$);
     libs.insert(_el$, libs.createComponent(libs.Show, {
@@ -1421,27 +1417,7 @@ const BottomBar = () => {
         });
       }
     }), _el$20);
-    libs.insert(_el$20, libs.createComponent(libs.Show, {
-      get when() {
-        return autoCastState()?.enabled !== 1;
-      },
-      get children() {
-        const _el$21 = libs.createElement("Label", {
-          id: "AutoCastTip",
-          text: "#ControlGuide_AutoCastDisabled",
-          get vars() {
-            return {
-              key: autoCastHotkey()
-            };
-          }
-        }, null);
-        libs.effect(_$p => libs.setProp(_el$21, "vars", {
-          key: autoCastHotkey()
-        }, _$p));
-        return _el$21;
-      }
-    }), _el$22);
-    libs.insert(_el$22, libs.createComponent(solid_utils.DynamicKey, {
+    libs.insert(_el$21, libs.createComponent(solid_utils.DynamicKey, {
       key: heroName,
       children: hero => libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
         id: "portraitHUD",
@@ -1459,8 +1435,8 @@ const BottomBar = () => {
       })
     }), null);
     const _ref$ = uiAbilityList;
-    typeof _ref$ === "function" ? libs.use(_ref$, _el$26) : uiAbilityList = _el$26;
-    libs.insert(_el$27, libs.createComponent(ResourceItem, {
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$25) : uiAbilityList = _el$25;
+    libs.insert(_el$26, libs.createComponent(ResourceItem, {
       type: "Heart",
       get value() {
         return playerResource()?.heart ?? 0;
@@ -1468,7 +1444,7 @@ const BottomBar = () => {
       icon: "h_heart.png",
       tooltip: "#HeartInfo"
     }), null);
-    libs.insert(_el$27, libs.createComponent(ResourceItem, {
+    libs.insert(_el$26, libs.createComponent(ResourceItem, {
       type: "Gold",
       get value() {
         return playerResource()?.gold ?? 0;
@@ -1476,7 +1452,7 @@ const BottomBar = () => {
       icon: "h_coin.png",
       tooltip: "#GoldInfo"
     }), null);
-    libs.insert(_el$27, libs.createComponent(ResourceItem, {
+    libs.insert(_el$26, libs.createComponent(ResourceItem, {
       type: "RevivalCoin",
       get value() {
         return player_tokens()?.["110009"]?.amounts ?? 0;
@@ -1489,7 +1465,7 @@ const BottomBar = () => {
         text: "#110009_description"
       }
     }), null);
-    libs.insert(_el$27, libs.createComponent(ResourceItem, {
+    libs.insert(_el$26, libs.createComponent(ResourceItem, {
       type: "BountyKey",
       get value() {
         return player_tokens()?.["110006"]?.amounts ?? 0;
@@ -1544,35 +1520,35 @@ const ResourceItem = props => {
   });
   const [local, others] = libs.splitProps(merged, ['type', 'icon', 'iconPath', "value"]);
   return (() => {
-    const _el$28 = libs.createElement("Panel", others, null),
-      _el$29 = libs.createElement("Panel", {
+    const _el$27 = libs.createElement("Panel", others, null),
+      _el$28 = libs.createElement("Panel", {
         align: "right center",
         flowChildren: "left"
-      }, _el$28),
-      _el$30 = libs.createElement("Image", {
+      }, _el$27),
+      _el$29 = libs.createElement("Image", {
         get src() {
           return local.iconPath ?? getSrcPath("hud/" + (local.icon ?? ""));
         }
-      }, _el$29),
-      _el$31 = libs.createElement("Label", {
+      }, _el$28),
+      _el$30 = libs.createElement("Label", {
         get text() {
           return local.value;
         }
-      }, _el$29);
-    libs.spread(_el$28, others, true);
-    libs.setProp(_el$29, "align", "right center");
-    libs.setProp(_el$29, "flowChildren", "left");
+      }, _el$28);
+    libs.spread(_el$27, others, true);
+    libs.setProp(_el$28, "align", "right center");
+    libs.setProp(_el$28, "flowChildren", "left");
     libs.effect(_p$ => {
       const _v$8 = local.iconPath ?? getSrcPath("hud/" + (local.icon ?? "")),
         _v$9 = local.value;
-      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$30, "src", _v$8, _p$._v$8));
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$31, "text", _v$9, _p$._v$9));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$29, "src", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$30, "text", _v$9, _p$._v$9));
       return _p$;
     }, {
       _v$8: undefined,
       _v$9: undefined
     });
-    return _el$28;
+    return _el$27;
   })();
 };
 const getInteractActionText = (interactType, tooltip) => {
@@ -1593,7 +1569,7 @@ const InteractInfoRow = props => {
   const hasCost = () => (props.costInfo?.cost ?? 0) > 0 || freeCount() > 0;
   const costTypeClass = () => getCostTypeClass(props.costInfo?.costType ?? "");
   const costIcon = () => costTypeClass().startsWith("1") ? (() => {
-    const _el$32 = libs.createElement("Panel", {
+    const _el$31 = libs.createElement("Panel", {
       get ["class"]() {
         return libs.classNames("CostIcon");
       },
@@ -1604,57 +1580,57 @@ const InteractInfoRow = props => {
     libs.effect(_p$ => {
       const _v$0 = libs.classNames("CostIcon"),
         _v$1 = getImagePath(`tokens/${costTypeClass()}.png`);
-      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$32, "class", _v$0, _p$._v$0));
-      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$32, "backgroundImage", _v$1, _p$._v$1));
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$31, "class", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$31, "backgroundImage", _v$1, _p$._v$1));
       return _p$;
     }, {
       _v$0: undefined,
       _v$1: undefined
     });
-    return _el$32;
+    return _el$31;
   })() : (() => {
-    const _el$33 = libs.createElement("Panel", {
+    const _el$32 = libs.createElement("Panel", {
       get ["class"]() {
         return libs.classNames("CostIcon", `${costTypeClass()}Icon`);
       }
     }, null);
-    libs.effect(_$p => libs.setProp(_el$33, "class", libs.classNames("CostIcon", `${costTypeClass()}Icon`), _$p));
-    return _el$33;
+    libs.effect(_$p => libs.setProp(_el$32, "class", libs.classNames("CostIcon", `${costTypeClass()}Icon`), _$p));
+    return _el$32;
   })();
   const progressPercent = () => Math.floor(Math.max(0, Math.min(1, props.progress ?? 0)) * 100);
   return (() => {
-    const _el$34 = libs.createElement("Panel", {
+    const _el$33 = libs.createElement("Panel", {
         "class": "InteractInfoRow"
       }, null),
-      _el$35 = libs.createElement("Panel", {
+      _el$34 = libs.createElement("Panel", {
         "class": "InteractProgressTrack"
-      }, _el$34),
-      _el$36 = libs.createElement("Panel", {
+      }, _el$33),
+      _el$35 = libs.createElement("Panel", {
         "class": "InteractProgressFill",
         get style() {
           return {
             clip: `rect( 0%, ${progressPercent()}%, 100%, 0% )`
           };
         }
-      }, _el$35),
-      _el$38 = libs.createElement("Label", {
+      }, _el$34),
+      _el$37 = libs.createElement("Label", {
         "class": "InteractAction",
         get text() {
           return props.actionText;
         }
-      }, _el$34),
-      _el$39 = libs.createElement("Panel", {
+      }, _el$33),
+      _el$38 = libs.createElement("Panel", {
         "class": "InteractCost"
-      }, _el$34);
+      }, _el$33);
       libs.createElement("Label", {
         "class": "InteractCostPrefix",
         text: "("
-      }, _el$39);
-      const _el$42 = libs.createElement("Label", {
+      }, _el$38);
+      const _el$41 = libs.createElement("Label", {
         "class": "InteractCostSuffix",
         text: ")"
-      }, _el$39);
-    libs.insert(_el$34, libs.createComponent(libs.Show, {
+      }, _el$38);
+    libs.insert(_el$33, libs.createComponent(libs.Show, {
       get when() {
         return props.longPress === true;
       },
@@ -1664,8 +1640,8 @@ const InteractInfoRow = props => {
           text: "#Interact_LongPress"
         }, null);
       }
-    }), _el$38);
-    libs.insert(_el$34, libs.createComponent(libs.Show, {
+    }), _el$37);
+    libs.insert(_el$33, libs.createComponent(libs.Show, {
       get when() {
         return props.isGamepad === true;
       },
@@ -1683,18 +1659,18 @@ const InteractInfoRow = props => {
           }
         });
       }
-    }), _el$38);
-    libs.insert(_el$39, libs.createComponent(libs.Switch, {
+    }), _el$37);
+    libs.insert(_el$38, libs.createComponent(libs.Switch, {
       get fallback() {
         return [libs.memo(costIcon), (() => {
-          const _el$43 = libs.createElement("Label", {
+          const _el$42 = libs.createElement("Label", {
             "class": "InteractCostValue",
             get text() {
               return `-${props.costInfo?.cost ?? 0}`;
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$43, "text", `-${props.costInfo?.cost ?? 0}`, _$p));
-          return _el$43;
+          libs.effect(_$p => libs.setProp(_el$42, "text", `-${props.costInfo?.cost ?? 0}`, _$p));
+          return _el$42;
         })()];
       },
       get children() {
@@ -1703,18 +1679,18 @@ const InteractInfoRow = props => {
             return freeCount() > 0;
           },
           get children() {
-            const _el$41 = libs.createElement("Label", {
+            const _el$40 = libs.createElement("Label", {
               "class": "InteractCostValue",
               get text() {
                 return `剩余${freeCount()}次`;
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$41, "text", `剩余${freeCount()}次`, _$p));
-            return _el$41;
+            libs.effect(_$p => libs.setProp(_el$40, "text", `剩余${freeCount()}次`, _$p));
+            return _el$40;
           }
         });
       }
-    }), _el$42);
+    }), _el$41);
     libs.effect(_p$ => {
       const _v$10 = {
           Secondary: props.longPress === true
@@ -1728,12 +1704,12 @@ const InteractInfoRow = props => {
         _v$15 = {
           NoEnough: props.enoughResource === false && freeCount() <= 0
         };
-      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$34, "classList", _v$10, _p$._v$10));
-      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$35, "visible", _v$11, _p$._v$11));
-      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$36, "style", _v$12, _p$._v$12));
-      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$38, "text", _v$13, _p$._v$13));
-      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$39, "visible", _v$14, _p$._v$14));
-      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$39, "classList", _v$15, _p$._v$15));
+      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$33, "classList", _v$10, _p$._v$10));
+      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$34, "visible", _v$11, _p$._v$11));
+      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$35, "style", _v$12, _p$._v$12));
+      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$37, "text", _v$13, _p$._v$13));
+      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$38, "visible", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$38, "classList", _v$15, _p$._v$15));
       return _p$;
     }, {
       _v$10: undefined,
@@ -1743,7 +1719,7 @@ const InteractInfoRow = props => {
       _v$14: undefined,
       _v$15: undefined
     });
-    return _el$34;
+    return _el$33;
   })();
 };
 const AbilitySlot = () => {
@@ -1862,39 +1838,39 @@ const AbilitySlot = () => {
     }
   }));
   return (() => {
-    const _el$44 = libs.createElement("Panel", {
+    const _el$43 = libs.createElement("Panel", {
         "class": "AbilitySlot"
       }, null),
-      _el$45 = libs.createElement("Panel", {
+      _el$44 = libs.createElement("Panel", {
         "class": "AbilityImageContainer"
-      }, _el$44);
+      }, _el$43);
       libs.createElement("Image", {
         id: "AbilitySlotBorder",
         hittest: false
-      }, _el$45);
-      const _el$47 = libs.createElement("DOTAAbilityImage", {
+      }, _el$44);
+      const _el$46 = libs.createElement("DOTAAbilityImage", {
         get abilityname() {
           return abilityName();
         }
-      }, _el$45),
-      _el$48 = libs.createElement("Panel", {
+      }, _el$44),
+      _el$47 = libs.createElement("Panel", {
         "class": "CooldownOverlay",
         hittest: false
-      }, _el$45),
-      _el$49 = libs.createElement("Label", {
+      }, _el$44),
+      _el$48 = libs.createElement("Label", {
         "class": "CooldownNumber",
         get text() {
           return cooldownText();
         },
         hittest: false
-      }, _el$48),
-      _el$50 = libs.createElement("Image", {
+      }, _el$47),
+      _el$49 = libs.createElement("Image", {
         "class": "CooldownSweep",
         get height() {
           return `${cooldownPercent()}%`;
         },
         hittest: false
-      }, _el$48);
+      }, _el$47);
       libs.createElement("DOTAParticleScenePanel", {
         id: "AutoCasting",
         particleName: "particles/ui/hud/autocasting_square.vpcf",
@@ -1903,35 +1879,35 @@ const AbilitySlot = () => {
         fov: "110",
         hittest: false,
         particleonly: true
-      }, _el$45);
-      const _el$52 = libs.createElement("Panel", {
+      }, _el$44);
+      const _el$51 = libs.createElement("Panel", {
         id: "AbilityCharges",
         hittest: false,
         hittestchildren: false
-      }, _el$45),
-      _el$53 = libs.createElement("Panel", {
+      }, _el$44),
+      _el$52 = libs.createElement("Panel", {
         id: "AbilityChargesBorder",
         get style() {
           return {
             clip: `radial( 50% 50%, 0deg, ${chargeRestorePercent() * 3.6}deg )`
           };
         }
-      }, _el$52),
-      _el$54 = libs.createElement("Label", {
+      }, _el$51),
+      _el$53 = libs.createElement("Label", {
         "class": "NormalCount",
         get text() {
           return charges().toString();
         }
-      }, _el$52),
-      _el$55 = libs.createElement("Label", {
+      }, _el$51),
+      _el$54 = libs.createElement("Label", {
         id: "ManaCost",
         get text() {
           return manaCost();
         }
-      }, _el$45);
-    libs.use(p => setSelf(p), _el$44);
-    libs.setProp(_el$44, "oncontextmenu", toggleAutoCast);
-    libs.insert(_el$44, libs.createComponent(libs.Show, {
+      }, _el$44);
+    libs.use(p => setSelf(p), _el$43);
+    libs.setProp(_el$43, "oncontextmenu", toggleAutoCast);
+    libs.insert(_el$43, libs.createComponent(libs.Show, {
       get when() {
         return isGamepad();
       },
@@ -1976,18 +1952,18 @@ const AbilitySlot = () => {
         _v$25 = charges().toString(),
         _v$26 = manaCost() > 0,
         _v$27 = manaCost();
-      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$44, "classList", _v$16, _p$._v$16));
-      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$47, "abilityname", _v$17, _p$._v$17));
-      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$47, "customTooltip", _v$18, _p$._v$18));
-      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$48, "visible", _v$19, _p$._v$19));
-      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$49, "text", _v$20, _p$._v$20));
-      _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$50, "height", _v$21, _p$._v$21));
-      _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$52, "visible", _v$22, _p$._v$22));
-      _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$53, "style", _v$23, _p$._v$23));
-      _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$53, "classList", _v$24, _p$._v$24));
-      _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$54, "text", _v$25, _p$._v$25));
-      _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$55, "visible", _v$26, _p$._v$26));
-      _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$55, "text", _v$27, _p$._v$27));
+      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$43, "classList", _v$16, _p$._v$16));
+      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$46, "abilityname", _v$17, _p$._v$17));
+      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$46, "customTooltip", _v$18, _p$._v$18));
+      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$47, "visible", _v$19, _p$._v$19));
+      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$48, "text", _v$20, _p$._v$20));
+      _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$49, "height", _v$21, _p$._v$21));
+      _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$51, "visible", _v$22, _p$._v$22));
+      _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$52, "style", _v$23, _p$._v$23));
+      _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$52, "classList", _v$24, _p$._v$24));
+      _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$53, "text", _v$25, _p$._v$25));
+      _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$54, "visible", _v$26, _p$._v$26));
+      _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$54, "text", _v$27, _p$._v$27));
       return _p$;
     }, {
       _v$16: undefined,
@@ -2003,7 +1979,7 @@ const AbilitySlot = () => {
       _v$26: undefined,
       _v$27: undefined
     });
-    return _el$44;
+    return _el$43;
   })();
 };
 const ControlGuide = props => {
@@ -2031,7 +2007,7 @@ const ControlGuide = props => {
   });
   const show_control_guide_key = "show_control_guide";
   return (() => {
-    const _el$56 = libs.createElement("Panel", {
+    const _el$55 = libs.createElement("Panel", {
         id: "ControlGuideRoot",
         get ["class"]() {
           return libs.classNames({
@@ -2040,35 +2016,41 @@ const ControlGuide = props => {
           });
         }
       }, null),
-      _el$57 = libs.createElement("Panel", {
+      _el$56 = libs.createElement("Panel", {
         id: "ControlGuidePanel"
-      }, _el$56),
-      _el$58 = libs.createElement("Panel", {
+      }, _el$55),
+      _el$57 = libs.createElement("Panel", {
         id: "MoveKeys",
         "class": "KeysContainer"
-      }, _el$57),
-      _el$59 = libs.createElement("Panel", {
+      }, _el$56),
+      _el$58 = libs.createElement("Panel", {
         "class": "KeyList"
-      }, _el$58);
+      }, _el$57);
       libs.createElement("Label", {
         id: "KeyDes",
         text: "#ControlGuide_Move"
-      }, _el$58);
-      const _el$61 = libs.createElement("Panel", {
+      }, _el$57);
+      const _el$60 = libs.createElement("Panel", {
         id: "AbilityKeys",
         "class": "KeysContainer"
-      }, _el$57),
-      _el$62 = libs.createElement("Panel", {
+      }, _el$56),
+      _el$61 = libs.createElement("Panel", {
         "class": "KeyList"
-      }, _el$61);
+      }, _el$60);
       libs.createElement("Label", {
         id: "KeyDes",
         text: "#ControlGuide_CastSkill"
-      }, _el$61);
-      const _el$64 = libs.createElement("Panel", {
+      }, _el$60);
+      const _el$63 = libs.createElement("Label", {
+        id: "AutoCastTip",
+        get text() {
+          return GetLocalization("#ControlGuide_AutoCastTip");
+        }
+      }, _el$56),
+      _el$64 = libs.createElement("Panel", {
         id: "MoveKeys",
         "class": "KeysContainer FoldUpShow"
-      }, _el$56),
+      }, _el$55),
       _el$65 = libs.createElement("Panel", {
         "class": "KeyList"
       }, _el$64);
@@ -2076,7 +2058,7 @@ const ControlGuide = props => {
         id: "KeyDes",
         text: "#ControlGuide_Move"
       }, _el$64);
-    libs.insert(_el$59, libs.createComponent(libs.For, {
+    libs.insert(_el$58, libs.createComponent(libs.For, {
       get each() {
         return movekeys();
       },
@@ -2097,7 +2079,7 @@ const ControlGuide = props => {
         })();
       }
     }));
-    libs.insert(_el$62, libs.createComponent(libs.For, {
+    libs.insert(_el$61, libs.createComponent(libs.For, {
       get each() {
         return abilityKeys();
       },
@@ -2126,7 +2108,7 @@ const ControlGuide = props => {
         })();
       }
     }));
-    libs.insert(_el$57, libs.createComponent(EOM_ToggleButton.EOM_ToggleButton, {
+    libs.insert(_el$56, libs.createComponent(EOM_ToggleButton.EOM_ToggleButton, {
       id: "ShowTips",
       text: "#ControlGuide_DontShowAgain",
       get selected() {
@@ -2143,7 +2125,7 @@ const ControlGuide = props => {
           SetRequesting(false);
         });
       }
-    }), null);
+    }), _el$63);
     libs.insert(_el$65, libs.createComponent(libs.For, {
       get each() {
         return movekeys();
@@ -2165,11 +2147,20 @@ const ControlGuide = props => {
         })();
       }
     }));
-    libs.effect(_$p => libs.setProp(_el$56, "class", libs.classNames({
-      Hide: hide(),
-      FoldUp: Boolean(player_key_values()[show_control_guide_key]?.value ?? false)
-    }), _$p));
-    return _el$56;
+    libs.effect(_p$ => {
+      const _v$28 = libs.classNames({
+          Hide: hide(),
+          FoldUp: Boolean(player_key_values()[show_control_guide_key]?.value ?? false)
+        }),
+        _v$29 = GetLocalization("#ControlGuide_AutoCastTip");
+      _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$55, "class", _v$28, _p$._v$28));
+      _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$63, "text", _v$29, _p$._v$29));
+      return _p$;
+    }, {
+      _v$28: undefined,
+      _v$29: undefined
+    });
+    return _el$55;
   })();
 };
 const InteractInfo = props => {
@@ -4755,4 +4746,4 @@ function ReportPing() {
     pHud.SetHasClass("ShowStoreContent", open_store().value);
   });
 })();
-libs.render(HudMain, $.GetContextPanel());
+libs.render(HudMain, $.GetContextPanel());

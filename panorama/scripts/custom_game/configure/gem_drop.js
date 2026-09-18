@@ -279,4 +279,4 @@ GameUI.CustomUIConfig().gem_drop = {
 		rarity_weight: "130|110|60",
 		cell_limit: "24|15"
 	}
-};
+};

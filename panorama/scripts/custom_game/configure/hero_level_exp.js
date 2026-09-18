@@ -409,4 +409,4 @@ GameUI.CustomUIConfig().hero_level_exp = {
 		level: 100,
 		exp: 0
 	}
-};
+};

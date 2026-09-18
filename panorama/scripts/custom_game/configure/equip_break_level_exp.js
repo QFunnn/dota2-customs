@@ -609,4 +609,4 @@ GameUI.CustomUIConfig().equip_break_level_exp = {
 		exp: 0,
 		effect: "damage_intensity:10|defense_intensity:10"
 	}
-};
+};

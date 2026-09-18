@@ -24,9 +24,5 @@ GameUI.CustomUIConfig().gem_setting = {
 	gem_swap: {
 		key: "gem_swap",
 		value: "120011:200"
-	},
-	gem_fusion: {
-		key: "gem_fusion",
-		value: "120011:800"
 	}
 };

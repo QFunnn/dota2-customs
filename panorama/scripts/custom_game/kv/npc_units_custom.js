@@ -6322,4 +6322,4 @@ GameUI.CustomUIConfig().npc_units_custom = {
 		"VisionDaytimeRange": 0,
 		"VisionNighttimeRange": 0
 	}
-};
+};

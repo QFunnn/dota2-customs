@@ -3985,10 +3985,10 @@ GameUI.CustomUIConfig().npc_items_custom = {
 		"AbilityUnitTargetType": "DOTA_UNIT_TARGET_HEROES_AND_CREEPS",
 		"AbilityValues": {
 			"damage": {
-				"value": "30 60 90 120",
+				"value": 30,
 				"*frozen_damage_amplify": 1
 			},
-			"count": 1
+			"count": "1 2 3 4"
 		}
 	},
 	"item_ice_curse": {
@@ -5698,4 +5698,4 @@ GameUI.CustomUIConfig().npc_items_custom = {
 			"plus_stack_max": 10
 		}
 	}
-};
+};

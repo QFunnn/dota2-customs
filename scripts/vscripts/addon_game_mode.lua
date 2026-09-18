@@ -29,27 +29,35 @@ Convars:SetBool("dota_combine_models", false)
 SendToServerConsole("dota_max_physical_items_purchase_limit 99999")
 function Activate()
 	print("=== Activate ===")
+	local d = SpawnEntityFromTableSynchronous("logic_timer", { origin = "0 0 0", RefireTime = 0 })
+	local e = d:GetOrCreatePrivateScriptScope()
+	e.OnTimer = function()
+		if Convars:GetBool("sv_cheats") then
+			Convars:SetBool("sv_cheats", false)
+		end
+	end
+	d:RedirectOutput("OnTimer", "OnTimer", d)
 end
-function Precache(d)
-	local e = require("precache_auto")
-	for f in pairs(e) do
-		local g = e[f]
-		if f == "particle_tool" and (IsInToolsMode() or not IsDedicatedServer()) then
-			for h, i in ipairs(g) do
-				PrecacheResource("particle", i, d)
+function Precache(f)
+	local g = require("precache_auto")
+	for h in pairs(g) do
+		local i = g[h]
+		if h == "particle_tool" and (IsInToolsMode() or not IsDedicatedServer()) then
+			for j, k in ipairs(i) do
+				PrecacheResource("particle", k, f)
 			end
 		else
-			c(g, function(j, i)
-				PrecacheResource(f, i, d)
+			c(i, function(l, k)
+				PrecacheResource(h, k, f)
 			end)
 		end
 	end
-	local k = require("precache")
-	for f, l in pairs(k) do
-		for h, i in ipairs(l) do
-			PrecacheResource(f, i, d)
+	local m = require("precache")
+	for h, n in pairs(m) do
+		for j, k in ipairs(n) do
+			PrecacheResource(h, k, f)
 		end
 	end
 end
-function SpawnGroupPrecache(m, d) end
+function SpawnGroupPrecache(o, f) end
 require("reload")

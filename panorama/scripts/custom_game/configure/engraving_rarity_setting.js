@@ -44,4 +44,4 @@ GameUI.CustomUIConfig().engraving_rarity_setting = {
 		adverb_bonus: 0.5,
 		break_bonus: "120015:12"
 	}
-};
+};

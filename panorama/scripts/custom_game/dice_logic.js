@@ -47,4 +47,4 @@ exports.hasClaimableDiceTask = hasClaimableDiceTask;
 exports.isDiceMilestoneClaimable = isDiceMilestoneClaimable;
 exports.isDiceTask = isDiceTask;
 exports.isDiceTaskActive = isDiceTaskActive;
-exports.isDiceTaskClaimable = isDiceTaskClaimable;
+exports.isDiceTaskClaimable = isDiceTaskClaimable;

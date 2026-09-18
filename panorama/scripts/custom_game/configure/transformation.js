@@ -89,14 +89,9 @@ GameUI.CustomUIConfig().transformation = {
 		beizhu: "武器限定卡池-英雄2橙色武器",
 		transformation: "110002:600"
 	},
-	"1000006": {
-		id: 1000006,
-		beizhu: "英雄卡池-英雄2橙色武器",
-		transformation: "110002:600"
-	},
 	"1000008": {
 		id: 1000008,
-		beizhu: "武器限定卡池-英雄2橙色武器",
+		beizhu: "英雄卡池-英雄1橙色武器",
 		transformation: "110002:600"
 	},
 	"1000011": {
@@ -106,7 +101,7 @@ GameUI.CustomUIConfig().transformation = {
 	},
 	"1000015": {
 		id: 1000015,
-		beizhu: "英雄卡池-英雄1橙色武器",
+		beizhu: "英雄卡池-英雄2橙色武器",
 		transformation: "110002:600"
 	},
 	"1000018": {
@@ -114,8 +109,8 @@ GameUI.CustomUIConfig().transformation = {
 		beizhu: "武器限定卡池-英雄3橙色武器",
 		transformation: "110002:600"
 	},
-	"1000023": {
-		id: 1000023,
+	"1000025": {
+		id: 1000025,
 		beizhu: "英雄卡池-英雄3橙色武器",
 		transformation: "110002:600"
 	},
@@ -124,9 +119,14 @@ GameUI.CustomUIConfig().transformation = {
 		beizhu: "武器限定卡池-英雄3橙色武器",
 		transformation: "110002:600"
 	},
+	"1000030": {
+		id: 1000030,
+		beizhu: "武器限定卡池-英雄1橙色武器",
+		transformation: "110002:600"
+	},
 	"1000031": {
 		id: 1000031,
-		beizhu: "武器限定卡池-英雄1橙色武器",
+		beizhu: "武器限定卡池-英雄2橙色武器",
 		transformation: "110002:600"
 	},
 	"1000032": {

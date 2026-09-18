@@ -1570,4 +1570,4 @@ GameUI.CustomUIConfig().talent_effect = {
 			magical_damage_amplify: 20
 		}
 	}
-};
+};

@@ -29,4 +29,4 @@ GameUI.CustomUIConfig().activity_saving_pot = {
 		plus_item: 700001,
 		plus_goods: 800023
 	}
-};
+};

@@ -39,4 +39,4 @@ GameUI.CustomUIConfig().activity_football_star = {
 		rank: 5,
 		rewards: "110007:30"
 	}
-};
+};

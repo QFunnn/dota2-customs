@@ -1209,4 +1209,4 @@ GameUI.CustomUIConfig().collection_essence = {
 		},
 		level_cost: 160
 	}
-};
+};

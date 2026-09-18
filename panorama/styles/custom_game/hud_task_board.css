@@ -2520,19 +2520,50 @@
 	animation-delay: 0.4s;
 }
 
-#TaskBoard .TaskBoxWrapper:hover #TaskBoxHoverFrame
-{
-	opacity: 1;
-}
-
-#TaskBoard #MyBountyContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot1,#TaskBoard #TaskBoardContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot1,#TaskBoard #MyBountyContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot3,#TaskBoard #TaskBoardContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot3,#TaskBoard #MyBountyContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot5,#TaskBoard #TaskBoardContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot5
+#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot1,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot3,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot5
 {
 	animation-name: TaskBoardPinToWallLeft;
 }
 
-#TaskBoard #MyBountyContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot2,#TaskBoard #TaskBoardContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot2,#TaskBoard #MyBountyContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot4,#TaskBoard #TaskBoardContent.PlayTaskEnterAnimation .TaskBoxWrapper.TaskSlot4
+#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot2,#TaskBoard .TaskBoxWrapper.TaskEnterAnimation.TaskSlot4
 {
 	animation-name: TaskBoardPinToWallRight;
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity1 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_05_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity2 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_04_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity3 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_03_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity4 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_02_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Rarity5 .TagIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_01_png.vtex");
+}
+
+#TaskBoard .TaskBoxWrapper.Received .TaskBox
+{
+	wash-color: #00000099;
+	saturation: 0.75;
+}
+
+#TaskBoard .TaskBoxWrapper:hover #TaskBoxHoverFrame
+{
+	opacity: 1;
 }
 
 #TaskBoard .TaskBox
@@ -2543,37 +2574,6 @@
 	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_reward_paper_png.vtex");
 	background-size: 100%;
 	overflow: noclip;
-}
-
-#TaskBoard .TaskBox.Rarity1 .TagIcon
-{
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_05_png.vtex");
-}
-
-#TaskBoard .TaskBox.Rarity2 .TagIcon
-{
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_04_png.vtex");
-}
-
-#TaskBoard .TaskBox.Rarity3 .TagIcon
-{
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_03_png.vtex");
-}
-
-#TaskBoard .TaskBox.Rarity4 .TagIcon
-{
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_02_png.vtex");
-}
-
-#TaskBoard .TaskBox.Rarity5 .TagIcon
-{
-	background-image: url("s2r://panorama/images/custom_game/r2_reward/r2_rarity_01_png.vtex");
-}
-
-#TaskBoard .TaskBox.Received
-{
-	wash-color: #00000099;
-	saturation: 0.75;
 }
 
 #TaskBoard .TaskTag
@@ -2612,7 +2612,7 @@
 	visibility: collapse;
 }
 
-#TaskBoard #TaskBoxReceived.Show
+#TaskBoard .TaskBoxWrapper.Received #TaskBoxReceived
 {
 	visibility: visible;
 }

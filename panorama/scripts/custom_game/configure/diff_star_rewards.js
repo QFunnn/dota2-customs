@@ -196,29 +196,5 @@ GameUI.CustomUIConfig().diff_star_rewards = {
 		star_reward3: {
 			"190001": 2
 		}
-	},
-	"16": {
-		difficulty: 16,
-		star_reward1: {
-			"210001": 1600
-		},
-		star_reward2: {
-			"190001": 1
-		},
-		star_reward3: {
-			"190001": 2
-		}
-	},
-	"17": {
-		difficulty: 17,
-		star_reward1: {
-			"210001": 1750
-		},
-		star_reward2: {
-			"190001": 1
-		},
-		star_reward3: {
-			"190001": 2
-		}
 	}
 };

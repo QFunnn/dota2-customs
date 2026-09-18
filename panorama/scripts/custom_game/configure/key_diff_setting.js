@@ -53,4 +53,4 @@ GameUI.CustomUIConfig().key_diff_setting = {
 		diff: 20,
 		class_max: 6
 	}
-};
+};

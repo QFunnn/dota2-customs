@@ -87,49 +87,5 @@ GameUI.CustomUIConfig().gem_level = {
 		main_mul: 0.8,
 		entry_probability: 0,
 		decompose: "120011:183"
-	},
-	"10": {
-		id: 10,
-		rarity: 7,
-		level: 0,
-		main_mul: 0,
-		entry_probability: 50,
-		consume: "120011:40",
-		decompose: "120011:8"
-	},
-	"11": {
-		id: 11,
-		rarity: 7,
-		level: 1,
-		main_mul: 0.25,
-		entry_probability: 50,
-		consume: "120011:80",
-		decompose: "120011:36"
-	},
-	"12": {
-		id: 12,
-		rarity: 7,
-		level: 2,
-		main_mul: 0.5,
-		entry_probability: 50,
-		consume: "120011:120",
-		decompose: "120011:92"
-	},
-	"13": {
-		id: 13,
-		rarity: 7,
-		level: 3,
-		main_mul: 0.75,
-		entry_probability: 50,
-		consume: "120011:160",
-		decompose: "120011:176"
-	},
-	"14": {
-		id: 14,
-		rarity: 7,
-		level: 4,
-		main_mul: 1,
-		entry_probability: 0,
-		decompose: "120011:288"
 	}
 };

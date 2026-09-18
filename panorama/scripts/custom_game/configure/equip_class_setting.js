@@ -162,28 +162,6 @@ GameUI.CustomUIConfig().equip_class_setting = {
 		adverb_weight: "0|0|0|0|40|80|32|8|4|2|1",
 		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
 		rarity_upgrade_max: 7,
-		ischange: 1,
-		consume: "120001:5000|120008:3000"
-	},
-	"16": {
-		equip_class: 16,
-		need_level: 55,
-		main_bonus: 1.1,
-		adverb_bonus: 1.1,
-		adverb_weight: "0|0|0|0|40|80|32|8|4|2|1",
-		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
-		rarity_upgrade_max: 7,
-		ischange: 1,
-		consume: "120001:5000|120008:3000"
-	},
-	"17": {
-		equip_class: 17,
-		need_level: 60,
-		main_bonus: 1.15,
-		adverb_bonus: 1.15,
-		adverb_weight: "0|0|0|0|40|80|32|8|4|2|1",
-		refine_weight: "1:50|3:20|5:20|6:5|7:4|10:10",
-		rarity_upgrade_max: 7,
 		ischange: 0
 	}
 };

@@ -147,4 +147,4 @@ GameUI.CustomUIConfig().aquarium_slot = {
 			aquarium_slot: 1
 		}
 	}
-};
+};

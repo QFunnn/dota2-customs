@@ -2839,4 +2839,4 @@ GameUI.CustomUIConfig().collection_level_up = {
 			}
 		}
 	}
-};
+};

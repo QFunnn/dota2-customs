@@ -32,4 +32,4 @@ GameUI.CustomUIConfig().activity_login = {
 			rewards: "190002:10"
 		}
 	}
-};
+};

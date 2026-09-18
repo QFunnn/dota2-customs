@@ -73,7 +73,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 16,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 0.9,
+		adverb_bonus: 0.8,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -83,7 +83,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 17,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 1,
+		adverb_bonus: 0.8,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -93,7 +93,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 18,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 1,
+		adverb_bonus: 0.8,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -103,7 +103,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 19,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 1,
+		adverb_bonus: 0.8,
 		drawing_cost: {
 			"120008": 2000
 		},
@@ -113,7 +113,7 @@ GameUI.CustomUIConfig().drawing_class_setting = {
 		drawing_class: 20,
 		main_num: 1,
 		adverb_num: "2:0|3:15|4:40",
-		adverb_bonus: 1,
+		adverb_bonus: 0.8,
 		drawing_cost: {
 			"120008": 2000
 		},

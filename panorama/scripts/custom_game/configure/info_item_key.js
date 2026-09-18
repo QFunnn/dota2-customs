@@ -471,4 +471,4 @@ GameUI.CustomUIConfig().info_item_key = {
 		rarity: 7,
 		icon: 1951007
 	}
-};
+};

@@ -13,4 +13,4 @@ GameUI.CustomUIConfig().settle_setting = {
 		key: "boss_double_drop_cost",
 		value: "110006:1"
 	}
-};
+};

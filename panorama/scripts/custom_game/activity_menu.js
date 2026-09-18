@@ -51,8 +51,8 @@ function shouldShowPrimaryMenu(menu, config, context) {
     return !isLoginActivityCompleted(context);
   }
   if (menu == "boardslot") {
-    const dataEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.data_end_time ?? 0;
-    return isBeforeEndTime(context.now, dataEndTime);
+    const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.end_time ?? 0;
+    return isBeforeActivityMenuGraceEnd(context.now, endTime);
   }
   if (menu == "mining") {
     const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]?.end_time ?? 0;
@@ -129,4 +129,4 @@ function areActivityMenuListsEqual(left, right) {
 exports.areActivityMenuListsEqual = areActivityMenuListsEqual;
 exports.buildActivityMenuList = buildActivityMenuList;
 exports.getActiveStarseaActivityID = getActiveStarseaActivityID;
-exports.getVisibleActivityRedPoint = getVisibleActivityRedPoint;
+exports.getVisibleActivityRedPoint = getVisibleActivityRedPoint;
