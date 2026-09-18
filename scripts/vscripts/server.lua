@@ -834,10 +834,6 @@ function ChangeUserData(array, new_array)
 end
 
 function HTTP.Request(url, data, cb, tries, isStats)
-	if true then
-		return
-	end
-
 	if not isStats then
 		data.matchId = HTTP.GetMatchId()
 		data.matchKey = HTTP.MATCH_KEY
@@ -848,7 +844,7 @@ function HTTP.Request(url, data, cb, tries, isStats)
 	print("POST" .. " Request - ", (isStats and HTTP.STATS_HOST or HTTP.GAME_HOST) .. url)
 
 	if r == nil then
-		--	return
+		return
 	end
 
 	r:SetHTTPRequestHeaderValue("dedicated-key", HTTP.KEY)
