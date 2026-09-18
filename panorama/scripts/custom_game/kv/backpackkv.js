@@ -934,6 +934,27 @@ GameUI.CustomUIConfig().BackpackKv = {
 		"table": "player_props",
 		"direct": 1,
 	},
+	"9310151": {
+		"quality": 3,
+		"weight": 3700,
+		"usenum": 1,
+		"table": "player_props",
+		"direct": 1,
+	},
+	"9310152": {
+		"quality": 3,
+		"weight": 3700,
+		"usenum": 1,
+		"table": "player_props",
+		"direct": 1,
+	},
+	"9310153": {
+		"quality": 3,
+		"weight": 3700,
+		"usenum": 1,
+		"table": "player_props",
+		"direct": 1,
+	},
 	"9311002": {
 		"quality": 3,
 		"weight": 3700,

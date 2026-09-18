@@ -17,6 +17,7 @@ var EOM_Button = require('./EOM_Button.js');
 var GenericPanel = require('./GenericPanel.js');
 var profile_info = require('./profile_info.js');
 var WinStreak = require('./WinStreak.js');
+var carnival_entry = require('./carnival_entry.js');
 var HeroPortrait = require('./HeroPortrait.js');
 var netdata_utils = require('./netdata_utils.js');
 var AbilityImage = require('./AbilityImage.js');
@@ -37,12 +38,12 @@ var TalentTree = require('./TalentTree.js');
 var TeamSuggestionIcon = require('./TeamSuggestionIcon.js');
 var game_utils = require('./game_utils.js');
 var rookie_utils = require('./rookie_utils.js');
+var battle_record = require('./battle_record.js');
 var EOM_PortraitFullBody = require('./EOM_PortraitFullBody.js');
 var CityDescription = require('./CityDescription.js');
 var CityImage = require('./CityImage.js');
 var CosmeticCard = require('./CosmeticCard.js');
 var EOM_Loading = require('./EOM_Loading.js');
-var NewRegressionIcon = require('./NewRegressionIcon.js');
 var RankTierIcon = require('./RankTierIcon.js');
 var RuneRewardCard = require('./RuneRewardCard.js');
 require('./Heroes.js');
@@ -4486,9 +4487,25 @@ const PlayerBanner = props => {
   const [ultiAbility, setUltiAbility] = libs.createSignal("");
   const [talentAbilityIndex, setTalentAbilityIndex] = libs.createSignal(-1);
   const [ultiAbilityIndex, setUltiAbilityIndex] = libs.createSignal(-1);
+  const [interactiveAbilityUnlocked, setInteractiveAbilityUnlocked] = libs.createSignal(heroName() != "yang_jian");
+  const updateInteractiveAbilityUnlocked = () => {
+    if (heroName() != "yang_jian") {
+      setInteractiveAbilityUnlocked(true);
+      return;
+    }
+    const hero = entIndex();
+    if (hero == -1 || !Entities.IsValidEntity(hero)) {
+      setInteractiveAbilityUnlocked(false);
+      return;
+    }
+    const interact = Entities.GetAbilityByName(hero, "yang_jian_interact");
+    setInteractiveAbilityUnlocked(interact != -1 && Entities.IsValidEntity(interact) && Abilities.IsActivated(interact));
+  };
   libs.onMount(() => {
+    updateInteractiveAbilityUnlocked();
     const id = setInterval(() => {
       libs.batch(() => {
+        updateInteractiveAbilityUnlocked();
         if (entIndex() != -1 && KeyValues.HeroAbilityDisplayList[heroName()]) {
           KeyValues.HeroAbilityDisplayList[heroName()].forEach(ability => {
             let abilityIndex = Entities.GetAbilityByName(entIndex(), ability);
@@ -4521,6 +4538,7 @@ const PlayerBanner = props => {
     IsLocalPlayer = () => !GameUI.GetSpectatorViewingInfo().illusion && isViewingPlayer() && playerID() == GameUI.GetSpectatorViewingInfo().player_id;
   }
   const InteractiveAbilityEnable = () => {
+    if (!interactiveAbilityUnlocked()) return false;
     if (props.direction == "Left") {
       return false;
     }
@@ -4744,7 +4762,7 @@ const PlayerBanner = props => {
         }), libs.createComponent(EOM_Panel.EOM_Panel, {
           get className() {
             return libs.classNames("InteractiveAbilityButtonContainer", {
-              Show: hasInteractiveAbility(heroName())
+              Show: hasInteractiveAbility(heroName()) && interactiveAbilityUnlocked()
             });
           },
           hittest: false,
@@ -6131,11 +6149,11 @@ const EliminatorBottom = () => {
   };
   const [regameAmounts, setRegameAmounts] = libs.createSignal(getRegameAmounts());
   const [matchPlayerAmounts, setMatchPlayerAmounts] = libs.createSignal(8);
+  const carnivalOpen = carnival_entry.useCarnivalActivityOpen();
   const restartGameText = () => {
     return $.Localize("#EndScreen_RestartGame") + `(<font color='#6cd4b1'>${regameAmounts()}</font>/${Math.max(1, Math.floor(matchPlayerAmounts() / 2))})`;
   };
   libs.onMount(() => {
-    const GameEventListenerIDs = [];
     const NetTableListenerIDs = [];
     NetTableListenerIDs.push(CustomNetTables.SubscribeNetTableListener("player_data", (_, playerID, data) => {
       setRegameAmounts(getRegameAmounts());
@@ -6144,7 +6162,6 @@ const EliminatorBottom = () => {
       setMatchPlayerAmounts(data?.count ?? 8);
     }));
     libs.onCleanup(() => {
-      GameEventListenerIDs.forEach(id => GameEvents.Unsubscribe(id));
       NetTableListenerIDs.forEach(id => CustomNetTables.UnsubscribeNetTableListener(id));
     });
   });
@@ -6152,6 +6169,15 @@ const EliminatorBottom = () => {
     id: "ContactInformation",
     get children() {
       return [libs.createComponent(libs.Show, {
+        get when() {
+          return carnivalOpen();
+        },
+        get children() {
+          return libs.createComponent(carnival_entry.CarnivalEntry, {
+            variant: "settlement"
+          });
+        }
+      }), libs.createComponent(libs.Show, {
         get when() {
           return $.Language().toLowerCase() == "schinese";
         },
@@ -6573,7 +6599,7 @@ const DataList = props => {
   const [allData, setAllData] = libs.createSignal(0);
   libs.onMount(() => {
     const timer = setInterval(() => {
-      const battleRecord = CustomNetTables.GetTableValue("battle_record", String(local.entIndex));
+      const battleRecord = battle_record.getBattleRecord(local.entIndex);
       const entries = [];
       const entriesByName = new Map();
       const regenCounts = new Map();
@@ -7797,6 +7823,7 @@ const HeroShow = () => {
   const [game_state, setGameState] = libs.createSignal(getGameState());
   const [isReturnPlayer, setIsReturnPlayer] = libs.createSignal(false);
   const [activityList, setActivityList] = libs.createSignal([]);
+  const carnivalOpen = carnival_entry.useCarnivalActivityOpen();
   const rookieV2_sectflow = rookie_utils.useRookieV2Effect({
     key: "sect_flow",
     params: {}
@@ -7849,7 +7876,22 @@ const HeroShow = () => {
     id: "HeroShow",
     hittest: false,
     get children() {
-      return [libs.createComponent(TeamSuggestionIcon.TopBar, {}), libs.createComponent(libs.Switch, {
+      return [libs.createComponent(TeamSuggestionIcon.TopBar, {}), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "HeroPromotionEntries",
+        hittest: false,
+        get children() {
+          return libs.createComponent(libs.Show, {
+            get when() {
+              return carnivalOpen();
+            },
+            get children() {
+              return libs.createComponent(carnival_entry.CarnivalEntry, {
+                variant: "hero"
+              });
+            }
+          });
+        }
+      }), libs.createComponent(libs.Switch, {
         get children() {
           return [libs.createComponent(libs.Match, {
             get when() {
@@ -9849,7 +9891,7 @@ const NewPlayerRow = props => {
                         return IsNewOrRegressionPlayer(all_player_data[props.player_id].steamID);
                       },
                       get children() {
-                        return libs.createComponent(NewRegressionIcon.NewRegressionIcon, {
+                        return libs.createComponent(carnival_entry.NewRegressionIcon, {
                           show_tooltip: true
                         });
                       }
@@ -10582,7 +10624,7 @@ function SectList() {
   }));
   const sectListSorted = () => {
     if (sectOrder().length > 0) return sectOrder();
-    return pickList().sort((a, b) => multiCompare((sectData()?.[b]?.exp ?? 0) - (sectData()?.[a]?.exp ?? 0), (sectData()?.[b]?.level ?? 0) - (sectData()?.[a]?.level ?? 0)));
+    return pickList().slice().sort((a, b) => multiCompare((sectData()?.[b]?.exp ?? 0) - (sectData()?.[a]?.exp ?? 0), (sectData()?.[b]?.level ?? 0) - (sectData()?.[a]?.level ?? 0)));
   };
   libs.createEffect(() => {
     const id = CustomNetTables.SubscribeNetTableListener("common", function (_, k, v) {
@@ -10729,19 +10771,19 @@ function SectList() {
                 }
               })];
             }
-          }), libs.createComponent(libs.Index, {
+          }), libs.createComponent(libs.For, {
             get each() {
               return sectListSorted();
             },
-            children: (sectName, i) => {
-              const sectInfo = libs.createMemo(() => sectData()?.[sectName()] ?? {
+            children: sectName => {
+              const sectInfo = libs.createMemo(() => sectData()?.[sectName] ?? {
                 level: 0,
                 bonusLevel: 0,
                 exp: 0,
                 maxExp: 8
               });
               const counts = libs.createMemo(() => {
-                const sectModifier = sectModifiers()?.[sectName()] ?? {};
+                const sectModifier = sectModifiers()?.[sectName] ?? {};
                 const _counts = {};
                 for (let k in sectModifier) {
                   if (!_counts[sectModifier[k]]) {
@@ -10755,11 +10797,9 @@ function SectList() {
                   return showID();
                 },
                 get banned() {
-                  return bannedSect() == sectName();
+                  return bannedSect() == sectName;
                 },
-                get sectName() {
-                  return sectName();
-                },
+                sectName: sectName,
                 get exp() {
                   return sectInfo().exp;
                 },
@@ -10772,15 +10812,14 @@ function SectList() {
                 get maxLevel() {
                   return 4 + sectInfo().bonusLevel;
                 },
-                sect_index: i,
                 get showConfirm() {
-                  return sectSelection()?.includes(sectName());
+                  return sectSelection()?.includes(sectName);
                 },
                 get artifactList() {
                   return counts();
                 },
                 get rookie() {
-                  return (rookieRecommend()?.sects?.indexOf(sectName()) ?? 100000) <= 1;
+                  return (rookieRecommend()?.sects?.indexOf(sectName) ?? 100000) <= 1;
                 }
               });
             }
@@ -11896,6 +11935,7 @@ const Main = () => {
     game_state
   } = useMainStore();
   const [isReturnPlayer, setIsReturnPlayer] = libs.createSignal(false);
+  const carnivalOpen = carnival_entry.useCarnivalActivityOpen();
   libs.onMount(() => {
     const gameEventIDList = [];
     gameEventIDList.push(useNetData("player_regression_data", data => {
@@ -11929,34 +11969,48 @@ const Main = () => {
           get game_state() {
             return game_state();
           }
-        }), libs.createComponent(BattleMessage, {}), libs.createComponent(BottomBar, {}), libs.createComponent(RuneTask, {}), libs.createComponent(libs.Show, {
-          get when() {
-            return !isReturnPlayer();
-          },
-          get fallback() {
-            return libs.createComponent(EOM_Button.EOM_BaseButton, {
-              className: "ReturnHUDButton small",
-              onactivate: () => {
-                ToggleWindows("MenuButton_activity", true);
-                clientSideEvent("switchActivityTag", {
-                  id: "Activity_Regression"
+        }), libs.createComponent(BattleMessage, {}), libs.createComponent(BottomBar, {}), libs.createComponent(RuneTask, {}), libs.createComponent(EOM_Panel.EOM_Panel, {
+          id: "TopPromotionEntries",
+          get children() {
+            return [libs.createComponent(libs.Show, {
+              get when() {
+                return carnivalOpen();
+              },
+              get children() {
+                return libs.createComponent(carnival_entry.CarnivalEntry, {
+                  variant: "icon"
+                });
+              }
+            }), libs.createComponent(libs.Show, {
+              get when() {
+                return !isReturnPlayer();
+              },
+              get fallback() {
+                return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  className: "ReturnHUDButton small",
+                  onactivate: () => {
+                    ToggleWindows("MenuButton_activity", true);
+                    clientSideEvent("switchActivityTag", {
+                      id: "Activity_Regression"
+                    });
+                  },
+                  get children() {
+                    return libs.createComponent(EOM_Label.EOM_Label, {
+                      id: "ReturnHUDButtonTitle",
+                      text: "#Activity_Regression"
+                    });
+                  }
                 });
               },
               get children() {
-                return libs.createComponent(EOM_Label.EOM_Label, {
-                  id: "ReturnHUDButtonTitle",
-                  text: "#Activity_Regression"
+                return libs.createComponent(GenericPanel.CImage, {
+                  id: "Logo",
+                  get className() {
+                    return $.Language();
+                  }
                 });
               }
-            });
-          },
-          get children() {
-            return libs.createComponent(GenericPanel.CImage, {
-              id: "Logo",
-              get className() {
-                return $.Language();
-              }
-            });
+            })];
           }
         }), libs.createComponent(GenericPanel.CImage, {
           id: "MenuMask",
@@ -11997,7 +12051,21 @@ const Main = () => {
             return game_state() == "GameState_FinalVS";
           },
           get children() {
-            return libs.createComponent(FinalVS, {});
+            return [libs.createComponent(FinalVS, {}), libs.createComponent(EOM_Panel.EOM_Panel, {
+              id: "TopPromotionEntries",
+              get children() {
+                return libs.createComponent(libs.Show, {
+                  get when() {
+                    return carnivalOpen();
+                  },
+                  get children() {
+                    return libs.createComponent(carnival_entry.CarnivalEntry, {
+                      variant: "icon"
+                    });
+                  }
+                });
+              }
+            })];
           }
         }), libs.createComponent(libs.Match, {
           get when() {

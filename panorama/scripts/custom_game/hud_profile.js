@@ -1867,7 +1867,7 @@ const getAchievementDisplayRank = achievement => {
   if (isAchievementCompleted(achievement)) return achievement.quality + 100;
   return achievement.progress / Math.max(achievement.target, 1);
 };
-const isAchievementCompleted = achievement => achievement.receive_progress;
+const isAchievementCompleted = achievement => achievement.receive_progress || achievement.target > 0 && achievement.progress >= achievement.target;
 const getAchievementConditionProgress = achievement => Math.min(achievement.progress, achievement.target);
 const normalizeLeaderboardRank = rank => {
   const normalizedRank = Number(rank);

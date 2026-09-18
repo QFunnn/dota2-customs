@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_flConstantRadius = 15.0
@@ -98,10 +98,6 @@
 	[
 		{
 			_class = "C_INIT_CreateWithinSphereTransform"
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
 			m_bLocalCoords = true
 		},
 		{
@@ -861,18 +857,6 @@
 			}
 		},
 		{
-			_class = "C_OP_PositionLock"
-			m_TransformInput = 
-			{
-				m_nControlPoint = 3
-			}
-			m_bLockRot = true
-			m_flStartTime_min = 0.0
-			m_flStartTime_max = 0.0
-			m_flEndTime_min = 0.0
-			m_flEndTime_max = 0.0
-		},
-		{
 			_class = "C_OP_SetFloat"
 			m_InputValue = 
 			{
@@ -968,6 +952,9 @@
 		{
 			_class = "C_OP_FadeOutSimple"
 			m_flFadeOutTime = 1.0
+		},
+		{
+			_class = "C_OP_PositionLock"
 		},
 	]
 	m_Renderers = 

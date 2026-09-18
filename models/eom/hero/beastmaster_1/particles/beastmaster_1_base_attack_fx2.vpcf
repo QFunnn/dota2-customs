@@ -426,7 +426,7 @@
 			m_OffsetMin = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ -35.0, 0.0, 0.0 ]
+				m_vLiteralValue = [ 35.0, 0.0, 0.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_NamedValue = ""
 				m_bFollowNamedValue = false
@@ -683,7 +683,7 @@
 			m_OffsetMax = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ -35.0, 0.0, 0.0 ]
+				m_vLiteralValue = [ 35.0, 0.0, 0.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_NamedValue = ""
 				m_bFollowNamedValue = false
@@ -954,7 +954,7 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.7
-			m_flStartScale = 0.0
+			m_flStartScale = 0.5
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
@@ -1383,6 +1383,7 @@
 				}
 			}
 			m_flDepthBias = 3.0
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
 		},
 		{
 			_class = "C_OP_RenderSprites"
@@ -1454,6 +1455,7 @@
 				}
 			}
 			m_bOnlyRenderInEffectsBloomPass = true
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
 		},
 		{
 			_class = "C_OP_RenderSprites"
@@ -1568,6 +1570,7 @@
 				},
 			]
 			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
 		},
 		{
 			_class = "C_OP_RenderSprites"
@@ -1638,6 +1641,7 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
 		},
 		{
 			_class = "C_OP_RenderSprites"
@@ -1709,6 +1713,7 @@
 				}
 			}
 			m_bOnlyRenderInEffectsBloomPass = true
+			m_nFeatheringMode = "PARTICLE_DEPTH_FEATHERING_ON_OPTIONAL"
 		},
 	]
 }

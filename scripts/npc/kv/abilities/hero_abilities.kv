@@ -1190,7 +1190,6 @@
 				"jugg_talent_1"					"damage_bonus"
 			}
 			"duration"							"2"
-			"reduce_pct"						"10"
 		}
 	}
 	"templar_assassin_talent"
@@ -3656,7 +3655,7 @@
 			"count"								"3"
 			"damage"
 			{
-				"value"							"40"
+				"value"							"50"
 				"_ulti"							"1"
 				"leshrac_talent_5"				"bonus_damage"
 			}
@@ -3698,7 +3697,7 @@
 				"value"							"140"
 				"_ulti"							"1"
 			}
-			"stun_duration"						"0.2"
+			"stun_duration"						"0.1"
 			"level_duration"					"0.1"
 		}
 	}
@@ -4247,48 +4246,64 @@
 	}
 	"pugna_talent"
 	{
-		"Note"									"生命汲取"
+		"Note"									"幽冥爆轰"
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/heroes/pugna"
-		"AbilityTextureName"					"pugna_life_drain"
+		"AbilityTextureName"					"pugna_nether_blast"
 		"AbilityType"							"ABILITY_TYPE_BASIC"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
-			"interval"
+			"interval"							"3"
+			"damage_base"
 			{
-				"value"							"1"
-				"pugna_talent_5"				"f-reduce_interval"
-			}
-			"damage"
-			{
-				"value"							"10"
+				"value"							"30"
 				"_ulti"							"1"
 			}
-			"add_hp"
-			{
-				"value"							"5"
-				"_ulti"							"1"
-			}
+			"damage_health_bonus"				"10"
+			"damage_wisp_bonus"					"30"
+			"wsip_health_bonus"					"2"
 		}
 	}
 	"pugna_ult"
 	{
-		"Note"									"生命虹吸"
+		"Note"									"生命汲取"
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/heroes/pugna"
-		"AbilityTextureName"					"pugna_nether_ward_alt"
+		"AbilityTextureName"					"pugna_life_drain"
 		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityManaCost"						"100"
 		"AbilityValues"
 		{
-			"add_hp_mul"
+			"duration"							"3"
+			"interval"							"0.5"
+			"magic_damage"
 			{
-				"value"							"5"
-				"pugna_talent_3"				"+add_hp_mul"
+				"value"							"30"
+				"_ulti"							"1"
 			}
-			"affect_time"						"3"
+			"reply"
+			{
+				"value"							"15"
+				"_ulti"							"1"
+			}
+		}
+	}
+	"pugna_nether_ward"
+	{
+		"Note"									"幽冥守卫"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/heroes/pugna"
+		"AbilityTextureName"					"pugna_nether_ward"
+		"CustomAbilityType"						"ABILITY_TYPE_UI_HIDDEN"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityValues"
+		{
+			"duration"							"2"
+			"nether_ward_damage_base"			"50"
+			"nether_ward_damage_bonus"			"5"
 		}
 	}
 	"antimage_talent"
@@ -4759,6 +4774,7 @@
 			"poultry_interval"					"2"
 			"poultry_damage"					"80"
 			"animal_duration"					"4"
+			"level"								"3"
 		}
 	}
 	"beastmaster_ult"
@@ -4955,12 +4971,12 @@
 				"_ulti"							"1"
 				"bloodseeker_talent_4"			"talent_damage_bonus"
 			}
-			"silent_chance"						"30"
-			"silent_duration"					"1"
+			"level"								"1"
+			"interval_reduce"					"0.5"
 			"reply_pct"							"100"
 			"reply_max"
 			{
-				"value"							"50"
+				"value"							"70"
 				"bloodseeker_talent_2"			"heal_limit_bonus"
 				"bloodseeker_talent_5"			"limit_bonus"
 			}
@@ -5017,9 +5033,9 @@
 			"damage_bonus"						"1"
 			"stun_duration"						"0.8"
 			"summon"							"9"
-			"chaos_ritual_as"					"30"
-			"abyssal_fusion_hp"					"200"
-			"demonic_pact_damage"				"20"
+			"chaos_ritual_as"					"20"
+			"abyssal_fusion_hp"					"150"
+			"demonic_pact_damage"				"15"
 			"reduce_summon"						"1"
 		}
 	}
@@ -5086,5 +5102,67 @@
 		"CustomAbilityType"						"ABILITY_TYPE_UI_HIDDEN"
 		"AbilityType"							"ABILITY_TYPE_BASIC"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	}
+	"yang_jian_talent"
+	{
+		"Note"									"八九玄功"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"AbilityTextureName"					"warlock_rain_of_chaos"
+		"AbilityType"							"ABILITY_TYPE_BASIC"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityValues"
+		{
+			"base_mana"							"5"
+			"health_base"						"1000"
+			"base_mana_add"						"1"
+			"health_loss"						"800"
+			"mana_add_once"						"10"
+			"health_pct"						"33"
+			"damage_health_pct"					"10"
+		}
+	}
+	"yang_jian_ult"
+	{
+		"Note"									"三尖两刃刀"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"AbilityTextureName"					"warlock_shadow_word"
+		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityManaCost"						"50"
+		"AbilityValues"
+		{
+			"pi_damage"							"75"
+			"pi_point"							"1"
+			"ci_damge_base"						"50"
+			"ci_damage_pct"						"2"
+			"ci_point"							"1"
+			"sao_damage_base"					"50"
+			"sao_damage_pct"					"2"
+			"sao_point"							"2"
+			"point_hit_rate"					"2"
+			"point_damage_reduce_pct"			"1"
+			"point_limit"						"8"
+		}
+	}
+	"yang_jian_interact"
+	{
+		"Note"									"交换技"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"AbilityTextureName"					"antimage/golden_basher_blades/antimage_mana_void"
+		"CustomAbilityType"						"ABILITY_TYPE_UI_HIDDEN"
+		"AbilityType"							"ABILITY_TYPE_INTERACT"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityValues"
+		{
+			"fa_point_stack"					"8"
+			"fa_max_health_pct"					"20"
+			"fa_attack_speed"					"30"
+			"fa_duration"						"6"
+			"tian_reply_health_pct"				"100"
+			"talent_damge_bonus"				"200"
+		}
 	}
 }

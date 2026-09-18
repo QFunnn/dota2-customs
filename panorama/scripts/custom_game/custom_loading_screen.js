@@ -34,9 +34,8 @@ function JumpT11Url() {
     root.BLoadLayoutSnippet('T12ContainerRoot');
   } else if (C1LinkageEnable) {
     root.AddClass('C1Linkage');
-    root.BLoadLayoutSnippet('C1ContainerRoot');
   }
   if (loadingScreenSeason != undefined) {
     root.AddClass('Season' + loadingScreenSeason);
   }
-})();
+})();

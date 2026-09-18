@@ -984,13 +984,10 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"Hero": "pugna",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/pugna",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"AbilityValues": {
-			"first_wisp_hp_add_pct": 2,
-		},
 	},
 	"antimage_shard": {
 		"Hero": "antimage",
@@ -1083,7 +1080,7 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"Hero": "beastmaster",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/beastmaster",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
@@ -1136,6 +1133,19 @@ GameUI.CustomUIConfig().HeroShardKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
 			"regen_health_pct": 50,
+		},
+	},
+	"yang_jian_shard": {
+		"Hero": "yang_jian",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"ShardLevel": 1,
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"chance": 25,
+			"count": 1,
 		},
 	},
 };

@@ -19,7 +19,7 @@ var EOM_PortraitFullBody = require('./EOM_PortraitFullBody.js');
 var EOM_Button = require('./EOM_Button.js');
 var EOM_Separator = require('./EOM_Separator.js');
 var GenericPanel = require('./GenericPanel.js');
-var NewRegressionIcon = require('./NewRegressionIcon.js');
+var carnival_entry = require('./carnival_entry.js');
 var ProductImage = require('./ProductImage.js');
 var RankTierIcon = require('./RankTierIcon.js');
 var profile_info = require('./profile_info.js');
@@ -473,6 +473,7 @@ if (!isSpectator()) {
     const [kingsRankState, setKingRankState] = libs.createSignal(true);
     const peakScore = () => props.rank_score_data?.now_kings_score ?? -1;
     const [activityList, setActivityList] = libs.createSignal([]);
+    const carnivalOpen = carnival_entry.useCarnivalActivityOpen();
     libs.onMount(() => {
       const GameEventListenerIDs = [];
       const NetTableListenerIDs = [];
@@ -1004,7 +1005,7 @@ if (!isSpectator()) {
                                       return HasNewRegressionPlayer();
                                     },
                                     get children() {
-                                      return libs.createComponent(NewRegressionIcon.NewRegressionIcon, {
+                                      return libs.createComponent(carnival_entry.NewRegressionIcon, {
                                         tooltip_text: "#Activity_PDD_extra_drop",
                                         marginLeft: "10px",
                                         verticalAlign: "center"
@@ -1198,7 +1199,16 @@ if (!isSpectator()) {
       libs.insert(_el$2, libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "EndScreenButtons",
         get children() {
-          return [libs.createComponent(EOM_Button.EOM_BaseButton, {
+          return [libs.createComponent(libs.Show, {
+            get when() {
+              return carnivalOpen();
+            },
+            get children() {
+              return libs.createComponent(carnival_entry.CarnivalEntry, {
+                variant: "endscreen"
+              });
+            }
+          }), libs.createComponent(EOM_Button.EOM_BaseButton, {
             id: "FeedBackButton",
             onactivate: () => showPopup("Feedback", {}),
             tooltip_text: "#Feedback_Title"

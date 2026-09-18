@@ -8,7 +8,7 @@
 ]]
 
 
-'use strict'; const exports = {}; GameUI.__loadModule('red_point_utils', exports); const require = GameUI.__require;
+'use strict'; const exports = {}; GameUI.__loadModule('red_point_utils', exports);
 
 const createRedPointKey = (...segments) => {
   return segments.join("|");

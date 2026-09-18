@@ -19,7 +19,7 @@ let dateNow = Math.floor(Date.now() / 1000);
 var T11LinkageEnable = false;
 var T12LinkageEnable = false;
 var C1LinkageEnable = true;
-var loadingScreenSeason = 4; // 3 | 4 | 5 | 6 | 7 | 8 | 9
+var loadingScreenSeason = 2; // 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 var PayType;
 (function (PayType) {
 	PayType[(PayType['MONEY'] = 0)] = 'MONEY';

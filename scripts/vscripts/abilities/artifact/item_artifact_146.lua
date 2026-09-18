@@ -109,33 +109,34 @@ i(
 		["115"] = 105,
 		["116"] = 106,
 		["117"] = 108,
+		["118"] = 109,
 		["119"] = 110,
-		["120"] = 110,
-		["121"] = 111,
-		["122"] = 114,
-		["123"] = 114,
+		["120"] = 112,
+		["122"] = 113,
+		["123"] = 113,
 		["124"] = 114,
-		["125"] = 115,
-		["126"] = 116,
+		["125"] = 117,
+		["126"] = 117,
 		["127"] = 117,
-		["128"] = 122,
-		["129"] = 122,
-		["130"] = 122,
-		["131"] = 122,
-		["132"] = 122,
-		["133"] = 114,
-		["134"] = 114,
-		["135"] = 110,
-		["138"] = 125,
-		["139"] = 127,
-		["141"] = 130,
-		["142"] = 131,
-		["145"] = 104,
-		["146"] = 135,
+		["128"] = 118,
+		["129"] = 119,
+		["130"] = 120,
+		["131"] = 125,
+		["132"] = 125,
+		["133"] = 125,
+		["134"] = 125,
+		["135"] = 125,
+		["136"] = 117,
+		["137"] = 117,
+		["138"] = 113,
+		["141"] = 129,
+		["142"] = 130,
+		["143"] = 132,
+		["146"] = 104,
 		["147"] = 136,
-		["148"] = 135,
-		["149"] = 39,
-		["150"] = 30,
+		["148"] = 137,
+		["149"] = 136,
+		["150"] = 39,
 		["151"] = 30,
 		["152"] = 30,
 		["153"] = 30,
@@ -144,8 +145,9 @@ i(
 		["156"] = 30,
 		["157"] = 30,
 		["158"] = 30,
-		["159"] = 39,
-		["161"] = 39,
+		["159"] = 30,
+		["160"] = 39,
+		["162"] = 39,
 	}
 )
 local j = {}
@@ -254,11 +256,14 @@ function w.prototype.OnAbilityLearn(self, x)
 	local t = self:GetParent():GetPlayerOwnerID()
 	if self:GetStackCount() > 0 and x.abilityname == self.secret_key then
 		self:SetStackCount(self:GetStackCount() - 1)
+		PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
+		self.secret_key = nil
+		local y = PlayerData:getplayerData(t)
 		do
 			local G = 0
 			while G < self.ability_count do
 				local H = AbilityShop:getRandomAbility(t, 1, { isAbilityShop = false })
-				h(H, function(B, I, G)
+				h(H, function(B, I)
 					local v = I.aid
 					x.heroclass:learnAbility(v, true)
 					Notification:combatToPlayer(
@@ -269,17 +274,14 @@ function w.prototype.OnAbilityLearn(self, x)
 							string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. v,
 						}
 					)
-					PlayerData:getplayerData(self:GetParent():GetPlayerOwnerID())
-						:addArtifactAbilities(self:GetAbility():entindex(), v, G == self.ability_count - 1)
+					y:addArtifactAbilities(self:GetAbility():entindex(), v, false)
 				end)
 				G = G + 1
 			end
 		end
+		y:upDateArtifactAbilities()
 		if self:GetStackCount() > 0 then
 			self:RandomizeSecretKey()
-		else
-			PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
-			self.secret_key = nil
 		end
 	end
 end

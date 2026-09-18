@@ -14,9 +14,10 @@
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 20
 	m_flConstantLifespan = 1.25
-	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_ConstantColor = [ 10, 30, 139, 255 ]
 	m_nBehaviorVersion = 12
 	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_flConstantRadius = 4.0
 	m_controlPointConfigurations = 
 	[
 		{
@@ -31,17 +32,19 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 20.0
+				m_flLiteralValue = 25.0
 				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
 				m_nVectorComponent = 0
+				m_bReverseOrder = false
 				m_flRandomMin = 0.0
 				m_flRandomMax = 1.0
 				m_bHasRandomSignFlip = false
 				m_nRandomSeed = -1
 				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
 				m_flLOD0 = 0.0
 				m_flLOD1 = 0.0
 				m_flLOD2 = 0.0
@@ -101,7 +104,7 @@
 				m_nVectorComponent = 0
 				m_bReverseOrder = false
 				m_flRandomMin = 15.0
-				m_flRandomMax = 30.0
+				m_flRandomMax = 20.0
 				m_bHasRandomSignFlip = false
 				m_nRandomSeed = -1
 				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
@@ -299,11 +302,13 @@
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
 				m_nVectorComponent = 0
+				m_bReverseOrder = false
 				m_flRandomMin = 0.75
-				m_flRandomMax = 1.0
+				m_flRandomMax = 0.5
 				m_bHasRandomSignFlip = false
 				m_nRandomSeed = -1
 				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
 				m_flLOD0 = 0.0
 				m_flLOD1 = 0.0
 				m_flLOD2 = 0.0
@@ -415,7 +420,7 @@
 			m_OffsetMin = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, 0.0, 265.0 ]
+				m_vLiteralValue = [ 0.0, 0.0, 155.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_NamedValue = ""
 				m_bFollowNamedValue = false
@@ -672,7 +677,7 @@
 			m_OffsetMax = 
 			{
 				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, 0.0, 265.0 ]
+				m_vLiteralValue = [ 0.0, 0.0, 155.0 ]
 				m_LiteralColor = [ 0, 0, 0 ]
 				m_NamedValue = ""
 				m_bFollowNamedValue = false
@@ -944,7 +949,13 @@
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.7
 			m_flStartScale = 0.0
-			m_flEndScale = 0.6
+			m_flEndScale = 1.1
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 51, 7, 128 ]
+			m_flFadeStartTime = 0.2
+			m_flFadeEndTime = 0.8
 		},
 	]
 	m_Renderers = 

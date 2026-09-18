@@ -160,7 +160,7 @@ GameUI.CustomUIConfig().SectAbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
 			"chaos_prebattle": "15 30 45 75",
-			"chaos_damage": "30 60 90 150",
+			"chaos_damage": "20 40 60 100",
 		},
 	},
 };

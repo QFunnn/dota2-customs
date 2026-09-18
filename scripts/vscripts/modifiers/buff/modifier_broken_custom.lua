@@ -68,7 +68,7 @@ function k.prototype.OnCreated(self)
 end
 function k.prototype.OnDestroy(self)
 	if IsServer() then
-		if not self.parent:HasModifier("modifier_state_immunity_custom") then
+		if IsValid(self.parent) and not self.parent:HasModifier("modifier_state_immunity_custom") then
 			CombatLog:recordState(self.parent, nil, "Broken", "loss")
 		end
 	end

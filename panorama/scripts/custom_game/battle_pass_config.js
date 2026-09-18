@@ -8,7 +8,7 @@
 ]]
 
 
-'use strict'; const exports = {}; GameUI.__loadModule('battle_pass_config', exports); const require = GameUI.__require;
+'use strict'; const exports = {}; GameUI.__loadModule('battle_pass_config', exports);
 
 const BP_SEASON_CONFIG = {
   [1]: {

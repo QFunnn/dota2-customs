@@ -26,105 +26,108 @@ f(
 		["14"] = 3,
 		["15"] = 3,
 		["16"] = 3,
-		["18"] = 8,
-		["19"] = 9,
-		["20"] = 8,
-		["21"] = 9,
-		["22"] = 10,
-		["23"] = 11,
-		["24"] = 10,
-		["25"] = 9,
-		["26"] = 8,
-		["27"] = 9,
-		["29"] = 9,
-		["30"] = 15,
-		["31"] = 23,
-		["32"] = 15,
-		["33"] = 23,
-		["35"] = 23,
-		["36"] = 26,
-		["37"] = 27,
-		["38"] = 36,
+		["17"] = 5,
+		["19"] = 10,
+		["20"] = 11,
+		["21"] = 10,
+		["22"] = 11,
+		["23"] = 12,
+		["24"] = 13,
+		["25"] = 12,
+		["26"] = 11,
+		["27"] = 10,
+		["28"] = 11,
+		["30"] = 11,
+		["31"] = 17,
+		["32"] = 25,
+		["33"] = 17,
+		["34"] = 25,
+		["36"] = 25,
+		["37"] = 28,
+		["38"] = 29,
 		["39"] = 38,
-		["40"] = 15,
-		["41"] = 43,
-		["42"] = 44,
-		["43"] = 45,
+		["40"] = 40,
+		["41"] = 17,
+		["42"] = 45,
+		["43"] = 46,
 		["44"] = 47,
-		["45"] = 48,
+		["45"] = 49,
 		["46"] = 50,
-		["47"] = 51,
-		["48"] = 52,
+		["47"] = 52,
+		["48"] = 53,
 		["49"] = 54,
 		["50"] = 56,
-		["51"] = 57,
-		["52"] = 43,
-		["53"] = 59,
-		["54"] = 60,
-		["55"] = 61,
-		["57"] = 59,
-		["58"] = 64,
-		["59"] = 65,
-		["60"] = 65,
+		["51"] = 58,
+		["52"] = 59,
+		["53"] = 45,
+		["54"] = 61,
+		["55"] = 62,
+		["56"] = 63,
+		["58"] = 61,
+		["59"] = 66,
+		["60"] = 67,
 		["61"] = 67,
-		["62"] = 67,
-		["63"] = 67,
-		["64"] = 65,
-		["65"] = 68,
-		["66"] = 68,
-		["67"] = 68,
-		["68"] = 65,
-		["69"] = 65,
-		["70"] = 64,
+		["62"] = 69,
+		["63"] = 69,
+		["64"] = 69,
+		["65"] = 67,
+		["66"] = 70,
+		["67"] = 70,
+		["68"] = 70,
+		["69"] = 67,
+		["70"] = 71,
 		["71"] = 71,
-		["72"] = 72,
-		["73"] = 71,
-		["74"] = 76,
-		["75"] = 77,
-		["76"] = 78,
-		["77"] = 79,
-		["78"] = 80,
-		["79"] = 76,
-		["80"] = 82,
-		["81"] = 83,
-		["84"] = 84,
-		["87"] = 85,
-		["88"] = 86,
+		["72"] = 71,
+		["73"] = 67,
+		["74"] = 67,
+		["75"] = 66,
+		["76"] = 74,
+		["77"] = 75,
+		["78"] = 74,
+		["79"] = 79,
+		["80"] = 80,
+		["81"] = 81,
+		["82"] = 82,
+		["83"] = 83,
+		["84"] = 79,
+		["85"] = 85,
+		["86"] = 86,
 		["89"] = 87,
-		["90"] = 88,
-		["91"] = 89,
-		["92"] = 89,
+		["92"] = 88,
 		["93"] = 89,
-		["94"] = 89,
-		["95"] = 90,
-		["96"] = 89,
-		["97"] = 89,
-		["99"] = 82,
-		["100"] = 94,
-		["101"] = 95,
-		["102"] = 96,
-		["103"] = 96,
-		["104"] = 96,
-		["105"] = 96,
-		["107"] = 94,
+		["94"] = 90,
+		["95"] = 91,
+		["96"] = 92,
+		["97"] = 92,
+		["98"] = 92,
+		["99"] = 92,
+		["100"] = 93,
+		["101"] = 92,
+		["102"] = 92,
+		["104"] = 85,
+		["105"] = 97,
+		["106"] = 98,
+		["107"] = 99,
 		["108"] = 99,
 		["109"] = 99,
 		["110"] = 99,
-		["112"] = 99,
-		["113"] = 99,
-		["115"] = 100,
-		["116"] = 101,
-		["117"] = 102,
-		["118"] = 103,
-		["121"] = 104,
-		["122"] = 105,
-		["123"] = 106,
-		["125"] = 109,
+		["112"] = 97,
+		["113"] = 102,
+		["114"] = 103,
+		["117"] = 104,
+		["118"] = 105,
+		["119"] = 106,
+		["122"] = 107,
+		["123"] = 108,
 		["126"] = 109,
-		["127"] = 109,
-		["128"] = 110,
+		["127"] = 111,
+		["128"] = 111,
+		["129"] = 111,
+		["130"] = 111,
 		["131"] = 111,
-		["134"] = 113,
+		["132"] = 111,
+		["133"] = 113,
+		["134"] = 114,
 		["135"] = 114,
 		["136"] = 114,
 		["137"] = 114,
@@ -133,7 +136,7 @@ f(
 		["140"] = 114,
 		["141"] = 114,
 		["142"] = 114,
-		["143"] = 114,
+		["143"] = 115,
 		["144"] = 115,
 		["145"] = 115,
 		["146"] = 115,
@@ -142,354 +145,349 @@ f(
 		["149"] = 115,
 		["150"] = 115,
 		["151"] = 115,
-		["152"] = 115,
+		["152"] = 116,
 		["153"] = 116,
-		["154"] = 117,
-		["155"] = 118,
-		["156"] = 119,
-		["157"] = 120,
-		["158"] = 122,
-		["159"] = 123,
-		["160"] = 124,
-		["162"] = 126,
-		["163"] = 126,
-		["164"] = 126,
-		["165"] = 126,
-		["166"] = 126,
-		["167"] = 126,
-		["168"] = 126,
-		["169"] = 126,
-		["170"] = 126,
-		["171"] = 136,
-		["172"] = 137,
-		["173"] = 138,
-		["174"] = 139,
-		["175"] = 140,
-		["176"] = 141,
-		["177"] = 142,
-		["178"] = 143,
-		["179"] = 143,
-		["180"] = 143,
-		["181"] = 143,
-		["182"] = 143,
-		["183"] = 144,
-		["184"] = 144,
-		["185"] = 144,
-		["186"] = 144,
-		["187"] = 144,
-		["188"] = 144,
-		["189"] = 144,
-		["190"] = 144,
-		["191"] = 144,
-		["192"] = 145,
-		["193"] = 146,
-		["194"] = 147,
-		["195"] = 147,
-		["196"] = 147,
-		["197"] = 147,
-		["198"] = 147,
-		["199"] = 147,
-		["200"] = 147,
-		["201"] = 147,
-		["202"] = 147,
-		["203"] = 157,
-		["206"] = 160,
-		["207"] = 161,
-		["208"] = 162,
-		["209"] = 163,
-		["210"] = 164,
-		["211"] = 164,
-		["212"] = 164,
-		["213"] = 164,
-		["214"] = 164,
-		["215"] = 164,
-		["218"] = 109,
-		["219"] = 109,
-		["221"] = 99,
-		["222"] = 23,
-		["223"] = 15,
-		["224"] = 15,
-		["225"] = 15,
-		["226"] = 15,
-		["227"] = 15,
-		["228"] = 15,
-		["229"] = 15,
-		["230"] = 15,
-		["231"] = 23,
-		["233"] = 23,
-		["234"] = 172,
-		["235"] = 180,
-		["236"] = 172,
-		["237"] = 180,
-		["238"] = 183,
-		["239"] = 184,
-		["240"] = 183,
-		["241"] = 186,
-		["242"] = 187,
-		["243"] = 188,
-		["244"] = 186,
-		["245"] = 190,
-		["246"] = 191,
-		["247"] = 192,
-		["248"] = 192,
-		["249"] = 192,
-		["250"] = 192,
-		["252"] = 190,
-		["253"] = 195,
-		["254"] = 196,
-		["255"] = 197,
-		["256"] = 197,
-		["257"] = 197,
-		["258"] = 197,
-		["260"] = 195,
-		["261"] = 200,
-		["262"] = 201,
-		["263"] = 200,
-		["264"] = 205,
-		["265"] = 206,
-		["266"] = 205,
-		["267"] = 180,
-		["268"] = 172,
-		["269"] = 172,
-		["270"] = 172,
-		["271"] = 172,
-		["272"] = 172,
-		["273"] = 172,
-		["274"] = 172,
-		["275"] = 172,
+		["154"] = 116,
+		["155"] = 116,
+		["156"] = 116,
+		["157"] = 116,
+		["158"] = 116,
+		["159"] = 116,
+		["160"] = 117,
+		["161"] = 118,
+		["162"] = 118,
+		["163"] = 118,
+		["164"] = 118,
+		["165"] = 118,
+		["166"] = 118,
+		["167"] = 118,
+		["168"] = 118,
+		["169"] = 118,
+		["170"] = 102,
+		["171"] = 128,
+		["172"] = 128,
+		["173"] = 128,
+		["175"] = 128,
+		["176"] = 128,
+		["178"] = 129,
+		["179"] = 130,
+		["180"] = 131,
+		["181"] = 132,
+		["184"] = 133,
+		["185"] = 134,
+		["186"] = 135,
+		["188"] = 138,
+		["189"] = 138,
+		["190"] = 138,
+		["191"] = 139,
+		["194"] = 140,
+		["197"] = 142,
+		["198"] = 143,
+		["199"] = 143,
+		["200"] = 143,
+		["201"] = 143,
+		["202"] = 143,
+		["203"] = 143,
+		["204"] = 143,
+		["205"] = 143,
+		["206"] = 143,
+		["207"] = 144,
+		["208"] = 144,
+		["209"] = 144,
+		["210"] = 144,
+		["211"] = 144,
+		["212"] = 144,
+		["213"] = 144,
+		["214"] = 144,
+		["215"] = 144,
+		["216"] = 145,
+		["217"] = 146,
+		["218"] = 146,
+		["219"] = 146,
+		["220"] = 146,
+		["221"] = 146,
+		["222"] = 147,
+		["223"] = 148,
+		["224"] = 148,
+		["225"] = 148,
+		["226"] = 148,
+		["227"] = 148,
+		["228"] = 148,
+		["229"] = 148,
+		["230"] = 148,
+		["231"] = 148,
+		["232"] = 149,
+		["233"] = 149,
+		["234"] = 149,
+		["235"] = 149,
+		["236"] = 149,
+		["237"] = 149,
+		["238"] = 149,
+		["239"] = 149,
+		["240"] = 149,
+		["241"] = 150,
+		["243"] = 152,
+		["244"] = 153,
+		["245"] = 154,
+		["246"] = 155,
+		["247"] = 156,
+		["248"] = 158,
+		["249"] = 159,
+		["250"] = 160,
+		["252"] = 162,
+		["253"] = 162,
+		["254"] = 162,
+		["255"] = 162,
+		["256"] = 162,
+		["257"] = 162,
+		["258"] = 162,
+		["259"] = 162,
+		["260"] = 162,
+		["261"] = 172,
+		["262"] = 173,
+		["263"] = 174,
+		["264"] = 175,
+		["265"] = 176,
+		["266"] = 177,
+		["267"] = 178,
+		["268"] = 179,
+		["269"] = 179,
+		["270"] = 179,
+		["271"] = 179,
+		["272"] = 179,
+		["273"] = 180,
+		["274"] = 180,
+		["275"] = 180,
 		["276"] = 180,
+		["277"] = 180,
 		["278"] = 180,
-		["280"] = 213,
-		["281"] = 214,
-		["282"] = 213,
-		["283"] = 214,
-		["284"] = 215,
-		["285"] = 216,
-		["286"] = 217,
-		["287"] = 218,
-		["288"] = 219,
-		["289"] = 221,
-		["290"] = 222,
-		["291"] = 225,
-		["292"] = 225,
-		["293"] = 225,
-		["294"] = 226,
-		["297"] = 228,
-		["298"] = 229,
-		["299"] = 229,
-		["300"] = 229,
-		["301"] = 229,
-		["302"] = 229,
-		["303"] = 229,
-		["304"] = 229,
-		["305"] = 229,
-		["306"] = 229,
-		["307"] = 238,
-		["308"] = 239,
-		["309"] = 239,
-		["310"] = 239,
-		["311"] = 239,
-		["312"] = 239,
-		["313"] = 240,
-		["314"] = 240,
-		["315"] = 240,
-		["316"] = 240,
-		["317"] = 240,
-		["318"] = 240,
-		["319"] = 240,
-		["320"] = 240,
-		["321"] = 240,
-		["322"] = 241,
-		["323"] = 225,
-		["324"] = 225,
-		["325"] = 215,
-		["326"] = 245,
-		["327"] = 246,
-		["328"] = 245,
-		["329"] = 248,
-		["330"] = 249,
-		["331"] = 248,
-		["332"] = 214,
-		["333"] = 213,
-		["334"] = 214,
-		["336"] = 214,
-		["337"] = 253,
-		["338"] = 261,
-		["339"] = 253,
-		["340"] = 261,
-		["341"] = 265,
-		["342"] = 266,
-		["343"] = 267,
-		["344"] = 265,
-		["345"] = 269,
-		["346"] = 270,
-		["347"] = 269,
-		["348"] = 274,
-		["349"] = 276,
-		["350"] = 277,
-		["351"] = 278,
-		["352"] = 279,
-		["353"] = 280,
-		["354"] = 280,
-		["355"] = 280,
-		["356"] = 280,
-		["357"] = 280,
-		["358"] = 280,
-		["361"] = 274,
-		["362"] = 261,
-		["363"] = 253,
-		["364"] = 253,
-		["365"] = 253,
-		["366"] = 253,
-		["367"] = 253,
-		["368"] = 253,
-		["369"] = 253,
-		["370"] = 253,
-		["371"] = 261,
-		["373"] = 261,
-		["374"] = 286,
-		["375"] = 295,
-		["376"] = 286,
-		["377"] = 295,
-		["378"] = 296,
-		["379"] = 297,
-		["380"] = 298,
-		["381"] = 299,
-		["382"] = 300,
-		["383"] = 300,
-		["384"] = 300,
-		["385"] = 300,
-		["386"] = 300,
-		["387"] = 300,
-		["388"] = 300,
-		["389"] = 300,
-		["390"] = 300,
-		["391"] = 301,
-		["392"] = 301,
-		["393"] = 301,
-		["394"] = 301,
-		["395"] = 301,
-		["396"] = 301,
-		["397"] = 301,
-		["398"] = 301,
-		["399"] = 301,
-		["401"] = 303,
-		["403"] = 296,
-		["404"] = 306,
-		["405"] = 307,
-		["406"] = 308,
-		["407"] = 309,
-		["408"] = 310,
-		["409"] = 310,
-		["410"] = 310,
-		["411"] = 310,
-		["412"] = 310,
-		["413"] = 310,
-		["414"] = 310,
-		["415"] = 310,
-		["416"] = 310,
-		["417"] = 311,
-		["418"] = 311,
-		["419"] = 311,
-		["420"] = 311,
-		["421"] = 311,
-		["422"] = 311,
-		["423"] = 311,
-		["424"] = 311,
-		["425"] = 311,
-		["427"] = 313,
-		["429"] = 306,
-		["430"] = 316,
-		["431"] = 317,
-		["433"] = 316,
-		["434"] = 295,
-		["435"] = 286,
-		["436"] = 286,
-		["437"] = 286,
-		["438"] = 286,
-		["439"] = 286,
-		["440"] = 286,
-		["441"] = 286,
-		["442"] = 286,
-		["443"] = 295,
-		["445"] = 295,
-		["447"] = 324,
-		["448"] = 333,
-		["449"] = 324,
-		["450"] = 333,
-		["451"] = 337,
-		["452"] = 338,
-		["453"] = 339,
-		["454"] = 337,
-		["455"] = 341,
-		["456"] = 342,
-		["457"] = 343,
-		["458"] = 344,
-		["459"] = 345,
-		["460"] = 346,
-		["461"] = 347,
-		["462"] = 348,
-		["463"] = 348,
-		["464"] = 348,
-		["465"] = 348,
-		["466"] = 348,
-		["467"] = 349,
-		["468"] = 349,
-		["469"] = 349,
-		["470"] = 349,
-		["471"] = 349,
-		["472"] = 350,
-		["473"] = 351,
-		["474"] = 351,
-		["475"] = 351,
-		["476"] = 351,
-		["477"] = 351,
-		["478"] = 351,
-		["479"] = 351,
-		["480"] = 351,
-		["482"] = 341,
-		["483"] = 354,
-		["484"] = 355,
-		["485"] = 356,
-		["486"] = 357,
-		["487"] = 358,
-		["490"] = 361,
-		["491"] = 362,
-		["492"] = 363,
-		["493"] = 364,
-		["494"] = 365,
-		["495"] = 366,
-		["496"] = 366,
-		["497"] = 366,
-		["498"] = 366,
-		["499"] = 366,
-		["500"] = 366,
-		["501"] = 366,
-		["502"] = 366,
-		["503"] = 366,
-		["504"] = 367,
-		["505"] = 368,
-		["506"] = 371,
-		["507"] = 371,
-		["508"] = 371,
-		["509"] = 371,
-		["510"] = 371,
-		["511"] = 371,
-		["512"] = 371,
-		["513"] = 371,
-		["514"] = 371,
-		["515"] = 380,
-		["516"] = 354,
-		["517"] = 382,
-		["518"] = 383,
-		["519"] = 384,
-		["520"] = 384,
-		["521"] = 383,
-		["522"] = 382,
-		["523"] = 387,
-		["524"] = 388,
-		["525"] = 387,
-		["526"] = 333,
+		["279"] = 180,
+		["280"] = 180,
+		["281"] = 180,
+		["282"] = 181,
+		["283"] = 182,
+		["284"] = 183,
+		["285"] = 183,
+		["286"] = 183,
+		["287"] = 183,
+		["288"] = 183,
+		["289"] = 183,
+		["290"] = 183,
+		["291"] = 183,
+		["292"] = 183,
+		["293"] = 193,
+		["296"] = 196,
+		["297"] = 197,
+		["298"] = 198,
+		["299"] = 199,
+		["300"] = 200,
+		["301"] = 200,
+		["302"] = 200,
+		["303"] = 200,
+		["304"] = 200,
+		["305"] = 200,
+		["308"] = 138,
+		["309"] = 138,
+		["311"] = 128,
+		["312"] = 25,
+		["313"] = 17,
+		["314"] = 17,
+		["315"] = 17,
+		["316"] = 17,
+		["317"] = 17,
+		["318"] = 17,
+		["319"] = 17,
+		["320"] = 17,
+		["321"] = 25,
+		["323"] = 25,
+		["324"] = 208,
+		["325"] = 216,
+		["326"] = 208,
+		["327"] = 216,
+		["328"] = 219,
+		["329"] = 220,
+		["330"] = 219,
+		["331"] = 222,
+		["332"] = 223,
+		["333"] = 224,
+		["334"] = 222,
+		["335"] = 226,
+		["336"] = 227,
+		["337"] = 228,
+		["338"] = 228,
+		["339"] = 228,
+		["340"] = 228,
+		["342"] = 226,
+		["343"] = 231,
+		["344"] = 232,
+		["345"] = 233,
+		["346"] = 233,
+		["347"] = 233,
+		["348"] = 233,
+		["350"] = 231,
+		["351"] = 236,
+		["352"] = 237,
+		["353"] = 236,
+		["354"] = 241,
+		["355"] = 242,
+		["356"] = 241,
+		["357"] = 216,
+		["358"] = 208,
+		["359"] = 208,
+		["360"] = 208,
+		["361"] = 208,
+		["362"] = 208,
+		["363"] = 208,
+		["364"] = 208,
+		["365"] = 208,
+		["366"] = 216,
+		["368"] = 216,
+		["370"] = 249,
+		["371"] = 250,
+		["372"] = 249,
+		["373"] = 250,
+		["374"] = 251,
+		["375"] = 252,
+		["376"] = 253,
+		["377"] = 254,
+		["378"] = 255,
+		["379"] = 257,
+		["380"] = 258,
+		["381"] = 261,
+		["382"] = 261,
+		["383"] = 261,
+		["384"] = 262,
+		["387"] = 264,
+		["388"] = 265,
+		["389"] = 265,
+		["390"] = 265,
+		["391"] = 265,
+		["392"] = 265,
+		["393"] = 265,
+		["394"] = 265,
+		["395"] = 265,
+		["396"] = 265,
+		["397"] = 274,
+		["398"] = 275,
+		["399"] = 275,
+		["400"] = 275,
+		["401"] = 275,
+		["402"] = 275,
+		["403"] = 276,
+		["404"] = 276,
+		["405"] = 276,
+		["406"] = 276,
+		["407"] = 276,
+		["408"] = 276,
+		["409"] = 276,
+		["410"] = 276,
+		["411"] = 276,
+		["412"] = 277,
+		["413"] = 261,
+		["414"] = 261,
+		["415"] = 251,
+		["416"] = 281,
+		["417"] = 282,
+		["418"] = 283,
+		["419"] = 281,
+		["420"] = 286,
+		["421"] = 287,
+		["422"] = 286,
+		["423"] = 250,
+		["424"] = 249,
+		["425"] = 250,
+		["427"] = 250,
+		["428"] = 291,
+		["429"] = 299,
+		["430"] = 291,
+		["431"] = 299,
+		["432"] = 303,
+		["433"] = 304,
+		["434"] = 305,
+		["435"] = 303,
+		["436"] = 307,
+		["437"] = 308,
+		["438"] = 307,
+		["439"] = 312,
+		["440"] = 314,
+		["441"] = 315,
+		["442"] = 316,
+		["443"] = 317,
+		["444"] = 318,
+		["445"] = 318,
+		["446"] = 318,
+		["447"] = 318,
+		["448"] = 318,
+		["449"] = 318,
+		["452"] = 312,
+		["453"] = 299,
+		["454"] = 291,
+		["455"] = 291,
+		["456"] = 291,
+		["457"] = 291,
+		["458"] = 291,
+		["459"] = 291,
+		["460"] = 291,
+		["461"] = 291,
+		["462"] = 299,
+		["464"] = 299,
+		["465"] = 324,
+		["466"] = 333,
+		["467"] = 324,
+		["468"] = 333,
+		["469"] = 334,
+		["470"] = 335,
+		["471"] = 336,
+		["472"] = 337,
+		["473"] = 338,
+		["474"] = 338,
+		["475"] = 338,
+		["476"] = 338,
+		["477"] = 338,
+		["478"] = 338,
+		["479"] = 338,
+		["480"] = 338,
+		["481"] = 338,
+		["482"] = 339,
+		["483"] = 339,
+		["484"] = 339,
+		["485"] = 339,
+		["486"] = 339,
+		["487"] = 339,
+		["488"] = 339,
+		["489"] = 339,
+		["490"] = 339,
+		["492"] = 341,
+		["494"] = 334,
+		["495"] = 344,
+		["496"] = 345,
+		["497"] = 346,
+		["498"] = 347,
+		["499"] = 348,
+		["500"] = 348,
+		["501"] = 348,
+		["502"] = 348,
+		["503"] = 348,
+		["504"] = 348,
+		["505"] = 348,
+		["506"] = 348,
+		["507"] = 348,
+		["508"] = 349,
+		["509"] = 349,
+		["510"] = 349,
+		["511"] = 349,
+		["512"] = 349,
+		["513"] = 349,
+		["514"] = 349,
+		["515"] = 349,
+		["516"] = 349,
+		["518"] = 351,
+		["520"] = 344,
+		["521"] = 354,
+		["522"] = 355,
+		["524"] = 354,
+		["525"] = 333,
+		["526"] = 324,
 		["527"] = 324,
 		["528"] = 324,
 		["529"] = 324,
@@ -497,9 +495,173 @@ f(
 		["531"] = 324,
 		["532"] = 324,
 		["533"] = 324,
-		["534"] = 324,
-		["535"] = 333,
-		["537"] = 333,
+		["534"] = 333,
+		["536"] = 333,
+		["538"] = 362,
+		["539"] = 371,
+		["540"] = 362,
+		["541"] = 371,
+		["542"] = 375,
+		["543"] = 376,
+		["544"] = 377,
+		["545"] = 375,
+		["546"] = 379,
+		["547"] = 380,
+		["548"] = 381,
+		["549"] = 382,
+		["550"] = 383,
+		["551"] = 384,
+		["552"] = 385,
+		["553"] = 386,
+		["554"] = 386,
+		["555"] = 386,
+		["556"] = 386,
+		["557"] = 386,
+		["558"] = 387,
+		["559"] = 387,
+		["560"] = 387,
+		["561"] = 387,
+		["562"] = 387,
+		["563"] = 388,
+		["564"] = 389,
+		["565"] = 389,
+		["566"] = 389,
+		["567"] = 389,
+		["568"] = 389,
+		["569"] = 389,
+		["570"] = 389,
+		["571"] = 389,
+		["573"] = 379,
+		["574"] = 392,
+		["575"] = 393,
+		["576"] = 394,
+		["577"] = 395,
+		["578"] = 396,
+		["581"] = 399,
+		["582"] = 400,
+		["583"] = 401,
+		["584"] = 402,
+		["585"] = 403,
+		["586"] = 403,
+		["587"] = 403,
+		["588"] = 403,
+		["589"] = 403,
+		["590"] = 404,
+		["591"] = 404,
+		["592"] = 404,
+		["593"] = 404,
+		["594"] = 404,
+		["595"] = 404,
+		["596"] = 404,
+		["597"] = 404,
+		["598"] = 404,
+		["599"] = 405,
+		["600"] = 406,
+		["601"] = 409,
+		["602"] = 409,
+		["603"] = 409,
+		["604"] = 409,
+		["605"] = 409,
+		["606"] = 409,
+		["607"] = 409,
+		["608"] = 409,
+		["609"] = 409,
+		["610"] = 418,
+		["611"] = 392,
+		["612"] = 420,
+		["613"] = 421,
+		["614"] = 422,
+		["615"] = 422,
+		["616"] = 421,
+		["617"] = 420,
+		["618"] = 425,
+		["619"] = 426,
+		["620"] = 425,
+		["621"] = 371,
+		["622"] = 362,
+		["623"] = 362,
+		["624"] = 362,
+		["625"] = 362,
+		["626"] = 362,
+		["627"] = 362,
+		["628"] = 362,
+		["629"] = 362,
+		["630"] = 371,
+		["632"] = 371,
+		["633"] = 430,
+		["634"] = 431,
+		["635"] = 430,
+		["636"] = 431,
+		["637"] = 433,
+		["638"] = 434,
+		["641"] = 436,
+		["642"] = 437,
+		["643"] = 438,
+		["644"] = 439,
+		["645"] = 439,
+		["646"] = 439,
+		["647"] = 439,
+		["648"] = 439,
+		["649"] = 439,
+		["650"] = 439,
+		["651"] = 439,
+		["652"] = 439,
+		["653"] = 440,
+		["654"] = 440,
+		["655"] = 440,
+		["656"] = 440,
+		["657"] = 440,
+		["658"] = 440,
+		["659"] = 440,
+		["660"] = 440,
+		["661"] = 433,
+		["662"] = 442,
+		["663"] = 442,
+		["664"] = 442,
+		["665"] = 443,
+		["666"] = 444,
+		["667"] = 443,
+		["668"] = 446,
+		["669"] = 447,
+		["670"] = 446,
+		["671"] = 431,
+		["672"] = 430,
+		["673"] = 431,
+		["675"] = 431,
+		["677"] = 452,
+		["678"] = 453,
+		["679"] = 452,
+		["680"] = 453,
+		["681"] = 454,
+		["682"] = 455,
+		["683"] = 455,
+		["685"] = 454,
+		["686"] = 457,
+		["687"] = 458,
+		["688"] = 458,
+		["690"] = 457,
+		["691"] = 460,
+		["692"] = 461,
+		["693"] = 461,
+		["694"] = 463,
+		["695"] = 463,
+		["696"] = 463,
+		["697"] = 461,
+		["698"] = 461,
+		["699"] = 460,
+		["700"] = 466,
+		["701"] = 466,
+		["702"] = 466,
+		["703"] = 467,
+		["704"] = 467,
+		["705"] = 467,
+		["706"] = 468,
+		["707"] = 468,
+		["708"] = 468,
+		["709"] = 453,
+		["710"] = 452,
+		["711"] = 453,
+		["713"] = 453,
 	}
 )
 local g = {}
@@ -512,27 +674,28 @@ local m = k.registerEOMModifier
 local n = require("abilities.ability_ai")
 local o = n.BaseAbilityAI
 local p = n.registerAbilityAI
+local q = 800
 g.zuus_talent = c()
-local q = g.zuus_talent
-q.name = "zuus_talent"
-d(q, i)
-function q.prototype.GetIntrinsicModifierName(self)
+local r = g.zuus_talent
+r.name = "zuus_talent"
+d(r, i)
+function r.prototype.GetIntrinsicModifierName(self)
 	return "modifier_zuus_talent"
 end
-q = e({ j(nil) }, q)
-g.zuus_talent = q
+r = e({ j(nil) }, r)
+g.zuus_talent = r
 g.modifier_zuus_talent = c()
-local r = g.modifier_zuus_talent
-r.name = "modifier_zuus_talent"
-d(r, l)
-function r.prototype.____constructor(self, ...)
+local s = g.modifier_zuus_talent
+s.name = "modifier_zuus_talent"
+d(s, l)
+function s.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.mana_regen_record = 0
 	self.tick = 0.1
 	self.tl4_counter = 0
 	self.tl7_record = 0
 end
-function r.prototype.GetAbilitySpecialValue(self)
+function s.prototype.GetAbilitySpecialValue(self)
 	self.damage = self:GetAbilitySpecialValueFor("damage") + self:GetAbilityTalentValue("zuus_talent_2", "arc_damage")
 	self.mana_threshold = self:GetAbilitySpecialValueFor("mana_threshold")
 		- self:GetAbilityTalentValue("zuus_talent_6", "mana_reduce")
@@ -545,93 +708,136 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.s_count = self:GetAbilityTalentValue("zuus_shard", "count")
 	self.s_health_pct = self:GetAbilityTalentValue("zuus_shard", "health_pct")
 end
-function r.prototype.OnCreated(self, s)
+function s.prototype.OnCreated(self, t)
 	if IsServer() then
 		self.s_record = 0
 	end
 end
-function r.prototype.EDeclareEvents(self)
+function s.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_RESTORE] = { self:GetParent(), -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_ATTACK_LANDED] = { self:GetParent(), -1 },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_EVASION] = { self:GetParent(), -1 },
 	}
 end
-function r.prototype.EFunctionValues(self)
+function s.prototype.EFunctionValues(self)
 	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS_PERCENTAGE] = self.tl3_attackspeed_pct }
 end
-function r.prototype.OnBattleStartBefore(self, s)
+function s.prototype.OnBattleStartBefore(self, t)
 	self.mana_regen_record = 0
 	self.tl4_counter = 0
 	self.tl7_record = 0
 	self.s_record = self.s_count
 end
-function r.prototype.OnRestore(self, s)
-	if s.count <= 0 then
+function s.prototype.OnRestore(self, t)
+	if t.count <= 0 then
 		return
 	end
 	if self:GetCaster():PassivesDisabled() then
 		return
 	end
-	self.mana_regen_record = self.mana_regen_record + s.count
+	self.mana_regen_record = self.mana_regen_record + t.count
 	if self.mana_regen_record >= self.mana_threshold then
-		local t = math.floor(self.mana_regen_record / self.mana_threshold)
-		self.mana_regen_record = self.mana_regen_record - t * self.mana_threshold
-		ForWithInterval(self.tick, t, function()
+		local u = math.floor(self.mana_regen_record / self.mana_threshold)
+		self.mana_regen_record = self.mana_regen_record - u * self.mana_threshold
+		ForWithInterval(self.tick, u, function()
 			self:ArcLighting()
 		end)
 	end
 end
-function r.prototype.OnCustomAttackLanded(self, u)
+function s.prototype.OnCustomAttackLanded(self, v)
 	if self.tl3_acr_damage_pct > 0 then
 		self:ArcLighting(self.tl3_acr_damage_pct, self:GetParent():FindAbilityByName("zuus_talent_3"))
 	end
 end
-function r.prototype.ArcLighting(self, v, w)
-	if v == nil then
-		v = 100
+function s.prototype.OnEvasion(self)
+	if not IsServer() or not self:HasTalent("zuus_talent_8") then
+		return
 	end
-	if w == nil then
-		w = self:GetAbility()
+	local w = self:GetParent()
+	local x = w:GetEnemy()
+	if w:PassivesDisabled() or not IsInjurable(w, x) then
+		return
+	end
+	local y = w:FindAbilityByName("zuus_talent_8")
+	if not IsValid(y) then
+		return
+	end
+	w:AddNewModifier(w, y, "modifier_zuus_talent_8_bonus", {})
+	x:AddNewModifier(w, y, "modifier_zuus_talent_8_debuff", { duration = y:GetSpecialValueFor("duration") })
+	local z =
+		ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_shard_head.vpcf", PATTACH_CUSTOMORIGIN, w)
+	ParticleManager:SetParticleControlEnt(z, 0, w, PATTACH_POINT_FOLLOW, "attach_hitloc", w:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(z, 1, x, PATTACH_POINT_FOLLOW, "attach_hitloc", x:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(z, 2, GetGroundPosition(w:GetAbsOrigin(), w))
+	ParticleManager:ReleaseParticleIndex(z)
+	DamageSystem:dealDamage({
+		attacker = w,
+		target = x,
+		ability = y,
+		damage = y:GetSpecialValueFor("damage"),
+		damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
+		damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
+		damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
+	})
+end
+function s.prototype.ArcLighting(self, A, B)
+	if A == nil then
+		A = 100
+	end
+	if B == nil then
+		B = self:GetAbility()
 	end
 	if IsServer() then
-		local x = self:GetParent()
-		local y = x:GetEnemy()
-		if not IsInjurable(x, y) then
+		local w = self:GetParent()
+		local x = w:GetEnemy()
+		if not IsInjurable(w, x) then
 			return
 		end
-		local z = self:GetAbility()
-		if w == z and not x:HasModifier("modifier_zuus_ult_cast") then
-			x:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 3)
+		local y = self:GetAbility()
+		if B == y and not w:HasModifier("modifier_zuus_ult_cast") then
+			w:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 3)
 		end
 		GameTimer(0.06, function()
-			if not (IsValid(self) and IsValid(w)) then
+			if not (IsValid(self) and IsValid(B)) then
 				return
 			end
-			if not IsInjurable(x, y) then
+			if not IsInjurable(w, x) then
 				return
 			end
-			local A = ParticleManager:CreateParticle(
+			local z = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf",
 				PATTACH_CUSTOMORIGIN,
-				x
+				w
 			)
-			ParticleManager:SetParticleControlEnt(A, 0, x, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
-			ParticleManager:SetParticleControlEnt(A, 1, y, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
-			ParticleManager:ReleaseParticleIndex(A)
-			local B = self.damage
-			local C = B * v * 0.01
-			x:EmitSound("Hero_Zuus.ArcLightning.Cast")
-			y:EmitSound("Hero_Zuus.ArcLightning.Target")
+			ParticleManager:SetParticleControlEnt(z, 0, w, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
+			ParticleManager:SetParticleControlEnt(z, 1, x, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
+			if w:HasModifier("modifier_5100078") then
+				ParticleManager:SetParticleControl(z, 2, Vector(q, 0, 0))
+				local C = ParticleManager:CreateParticle(
+					"models/eom/hero/zeus_3/particles/zeus_3_skill1_glow_fx1.vpcf",
+					PATTACH_CUSTOMORIGIN,
+					w
+				)
+				ParticleManager:SetParticleControlEnt(C, 0, w, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
+				ParticleManager:SetParticleControlEnt(C, 1, w, PATTACH_POINT_FOLLOW, "attach_attack2", vec3_zero, true)
+				ParticleManager:ReleaseParticleIndex(C)
+			end
+			ParticleManager:ReleaseParticleIndex(z)
+			local D = self.damage
+			local E = D * A * 0.01
+			w:EmitSound("Hero_Zuus.ArcLightning.Cast")
+			x:EmitSound("Hero_Zuus.ArcLightning.Target")
 			if self.s_record > 0 then
-				C = C + y:GetHealth() * self.s_health_pct * 0.01
+				E = E + x:GetHealth() * self.s_health_pct * 0.01
 				self.s_record = self.s_record - 1
 			end
 			DamageSystem:dealDamage({
-				attacker = x,
-				target = y,
-				ability = w,
-				damage = C,
+				attacker = w,
+				target = x,
+				ability = B,
+				damage = E,
 				damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
 				damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 				damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
@@ -640,40 +846,44 @@ function r.prototype.ArcLighting(self, v, w)
 				self.tl4_counter = self.tl4_counter + 1
 				if self.tl4_counter >= self.tl4_count then
 					self.tl4_counter = 0
-					local D = x:FindAbilityByName("zuus_talent_4")
-					local E = y:GetAbsOrigin()
-					local A = ParticleManager:CreateParticle(
+					local F = w:FindAbilityByName("zuus_talent_4")
+					local G = x:GetAbsOrigin()
+					local z = ParticleManager:CreateParticle(
 						"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf",
 						PATTACH_CUSTOMORIGIN,
-						x
+						w
 					)
-					ParticleManager:SetParticleControl(A, 0, E + Vector(0, 0, 2000))
-					ParticleManager:SetParticleControlEnt(A, 1, y, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
-					ParticleManager:ReleaseParticleIndex(A)
-					EmitSoundOnLocationWithCaster(E, "Hero_Zuus.LightningBolt", x)
+					ParticleManager:SetParticleControl(
+						z,
+						0,
+						w:HasModifier("modifier_5100078") and G or G + Vector(0, 0, 2000)
+					)
+					ParticleManager:SetParticleControlEnt(z, 1, x, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
+					ParticleManager:ReleaseParticleIndex(z)
+					EmitSoundOnLocationWithCaster(G, "Hero_Zuus.LightningBolt", w)
 					DamageSystem:dealDamage({
-						attacker = x,
-						target = y,
-						ability = D,
+						attacker = w,
+						target = x,
+						ability = F,
 						damage = self.tl4_damage,
 						damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
 						damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 						damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
 					})
-					AddStun(x, y, z, self.tl4_stun_duration)
+					AddStun(w, x, y, self.tl4_stun_duration)
 				end
 			end
 			if self.tl7_count > 0 then
 				self.tl7_record = self.tl7_record + 1
 				if self.tl7_record >= self.tl7_count then
 					self.tl7_record = 0
-					x:AddNewModifier(x, self:GetAbility(), "modifier_zuus_talent_7", nil)
+					w:AddNewModifier(w, self:GetAbility(), "modifier_zuus_talent_7", nil)
 				end
 			end
 		end)
 	end
 end
-r = e(
+s = e(
 	{
 		m(
 			a,
@@ -687,37 +897,37 @@ r = e(
 			}
 		),
 	},
-	r
+	s
 )
-g.modifier_zuus_talent = r
+g.modifier_zuus_talent = s
 g.modifier_zuus_talent_7 = c()
-local F = g.modifier_zuus_talent_7
-F.name = "modifier_zuus_talent_7"
-d(F, l)
-function F.prototype.GetTexture(self)
+local H = g.modifier_zuus_talent_7
+H.name = "modifier_zuus_talent_7"
+d(H, l)
+function H.prototype.GetTexture(self)
 	return "zuus_arc_lightning"
 end
-function F.prototype.GetAbilitySpecialValue(self)
+function H.prototype.GetAbilitySpecialValue(self)
 	self.ult_bonus = self:GetAbilityTalentValue("zuus_talent_7", "ult_bonus")
 	self.max_count = self:GetAbilityTalentValue("zuus_talent_7", "max_count")
 end
-function F.prototype.OnCreated(self, s)
+function H.prototype.OnCreated(self, t)
 	if IsServer() then
 		self:SetStackCount(math.min(self.max_count, self:GetStackCount() + 1))
 	end
 end
-function F.prototype.OnRefresh(self, s)
+function H.prototype.OnRefresh(self, t)
 	if IsServer() then
 		self:SetStackCount(math.min(self.max_count, self:GetStackCount() + 1))
 	end
 end
-function F.prototype.EDeclareFunctions(self)
+function H.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ULTI_POWER }
 end
-function F.prototype.EOM_GetModifierUltiPower(self)
+function H.prototype.EOM_GetModifierUltiPower(self)
 	return self:GetStackCount() * self.ult_bonus
 end
-F = e(
+H = e(
 	{
 		m(
 			a,
@@ -731,199 +941,78 @@ F = e(
 			}
 		),
 	},
-	F
+	H
 )
-g.modifier_zuus_talent_7 = F
+g.modifier_zuus_talent_7 = H
 g.zuus_ult = c()
-local G = g.zuus_ult
-G.name = "zuus_ult"
-d(G, o)
-function G.prototype.OnSpellStart(self)
-	local H = self:GetCaster()
-	local y = H:GetEnemy()
-	local I = 0.5
-	local C = self:getThundergodsWrathDamage()
-	H:EmitSound("Hero_Zuus.GodsWrath.PreCast")
-	H:AddNewModifier(H, self, "modifier_zuus_ult_cast", { duration = I })
-	self:GameTimer(I, function()
-		if not IsInjurable(H, y) then
+local I = g.zuus_ult
+I.name = "zuus_ult"
+d(I, o)
+function I.prototype.OnSpellStart(self)
+	local J = self:GetCaster()
+	local x = J:GetEnemy()
+	local K = 0.5
+	local E = self:getThundergodsWrathDamage()
+	J:EmitSound("Hero_Zuus.GodsWrath.PreCast")
+	J:AddNewModifier(J, self, "modifier_zuus_ult_cast", { duration = K })
+	self:GameTimer(K, function()
+		if not IsInjurable(J, x) then
 			return
 		end
-		y:EmitSound("Hero_Zuus.LightningBolt")
+		x:EmitSound("Hero_Zuus.LightningBolt")
 		DamageSystem:dealDamage({
-			attacker = H,
-			target = y,
+			attacker = J,
+			target = x,
 			ability = self,
-			damage = C,
+			damage = E,
 			damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
 			damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 			damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
 		})
-		local A = ParticleManager:CreateParticle(
+		local z = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf",
 			PATTACH_CUSTOMORIGIN,
-			H
+			J
 		)
-		ParticleManager:SetParticleControl(A, 0, y:GetAbsOrigin() + Vector(0, 0, 2000))
-		ParticleManager:SetParticleControlEnt(A, 1, y, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
-		ParticleManager:ReleaseParticleIndex(A)
+		ParticleManager:SetParticleControl(
+			z,
+			0,
+			J:HasModifier("modifier_5100078") and x:GetAbsOrigin() or x:GetAbsOrigin() + Vector(0, 0, 2000)
+		)
+		ParticleManager:SetParticleControlEnt(z, 1, x, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
+		ParticleManager:ReleaseParticleIndex(z)
 	end)
 end
-function G.prototype.getThundergodsWrathDamage(self)
-	return self:GetSpecialValueFor("damage") + self:GetTalentValue("zuus_talent_1", "ult_damage")
+function I.prototype.getThundergodsWrathDamage(self)
+	local L = self:GetCaster():FindModifierByName("modifier_zuus_talent_8_bonus")
+	return self:GetSpecialValueFor("damage")
+		+ self:GetTalentValue("zuus_talent_1", "ult_damage")
+		+ (IsValid(L) and L:GetStackCount() * self:GetTalentValue("zuus_talent_8", "damage_bonus") or 0)
 end
-function G.prototype.GetIntrinsicModifierName(self)
+function I.prototype.GetIntrinsicModifierName(self)
 	return "modifier_zuus_ult"
 end
-G = e({ p(nil) }, G)
-g.zuus_ult = G
+I = e({ p(nil) }, I)
+g.zuus_ult = I
 g.modifier_zuus_ult = c()
-local J = g.modifier_zuus_ult
-J.name = "modifier_zuus_ult"
-d(J, l)
-function J.prototype.GetAbilitySpecialValue(self)
-	self.tl5_interval = self:GetAbilityTalentValue("zuus_talent_5", "interval")
-	self.tl5_stun_duration = self:GetAbilityTalentValue("zuus_talent_5", "stun_duration")
-end
-function J.prototype.EDeclareEvents(self)
-	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 } }
-end
-function J.prototype.OnBattleStart(self, s)
-	if self.tl5_interval > 0 then
-		local H = self:GetCaster()
-		local y = H:GetEnemy()
-		if IsInjurable(y, H) then
-			y:AddNewModifier(H, self:GetAbility(), "modifier_zuus_talent_5_debuff", nil)
-		end
-	end
-end
-J = e(
-	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = false,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-			}
-		),
-	},
-	J
-)
-g.modifier_zuus_ult = J
-g.modifier_zuus_ult_cast = c()
-local K = g.modifier_zuus_ult_cast
-K.name = "modifier_zuus_ult_cast"
-d(K, l)
-function K.prototype.OnCreated(self, s)
-	local x = self:GetParent()
-	if IsClient() then
-		local L = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf",
-			PATTACH_ABSORIGIN,
-			x
-		)
-		ParticleManager:SetParticleControlEnt(L, 1, x, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
-		ParticleManager:SetParticleControlEnt(L, 2, x, PATTACH_POINT_FOLLOW, "attach_attack2", vec3_zero, true)
-	else
-		x:StartGesture(ACT_DOTA_CAST_ABILITY_5)
-	end
-end
-function K.prototype.OnRefresh(self, s)
-	local x = self:GetParent()
-	if IsClient() then
-		local L = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf",
-			PATTACH_ABSORIGIN,
-			x
-		)
-		ParticleManager:SetParticleControlEnt(L, 1, x, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
-		ParticleManager:SetParticleControlEnt(L, 2, x, PATTACH_POINT_FOLLOW, "attach_attack2", vec3_zero, true)
-	else
-		x:StartGesture(ACT_DOTA_CAST_ABILITY_5)
-	end
-end
-function K.prototype.OnDestroy(self)
-	if IsServer() then
-	end
-end
-K = e(
-	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = false,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-			}
-		),
-	},
-	K
-)
-g.modifier_zuus_ult_cast = K
-g.modifier_zuus_talent_5_debuff = c()
-local M = g.modifier_zuus_talent_5_debuff
-M.name = "modifier_zuus_talent_5_debuff"
+local M = g.modifier_zuus_ult
+M.name = "modifier_zuus_ult"
 d(M, l)
 function M.prototype.GetAbilitySpecialValue(self)
 	self.tl5_interval = self:GetAbilityTalentValue("zuus_talent_5", "interval")
 	self.tl5_stun_duration = self:GetAbilityTalentValue("zuus_talent_5", "stun_duration")
 end
-function M.prototype.OnCreated(self, s)
-	if IsServer() then
-		local H = self:GetCaster()
-		self:StartIntervalThink(self.tl5_interval)
-		self.damage_position = H:GetAbsOrigin() + Vector(0, 0, 500)
-		EmitSoundOnLocationWithCaster(self.damage_position, "Hero_Zuus.Cloud.Cast", H)
-		local A =
-			ParticleManager:CreateParticle("particles/units/heroes/hero_zeus/zeus_cloud.vpcf", PATTACH_CUSTOMORIGIN, H)
-		ParticleManager:SetParticleControl(A, 0, H:GetAbsOrigin())
-		ParticleManager:SetParticleControl(A, 1, Vector(300, 0, 0))
-		ParticleManager:SetParticleControl(A, 2, self.damage_position)
-		self:AddParticle(A, false, false, -1, false, false)
-	end
-end
-function M.prototype.OnIntervalThink(self)
-	local H = self:GetCaster()
-	local x = self:GetParent()
-	if not IsInjurable(H, x) then
-		self:Destroy()
-		return
-	end
-	local z = self:GetAbility()
-	local C = z:getThundergodsWrathDamage()
-	local N = H:FindAbilityByName("zuus_talent_5")
-	local A = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		H
-	)
-	ParticleManager:SetParticleControl(A, 0, self.damage_position)
-	ParticleManager:SetParticleControlEnt(A, 1, x, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
-	ParticleManager:ReleaseParticleIndex(A)
-	EmitSoundOnLocationWithCaster(self.damage_position, "Hero_Zuus.LightningBolt.Cloud", H)
-	DamageSystem:dealDamage({
-		attacker = H,
-		target = x,
-		ability = N,
-		damage = C,
-		damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
-		damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
-		damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
-	})
-	AddStun(H, x, N, self.tl5_stun_duration)
-end
 function M.prototype.EDeclareEvents(self)
-	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() } }
+	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 } }
 end
-function M.prototype.OnBattleEnd(self, s)
-	self:Destroy()
+function M.prototype.OnBattleStart(self, t)
+	if self.tl5_interval > 0 then
+		local J = self:GetCaster()
+		local x = J:GetEnemy()
+		if IsInjurable(x, J) then
+			x:AddNewModifier(J, self:GetAbility(), "modifier_zuus_talent_5_debuff", nil)
+		end
+	end
 end
 M = e(
 	{
@@ -941,5 +1030,197 @@ M = e(
 	},
 	M
 )
-g.modifier_zuus_talent_5_debuff = M
+g.modifier_zuus_ult = M
+g.modifier_zuus_ult_cast = c()
+local N = g.modifier_zuus_ult_cast
+N.name = "modifier_zuus_ult_cast"
+d(N, l)
+function N.prototype.OnCreated(self, t)
+	local w = self:GetParent()
+	if IsClient() then
+		local O = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf",
+			PATTACH_ABSORIGIN,
+			w
+		)
+		ParticleManager:SetParticleControlEnt(O, 1, w, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
+		ParticleManager:SetParticleControlEnt(O, 2, w, PATTACH_POINT_FOLLOW, "attach_attack2", vec3_zero, true)
+	else
+		w:StartGesture(ACT_DOTA_CAST_ABILITY_5)
+	end
+end
+function N.prototype.OnRefresh(self, t)
+	local w = self:GetParent()
+	if IsClient() then
+		local O = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf",
+			PATTACH_ABSORIGIN,
+			w
+		)
+		ParticleManager:SetParticleControlEnt(O, 1, w, PATTACH_POINT_FOLLOW, "attach_attack1", vec3_zero, true)
+		ParticleManager:SetParticleControlEnt(O, 2, w, PATTACH_POINT_FOLLOW, "attach_attack2", vec3_zero, true)
+	else
+		w:StartGesture(ACT_DOTA_CAST_ABILITY_5)
+	end
+end
+function N.prototype.OnDestroy(self)
+	if IsServer() then
+	end
+end
+N = e(
+	{
+		m(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+			}
+		),
+	},
+	N
+)
+g.modifier_zuus_ult_cast = N
+g.modifier_zuus_talent_5_debuff = c()
+local P = g.modifier_zuus_talent_5_debuff
+P.name = "modifier_zuus_talent_5_debuff"
+d(P, l)
+function P.prototype.GetAbilitySpecialValue(self)
+	self.tl5_interval = self:GetAbilityTalentValue("zuus_talent_5", "interval")
+	self.tl5_stun_duration = self:GetAbilityTalentValue("zuus_talent_5", "stun_duration")
+end
+function P.prototype.OnCreated(self, t)
+	if IsServer() then
+		local J = self:GetCaster()
+		self:StartIntervalThink(self.tl5_interval)
+		self.damage_position = J:GetAbsOrigin() + Vector(0, 0, 500)
+		EmitSoundOnLocationWithCaster(self.damage_position, "Hero_Zuus.Cloud.Cast", J)
+		local z =
+			ParticleManager:CreateParticle("particles/units/heroes/hero_zeus/zeus_cloud.vpcf", PATTACH_CUSTOMORIGIN, J)
+		ParticleManager:SetParticleControl(z, 0, J:GetAbsOrigin())
+		ParticleManager:SetParticleControl(z, 1, Vector(300, 0, 0))
+		ParticleManager:SetParticleControl(z, 2, self.damage_position)
+		self:AddParticle(z, false, false, -1, false, false)
+	end
+end
+function P.prototype.OnIntervalThink(self)
+	local J = self:GetCaster()
+	local w = self:GetParent()
+	if not IsInjurable(J, w) then
+		self:Destroy()
+		return
+	end
+	local y = self:GetAbility()
+	local E = y:getThundergodsWrathDamage()
+	local Q = J:FindAbilityByName("zuus_talent_5")
+	local z = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		J
+	)
+	ParticleManager:SetParticleControl(
+		z,
+		0,
+		J:HasModifier("modifier_5100078") and w:GetAbsOrigin() or self.damage_position
+	)
+	ParticleManager:SetParticleControlEnt(z, 1, w, PATTACH_POINT, "attach_hitloc", vec3_zero, true)
+	ParticleManager:ReleaseParticleIndex(z)
+	EmitSoundOnLocationWithCaster(self.damage_position, "Hero_Zuus.LightningBolt.Cloud", J)
+	DamageSystem:dealDamage({
+		attacker = J,
+		target = w,
+		ability = Q,
+		damage = E,
+		damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
+		damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
+		damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
+	})
+	AddStun(J, w, Q, self.tl5_stun_duration)
+end
+function P.prototype.EDeclareEvents(self)
+	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() } }
+end
+function P.prototype.OnBattleEnd(self, t)
+	self:Destroy()
+end
+P = e(
+	{
+		m(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+			}
+		),
+	},
+	P
+)
+g.modifier_zuus_talent_5_debuff = P
+g.modifier_zuus_talent_8_debuff = c()
+local R = g.modifier_zuus_talent_8_debuff
+R.name = "modifier_zuus_talent_8_debuff"
+d(R, l)
+function R.prototype.OnCreated(self)
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(1)
+	local w = self:GetParent()
+	local z = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		w
+	)
+	ParticleManager:SetParticleControlEnt(z, 0, w, PATTACH_POINT_FOLLOW, "attach_hitloc", w:GetAbsOrigin(), true)
+	self:AddParticle(z, false, false, -1, false, false)
+end
+function R.prototype.GetTexture(self)
+	return "zuus_heavenly_jump"
+end
+function R.prototype.GetAbilitySpecialValue(self)
+	self.attackspeed_down = self:GetAbilitySpecialValueFor("attackspeed_down")
+end
+function R.prototype.EFunctionValues(self)
+	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS] = -self.attackspeed_down }
+end
+R = e({ m(a, { IsHidden = false, IsDebuff = true, IsPurgable = true, AllowIllusionDuplicate = false }) }, R)
+g.modifier_zuus_talent_8_debuff = R
+g.modifier_zuus_talent_8_bonus = c()
+local S = g.modifier_zuus_talent_8_bonus
+S.name = "modifier_zuus_talent_8_bonus"
+d(S, l)
+function S.prototype.OnCreated(self)
+	if IsServer() then
+		self:IncrementStackCount()
+	end
+end
+function S.prototype.OnRefresh(self)
+	if IsServer() then
+		self:IncrementStackCount()
+	end
+end
+function S.prototype.EDeclareEvents(self)
+	return {
+		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
+	}
+end
+function S.prototype.OnBattleStartBefore(self)
+	self:Destroy()
+end
+function S.prototype.OnBattleEnd(self)
+	self:Destroy()
+end
+function S.prototype.GetTexture(self)
+	return "zuus_heavenly_jump"
+end
+S = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, S)
+g.modifier_zuus_talent_8_bonus = S
 return g

@@ -15,13 +15,40 @@
 	m_Children = 
 	[
 		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_idle_light_fx.vpcf"
+		},
+		{
 			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_backpack_light_fx2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_idle_sparks_fx1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_idle_wave_fx.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/zeus_3/particles/zeus_3_idle_lighting_fx.vpcf"
 		},
 	]
 	m_controlPointConfigurations = 
 	[
 		{
 			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attack_backpack4"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_previewModel = "models/eom/hero/zeus_3/zeus_3.vmdl"
+				m_sequenceName = "zeus_3_idle"
+				m_hitboxSetName = "default"
+			}
 		},
 	]
 }

@@ -247,7 +247,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
 			"chaos_prebattle": "15 30 45 75",
-			"chaos_damage": "30 60 90 150",
+			"chaos_damage": "20 40 60 100",
 		},
 	},
 	"ursa_talent": {
@@ -1264,7 +1264,6 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 				"jugg_talent_1": "damage_bonus",
 			},
 			"duration": 2,
-			"reduce_pct": 10,
 		},
 	},
 	"templar_assassin_talent": {
@@ -3362,7 +3361,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityValues": {
 			"count": 3,
 			"damage": {
-				"value": 40,
+				"value": 50,
 				"_ulti": 1,
 				"leshrac_talent_5": "bonus_damage",
 			},
@@ -3398,7 +3397,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 				"value": 140,
 				"_ulti": 1,
 			},
-			"stun_duration": 0.2,
+			"stun_duration": 0.1,
 			"level_duration": 0.1,
 		},
 	},
@@ -3864,41 +3863,56 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN",
 	},
 	"pugna_talent": {
+		"Note": "幽冥爆轰",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/pugna",
+		"AbilityTextureName": "pugna_nether_blast",
+		"AbilityType": "ABILITY_TYPE_BASIC",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"interval": 3,
+			"damage_base": {
+				"value": 30,
+				"_ulti": 1,
+			},
+			"damage_health_bonus": 10,
+			"damage_wisp_bonus": 30,
+			"wsip_health_bonus": 2,
+		},
+	},
+	"pugna_ult": {
 		"Note": "生命汲取",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/pugna",
 		"AbilityTextureName": "pugna_life_drain",
-		"AbilityType": "ABILITY_TYPE_BASIC",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"AbilityValues": {
-			"interval": {
-				"value": 1,
-				"pugna_talent_5": "f-reduce_interval",
-			},
-			"damage": {
-				"value": 10,
-				"_ulti": 1,
-			},
-			"add_hp": {
-				"value": 5,
-				"_ulti": 1,
-			},
-		},
-	},
-	"pugna_ult": {
-		"Note": "生命虹吸",
-		"BaseClass": "ability_lua",
-		"ScriptFile": "abilities/heroes/pugna",
-		"AbilityTextureName": "pugna_nether_ward_alt",
 		"AbilityType": "ABILITY_TYPE_ULTIMATE",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
 		"AbilityManaCost": 100,
 		"AbilityValues": {
-			"add_hp_mul": {
-				"value": 5,
-				"pugna_talent_3": "+add_hp_mul",
+			"duration": 3,
+			"interval": 0.5,
+			"magic_damage": {
+				"value": 30,
+				"_ulti": 1,
 			},
-			"affect_time": 3,
+			"reply": {
+				"value": 15,
+				"_ulti": 1,
+			},
+		},
+	},
+	"pugna_nether_ward": {
+		"Note": "幽冥守卫",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/pugna",
+		"AbilityTextureName": "pugna_nether_ward",
+		"CustomAbilityType": "ABILITY_TYPE_UI_HIDDEN",
+		"AbilityType": "ABILITY_TYPE_BASIC",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+		"AbilityValues": {
+			"duration": 2,
+			"nether_ward_damage_base": 50,
+			"nether_ward_damage_bonus": 5,
 		},
 	},
 	"antimage_talent": {
@@ -4307,6 +4321,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			"poultry_interval": 2,
 			"poultry_damage": 80,
 			"animal_duration": 4,
+			"level": 3,
 		},
 	},
 	"beastmaster_ult": {
@@ -4475,11 +4490,11 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 				"_ulti": 1,
 				"bloodseeker_talent_4": "talent_damage_bonus",
 			},
-			"silent_chance": 30,
-			"silent_duration": 1,
+			"level": 1,
+			"interval_reduce": 0.5,
 			"reply_pct": 100,
 			"reply_max": {
-				"value": 50,
+				"value": 70,
 				"bloodseeker_talent_2": "heal_limit_bonus",
 				"bloodseeker_talent_5": "limit_bonus",
 			},
@@ -4529,9 +4544,9 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			"damage_bonus": 1,
 			"stun_duration": 0.8,
 			"summon": 9,
-			"chaos_ritual_as": 30,
-			"abyssal_fusion_hp": 200,
-			"demonic_pact_damage": 20,
+			"chaos_ritual_as": 20,
+			"abyssal_fusion_hp": 150,
+			"demonic_pact_damage": 15,
 			"reduce_summon": 1,
 		},
 	},
@@ -4590,6 +4605,62 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"CustomAbilityType": "ABILITY_TYPE_UI_HIDDEN",
 		"AbilityType": "ABILITY_TYPE_BASIC",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN",
+	},
+	"yang_jian_talent": {
+		"Note": "八九玄功",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"AbilityTextureName": "warlock_rain_of_chaos",
+		"AbilityType": "ABILITY_TYPE_BASIC",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"base_mana": 5,
+			"health_base": 1000,
+			"base_mana_add": 1,
+			"health_loss": 800,
+			"mana_add_once": 10,
+			"health_pct": 33,
+			"damage_health_pct": 10,
+		},
+	},
+	"yang_jian_ult": {
+		"Note": "三尖两刃刀",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"AbilityTextureName": "warlock_shadow_word",
+		"AbilityType": "ABILITY_TYPE_ULTIMATE",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+		"AbilityManaCost": 50,
+		"AbilityValues": {
+			"pi_damage": 75,
+			"pi_point": 1,
+			"ci_damge_base": 50,
+			"ci_damage_pct": 2,
+			"ci_point": 1,
+			"sao_damage_base": 50,
+			"sao_damage_pct": 2,
+			"sao_point": 2,
+			"point_hit_rate": 2,
+			"point_damage_reduce_pct": 1,
+			"point_limit": 8,
+		},
+	},
+	"yang_jian_interact": {
+		"Note": "交换技",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"AbilityTextureName": "antimage/golden_basher_blades/antimage_mana_void",
+		"CustomAbilityType": "ABILITY_TYPE_UI_HIDDEN",
+		"AbilityType": "ABILITY_TYPE_INTERACT",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_HIDDEN",
+		"AbilityValues": {
+			"fa_point_stack": 8,
+			"fa_max_health_pct": 20,
+			"fa_attack_speed": 30,
+			"fa_duration": 6,
+			"tian_reply_health_pct": 100,
+			"talent_damge_bonus": 200,
+		},
 	},
 	"ursa_talent_1": {
 		"Eid": 101,
@@ -8922,6 +8993,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 10,
+		"UIDirection": "left",
 		"AbilityValues": {
 			"count": 3,
 			"stun_duration": 0.2,
@@ -8945,19 +9017,21 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			"stun_duration": 0.5,
 		},
 	},
-	"zuus_talent_7": {
+	"zuus_talent_8": {
 		"Hero": "zuus",
-		"Note": "每释放%count%次弧形闪电，提供%ult_bonus%%大招效果增强。最大叠加%max_count%层",
+		"Note": "闪避时释放神圣一跳",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/zuus",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 10,
+		"UIDirection": "right",
 		"AbilityValues": {
-			"count": 3,
-			"ult_bonus": 15,
-			"max_count": 10,
+			"damage": 130,
+			"duration": 1.2,
+			"attackspeed_down": 60,
+			"damage_bonus": 40,
 		},
 	},
 	"templar_assassin_talent_1": {
@@ -9727,6 +9801,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"UIDirection": "right",
 		"AbilityValues": {
 			"bonus_max": 20,
+			"start_shield": 10,
 		},
 	},
 	"shredder_talent_4": {
@@ -9752,7 +9827,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
 		"AbilityValues": {
-			"bonus_chaos_dmg": 90,
+			"bonus_chaos_dmg": 80,
 			"convert_pct": 50,
 		},
 	},
@@ -10647,7 +10722,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 5,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"chance": 20,
+			"damage_bonus": 25,
 		},
 	},
 	"leshrac_talent_2": {
@@ -10675,7 +10750,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"ulti_power": 30,
+			"magic_bonus_pct": 20,
 			"count": 1,
 			"sect_lv": 3,
 		},
@@ -10707,11 +10782,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"bonus_damage": {
-				"value": 35,
-				"c": 1,
-				"_ulti": 1,
-			},
+			"chance": 50,
 			"interval_reduce": 0.6,
 		},
 	},
@@ -11495,9 +11566,9 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 			"poison_count": 5,
 		},
 	},
-	"pugna_talent_1": {
+	"pugna_talent_7": {
 		"Hero": "pugna",
-		"Note": "每%interval%s随机对敌方或自己释放衰老持续%affect_time%s",
+		"Note": "幽冥爆轰-1秒间隔，+30伤害",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11506,13 +11577,13 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 5,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"interval": 3,
-			"affect_time": 1.5,
+			"interval_reduce": 1,
+			"damage_bonus": 30,
 		},
 	},
-	"pugna_talent_2": {
+	"pugna_talent_8": {
 		"Hero": "pugna",
-		"Note": "守卫在场时敌人的基础回蓝速率降低%reduce_regen_pct%%",
+		"Note": "大招每次伤害偷取5%大招增强，最多偷取100%  对方没有也可以偷//自己可以偷到100%",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11521,12 +11592,13 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 5,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"reduce_regen_pct": 35,
+			"ult_bonus_steal": 5,
+			"limit": 100,
 		},
 	},
-	"pugna_talent_3": {
+	"pugna_talent_9": {
 		"Hero": "pugna",
-		"Note": "生命虹吸倍数+%add_hp_mul%",
+		"Note": "每次释放幽冥爆轰时对敌方施加衰老，持续1.5秒",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11535,12 +11607,12 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"add_hp_mul": 5,
+			"duration": 1.5,
 		},
 	},
-	"pugna_talent_4": {
+	"pugna_talent_10": {
 		"Hero": "pugna",
-		"Note": "当帕格纳回复血量时守卫也会回复%wisp_add_hp_pct%%血量",
+		"Note": "每次释放幽冥爆轰时对自身施加衰老，持续1.5秒",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11549,12 +11621,12 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"wisp_add_hp_pct": 50,
+			"duration": 1.5,
 		},
 	},
-	"pugna_talent_5": {
+	"pugna_talent_11": {
 		"Hero": "pugna",
-		"Note": "生命汲取间隔-%reduce_interval%s",
+		"Note": "幽冥爆轰每10级额外释放1次，并回复50%伤害的生命值 //稍微有点间隔",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11563,12 +11635,14 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"reduce_interval": 0.5,
+			"level": 10,
+			"count": 1,
+			"reply_damage": 50,
 		},
 	},
-	"pugna_talent_6": {
+	"pugna_talent_12": {
 		"Hero": "pugna",
-		"Note": "当守卫回复%wisp_trigger%点生命值时过载%affect_time%s冷却时间%interval%s",
+		"Note": "大招-0.25间隔，回复时为守卫回复50%生命，造成伤害时有25%概率释放幽冥爆轰",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/pugna",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -11577,9 +11651,9 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"wisp_trigger": 500,
-			"affect_time": 4,
-			"interval": 2,
+			"interval_reduce": 0.25,
+			"wisp_reply": 50,
+			"chance": 25,
 		},
 	},
 	"antimage_talent_2": {
@@ -12122,7 +12196,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"ult_add": 5,
+			"ult_add": 10,
 		},
 	},
 	"beastmaster_talent_5": {
@@ -12137,23 +12211,6 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"UIDirection": "left",
 		"AbilityValues": {
 			"animal_interval_reduce": 40,
-		},
-	},
-	"beastmaster_talent_6": {
-		"Hero": "beastmaster",
-		"Note": "斯洛姆战鼓：每2.5秒造成80点魔法伤害并回复80生命，野性呼唤造成伤害时-0.1伤害间隔，最低间隔0.5",
-		"BaseClass": "ability_datadriven",
-		"ScriptFile": "abilities/heroes/beastmaster",
-		"CustomAbilityType": "ABILITY_TYPE_TALENT",
-		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
-		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"RequiredLevel": 15,
-		"UIDirection": "right",
-		"AbilityValues": {
-			"interval": 2.1,
-			"magic_damage": 100,
-			"reply_health": 100,
-			"interval_reduce": 0.2,
 		},
 	},
 	"beastmaster_talent_7": {
@@ -12183,6 +12240,21 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"UIDirection": "right",
 		"AbilityValues": {
 			"bonus": 2,
+		},
+	},
+	"beastmaster_talent_9": {
+		"Hero": "beastmaster",
+		"Note": "每0.5秒造成60点魔法伤害并回复等量生命，享受野性飞斧增伤",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/beastmaster",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "right",
+		"AbilityValues": {
+			"interval": 0.5,
+			"damage": 60,
 		},
 	},
 	"batrider_talent_1": {
@@ -12224,7 +12296,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"oil_chance": 20,
+			"oil_chance": 15,
 		},
 	},
 	"batrider_talent_4": {
@@ -12252,8 +12324,8 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"steal_chance": 20,
-			"reduce_damage_bonus": 40,
+			"steal_chance": 15,
+			"reduce_damage_bonus": 30,
 		},
 	},
 	"batrider_talent_6": {
@@ -12266,7 +12338,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"chance_base": 35,
+			"chance_base": 50,
 			"magic_damage": 60,
 			"fury_stack": 30,
 		},
@@ -12414,7 +12486,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 	},
 	"bloodseeker_talent_4": {
 		"Hero": "bloodseeker",
-		"Note": "-1秒血祭间隔，血祭附带1次血怒伤害",
+		"Note": "血祭+20伤害并附带1次血怒，30%概率沉默敌方1秒",
 		"BaseClass": "ability_datadriven",
 		"ScriptFile": "abilities/heroes/bloodseeker",
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
@@ -12423,8 +12495,10 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 10,
 		"UIDirection": "right",
 		"AbilityValues": {
-			"interval_reduce": 2,
+			"damge_bonus": 20,
 			"count": 1,
+			"chance": 30,
+			"duration": 1,
 		},
 	},
 	"bloodseeker_talent_5": {
@@ -12438,7 +12512,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"RequiredLevel": 15,
 		"UIDirection": "left",
 		"AbilityValues": {
-			"limit_bonus": 50,
+			"health_reduce": 0.5,
 		},
 	},
 	"bloodseeker_talent_6": {
@@ -12453,6 +12527,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"UIDirection": "right",
 		"AbilityValues": {
 			"count": 2,
+			"limit": 2,
 		},
 	},
 	"warlock_talent_1": {
@@ -12544,6 +12619,87 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"RequiredLevel": 15,
+	},
+	"yang_jian_talent_1": {
+		"Hero": "yang_jian",
+		"Note": "解锁交互技",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 5,
+		"UIDirection": "left",
+	},
+	"yang_jian_talent_2": {
+		"Hero": "yang_jian",
+		"Note": "解锁交互技",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 5,
+		"UIDirection": "right",
+	},
+	"yang_jian_talent_3": {
+		"Hero": "yang_jian",
+		"Note": "法天象地期间免疫控制",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 10,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"shield_count": 100,
+		},
+	},
+	"yang_jian_talent_4": {
+		"Hero": "yang_jian",
+		"Note": "施加洞察时无敌0.2秒",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 10,
+		"UIDirection": "right",
+		"AbilityValues": {
+			"invincible_duration": 0.2,
+			"chance": 50,
+		},
+	},
+	"yang_jian_talent_5": {
+		"Hero": "yang_jian",
+		"Note": "濒死时无敌0.3秒，使传说技能获得额外效果重生：重置斯洛姆战鼓：0.6秒内触发3次伤害力量获取：获得等量全伤害增加",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "left",
+		"AbilityValues": {
+			"invincible_duration": 0.3,
+			"gu_duration": 0.6,
+			"gu_damage_count": 3,
+		},
+	},
+	"yang_jian_talent_6": {
+		"Hero": "yang_jian",
+		"Note": "每次施加洞察时触发20%伤害的天眼",
+		"BaseClass": "ability_datadriven",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"RequiredLevel": 15,
+		"UIDirection": "right",
+		"AbilityValues": {
+			"chance": 20,
+		},
 	},
 	"neutral_temp_talent": {
 		"Note": "野怪临时天赋",
@@ -15916,13 +16072,10 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"Hero": "pugna",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/pugna",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
-		"AbilityValues": {
-			"first_wisp_hp_add_pct": 2,
-		},
 	},
 	"antimage_shard": {
 		"Hero": "antimage",
@@ -16015,7 +16168,7 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"Hero": "beastmaster",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/heroes/beastmaster",
-		"ShardLevel": 2,
+		"ShardLevel": 1,
 		"CustomAbilityType": "ABILITY_TYPE_TALENT",
 		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
@@ -16068,6 +16221,19 @@ GameUI.CustomUIConfig().AbilitiesKv = {
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
 			"regen_health_pct": 50,
+		},
+	},
+	"yang_jian_shard": {
+		"Hero": "yang_jian",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/heroes/yang_jian",
+		"ShardLevel": 1,
+		"CustomAbilityType": "ABILITY_TYPE_TALENT",
+		"AbilityType": "ABILITY_TYPE_ATTRIBUTES",
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"chance": 25,
+			"count": 1,
 		},
 	},
 	"greevil_1": {

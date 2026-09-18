@@ -8,7 +8,7 @@
 ]]
 
 
-'use strict'; const exports = {}; GameUI.__loadModule('libs', exports); const require = GameUI.__require;
+'use strict'; const exports = {}; GameUI.__loadModule('libs', exports);
 
 const IS_DEV = false;
 const equalFn = (a, b) => a === b;
@@ -1180,6 +1180,11 @@ const { render: _render, effect, memo, createComponent, createElement, createTex
         node.SetParent(parent);
         if (anchor && anchor.IsValid()) {
             parent.MoveChildBefore(node, anchor);
+        } else {
+            const lastChild = parent.GetChild(parent.GetChildCount() - 1);
+            if (lastChild && lastChild !== node) {
+                parent.MoveChildAfter(node, lastChild);
+            }
         }
     },
     removeNode(parent, node) {

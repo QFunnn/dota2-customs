@@ -4918,6 +4918,7 @@
 		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"RequiredLevel"							"10"
+		"UIDirection"							"left"
 		"AbilityValues"
 		{
 			"count"								"3"
@@ -4945,21 +4946,23 @@
 			"stun_duration"						"0.5"
 		}
 	}
-	"zuus_talent_7"
+	"zuus_talent_8"
 	{
 		"Hero"									"zuus"
-		"Note"									"每释放%count%次弧形闪电，提供%ult_bonus%%大招效果增强。最大叠加%max_count%层"
+		"Note"									"闪避时释放神圣一跳"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/zuus"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
 		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"RequiredLevel"							"10"
+		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"count"								"3"
-			"ult_bonus"							"15"
-			"max_count"							"10"
+			"damage"							"130"
+			"duration"							"1.2"
+			"attackspeed_down"					"60"
+			"damage_bonus"						"40"
 		}
 	}
 	"templar_assassin_talent_1"
@@ -5841,6 +5844,7 @@
 		"AbilityValues"
 		{
 			"bonus_max"							"20"
+			"start_shield"						"10"
 		}
 	}
 	"shredder_talent_4"
@@ -5870,7 +5874,7 @@
 		"RequiredLevel"							"15"
 		"AbilityValues"
 		{
-			"bonus_chaos_dmg"					"90"
+			"bonus_chaos_dmg"					"80"
 			"convert_pct"						"50"
 		}
 	}
@@ -6888,7 +6892,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"chance"							"20"
+			"damage_bonus"						"25"
 		}
 	}
 	"leshrac_talent_2"
@@ -6920,7 +6924,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"ulti_power"						"30"
+			"magic_bonus_pct"					"20"
 			"count"								"1"
 			"sect_lv"							"3"
 		}
@@ -6956,12 +6960,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"bonus_damage"
-			{
-				"value"							"35"
-				"c"								"1"
-				"_ulti"							"1"
-			}
+			"chance"							"50"
 			"interval_reduce"					"0.6"
 		}
 	}
@@ -7853,10 +7852,10 @@
 			"poison_count"						"5"
 		}
 	}
-	"pugna_talent_1"
+	"pugna_talent_7"
 	{
 		"Hero"									"pugna"
-		"Note"									"每%interval%s随机对敌方或自己释放衰老持续%affect_time%s"
+		"Note"									"幽冥爆轰-1秒间隔，+30伤害"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7866,14 +7865,14 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"interval"							"3"
-			"affect_time"						"1.5"
+			"interval_reduce"					"1"
+			"damage_bonus"						"30"
 		}
 	}
-	"pugna_talent_2"
+	"pugna_talent_8"
 	{
 		"Hero"									"pugna"
-		"Note"									"守卫在场时敌人的基础回蓝速率降低%reduce_regen_pct%%"
+		"Note"									"大招每次伤害偷取5%大招增强，最多偷取100%  对方没有也可以偷//自己可以偷到100%"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7883,13 +7882,14 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"reduce_regen_pct"					"35"
+			"ult_bonus_steal"					"5"
+			"limit"								"100"
 		}
 	}
-	"pugna_talent_3"
+	"pugna_talent_9"
 	{
 		"Hero"									"pugna"
-		"Note"									"生命虹吸倍数+%add_hp_mul%"
+		"Note"									"每次释放幽冥爆轰时对敌方施加衰老，持续1.5秒"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7899,13 +7899,13 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"add_hp_mul"						"5"
+			"duration"							"1.5"
 		}
 	}
-	"pugna_talent_4"
+	"pugna_talent_10"
 	{
 		"Hero"									"pugna"
-		"Note"									"当帕格纳回复血量时守卫也会回复%wisp_add_hp_pct%%血量"
+		"Note"									"每次释放幽冥爆轰时对自身施加衰老，持续1.5秒"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7915,13 +7915,13 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"wisp_add_hp_pct"					"50"
+			"duration"							"1.5"
 		}
 	}
-	"pugna_talent_5"
+	"pugna_talent_11"
 	{
 		"Hero"									"pugna"
-		"Note"									"生命汲取间隔-%reduce_interval%s"
+		"Note"									"幽冥爆轰每10级额外释放1次，并回复50%伤害的生命值 //稍微有点间隔"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7931,13 +7931,15 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"reduce_interval"					"0.5"
+			"level"								"10"
+			"count"								"1"
+			"reply_damage"						"50"
 		}
 	}
-	"pugna_talent_6"
+	"pugna_talent_12"
 	{
 		"Hero"									"pugna"
-		"Note"									"当守卫回复%wisp_trigger%点生命值时过载%affect_time%s冷却时间%interval%s"
+		"Note"									"大招-0.25间隔，回复时为守卫回复50%生命，造成伤害时有25%概率释放幽冥爆轰"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/pugna"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -7947,9 +7949,9 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"wisp_trigger"						"500"
-			"affect_time"						"4"
-			"interval"							"2"
+			"interval_reduce"					"0.25"
+			"wisp_reply"						"50"
+			"chance"							"25"
 		}
 	}
 	"antimage_talent_2"
@@ -8567,7 +8569,7 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"ult_add"							"5"
+			"ult_add"							"10"
 		}
 	}
 	"beastmaster_talent_5"
@@ -8584,25 +8586,6 @@
 		"AbilityValues"
 		{
 			"animal_interval_reduce"			"40"
-		}
-	}
-	"beastmaster_talent_6"
-	{
-		"Hero"									"beastmaster"
-		"Note"									"斯洛姆战鼓：每2.5秒造成80点魔法伤害并回复80生命，野性呼唤造成伤害时-0.1伤害间隔，最低间隔0.5"
-		"BaseClass"								"ability_datadriven"
-		"ScriptFile"							"abilities/heroes/beastmaster"
-		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
-		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"RequiredLevel"							"15"
-		"UIDirection"							"right"
-		"AbilityValues"
-		{
-			"interval"							"2.1"
-			"magic_damage"						"100"
-			"reply_health"						"100"
-			"interval_reduce"					"0.2"
 		}
 	}
 	"beastmaster_talent_7"
@@ -8636,6 +8619,23 @@
 		"AbilityValues"
 		{
 			"bonus"								"2"
+		}
+	}
+	"beastmaster_talent_9"
+	{
+		"Hero"									"beastmaster"
+		"Note"									"每0.5秒造成60点魔法伤害并回复等量生命，享受野性飞斧增伤"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/beastmaster"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"15"
+		"UIDirection"							"right"
+		"AbilityValues"
+		{
+			"interval"							"0.5"
+			"damage"							"60"
 		}
 	}
 	"batrider_talent_1"
@@ -8683,7 +8683,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"oil_chance"						"20"
+			"oil_chance"						"15"
 		}
 	}
 	"batrider_talent_4"
@@ -8715,8 +8715,8 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"steal_chance"						"20"
-			"reduce_damage_bonus"				"40"
+			"steal_chance"						"15"
+			"reduce_damage_bonus"				"30"
 		}
 	}
 	"batrider_talent_6"
@@ -8731,7 +8731,7 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"chance_base"						"35"
+			"chance_base"						"50"
 			"magic_damage"						"60"
 			"fury_stack"						"30"
 		}
@@ -8898,7 +8898,7 @@
 	"bloodseeker_talent_4"
 	{
 		"Hero"									"bloodseeker"
-		"Note"									"-1秒血祭间隔，血祭附带1次血怒伤害"
+		"Note"									"血祭+20伤害并附带1次血怒，30%概率沉默敌方1秒"
 		"BaseClass"								"ability_datadriven"
 		"ScriptFile"							"abilities/heroes/bloodseeker"
 		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
@@ -8908,8 +8908,10 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"interval_reduce"					"2"
+			"damge_bonus"						"20"
 			"count"								"1"
+			"chance"							"30"
+			"duration"							"1"
 		}
 	}
 	"bloodseeker_talent_5"
@@ -8925,7 +8927,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"limit_bonus"						"50"
+			"health_reduce"						"0.5"
 		}
 	}
 	"bloodseeker_talent_6"
@@ -8942,6 +8944,7 @@
 		"AbilityValues"
 		{
 			"count"								"2"
+			"limit"								"2"
 		}
 	}
 	"warlock_talent_1"
@@ -9042,5 +9045,96 @@
 		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"RequiredLevel"							"15"
+	}
+	"yang_jian_talent_1"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"解锁交互技"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"5"
+		"UIDirection"							"left"
+	}
+	"yang_jian_talent_2"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"解锁交互技"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"5"
+		"UIDirection"							"right"
+	}
+	"yang_jian_talent_3"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"法天象地期间免疫控制"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"10"
+		"UIDirection"							"left"
+		"AbilityValues"
+		{
+			"shield_count"						"100"
+		}
+	}
+	"yang_jian_talent_4"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"施加洞察时无敌0.2秒"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"10"
+		"UIDirection"							"right"
+		"AbilityValues"
+		{
+			"invincible_duration"				"0.2"
+			"chance"							"50"
+		}
+	}
+	"yang_jian_talent_5"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"濒死时无敌0.3秒，使传说技能获得额外效果重生：重置斯洛姆战鼓：0.6秒内触发3次伤害力量获取：获得等量全伤害增加"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"15"
+		"UIDirection"							"left"
+		"AbilityValues"
+		{
+			"invincible_duration"				"0.3"
+			"gu_duration"						"0.6"
+			"gu_damage_count"					"3"
+		}
+	}
+	"yang_jian_talent_6"
+	{
+		"Hero"									"yang_jian"
+		"Note"									"每次施加洞察时触发20%伤害的天眼"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/yang_jian"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"15"
+		"UIDirection"							"right"
+		"AbilityValues"
+		{
+			"chance"							"20"
+		}
 	}
 }
