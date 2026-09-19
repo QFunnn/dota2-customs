@@ -37,9 +37,9 @@ do
 		print("[LocalMatchId] Local match ID installed: " .. matchId)
 	end
 end
-_G.PUBLISH_TIMESTAMP = "2026-9-16 21:38"
+_G.PUBLISH_TIMESTAMP = "2026-9-18 18:37"
 
-print("loading addon dota_super_mid compiled@2026-9-16 21:38:54")
+print("loading addon dota_super_mid compiled@2026-9-18 18:37:41")
 local ____lualib = require("lualib_bundle")
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local ____exports = {}

@@ -42,7 +42,7 @@
 	height: 580px;
 	flow-children: down;
 	align: center center;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/loading_error/bg_png.vtex");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -107,7 +107,7 @@
 	align: center top;
 	margin-top: 32px;
 	background-size: 100%;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/loading_error/logo_png.vtex");
 }
 
 .LoadingError .content
@@ -147,7 +147,7 @@
 	font-size: 24px;
 	padding: 10px;
 	border-radius: 5px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/loading_error/btn_png.vtex");
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -181,6 +181,75 @@
 	align: right top;
 }
 
+.loadingAnimation
+{
+	align: center center;
+	flow-children: right;
+	padding-right: 5px;
+}
+
+.loadingAnimation Label
+{
+	width: 8px;
+	height: 8px;
+	opacity: 0;
+	border-radius: 50%;
+	margin-left: 5px;
+	animation-name: loading;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+.loadingAnimation .loading1
+{
+	animation-delay: 0.2s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading2
+{
+	animation-delay: 0.4s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading3
+{
+	animation-delay: 0.6s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading4
+{
+	animation-delay: 0.8s;
+	background-color: #1c1c1c;
+}
+
+.loadingAnimation .loading5
+{
+	animation-delay: 1s;
+	background-color: #1c1c1c;
+}
+
+@keyframes 'loading'
+{
+	0%
+	{
+		opacity: 1;
+	}
+	
+	50%
+	{
+		opacity: 0;
+	}
+	
+	100%
+	{
+		opacity: 1;
+	}
+	
+}
+
 #CustomHudElements
 {
 	width: 100%;
@@ -199,7 +268,7 @@
 	width: 100%;
 	height: 100%;
 	opacity: 1;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/loading/loading_png.vtex");
 	background-size: 100%;
 	transition-duration: 0.3s;
 	transition-property: opacity;
@@ -256,6 +325,56 @@
 #ChatLinesContainer
 {
 	opacity: 0.5;
+}
+
+.match-loading
+{
+	align: center center;
+	flow-children: down;
+	padding: 28px 44px;
+	border-radius: 12px;
+	background-color: #071a2ce6;
+}
+
+.match-loading Label
+{
+	horizontal-align: center;
+	margin-top: 16px;
+	font-size: 26px;
+	color: white;
+	text-shadow: 0 2px 4px #000000;
+}
+
+.match-loading-spinner
+{
+	horizontal-align: center;
+	width: 56px;
+	height: 56px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_png.vtex");
+	background-size: 100%;
+	animation-name: MatchLoadingSpinner;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'MatchLoadingSpinner'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(-180deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(-360deg);
+	}
+	
 }
 
 .player-loading-state
@@ -357,7 +476,7 @@
 	ignore-parent-flow: true;
 	flow-children: down;
 	background-size: 100%;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/bg_png.vtex");
 }
 
 .balance-shuffle-panel .shuffle-title-content
@@ -382,7 +501,7 @@
 	height: 21px;
 	margin-left: 8px;
 	background-size: 100%;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/tips_png.vtex");
 }
 
 .balance-shuffle-panel .shuffle-title-content .shuffle-vote-state
@@ -404,12 +523,12 @@
 	height: 32px;
 	margin: 0 1.8px;
 	background-size: 100% 100%;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/normal_bg_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-vote-icons .balance-shuffle-vote-icon-item.type-0
 {
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/loading_bg_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-vote-icons .balance-shuffle-vote-icon-item .balance-shuffle-vote-icon-mark
@@ -422,21 +541,21 @@
 {
 	width: 27px;
 	height: 29px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/agree_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-vote-icons .balance-shuffle-vote-icon-item .balance-shuffle-vote-icon-mark.type--1
 {
 	width: 28px;
 	height: 29px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/reject_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-vote-icons .balance-shuffle-vote-icon-item .balance-shuffle-vote-icon-mark.type-0
 {
 	width: 28px;
 	height: 29px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/loading_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-actions
@@ -476,14 +595,14 @@
 {
 	width: 148px;
 	height: 44px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/button_agree_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-actions .balance-shuffle-btn.reject
 {
 	width: 148px;
 	height: 44px;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/button_reject_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-remember
@@ -499,12 +618,12 @@
 	height: 20px;
 	margin-right: 8px;
 	background-size: 100% 100%;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/remember_0_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-remember .balance-shuffle-remember-check.checked
 {
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/balance_shuffle/remember_1_png.vtex");
 }
 
 .balance-shuffle-panel .balance-shuffle-remember .balance-shuffle-remember-text
