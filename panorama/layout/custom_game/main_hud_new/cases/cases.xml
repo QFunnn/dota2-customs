@@ -1,0 +1,74 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/popups/settings_slider.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/cases/cases.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/cases/cases.vjs_c" />
+	</scripts>
+	<Panel class="CustomCasesRoot" hittest="false">
+		<Panel id="CustomCasesOverlay" class="CustomCasesOverlay Hidden">
+			<Panel class="CasesWindow" hittest="true">
+				<Panel class="CasesHeader" hittest="false">
+					<Label class="CasesTitle" text="#HUD_Cases_title" hittest="false" />
+				</Panel>
+				<Panel id="CasesUnavailableBanner" class="CasesUnavailableBanner Hidden" hittest="false">
+					<Label class="CasesUnavailableTitle" text="#HUD_Cases_Unavailable_Title" hittest="false" />
+					<Label class="CasesUnavailableDesc" text="#HUD_Cases_Unavailable_Desc" hittest="false" />
+				</Panel>
+				<Panel id="CasesListView" class="CasesListView" hittest="true">
+					<Panel id="CasesList" class="CasesList" hittest="true" />
+				</Panel>
+				<Panel id="CaseDetailView" class="CaseDetailView Hidden" hittest="true">
+					<Panel class="CaseDetailTop" hittest="true">
+						<Panel class="CaseHeroBlock" hittest="false">
+							<Label id="CaseDetailName" class="CaseDetailName" text="" hittest="false" />
+						</Panel>
+						<Panel class="CasesReelArea" hittest="false">
+							<Panel class="CasesReelPointer" hittest="false" />
+							<Panel id="CasesReel" class="CasesReel" hittest="false" />
+						</Panel>
+						<Panel class="CasesControls" hittest="true">
+							<Panel class="CasesControlsActions" hittest="true">
+								<Button id="CasesOpenButton" class="CasesOpenButton" onactivate="GameUI.OpenSelectedCase()">
+									<Label text="#HUD_Cases_open" />
+								</Button>
+								<ToggleButton id="CasesInstantToggle" class="CasesInstantToggle" onactivate="GameUI.ToggleCasesInstant()">
+									<Label class="CasesInstantToggleLabel" text="#HUD_Cases_instant" hittest="false" />
+								</ToggleButton>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="CasesRewardsBlock" hittest="true">
+						<Label class="CasesRewardsTitle" text="#HUD_Cases_rewards" hittest="false" />
+						<Panel id="CasesRewards" class="CasesRewards" hittest="true" />
+					</Panel>
+				</Panel>
+				<Panel id="CasesResultsOverlay" class="CasesResultsOverlay Hidden" hittest="true">
+					<Panel class="CasesResultsShade" hittest="true" />
+					<Panel class="CasesResultsWindow" hittest="true">
+						<Panel id="CasesResults" class="CasesResults" hittest="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="CloseButtonContainer">
+				<Button id="CloseButton" class="ButtonPrimary LightGrey" onactivate="GameUI.CloseCustomCaseOpening()">
+					<Image src="s2r://panorama/images/control_icons/24px/x_close.vsvg" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

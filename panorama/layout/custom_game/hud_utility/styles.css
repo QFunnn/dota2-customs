@@ -1,0 +1,548 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.HudUtilityRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#HudUtilityWindow
+{
+	width: 300px;
+	height: fit-children;
+	align: right top;
+	margin-top: 64px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#080a0db8), color-stop(0.52, #05080ea8), to(#02040798));
+	border: 1px solid #ffffff10;
+	border-radius: 4px;
+	box-shadow: 0px 6px 18px #0000007a;
+	opacity: 0;
+	transform: translateX(310px);
+	transition-property: transform, opacity, brightness;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#HudUtilityWindow.Show
+{
+	opacity: 0.82;
+	transform: translateX(0px);
+}
+
+#HudUtilityWindow:hover
+{
+	opacity: 0.96;
+}
+
+#HudUtilityWindow.Hidden
+{
+	opacity: 0;
+	transform: translateX(310px);
+}
+
+#HudUtilityWindow.Flip
+{
+	align: left top;
+	transform: translateX(-310px);
+}
+
+#HudUtilityWindow.Flip.Show
+{
+	transform: translateX(0px);
+}
+
+#HudUtilityWindow.Flip.Hidden
+{
+	transform: translateX(-310px);
+}
+
+#HudUtilityRestoreButton
+{
+	width: 32px;
+	height: 32px;
+	align: right top;
+	margin-top: 64px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10151dcc), to(#060910c8));
+	border: 1px solid #ffffff14;
+	border-radius: 4px;
+	box-shadow: 0px 4px 12px #00000088;
+	opacity: 0;
+	transform: translateX(42px);
+	transition-property: transform, opacity, brightness;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+#HudUtilityRestoreButton.Show
+{
+	opacity: 0.72;
+	transform: translateX(0px);
+}
+
+#HudUtilityRestoreButton.Show:hover
+{
+	opacity: 1;
+	brightness: 1.12;
+}
+
+#HudUtilityRestoreButton.Flip
+{
+	align: left top;
+	transform: translateX(-42px);
+}
+
+#HudUtilityRestoreButton.Flip.Show
+{
+	transform: translateX(0px);
+}
+
+#HudUtilityRestoreIcon
+{
+	width: 18px;
+	height: 18px;
+	align: center center;
+	wash-color: #c8d0dc;
+	img-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#HudUtilityHeader
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+	padding-top: 2px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.HudUtilityTab
+{
+	width: fill-parent-flow(1.0);
+	height: 34px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+	transition-property: opacity, brightness;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.HudUtilityTab:hover .HudUtilityTabLabel
+{
+	opacity: 1;
+}
+
+.HudUtilityTab.Locked .HudUtilityTabLabel
+{
+	color: #8f98a4;
+	opacity: 0.44;
+}
+
+.HudUtilityTab.Locked:hover .HudUtilityTabLabel
+{
+	opacity: 0.72;
+}
+
+.HudUtilityTabLabel
+{
+	width: 100%;
+	align: center top;
+	vertical-align: center;
+	text-align: center;
+	font-size: 15px;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	color: #b8bcc6;
+	opacity: 0.58;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	transition-property: color, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.HudUtilityTab.Selected .HudUtilityTabLabel
+{
+	color: #e7d291;
+	opacity: 1;
+}
+
+.HudUtilityTabUnderline
+{
+	width: 62%;
+	height: 1px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	background-color: #e7d29100;
+	transition-property: background-color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.HudUtilityTab.Selected .HudUtilityTabUnderline
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#e7d29100), color-stop(0.5, #e7d291cc), to(#e7d29100));
+}
+
+.HudUtilityTabStar
+{
+	width: 7px;
+	height: 7px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	background-color: #e7d29100;
+	transform: rotateZ(45deg);
+	ignore-parent-flow: true;
+	transition-property: background-color, box-shadow;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.HudUtilityTab.Selected .HudUtilityTabStar
+{
+	background-color: #e7d291dd;
+	box-shadow: 0px 0px 7px #e7d29155;
+}
+
+#HudUtilityHideButton
+{
+	width: 24px;
+	height: 24px;
+	align: left top;
+	margin-top: 6px;
+	ignore-parent-flow: true;
+	z-index: 10;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	opacity: 0.45;
+	transition-property: opacity, brightness;
+	transition-duration: 0.15s;
+}
+
+#HudUtilityHideButton:hover
+{
+	opacity: 1;
+	brightness: 1.2;
+}
+
+#HudUtilityHideIcon
+{
+	width: 16px;
+	height: 16px;
+	align: center center;
+	wash-color: #c8d0dc;
+	img-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.HudUtilityDivider
+{
+	width: 100%;
+	height: 1px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2a2c3400), color-stop(0.5, #6f748099), to(#2a2c3400));
+}
+
+#HudUtilityBody
+{
+	width: 100%;
+	height: fit-children;
+	overflow: clip;
+	padding: 5px;
+}
+
+.HudUtilityTabContent
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	overflow: clip;
+}
+
+.HudUtilityView
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	overflow: clip;
+}
+
+.DamageSummary,#DamageSummary
+{
+	width: 100%;
+	height: 0px;
+	background-color: #00000018;
+	border: 1px solid #ffffff08;
+	border-radius: 3px;
+	visibility: collapse;
+}
+
+.TotalDamage,#TotalDamage
+{
+	width: 100%;
+	height: 20px;
+	color: #dde6f0;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	vertical-align: center;
+	text-overflow: shrink;
+	font-size: 15px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#DamageDetails
+{
+	width: 100%;
+	height: fit-children;
+	max-height: 210px;
+	flow-children: down;
+	overflow: squish scroll;
+	margin-top: 0px;
+	padding: 0px 5px 3px 5px;
+}
+
+.DamageEmpty,#DamageEmpty
+{
+	width: 100%;
+	height: 32px;
+	color: #aeb7c2;
+	font-size: 16px;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	visibility: collapse;
+	margin-top: 4px;
+}
+
+.DamageEntry
+{
+	width: 100%;
+	height: 32px;
+	padding: 0px;
+	margin-bottom: 3px;
+	border: 1px solid #ffffff14;
+	border-radius: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#0b111acc), to(#05080db8));
+}
+
+.DamageEntryBar
+{
+	height: 3px;
+	vertical-align: bottom;
+	border: 0px;
+	opacity: 0.9;
+	border-radius: 0px 2px 2px 0px;
+	margin-left: 3px;
+}
+
+.DamageEntryAccent
+{
+	width: 3px;
+	height: 100%;
+	border-radius: 2px 0px 0px 2px;
+}
+
+.DamageEntryAbilityIcon
+{
+	width: 24px;
+	height: 24px;
+	border-radius: 2px;
+	margin-left: 7px;
+	vertical-align: center;
+	box-shadow: inset 0 0 1px #ffffff40;
+}
+
+.DamageEntryBar.DamageType1
+{
+	background-color: #ae2f28;
+}
+
+.DamageEntryBar.DamageType2
+{
+	background-color: #5b93d1;
+}
+
+.DamageEntryBar.DamageType4
+{
+	background-color: #d8ae53;
+}
+
+.DamageEntryAbilityName
+{
+	color: #f2f5f8;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	align: left center;
+	margin-left: 40px;
+	width: 144px;
+	height: 24px;
+	font-size: 17px;
+	text-overflow: shrink;
+}
+
+.DamageEntryValue
+{
+	color: #dde6f0;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	align: right center;
+	margin-right: 9px;
+	width: 96px;
+	height: 24px;
+	font-size: 16px;
+	text-align: right;
+	text-overflow: shrink;
+}
+
+.NextRoundsView
+{
+	height: fit-children;
+	overflow: clip;
+}
+
+.NextRoundsHeader,#NextRoundsHeader
+{
+	width: 100%;
+	height: 30px;
+	background-color: #00000018;
+	border: 1px solid #ffffff08;
+	border-radius: 3px;
+}
+
+.NextRoundsHeaderText,#NextRoundsHeaderText
+{
+	color: #c8d0dc;
+	font-size: 16px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	align: center center;
+	width: 100%;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.NextRoundsCount,#NextRoundsCount
+{
+	visibility: collapse;
+	color: #e7d291;
+	font-size: 15px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	align: right center;
+	margin-right: 8px;
+	width: 52px;
+	text-align: right;
+	text-overflow: shrink;
+}
+
+#NextRoundsList
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+	overflow: clip;
+	margin-top: 4px;
+}
+
+.NextRoundEntry
+{
+	width: 100%;
+	height: 40px;
+	padding: 2px 7px;
+	flow-children: right;
+	border-bottom: 1px solid #ffffff05;
+	background-color: #00000010;
+}
+
+.NextRoundEntry.CurrentPhase
+{
+	background-color: #ffffff06;
+}
+
+.NextRoundNumber
+{
+	width: 38px;
+	height: 26px;
+	color: gradient(linear, 30% 0%, 0% 100%, from(#e04b43cc), to(#9e281ccc));
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px 2px 3 #000000;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+.NextRoundBody
+{
+	width: fill-parent-flow(1.0);
+	height: fit-children;
+	flow-children: down;
+	vertical-align: center;
+}
+
+.NextRoundName
+{
+	width: 154px;
+	height: 23px;
+	color: #f2f5f8;
+	font-size: 18px;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.NextRoundMeta
+{
+	width: 154px;
+	height: 19px;
+	color: #aeb7c2;
+	font-size: 16px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	text-overflow: shrink;
+}
+
+.NextRoundAbilities
+{
+	width: 70px;
+	height: 24px;
+	flow-children: left;
+	vertical-align: center;
+	horizontal-align: right;
+	overflow: clip;
+}
+
+.NextRoundAbilities DOTAAbilityImage
+{
+	width: 22px;
+	height: 22px;
+	border-radius: 3px;
+	margin-left: 1px;
+	margin-right: 1px;
+	box-shadow: inset 0 0 1px #ffffff33;
+}
+
+.NextRoundsEmpty,#NextRoundsEmpty
+{
+	width: 100%;
+	height: 30px;
+	color: #aeb7c2;
+	font-size: 15px;
+	text-align: center;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	visibility: collapse;
+	margin-top: 4px;
+}
+
+.NextRoundsEmpty.Show,#NextRoundsEmpty.Show
+{
+	visibility: visible;
+}

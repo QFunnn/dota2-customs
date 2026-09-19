@@ -1,0 +1,30 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/hud/dota_hud_menu_buttons.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/top_menu/top_menu.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/top_menu/top_menu.vjs_c" />
+	</scripts>
+	<Panel class="TopMenuButtons" hittest="false">
+		<Panel id="MenuButtons" hittest="false">
+			<Panel id="ButtonBar" class="ButtonBar" hittest="false">
+				<Button id="SettingsRebornButton" onmouseover="UIShowTextTooltip( Settings )" onmouseout="UIHideTextTooltip()" onactivate="GameUI.ToggleCustomSettingsHud()" />
+				<Button id="CasesRebornButton" class="Hidden" onmouseover="UIShowTextTooltip( #HUD_Cases_title )" onmouseout="UIHideTextTooltip()" onactivate="GameUI.ToggleCustomCasesHud()" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

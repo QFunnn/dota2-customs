@@ -1,0 +1,144 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/inventory/inventory_items.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/main_hud_new/inventory/shop/shop.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/main_hud_new/inventory/shop.vjs_c" />
+	</scripts>
+	<snippets>
+		<snippet name="ShopItem">
+			<Panel class="ShopItem" hittest="true">
+				<Panel class="ItemPreview" hittest="false">
+					<DOTAHeroImage id="HeroIconPreview" class="ItemPreviewPanel" hittest="false" heroname="npc_dota_hero_pudge" heroimagestyle="landscape" />
+					<Panel id="ImagePreview" class="ItemPreviewPanel" hittest="false" />
+					<Panel id="FxPreview" class="ItemPreviewPanel" hittest="false" />
+					<Panel id="ScenePreview" class="ItemPreviewPanel" hittest="false" />
+					<Panel id="VideoPreview" class="ItemPreviewPanel" hittest="false" />
+					<Panel id="ChatWheelPreview" class="ItemPreviewPanel" hittest="false">
+						<Panel hittest="true" class="ItemIconContainer">
+							<Panel hittest="true" class="TextIcon" />
+							<Panel hittest="true" id="SoundIcon" class="SoundIcon" />
+						</Panel>
+						<Label hittest="false" class="ItemText" text="{s:chat_line}" />
+					</Panel>
+				</Panel>
+				<Button id="PreviewParamsButton" class="PreviewParamsButton" hittest="true">
+					<Label class="PreviewParamsButtonLabel" hittest="false" text="CAM" />
+				</Button>
+				<Panel class="ItemSlotName" hittest="false">
+					<Label class="ItemSlotNameText" text="{s:item_slot}" hittest="false" />
+				</Panel>
+				<Panel class="ItemInfo" hittest="true">
+					<Label class="ItemName" text="{s:item_name}" hittest="false" />
+					<Panel class="DecorLine" hittest="false" />
+					<Panel class="ItemActions" hittest="true">
+						<Label class="HasItemText" text="#INVENTORY_Has" hittest="false" />
+						<Panel id="ItemBuyButton" hittest="true">
+							<Panel class="ButtonWrapper" hittest="false">
+								<Panel class="BuyCoinIcon" hittest="false" />
+								<Label class="BuyText" text="{s:buy_cost}" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="ShopMenu" hittest="true">
+		<Panel class="ShopMain" hittest="true">
+			<Panel id="HeaderBack" hittest="false" />
+			<Panel id="Header" hittest="true">
+				<Panel id="HeaderButtons" hittest="false">
+					<Panel id="FXHeroButton" class="HeaderButton" hittest="true" onactivate="ShopOpenPage(&apos;FXHero&apos;)">
+						<Label class="HeaderButtonLabel" hittest="false" text="#MENU_SHOP_Header_Button_Hero_effects" />
+					</Panel>
+					<Panel id="FXAttacksButton" class="HeaderButton" hittest="true" onactivate="ShopOpenPage(&apos;FXAttacks&apos;)">
+						<Label class="HeaderButtonLabel" hittest="false" text="#MENU_SHOP_Header_Button_Fx_attacks" />
+					</Panel>
+					<Panel id="TopEffectsButton" class="HeaderButton" hittest="true" onactivate="ShopOpenPage(&apos;TopEffects&apos;)">
+						<Label class="HeaderButtonLabel" hittest="false" text="#MENU_SHOP_Header_Button_Hero_top_effects" />
+					</Panel>
+					<Panel id="ChatWheelButton" class="HeaderButton" hittest="true" onactivate="ShopOpenPage(&apos;ChatWheel&apos;)">
+						<Label class="HeaderButtonLabel" hittest="false" text="#MENU_SHOP_Header_Button_Chat_wheel" />
+					</Panel>
+					<Panel id="CasesButton" class="HeaderButton" hittest="true" onactivate="ShopOpenPage(&apos;Cases&apos;)">
+						<Label class="HeaderButtonLabel" hittest="false" text="КЕЙСЫ" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="ItemsBody" hittest="true" />
+		</Panel>
+		<Panel id="PreviewParamsPopup" class="PreviewParamsPopup" hittest="true">
+			<Button id="PreviewParamsBackdrop" class="PreviewParamsBackdrop" hittest="true" />
+			<Panel class="PreviewParamsWindow" hittest="true">
+				<Panel class="PreviewParamsHeader" hittest="false">
+					<Label class="PreviewParamsTitle" text="Preview Params" hittest="false" />
+					<Label id="PreviewParamsItemName" class="PreviewParamsItemName" text="" hittest="false" />
+				</Panel>
+				<Panel class="PreviewParamsForm" hittest="true">
+					<Panel class="PreviewParamsField" hittest="true">
+						<Label class="PreviewParamsLabel" text="fov" hittest="false" />
+						<Panel class="PreviewParamsStepper" hittest="true">
+							<TextButton id="PreviewParamsFovMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsFov" class="PreviewParamsInput" text="60" maxchars="8" hittest="true" />
+							<TextButton id="PreviewParamsFovPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+						</Panel>
+					</Panel>
+					<Panel class="PreviewParamsVectorField" hittest="true">
+						<Label class="PreviewParamsLabel" text="origin" hittest="false" />
+						<Panel class="PreviewParamsAxisRow" hittest="true">
+							<Label class="PreviewParamsAxisLabel" text="x" hittest="false" />
+							<TextButton id="PreviewParamsOriginXMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsOriginX" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsOriginXPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+							<Label class="PreviewParamsAxisLabel" text="y" hittest="false" />
+							<TextButton id="PreviewParamsOriginYMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsOriginY" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsOriginYPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+							<Label class="PreviewParamsAxisLabel" text="z" hittest="false" />
+							<TextButton id="PreviewParamsOriginZMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsOriginZ" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsOriginZPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+						</Panel>
+					</Panel>
+					<Panel class="PreviewParamsVectorField" hittest="true">
+						<Label class="PreviewParamsLabel" text="look_at" hittest="false" />
+						<Panel class="PreviewParamsAxisRow" hittest="true">
+							<Label class="PreviewParamsAxisLabel" text="x" hittest="false" />
+							<TextButton id="PreviewParamsLookAtXMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsLookAtX" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsLookAtXPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+							<Label class="PreviewParamsAxisLabel" text="y" hittest="false" />
+							<TextButton id="PreviewParamsLookAtYMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsLookAtY" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsLookAtYPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+							<Label class="PreviewParamsAxisLabel" text="z" hittest="false" />
+							<TextButton id="PreviewParamsLookAtZMinus" class="PreviewParamsStepButton" text="-" hittest="true" />
+							<TextEntry id="PreviewParamsLookAtZ" class="PreviewParamsAxisInput" text="0" maxchars="10" hittest="true" />
+							<TextButton id="PreviewParamsLookAtZPlus" class="PreviewParamsStepButton" text="+" hittest="true" />
+						</Panel>
+					</Panel>
+					<TextEntry id="PreviewParamsLuaOutput" class="PreviewParamsLuaOutput" multiline="true" hittest="true" />
+				</Panel>
+				<Panel class="PreviewParamsActions" hittest="true">
+					<TextButton id="PreviewParamsApplyButton" class="PreviewParamsActionButton Apply" text="Apply" hittest="true" />
+					<TextButton id="PreviewParamsCloseButton" class="PreviewParamsActionButton" text="Close" hittest="true" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

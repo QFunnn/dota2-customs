@@ -1,0 +1,826 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomRouletteRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+.CustomRouletteOverlay
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CustomRouletteWindow
+{
+	width: 1190px;
+	height: 700px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	padding: 24px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#080a0dfa), color-stop(0.52, #05080edc), to(#020407e8));
+	border: 1px solid #ffffff14;
+	border-radius: 4px;
+	box-shadow: 0px 7px 20px #000000aa;
+	opacity: 0.98;
+}
+
+.RouletteUnavailableBanner
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 20;
+	background-color: #00000001;
+}
+
+.RouletteUnavailableBannerInner
+{
+	width: 560px;
+	min-height: 188px;
+	flow-children: down;
+	align: center center;
+	padding: 32px 36px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#080a0dfa), color-stop(0.52, #05080ef4), to(#020407f2));
+	border: 1px solid #ffffff14;
+	border-radius: 4px;
+	box-shadow: 0px 7px 20px #000000aa;
+}
+
+.RouletteUnavailableTextBlock
+{
+	width: 100%;
+	flow-children: down;
+	align: center center;
+}
+
+.RouletteUnavailableTitle
+{
+	width: 100%;
+	color: #e7d291;
+	font-size: 26px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	text-shadow: 0px 2px 4px 2 #000000cc;
+}
+
+.RouletteUnavailableDesc
+{
+	width: 100%;
+	margin-top: 8px;
+	color: #c6cfdd;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 2 #000000aa;
+}
+
+.RouletteHeader
+{
+	width: 100%;
+	height: 44px;
+}
+
+.RouletteTitle
+{
+	horizontal-align: left;
+	vertical-align: center;
+	color: #e7d291;
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.RouletteTimer
+{
+	width: 88px;
+	height: 42px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	color: #f4d979;
+	font-family: monospaceNumbersFont;
+	font-size: 30px;
+	font-weight: bold;
+	padding-top: 3px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#27200ee8), color-stop(0.5, #151922f2), to(#090c11f2));
+	border: 1px solid #d8b34f99;
+	border-radius: 4px;
+	box-shadow: 0px 0px 16px #d8b34f33, inset 0px 1px 0px #ffffff18, inset 0px -1px 0px #00000088;
+	text-shadow: 0px 1px 4px 3 #000000ee;
+}
+
+.RouletteCoins
+{
+	min-width: 110px;
+	height: 34px;
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+	padding: 5px 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#171b20f8), color-stop(0.55, #10141af6), to(#090c11f6));
+	border: 1px solid #8d96a655;
+	border-radius: 3px;
+	box-shadow: 0px 5px 14px #000000aa, inset 0px 1px 0px #ffffff12;
+}
+
+.RouletteCoinsIcon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	margin-right: 7px;
+	img-shadow: 0px 1px 3px 2 #00000088;
+}
+
+.RouletteCoinsValue
+{
+	vertical-align: center;
+	color: #e7d291;
+	font-size: 20px;
+	font-weight: semi-bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	text-align: right;
+	text-overflow: shrink;
+}
+
+.RouletteBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
+}
+
+.RouletteWheelWrap
+{
+	width: 520px;
+	height: 520px;
+	margin-top: 8px;
+}
+
+.RoulettePointer
+{
+	width: 8px;
+	height: 64px;
+	horizontal-align: center;
+	margin-top: -8px;
+	z-index: 8;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#fff3a8), color-stop(0.55, #f2d15d), to(#8f6824));
+	border: 2px solid #fff7bf;
+	box-shadow: #000000cc 0px 0px 8px 0px;
+}
+
+.RoulettePointerTip
+{
+	width: 18px;
+	height: 18px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: -10px;
+	background-color: #f2d15d;
+	transform: rotateZ(45deg);
+	border-right: 2px solid #fff7bf;
+	border-bottom: 2px solid #fff7bf;
+	box-shadow: #000000aa 0px 0px 6px 0px;
+}
+
+.RouletteResult
+{
+	horizontal-align: center;
+	margin-top: 60px;
+	z-index: 9;
+	color: #f5d77a;
+	font-size: 22px;
+	font-weight: bold;
+	text-shadow: 0px 2px 4px 3 #000000;
+	background-color: #05080dcc;
+	border: 1px solid #f2d15d88;
+	padding: 3px 10px;
+}
+
+.RouletteWheel
+{
+	width: 480px;
+	height: 480px;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 50%;
+	overflow: clip;
+	background-color: #080a0dfa;
+	border: 4px solid #6f7480cc;
+	box-shadow: #000000aa 0px 0px 18px 0px;
+	transition-property: transform;
+	transition-duration: 0s;
+	transition-timing-function: linear;
+}
+
+.RouletteSlice
+{
+	width: 34px;
+	height: 240px;
+	horizontal-align: center;
+	vertical-align: top;
+	transform-origin: 50% 100%;
+	border-left: 1px solid #ffffff18;
+	border-right: 1px solid #00000066;
+}
+
+.RouletteSlice Label
+{
+	width: 48px;
+	height: 20px;
+	horizontal-align: center;
+	margin-top: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	color: #111722;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 1px 1 #ffffff55;
+	transform: rotateZ(360deg);
+}
+
+.Slice0
+{
+	transform: rotateZ(0deg);
+}
+
+.Slice1
+{
+	transform: rotateZ(9deg);
+}
+
+.Slice2
+{
+	transform: rotateZ(18deg);
+}
+
+.Slice3
+{
+	transform: rotateZ(27deg);
+}
+
+.Slice4
+{
+	transform: rotateZ(36deg);
+}
+
+.Slice5
+{
+	transform: rotateZ(45deg);
+}
+
+.Slice6
+{
+	transform: rotateZ(54deg);
+}
+
+.Slice7
+{
+	transform: rotateZ(63deg);
+}
+
+.Slice8
+{
+	transform: rotateZ(72deg);
+}
+
+.Slice9
+{
+	transform: rotateZ(81deg);
+}
+
+.Slice10
+{
+	transform: rotateZ(90deg);
+}
+
+.Slice11
+{
+	transform: rotateZ(99deg);
+}
+
+.Slice12
+{
+	transform: rotateZ(108deg);
+}
+
+.Slice13
+{
+	transform: rotateZ(117deg);
+}
+
+.Slice14
+{
+	transform: rotateZ(126deg);
+}
+
+.Slice15
+{
+	transform: rotateZ(135deg);
+}
+
+.Slice16
+{
+	transform: rotateZ(144deg);
+}
+
+.Slice17
+{
+	transform: rotateZ(153deg);
+}
+
+.Slice18
+{
+	transform: rotateZ(162deg);
+}
+
+.Slice19
+{
+	transform: rotateZ(171deg);
+}
+
+.Slice20
+{
+	transform: rotateZ(180deg);
+}
+
+.Slice21
+{
+	transform: rotateZ(189deg);
+}
+
+.Slice22
+{
+	transform: rotateZ(198deg);
+}
+
+.Slice23
+{
+	transform: rotateZ(207deg);
+}
+
+.Slice24
+{
+	transform: rotateZ(216deg);
+}
+
+.Slice25
+{
+	transform: rotateZ(225deg);
+}
+
+.Slice26
+{
+	transform: rotateZ(234deg);
+}
+
+.Slice27
+{
+	transform: rotateZ(243deg);
+}
+
+.Slice28
+{
+	transform: rotateZ(252deg);
+}
+
+.Slice29
+{
+	transform: rotateZ(261deg);
+}
+
+.Slice30
+{
+	transform: rotateZ(270deg);
+}
+
+.Slice31
+{
+	transform: rotateZ(279deg);
+}
+
+.Slice32
+{
+	transform: rotateZ(288deg);
+}
+
+.Slice33
+{
+	transform: rotateZ(297deg);
+}
+
+.Slice34
+{
+	transform: rotateZ(306deg);
+}
+
+.Slice35
+{
+	transform: rotateZ(315deg);
+}
+
+.Slice36
+{
+	transform: rotateZ(324deg);
+}
+
+.Slice37
+{
+	transform: rotateZ(333deg);
+}
+
+.Slice38
+{
+	transform: rotateZ(342deg);
+}
+
+.Slice39
+{
+	transform: rotateZ(351deg);
+}
+
+.Mult2
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgb(131, 134, 138)), color-stop(0.55, rgb(230, 230, 230)), to(#8b949dff));
+}
+
+.Mult3
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgb(117, 140, 202)), color-stop(0.55, #4f9ab8ff), to(rgb(47, 87, 148)));
+}
+
+.Mult5
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgb(26, 146, 26)), color-stop(0.55, #7da02dff), to(#557d1eff));
+}
+
+.Mult10
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#c99d3eff), color-stop(0.55, #af7f2aff), to(#805819ff));
+}
+
+.RouletteHub
+{
+	width: 118px;
+	height: 118px;
+	horizontal-align: center;
+	vertical-align: center;
+	border-radius: 50%;
+	background-color: gradient(radial, 50% 50%, 0% 0%, 55% 55%, from(#e7d291), to(#6f5125));
+	border: 2px solid #e7d291cc;
+	z-index: 3;
+}
+
+.RouletteHub Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #1b1d22;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.RouletteControls
+{
+	width: 270px;
+	height: 100%;
+	flow-children: down;
+	padding: 12px 0px 0px 28px;
+}
+
+.RouletteSectionLabel
+{
+	color: #b8bcc6;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 6px;
+}
+
+.RouletteBetAmount
+{
+	width: 230px;
+	height: 42px;
+	margin-bottom: 8px;
+	color: #ffffff;
+	font-size: 24px;
+	background-color: #10141acc;
+	border: 1px solid #6f7480cc;
+	border-radius: 4px;
+	box-shadow: 0px 0px 10px #e7d29112;
+	padding: 6px 10px;
+}
+
+.RouletteBetOptionRow
+{
+	width: 236px;
+	flow-children: right-wrap;
+	margin-bottom: 14px;
+}
+
+.RouletteBetOptionButton
+{
+	width: 52px;
+	height: 30px;
+	margin: 0px 7px 7px 0px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#202733e8), to(#111722e8));
+	border: 1px solid #6f748066;
+	border-radius: 3px;
+	box-shadow: 0px 3px 8px #00000055;
+	transition-property: brightness, border;
+	transition-duration: 0.12s;
+}
+
+.RouletteBetOptionButton:hover
+{
+	brightness: 1.15;
+	border: 1px solid #e7d29188;
+}
+
+.RouletteBetOptionButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #d7e5f5;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+.RouletteMultiplierRow
+{
+	width: 236px;
+	flow-children: right-wrap;
+	margin-bottom: 16px;
+}
+
+.RouletteMultiplierButton
+{
+	width: 106px;
+	height: 44px;
+	margin: 0px 10px 10px 0px;
+	border: 1px solid #ffffff14;
+	border-radius: 6px;
+	box-shadow: 0px 5px 14px #00000055;
+	opacity: 0.94;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.RouletteMultiplierButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #111722;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 1px 1 #ffffff55;
+}
+
+.RouletteMultiplierButton:hover
+{
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 10px 26px #00000077;
+	opacity: 1.0;
+}
+
+.RouletteMultiplierButton.Selected
+{
+	border: 2px solid #e7d291cc;
+	box-shadow: 0px 0px 14px #e7d29133;
+}
+
+#RouletteMultiplier2
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#c9ced3ff), color-stop(0.55, #aeb6bdff), to(#8b949dff));
+}
+
+#RouletteMultiplier3
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#75b4caff), color-stop(0.55, #4f9ab8ff), to(#2f7194ff));
+}
+
+#RouletteMultiplier5
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9ab940ff), color-stop(0.55, #7da02dff), to(#557d1eff));
+}
+
+#RouletteMultiplier10
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#c99d3eff), color-stop(0.55, #af7f2aff), to(#805819ff));
+}
+
+.RouletteBetButton
+{
+	width: 230px;
+	height: 48px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3f6c54f2), to(#244333ee));
+	border: 1px solid #6fa57acc;
+	border-radius: 3px;
+	box-shadow: 0px 6px 18px #00000077, inset 0px 1px 0px #ffffff12, inset 0px -1px 0px #00000055;
+	margin-top: 4px;
+}
+
+.RouletteBetButton Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #e2f2e5;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 2px 2 #00000088;
+}
+
+.RouletteBetButton:disabled
+{
+	saturation: 0;
+	opacity: 0.45;
+}
+
+.RoulettePlayersColumn
+{
+	width: 320px;
+	height: 100%;
+	padding: 12px 0px 0px 18px;
+	flow-children: down;
+}
+
+.RouletteParticipants
+{
+	width: 300px;
+	height: 500px;
+	flow-children: down;
+	overflow: squish scroll;
+	background-color: #05080d88;
+	border: 1px solid #61728644;
+	padding: 8px;
+}
+
+.RouletteHistoryBlock
+{
+	width: 100%;
+	height: 54px;
+	flow-children: down;
+	margin-bottom: 12px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+}
+
+.HistoryTitle
+{
+	margin-top: 0px;
+}
+
+.RouletteHistory
+{
+	width: 100%;
+	height: 44px;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	padding: 6px 0px 0px 0px;
+}
+
+.RouletteHistoryItem
+{
+	width: 42px;
+	height: 28px;
+	margin: 0px 5px 0px 0px;
+	border: 1px solid #ffffff22;
+}
+
+.RouletteHistoryItem Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #111722;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px 1 #ffffff55;
+}
+
+.RouletteParticipant
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	margin-bottom: 5px;
+}
+
+.RouletteParticipant Label
+{
+	color: #d7e5f5;
+	font-size: 16px;
+}
+
+.RouletteParticipantHero
+{
+	width: 32px;
+	height: 32px;
+	margin-right: 8px;
+	border: 1px solid #f2d15d55;
+}
+
+.RouletteParticipantAmount
+{
+	width: 128px;
+	height: 32px;
+	flow-children: right;
+	vertical-align: center;
+	margin-right: 10px;
+}
+
+.RouletteParticipantGoldIcon
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: center;
+	margin-right: 5px;
+}
+
+.RouletteParticipantGoldValue
+{
+	vertical-align: center;
+	color: #ffcc34;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.RouletteParticipantSector
+{
+	width: 46px;
+	height: 28px;
+	vertical-align: center;
+	border: 1px solid #ffffff22;
+	box-shadow: 0px 2px 6px #00000055;
+}
+
+.RouletteParticipantSector Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	color: #111722;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: monospaceNumbersFont;
+	text-shadow: 0px 1px 1px 1 #ffffff55;
+}
+
+.RouletteParticipantBet
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	text-align: left;
+	color: #ffdf7a;
+}
+
+.RouletteEmptyParticipants
+{
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-size: 16px;
+	color: #b8bcc6;
+}
+
+.CloseButtonContainer
+{
+	horizontal-align: center;
+	vertical-align: center;
+	margin-left: 1170px;
+	margin-bottom: 690px;
+}

@@ -1,0 +1,91 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.TipGiftContainer
+{
+	width: 64px;
+	height: 92px;
+	horizontal-align: center;
+	vertical-align: top;
+	flow-children: down;
+	margin-top: 68px;
+	visibility: collapse;
+}
+
+#TipPanelHost.AltPressed .TipGiftContainer
+{
+	visibility: visible;
+}
+
+#TipPanelHost.TipsAvailable #TipButton
+{
+	visibility: visible;
+}
+
+#TipButton
+{
+	overflow: clip;
+	width: 58px;
+	max-height: 20px;
+	padding: 2px 4px 1px 4px;
+	min-width: 0px;
+	min-height: 0px;
+	horizontal-align: center;
+	flow-children: right;
+	background-color: #1b211df2;
+	border: 1px solid #2f3b33;
+	box-shadow: 0px 0px 4px #000000cc;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: pre-transform-scale2d, opacity, transform;
+	transition-duration: .12s;
+	transition-timing-function: ease-in-out;
+}
+
+#TipPanelHost.AltPressed.TipsAvailable #TipButton
+{
+	opacity: 0.3;
+}
+
+#TipPanelHost.AltPressed.TipsAvailable #TipButton:hover
+{
+	opacity: 1;
+}
+
+#TipButton:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#TipIcon
+{
+	width: 16px;
+	height: 16px;
+	margin-left: 2px;
+	transform: translateY(-1px);
+	margin-right: 4px;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#TipButton Label
+{
+	font-size: 14px;
+	letter-spacing: 1px;
+	vertical-align: middle;
+	color: #e9cf6a;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 2 #000000;
+}

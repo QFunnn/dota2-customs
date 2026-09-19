@@ -1,0 +1,776 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomCasesRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Hidden
+{
+	visibility: collapse;
+}
+
+.CustomCasesOverlay
+{
+	width: 1220px;
+	height: 850px;
+	align: center center;
+}
+
+.CasesWindow
+{
+	width: 1160px;
+	height: 820px;
+	align: center center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#111821f8), color-stop(0.52, #0a1119f8), to(#05080dfb));
+	border: 1px solid #46536078;
+	border-radius: 4px;
+	box-shadow: 0px 18px 46px #000000d8;
+	padding: 14px 28px 24px 28px;
+	flow-children: down;
+	align: center center;
+}
+
+.CloseButtonContainer
+{
+	horizontal-align: right;
+	vertical-align: top;
+	width: 58px;
+	height: 33px;
+}
+
+#CloseButton
+{
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+}
+
+#CloseButton Image
+{
+	width: 24px;
+	height: 24px;
+	align: center center;
+}
+
+.CasesHeader
+{
+	width: 100%;
+	height: 24px;
+}
+
+.CasesTitle
+{
+	color: #f0d89b;
+	font-size: 34px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 4px 3 #000000cc;
+	vertical-align: center;
+}
+
+.CaseDetailMode .CasesTitle
+{
+	visibility: collapse;
+}
+
+.CasesCoinIcon
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.CasesCoinsValue
+{
+	color: #f2deb0;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: center;
+}
+
+.CasesUnavailableBanner
+{
+	width: 100%;
+	padding: 10px 14px;
+	margin-bottom: 10px;
+	background-color: #3b1616d8;
+	border: 1px solid #d66a5b66;
+	border-radius: 4px;
+	flow-children: right;
+}
+
+.CasesUnavailableTitle
+{
+	color: #ffd0c8;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 12px;
+}
+
+.CasesUnavailableDesc
+{
+	color: #d8b9b5;
+	font-size: 15px;
+}
+
+.CasesListView
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+}
+
+.CasesList
+{
+	width: 100%;
+	flow-children: right-wrap;
+	padding-top: 16px;
+}
+
+.CaseCard
+{
+	width: 278px;
+	height: 360px;
+	margin-right: 14px;
+	margin-bottom: 14px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#18212ced), to(#090d14f2));
+	border: 1px solid #ffffff18;
+	border-radius: 6px;
+	box-shadow: 0px 8px 24px #00000088;
+	transition-property: brightness, border, transform;
+	transition-duration: 0.15s;
+}
+
+.CaseCard:hover
+{
+	brightness: 1.1;
+	border: 1px solid #d8b34f88;
+	transform: translateY(-2px);
+}
+
+.CaseCardPreview
+{
+	width: 100%;
+	height: 278px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: #05080d;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.CasePreview_summer_2026,#CaseCard_summer_2026 .CaseCardPreview
+{
+	background-image: url("s2r://panorama/images/custom_game/cases/summer_2026_preview_png.vtex");
+}
+
+.CaseCardName
+{
+	margin-left: 18px;
+	margin-top: 290px;
+	width: 240px;
+	color: #e7d291;
+	font-size: 18px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+.CaseCardPrice
+{
+	margin-left: 18px;
+	margin-top: 322px;
+	flow-children: right;
+}
+
+.CaseCardOwned
+{
+	horizontal-align: right;
+	margin-right: 18px;
+	margin-top: 324px;
+	width: 120px;
+	color: #d8dee8;
+	font-size: 14px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-align: right;
+}
+
+.CaseCardPriceValue
+{
+	color: #f2deb0;
+	font-size: 16px;
+	font-weight: bold;
+	vertical-align: center;
+}
+
+.CaseDetailView
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: down;
+}
+
+.CaseDetailTop
+{
+	width: 100%;
+	height: 334px;
+}
+
+.CaseHeroBlock
+{
+	width: 100%;
+	height: 30px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+	overflow: noclip;
+}
+
+.CaseDetailName
+{
+	margin-left: 0px;
+	margin-top: 0px;
+	horizontal-align: center;
+	color: #f0d89b;
+	font-size: 21px;
+	font-weight: bold;
+	width: 620px;
+	text-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+.CasesReelArea
+{
+	width: 100%;
+	height: 210px;
+	horizontal-align: center;
+	margin-top: 34px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#111923ef), to(#05080df6));
+	border: 1px solid #5362705c;
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 0px #ffffff0e, 0px 8px 18px #00000080;
+	overflow: clip;
+}
+
+.CasesReelPointer
+{
+	width: 2px;
+	height: 100%;
+	horizontal-align: center;
+	background-color: #f0d89b;
+	box-shadow: 0px 0px 10px #f0d89b88;
+	z-index: 3;
+}
+
+.CasesReel
+{
+	height: 100%;
+	flow-children: right;
+	padding: 24px 0px 24px 0px;
+	transition-property: transform;
+	transition-timing-function: ease-out;
+}
+
+.CaseReelItem,.CaseRewardItem,.CaseResultItem
+{
+	width: 136px;
+	height: 162px;
+	margin-right: 8px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14202ef5), color-stop(0.48, #0d1725f2), to(#050913f5));
+	border: 1px solid #61748846;
+	border-radius: 4px;
+	box-shadow: 0px 7px 16px #00000080, inset 0px 1px 0px #ffffff0d;
+}
+
+.CaseReelItem.Winner,.CaseResultItem.Unresolved
+{
+	border: 1px solid #d8b34f99;
+	box-shadow: 0px 0px 14px #d8b34f28;
+}
+
+.CaseReelItem.RarityRed,.CaseRewardItem.RarityRed,.CaseResultItem.RarityRed
+{
+	border: 1px solid #df4a78a0;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3d1424f5), color-stop(0.5, #1d0a12f2), to(#0d0509f5));
+	box-shadow: 0px 7px 16px #00000080, inset 0px 0px 10px #ff2d6d14;
+}
+
+.CaseReelItem.RarityGold,.CaseRewardItem.RarityGold,.CaseResultItem.RarityGold,.CaseReelItem.TierTop,.CaseRewardItem.TierTop,.CaseResultItem.TierTop
+{
+	border: 1px solid #d6b84d9a;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#34280bf5), color-stop(0.5, #1c1507f2), to(#0d0903f5));
+	box-shadow: 0px 7px 16px #00000080, inset 0px 0px 10px #ffe45c12;
+}
+
+.CaseReelItem.RarityGreen,.CaseRewardItem.RarityGreen,.CaseResultItem.RarityGreen,.CaseReelItem.TierGood,.CaseRewardItem.TierGood,.CaseResultItem.TierGood
+{
+	border: 1px solid #4fc6818e;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#123420f5), color-stop(0.5, #08180ff2), to(#030d07f5));
+	box-shadow: 0px 7px 16px #00000080, inset 0px 0px 10px #31ff8610;
+}
+
+.CaseReelItem.RarityBlue,.CaseRewardItem.RarityBlue,.CaseResultItem.RarityBlue
+{
+	border: 1px solid #3aa4c48e;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#102d42f5), color-stop(0.5, #071723f2), to(#020a12f5));
+	box-shadow: 0px 7px 16px #00000080, inset 0px 0px 10px #20d8ff10;
+}
+
+.CaseReelItem.RarityCommon,.CaseRewardItem.RarityCommon,.CaseResultItem.RarityCommon
+{
+	border: 1px solid #61748846;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14202ef5), color-stop(0.48, #0d1725f2), to(#050913f5));
+	box-shadow: 0px 7px 16px #00000080, inset 0px 1px 0px #ffffff0d;
+}
+
+.CaseRewardName
+{
+	width: 128px;
+	height: 40px;
+	align: center bottom;
+	margin-bottom: 12px;
+	color: #e8edf4;
+	font-size: 13px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CaseRewardPreview
+{
+	width: 128px;
+	height: 86px;
+	horizontal-align: center;
+	margin-top: 8px;
+	overflow: clip;
+}
+
+.CaseRewardPreviewPanel
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CaseCurrencyPreview
+{
+	width: 100%;
+	height: 100%;
+}
+
+.CaseCurrencyIcon
+{
+	width: 38px;
+	height: 38px;
+	horizontal-align: center;
+	margin-top: 8px;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.CaseCurrencyAmount
+{
+	width: 100%;
+	margin-top: 50px;
+	color: #f2deb0;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.CasesControls
+{
+	width: 100%;
+	height: 96px;
+	horizontal-align: center;
+	margin-top: 252px;
+	flow-children: down;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	padding: 6px 14px 6px 14px;
+	box-shadow: none;
+}
+
+.CasesControlsActions
+{
+	width: 210px;
+	height: 86px;
+	flow-children: down;
+	align: center center;
+}
+
+.CasesInstantToggle
+{
+	padding: 0px 0px 0px 28px;
+	width: 176px;
+	height: 36px;
+	margin-top: 6px;
+	margin-left: 0px;
+	horizontal-align: center;
+	visibility: visible;
+}
+
+.CasesInstantToggleLabel
+{
+	width: 138px;
+	height: 28px;
+	margin-left: 30px;
+	vertical-align: center;
+	color: #cfd6df;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-align: left;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+.CasesOpenButton
+{
+	width: 210px;
+	height: 46px;
+	horizontal-align: center;
+	border-radius: 4px;
+	transition-property: brightness, opacity, border, box-shadow;
+	transition-duration: 0.15s;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a57b27), color-stop(0.52, #7b5b1e), to(#3c2b0f));
+	border: 1px solid #d8b34f82;
+	box-shadow: inset 0px 1px 0px #fff0b51d;
+}
+
+.CasesOpenButton:hover
+{
+	brightness: 1.08;
+}
+
+.CasesOpenButton:disabled
+{
+	opacity: 0.42;
+	box-shadow: none;
+	brightness: 0.82;
+}
+
+.CasesOpenButton Label
+{
+	align: center center;
+	color: #f2f2f2;
+	font-size: 19px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-overflow: shrink;
+}
+
+.CasesResultsOverlay
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 30;
+}
+
+.CasesResultsShade
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000cc;
+}
+
+.CasesResultsWindow
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	padding: 26px;
+	flow-children: none;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#111821fb), to(#05080dfd));
+	border: 1px solid #d8b34f88;
+	border-radius: 6px;
+	box-shadow: 0px 16px 48px #000000dd;
+}
+
+.CasesResultsTitle
+{
+	width: 100%;
+	height: 34px;
+	color: #e7d291;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0px 2px 4px 3 #000000cc;
+}
+
+.CasesResults
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+}
+
+.CaseResultItem
+{
+	width: 100%;
+	height: 100%;
+	flow-children: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+}
+
+.CaseResultItem .CaseRewardName
+{
+	width: 620px;
+	height: 52px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 78px;
+	color: #f2deb0;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+.CaseResultItem.RarityRed .CaseRewardName
+{
+	color: #ff9fc3;
+	text-shadow: 0px 0px 12px #ff2d6daa;
+}
+
+.CaseResultItem.RarityGold .CaseRewardName,.CaseResultItem.TierTop .CaseRewardName
+{
+	color: #fff07a;
+	text-shadow: 0px 0px 12px #ffe45c99;
+}
+
+.CaseResultItem.RarityGreen .CaseRewardName,.CaseResultItem.TierGood .CaseRewardName
+{
+	color: #8dffbd;
+	text-shadow: 0px 0px 12px #31ff8699;
+}
+
+.CaseResultItem.RarityBlue .CaseRewardName
+{
+	color: #8aecff;
+	text-shadow: 0px 0px 12px #20d8ff99;
+}
+
+.CaseResultItem.RarityCommon .CaseRewardName
+{
+	color: #e7f8ff;
+	text-shadow: 0px 0px 6px #4be7ff55;
+}
+
+.CaseResultPreview
+{
+	width: 720px;
+	height: 500px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 72px;
+	overflow: clip;
+}
+
+.CaseResultPreview .CaseRewardPreview
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+.CaseResultPreview .CaseCurrencyIcon
+{
+	width: 120px;
+	height: 120px;
+	margin-top: 130px;
+}
+
+.CaseResultPreview .CaseCurrencyAmount
+{
+	margin-top: 270px;
+	font-size: 52px;
+}
+
+.CaseResultActions
+{
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 22px;
+}
+
+.CaseResultButton
+{
+	width: 210px;
+	height: 42px;
+	margin-right: 10px;
+	background-color: #26384a;
+	border: 1px solid #ffffff1f;
+	border-radius: 3px;
+	flow-children: right;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.CaseResultButton.Dust
+{
+	width: 210px;
+	padding-left: 18px;
+	padding-right: 12px;
+}
+
+.CaseResultButton.Wide
+{
+	width: 190px;
+}
+
+.CaseResultButton:hover
+{
+	brightness: 1.1;
+}
+
+.CaseResultButton:disabled
+{
+	opacity: 0.25;
+}
+
+.CaseResultButton Label
+{
+	vertical-align: center;
+	horizontal-align: center;
+	color: #e8edf5;
+	font-size: 16px;
+	font-weight: bold;
+	text-overflow: shrink;
+}
+
+.CaseResultButton.Dust Label
+{
+	horizontal-align: left;
+}
+
+.CaseResultDustText
+{
+	width: 92px;
+}
+
+.CaseResultDustPrice
+{
+	width: 72px;
+	height: 100%;
+	flow-children: right;
+}
+
+.CaseResultDustAmount
+{
+	width: 44px;
+	color: #f2deb0;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: center;
+	text-overflow: shrink;
+}
+
+.CaseDustCoinIcon
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	margin-left: 6px;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.CasesRewardsBlock
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 14px;
+	flow-children: down;
+}
+
+.CasesRewardsTitle
+{
+	width: 100%;
+	color: #f0d89b;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.CasesRewards
+{
+	width: 100%;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+}
+
+.CaseRewardItem
+{
+	width: 144px;
+	height: 142px;
+	margin-right: 9px;
+	margin-bottom: 10px;
+}
+
+.CaseRewardItem.RarityRed .CaseRewardName
+{
+	color: #ff70a4;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CaseRewardItem.RarityGold .CaseRewardName,.CaseRewardItem.TierTop .CaseRewardName
+{
+	color: #fff07a;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CaseRewardItem.RarityGreen .CaseRewardName,.CaseRewardItem.TierGood .CaseRewardName
+{
+	color: #8dffbd;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CaseRewardItem.RarityBlue .CaseRewardName
+{
+	color: #8aecff;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CaseRewardItem.RarityCommon .CaseRewardName
+{
+	color: #e7f8ff;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}

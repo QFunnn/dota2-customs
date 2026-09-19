@@ -1,0 +1,65 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_playerlose/styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/container/rr_panel/rr_panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/icons/rr_icon/index.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/inputs/rr_button/rr_button.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/hud_playerlose.vjs_c" />
+	</scripts>
+	<Panel hittest="false">
+		<Panel id="HUD_PlayerLose_root" class="RR_Panel">
+			<Panel id="HUD_PlayerLose_main" class="RR_Panel">
+				<Panel id="HUD_PlayerLose_Topbar" class="RR_Panel">
+					<Label id="HUD_PlayerLose_title" text="#HUD_PlayerLose_you_lose" />
+				</Panel>
+				<Panel id="HUD_PlayerLose_rank" class="RR_Panel">
+					<Panel id="rank_title" class="RR_Panel">
+						<Label id="rank_title_text" text="#HUD_PlayerLose_your_rank" />
+					</Panel>
+					<Panel id="rank_main" class="RR_Panel">
+						<Label id="rank_main_text" />
+					</Panel>
+				</Panel>
+				<Panel id="HUD_PlayerLose_DotaMind" class="RR_Panel">
+					<Panel id="DotaMind_title" class="RR_Panel">
+						<Label id="rank_title_text" text="#dota_mind_score" />
+					</Panel>
+					<Panel id="DotaMind_main" class="RR_Panel">
+						<Label id="DotaMind_main_origin" />
+						<Panel id="DotaMind_main_arrow" class="RR_Panel" />
+						<Label id="DotaMind_main_new" />
+					</Panel>
+					<Panel id="DotaMind_bottom" class="RR_Panel">
+						<Label id="DotaMind_desc" text="#HUD_PlayerLose_desc" />
+					</Panel>
+				</Panel>
+				<Panel id="HUD_PlayerLose_Bottombar" class="RR_Panel">
+					<TextButton id="PlayerLose_ConfirmButton" class="RR_Button Blue" style="width: 160px; height: 60px; align: right center;">
+						<Panel class="RR_Panel" style="align: center center; flow-children: right;">
+							<Label text="#HUD_PlayerLose_confirm" />
+						</Panel>
+					</TextButton>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

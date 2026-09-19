@@ -1,0 +1,692 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.ChatWheelMenu
+{
+	width: 100%;
+	height: 100%;
+}
+
+#SettingsBody
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+#SettingsLeft
+{
+	width: 64%;
+	padding: 12px 16px 12px 0px;
+	align: left top;
+	flow-children: down;
+}
+
+.ChatWheelHeaderLabel
+{
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	align: center top;
+	text-align: center;
+	letter-spacing: 1px;
+	color: #e7d291;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.ChatWheelDescLabel
+{
+	margin-top: 10px;
+	align: center center;
+	font-size: 14px;
+	color: rgb(150, 147, 136);
+}
+
+.SettingsChatWheel
+{
+	margin-top: 16px;
+	width: 100%;
+	flow-children: down;
+}
+
+.Top
+{
+	width: 100%;
+}
+
+.Center
+{
+	width: 100%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.Bottom
+{
+	width: 100%;
+}
+
+#LineButton1
+{
+	align: center top;
+}
+
+#LineButton2
+{
+	align: right top;
+	margin-right: 50px;
+}
+
+#LineButton3
+{
+	margin-right: 0px;
+	margin-top: 56px;
+	margin-bottom: 56px;
+	align: right top;
+}
+
+#LineButton4
+{
+	align: right top;
+	margin-right: 50px;
+}
+
+#LineButton5
+{
+	align: center top;
+}
+
+#LineButton6
+{
+	align: left top;
+	margin-left: 50px;
+}
+
+#LineButton7
+{
+	margin-left: 0px;
+	margin-top: 56px;
+	margin-bottom: 56px;
+}
+
+#LineButton8
+{
+	align: left bottom;
+	margin-left: 50px;
+}
+
+.LineButton
+{
+	width: 180px;
+	height: 75px;
+	border-radius: 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#10151dcc), to(#060910e8));
+	border: 1px solid #ffffff14;
+	box-shadow: 0px 5px 16px #00000088;
+	padding: 8px;
+	opacity: 0.94;
+	transition-property: brightness, border, box-shadow, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.LineButtonBackHover
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	color: #ffffff;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), color-stop(.5, #e7d29144), to( #00000000 ) );
+	align: center center;
+	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_softer_png.vtex");
+	transition-property: opacity;
+	transition-duration: 0.12s;
+}
+
+.LineButton:not(.SelectingTime):hover .LineButtonBackHover
+{
+	opacity: 0.28;
+}
+
+.LineButton:not(.SelectingTime):hover
+{
+	opacity: 1;
+	brightness: 1.08;
+	border: 1px solid #e7d29155;
+	box-shadow: 0px 7px 20px #000000aa;
+}
+
+.LineButton.SelectingTime
+{
+	animation-name: select_time;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'select_time'
+{
+	0%
+	{
+		border: 1px solid #e7d29188;
+		box-shadow: 0px 0px 12px #d8b34f24, 0px 5px 16px #00000088;
+		brightness: 1;
+	}
+	
+	50%
+	{
+		border: 1px solid #e7d291cc;
+		box-shadow: 0px 0px 18px #d8b34f40, 0px 7px 20px #000000aa;
+		brightness: 1.22;
+	}
+	
+	100%
+	{
+		border: 1px solid #e7d29188;
+		box-shadow: 0px 0px 12px #d8b34f24, 0px 5px 16px #00000088;
+		brightness: 1;
+	}
+	
+}
+
+.DecorLine
+{
+	width: 300px;
+	height: 1px;
+	align: center center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2a2c3400 ), color-stop( .5, #e7d29188 ), to( #2a2c3400 ) );
+}
+
+#DecorLine2
+{
+	transform: rotateZ(45deg);
+}
+
+#DecorLine3
+{
+	transform: rotateZ(-45deg);
+}
+
+#DecorLine4
+{
+	width: 370px;
+	transform: rotateZ(90deg);
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #a0894f16 ), color-stop( .28, #b39a5f64 ), color-stop( .33, transparent), color-stop( .67, transparent), color-stop( .72, #b39a5f64 ), to( #a0894f16 ) );
+}
+
+.LeftButtons
+{
+	width: 400px;
+	margin-left: 11px;
+	flow-children: down;
+	align: left center;
+}
+
+.RightButtons
+{
+	width: 400px;
+	flow-children: down;
+	margin-right: 11px;
+	align: right center;
+}
+
+.CenterIcon
+{
+	align: center center;
+	background-image: url("s2r://panorama/images/settings/chat_wheel.vsvg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 112px;
+	height: 112px;
+	wash-color: #e7d291;
+	img-shadow: 0px 0px 16px 2 #e7d29144;
+	opacity-brush: gradient( linear, 0% 0%, 0% 100%, from( #C2CED4 ), to( #6D777B ) );
+}
+
+#SettingsVariantsTable
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#0d131adb), color-stop(0.48, #060a0fd8), to(#03060adb));
+	border: 1px solid #5c6a7a66;
+	border-radius: 4px;
+	align: center top;
+	margin: 12px 0px 12px 0px;
+	margin-left: 0px;
+	flow-children: down;
+	padding: 10px 10px 10px 10px;
+	box-shadow: inset 0px 1px 0px #ffffff12, 0px 8px 24px #0000008a;
+	transition-property: background-color, border, box-shadow;
+	transition-duration: 0.15s;
+}
+
+#SettingsVariantsTable.SelectingTime
+{
+	background-color: #08100dec;
+	border: 1px solid #8cff5a44;
+	box-shadow: 0px 0px 14px #8cff5a16;
+}
+
+#Header
+{
+	width: 100%;
+	z-index: 999999;
+	flow-children: down;
+	padding-bottom: 8px;
+}
+
+#SearchPanel
+{
+	margin-top: 8px;
+	width: 100%;
+	horizontal-align: center;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#171c20f0), to(#0d1116f0));
+	border: 1px solid #6d7685a0;
+	border-radius: 4px;
+	box-shadow: inset 0px 1px 0px #ffffff10, 0px 0px 10px #d8b34f18;
+	transition-property: border, box-shadow;
+	transition-duration: 0.15s;
+}
+
+#SearchPanel:hover
+{
+	border: 1px solid #a2a9b766;
+	box-shadow: inset 0px 1px 0px #ffffff12, 0px 0px 12px #d8b34f20;
+}
+
+#SearchIcon
+{
+	width: 22px;
+	height: 22px;
+	align: left center;
+	margin: 8px 8px 8px 10px;
+	background-image: url("s2r://panorama/images/control_icons/24px/search.vsvg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.58;
+	wash-color: #c8d0dc;
+}
+
+#SearchDelete
+{
+	width: 32px;
+	height: 32px;
+	align: right center;
+	background-image: url("s2r://panorama/images/control_icons/x_close_filled_png.vtex");
+	background-size: 22px 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.4;
+	margin-top: -1px;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	visibility: collapse;
+	wash-color: #c8d0dc;
+}
+
+#SearchDelete:hover
+{
+	opacity: 1;
+}
+
+#SearchDelete.HasText
+{
+	visibility: visible;
+}
+
+#SearchByNameEntry
+{
+	width: fill-parent-flow(1);
+	height: 40px;
+	border-radius: 0px;
+	border: 0px solid #00000000;
+	background-color: #00000000;
+	color: #e7edf6;
+	font-size: 17px;
+	text-shadow: 0px 1px 2px 2 #00000055;
+}
+
+#HeaderContainer
+{
+	margin-top: 0px;
+	align: center top;
+	flow-children: right;
+	height: 34px;
+}
+
+.ButtonHeader
+{
+	height: 34px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-bottom: 2px solid #00000000;
+	opacity: 0.72;
+	transition-property: opacity, border, brightness;
+	transition-duration: 0.15s;
+}
+
+.ButtonHeader:hover .ButtonHeaderText
+{
+	color: white;
+}
+
+.ButtonHeader:hover
+{
+	opacity: 1;
+	border-bottom: 2px solid #d8b34f55;
+}
+
+.ButtonHeader:hover .ButtonHeaderArrow
+{
+	wash-color: white;
+}
+
+.Selected .ButtonHeaderText
+{
+	color: #e7d291;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.ButtonHeader.Selected
+{
+	opacity: 1;
+	border-bottom: 2px solid #d8b34f;
+}
+
+.ButtonHeaderText
+{
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: #b8bcc688;
+	transition-property: color, text-shadow;
+	transition-duration: 0.15s;
+}
+
+.ButtonHeaderDash
+{
+	width: 18px;
+	height: 25px;
+	margin: 0px 0px;
+	opacity: 0.55;
+}
+
+.ButtonHeaderDashText
+{
+	align: center center;
+	text-align: center;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #6f7480cc;
+}
+
+#Body
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	align: center center;
+	transition-property: opacity;
+	transition-duration: .2s;
+	flow-children: down;
+	overflow: squish scroll;
+	margin-top: 2px;
+	padding-right: 8px;
+}
+
+#Body #VerticalScrollBar
+{
+	width: 3px;
+	height: 100%;
+	visibility: visible;
+	horizontal-align: right;
+	layout-position: fixed;
+	background-color: #ffffff0b;
+	border-radius: 2px;
+}
+
+#Body #ScrollThumb
+{
+	min-height: 32px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#c0a45f), to(#f0d98d));
+	border-radius: 2px;
+	box-shadow: 0px 0px 8px #d8b34f44;
+}
+
+.Item
+{
+	width: 100%;
+	flow-children: right;
+	height: 40px;
+	padding: 0px 10px 0px 10px;
+	border-radius: 3px;
+	border-left: 2px solid #00000000;
+	transition-property: brightness, background-color, border, opacity;
+	transition-duration: 0.15s;
+}
+
+.Item.Odd
+{
+	background-color: #ffffff04;
+}
+
+.Item:not(.Odd)
+{
+	background-color: #00000014;
+}
+
+.SelectingTime .Item:not(.Locked):hover
+{
+	brightness: 1.08;
+	background-color: #d8b34f18;
+	border-left: 2px solid #d8b34faa;
+}
+
+.ItemIconContainer
+{
+	margin-left: 6px;
+	align: left center;
+	flow-children: right;
+	width: 24px;
+}
+
+.ItemText
+{
+	font-size: 16px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	color: #dde6f0;
+	margin-left: 8px;
+	align: left center;
+	text-align: left;
+	height: 22px;
+	text-overflow: shrink;
+}
+
+.TypeText .TextIcon
+{
+	visibility: visible;
+}
+
+.TypeSound .SoundIcon
+{
+	visibility: visible;
+}
+
+.Locked .LockIcon
+{
+	visibility: visible;
+}
+
+.LockIcon
+{
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	align: center center;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/control_icons/24px/lock.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.TextIcon
+{
+	width: 24px;
+	height: 24px;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/control_icons/chat_wheel_icon_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.SoundIcon
+{
+	width: 24px;
+	height: 24px;
+	visibility: collapse;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_scoreboard_mute_sound_psd.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	align: left center;
+	transition-property: brightness;
+	transition-duration: .15s;
+}
+
+.SoundIcon:hover
+{
+	brightness: 2;
+}
+
+.LineContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+.LineText
+{
+	font-size: 18px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+	color: #dde6f0;
+	text-align: center;
+	margin-left: 3px;
+	text-overflow: shrink;
+}
+
+#CallKeyBind
+{
+	align: center center;
+	text-align: center;
+	font-size: 30px;
+	color: #e7d291;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+}
+
+.Category
+{
+	width: 100%;
+	flow-children: down;
+	margin-left: 0px;
+	padding-bottom: 10px;
+}
+
+.CategoryHeader
+{
+	width: 100%;
+	border-bottom: 1px solid #ffffff00;
+	margin-bottom: 5px;
+	margin-top: 4px;
+}
+
+.CategoryName
+{
+	font-size: 14px;
+	text-transform: uppercase;
+	align: left center;
+	letter-spacing: 2px;
+	padding-left: 2px;
+	padding-bottom: 4px;
+	color: #e7d291;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+#CategoryContainer
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#OnlyHasItemsButton
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 8px;
+	horizontal-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	opacity: 0.88;
+	transition-property: opacity;
+	transition-duration: 0.15s;
+}
+
+#OnlyHasItemsButton:hover
+{
+	opacity: 1;
+}
+
+.Checkbox
+{
+	align: left center;
+	padding: 0 0;
+	margin-left: 5px;
+}
+
+.Checkbox .TickBox
+{
+	box-shadow: none;
+}
+
+.OnlyHasItemsLabel
+{
+	align: left center;
+	font-size: 14px;
+	color: #b8bcc6;
+	text-transform: uppercase;
+	margin-left: 5px;
+	text-shadow: 0px 1px 2px 2 #000000aa;
+}
+
+.Checked .OnlyHasItemsLabel
+{
+	color: #e7d291;
+}
+
+#OnlyHasItemsButton:not(.Checked):hover .OnlyHasItemsLabel
+{
+	color: rgb(232, 237, 246);
+}
+
+#OnlyHasItemsButton:hover .TickBox
+{
+	border: 2px solid #e7d29188;
+}

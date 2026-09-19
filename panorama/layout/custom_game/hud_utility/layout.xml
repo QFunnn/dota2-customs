@@ -1,0 +1,45 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_utility/styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/container/rr_panel/rr_panel.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/hud_utility.vjs_c" />
+	</scripts>
+	<Panel class="HudUtilityRoot" hittest="false">
+		<Button id="HudUtilityRestoreButton" hittest="true" onactivate="GameUI.SetHudUtilityHidden(false)">
+			<Image id="HudUtilityRestoreIcon" src="s2r://panorama/images/control_icons/eye_png.vtex" />
+		</Button>
+		<Panel id="HudUtilityWindow" hittest="true">
+			<Panel id="HudUtilityHeader" hittest="true">
+				<Button id="HudUtilityTabDamage" class="HudUtilityTab Selected" hittest="true" onactivate="GameUI.SwitchHudUtilityTab(&apos;damage&apos;)">
+					<Label class="HudUtilityTabLabel" text="#Hud_DamageCounter_Tab" />
+					<Panel class="HudUtilityTabUnderline" />
+					<Panel class="HudUtilityTabStar" />
+				</Button>
+				<Button id="HudUtilityHideButton" hittest="true" onactivate="GameUI.SetHudUtilityHidden(true)">
+					<Image id="HudUtilityHideIcon" src="s2r://panorama/images/control_icons/eye_png.vtex" />
+				</Button>
+			</Panel>
+			<Panel class="HudUtilityDivider" />
+			<Panel id="HudUtilityBody" hittest="true" />
+		</Panel>
+	</Panel>
+</root>

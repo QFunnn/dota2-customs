@@ -1,0 +1,145 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/debug_tool/styles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/container/rr_panel/rr_panel.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/icons/rr_icon/index.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/inputs/rr_button/rr_button.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/inputs/rr_dropdown/rr_dropdown.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/inputs/rr_iconbutton/rr_iconbutton.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/other/rr_debugtool/rr_debugtool.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/debug_tool.vjs_c" />
+	</scripts>
+	<Panel class="HudRoot" hittest="false">
+		<Panel id="RR_DebugTool" class="RR_DebugTool" hittest="false">
+			<Panel id="RR_DebugToolControlPanel" class="ControlPanel DirectionLeft Minimized">
+				<Panel class="ControlPanelContainer">
+					<Panel class="ControlPanelTitle">
+						<Panel class="CategoryHeaderFilledFront" />
+						<Label class="CategoryHeader" text="Tools" />
+						<Panel class="CategoryHeaderFilledNext" />
+						<Button id="dbg_LayoutSwitch" class="RR_IconButton CategoryHeaderIcon" style="vertical-align: center; width: 20px;">
+							<Image class="RR_Icon" src="s2r://panorama/images/control_icons/arrow_popout_png.vtex" style="width: 32px;" />
+						</Button>
+						<Button id="dbg_Refresh" class="RR_IconButton CategoryHeaderIcon" style="vertical-align: center; width: 20px;">
+							<Image class="RR_Icon" src="s2r://panorama/images/control_icons/refresh_psd.vtex" style="width: 32px;" />
+						</Button>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryHeader">
+							<Label class="CategoryHeaderLabel" text="#HUD_Category_Game" />
+						</Panel>
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<TextButton id="SetGameSpeed" class="DemoTextEntry ValueFloat" style="flow-children: right;" text="#HUD_GameSpeed">
+									<TextEntry id="DemoTextEntry" />
+								</TextButton>
+								<TextButton id="JumpToRound" class="DemoTextEntry ValueInt" style="flow-children: right;" text="#HUD_JumptoRound">
+									<TextEntry id="DemoTextEntry" />
+								</TextButton>
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="StopRound" class="DemoButton HotKeyValid FireEvent" text="#HUD_StopRound" />
+								<TextButton id="FutureRounds" class="DemoButton HotKeyValid ToggleSelection" text="#HUD_FutureRounds" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryHeader">
+							<Label class="CategoryHeaderLabel" text="#HUD_Category_AbilitiesAndItems" />
+						</Panel>
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<TextButton id="ClearAbilities" class="DemoButton HotKeyValid FireEvent" text="Clear Abilities" />
+								<TextButton id="ClearInventory" class="DemoButton HotKeyValid FireEvent" text="#HUD_RemoveItems" />
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="AddAbility" class="DemoButton HotKeyValid ToggleSelection" text="#HUD_AddAbility">
+									<Image class="RR_Icon" src="s2r://panorama/images/control_icons/arrow_solid_right_png.vtex" style="width: 10px; height: width-percentage(167%); align: right center; margin-right: 4px;" />
+								</TextButton>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="Category">
+						<Panel class="CategoryHeader">
+							<Label class="CategoryHeaderLabel" text="#HUD_Category_Unit" />
+						</Panel>
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<TextButton id="ReplaceHero" class="DemoButton HotKeyValid ToggleSelection" text="#HUD_ReplaceHero">
+									<Image class="RR_Icon" src="s2r://panorama/images/control_icons/arrow_solid_right_png.vtex" style="width: 10px; height: width-percentage(167%); align: right center; margin-right: 4px;" />
+								</TextButton>
+								<TextButton id="ShowUnitInfo" class="DemoButton HotKeyValid ToggleSelection" text="#HUD_ShowUnitInfo">
+									<Image class="RR_Icon" src="s2r://panorama/images/control_icons/arrow_solid_right_png.vtex" style="width: 10px; height: width-percentage(167%); align: right center; margin-right: 4px;" />
+								</TextButton>
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="CreateDummy" class="DemoButton HotKeyValid FireEvent" text="#HUD_CreateDummy" />
+								<TextButton id="RemoveDummy" class="DemoButton HotKeyValid FireEvent" text="#HUD_RemoveDummy" />
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="LevelUpTo" class="DemoTextEntry ValueInt" style="flow-children: right;" text="#HUD_LevelUpto">
+									<TextEntry id="DemoTextEntry" />
+								</TextButton>
+								<TextButton id="GiveGold" class="DemoTextEntry ValueInt AllowNegative" style="flow-children: right;" text="#HUD_GetGold">
+									<TextEntry id="DemoTextEntry" />
+								</TextButton>
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="RefreshCooldowns" class="DemoButton HotKeyValid FireEvent" text="#HUD_RefeshCooldown" />
+								<TextButton id="NoCooldowns" class="DemoButton HotKeyValid FireEvent" text="#HUD_NoCooldown" />
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="ToggleEscape" class="DemoButton HotKeyValid FireEvent" text="Toggle Escape" />
+								<TextButton id="SetCurse" class="DemoTextEntry ValueInt" style="flow-children: right;" text="Curse">
+									<TextEntry id="DemoTextEntry" />
+								</TextButton>
+							</Panel>
+							<Panel class="Row">
+								<TextButton id="ToggleFountain" class="DemoButton HotKeyValid FireEvent" text="Toggle Fountain" />
+								<TextButton id="StartTestPvp" class="DemoButton HotKeyValid FireEvent" text="TEST PVP" />
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel id="dbg_CategoryOther" class="Category">
+						<Panel class="CategoryHeader">
+							<Label class="CategoryHeaderLabel" text="#HUD_Category_Other" />
+						</Panel>
+						<Panel class="CategoryButtonContainer">
+							<Panel class="Row">
+								<TextButton id="RestartGame" class="DemoButton HotKeyValid FireEvent RedButton" text="#HUD_RestartButton" />
+								<TextButton id="ReloadScripts" class="DemoButton HotKeyValid FireEvent GreenButton" text="#HUD_ReloadScriptsButton" />
+							</Panel>
+							<Panel class="Row">
+								<ToggleButton id="ToggleTimeFreeze" class="HotKeyValid FireEvent DemoToggle" text="#HUD_GameTimeFrozenButton" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="ExpandButtonContainer">
+					<Button id="ExpandButton">
+						<Image id="dbg_ExpandArrow" class="RR_Icon" src="s2r://panorama/images/control_icons/arrow_min_right_psd.vtex" style="width: 8px; height: 14px; align: center center;" />
+					</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

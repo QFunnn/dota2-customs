@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_end_game/styles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/common.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/hud_end_game.vjs_c" />
+	</scripts>
+	<Panel class="EndGameRoot" hittest="false">
+		<Panel id="CustomEndGame_root" style="visibility: collapse;">
+			<Panel id="CustomEndGame_main">
+				<Panel id="CustomEndGame_title">
+					<Label id="title_text" text="" />
+				</Panel>
+				<Panel id="CustomEndGame_content">
+					<Panel id="form_title">
+						<Panel id="pvp_title" style="visibility: collapse;">
+							<Label class="title_basic_info" text="#HUD_EndGame_basic_info" />
+							<Label class="title_pvp_record" text="#HUD_EndGame_pvp_record" />
+							<Label class="title_ability" text="#HUD_EndGame_ability" />
+							<Label class="title_items" text="#HUD_EndGame_items" />
+							<Label class="title_books" text="#HUD_EndGame_books" />
+							<Label class="title_gold" text="#HUD_EndGame_gold" />
+							<Label class="title_bet_reward" text="#HUD_EndGame_bet_reward" />
+							<Label class="title_score" text="#HUD_EndGame_score" />
+						</Panel>
+						<Panel id="pve_title" style="visibility: collapse;">
+							<Label class="title_basic_info" text="#HUD_EndGame_basic_info" />
+							<Label class="title_ability" text="#HUD_EndGame_ability" />
+							<Label class="title_items" text="#HUD_EndGame_items" />
+							<Label class="title_round" text="#HUD_EndGame_round" />
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="CustomEndGame_Buttons" style="align: center bottom; flow-children: right; margin-bottom: 60px;">
+				<TextButton id="CustomEndGame_QuitButton" text="#HUD_EndGame_quit" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

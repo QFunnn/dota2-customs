@@ -1,0 +1,59 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/styles/hudstyles.css" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.css" />
+		<include src="s2r://panorama/styles/custom_ui.css" />
+		<include src="s2r://panorama/layout/custom_game/hud_round/hud_round.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/rrdesign/inputs/rr_progressbar/rr_progressbar.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/sequence_actions.ts" />
+		<include src="s2r://panorama/scripts/custom_game/hud_round.vjs_c" />
+	</scripts>
+	<Panel class="HudRoundRoot" hittest="false">
+		<Panel id="RoundInfo">
+			<Panel id="RoundInfoFrame">
+				<Panel id="RoundFrameGlow" />
+				<Panel id="RoundHeader">
+					<Panel id="RoundNumberContainer">
+						<Label id="RoundNumberTitle" text="#Round" />
+						<Label id="RoundNumberLabel" text="1" />
+					</Panel>
+					<Panel id="RoundTitleWrap">
+						<Label id="RoundName" text="" />
+					</Panel>
+					<Panel id="RoundAbilityList" hittest="false" />
+				</Panel>
+				<Panel id="RoundTitleUnderline" />
+				<Panel id="RoundTitleStar" />
+				<Panel id="RoundTimerRow">
+					<Panel class="RR_ProgressBar" id="RoundProgressBar">
+						<Panel class="RR_ProgressBar_Left" id="RoundProgressLeft" />
+						<Panel class="RR_ProgressBar_Right" id="RoundProgressRight" />
+						<Label id="RoundRemainingTime" text="0:00" />
+						<Label id="RoundExpireTime" text="" />
+					</Panel>
+					<Label id="RoundCreepCount" text="" />
+					<Button id="ReadyGrid" hittest="true">
+						<Panel id="ReadyGridContent" />
+					</Button>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="MiniMap">
+			<DOTAMinimap id="MiniMapPanel" />
+		</Panel>
+	</Panel>
+</root>

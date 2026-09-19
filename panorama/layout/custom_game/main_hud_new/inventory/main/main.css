@@ -1,0 +1,767 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.CustomInventoryRoot
+{
+	height: 100%;
+	width: 100%;
+	z-index: 1000;
+}
+
+.CustomInventoryOverlay
+{
+	width: 1540px;
+	height: 760px;
+	align: center center;
+	margin-top: -95px;
+}
+
+.CloseButtonContainer
+{
+	horizontal-align: right;
+	z-index: 600;
+}
+
+.CustomInventoryContainer
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#101821d8), color-stop(0.45, #0b1219d2), to(#070c12cf));
+	border: 0px solid #00000000;
+	box-shadow: 0px 10px 26px #000000aa, inset 0px 1px 0px #ffffff0c;
+	border-radius: 3px;
+	margin: 8px;
+	padding: 10px 16px 16px 16px;
+	opacity: 0.96;
+}
+
+.CustomInventoryShopUnavailableOverlay
+{
+	width: 100%;
+	height: 100%;
+	margin: 14px;
+	background-color: #00000001;
+	z-index: 500;
+	ignore-parent-flow: true;
+}
+
+.CustomInventoryShopUnavailableOverlay.Hidden
+{
+	visibility: collapse;
+}
+
+.CustomInventoryShopUnavailablePanel
+{
+	width: 560px;
+	min-height: 188px;
+	align: center center;
+	flow-children: down;
+	padding: 32px 36px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#080a0dfa), color-stop(0.52, #05080ef4), to(#020407f2));
+	border: 1px solid #ffffff14;
+	border-radius: 4px;
+	box-shadow: 0px 7px 20px #000000aa;
+}
+
+.CustomInventoryShopUnavailableTitle
+{
+	width: 100%;
+	color: #c8d3df;
+	font-size: 26px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	text-shadow: 0px 2px 4px 2 #000000cc;
+}
+
+.CustomInventoryShopUnavailableDesc
+{
+	width: 100%;
+	margin-top: 12px;
+	color: #c6cfdd;
+	font-size: 18px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 2 #000000aa;
+}
+
+.CustomInventoryHeader
+{
+	width: 100%;
+	height: 82px;
+	flow-children: right;
+	horizontal-align: center;
+	padding: 4px 8px 6px 0px;
+	border-bottom: 0px solid #00000000;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#07101700), color-stop(0.18, #0d151d66), color-stop(0.5, #1019237a), color-stop(0.82, #0d151d66), to(#07101700));
+	box-shadow: inset 0px -1px 0px #ffffff08;
+}
+
+.CustomInventoryPlayerBlock
+{
+	flow-children: right;
+	align: left center;
+	width: 282px;
+	height: 58px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+}
+
+.CustomInventoryPlayerInfoRow
+{
+	width: 158px;
+	height: 50px;
+	flow-children: right;
+	vertical-align: center;
+}
+
+.CustomInventoryPromoBlock
+{
+	flow-children: down;
+	horizontal-align: right;
+	width: 362px;
+	margin-left: 12px;
+	min-width: 362px;
+	max-width: 362px;
+	vertical-align: center;
+}
+
+.CustomInventoryDailyRewards
+{
+	width: fill-parent-flow(1.0);
+	height: 64px;
+	min-width: 650px;
+	margin-left: 12px;
+	margin-right: 12px;
+	padding: 0px 28px 0px 28px;
+	flow-children: none;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#07101700), color-stop(0.18, #10182070), color-stop(0.5, #111a2388), color-stop(0.82, #10182070), to(#07101700));
+	border-top: 0px solid #00000000;
+	border-bottom: 0px solid #00000000;
+	border-radius: 3px;
+	box-shadow: inset 0px 1px 0px #ffffff06;
+}
+
+.DailyRewardsHeader
+{
+	width: 100%;
+	height: 0px;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.DailyRewardsTitle
+{
+	width: 100%;
+	color: #c8d3df;
+	font-size: 0px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	text-shadow: 0px 1px 3px 2 #000000dd;
+}
+
+.DailyRewardsTimeline
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 0px;
+}
+
+.DailyRewardsTrack
+{
+	width: 80%;
+	height: 5px;
+	align: center center;
+	margin-top: 4px;
+	margin-right: 0px;
+	ignore-parent-flow: true;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#05080dee), color-stop(0.48, #151b22dd), to(#05080dee));
+	border: 0px solid #00000000;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 2px #000000dd, 0px 1px 0px #ffffff08;
+}
+
+.DailyRewardsTrackFill
+{
+	width: 0%;
+	height: 5px;
+	align: center center;
+	margin-top: 4px;
+	ignore-parent-flow: true;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#4d6274), color-stop(0.5, #7f95a8), to(#bdcbd7));
+	border-radius: 2px;
+	box-shadow: 0px 0px 4px #7f95a844, inset 0px 1px 0px #ffffff24;
+	transition-property: width;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+.DailyRewardsTrackFill.ProgressStep1
+{
+	width: 0%;
+}
+
+.DailyRewardsTrackFill.ProgressStep4
+{
+	width: 40%;
+}
+
+.DailyRewardsTrackFill.ProgressPremium
+{
+	width: 80%;
+}
+
+.DailyRewardStep
+{
+	width: 112px;
+	height: 60px;
+	flow-children: down;
+	vertical-align: center;
+	ignore-parent-flow: true;
+	transition-property: brightness;
+	transition-duration: 0.12s;
+}
+
+.DailyRewardStep:hover
+{
+	brightness: 1.16;
+}
+
+#DailyRewardStep1
+{
+	horizontal-align: left;
+	margin-left: 24px;
+}
+
+#DailyRewardStep4
+{
+	horizontal-align: center;
+}
+
+#DailyRewardStepPremium
+{
+	horizontal-align: right;
+	margin-right: 28px;
+}
+
+.DailyRewardMatches
+{
+	width: 100%;
+	height: 17px;
+	color: #c0c8d0;
+	font-size: 11px;
+	font-weight: semi-bold;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.DailyRewardNode
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: center;
+	margin-top: 4px;
+	background-color: gradient(radial, 50% 42%, 0% 0%, 60% 60%, from(#2a3035), color-stop(0.56, #15191e), to(#080a0d));
+	border: 0px solid #00000000;
+	border-radius: 12px;
+	box-shadow: 0px 2px 5px #000000a0, inset 0px 1px 0px #ffffff14, inset 0px -1px 3px #00000070;
+	transition-property: brightness, border, box-shadow, saturation;
+	transition-duration: 0.15s;
+}
+
+.RewardPremium
+{
+	width: 104px;
+}
+
+.RewardPremium .DailyRewardNode
+{
+	width: 38px;
+	height: 28px;
+	margin-top: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+}
+
+.DailyRewardCoinIcon
+{
+	width: 15px;
+	height: 15px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.DailyRewardTreasureIcon
+{
+	width: 34px;
+	height: 34px;
+	align: center center;
+	img-shadow: 0px 2px 5px #000000cc;
+}
+
+.DailyRewardAmount
+{
+	width: 100%;
+	height: 16px;
+	margin-top: 1px;
+	color: #aebdca;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	text-overflow: shrink;
+}
+
+.RewardPremium .DailyRewardAmount
+{
+	height: 14px;
+	margin-top: 0px;
+	font-size: 11px;
+	color: #d8e2ec;
+}
+
+.DailyRewardStep.Completed .DailyRewardNode
+{
+	background-color: gradient(radial, 50% 42%, 0% 0%, 62% 62%, from(#c2ced9), color-stop(0.48, #6f8496), to(#263746));
+	border: 0px solid #00000000;
+	box-shadow: 0px 0px 5px #7f95a844, 0px 3px 7px #000000aa, inset 0px 1px 0px #ffffff36, inset 0px -1px 3px #26374699;
+}
+
+.DailyRewardStep.Completed .DailyRewardMatches,.DailyRewardStep.Completed .DailyRewardAmount
+{
+	color: #d8e2ec;
+}
+
+.DailyRewardStep.Active .DailyRewardNode
+{
+	border: 0px solid #00000000;
+	background-color: gradient(radial, 50% 42%, 0% 0%, 62% 62%, from(#d5dee7), color-stop(0.48, #7f95a8), to(#2b4254));
+	box-shadow: 0px 0px 6px #7f95a855, 0px 3px 7px #000000aa, inset 0px 1px 0px #ffffff3c, inset 0px -1px 3px #26374699;
+	brightness: 1.04;
+}
+
+.DailyRewardStep.Locked
+{
+	saturation: 0.55;
+}
+
+.DailyRewardStep.Locked .DailyRewardNode
+{
+	border: 0px solid #00000000;
+	box-shadow: 0px 2px 7px #000000aa, inset 0px 1px 0px #ffffff0c, inset 0px -2px 4px #00000070;
+}
+
+.DailyRewardStep.PremiumLocked .DailyRewardNode
+{
+	border: 0px solid #00000000;
+	box-shadow: none;
+}
+
+.RewardPremium.Completed .DailyRewardNode
+{
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: none;
+}
+
+.RewardPremium.Active .DailyRewardNode
+{
+	border: 0px solid #00000000;
+	box-shadow: none;
+	brightness: 1.08;
+}
+
+.RewardPremium.Completed .DailyRewardTreasureIcon,.RewardPremium.Active .DailyRewardTreasureIcon
+{
+	brightness: 1.05;
+}
+
+.DailyRewardStep.PremiumLocked .DailyRewardMatches
+{
+	color: #c8d3df;
+}
+
+.CustomInventorySubscriptionStatus
+{
+	width: 86px;
+	height: 42px;
+	vertical-align: center;
+	margin-left: 12px;
+	padding: 4px 6px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#151d25d8), color-stop(0.55, #10161dd8), to(#090e14dd));
+	border: 1px solid #3b465255;
+	border-radius: 3px;
+	box-shadow: inset 0px 1px 0px #ffffff10;
+	opacity: 1;
+	z-index: 2;
+	transition-property: border, box-shadow, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomInventorySubscriptionStatus.Inactive:hover
+{
+	border: 1px solid #cdd6e088;
+	box-shadow: 0px 0px 12px #cdd6e01e, 0px 5px 14px #000000aa, inset 0px 1px 0px #ffffff16;
+}
+
+.CustomInventorySubscriptionStateRow
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.CustomInventorySubscriptionPrefix,.CustomInventorySubscriptionState
+{
+	width: fit-children;
+	max-width: 100px;
+	height: 100%;
+	align: center center;
+	color: #9aa3b0;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CustomInventorySubscriptionPrefix
+{
+	margin-right: 0px;
+	max-width: 100px;
+	height: 14px;
+}
+
+.CustomInventorySubscriptionState
+{
+	width: 100%;
+	max-width: 100px;
+	height: 20px;
+}
+
+.CustomInventorySubscriptionStatus.Active
+{
+	background-color: gradient(linear, 0% 0%, 100% 100%, from(#231b08f8), color-stop(0.46, #10141af6), to(#0c1b0bf6));
+	border: 1px solid #7f95a899;
+	box-shadow: 0px 0px 12px #7f95a82e, 0px 5px 14px #000000aa, inset 0px 1px 0px #ffffff18;
+}
+
+.CustomInventorySubscriptionStatus.Active .CustomInventorySubscriptionPrefix
+{
+	color: #c8d3df;
+}
+
+.CustomInventorySubscriptionStatus.Active .CustomInventorySubscriptionState
+{
+	color: #a8ff89;
+}
+
+.CustomInventorySubscriptionStatus.Loading
+{
+	saturation: 0.7;
+	opacity: 0.82;
+}
+
+.CustomInventorySubscriptionStatus.Loading .CustomInventorySubscriptionPrefix,.CustomInventorySubscriptionStatus.Loading .CustomInventorySubscriptionState
+{
+	color: #f2da95;
+}
+
+.CustomInventorySubscriptionStatus.Error
+{
+	border: 1px solid #d66b6b55;
+	box-shadow: 0px 7px 20px #000000aa, 0px 0px 18px #d66b6b18;
+}
+
+.CustomInventorySubscriptionStatus.Error .CustomInventorySubscriptionPrefix,.CustomInventorySubscriptionStatus.Error .CustomInventorySubscriptionState
+{
+	color: #ff8f8f;
+}
+
+.CustomInventoryPromoTitle
+{
+	visibility: collapse;
+}
+
+.CustomInventoryPromoControls
+{
+	flow-children: right;
+	horizontal-align: right;
+	vertical-align: center;
+	height: 32px;
+}
+
+.CustomInventoryPromoInput
+{
+	width: 254px;
+	height: 30px;
+	padding: 6px 10px 0px 10px;
+	background-color: #0d131acd;
+	border: 0px solid #00000000;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 0px #ffffff08, 0px 2px 8px #00000044;
+	color: #e7edf6;
+	font-size: 15px;
+	letter-spacing: 0px;
+	text-align: left;
+	vertical-align: center;
+	text-shadow: 0px 1px 2px 2 #00000055;
+}
+
+.CustomInventoryPromoInput #PlaceholderText,.CustomInventoryPromoInput > Label
+{
+	width: 100%;
+	height: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	text-align: left;
+	color: #8f98a4;
+	font-size: 15px;
+	text-shadow: 0px 1px 2px 2 #00000055;
+	text-overflow: shrink;
+}
+
+.CustomInventoryPromoInput:focus
+{
+	border: 0px solid #00000000;
+	box-shadow: inset 0px 1px 0px #ffffff12, 0px 0px 9px #7f95a81f;
+}
+
+.CustomInventoryPromoInput:disabled
+{
+	wash-color: #9aa9c2aa;
+	saturation: 0.2;
+}
+
+.CustomInventoryPromoButton
+{
+	min-width: 96px;
+	height: 30px;
+	margin-left: 7px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#356c52dd), to(#214832d8));
+	border: 0px solid #00000000;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 0px #ffffff12, 0px 2px 8px #00000055;
+	transition-property: brightness, box-shadow, wash-color;
+	transition-duration: 0.12s;
+}
+
+.CustomInventoryPromoButton:hover
+{
+	brightness: 1.06;
+	border: 0px solid #00000000;
+	box-shadow: 0px 0px 9px #89c7922a, inset 0px 1px 0px #ffffff24;
+}
+
+.CustomInventoryPromoButton:disabled
+{
+	wash-color: #8d97a6cc;
+	saturation: 0.2;
+}
+
+.CustomInventoryPromoButtonLabel
+{
+	align: center center;
+	color: #e2f2e5;
+	font-size: 12px;
+	width: 92px;
+	height: 17px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #00000088;
+}
+
+.CustomInventoryPromoStatus
+{
+	horizontal-align: right;
+	margin-top: 3px;
+	max-width: 520px;
+	color: #9fb0ca;
+	font-size: 15px;
+	text-align: right;
+}
+
+.CustomInventoryPromoStatus.PromoStatusSuccess
+{
+	color: #9ae59f;
+}
+
+.CustomInventoryPromoStatus.PromoStatusError
+{
+	color: #ff8f8f;
+}
+
+.CustomInventoryPromoStatus.PromoStatusPending
+{
+	color: #f2da95;
+}
+
+.CustomInventoryAvatar
+{
+	width: 44px;
+	height: 44px;
+	border: 1px solid #56616b88;
+	border-radius: 2px;
+	box-shadow: #00000088 0px 0px 8px 0px;
+}
+
+.CustomInventoryPlayerMeta
+{
+	flow-children: down;
+	margin-left: 8px;
+	vertical-align: center;
+	width: 118px;
+}
+
+.CustomInventoryPlayerName
+{
+	color: #dde6f0;
+	font-size: 17px;
+	width: 118px;
+	height: 25px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CustomInventoryCoinsRow
+{
+	flow-children: right;
+	margin-top: 2px;
+	vertical-align: center;
+	width: 118px;
+}
+
+.CustomInventoryCoinsIcon
+{
+	width: 12px;
+	height: 12px;
+	background-image: url("s2r://panorama/images/custom_game/ratten_coin_small_png.vtex");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-right: 4px;
+}
+
+.CustomInventoryCoinsValue
+{
+	color: #c8d3df;
+	font-size: 16px;
+	width: 98px;
+	text-overflow: shrink;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+}
+
+.CustomInventoryTabs
+{
+	margin-top: 8px;
+	width: 100%;
+	flow-children: right;
+	border-bottom: 0px solid #00000000;
+	padding-left: 2px;
+}
+
+.CustomInventoryTabButton
+{
+	min-width: 104px;
+	height: 28px;
+	margin-right: 10px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 2px;
+	box-shadow: none;
+	opacity: 0.78;
+	transition-property: brightness, background-color, box-shadow, opacity;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomInventoryTabButton:hover
+{
+	opacity: 1;
+	brightness: 1.1;
+	border: 0px solid #00000000;
+	background-color: #00000000;
+	box-shadow: inset 0px -1px 0px #d8b34f66;
+}
+
+.CustomInventoryTabButton.Selected
+{
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	box-shadow: inset 0px -2px 0px #d8b34fcc;
+	opacity: 1;
+}
+
+.CustomInventoryTabLabel
+{
+	align: center center;
+	color: #aeb7c4;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	width: 100%;
+	height: 18px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 2 #000000cc;
+}
+
+.CustomInventoryTabButton.Selected .CustomInventoryTabLabel
+{
+	color: #ffffff;
+	font-weight: semi-bold;
+}
+
+.CustomInventoryTabBody
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 8px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	padding: 0px;
+}
+
+.CustomInventoryTabContent
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomInventoryTabBody .InventoryMenu,#CustomInventoryTabBody .ChatWheelMenu,#CustomInventoryTabBody .ShopMenu
+{
+	width: 100%;
+	height: 100%;
+}

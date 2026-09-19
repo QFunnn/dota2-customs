@@ -1,0 +1,355 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.HudRoundRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#RoundInfo
+{
+	margin-top: 64px;
+	opacity: 0;
+	width: 430px;
+	height: 86px;
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-out;
+	transform: translateX(-8px);
+}
+
+#RoundInfo.Show
+{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+#RoundInfo.Flip
+{
+	horizontal-align: right;
+	transform: translateX(8px);
+}
+
+#RoundInfo.Flip.Show
+{
+	transform: translateX(0px);
+}
+
+#RoundInfoFrame
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#05080e10), color-stop(0.08, #07111ccc), color-stop(0.52, #111b25d8), to(#061018a8));
+	border: 1px solid #7da3c23d;
+	border-radius: 4px;
+	box-shadow: 0px 8px 22px #00000086, inset 0px 1px 0px #ffffff10;
+	padding: 8px 12px 8px 14px;
+	opacity: 0.96;
+}
+
+#RoundFrameGlow
+{
+	width: 0px;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: #00000000;
+	visibility: collapse;
+}
+
+#RoundHeader
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+}
+
+#RoundNumberContainer
+{
+	width: 92px;
+	height: 34px;
+	vertical-align: center;
+	flow-children: right;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+	padding-left: 0px;
+}
+
+#RoundCreepCount
+{
+	width: 58px;
+	height: 26px;
+	vertical-align: center;
+	margin-left: 8px;
+	margin-right: 0px;
+	padding: 0px;
+	background-color: #00000000;
+	border: 0px solid #00000000;
+	border-radius: 0px;
+	box-shadow: none;
+	color: #8fd2ff;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000f0;
+	opacity: 0;
+	visibility: collapse;
+	text-overflow: shrink;
+}
+
+#RoundCreepCount.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#RoundNumberTitle
+{
+	width: 54px;
+	height: 34px;
+	color: #c3cfdb;
+	font-size: 14px;
+	text-align: left;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	font-weight: semi-bold;
+	opacity: 0.86;
+	margin-top: 0px;
+	text-transform: uppercase;
+	vertical-align: center;
+	text-overflow: shrink;
+	padding-top: 6px;
+}
+
+#RoundNumberLabel
+{
+	color: #ffffff;
+	font-size: 25px;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 3 #000000d8;
+	text-align: left;
+	font-weight: bold;
+	width: 28px;
+	height: 34px;
+	vertical-align: center;
+	padding-top: 1px;
+}
+
+#RoundTitleWrap
+{
+	width: fill-parent-flow(1.0);
+	height: 36px;
+	vertical-align: center;
+	margin-top: 0px;
+	padding-left: 10px;
+	padding-right: 0px;
+}
+
+#RoundName
+{
+	width: 100%;
+	height: 32px;
+	vertical-align: center;
+	color: #f3f7fb;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000f0;
+	text-overflow: shrink;
+}
+
+#RoundTitleUnderline
+{
+	width: 91%;
+	height: 1px;
+	horizontal-align: center;
+	margin-top: 0px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#7da3c200), color-stop(0.5, #9dc6e875), to(#7da3c200));
+}
+
+#RoundTitleStar
+{
+	width: 5px;
+	height: 5px;
+	horizontal-align: center;
+	margin-top: -3px;
+	background-color: #8faabeaa;
+	box-shadow: 0px 0px 6px #7da3c244;
+	transform: rotateZ(45deg);
+}
+
+#RoundProgressBar
+{
+	width: fill-parent-flow(1.0);
+	height: 20px;
+	vertical-align: center;
+	background-color: #00000060;
+	border: 0px solid #00000000;
+	border: 1px solid #00000072;
+	border-radius: 3px;
+	box-shadow: inset 0px 1px 5px #000000bb, 0px 1px 5px #00000055;
+}
+
+#RoundProgressBar .RR_ProgressBar_Left
+{
+	transition-duration: 1s;
+	transition-timing-function: linear;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#a92b25), color-stop(0.6, #e3533c), to(#ff8b59));
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 0px #ffffff2a, 0px 0px 10px #d54a374a;
+}
+
+#RoundProgressBar .RR_ProgressBar_Right
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#1117229a), to(#0000008c));
+	border-radius: 2px;
+}
+
+#RoundRemainingTime
+{
+	align: center center;
+	height: 100%;
+	color: #f4f0e8;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000e0;
+	text-overflow: clip;
+	visibility: collapse;
+}
+
+#RoundRemainingTime.Show
+{
+	visibility: visible;
+}
+
+#RoundExpireTime
+{
+	align: center center;
+	height: 100%;
+	color: #ff8a72;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 1px 3px 3 #000000e0;
+	text-overflow: shrink;
+	visibility: collapse;
+}
+
+#RoundExpireTime.Show
+{
+	visibility: visible;
+}
+
+#ReadyGrid
+{
+	width: 82px;
+	height: 26px;
+	margin-left: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3f9b67dd), to(#1d5a3dcc));
+	border: 1px solid #8de2a536;
+	border-radius: 3px;
+	vertical-align: center;
+	padding: 0px;
+	flow-children: right;
+	box-shadow: inset 0px 1px 0px #ffffff22, 0px 2px 8px #00000078, 0px 0px 8px #2f774f22;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: background-color, brightness, border, opacity;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+}
+
+#ReadyGrid.Show
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+#ReadyGrid Label
+{
+	color: #e6f1e8;
+	font-size: 14px;
+	font-weight: bold;
+	text-shadow: 0px 1px 3px 2 #000000cc;
+	align: center center;
+	text-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+}
+
+#ReadyGridContent
+{
+	align: center center;
+	width: fit-children;
+	height: fit-children;
+	flow-children: right;
+}
+
+#ReadyGrid:hover
+{
+	brightness: 1.25;
+}
+
+#ReadyGrid:hover Label
+{
+	color: white;
+}
+
+#RoundAbilityList
+{
+	vertical-align: center;
+	horizontal-align: right;
+	height: 30px;
+	width: 92px;
+	flow-children: left;
+	margin-left: 0px;
+}
+
+#RoundAbilityList DOTAAbilityImage
+{
+	width: 28px;
+	height: 28px;
+	border-radius: 3px;
+	margin: 0px 0px 0px 3px;
+	border: 0px solid #00000000;
+	box-shadow: 0px 2px 5px #00000080;
+}
+
+#RoundTimerRow
+{
+	width: 100%;
+	height: 26px;
+	flow-children: right;
+	margin-top: 6px;
+}
+
+#MiniMap
+{
+	background-color: #1b1e28f2;
+	box-shadow: inset 0 0 1px #62758B;
+	align: left bottom;
+}
+
+#MiniMapPanel
+{
+	width: 260px;
+	height: 260px;
+	margin: 4px;
+}
+
+#MiniMap.Flip
+{
+	align: right bottom;
+}
