@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -306,10 +306,10 @@ end
 function DAC:InitGameMode()
 
 	--判断是不是官方服务器/自建服务器/玩家主机
-	-- local config = LoadKeyValues("dac_config.txt")
-	-- if config.IsAutochessServer == 1 then
-	-- 	AutochessServerWait()
-	-- end
+	local config = LoadKeyValues("dac_config.txt")
+	if config.IsAutochessServer == 1 then
+		AutochessServerWait()
+	end
 	-- IsDedicatedServer()
 	-- IsInToolsMode()
 
@@ -15020,7 +15020,7 @@ function RandomDrawChessNew(team_id, unlock, draw_type)
 		io_chance = io_chance * GetIOAfricaValue(h)
 	end
 	local special_draw = false
-	if draw_type == 1 or draw_type == 2 or draw_type == 3 or draw_type == 4 or draw_type == 6 then
+	if draw_type == 1 or draw_type == 2 or draw_type == 3 or draw_type == 4 then
 		special_draw = true
 	end
 	if h:GetLevel() >= 7 and ran1 <= 1 and ran2 <= 1 and not special_draw then
@@ -42371,11 +42371,13 @@ function AutochessServerWait()
 	print('[AUTOCHESS SERVER] AutochessServer Init')
 	Timers:CreateTimer(3,function()
 		print('[AUTOCHESS SERVER] waiting for players '..PlayerResource:GetPlayerCount()..'/8')
-		if PlayerResource:GetPlayerCount() == 1 then
+		if PlayerResource:GetPlayerCount() >= 1 then
 			pcall(function()
 				GameRules:ResetToCustomGameSetup()
 			end)
-			return
+			if PlayerResource:GetPlayerCount() >= 8 then
+				return
+			end
 		end
 		return 3
 	end)
