@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -73,22 +73,6 @@ function RoomServer:Init()
 	ListenToGameEvent("player_disconnect", function(e)
 		self:OnDisconnect(e)
 	end, nil)
-
-	Convars:RegisterCommand("bsa_lua", function(_, ...)
-		local code = table.concat({ ... }, " ")
-		local fn, err = loadstring(code)
-		if not fn then
-			print("[Room] bsa_lua: " .. tostring(err))
-			return
-		end
-		local ok, res = pcall(fn)
-		print("[Room] bsa_lua -> " .. tostring(ok) .. " " .. tostring(res))
-	end, "debug: run server lua", 0)
-
-	Convars:RegisterCommand("bsa_room_start", function()
-		print("[Room] manual start")
-		self:Gather(true)
-	end, "debug: start the room now", 0)
 
 	CustomGameEventManager:RegisterListener("room_start", function(_, t)
 		local pid = tonumber(t and t.PlayerID)
@@ -167,9 +151,6 @@ function RoomServer:Heartbeat()
 	self.reset_pending = false
 	self.gathered_sids = nil
 
-	-- Движок изредка отдаёт пустоту вместо запроса. Раньше это роняло колбэк
-	-- таймера, сердцебиение больше не повторялось и комната пропадала из
-	-- дашборда живой. Теперь сбой переживаем и шлём заново через период.
 	local sent, err = pcall(function()
 		local req = CreateHTTPRequestScriptVM("POST", _G.host .. "/api_room_heartbeat/?key=" .. _G.key)
 		req:SetHTTPRequestGetOrPostParameter("arr", json.encode(body))
@@ -184,7 +165,6 @@ function RoomServer:Heartbeat()
 		end)
 	end)
 	if not sent then
-		-- Запрос не ушёл: возвращаем то, что успели пометить отправленным.
 		print("[Room] heartbeat не создался: " .. tostring(err))
 		self.reset_pending = body.reset == 1
 		self.gathered_sids = body.gathered
@@ -243,8 +223,7 @@ function RoomServer:OnConnectFull(e)
 		self:Admit(pid)
 		return
 	end
-	-- Брони нет: группу прислали сюда вслепую, потому что спросить бэкенд с
-	-- машины хоста больше нельзя. Спрашиваем сами.
+
 	self:Claim()
 	if self.loaded then
 		self:Heartbeat()
@@ -260,8 +239,6 @@ function RoomServer:OnConnectFull(e)
 	})
 end
 
--- Спрашиваем бэкенд, что делать с приехавшей группой: оставить у себя,
--- отправить в свободную комнату или подержать в очереди.
 function RoomServer:Claim()
 	if self.claiming or self.gathered or not self:IsIdleState() then
 		return
@@ -389,8 +366,7 @@ function RoomServer:Admit(pid)
 	self.first_arrival = self.first_arrival or Time()
 	PlayerResource:SetCustomTeamAssignment(pid, DOTA_TEAM_GOODGUYS)
 	self:Publish()
-	-- Пришёл после загрузки профилей, но до старта: перечитываем профили, иначе
-	-- у него не будет магазина. Повторный api_game_start бэкенд не засчитывает.
+
 	if self.gathered and not self.starting and _G.Shop and Shop.get_db_info then
 		print("[Room] опоздавший pid=" .. pid .. ", перечитываю профили")
 		Shop:get_db_info()
@@ -402,8 +378,7 @@ function RoomServer:Kick(pid, reason)
 	print("[Room] kick pid=" .. pid .. ": " .. tostring(reason))
 	self.arrived[pid] = nil
 	self.admitted[pid] = nil
-	-- GetUserID у игрока в этой сборке нет, старый kickid молча не срабатывал,
-	-- и посторонние оставались в матче. DisconnectClient есть и работает.
+
 	local ok = pcall(DisconnectClient, pid, true)
 	if not ok then
 		local player = PlayerResource:GetPlayer(pid)
@@ -460,7 +435,7 @@ function RoomServer:CheckGather()
 	if present == 0 then
 		return
 	end
-	-- Ждём всех забронированных: кто-то грузится дольше, и стартовать без него нельзя.
+
 	if present >= expected then
 		return self:Gather(false)
 	end
@@ -553,7 +528,7 @@ function RoomServer:Start()
 		return self:ResetIdle()
 	end
 	self.starting = true
-	-- Состав фиксируем только сейчас: до самого старта опоздавший ещё успевает.
+
 	local list = {}
 	for pid, sid in pairs(self.arrived) do
 		if self.allowed[sid] and self:IsHuman(pid) then
