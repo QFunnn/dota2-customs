@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -182,7 +182,7 @@ function y.prototype.OnDestroy(self)
 		PropertySystem:RemoveAbilityStaticProperty(u, self.sourceId, "final_damage_103")
 	end
 	local A = self:GetSourceItem()
-	if IsValid(A) then
+	if IsValid(A) and A.ConsumeDamageBuff then
 		A:ConsumeDamageBuff(self)
 	end
 end

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -63,7 +63,7 @@ GameUI.CustomUIConfig().enemies = {
 		},
 		"Filter": "zone",
 		"PathfindingSearchDepthScale": 1,
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -281,7 +281,7 @@ GameUI.CustomUIConfig().enemies = {
 			"DisableClumpingBehavior": 1
 		},
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -2864,7 +2864,7 @@ GameUI.CustomUIConfig().enemies = {
 			"DisableClumpingBehavior": 1
 		},
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -2912,7 +2912,7 @@ GameUI.CustomUIConfig().enemies = {
 			"DisableClumpingBehavior": 1
 		},
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -2958,7 +2958,7 @@ GameUI.CustomUIConfig().enemies = {
 	"abyss_melee_2": {
 		"Name": "夜魇近战甲壳虫",
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -3002,7 +3002,7 @@ GameUI.CustomUIConfig().enemies = {
 	"abyss_melee_3": {
 		"Name": "夜魇近战精英",
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -3047,7 +3047,7 @@ GameUI.CustomUIConfig().enemies = {
 	"abyss_melee_4": {
 		"Name": "夜魇近战精英",
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -3095,7 +3095,7 @@ GameUI.CustomUIConfig().enemies = {
 			"DisableClumpingBehavior": 1
 		},
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,
@@ -3143,7 +3143,7 @@ GameUI.CustomUIConfig().enemies = {
 			"DisableClumpingBehavior": 1
 		},
 		"Filter": "zone",
-		"BountyXP": 10,
+		"BountyXP": 20,
 		"BountyGoldMin": 1,
 		"BountyGoldMax": 3,
 		"IsAncient": 0,

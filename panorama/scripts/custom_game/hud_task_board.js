@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -213,7 +213,6 @@ const getTaskRewards = (task, blessings) => {
   return rewards;
 };
 const BountyTaskCard = props => {
-  const [playEnterAnimation, setPlayEnterAnimation] = libs.createSignal(true);
   const rarity = () => getTaskRarity(props.task);
   const state = () => taskState(props.task);
   const rewards = libs.createMemo(() => getTaskRewards(props.task, playerBlessings()));
@@ -227,11 +226,13 @@ const BountyTaskCard = props => {
   return (() => {
     const _el$ = libs.createElement("Panel", {
         get ["class"]() {
-          return `TaskBoxWrapper TaskSlot${props.slotIndex + 1} Rarity${rarity()} ${state()}`;
+          return `TaskBoxWrapper TaskSlot${props.slotIndex + 1}`;
         }
       }, null),
       _el$2 = libs.createElement("Panel", {
-        "class": "TaskBox"
+        get ["class"]() {
+          return `TaskBox Rarity${rarity()} ${state()}`;
+        }
       }, _el$);
       libs.createElement("Image", {
         id: "TaskBoxHoverFrame",
@@ -286,22 +287,12 @@ const BountyTaskCard = props => {
       }, _el$12);
       const _el$14 = libs.createElement("Panel", {
         id: "TaskRewardList"
-      }, _el$12);
-      libs.createElement("Image", {
+      }, _el$12),
+      _el$24 = libs.createElement("Image", {
         id: "TaskBoxReceived",
         hittest: false,
         src: "file://{images}/custom_game/r2_reward/r2_cross.png"
       }, _el$);
-    libs.setProp(_el$, "onload", () => {
-      if (props.slotIndex == 0) {
-        $.Schedule(TASK_SLOT_FIRST_ANIMATION_DELAY, () => {
-          Game.EmitSound(TASK_SLOT_APPEAR_SOUND);
-        });
-      }
-      $.Schedule(TASK_SLOT_ANIMATION_CLEAR_DELAY, () => {
-        setPlayEnterAnimation(false);
-      });
-    });
     libs.insert(_el$4, libs.createComponent(libs.Show, {
       get when() {
         return props.mode === "mine";
@@ -349,20 +340,20 @@ const BountyTaskCard = props => {
           type: "LockSmall"
         }), _el$26);
         libs.effect(_p$ => {
-          const _v$7 = {
+          const _v$8 = {
               RewardLock: reward().lock ?? false,
               Vip: reward().vip != undefined && reward().vip > 0
             },
-            _v$8 = `Buff${reward().vip}`,
-            _v$9 = reward().vip ? GetLocalization("#" + reward().vip) : "";
-          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$25, "classList", _v$7, _p$._v$7));
-          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$26, "class", _v$8, _p$._v$8));
-          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$26, "tooltip", _v$9, _p$._v$9));
+            _v$9 = `Buff${reward().vip}`,
+            _v$0 = reward().vip ? GetLocalization("#" + reward().vip) : "";
+          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$25, "classList", _v$8, _p$._v$8));
+          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$26, "class", _v$9, _p$._v$9));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$26, "tooltip", _v$0, _p$._v$0));
           return _p$;
         }, {
-          _v$7: undefined,
           _v$8: undefined,
-          _v$9: undefined
+          _v$9: undefined,
+          _v$0: undefined
         });
         return _el$25;
       })()
@@ -664,23 +655,25 @@ const BountyTaskCard = props => {
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$ = `TaskBoxWrapper TaskSlot${props.slotIndex + 1} Rarity${rarity()} ${state()}`,
-        _v$2 = {
-          TaskEnterAnimation: playEnterAnimation()
-        },
+      const _v$ = `TaskBoxWrapper TaskSlot${props.slotIndex + 1}`,
+        _v$2 = `TaskBox Rarity${rarity()} ${state()}`,
         _v$3 = getTaskName(props.task),
         _v$4 = `file://{images}/custom_game/task_icons/${KeyValues.task[props.task.task_id].icon}.png`,
         _v$5 = getTaskDescription(props.task),
         _v$6 = LocalizeWithVars("#TaskBoard_TaskProgressInline", {
           progress: props.task.progress,
           target: props.task.target
-        });
+        }),
+        _v$7 = {
+          Show: state() === "Received"
+        };
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$, "classList", _v$2, _p$._v$2));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$2, "class", _v$2, _p$._v$2));
       _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "text", _v$3, _p$._v$3));
       _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$0, "src", _v$4, _p$._v$4));
       _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$10, "text", _v$5, _p$._v$5));
       _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$11, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$24, "classList", _v$7, _p$._v$7));
       return _p$;
     }, {
       _v$: undefined,
@@ -688,7 +681,8 @@ const BountyTaskCard = props => {
       _v$3: undefined,
       _v$4: undefined,
       _v$5: undefined,
-      _v$6: undefined
+      _v$6: undefined,
+      _v$7: undefined
     });
     return _el$;
   })();
@@ -738,23 +732,23 @@ const AcceptedTaskSummary = props => {
         }
       }, _el$43);
     libs.effect(_p$ => {
-      const _v$0 = GetLocalization(props.period === "daily" ? "#TaskBoard_DailyTag" : "#TaskBoard_WeeklyTag"),
-        _v$1 = getTaskName(props.task),
-        _v$10 = LocalizeWithVars("#TaskBoard_TaskProgress", {
+      const _v$1 = GetLocalization(props.period === "daily" ? "#TaskBoard_DailyTag" : "#TaskBoard_WeeklyTag"),
+        _v$10 = getTaskName(props.task),
+        _v$11 = LocalizeWithVars("#TaskBoard_TaskProgress", {
           progress: props.task.progress,
           target: props.task.target
         }),
-        _v$11 = `${progressPercent()}%`;
-      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$39, "text", _v$0, _p$._v$0));
-      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$40, "text", _v$1, _p$._v$1));
-      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$41, "text", _v$10, _p$._v$10));
-      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$44, "width", _v$11, _p$._v$11));
+        _v$12 = `${progressPercent()}%`;
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$39, "text", _v$1, _p$._v$1));
+      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$40, "text", _v$10, _p$._v$10));
+      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$41, "text", _v$11, _p$._v$11));
+      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$44, "width", _v$12, _p$._v$12));
       return _p$;
     }, {
-      _v$0: undefined,
       _v$1: undefined,
       _v$10: undefined,
-      _v$11: undefined
+      _v$11: undefined,
+      _v$12: undefined
     });
     return _el$38;
   })();
@@ -762,6 +756,10 @@ const AcceptedTaskSummary = props => {
 const TaskBoard = props => {
   const [requesting, setRequesting] = libs.createSignal(false);
   const [page, setPage] = libs.createSignal(1);
+  const [playTaskEnterAnimation, setPlayTaskEnterAnimation] = libs.createSignal(true);
+  let taskAnimationStartSchedule;
+  let taskAnimationSoundSchedule;
+  let taskAnimationClearSchedule;
   const playerPropertyData = solid_utils.createPlayerPropertyData(() => Players.GetLocalPlayer());
   const secondTabName = () => props.secondTabName;
   const isMyBounty = () => secondTabName() === TAB_MY_BOUNTY;
@@ -815,6 +813,30 @@ const TaskBoard = props => {
     return getEarliestEndTime(boardList()) ?? new Date().setHours(24, 0, 0, 0) / 1000;
   });
   libs.createEffect(libs.on(secondTabName, () => setPage(1)));
+  libs.createEffect(libs.on(secondTabName, () => {
+    if (taskAnimationStartSchedule != undefined) $.CancelScheduled(taskAnimationStartSchedule);
+    if (taskAnimationSoundSchedule != undefined) $.CancelScheduled(taskAnimationSoundSchedule);
+    if (taskAnimationClearSchedule != undefined) $.CancelScheduled(taskAnimationClearSchedule);
+    setPlayTaskEnterAnimation(false);
+    taskAnimationStartSchedule = $.Schedule(0, () => {
+      taskAnimationStartSchedule = undefined;
+      setPlayTaskEnterAnimation(true);
+      taskAnimationSoundSchedule = $.Schedule(TASK_SLOT_FIRST_ANIMATION_DELAY, () => {
+        taskAnimationSoundSchedule = undefined;
+        const hasTasks = isMyBounty() ? myBountyPageList().length > 0 : boardList().length > 0;
+        if (hasTasks) Game.EmitSound(TASK_SLOT_APPEAR_SOUND);
+      });
+      taskAnimationClearSchedule = $.Schedule(TASK_SLOT_ANIMATION_CLEAR_DELAY, () => {
+        taskAnimationClearSchedule = undefined;
+        setPlayTaskEnterAnimation(false);
+      });
+    });
+  }));
+  libs.onCleanup(() => {
+    if (taskAnimationStartSchedule != undefined) $.CancelScheduled(taskAnimationStartSchedule);
+    if (taskAnimationSoundSchedule != undefined) $.CancelScheduled(taskAnimationSoundSchedule);
+    if (taskAnimationClearSchedule != undefined) $.CancelScheduled(taskAnimationClearSchedule);
+  });
   libs.createEffect(() => {
     if (page() > totalPages()) setPage(totalPages());
   });
@@ -981,17 +1003,17 @@ const TaskBoard = props => {
                 }
               }, _el$47);
             libs.effect(_p$ => {
-              const _v$12 = GetLocalization("TaskBoardTips1"),
-                _v$13 = LocalizeWithVars("#TaskBoard_FreeRefreshCount", {
+              const _v$13 = GetLocalization("TaskBoardTips1"),
+                _v$14 = LocalizeWithVars("#TaskBoard_FreeRefreshCount", {
                   current: displayedRefreshInfo().freeRemaining,
                   total: displayedRefreshInfo().freeTotal
                 });
-              _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$47, "tooltip_text", _v$12, _p$._v$12));
-              _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$48, "text", _v$13, _p$._v$13));
+              _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$47, "tooltip_text", _v$13, _p$._v$13));
+              _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$48, "text", _v$14, _p$._v$14));
               return _p$;
             }, {
-              _v$12: undefined,
-              _v$13: undefined
+              _v$13: undefined,
+              _v$14: undefined
             });
             return _el$47;
           }
@@ -1139,20 +1161,25 @@ const TaskBoard = props => {
                 }
               }), null);
               libs.effect(_p$ => {
-                const _v$14 = LocalizeWithVars("#TaskBoard_MyDailyGroup", {
+                const _v$15 = {
+                    PlayTaskEnterAnimation: playTaskEnterAnimation()
+                  },
+                  _v$16 = LocalizeWithVars("#TaskBoard_MyDailyGroup", {
                     current: dailyAcceptedList().length,
                     total: getAcceptLimit("daily", playerPropertyData())
                   }),
-                  _v$15 = LocalizeWithVars("#TaskBoard_MyWeeklyGroup", {
+                  _v$17 = LocalizeWithVars("#TaskBoard_MyWeeklyGroup", {
                     current: weeklyAcceptedList().length,
                     total: getAcceptLimit("weekly", playerPropertyData())
                   });
-                _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$65, "text", _v$14, _p$._v$14));
-                _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$67, "text", _v$15, _p$._v$15));
+                _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$62, "classList", _v$15, _p$._v$15));
+                _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$65, "text", _v$16, _p$._v$16));
+                _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$67, "text", _v$17, _p$._v$17));
                 return _p$;
               }, {
-                _v$14: undefined,
-                _v$15: undefined
+                _v$15: undefined,
+                _v$16: undefined,
+                _v$17: undefined
               });
               return _el$62;
             })();
@@ -1191,6 +1218,9 @@ const TaskBoard = props => {
                 onComplete: completeTask
               })
             }));
+            libs.effect(_$p => libs.setProp(_el$52, "classList", {
+              PlayTaskEnterAnimation: playTaskEnterAnimation()
+            }, _$p));
             return _el$52;
           }
         }), null);

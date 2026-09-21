@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -27,7 +27,7 @@ GameUI.CustomUIConfig().gem_class_setting = {
 	"3": {
 		gem_class: 3,
 		main_bonus: 0.6,
-		adverb_bonus: 0.2
+		adverb_bonus: 0.6
 	},
 	"4": {
 		gem_class: 4,

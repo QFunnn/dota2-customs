@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -27,15 +27,21 @@ function k.prototype.EventListener(self)
 			local n = self:GetCaster()
 			if m.caster == n then
 				local o = self:GetSpecialValueFor("damage")
-				local n = self:GetCaster()
 				local p = m.target
-				local q = self:GetSpecialValueFor("count")
-				p:StartThink(0.15, DoUniqueString(""), function()
-					n:IceStrike(p, self, o)
-					q = q - 1
-					if q <= 0 then
+				if not IsValid(p) or not p:IsAlive() then
+					return
+				end
+				local q = "ice_thaw_" .. tostring(self:entindex())
+				local r = p._ThinkList
+				if (r and r[q]) ~= nil then
+					return
+				end
+				p:StartThink(0.15, q, function()
+					if not IsValid(self) or not IsValid(n) or not n:IsAlive() or not IsValid(p) or not p:IsAlive() then
 						return -1
 					end
+					n:IceStrike(p, self, o)
+					return -1
 				end)
 			end
 		end,

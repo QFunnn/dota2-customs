@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -698,5 +698,205 @@ GameUI.CustomUIConfig().gem_entry = {
 		min: 0.4,
 		max: 2,
 		ratio: 2
+	},
+	"70": {
+		id: 70,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_001",
+		name: "猎手·物伤",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"71": {
+		id: 71,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_002",
+		name: "猎手·灵动",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"72": {
+		id: 72,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_003",
+		name: "猎手·律动",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"73": {
+		id: 73,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_004",
+		name: "狂暴x猎手",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"74": {
+		id: 74,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_005",
+		name: "猎手·冲杀",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"75": {
+		id: 75,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_006",
+		name: "狂暴·迅锋",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"76": {
+		id: 76,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_007",
+		name: "狂暴·散射",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"77": {
+		id: 77,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_008",
+		name: "狂暴·威势",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"78": {
+		id: 78,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_009",
+		name: "狂暴·攻击",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"79": {
+		id: 79,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_010",
+		name: "施法·法伤",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"80": {
+		id: 80,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_011",
+		name: "施法·余势",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"81": {
+		id: 81,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_012",
+		name: "施法·散射",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"82": {
+		id: 82,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_013",
+		name: "施法·蓄势",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"83": {
+		id: 83,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_014",
+		name: "神圣·御能",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"84": {
+		id: 84,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_015",
+		name: "神圣·远攻",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"85": {
+		id: 85,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_016",
+		name: "神圣·减伤",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"86": {
+		id: 86,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_017",
+		name: "神圣·祷战",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"87": {
+		id: 87,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_018",
+		name: "施法x神圣",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"88": {
+		id: 88,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_019",
+		name: "猎手x施法",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
+	},
+	"89": {
+		id: 89,
+		pool_id: 3001,
+		entry_id: "privilege_gem_suit_020",
+		name: "狂暴x神圣",
+		weight: 100,
+		min: 1,
+		max: 1,
+		ratio: 0
 	}
 };

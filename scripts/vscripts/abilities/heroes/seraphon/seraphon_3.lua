@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -65,12 +65,17 @@ function n.prototype.BashSingle(self, s)
 	ParticleManager:SetParticleControlTransformForward(z, 1, v, s)
 	local A = FindEnemiesInTruncatedSector(p, v - s * 300, 300, x + 300, s, y * 0.4)
 	for B, C in ipairs(A) do
-		local z = ParticleManager:CreateParticle(
+		local z = ParticleManager:CreateParticleWithCaster(
 			"particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf",
 			PATTACH_CUSTOMORIGIN,
-			nil
+			nil,
+			p,
+			ParticleEffectLevel.Low
 		)
-		ParticleManager:SetParticleControlTransformForward(z, 0, C:GetAbsOrigin(), CalcDirection(C, p))
+		if z ~= -1 then
+			ParticleManager:SetParticleControlTransformForward(z, 0, C:GetAbsOrigin(), CalcDirection(C, p))
+			ParticleManager:ReleaseParticleIndex(z)
+		end
 		p:DealDamage(C, self, w, EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE, EOM_DAMAGE_FLAGS.RETALIATED_DAMAGE)
 	end
 	p:EmitSound("Hero_DragonKnight.DragonTail.DragonFormCast")

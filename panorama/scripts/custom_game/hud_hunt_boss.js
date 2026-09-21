@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -150,10 +150,6 @@ const HuntBossProgress = () => {
     if (!isIntermission() || !isParticipant()) return;
     GameEvents.SendCustomEventToServer("hunt_boss_intermission_retreat", {});
   };
-  const returnToLobby = () => {
-    if (!isCompleted() || !isParticipant()) return;
-    GameEvents.SendCustomEventToServer("hunt_boss_finish_return", {});
-  };
   libs.onCleanup(() => clearInterval(timer));
   return libs.createComponent(libs.Show, {
     get when() {
@@ -239,16 +235,6 @@ const HuntBossProgress = () => {
       libs.insert(_el$0, libs.createComponent(libs.Show, {
         get when() {
           return isIntermission();
-        },
-        get fallback() {
-          return libs.createComponent(EOM_Button.EOM_Button, {
-            id: "HuntBossProgressReturnButton",
-            color: "Cancel",
-            get text() {
-              return GetLocalization("#HuntBossFinished_Return");
-            },
-            onactivate: returnToLobby
-          });
         },
         get children() {
           return [libs.createComponent(EOM_Button.EOM_Button, {

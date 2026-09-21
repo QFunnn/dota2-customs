@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -131,6 +131,13 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 			"suiken_damage": 5,
 			"suiken_damage_max": "25 50 75 100 125 150",
 			"suiken_buff_dur": 20
+		}
+	},
+	"vespera_1_upgrade_wp42": {
+		"Note": "武器效果 投掷飞镖有%double_cast_prob%%概率触发双重施法",
+		"ability_name": "vespera_1",
+		"AbilityValues": {
+			"double_cast_prob": "10 20 30 40 50 60"
 		}
 	},
 	"vespera_2_upgrade_a": {
@@ -414,6 +421,14 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 	"vexis_1_upgrade_8": {
 		"Note": "武器效果 午夜祷告不降低距离",
 		"ability_name": "vexis_1"
+	},
+	"vexis_1_upgrade_wp43": {
+		"Note": "武器效果 每移动%auto_cast1_move_dist%距离，自动朝前方释放一次特技，造成%auto_damage_pct%%伤害",
+		"ability_name": "vexis_1",
+		"AbilityValues": {
+			"auto_cast1_move_dist": 800,
+			"auto_damage_pct": "20 40 60 80 100 120"
+		}
 	},
 	"vexis_2_upgrade_a": {
 		"Note": "<HotkeyOnly|Dodge/><Ability|vexis_2/>最大距离+%distance%",
@@ -848,6 +863,13 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 			}
 		}
 	},
+	"solthra_3_upgrade_wp44": {
+		"Note": "武器效果 烈火罩期间造成的魔法伤害倍增%attr_magic_damage_pct%%",
+		"ability_name": "solthra_3",
+		"AbilityValues": {
+			"attr_magic_damage_pct": "5 10 15 20 25 30"
+		}
+	},
 	"solthra_4_upgrade_a": {
 		"Note": "<HotkeyOnly|Ultimate/><Ability|solthra_4/>冷却时间降低%cooldown_reduction%秒",
 		"ability_name": "solthra_4",
@@ -1033,6 +1055,15 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 		"AbilityValues": {
 			"bonus_attack_duration": 10,
 			"bonus_attack_damage": "15 30 45 60 75 90"
+		}
+	},
+	"seraphon_1_upgrade_wp45": {
+		"Note": "武器效果 天槌圣槌坠地时将%pull_radius%范围内所有敌人吸附到圣槌附近并施加孱弱，使敌人受到的所有伤害提高%hurt_damage_pct%",
+		"ability_name": "seraphon_1",
+		"AbilityValues": {
+			"pull_radius": 900,
+			"hurt_damage_pct": "8 15 22 30 40 50",
+			"weakness_duration": 4
 		}
 	},
 	"seraphon_2_upgrade_a": {

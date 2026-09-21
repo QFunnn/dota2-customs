@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -168,13 +168,13 @@ ABYSS_CONFIG = {
 	base = {
 		NeedDungeonDiff = 5,
 		timeLimit = 600,
-		initialEnemyCount = 10,
+		initialEnemyCount = 5,
 		flashEnemyHealthPct = 400,
 		flashEnemyAttackPct = 30,
 		flashEnemyModelScale = 100,
-		autoPickupRadius = 200,
+		autoPickupRadius = 1000,
 	},
-	spawn = { maxAliveEnemyCount = 60, minDistanceFromPlayer = 10 },
+	spawn = { maxAliveEnemyCount = 30, maxNearbyEnemyCount = 12, minDistanceFromPlayer = 10, maxDistanceFromPlayer = 1500 },
 	event = { initialTriggerCount = 20, triggerCountIncrease = 5, maxTriggerCount = 60 },
 	kill = { baseScore = 1 },
 	ui = { devourUnlock = 1 },
@@ -183,7 +183,7 @@ COMBO_CONFIG = {
 	initialMultiplier = 1,
 	minMultiplier = 1,
 	maxMultiplier = 10,
-	multiplierIncreaseEveryCount = 4,
+	multiplierIncreaseEveryCount = 2,
 	multiplierIncreaseValue = 0.1,
 	multiplierDecreaseValue = 0.1,
 	comboCountdownDuration = 10,
@@ -194,6 +194,6 @@ BOSS_SHRINK_START_RADIUS = 3000
 BOSS_SHRINK_RADIUS_PER_SECOND = 60
 BOSS_SHRINK_OUTSIDE_DAMAGE_PCT = 5
 BOSS_SHRINK_TICK_INTERVAL = 1
-MAX_DIFFICULTY = 15
+MAX_DIFFICULTY = 17
 EQUIP_MAX_COUNT = 400
 SHOP_ITEM_COUNT = 5

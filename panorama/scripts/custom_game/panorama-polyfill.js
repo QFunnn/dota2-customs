@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -860,7 +860,7 @@ var EOM_DAMAGE_FLAGS;
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["DOT"] = 4] = "DOT";
     /** TODO:m不会受到来源者的伤害增强 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["NO_SOURCE_AMPLIFY"] = 8] = "NO_SOURCE_AMPLIFY";
-    /** TODO:不会受到伤害增强，包含来源伤害增强 */
+    /** 不会受到伤害增强，包含来源伤害增强 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["NO_DAMAGE_AMPLIFY"] = 16] = "NO_DAMAGE_AMPLIFY";
     /** TODO:被转化后的伤害 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["CONVERTED_DAMAGE"] = 32] = "CONVERTED_DAMAGE";
@@ -1484,7 +1484,7 @@ var ABYSS_CONFIG = {
         /** 玩法限时 */
         timeLimit: 600,
         /** 初始怪物数量 */
-        initialEnemyCount: 10,
+        initialEnemyCount: 5,
         /** 闪怪生命值百分比 */
         flashEnemyHealthPct: 400,
         /** 闪怪攻击力百分比 */
@@ -1492,14 +1492,18 @@ var ABYSS_CONFIG = {
         /** 闪怪模型缩放 */
         flashEnemyModelScale: 100,
         /** 自动拾取范围 */
-        autoPickupRadius: 200,
+        autoPickupRadius: 1000,
     },
     /** 刷怪 */
     spawn: {
         /** 最大同时存在的敌人数量 */
-        maxAliveEnemyCount: 60,
+        maxAliveEnemyCount: 30,
+        /** 玩家周围允许存在的最大敌人数量；达到该数量时不再在该玩家附近刷怪 */
+        maxNearbyEnemyCount: 12,
         /** 与玩家的最小距离 */
         minDistanceFromPlayer: 10,
+        /** 与玩家的最大距离 */
+        maxDistanceFromPlayer: 1500,
     },
     /** 事件 */
     event: {
@@ -1530,7 +1534,7 @@ var COMBO_CONFIG = {
     /** 最高倍率 */
     maxMultiplier: 10,
     /** 每次增加倍率的次数 */
-    multiplierIncreaseEveryCount: 4,
+    multiplierIncreaseEveryCount: 2,
     /** 每次增加的倍率值 */
     multiplierIncreaseValue: 0.1,
     /** 每次减少的倍率值 */
@@ -1551,7 +1555,7 @@ var BOSS_SHRINK_OUTSIDE_DAMAGE_PCT = 5;
 /** Boss缩圈伤害tick */
 var BOSS_SHRINK_TICK_INTERVAL = 1;
 /** 最大难度 */
-var MAX_DIFFICULTY = 15;
+var MAX_DIFFICULTY = 17;
 /**最大装备数量 */
 var EQUIP_MAX_COUNT = 400;
 /** 商店物品数量 */
@@ -1723,6 +1727,29 @@ var addedValueFunctionMap = {
     health: Entities.GetMaxHealth,
     shield: Entities.GetShield,
 };
+/** 计算扩展等级成长：value 为1级数值，extra_level_growth 从2级开始生效。 */
+function GetAbilityExtraLevelGrowthValue(valueData, level) {
+    if (typeof valueData != "object" || valueData.extra_level_growth == undefined)
+        return undefined;
+    var valueList = String(valueData.value).split(" ");
+    var growthList = String(valueData.extra_level_growth).split(" ");
+    if (growthList.length == 0)
+        return toFiniteNumber(valueList[0], 0);
+    var interval = 10;
+    var remainingLevels = Math.max(0, Math.floor(level) - 1);
+    var value = toFiniteNumber(valueList[0], 0);
+    for (var i = 0; i < growthList.length && remainingLevels > 0; i++) {
+        // value 已经代表1级，因此首段只包含2~interval级的成长次数。
+        var capacity = i == 0 ? interval - 1 : interval;
+        var count = Math.min(remainingLevels, capacity);
+        value += count * toFiniteNumber(growthList[i], 0);
+        remainingLevels -= count;
+    }
+    if (remainingLevels > 0) {
+        value += remainingLevels * toFiniteNumber(growthList[growthList.length - 1], 0);
+    }
+    return Math.round(value * 1000000) / 1000000;
+}
 /** 获取具体的数值
  * @param valueData 键对应的值，如"100 200 300"，也有可能是个表，{"value": "100 200 300", "_str": "1"}
  * @param entIndex 实体index，传入实体index就会计算_str这种加成，类型定义在addedValueFunctionMap中
@@ -1742,7 +1769,10 @@ function GetAbilityValue(valueData, params, onlyValue) {
     var pctSymbol = hasPct ? "%" : "";
     var baseValueString = "";
     var addedValueString = "";
-    var valueList = String(typeof valueData == "object" ? valueData.value : valueData).split(" ");
+    var levelGrowthValue = GetAbilityExtraLevelGrowthValue(valueData, Math.max(1, Number(level)));
+    var valueList = levelGrowthValue == undefined
+        ? String(typeof valueData == "object" ? valueData.value : valueData).split(" ")
+        : [String(levelGrowthValue)];
     var maxLevel = valueList.length - 1;
     var currentLevel = Math.min(maxLevel, Math.max(0, level - 1));
     {
@@ -2057,11 +2087,14 @@ function GetAbilityValuesTags(abilityValues) {
  * @param value 外部传入的value
  */
 function GetPrivilegeDesc(privilege, level, params) {
+    var _a, _b;
     if (level === void 0) { level = 1; }
     if (KeyValues.privilege[privilege]) {
         var privilegeData = KeyValues.privilege[privilege];
+        var suitLimit = toFiniteNumber((_b = (_a = KeyValues.gem_entry_suit) === null || _a === void 0 ? void 0 : _a[privilege]) === null || _b === void 0 ? void 0 : _b.entry_limit, 0);
+        var effectiveLevel = suitLimit > 0 ? Math.min(level, suitLimit) : level;
         var values = __assign(__assign({}, privilegeData.AbilityValues), params);
-        return getKeyValueDescription(GetLocalization("#DOTA_Tooltip_ability_".concat(privilege), ""), values, { level: level, onlyShowNowLevel: true });
+        return getKeyValueDescription(GetLocalization("#DOTA_Tooltip_ability_".concat(privilege), ""), values, { level: effectiveLevel, onlyShowNowLevel: true });
     }
     return "";
 }
@@ -3505,6 +3538,10 @@ var PROPERTY_LIST = [
     "engraving_3_strengthen",
     "engraving_4_strengthen",
     "engraving_5_strengthen",
+    "physical_damage_multiplier",
+    "magical_damage_multiplier",
+    "spell_damage_multiplier",
+    "skill_damage_multiplier",
 ];
 var PROPERTY_TAGS = {
     split_count: ["Split"],

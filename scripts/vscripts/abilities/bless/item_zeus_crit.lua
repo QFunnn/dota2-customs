@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -20,51 +20,13 @@ local i = g.registerEOMAbility
 local j = c()
 j.name = "item_zeus_crit"
 d(j, h)
-function j.prototype.____constructor(self, ...)
-	h.prototype.____constructor(self, ...)
-	self.pendingDamage = {}
-	self.flushScheduled = false
-end
-function j.prototype.QueueLightningStrike(self, k, l, m)
-	if BlessPerformance.Enabled then
-		BlessPerformance:Increment("zeus_crit_queued")
-	end
-	local n = tostring(l:entindex())
-	local o = self.pendingDamage[n]
-	if o == nil then
-		self.pendingDamage[n] = { target = l, damage = m }
-	else
-		o.damage = o.damage + m
-	end
-	if self.flushScheduled then
-		return
-	end
-	self.flushScheduled = true
-	k:StartThink(0, "item_zeus_crit_aggregate_" .. tostring(self:entindex()), function()
-		local p = self.pendingDamage
-		self.pendingDamage = {}
-		self.flushScheduled = false
-		if not IsValid(k) then
-			return -1
-		end
-		for q, r in pairs(p) do
-			if IsValid(r.target) and r.target:IsAlive() then
-				if BlessPerformance.Enabled then
-					BlessPerformance:Increment("zeus_crit_aggregated_strikes")
-				end
-				k:LightningStrike(r.target, r.damage, bit.bor(EOM_DAMAGE_FLAGS.NO_CRIT, EOM_DAMAGE_FLAGS.NO_EXPOSE))
-			end
-		end
-		return -1
-	end)
-end
 function j.prototype.EventListener(self)
 	return {
-		crit_event = function(s, t)
-			local k = self:GetCaster()
-			if k == t.attacker then
-				local m = self:GetSpecialValueFor("damage")
-				self:QueueLightningStrike(k, t.target, m)
+		crit_event = function(k, l)
+			local m = self:GetCaster()
+			if m == l.attacker and IsValid(l.target) and l.target:IsAlive() then
+				local n = self:GetSpecialValueFor("damage")
+				m:LightningStrike(l.target, n, bit.bor(EOM_DAMAGE_FLAGS.NO_CRIT, EOM_DAMAGE_FLAGS.NO_EXPOSE))
 			end
 		end,
 	}

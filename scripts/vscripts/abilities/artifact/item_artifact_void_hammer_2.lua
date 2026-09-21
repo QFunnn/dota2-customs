@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -24,22 +24,28 @@ function j.prototype.____constructor(self, ...)
 	h.prototype.____constructor(self, ...)
 	self.chance = self:GetSpecialValueFor("chance")
 	self.stun_duration = self:GetSpecialValueFor("stun_duration")
+	self.nextProcTime = GameRules:GetGameTime()
 end
 function j.prototype.EventListener(self)
 	return {
 		damage_event = function(k, l)
+			local m = GameRules:GetGameTime()
+			if m < self.nextProcTime then
+				return
+			end
 			if
 				l.attacker == self:GetCaster()
 				and l.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK
 				and self:PRD(self.chance)
 			then
-				local m = ParticleManager:CreateParticle(
+				self.nextProcTime = m + 1
+				local n = ParticleManager:CreateParticle(
 					"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_time_lock_tentacle_bash.vpcf",
 					PATTACH_ABSORIGIN,
 					l.target
 				)
 				ParticleManager:SetParticleControlEnt(
-					m,
+					n,
 					1,
 					l.target,
 					PATTACH_POINT_FOLLOW,
@@ -47,13 +53,13 @@ function j.prototype.EventListener(self)
 					l.target:GetAbsOrigin(),
 					true
 				)
-				ParticleManager:ReleaseParticleIndex(m)
-				local n = l.attacker
-				local o = l.target
+				ParticleManager:ReleaseParticleIndex(n)
+				local o = l.attacker
+				local p = l.target
 				self:StartThink(0.35, DoUniqueString("void_hammer"), function()
-					n:EmitSound("Hero_FacelessVoid.TimeLockImpact")
-					o:Stun(n, self, self.stun_duration)
-					n:DealDamage(o, self, self:GetSpecialValueFor("damage"), EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE)
+					o:EmitSound("Hero_FacelessVoid.TimeLockImpact")
+					p:Stun(o, self, self.stun_duration)
+					o:DealDamage(p, self, self:GetSpecialValueFor("damage"), EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE)
 					return -1
 				end)
 			end

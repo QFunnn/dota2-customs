@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -162,7 +162,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"522": {
 		item_id: 522,
 		type: "bless",
-		name: "洗练圣契"
+		name: "洗炼圣契"
 	},
 	"523": {
 		item_id: 523,
@@ -202,12 +202,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"530": {
 		item_id: 530,
 		type: "bless",
-		name: "月华圣契"
+		name: "卷轴圣契"
 	},
 	"531": {
 		item_id: 531,
 		type: "bless",
-		name: "龙蛋圣契"
+		name: "唤龙圣契"
 	},
 	"532": {
 		item_id: 532,
@@ -217,12 +217,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"533": {
 		item_id: 533,
 		type: "bless",
-		name: "米波圣契"
+		name: "游商圣契"
 	},
 	"534": {
 		item_id: 534,
 		type: "bless",
-		name: "遗物圣契"
+		name: "千机圣契"
 	},
 	"535": {
 		item_id: 535,
@@ -232,17 +232,17 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"536": {
 		item_id: 536,
 		type: "bless",
-		name: "升级圣契"
+		name: "沙漏圣契"
 	},
 	"537": {
 		item_id: 537,
 		type: "bless",
-		name: "强化圣契"
+		name: "圣杯圣契"
 	},
 	"538": {
 		item_id: 538,
 		type: "bless",
-		name: "觉醒圣契"
+		name: "胸针圣契"
 	},
 	"539": {
 		item_id: 539,
@@ -337,7 +337,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"110011": {
 		item_id: 110011,
 		type: "item",
-		name: "深渊钥匙"
+		name: "符文钥匙"
 	},
 	"110012": {
 		item_id: 110012,
@@ -387,12 +387,27 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"110023": {
 		item_id: 110023,
 		type: "item",
-		name: "星光"
+		name: "星芒"
 	},
 	"110024": {
 		item_id: 110024,
 		type: "item",
-		name: "奇遇骰"
+		name: "银羽骰"
+	},
+	"110025": {
+		item_id: 110025,
+		type: "item",
+		name: "矿镐"
+	},
+	"110026": {
+		item_id: 110026,
+		type: "item",
+		name: "魔力钻头"
+	},
+	"110027": {
+		item_id: 110027,
+		type: "item",
+		name: "烈性炸药"
 	},
 	"120001": {
 		item_id: 120001,
@@ -468,6 +483,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 120015,
 		type: "item",
 		name: "符文结晶"
+	},
+	"120016": {
+		item_id: 120016,
+		type: "item",
+		name: "精魂之玉"
 	},
 	"180101": {
 		item_id: 180101,
@@ -707,7 +727,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"310522": {
 		item_id: 310522,
 		type: "item",
-		name: "洗练圣契"
+		name: "洗炼圣契"
 	},
 	"310523": {
 		item_id: 310523,
@@ -742,12 +762,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"310530": {
 		item_id: 310530,
 		type: "item",
-		name: "月华圣契"
+		name: "卷轴圣契"
 	},
 	"310531": {
 		item_id: 310531,
 		type: "item",
-		name: "龙蛋圣契"
+		name: "唤龙圣契"
 	},
 	"310532": {
 		item_id: 310532,
@@ -757,12 +777,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"310533": {
 		item_id: 310533,
 		type: "item",
-		name: "米波圣契"
+		name: "游商圣契"
 	},
 	"310534": {
 		item_id: 310534,
 		type: "item",
-		name: "遗物圣契"
+		name: "千机圣契"
 	},
 	"310535": {
 		item_id: 310535,
@@ -772,17 +792,17 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"310536": {
 		item_id: 310536,
 		type: "item",
-		name: "升级圣契"
+		name: "沙漏圣契"
 	},
 	"310537": {
 		item_id: 310537,
 		type: "item",
-		name: "强化圣契"
+		name: "圣杯圣契"
 	},
 	"310538": {
 		item_id: 310538,
 		type: "item",
-		name: "觉醒圣契"
+		name: "胸针圣契"
 	},
 	"310539": {
 		item_id: 310539,
@@ -1072,12 +1092,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"420026": {
 		item_id: 420026,
 		type: "item",
-		name: "彩虹月绒猫鲀"
+		name: "彩虹猫猫鱼"
 	},
 	"420027": {
 		item_id: 420027,
 		type: "item",
-		name: "彩虹炎纹猫鲀"
+		name: "彩虹炎纹喵喵鱼"
 	},
 	"420028": {
 		item_id: 420028,
@@ -1224,10 +1244,40 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "小朱雀"
 	},
+	"600019": {
+		item_id: 600019,
+		type: "item",
+		name: "天照"
+	},
+	"600020": {
+		item_id: 600020,
+		type: "item",
+		name: "小左"
+	},
 	"600021": {
 		item_id: 600021,
 		type: "item",
 		name: "矿车鼠"
+	},
+	"600022": {
+		item_id: 600022,
+		type: "item",
+		name: "獭龙奥斯基"
+	},
+	"600023": {
+		item_id: 600023,
+		type: "item",
+		name: "勇士欢欢"
+	},
+	"600024": {
+		item_id: 600024,
+		type: "item",
+		name: "纯金贪魔"
+	},
+	"600025": {
+		item_id: 600025,
+		type: "item",
+		name: "咬人箱"
 	},
 	"700001": {
 		item_id: 700001,
@@ -1287,12 +1337,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"800011": {
 		item_id: 800011,
 		type: "products",
-		name: "渊瞳通契"
+		name: "渊瞳密契"
 	},
 	"800012": {
 		item_id: 800012,
 		type: "products",
-		name: "通行证经验"
+		name: "S1通行证经验"
 	},
 	"800013": {
 		item_id: 800013,
@@ -1332,7 +1382,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"800020": {
 		item_id: 800020,
 		type: "products",
-		name: "深渊钥匙"
+		name: "符文钥匙"
 	},
 	"800021": {
 		item_id: 800021,
@@ -1363,6 +1413,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 800026,
 		type: "products",
 		name: "永恒永久福利"
+	},
+	"800027": {
+		item_id: 800027,
+		type: "products",
+		name: "悬赏福利"
 	},
 	"800106": {
 		item_id: 800106,
@@ -1579,6 +1634,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "嘟嘟鸟"
 	},
+	"800150": {
+		item_id: 800150,
+		type: "products",
+		name: "S2通行证经验"
+	},
 	"800151": {
 		item_id: 800151,
 		type: "products",
@@ -1588,6 +1648,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 800152,
 		type: "products",
 		name: "神话鱼饵"
+	},
+	"800153": {
+		item_id: 800153,
+		type: "products",
+		name: "S3通行证经验"
 	},
 	"801001": {
 		item_id: 801001,
@@ -1647,12 +1712,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"801203": {
 		item_id: 801203,
 		type: "products",
-		name: "渊瞳秘契"
+		name: "神武通契"
 	},
 	"801204": {
 		item_id: 801204,
 		type: "products",
-		name: "渊瞳秘契"
+		name: "渊瞳密契"
 	},
 	"801205": {
 		item_id: 801205,
@@ -1672,7 +1737,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"801208": {
 		item_id: 801208,
 		type: "products",
-		name: "深渊钥匙"
+		name: "符文钥匙"
 	},
 	"801209": {
 		item_id: 801209,
@@ -1687,7 +1752,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"801211": {
 		item_id: 801211,
 		type: "products",
-		name: "洗练石"
+		name: "洗炼石"
 	},
 	"801212": {
 		item_id: 801212,
@@ -1789,6 +1854,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "探险之证"
 	},
+	"802005": {
+		item_id: 802005,
+		type: "products",
+		name: "悬赏之证"
+	},
 	"802201": {
 		item_id: 802201,
 		type: "products",
@@ -1882,37 +1952,37 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"802401": {
 		item_id: 802401,
 		type: "products",
-		name: "大富翁2期初遇星匣礼包"
+		name: "初遇星匣礼包"
 	},
 	"802402": {
 		item_id: 802402,
 		type: "products",
-		name: "大富翁2期启程巡游礼包"
+		name: "启程巡游礼包"
 	},
 	"802403": {
 		item_id: 802403,
 		type: "products",
-		name: "大富翁2期星光背囊礼包"
+		name: "星芒背囊礼包"
 	},
 	"802404": {
 		item_id: 802404,
 		type: "products",
-		name: "大富翁2期星光背囊礼包"
+		name: "月光巡礼礼包"
 	},
 	"802405": {
 		item_id: 802405,
 		type: "products",
-		name: "大富翁2期月光巡礼礼包"
+		name: "月下金枝礼包"
 	},
 	"802406": {
 		item_id: 802406,
 		type: "products",
-		name: "大富翁2期奇遇幻想礼包"
+		name: "奇遇幻想礼包"
 	},
 	"802407": {
 		item_id: 802407,
 		type: "products",
-		name: "大富翁2期奇遇骰"
+		name: "银羽骰"
 	},
 	"803001": {
 		item_id: 803001,
@@ -2022,7 +2092,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"804011": {
 		item_id: 804011,
 		type: "products",
-		name: "洗练石"
+		name: "洗炼石"
 	},
 	"804012": {
 		item_id: 804012,
@@ -2089,6 +2159,21 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "龙誓战盔"
 	},
+	"805008": {
+		item_id: 805008,
+		type: "products",
+		name: "清凉夏日"
+	},
+	"805009": {
+		item_id: 805009,
+		type: "products",
+		name: "舱鼠海盗"
+	},
+	"806001": {
+		item_id: 806001,
+		type: "products",
+		name: "渊瞳密契"
+	},
 	"808001": {
 		item_id: 808001,
 		type: "products",
@@ -2119,6 +2204,21 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "虚空结晶"
 	},
+	"808007": {
+		item_id: 808007,
+		type: "products",
+		name: "獭龙奥斯基"
+	},
+	"808008": {
+		item_id: 808008,
+		type: "products",
+		name: "神杖圣契"
+	},
+	"808009": {
+		item_id: 808009,
+		type: "products",
+		name: "遗物圣契"
+	},
 	"810001": {
 		item_id: 810001,
 		type: "products",
@@ -2128,6 +2228,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 810002,
 		type: "products",
 		name: "S2赛季高级通行证"
+	},
+	"810003": {
+		item_id: 810003,
+		type: "products",
+		name: "S3赛季高级通行证"
 	},
 	"811001": {
 		item_id: 811001,
@@ -2147,7 +2252,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"811004": {
 		item_id: 811004,
 		type: "products",
-		name: "渊瞳通契"
+		name: "渊瞳密契"
 	},
 	"811005": {
 		item_id: 811005,
@@ -2182,7 +2287,22 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"811011": {
 		item_id: 811011,
 		type: "products",
-		name: "深渊钥匙"
+		name: "符文钥匙"
+	},
+	"811012": {
+		item_id: 811012,
+		type: "products",
+		name: "悬赏宝箱·日"
+	},
+	"811013": {
+		item_id: 811013,
+		type: "products",
+		name: "悬赏宝箱·周"
+	},
+	"811014": {
+		item_id: 811014,
+		type: "products",
+		name: "勇士欢欢"
 	},
 	"880101": {
 		item_id: 880101,
@@ -2209,6 +2329,56 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "传说武器自选宝箱"
 	},
+	"880106": {
+		item_id: 880106,
+		type: "products",
+		name: "英雄号角"
+	},
+	"880107": {
+		item_id: 880107,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880108": {
+		item_id: 880108,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880109": {
+		item_id: 880109,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880110": {
+		item_id: 880110,
+		type: "products",
+		name: "传说武器自选宝箱"
+	},
+	"880111": {
+		item_id: 880111,
+		type: "products",
+		name: "英雄号角"
+	},
+	"880112": {
+		item_id: 880112,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880113": {
+		item_id: 880113,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880114": {
+		item_id: 880114,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880115": {
+		item_id: 880115,
+		type: "products",
+		name: "獭龙奥斯基"
+	},
 	"890001": {
 		item_id: 890001,
 		type: "products",
@@ -2217,3362 +2387,4762 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"901011": {
 		item_id: 901011,
 		type: "item",
-		name: "难度1普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"901012": {
 		item_id: 901012,
 		type: "item",
-		name: "难度1精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"901013": {
 		item_id: 901013,
 		type: "item",
-		name: "难度1稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"901014": {
 		item_id: 901014,
 		type: "item",
-		name: "难度1史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"901015": {
 		item_id: 901015,
 		type: "item",
-		name: "难度1传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"901016": {
 		item_id: 901016,
 		type: "item",
-		name: "难度1神话斩龙"
+		name: "神话·斩龙"
 	},
 	"901017": {
 		item_id: 901017,
 		type: "item",
-		name: "难度1混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"901021": {
 		item_id: 901021,
 		type: "item",
-		name: "难度1普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"901022": {
 		item_id: 901022,
 		type: "item",
-		name: "难度1精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"901023": {
 		item_id: 901023,
 		type: "item",
-		name: "难度1稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"901024": {
 		item_id: 901024,
 		type: "item",
-		name: "难度1史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"901025": {
 		item_id: 901025,
 		type: "item",
-		name: "难度1传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"901026": {
 		item_id: 901026,
 		type: "item",
-		name: "难度1神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"901027": {
 		item_id: 901027,
 		type: "item",
-		name: "难度1混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"901031": {
 		item_id: 901031,
 		type: "item",
-		name: "难度1普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"901032": {
 		item_id: 901032,
 		type: "item",
-		name: "难度1精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"901033": {
 		item_id: 901033,
 		type: "item",
-		name: "难度1稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"901034": {
 		item_id: 901034,
 		type: "item",
-		name: "难度1史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"901035": {
 		item_id: 901035,
 		type: "item",
-		name: "难度1传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"901036": {
 		item_id: 901036,
 		type: "item",
-		name: "难度1神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"901037": {
 		item_id: 901037,
 		type: "item",
-		name: "难度1混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"901041": {
 		item_id: 901041,
 		type: "item",
-		name: "难度1普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"901042": {
 		item_id: 901042,
 		type: "item",
-		name: "难度1精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"901043": {
 		item_id: 901043,
 		type: "item",
-		name: "难度1稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"901044": {
 		item_id: 901044,
 		type: "item",
-		name: "难度1史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"901045": {
 		item_id: 901045,
 		type: "item",
-		name: "难度1传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"901046": {
 		item_id: 901046,
 		type: "item",
-		name: "难度1神话赤珠"
+		name: "神话·赤珠"
 	},
 	"901047": {
 		item_id: 901047,
 		type: "item",
-		name: "难度1混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"901051": {
 		item_id: 901051,
 		type: "item",
-		name: "难度1普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"901052": {
 		item_id: 901052,
 		type: "item",
-		name: "难度1精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"901053": {
 		item_id: 901053,
 		type: "item",
-		name: "难度1稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"901054": {
 		item_id: 901054,
 		type: "item",
-		name: "难度1史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"901055": {
 		item_id: 901055,
 		type: "item",
-		name: "难度1传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"901056": {
 		item_id: 901056,
 		type: "item",
-		name: "难度1神话武神"
+		name: "神话·武神"
 	},
 	"901057": {
 		item_id: 901057,
 		type: "item",
-		name: "难度1混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"901061": {
 		item_id: 901061,
 		type: "item",
-		name: "难度1普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"901062": {
 		item_id: 901062,
 		type: "item",
-		name: "难度1精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"901063": {
 		item_id: 901063,
 		type: "item",
-		name: "难度1稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"901064": {
 		item_id: 901064,
 		type: "item",
-		name: "难度1史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"901065": {
 		item_id: 901065,
 		type: "item",
-		name: "难度1传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"901066": {
 		item_id: 901066,
 		type: "item",
-		name: "难度1神话泰坦"
+		name: "神话·泰坦"
 	},
 	"901067": {
 		item_id: 901067,
 		type: "item",
-		name: "难度1混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"901071": {
 		item_id: 901071,
 		type: "item",
-		name: "难度1普通普通背心"
+		name: "普通·普通背心"
 	},
 	"901072": {
 		item_id: 901072,
 		type: "item",
-		name: "难度1精良布甲"
+		name: "精良·布甲"
 	},
 	"901073": {
 		item_id: 901073,
 		type: "item",
-		name: "难度1稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"901074": {
 		item_id: 901074,
 		type: "item",
-		name: "难度1史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"901075": {
 		item_id: 901075,
 		type: "item",
-		name: "难度1传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"901076": {
 		item_id: 901076,
 		type: "item",
-		name: "难度1神话灾星"
+		name: "神话·灾星"
 	},
 	"901077": {
 		item_id: 901077,
 		type: "item",
-		name: "难度1混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"901081": {
 		item_id: 901081,
 		type: "item",
-		name: "难度1普通兜帽"
+		name: "普通·兜帽"
 	},
 	"901082": {
 		item_id: 901082,
 		type: "item",
-		name: "难度1精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"901083": {
 		item_id: 901083,
 		type: "item",
-		name: "难度1稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"901084": {
 		item_id: 901084,
 		type: "item",
-		name: "难度1史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"901085": {
 		item_id: 901085,
 		type: "item",
-		name: "难度1传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"901086": {
 		item_id: 901086,
 		type: "item",
-		name: "难度1神话丧钟"
+		name: "神话·丧钟"
 	},
 	"901087": {
 		item_id: 901087,
 		type: "item",
-		name: "难度1混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"902011": {
 		item_id: 902011,
 		type: "item",
-		name: "难度2普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"902012": {
 		item_id: 902012,
 		type: "item",
-		name: "难度2精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"902013": {
 		item_id: 902013,
 		type: "item",
-		name: "难度2稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"902014": {
 		item_id: 902014,
 		type: "item",
-		name: "难度2史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"902015": {
 		item_id: 902015,
 		type: "item",
-		name: "难度2传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"902016": {
 		item_id: 902016,
 		type: "item",
-		name: "难度2神话斩龙"
+		name: "神话·斩龙"
 	},
 	"902017": {
 		item_id: 902017,
 		type: "item",
-		name: "难度2混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"902021": {
 		item_id: 902021,
 		type: "item",
-		name: "难度2普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"902022": {
 		item_id: 902022,
 		type: "item",
-		name: "难度2精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"902023": {
 		item_id: 902023,
 		type: "item",
-		name: "难度2稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"902024": {
 		item_id: 902024,
 		type: "item",
-		name: "难度2史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"902025": {
 		item_id: 902025,
 		type: "item",
-		name: "难度2传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"902026": {
 		item_id: 902026,
 		type: "item",
-		name: "难度2神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"902027": {
 		item_id: 902027,
 		type: "item",
-		name: "难度2混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"902031": {
 		item_id: 902031,
 		type: "item",
-		name: "难度2普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"902032": {
 		item_id: 902032,
 		type: "item",
-		name: "难度2精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"902033": {
 		item_id: 902033,
 		type: "item",
-		name: "难度2稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"902034": {
 		item_id: 902034,
 		type: "item",
-		name: "难度2史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"902035": {
 		item_id: 902035,
 		type: "item",
-		name: "难度2传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"902036": {
 		item_id: 902036,
 		type: "item",
-		name: "难度2神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"902037": {
 		item_id: 902037,
 		type: "item",
-		name: "难度2混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"902041": {
 		item_id: 902041,
 		type: "item",
-		name: "难度2普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"902042": {
 		item_id: 902042,
 		type: "item",
-		name: "难度2精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"902043": {
 		item_id: 902043,
 		type: "item",
-		name: "难度2稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"902044": {
 		item_id: 902044,
 		type: "item",
-		name: "难度2史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"902045": {
 		item_id: 902045,
 		type: "item",
-		name: "难度2传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"902046": {
 		item_id: 902046,
 		type: "item",
-		name: "难度2神话赤珠"
+		name: "神话·赤珠"
 	},
 	"902047": {
 		item_id: 902047,
 		type: "item",
-		name: "难度2混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"902051": {
 		item_id: 902051,
 		type: "item",
-		name: "难度2普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"902052": {
 		item_id: 902052,
 		type: "item",
-		name: "难度2精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"902053": {
 		item_id: 902053,
 		type: "item",
-		name: "难度2稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"902054": {
 		item_id: 902054,
 		type: "item",
-		name: "难度2史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"902055": {
 		item_id: 902055,
 		type: "item",
-		name: "难度2传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"902056": {
 		item_id: 902056,
 		type: "item",
-		name: "难度2神话武神"
+		name: "神话·武神"
 	},
 	"902057": {
 		item_id: 902057,
 		type: "item",
-		name: "难度2混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"902061": {
 		item_id: 902061,
 		type: "item",
-		name: "难度2普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"902062": {
 		item_id: 902062,
 		type: "item",
-		name: "难度2精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"902063": {
 		item_id: 902063,
 		type: "item",
-		name: "难度2稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"902064": {
 		item_id: 902064,
 		type: "item",
-		name: "难度2史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"902065": {
 		item_id: 902065,
 		type: "item",
-		name: "难度2传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"902066": {
 		item_id: 902066,
 		type: "item",
-		name: "难度2神话泰坦"
+		name: "神话·泰坦"
 	},
 	"902067": {
 		item_id: 902067,
 		type: "item",
-		name: "难度2混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"902071": {
 		item_id: 902071,
 		type: "item",
-		name: "难度2普通普通背心"
+		name: "普通·普通背心"
 	},
 	"902072": {
 		item_id: 902072,
 		type: "item",
-		name: "难度2精良布甲"
+		name: "精良·布甲"
 	},
 	"902073": {
 		item_id: 902073,
 		type: "item",
-		name: "难度2稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"902074": {
 		item_id: 902074,
 		type: "item",
-		name: "难度2史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"902075": {
 		item_id: 902075,
 		type: "item",
-		name: "难度2传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"902076": {
 		item_id: 902076,
 		type: "item",
-		name: "难度2神话灾星"
+		name: "神话·灾星"
 	},
 	"902077": {
 		item_id: 902077,
 		type: "item",
-		name: "难度2混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"902081": {
 		item_id: 902081,
 		type: "item",
-		name: "难度2普通兜帽"
+		name: "普通·兜帽"
 	},
 	"902082": {
 		item_id: 902082,
 		type: "item",
-		name: "难度2精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"902083": {
 		item_id: 902083,
 		type: "item",
-		name: "难度2稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"902084": {
 		item_id: 902084,
 		type: "item",
-		name: "难度2史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"902085": {
 		item_id: 902085,
 		type: "item",
-		name: "难度2传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"902086": {
 		item_id: 902086,
 		type: "item",
-		name: "难度2神话丧钟"
+		name: "神话·丧钟"
 	},
 	"902087": {
 		item_id: 902087,
 		type: "item",
-		name: "难度2混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"903011": {
 		item_id: 903011,
 		type: "item",
-		name: "难度3普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"903012": {
 		item_id: 903012,
 		type: "item",
-		name: "难度3精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"903013": {
 		item_id: 903013,
 		type: "item",
-		name: "难度3稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"903014": {
 		item_id: 903014,
 		type: "item",
-		name: "难度3史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"903015": {
 		item_id: 903015,
 		type: "item",
-		name: "难度3传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"903016": {
 		item_id: 903016,
 		type: "item",
-		name: "难度3神话斩龙"
+		name: "神话·斩龙"
 	},
 	"903017": {
 		item_id: 903017,
 		type: "item",
-		name: "难度3混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"903021": {
 		item_id: 903021,
 		type: "item",
-		name: "难度3普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"903022": {
 		item_id: 903022,
 		type: "item",
-		name: "难度3精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"903023": {
 		item_id: 903023,
 		type: "item",
-		name: "难度3稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"903024": {
 		item_id: 903024,
 		type: "item",
-		name: "难度3史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"903025": {
 		item_id: 903025,
 		type: "item",
-		name: "难度3传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"903026": {
 		item_id: 903026,
 		type: "item",
-		name: "难度3神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"903027": {
 		item_id: 903027,
 		type: "item",
-		name: "难度3混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"903031": {
 		item_id: 903031,
 		type: "item",
-		name: "难度3普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"903032": {
 		item_id: 903032,
 		type: "item",
-		name: "难度3精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"903033": {
 		item_id: 903033,
 		type: "item",
-		name: "难度3稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"903034": {
 		item_id: 903034,
 		type: "item",
-		name: "难度3史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"903035": {
 		item_id: 903035,
 		type: "item",
-		name: "难度3传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"903036": {
 		item_id: 903036,
 		type: "item",
-		name: "难度3神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"903037": {
 		item_id: 903037,
 		type: "item",
-		name: "难度3混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"903041": {
 		item_id: 903041,
 		type: "item",
-		name: "难度3普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"903042": {
 		item_id: 903042,
 		type: "item",
-		name: "难度3精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"903043": {
 		item_id: 903043,
 		type: "item",
-		name: "难度3稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"903044": {
 		item_id: 903044,
 		type: "item",
-		name: "难度3史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"903045": {
 		item_id: 903045,
 		type: "item",
-		name: "难度3传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"903046": {
 		item_id: 903046,
 		type: "item",
-		name: "难度3神话赤珠"
+		name: "神话·赤珠"
 	},
 	"903047": {
 		item_id: 903047,
 		type: "item",
-		name: "难度3混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"903051": {
 		item_id: 903051,
 		type: "item",
-		name: "难度3普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"903052": {
 		item_id: 903052,
 		type: "item",
-		name: "难度3精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"903053": {
 		item_id: 903053,
 		type: "item",
-		name: "难度3稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"903054": {
 		item_id: 903054,
 		type: "item",
-		name: "难度3史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"903055": {
 		item_id: 903055,
 		type: "item",
-		name: "难度3传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"903056": {
 		item_id: 903056,
 		type: "item",
-		name: "难度3神话武神"
+		name: "神话·武神"
 	},
 	"903057": {
 		item_id: 903057,
 		type: "item",
-		name: "难度3混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"903061": {
 		item_id: 903061,
 		type: "item",
-		name: "难度3普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"903062": {
 		item_id: 903062,
 		type: "item",
-		name: "难度3精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"903063": {
 		item_id: 903063,
 		type: "item",
-		name: "难度3稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"903064": {
 		item_id: 903064,
 		type: "item",
-		name: "难度3史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"903065": {
 		item_id: 903065,
 		type: "item",
-		name: "难度3传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"903066": {
 		item_id: 903066,
 		type: "item",
-		name: "难度3神话泰坦"
+		name: "神话·泰坦"
 	},
 	"903067": {
 		item_id: 903067,
 		type: "item",
-		name: "难度3混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"903071": {
 		item_id: 903071,
 		type: "item",
-		name: "难度3普通普通背心"
+		name: "普通·普通背心"
 	},
 	"903072": {
 		item_id: 903072,
 		type: "item",
-		name: "难度3精良布甲"
+		name: "精良·布甲"
 	},
 	"903073": {
 		item_id: 903073,
 		type: "item",
-		name: "难度3稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"903074": {
 		item_id: 903074,
 		type: "item",
-		name: "难度3史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"903075": {
 		item_id: 903075,
 		type: "item",
-		name: "难度3传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"903076": {
 		item_id: 903076,
 		type: "item",
-		name: "难度3神话灾星"
+		name: "神话·灾星"
 	},
 	"903077": {
 		item_id: 903077,
 		type: "item",
-		name: "难度3混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"903081": {
 		item_id: 903081,
 		type: "item",
-		name: "难度3普通兜帽"
+		name: "普通·兜帽"
 	},
 	"903082": {
 		item_id: 903082,
 		type: "item",
-		name: "难度3精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"903083": {
 		item_id: 903083,
 		type: "item",
-		name: "难度3稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"903084": {
 		item_id: 903084,
 		type: "item",
-		name: "难度3史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"903085": {
 		item_id: 903085,
 		type: "item",
-		name: "难度3传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"903086": {
 		item_id: 903086,
 		type: "item",
-		name: "难度3神话丧钟"
+		name: "神话·丧钟"
 	},
 	"903087": {
 		item_id: 903087,
 		type: "item",
-		name: "难度3混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"904011": {
 		item_id: 904011,
 		type: "item",
-		name: "难度4普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"904012": {
 		item_id: 904012,
 		type: "item",
-		name: "难度4精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"904013": {
 		item_id: 904013,
 		type: "item",
-		name: "难度4稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"904014": {
 		item_id: 904014,
 		type: "item",
-		name: "难度4史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"904015": {
 		item_id: 904015,
 		type: "item",
-		name: "难度4传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"904016": {
 		item_id: 904016,
 		type: "item",
-		name: "难度4神话斩龙"
+		name: "神话·斩龙"
 	},
 	"904017": {
 		item_id: 904017,
 		type: "item",
-		name: "难度4混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"904021": {
 		item_id: 904021,
 		type: "item",
-		name: "难度4普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"904022": {
 		item_id: 904022,
 		type: "item",
-		name: "难度4精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"904023": {
 		item_id: 904023,
 		type: "item",
-		name: "难度4稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"904024": {
 		item_id: 904024,
 		type: "item",
-		name: "难度4史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"904025": {
 		item_id: 904025,
 		type: "item",
-		name: "难度4传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"904026": {
 		item_id: 904026,
 		type: "item",
-		name: "难度4神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"904027": {
 		item_id: 904027,
 		type: "item",
-		name: "难度4混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"904031": {
 		item_id: 904031,
 		type: "item",
-		name: "难度4普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"904032": {
 		item_id: 904032,
 		type: "item",
-		name: "难度4精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"904033": {
 		item_id: 904033,
 		type: "item",
-		name: "难度4稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"904034": {
 		item_id: 904034,
 		type: "item",
-		name: "难度4史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"904035": {
 		item_id: 904035,
 		type: "item",
-		name: "难度4传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"904036": {
 		item_id: 904036,
 		type: "item",
-		name: "难度4神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"904037": {
 		item_id: 904037,
 		type: "item",
-		name: "难度4混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"904041": {
 		item_id: 904041,
 		type: "item",
-		name: "难度4普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"904042": {
 		item_id: 904042,
 		type: "item",
-		name: "难度4精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"904043": {
 		item_id: 904043,
 		type: "item",
-		name: "难度4稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"904044": {
 		item_id: 904044,
 		type: "item",
-		name: "难度4史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"904045": {
 		item_id: 904045,
 		type: "item",
-		name: "难度4传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"904046": {
 		item_id: 904046,
 		type: "item",
-		name: "难度4神话赤珠"
+		name: "神话·赤珠"
 	},
 	"904047": {
 		item_id: 904047,
 		type: "item",
-		name: "难度4混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"904051": {
 		item_id: 904051,
 		type: "item",
-		name: "难度4普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"904052": {
 		item_id: 904052,
 		type: "item",
-		name: "难度4精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"904053": {
 		item_id: 904053,
 		type: "item",
-		name: "难度4稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"904054": {
 		item_id: 904054,
 		type: "item",
-		name: "难度4史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"904055": {
 		item_id: 904055,
 		type: "item",
-		name: "难度4传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"904056": {
 		item_id: 904056,
 		type: "item",
-		name: "难度4神话武神"
+		name: "神话·武神"
 	},
 	"904057": {
 		item_id: 904057,
 		type: "item",
-		name: "难度4混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"904061": {
 		item_id: 904061,
 		type: "item",
-		name: "难度4普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"904062": {
 		item_id: 904062,
 		type: "item",
-		name: "难度4精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"904063": {
 		item_id: 904063,
 		type: "item",
-		name: "难度4稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"904064": {
 		item_id: 904064,
 		type: "item",
-		name: "难度4史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"904065": {
 		item_id: 904065,
 		type: "item",
-		name: "难度4传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"904066": {
 		item_id: 904066,
 		type: "item",
-		name: "难度4神话泰坦"
+		name: "神话·泰坦"
 	},
 	"904067": {
 		item_id: 904067,
 		type: "item",
-		name: "难度4混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"904071": {
 		item_id: 904071,
 		type: "item",
-		name: "难度4普通普通背心"
+		name: "普通·普通背心"
 	},
 	"904072": {
 		item_id: 904072,
 		type: "item",
-		name: "难度4精良布甲"
+		name: "精良·布甲"
 	},
 	"904073": {
 		item_id: 904073,
 		type: "item",
-		name: "难度4稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"904074": {
 		item_id: 904074,
 		type: "item",
-		name: "难度4史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"904075": {
 		item_id: 904075,
 		type: "item",
-		name: "难度4传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"904076": {
 		item_id: 904076,
 		type: "item",
-		name: "难度4神话灾星"
+		name: "神话·灾星"
 	},
 	"904077": {
 		item_id: 904077,
 		type: "item",
-		name: "难度4混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"904081": {
 		item_id: 904081,
 		type: "item",
-		name: "难度4普通兜帽"
+		name: "普通·兜帽"
 	},
 	"904082": {
 		item_id: 904082,
 		type: "item",
-		name: "难度4精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"904083": {
 		item_id: 904083,
 		type: "item",
-		name: "难度4稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"904084": {
 		item_id: 904084,
 		type: "item",
-		name: "难度4史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"904085": {
 		item_id: 904085,
 		type: "item",
-		name: "难度4传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"904086": {
 		item_id: 904086,
 		type: "item",
-		name: "难度4神话丧钟"
+		name: "神话·丧钟"
 	},
 	"904087": {
 		item_id: 904087,
 		type: "item",
-		name: "难度4混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"905011": {
 		item_id: 905011,
 		type: "item",
-		name: "难度5普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"905012": {
 		item_id: 905012,
 		type: "item",
-		name: "难度5精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"905013": {
 		item_id: 905013,
 		type: "item",
-		name: "难度5稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"905014": {
 		item_id: 905014,
 		type: "item",
-		name: "难度5史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"905015": {
 		item_id: 905015,
 		type: "item",
-		name: "难度5传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"905016": {
 		item_id: 905016,
 		type: "item",
-		name: "难度5神话斩龙"
+		name: "神话·斩龙"
 	},
 	"905017": {
 		item_id: 905017,
 		type: "item",
-		name: "难度5混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"905021": {
 		item_id: 905021,
 		type: "item",
-		name: "难度5普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"905022": {
 		item_id: 905022,
 		type: "item",
-		name: "难度5精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"905023": {
 		item_id: 905023,
 		type: "item",
-		name: "难度5稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"905024": {
 		item_id: 905024,
 		type: "item",
-		name: "难度5史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"905025": {
 		item_id: 905025,
 		type: "item",
-		name: "难度5传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"905026": {
 		item_id: 905026,
 		type: "item",
-		name: "难度5神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"905027": {
 		item_id: 905027,
 		type: "item",
-		name: "难度5混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"905031": {
 		item_id: 905031,
 		type: "item",
-		name: "难度5普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"905032": {
 		item_id: 905032,
 		type: "item",
-		name: "难度5精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"905033": {
 		item_id: 905033,
 		type: "item",
-		name: "难度5稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"905034": {
 		item_id: 905034,
 		type: "item",
-		name: "难度5史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"905035": {
 		item_id: 905035,
 		type: "item",
-		name: "难度5传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"905036": {
 		item_id: 905036,
 		type: "item",
-		name: "难度5神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"905037": {
 		item_id: 905037,
 		type: "item",
-		name: "难度5混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"905041": {
 		item_id: 905041,
 		type: "item",
-		name: "难度5普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"905042": {
 		item_id: 905042,
 		type: "item",
-		name: "难度5精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"905043": {
 		item_id: 905043,
 		type: "item",
-		name: "难度5稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"905044": {
 		item_id: 905044,
 		type: "item",
-		name: "难度5史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"905045": {
 		item_id: 905045,
 		type: "item",
-		name: "难度5传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"905046": {
 		item_id: 905046,
 		type: "item",
-		name: "难度5神话赤珠"
+		name: "神话·赤珠"
 	},
 	"905047": {
 		item_id: 905047,
 		type: "item",
-		name: "难度5混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"905051": {
 		item_id: 905051,
 		type: "item",
-		name: "难度5普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"905052": {
 		item_id: 905052,
 		type: "item",
-		name: "难度5精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"905053": {
 		item_id: 905053,
 		type: "item",
-		name: "难度5稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"905054": {
 		item_id: 905054,
 		type: "item",
-		name: "难度5史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"905055": {
 		item_id: 905055,
 		type: "item",
-		name: "难度5传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"905056": {
 		item_id: 905056,
 		type: "item",
-		name: "难度5神话武神"
+		name: "神话·武神"
 	},
 	"905057": {
 		item_id: 905057,
 		type: "item",
-		name: "难度5混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"905061": {
 		item_id: 905061,
 		type: "item",
-		name: "难度5普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"905062": {
 		item_id: 905062,
 		type: "item",
-		name: "难度5精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"905063": {
 		item_id: 905063,
 		type: "item",
-		name: "难度5稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"905064": {
 		item_id: 905064,
 		type: "item",
-		name: "难度5史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"905065": {
 		item_id: 905065,
 		type: "item",
-		name: "难度5传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"905066": {
 		item_id: 905066,
 		type: "item",
-		name: "难度5神话泰坦"
+		name: "神话·泰坦"
 	},
 	"905067": {
 		item_id: 905067,
 		type: "item",
-		name: "难度5混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"905071": {
 		item_id: 905071,
 		type: "item",
-		name: "难度5普通普通背心"
+		name: "普通·普通背心"
 	},
 	"905072": {
 		item_id: 905072,
 		type: "item",
-		name: "难度5精良布甲"
+		name: "精良·布甲"
 	},
 	"905073": {
 		item_id: 905073,
 		type: "item",
-		name: "难度5稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"905074": {
 		item_id: 905074,
 		type: "item",
-		name: "难度5史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"905075": {
 		item_id: 905075,
 		type: "item",
-		name: "难度5传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"905076": {
 		item_id: 905076,
 		type: "item",
-		name: "难度5神话灾星"
+		name: "神话·灾星"
 	},
 	"905077": {
 		item_id: 905077,
 		type: "item",
-		name: "难度5混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"905081": {
 		item_id: 905081,
 		type: "item",
-		name: "难度5普通兜帽"
+		name: "普通·兜帽"
 	},
 	"905082": {
 		item_id: 905082,
 		type: "item",
-		name: "难度5精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"905083": {
 		item_id: 905083,
 		type: "item",
-		name: "难度5稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"905084": {
 		item_id: 905084,
 		type: "item",
-		name: "难度5史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"905085": {
 		item_id: 905085,
 		type: "item",
-		name: "难度5传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"905086": {
 		item_id: 905086,
 		type: "item",
-		name: "难度5神话丧钟"
+		name: "神话·丧钟"
 	},
 	"905087": {
 		item_id: 905087,
 		type: "item",
-		name: "难度5混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"906011": {
 		item_id: 906011,
 		type: "item",
-		name: "难度6普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"906012": {
 		item_id: 906012,
 		type: "item",
-		name: "难度6精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"906013": {
 		item_id: 906013,
 		type: "item",
-		name: "难度6稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"906014": {
 		item_id: 906014,
 		type: "item",
-		name: "难度6史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"906015": {
 		item_id: 906015,
 		type: "item",
-		name: "难度6传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"906016": {
 		item_id: 906016,
 		type: "item",
-		name: "难度6神话斩龙"
+		name: "神话·斩龙"
 	},
 	"906017": {
 		item_id: 906017,
 		type: "item",
-		name: "难度6混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"906021": {
 		item_id: 906021,
 		type: "item",
-		name: "难度6普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"906022": {
 		item_id: 906022,
 		type: "item",
-		name: "难度6精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"906023": {
 		item_id: 906023,
 		type: "item",
-		name: "难度6稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"906024": {
 		item_id: 906024,
 		type: "item",
-		name: "难度6史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"906025": {
 		item_id: 906025,
 		type: "item",
-		name: "难度6传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"906026": {
 		item_id: 906026,
 		type: "item",
-		name: "难度6神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"906027": {
 		item_id: 906027,
 		type: "item",
-		name: "难度6混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"906031": {
 		item_id: 906031,
 		type: "item",
-		name: "难度6普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"906032": {
 		item_id: 906032,
 		type: "item",
-		name: "难度6精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"906033": {
 		item_id: 906033,
 		type: "item",
-		name: "难度6稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"906034": {
 		item_id: 906034,
 		type: "item",
-		name: "难度6史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"906035": {
 		item_id: 906035,
 		type: "item",
-		name: "难度6传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"906036": {
 		item_id: 906036,
 		type: "item",
-		name: "难度6神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"906037": {
 		item_id: 906037,
 		type: "item",
-		name: "难度6混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"906041": {
 		item_id: 906041,
 		type: "item",
-		name: "难度6普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"906042": {
 		item_id: 906042,
 		type: "item",
-		name: "难度6精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"906043": {
 		item_id: 906043,
 		type: "item",
-		name: "难度6稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"906044": {
 		item_id: 906044,
 		type: "item",
-		name: "难度6史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"906045": {
 		item_id: 906045,
 		type: "item",
-		name: "难度6传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"906046": {
 		item_id: 906046,
 		type: "item",
-		name: "难度6神话赤珠"
+		name: "神话·赤珠"
 	},
 	"906047": {
 		item_id: 906047,
 		type: "item",
-		name: "难度6混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"906051": {
 		item_id: 906051,
 		type: "item",
-		name: "难度6普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"906052": {
 		item_id: 906052,
 		type: "item",
-		name: "难度6精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"906053": {
 		item_id: 906053,
 		type: "item",
-		name: "难度6稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"906054": {
 		item_id: 906054,
 		type: "item",
-		name: "难度6史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"906055": {
 		item_id: 906055,
 		type: "item",
-		name: "难度6传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"906056": {
 		item_id: 906056,
 		type: "item",
-		name: "难度6神话武神"
+		name: "神话·武神"
 	},
 	"906057": {
 		item_id: 906057,
 		type: "item",
-		name: "难度6混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"906061": {
 		item_id: 906061,
 		type: "item",
-		name: "难度6普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"906062": {
 		item_id: 906062,
 		type: "item",
-		name: "难度6精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"906063": {
 		item_id: 906063,
 		type: "item",
-		name: "难度6稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"906064": {
 		item_id: 906064,
 		type: "item",
-		name: "难度6史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"906065": {
 		item_id: 906065,
 		type: "item",
-		name: "难度6传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"906066": {
 		item_id: 906066,
 		type: "item",
-		name: "难度6神话泰坦"
+		name: "神话·泰坦"
 	},
 	"906067": {
 		item_id: 906067,
 		type: "item",
-		name: "难度6混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"906071": {
 		item_id: 906071,
 		type: "item",
-		name: "难度6普通普通背心"
+		name: "普通·普通背心"
 	},
 	"906072": {
 		item_id: 906072,
 		type: "item",
-		name: "难度6精良布甲"
+		name: "精良·布甲"
 	},
 	"906073": {
 		item_id: 906073,
 		type: "item",
-		name: "难度6稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"906074": {
 		item_id: 906074,
 		type: "item",
-		name: "难度6史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"906075": {
 		item_id: 906075,
 		type: "item",
-		name: "难度6传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"906076": {
 		item_id: 906076,
 		type: "item",
-		name: "难度6神话灾星"
+		name: "神话·灾星"
 	},
 	"906077": {
 		item_id: 906077,
 		type: "item",
-		name: "难度6混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"906081": {
 		item_id: 906081,
 		type: "item",
-		name: "难度6普通兜帽"
+		name: "普通·兜帽"
 	},
 	"906082": {
 		item_id: 906082,
 		type: "item",
-		name: "难度6精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"906083": {
 		item_id: 906083,
 		type: "item",
-		name: "难度6稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"906084": {
 		item_id: 906084,
 		type: "item",
-		name: "难度6史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"906085": {
 		item_id: 906085,
 		type: "item",
-		name: "难度6传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"906086": {
 		item_id: 906086,
 		type: "item",
-		name: "难度6神话丧钟"
+		name: "神话·丧钟"
 	},
 	"906087": {
 		item_id: 906087,
 		type: "item",
-		name: "难度6混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"907011": {
 		item_id: 907011,
 		type: "item",
-		name: "难度7普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"907012": {
 		item_id: 907012,
 		type: "item",
-		name: "难度7精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"907013": {
 		item_id: 907013,
 		type: "item",
-		name: "难度7稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"907014": {
 		item_id: 907014,
 		type: "item",
-		name: "难度7史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"907015": {
 		item_id: 907015,
 		type: "item",
-		name: "难度7传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"907016": {
 		item_id: 907016,
 		type: "item",
-		name: "难度7神话斩龙"
+		name: "神话·斩龙"
 	},
 	"907017": {
 		item_id: 907017,
 		type: "item",
-		name: "难度7混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"907021": {
 		item_id: 907021,
 		type: "item",
-		name: "难度7普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"907022": {
 		item_id: 907022,
 		type: "item",
-		name: "难度7精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"907023": {
 		item_id: 907023,
 		type: "item",
-		name: "难度7稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"907024": {
 		item_id: 907024,
 		type: "item",
-		name: "难度7史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"907025": {
 		item_id: 907025,
 		type: "item",
-		name: "难度7传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"907026": {
 		item_id: 907026,
 		type: "item",
-		name: "难度7神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"907027": {
 		item_id: 907027,
 		type: "item",
-		name: "难度7混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"907031": {
 		item_id: 907031,
 		type: "item",
-		name: "难度7普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"907032": {
 		item_id: 907032,
 		type: "item",
-		name: "难度7精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"907033": {
 		item_id: 907033,
 		type: "item",
-		name: "难度7稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"907034": {
 		item_id: 907034,
 		type: "item",
-		name: "难度7史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"907035": {
 		item_id: 907035,
 		type: "item",
-		name: "难度7传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"907036": {
 		item_id: 907036,
 		type: "item",
-		name: "难度7神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"907037": {
 		item_id: 907037,
 		type: "item",
-		name: "难度7混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"907041": {
 		item_id: 907041,
 		type: "item",
-		name: "难度7普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"907042": {
 		item_id: 907042,
 		type: "item",
-		name: "难度7精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"907043": {
 		item_id: 907043,
 		type: "item",
-		name: "难度7稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"907044": {
 		item_id: 907044,
 		type: "item",
-		name: "难度7史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"907045": {
 		item_id: 907045,
 		type: "item",
-		name: "难度7传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"907046": {
 		item_id: 907046,
 		type: "item",
-		name: "难度7神话赤珠"
+		name: "神话·赤珠"
 	},
 	"907047": {
 		item_id: 907047,
 		type: "item",
-		name: "难度7混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"907051": {
 		item_id: 907051,
 		type: "item",
-		name: "难度7普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"907052": {
 		item_id: 907052,
 		type: "item",
-		name: "难度7精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"907053": {
 		item_id: 907053,
 		type: "item",
-		name: "难度7稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"907054": {
 		item_id: 907054,
 		type: "item",
-		name: "难度7史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"907055": {
 		item_id: 907055,
 		type: "item",
-		name: "难度7传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"907056": {
 		item_id: 907056,
 		type: "item",
-		name: "难度7神话武神"
+		name: "神话·武神"
 	},
 	"907057": {
 		item_id: 907057,
 		type: "item",
-		name: "难度7混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"907061": {
 		item_id: 907061,
 		type: "item",
-		name: "难度7普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"907062": {
 		item_id: 907062,
 		type: "item",
-		name: "难度7精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"907063": {
 		item_id: 907063,
 		type: "item",
-		name: "难度7稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"907064": {
 		item_id: 907064,
 		type: "item",
-		name: "难度7史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"907065": {
 		item_id: 907065,
 		type: "item",
-		name: "难度7传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"907066": {
 		item_id: 907066,
 		type: "item",
-		name: "难度7神话泰坦"
+		name: "神话·泰坦"
 	},
 	"907067": {
 		item_id: 907067,
 		type: "item",
-		name: "难度7混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"907071": {
 		item_id: 907071,
 		type: "item",
-		name: "难度7普通普通背心"
+		name: "普通·普通背心"
 	},
 	"907072": {
 		item_id: 907072,
 		type: "item",
-		name: "难度7精良布甲"
+		name: "精良·布甲"
 	},
 	"907073": {
 		item_id: 907073,
 		type: "item",
-		name: "难度7稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"907074": {
 		item_id: 907074,
 		type: "item",
-		name: "难度7史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"907075": {
 		item_id: 907075,
 		type: "item",
-		name: "难度7传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"907076": {
 		item_id: 907076,
 		type: "item",
-		name: "难度7神话灾星"
+		name: "神话·灾星"
 	},
 	"907077": {
 		item_id: 907077,
 		type: "item",
-		name: "难度7混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"907081": {
 		item_id: 907081,
 		type: "item",
-		name: "难度7普通兜帽"
+		name: "普通·兜帽"
 	},
 	"907082": {
 		item_id: 907082,
 		type: "item",
-		name: "难度7精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"907083": {
 		item_id: 907083,
 		type: "item",
-		name: "难度7稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"907084": {
 		item_id: 907084,
 		type: "item",
-		name: "难度7史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"907085": {
 		item_id: 907085,
 		type: "item",
-		name: "难度7传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"907086": {
 		item_id: 907086,
 		type: "item",
-		name: "难度7神话丧钟"
+		name: "神话·丧钟"
 	},
 	"907087": {
 		item_id: 907087,
 		type: "item",
-		name: "难度7混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"908011": {
 		item_id: 908011,
 		type: "item",
-		name: "难度8普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"908012": {
 		item_id: 908012,
 		type: "item",
-		name: "难度8精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"908013": {
 		item_id: 908013,
 		type: "item",
-		name: "难度8稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"908014": {
 		item_id: 908014,
 		type: "item",
-		name: "难度8史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"908015": {
 		item_id: 908015,
 		type: "item",
-		name: "难度8传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"908016": {
 		item_id: 908016,
 		type: "item",
-		name: "难度8神话斩龙"
+		name: "神话·斩龙"
 	},
 	"908017": {
 		item_id: 908017,
 		type: "item",
-		name: "难度8混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"908021": {
 		item_id: 908021,
 		type: "item",
-		name: "难度8普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"908022": {
 		item_id: 908022,
 		type: "item",
-		name: "难度8精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"908023": {
 		item_id: 908023,
 		type: "item",
-		name: "难度8稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"908024": {
 		item_id: 908024,
 		type: "item",
-		name: "难度8史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"908025": {
 		item_id: 908025,
 		type: "item",
-		name: "难度8传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"908026": {
 		item_id: 908026,
 		type: "item",
-		name: "难度8神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"908027": {
 		item_id: 908027,
 		type: "item",
-		name: "难度8混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"908031": {
 		item_id: 908031,
 		type: "item",
-		name: "难度8普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"908032": {
 		item_id: 908032,
 		type: "item",
-		name: "难度8精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"908033": {
 		item_id: 908033,
 		type: "item",
-		name: "难度8稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"908034": {
 		item_id: 908034,
 		type: "item",
-		name: "难度8史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"908035": {
 		item_id: 908035,
 		type: "item",
-		name: "难度8传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"908036": {
 		item_id: 908036,
 		type: "item",
-		name: "难度8神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"908037": {
 		item_id: 908037,
 		type: "item",
-		name: "难度8混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"908041": {
 		item_id: 908041,
 		type: "item",
-		name: "难度8普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"908042": {
 		item_id: 908042,
 		type: "item",
-		name: "难度8精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"908043": {
 		item_id: 908043,
 		type: "item",
-		name: "难度8稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"908044": {
 		item_id: 908044,
 		type: "item",
-		name: "难度8史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"908045": {
 		item_id: 908045,
 		type: "item",
-		name: "难度8传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"908046": {
 		item_id: 908046,
 		type: "item",
-		name: "难度8神话赤珠"
+		name: "神话·赤珠"
 	},
 	"908047": {
 		item_id: 908047,
 		type: "item",
-		name: "难度8混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"908051": {
 		item_id: 908051,
 		type: "item",
-		name: "难度8普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"908052": {
 		item_id: 908052,
 		type: "item",
-		name: "难度8精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"908053": {
 		item_id: 908053,
 		type: "item",
-		name: "难度8稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"908054": {
 		item_id: 908054,
 		type: "item",
-		name: "难度8史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"908055": {
 		item_id: 908055,
 		type: "item",
-		name: "难度8传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"908056": {
 		item_id: 908056,
 		type: "item",
-		name: "难度8神话武神"
+		name: "神话·武神"
 	},
 	"908057": {
 		item_id: 908057,
 		type: "item",
-		name: "难度8混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"908061": {
 		item_id: 908061,
 		type: "item",
-		name: "难度8普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"908062": {
 		item_id: 908062,
 		type: "item",
-		name: "难度8精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"908063": {
 		item_id: 908063,
 		type: "item",
-		name: "难度8稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"908064": {
 		item_id: 908064,
 		type: "item",
-		name: "难度8史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"908065": {
 		item_id: 908065,
 		type: "item",
-		name: "难度8传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"908066": {
 		item_id: 908066,
 		type: "item",
-		name: "难度8神话泰坦"
+		name: "神话·泰坦"
 	},
 	"908067": {
 		item_id: 908067,
 		type: "item",
-		name: "难度8混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"908071": {
 		item_id: 908071,
 		type: "item",
-		name: "难度8普通普通背心"
+		name: "普通·普通背心"
 	},
 	"908072": {
 		item_id: 908072,
 		type: "item",
-		name: "难度8精良布甲"
+		name: "精良·布甲"
 	},
 	"908073": {
 		item_id: 908073,
 		type: "item",
-		name: "难度8稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"908074": {
 		item_id: 908074,
 		type: "item",
-		name: "难度8史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"908075": {
 		item_id: 908075,
 		type: "item",
-		name: "难度8传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"908076": {
 		item_id: 908076,
 		type: "item",
-		name: "难度8神话灾星"
+		name: "神话·灾星"
 	},
 	"908077": {
 		item_id: 908077,
 		type: "item",
-		name: "难度8混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"908081": {
 		item_id: 908081,
 		type: "item",
-		name: "难度8普通兜帽"
+		name: "普通·兜帽"
 	},
 	"908082": {
 		item_id: 908082,
 		type: "item",
-		name: "难度8精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"908083": {
 		item_id: 908083,
 		type: "item",
-		name: "难度8稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"908084": {
 		item_id: 908084,
 		type: "item",
-		name: "难度8史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"908085": {
 		item_id: 908085,
 		type: "item",
-		name: "难度8传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"908086": {
 		item_id: 908086,
 		type: "item",
-		name: "难度8神话丧钟"
+		name: "神话·丧钟"
 	},
 	"908087": {
 		item_id: 908087,
 		type: "item",
-		name: "难度8混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"909011": {
 		item_id: 909011,
 		type: "item",
-		name: "难度9普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"909012": {
 		item_id: 909012,
 		type: "item",
-		name: "难度9精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"909013": {
 		item_id: 909013,
 		type: "item",
-		name: "难度9稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"909014": {
 		item_id: 909014,
 		type: "item",
-		name: "难度9史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"909015": {
 		item_id: 909015,
 		type: "item",
-		name: "难度9传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"909016": {
 		item_id: 909016,
 		type: "item",
-		name: "难度9神话斩龙"
+		name: "神话·斩龙"
 	},
 	"909017": {
 		item_id: 909017,
 		type: "item",
-		name: "难度9混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"909021": {
 		item_id: 909021,
 		type: "item",
-		name: "难度9普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"909022": {
 		item_id: 909022,
 		type: "item",
-		name: "难度9精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"909023": {
 		item_id: 909023,
 		type: "item",
-		name: "难度9稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"909024": {
 		item_id: 909024,
 		type: "item",
-		name: "难度9史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"909025": {
 		item_id: 909025,
 		type: "item",
-		name: "难度9传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"909026": {
 		item_id: 909026,
 		type: "item",
-		name: "难度9神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"909027": {
 		item_id: 909027,
 		type: "item",
-		name: "难度9混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"909031": {
 		item_id: 909031,
 		type: "item",
-		name: "难度9普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"909032": {
 		item_id: 909032,
 		type: "item",
-		name: "难度9精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"909033": {
 		item_id: 909033,
 		type: "item",
-		name: "难度9稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"909034": {
 		item_id: 909034,
 		type: "item",
-		name: "难度9史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"909035": {
 		item_id: 909035,
 		type: "item",
-		name: "难度9传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"909036": {
 		item_id: 909036,
 		type: "item",
-		name: "难度9神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"909037": {
 		item_id: 909037,
 		type: "item",
-		name: "难度9混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"909041": {
 		item_id: 909041,
 		type: "item",
-		name: "难度9普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"909042": {
 		item_id: 909042,
 		type: "item",
-		name: "难度9精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"909043": {
 		item_id: 909043,
 		type: "item",
-		name: "难度9稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"909044": {
 		item_id: 909044,
 		type: "item",
-		name: "难度9史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"909045": {
 		item_id: 909045,
 		type: "item",
-		name: "难度9传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"909046": {
 		item_id: 909046,
 		type: "item",
-		name: "难度9神话赤珠"
+		name: "神话·赤珠"
 	},
 	"909047": {
 		item_id: 909047,
 		type: "item",
-		name: "难度9混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"909051": {
 		item_id: 909051,
 		type: "item",
-		name: "难度9普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"909052": {
 		item_id: 909052,
 		type: "item",
-		name: "难度9精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"909053": {
 		item_id: 909053,
 		type: "item",
-		name: "难度9稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"909054": {
 		item_id: 909054,
 		type: "item",
-		name: "难度9史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"909055": {
 		item_id: 909055,
 		type: "item",
-		name: "难度9传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"909056": {
 		item_id: 909056,
 		type: "item",
-		name: "难度9神话武神"
+		name: "神话·武神"
 	},
 	"909057": {
 		item_id: 909057,
 		type: "item",
-		name: "难度9混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"909061": {
 		item_id: 909061,
 		type: "item",
-		name: "难度9普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"909062": {
 		item_id: 909062,
 		type: "item",
-		name: "难度9精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"909063": {
 		item_id: 909063,
 		type: "item",
-		name: "难度9稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"909064": {
 		item_id: 909064,
 		type: "item",
-		name: "难度9史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"909065": {
 		item_id: 909065,
 		type: "item",
-		name: "难度9传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"909066": {
 		item_id: 909066,
 		type: "item",
-		name: "难度9神话泰坦"
+		name: "神话·泰坦"
 	},
 	"909067": {
 		item_id: 909067,
 		type: "item",
-		name: "难度9混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"909071": {
 		item_id: 909071,
 		type: "item",
-		name: "难度9普通普通背心"
+		name: "普通·普通背心"
 	},
 	"909072": {
 		item_id: 909072,
 		type: "item",
-		name: "难度9精良布甲"
+		name: "精良·布甲"
 	},
 	"909073": {
 		item_id: 909073,
 		type: "item",
-		name: "难度9稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"909074": {
 		item_id: 909074,
 		type: "item",
-		name: "难度9史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"909075": {
 		item_id: 909075,
 		type: "item",
-		name: "难度9传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"909076": {
 		item_id: 909076,
 		type: "item",
-		name: "难度9神话灾星"
+		name: "神话·灾星"
 	},
 	"909077": {
 		item_id: 909077,
 		type: "item",
-		name: "难度9混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"909081": {
 		item_id: 909081,
 		type: "item",
-		name: "难度9普通兜帽"
+		name: "普通·兜帽"
 	},
 	"909082": {
 		item_id: 909082,
 		type: "item",
-		name: "难度9精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"909083": {
 		item_id: 909083,
 		type: "item",
-		name: "难度9稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"909084": {
 		item_id: 909084,
 		type: "item",
-		name: "难度9史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"909085": {
 		item_id: 909085,
 		type: "item",
-		name: "难度9传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"909086": {
 		item_id: 909086,
 		type: "item",
-		name: "难度9神话丧钟"
+		name: "神话·丧钟"
 	},
 	"909087": {
 		item_id: 909087,
 		type: "item",
-		name: "难度9混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"910011": {
 		item_id: 910011,
 		type: "item",
-		name: "难度10普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"910012": {
 		item_id: 910012,
 		type: "item",
-		name: "难度10精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"910013": {
 		item_id: 910013,
 		type: "item",
-		name: "难度10稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"910014": {
 		item_id: 910014,
 		type: "item",
-		name: "难度10史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"910015": {
 		item_id: 910015,
 		type: "item",
-		name: "难度10传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"910016": {
 		item_id: 910016,
 		type: "item",
-		name: "难度10神话斩龙"
+		name: "神话·斩龙"
 	},
 	"910017": {
 		item_id: 910017,
 		type: "item",
-		name: "难度10混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"910021": {
 		item_id: 910021,
 		type: "item",
-		name: "难度10普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"910022": {
 		item_id: 910022,
 		type: "item",
-		name: "难度10精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"910023": {
 		item_id: 910023,
 		type: "item",
-		name: "难度10稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"910024": {
 		item_id: 910024,
 		type: "item",
-		name: "难度10史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"910025": {
 		item_id: 910025,
 		type: "item",
-		name: "难度10传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"910026": {
 		item_id: 910026,
 		type: "item",
-		name: "难度10神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"910027": {
 		item_id: 910027,
 		type: "item",
-		name: "难度10混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"910031": {
 		item_id: 910031,
 		type: "item",
-		name: "难度10普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"910032": {
 		item_id: 910032,
 		type: "item",
-		name: "难度10精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"910033": {
 		item_id: 910033,
 		type: "item",
-		name: "难度10稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"910034": {
 		item_id: 910034,
 		type: "item",
-		name: "难度10史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"910035": {
 		item_id: 910035,
 		type: "item",
-		name: "难度10传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"910036": {
 		item_id: 910036,
 		type: "item",
-		name: "难度10神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"910037": {
 		item_id: 910037,
 		type: "item",
-		name: "难度10混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"910041": {
 		item_id: 910041,
 		type: "item",
-		name: "难度10普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"910042": {
 		item_id: 910042,
 		type: "item",
-		name: "难度10精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"910043": {
 		item_id: 910043,
 		type: "item",
-		name: "难度10稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"910044": {
 		item_id: 910044,
 		type: "item",
-		name: "难度10史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"910045": {
 		item_id: 910045,
 		type: "item",
-		name: "难度10传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"910046": {
 		item_id: 910046,
 		type: "item",
-		name: "难度10神话赤珠"
+		name: "神话·赤珠"
 	},
 	"910047": {
 		item_id: 910047,
 		type: "item",
-		name: "难度10混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"910051": {
 		item_id: 910051,
 		type: "item",
-		name: "难度10普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"910052": {
 		item_id: 910052,
 		type: "item",
-		name: "难度10精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"910053": {
 		item_id: 910053,
 		type: "item",
-		name: "难度10稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"910054": {
 		item_id: 910054,
 		type: "item",
-		name: "难度10史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"910055": {
 		item_id: 910055,
 		type: "item",
-		name: "难度10传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"910056": {
 		item_id: 910056,
 		type: "item",
-		name: "难度10神话武神"
+		name: "神话·武神"
 	},
 	"910057": {
 		item_id: 910057,
 		type: "item",
-		name: "难度10混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"910061": {
 		item_id: 910061,
 		type: "item",
-		name: "难度10普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"910062": {
 		item_id: 910062,
 		type: "item",
-		name: "难度10精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"910063": {
 		item_id: 910063,
 		type: "item",
-		name: "难度10稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"910064": {
 		item_id: 910064,
 		type: "item",
-		name: "难度10史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"910065": {
 		item_id: 910065,
 		type: "item",
-		name: "难度10传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"910066": {
 		item_id: 910066,
 		type: "item",
-		name: "难度10神话泰坦"
+		name: "神话·泰坦"
 	},
 	"910067": {
 		item_id: 910067,
 		type: "item",
-		name: "难度10混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"910071": {
 		item_id: 910071,
 		type: "item",
-		name: "难度10普通普通背心"
+		name: "普通·普通背心"
 	},
 	"910072": {
 		item_id: 910072,
 		type: "item",
-		name: "难度10精良布甲"
+		name: "精良·布甲"
 	},
 	"910073": {
 		item_id: 910073,
 		type: "item",
-		name: "难度10稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"910074": {
 		item_id: 910074,
 		type: "item",
-		name: "难度10史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"910075": {
 		item_id: 910075,
 		type: "item",
-		name: "难度10传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"910076": {
 		item_id: 910076,
 		type: "item",
-		name: "难度10神话灾星"
+		name: "神话·灾星"
 	},
 	"910077": {
 		item_id: 910077,
 		type: "item",
-		name: "难度10混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"910081": {
 		item_id: 910081,
 		type: "item",
-		name: "难度10普通兜帽"
+		name: "普通·兜帽"
 	},
 	"910082": {
 		item_id: 910082,
 		type: "item",
-		name: "难度10精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"910083": {
 		item_id: 910083,
 		type: "item",
-		name: "难度10稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"910084": {
 		item_id: 910084,
 		type: "item",
-		name: "难度10史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"910085": {
 		item_id: 910085,
 		type: "item",
-		name: "难度10传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"910086": {
 		item_id: 910086,
 		type: "item",
-		name: "难度10神话丧钟"
+		name: "神话·丧钟"
 	},
 	"910087": {
 		item_id: 910087,
 		type: "item",
-		name: "难度10混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"911011": {
 		item_id: 911011,
 		type: "item",
-		name: "难度11普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"911012": {
 		item_id: 911012,
 		type: "item",
-		name: "难度11精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"911013": {
 		item_id: 911013,
 		type: "item",
-		name: "难度11稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"911014": {
 		item_id: 911014,
 		type: "item",
-		name: "难度11史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"911015": {
 		item_id: 911015,
 		type: "item",
-		name: "难度11传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"911016": {
 		item_id: 911016,
 		type: "item",
-		name: "难度11神话斩龙"
+		name: "神话·斩龙"
 	},
 	"911017": {
 		item_id: 911017,
 		type: "item",
-		name: "难度11混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"911021": {
 		item_id: 911021,
 		type: "item",
-		name: "难度11普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"911022": {
 		item_id: 911022,
 		type: "item",
-		name: "难度11精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"911023": {
 		item_id: 911023,
 		type: "item",
-		name: "难度11稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"911024": {
 		item_id: 911024,
 		type: "item",
-		name: "难度11史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"911025": {
 		item_id: 911025,
 		type: "item",
-		name: "难度11传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"911026": {
 		item_id: 911026,
 		type: "item",
-		name: "难度11神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"911027": {
 		item_id: 911027,
 		type: "item",
-		name: "难度11混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"911031": {
 		item_id: 911031,
 		type: "item",
-		name: "难度11普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"911032": {
 		item_id: 911032,
 		type: "item",
-		name: "难度11精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"911033": {
 		item_id: 911033,
 		type: "item",
-		name: "难度11稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"911034": {
 		item_id: 911034,
 		type: "item",
-		name: "难度11史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"911035": {
 		item_id: 911035,
 		type: "item",
-		name: "难度11传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"911036": {
 		item_id: 911036,
 		type: "item",
-		name: "难度11神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"911037": {
 		item_id: 911037,
 		type: "item",
-		name: "难度11混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"911041": {
 		item_id: 911041,
 		type: "item",
-		name: "难度11普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"911042": {
 		item_id: 911042,
 		type: "item",
-		name: "难度11精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"911043": {
 		item_id: 911043,
 		type: "item",
-		name: "难度11稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"911044": {
 		item_id: 911044,
 		type: "item",
-		name: "难度11史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"911045": {
 		item_id: 911045,
 		type: "item",
-		name: "难度11传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"911046": {
 		item_id: 911046,
 		type: "item",
-		name: "难度11神话赤珠"
+		name: "神话·赤珠"
 	},
 	"911047": {
 		item_id: 911047,
 		type: "item",
-		name: "难度11混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"911051": {
 		item_id: 911051,
 		type: "item",
-		name: "难度11普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"911052": {
 		item_id: 911052,
 		type: "item",
-		name: "难度11精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"911053": {
 		item_id: 911053,
 		type: "item",
-		name: "难度11稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"911054": {
 		item_id: 911054,
 		type: "item",
-		name: "难度11史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"911055": {
 		item_id: 911055,
 		type: "item",
-		name: "难度11传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"911056": {
 		item_id: 911056,
 		type: "item",
-		name: "难度11神话武神"
+		name: "神话·武神"
 	},
 	"911057": {
 		item_id: 911057,
 		type: "item",
-		name: "难度11混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"911061": {
 		item_id: 911061,
 		type: "item",
-		name: "难度11普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"911062": {
 		item_id: 911062,
 		type: "item",
-		name: "难度11精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"911063": {
 		item_id: 911063,
 		type: "item",
-		name: "难度11稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"911064": {
 		item_id: 911064,
 		type: "item",
-		name: "难度11史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"911065": {
 		item_id: 911065,
 		type: "item",
-		name: "难度11传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"911066": {
 		item_id: 911066,
 		type: "item",
-		name: "难度11神话泰坦"
+		name: "神话·泰坦"
 	},
 	"911067": {
 		item_id: 911067,
 		type: "item",
-		name: "难度11混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"911071": {
 		item_id: 911071,
 		type: "item",
-		name: "难度11普通普通背心"
+		name: "普通·普通背心"
 	},
 	"911072": {
 		item_id: 911072,
 		type: "item",
-		name: "难度11精良布甲"
+		name: "精良·布甲"
 	},
 	"911073": {
 		item_id: 911073,
 		type: "item",
-		name: "难度11稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"911074": {
 		item_id: 911074,
 		type: "item",
-		name: "难度11史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"911075": {
 		item_id: 911075,
 		type: "item",
-		name: "难度11传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"911076": {
 		item_id: 911076,
 		type: "item",
-		name: "难度11神话灾星"
+		name: "神话·灾星"
 	},
 	"911077": {
 		item_id: 911077,
 		type: "item",
-		name: "难度11混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"911081": {
 		item_id: 911081,
 		type: "item",
-		name: "难度11普通兜帽"
+		name: "普通·兜帽"
 	},
 	"911082": {
 		item_id: 911082,
 		type: "item",
-		name: "难度11精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"911083": {
 		item_id: 911083,
 		type: "item",
-		name: "难度11稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"911084": {
 		item_id: 911084,
 		type: "item",
-		name: "难度11史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"911085": {
 		item_id: 911085,
 		type: "item",
-		name: "难度11传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"911086": {
 		item_id: 911086,
 		type: "item",
-		name: "难度11神话丧钟"
+		name: "神话·丧钟"
 	},
 	"911087": {
 		item_id: 911087,
 		type: "item",
-		name: "难度11混沌圣光骑士"
+		name: "混沌·圣光骑士"
 	},
 	"912011": {
 		item_id: 912011,
 		type: "item",
-		name: "难度12普通轻便匕首"
+		name: "普通·轻便匕首"
 	},
 	"912012": {
 		item_id: 912012,
 		type: "item",
-		name: "难度12精良锋利短刃"
+		name: "精良·锋利短刃"
 	},
 	"912013": {
 		item_id: 912013,
 		type: "item",
-		name: "难度12稀有泣血之刃"
+		name: "稀有·泣血之刃"
 	},
 	"912014": {
 		item_id: 912014,
 		type: "item",
-		name: "难度12史诗守卫之剑"
+		name: "史诗·守卫之剑"
 	},
 	"912015": {
 		item_id: 912015,
 		type: "item",
-		name: "难度12传说王者之剑"
+		name: "传说·王者之剑"
 	},
 	"912016": {
 		item_id: 912016,
 		type: "item",
-		name: "难度12神话斩龙"
+		name: "神话·斩龙"
 	},
 	"912017": {
 		item_id: 912017,
 		type: "item",
-		name: "难度12混沌星芒流光"
+		name: "混沌·星芒流光"
 	},
 	"912021": {
 		item_id: 912021,
 		type: "item",
-		name: "难度12普通木纹圆盾"
+		name: "普通·木纹圆盾"
 	},
 	"912022": {
 		item_id: 912022,
 		type: "item",
-		name: "难度12精良卫士铁盾"
+		name: "精良·卫士铁盾"
 	},
 	"912023": {
 		item_id: 912023,
 		type: "item",
-		name: "难度12稀有磐石壁盾"
+		name: "稀有·磐石壁盾"
 	},
 	"912024": {
 		item_id: 912024,
 		type: "item",
-		name: "难度12史诗圣纹塔盾"
+		name: "史诗·圣纹塔盾"
 	},
 	"912025": {
 		item_id: 912025,
 		type: "item",
-		name: "难度12传说狮心王盾"
+		name: "传说·狮心王盾"
 	},
 	"912026": {
 		item_id: 912026,
 		type: "item",
-		name: "难度12神话泰拉克斯"
+		name: "神话·泰拉克斯"
 	},
 	"912027": {
 		item_id: 912027,
 		type: "item",
-		name: "难度12混沌焚天圣壁"
+		name: "混沌·焚天圣壁"
 	},
 	"912031": {
 		item_id: 912031,
 		type: "item",
-		name: "难度12普通简易吊坠"
+		name: "普通·简易吊坠"
 	},
 	"912032": {
 		item_id: 912032,
 		type: "item",
-		name: "难度12精良玻璃玉坠"
+		name: "精良·玻璃玉坠"
 	},
 	"912033": {
 		item_id: 912033,
 		type: "item",
-		name: "难度12稀有灵脂护身符"
+		name: "稀有·灵脂护身符"
 	},
 	"912034": {
 		item_id: 912034,
 		type: "item",
-		name: "难度12史诗黑曜石吊坠"
+		name: "史诗·黑曜石吊坠"
 	},
 	"912035": {
 		item_id: 912035,
 		type: "item",
-		name: "难度12传说星轮项链"
+		name: "传说·星轮项链"
 	},
 	"912036": {
 		item_id: 912036,
 		type: "item",
-		name: "难度12神话蓝蛛"
+		name: "神话·蓝蛛"
 	},
 	"912037": {
 		item_id: 912037,
 		type: "item",
-		name: "难度12混沌不朽圣翼"
+		name: "混沌·不朽圣翼"
 	},
 	"912041": {
 		item_id: 912041,
 		type: "item",
-		name: "难度12普通链条戒指"
+		name: "普通·链条戒指"
 	},
 	"912042": {
 		item_id: 912042,
 		type: "item",
-		name: "难度12精良雕纹戒指"
+		name: "精良·雕纹戒指"
 	},
 	"912043": {
 		item_id: 912043,
 		type: "item",
-		name: "难度12稀有护心铜戒"
+		name: "稀有·护心铜戒"
 	},
 	"912044": {
 		item_id: 912044,
 		type: "item",
-		name: "难度12史诗符文戒指"
+		name: "史诗·符文戒指"
 	},
 	"912045": {
 		item_id: 912045,
 		type: "item",
-		name: "难度12传说玛瑙戒指"
+		name: "传说·玛瑙戒指"
 	},
 	"912046": {
 		item_id: 912046,
 		type: "item",
-		name: "难度12神话赤珠"
+		name: "神话·赤珠"
 	},
 	"912047": {
 		item_id: 912047,
 		type: "item",
-		name: "难度12混沌桎梏之语"
+		name: "混沌·桎梏之语"
 	},
 	"912051": {
 		item_id: 912051,
 		type: "item",
-		name: "难度12普通破旧长靴"
+		name: "普通·破旧长靴"
 	},
 	"912052": {
 		item_id: 912052,
 		type: "item",
-		name: "难度12精良士兵长靴"
+		name: "精良·士兵长靴"
 	},
 	"912053": {
 		item_id: 912053,
 		type: "item",
-		name: "难度12稀有胫甲战靴"
+		name: "稀有·胫甲战靴"
 	},
 	"912054": {
 		item_id: 912054,
 		type: "item",
-		name: "难度12史诗赤红战靴"
+		name: "史诗·赤红战靴"
 	},
 	"912055": {
 		item_id: 912055,
 		type: "item",
-		name: "难度12传说星芒靴"
+		name: "传说·星芒靴"
 	},
 	"912056": {
 		item_id: 912056,
 		type: "item",
-		name: "难度12神话武神"
+		name: "神话·武神"
 	},
 	"912057": {
 		item_id: 912057,
 		type: "item",
-		name: "难度12混沌流金疾影"
+		name: "混沌·流金疾影"
 	},
 	"912061": {
 		item_id: 912061,
 		type: "item",
-		name: "难度12普通旧布手套"
+		name: "普通·旧布手套"
 	},
 	"912062": {
 		item_id: 912062,
 		type: "item",
-		name: "难度12精良利爪手套"
+		name: "精良·利爪手套"
 	},
 	"912063": {
 		item_id: 912063,
 		type: "item",
-		name: "难度12稀有钢甲手套"
+		name: "稀有·钢甲手套"
 	},
 	"912064": {
 		item_id: 912064,
 		type: "item",
-		name: "难度12史诗闪耀护手"
+		name: "史诗·闪耀护手"
 	},
 	"912065": {
 		item_id: 912065,
 		type: "item",
-		name: "难度12传说帝国之掌"
+		name: "传说·帝国之掌"
 	},
 	"912066": {
 		item_id: 912066,
 		type: "item",
-		name: "难度12神话泰坦"
+		name: "神话·泰坦"
 	},
 	"912067": {
 		item_id: 912067,
 		type: "item",
-		name: "难度12混沌战神之泣"
+		name: "混沌·战神之泣"
 	},
 	"912071": {
 		item_id: 912071,
 		type: "item",
-		name: "难度12普通普通背心"
+		name: "普通·普通背心"
 	},
 	"912072": {
 		item_id: 912072,
 		type: "item",
-		name: "难度12精良布甲"
+		name: "精良·布甲"
 	},
 	"912073": {
 		item_id: 912073,
 		type: "item",
-		name: "难度12稀有锁子甲"
+		name: "稀有·锁子甲"
 	},
 	"912074": {
 		item_id: 912074,
 		type: "item",
-		name: "难度12史诗精钢重甲"
+		name: "史诗·精钢重甲"
 	},
 	"912075": {
 		item_id: 912075,
 		type: "item",
-		name: "难度12传说披风锁甲"
+		name: "传说·披风锁甲"
 	},
 	"912076": {
 		item_id: 912076,
 		type: "item",
-		name: "难度12神话灾星"
+		name: "神话·灾星"
 	},
 	"912077": {
 		item_id: 912077,
 		type: "item",
-		name: "难度12混沌炽金圣柜"
+		name: "混沌·炽金圣柜"
 	},
 	"912081": {
 		item_id: 912081,
 		type: "item",
-		name: "难度12普通兜帽"
+		name: "普通·兜帽"
 	},
 	"912082": {
 		item_id: 912082,
 		type: "item",
-		name: "难度12精良坚固战盔"
+		name: "精良·坚固战盔"
 	},
 	"912083": {
 		item_id: 912083,
 		type: "item",
-		name: "难度12稀有兵卒巨盔"
+		name: "稀有·兵卒巨盔"
 	},
 	"912084": {
 		item_id: 912084,
 		type: "item",
-		name: "难度12史诗蒙纱头冠"
+		name: "史诗·蒙纱头冠"
 	},
 	"912085": {
 		item_id: 912085,
 		type: "item",
-		name: "难度12传说鳞羽头冠"
+		name: "传说·鳞羽头冠"
 	},
 	"912086": {
 		item_id: 912086,
 		type: "item",
-		name: "难度12神话丧钟"
+		name: "神话·丧钟"
 	},
 	"912087": {
 		item_id: 912087,
 		type: "item",
-		name: "难度12混沌圣光骑士"
+		name: "混沌·圣光骑士"
+	},
+	"913011": {
+		item_id: 913011,
+		type: "item",
+		name: "普通·轻便匕首"
+	},
+	"913012": {
+		item_id: 913012,
+		type: "item",
+		name: "精良·锋利短刃"
+	},
+	"913013": {
+		item_id: 913013,
+		type: "item",
+		name: "稀有·泣血之刃"
+	},
+	"913014": {
+		item_id: 913014,
+		type: "item",
+		name: "史诗·守卫之剑"
+	},
+	"913015": {
+		item_id: 913015,
+		type: "item",
+		name: "传说·王者之剑"
+	},
+	"913016": {
+		item_id: 913016,
+		type: "item",
+		name: "神话·斩龙"
+	},
+	"913017": {
+		item_id: 913017,
+		type: "item",
+		name: "混沌·星芒流光"
+	},
+	"913021": {
+		item_id: 913021,
+		type: "item",
+		name: "普通·木纹圆盾"
+	},
+	"913022": {
+		item_id: 913022,
+		type: "item",
+		name: "精良·卫士铁盾"
+	},
+	"913023": {
+		item_id: 913023,
+		type: "item",
+		name: "稀有·磐石壁盾"
+	},
+	"913024": {
+		item_id: 913024,
+		type: "item",
+		name: "史诗·圣纹塔盾"
+	},
+	"913025": {
+		item_id: 913025,
+		type: "item",
+		name: "传说·狮心王盾"
+	},
+	"913026": {
+		item_id: 913026,
+		type: "item",
+		name: "神话·泰拉克斯"
+	},
+	"913027": {
+		item_id: 913027,
+		type: "item",
+		name: "混沌·焚天圣壁"
+	},
+	"913031": {
+		item_id: 913031,
+		type: "item",
+		name: "普通·简易吊坠"
+	},
+	"913032": {
+		item_id: 913032,
+		type: "item",
+		name: "精良·玻璃玉坠"
+	},
+	"913033": {
+		item_id: 913033,
+		type: "item",
+		name: "稀有·灵脂护身符"
+	},
+	"913034": {
+		item_id: 913034,
+		type: "item",
+		name: "史诗·黑曜石吊坠"
+	},
+	"913035": {
+		item_id: 913035,
+		type: "item",
+		name: "传说·星轮项链"
+	},
+	"913036": {
+		item_id: 913036,
+		type: "item",
+		name: "神话·蓝蛛"
+	},
+	"913037": {
+		item_id: 913037,
+		type: "item",
+		name: "混沌·不朽圣翼"
+	},
+	"913041": {
+		item_id: 913041,
+		type: "item",
+		name: "普通·链条戒指"
+	},
+	"913042": {
+		item_id: 913042,
+		type: "item",
+		name: "精良·雕纹戒指"
+	},
+	"913043": {
+		item_id: 913043,
+		type: "item",
+		name: "稀有·护心铜戒"
+	},
+	"913044": {
+		item_id: 913044,
+		type: "item",
+		name: "史诗·符文戒指"
+	},
+	"913045": {
+		item_id: 913045,
+		type: "item",
+		name: "传说·玛瑙戒指"
+	},
+	"913046": {
+		item_id: 913046,
+		type: "item",
+		name: "神话·赤珠"
+	},
+	"913047": {
+		item_id: 913047,
+		type: "item",
+		name: "混沌·桎梏之语"
+	},
+	"913051": {
+		item_id: 913051,
+		type: "item",
+		name: "普通·破旧长靴"
+	},
+	"913052": {
+		item_id: 913052,
+		type: "item",
+		name: "精良·士兵长靴"
+	},
+	"913053": {
+		item_id: 913053,
+		type: "item",
+		name: "稀有·胫甲战靴"
+	},
+	"913054": {
+		item_id: 913054,
+		type: "item",
+		name: "史诗·赤红战靴"
+	},
+	"913055": {
+		item_id: 913055,
+		type: "item",
+		name: "传说·星芒靴"
+	},
+	"913056": {
+		item_id: 913056,
+		type: "item",
+		name: "神话·武神"
+	},
+	"913057": {
+		item_id: 913057,
+		type: "item",
+		name: "混沌·流金疾影"
+	},
+	"913061": {
+		item_id: 913061,
+		type: "item",
+		name: "普通·旧布手套"
+	},
+	"913062": {
+		item_id: 913062,
+		type: "item",
+		name: "精良·利爪手套"
+	},
+	"913063": {
+		item_id: 913063,
+		type: "item",
+		name: "稀有·钢甲手套"
+	},
+	"913064": {
+		item_id: 913064,
+		type: "item",
+		name: "史诗·闪耀护手"
+	},
+	"913065": {
+		item_id: 913065,
+		type: "item",
+		name: "传说·帝国之掌"
+	},
+	"913066": {
+		item_id: 913066,
+		type: "item",
+		name: "神话·泰坦"
+	},
+	"913067": {
+		item_id: 913067,
+		type: "item",
+		name: "混沌·战神之泣"
+	},
+	"913071": {
+		item_id: 913071,
+		type: "item",
+		name: "普通·普通背心"
+	},
+	"913072": {
+		item_id: 913072,
+		type: "item",
+		name: "精良·布甲"
+	},
+	"913073": {
+		item_id: 913073,
+		type: "item",
+		name: "稀有·锁子甲"
+	},
+	"913074": {
+		item_id: 913074,
+		type: "item",
+		name: "史诗·精钢重甲"
+	},
+	"913075": {
+		item_id: 913075,
+		type: "item",
+		name: "传说·披风锁甲"
+	},
+	"913076": {
+		item_id: 913076,
+		type: "item",
+		name: "神话·灾星"
+	},
+	"913077": {
+		item_id: 913077,
+		type: "item",
+		name: "混沌·炽金圣柜"
+	},
+	"913081": {
+		item_id: 913081,
+		type: "item",
+		name: "普通·兜帽"
+	},
+	"913082": {
+		item_id: 913082,
+		type: "item",
+		name: "精良·坚固战盔"
+	},
+	"913083": {
+		item_id: 913083,
+		type: "item",
+		name: "稀有·兵卒巨盔"
+	},
+	"913084": {
+		item_id: 913084,
+		type: "item",
+		name: "史诗·蒙纱头冠"
+	},
+	"913085": {
+		item_id: 913085,
+		type: "item",
+		name: "传说·鳞羽头冠"
+	},
+	"913086": {
+		item_id: 913086,
+		type: "item",
+		name: "神话·丧钟"
+	},
+	"913087": {
+		item_id: 913087,
+		type: "item",
+		name: "混沌·圣光骑士"
+	},
+	"914011": {
+		item_id: 914011,
+		type: "item",
+		name: "普通·轻便匕首"
+	},
+	"914012": {
+		item_id: 914012,
+		type: "item",
+		name: "精良·锋利短刃"
+	},
+	"914013": {
+		item_id: 914013,
+		type: "item",
+		name: "稀有·泣血之刃"
+	},
+	"914014": {
+		item_id: 914014,
+		type: "item",
+		name: "史诗·守卫之剑"
+	},
+	"914015": {
+		item_id: 914015,
+		type: "item",
+		name: "传说·王者之剑"
+	},
+	"914016": {
+		item_id: 914016,
+		type: "item",
+		name: "神话·斩龙"
+	},
+	"914017": {
+		item_id: 914017,
+		type: "item",
+		name: "混沌·星芒流光"
+	},
+	"914021": {
+		item_id: 914021,
+		type: "item",
+		name: "普通·木纹圆盾"
+	},
+	"914022": {
+		item_id: 914022,
+		type: "item",
+		name: "精良·卫士铁盾"
+	},
+	"914023": {
+		item_id: 914023,
+		type: "item",
+		name: "稀有·磐石壁盾"
+	},
+	"914024": {
+		item_id: 914024,
+		type: "item",
+		name: "史诗·圣纹塔盾"
+	},
+	"914025": {
+		item_id: 914025,
+		type: "item",
+		name: "传说·狮心王盾"
+	},
+	"914026": {
+		item_id: 914026,
+		type: "item",
+		name: "神话·泰拉克斯"
+	},
+	"914027": {
+		item_id: 914027,
+		type: "item",
+		name: "混沌·焚天圣壁"
+	},
+	"914031": {
+		item_id: 914031,
+		type: "item",
+		name: "普通·简易吊坠"
+	},
+	"914032": {
+		item_id: 914032,
+		type: "item",
+		name: "精良·玻璃玉坠"
+	},
+	"914033": {
+		item_id: 914033,
+		type: "item",
+		name: "稀有·灵脂护身符"
+	},
+	"914034": {
+		item_id: 914034,
+		type: "item",
+		name: "史诗·黑曜石吊坠"
+	},
+	"914035": {
+		item_id: 914035,
+		type: "item",
+		name: "传说·星轮项链"
+	},
+	"914036": {
+		item_id: 914036,
+		type: "item",
+		name: "神话·蓝蛛"
+	},
+	"914037": {
+		item_id: 914037,
+		type: "item",
+		name: "混沌·不朽圣翼"
+	},
+	"914041": {
+		item_id: 914041,
+		type: "item",
+		name: "普通·链条戒指"
+	},
+	"914042": {
+		item_id: 914042,
+		type: "item",
+		name: "精良·雕纹戒指"
+	},
+	"914043": {
+		item_id: 914043,
+		type: "item",
+		name: "稀有·护心铜戒"
+	},
+	"914044": {
+		item_id: 914044,
+		type: "item",
+		name: "史诗·符文戒指"
+	},
+	"914045": {
+		item_id: 914045,
+		type: "item",
+		name: "传说·玛瑙戒指"
+	},
+	"914046": {
+		item_id: 914046,
+		type: "item",
+		name: "神话·赤珠"
+	},
+	"914047": {
+		item_id: 914047,
+		type: "item",
+		name: "混沌·桎梏之语"
+	},
+	"914051": {
+		item_id: 914051,
+		type: "item",
+		name: "普通·破旧长靴"
+	},
+	"914052": {
+		item_id: 914052,
+		type: "item",
+		name: "精良·士兵长靴"
+	},
+	"914053": {
+		item_id: 914053,
+		type: "item",
+		name: "稀有·胫甲战靴"
+	},
+	"914054": {
+		item_id: 914054,
+		type: "item",
+		name: "史诗·赤红战靴"
+	},
+	"914055": {
+		item_id: 914055,
+		type: "item",
+		name: "传说·星芒靴"
+	},
+	"914056": {
+		item_id: 914056,
+		type: "item",
+		name: "神话·武神"
+	},
+	"914057": {
+		item_id: 914057,
+		type: "item",
+		name: "混沌·流金疾影"
+	},
+	"914061": {
+		item_id: 914061,
+		type: "item",
+		name: "普通·旧布手套"
+	},
+	"914062": {
+		item_id: 914062,
+		type: "item",
+		name: "精良·利爪手套"
+	},
+	"914063": {
+		item_id: 914063,
+		type: "item",
+		name: "稀有·钢甲手套"
+	},
+	"914064": {
+		item_id: 914064,
+		type: "item",
+		name: "史诗·闪耀护手"
+	},
+	"914065": {
+		item_id: 914065,
+		type: "item",
+		name: "传说·帝国之掌"
+	},
+	"914066": {
+		item_id: 914066,
+		type: "item",
+		name: "神话·泰坦"
+	},
+	"914067": {
+		item_id: 914067,
+		type: "item",
+		name: "混沌·战神之泣"
+	},
+	"914071": {
+		item_id: 914071,
+		type: "item",
+		name: "普通·普通背心"
+	},
+	"914072": {
+		item_id: 914072,
+		type: "item",
+		name: "精良·布甲"
+	},
+	"914073": {
+		item_id: 914073,
+		type: "item",
+		name: "稀有·锁子甲"
+	},
+	"914074": {
+		item_id: 914074,
+		type: "item",
+		name: "史诗·精钢重甲"
+	},
+	"914075": {
+		item_id: 914075,
+		type: "item",
+		name: "传说·披风锁甲"
+	},
+	"914076": {
+		item_id: 914076,
+		type: "item",
+		name: "神话·灾星"
+	},
+	"914077": {
+		item_id: 914077,
+		type: "item",
+		name: "混沌·炽金圣柜"
+	},
+	"914081": {
+		item_id: 914081,
+		type: "item",
+		name: "普通·兜帽"
+	},
+	"914082": {
+		item_id: 914082,
+		type: "item",
+		name: "精良·坚固战盔"
+	},
+	"914083": {
+		item_id: 914083,
+		type: "item",
+		name: "稀有·兵卒巨盔"
+	},
+	"914084": {
+		item_id: 914084,
+		type: "item",
+		name: "史诗·蒙纱头冠"
+	},
+	"914085": {
+		item_id: 914085,
+		type: "item",
+		name: "传说·鳞羽头冠"
+	},
+	"914086": {
+		item_id: 914086,
+		type: "item",
+		name: "神话·丧钟"
+	},
+	"914087": {
+		item_id: 914087,
+		type: "item",
+		name: "混沌·圣光骑士"
+	},
+	"915011": {
+		item_id: 915011,
+		type: "item",
+		name: "普通·轻便匕首"
+	},
+	"915012": {
+		item_id: 915012,
+		type: "item",
+		name: "精良·锋利短刃"
+	},
+	"915013": {
+		item_id: 915013,
+		type: "item",
+		name: "稀有·泣血之刃"
+	},
+	"915014": {
+		item_id: 915014,
+		type: "item",
+		name: "史诗·守卫之剑"
+	},
+	"915015": {
+		item_id: 915015,
+		type: "item",
+		name: "传说·王者之剑"
+	},
+	"915016": {
+		item_id: 915016,
+		type: "item",
+		name: "神话·斩龙"
+	},
+	"915017": {
+		item_id: 915017,
+		type: "item",
+		name: "混沌·星芒流光"
+	},
+	"915021": {
+		item_id: 915021,
+		type: "item",
+		name: "普通·木纹圆盾"
+	},
+	"915022": {
+		item_id: 915022,
+		type: "item",
+		name: "精良·卫士铁盾"
+	},
+	"915023": {
+		item_id: 915023,
+		type: "item",
+		name: "稀有·磐石壁盾"
+	},
+	"915024": {
+		item_id: 915024,
+		type: "item",
+		name: "史诗·圣纹塔盾"
+	},
+	"915025": {
+		item_id: 915025,
+		type: "item",
+		name: "传说·狮心王盾"
+	},
+	"915026": {
+		item_id: 915026,
+		type: "item",
+		name: "神话·泰拉克斯"
+	},
+	"915027": {
+		item_id: 915027,
+		type: "item",
+		name: "混沌·焚天圣壁"
+	},
+	"915031": {
+		item_id: 915031,
+		type: "item",
+		name: "普通·简易吊坠"
+	},
+	"915032": {
+		item_id: 915032,
+		type: "item",
+		name: "精良·玻璃玉坠"
+	},
+	"915033": {
+		item_id: 915033,
+		type: "item",
+		name: "稀有·灵脂护身符"
+	},
+	"915034": {
+		item_id: 915034,
+		type: "item",
+		name: "史诗·黑曜石吊坠"
+	},
+	"915035": {
+		item_id: 915035,
+		type: "item",
+		name: "传说·星轮项链"
+	},
+	"915036": {
+		item_id: 915036,
+		type: "item",
+		name: "神话·蓝蛛"
+	},
+	"915037": {
+		item_id: 915037,
+		type: "item",
+		name: "混沌·不朽圣翼"
+	},
+	"915041": {
+		item_id: 915041,
+		type: "item",
+		name: "普通·链条戒指"
+	},
+	"915042": {
+		item_id: 915042,
+		type: "item",
+		name: "精良·雕纹戒指"
+	},
+	"915043": {
+		item_id: 915043,
+		type: "item",
+		name: "稀有·护心铜戒"
+	},
+	"915044": {
+		item_id: 915044,
+		type: "item",
+		name: "史诗·符文戒指"
+	},
+	"915045": {
+		item_id: 915045,
+		type: "item",
+		name: "传说·玛瑙戒指"
+	},
+	"915046": {
+		item_id: 915046,
+		type: "item",
+		name: "神话·赤珠"
+	},
+	"915047": {
+		item_id: 915047,
+		type: "item",
+		name: "混沌·桎梏之语"
+	},
+	"915051": {
+		item_id: 915051,
+		type: "item",
+		name: "普通·破旧长靴"
+	},
+	"915052": {
+		item_id: 915052,
+		type: "item",
+		name: "精良·士兵长靴"
+	},
+	"915053": {
+		item_id: 915053,
+		type: "item",
+		name: "稀有·胫甲战靴"
+	},
+	"915054": {
+		item_id: 915054,
+		type: "item",
+		name: "史诗·赤红战靴"
+	},
+	"915055": {
+		item_id: 915055,
+		type: "item",
+		name: "传说·星芒靴"
+	},
+	"915056": {
+		item_id: 915056,
+		type: "item",
+		name: "神话·武神"
+	},
+	"915057": {
+		item_id: 915057,
+		type: "item",
+		name: "混沌·流金疾影"
+	},
+	"915061": {
+		item_id: 915061,
+		type: "item",
+		name: "普通·旧布手套"
+	},
+	"915062": {
+		item_id: 915062,
+		type: "item",
+		name: "精良·利爪手套"
+	},
+	"915063": {
+		item_id: 915063,
+		type: "item",
+		name: "稀有·钢甲手套"
+	},
+	"915064": {
+		item_id: 915064,
+		type: "item",
+		name: "史诗·闪耀护手"
+	},
+	"915065": {
+		item_id: 915065,
+		type: "item",
+		name: "传说·帝国之掌"
+	},
+	"915066": {
+		item_id: 915066,
+		type: "item",
+		name: "神话·泰坦"
+	},
+	"915067": {
+		item_id: 915067,
+		type: "item",
+		name: "混沌·战神之泣"
+	},
+	"915071": {
+		item_id: 915071,
+		type: "item",
+		name: "普通·普通背心"
+	},
+	"915072": {
+		item_id: 915072,
+		type: "item",
+		name: "精良·布甲"
+	},
+	"915073": {
+		item_id: 915073,
+		type: "item",
+		name: "稀有·锁子甲"
+	},
+	"915074": {
+		item_id: 915074,
+		type: "item",
+		name: "史诗·精钢重甲"
+	},
+	"915075": {
+		item_id: 915075,
+		type: "item",
+		name: "传说·披风锁甲"
+	},
+	"915076": {
+		item_id: 915076,
+		type: "item",
+		name: "神话·灾星"
+	},
+	"915077": {
+		item_id: 915077,
+		type: "item",
+		name: "混沌·炽金圣柜"
+	},
+	"915081": {
+		item_id: 915081,
+		type: "item",
+		name: "普通·兜帽"
+	},
+	"915082": {
+		item_id: 915082,
+		type: "item",
+		name: "精良·坚固战盔"
+	},
+	"915083": {
+		item_id: 915083,
+		type: "item",
+		name: "稀有·兵卒巨盔"
+	},
+	"915084": {
+		item_id: 915084,
+		type: "item",
+		name: "史诗·蒙纱头冠"
+	},
+	"915085": {
+		item_id: 915085,
+		type: "item",
+		name: "传说·鳞羽头冠"
+	},
+	"915086": {
+		item_id: 915086,
+		type: "item",
+		name: "神话·丧钟"
+	},
+	"915087": {
+		item_id: 915087,
+		type: "item",
+		name: "混沌·圣光骑士"
+	},
+	"916011": {
+		item_id: 916011,
+		type: "item",
+		name: "普通·轻便匕首"
+	},
+	"916012": {
+		item_id: 916012,
+		type: "item",
+		name: "精良·锋利短刃"
+	},
+	"916013": {
+		item_id: 916013,
+		type: "item",
+		name: "稀有·泣血之刃"
+	},
+	"916014": {
+		item_id: 916014,
+		type: "item",
+		name: "史诗·守卫之剑"
+	},
+	"916015": {
+		item_id: 916015,
+		type: "item",
+		name: "传说·王者之剑"
+	},
+	"916016": {
+		item_id: 916016,
+		type: "item",
+		name: "神话·斩龙"
+	},
+	"916017": {
+		item_id: 916017,
+		type: "item",
+		name: "混沌·星芒流光"
+	},
+	"916021": {
+		item_id: 916021,
+		type: "item",
+		name: "普通·木纹圆盾"
+	},
+	"916022": {
+		item_id: 916022,
+		type: "item",
+		name: "精良·卫士铁盾"
+	},
+	"916023": {
+		item_id: 916023,
+		type: "item",
+		name: "稀有·磐石壁盾"
+	},
+	"916024": {
+		item_id: 916024,
+		type: "item",
+		name: "史诗·圣纹塔盾"
+	},
+	"916025": {
+		item_id: 916025,
+		type: "item",
+		name: "传说·狮心王盾"
+	},
+	"916026": {
+		item_id: 916026,
+		type: "item",
+		name: "神话·泰拉克斯"
+	},
+	"916027": {
+		item_id: 916027,
+		type: "item",
+		name: "混沌·焚天圣壁"
+	},
+	"916031": {
+		item_id: 916031,
+		type: "item",
+		name: "普通·简易吊坠"
+	},
+	"916032": {
+		item_id: 916032,
+		type: "item",
+		name: "精良·玻璃玉坠"
+	},
+	"916033": {
+		item_id: 916033,
+		type: "item",
+		name: "稀有·灵脂护身符"
+	},
+	"916034": {
+		item_id: 916034,
+		type: "item",
+		name: "史诗·黑曜石吊坠"
+	},
+	"916035": {
+		item_id: 916035,
+		type: "item",
+		name: "传说·星轮项链"
+	},
+	"916036": {
+		item_id: 916036,
+		type: "item",
+		name: "神话·蓝蛛"
+	},
+	"916037": {
+		item_id: 916037,
+		type: "item",
+		name: "混沌·不朽圣翼"
+	},
+	"916041": {
+		item_id: 916041,
+		type: "item",
+		name: "普通·链条戒指"
+	},
+	"916042": {
+		item_id: 916042,
+		type: "item",
+		name: "精良·雕纹戒指"
+	},
+	"916043": {
+		item_id: 916043,
+		type: "item",
+		name: "稀有·护心铜戒"
+	},
+	"916044": {
+		item_id: 916044,
+		type: "item",
+		name: "史诗·符文戒指"
+	},
+	"916045": {
+		item_id: 916045,
+		type: "item",
+		name: "传说·玛瑙戒指"
+	},
+	"916046": {
+		item_id: 916046,
+		type: "item",
+		name: "神话·赤珠"
+	},
+	"916047": {
+		item_id: 916047,
+		type: "item",
+		name: "混沌·桎梏之语"
+	},
+	"916051": {
+		item_id: 916051,
+		type: "item",
+		name: "普通·破旧长靴"
+	},
+	"916052": {
+		item_id: 916052,
+		type: "item",
+		name: "精良·士兵长靴"
+	},
+	"916053": {
+		item_id: 916053,
+		type: "item",
+		name: "稀有·胫甲战靴"
+	},
+	"916054": {
+		item_id: 916054,
+		type: "item",
+		name: "史诗·赤红战靴"
+	},
+	"916055": {
+		item_id: 916055,
+		type: "item",
+		name: "传说·星芒靴"
+	},
+	"916056": {
+		item_id: 916056,
+		type: "item",
+		name: "神话·武神"
+	},
+	"916057": {
+		item_id: 916057,
+		type: "item",
+		name: "混沌·流金疾影"
+	},
+	"916061": {
+		item_id: 916061,
+		type: "item",
+		name: "普通·旧布手套"
+	},
+	"916062": {
+		item_id: 916062,
+		type: "item",
+		name: "精良·利爪手套"
+	},
+	"916063": {
+		item_id: 916063,
+		type: "item",
+		name: "稀有·钢甲手套"
+	},
+	"916064": {
+		item_id: 916064,
+		type: "item",
+		name: "史诗·闪耀护手"
+	},
+	"916065": {
+		item_id: 916065,
+		type: "item",
+		name: "传说·帝国之掌"
+	},
+	"916066": {
+		item_id: 916066,
+		type: "item",
+		name: "神话·泰坦"
+	},
+	"916067": {
+		item_id: 916067,
+		type: "item",
+		name: "混沌·战神之泣"
+	},
+	"916071": {
+		item_id: 916071,
+		type: "item",
+		name: "普通·普通背心"
+	},
+	"916072": {
+		item_id: 916072,
+		type: "item",
+		name: "精良·布甲"
+	},
+	"916073": {
+		item_id: 916073,
+		type: "item",
+		name: "稀有·锁子甲"
+	},
+	"916074": {
+		item_id: 916074,
+		type: "item",
+		name: "史诗·精钢重甲"
+	},
+	"916075": {
+		item_id: 916075,
+		type: "item",
+		name: "传说·披风锁甲"
+	},
+	"916076": {
+		item_id: 916076,
+		type: "item",
+		name: "神话·灾星"
+	},
+	"916077": {
+		item_id: 916077,
+		type: "item",
+		name: "混沌·炽金圣柜"
+	},
+	"916081": {
+		item_id: 916081,
+		type: "item",
+		name: "普通·兜帽"
+	},
+	"916082": {
+		item_id: 916082,
+		type: "item",
+		name: "精良·坚固战盔"
+	},
+	"916083": {
+		item_id: 916083,
+		type: "item",
+		name: "稀有·兵卒巨盔"
+	},
+	"916084": {
+		item_id: 916084,
+		type: "item",
+		name: "史诗·蒙纱头冠"
+	},
+	"916085": {
+		item_id: 916085,
+		type: "item",
+		name: "传说·鳞羽头冠"
+	},
+	"916086": {
+		item_id: 916086,
+		type: "item",
+		name: "神话·丧钟"
+	},
+	"916087": {
+		item_id: 916087,
+		type: "item",
+		name: "混沌·圣光骑士"
+	},
+	"917011": {
+		item_id: 917011,
+		type: "item",
+		name: "普通·轻便匕首"
+	},
+	"917012": {
+		item_id: 917012,
+		type: "item",
+		name: "精良·锋利短刃"
+	},
+	"917013": {
+		item_id: 917013,
+		type: "item",
+		name: "稀有·泣血之刃"
+	},
+	"917014": {
+		item_id: 917014,
+		type: "item",
+		name: "史诗·守卫之剑"
+	},
+	"917015": {
+		item_id: 917015,
+		type: "item",
+		name: "传说·王者之剑"
+	},
+	"917016": {
+		item_id: 917016,
+		type: "item",
+		name: "神话·斩龙"
+	},
+	"917017": {
+		item_id: 917017,
+		type: "item",
+		name: "混沌·星芒流光"
+	},
+	"917021": {
+		item_id: 917021,
+		type: "item",
+		name: "普通·木纹圆盾"
+	},
+	"917022": {
+		item_id: 917022,
+		type: "item",
+		name: "精良·卫士铁盾"
+	},
+	"917023": {
+		item_id: 917023,
+		type: "item",
+		name: "稀有·磐石壁盾"
+	},
+	"917024": {
+		item_id: 917024,
+		type: "item",
+		name: "史诗·圣纹塔盾"
+	},
+	"917025": {
+		item_id: 917025,
+		type: "item",
+		name: "传说·狮心王盾"
+	},
+	"917026": {
+		item_id: 917026,
+		type: "item",
+		name: "神话·泰拉克斯"
+	},
+	"917027": {
+		item_id: 917027,
+		type: "item",
+		name: "混沌·焚天圣壁"
+	},
+	"917031": {
+		item_id: 917031,
+		type: "item",
+		name: "普通·简易吊坠"
+	},
+	"917032": {
+		item_id: 917032,
+		type: "item",
+		name: "精良·玻璃玉坠"
+	},
+	"917033": {
+		item_id: 917033,
+		type: "item",
+		name: "稀有·灵脂护身符"
+	},
+	"917034": {
+		item_id: 917034,
+		type: "item",
+		name: "史诗·黑曜石吊坠"
+	},
+	"917035": {
+		item_id: 917035,
+		type: "item",
+		name: "传说·星轮项链"
+	},
+	"917036": {
+		item_id: 917036,
+		type: "item",
+		name: "神话·蓝蛛"
+	},
+	"917037": {
+		item_id: 917037,
+		type: "item",
+		name: "混沌·不朽圣翼"
+	},
+	"917041": {
+		item_id: 917041,
+		type: "item",
+		name: "普通·链条戒指"
+	},
+	"917042": {
+		item_id: 917042,
+		type: "item",
+		name: "精良·雕纹戒指"
+	},
+	"917043": {
+		item_id: 917043,
+		type: "item",
+		name: "稀有·护心铜戒"
+	},
+	"917044": {
+		item_id: 917044,
+		type: "item",
+		name: "史诗·符文戒指"
+	},
+	"917045": {
+		item_id: 917045,
+		type: "item",
+		name: "传说·玛瑙戒指"
+	},
+	"917046": {
+		item_id: 917046,
+		type: "item",
+		name: "神话·赤珠"
+	},
+	"917047": {
+		item_id: 917047,
+		type: "item",
+		name: "混沌·桎梏之语"
+	},
+	"917051": {
+		item_id: 917051,
+		type: "item",
+		name: "普通·破旧长靴"
+	},
+	"917052": {
+		item_id: 917052,
+		type: "item",
+		name: "精良·士兵长靴"
+	},
+	"917053": {
+		item_id: 917053,
+		type: "item",
+		name: "稀有·胫甲战靴"
+	},
+	"917054": {
+		item_id: 917054,
+		type: "item",
+		name: "史诗·赤红战靴"
+	},
+	"917055": {
+		item_id: 917055,
+		type: "item",
+		name: "传说·星芒靴"
+	},
+	"917056": {
+		item_id: 917056,
+		type: "item",
+		name: "神话·武神"
+	},
+	"917057": {
+		item_id: 917057,
+		type: "item",
+		name: "混沌·流金疾影"
+	},
+	"917061": {
+		item_id: 917061,
+		type: "item",
+		name: "普通·旧布手套"
+	},
+	"917062": {
+		item_id: 917062,
+		type: "item",
+		name: "精良·利爪手套"
+	},
+	"917063": {
+		item_id: 917063,
+		type: "item",
+		name: "稀有·钢甲手套"
+	},
+	"917064": {
+		item_id: 917064,
+		type: "item",
+		name: "史诗·闪耀护手"
+	},
+	"917065": {
+		item_id: 917065,
+		type: "item",
+		name: "传说·帝国之掌"
+	},
+	"917066": {
+		item_id: 917066,
+		type: "item",
+		name: "神话·泰坦"
+	},
+	"917067": {
+		item_id: 917067,
+		type: "item",
+		name: "混沌·战神之泣"
+	},
+	"917071": {
+		item_id: 917071,
+		type: "item",
+		name: "普通·普通背心"
+	},
+	"917072": {
+		item_id: 917072,
+		type: "item",
+		name: "精良·布甲"
+	},
+	"917073": {
+		item_id: 917073,
+		type: "item",
+		name: "稀有·锁子甲"
+	},
+	"917074": {
+		item_id: 917074,
+		type: "item",
+		name: "史诗·精钢重甲"
+	},
+	"917075": {
+		item_id: 917075,
+		type: "item",
+		name: "传说·披风锁甲"
+	},
+	"917076": {
+		item_id: 917076,
+		type: "item",
+		name: "神话·灾星"
+	},
+	"917077": {
+		item_id: 917077,
+		type: "item",
+		name: "混沌·炽金圣柜"
+	},
+	"917081": {
+		item_id: 917081,
+		type: "item",
+		name: "普通·兜帽"
+	},
+	"917082": {
+		item_id: 917082,
+		type: "item",
+		name: "精良·坚固战盔"
+	},
+	"917083": {
+		item_id: 917083,
+		type: "item",
+		name: "稀有·兵卒巨盔"
+	},
+	"917084": {
+		item_id: 917084,
+		type: "item",
+		name: "史诗·蒙纱头冠"
+	},
+	"917085": {
+		item_id: 917085,
+		type: "item",
+		name: "传说·鳞羽头冠"
+	},
+	"917086": {
+		item_id: 917086,
+		type: "item",
+		name: "神话·丧钟"
+	},
+	"917087": {
+		item_id: 917087,
+		type: "item",
+		name: "混沌·圣光骑士"
 	},
 	"1000001": {
 		item_id: 1000001,
@@ -5597,12 +7167,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000005": {
 		item_id: 1000005,
 		type: "item",
-		name: "UP池2期-刺客"
+		name: "夜行双匕"
 	},
 	"1000006": {
 		item_id: 1000006,
 		type: "item",
-		name: "普池武器-刺客"
+		name: "影袭双匕"
 	},
 	"1000007": {
 		item_id: 1000007,
@@ -5612,7 +7182,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000008": {
 		item_id: 1000008,
 		type: "item",
-		name: "UP池武器-刺客"
+		name: "绯月双锋"
 	},
 	"1000009": {
 		item_id: 1000009,
@@ -5622,12 +7192,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000010": {
 		item_id: 1000010,
 		type: "item",
-		name: "普池2期-刺客"
+		name: "终焉双圣"
 	},
 	"1000011": {
 		item_id: 1000011,
 		type: "item",
-		name: "UP池2期-枪手"
+		name: "巡猎火铳"
 	},
 	"1000012": {
 		item_id: 1000012,
@@ -5637,37 +7207,37 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000013": {
 		item_id: 1000013,
 		type: "item",
-		name: "星海秘宝-枪手"
+		name: "破晓铳"
 	},
 	"1000014": {
 		item_id: 1000014,
 		type: "item",
-		name: "普池2期-枪手"
+		name: "逐星重铳"
 	},
 	"1000015": {
 		item_id: 1000015,
 		type: "item",
-		name: "普池武器-枪手"
+		name: "苍穹神铳"
 	},
 	"1000016": {
 		item_id: 1000016,
 		type: "item",
-		name: "捕鱼商店投放"
+		name: "神罚天铳"
 	},
 	"1000017": {
 		item_id: 1000017,
 		type: "item",
-		name: "捕鱼商店投放"
+		name: "霜语法杖"
 	},
 	"1000018": {
 		item_id: 1000018,
 		type: "item",
-		name: "UP池2期-法师"
+		name: "星辉法杖"
 	},
 	"1000019": {
 		item_id: 1000019,
 		type: "item",
-		name: "普池2期-法师"
+		name: "秘焰灵杖"
 	},
 	"1000020": {
 		item_id: 1000020,
@@ -5677,7 +7247,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000021": {
 		item_id: 1000021,
 		type: "item",
-		name: "星海秘宝-法师"
+		name: "天穹圣杖"
 	},
 	"1000022": {
 		item_id: 1000022,
@@ -5687,7 +7257,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000023": {
 		item_id: 1000023,
 		type: "item",
-		name: "普池武器-圣骑"
+		name: "守誓剑盾"
 	},
 	"1000024": {
 		item_id: 1000024,
@@ -5697,17 +7267,17 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000025": {
 		item_id: 1000025,
 		type: "item",
-		name: "星海秘宝-圣骑"
+		name: "裁决壁垒"
 	},
 	"1000026": {
 		item_id: 1000026,
 		type: "item",
-		name: "普池2期-圣骑"
+		name: "圣辉壁垒"
 	},
 	"1000027": {
 		item_id: 1000027,
 		type: "item",
-		name: "UP池2期-圣骑"
+		name: "荣光圣壁"
 	},
 	"1000028": {
 		item_id: 1000028,
@@ -5717,37 +7287,37 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1000029": {
 		item_id: 1000029,
 		type: "item",
-		name: "捕鱼商店投放"
+		name: "澜光双刃"
 	},
 	"1000030": {
 		item_id: 1000030,
 		type: "item",
-		name: "星海秘宝-刺客"
+		name: "夜魇双绝"
 	},
 	"1000031": {
 		item_id: 1000031,
 		type: "item",
-		name: "UP池武器-枪手"
+		name: "曜金双铳"
 	},
 	"1000032": {
 		item_id: 1000032,
 		type: "item",
-		name: "普池武器-法师"
+		name: "潮鸣灵杖"
 	},
 	"1000033": {
 		item_id: 1000033,
 		type: "item",
-		name: "UP池武器-法师"
+		name: "湛海玄杖"
 	},
 	"1000034": {
 		item_id: 1000034,
 		type: "item",
-		name: "捕鱼商店投放"
+		name: "赤曜壁垒"
 	},
 	"1000035": {
 		item_id: 1000035,
 		type: "item",
-		name: "UP池武器-圣骑"
+		name: "星渊圣壁"
 	},
 	"1100001": {
 		item_id: 1100001,
@@ -5792,7 +7362,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1200003": {
 		item_id: 1200003,
 		type: "item",
-		name: "S3赛季战令高级版"
+		name: "S3赛季高级通行证"
 	},
 	"1200004": {
 		item_id: 1200004,
@@ -5807,17 +7377,17 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1300001": {
 		item_id: 1300001,
 		type: "item",
-		name: "通行证经验S1"
+		name: "通行证经验"
 	},
 	"1300002": {
 		item_id: 1300002,
 		type: "item",
-		name: "通行证经验S2"
+		name: "通行证经验"
 	},
 	"1300003": {
 		item_id: 1300003,
 		type: "item",
-		name: "通行证经验S3"
+		name: "通行证经验"
 	},
 	"1400001": {
 		item_id: 1400001,
@@ -5842,12 +7412,12 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1400005": {
 		item_id: 1400005,
 		type: "item",
-		name: "碎金石"
+		name: "神话·破军之锋"
 	},
 	"1400006": {
 		item_id: 1400006,
 		type: "item",
-		name: "战纹·锐石"
+		name: "神话·天威之印"
 	},
 	"1400007": {
 		item_id: 1400007,
@@ -7012,7 +8582,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1750002": {
 		item_id: 1750002,
 		type: "item",
-		name: "尾巴"
+		name: "舱鼠海盗"
 	},
 	"1750003": {
 		item_id: 1750003,
@@ -7047,7 +8617,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1770002": {
 		item_id: 1770002,
 		type: "item",
-		name: "夏季足迹"
+		name: "清凉夏日"
 	},
 	"1771001": {
 		item_id: 1771001,

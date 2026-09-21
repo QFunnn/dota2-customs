@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -83,12 +83,16 @@ function o.prototype.CreateAura(self, t, u, v)
 end
 function o.prototype.Punishment(self, s)
 	local q = self:GetCaster()
-	local y = ParticleManager:CreateParticle(
+	local y = ParticleManager:CreateParticleWithCaster(
 		"particles/units/heroes/hero_omniknight/omniknight_shard_hammer_of_purity_target.vpcf",
 		PATTACH_ABSORIGIN,
-		s
+		s,
+		q,
+		ParticleEffectLevel.Low
 	)
-	ParticleManager:ReleaseParticleIndex(y)
+	if y ~= -1 then
+		ParticleManager:ReleaseParticleIndex(y)
+	end
 	local z = self:GetSpecialValueFor("punishment_stun")
 	if z > 0 then
 		s:Stun(q, self, z)

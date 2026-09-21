@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -18,14 +18,11 @@ var StoreItem = require('./StoreItem.js');
 function isActiveTime(startTime, endTime, now) {
   return (startTime < now || startTime == 0) && (endTime > now || endTime == 0);
 }
-function getStoreTagItems(tag, infoProducts, hideMoneyProducts = false) {
+function getStoreTagItems(tag, infoProducts) {
   const result = [];
   const now = Date.now() / 1000;
   for (const itemName in KeyValues.info_shop_product) {
     const itemData = KeyValues.info_shop_product[itemName];
-    if (hideMoneyProducts && itemData.pay_type == PayType.MONEY) {
-      continue;
-    }
     if (itemData.hide_time && itemData.hide_time <= now) {
       continue;
     }
@@ -70,7 +67,7 @@ function hasFreeStoreTagItem(items, purchasedProducts, playerPrivileges) {
 function StoreTagPage(props) {
   const infoProducts = solid_utils.createGlobalServiceNetData("info_products", {});
   const purchasedProducts = solid_utils.createServiceNetData("player_shop_product_limits", {});
-  const storeItems = libs.createMemo(() => sortStoreTagItems(getStoreTagItems(props.tag, infoProducts(), props.hideMoneyProducts), purchasedProducts()));
+  const storeItems = libs.createMemo(() => sortStoreTagItems(getStoreTagItems(props.tag, infoProducts()), purchasedProducts()));
   return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
     get id() {
       return props.id ?? props.tag;

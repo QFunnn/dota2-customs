@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -444,7 +444,6 @@ const BattlePass = () => {
           },
           get children() {
             return libs.createComponent(EOM_Button.EOM_Button, {
-              visible: false,
               marginRight: "10px",
               color: "Confirm",
               text: "#BP_UnlockPass",
@@ -720,7 +719,6 @@ const PreviewRewardWindow = () => {
           },
           get children() {
             return libs.createComponent(EOM_Button.EOM_Button, {
-              visible: false,
               align: "center bottom",
               text: "#BP_UnlockPass",
               onactivate: () => {
@@ -945,7 +943,6 @@ const BattlepassInfo = props => {
     }), null);
     libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_Button, {
       id: "BuyBpPlusBtn",
-      visible: false,
       text: "#BP_Plus",
       onactivate: () => {
         ClientSideEvent("directly_purchase", {
@@ -4134,72 +4131,78 @@ function Dice() {
           const _el$70 = libs.createElement("Panel", {
             "class": "DiceRoundRewardTitleContent"
           }, _el$68),
-          _el$71 = libs.createElement("Label", {
+          _el$71 = libs.createElement("Panel", {
+            "class": "ContentTitle"
+          }, _el$70),
+          _el$72 = libs.createElement("Label", {
             "class": "DiceRoundRewardTitleLabel",
             get text() {
               return GetLocalization("#ActivityDice_CPMini_Title");
             }
-          }, _el$70),
-          _el$72 = libs.createElement("Image", {
+          }, _el$71),
+          _el$73 = libs.createElement("Image", {
             "class": "DiceRoundRewardTooltipIcon"
+          }, _el$71),
+          _el$74 = libs.createElement("Panel", {
+            "class": "ContentCooldown"
           }, _el$70),
-          _el$73 = libs.createElement("Panel", {
+          _el$75 = libs.createElement("Panel", {
             "class": "DiceRoundRewardContent"
           }, _el$67),
-          _el$74 = libs.createElement("Panel", {
+          _el$76 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRound"
-          }, _el$73);
+          }, _el$75);
           libs.createElement("Image", {
             "class": "DiceRoundRewardRoundBG"
-          }, _el$74);
-          const _el$76 = libs.createElement("Panel", {
+          }, _el$76);
+          const _el$78 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRoundContent"
-          }, _el$74),
-          _el$77 = libs.createElement("Label", {
+          }, _el$76),
+          _el$79 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundText",
             get text() {
               return GetLocalization("#ActivityDice_CPMini_RoundText");
             }
-          }, _el$76),
-          _el$78 = libs.createElement("Panel", {
+          }, _el$78),
+          _el$80 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRoundValueContent"
-          }, _el$76),
-          _el$79 = libs.createElement("Label", {
+          }, _el$78),
+          _el$81 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}`;
             }
-          }, _el$78),
-          _el$80 = libs.createElement("Label", {
+          }, _el$80),
+          _el$82 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValueMAX",
             get text() {
               return `/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$78),
-          _el$81 = libs.createElement("Panel", {
+          }, _el$80),
+          _el$83 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBar"
-          }, _el$73);
+          }, _el$75);
           libs.createElement("Image", {
             "class": "DiceRoundRewardBarBG"
-          }, _el$81);
-          const _el$83 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$85 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBarFill",
             get style() {
               return {
                 width: milestoneProgressPercent() + "%"
               };
             }
-          }, _el$81);
+          }, _el$83);
           libs.createElement("Image", {
             "class": "DiceRoundRewardBarFillImage"
-          }, _el$83);
-          const _el$85 = libs.createElement("Label", {
+          }, _el$85);
+          const _el$87 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$81),
-          _el$86 = libs.createElement("Panel", {
+          }, _el$83),
+          _el$88 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBarValueFill",
             hittest: false,
             hittestchildren: false,
@@ -4208,32 +4211,32 @@ function Dice() {
                 clip: `rect(0%, ${milestoneProgressPercent()}%, 100%, 0%)`
               };
             }
-          }, _el$81),
-          _el$87 = libs.createElement("Label", {
+          }, _el$83),
+          _el$89 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$86),
-          _el$88 = libs.createElement("Button", {
+          }, _el$88),
+          _el$90 = libs.createElement("Button", {
             "class": "DiceRoundRewardItem"
-          }, _el$73),
-          _el$89 = libs.createElement("DOTAParticleScenePanel", {
+          }, _el$75),
+          _el$91 = libs.createElement("DOTAParticleScenePanel", {
             "class": "DiceRoundRewardClaimableBorder",
             particleName: "particles/ui/game/ui_game_general_special_effects_03_fx.vpcf",
             cameraOrigin: "0 0 90",
             fov: 45,
             lookAt: "0 0 0",
             hittest: false
-          }, _el$88);
+          }, _el$90);
           libs.createElement("Image", {
             "class": "DiceRoundRewardItemBG",
             hittest: false
-          }, _el$88);
-          const _el$91 = libs.createElement("Image", {
+          }, _el$90);
+          const _el$93 = libs.createElement("Image", {
             "class": "DiceRoundRewardItemRedPoint",
             hittest: false
-          }, _el$88);
+          }, _el$90);
         libs.insert(_el$62, libs.createComponent(EOM_Countdown.EOM_Countdown, {
           icon: true,
           text: "#ActivityDice_TimeLimit",
@@ -4269,8 +4272,15 @@ function Dice() {
             });
           }
         }), null);
-        libs.setProp(_el$88, "onactivate", () => setRoundRewardsOpen(true));
-        libs.insert(_el$88, libs.createComponent(libs.Show, {
+        libs.insert(_el$74, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#ActivityDice_TimeLimit",
+          get endTime() {
+            return activityData().data_end_time;
+          }
+        }));
+        libs.setProp(_el$90, "onactivate", () => setRoundRewardsOpen(true));
+        libs.insert(_el$90, libs.createComponent(libs.Show, {
           get when() {
             return milestonePreviewReward();
           },
@@ -4279,17 +4289,17 @@ function Dice() {
               return Number(reward()[0]);
             }
           }), (() => {
-            const _el$154 = libs.createElement("Label", {
+            const _el$156 = libs.createElement("Label", {
               "class": "DiceRoundRewardItemAmount",
               get text() {
                 return reward()[1];
               },
               hittest: false
             }, null);
-            libs.effect(_$p => libs.setProp(_el$154, "text", reward()[1], _$p));
-            return _el$154;
+            libs.effect(_$p => libs.setProp(_el$156, "text", reward()[1], _$p));
+            return _el$156;
           })()]
-        }), _el$91);
+        }), _el$93);
         libs.effect(_p$ => {
           const _v$14 = logoLang(),
             _v$15 = logoLang(),
@@ -4312,17 +4322,17 @@ function Dice() {
           _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$60, "class", _v$14, _p$._v$14));
           _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$61, "class", _v$15, _p$._v$15));
           _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$61, "customTooltip", _v$16, _p$._v$16));
-          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$71, "text", _v$17, _p$._v$17));
-          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$72, "tooltip_text", _v$18, _p$._v$18));
-          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$77, "text", _v$19, _p$._v$19));
-          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$79, "text", _v$20, _p$._v$20));
-          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$80, "text", _v$21, _p$._v$21));
-          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$83, "style", _v$22, _p$._v$22));
-          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$85, "text", _v$23, _p$._v$23));
-          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$86, "style", _v$24, _p$._v$24));
-          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$87, "text", _v$25, _p$._v$25));
-          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$89, "visible", _v$26, _p$._v$26));
-          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$91, "visible", _v$27, _p$._v$27));
+          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$72, "text", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$73, "tooltip_text", _v$18, _p$._v$18));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$79, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$81, "text", _v$20, _p$._v$20));
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$82, "text", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$85, "style", _v$22, _p$._v$22));
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$87, "text", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$88, "style", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$89, "text", _v$25, _p$._v$25));
+          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$91, "visible", _v$26, _p$._v$26));
+          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$93, "visible", _v$27, _p$._v$27));
           return _p$;
         }, {
           _v$14: undefined,
@@ -4342,27 +4352,27 @@ function Dice() {
         });
         return _el$58;
       })(), (() => {
-        const _el$92 = libs.createElement("Panel", {
+        const _el$94 = libs.createElement("Panel", {
             id: "DiceGameContainer"
           }, null),
-          _el$93 = libs.createElement("Panel", {
+          _el$95 = libs.createElement("Panel", {
             id: "DiceGameBoardLocation"
-          }, _el$92);
+          }, _el$94);
           libs.createElement("Image", {
             id: "DiceGameBoardBG"
-          }, _el$93);
-          const _el$95 = libs.createElement("Panel", {
+          }, _el$95);
+          const _el$97 = libs.createElement("Panel", {
             id: "DiceGamePieceLayerRotated"
-          }, _el$93),
-          _el$96 = libs.createElement("Panel", {
-            id: "DiceGamePieceGrid"
           }, _el$95),
-          _el$97 = libs.createElement("Panel", {
+          _el$98 = libs.createElement("Panel", {
+            id: "DiceGamePieceGrid"
+          }, _el$97),
+          _el$99 = libs.createElement("Panel", {
             id: "DiceGamePlayerLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$95),
-          _el$98 = libs.createElement("Panel", {
+          }, _el$97),
+          _el$100 = libs.createElement("Panel", {
             id: "DiceEventLayer",
             "class": "DiceLayer",
             get style() {
@@ -4372,14 +4382,14 @@ function Dice() {
             },
             hittest: false,
             hittestchildren: false
-          }, _el$93);
+          }, _el$95);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$98);
+          }, _el$100);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$98);
-          const _el$101 = libs.createElement("Image", {
+          }, _el$100);
+          const _el$103 = libs.createElement("Image", {
             id: "DiceEventHeadIcon",
             get ["class"]() {
               return libs.classNames({
@@ -4387,145 +4397,145 @@ function Dice() {
                 DiceEventBadEvent: diceEventLayerType() == "bad"
               });
             }
-          }, _el$98),
-          _el$102 = libs.createElement("Panel", {
+          }, _el$100),
+          _el$104 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$98),
-          _el$103 = libs.createElement("Panel", {
+          }, _el$100),
+          _el$105 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$102),
-          _el$104 = libs.createElement("Label", {
+          }, _el$104),
+          _el$106 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return diceEventLayerTitle();
             }
-          }, _el$103),
-          _el$105 = libs.createElement("Panel", {
+          }, _el$105),
+          _el$107 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$102),
-          _el$106 = libs.createElement("Label", {
+          }, _el$104),
+          _el$108 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return diceEventLayerDescription();
             }
-          }, _el$105),
-          _el$107 = libs.createElement("Panel", {
+          }, _el$107),
+          _el$109 = libs.createElement("Panel", {
             id: "DiceMultiRollPointLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$93);
+          }, _el$95);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$107);
+          }, _el$109);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$107);
-          const _el$110 = libs.createElement("Panel", {
+          }, _el$109);
+          const _el$112 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$107),
-          _el$111 = libs.createElement("Panel", {
+          }, _el$109),
+          _el$113 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$110),
-          _el$112 = libs.createElement("Label", {
+          }, _el$112),
+          _el$114 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollPointTitle");
             }
-          }, _el$111),
-          _el$113 = libs.createElement("Panel", {
+          }, _el$113),
+          _el$115 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$110),
-          _el$114 = libs.createElement("Label", {
+          }, _el$112),
+          _el$116 = libs.createElement("Label", {
             id: "DiceMultiRollPointValue",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollPointValue()}`;
             }
-          }, _el$113),
-          _el$115 = libs.createElement("Label", {
+          }, _el$115),
+          _el$117 = libs.createElement("Label", {
             id: "DiceMultiRollPointProgress",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollCurrentIndex()}/${multiRollTotalCount()}`;
             }
-          }, _el$113),
-          _el$116 = libs.createElement("Panel", {
+          }, _el$115),
+          _el$118 = libs.createElement("Panel", {
             id: "DiceMultiBoxPreviewLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: true
-          }, _el$93);
+          }, _el$95);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$116);
+          }, _el$118);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$116);
-          const _el$119 = libs.createElement("Panel", {
+          }, _el$118);
+          const _el$121 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$116),
-          _el$120 = libs.createElement("Panel", {
+          }, _el$118),
+          _el$122 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$119),
-          _el$121 = libs.createElement("Label", {
+          }, _el$121),
+          _el$123 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewTitle");
             }
-          }, _el$120),
-          _el$122 = libs.createElement("Panel", {
+          }, _el$122),
+          _el$124 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$119),
-          _el$123 = libs.createElement("Label", {
+          }, _el$121),
+          _el$125 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewContent");
             }
-          }, _el$122),
-          _el$124 = libs.createElement("Panel", {
+          }, _el$124),
+          _el$126 = libs.createElement("Panel", {
             "class": "DiceTaskReward"
-          }, _el$122);
+          }, _el$124);
           libs.createElement("Image", {
             "class": "DiceTaskRewardBG"
-          }, _el$124);
-          const _el$126 = libs.createElement("Label", {
+          }, _el$126);
+          const _el$128 = libs.createElement("Label", {
             "class": "DiceTaskRewardValue",
             get text() {
               return boxPreviewReward()?.amounts ?? 0;
             }
-          }, _el$124),
-          _el$127 = libs.createElement("Panel", {
+          }, _el$126),
+          _el$129 = libs.createElement("Panel", {
             id: "DiceMultiRollSummaryLayer",
             "class": "DiceLayer",
             hittest: true,
             hittestchildren: true
-          }, _el$93);
+          }, _el$95);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$127);
+          }, _el$129);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$127);
-          const _el$130 = libs.createElement("Panel", {
+          }, _el$129);
+          const _el$132 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$127),
-          _el$131 = libs.createElement("Panel", {
+          }, _el$129),
+          _el$133 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$130),
-          _el$132 = libs.createElement("Label", {
+          }, _el$132),
+          _el$134 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollSummaryTitle");
             }
-          }, _el$131),
-          _el$133 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
-          }, _el$130),
-          _el$134 = libs.createElement("Panel", {
-            id: "DiceGameOperation"
-          }, _el$92),
+          }, _el$133),
           _el$135 = libs.createElement("Panel", {
+            "class": "DiceLayerBodyContent"
+          }, _el$132),
+          _el$136 = libs.createElement("Panel", {
+            id: "DiceGameOperation"
+          }, _el$94),
+          _el$137 = libs.createElement("Panel", {
             id: "DiceGamePlayerEventContainer",
             get hittest() {
               return hasPlayerEvent();
@@ -4533,64 +4543,64 @@ function Dice() {
             get hittestchildren() {
               return hasPlayerEvent();
             }
-          }, _el$134),
-          _el$136 = libs.createElement("Label", {
+          }, _el$136),
+          _el$138 = libs.createElement("Label", {
             id: "DiceGamePlayerEventTitle",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEventTitle");
             }
-          }, _el$135),
-          _el$137 = libs.createElement("Panel", {
+          }, _el$137),
+          _el$139 = libs.createElement("Panel", {
             id: "DiceGamePlayerEventContent"
-          }, _el$135),
-          _el$138 = libs.createElement("Panel", {
+          }, _el$137),
+          _el$140 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItem"
-          }, _el$137);
+          }, _el$139);
           libs.createElement("Image", {
             id: "DiceGamePlayerEventBG"
-          }, _el$138);
-          const _el$140 = libs.createElement("Panel", {
+          }, _el$140);
+          const _el$142 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItemContent"
-          }, _el$138),
-          _el$141 = libs.createElement("Label", {
+          }, _el$140),
+          _el$143 = libs.createElement("Label", {
             "class": "DiceGamePlayerEventDesc",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEvent_RewardNextSlot");
             }
-          }, _el$140),
-          _el$143 = libs.createElement("Panel", {
+          }, _el$142),
+          _el$145 = libs.createElement("Panel", {
             id: "DiceGameRollButtonContainer"
-          }, _el$134),
-          _el$144 = libs.createElement("Panel", {
+          }, _el$136),
+          _el$146 = libs.createElement("Panel", {
             id: "DiceGameCostInfo"
-          }, _el$143);
+          }, _el$145);
           libs.createElement("Image", {
             id: "DiceGameCostInfoBG"
-          }, _el$144);
-          const _el$146 = libs.createElement("Panel", {
+          }, _el$146);
+          const _el$148 = libs.createElement("Panel", {
             id: "DiceGameCostInfoContent"
-          }, _el$144),
-          _el$147 = libs.createElement("Label", {
+          }, _el$146),
+          _el$149 = libs.createElement("Label", {
             id: "DiceGameCostValue",
             text: `x${DICE_ROLL_ONCE_TIMES}`
-          }, _el$146);
-        libs.insert(_el$96, libs.createComponent(libs.For, {
+          }, _el$148);
+        libs.insert(_el$98, libs.createComponent(libs.For, {
           each: DICE_BOARD_LAYOUT_ROWS,
           children: (row, index) => (() => {
-            const _el$155 = libs.createElement("Panel", {
+            const _el$157 = libs.createElement("Panel", {
               get ["class"]() {
                 return `DiceGamePieceRow DiceGamePieceRow_${index()}`;
               }
             }, null);
-            libs.insert(_el$155, libs.createComponent(libs.For, {
+            libs.insert(_el$157, libs.createComponent(libs.For, {
               each: row,
               children: piece => {
                 const tileConfig = () => piece.shouldRenderPiece ? tileConfigMap()[piece.slotID] ?? DEFAULT_TILE_CONFIG : DEFAULT_TILE_CONFIG;
                 return (() => {
-                  const _el$156 = libs.createElement("Panel", {
+                  const _el$158 = libs.createElement("Panel", {
                     "class": "DiceGamePieceCell"
                   }, null);
-                  libs.insert(_el$156, (() => {
+                  libs.insert(_el$158, (() => {
                     const _c$ = libs.memo(() => !!piece.shouldRenderPiece);
                     return () => _c$() ? libs.createComponent(DiceGamePiece, {
                       get id() {
@@ -4622,7 +4632,7 @@ function Dice() {
                       }
                     }) : libs.createComponent(DiceGamePiecePlaceholder, {});
                   })());
-                  libs.effect(_$p => libs.setProp(_el$156, "customTooltip", piece.shouldRenderPiece ? (() => {
+                  libs.effect(_$p => libs.setProp(_el$158, "customTooltip", piece.shouldRenderPiece ? (() => {
                     const tooltipData = getDiceSlotTooltipData(dig_veins_logic.ACTIVITY_DICE_ID, piece.slotID, activitySlotData()[piece.slotID]);
                     if (tooltipData == undefined) {
                       return undefined;
@@ -4643,15 +4653,15 @@ function Dice() {
                       ...definedTooltipParams
                     };
                   })() : undefined, _$p));
-                  return _el$156;
+                  return _el$158;
                 })();
               }
             }));
-            libs.effect(_$p => libs.setProp(_el$155, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
-            return _el$155;
+            libs.effect(_$p => libs.setProp(_el$157, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
+            return _el$157;
           })()
         }));
-        libs.insert(_el$97, libs.createComponent(DiceGamePlayerPiece, {
+        libs.insert(_el$99, libs.createComponent(DiceGamePlayerPiece, {
           get position() {
             return playerPiecePosition();
           },
@@ -4674,58 +4684,58 @@ function Dice() {
             return playerJump.SequenceFrame;
           }
         }));
-        libs.insert(_el$93, libs.createComponent(DiceGameDiceCube, {
+        libs.insert(_el$95, libs.createComponent(DiceGameDiceCube, {
           get visible() {
             return isDiceVisible();
           },
           get SequenceFrame() {
             return diceSequence.SequenceFrame;
           }
-        }), _el$98);
-        libs.insert(_el$124, libs.createComponent(StoreItem.StoreItemImage, {
+        }), _el$100);
+        libs.insert(_el$126, libs.createComponent(StoreItem.StoreItemImage, {
           "class": "DiceTaskRewardIcon",
           get itemid() {
             return boxPreviewReward()?.item_id ?? 1800008;
           }
-        }), _el$126);
-        libs.insert(_el$133, libs.createComponent(libs.For, {
+        }), _el$128);
+        libs.insert(_el$135, libs.createComponent(libs.For, {
           get each() {
             return multiRollSummaryItems();
           },
           children: summaryText => (() => {
-            const _el$157 = libs.createElement("Label", {
+            const _el$159 = libs.createElement("Label", {
               "class": "DiceLayerContentDesc",
               text: summaryText
             }, null);
-            libs.setProp(_el$157, "text", summaryText);
-            return _el$157;
+            libs.setProp(_el$159, "text", summaryText);
+            return _el$159;
           })()
         }));
-        libs.insert(_el$140, libs.createComponent(libs.Show, {
+        libs.insert(_el$142, libs.createComponent(libs.Show, {
           get when() {
             return nextSlotExtraExp() > 1;
           },
           get children() {
-            const _el$142 = libs.createElement("Label", {
+            const _el$144 = libs.createElement("Label", {
               "class": "DiceGamePlayerEventValue",
               get text() {
                 return `x${nextSlotExtraExp()}`;
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$142, "text", `x${nextSlotExtraExp()}`, _$p));
-            return _el$142;
+            libs.effect(_$p => libs.setProp(_el$144, "text", `x${nextSlotExtraExp()}`, _$p));
+            return _el$144;
           }
         }), null);
-        libs.insert(_el$146, libs.createComponent(StoreItem.StoreItemImage, {
+        libs.insert(_el$148, libs.createComponent(StoreItem.StoreItemImage, {
           get itemid() {
             return diceTicketID();
           },
           get src() {
             return STOREITEMIMAGE_SRCPATH[diceTicketID()];
           }
-        }), _el$147);
-        libs.setProp(_el$147, "text", `x${DICE_ROLL_ONCE_TIMES}`);
-        libs.insert(_el$143, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        }), _el$149);
+        libs.setProp(_el$149, "text", `x${DICE_ROLL_ONCE_TIMES}`);
+        libs.insert(_el$145, libs.createComponent(EOM_Button.EOM_BaseButton, {
           id: "DiceGameRollButton",
           "class": "DiceGameActionButton",
           get enabled() {
@@ -4741,7 +4751,7 @@ function Dice() {
             }, null)];
           }
         }), null);
-        libs.insert(_el$134, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        libs.insert(_el$136, libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "DiceGameRollMiniButton",
           get enabled() {
             return !isRollBusy();
@@ -4751,18 +4761,18 @@ function Dice() {
             return [libs.createElement("Image", {
               "class": "DiceGameRollMiniButtonBG"
             }, null), (() => {
-              const _el$151 = libs.createElement("Label", {
+              const _el$153 = libs.createElement("Label", {
                 "class": "DiceGameRollMiniButtonText",
                 get text() {
                   return `x${diceRoll10ButtonTimes()}`;
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$151, "text", `x${diceRoll10ButtonTimes()}`, _$p));
-              return _el$151;
+              libs.effect(_$p => libs.setProp(_el$153, "text", `x${diceRoll10ButtonTimes()}`, _$p));
+              return _el$153;
             })()];
           }
         }), null);
-        libs.insert(_el$134, libs.createComponent(libs.Show, {
+        libs.insert(_el$136, libs.createComponent(libs.Show, {
           get when() {
             return isExecutingDiceEvents();
           },
@@ -4814,27 +4824,27 @@ function Dice() {
             _v$48 = {
               NotEnough: !hasEnoughDiceTicket(DICE_ROLL_ONCE_TIMES)
             };
-          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$98, "visible", _v$28, _p$._v$28));
-          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$98, "style", _v$29, _p$._v$29));
-          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$101, "class", _v$30, _p$._v$30));
-          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$104, "text", _v$31, _p$._v$31));
-          _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$106, "text", _v$32, _p$._v$32));
-          _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$107, "visible", _v$33, _p$._v$33));
-          _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$112, "text", _v$34, _p$._v$34));
-          _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$114, "text", _v$35, _p$._v$35));
-          _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$115, "text", _v$36, _p$._v$36));
-          _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$116, "visible", _v$37, _p$._v$37));
-          _v$38 !== _p$._v$38 && (_p$._v$38 = libs.setProp(_el$121, "text", _v$38, _p$._v$38));
-          _v$39 !== _p$._v$39 && (_p$._v$39 = libs.setProp(_el$123, "text", _v$39, _p$._v$39));
-          _v$40 !== _p$._v$40 && (_p$._v$40 = libs.setProp(_el$126, "text", _v$40, _p$._v$40));
-          _v$41 !== _p$._v$41 && (_p$._v$41 = libs.setProp(_el$127, "visible", _v$41, _p$._v$41));
-          _v$42 !== _p$._v$42 && (_p$._v$42 = libs.setProp(_el$132, "text", _v$42, _p$._v$42));
-          _v$43 !== _p$._v$43 && (_p$._v$43 = libs.setProp(_el$135, "classList", _v$43, _p$._v$43));
-          _v$44 !== _p$._v$44 && (_p$._v$44 = libs.setProp(_el$135, "hittest", _v$44, _p$._v$44));
-          _v$45 !== _p$._v$45 && (_p$._v$45 = libs.setProp(_el$135, "hittestchildren", _v$45, _p$._v$45));
-          _v$46 !== _p$._v$46 && (_p$._v$46 = libs.setProp(_el$136, "text", _v$46, _p$._v$46));
-          _v$47 !== _p$._v$47 && (_p$._v$47 = libs.setProp(_el$141, "text", _v$47, _p$._v$47));
-          _v$48 !== _p$._v$48 && (_p$._v$48 = libs.setProp(_el$147, "classList", _v$48, _p$._v$48));
+          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$100, "visible", _v$28, _p$._v$28));
+          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$100, "style", _v$29, _p$._v$29));
+          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$103, "class", _v$30, _p$._v$30));
+          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$106, "text", _v$31, _p$._v$31));
+          _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$108, "text", _v$32, _p$._v$32));
+          _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$109, "visible", _v$33, _p$._v$33));
+          _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$114, "text", _v$34, _p$._v$34));
+          _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$116, "text", _v$35, _p$._v$35));
+          _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$117, "text", _v$36, _p$._v$36));
+          _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$118, "visible", _v$37, _p$._v$37));
+          _v$38 !== _p$._v$38 && (_p$._v$38 = libs.setProp(_el$123, "text", _v$38, _p$._v$38));
+          _v$39 !== _p$._v$39 && (_p$._v$39 = libs.setProp(_el$125, "text", _v$39, _p$._v$39));
+          _v$40 !== _p$._v$40 && (_p$._v$40 = libs.setProp(_el$128, "text", _v$40, _p$._v$40));
+          _v$41 !== _p$._v$41 && (_p$._v$41 = libs.setProp(_el$129, "visible", _v$41, _p$._v$41));
+          _v$42 !== _p$._v$42 && (_p$._v$42 = libs.setProp(_el$134, "text", _v$42, _p$._v$42));
+          _v$43 !== _p$._v$43 && (_p$._v$43 = libs.setProp(_el$137, "classList", _v$43, _p$._v$43));
+          _v$44 !== _p$._v$44 && (_p$._v$44 = libs.setProp(_el$137, "hittest", _v$44, _p$._v$44));
+          _v$45 !== _p$._v$45 && (_p$._v$45 = libs.setProp(_el$137, "hittestchildren", _v$45, _p$._v$45));
+          _v$46 !== _p$._v$46 && (_p$._v$46 = libs.setProp(_el$138, "text", _v$46, _p$._v$46));
+          _v$47 !== _p$._v$47 && (_p$._v$47 = libs.setProp(_el$143, "text", _v$47, _p$._v$47));
+          _v$48 !== _p$._v$48 && (_p$._v$48 = libs.setProp(_el$149, "classList", _v$48, _p$._v$48));
           return _p$;
         }, {
           _v$28: undefined,
@@ -4859,7 +4869,7 @@ function Dice() {
           _v$47: undefined,
           _v$48: undefined
         });
-        return _el$92;
+        return _el$94;
       })(), libs.createComponent(libs.Show, {
         get when() {
           return roundRewardsOpen();
@@ -4888,9 +4898,6 @@ function getDiceStoreItems(infoProducts) {
   const now = Date.now() / 1000;
   for (const itemname in KeyValues.info_shop_product) {
     const itemdata = KeyValues.info_shop_product[itemname];
-    if (itemdata.pay_type == PayType.MONEY) {
-      continue;
-    }
     const info_product = infoProducts[itemdata.id];
     const effective_start_time = info_product ? info_product.start_time : itemdata.start_time;
     const effective_end_time = info_product ? info_product.end_time : itemdata.end_time;
@@ -9309,7 +9316,6 @@ function GrowthFund(params) {
       get children() {
         return libs.createComponent(EOM_Button.EOM_Button, {
           id: "BuyPlusBtn",
-          visible: false,
           get enabled() {
             return !plus();
           },
@@ -10115,8 +10121,7 @@ function StarSea(params) {
           return _el$9;
         })(), (() => {
           const _el$10 = libs.createElement("Panel", {
-            id: "ItemList",
-            visible: false
+            id: "ItemList"
           }, null);
           libs.insert(_el$10, libs.createComponent(libs.For, {
             get each() {

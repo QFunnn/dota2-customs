@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -30,26 +30,38 @@ function k.prototype.EventListener(self)
 		entity_killed = function(l, m)
 			if m.attacker == self:GetCaster() and m.victim:IsPoisoned() and self.enable then
 				self.enable = false
-				local n = self:GetCaster()
-				local o = m.victim:GetPoisonStack(n)
-				local p = self:GetSpecialValueFor("damage")
-				local q = self:GetSpecialValueFor("radius")
-				local r = ParticleManager:CreateParticle(
-					"particles/units/heroes/hero_sandking/sandking_caustic_finale_crimson_explode.vpcf",
-					PATTACH_CUSTOMORIGIN,
-					nil
-				)
-				ParticleManager:SetParticleControl(r, 0, m.victim:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(r)
-				local s = FindUnitsInRadiusWithAbility(n, m.victim:GetAbsOrigin(), q, self)
-				for t, u in ipairs(s) do
-					n:DealDamage(u, self, p, nil)
+				do
+					local n, o = pcall(function()
+						local p = self:GetCaster()
+						local q = m.victim:GetPoisonStack(p)
+						local r = self:GetSpecialValueFor("damage")
+						local s = self:GetSpecialValueFor("radius")
+						local t = m.victim:GetAbsOrigin()
+						local u = ParticleManager:CreateParticle(
+							"particles/units/heroes/hero_sandking/sandking_caustic_finale_crimson_explode.vpcf",
+							PATTACH_CUSTOMORIGIN,
+							nil
+						)
+						if u ~= -1 then
+							ParticleManager:SetParticleControl(u, 0, t)
+							ParticleManager:ReleaseParticleIndex(u)
+						end
+						local v = FindUnitsInRadiusWithAbility(p, t, s, self)
+						for w, x in ipairs(v) do
+							p:DealDamage(x, self, r, nil)
+						end
+						for w, x in ipairs(v) do
+							p:Poison(x, q)
+						end
+						p:EmitSound("Ability.SandKing_CausticFinale", t)
+					end)
+					do
+						self.enable = true
+					end
+					if not n then
+						error(o, 0)
+					end
 				end
-				for t, u in ipairs(s) do
-					n:Poison(u, o)
-				end
-				n:EmitSound("Ability.SandKing_CausticFinale", m.victim:GetAbsOrigin())
-				self.enable = true
 			end
 		end,
 	}

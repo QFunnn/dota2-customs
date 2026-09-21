@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -85,7 +85,8 @@ function l.prototype.StartAttack(self, q)
 	local p = r.damage
 	local t = self:GetSpecialValueFor("passive_chance")
 	local u = false
-	if not s and self:PRD(t) then
+	if not s and GameRules:GetGameTime() >= (self.nextFireMasteryTime or 0) and self:PRD(t) then
+		self.nextFireMasteryTime = GameRules:GetGameTime() + 0.5
 		u = true
 	end
 	local v = n:GetAbsOrigin()
@@ -173,13 +174,18 @@ function l.prototype.StartSingleBallAttack(self, G)
 						n:Burning(X, self, S)
 					end
 				end)
-				local Y = ParticleManager:CreateParticle(
+				local Y = ParticleManager:CreateParticleWithCaster(
 					"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf",
 					PATTACH_CUSTOMORIGIN,
-					n
+					n,
+					n,
+					ParticleEffectLevel.Low
 				)
-				ParticleManager:SetParticleControl(Y, 0, o)
-				ParticleManager:SetParticleControl(Y, 1, Vector(R, 0, 0))
+				if Y ~= -1 then
+					ParticleManager:SetParticleControl(Y, 0, o)
+					ParticleManager:SetParticleControl(Y, 1, Vector(R, 0, 0))
+					ParticleManager:ReleaseParticleIndex(Y)
+				end
 				I:EmitSound("Hero_Phoenix.ProjectileImpact", o)
 			else
 				n:Attack(U, { bonusDamage = 0, flags = L, damageAmplify = M, damageType = self:GetDamageType() })

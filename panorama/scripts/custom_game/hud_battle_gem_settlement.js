@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -47,7 +47,8 @@ const REWARD_ITEM_STYLE = {
 };
 const EMPTY_RESOURCE_STATE = {
   essence: 0,
-  material: 0
+  material: 0,
+  chaosMaterial: 0
 };
 const EMPTY_PREVIEW_STATE = {
   total_action_chance: 0,
@@ -264,6 +265,9 @@ const GemSettlementHud = () => {
     }, {
       itemID: "120014",
       count: resources.material
+    }, {
+      itemID: "120016",
+      count: resources.chaosMaterial
     }];
   });
   const gemPreviewItems = libs.createMemo(() => {
@@ -279,7 +283,8 @@ const GemSettlementHud = () => {
             gem_item_id: reward.detail.gem_item_id,
             locked: false,
             level: 0,
-            rarity: reward.rarity
+            rarity: reward.rarity,
+            gem_roll_change: 0
           },
           embeddedGemData: reward.embeddedGemData
         });
@@ -301,11 +306,11 @@ const GemSettlementHud = () => {
     const preview = parsedPreview();
     const cell = preview?.grid[row]?.[column];
     print(`[BattleGemSettlement] BattleGemGridCell clicked row=${row} column=${column} gridType=${cell?.grid_type ?? "unknown"}`);
-    if (preview === undefined || !IsInsideBoard(preview.grid, row, column)) {
+    if (preview === undefined || cell === undefined || !IsInsideBoard(preview.grid, row, column)) {
       return;
     }
     const result = simulation();
-    if (result === undefined || !result.isValid || result.remainingActionChance <= 0) {
+    if (result === undefined || !result.isValid || !CanAffordCellAction(result, cell.grid_type)) {
       return;
     }
     const key = BuildCellKey(row, column);
@@ -727,11 +732,11 @@ const GemSettlementHud = () => {
                 return {
                   isCurrent: result.currentPosition.row === row && result.currentPosition.column === column,
                   isVisited,
-                  isReachable: !isVisited && result.remainingActionChance > 0 && (result.anyCellChance > 0 || IsNeighbor(result.currentPosition, {
+                  isReachable: !isVisited && CanAffordCellAction(result, cell.grid_type) && (result.anyCellChance > 0 || IsNeighbor(result.currentPosition, {
                     row,
                     column
                   })),
-                  isTeleportTarget: result.anyCellChance > 0 && !isVisited
+                  isTeleportTarget: result.anyCellChance > 0 && !isVisited && CanAffordCellAction(result, cell.grid_type)
                 };
               });
               const rarity = ResolveCellRarity(cell.grid_type);
@@ -1122,7 +1127,8 @@ function SimulateSettlement(preview, actions) {
       ...EMPTY_RESOURCE_STATE
     },
     gemRewards: [],
-    allGemRarityUp: false
+    allGemRarityUp: false,
+    gemRarityUp2Triggers: 0
   };
   const gemCounts = CloneGemCounts(preview.baseGemRewards);
   const perfectGems = [];
@@ -1136,6 +1142,11 @@ function SimulateSettlement(preview, actions) {
     if (!IsInsideBoard(preview.grid, action.row, action.column)) {
       result.isValid = false;
       result.invalidReason = "action_out_of_range";
+      break;
+    }
+    if (!CanAffordCellAction(result, preview.grid[action.row][action.column].grid_type)) {
+      result.isValid = false;
+      result.invalidReason = "cost_action_not_enough";
       break;
     }
     const actionKey = BuildCellKey(action.row, action.column);
@@ -1167,6 +1178,12 @@ function SimulateSettlement(preview, actions) {
   if (result.allGemRarityUp) {
     gemCounts[6] = (gemCounts[6] ?? 0) + (gemCounts[5] ?? 0);
     gemCounts[5] = 0;
+  }
+  for (let i = 0; i < result.gemRarityUp2Triggers; i++) {
+    if ((gemCounts[6] ?? 0) >= 4) {
+      gemCounts[6] -= 4;
+      gemCounts[7] = (gemCounts[7] ?? 0) + 1;
+    }
   }
   result.gemRewards = BuildGemRewardList(gemCounts, perfectGems);
   return result;
@@ -1255,12 +1272,28 @@ function ReceiveCellReward(preview, row, column, rate, totalActions, result, gem
     case "gem_rarity_5":
       gemCounts[5] = (gemCounts[5] ?? 0) + 1 * rate;
       return;
+    case "gem_rarity_7":
+      gemCounts[7] = (gemCounts[7] ?? 0) + 2 * rate;
+      return;
+    case "gem_per_cell_3":
+      gemCounts[7] = (gemCounts[7] ?? 0) + Math.floor(totalActions / 8) * rate;
+      return;
+    case "gem_rarity_up_2":
+      result.gemRarityUp2Triggers += rate;
+      return;
+    case "item_120016_1":
+      result.resources.chaosMaterial += 1 * rate;
+      return;
+    case "cost_action":
+      result.remainingActionChance -= 2 * rate;
+      gemCounts[7] = (gemCounts[7] ?? 0) + 2 * rate;
+      return;
     default:
       return;
   }
 }
 function PlayCellPickSound(gridType) {
-  if (gridType === "gem_rarity_up" || gridType === "gem_all_lvup") {
+  if (gridType === "gem_rarity_up" || gridType === "gem_rarity_up_2" || gridType === "gem_all_lvup") {
     Game.EmitSound("UI.Pick.GemUp");
     return;
   }
@@ -1272,7 +1305,7 @@ function PlayCellPickSound(gridType) {
     Game.EmitSound("UI.Pick.GemItem");
     return;
   }
-  if (gridType.startsWith("gem_rarity_") || gridType.startsWith("gem_per_cell_") || gridType === "full_gem_1") {
+  if (gridType.startsWith("gem_rarity_") || gridType.startsWith("gem_per_cell_") || gridType === "full_gem_1" || gridType === "cost_action") {
     Game.EmitSound("UI.Pick.Gem");
   }
 }
@@ -1353,6 +1386,13 @@ function BuildCellKey(row, column) {
 }
 function IsNeighbor(a, b) {
   return Math.abs(a.row - b.row) + Math.abs(a.column - b.column) === 1;
+}
+function CanAffordCellAction(result, gridType) {
+  if (gridType === "cost_action") {
+    const rate = result.doubleRewardsChance > 0 ? 2 : 1;
+    return result.remainingActionChance >= 1 + 2 * rate;
+  }
+  return result.remainingActionChance > 0;
 }
 function IsInsideBoard(grid, row, column) {
   return row >= 0 && row < grid.length && column >= 0 && column < (grid[row]?.length ?? 0);

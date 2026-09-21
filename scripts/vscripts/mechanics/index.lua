@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -34,6 +34,7 @@ if IsServer() then
 	require("mechanics.artifact_upgrade_choice")
 	require("mechanics.privilege_reward_choice")
 	require("mechanics.privilege")
+	require("mechanics.gem_suit_test")
 	require("mechanics.fishing")
 	require("mechanics.fish_item")
 	require("mechanics.courier_explore")

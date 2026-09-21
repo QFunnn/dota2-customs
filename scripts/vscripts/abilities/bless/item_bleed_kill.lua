@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -24,9 +24,10 @@ function j.prototype.EventListener(self)
 	return {
 		entity_killed = function(k, l)
 			if l.attacker == self:GetCaster() then
-				self:IncrementStackCount(1, true)
+				local m = GameModeManager:GetActiveModeId() == GameModeEnum.Abyssal and 2 or 1
+				self:IncrementStackCount(m, true)
 				self:StartThink(self:GetSpecialValueFor("duration"), DoUniqueString("item_bleed_kill"), function()
-					self:DecrementStackCount(1, true)
+					self:DecrementStackCount(m, true)
 					return -1
 				end)
 			end

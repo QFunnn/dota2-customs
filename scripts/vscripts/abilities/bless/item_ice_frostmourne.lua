@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -34,12 +34,16 @@ function k.prototype.EventListener(self)
 					EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE,
 					EOM_DAMAGE_FLAGS.FREEZE_DAMAGE
 				)
-				local p = ParticleManager:CreateParticle(
+				local p = ParticleManager:CreateParticleWithCaster(
 					"particles/units/benediction/ice_curse_blade.vpcf",
 					PATTACH_ABSORIGIN_FOLLOW,
-					m.target
+					m.target,
+					n,
+					ParticleEffectLevel.Low
 				)
-				ParticleManager:ReleaseParticleIndex(p)
+				if p ~= -1 then
+					ParticleManager:ReleaseParticleIndex(p)
+				end
 			end
 		end,
 	}

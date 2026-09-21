@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -362,21 +362,23 @@ if IsServer() then
 				self.__EventIDList = {}
 			end
 			for aa, ab in pairs(self:EventListener()) do
-				local ac = self.__EventIDList
-				ac[#ac + 1] = Event:RegisterForOwner(aa, ab, h)
+				local ac = self.GetEventRegisterOptions
+				local ad = ac and ac(self, aa)
+				local ae = self.__EventIDList
+				ae[#ae + 1] = Event:RegisterForOwner(aa, ab, h, nil, ad)
 			end
 		end
 		local o = self:GetAbilityName()
-		local ad = KeyValues.abilities[o]
-		if ad == nil then
-			ad = KeyValues.items[o]
+		local af = KeyValues.abilities[o]
+		if af == nil then
+			af = KeyValues.items[o]
 		end
-		local ae = ad
-		if ae ~= nil and ae.AbilityValues ~= nil and ae.AbilityValues ~= "" then
-			for af, ag in pairs(ae.AbilityValues) do
-				if c(af, "item_") then
-					local g = GetAbilityValues(ag, self:GetLevel(), h)
-					local B = d(af, 5)
+		local ag = af
+		if ag ~= nil and ag.AbilityValues ~= nil and ag.AbilityValues ~= "" then
+			for ah, ai in pairs(ag.AbilityValues) do
+				if c(ah, "item_") then
+					local g = GetAbilityValues(ai, self:GetLevel(), h)
+					local B = d(ah, 5)
 					if PROPERTY_MAP[B] ~= nil then
 						PropertySystem:AddStaticProperty(
 							h:entindex(),
@@ -413,8 +415,8 @@ if IsServer() then
 		end
 		if
 			IsServer()
-			and ae ~= nil
-			and Service:GetPlayerSetting(a8, "setting_switch_" .. tostring(ae.AbilityTag), false)
+			and ag ~= nil
+			and Service:GetPlayerSetting(a8, "setting_switch_" .. tostring(ag.AbilityTag), false)
 		then
 			self:ToggleAutoCast()
 		end
@@ -440,16 +442,16 @@ if IsServer() then
 			end
 		end
 		local o = self:GetAbilityName()
-		local ah = KeyValues.abilities[o]
-		if ah == nil then
-			ah = KeyValues.items[o]
+		local aj = KeyValues.abilities[o]
+		if aj == nil then
+			aj = KeyValues.items[o]
 		end
-		local ae = ah
-		if ae ~= nil and ae.AbilityValues ~= nil and ae.AbilityValues ~= "" then
-			for af, ag in pairs(ae.AbilityValues) do
-				if c(af, "item_") then
-					local g = GetAbilityValues(ag, self:GetLevel(), h)
-					local B = d(af, 5)
+		local ag = aj
+		if ag ~= nil and ag.AbilityValues ~= nil and ag.AbilityValues ~= "" then
+			for ah, ai in pairs(ag.AbilityValues) do
+				if c(ah, "item_") then
+					local g = GetAbilityValues(ai, self:GetLevel(), h)
+					local B = d(ah, 5)
 					if PROPERTY_MAP[B] ~= nil then
 						PropertySystem:AddStaticProperty(
 							h:entindex(),
@@ -471,8 +473,8 @@ if IsServer() then
 		PropertySystem:UnregisterDynamicProperty(h:entindex(), self:GetName() .. tostring(self:entindex()))
 		PropertySystem:ClearAbilityStaticProperties(self)
 		if self.__EventIDList ~= nil then
-			e(self.__EventIDList, function(N, ai)
-				Event:Unregister(ai)
+			e(self.__EventIDList, function(N, ak)
+				Event:Unregister(ak)
 			end)
 		end
 		self:DestroyParticles()
@@ -480,18 +482,18 @@ if IsServer() then
 	end
 	CDOTABaseAbility.OnDestroy = function(self) end
 	CDOTABaseAbility.IsAbilityReady = function(self)
-		local aj = self:GetCaster()
-		local ak = self:GetBehaviorInt()
-		if not IsValid(aj) then
+		local al = self:GetCaster()
+		local am = self:GetBehaviorInt()
+		if not IsValid(al) then
 			return false
 		end
 		if
-			not (aj:IsAlive() or bit.band(ak, DOTA_ABILITY_BEHAVIOR_UNRESTRICTED) == DOTA_ABILITY_BEHAVIOR_UNRESTRICTED)
+			not (al:IsAlive() or bit.band(am, DOTA_ABILITY_BEHAVIOR_UNRESTRICTED) == DOTA_ABILITY_BEHAVIOR_UNRESTRICTED)
 		then
 			return false
 		end
-		local al = aj:GetCurrentActiveAbility()
-		if IsValid(al) and al:IsInAbilityPhase() then
+		local an = al:GetCurrentActiveAbility()
+		if IsValid(an) and an:IsInAbilityPhase() then
 			return false
 		end
 		if self:GetLevel() <= 0 then
@@ -509,31 +511,31 @@ if IsServer() then
 		if not self:IsOwnersManaEnough() then
 			return false
 		end
-		if not self:IsOwnersGoldEnough(aj:GetPlayerOwnerID()) then
+		if not self:IsOwnersGoldEnough(al:GetPlayerOwnerID()) then
 			return false
 		end
-		if aj:IsHexed() or aj:IsCommandRestricted() then
+		if al:IsHexed() or al:IsCommandRestricted() then
 			return false
 		end
 		if
-			bit.band(ak, DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE) ~= DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
-			and aj:IsStunned()
+			bit.band(am, DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE) ~= DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
+			and al:IsStunned()
 		then
 			return false
 		end
-		if not self:IsItem() and not self:IsPassive() and aj:IsSilenced() then
+		if not self:IsItem() and not self:IsPassive() and al:IsSilenced() then
 			return false
 		end
-		if not self:IsItem() and self:IsPassive() and aj:PassivesDisabled() then
+		if not self:IsItem() and self:IsPassive() and al:PassivesDisabled() then
 			return false
 		end
-		if self:IsItem() and not self:IsPassive() and aj:IsMuted() then
+		if self:IsItem() and not self:IsPassive() and al:IsMuted() then
 			return false
 		end
 		if
-			bit.band(ak, DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL + DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
+			bit.band(am, DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL + DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
 				~= DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
-			and aj:IsChanneling()
+			and al:IsChanneling()
 		then
 			return false
 		end
@@ -563,40 +565,40 @@ if IsServer() then
 		end
 		return true
 	end
-	CDOTABaseAbility.ReduceCooldown = function(self, am)
-		local an = self:GetCooldownTimeRemaining()
+	CDOTABaseAbility.ReduceCooldown = function(self, ao)
+		local ap = self:GetCooldownTimeRemaining()
 		self:EndCooldown()
-		if an > am then
-			self:StartCooldown(an - am)
+		if ap > ao then
+			self:StartCooldown(ap - ao)
 		end
 		self:RefreshCharges()
 	end
 	CDOTABaseAbility.OnController = function(self, _, a0) end
 	CDOTABaseAbility.GetDamageType = function(self)
-		local ao = KeyValues.abilities[self:GetAbilityName()]
-		if ao ~= nil then
-			ao = ao.AbilityDamageType
+		local aq = KeyValues.abilities[self:GetAbilityName()]
+		if aq ~= nil then
+			aq = aq.AbilityDamageType
 		end
-		local ap = ao
-		if ap == nil then
-			ap = "DAMAGE_TYPE_NONE"
+		local ar = aq
+		if ar == nil then
+			ar = "DAMAGE_TYPE_NONE"
 		end
-		local aq = ap
-		return EOM_DAMAGE_TYPES[aq]
+		local as = ar
+		return EOM_DAMAGE_TYPES[as]
 	end
 	CDOTABaseAbility.UseCooldown = function(self)
 		self:UseResources(false, false, false, true)
 	end
 	CDOTABaseAbility.UseCharges = function(self)
 		if self.__Charge > 0 then
-			local ar = self:IsChargeCooldownFrozen()
-			local as = self.__ChargeFrozenCooldownRemaining or 0
+			local at = self:IsChargeCooldownFrozen()
+			local au = self.__ChargeFrozenCooldownRemaining or 0
 			self.__Charge = self.__Charge - 1
 			if self.__ChargeRestoreTime < GameRules:GetGameTime() then
 				self.__ChargeRestoreTime = GameRules:GetGameTime() + self:GetChargeRestoreTime()
 			end
-			if ar then
-				self.__ChargeFrozenCooldownRemaining = as > 0 and as
+			if at then
+				self.__ChargeFrozenCooldownRemaining = au > 0 and au
 					or math.max(0, self.__ChargeRestoreTime - GameRules:GetGameTime())
 			end
 			self:GetCaster():UpdateAbilityNetData()
@@ -604,11 +606,11 @@ if IsServer() then
 		end
 		return false
 	end
-	CDOTABaseAbility.RestoreCharges = function(self, at)
-		if at == nil then
-			at = 1
+	CDOTABaseAbility.RestoreCharges = function(self, av)
+		if av == nil then
+			av = 1
 		end
-		self.__Charge = math.min(self.__Charge + at, self:GetMaxCharges())
+		self.__Charge = math.min(self.__Charge + av, self:GetMaxCharges())
 		if self.__Charge < self:GetMaxCharges() then
 			self.__ChargeRestoreTime = GameRules:GetGameTime() + self:GetChargeRestoreTime()
 		else
@@ -624,85 +626,85 @@ if IsServer() then
 	CDOTABaseAbility.GetSupportCastPoint = function(self)
 		local h = self:GetCaster()
 		local a8 = h:GetPlayerOwnerID()
-		local au = Service:GetPlayerSetting(a8, "aim_mode", 2)
+		local aw = Service:GetPlayerSetting(a8, "aim_mode", 2)
 		local _ = self:GetCursorPosition()
-		if au == 3 then
+		if aw == 3 then
 			return _
-		elseif au == 2 then
-			local av = Service:GetPlayerSetting(a8, "Setting_aim_distance", 300)
-			local aw = FindUnitsInRadius(
+		elseif aw == 2 then
+			local ax = Service:GetPlayerSetting(a8, "Setting_aim_distance", 300)
+			local ay = FindUnitsInRadius(
 				h:GetTeamNumber(),
 				_,
 				nil,
-				av,
+				ax,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
 				DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
 				DOTA_UNIT_TARGET_FLAG_NONE,
 				FIND_CLOSEST,
 				false
 			)
-			if aw[1] then
-				return aw[1]:GetAbsOrigin()
+			if ay[1] then
+				return ay[1]:GetAbsOrigin()
 			end
 		end
 		return _
 	end
 end
 if IsServer() then
-	CDOTABaseAbility.LockFacingTarget = function(self, ax, ay, T)
-		if ay == nil then
-			ay = 1
+	CDOTABaseAbility.LockFacingTarget = function(self, az, aA, T)
+		if aA == nil then
+			aA = 1
 		end
 		local h = self:GetCaster()
-		if not IsValid(h) or not IsValid(ax) then
+		if not IsValid(h) or not IsValid(az) then
 			return
 		end
-		local az = T or self:GetCastPoint()
-		local aA = az >= 0 and GameRules:GetGameTime() + az or -1
-		local aB = h:GetLocalAngles().y
+		local aB = T or self:GetCastPoint()
+		local aC = aB >= 0 and GameRules:GetGameTime() + aB or -1
+		local aD = h:GetLocalAngles().y
 		self:StartThink(0, "LockFacingTarget", function()
-			if not IsValid(self) or not IsValid(h) or not IsValid(ax) or not h:IsAlive() or not ax:IsAlive() then
+			if not IsValid(self) or not IsValid(h) or not IsValid(az) or not h:IsAlive() or not az:IsAlive() then
 				return -1
 			end
-			local aC = CalcDirection2D(ax:GetAbsOrigin(), h)
-			local aD = VectorToAngles(aC).y
-			local aE = AngleDiff(aD, aB)
-			local aF = ay * FrameTime()
-			local aG = math.max(-aF, math.min(aF, aE))
-			local aH = aB + aG
-			if math.abs(aE) <= aF then
-				aH = aD
+			local aE = CalcDirection2D(az:GetAbsOrigin(), h)
+			local aF = VectorToAngles(aE).y
+			local aG = AngleDiff(aF, aD)
+			local aH = aA * FrameTime()
+			local aI = math.max(-aH, math.min(aH, aG))
+			local aJ = aD + aI
+			if math.abs(aG) <= aH then
+				aJ = aF
 			end
-			h:SetLocalAngles(0, aH, 0)
+			h:SetLocalAngles(0, aJ, 0)
 			h:SetForwardVector(AnglesToVector(h:GetLocalAngles()))
 			h:FaceTowards(h:GetAbsOrigin() + h:GetForwardVector())
-			aB = aH
-			if aA >= 0 and GameRules:GetGameTime() >= aA then
+			aD = aJ
+			if aC >= 0 and GameRules:GetGameTime() >= aC then
 				return -1
 			end
 			return 0
 		end)
 	end
-	CDOTABaseAbility.FacingSupport = function(self, P, ax, ay, aI, T, aJ)
-		if ay == nil then
-			ay = 1
+	CDOTABaseAbility.FacingSupport = function(self, P, az, aA, aK, T, aL)
+		if aA == nil then
+			aA = 1
 		end
 		local h = self:GetCaster()
-		local aK = CreateModifierThinker(
+		local aM = CreateModifierThinker(
 			h,
 			self,
 			"modifier_tracing_support",
 			{
 				duration = T or self:GetCastPoint(),
-				entindex = ax:entindex(),
-				flowAngle = aJ or 0,
-				turnRate = ay,
-				distance = aI or self:GetCastRange(vec3_zero, nil),
+				entindex = az:entindex(),
+				flowAngle = aL or 0,
+				turnRate = aA,
+				distance = aK or self:GetCastRange(vec3_zero, nil),
 			},
 			P,
 			h:GetTeamNumber(),
 			false
 		)
-		return aK
+		return aM
 	end
 end

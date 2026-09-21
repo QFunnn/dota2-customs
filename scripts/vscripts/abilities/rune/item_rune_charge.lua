@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -124,17 +124,6 @@ function z.prototype.OnRefresh(self, A)
 		end
 		local E = D or 0
 		self:SetStackCount(math.min(self:GetStackCount() + E, self.charge_max))
-	end
-end
-function z.prototype.OnStackCountChanged(self, F)
-	if IsServer() then
-		print(
-			string.format(
-				"[modifier_rune_charge] Stack count changed: stackCountOld=%d, stackCountNew=%d",
-				F,
-				self:GetStackCount()
-			)
-		)
 	end
 end
 f({ l(nil) }, z.prototype, "charge_max", nil)

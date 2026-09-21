@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -1393,6 +1393,74 @@ GameUI.CustomUIConfig().privilege = {
 			"skill_damage": 15
 		}
 	},
+	"privilege_weapon_042": {
+		"Note": "任何途径触发的投掷飞镖有%double_cast_prob%%概率触发双重施法，连续释放2次投掷飞镖",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"desc_key": "vespera_1_upgrade_wp42"
+		}
+	},
+	"privilege_weapon_043": {
+		"Note": "每移动%auto_cast1_move_dist%距离，自动朝前方释放一次特技",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"desc_key": "vexis_1_upgrade_wp43"
+		}
+	},
+	"privilege_weapon_044": {
+		"Note": "烈火罩期间造成的魔法伤害倍增%attr_magic_damage_pct%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"desc_key": "solthra_3_upgrade_wp44"
+		}
+	},
+	"privilege_weapon_045": {
+		"Note": "天槌圣槌坠地时将%pull_radius%范围内所有敌人吸附到圣槌附件并施加孱弱，使敌人受到的所有伤害提高%hurt_damage_pct%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"desc_key": "seraphon_1_upgrade_wp45"
+		}
+	},
+	"privilege_weapon_046": {
+		"Note": "每经过一个非遭遇战房间，提升%ability_damage_pct%%技能伤害，每局游戏最多触发%trig_count_max%次",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"ability_damage_pct": 10,
+			"trig_count_max": 6
+		}
+	},
+	"privilege_weapon_047": {
+		"Note": "每经过一个非遭遇战房间，提升%attack_damage_pct%%攻击伤害，每局游戏最多触发%trig_count_max%次",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"attack_damage_pct": 10,
+			"trig_count_max": 6
+		}
+	},
+	"privilege_weapon_048": {
+		"Note": "每经过一个非遭遇战房间，获得%extra_gold%金币，每局游戏最多触发%trig_count_max%次",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"extra_gold": 100,
+			"trig_count_max": 6
+		}
+	},
+	"privilege_weapon_049": {
+		"Note": "每经过一个非遭遇战房间，提升%hp_pct%%最大生命，每局游戏最多触发%trig_count_max%次",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"hp_pct": 5,
+			"trig_count_max": 6
+		}
+	},
 	"privilege_bless_001": {
 		"Note": "每日BOSS双倍奖励免费开启%free_count%次",
 		"CombatPowerFactor": 0.002,
@@ -1930,6 +1998,251 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0
+	},
+	"privilege_gem_suit_001": {
+		"Note": "物理伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 5.25,
+				"extra_level_growth": "1.75 1.75 1.75 1.75 1.75"
+			}
+		}
+	},
+	"privilege_gem_suit_002": {
+		"Note": "释放<Dodge:冲刺/>后%duration%秒内物理伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_003": {
+		"Note": "释放<Dodge:冲刺/>后%duration%秒内魔法伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_004": {
+		"Note": "【猎手】与【狂暴】的Lv都达到16后，获得物理伤害倍增%value%%[x]",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 9,
+				"extra_level_growth": "0.55 0.55 0.55 0.55 0.55"
+			}
+		}
+	},
+	"privilege_gem_suit_005": {
+		"Note": "近战伤害增幅+%value%%，受到伤害+%incoming_damage%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 8.75,
+				"extra_level_growth": "1.75 1.75 1.75 1.75 1.75"
+			},
+			"incoming_damage": {
+				"value": 5,
+				"extra_level_growth": "0.2 0.2 0.2 0.2 0.2"
+			}
+		}
+	},
+	"privilege_gem_suit_006": {
+		"Note": "每%hit_count%次攻击获得%duration%秒迅锋：攻击速度+%attack_speed%，特技伤害增幅+%skill_damage%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"hit_count": 5,
+			"duration": 5,
+			"attack_speed": {
+				"value": 5,
+				"extra_level_growth": "1 1 1 1 1"
+			},
+			"skill_damage": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_007": {
+		"Note": "未受到伤害%delay%秒时，散射伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"delay": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_008": {
+		"Note": "未受到伤害%delay%秒时，技能伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"delay": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_009": {
+		"Note": "攻击+%value%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 1,
+				"extra_level_growth": "1 1 1 1 1"
+			}
+		}
+	},
+	"privilege_gem_suit_010": {
+		"Note": "魔法伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 5.25,
+				"extra_level_growth": "1.75 1.75 1.75 1.75 1.75"
+			}
+		}
+	},
+	"privilege_gem_suit_011": {
+		"Note": "释放<Ultimate:绝招/>后%duration%秒内，物理伤害增幅和魔法伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_012": {
+		"Note": "散射伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			},
+			"movespeed_reduction": {
+				"value": 0,
+				"extra_level_growth": 0
+			}
+		}
+	},
+	"privilege_gem_suit_013": {
+		"Note": "释放任意技能获得1层蓄势：绝招伤害增幅+%value%%，独立持续%duration%秒，最多%stack_limit%层",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"stack_limit": 3,
+			"value": {
+				"value": 5.25,
+				"extra_level_growth": "1.75 1.75 1.75 1.75 1.75"
+			}
+		}
+	},
+	"privilege_gem_suit_014": {
+		"Note": "释放<Defense:防御/>后%duration%秒内特技伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_015": {
+		"Note": "%radius%范围内没有敌人时，远程伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"radius": 300,
+			"interval": 0.1,
+			"value": {
+				"value": 8.75,
+				"extra_level_growth": "1.75 1.75 1.75 1.75 1.75"
+			}
+		}
+	},
+	"privilege_gem_suit_016": {
+		"Note": "伤害减免+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 5,
+				"extra_level_growth": "0.5 0.5 0.5 0.5 0.5"
+			}
+		}
+	},
+	"privilege_gem_suit_017": {
+		"Note": "释放<Defense:防御/>后%duration%秒内技能伤害增幅+%value%%",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"duration": 5,
+			"value": {
+				"value": 7,
+				"extra_level_growth": "3.5 3.5 3.5 3.5 3.5"
+			}
+		}
+	},
+	"privilege_gem_suit_018": {
+		"Note": "【施法】与【神圣】的Lv都达到16后，获得魔法伤害倍增%value%%[x]",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 9,
+				"extra_level_growth": "0.55 0.55 0.55 0.55 0.55"
+			}
+		}
+	},
+	"privilege_gem_suit_019": {
+		"Note": "【猎手】与【施法】的Lv都达到16后，获得技能伤害倍增%value%%[x]",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 9,
+				"extra_level_growth": "0.55 0.55 0.55 0.55 0.55"
+			}
+		}
+	},
+	"privilege_gem_suit_020": {
+		"Note": "【狂暴】与【神圣】的Lv都达到16后，获得特技伤害倍增%value%%[x]",
+		"IsGlobal": 0,
+		"IsStackable": 0,
+		"AbilityValues": {
+			"value": {
+				"value": 9,
+				"extra_level_growth": "0.55 0.55 0.55 0.55 0.55"
+			}
+		}
 	},
 	"privilege_cosmetic_001": {
 		"Note": "开局自选一个技能升级效果",

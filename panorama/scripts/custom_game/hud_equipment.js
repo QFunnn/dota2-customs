@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -16,6 +16,7 @@ var EOM_CheckBox = require('./EOM_CheckBox.js');
 var EOM_DropDown = require('./EOM_DropDown.js');
 var EOM_MultiDropDown = require('./EOM_MultiDropDown.js');
 var EOM_TextEntry = require('./EOM_TextEntry.js');
+var EOM_Popup = require('./EOM_Popup.js');
 var EOM_MenuLayout = require('./EOM_MenuLayout.js');
 var hero_level_main = require('./hero_level_main.js');
 var hero_selection_bar = require('./hero_selection_bar.js');
@@ -4362,6 +4363,31 @@ const InlayWindow = props => {
                                       type: "Adverb"
                                     });
                                   }
+                                }), libs.createComponent(libs.Index, {
+                                  get each() {
+                                    return selectedInlayGem().chaos_entry_data ?? [];
+                                  },
+                                  children: data => data().id.startsWith("privilege_gem_suit_") ? libs.createComponent(equip_details.GemSpecialEffectRow, {
+                                    get data() {
+                                      return data();
+                                    }
+                                  }) : (() => {
+                                    const _el$48 = libs.createElement("Panel", {
+                                        "class": "ChaosEntry"
+                                      }, null);
+                                      libs.createElement("Panel", {
+                                        id: "Point"
+                                      }, _el$48);
+                                      const _el$50 = libs.createElement("Label", {
+                                        id: "EntryText",
+                                        get text() {
+                                          return equipment_utils.GetChaosRowInfo(data());
+                                        },
+                                        html: true
+                                      }, _el$48);
+                                    libs.effect(_$p => libs.setProp(_el$50, "text", equipment_utils.GetChaosRowInfo(data()), _$p));
+                                    return _el$48;
+                                  })()
                                 })];
                               }
                             }), null);
@@ -4433,11 +4459,11 @@ const InlayWindow = props => {
                               children: data => {
                                 const entryKv = KeyValues.equip_entry[data().id];
                                 return (() => {
-                                  const _el$48 = libs.createElement("Panel", {
+                                  const _el$51 = libs.createElement("Panel", {
                                       "class": "MythEntry"
                                     }, null);
-                                    libs.createElement("Image", {}, _el$48);
-                                    const _el$50 = libs.createElement("Label", {
+                                    libs.createElement("Image", {}, _el$51);
+                                    const _el$53 = libs.createElement("Label", {
                                       get text() {
                                         return GetPrivilegeDesc(data().id, 1, {
                                           value: data().value,
@@ -4446,36 +4472,39 @@ const InlayWindow = props => {
                                         });
                                       },
                                       html: true
-                                    }, _el$48);
-                                  libs.effect(_$p => libs.setProp(_el$50, "text", GetPrivilegeDesc(data().id, 1, {
+                                    }, _el$51);
+                                  libs.effect(_$p => libs.setProp(_el$53, "text", GetPrivilegeDesc(data().id, 1, {
                                     value: data().value,
                                     min: entryKv.value_min,
                                     max: entryKv.value_max
                                   }), _$p));
-                                  return _el$48;
+                                  return _el$51;
                                 })();
                               }
                             }), libs.createComponent(libs.Index, {
                               get each() {
                                 return gemData()?.chaos_entry_data ?? [];
                               },
-                              children: data => (() => {
-                                const _el$51 = libs.createElement("Panel", {
-                                    "class": `ChaosEntry`
+                              children: data => data().id.startsWith("privilege_gem_suit_") ? libs.createComponent(equip_details.GemSpecialEffectRow, {
+                                get data() {
+                                  return data();
+                                }
+                              }) : (() => {
+                                const _el$54 = libs.createElement("Panel", {
+                                    "class": "ChaosEntry"
                                   }, null);
                                   libs.createElement("Panel", {
                                     id: "Point"
-                                  }, _el$51);
-                                  const _el$53 = libs.createElement("Label", {
+                                  }, _el$54);
+                                  const _el$56 = libs.createElement("Label", {
                                     id: "EntryText",
                                     get text() {
                                       return equipment_utils.GetChaosRowInfo(data());
                                     },
                                     html: true
-                                  }, _el$51);
-                                libs.setProp(_el$51, "class", `ChaosEntry`);
-                                libs.effect(_$p => libs.setProp(_el$53, "text", equipment_utils.GetChaosRowInfo(data()), _$p));
-                                return _el$51;
+                                  }, _el$54);
+                                libs.effect(_$p => libs.setProp(_el$56, "text", equipment_utils.GetChaosRowInfo(data()), _$p));
+                                return _el$54;
                               })()
                             })];
                           }
@@ -8254,6 +8283,398 @@ const GemLevelvpWindow = props => {
   })();
 };
 
+function parseEntries(value) {
+  if (!value) return [];
+  if (typeof value === "string") return JSON.parseSafe(value) ?? [];
+  return Array.isArray(value) ? value : [];
+}
+function normalizeEmbeddedGem(value) {
+  if (!value?.gem_item_id) return undefined;
+  const config = KeyValues.info_item_gem[value.gem_item_id];
+  return {
+    ...value,
+    id: toFiniteNumber(value.id),
+    gem_item_id: toFiniteNumber(value.gem_item_id),
+    locked: value.locked === true || toFiniteNumber(value.locked) === 1,
+    level: toFiniteNumber(value.level),
+    gem_roll_change: toFiniteNumber(value.gem_roll_change),
+    rarity: toFiniteNumber(value.rarity, toFiniteNumber(config?.rarity)),
+    main_entry_data: parseEntries(value.main_entry_data),
+    adverb_entry_data: parseEntries(value.adverb_entry_data),
+    myth_entry_data: parseEntries(value.myth_entry_data),
+    chaos_entry_data: parseEntries(value.chaos_entry_data),
+    ability_entry_data: parseEntries(value.ability_entry_data)
+  };
+}
+const GemFusionWindow = props => {
+  const store = equipment_comp.useEquipmentStore();
+  const [selectedItemID] = store.selectedItemID;
+  const [, setSelectedItemTab] = store.selectedItemTab;
+  const [, setLockItemTab] = store.lockItemTab;
+  const [, setItemListIsHidden] = store.hiddenItemList;
+  const [selectedGemList, setSelectedGemList] = store.selectedGemList;
+  const [, setShowTokens] = store.showTokens;
+  const fusionResults = solid_utils.createServiceNetData("player_gem_fusion_results", {});
+  const [originalGem, setOriginalGem] = libs.createSignal();
+  const [responseFusionResult, setResponseFusionResult] = libs.createSignal();
+  const [submitting, setSubmitting] = libs.createSignal(false);
+  const [confirming, setConfirming] = libs.createSignal();
+  const pendingResult = libs.createMemo(() => {
+    const equipmentID = selectedItemID();
+    if (!equipmentID || props.confirmedEquipmentID() === equipmentID || props.itemData()?.in_check !== "gem_fusion") return undefined;
+    const result = fusionResults()[String(equipmentID)];
+    return result && result !== "nil" ? result : undefined;
+  });
+  const fusionResult = libs.createMemo(() => pendingResult() ?? responseFusionResult());
+  const fusionGem = libs.createMemo(() => {
+    const result = fusionResult();
+    if (!result) return undefined;
+    const consumedGemData = JSON.parseSafe(result.inlay_gem_data);
+    return normalizeEmbeddedGem({
+      ...(consumedGemData ?? {}),
+      id: result.consumed_gem_id
+    });
+  });
+  const materialGem = libs.createMemo(() => {
+    const data = props.gemData();
+    return data && data !== "undefined" && data.id === selectedGemList()[0] ? data : undefined;
+  });
+  const materialIsValid = libs.createMemo(() => {
+    const data = materialGem();
+    if (!data || data.locked) return false;
+    const rarity = toFiniteNumber(data.rarity, toFiniteNumber(KeyValues.info_item_gem[data.gem_item_id]?.rarity));
+    return rarity === 7;
+  });
+  const consumeList = libs.createMemo(() => {
+    const cost = KeyValues.gem_setting.gem_fusion?.value;
+    if (!cost) return [];
+    return cost.split("|").map(item => {
+      const [itemID, count] = item.split(":");
+      return {
+        itemID,
+        needCount: toFiniteNumber(count),
+        hasCount: GetServiceItemCount(itemID)
+      };
+    }).filter(item => item.needCount > 0);
+  });
+  const consumeEnough = libs.createMemo(() => consumeList().every(item => item.hasCount >= item.needCount));
+  const canSubmit = libs.createMemo(() => props.confirmedEquipmentID() !== selectedItemID() && props.itemData()?.in_check !== "gem_fusion" && materialIsValid() && consumeEnough() && !submitting());
+  const originalSpecialEntries = libs.createMemo(() => (originalGem()?.chaos_entry_data ?? []).filter(entry => entry.id.startsWith("privilege_gem_suit_")));
+  const fusionSpecialEntries = libs.createMemo(() => (fusionGem()?.chaos_entry_data ?? []).filter(entry => entry.id.startsWith("privilege_gem_suit_")));
+  libs.createEffect(() => {
+    libs.batch(() => {
+      setSelectedItemTab("gem");
+      setLockItemTab(true);
+      setItemListIsHidden(originalGem() != undefined && fusionGem() != undefined);
+      setShowTokens(consumeList().map(item => toFiniteNumber(item.itemID)));
+    });
+  });
+  libs.createEffect(() => {
+    const equipment = props.itemData();
+    const result = pendingResult();
+    if (equipment?.in_check !== "gem_fusion" || !result) return;
+    const slotIndex = toFiniteNumber(result.slot_index, -1);
+    if (slotIndex < 0) return;
+    const gem = normalizeEmbeddedGem(parseEntries(equipment.inlay_gems_data)[slotIndex]);
+    if (!gem || !fusionGem()) return;
+    libs.batch(() => {
+      props.setSelectGemSlot(slotIndex);
+      setOriginalGem(gem);
+      setSelectedGemList([]);
+      setItemListIsHidden(true);
+    });
+  });
+  libs.createEffect(libs.on(props.selectGemSlot, () => {
+    if (props.itemData()?.in_check === "gem_fusion") return;
+    libs.batch(() => {
+      setResponseFusionResult();
+      setOriginalGem();
+      setSelectedGemList([]);
+      setItemListIsHidden(false);
+    });
+  }, {
+    defer: true
+  }));
+  const confirmFusion = confirm => {
+    const equipmentID = selectedItemID();
+    if (!equipmentID || confirming() != undefined) return;
+    setConfirming(confirm);
+    CallActionRequest("/v1/gem/fusion_confirm", {
+      equipment_id: equipmentID,
+      confirm
+    }, result => {
+      setConfirming();
+      if (result.code !== 0 && result.code !== 200) {
+        ErrorMessage(result.message ? GetLocalization(result.message, result.message) : GetLocalization("#Equipment_GemFusion_ConfirmFailed"));
+        return;
+      }
+      libs.batch(() => {
+        props.onConfirmed(equipmentID);
+        setResponseFusionResult();
+        setOriginalGem();
+        setSelectedGemList([]);
+        setItemListIsHidden(false);
+      });
+    }, () => {
+      setConfirming();
+      ErrorMessage(GetLocalization("#Equipment_GemFusion_Timeout"));
+    });
+  };
+  const submit = async () => {
+    const equipmentID = selectedItemID();
+    const material = materialGem();
+    if (!equipmentID || !material || !canSubmit()) return;
+    const slotIndex = props.selectGemSlot();
+    let nextOriginalGem;
+    let nextFusionResult;
+    setResponseFusionResult();
+    setSubmitting(true);
+    const request = () => new Promise(resolve => {
+      CallActionRequest("/v1/gem/fusion", {
+        equipment_id: equipmentID,
+        slot_index: slotIndex,
+        gem_id: material.id
+      }, result => {
+        if (result.code !== 0 && result.code !== 200) {
+          ErrorMessage(result.message ? GetLocalization(result.message, result.message) : GetLocalization("#Equipment_GemFusion_RequestFailed"));
+          resolve();
+          return;
+        }
+        const updatedEquipment = result.data?.player_equipments?.find(equipment => toFiniteNumber(equipment.id) === equipmentID);
+        const slots = parseEntries(updatedEquipment?.inlay_gems_data);
+        nextOriginalGem = normalizeEmbeddedGem(slots[slotIndex]);
+        nextFusionResult = result.data?.player_gem_fusion_results?.find(item => toFiniteNumber(item.id) === equipmentID && toFiniteNumber(item.slot_index) === slotIndex);
+        if (!nextOriginalGem || !nextFusionResult) {
+          ErrorMessage(GetLocalization("#Equipment_GemFusion_ResultMissing"));
+        }
+        resolve();
+      }, () => {
+        ErrorMessage(GetLocalization("#Equipment_GemFusion_Timeout"));
+        resolve();
+      });
+    });
+    try {
+      if (props.startForgeAnimation) {
+        await props.startForgeAnimation(request);
+      } else {
+        await request();
+      }
+      if (nextOriginalGem && nextFusionResult) {
+        libs.batch(() => {
+          setResponseFusionResult(nextFusionResult);
+          setOriginalGem(nextOriginalGem);
+          setSelectedGemList([]);
+          setItemListIsHidden(true);
+        });
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+  libs.createEffect(() => {
+    const hasResult = originalGem() != undefined && fusionGem() != undefined;
+    props.setLeftExtraContent?.((() => {
+      const _el$ = libs.createElement("Panel", {
+        id: "OperationBtns",
+        "class": "GemFusionOperationBtns"
+      }, null);
+      libs.insert(_el$, libs.createComponent(EOM_Button.EOM_Button, {
+        id: "ReturnBtn",
+        get text() {
+          return GetLocalization("#MenuButton_Return");
+        },
+        onactivate: () => props.onReturn?.()
+      }), null);
+      libs.insert(_el$, libs.createComponent(libs.Show, {
+        when: !hasResult,
+        get children() {
+          const _el$2 = libs.createElement("Panel", {
+              id: "ConsumeBtn",
+              flowChildren: "down"
+            }, null),
+            _el$3 = libs.createElement("Panel", {
+              horizontalAlign: "center",
+              flowChildren: "right"
+            }, _el$2);
+          libs.setProp(_el$2, "flowChildren", "down");
+          libs.setProp(_el$3, "horizontalAlign", "center");
+          libs.setProp(_el$3, "flowChildren", "right");
+          libs.insert(_el$3, libs.createComponent(libs.For, {
+            get each() {
+              return consumeList();
+            },
+            children: consume => (() => {
+              const _el$4 = libs.createElement("Panel", {
+                  get ["class"]() {
+                    return libs.classNames("ComsumeItem", {
+                      Enough: consume.hasCount >= consume.needCount
+                    });
+                  }
+                }, null),
+                _el$5 = libs.createElement("Label", {
+                  get text() {
+                    return `X${consume.needCount}`;
+                  }
+                }, _el$4);
+              libs.insert(_el$4, libs.createComponent(StoreItem.StoreItemImage, {
+                get itemid() {
+                  return consume.itemID;
+                }
+              }), _el$5);
+              libs.effect(_p$ => {
+                const _v$ = libs.classNames("ComsumeItem", {
+                    Enough: consume.hasCount >= consume.needCount
+                  }),
+                  _v$2 = `X${consume.needCount}`;
+                _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$4, "class", _v$, _p$._v$));
+                _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$5, "text", _v$2, _p$._v$2));
+                return _p$;
+              }, {
+                _v$: undefined,
+                _v$2: undefined
+              });
+              return _el$4;
+            })()
+          }));
+          libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_Button, {
+            get enabled() {
+              return canSubmit();
+            },
+            get loading() {
+              return submitting();
+            },
+            color: "Confirm",
+            get text() {
+              return GetLocalization("#Equipment_GemFusion_Do");
+            },
+            onmouseover: panel => {
+              if (!materialIsValid()) {
+                ShowCustomTooltip(panel, "text", {
+                  text: GetLocalization("#Equipment_GemFusion_SelectMaterial")
+                });
+              } else if (!consumeEnough()) {
+                ShowCustomTooltip(panel, "text", {
+                  text: GetLocalization("#Equipment_GemFusion_MaterialNotEnough")
+                });
+              }
+            },
+            onmouseout: panel => HideCustomTooltip(panel, "text"),
+            onactivate: submit
+          }), null);
+          return _el$2;
+        }
+      }), null);
+      return _el$;
+    })());
+  });
+  return (() => {
+    const _el$6 = libs.createElement("Panel", {
+        id: "GemFusionPanel"
+      }, null),
+      _el$7 = libs.createElement("Label", {
+        "class": "WindowTitle",
+        get text() {
+          return GetLocalization(originalGem() && fusionGem() ? "#Equipment_GemFusion_CompareTitle" : "#Equipment_Fusion");
+        }
+      }, _el$6);
+    libs.insert(_el$6, libs.createComponent(libs.Show, {
+      get when() {
+        return libs.memo(() => !!originalGem())() && fusionGem();
+      },
+      keyed: true,
+      children: () => (() => {
+        const _el$8 = libs.createElement("Panel", {
+            id: "GemFusionResultContent"
+          }, null),
+          _el$9 = libs.createElement("Panel", {
+            "class": "GemFusionAttributeSection OriginalAttributes"
+          }, _el$8),
+          _el$0 = libs.createElement("Panel", {
+            "class": "SectionHeader"
+          }, _el$9),
+          _el$1 = libs.createElement("Label", {
+            "class": "SectionTitle",
+            get text() {
+              return GetLocalization("#Equipment_GemFusion_OriginalAttributes");
+            }
+          }, _el$0),
+          _el$10 = libs.createElement("Panel", {
+            "class": "GemFusionSpecialEntries VerticalScrollStyle"
+          }, _el$9),
+          _el$11 = libs.createElement("Panel", {
+            "class": "GemFusionAttributeSection FusionResultAttributes"
+          }, _el$8),
+          _el$12 = libs.createElement("Panel", {
+            "class": "SectionHeader"
+          }, _el$11),
+          _el$13 = libs.createElement("Label", {
+            "class": "SectionTitle",
+            get text() {
+              return GetLocalization("#Equipment_GemFusion_ResultTitle");
+            }
+          }, _el$12),
+          _el$14 = libs.createElement("Panel", {
+            "class": "GemFusionSpecialEntries VerticalScrollStyle"
+          }, _el$11);
+        libs.insert(_el$0, libs.createComponent(EOM_Button.EOM_Button, {
+          get enabled() {
+            return confirming() == undefined;
+          },
+          get loading() {
+            return confirming() === false;
+          },
+          get text() {
+            return GetLocalization("#Equipment_GemFusion_RestoreAttributes");
+          },
+          onactivate: () => confirmFusion(false)
+        }), null);
+        libs.insert(_el$10, libs.createComponent(libs.For, {
+          get each() {
+            return originalSpecialEntries();
+          },
+          children: entry => libs.createComponent(equip_details.GemSpecialEffectRow, {
+            data: entry
+          })
+        }));
+        libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_Button, {
+          get enabled() {
+            return confirming() == undefined;
+          },
+          get loading() {
+            return confirming() === true;
+          },
+          color: "Confirm",
+          get text() {
+            return GetLocalization("#Equipment_GemFusion_SaveAttributes");
+          },
+          onactivate: () => confirmFusion(true)
+        }), null);
+        libs.insert(_el$14, libs.createComponent(libs.For, {
+          get each() {
+            return fusionSpecialEntries();
+          },
+          children: entry => libs.createComponent(equip_details.GemSpecialEffectRow, {
+            data: entry
+          })
+        }));
+        libs.effect(_p$ => {
+          const _v$3 = GetLocalization("#Equipment_GemFusion_OriginalAttributes"),
+            _v$4 = GetLocalization("#Equipment_GemFusion_ResultTitle");
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$1, "text", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$13, "text", _v$4, _p$._v$4));
+          return _p$;
+        }, {
+          _v$3: undefined,
+          _v$4: undefined
+        });
+        return _el$8;
+      })()
+    }), null);
+    libs.effect(_$p => libs.setProp(_el$7, "text", GetLocalization(originalGem() && fusionGem() ? "#Equipment_GemFusion_CompareTitle" : "#Equipment_Fusion"), _$p));
+    return _el$6;
+  })();
+};
+
 const GemMakePreviewItem = props => (() => {
   const _el$ = libs.createElement("Panel", {
       get ["class"]() {
@@ -8560,6 +8981,29 @@ const GemMakeWindow = props => {
             return GetLocalization("#Equipment_GemMake_RandomEntry");
           },
           value: "??%"
+        }), libs.createComponent(libs.For, {
+          get each() {
+            return gemData()?.chaos_entry_data ?? [];
+          },
+          children: entry => entry.id.startsWith("privilege_gem_suit_") ? libs.createComponent(equip_details.GemSpecialEffectRow, {
+            data: entry
+          }) : (() => {
+            const _el$15 = libs.createElement("Panel", {
+                "class": "ChaosEntry"
+              }, null);
+              libs.createElement("Panel", {
+                id: "Point"
+              }, _el$15);
+              const _el$17 = libs.createElement("Label", {
+                id: "EntryText",
+                get text() {
+                  return equipment_utils.GetChaosRowInfo(entry);
+                },
+                html: true
+              }, _el$15);
+            libs.effect(_$p => libs.setProp(_el$17, "text", equipment_utils.GetChaosRowInfo(entry), _$p));
+            return _el$15;
+          })()
         })];
       }
     }), null);
@@ -8606,7 +9050,8 @@ const EQUIP_PART_ICON = {
 };
 const GEM_RARITY_ICON = {
   5: "icon_zb_10.png",
-  6: "icon_zb_11.png"
+  6: "icon_zb_11.png",
+  7: "icon_zb_12.png"
 };
 const GEM_MAIN_ENTRY_POOLS = new Set(Object.values(KeyValues.info_item_gem).map(gem => gem.main_entry_pool));
 const GEM_SUB_ENTRY_POOLS = new Set(Object.values(KeyValues.info_item_gem).map(gem => gem.adverb_entry_pool));
@@ -8664,9 +9109,23 @@ function getRarityUpgradeRange(equipClass) {
     max
   };
 }
+const getEquipmentGemSlots = data => {
+  if (!data?.inlay_gems_data) return [];
+  const slots = JSON.parseSafe(data.inlay_gems_data);
+  return Array.isArray(slots) ? slots : [];
+};
+const isRarity7Gem = gem => {
+  if (!gem?.gem_item_id) return false;
+  return toFiniteNumber(gem.rarity, toFiniteNumber(KeyValues.info_item_gem[gem.gem_item_id]?.rarity)) === 7;
+};
+const getPendingForgeTab = data => {
+  if (data?.in_check === "recast_v2") return "Recast";
+  if (data?.in_check === "gem_fusion") return "Fusion";
+};
 const isEquipMeetCondition = (data, tabName) => {
-  if (data.in_check && data.in_check !== "") {
-    return tabName === "Recast";
+  const pendingForgeTab = getPendingForgeTab(data);
+  if (pendingForgeTab) {
+    return tabName === pendingForgeTab;
   }
   const equipClass = data.class;
   const equipRarity = data.rarity;
@@ -8686,13 +9145,10 @@ const isEquipMeetCondition = (data, tabName) => {
     return data.remaining_potential > 0 && raritySetting.entry_refine == 1;
   } else if (tabName == "Inlay") {
     return canEquipPunch(data.class, data.rarity);
+  } else if (tabName == "Fusion") {
+    return getEquipmentGemSlots(data).some(isRarity7Gem);
   }
   return true;
-};
-const getEquipmentGemSlots = data => {
-  if (!data?.inlay_gems_data) return [];
-  const slots = JSON.parseSafe(data.inlay_gems_data);
-  return Array.isArray(slots) ? slots : [];
 };
 const equipmentHasGemEffect = data => {
   return getEquipmentGemSlots(data).some(gem => gem?.gem_item_id != undefined);
@@ -8709,6 +9165,8 @@ const isGemMeetCondition = (data, tabName) => {
     return data.level < maxLevel;
   } else if (tabName == "GemMake") {
     return data.level === 0;
+  } else if (tabName == "Fusion") {
+    return data.rarity === 7 && !data.locked;
   }
   return true;
 };
@@ -8737,10 +9195,11 @@ function getRarityRangeText(range) {
   return range.min === range.max ? minName : `${minName}-${maxName}`;
 }
 const getEquipDisableReasons = (data, tabName) => {
-  if (data.in_check && data.in_check !== "") {
-    if (tabName !== "Recast") {
+  const pendingForgeTab = getPendingForgeTab(data);
+  if (pendingForgeTab) {
+    if (tabName !== pendingForgeTab) {
       return [{
-        key: "#Equipment_TextTips_InCheck"
+        key: pendingForgeTab === "Fusion" ? "#Equipment_GemFusion_PendingConfirm" : "#Equipment_TextTips_InCheck"
       }];
     }
   }
@@ -8844,6 +9303,10 @@ const getEquipDisableReasons = (data, tabName) => {
       return reasons;
     }
     return [];
+  } else if (tabName == "Fusion") {
+    return getEquipmentGemSlots(data).some(isRarity7Gem) ? [] : [{
+      key: "#Equipment_GemFusion_TargetRequired"
+    }];
   }
   return [];
 };
@@ -9296,6 +9759,51 @@ function EquipSlot() {
   const showEquipSlot = () => {
     return SHOW_EQUIPED_MENU[menuName()];
   };
+  const activeGemSuits = libs.createMemo(() => {
+    const heroID = selectHeroID();
+    const activeSuitID = player_heroes()[heroID]?.equip_suit;
+    const equipped = player_hero_equip_suit()[heroID]?.[activeSuitID];
+    if (!equipped) return [];
+    const levels = {};
+    const equipments = player_equipments();
+    for (const part of equipment_utils.EQUIP_PARTS) {
+      const equipment = equipments[equipped[part]];
+      if (!equipment?.inlay_gems_data) continue;
+      const gems = JSON.parseSafe(equipment.inlay_gems_data);
+      if (!Array.isArray(gems)) continue;
+      for (const gem of gems) {
+        const rawEntries = gem?.chaos_entry_data;
+        const entries = typeof rawEntries === "string" ? JSON.parseSafe(rawEntries) : rawEntries;
+        if (!Array.isArray(entries)) continue;
+        for (const entry of entries) {
+          if (!entry?.id) continue;
+          const config = KeyValues.gem_entry_suit[entry.id];
+          if (!config?.suit_icon) continue;
+          const entryLevel = Math.floor(toFiniteNumber(entry.value));
+          if (entryLevel <= 0) continue;
+          const suit = levels[config.suit_icon] ??= {
+            icon: config.suit_icon,
+            level: 0,
+            order: config.id,
+            effects: {}
+          };
+          suit.level += entryLevel;
+          suit.order = Math.min(suit.order, config.id);
+          suit.effects[entry.id] = (suit.effects[entry.id] ?? 0) + entryLevel;
+        }
+      }
+    }
+    return Object.values(levels).sort((a, b) => a.order - b.order);
+  });
+  const showGemSuitTooltip = (panel, suit) => {
+    ShowCustomTooltip(panel, "gem_suit", {
+      icon: suit.icon,
+      effects: JSON.stringify(Object.entries(suit.effects).map(([id, level]) => ({
+        id,
+        level
+      })))
+    });
+  };
   const equipmentPartDatas = solid_utils.createServiceNetData("player_equipment_part_datas", {});
   const gameState = solid_utils.createNetDataSignal("common", "game_state", {
     state: "GameState_Prepare",
@@ -9345,6 +9853,7 @@ function EquipSlot() {
     }
   });
   const [showOverviewAttr, setShowOverviewAttr] = libs.createSignal(false);
+  const [showGemSuitBook, setShowGemSuitBook] = libs.createSignal(false);
   const SlotItem = props => {
     const slotLevel = () => equipmentPartDatas()[props.part]?.level ?? 0;
     const equipID = () => {
@@ -9460,14 +9969,26 @@ function EquipSlot() {
         hittest: false
       }, null),
       _el$11 = libs.createElement("Panel", {
+        id: "GemSuit"
+      }, _el$10),
+      _el$13 = libs.createElement("Label", {
+        id: "GemSuitTitle",
+        get text() {
+          return GetLocalization("#Equipment_GemSuit_Title");
+        }
+      }, _el$11),
+      _el$14 = libs.createElement("Panel", {
+        id: "GemSuitList"
+      }, _el$11),
+      _el$15 = libs.createElement("Panel", {
         id: "SlotContainer",
         hittest: false
       }, _el$10);
       libs.createElement("Image", {
         id: "SlotRootBG",
         hittest: false
-      }, _el$11);
-      const _el$13 = libs.createElement("Panel", {
+      }, _el$15);
+      const _el$17 = libs.createElement("Panel", {
         id: "Slots",
         get ["class"]() {
           return libs.classNames({
@@ -9480,17 +10001,17 @@ function EquipSlot() {
         get hittestchildren() {
           return draggedSlot() == undefined;
         }
-      }, _el$11),
-      _el$14 = libs.createElement("Panel", {
+      }, _el$15),
+      _el$18 = libs.createElement("Panel", {
         flowChildren: "down"
-      }, _el$13),
-      _el$15 = libs.createElement("Panel", {
+      }, _el$17),
+      _el$19 = libs.createElement("Panel", {
         horizontalAlign: "right",
         flowChildren: "down"
-      }, _el$13),
-      _el$18 = libs.createElement("Panel", {
+      }, _el$17),
+      _el$22 = libs.createElement("Panel", {
         id: "BottomParticleRoot"
-      }, _el$11);
+      }, _el$15);
       libs.createElement("DOTAParticleScenePanel", {
         id: "BottomParticle",
         particleName: "particles/ui/game/ui_game_general_special_effects_05_fx.vpcf",
@@ -9499,21 +10020,21 @@ function EquipSlot() {
         lookAt: "0 0 0",
         hittest: false,
         squarePixels: true
-      }, _el$18);
-      const _el$20 = libs.createElement("Panel", {
+      }, _el$22);
+      const _el$24 = libs.createElement("Panel", {
         id: "EquipmentDropPanel"
-      }, _el$11);
+      }, _el$15);
       libs.createElement("Label", {
         text: "#Hud_Equipment_Drag_Here"
-      }, _el$20);
-      const _el$22 = libs.createElement("Panel", {
+      }, _el$24);
+      const _el$26 = libs.createElement("Panel", {
         id: "AttributesSummaryContainer",
         get ["class"]() {
           return libs.classNames({
             Show: showOverviewAttr() && draggedSlot() == undefined
           });
         }
-      }, _el$11);
+      }, _el$15);
     libs.insert(_el$10, libs.createComponent(solid_utils.DynamicKey, {
       key: () => suitDropDownData().key,
       children: () => libs.createComponent(EOM_DropDown.EOM_DropDown, {
@@ -9558,7 +10079,7 @@ function EquipSlot() {
             children: option => {
               if (option.type === "current") {
                 return (() => {
-                  const _el$23 = libs.createElement("Label", {
+                  const _el$27 = libs.createElement("Label", {
                     get vars() {
                       return {
                         value: option.suitID
@@ -9566,20 +10087,20 @@ function EquipSlot() {
                     },
                     text: "#EquipmentSuitType"
                   }, null);
-                  libs.effect(_$p => libs.setProp(_el$23, "vars", {
+                  libs.effect(_$p => libs.setProp(_el$27, "vars", {
                     value: option.suitID
                   }, _$p));
-                  return _el$23;
+                  return _el$27;
                 })();
               }
               return (() => {
-                const _el$24 = libs.createElement("Label", {
+                const _el$28 = libs.createElement("Label", {
                   get text() {
                     return option.label;
                   }
                 }, null);
-                libs.effect(_$p => libs.setProp(_el$24, "text", option.label, _$p));
-                return _el$24;
+                libs.effect(_$p => libs.setProp(_el$28, "text", option.label, _$p));
+                return _el$28;
               })();
             }
           });
@@ -9595,10 +10116,57 @@ function EquipSlot() {
       },
       onactivate: () => {
         setShowOverviewAttr(prev => !prev);
+        setShowGemSuitBook(false);
       }
     }), _el$11);
-    libs.setProp(_el$14, "flowChildren", "down");
+    libs.insert(_el$11, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      "class": "GemSuitBook",
+      onactivate: () => {
+        setShowGemSuitBook(prev => !prev);
+        setShowOverviewAttr(false);
+      },
+      get children() {
+        const _el$12 = libs.createElement("Label", {
+          get text() {
+            return GetLocalization("#Equipment_GemBook");
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$12, "text", GetLocalization("#Equipment_GemBook"), _$p));
+        return _el$12;
+      }
+    }), _el$13);
     libs.insert(_el$14, libs.createComponent(libs.For, {
+      get each() {
+        return activeGemSuits();
+      },
+      children: suit => (() => {
+        const _el$29 = libs.createElement("Panel", {
+            "class": "GemSuitItem",
+            hittestchildren: false
+          }, null),
+          _el$30 = libs.createElement("Label", {
+            "class": "GemSuitLevel",
+            get text() {
+              return LocalizeWithVars("#Equipment_GemSuit_Level", {
+                level: suit.level
+              });
+            }
+          }, _el$29);
+        libs.setProp(_el$29, "onmouseover", panel => showGemSuitTooltip(panel, suit));
+        libs.setProp(_el$29, "onmouseout", panel => HideCustomTooltip(panel, "gem_suit"));
+        libs.insert(_el$29, libs.createComponent(server_equipment.SuitIcon, {
+          get suitName() {
+            return suit.icon;
+          }
+        }), _el$30);
+        libs.effect(_$p => libs.setProp(_el$30, "text", LocalizeWithVars("#Equipment_GemSuit_Level", {
+          level: suit.level
+        }), _$p));
+        return _el$29;
+      })()
+    }));
+    libs.setProp(_el$18, "flowChildren", "down");
+    libs.insert(_el$18, libs.createComponent(libs.For, {
       each: [1, 7, 5, 3],
       children: part => {
         return libs.createComponent(SlotItem, {
@@ -9606,9 +10174,9 @@ function EquipSlot() {
         });
       }
     }));
-    libs.setProp(_el$15, "horizontalAlign", "right");
-    libs.setProp(_el$15, "flowChildren", "down");
-    libs.insert(_el$15, libs.createComponent(libs.For, {
+    libs.setProp(_el$19, "horizontalAlign", "right");
+    libs.setProp(_el$19, "flowChildren", "down");
+    libs.insert(_el$19, libs.createComponent(libs.For, {
       each: [2, 8, 6, 4],
       children: part => {
         return libs.createComponent(SlotItem, {
@@ -9616,21 +10184,21 @@ function EquipSlot() {
         });
       }
     }));
-    libs.insert(_el$11, libs.createComponent(libs.Show, {
+    libs.insert(_el$15, libs.createComponent(libs.Show, {
       get when() {
         return isBattleState();
       },
       get children() {
-        const _el$16 = libs.createElement("Panel", {
+        const _el$20 = libs.createElement("Panel", {
             id: "BattleTips"
           }, null);
           libs.createElement("Label", {
             text: "#Equipment_BattleTips"
-          }, _el$16);
-        return _el$16;
+          }, _el$20);
+        return _el$20;
       }
-    }), _el$18);
-    libs.insert(_el$11, libs.createComponent(solid_utils.DynamicKey, {
+    }), _el$22);
+    libs.insert(_el$15, libs.createComponent(solid_utils.DynamicKey, {
       key: previewHeroName,
       children: hero => libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
         id: "FullBodyPreview",
@@ -9638,30 +10206,30 @@ function EquipSlot() {
         hittest: false,
         hittestchildren: false
       })
-    }), _el$18);
-    libs.insert(_el$11, libs.createComponent(hero_selection_bar.HeroSelectionBar, {
+    }), _el$22);
+    libs.insert(_el$15, libs.createComponent(hero_selection_bar.HeroSelectionBar, {
       get selecteHeroName() {
         return previewHeroName();
       },
       onchange: (heroName, heroID) => {
         setPreviewHeroName(heroName);
       }
-    }), _el$20);
-    libs.setProp(_el$20, "onDragEnter", (pPanel, draggedPanel) => {
+    }), _el$24);
+    libs.setProp(_el$24, "onDragEnter", (pPanel, draggedPanel) => {
       if (LoadData(draggedPanel, "equip")) {
         pPanel.AddClass("potential_drop_target");
       }
     });
-    libs.setProp(_el$20, "onDragLeave", (pPanel, draggedPanel) => {
+    libs.setProp(_el$24, "onDragLeave", (pPanel, draggedPanel) => {
       pPanel.RemoveClass("potential_drop_target");
     });
-    libs.setProp(_el$20, "onDragDrop", (panel, draggedPanel) => {
+    libs.setProp(_el$24, "onDragDrop", (panel, draggedPanel) => {
       if (!selectHeroID()) return;
       let equip = LoadData(draggedPanel, "equip");
       if (!equip || draggedSlot() == undefined) return;
       EquipEquipment(equip, selectHeroID(), selectEquipSuitID(), draggedSlot());
     });
-    libs.insert(_el$11, libs.createComponent(hero_level_main.HeroLevelMain, {
+    libs.insert(_el$15, libs.createComponent(hero_level_main.HeroLevelMain, {
       get level() {
         return playerAccountLevel().level;
       },
@@ -9672,27 +10240,54 @@ function EquipSlot() {
         return "#" + previewHeroName();
       },
       tooltip: "#Equipment_TextTips_HeroLv"
-    }), _el$22);
-    libs.insert(_el$22, libs.createComponent(AttributesSummary, {}));
+    }), _el$26);
+    libs.insert(_el$26, libs.createComponent(AttributesSummary, {}));
+    libs.insert(_el$15, libs.createComponent(libs.Show, {
+      get when() {
+        return libs.memo(() => !!showGemSuitBook())() && draggedSlot() == undefined;
+      },
+      get children() {
+        return libs.createComponent(EOM_Popup.EOM_Popup, {
+          id: "GemSuitBook",
+          popType: "PopupType_PopOut",
+          classList: {
+            EOM_PopupMainShow: true
+          },
+          get title() {
+            return GetLocalization("#Equipment_GemBook");
+          },
+          onClose: () => setShowGemSuitBook(false),
+          get children() {
+            return libs.createComponent(GemSuitBook, {});
+          }
+        });
+      }
+    }), null);
     libs.effect(_p$ => {
       const _v$4 = libs.classNames("RootWindow", {
           Hidden: !showEquipSlot()
         }),
-        _v$5 = libs.classNames({
+        _v$5 = {
+          NoEffects: activeGemSuits().length === 0
+        },
+        _v$6 = GetLocalization("#Equipment_GemSuit_Title"),
+        _v$7 = libs.classNames({
           Z: draggedSlot() != undefined
         }),
-        _v$6 = draggedSlot() == undefined,
-        _v$7 = draggedSlot() == undefined,
-        _v$8 = draggedSlot() != undefined,
-        _v$9 = libs.classNames({
+        _v$8 = draggedSlot() == undefined,
+        _v$9 = draggedSlot() == undefined,
+        _v$0 = draggedSlot() != undefined,
+        _v$1 = libs.classNames({
           Show: showOverviewAttr() && draggedSlot() == undefined
         });
       _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$10, "class", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$13, "class", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$13, "hittest", _v$6, _p$._v$6));
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$13, "hittestchildren", _v$7, _p$._v$7));
-      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$20, "visible", _v$8, _p$._v$8));
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$22, "class", _v$9, _p$._v$9));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$11, "classList", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$13, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$17, "class", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$17, "hittest", _v$8, _p$._v$8));
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$17, "hittestchildren", _v$9, _p$._v$9));
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$24, "visible", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$26, "class", _v$1, _p$._v$1));
       return _p$;
     }, {
       _v$4: undefined,
@@ -9700,9 +10295,336 @@ function EquipSlot() {
       _v$6: undefined,
       _v$7: undefined,
       _v$8: undefined,
-      _v$9: undefined
+      _v$9: undefined,
+      _v$0: undefined,
+      _v$1: undefined
     });
     return _el$10;
+  })();
+}
+const GEM_SUIT_TYPE_ORDER = [1, 2, 3, 4, 0];
+const escapeRegExp = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function GetGemSuitGrowthSegments(valueData, startLevel, limitLevel) {
+  const growthList = String(valueData.extra_level_growth).split(" ").map(value => toFiniteNumber(value, 0));
+  const segments = [];
+  if (growthList.length == 0) return segments;
+  for (let level = startLevel + 1; level <= limitLevel; level++) {
+    const growthIndex = Math.min(growthList.length - 1, Math.floor((level - 1) / 10));
+    const growth = growthList[growthIndex];
+    const previous = segments[segments.length - 1];
+    if (previous && previous.growth == growth && previous.endLevel == level - 1) {
+      previous.endLevel = level;
+    } else {
+      segments.push({
+        startLevel: level,
+        endLevel: level,
+        growth
+      });
+    }
+  }
+  return segments;
+}
+function GetGemSuitBookDesc(privilege, startLevel, limitLevel) {
+  const privilegeData = KeyValues.privilege[privilege];
+  if (!privilegeData) return "";
+  if (limitLevel <= startLevel) return GetPrivilegeDesc(privilege, startLevel);
+  const abilityValues = privilegeData.AbilityValues ?? {};
+  let description = GetLocalization(`#DOTA_Tooltip_ability_${privilege}`, "");
+  for (const [valueName, valueData] of Object.entries(abilityValues)) {
+    if (valueData == null || typeof valueData != "object" || valueData.extra_level_growth == undefined) continue;
+    const baseValue = GetAbilityExtraLevelGrowthValue(valueData, startLevel);
+    const growthSegments = GetGemSuitGrowthSegments(valueData, startLevel, limitLevel);
+    if (baseValue == undefined || growthSegments.length == 0) continue;
+    const replaceGrowthToken = hasPct => {
+      const token = `%${valueName}%${hasPct ? "%" : ""}`;
+      if (!description.includes(token)) return;
+      const pattern = new RegExp(`([：:]?)([+-]?)${escapeRegExp(token)}`, "g");
+      description = description.replace(pattern, (_match, separator, sign) => {
+        const pctSymbol = hasPct ? "%" : "";
+        const segmentText = growthSegments.map(segment => {
+          const growthSign = segment.growth >= 0 ? "+" : "";
+          return LocalizeWithVars("#Equipment_GemSuit_GrowthSegment", {
+            start: segment.startLevel,
+            end: segment.endLevel,
+            value: `${growthSign}${segment.growth}${pctSymbol}`
+          });
+        }).join("；");
+        const growthText = LocalizeWithVars("#Equipment_GemSuit_Growth", {
+          value: segmentText
+        });
+        return `${separator}<span class='GemSuitBaseValue'>${sign}${baseValue}${pctSymbol}</span>` + `<span class='GemSuitGrowthDetail'>${growthText}</span>`;
+      });
+    };
+    replaceGrowthToken(true);
+    replaceGrowthToken(false);
+  }
+  return getKeyValueDescription(description, abilityValues, {
+    level: startLevel,
+    onlyShowNowLevel: true
+  });
+}
+function GemSuitBook() {
+  const [expandedEntry, setExpandedEntry] = libs.createSignal();
+  const suitTypeGroups = libs.createMemo(() => {
+    const groups = {};
+    for (const config of Object.values(KeyValues.gem_entry_suit)) {
+      (groups[config.suit_type] ??= []).push(config);
+    }
+    return GEM_SUIT_TYPE_ORDER.map(suit_type => ({
+      suit_type,
+      entries: (groups[suit_type] ?? []).sort((a, b) => a.id - b.id)
+    })).filter(group => group.entries.length > 0);
+  });
+  const getEntryLevel = config => Math.max(1, Math.floor(toFiniteNumber(config.base_suit, 1)));
+  const getEntryLimit = config => Math.floor(toFiniteNumber(config.entry_limit));
+  const hasEntryGrowth = config => {
+    const abilityValues = KeyValues.privilege[config.entry_id]?.AbilityValues ?? {};
+    return Object.values(abilityValues).some(valueData => {
+      return valueData != null && typeof valueData == "object" && valueData.extra_level_growth != undefined;
+    });
+  };
+  const getPreviewLevels = config => {
+    const startLevel = getEntryLevel(config);
+    const limitLevel = getEntryLimit(config);
+    const levels = [];
+    for (let level = 10; level <= limitLevel; level += 10) {
+      if (level > startLevel) levels.push(level);
+    }
+    if (limitLevel > startLevel && limitLevel % 10 != 0) levels.push(limitLevel);
+    return levels;
+  };
+  const getUnlockText = config => {
+    return (config.suit_unlock ?? "").split("|").map(segment => {
+      const [type, level] = segment.split(":");
+      const suitType = Number(type);
+      const suitLevel = Math.floor(Number(level));
+      if (!suitType || !(suitLevel > 0)) return "";
+      return GetLocalization(`#Equipment_GemSuit_Type_${suitType}`) + LocalizeWithVars("#Equipment_GemSuit_Level", {
+        level: suitLevel
+      });
+    }).filter(text => text).join(" & ");
+  };
+  return (() => {
+    const _el$31 = libs.createElement("Panel", {
+      id: "GemSuitBookList",
+      "class": "VerticalScrollStyle"
+    }, null);
+    libs.insert(_el$31, libs.createComponent(libs.For, {
+      get each() {
+        return suitTypeGroups();
+      },
+      children: group => (() => {
+        const _el$32 = libs.createElement("Panel", {
+            "class": "GemSuitTypeGroup"
+          }, null),
+          _el$33 = libs.createElement("Panel", {
+            "class": "GemSuitTypeHeader"
+          }, _el$32),
+          _el$35 = libs.createElement("Label", {
+            "class": "GemSuitTypeName",
+            get text() {
+              return GetLocalization(`#Equipment_GemSuit_Type_${group.suit_type}`);
+            }
+          }, _el$33);
+        libs.insert(_el$33, libs.createComponent(libs.Show, {
+          get when() {
+            return group.suit_type != 0;
+          },
+          get children() {
+            const _el$34 = libs.createElement("Image", {
+              "class": "GemSuitTypeIcon",
+              get src() {
+                return getSrcPath(`suit_icons/gem_suit_${group.suit_type}.png`);
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$34, "src", getSrcPath(`suit_icons/gem_suit_${group.suit_type}.png`), _$p));
+            return _el$34;
+          }
+        }), _el$35);
+        libs.insert(_el$32, libs.createComponent(libs.For, {
+          get each() {
+            return group.entries;
+          },
+          children: config => (() => {
+            const _el$36 = libs.createElement("Panel", {
+                "class": "GemSuitBookEntry"
+              }, null),
+              _el$37 = libs.createElement("Panel", {
+                "class": "EntryInfo"
+              }, _el$36),
+              _el$38 = libs.createElement("Panel", {
+                "class": "EntryTitleRoot"
+              }, _el$37),
+              _el$39 = libs.createElement("Label", {
+                "class": "EntryName",
+                get text() {
+                  return GetLocalization(`#${config.entry_id}`, config.name);
+                }
+              }, _el$38),
+              _el$44 = libs.createElement("Label", {
+                "class": "EntryDesc",
+                html: true,
+                get text() {
+                  return GetGemSuitBookDesc(config.entry_id, getEntryLevel(config), getEntryLimit(config));
+                }
+              }, _el$37);
+            libs.insert(_el$38, libs.createComponent(libs.Show, {
+              get when() {
+                return config.suit_type != 0;
+              },
+              get fallback() {
+                return (() => {
+                  const _el$46 = libs.createElement("Label", {
+                    "class": "EntryUnlock",
+                    get text() {
+                      return LocalizeWithVars("#Equipment_GemSuit_Unlock", {
+                        value: getUnlockText(config)
+                      });
+                    }
+                  }, null);
+                  libs.effect(_$p => libs.setProp(_el$46, "text", LocalizeWithVars("#Equipment_GemSuit_Unlock", {
+                    value: getUnlockText(config)
+                  }), _$p));
+                  return _el$46;
+                })();
+              },
+              get children() {
+                const _el$40 = libs.createElement("Label", {
+                  "class": "EntryLevel",
+                  get text() {
+                    return LocalizeWithVars("#Equipment_GemSuit_Level", {
+                      level: getEntryLevel(config)
+                    });
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$40, "text", LocalizeWithVars("#Equipment_GemSuit_Level", {
+                  level: getEntryLevel(config)
+                }), _$p));
+                return _el$40;
+              }
+            }), null);
+            libs.insert(_el$38, libs.createComponent(libs.Show, {
+              get when() {
+                return getEntryLimit(config) > 0;
+              },
+              get children() {
+                const _el$41 = libs.createElement("Label", {
+                  "class": "EntryLimit",
+                  get text() {
+                    return LocalizeWithVars("#Equipment_GemSuit_Limit", {
+                      limit: getEntryLimit(config)
+                    });
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$41, "text", LocalizeWithVars("#Equipment_GemSuit_Limit", {
+                  limit: getEntryLimit(config)
+                }), _$p));
+                return _el$41;
+              }
+            }), null);
+            libs.insert(_el$38, libs.createComponent(libs.Show, {
+              get when() {
+                return libs.memo(() => !!hasEntryGrowth(config))() && getPreviewLevels(config).length > 0;
+              },
+              get children() {
+                return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  "class": "EntryGrowthToggle",
+                  get classList() {
+                    return {
+                      Expanded: expandedEntry() == config.entry_id
+                    };
+                  },
+                  onactivate: () => setExpandedEntry(current => current == config.entry_id ? undefined : config.entry_id),
+                  get children() {
+                    return [(() => {
+                      const _el$42 = libs.createElement("Label", {
+                        get text() {
+                          return GetLocalization(expandedEntry() == config.entry_id ? "#Equipment_GemSuit_LevelPreviewCollapse" : "#Equipment_GemSuit_LevelPreview");
+                        }
+                      }, null);
+                      libs.effect(_$p => libs.setProp(_el$42, "text", GetLocalization(expandedEntry() == config.entry_id ? "#Equipment_GemSuit_LevelPreviewCollapse" : "#Equipment_GemSuit_LevelPreview"), _$p));
+                      return _el$42;
+                    })(), (() => {
+                      const _el$43 = libs.createElement("Label", {
+                        "class": "EntryGrowthToggleArrow",
+                        get text() {
+                          return expandedEntry() == config.entry_id ? "▲" : "▼";
+                        }
+                      }, null);
+                      libs.effect(_$p => libs.setProp(_el$43, "text", expandedEntry() == config.entry_id ? "▲" : "▼", _$p));
+                      return _el$43;
+                    })()];
+                  }
+                });
+              }
+            }), null);
+            libs.insert(_el$37, libs.createComponent(libs.Show, {
+              get when() {
+                return expandedEntry() == config.entry_id;
+              },
+              get children() {
+                const _el$45 = libs.createElement("Panel", {
+                  "class": "EntryGrowthPreview"
+                }, null);
+                libs.insert(_el$45, libs.createComponent(libs.For, {
+                  get each() {
+                    return getPreviewLevels(config);
+                  },
+                  children: level => (() => {
+                    const _el$47 = libs.createElement("Panel", {
+                        "class": "EntryGrowthPreviewRow"
+                      }, null),
+                      _el$48 = libs.createElement("Label", {
+                        "class": "EntryGrowthPreviewLevel",
+                        get text() {
+                          return LocalizeWithVars("#Equipment_GemSuit_Level", {
+                            level
+                          });
+                        }
+                      }, _el$47),
+                      _el$49 = libs.createElement("Label", {
+                        "class": "EntryGrowthPreviewDesc",
+                        html: true,
+                        get text() {
+                          return GetPrivilegeDesc(config.entry_id, level);
+                        }
+                      }, _el$47);
+                    libs.effect(_p$ => {
+                      const _v$12 = LocalizeWithVars("#Equipment_GemSuit_Level", {
+                          level
+                        }),
+                        _v$13 = GetPrivilegeDesc(config.entry_id, level);
+                      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$48, "text", _v$12, _p$._v$12));
+                      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$49, "text", _v$13, _p$._v$13));
+                      return _p$;
+                    }, {
+                      _v$12: undefined,
+                      _v$13: undefined
+                    });
+                    return _el$47;
+                  })()
+                }));
+                return _el$45;
+              }
+            }), null);
+            libs.effect(_p$ => {
+              const _v$10 = GetLocalization(`#${config.entry_id}`, config.name),
+                _v$11 = GetGemSuitBookDesc(config.entry_id, getEntryLevel(config), getEntryLimit(config));
+              _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$39, "text", _v$10, _p$._v$10));
+              _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$44, "text", _v$11, _p$._v$11));
+              return _p$;
+            }, {
+              _v$10: undefined,
+              _v$11: undefined
+            });
+            return _el$36;
+          })()
+        }), null);
+        libs.effect(_$p => libs.setProp(_el$35, "text", GetLocalization(`#Equipment_GemSuit_Type_${group.suit_type}`), _$p));
+        return _el$32;
+      })()
+    }));
+    return _el$31;
   })();
 }
 function AttributesSummary() {
@@ -9714,6 +10636,7 @@ function AttributesSummary() {
   const [attrSum, setAttrSum] = libs.createSignal({});
   const [mythList, setMythList] = libs.createSignal([]);
   const [chaosAttr, setChaosAttr] = libs.createSignal({});
+  const [gemSuitAttr, setGemSuitAttr] = libs.createSignal({});
   const [suitList, setSuitList] = libs.createSignal([]);
   const equipmentPartDatas = solid_utils.createServiceNetData("player_equipment_part_datas", {});
   const equippedRevision = libs.createMemo(() => {
@@ -9728,6 +10651,7 @@ function AttributesSummary() {
   const sumKeys = libs.createMemo(() => {
     return Object.keys(attrSum());
   });
+  const gemSuitEntries = libs.createMemo(() => Object.entries(gemSuitAttr()).sort(([left], [right]) => (KeyValues.gem_entry_suit[left]?.id ?? 0) - (KeyValues.gem_entry_suit[right]?.id ?? 0)));
   libs.createEffect(() => {
     equippedRevision();
     const hero = selectHeroID();
@@ -9740,6 +10664,7 @@ function AttributesSummary() {
       libs.batch(() => {
         setAttrSum({});
         setChaosAttr({});
+        setGemSuitAttr({});
         setMythList([]);
         setSuitList([]);
       });
@@ -9751,6 +10676,7 @@ function AttributesSummary() {
         "adverb_entry_data": {}
       };
       let chaosAttr = {};
+      const gemSuitAttr = {};
       let mythList = [];
       let suitList = [];
       let suitRecord = {};
@@ -9774,6 +10700,11 @@ function AttributesSummary() {
         });
       };
       const addChaosAttribute = attr => {
+        if (attr.id.startsWith("privilege_gem_suit_")) {
+          const level = Math.floor(toFiniteNumber(attr.value));
+          if (level > 0) gemSuitAttr[attr.id] = (gemSuitAttr[attr.id] ?? 0) + level;
+          return;
+        }
         chaosAttr[attr.id] ??= {
           base_value: 0,
           value: 0
@@ -9837,6 +10768,7 @@ function AttributesSummary() {
       libs.batch(() => {
         setAttrSum(sum);
         setChaosAttr(chaosAttr);
+        setGemSuitAttr(gemSuitAttr);
         setMythList(mythList);
         setSuitList(suitList);
       });
@@ -9844,32 +10776,35 @@ function AttributesSummary() {
     request && libs.onCleanup(() => CancelRequest(request));
   });
   return (() => {
-    const _el$25 = libs.createElement("Panel", {
+    const _el$50 = libs.createElement("Panel", {
         id: "AttributesSummary"
       }, null);
       libs.createElement("Label", {
         id: "AttributesSummaryTitle",
         text: "#Equipment_AttributesSummary"
-      }, _el$25);
+      }, _el$50);
       libs.createElement("Panel", {
         id: "TitleLine"
-      }, _el$25);
-      const _el$28 = libs.createElement("Panel", {
+      }, _el$50);
+      const _el$53 = libs.createElement("Panel", {
         id: "Attributes",
         "class": "VerticalScrollStyle",
         scroll: "y"
-      }, _el$25),
-      _el$29 = libs.createElement("Panel", {
+      }, _el$50),
+      _el$54 = libs.createElement("Panel", {
         "class": "Separator"
-      }, _el$28),
-      _el$30 = libs.createElement("Panel", {
+      }, _el$53),
+      _el$55 = libs.createElement("Panel", {
         "class": "Separator"
-      }, _el$28),
-      _el$31 = libs.createElement("Panel", {
+      }, _el$53),
+      _el$56 = libs.createElement("Panel", {
         "class": "Separator"
-      }, _el$28);
-    libs.setProp(_el$28, "scroll", "y");
-    libs.insert(_el$28, libs.createComponent(libs.For, {
+      }, _el$53),
+      _el$57 = libs.createElement("Panel", {
+        "class": "Separator"
+      }, _el$53);
+    libs.setProp(_el$53, "scroll", "y");
+    libs.insert(_el$53, libs.createComponent(libs.For, {
       get each() {
         return sumKeys();
       },
@@ -9904,26 +10839,26 @@ function AttributesSummary() {
             });
           }
         }), (() => {
-          const _el$32 = libs.createElement("Panel", {
+          const _el$58 = libs.createElement("Panel", {
             "class": "Separator"
           }, null);
-          libs.effect(_$p => libs.setProp(_el$32, "visible", idx() < sumKeys().length - 1, _$p));
-          return _el$32;
+          libs.effect(_$p => libs.setProp(_el$58, "visible", idx() < sumKeys().length - 1, _$p));
+          return _el$58;
         })()];
       }
-    }), _el$29);
-    libs.insert(_el$28, libs.createComponent(libs.For, {
+    }), _el$54);
+    libs.insert(_el$53, libs.createComponent(libs.For, {
       get each() {
         return mythList();
       },
       children: (data, mythIndex) => {
         const entryKv = KeyValues.equip_entry[data.id];
         return (() => {
-          const _el$33 = libs.createElement("Panel", {
+          const _el$59 = libs.createElement("Panel", {
               "class": "MythEntry"
             }, null);
-            libs.createElement("Image", {}, _el$33);
-            const _el$35 = libs.createElement("Label", {
+            libs.createElement("Image", {}, _el$59);
+            const _el$61 = libs.createElement("Label", {
               get text() {
                 return GetPrivilegeDesc(data.id, 1, {
                   value: data.value,
@@ -9932,30 +10867,30 @@ function AttributesSummary() {
                 });
               },
               html: true
-            }, _el$33);
-          libs.effect(_$p => libs.setProp(_el$35, "text", GetPrivilegeDesc(data.id, 1, {
+            }, _el$59);
+          libs.effect(_$p => libs.setProp(_el$61, "text", GetPrivilegeDesc(data.id, 1, {
             value: data.value,
             min: entryKv.value_min,
             max: entryKv.value_max
           }), _$p));
-          return _el$33;
+          return _el$59;
         })();
       }
-    }), _el$30);
-    libs.insert(_el$28, libs.createComponent(libs.For, {
+    }), _el$55);
+    libs.insert(_el$53, libs.createComponent(libs.For, {
       get each() {
         return Object.keys(chaosAttr());
       },
       children: (key, idx) => {
         const attrData = libs.createMemo(() => chaosAttr()[key]);
         return (() => {
-          const _el$36 = libs.createElement("Panel", {
+          const _el$62 = libs.createElement("Panel", {
               "class": `ChaosEntry`
             }, null);
             libs.createElement("Panel", {
               id: "Point"
-            }, _el$36);
-            const _el$38 = libs.createElement("Label", {
+            }, _el$62);
+            const _el$64 = libs.createElement("Label", {
               id: "EntryText",
               get text() {
                 return equipment_utils.GetChaosRowInfo({
@@ -9965,18 +10900,18 @@ function AttributesSummary() {
                 });
               },
               html: true
-            }, _el$36);
-          libs.setProp(_el$36, "class", `ChaosEntry`);
-          libs.effect(_$p => libs.setProp(_el$38, "text", equipment_utils.GetChaosRowInfo({
+            }, _el$62);
+          libs.setProp(_el$62, "class", `ChaosEntry`);
+          libs.effect(_$p => libs.setProp(_el$64, "text", equipment_utils.GetChaosRowInfo({
             id: key,
             base_value: attrData().base_value,
             value: attrData().value
           }), _$p));
-          return _el$36;
+          return _el$62;
         })();
       }
-    }), _el$31);
-    libs.insert(_el$28, libs.createComponent(libs.For, {
+    }), _el$56);
+    libs.insert(_el$53, libs.createComponent(libs.For, {
       get each() {
         return suitList();
       },
@@ -9991,21 +10926,35 @@ function AttributesSummary() {
           })
         });
       }
+    }), _el$57);
+    libs.insert(_el$53, libs.createComponent(libs.For, {
+      get each() {
+        return gemSuitEntries();
+      },
+      children: ([id, level]) => libs.createComponent(equip_details.GemSpecialEffectRow, {
+        data: {
+          id,
+          value: level
+        }
+      })
     }), null);
     libs.effect(_p$ => {
-      const _v$0 = mythList().length > 0,
-        _v$1 = Object.keys(chaosAttr()).length > 0,
-        _v$10 = suitList().length > 0;
-      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "visible", _v$0, _p$._v$0));
-      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$30, "visible", _v$1, _p$._v$1));
-      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$31, "visible", _v$10, _p$._v$10));
+      const _v$14 = mythList().length > 0,
+        _v$15 = Object.keys(chaosAttr()).length > 0,
+        _v$16 = suitList().length > 0,
+        _v$17 = gemSuitEntries().length > 0;
+      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$54, "visible", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$55, "visible", _v$15, _p$._v$15));
+      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$56, "visible", _v$16, _p$._v$16));
+      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$57, "visible", _v$17, _p$._v$17));
       return _p$;
     }, {
-      _v$0: undefined,
-      _v$1: undefined,
-      _v$10: undefined
+      _v$14: undefined,
+      _v$15: undefined,
+      _v$16: undefined,
+      _v$17: undefined
     });
-    return _el$25;
+    return _el$50;
   })();
 }
 const ItemTabs = ["equipment", "gem"];
@@ -10183,7 +11132,7 @@ function ItemsRoot() {
     });
   };
   return (() => {
-    const _el$39 = libs.createElement("Panel", {
+    const _el$65 = libs.createElement("Panel", {
         id: "ItemsRoot",
         get ["class"]() {
           return libs.classNames("RootWindow", {
@@ -10191,29 +11140,29 @@ function ItemsRoot() {
           });
         }
       }, null),
-      _el$40 = libs.createElement("Panel", {
+      _el$66 = libs.createElement("Panel", {
         id: "LeftArea"
-      }, _el$39),
-      _el$42 = libs.createElement("Panel", {
+      }, _el$65),
+      _el$68 = libs.createElement("Panel", {
         id: "PartFilter",
         get ["class"]() {
           return libs.classNames({
             Gem: selectedItemTab() == "gem"
           });
         }
-      }, _el$39),
-      _el$43 = libs.createElement("Panel", {
+      }, _el$65),
+      _el$69 = libs.createElement("Panel", {
         id: "BtnsContainer"
-      }, _el$39),
-      _el$44 = libs.createElement("Panel", {
+      }, _el$65),
+      _el$70 = libs.createElement("Panel", {
         align: "center center",
         flowChildren: "right"
-      }, _el$43),
-      _el$45 = libs.createElement("Button", {
+      }, _el$69),
+      _el$71 = libs.createElement("Button", {
         id: "ResetBtn",
         "class": "SecondaryButtonStates"
-      }, _el$44);
-    libs.insert(_el$40, libs.createComponent(libs.Show, {
+      }, _el$70);
+    libs.insert(_el$66, libs.createComponent(libs.Show, {
       get when() {
         return showFilter();
       },
@@ -10221,18 +11170,18 @@ function ItemsRoot() {
         return libs.createComponent(FilterWindow, {});
       }
     }), null);
-    libs.insert(_el$40, libs.createComponent(libs.Show, {
+    libs.insert(_el$66, libs.createComponent(libs.Show, {
       get when() {
         return !showFilter();
       },
       get children() {
         return [(() => {
-          const _el$41 = libs.createElement("Panel", {
+          const _el$67 = libs.createElement("Panel", {
             id: "Tabs",
             hittest: true
           }, null);
-          libs.setProp(_el$41, "onactivate", () => {});
-          libs.insert(_el$41, libs.createComponent(libs.For, {
+          libs.setProp(_el$67, "onactivate", () => {});
+          libs.insert(_el$67, libs.createComponent(libs.For, {
             each: ItemTabs,
             children: name => {
               const locked = isItemTabLocked();
@@ -10257,7 +11206,7 @@ function ItemsRoot() {
               });
             }
           }));
-          return _el$41;
+          return _el$67;
         })(), libs.createComponent(libs.Show, {
           get when() {
             return selectedItemTab() == "equipment";
@@ -10302,7 +11251,7 @@ function ItemsRoot() {
                   return equipment_utils.EquipmentIsEquiped(data(), heroID);
                 };
                 return (() => {
-                  const _el$47 = libs.createElement("Panel", {
+                  const _el$73 = libs.createElement("Panel", {
                       get ["class"]() {
                         return libs.classNames("Item", {
                           Selected: select(),
@@ -10311,13 +11260,13 @@ function ItemsRoot() {
                         });
                       }
                     }, null),
-                    _el$48 = libs.createElement("Panel", {
+                    _el$74 = libs.createElement("Panel", {
                       "class": "SelectedBorder"
-                    }, _el$47);
+                    }, _el$73);
                     libs.createElement("Panel", {
                       id: "NewTag"
-                    }, _el$47);
-                  libs.setProp(_el$47, "onmouseactivate", () => {
+                    }, _el$73);
+                  libs.setProp(_el$73, "onmouseactivate", () => {
                     if (menuName() == "EquipmentTab_break") {
                       if (equipment_utils.EquipmentHasStates(data(), true)) {
                         return;
@@ -10362,7 +11311,7 @@ function ItemsRoot() {
                       setSelectedItemID(data().id);
                     }
                   });
-                  libs.setProp(_el$47, "onmouseover", p => {
+                  libs.setProp(_el$73, "onmouseover", p => {
                     if (id()) {
                       let id2 = equippedEquipment()?.[data().equip_part];
                       if (id2 == id()) {
@@ -10378,8 +11327,8 @@ function ItemsRoot() {
                       }
                     }
                   });
-                  libs.setProp(_el$47, "onmouseout", p => HideCustomTooltip(p, "server_equip"));
-                  libs.setProp(_el$47, "onDragStart", (panel, dragCallbacks) => {
+                  libs.setProp(_el$73, "onmouseout", p => HideCustomTooltip(p, "server_equip"));
+                  libs.setProp(_el$73, "onDragStart", (panel, dragCallbacks) => {
                     if (!data() || gray()) return;
                     HideCustomTooltip(panel, "server_equip");
                     let pDisplayPanel = $.CreatePanel("Panel", $.GetContextPanel(), "dragImage");
@@ -10396,13 +11345,13 @@ function ItemsRoot() {
                     $.GetContextPanel().AddClass("Equipment_Dragging");
                     return true;
                   });
-                  libs.setProp(_el$47, "onDragEnd", (panel, draggedPanel) => {
+                  libs.setProp(_el$73, "onDragEnd", (panel, draggedPanel) => {
                     setDraggedSlot();
                     draggedPanel.DeleteAsync(-1);
                     panel.RemoveClass("dragging_from");
                     $.GetContextPanel().RemoveClass("Equipment_Dragging");
                   });
-                  libs.setProp(_el$47, "oncontextmenu", p => {
+                  libs.setProp(_el$73, "oncontextmenu", p => {
                     const _kv = kv();
                     if (!_kv) return;
                     const menus = {};
@@ -10453,17 +11402,17 @@ function ItemsRoot() {
                       CustomUIConfig.showContextMenu(p, menus);
                     }
                   });
-                  libs.insert(_el$47, libs.createComponent(server_equipment.Equipment, libs.mergeProps$1(data, {
+                  libs.insert(_el$73, libs.createComponent(server_equipment.Equipment, libs.mergeProps$1(data, {
                     get equipped() {
                       return heroEquiped();
                     }
-                  })), _el$48);
-                  libs.effect(_$p => libs.setProp(_el$47, "class", libs.classNames("Item", {
+                  })), _el$74);
+                  libs.effect(_$p => libs.setProp(_el$73, "class", libs.classNames("Item", {
                     Selected: select(),
                     Gray: gray(),
                     New: isNew()
                   }), _$p));
-                  return _el$47;
+                  return _el$73;
                 })();
               }
             });
@@ -10503,7 +11452,7 @@ function ItemsRoot() {
                 };
                 const isNew = () => gemUnreadIds.isUnread(gemId());
                 return (() => {
-                  const _el$51 = libs.createElement("Panel", {
+                  const _el$77 = libs.createElement("Panel", {
                       get ["class"]() {
                         return libs.classNames("Item", {
                           Selected: isSelected(),
@@ -10512,13 +11461,13 @@ function ItemsRoot() {
                         });
                       }
                     }, null),
-                    _el$52 = libs.createElement("Panel", {
+                    _el$78 = libs.createElement("Panel", {
                       "class": "SelectedBorder"
-                    }, _el$51);
+                    }, _el$77);
                     libs.createElement("Panel", {
                       id: "NewTag"
-                    }, _el$51);
-                  libs.setProp(_el$51, "onmouseover", p => {
+                    }, _el$77);
+                  libs.setProp(_el$77, "onmouseover", p => {
                     if (gemId()) {
                       const itemData = selectedItemData();
                       let embeddedGemData;
@@ -10550,8 +11499,8 @@ function ItemsRoot() {
                       }
                     }
                   });
-                  libs.setProp(_el$51, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
-                  libs.setProp(_el$51, "onDragStart", (panel, dragCallbacks) => {
+                  libs.setProp(_el$77, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
+                  libs.setProp(_el$77, "onDragStart", (panel, dragCallbacks) => {
                     if (!gemData() || gray()) return;
                     HideCustomTooltip(panel, "server_gem");
                     let pDisplayPanel = $.CreatePanel("Panel", $.GetContextPanel(), "dragImage");
@@ -10565,11 +11514,11 @@ function ItemsRoot() {
                     SaveData(pDisplayPanel, "gem", gemId());
                     return true;
                   });
-                  libs.setProp(_el$51, "onDragEnd", (panel, draggedPanel) => {
+                  libs.setProp(_el$77, "onDragEnd", (panel, draggedPanel) => {
                     draggedPanel.DeleteAsync(-1);
                     panel.RemoveClass("dragging_from");
                   });
-                  libs.setProp(_el$51, "oncontextmenu", p => {
+                  libs.setProp(_el$77, "oncontextmenu", p => {
                     const menus = {};
                     if (gemData().locked) {
                       menus["Hud_Equipment_Unlock"] = () => {
@@ -10584,7 +11533,7 @@ function ItemsRoot() {
                       CustomUIConfig.showContextMenu(p, menus);
                     }
                   });
-                  libs.setProp(_el$51, "onmouseactivate", () => {
+                  libs.setProp(_el$77, "onmouseactivate", () => {
                     const id = gemId();
                     if (menuName() == "EquipmentTab_break") {
                       if (gray()) return;
@@ -10616,6 +11565,7 @@ function ItemsRoot() {
                         return items;
                       });
                     } else {
+                      if (forgeChildTab() == "Fusion" && gray()) return;
                       libs.batch(() => {
                         setSelectedGemList(prev => {
                           if (prev.includes(id)) {
@@ -10629,13 +11579,13 @@ function ItemsRoot() {
                       });
                     }
                   });
-                  libs.insert(_el$51, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(gemData)), _el$52);
-                  libs.effect(_$p => libs.setProp(_el$51, "class", libs.classNames("Item", {
+                  libs.insert(_el$77, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(gemData)), _el$78);
+                  libs.effect(_$p => libs.setProp(_el$77, "class", libs.classNames("Item", {
                     Selected: isSelected(),
                     Gray: gray(),
                     New: isNew()
                   }), _$p));
-                  return _el$51;
+                  return _el$77;
                 })();
               }
             });
@@ -10643,13 +11593,13 @@ function ItemsRoot() {
         })];
       }
     }), null);
-    libs.insert(_el$42, libs.createComponent(libs.For, {
+    libs.insert(_el$68, libs.createComponent(libs.For, {
       get each() {
-        return selectedItemTab() == "equipment" ? [0, ...equipment_utils.EQUIP_PARTS] : [0, 5, 6];
+        return selectedItemTab() == "equipment" ? [0, ...equipment_utils.EQUIP_PARTS] : [0, 5, 6, 7];
       },
       children: part => {
         return (() => {
-          const _el$54 = libs.createElement("Button", {
+          const _el$80 = libs.createElement("Button", {
               get id() {
                 return part.toString();
               },
@@ -10659,40 +11609,40 @@ function ItemsRoot() {
                 });
               }
             }, null),
-            _el$55 = libs.createElement("Image", {
+            _el$81 = libs.createElement("Image", {
               id: "PartIcon",
               get src() {
                 return getSrcPath(`conv/icon/${selectedItemTab() == "equipment" || part == 0 ? EQUIP_PART_ICON[part] : GEM_RARITY_ICON[part]}`);
               }
-            }, _el$54);
-          libs.setProp(_el$54, "onactivate", () => {
+            }, _el$80);
+          libs.setProp(_el$80, "onactivate", () => {
             if (selectedItemTab() == "equipment" && part == 0) {
               setSelectedSlot();
             }
             setPartFilter(part);
           });
           libs.effect(_p$ => {
-            const _v$14 = part.toString(),
-              _v$15 = libs.classNames("PartTab", {
+            const _v$21 = part.toString(),
+              _v$22 = libs.classNames("PartTab", {
                 Selected: partFilter() == part
               }),
-              _v$16 = getSrcPath(`conv/icon/${selectedItemTab() == "equipment" || part == 0 ? EQUIP_PART_ICON[part] : GEM_RARITY_ICON[part]}`);
-            _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$54, "id", _v$14, _p$._v$14));
-            _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$54, "class", _v$15, _p$._v$15));
-            _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$55, "src", _v$16, _p$._v$16));
+              _v$23 = getSrcPath(`conv/icon/${selectedItemTab() == "equipment" || part == 0 ? EQUIP_PART_ICON[part] : GEM_RARITY_ICON[part]}`);
+            _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$80, "id", _v$21, _p$._v$21));
+            _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$80, "class", _v$22, _p$._v$22));
+            _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$81, "src", _v$23, _p$._v$23));
             return _p$;
           }, {
-            _v$14: undefined,
-            _v$15: undefined,
-            _v$16: undefined
+            _v$21: undefined,
+            _v$22: undefined,
+            _v$23: undefined
           });
-          return _el$54;
+          return _el$80;
         })();
       }
     }));
-    libs.setProp(_el$44, "align", "center center");
-    libs.setProp(_el$44, "flowChildren", "right");
-    libs.insert(_el$44, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
+    libs.setProp(_el$70, "align", "center center");
+    libs.setProp(_el$70, "flowChildren", "right");
+    libs.insert(_el$70, libs.createComponent(equipment_comp.EquipmentCommonBtn, {
       id: "FilterBtn",
       get ["class"]() {
         return libs.classNames({
@@ -10712,8 +11662,8 @@ function ItemsRoot() {
           return !prev;
         });
       }
-    }), _el$45);
-    libs.setProp(_el$45, "onactivate", () => {
+    }), _el$71);
+    libs.setProp(_el$71, "onactivate", () => {
       libs.batch(() => {
         gemFilterRequestVersion += 1;
         setGemFilterRequesting(false);
@@ -10732,7 +11682,7 @@ function ItemsRoot() {
         });
       });
     });
-    libs.insert(_el$44, libs.createComponent(libs.Show, {
+    libs.insert(_el$70, libs.createComponent(libs.Show, {
       get when() {
         return selectedItemTab() == "equipment";
       },
@@ -10753,7 +11703,7 @@ function ItemsRoot() {
         });
       }
     }), null);
-    libs.insert(_el$44, libs.createComponent(libs.Show, {
+    libs.insert(_el$70, libs.createComponent(libs.Show, {
       get when() {
         return selectedItemTab() == "gem";
       },
@@ -10775,23 +11725,23 @@ function ItemsRoot() {
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$11 = libs.classNames("RootWindow", {
+      const _v$18 = libs.classNames("RootWindow", {
           Hidden: !showItemsRoot() || hiddenItemList()
         }),
-        _v$12 = libs.classNames({
+        _v$19 = libs.classNames({
           Gem: selectedItemTab() == "gem"
         }),
-        _v$13 = !gemFilterRequesting();
-      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$39, "class", _v$11, _p$._v$11));
-      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$42, "class", _v$12, _p$._v$12));
-      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$45, "enabled", _v$13, _p$._v$13));
+        _v$20 = !gemFilterRequesting();
+      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$65, "class", _v$18, _p$._v$18));
+      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$68, "class", _v$19, _p$._v$19));
+      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$71, "enabled", _v$20, _p$._v$20));
       return _p$;
     }, {
-      _v$11: undefined,
-      _v$12: undefined,
-      _v$13: undefined
+      _v$18: undefined,
+      _v$19: undefined,
+      _v$20: undefined
     });
-    return _el$39;
+    return _el$65;
   })();
 }
 function FilterWindow() {
@@ -10844,62 +11794,62 @@ function FilterWindow() {
     });
   };
   return (() => {
-    const _el$56 = libs.createElement("Panel", {
+    const _el$82 = libs.createElement("Panel", {
       id: "FilterWindow"
     }, null);
-    libs.insert(_el$56, libs.createComponent(libs.Show, {
+    libs.insert(_el$82, libs.createComponent(libs.Show, {
       get when() {
         return selectedItemTab() == "equipment";
       },
       get fallback() {
         return (() => {
-          const _el$75 = libs.createElement("Panel", {
+          const _el$101 = libs.createElement("Panel", {
               id: "GemFilterContent"
             }, null),
-            _el$76 = libs.createElement("Label", {
+            _el$102 = libs.createElement("Label", {
               id: "GemClassFilterLabel",
               "class": "Subheading",
               get text() {
                 return GetLocalization("#Gem_Class_Filter");
               }
-            }, _el$75);
+            }, _el$101);
             libs.createElement("Panel", {
               "class": "Separator FilterLine"
-            }, _el$75);
-            const _el$78 = libs.createElement("Panel", {
+            }, _el$101);
+            const _el$104 = libs.createElement("Panel", {
               id: "GemClassFilterList",
               "class": "CheckBoxList"
-            }, _el$75);
+            }, _el$101);
             libs.createElement("Label", {
               id: "GemMainEntryFilterLabel",
               "class": "Subheading",
               text: "#Equipment_SelectMainEntry"
-            }, _el$75);
+            }, _el$101);
             libs.createElement("Panel", {
               "class": "Separator FilterLine"
-            }, _el$75);
-            const _el$81 = libs.createElement("Panel", {
+            }, _el$101);
+            const _el$107 = libs.createElement("Panel", {
               id: "GemMainEntryFilterList",
               "class": "CheckBoxList"
-            }, _el$75),
-            _el$82 = libs.createElement("Panel", {
+            }, _el$101),
+            _el$108 = libs.createElement("Panel", {
               id: "GemSubEntryFilterTitle"
-            }, _el$75);
+            }, _el$101);
             libs.createElement("Panel", {
               "class": "Separator"
-            }, _el$82);
+            }, _el$108);
             libs.createElement("Label", {
               text: "#Equipment_GemSubFilter_Title"
-            }, _el$82);
+            }, _el$108);
             libs.createElement("Panel", {
               "class": "Separator"
-            }, _el$82);
-            const _el$86 = libs.createElement("Panel", {
+            }, _el$108);
+            const _el$112 = libs.createElement("Panel", {
               id: "GemSubEntryFilterList",
               "class": "VerticalScrollStyle",
               scroll: "y"
-            }, _el$75);
-          libs.insert(_el$78, libs.createComponent(libs.For, {
+            }, _el$101);
+          libs.insert(_el$104, libs.createComponent(libs.For, {
             each: GEM_CLASSES,
             children: gemClass => libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
               get checked() {
@@ -10926,7 +11876,7 @@ function FilterWindow() {
               }
             })
           }));
-          libs.insert(_el$81, libs.createComponent(libs.For, {
+          libs.insert(_el$107, libs.createComponent(libs.For, {
             each: GEM_MAIN_ENTRY_IDS,
             children: entryID => libs.createComponent(EOM_CheckBox.EOM_CheckBox2, {
               get checked() {
@@ -10951,44 +11901,44 @@ function FilterWindow() {
               }
             })
           }));
-          libs.setProp(_el$86, "scroll", "y");
-          libs.insert(_el$86, libs.createComponent(libs.For, {
+          libs.setProp(_el$112, "scroll", "y");
+          libs.insert(_el$112, libs.createComponent(libs.For, {
             each: GEM_SUB_ENTRY_IDS,
             children: entryID => {
               const mode = () => filterGemSubEntry()[entryID] ?? "default";
               return (() => {
-                const _el$87 = libs.createElement("Panel", {
+                const _el$113 = libs.createElement("Panel", {
                     "class": "GemSubEntryFilterRow"
                   }, null),
-                  _el$88 = libs.createElement("Label", {
+                  _el$114 = libs.createElement("Label", {
                     "class": "GemSubEntryName",
                     get text() {
                       return GetLocalization("#property_" + entryID);
                     },
                     html: true
-                  }, _el$87),
-                  _el$89 = libs.createElement("Panel", {
+                  }, _el$113),
+                  _el$115 = libs.createElement("Panel", {
                     "class": "GemSubEntryMode"
-                  }, _el$87);
-                libs.insert(_el$89, libs.createComponent(libs.For, {
+                  }, _el$113);
+                libs.insert(_el$115, libs.createComponent(libs.For, {
                   each: GEM_SUB_ENTRY_FILTER_MODES,
                   children: (filterMode, index) => [(() => {
-                    const _el$90 = libs.createElement("Button", {
+                    const _el$116 = libs.createElement("Button", {
                         get ["class"]() {
                           return libs.classNames("GemSubEntryModeButton", filterMode, {
                             Selected: mode() === filterMode
                           });
                         }
                       }, null),
-                      _el$91 = libs.createElement("Label", {
+                      _el$117 = libs.createElement("Label", {
                         text: `#Equipment_GemSubFilter_${filterMode}`
-                      }, _el$90);
-                    libs.setProp(_el$90, "onactivate", () => selectGemSubEntryFilter(entryID, filterMode));
-                    libs.setProp(_el$91, "text", `#Equipment_GemSubFilter_${filterMode}`);
-                    libs.effect(_$p => libs.setProp(_el$90, "class", libs.classNames("GemSubEntryModeButton", filterMode, {
+                      }, _el$116);
+                    libs.setProp(_el$116, "onactivate", () => selectGemSubEntryFilter(entryID, filterMode));
+                    libs.setProp(_el$117, "text", `#Equipment_GemSubFilter_${filterMode}`);
+                    libs.effect(_$p => libs.setProp(_el$116, "class", libs.classNames("GemSubEntryModeButton", filterMode, {
                       Selected: mode() === filterMode
                     }), _$p));
-                    return _el$90;
+                    return _el$116;
                   })(), libs.createComponent(libs.Show, {
                     get when() {
                       return index() < GEM_SUB_ENTRY_FILTER_MODES.length - 1;
@@ -11001,93 +11951,93 @@ function FilterWindow() {
                     }
                   })]
                 }));
-                libs.effect(_$p => libs.setProp(_el$88, "text", GetLocalization("#property_" + entryID), _$p));
-                return _el$87;
+                libs.effect(_$p => libs.setProp(_el$114, "text", GetLocalization("#property_" + entryID), _$p));
+                return _el$113;
               })();
             }
           }));
-          libs.effect(_$p => libs.setProp(_el$76, "text", GetLocalization("#Gem_Class_Filter"), _$p));
-          return _el$75;
+          libs.effect(_$p => libs.setProp(_el$102, "text", GetLocalization("#Gem_Class_Filter"), _$p));
+          return _el$101;
         })();
       },
       get children() {
-        const _el$57 = libs.createElement("Panel", {
+        const _el$83 = libs.createElement("Panel", {
             id: "EquipmentFilterContent",
             "class": "VerticalScrollStyle",
             scroll: "y"
           }, null),
-          _el$58 = libs.createElement("Panel", {
+          _el$84 = libs.createElement("Panel", {
             id: "NeedLvFilter",
             "class": "Filter"
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Label", {
             id: "FilterType",
             text: "#NeedLvFilter"
-          }, _el$58);
+          }, _el$84);
           libs.createElement("Label", {
             id: "RarityLabel",
             "class": "Subheading",
             text: "#Equipment_Rarity"
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Panel", {
             "class": "Separator FilterLine"
-          }, _el$57);
-          const _el$62 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$88 = libs.createElement("Panel", {
             id: "RarityFilterList",
             "class": "CheckBoxList"
-          }, _el$57),
-          _el$63 = libs.createElement("Label", {
+          }, _el$83),
+          _el$89 = libs.createElement("Label", {
             id: "RarityLabel",
             "class": "Subheading",
             text: "#Equipment_Class"
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Panel", {
             "class": "Separator FilterLine"
-          }, _el$57);
-          const _el$65 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$91 = libs.createElement("Panel", {
             id: "ClassFilterList",
             "class": "CheckBoxList"
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Label", {
             id: "RarityLabel",
             "class": "Subheading",
             text: "#Equipment_Suit"
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Panel", {
             "class": "Separator FilterLine"
-          }, _el$57);
-          const _el$68 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$94 = libs.createElement("Panel", {
             id: "SuitFilterList",
             "class": "CheckBoxList"
-          }, _el$57),
-          _el$69 = libs.createElement("Label", {
+          }, _el$83),
+          _el$95 = libs.createElement("Label", {
             id: "MythFilterLabel",
             "class": "Subheading",
             get text() {
               return GetLocalization("#Equipment_MythFilter");
             }
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Panel", {
             "class": "Separator FilterLine"
-          }, _el$57);
-          const _el$71 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$97 = libs.createElement("Panel", {
             id: "MythTextFilter",
             "class": "ExchangeEntry"
-          }, _el$57),
-          _el$72 = libs.createElement("Label", {
+          }, _el$83),
+          _el$98 = libs.createElement("Label", {
             "class": "Subheading",
             get text() {
               return GetLocalization("#Equipment_GemSubFilter_Title");
             }
-          }, _el$57);
+          }, _el$83);
           libs.createElement("Panel", {
             "class": "Separator FilterLine"
-          }, _el$57);
-          const _el$74 = libs.createElement("Panel", {
+          }, _el$83);
+          const _el$100 = libs.createElement("Panel", {
             id: "EquipmentSubEntryFilterList"
-          }, _el$57);
-        libs.setProp(_el$57, "scroll", "y");
-        libs.insert(_el$58, libs.createComponent(EOM_MultiDropDown.EOM_MultiDropDown, {
+          }, _el$83);
+        libs.setProp(_el$83, "scroll", "y");
+        libs.insert(_el$84, libs.createComponent(EOM_MultiDropDown.EOM_MultiDropDown, {
           get placeholder() {
             return needLvText();
           },
@@ -11100,7 +12050,7 @@ function FilterWindow() {
             setFilterNeedLv(value);
           }
         }), null);
-        libs.insert(_el$62, libs.createComponent(libs.For, {
+        libs.insert(_el$88, libs.createComponent(libs.For, {
           each: equipment_utils.EQUIP_RARITY_COLOR,
           children: (color, idx) => {
             let rarity = idx() + 1;
@@ -11129,8 +12079,8 @@ function FilterWindow() {
             });
           }
         }));
-        libs.setProp(_el$63, "tooltip", "#Equipment_Class_Desc");
-        libs.insert(_el$65, libs.createComponent(libs.For, {
+        libs.setProp(_el$89, "tooltip", "#Equipment_Class_Desc");
+        libs.insert(_el$91, libs.createComponent(libs.For, {
           get each() {
             return Object.keys(GameUI.CustomUIConfig().equip_class_setting);
           },
@@ -11157,7 +12107,7 @@ function FilterWindow() {
             });
           }
         }));
-        libs.insert(_el$68, libs.createComponent(libs.For, {
+        libs.insert(_el$94, libs.createComponent(libs.For, {
           get each() {
             return Object.keys(KeyValues.equipment_suit_effect);
           },
@@ -11186,7 +12136,7 @@ function FilterWindow() {
             });
           }
         }));
-        libs.insert(_el$71, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+        libs.insert(_el$97, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
           id: "ExchangeTextEntry",
           style: {
             border: "0px",
@@ -11198,44 +12148,44 @@ function FilterWindow() {
           placeholder: "#Equipment_MythFilter_Placeholder",
           onChange: (_, __, text) => setFilterMythText(text)
         }));
-        libs.insert(_el$74, libs.createComponent(libs.For, {
+        libs.insert(_el$100, libs.createComponent(libs.For, {
           each: EQUIP_SUB_ENTRY_LIST,
           children: entry => {
             const mode = () => filterEquipSubEntry()[entry.entry_name] ?? "default";
             return (() => {
-              const _el$93 = libs.createElement("Panel", {
+              const _el$119 = libs.createElement("Panel", {
                   "class": "EquipmentSubEntryFilterRow"
                 }, null),
-                _el$94 = libs.createElement("Label", {
+                _el$120 = libs.createElement("Label", {
                   html: true,
                   "class": "EquipmentSubEntryName",
                   get text() {
                     return GetLocalization(`#property_${entry.entry_name}`).replace("%", "");
                   }
-                }, _el$93),
-                _el$95 = libs.createElement("Panel", {
+                }, _el$119),
+                _el$121 = libs.createElement("Panel", {
                   "class": "EquipmentSubEntryMode"
-                }, _el$93);
-              libs.insert(_el$95, libs.createComponent(libs.For, {
+                }, _el$119);
+              libs.insert(_el$121, libs.createComponent(libs.For, {
                 each: EQUIP_SUB_ENTRY_FILTER_MODES,
                 children: (filterMode, index) => (() => {
-                  const _el$96 = libs.createElement("Panel", {
+                  const _el$122 = libs.createElement("Panel", {
                       "class": "EquipmentSubEntryModeOption"
                     }, null),
-                    _el$97 = libs.createElement("Button", {
+                    _el$123 = libs.createElement("Button", {
                       get ["class"]() {
                         return libs.classNames("EquipmentSubEntryModeButton", filterMode, {
                           Selected: mode() === filterMode
                         });
                       }
-                    }, _el$96),
-                    _el$98 = libs.createElement("Label", {
+                    }, _el$122),
+                    _el$124 = libs.createElement("Label", {
                       get text() {
                         return GetLocalization(`#Equipment_GemSubFilter_${filterMode}`);
                       }
-                    }, _el$97);
-                  libs.setProp(_el$97, "onactivate", () => selectEquipSubEntryFilter(entry.entry_name, filterMode));
-                  libs.insert(_el$96, libs.createComponent(libs.Show, {
+                    }, _el$123);
+                  libs.setProp(_el$123, "onactivate", () => selectEquipSubEntryFilter(entry.entry_name, filterMode));
+                  libs.insert(_el$122, libs.createComponent(libs.Show, {
                     get when() {
                       return index() < EQUIP_SUB_ENTRY_FILTER_MODES.length - 1;
                     },
@@ -11247,43 +12197,43 @@ function FilterWindow() {
                     }
                   }), null);
                   libs.effect(_p$ => {
-                    const _v$19 = libs.classNames("EquipmentSubEntryModeButton", filterMode, {
+                    const _v$26 = libs.classNames("EquipmentSubEntryModeButton", filterMode, {
                         Selected: mode() === filterMode
                       }),
-                      _v$20 = GetLocalization(`#Equipment_GemSubFilter_${filterMode}`);
-                    _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$97, "class", _v$19, _p$._v$19));
-                    _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$98, "text", _v$20, _p$._v$20));
+                      _v$27 = GetLocalization(`#Equipment_GemSubFilter_${filterMode}`);
+                    _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$123, "class", _v$26, _p$._v$26));
+                    _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$124, "text", _v$27, _p$._v$27));
                     return _p$;
                   }, {
-                    _v$19: undefined,
-                    _v$20: undefined
+                    _v$26: undefined,
+                    _v$27: undefined
                   });
-                  return _el$96;
+                  return _el$122;
                 })()
               }));
-              libs.effect(_$p => libs.setProp(_el$94, "text", GetLocalization(`#property_${entry.entry_name}`).replace("%", ""), _$p));
-              return _el$93;
+              libs.effect(_$p => libs.setProp(_el$120, "text", GetLocalization(`#property_${entry.entry_name}`).replace("%", ""), _$p));
+              return _el$119;
             })();
           }
         }));
         libs.effect(_p$ => {
-          const _v$17 = GetLocalization("#Equipment_MythFilter"),
-            _v$18 = GetLocalization("#Equipment_GemSubFilter_Title");
-          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$69, "text", _v$17, _p$._v$17));
-          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$72, "text", _v$18, _p$._v$18));
+          const _v$24 = GetLocalization("#Equipment_MythFilter"),
+            _v$25 = GetLocalization("#Equipment_GemSubFilter_Title");
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$95, "text", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$98, "text", _v$25, _p$._v$25));
           return _p$;
         }, {
-          _v$17: undefined,
-          _v$18: undefined
+          _v$24: undefined,
+          _v$25: undefined
         });
-        return _el$57;
+        return _el$83;
       }
     }));
-    return _el$56;
+    return _el$82;
   })();
 }
 function EquipForge() {
-  const equipTabs = ["ClassUP", "RarityUP", "Recast", "Refine", "Inlay"];
+  const equipTabs = ["ClassUP", "RarityUP", "Recast", "Refine", "Inlay", "Fusion"];
   const gemTabs = ["GemLevelUP", "GemMake"];
   const tabTipsMap = {
     "ClassUP": "#EquipClassUpTips",
@@ -11291,6 +12241,7 @@ function EquipForge() {
     "Recast": "#EquipRecastTips",
     "Refine": "#EquipRefineTips",
     "Inlay": "#EquipInlayTips",
+    "Fusion": "#EquipFusionTips",
     "GemLevelUP": "#GemLevelUPTips",
     "GemMake": "#GemMakeTips"
   };
@@ -11304,6 +12255,15 @@ function EquipForge() {
   } = equipment_comp.createGemDetailSignal(() => selectedGemList()[0]);
   const [showAnim, setShowAnim] = libs.createSignal(false);
   const [leftExtraContent, setLeftExtraContent] = libs.createSignal();
+  const fusionResults = solid_utils.createServiceNetData("player_gem_fusion_results", {});
+  const [confirmedFusionEquipmentID, setConfirmedFusionEquipmentID] = libs.createSignal();
+  libs.createEffect(() => {
+    const confirmedID = confirmedFusionEquipmentID();
+    const equipment = itemData();
+    if (confirmedID != undefined && equipment?.id === confirmedID && equipment.in_check !== "gem_fusion") {
+      setConfirmedFusionEquipmentID();
+    }
+  });
   const showGemDisplayData = libs.createMemo(() => {
     const childTab = forgeChildTab();
     return (childTab == undefined || gemTabs.includes(childTab)) && selectedItemTab() === "gem";
@@ -11327,6 +12287,26 @@ function EquipForge() {
     }
     return gemData();
   });
+  const currentFusionResult = libs.createMemo(() => {
+    const equipmentID = selectedItemID();
+    if (!equipmentID || confirmedFusionEquipmentID() === equipmentID || displayData()?.in_check !== "gem_fusion") return undefined;
+    const result = fusionResults()[String(equipmentID)];
+    return result && result !== "nil" ? result : undefined;
+  });
+  const fusionMaterialDisplayData = libs.createMemo(() => {
+    const result = currentFusionResult();
+    if (result) {
+      const consumedGemData = JSON.parseSafe(result.inlay_gem_data);
+      const consumedGem = normalizeEmbeddedGem({
+        ...(consumedGemData ?? {}),
+        id: result.consumed_gem_id
+      });
+      if (consumedGem) return consumedGem;
+    }
+    const selectedGemID = selectedGemList()[0];
+    const selectedGem = gemData();
+    return selectedGemID != undefined && selectedGem?.id === selectedGemID ? selectedGem : undefined;
+  });
   const inlayGemData = libs.createMemo(() => {
     const data = displayData();
     if (!data) return [];
@@ -11341,14 +12321,18 @@ function EquipForge() {
   });
   const [selectGemSlot, setSelectGemSlot] = libs.createSignal(0);
   libs.createEffect(libs.on([forgeChildTab], ([forgeChildTab]) => {
-    if (forgeChildTab != "Inlay") {
+    if (forgeChildTab != "Inlay" && forgeChildTab != "Fusion") {
       setItemListIsHidden(forgeChildTab != undefined);
     }
     setLeftExtraContent();
   }));
   libs.createEffect(libs.on([displayData], ([data]) => {
-    if (data?.in_check && data.in_check !== "" && forgeChildTab() !== "Recast") {
-      setForgeChildTab("Recast");
+    const pendingForgeTab = getPendingForgeTab(data);
+    if (pendingForgeTab && forgeChildTab() !== pendingForgeTab) {
+      if (pendingForgeTab === "Fusion") {
+        setSelectedGemList([]);
+      }
+      setForgeChildTab(pendingForgeTab);
     }
   }));
   let chuiziParticle;
@@ -11403,6 +12387,10 @@ function EquipForge() {
       setShowTokens([]);
     });
   };
+  const onFusionConfirmed = equipmentID => {
+    setConfirmedFusionEquipmentID(equipmentID);
+    forceFresh();
+  };
   return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
     id: "EquipForge",
     get ["class"]() {
@@ -11421,70 +12409,61 @@ function EquipForge() {
         hittest: false,
         squarePixels: true
       }, null), (() => {
-        const _el$101 = libs.createElement("Panel", {
+        const _el$127 = libs.createElement("Panel", {
             id: "CenterBlock",
             hittest: false
           }, null);
           libs.createElement("Panel", {
             id: "ForgeImage"
-          }, _el$101);
-          const _el$103 = libs.createElement("Panel", {
+          }, _el$127);
+          const _el$129 = libs.createElement("Panel", {
             id: "LeftArea",
             get ["class"]() {
               return libs.classNames({
                 ShowAnimState: showAnim()
               });
             }
-          }, _el$101);
-        libs.setProp(_el$101, "onDragEnter", (pPanel, draggedPanel) => {
+          }, _el$127);
+        libs.setProp(_el$127, "onDragEnter", (pPanel, draggedPanel) => {
           if (LoadData(draggedPanel, "equip")) {
             pPanel.AddClass("potential_drop_target");
           }
         });
-        libs.setProp(_el$101, "onDragLeave", (pPanel, draggedPanel) => {
+        libs.setProp(_el$127, "onDragLeave", (pPanel, draggedPanel) => {
           pPanel.RemoveClass("potential_drop_target");
         });
-        libs.setProp(_el$101, "onDragDrop", (panel, draggedPanel) => {
+        libs.setProp(_el$127, "onDragDrop", (panel, draggedPanel) => {
           let equip = LoadData(draggedPanel, "equip");
           if (!equip) return;
           setSelectedItemID(equip);
         });
-        libs.insert(_el$103, libs.createComponent(libs.Show, {
+        libs.insert(_el$129, libs.createComponent(libs.Show, {
           get when() {
             return libs.memo(() => !!showGemDisplayData())() ? displayGemData() : displayData();
           },
           get fallback() {
             return (() => {
-              const _el$112 = libs.createElement("Panel", {
+              const _el$137 = libs.createElement("Panel", {
                   id: "EmptyState"
                 }, null);
                 libs.createElement("Panel", {
                   id: "EmptyIcon"
-                }, _el$112);
-                const _el$114 = libs.createElement("Label", {
+                }, _el$137);
+                const _el$139 = libs.createElement("Label", {
                   get text() {
                     return showGemDisplayData() ? "#Gem_SelectEmpty" : "#Equipment_SelectEmpty";
                   }
-                }, _el$112);
-              libs.effect(_$p => libs.setProp(_el$114, "text", showGemDisplayData() ? "#Gem_SelectEmpty" : "#Equipment_SelectEmpty", _$p));
-              return _el$112;
+                }, _el$137);
+              libs.effect(_$p => libs.setProp(_el$139, "text", showGemDisplayData() ? "#Gem_SelectEmpty" : "#Equipment_SelectEmpty", _$p));
+              return _el$137;
             })();
           },
           get children() {
             return [(() => {
-              const _el$104 = libs.createElement("Panel", {
+              const _el$130 = libs.createElement("Panel", {
                   id: "SelectEquipContainer"
-                }, null);
-                libs.createElement("DOTAParticleScenePanel", {
-                  id: "EquipItemParticle",
-                  particleName: "particles/ui/game/ui_game_general_special_effects_02_fx.vpcf",
-                  cameraOrigin: "0 0 60",
-                  fov: 40,
-                  lookAt: "0 0 0",
-                  hittest: false,
-                  squarePixels: true
-                }, _el$104);
-                const _el$107 = libs.createElement("DOTAParticleScenePanel", {
+                }, null),
+                _el$132 = libs.createElement("DOTAParticleScenePanel", {
                   id: "ForgeParticle",
                   particleName: "particles/ui/game/ui_game_equipment_interface_02_fx.vpcf",
                   cameraOrigin: "0 0 350",
@@ -11492,21 +12471,31 @@ function EquipForge() {
                   lookAt: "0 0 0",
                   hittest: false,
                   squarePixels: true
-                }, _el$104);
-              libs.setProp(_el$104, "onload", () => Game.EmitSound("ui.blacksmith_background"));
-              libs.insert(_el$104, libs.createComponent(libs.Show, {
+                }, _el$130);
+              libs.setProp(_el$130, "onload", () => Game.EmitSound("ui.blacksmith_background"));
+              libs.insert(_el$130, libs.createComponent(libs.Show, {
                 get when() {
                   return showGemDisplayData();
                 },
                 get fallback() {
                   return (() => {
-                    const _el$115 = libs.createElement("Panel", {
-                      horizontalAlign: "center",
-                      flowChildren: "down"
-                    }, null);
-                    libs.setProp(_el$115, "horizontalAlign", "center");
-                    libs.setProp(_el$115, "flowChildren", "down");
-                    libs.insert(_el$115, libs.createComponent(server_equipment.Equipment, libs.mergeProps$1(() => displayData(), {
+                    const _el$140 = libs.createElement("Panel", {
+                        get ["class"]() {
+                          return libs.classNames({
+                            FusionSelection: forgeChildTab() == "Fusion"
+                          });
+                        },
+                        horizontalAlign: "center",
+                        flowChildren: "right"
+                      }, null),
+                      _el$141 = libs.createElement("Panel", {
+                        id: "SelectedEquipmentArea",
+                        flowChildren: "down"
+                      }, _el$140);
+                    libs.setProp(_el$140, "horizontalAlign", "center");
+                    libs.setProp(_el$140, "flowChildren", "right");
+                    libs.setProp(_el$141, "flowChildren", "down");
+                    libs.insert(_el$141, libs.createComponent(server_equipment.Equipment, libs.mergeProps$1(() => displayData(), {
                       onmouseover: p => {
                         const data = displayData();
                         if (data) {
@@ -11518,24 +12507,25 @@ function EquipForge() {
                       },
                       onmouseout: p => HideCustomTooltip(p, "server_equip")
                     })), null);
-                    libs.insert(_el$115, libs.createComponent(libs.Show, {
+                    libs.insert(_el$141, libs.createComponent(libs.Show, {
                       get when() {
                         return InlayType() == "Inlay";
                       },
                       get children() {
-                        const _el$116 = libs.createElement("Panel", {
+                        const _el$142 = libs.createElement("Panel", {
                           id: "ForgeGemSlotList"
                         }, null);
-                        libs.insert(_el$116, libs.createComponent(libs.For, {
+                        libs.insert(_el$142, libs.createComponent(libs.For, {
                           get each() {
                             return Array.from({
                               length: inlayGemData().length
                             });
                           },
                           children: (_, index) => {
-                            const slotData = () => gemData() ?? inlayGemData()[index()];
+                            const slotData = () => forgeChildTab() == "Inlay" ? gemData() ?? inlayGemData()[index()] : inlayGemData()[index()];
                             const emptySlot = () => slotData()?.gem_item_id == undefined;
                             const slotGemId = () => slotData()?.id;
+                            const fusionEligible = () => isRarity7Gem(inlayGemData()[index()]);
                             const buildEmbeddedGemData = () => {
                               const embedded = inlayGemData()[index()];
                               if (!embedded || !embedded.gem_item_id) return undefined;
@@ -11554,14 +12544,15 @@ function EquipForge() {
                               });
                             };
                             return (() => {
-                              const _el$117 = libs.createElement("Panel", {
+                              const _el$147 = libs.createElement("Panel", {
                                 get ["class"]() {
                                   return libs.classNames("GemSlot", {
-                                    EmptySlot: emptySlot()
+                                    EmptySlot: emptySlot(),
+                                    Selected: forgeChildTab() == "Fusion" && selectGemSlot() == index()
                                   });
                                 }
                               }, null);
-                              libs.setProp(_el$117, "onmouseover", p => {
+                              libs.setProp(_el$147, "onmouseover", p => {
                                 if (!slotGemId()) {
                                   if (buildEmbeddedGemData()) {
                                     ShowCustomTooltip(p, "server_gem", {
@@ -11577,12 +12568,14 @@ function EquipForge() {
                                   });
                                 }
                               });
-                              libs.setProp(_el$117, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
-                              libs.setProp(_el$117, "onactivate", () => {
+                              libs.setProp(_el$147, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
+                              libs.setProp(_el$147, "onactivate", () => {
+                                if (displayData()?.in_check === "gem_fusion") return;
+                                if (forgeChildTab() == "Fusion" && !fusionEligible()) return;
                                 setSelectGemSlot(index());
                                 setSelectedGemList([]);
                               });
-                              libs.insert(_el$117, libs.createComponent(libs.Show, {
+                              libs.insert(_el$147, libs.createComponent(libs.Show, {
                                 get when() {
                                   return !emptySlot();
                                 },
@@ -11590,22 +12583,108 @@ function EquipForge() {
                                   return libs.createComponent(server_equipment.Gem, libs.mergeProps$1(slotData));
                                 }
                               }));
-                              libs.effect(_$p => libs.setProp(_el$117, "class", libs.classNames("GemSlot", {
-                                EmptySlot: emptySlot()
-                              }), _$p));
-                              return _el$117;
+                              libs.effect(_p$ => {
+                                const _v$31 = libs.classNames("GemSlot", {
+                                    EmptySlot: emptySlot(),
+                                    Selected: forgeChildTab() == "Fusion" && selectGemSlot() == index()
+                                  }),
+                                  _v$32 = forgeChildTab() != "Fusion" || fusionEligible();
+                                _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$147, "class", _v$31, _p$._v$31));
+                                _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$147, "enabled", _v$32, _p$._v$32));
+                                return _p$;
+                              }, {
+                                _v$31: undefined,
+                                _v$32: undefined
+                              });
+                              return _el$147;
                             })();
                           }
                         }));
-                        return _el$116;
+                        return _el$142;
                       }
                     }), null);
-                    return _el$115;
+                    libs.insert(_el$140, libs.createComponent(libs.Show, {
+                      get when() {
+                        return forgeChildTab() == "Fusion";
+                      },
+                      get children() {
+                        return [libs.createElement("Panel", {
+                          id: "FusionArrow",
+                          "class": "GemSwapArrow Reverse"
+                        }, null), (() => {
+                          const _el$144 = libs.createElement("Panel", {
+                              id: "FusionMaterialArea"
+                            }, null),
+                            _el$145 = libs.createElement("Panel", {
+                              id: "FusionMaterialSlot"
+                            }, _el$144),
+                            _el$146 = libs.createElement("Label", {
+                              id: "FusionEmptyText",
+                              get text() {
+                                return GetLocalization("#Equipment_GemFusion_SelectMaterial");
+                              }
+                            }, _el$144);
+                          libs.setProp(_el$145, "onmouseover", panel => {
+                            const material = fusionMaterialDisplayData();
+                            if (!material) return;
+                            if (currentFusionResult()) {
+                              ShowCustomTooltip(panel, "server_gem", {
+                                id1: "",
+                                id2: "",
+                                embedded_gem_data: JSON.stringify(material)
+                              });
+                            } else {
+                              equipment_utils.ShowServerGemTooltip(panel, {
+                                id1: material.id
+                              });
+                            }
+                          });
+                          libs.setProp(_el$145, "onmouseout", panel => HideCustomTooltip(panel, "server_gem"));
+                          libs.setProp(_el$145, "onactivate", () => {
+                            if (displayData()?.in_check === "gem_fusion") return;
+                            setSelectedGemList([]);
+                          });
+                          libs.insert(_el$145, libs.createComponent(libs.Show, {
+                            get when() {
+                              return fusionMaterialDisplayData();
+                            },
+                            get fallback() {
+                              return libs.createElement("Panel", {
+                                id: "FusionAddIcon"
+                              }, null);
+                            },
+                            get children() {
+                              return libs.createComponent(server_equipment.Gem, libs.mergeProps$1(() => fusionMaterialDisplayData()));
+                            }
+                          }));
+                          libs.effect(_p$ => {
+                            const _v$28 = {
+                                Empty: !fusionMaterialDisplayData()
+                              },
+                              _v$29 = fusionMaterialDisplayData() == undefined,
+                              _v$30 = GetLocalization("#Equipment_GemFusion_SelectMaterial");
+                            _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$145, "classList", _v$28, _p$._v$28));
+                            _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$146, "visible", _v$29, _p$._v$29));
+                            _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$146, "text", _v$30, _p$._v$30));
+                            return _p$;
+                          }, {
+                            _v$28: undefined,
+                            _v$29: undefined,
+                            _v$30: undefined
+                          });
+                          return _el$144;
+                        })()];
+                      }
+                    }), null);
+                    libs.effect(_$p => libs.setProp(_el$140, "class", libs.classNames({
+                      FusionSelection: forgeChildTab() == "Fusion"
+                    }), _$p));
+                    return _el$140;
                   })();
                 },
                 get children() {
-                  const _el$106 = libs.createElement("Panel", {}, null);
-                  libs.setProp(_el$106, "onmouseover", p => {
+                  const _el$131 = libs.createElement("Panel", {}, null);
+                  libs.setProp(_el$131, "onmouseover", p => {
                     const gem = displayGemData();
                     if (gem && gem != "undefined") {
                       equipment_utils.ShowServerGemTooltip(p, {
@@ -11613,14 +12692,14 @@ function EquipForge() {
                       });
                     }
                   });
-                  libs.setProp(_el$106, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
-                  libs.insert(_el$106, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(() => displayGemData())));
-                  return _el$106;
+                  libs.setProp(_el$131, "onmouseout", p => HideCustomTooltip(p, "server_gem"));
+                  libs.insert(_el$131, libs.createComponent(server_equipment.Gem, libs.mergeProps$1(() => displayGemData())));
+                  return _el$131;
                 }
-              }), _el$107);
+              }), _el$132);
               const _ref$2 = forgeParticle;
-              typeof _ref$2 === "function" ? libs.use(_ref$2, _el$107) : forgeParticle = _el$107;
-              return _el$104;
+              typeof _ref$2 === "function" ? libs.use(_ref$2, _el$132) : forgeParticle = _el$132;
+              return _el$130;
             })(), libs.createComponent(libs.Show, {
               get when() {
                 return !forgeChildTab();
@@ -11629,10 +12708,10 @@ function EquipForge() {
                 return leftExtraContent();
               },
               get children() {
-                const _el$108 = libs.createElement("Panel", {
+                const _el$133 = libs.createElement("Panel", {
                   id: "NewBtnListContainer"
                 }, null);
-                libs.insert(_el$108, libs.createComponent(libs.For, {
+                libs.insert(_el$133, libs.createComponent(libs.For, {
                   get each() {
                     return newTabs();
                   },
@@ -11654,7 +12733,7 @@ function EquipForge() {
                     });
                     const isTabEnabled = () => disableReasons().length === 0;
                     return (() => {
-                      const _el$118 = libs.createElement("Panel", {
+                      const _el$149 = libs.createElement("Panel", {
                           get ["class"]() {
                             return libs.classNames("OperateBtn", tab);
                           },
@@ -11665,75 +12744,90 @@ function EquipForge() {
                             return 0.03 * index() + "s, 0.5s";
                           }
                         }, null),
-                        _el$119 = libs.createElement("Panel", {
+                        _el$150 = libs.createElement("Panel", {
                           id: "BtnImg"
-                        }, _el$118),
-                        _el$120 = libs.createElement("Panel", {
+                        }, _el$149),
+                        _el$151 = libs.createElement("Panel", {
                           id: "TabName"
-                        }, _el$118),
-                        _el$121 = libs.createElement("Label", {
-                          text: "#Equipment_" + tab
-                        }, _el$120);
+                        }, _el$149),
+                        _el$152 = libs.createElement("Label", {
+                          get text() {
+                            return GetLocalization("#Equipment_" + tab);
+                          }
+                        }, _el$151);
                         libs.createElement("Panel", {
                           id: "Border",
                           hittest: false
-                        }, _el$118);
+                        }, _el$149);
                         libs.createElement("Panel", {
                           id: "LockIcon",
                           hittest: false
-                        }, _el$118);
-                      libs.setProp(_el$118, "onactivate", () => {
+                        }, _el$149);
+                      libs.setProp(_el$149, "onactivate", () => {
                         if (!isTabEnabled()) return;
+                        if (tab == "Fusion") {
+                          const eligibleSlots = inlayGemData().map((gem, slotIndex) => isRarity7Gem(gem) ? slotIndex : -1).filter(slotIndex => slotIndex >= 0);
+                          if (!eligibleSlots.includes(selectGemSlot())) {
+                            setSelectGemSlot(eligibleSlots[0]);
+                          }
+                          setSelectedGemList([]);
+                        }
                         setForgeChildTab(tab);
                       });
-                      libs.setProp(_el$119, "onmouseover", p => {
+                      libs.setProp(_el$150, "onmouseover", p => {
                         const tipsKey = tabTipsMap[tab];
                         const parts = [];
                         if (tipsKey) parts.push(GetLocalization(tipsKey));
+                        const reasons = disableReasons();
+                        if (tab == "Fusion" && reasons.length > 0) {
+                          parts.push(...reasons.map(r => LocalizeWithVars(r.key, r.vars ?? {})));
+                        }
                         if (parts.length > 0) {
                           ShowCustomTooltip(p, "text", {
                             text: parts.join("<br>")
                           });
                         }
                       });
-                      libs.setProp(_el$119, "onmouseout", p => {
+                      libs.setProp(_el$150, "onmouseout", p => {
                         HideCustomTooltip(p, "text");
                       });
-                      libs.setProp(_el$121, "text", "#Equipment_" + tab);
                       libs.effect(_p$ => {
-                        const _v$21 = libs.classNames("OperateBtn", tab),
-                          _v$22 = "0s," + 0.03 * index() + "s",
-                          _v$23 = 0.03 * index() + "s, 0.5s",
-                          _v$24 = isTabEnabled();
-                        _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$118, "class", _v$21, _p$._v$21));
-                        _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$118, "animationDelay", _v$22, _p$._v$22));
-                        _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$118, "animationDuration", _v$23, _p$._v$23));
-                        _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$118, "enabled", _v$24, _p$._v$24));
+                        const _v$33 = libs.classNames("OperateBtn", tab),
+                          _v$34 = "0s," + 0.03 * index() + "s",
+                          _v$35 = 0.03 * index() + "s, 0.5s",
+                          _v$36 = isTabEnabled(),
+                          _v$37 = GetLocalization("#Equipment_" + tab);
+                        _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$149, "class", _v$33, _p$._v$33));
+                        _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$149, "animationDelay", _v$34, _p$._v$34));
+                        _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$149, "animationDuration", _v$35, _p$._v$35));
+                        _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$149, "enabled", _v$36, _p$._v$36));
+                        _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$152, "text", _v$37, _p$._v$37));
                         return _p$;
                       }, {
-                        _v$21: undefined,
-                        _v$22: undefined,
-                        _v$23: undefined,
-                        _v$24: undefined
+                        _v$33: undefined,
+                        _v$34: undefined,
+                        _v$35: undefined,
+                        _v$36: undefined,
+                        _v$37: undefined
                       });
-                      return _el$118;
+                      return _el$149;
                     })();
                   }
                 }));
-                return _el$108;
+                return _el$133;
               }
             })];
           }
         }));
-        libs.insert(_el$101, libs.createComponent(libs.Show, {
+        libs.insert(_el$127, libs.createComponent(libs.Show, {
           get when() {
             return libs.memo(() => selectedItemTab() === "gem")() ? displayGemData() != undefined : displayData() != undefined;
           },
           get children() {
-            const _el$109 = libs.createElement("Panel", {
+            const _el$134 = libs.createElement("Panel", {
               id: "EquipInfoContainer"
             }, null);
-            libs.insert(_el$109, libs.createComponent(libs.Switch, {
+            libs.insert(_el$134, libs.createComponent(libs.Switch, {
               get children() {
                 return [libs.createComponent(libs.Match, {
                   get when() {
@@ -11800,6 +12894,23 @@ function EquipForge() {
                   }
                 }), libs.createComponent(libs.Match, {
                   get when() {
+                    return forgeChildTab() == "Fusion";
+                  },
+                  get children() {
+                    return libs.createComponent(GemFusionWindow, {
+                      itemData: displayData,
+                      gemData: displayGemData,
+                      setLeftExtraContent: setLeftExtraContent,
+                      startForgeAnimation: startForgeAnimation,
+                      onReturn: onReturn,
+                      selectGemSlot: selectGemSlot,
+                      setSelectGemSlot: setSelectGemSlot,
+                      confirmedEquipmentID: confirmedFusionEquipmentID,
+                      onConfirmed: onFusionConfirmed
+                    });
+                  }
+                }), libs.createComponent(libs.Match, {
+                  get when() {
                     return forgeChildTab() == "GemLevelUP";
                   },
                   get children() {
@@ -11826,16 +12937,16 @@ function EquipForge() {
                 })];
               }
             }));
-            libs.effect(_$p => libs.setProp(_el$109, "visible", hiddenItemList(), _$p));
-            return _el$109;
+            libs.effect(_$p => libs.setProp(_el$134, "visible", hiddenItemList(), _$p));
+            return _el$134;
           }
         }), null);
-        libs.effect(_$p => libs.setProp(_el$103, "class", libs.classNames({
+        libs.effect(_$p => libs.setProp(_el$129, "class", libs.classNames({
           ShowAnimState: showAnim()
         }), _$p));
-        return _el$101;
+        return _el$127;
       })(), (() => {
-        const _el$110 = libs.createElement("DOTAParticleScenePanel", {
+        const _el$135 = libs.createElement("DOTAParticleScenePanel", {
           id: "Chuizi",
           cameraOrigin: "0 0 750",
           fov: 120,
@@ -11852,8 +12963,8 @@ function EquipForge() {
           squarePixels: true
         }, null);
         const _ref$3 = chuiziParticle;
-        typeof _ref$3 === "function" ? libs.use(_ref$3, _el$110) : chuiziParticle = _el$110;
-        return _el$110;
+        typeof _ref$3 === "function" ? libs.use(_ref$3, _el$135) : chuiziParticle = _el$135;
+        return _el$135;
       })(), libs.createElement("DOTAParticleScenePanel", {
         id: "BottomParticle",
         particleName: "particles/ui/game/ui_game_equipment_interface_01_1_fx",

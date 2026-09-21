@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -731,7 +731,15 @@ PropertyFunction.ENGRAVING_4_STRENGTHEN = 758
 PropertyFunction[PropertyFunction.ENGRAVING_4_STRENGTHEN] = "ENGRAVING_4_STRENGTHEN"
 PropertyFunction.ENGRAVING_5_STRENGTHEN = 759
 PropertyFunction[PropertyFunction.ENGRAVING_5_STRENGTHEN] = "ENGRAVING_5_STRENGTHEN"
-PropertyFunction.LAST = 760
+PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER = 760
+PropertyFunction[PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER] = "PHYSICAL_DAMAGE_MULTIPLIER"
+PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER = 761
+PropertyFunction[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER] = "MAGICAL_DAMAGE_MULTIPLIER"
+PropertyFunction.SPELL_DAMAGE_MULTIPLIER = 762
+PropertyFunction[PropertyFunction.SPELL_DAMAGE_MULTIPLIER] = "SPELL_DAMAGE_MULTIPLIER"
+PropertyFunction.SKILL_DAMAGE_MULTIPLIER = 763
+PropertyFunction[PropertyFunction.SKILL_DAMAGE_MULTIPLIER] = "SKILL_DAMAGE_MULTIPLIER"
+PropertyFunction.LAST = 764
 PropertyFunction[PropertyFunction.LAST] = "LAST"
 PROPERTY_MAP = {
 	health = PropertyFunction.HEALTH,
@@ -1094,6 +1102,10 @@ PROPERTY_MAP = {
 	engraving_3_strengthen = PropertyFunction.ENGRAVING_3_STRENGTHEN,
 	engraving_4_strengthen = PropertyFunction.ENGRAVING_4_STRENGTHEN,
 	engraving_5_strengthen = PropertyFunction.ENGRAVING_5_STRENGTHEN,
+	physical_damage_multiplier = PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER,
+	magical_damage_multiplier = PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER,
+	spell_damage_multiplier = PropertyFunction.SPELL_DAMAGE_MULTIPLIER,
+	skill_damage_multiplier = PropertyFunction.SKILL_DAMAGE_MULTIPLIER,
 }
 PROPERTY_MAP_REVERSE = {}
 for b, c in pairs(PROPERTY_MAP) do
@@ -3714,6 +3726,38 @@ PropertySystem:RegisterProperty({
 	aggregation = AggregationStrategy.SUM,
 	enableCache = false,
 })
+PropertySystem:RegisterProperty({
+	id = "physical_damage_multiplier",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	notify = true,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "magical_damage_multiplier",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	notify = true,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "spell_damage_multiplier",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	notify = true,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "skill_damage_multiplier",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.SUM,
+	notify = true,
+	enableCache = false,
+})
 function GetHealth(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "health", e)
 end
@@ -4629,6 +4673,18 @@ end
 function GetEngraving5Strengthen(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "engraving_5_strengthen", e)
 end
+function GetPhysicalDamageMultiplier(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "physical_damage_multiplier", e)
+end
+function GetMagicalDamageMultiplier(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "magical_damage_multiplier", e)
+end
+function GetSpellDamageMultiplier(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "spell_damage_multiplier", e)
+end
+function GetSkillDamageMultiplier(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "skill_damage_multiplier", e)
+end
 PROPERTY_FUNCTION_MAP = {
 	health = GetHealth,
 	base_health = GetBaseHealth,
@@ -4935,4 +4991,8 @@ PROPERTY_FUNCTION_MAP = {
 	engraving_3_strengthen = GetEngraving3Strengthen,
 	engraving_4_strengthen = GetEngraving4Strengthen,
 	engraving_5_strengthen = GetEngraving5Strengthen,
+	physical_damage_multiplier = GetPhysicalDamageMultiplier,
+	magical_damage_multiplier = GetMagicalDamageMultiplier,
+	spell_damage_multiplier = GetSpellDamageMultiplier,
+	skill_damage_multiplier = GetSkillDamageMultiplier,
 }

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -159,23 +159,26 @@ CDOTA_Buff.AddStackCountDuration = function(self, l, t, u, o)
 		end
 	end
 	self.__dynamicStack = w
-	self:SetStackCount(v + self.__dynamicStack)
-	local z = GameRules:GetGameTime() + t
+	local z = v + self.__dynamicStack
+	if self:GetStackCount() ~= z then
+		self:SetStackCount(z)
+	end
+	local A = GameRules:GetGameTime() + t
 	local r = #self.__dynamicStackData + 1
-	for A = #self.__dynamicStackData, 1, -1 do
-		if z >= self.__dynamicStackData[A].DieTime then
+	for B = #self.__dynamicStackData, 1, -1 do
+		if A >= self.__dynamicStackData[B].DieTime then
 			break
 		end
-		r = A
+		r = B
 	end
-	table.insert(self.__dynamicStackData, r, { DieTime = z, StackCount = l, callback = o })
+	table.insert(self.__dynamicStackData, r, { DieTime = A, StackCount = l, callback = o })
 	if #self.__dynamicStackData == 1 then
 		self:GetParent():GameTimer(self:GetName() .. "_StackCountTimer", t, function()
 			if not IsValid(self) then
 				return
 			end
-			local B = GameRules:GetGameTime()
-			while #self.__dynamicStackData > 0 and B >= self.__dynamicStackData[1].DieTime do
+			local C = GameRules:GetGameTime()
+			while #self.__dynamicStackData > 0 and C >= self.__dynamicStackData[1].DieTime do
 				local v = self:GetStackCount() - self.__dynamicStack
 				self.__dynamicStack = self.__dynamicStack - self.__dynamicStackData[1].StackCount
 				if self.__dynamicStackData[1].callback ~= nil then
@@ -185,7 +188,7 @@ CDOTA_Buff.AddStackCountDuration = function(self, l, t, u, o)
 				table.remove(self.__dynamicStackData, 1)
 			end
 			if #self.__dynamicStackData > 0 then
-				return self.__dynamicStackData[1].DieTime - B
+				return self.__dynamicStackData[1].DieTime - C
 			end
 		end)
 	end
@@ -197,40 +200,40 @@ CDOTA_Buff.RemoveStackCountDuration = function(self, l)
 	if self.__dynamicStackData == nil then
 		return
 	end
-	local C = 0
-	local D
-	local B = GameRules:GetGameTime()
+	local D = 0
+	local E
+	local C = GameRules:GetGameTime()
 	while #self.__dynamicStackData > 0 and l > 0 do
 		local y = self.__dynamicStackData[1]
 		if y.StackCount > l then
 			y.StackCount = y.StackCount - l
-			C = C + l
+			D = D + l
 			l = 0
 			if y.callback ~= nil then
 				y:callback(l)
 			end
 		else
-			C = C + y.StackCount
+			D = D + y.StackCount
 			l = l - y.StackCount
 			if y.callback ~= nil then
 				y:callback(y.StackCount)
 			end
 			table.remove(self.__dynamicStackData, 1)
 			if #self.__dynamicStackData > 0 then
-				D = self.__dynamicStackData[1].DieTime - B
+				E = self.__dynamicStackData[1].DieTime - C
 			else
-				D = -1
+				E = -1
 			end
 		end
 	end
-	if D ~= nil then
-		if D > 0 then
-			self:GetParent():GameTimer(self:GetName() .. "_StackCountTimer", D, function()
+	if E ~= nil then
+		if E > 0 then
+			self:GetParent():GameTimer(self:GetName() .. "_StackCountTimer", E, function()
 				if not IsValid(self) then
 					return
 				end
-				local B = GameRules:GetGameTime()
-				while #self.__dynamicStackData > 0 and B >= self.__dynamicStackData[1].DieTime do
+				local C = GameRules:GetGameTime()
+				while #self.__dynamicStackData > 0 and C >= self.__dynamicStackData[1].DieTime do
 					local v = self:GetStackCount() - self.__dynamicStack
 					self.__dynamicStack = self.__dynamicStack - self.__dynamicStackData[1].StackCount
 					if self.__dynamicStackData[1].callback ~= nil then
@@ -240,16 +243,16 @@ CDOTA_Buff.RemoveStackCountDuration = function(self, l)
 					table.remove(self.__dynamicStackData, 1)
 				end
 				if #self.__dynamicStackData > 0 then
-					return self.__dynamicStackData[1].DieTime - B
+					return self.__dynamicStackData[1].DieTime - C
 				end
 			end)
 		else
 			self:GetParent():StopTimer(self:GetName() .. "_StackCountTimer")
 		end
 	end
-	if C > 0 then
+	if D > 0 then
 		local v = self:GetStackCount() - self.__dynamicStack
-		self.__dynamicStack = self.__dynamicStack - C
+		self.__dynamicStack = self.__dynamicStack - D
 		self:SetStackCount(v + self.__dynamicStack)
 	end
 end

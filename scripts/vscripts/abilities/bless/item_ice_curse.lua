@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -27,37 +27,63 @@ end
 function j.prototype.EventListener(self)
 	return {
 		damage_event = function(k, l)
-			if l.attacker == self:GetCaster() and not l.target:IsBreakable() and self.enable then
-				self.enable = false
-				local m = self:GetSpecialValueFor("threshold")
-				local n = self:GetSpecialValueFor("radius")
-				local o = self:GetSpecialValueFor("damage")
-				if not l.target:IsAlive() or l.target:GetHealthPercent() <= m then
-					local p = self:GetCaster()
-					p:DealDamage(
-						l.target,
-						self,
-						l.target:GetHealth(),
-						EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE,
-						EOM_DAMAGE_FLAGS.FREEZE_DAMAGE
-					)
-					local q = FindUnitsInRadiusWithAbility(p, l.target:GetAbsOrigin(), n, self)
-					for r, s in ipairs(q) do
-						p:Frozen(s)
-						p:DealDamage(s, self, o, nil, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+			local m = self:GetCaster()
+			local n = l.target
+			if l.attacker ~= m or not self.enable or not IsValid(n) or n:IsBreakable() then
+				return
+			end
+			if not n:IsAlive() then
+				return
+			end
+			if n:GetHealthPercent() > self:GetSpecialValueFor("threshold") then
+				return
+			end
+			self.enable = false
+			do
+				local o, p = pcall(function()
+					local q = self:GetSpecialValueFor("radius")
+					local r = self:GetSpecialValueFor("damage")
+					local s = n:GetAbsOrigin()
+					if n:IsAlive() then
+						DamageSystem:DealDamage({
+							attacker = m,
+							target = n,
+							ability = self,
+							damage = n:GetHealth(),
+							damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE,
+							damage_flags = bit.bor(
+								bit.bor(EOM_DAMAGE_FLAGS.FREEZE_DAMAGE, EOM_DAMAGE_FLAGS.NO_CRIT),
+								EOM_DAMAGE_FLAGS.NO_DAMAGE_AMPLIFY
+							),
+						})
 					end
-					local t = ParticleManager:CreateParticle(
+					if IsValid(n) then
+						s = n:GetAbsOrigin()
+					end
+					local t = FindUnitsInRadiusWithAbility(m, s, q, self)
+					for k, u in ipairs(t) do
+						m:Frozen(u)
+						m:DealDamage(u, self, r, nil, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE)
+					end
+					local v = ParticleManager:CreateParticle(
 						"particles/units/benediction/ice_curse.vpcf",
 						PATTACH_CUSTOMORIGIN,
 						nil
 					)
-					ParticleManager:SetParticleControl(t, 3, l.target:GetAbsOrigin())
-					ParticleManager:SetParticleControl(t, 1, Vector(n, n, n))
-					ParticleManager:SetParticleControl(t, 2, Vector(n, 0, 0))
-					ParticleManager:ReleaseParticleIndex(t)
-					p:EmitSound("Hero_Crystal.CrystalNova")
+					if v ~= -1 then
+						ParticleManager:SetParticleControl(v, 3, s)
+						ParticleManager:SetParticleControl(v, 1, Vector(q, q, q))
+						ParticleManager:SetParticleControl(v, 2, Vector(q, 0, 0))
+						ParticleManager:ReleaseParticleIndex(v)
+					end
+					m:EmitSound("Hero_Crystal.CrystalNova")
+				end)
+				do
+					self.enable = true
 				end
-				self.enable = true
+				if not o then
+					error(p, 0)
+				end
 			end
 		end,
 	}

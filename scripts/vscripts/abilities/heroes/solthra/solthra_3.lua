@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -62,8 +62,12 @@ function s.prototype.GetAbilitySpecialValue(self)
 	self.shild_ball_damage_boost = self:GetAbilitySpecialValueFor("shild_ball_damage_boost")
 	self.ring_speed_amplify = self:GetAbilitySpecialValueFor("ring_speed_amplify")
 	local t = self:GetAbilitySpecialValueFor("shield_pct")
+	local u = self:GetAbilitySpecialValueFor("attr_magic_damage_pct")
 	if t > 0 then
 		self.shield = self.shield * (1 + t * 0.01)
+	end
+	if u > 0 then
+		self.attr_magic_damage_pct = u
 	end
 end
 function s.prototype.GetAuraRadius(self)
@@ -72,10 +76,10 @@ end
 function s.prototype.GetModifierAura(self)
 	return "modifier_solthra_3_buff"
 end
-function s.prototype.OnCreated(self, u)
-	local v = self:GetParent()
+function s.prototype.OnCreated(self, v)
+	local w = self:GetParent()
 	if IsServer() then
-		v:AddShield(self.shield, "modifier_solthra_3", "override")
+		w:AddShield(self.shield, "modifier_solthra_3", "override")
 		if self.attack_interval > 0 then
 			self:StartThink(self.attack_interval, "attack_interval")
 			self:OnThink("attack_interval")
@@ -84,48 +88,48 @@ function s.prototype.OnCreated(self, u)
 			self:StartThink(self.fire_ball_interval, "fire_ball_interval")
 		end
 	else
-		local w = ParticleManager:CreateParticle(
+		local x = ParticleManager:CreateParticle(
 			"particles/econ/items/ember_spirit/ember_ti9/ember_ti9_flameguard.vpcf",
 			PATTACH_ABSORIGIN_FOLLOW,
-			v
+			w
 		)
-		ParticleManager:SetParticleControlEnt(w, 1, v, PATTACH_ABSORIGIN_FOLLOW, nil, v:GetAbsOrigin(), true)
-		ParticleManager:SetParticleControl(w, 2, Vector(self.aura_radius, 1, 1))
-		self:AddParticle(w, false, false, -1, false, false)
+		ParticleManager:SetParticleControlEnt(x, 1, w, PATTACH_ABSORIGIN_FOLLOW, nil, w:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(x, 2, Vector(self.aura_radius, 1, 1))
+		self:AddParticle(x, false, false, -1, false, false)
 	end
 end
-function s.prototype.OnThink(self, x)
-	if x == "attack_interval" then
-		local v = self:GetParent()
-		local y = v:GetAbilityByTag(AbilityTag.Attack)
-		if IsValid(y) then
-			local z = FindEnemiesInRadius(v, v:GetAbsOrigin(), self.aura_radius)
-			local A = IsValid(z[1]) and z[1]:GetAbsOrigin() or v:GetAbsOrigin() + RandomVector(100)
-			y:StartAttack({ caster = v, position = A, damage = y:GetSpecialValueFor("damage"), isAOEAttack = true })
+function s.prototype.OnThink(self, y)
+	if y == "attack_interval" then
+		local w = self:GetParent()
+		local z = w:GetAbilityByTag(AbilityTag.Attack)
+		if IsValid(z) then
+			local A = FindEnemiesInRadius(w, w:GetAbsOrigin(), self.aura_radius)
+			local B = IsValid(A[1]) and A[1]:GetAbsOrigin() or w:GetAbsOrigin() + RandomVector(100)
+			z:StartAttack({ caster = w, position = B, damage = z:GetSpecialValueFor("damage"), isAOEAttack = true })
 		end
 	end
-	if x == "fire_ball_interval" then
-		local v = self:GetParent()
-		local B = v:GetAbilityByTag(AbilityTag.Skill)
-		if IsValid(B) then
-			local z = FindEnemiesInRadius(v, v:GetAbsOrigin(), self.aura_radius)
-			local A = IsValid(z[1]) and z[1]:GetAbsOrigin() or v:GetAbsOrigin() + RandomVector(100)
-			local C = CalcDirection(A, v:GetAbsOrigin())
-			local D = B:GetSpecialValueFor("damage") * self.shild_ball_damage_boost * 0.01
-			B:CreateAttack(v:GetAttachmentPosition("attach_hitloc"), C, z[1], D, DoUniqueString("solthra_1"))
+	if y == "fire_ball_interval" then
+		local w = self:GetParent()
+		local C = w:GetAbilityByTag(AbilityTag.Skill)
+		if IsValid(C) then
+			local A = FindEnemiesInRadius(w, w:GetAbsOrigin(), self.aura_radius)
+			local B = IsValid(A[1]) and A[1]:GetAbsOrigin() or w:GetAbsOrigin() + RandomVector(100)
+			local D = CalcDirection(B, w:GetAbsOrigin())
+			local E = C:GetSpecialValueFor("damage") * self.shild_ball_damage_boost * 0.01
+			C:CreateAttack(w:GetAttachmentPosition("attach_hitloc"), D, A[1], E, DoUniqueString("solthra_1"))
 		end
 	end
 end
-function s.prototype.OnRefresh(self, u)
+function s.prototype.OnRefresh(self, v)
 	if IsServer() then
-		local v = self:GetParent()
-		v:AddShield(self.shield, "modifier_solthra_3", "override")
+		local w = self:GetParent()
+		w:AddShield(self.shield, "modifier_solthra_3", "override")
 	end
 end
 function s.prototype.OnDestroy(self)
 	if IsServer() then
-		local v = self:GetParent()
-		v:RemoveShield("modifier_solthra_3")
+		local w = self:GetParent()
+		w:RemoveShield("modifier_solthra_3")
 	end
 end
 function s.prototype.StaticProperty(self)
@@ -134,6 +138,7 @@ function s.prototype.StaticProperty(self)
 		[PropertyFunction.SPELL_DAMAGE_AMPLIFY] = self.spell_amp,
 		[PropertyFunction.FURY_REGEN] = self.mana_regen,
 		[PropertyFunction.RING_SPEED_AMPLIFY] = self.ring_speed_amplify,
+		[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER] = self.attr_magic_damage_pct,
 	}
 end
 s = e(
@@ -156,20 +161,20 @@ s = e(
 	},
 	s
 )
-local E = c()
-E.name = "modifier_solthra_3_buff"
-d(E, h)
-function E.prototype.GetAbilitySpecialValue(self)
+local F = c()
+F.name = "modifier_solthra_3_buff"
+d(F, h)
+function F.prototype.GetAbilitySpecialValue(self)
 	self.damage = self:GetAbilitySpecialValueFor("damage")
 	self.interval = self:GetAbilitySpecialValueFor("interval")
 	self.shield_pct = self:GetAbilitySpecialValueFor("shield_pct")
 end
-function E.prototype.OnCreated(self, u)
+function F.prototype.OnCreated(self, v)
 	if IsServer() then
 		self:StartIntervalThink(self.interval)
 	end
 end
-function E.prototype.OnIntervalThink(self)
+function F.prototype.OnIntervalThink(self)
 	if IsServer() then
 		local p = self:GetCaster()
 		if not IsValid(p) then
@@ -182,7 +187,7 @@ function E.prototype.OnIntervalThink(self)
 		p:DealDamage(self.parent, self.ability, self.damage * self.interval)
 	end
 end
-E = e(
+F = e(
 	{
 		i(
 			a,
@@ -196,6 +201,6 @@ E = e(
 			}
 		),
 	},
-	E
+	F
 )
 return f

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -68,7 +68,7 @@ function ServerGemDetail(props) {
   const [isAlt, setIsAlt] = libs.createSignal(false);
   const compareMainMap = libs.createMemo(() => {
     const compare = props.compareData;
-    if (!compare) return {};
+    if (!compare) return undefined;
     const map = {};
     compare.main_entry_data.forEach(entry => {
       map[entry.id] = entry.value;
@@ -87,7 +87,7 @@ function ServerGemDetail(props) {
   };
   const compareAdverbMap = libs.createMemo(() => {
     const compare = props.compareData;
-    if (!compare) return {};
+    if (!compare) return undefined;
     const map = {};
     compare.adverb_entry_data.forEach(entry => {
       map[entry.id] = entry.value;
@@ -112,7 +112,16 @@ function ServerGemDetail(props) {
     data.main_entry_data.forEach(entry => collectTags(entry.id));
     data.adverb_entry_data.forEach(entry => collectTags(entry.id));
     if (data.myth_entry_data) data.myth_entry_data.forEach(entry => collectTags(entry.id));
-    if (data.chaos_entry_data) data.chaos_entry_data.forEach(entry => collectTags(entry.id));
+    if (data.chaos_entry_data) data.chaos_entry_data.forEach(entry => {
+      collectTags(entry.id);
+      if (entry.id.startsWith("privilege_gem_suit_")) {
+        const level = Math.max(1, Math.floor(toFiniteNumber(entry.value, 1)));
+        const suitData = KeyValues.gem_entry_suit[entry.id];
+        const entryName = GetLocalization(`#${entry.id}`, suitData?.name ?? entry.id);
+        const description = GetPrivilegeDesc(entry.id, level);
+        if (description) lines.push(`${entryName}:${description}`);
+      }
+    });
     if (data.ability_entry_data) data.ability_entry_data.forEach(entry => collectTags(entry.id));
     tags.forEach(tag => {
       const tagDesc = $.Localize("#feature_" + tag + "_description", $.GetContextPanel());
@@ -171,7 +180,7 @@ function ServerGemDetail(props) {
         "class": "GemRollChange",
         get text() {
           return LocalizeWithVars("#Gem_Change", {
-            value: gemProps().gem_roll_change
+            value: toFiniteNumber(gemProps().gem_roll_change)
           });
         }
       }, _el$5),
@@ -298,7 +307,12 @@ function ServerGemDetail(props) {
               get each() {
                 return gemProps().chaos_entry_data;
               },
-              children: data => (() => {
+              children: data => data().id.startsWith("privilege_gem_suit_") ? libs.createComponent(equip_details.GemSpecialEffectRow, {
+                get data() {
+                  return data();
+                },
+                showDescription: false
+              }) : (() => {
                 const _el$21 = libs.createElement("Panel", {
                     "class": `ChaosEntry`
                   }, null);
@@ -374,7 +388,7 @@ function ServerGemDetail(props) {
           Active: toFiniteNumber(gemProps().gem_roll_change) > 0
         },
         _v$5 = LocalizeWithVars("#Gem_Change", {
-          value: gemProps().gem_roll_change
+          value: toFiniteNumber(gemProps().gem_roll_change)
         });
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
       _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));

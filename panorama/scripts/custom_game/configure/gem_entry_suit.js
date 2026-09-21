@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -16,7 +16,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 1,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_002: {
@@ -26,7 +26,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 1,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_003: {
@@ -36,7 +36,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 1,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_004: {
@@ -46,8 +46,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "1:50|2:50",
-		suit_limit: 50,
+		suit_unlock: "1:16|2:16",
+		entry_limit: 50,
 		suit_icon: "gem_suit_5"
 	},
 	privilege_gem_suit_005: {
@@ -57,7 +57,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 1,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_1"
 	},
 	privilege_gem_suit_006: {
@@ -67,7 +67,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 2,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_007: {
@@ -77,7 +77,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 2,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_008: {
@@ -87,7 +87,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 2,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_009: {
@@ -97,7 +97,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 2,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_2"
 	},
 	privilege_gem_suit_010: {
@@ -107,7 +107,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 3,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_011: {
@@ -117,7 +117,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 3,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_012: {
@@ -127,7 +127,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 3,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_013: {
@@ -137,7 +137,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 3,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_3"
 	},
 	privilege_gem_suit_014: {
@@ -147,7 +147,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 4,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_015: {
@@ -157,7 +157,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 4,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_016: {
@@ -167,7 +167,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 4,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_017: {
@@ -177,7 +177,7 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 4,
 		base_suit: 1,
 		upgrade_suit: 1,
-		suit_limit: 50,
+		entry_limit: 50,
 		suit_icon: "gem_suit_4"
 	},
 	privilege_gem_suit_018: {
@@ -187,8 +187,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "3:50|4:50",
-		suit_limit: 50,
+		suit_unlock: "3:16|4:16",
+		entry_limit: 50,
 		suit_icon: "gem_suit_6"
 	},
 	privilege_gem_suit_019: {
@@ -198,8 +198,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "1:50|3:50",
-		suit_limit: 50,
+		suit_unlock: "1:16|3:16",
+		entry_limit: 50,
 		suit_icon: "gem_suit_7"
 	},
 	privilege_gem_suit_020: {
@@ -209,8 +209,8 @@ GameUI.CustomUIConfig().gem_entry_suit = {
 		suit_type: 0,
 		base_suit: 0,
 		upgrade_suit: 0,
-		suit_unlock: "2:50|4:50",
-		suit_limit: 50,
+		suit_unlock: "2:16|4:16",
+		entry_limit: 50,
 		suit_icon: "gem_suit_8"
 	}
 };

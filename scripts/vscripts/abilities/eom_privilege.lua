@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -223,13 +223,17 @@ end
 function D.prototype.GetPlayerID(self)
 	return self.playerID
 end
-function D.prototype.GetSpecialValueFor(self, Z)
-	local _ = self.specialValueOverrides
-	local a0 = _ and _[Z]
-	if a0 ~= nil then
-		return a0
+function D.prototype.SetLevel(self, Z)
+	self.level = Z
+	self:OnRefresh()
+end
+function D.prototype.GetSpecialValueFor(self, _)
+	local a0 = self.specialValueOverrides
+	local a1 = a0 and a0[_]
+	if a1 ~= nil then
+		return a1
 	end
-	return Privilege:GetPrivilegeSpecialValue(self.privilegeName, self.level, Z, self:GetCaster())
+	return Privilege:GetPrivilegeSpecialValue(self.privilegeName, self.level, _, self:GetCaster())
 end
 function D.prototype.IsValidPrivilege(self)
 	if self._bAlreadyDestroyed then
@@ -238,132 +242,132 @@ function D.prototype.IsValidPrivilege(self)
 	return true
 end
 function D.prototype.GetPriority(self)
-	local a1 = toFiniteNumber
-	local a2 = KeyValues.privilegeKv[self.privilegeName]
-	if a2 ~= nil then
-		a2 = a2.Priority
+	local a2 = toFiniteNumber
+	local a3 = KeyValues.privilegeKv[self.privilegeName]
+	if a3 ~= nil then
+		a3 = a3.Priority
 	end
-	return a1(a2, 100)
+	return a2(a3, 100)
 end
 function D.prototype.GetUnavailableArtifactNames(self)
-	local a3 = self:GetCaster()
-	if not IsValid(a3) then
+	local a4 = self:GetCaster()
+	if not IsValid(a4) then
 		return {}
 	end
-	local a4 = {}
-	for a5, a6 in pairs(KeyValues.items) do
-		local a7 = toFiniteNumber(a6.Quantitylimit, 0)
-		if a7 > 0 and a3:GetItemCount(a5) >= a7 then
-			self:AppendExcludedArtifact(a4, a5)
+	local a5 = {}
+	for a6, a7 in pairs(KeyValues.items) do
+		local a8 = toFiniteNumber(a7.Quantitylimit, 0)
+		if a8 > 0 and a4:GetItemCount(a6) >= a8 then
+			self:AppendExcludedArtifact(a5, a6)
 		end
 	end
-	local a8 = a3:GetAllItems()
+	local a9 = a4:GetAllItems()
 	do
 		local t = 0
-		while t < #a8 do
+		while t < #a9 do
 			do
-				local a9 = a8[t + 1]
-				if not IsValid(a9) then
-					goto aa
+				local aa = a9[t + 1]
+				if not IsValid(aa) then
+					goto ab
 				end
-				self:AppendUpgradeGroupArtifacts(a4, a9:GetAbilityName())
+				self:AppendUpgradeGroupArtifacts(a5, aa:GetAbilityName())
 			end
-			::aa::
+			::ab::
 			t = t + 1
 		end
 	end
-	return a4
+	return a5
 end
-function D.prototype.AppendUpgradeGroupArtifacts(self, a4, a5)
-	local ab = tostring
-	local ac = KeyValues.items[a5]
-	if ac ~= nil then
-		ac = ac.UpgradeGroup
+function D.prototype.AppendUpgradeGroupArtifacts(self, a5, a6)
+	local ac = tostring
+	local ad = KeyValues.items[a6]
+	if ad ~= nil then
+		ad = ad.UpgradeGroup
 	end
-	local ad = ac
-	if ad == nil then
-		ad = ""
+	local ae = ad
+	if ae == nil then
+		ae = ""
 	end
-	local ae = ab(ad)
-	if ae == "" then
+	local af = ac(ae)
+	if af == "" then
 		return
 	end
-	for af, ag in pairs(KeyValues.items) do
-		local ah = tostring
-		local ai = ag.UpgradeGroup
-		if ai == nil then
-			ai = ""
+	for ag, ah in pairs(KeyValues.items) do
+		local ai = tostring
+		local aj = ah.UpgradeGroup
+		if aj == nil then
+			aj = ""
 		end
-		if ah(ai) == ae then
-			self:AppendExcludedArtifact(a4, af)
+		if ai(aj) == af then
+			self:AppendExcludedArtifact(a5, ag)
 		end
 	end
 end
-function D.prototype.AppendExcludedArtifact(self, a4, a5)
-	if not d(a4, a5) then
-		a4[#a4 + 1] = a5
+function D.prototype.AppendExcludedArtifact(self, a5, a6)
+	if not d(a5, a6) then
+		a5[#a5 + 1] = a6
 	end
 end
-function D.prototype.StartThink(self, aj, ak, al)
-	if type(ak) == "function" and al == nil then
-		al = ak
-		ak = nil
+function D.prototype.StartThink(self, ak, al, am)
+	if type(al) == "function" and am == nil then
+		am = al
+		al = nil
 	end
-	local am = ak or DoUniqueString("PrivilegeThink")
-	if aj == -1 then
-		if self._ThinkList[am] then
-			Timer:StopTimer(self._ThinkList[am])
-			self._ThinkList[am] = nil
+	local an = al or DoUniqueString("PrivilegeThink")
+	if ak == -1 then
+		if self._ThinkList[an] then
+			Timer:StopTimer(self._ThinkList[an])
+			self._ThinkList[an] = nil
 		end
-		return am
+		return an
 	end
-	if self._ThinkList[am] ~= nil then
-		Timer:StopTimer(self._ThinkList[am])
+	if self._ThinkList[an] ~= nil then
+		Timer:StopTimer(self._ThinkList[an])
 	end
-	local an = Timer:GameTimer(aj, function()
+	local ao = Timer:GameTimer(ak, function()
 		if not self:IsValidPrivilege() then
-			self._ThinkList[am] = nil
+			self._ThinkList[an] = nil
 			return
 		end
-		local ao
-		if al ~= nil then
-			ao = al(nil, self, am)
+		local ap
+		if am ~= nil then
+			ap = am(nil, self, an)
 		elseif self.OnThink ~= nil then
-			ao = self:OnThink(am)
+			ap = self:OnThink(an)
 		end
-		if ao == -1 then
-			Timer:StopTimer(self._ThinkList[am])
-			self._ThinkList[am] = nil
+		if ap == -1 then
+			Timer:StopTimer(self._ThinkList[an])
+			self._ThinkList[an] = nil
 			return
 		end
-		return ao
+		return ap
 	end)
-	self._ThinkList[am] = an
-	return am
+	self._ThinkList[an] = ao
+	return an
 end
-function D.prototype.OnThink(self, ak) end
+function D.prototype.OnThink(self, al) end
 function D.prototype.StopAllThinks(self)
-	for ak, ap in pairs(self._ThinkList) do
-		Timer:StopTimer(ap)
+	for al, aq in pairs(self._ThinkList) do
+		Timer:StopTimer(aq)
 	end
 	self._ThinkList = {}
 end
 g.RegisterPrivilege = function(z, j)
 	return function(self, k)
-		local ak = j or k.name
-		h(nil, ak, k)
+		local al = j or k.name
+		h(nil, al, k)
 		return k
 	end
 end
 i = {}
 function g.CreatePrivilegeInstance(self, j, E, F, G, H, I)
-	local aq = i[j]
-	if not aq then
+	local ar = i[j]
+	if not ar then
 		print("[PrivilegeDecorator] Class not found: " .. j)
 		return nil
 	end
-	local ar = e(aq, E, F, G, H, I)
-	return ar
+	local as = e(ar, E, F, G, H, I)
+	return as
 end
 function g.GetAllRegisteredPrivilegeNames(self)
 	return f(i)

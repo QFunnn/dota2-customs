@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -287,11 +287,22 @@ function r.prototype.OnSpellStart(self)
 					)
 					local af = self:GetSpecialValueFor("pull_radius")
 					if af > 0 then
+						local ag = G:HasAbilityUpgrade("seraphon_1_upgrade_wp45")
+						local ah = self:GetSpecialValueFor("hurt_damage_pct")
+						local ai = self:GetSpecialValueFor("weakness_duration")
 						local H = FindEnemiesInRadius(G, ac, af)
-						e(H, function(u, ag)
-							ag:KnockBack(
-								CalcDirection2D(ac, ag:GetAbsOrigin()),
-								CalcDistance(ac, ag:GetAbsOrigin()) * 0.8,
+						e(H, function(u, aj)
+							if ag and ah > 0 and ai > 0 and aj:IsAlive() then
+								aj:AddNewModifier(
+									G,
+									self,
+									"modifier_seraphon_1_weakness",
+									{ duration = ai, hurt_damage_pct = ah }
+								)
+							end
+							aj:KnockBack(
+								CalcDirection2D(ac, aj:GetAbsOrigin()),
+								CalcDistance(ac, aj:GetAbsOrigin()) * 0.8,
 								100,
 								0.4
 							)
@@ -302,37 +313,37 @@ function r.prototype.OnSpellStart(self)
 		end,
 	})
 	if G:HasAbilityUpgrade("seraphon_upgrade_20") then
-		local ah = self:GetSpecialValueFor("ring_count")
-		local ai = self:GetSpecialValueFor("ring_duration")
-		self:RingHammer(ah, ai)
+		local ak = self:GetSpecialValueFor("ring_count")
+		local al = self:GetSpecialValueFor("ring_duration")
+		self:RingHammer(ak, al)
 	end
 	G:EmitSound("Hero_Omniknight.HammerOfPurity.Heal")
 end
-function r.prototype.RingHammer(self, ah, ai)
+function r.prototype.RingHammer(self, ak, al)
 	local G = self:GetCaster()
-	local aj = G:Script_GetAttackRange() * 0.8
+	local am = G:Script_GetAttackRange() * 0.8
 	do
 		local A = #self.bulletList - 1
 		while A >= 0 do
-			local ak = self.bulletList[A + 1]
-			if Bullet:GetBulletData(ak) == nil then
+			local an = self.bulletList[A + 1]
+			if Bullet:GetBulletData(an) == nil then
 				table.remove(self.bulletList, A)
 			end
 			A = A - 1
 		end
 	end
-	ah = math.min(ah, q - #self.bulletList)
-	if ah <= 0 then
+	ak = math.min(ak, q - #self.bulletList)
+	if ak <= 0 then
 		return
 	end
-	local al = Bullet:CreateGroupSurroundBullet(ah, {
+	local ao = Bullet:CreateGroupSurroundBullet(ak, {
 		caster = G,
 		ability = self,
 		group = "seraphon_ring" .. tostring(G:entindex()),
-		circleRadius = aj,
+		circleRadius = am,
 		angularVelocity = self:GetSpecialValueFor("ring_speed"),
 		offset = 128,
-		lifeTime = ai,
+		lifeTime = al,
 		teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		typeFilter = UNIT_AND_BUILDING,
 		radius = 100,
@@ -368,7 +379,7 @@ function r.prototype.RingHammer(self, ah, ai)
 			)
 			return V
 		end,
-		OnBulletHit = function(R, F, am)
+		OnBulletHit = function(R, F, ap)
 			G:DealDamage(
 				R,
 				self,
@@ -378,21 +389,21 @@ function r.prototype.RingHammer(self, ah, ai)
 			)
 		end,
 	})
-	self.bulletList = f(self.bulletList, al)
+	self.bulletList = f(self.bulletList, ao)
 end
 function r.prototype.EventListener(self)
 	return {
-		property_changed = function(u, an)
+		property_changed = function(u, aq)
 			if not IsValid(self) or not IsValid(self:GetCaster()) then
 				return
 			end
-			if an.key ~= self:GetCaster():entindex() then
+			if aq.key ~= self:GetCaster():entindex() then
 				return
 			end
-			if an.propertyId == "ring_speed_amplify" then
-				local ao = Bullet.surroundGroup["seraphon_ring" .. tostring(self:GetCaster():entindex())]
-				if ao ~= nil then
-					ao.angularVelocity = self:GetSpecialValueFor("ring_speed")
+			if aq.propertyId == "ring_speed_amplify" then
+				local ar = Bullet.surroundGroup["seraphon_ring" .. tostring(self:GetCaster():entindex())]
+				if ar ~= nil then
+					ar.angularVelocity = self:GetSpecialValueFor("ring_speed")
 				end
 			end
 		end,
@@ -405,16 +416,16 @@ r = g({ p(nil, {
 		return ae:GetAutoCastState()
 	end,
 }) }, r)
-local ap = c()
-ap.name = "modifier_seraphon_1"
-d(ap, j)
-function ap.prototype.____constructor(self, ...)
+local as = c()
+as.name = "modifier_seraphon_1"
+d(as, j)
+function as.prototype.____constructor(self, ...)
 	j.prototype.____constructor(self, ...)
 	self.pickup_radius = 240
 	self.bounce_count = 0
 	self.bonus_attack_duration = 0
 end
-function ap.prototype.GetAbilitySpecialValue(self)
+function as.prototype.GetAbilitySpecialValue(self)
 	self.pickup_radius_pct = self:GetAbilitySpecialValueFor("pickup_radius_pct") * self.bounce_count
 	self.pick_damage_radius_pct = self:GetAbilitySpecialValueFor("pick_damage_radius_pct") * self.bounce_count
 	self.pick_damage_pct = self:GetAbilitySpecialValueFor("pick_damage_pct") * self.bounce_count
@@ -423,9 +434,9 @@ function ap.prototype.GetAbilitySpecialValue(self)
 	self.pickup_radius = self.pickup_radius * (1 + self.pickup_radius_pct * 0.01)
 	self.bonus_attack_duration = self:GetAbilitySpecialValueFor("bonus_attack_duration")
 end
-function ap.prototype.OnCreated(self, aq)
+function as.prototype.OnCreated(self, at)
 	if IsServer() then
-		local I = StringToVector(aq.direction):Normalized()
+		local I = StringToVector(at.direction):Normalized()
 		local V = ParticleManager:CreateParticle(
 			"particles/mushi_fx/mushi_fx_chuizi_bao_dixia_01.vpcf",
 			PATTACH_CUSTOMORIGIN,
@@ -435,20 +446,20 @@ function ap.prototype.OnCreated(self, aq)
 		ParticleManager:SetParticleControlEnt(V, 7, self:GetCaster().__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
 		self:AddParticle(V, false, false, -1, false, false)
 		self:StartIntervalThink(0.1)
-		self.bounce_count = aq.bounce_count
+		self.bounce_count = at.bounce_count
 		self:GetAbilitySpecialValue()
 		ParticleManager:SetParticleControl(V, 20, Vector(self.pickup_radius * 0.5, 0, 0))
 	end
 end
-function ap.prototype.OnDestroy(self)
+function as.prototype.OnDestroy(self)
 	if IsServer() then
 		self:GetParent():RemoveSelf()
 	end
 end
-function ap.prototype.OnIntervalThink(self)
-	local ar = self:GetParent()
+function as.prototype.OnIntervalThink(self)
+	local au = self:GetParent()
 	local G = self:GetCaster()
-	if IsValid(G) and CalcDistance(G, ar) < self.pickup_radius then
+	if IsValid(G) and CalcDistance(G, au) < self.pickup_radius then
 		local ae = self:GetAbility()
 		if IsValid(ae) then
 			ae:EndCooldown()
@@ -461,9 +472,9 @@ function ap.prototype.OnIntervalThink(self)
 		ParticleManager:SetParticleControlEnt(V, 7, G.__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
 		self:Destroy()
 		if G:HasAbilityUpgrade("seraphon_upgrade_6") then
-			local as = G:GetAbilityByTag(AbilityTag.Defense)
-			if IsValid(as) then
-				as:Purify()
+			local av = G:GetAbilityByTag(AbilityTag.Defense)
+			if IsValid(av) then
+				av:Purify()
 			end
 		end
 		if self.bonus_attack_duration > 0 then
@@ -476,28 +487,64 @@ function ap.prototype.OnIntervalThink(self)
 		end
 	end
 end
-ap = g(
+as = g(
 	{ k(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	ap
+	as
 )
-local at = c()
-at.name = "modifier_seraphon_1_bonus_attack_damage"
-d(at, j)
-function at.prototype.GetAbilitySpecialValue(self)
+local aw = c()
+aw.name = "modifier_seraphon_1_bonus_attack_damage"
+d(aw, j)
+function aw.prototype.GetAbilitySpecialValue(self)
 	self.bonus_attack_damage = self:GetAbilitySpecialValueFor("bonus_attack_damage")
 	self.damage = self:GetAbilitySpecialValueFor("damage")
 end
-function at.prototype.StaticProperty(self)
+function aw.prototype.StaticProperty(self)
 	return { [PropertyFunction.ATTACK_DAMAGE_PROC] = self.damage * self.bonus_attack_damage * 0.01 }
 end
-at = g(
+aw = g(
 	{ k(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	at
+	aw
+)
+local ax = c()
+ax.name = "modifier_seraphon_1_weakness"
+d(ax, j)
+function ax.prototype.____constructor(self, ...)
+	j.prototype.____constructor(self, ...)
+	self.hurt_damage_pct = 0
+end
+function ax.prototype.OnCreated(self, at)
+	if IsServer() then
+		self.hurt_damage_pct = at.hurt_damage_pct
+	end
+end
+function ax.prototype.OnRefresh(self, at)
+	if IsServer() then
+		self.hurt_damage_pct = at.hurt_damage_pct
+	end
+end
+function ax.prototype.StaticProperty(self)
+	return { [PropertyFunction.INCOMING_DAMAGE_AMPLIFY] = self.hurt_damage_pct }
+end
+ax = g(
+	{
+		k(
+			a,
+			{
+				IsHidden = false,
+				IsDebuff = true,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				RemoveOnDeath = true,
+			}
+		),
+	},
+	ax
 )
 return h

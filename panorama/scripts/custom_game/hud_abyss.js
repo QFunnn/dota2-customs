@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -666,9 +666,9 @@ const NormalAbyss = () => {
   const remainingEventHits = libs.createMemo(() => {
     const snapshot = horde();
     if (snapshot === undefined) {
-      return ABYSS_CONFIG.event.initialTriggerCount;
+      return Math.ceil(ABYSS_CONFIG.event.initialTriggerCount / 2);
     }
-    return Math.max(0, snapshot.currentAbyssalEventTriggerCount - snapshot.abyssalEventRoundKillCount);
+    return Math.max(0, Math.ceil((snapshot.currentAbyssalEventTriggerCount - snapshot.abyssalEventRoundKillCount) / 2));
   });
   const eventText = libs.createMemo(() => horde()?.hasPendingEventElite ? "#AbyssalEventReady" : `#AbyssalEventNextHit`);
   const visibleEvents = libs.createMemo(() => {

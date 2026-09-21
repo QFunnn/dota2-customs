@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,302 +13,336 @@ local b = require("lualib_bundle")
 local c = b.__TS__Class
 local d = b.__TS__ClassExtends
 local e = b.__TS__Delete
-local f = b.__TS__ObjectKeys
-local g = b.__TS__DecorateLegacy
-local h = b.__TS__New
+local f = b.__TS__New
+local g = b.__TS__ObjectKeys
+local h = b.__TS__DecorateLegacy
 local i = {}
 local j = require("lib.tstl-utils")
 local k = j.reloadable
 local l = c()
-l.name = "MEvent"
-d(l, CModule)
-function l.prototype.____constructor(self, ...)
+l.name = "EventRateLimiter"
+function l.prototype.____constructor(self) end
+function l.prototype.Allow(self, m, n, o)
+	if o then
+		return false
+	end
+	if self.lastTrigger ~= nil and m - self.lastTrigger < n then
+		return false
+	end
+	self.lastTrigger = m
+	return true
+end
+local p = c()
+p.name = "MEvent"
+d(p, CModule)
+function p.prototype.____constructor(self, ...)
 	CModule.prototype.____constructor(self, ...)
 	self.eventId = 1
 	self.eventIdMap = {}
 end
-function l.prototype.initPriority(self)
+function p.prototype.initPriority(self)
 	return 9
 end
-function l.prototype.init(self, m)
-	if not m then
+function p.prototype.init(self, q)
+	if not q then
 	else
 		self:cleanupModuleListeners()
 	end
 end
-function l.prototype.reset(self) end
-function l.prototype.cleanupModuleListeners(self)
+function p.prototype.reset(self) end
+function p.prototype.cleanupModuleListeners(self)
 	self:print("cleanupModuleListeners")
-	for n, o in pairs(self.eventIdMap) do
+	for r, s in pairs(self.eventIdMap) do
 		do
-			local p = #o - 1
-			while p >= 0 do
-				local q = o[p + 1]
-				local r = q.context
-				if r ~= nil then
-					r = r.isModule
+			local t = #s - 1
+			while t >= 0 do
+				local u = s[t + 1]
+				local v = u.context
+				if v ~= nil then
+					v = v.isModule
 				end
-				if r == true then
-					table.remove(o, p + 1)
+				if v == true then
+					table.remove(s, t + 1)
 				end
-				p = p - 1
+				t = t - 1
 			end
 		end
-		if #o == 0 then
-			e(self.eventIdMap, n)
+		if #s == 0 then
+			e(self.eventIdMap, r)
 		end
 	end
 end
-function l.prototype.Register(self, n, s, t, u)
-	local v, w = self.eventIdMap, n
-	if v[w] == nil then
-		v[w] = {}
+function p.prototype.Register(self, r, w, x, y)
+	local z, A = self.eventIdMap, r
+	if z[A] == nil then
+		z[A] = {}
 	end
-	local x, y = self, "eventId"
-	local z = x[y]
-	x[y] = z + 1
-	local A = z
-	local q = { context = t, eventID = A, callback = s, filter = u }
-	local B = self.eventIdMap[n]
-	B[#B + 1] = q
-	return A
+	local B, C = self, "eventId"
+	local D = B[C]
+	B[C] = D + 1
+	local E = D
+	local u = { context = x, eventID = E, callback = w, filter = y }
+	local F = self.eventIdMap[r]
+	F[#F + 1] = u
+	return E
 end
-function l.prototype.RegisterForOwner(self, n, s, C, t)
-	local u
-	if n == "damage_event" or n == "crit_event" or n == "expose_effect" or n == "lightning_strike" then
-		u = function(D, E)
-			if not IsValid(C) then
+function p.prototype.RegisterForOwner(self, r, w, G, x, H)
+	local y
+	if
+		(H and H.ownerFilter) ~= false
+		and (r == "damage_event" or r == "crit_event" or r == "expose_effect" or r == "lightning_strike")
+	then
+		y = function(I, J)
+			if not IsValid(G) then
 				return false
 			end
-			local F = C:GetPlayerOwnerID()
-			local function G(D, H)
-				if H == C then
+			local K = G:GetPlayerOwnerID()
+			local function L(I, M)
+				if M == G then
 					return true
 				end
-				if F >= 0 and IsValid(H) and H:GetPlayerOwnerID() == F then
+				if K >= 0 and IsValid(M) and M:GetPlayerOwnerID() == K then
 					return true
 				end
 				return false
 			end
-			return G(nil, E.attacker) or G(nil, E.target) or G(nil, E.caster)
+			return L(nil, J.attacker) or L(nil, J.target) or L(nil, J.caster)
 		end
 	end
-	return self:Register(n, s, t, u)
+	if (H and H.cooldown) ~= nil then
+		local N = y
+		local O = f(l)
+		y = function(I, J)
+			return (not N or N(nil, J))
+				and O:Allow(
+					GameRules:GetGameTime(),
+					H.cooldown,
+					H.allowNested == false and (G.__eventProcDepth or 0) > 0
+				)
+		end
+		local P = w
+		w = function(self, J)
+			G.__eventProcDepth = (G.__eventProcDepth or 0) + 1
+			do
+				local Q, R = pcall(function()
+					P(self, J)
+				end)
+				do
+					G.__eventProcDepth = math.max(0, (G.__eventProcDepth or 1) - 1)
+				end
+				if not Q then
+					error(R, 0)
+				end
+			end
+		end
+	end
+	return self:Register(r, w, x, y)
 end
-function l.prototype.RegisterWithPriority(self, n, s, I, t)
-	if I == nil then
-		I = 100
+function p.prototype.RegisterWithPriority(self, r, w, S, x)
+	if S == nil then
+		S = 100
 	end
-	local J, K = self.eventIdMap, n
-	if J[K] == nil then
-		J[K] = {}
+	local T, U = self.eventIdMap, r
+	if T[U] == nil then
+		T[U] = {}
 	end
-	local L, M = self, "eventId"
-	local N = L[M]
-	L[M] = N + 1
-	local A = N
-	local q = { context = t, eventID = A, callback = s, priority = I }
-	local o = self.eventIdMap[n]
-	local O = #o
+	local V, W = self, "eventId"
+	local X = V[W]
+	V[W] = X + 1
+	local E = X
+	local u = { context = x, eventID = E, callback = w, priority = S }
+	local s = self.eventIdMap[r]
+	local Y = #s
 	do
-		local p = 0
-		while p < #o do
-			local P = o[p + 1].priority or 100
-			if I < P then
-				O = p
+		local t = 0
+		while t < #s do
+			local Z = s[t + 1].priority or 100
+			if S < Z then
+				Y = t
 				break
 			end
-			p = p + 1
+			t = t + 1
 		end
 	end
-	table.insert(o, O + 1, q)
-	return A
+	table.insert(s, Y + 1, u)
+	return E
 end
-function l.prototype.Unregister(self, Q)
-	for n, o in pairs(self.eventIdMap) do
+function p.prototype.Unregister(self, _)
+	for r, s in pairs(self.eventIdMap) do
 		do
-			local p = #o - 1
-			while p >= 0 do
-				if o[p + 1].eventID == Q then
-					table.remove(o, p + 1)
-					if #o == 0 then
-						e(self.eventIdMap, n)
+			local t = #s - 1
+			while t >= 0 do
+				if s[t + 1].eventID == _ then
+					table.remove(s, t + 1)
+					if #s == 0 then
+						e(self.eventIdMap, r)
 					end
 					return true
 				end
-				p = p - 1
+				t = t - 1
 			end
 		end
 	end
 	return false
 end
-function l.prototype.UnregisterContext(self, t)
-	local R = 0
-	for n, o in pairs(self.eventIdMap) do
+function p.prototype.UnregisterContext(self, x)
+	local a0 = 0
+	for r, s in pairs(self.eventIdMap) do
 		do
-			local p = #o - 1
-			while p >= 0 do
-				if o[p + 1].context == t then
-					table.remove(o, p + 1)
-					R = R + 1
+			local t = #s - 1
+			while t >= 0 do
+				if s[t + 1].context == x then
+					table.remove(s, t + 1)
+					a0 = a0 + 1
 				end
-				p = p - 1
+				t = t - 1
 			end
 		end
-		if #o == 0 then
-			e(self.eventIdMap, n)
+		if #s == 0 then
+			e(self.eventIdMap, r)
 		end
 	end
-	return R
+	return a0
 end
-function l.prototype.UnregisterAll(self, n)
-	local o = self.eventIdMap[n]
-	if not o then
+function p.prototype.UnregisterAll(self, r)
+	local s = self.eventIdMap[r]
+	if not s then
 		return 0
 	end
-	local R = #o
-	e(self.eventIdMap, n)
-	return R
+	local a0 = #s
+	e(self.eventIdMap, r)
+	return a0
 end
-function l.prototype.HasListeners(self, n)
-	local o = self.eventIdMap[n]
-	return o ~= nil and #o > 0
+function p.prototype.HasListeners(self, r)
+	local s = self.eventIdMap[r]
+	return s ~= nil and #s > 0
 end
-function l.prototype.GetListenerCount(self, n)
-	if n ~= nil then
-		local S = self.eventIdMap[n]
-		return S and #S or 0
+function p.prototype.GetListenerCount(self, r)
+	if r ~= nil then
+		local a1 = self.eventIdMap[r]
+		return a1 and #a1 or 0
 	end
-	local T = 0
-	for U, o in pairs(self.eventIdMap) do
-		T = T + #o
+	local a2 = 0
+	for a3, s in pairs(self.eventIdMap) do
+		a2 = a2 + #s
 	end
-	return T
+	return a2
 end
-function l.prototype.Fire(self, n, E)
-	local o = self.eventIdMap[n]
-	if not o or #o == 0 then
+function p.prototype.Fire(self, r, J)
+	local s = self.eventIdMap[r]
+	if not s or #s == 0 then
 		return
 	end
-	local V = BlessPerformance
-		and BlessPerformance.Enabled
-		and (n == "damage_event" or n == "crit_event" or n == "expose_effect" or n == "lightning_strike")
-	if V then
-		BlessPerformance:Increment("event_fires")
-	end
-	local W
+	local a4
 	do
-		local p = #o - 1
-		while p >= 0 do
+		local t = #s - 1
+		while t >= 0 do
 			do
-				local q = o[p + 1]
-				if not q or not q.callback then
-					table.remove(o, p + 1)
-					goto X
+				local u = s[t + 1]
+				if not u or not u.callback then
+					table.remove(s, t + 1)
+					goto a5
 				end
-				if q.filter ~= nil and not q:filter(E) then
-					goto X
+				if u.filter ~= nil and not u:filter(J) then
+					goto a5
 				end
-				if V then
-					BlessPerformance:Increment("event_listener_calls")
-				end
-				local Y, Z = xpcall(q.callback, traceback, q.context, E)
-				if not Y then
-					if W == nil then
-						W = {}
+				local a6, a7 = xpcall(u.callback, traceback, u.context, J)
+				if not a6 then
+					if a4 == nil then
+						a4 = {}
 					end
-					W[#W + 1] = { eventID = q.eventID, error = Z }
+					a4[#a4 + 1] = { eventID = u.eventID, error = a7 }
 					print(
-						(((("Event listener error:\nType: " .. n) .. "\nID: ") .. tostring(q.eventID)) .. "\nError: ")
-							.. tostring(Z)
+						(((("Event listener error:\nType: " .. r) .. "\nID: ") .. tostring(u.eventID)) .. "\nError: ")
+							.. tostring(a7)
 					)
 				end
 			end
-			::X::
-			p = p - 1
+			::a5::
+			t = t - 1
 		end
 	end
-	if #o == 0 then
-		e(self.eventIdMap, n)
+	if #s == 0 then
+		e(self.eventIdMap, r)
 	end
-	return W
+	return a4
 end
-function l.prototype.Once(self, n, s, t)
-	local A
-	local function _(D, E)
-		s(t, E)
-		self:Unregister(A)
+function p.prototype.Once(self, r, w, x)
+	local E
+	local function a8(I, J)
+		w(x, J)
+		self:Unregister(E)
 	end
-	A = self:Register(n, _, t)
-	return A
+	E = self:Register(r, a8, x)
+	return E
 end
-function l.prototype.FireClient(self, a0, n, E)
-	local a1 = PlayerResource:GetPlayer(a0)
-	if a1 ~= nil then
+function p.prototype.FireClient(self, a9, r, J)
+	local aa = PlayerResource:GetPlayer(a9)
+	if aa ~= nil then
 		CustomGameEventManager:Send_ServerToPlayer(
-			a1,
+			aa,
 			"lua_server_to_client",
-			{ event_name = n, data = json.encode(E) }
+			{ event_name = r, data = json.encode(J) }
 		)
 	end
 end
-function l.prototype.RegisterFiltered(self, n, u, s, t)
-	local function _(D, E)
-		if u(nil, E) then
-			s(t, E)
+function p.prototype.RegisterFiltered(self, r, y, w, x)
+	local function a8(I, J)
+		if y(nil, J) then
+			w(x, J)
 		end
 	end
-	return self:Register(n, _, t)
+	return self:Register(r, a8, x)
 end
-function l.prototype.DebugPrint(self)
+function p.prototype.DebugPrint(self)
 	if IsDedicatedServer() then
 		return
 	end
 	print("=== Event System Debug ===")
-	print("Total event types: " .. tostring(#f(self.eventIdMap)))
+	print("Total event types: " .. tostring(#g(self.eventIdMap)))
 	print("Total listeners: " .. tostring(self:GetListenerCount()))
 	print("Next event ID: " .. tostring(self.eventId))
 	print("")
-	for n, o in pairs(self.eventIdMap) do
-		print(((("[" .. n) .. "] (") .. tostring(#o)) .. " listeners)")
-		for D, q in ipairs(o) do
-			local a2 = q.context
-			if a2 ~= nil then
-				a2 = a2.constructor
+	for r, s in pairs(self.eventIdMap) do
+		print(((("[" .. r) .. "] (") .. tostring(#s)) .. " listeners)")
+		for I, u in ipairs(s) do
+			local ab = u.context
+			if ab ~= nil then
+				ab = ab.constructor
 			end
-			local a3
-			if a2 ~= nil then
-				a3 = a2.name
+			local ac
+			if ab ~= nil then
+				ac = ab.name
 			end
-			local a4 = a3
-			if a4 == nil then
-				local a5 = q.context
-				if a5 ~= nil then
-					a5 = a5.isModule
+			local ad = ac
+			if ad == nil then
+				local ae = u.context
+				if ae ~= nil then
+					ae = ae.isModule
 				end
-				a4 = a5 and "Module" or "Global"
+				ad = ae and "Module" or "Global"
 			end
-			local a6 = a4
-			local I = q.priority or 100
+			local af = ad
+			local S = u.priority or 100
 			print(
-				(((("  - ID:" .. tostring(q.eventID)) .. " Priority:") .. tostring(I)) .. " Context:") .. tostring(a6)
+				(((("  - ID:" .. tostring(u.eventID)) .. " Priority:") .. tostring(S)) .. " Context:") .. tostring(af)
 			)
 		end
 		print("")
 	end
 	print("========================")
 end
-function l.prototype.GetMemoryStats(self)
-	local a7 = 0
-	local a8 = 0
-	for U, o in pairs(self.eventIdMap) do
-		a8 = a8 + 1
-		a7 = a7 + #o
+function p.prototype.GetMemoryStats(self)
+	local ag = 0
+	local ah = 0
+	for a3, s in pairs(self.eventIdMap) do
+		ah = ah + 1
+		ag = ag + #s
 	end
-	return { eventTypes = a8, listeners = a7, avgListenersPerType = a8 > 0 and a7 / a8 or 0 }
+	return { eventTypes = ah, listeners = ag, avgListenersPerType = ah > 0 and ag / ah or 0 }
 end
-l = g({ k }, l)
+p = h({ k }, p)
 if Event == nil then
-	Event = h(l)
+	Event = f(p)
 end
 return i

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -6250,6 +6250,9 @@ GameUI.CustomUIConfig().info_shop_product = {
 	"890001": {
 		id: 890001,
 		name: "成长基金",
+		items: {
+			"2300001": 1
+		},
 		pay_type: 0,
 		origin_price: 68,
 		real_price: 68,

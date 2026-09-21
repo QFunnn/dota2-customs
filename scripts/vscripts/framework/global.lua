@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -1266,86 +1266,102 @@ function LeastCommonMultiple(...)
 	return t
 end
 addedValueFunctionMap = { attack = "GetAttackDamage", health = "GetMaxHealth", shield = "GetShield" }
-function GetAbilityValues(ck, cl, bU)
-	if cl == 0 or ck == nil then
+abilityValueTextCache = {}
+abilityValueTextCacheSize = 0
+function GetAbilityValueTextList(S)
+	local ck = tostring(S)
+	local cl = abilityValueTextCache[ck]
+	if cl == nil then
+		if abilityValueTextCacheSize >= 512 then
+			abilityValueTextCache = {}
+			abilityValueTextCacheSize = 0
+		end
+		cl = i(ck, " ")
+		abilityValueTextCache[ck] = cl
+		abilityValueTextCacheSize = abilityValueTextCacheSize + 1
+	end
+	return cl
+end
+function GetAbilityValues(cm, cn, bU)
+	if cn == 0 or cm == nil then
 		return 0
 	end
-	if type(ck) == "table" then
-		local cm = i(tostring(ck.value), " ")
-		local S = toFiniteNumber(cm[math.min(cl, #cm)])
+	if type(cm) == "table" then
+		local co = GetAbilityValueTextList(cm.value)
+		local S = toFiniteNumber(co[math.min(cn, #co)])
 		if bU == nil then
 			return S
 		end
-		local cn = 0
-		local co = 0
-		for J, w in pairs(ck) do
-			local cp = j(J, 0, 1)
-			local cq = j(J, 1)
-			local cr = i(tostring(w), " ")
-			local cs = toFiniteNumber(cr[math.min(cl, #cr)])
-			if addedValueFunctionMap[cq] then
-				local aD = _G[addedValueFunctionMap[cq]]
-				if cp == "_" or cp == "+" then
-					S = S + toFiniteNumber(aD(nil, bU) * cs, 0)
-				elseif cp == "*" then
-					cn = cn + cs
+		local cp = 0
+		local cq = 0
+		for J, w in pairs(cm) do
+			local cr = j(J, 0, 1)
+			local cs = j(J, 1)
+			local ct = GetAbilityValueTextList(w)
+			local cu = toFiniteNumber(ct[math.min(cn, #ct)])
+			if addedValueFunctionMap[cs] then
+				local aD = _G[addedValueFunctionMap[cs]]
+				if cr == "_" or cr == "+" then
+					S = S + toFiniteNumber(aD(nil, bU) * cu, 0)
+				elseif cr == "*" then
+					cp = cp + cu
 				end
-			elseif PROPERTY_FUNCTION_MAP[cq] then
-				if cp == "_" or cp == "+" then
-					S = S + PROPERTY_FUNCTION_MAP[cq](bU)
-				elseif cp == "*" then
-					cn = cn + PROPERTY_FUNCTION_MAP[cq](bU) * cs
-				elseif cp == "/" then
-					co = co + PROPERTY_FUNCTION_MAP[cq](bU) * cs
+			elseif PROPERTY_FUNCTION_MAP[cs] then
+				if cr == "_" or cr == "+" then
+					S = S + PROPERTY_FUNCTION_MAP[cs](bU)
+				elseif cr == "*" then
+					cp = cp + PROPERTY_FUNCTION_MAP[cs](bU) * cu
+				elseif cr == "/" then
+					cq = cq + PROPERTY_FUNCTION_MAP[cs](bU) * cu
 				end
 			end
 		end
-		return S * (1 + cn / 100) / (1 + co / 100)
+		return S * (1 + cp / 100) / (1 + cq / 100)
 	else
-		local cm = i(tostring(ck), " ")
-		local S = toFiniteNumber(cm[math.min(cl, #cm)])
+		local co = GetAbilityValueTextList(cm)
+		local S = toFiniteNumber(co[math.min(cn, #co)])
 		return S
 	end
 end
-function ErrorMessage(z, ct, cu, cv)
-	if cu == nil then
-		cu = "General.Cancel"
+function ErrorMessage(z, cv, cw, cx)
+	if cw == nil then
+		cw = "General.Cancel"
 	end
 	if z == nil then
 		return
 	end
-	if ct == nil then
-		CustomGameEventManager:Send_ServerToAllClients("error_message", { message = z, sound = cu, vars = cv })
+	if cv == nil then
+		CustomGameEventManager:Send_ServerToAllClients("error_message", { message = z, sound = cw, vars = cx })
 	else
-		local cw = PlayerResource:GetPlayer(ct)
-		if cw ~= nil then
-			CustomGameEventManager:Send_ServerToPlayer(cw, "error_message", { message = z, sound = cu, vars = cv })
+		local cy = PlayerResource:GetPlayer(cv)
+		if cy ~= nil then
+			CustomGameEventManager:Send_ServerToPlayer(cy, "error_message", { message = z, sound = cw, vars = cx })
 		end
 	end
 end
-function GetItemPropType(cx)
-	local cy = tostring(cx)
-	if #cy == 6 then
-		cy = string.sub(cy, 1, 1)
+function GetItemPropType(cz)
+	local cA = tostring(cz)
+	if #cA == 6 then
+		cA = string.sub(cA, 1, 1)
 	else
-		cy = string.sub(cy, 1, 2)
+		cA = string.sub(cA, 1, 2)
 	end
-	return cy
+	return cA
 end
-function GetItemEquipmentPart(cx)
-	return string.sub(tostring(cx), 5, 5)
+function GetItemEquipmentPart(cz)
+	return string.sub(tostring(cz), 5, 5)
 end
-function GetPropRarity(cx)
-	local cy = GetItemPropType(cx)
-	if cy == "9" then
-		return toFiniteNumber(string.sub(tostring(cx), 6, 6), 1)
-	elseif cy == "19" or cy == "20" then
-		return toFiniteNumber(string.sub(tostring(cx), -1), 1)
+function GetPropRarity(cz)
+	local cA = GetItemPropType(cz)
+	if cA == "9" then
+		return toFiniteNumber(string.sub(tostring(cz), 6, 6), 1)
+	elseif cA == "19" or cA == "20" then
+		return toFiniteNumber(string.sub(tostring(cz), -1), 1)
 	end
-	local cz = toFiniteNumber
-	local cA = KeyValues.info_item_rarity[cx]
-	if cA ~= nil then
-		cA = cA.rarity
+	local cB = toFiniteNumber
+	local cC = KeyValues.info_item_rarity[cz]
+	if cC ~= nil then
+		cC = cC.rarity
 	end
-	return cz(cA, 1)
+	return cB(cC, 1)
 end

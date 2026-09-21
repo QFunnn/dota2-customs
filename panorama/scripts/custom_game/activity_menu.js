@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -51,8 +51,8 @@ function shouldShowPrimaryMenu(menu, config, context) {
     return !isLoginActivityCompleted(context);
   }
   if (menu == "boardslot") {
-    const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.end_time ?? 0;
-    return isBeforeActivityMenuGraceEnd(context.now, endTime);
+    const dataEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.data_end_time ?? 0;
+    return isBeforeEndTime(context.now, dataEndTime);
   }
   if (menu == "mining") {
     const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]?.end_time ?? 0;

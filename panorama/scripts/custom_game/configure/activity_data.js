@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -14,6 +14,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 1,
 		start_time: 1706716800,
 		end_time: 0,
+		data_end_time: 0,
 		show: 1,
 		sort: 10,
 		name: "seven_days",
@@ -25,6 +26,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 2,
 		start_time: 1779436801,
 		end_time: 1785081599,
+		data_end_time: 0,
 		sort: 14,
 		name: "starsea",
 		template: "starsea",
@@ -36,6 +38,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 2,
 		start_time: 1785081600,
 		end_time: 1787500799,
+		data_end_time: 0,
 		sort: 14,
 		name: "starsea",
 		template: "starsea",
@@ -47,6 +50,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 2,
 		start_time: 1787500800,
 		end_time: 1791129599,
+		data_end_time: 0,
 		sort: 14,
 		name: "starsea",
 		template: "starsea",
@@ -58,6 +62,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 3,
 		start_time: 0,
 		end_time: 0,
+		data_end_time: 0,
 		show: 1,
 		combine_tag: "fund",
 		sort: 21,
@@ -70,6 +75,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 4,
 		start_time: 1782787698,
 		end_time: 1784476800,
+		data_end_time: 0,
 		show: 1,
 		sort: 21,
 		name: "saving_pot",
@@ -81,6 +87,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 5,
 		start_time: 1782787698,
 		end_time: 1784476800,
+		data_end_time: 0,
 		show: 1,
 		sort: 21,
 		name: "football",
@@ -92,6 +99,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 7,
 		start_time: 0,
 		end_time: 0,
+		data_end_time: 0,
 		show: 1,
 		sort: 12,
 		in_tool: 0,
@@ -106,6 +114,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 8,
 		start_time: 0,
 		end_time: 1784476800,
+		data_end_time: 1784476800,
 		sort: 22,
 		name: "boardslot",
 		template: "boardslot",
@@ -116,7 +125,8 @@ GameUI.CustomUIConfig().activity_data = {
 		activity_id: 802,
 		type: 8,
 		start_time: 1788969600,
-		end_time: 1790179200,
+		end_time: 1790524800,
+		data_end_time: 1790784000,
 		sort: 22,
 		name: "boardslot",
 		template: "boardslot",
@@ -128,20 +138,42 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 9,
 		start_time: 1783267200,
 		end_time: 0,
+		data_end_time: 0,
 		sort: 23,
 		description: "海神秘库累充",
 		tokens: "110015|110016"
+	},
+	"902": {
+		activity_id: 902,
+		type: 9,
+		start_time: 1790524800,
+		end_time: 1791734400,
+		data_end_time: 1,
+		combine_tag: "23",
+		template: "国庆累充"
 	},
 	"1001": {
 		activity_id: 1001,
 		type: 10,
 		start_time: 1786636800,
 		end_time: 1788192000,
+		data_end_time: 1788192000,
 		show: 1,
 		sort: 24,
 		name: "mining",
 		template: "mining",
 		description: "永恒矿脉（挖矿活动）",
 		tokens: "110003|110020|110001"
+	},
+	"1101": {
+		activity_id: 1101,
+		type: 11,
+		start_time: 1790524800,
+		end_time: 1791734400,
+		data_end_time: 1,
+		combine_tag: "25",
+		in_tool: NaN,
+		name: "moonstone_draw",
+		template: "月石抽月石"
 	}
 };

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -866,6 +866,96 @@ GameUI.CustomUIConfig().service_courier = {
 		star_effect6: {
 			damage_intensity: 10,
 			hero_damage_boost: 4
+		}
+	},
+	"600024": {
+		id: 600024,
+		name: "纯金贪魔",
+		unlock: 0,
+		in_tool: 1,
+		quality: 5,
+		category: 1,
+		draw_scale: 1,
+		active_skill: "courier_600024",
+		fish_skill1: "privilege_idle_fish_013",
+		fish_skill2: "privilege_idle_fish_014",
+		fish_skill3: "privilege_idle_fish_015",
+		fish_skill4: "privilege_idle_fish_016",
+		fish_skill5: "privilege_idle_fish_017",
+		fish_skill6: "privilege_idle_fish_018",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10,
+			idle_fish_rainbow_chance: 10
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_rarity_chance: 20
+		}
+	},
+	"600025": {
+		id: 600025,
+		name: "咬人箱",
+		unlock: 0,
+		in_tool: 1,
+		quality: 5,
+		category: 1,
+		draw_scale: 1,
+		active_skill: "courier_600025",
+		explore_skill1: "privilege_idle_explore_051",
+		explore_skill2: "privilege_idle_explore_052",
+		explore_skill3: "privilege_idle_explore_053",
+		explore_skill4: "privilege_idle_explore_054",
+		explore_skill5: "privilege_idle_explore_055",
+		explore_skill6: "privilege_idle_explore_056",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_rarity_chance: 20
 		}
 	}
 };
