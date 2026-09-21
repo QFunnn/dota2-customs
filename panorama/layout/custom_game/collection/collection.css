@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -966,7 +966,7 @@ VerticalScrollBar
 	visibility: visible;
 }
 
-.BProPlayer .C_PayCurrency_BottomHint
+.BProPlayer .C_PayCurrency_BottomHint:not(.HintLocalLobby)
 {
 	visibility: visible;
 }
@@ -1003,4 +1003,10 @@ VerticalScrollBar
 {
 	margin-top: -5px;
 	color: rgb(246, 50, 66);
+	visibility: collapse;
+}
+
+.BLocalLobby .HintLocalLobby
+{
+	visibility: visible;
 }

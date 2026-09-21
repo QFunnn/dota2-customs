@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -46,10 +46,32 @@ PLAYER_COLORS = {
 
 TEAMS_LAYOUTS = {
 	["dota"] = {
-		player_count = 12,
+		player_count = 11,
 		teamlist = {
 			DOTA_TEAM_GOODGUYS,
 			DOTA_TEAM_BADGUYS,
+		},
+		ring_bonuses = {
+			gpm = 900,
+			xpm = 1440,
+		},
+		ring_radius = 1400,
+		overboss_throw_chance = 2,
+		kill_goal = 125,
+		abandon_kill_goal_reduction = 4,
+		kills_by_vote = 2,
+		time_by_vote = 12.5,
+		game_base_duration = 1200,
+
+		gg_token_kill_goal_bonus = 20,
+		rating_changes = { 30, 0, -30 },
+
+		min_connected_players = 4,
+	},
+	["d12v12_demo"] = {
+		player_count = 24,
+		teamlist = {
+			DOTA_TEAM_GOODGUYS,
 		},
 		ring_bonuses = {
 			gpm = 900,

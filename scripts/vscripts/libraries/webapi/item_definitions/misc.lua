@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -41,6 +41,7 @@ ITEM_DEFINITIONS["glory_pack_50"] = {
 	},
 	on_consume = Resolve("OnGloryPackUsed", "BattlePass"),
 	is_hidden = true,
+	is_hidden_owned = true,
 }
 
 ITEM_DEFINITIONS["glory_pack_100"] = {
@@ -52,6 +53,7 @@ ITEM_DEFINITIONS["glory_pack_100"] = {
 	},
 	on_consume = Resolve("OnGloryPackUsed", "BattlePass"),
 	is_hidden = true,
+	is_hidden_owned = true,
 }
 
 ITEM_DEFINITIONS["glory_pack_150"] = {
@@ -63,6 +65,7 @@ ITEM_DEFINITIONS["glory_pack_150"] = {
 	},
 	on_consume = Resolve("OnGloryPackUsed", "BattlePass"),
 	is_hidden = true,
+	is_hidden_owned = true,
 }
 
 ITEM_DEFINITIONS["glory_pack_200"] = {
@@ -74,4 +77,5 @@ ITEM_DEFINITIONS["glory_pack_200"] = {
 	},
 	on_consume = Resolve("OnGloryPackUsed", "BattlePass"),
 	is_hidden = true,
+	is_hidden_owned = true,
 }

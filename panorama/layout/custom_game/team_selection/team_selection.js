@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -155,7 +155,7 @@ function UnlockTeams() {
 function CheckAutoAssign() {
 	if (Game.GetTeamSelectionLocked()) AutoAssign();
 }
-const max_player_in_map = 24;
+
 function IsShowLobbyTools() {
 	let players_in_lobby = 0;
 	for (let player_id = 0; player_id < DOTALimits_t.DOTA_MAX_TEAM_PLAYERS; player_id++) {
@@ -165,7 +165,7 @@ function IsShowLobbyTools() {
 	}
 
 	// return false;
-	return players_in_lobby < max_player_in_map || Game.IsInToolsMode();
+	return players_in_lobby < GameUI.MAX_PLAYERS || Game.IsInToolsMode();
 }
 
 function CheckPrivileges() {
@@ -253,4 +253,4 @@ function AllowTeamSelection() {
 
 	// HUD.CONTEXT.SetHasClass("InstaLoading", MAP_NAME == "dota");
 	HUD.CONTEXT.SetHasClass("InstaLoading", false);
-})();
+})();
