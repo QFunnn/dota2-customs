@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -15,7 +15,7 @@ var EOM_Panel = require('./EOM_Panel.js');
 var GenericPanel = require('./GenericPanel.js');
 
 function createLocalConsoleMessage(event, callback) {
-  const command = String(Date.now() / 1000);
+  const command = Math.floor(Date.now() / 1000).toString(36) + Math.floor(Math.random() * 46656).toString(36);
   GameEvents.SendEventClientSide("custom_local_console_message", {
     key: command,
     event: event,

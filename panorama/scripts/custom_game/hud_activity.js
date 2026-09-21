@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -2114,14 +2114,43 @@ const RankRowMedal = props => {
 let fFlipTime$4 = 0.5;
 const language$d = $.Language().toLowerCase();
 const [singleCost$4] = libs.createSignal(6);
-const getRarity$4 = (itemID, amount, rarityInfo) => {
+const [rewardShow$4, setRewardShow$4] = libs.createSignal(false);
+const [rewardList$4, setRewardList$4] = libs.createSignal([]);
+const [drawButtonEnable$4, setDrawButtonEnable$4] = libs.createSignal(true);
+const [info_box_content$4, setInfoBoxContent$4] = libs.createSignal();
+const [drawSuccess$4, setDrawSuccess$4] = libs.createSignal(false);
+const [drawEnd$4, setDrawEnd$4] = libs.createSignal(false);
+const [drawSoundIndex$4, setDrawSoundIndex$4] = libs.createSignal(-1);
+libs.createEffect(libs.on(rewardList$4, _rewardList => {
+  if (_rewardList.length == 0 && rewardShow$4()) {
+    setRewardShow$4(false);
+  }
+}));
+const getRarity$4 = (itemID, amount) => {
   let rarity = 0;
   let gotten = false;
   let type = Number(itemID.toString().slice(0, 3));
-  for (const v of rarityInfo) {
-    if (v.item_id == itemID) {
-      if (type == 110) {
-        if (amount >= v.amount_min && amount <= v.amount_max) {
+  let content = info_box_content$4();
+  if (content) {
+    for (const v of content) {
+      if (v.item_id == itemID) {
+        if (type == 110) {
+          if (amount >= v.amount_min && amount <= v.amount_max) {
+            if (v.rarity == "n") {
+              rarity = 0;
+              gotten = true;
+            } else if (v.rarity == "r") {
+              rarity = 1;
+              gotten = true;
+            } else if (v.rarity == "sr") {
+              rarity = 2;
+              gotten = true;
+            } else if (v.rarity == "ssr") {
+              rarity = 3;
+              gotten = true;
+            }
+          }
+        } else {
           if (v.rarity == "n") {
             rarity = 0;
             gotten = true;
@@ -2136,42 +2165,16 @@ const getRarity$4 = (itemID, amount, rarityInfo) => {
             gotten = true;
           }
         }
-      } else {
-        if (v.rarity == "n") {
-          rarity = 0;
-          gotten = true;
-        } else if (v.rarity == "r") {
-          rarity = 1;
-          gotten = true;
-        } else if (v.rarity == "sr") {
-          rarity = 2;
-          gotten = true;
-        } else if (v.rarity == "ssr") {
-          rarity = 3;
-          gotten = true;
-        }
+        if (gotten) break;
       }
-      if (gotten) break;
     }
   }
   return rarity;
 };
-const Activity_tutu = props => {
-  const activityPool = 92000003;
+const Activity_tutu1 = props => {
+  const activityPool = 92000006;
   const activityID = props.activity_id;
   const show = () => props.show;
-  const [rewardShow, setRewardShow] = libs.createSignal(false);
-  const [rewardList, setRewardList] = libs.createSignal([]);
-  const [drawButtonEnable, setDrawButtonEnable] = libs.createSignal(true);
-  const [info_box_content, setInfoBoxContent] = libs.createSignal();
-  const [drawSuccess, setDrawSuccess] = libs.createSignal(false);
-  const [drawEnd, setDrawEnd] = libs.createSignal(false);
-  const [drawSoundIndex, setDrawSoundIndex] = libs.createSignal(-1);
-  libs.createEffect(libs.on(rewardList, _rewardList => {
-    if (_rewardList.length == 0 && rewardShow()) {
-      setRewardShow(false);
-    }
-  }));
   const [activityCollection, setActivityCollection] = libs.createSignal({});
   const [rewardInfoList, setRewardInfoList] = libs.createSignal([]);
   const [endtime, setEndtime] = libs.createSignal(1714924800);
@@ -2187,7 +2190,9 @@ const Activity_tutu = props => {
     let data;
     let canReceive = false;
     const current_rewardInfoList = rewardInfoList();
-    const current_activityCollection = activityCollection();
+    const current_activityCollection = Object.keys(activityCollection()).length > 0 ? activityCollection() : {
+      "1": 2
+    };
     if (Object.keys(current_activityCollection).length > 0) {
       for (let index = 0; index < current_rewardInfoList.length; index++) {
         const info = current_rewardInfoList[index];
@@ -2226,6 +2231,16 @@ const Activity_tutu = props => {
     }
     return count;
   };
+  const updateBoxContent = () => {
+    const info_box_pool_data = getNetDataCache("info_box_pool_data");
+    const info_box_content = getNetDataCache("info_box_content");
+    if (info_box_pool_data && info_box_content) {
+      const dropName = info_box_pool_data.find(v => v.pool == activityPool)?.drop_content;
+      if (dropName && info_box_content[dropName]) {
+        setInfoBoxContent$4(info_box_content[dropName]);
+      }
+    }
+  };
   libs.onMount(() => {
     let gameEventIDList = [];
     gameEventIDList.push(useNetData("open_box_activity_data", data => {
@@ -2246,16 +2261,17 @@ const Activity_tutu = props => {
       }
     }));
     gameEventIDList.push(useNetData("info_box_content", data => {
-      if (data["bunny girl_pool_1"]) {
-        setInfoBoxContent(data["bunny girl_pool_1"]);
-      }
+      updateBoxContent();
+    }));
+    gameEventIDList.push(useNetData("info_box_pool_data", data => {
+      updateBoxContent();
     }));
     gameEventIDList.push(useNetData("player_token", data => {
       setToken_1100011(data["1100011"]?.num ?? 0);
       setToken_1100099(data["1100099"]?.num ?? 0);
     }, Players.GetLocalPlayer()));
     gameEventIDList.push(useNetData("info_shop_product_group_by_tag", data => {
-      const result = data?.["MeijiRedeem"] ?? [];
+      const result = data?.["TutuRedeem"] ?? [];
       result.sort((a, b) => {
         return a.order_by - b.order_by;
       });
@@ -2286,14 +2302,18 @@ const Activity_tutu = props => {
   const handledRewardData = libs.createMemo(() => {
     const list = [];
     let resultType = 0;
-    const current_rewardList = rewardList();
+    const current_rewardList = rewardList$4();
     current_rewardList.forEach((data, index) => {
       let itemID = data.origin_item_id ?? data.itemId;
       let rarity = 0;
       if (KeyValues.CosmeticsKv[itemID.toString()] != undefined) {
         rarity = getCosmeticRarity(itemID);
       } else {
-        rarity = getRarity$4(itemID, data.amounts, info_box_content() ?? []);
+        if (itemID == 9300006) {
+          rarity = 2;
+        } else {
+          rarity = getRarity$4(itemID, data.amounts);
+        }
       }
       list.push({
         itemId: data.itemId,
@@ -2312,6 +2332,11 @@ const Activity_tutu = props => {
       resultType
     };
   });
+  libs.createEffect(libs.on(show, showed => {
+    if (showed && !rewardShow$4() && handledRewardData().list.length > 0) {
+      showDrawRewards(handledRewardData().list);
+    }
+  }));
   const _addHidden = p => {
     if (p?.IsValid()) {
       p.AddClass("Hidden");
@@ -2322,76 +2347,37 @@ const Activity_tutu = props => {
       p.RemoveClass("Hidden");
     }
   };
-  const resetDrawState = () => {
-    const soundIndex = drawSoundIndex();
-    if (soundIndex != -1) {
-      Game.StopSound(soundIndex);
-    }
-    setDrawSoundIndex(-1);
-    setRewardShow(false);
-    setRewardList([]);
-    setDrawEnd(false);
-    setDrawSuccess(false);
-    setDrawButtonEnable(true);
-    setBunnyGirlHidden(false);
-    _removeHidden(BGButtonLists);
-    _removeHidden(BGLayer);
-    _removeHidden(BG2);
-    _removeHidden(Content1);
-    _removeHidden(Content2);
-    _removeHidden(Content3);
-    _removeHidden(Content4);
-    _removeHidden($("#SkipButton"));
-    _removeHidden($("#TutuActivityMain")?.FindChild("BG3"));
-    const rewardListPanel = pDrawWindow?.FindChildTraverse("RewardList");
-    if (rewardListPanel?.IsValid()) {
-      rewardListPanel.RemoveAndDeleteChildren();
-    }
-  };
-  libs.createEffect(libs.on(show, showed => {
-    if (!showed) {
-      resetDrawState();
-    }
-  }));
   const endDrawAnimation = (soundIndex, clickSkip = false) => {
     if (soundIndex == -1) return;
-    if (soundIndex != drawSoundIndex()) return;
+    if (soundIndex != drawSoundIndex$4()) return;
     if (soundIndex != -1) {
       Game.StopSound(soundIndex);
-      setDrawSoundIndex(-1);
+      setDrawSoundIndex$4(-1);
     }
     if (show()) {
-      const scene2 = $("#BunnyGirlsDisappearScene2");
-      if (scene2?.IsValid()) {
-        scene2.StopParticlesImmediately(false);
-      }
-      const scene = $("#BunnyGirlsDisappearScene1");
-      if (scene?.IsValid()) {
-        scene.StopParticlesImmediately(false);
-      }
-      let p1 = $("#DrawPortal");
-      let p2 = $("#DrawPortalGold");
-      let p3 = $("#DrawPortalRed");
+      let p1 = $("#Tutu1DrawPortal");
+      let p2 = $("#Tutu1DrawPortalGold");
+      let p3 = $("#Tutu1DrawPortalRed");
       if (p1?.IsValid()) {
-        p1.StopParticlesImmediately(false);
+        p1.StopParticlesWithEndcaps();
         p1.style.opacity = "1";
       }
       if (p2?.IsValid()) {
-        p2.StopParticlesImmediately(false);
+        p2.StopParticlesWithEndcaps();
         p2.style.opacity = "0";
       }
       if (p3?.IsValid()) {
-        p3.StopParticlesImmediately(false);
+        p3.StopParticlesWithEndcaps();
         p3.style.opacity = "0";
       }
       Game.EmitSound("ui.portal_close");
       showDrawRewards(handledRewardData().list);
       if (clickSkip) {
         $.Schedule(0.2, () => {
-          if (rewardShow()) funcRewardShowContinue();
+          if (rewardShow$4()) funcRewardShowContinue();
         });
       }
-      if (!drawSuccess()) {
+      if (!drawSuccess$4()) {
         funcRewardShowContinue();
         showPopup("ErrorMessage", {
           msg: "#ErrorMessage_DrawFailure"
@@ -2399,41 +2385,17 @@ const Activity_tutu = props => {
       }
     }
   };
-  const setBunnyGirlHidden = hidden => {
-    const panel = $("#Tutu1BunnyGirls");
-    if (panel?.IsValid()) {
-      if (hidden) {
-        if (!panel.BHasClass("BunnyGirlDisappear")) {
-          const scene = $("#BunnyGirlsDisappearScene1");
-          if (scene?.IsValid()) {
-            scene.StopParticlesImmediately(false);
-            scene.StartParticles();
-          }
-          const scene2 = $("#BunnyGirlsDisappearScene2");
-          if (scene2?.IsValid()) {
-            scene2.StopParticlesImmediately(false);
-            scene2.StartParticles();
-          }
-          panel.SetHasClass("BunnyGirlDisappear", true);
-        }
-      } else {
-        panel.SetHasClass("BunnyGirlDisappear", false);
-      }
-    }
-  };
   const Draw = count => {
-    setDrawEnd(false);
-    setDrawButtonEnable(false);
-    setRewardList([]);
+    setDrawEnd$4(false);
+    setDrawButtonEnable$4(false);
+    setRewardList$4([]);
     let seq = new RunSequentialActions();
-    if (rewardShow()) {
-      setRewardShow(false);
+    if (rewardShow$4()) {
+      setRewardShow$4(false);
     }
     let index = -1;
-    setBunnyGirlHidden(false);
     seq.actions.push(new RunFunctionAction(() => {
       if (show()) {
-        setBunnyGirlHidden(true);
         _addHidden(BGButtonLists);
         _addHidden(BGLayer);
         _addHidden(BG2);
@@ -2442,7 +2404,6 @@ const Activity_tutu = props => {
         _addHidden(Content3);
         _addHidden(Content4);
         _addHidden($("#SkipButton"));
-        _addHidden($("#TutuActivityMain")?.FindChild("BG3"));
       }
     }));
     if (!BGButtonLists.BHasClass("Hidden")) {
@@ -2450,40 +2411,40 @@ const Activity_tutu = props => {
     }
     seq.actions.push(new RunFunctionAction(() => {
       if (show()) {
-        $("#DrawPortal").StartParticles();
-        $("#DrawPortalRed").StartParticles();
-        $("#DrawPortalGold").StartParticles();
+        $("#Tutu1DrawPortal").StartParticles();
+        $("#Tutu1DrawPortalGold").StartParticles();
+        $("#Tutu1DrawPortalRed").StartParticles();
         index = Game.EmitSound("ui.portal_open");
-        setDrawSoundIndex(index);
+        setDrawSoundIndex$4(index);
       }
     }));
     if (willSkip()) {
       seq.actions.push(new WaitForConditionAction(() => {
-        if (index != drawSoundIndex()) return true;
-        if (handledRewardData().list.length > 0 || drawEnd()) {
+        if (index != drawSoundIndex$4()) return true;
+        if (handledRewardData().list.length > 0 || drawEnd$4()) {
           endDrawAnimation(index, true);
           return true;
         }
         return false;
       }));
     } else {
-      seq.actions.push(new WaitAction(1));
+      seq.actions.push(new WaitAction(1.5));
       seq.actions.push(new WaitForConditionAction(() => {
-        if (index != drawSoundIndex()) return true;
-        if (handledRewardData().list.length > 0 || drawEnd()) {
+        if (index != drawSoundIndex$4()) return false;
+        if (handledRewardData().list.length > 0 || drawEnd$4()) {
           if (handledRewardData().resultType != 0) {
-            $("#DrawPortal").style.opacity = "0";
+            $("#Tutu1DrawPortal").style.opacity = "0.01";
             if (handledRewardData().resultType == 2) {
-              $("#DrawPortalRed").style.opacity = "1";
+              $("#Tutu1DrawPortalRed").style.opacity = "1";
             } else {
-              $("#DrawPortalGold").style.opacity = "1";
+              $("#Tutu1DrawPortalGold").style.opacity = "1";
             }
           }
           return true;
         }
         return false;
       }));
-      seq.actions.push(new WaitAction(2));
+      seq.actions.push(new WaitAction(1));
       seq.actions.push(new RunFunctionAction(() => {
         endDrawAnimation(index);
       }));
@@ -2495,37 +2456,27 @@ const Activity_tutu = props => {
       amounts: count
     }, data => {
       if (data.status == 0 && data?.data != undefined) {
-        setRewardList(data.data.map(v => {
+        setRewardList$4(data.data.map(v => {
           if (v.orderby == undefined) {
             v.orderby = Round(Math.random() * 100);
           }
           return v;
         }).sort((a, b) => a.orderby - b.orderby));
-        setDrawSuccess(true);
+        setDrawSuccess$4(true);
       } else {
-        setDrawSuccess(false);
+        setDrawSuccess$4(false);
       }
-      setDrawEnd(true);
+      setDrawEnd$4(true);
     });
   };
-  libs.createEffect(libs.on(rewardShow, v => {
-    const particlePanel = $("#Portal");
-    if (particlePanel?.IsValid()) {
-      if (v) {
-        endDrawAnimation(drawSoundIndex());
-      }
-      particlePanel.SetHasClass("Hidden", v);
-    }
-  }));
   const showDrawRewards = items => {
     if (pDrawWindow) {
       let pRewardList = pDrawWindow.FindChildTraverse("RewardList");
       let seq = new RunSequentialActions();
       seq.actions.push(new RunFunctionAction(() => {
-        setRewardShow(true);
+        setRewardShow$4(true);
         pRewardList.RemoveAndDeleteChildren();
         const count = items.length;
-        pRewardList.AddClass(count == 1 ? "one" : "ten");
         for (let i = 0; i < count; i++) {
           const data = items[i];
           let itemID = data.origin_item_id ?? data.itemId;
@@ -2683,7 +2634,7 @@ const Activity_tutu = props => {
           let flipSeqList = new RunStaggeredActions(fFlipTime$4 / 2);
           for (let i = 0; i < pRewardList.GetChildCount(); i++) {
             const p = pRewardList.GetChild(i);
-            if (p && LoadData(p, "Flipped") != "1") {
+            if (p) {
               let GoldParticle = p.FindChildTraverse("GoldParticle");
               let GoldParticle2 = p.FindChildTraverse("GoldParticle2");
               if (GoldParticle && GoldParticle.IsValid()) {
@@ -2731,20 +2682,14 @@ const Activity_tutu = props => {
                     GoldParticle.StartParticles();
                   }
                   if (GoldParticle2 && GoldParticle2.IsValid()) {
-                    GoldParticle2.StartParticles();
-                  }
-                  if (RedParticle && RedParticle.IsValid()) {
                     $.Schedule(0.2, () => {
                       Game.EmitSound("ui.treasure_01");
                     });
-                    RedParticle.StartParticles();
-                  }
-                  if (RedParticle2 && RedParticle2.IsValid()) {
-                    RedParticle2.StartParticles();
+                    GoldParticle2.StartParticles();
                   }
                 }
                 if (pRewardList?.IsValid() && i == pRewardList.GetChildCount() - 1) {
-                  setDrawButtonEnable(true);
+                  setDrawButtonEnable$4(true);
                 }
               }));
               flipSeqList.actions.push(flipSeq);
@@ -2758,7 +2703,7 @@ const Activity_tutu = props => {
   };
   const funcRewardShowContinue = () => {
     let bBack = true;
-    setDrawButtonEnable(true);
+    setDrawButtonEnable$4(true);
     if (pDrawWindow) {
       let pRewardList = pDrawWindow.FindChildTraverse("RewardList");
       if (pRewardList) {
@@ -2822,9 +2767,8 @@ const Activity_tutu = props => {
         }
       }
       if (bBack) {
-        setRewardShow(false);
-        setRewardList([]);
-        setBunnyGirlHidden(false);
+        setRewardShow$4(false);
+        setRewardList$4([]);
         _removeHidden(BGButtonLists);
         _removeHidden(BGLayer);
         _removeHidden(BG2);
@@ -2833,7 +2777,6 @@ const Activity_tutu = props => {
         _removeHidden(Content3);
         _removeHidden(Content4);
         _removeHidden($("#SkipButton"));
-        _removeHidden($("#TutuActivityMain")?.FindChild("BG3"));
       }
     }
   };
@@ -2877,63 +2820,68 @@ const Activity_tutu = props => {
         Hidden: !props.selected
       });
     },
-    id: "TutuActivityMain",
+    id: "TutuActivityMain1",
     get children() {
       return [libs.createElement("DOTAParticleScenePanel", {
         hittest: false,
         id: "Portal",
-        squarePixels: true,
         particleName: "particles/eom/events/tunvlang_draw_portal/tunvlang_draw_portal.vpcf",
         cameraOrigin: "0 0 900",
         lookAt: "0 0 0",
-        fov: 60,
+        fov: 40.5,
         particleonly: true
       }, null), libs.createElement("DOTAParticleScenePanel", {
         hittest: false,
-        id: "DrawPortalGold",
+        id: "Tutu1DrawPortal",
         startActive: false,
+        squarePixels: true,
         light: "light",
         camera: "camera_top",
         map: "scene/draw_open",
-        useMapCamera: true,
-        renderdeferred: false,
-        deferredalpha: true,
-        particleonly: false,
-        particleName: "particles/eom/events/tunvlang_draw_portal/tunvlang_draw_portal_gold.vpcf",
-        fov: 80,
-        cameraOrigin: "0 0 900",
-        lookAt: "0 0 0"
-      }, null), libs.createElement("DOTAParticleScenePanel", {
-        hittest: false,
-        id: "DrawPortal",
-        startActive: false,
-        light: "light",
-        camera: "camera_top",
-        map: "scene/draw_open",
-        useMapCamera: true,
         renderdeferred: false,
         deferredalpha: true,
         particleonly: false,
         particleName: "particles/eom/events/tunvlang_draw_portal/tunvlang_draw_portal_2.vpcf",
-        fov: 80,
+        fov: 45,
         cameraOrigin: "0 0 900",
         lookAt: "0 0 0"
       }, null), libs.createElement("DOTAParticleScenePanel", {
         hittest: false,
-        id: "DrawPortalRed",
+        id: "Tutu1DrawPortalGold",
         startActive: false,
         light: "light",
         camera: "camera_top",
         map: "scene/draw_open",
-        useMapCamera: true,
+        squarePixels: true,
+        renderdeferred: false,
+        deferredalpha: true,
+        particleonly: false,
+        particleName: "particles/eom/events/tunvlang_draw_portal/tunvlang_draw_portal_gold.vpcf",
+        fov: 45,
+        cameraOrigin: "0 0 900",
+        lookAt: "0 0 0"
+      }, null), libs.createElement("DOTAParticleScenePanel", {
+        hittest: false,
+        id: "Tutu1DrawPortalRed",
+        startActive: false,
+        squarePixels: true,
+        light: "light",
+        camera: "camera_top",
+        map: "scene/draw_open",
         renderdeferred: false,
         deferredalpha: true,
         particleonly: false,
         particleName: "particles/eom/events/tunvlang_draw_portal/tunvlang_draw_portal_red.vpcf",
-        fov: 80,
+        fov: 45,
         cameraOrigin: "0 0 900",
         lookAt: "0 0 0"
       }, null), libs.createComponent(EOM_Panel.EOM_Panel, {
+        id: "BG2",
+        ref(r$) {
+          const _ref$ = BG2;
+          typeof _ref$ === "function" ? _ref$(r$) : BG2 = r$;
+        }
+      }), libs.createComponent(EOM_Panel.EOM_Panel, {
         id: "Currencies",
         get children() {
           return [libs.createComponent(Player.PlayerCurrency, {
@@ -2949,70 +2897,10 @@ const Activity_tutu = props => {
         hittest: false,
         get children() {
           return [libs.createComponent(EOM_Panel.EOM_Panel, {
-            id: "Tutu1BunnyGirls",
-            hittest: false,
-            hittestchildren: false,
-            get children() {
-              return [libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "BG3"
-              }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "BunnyGirlBG",
-                get children() {
-                  return libs.createComponent(EOM_Panel.EOM_Panel, {
-                    id: "BunnyGirlBGMask",
-                    hittest: false,
-                    get children() {
-                      return libs.createElement("DOTAParticleScenePanel", {
-                        hittest: false,
-                        id: "BunnyGirlsDisappearScene1",
-                        startActive: false,
-                        particleName: "particles/eom/ui/ui_fx/ui_fx_meimo_lottery_mask.vpcf",
-                        cameraOrigin: "0 0 600",
-                        lookAt: "0 0 0",
-                        fov: 50,
-                        particleonly: true
-                      }, null);
-                    }
-                  });
-                }
-              }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "light"
-              }), libs.createComponent(EOM_Panel.EOM_Panel, {
-                id: "GoldenGirlSlogen",
-                get children() {
-                  return [libs.createComponent(GenericPanel.CLabel, {
-                    text: "#5310006"
-                  }), libs.createComponent(EOM_Icon.EOM_Icon, {
-                    get src() {
-                      return getSrcPath("activity/tutu/t3_icon_02.png");
-                    }
-                  })];
-                }
-              })];
-            }
-          }), libs.createComponent(EOM_Panel.EOM_Panel, {
-            id: "mask",
-            hittest: false
-          }), libs.createComponent(EOM_Panel.EOM_Panel, {
-            id: "BunnyGirlParticleLayer",
-            hittest: false,
-            get children() {
-              return libs.createElement("DOTAParticleScenePanel", {
-                hittest: false,
-                id: "BunnyGirlsDisappearScene2",
-                startActive: false,
-                particleName: "particles/eom/ui/ui_fx/ui_fx_meimo_lottery.vpcf",
-                cameraOrigin: "0 -50 600",
-                lookAt: "0 -50 0",
-                fov: 50,
-                particleonly: true
-              }, null);
-            }
-          }), libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "BGLayer",
             ref(r$) {
-              const _ref$ = BGLayer;
-              typeof _ref$ === "function" ? _ref$(r$) : BGLayer = r$;
+              const _ref$2 = BGLayer;
+              typeof _ref$2 === "function" ? _ref$2(r$) : BGLayer = r$;
             },
             hittest: false,
             get children() {
@@ -3020,7 +2908,7 @@ const Activity_tutu = props => {
                 className: language$d,
                 id: "MillionInfoButton",
                 info: "#SnowballInfo",
-                tooltip: "#Activity_tutu_infodesc"
+                tooltip: "#Activity_tutu1_infodesc"
               }), libs.createComponent(EOM_Image.EOM_Image, {
                 id: "ActivityTitle",
                 className: language$d,
@@ -3030,12 +2918,14 @@ const Activity_tutu = props => {
                 className: language$d,
                 get children() {
                   return libs.createComponent(EOM_Panel.EOM_Panel, {
-                    align: "right center",
-                    marginRight: "22px",
+                    align: "center center",
                     flowChildren: "right",
                     get children() {
                       return [libs.createComponent(EOM_Image.EOM_Image, {
-                        id: "timeIcon"
+                        id: "timeIcon",
+                        get backgroundImage() {
+                          return getImagePath("activity/tutu/t3_time_icon.png");
+                        }
                       }), libs.createComponent(EOM_Countdown.EOM_Countdown, {
                         get endTime() {
                           return endtime();
@@ -3056,13 +2946,45 @@ const Activity_tutu = props => {
                   name: "custom_text",
                   text: "#Activity_Tutu_poolchance"
                 }
+              }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                id: "BunnyGirls",
+                hittest: false,
+                get children() {
+                  return [libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "BunnyGirl",
+                    id: "BunnyGirl1"
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "BunnyGirl",
+                    id: "BunnyGirl2"
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "BunnyGirl",
+                    id: "BunnyGirl3"
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "BunnyGirl",
+                    id: "BunnyGirl4"
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    className: "BunnyGirl",
+                    id: "BunnyGirl5"
+                  }), libs.createComponent(EOM_Panel.EOM_Panel, {
+                    id: "GoldenGirlSlogen",
+                    get children() {
+                      return [libs.createComponent(EOM_Icon.EOM_Icon, {
+                        get src() {
+                          return getSrcPath("activity/tutu/t3_icon_02.png");
+                        }
+                      }), libs.createComponent(GenericPanel.CLabel, {
+                        text: "#5310001"
+                      })];
+                    }
+                  })];
+                }
               })];
             }
           }), libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "DiscountTokens",
             ref(r$) {
-              const _ref$2 = Content1;
-              typeof _ref$2 === "function" ? _ref$2(r$) : Content1 = r$;
+              const _ref$3 = Content1;
+              typeof _ref$3 === "function" ? _ref$3(r$) : Content1 = r$;
             },
             get children() {
               return [libs.createComponent(EOM_Icon.EOM_Icon, {
@@ -3081,26 +3003,21 @@ const Activity_tutu = props => {
               })];
             }
           }), libs.createComponent(EOM_Button.EOM_BaseButton, {
-            className: "Tutu1DrawStackCount",
+            className: "DrawStackCount",
             ref(r$) {
-              const _ref$3 = Content2;
-              typeof _ref$3 === "function" ? _ref$3(r$) : Content2 = r$;
+              const _ref$4 = Content2;
+              typeof _ref$4 === "function" ? _ref$4(r$) : Content2 = r$;
             },
             onactivate: self => {
               showPopup("ActivityTutu", {
                 activity_id: activityID,
-                title: "Activity_tutu"
+                title: "Activity_tutu1"
               });
             },
             get children() {
               return [libs.createComponent(EOM_Panel.EOM_Panel, {
                 id: "CurrentStackCount",
-                onactivate: self => {
-                  showPopup("ActivityTutu", {
-                    activity_id: activityID,
-                    title: "Activity_tutu"
-                  });
-                },
+                onactivate: self => {},
                 get children() {
                   return [libs.createComponent(GenericPanel.CLabel, {
                     get text() {
@@ -3179,8 +3096,8 @@ const Activity_tutu = props => {
           }), libs.createComponent(EOM_Button.EOM_Button, {
             id: "ExchangeButton",
             ref(r$) {
-              const _ref$4 = Content4;
-              typeof _ref$4 === "function" ? _ref$4(r$) : Content4 = r$;
+              const _ref$5 = Content4;
+              typeof _ref$5 === "function" ? _ref$5(r$) : Content4 = r$;
             },
             get className() {
               return $.Language().toLowerCase();
@@ -3197,10 +3114,9 @@ const Activity_tutu = props => {
           return libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "Banner",
             ref(r$) {
-              const _ref$5 = Content3;
-              typeof _ref$5 === "function" ? _ref$5(r$) : Content3 = r$;
+              const _ref$6 = Content3;
+              typeof _ref$6 === "function" ? _ref$6(r$) : Content3 = r$;
             },
-            hittest: false,
             get children() {
               return libs.createComponent(GenericPanel.CLabel, {
                 text: "#Activity_Tutu_chanceup",
@@ -3215,14 +3131,14 @@ const Activity_tutu = props => {
         }
       }), libs.createComponent(EOM_Panel.EOM_Panel, {
         ref(r$) {
-          const _ref$6 = BGButtonLists;
-          typeof _ref$6 === "function" ? _ref$6(r$) : BGButtonLists = r$;
+          const _ref$7 = BGButtonLists;
+          typeof _ref$7 === "function" ? _ref$7(r$) : BGButtonLists = r$;
         },
         id: "DrawButtonList",
         get children() {
           return [libs.createComponent(DrawButton$4, {
             get enable() {
-              return drawButtonEnable();
+              return drawButtonEnable$4();
             },
             get ticket() {
               return token_1100011();
@@ -3234,7 +3150,7 @@ const Activity_tutu = props => {
             drawCallback: Draw
           }), libs.createComponent(DrawButton$4, {
             get enable() {
-              return drawButtonEnable();
+              return drawButtonEnable$4();
             },
             get ticket() {
               return token_1100011();
@@ -3272,12 +3188,12 @@ const Activity_tutu = props => {
       }), libs.createComponent(EOM_Panel.EOM_Panel, {
         get className() {
           return libs.classNames("DrawCardResultWindow", {
-            Show: rewardShow()
+            Show: rewardShow$4()
           });
         },
         ref(r$) {
-          const _ref$7 = pDrawWindow;
-          typeof _ref$7 === "function" ? _ref$7(r$) : pDrawWindow = r$;
+          const _ref$8 = pDrawWindow;
+          typeof _ref$8 === "function" ? _ref$8(r$) : pDrawWindow = r$;
         },
         acceptsfocus: true,
         get children() {
@@ -3307,7 +3223,7 @@ const Activity_tutu = props => {
             get children() {
               return [libs.createComponent(DrawButton$4, {
                 get enable() {
-                  return drawButtonEnable();
+                  return drawButtonEnable$4();
                 },
                 get ticket() {
                   return token_1100011();
@@ -3319,7 +3235,7 @@ const Activity_tutu = props => {
                 drawCallback: Draw
               }), libs.createComponent(DrawButton$4, {
                 get enable() {
-                  return drawButtonEnable();
+                  return drawButtonEnable$4();
                 },
                 get ticket() {
                   return token_1100011();
@@ -3343,23 +3259,23 @@ const Activity_tutu = props => {
         onactivate: () => {},
         get children() {
           return [(() => {
-            const _el$17 = libs.createElement("Panel", {
+            const _el$15 = libs.createElement("Panel", {
               id: "TopBarBG"
             }, null);
-            libs.insert(_el$17, libs.createComponent(Player.CurrencyGroup, {
+            libs.insert(_el$15, libs.createComponent(Player.CurrencyGroup, {
               tokens: [1100013]
             }));
-            return _el$17;
+            return _el$15;
           })(), libs.createComponent(EOM_Panel.EOM_Panel, {
             id: "ExchangeContainer",
             onactivate: () => setExchangeShow(false),
             get children() {
               return [(() => {
-                const _el$18 = libs.createElement("Panel", {
+                const _el$16 = libs.createElement("Panel", {
                   id: "ExchangeList"
                 }, null);
-                libs.setProp(_el$18, "onactivate", () => {});
-                libs.insert(_el$18, libs.createComponent(EOM_Panel.EOM_Panel, {
+                libs.setProp(_el$16, "onactivate", () => {});
+                libs.insert(_el$16, libs.createComponent(EOM_Panel.EOM_Panel, {
                   id: "ExchangeListTitle",
                   get children() {
                     return [libs.createComponent(GenericPanel.CLabel, {
@@ -3372,7 +3288,7 @@ const Activity_tutu = props => {
                     })];
                   }
                 }), null);
-                libs.insert(_el$18, libs.createComponent(EOM_Panel.EOM_Panel, {
+                libs.insert(_el$16, libs.createComponent(EOM_Panel.EOM_Panel, {
                   id: "ExchangeItemList",
                   flowChildren: "right-wrap",
                   scroll: "y",
@@ -3415,12 +3331,12 @@ const Activity_tutu = props => {
                     });
                   }
                 }), null);
-                return _el$18;
+                return _el$16;
               })(), (() => {
-                const _el$19 = libs.createElement("Panel", {
+                const _el$17 = libs.createElement("Panel", {
                   id: "ExchangePreview"
                 }, null);
-                libs.insert(_el$19, libs.createComponent(libs.Show, {
+                libs.insert(_el$17, libs.createComponent(libs.Show, {
                   get when() {
                     return previewInfo().cid != -1;
                   },
@@ -3430,25 +3346,25 @@ const Activity_tutu = props => {
                         return previewInfo().cid;
                       }
                     }), (() => {
-                      const _el$20 = libs.createElement("Panel", {
+                      const _el$18 = libs.createElement("Panel", {
                         id: "CosmeticDesc"
                       }, null);
-                      libs.insert(_el$20, libs.createComponent(GenericPanel.CLabel, {
+                      libs.insert(_el$18, libs.createComponent(GenericPanel.CLabel, {
                         id: "CosmeticName",
                         get text() {
                           return '#' + previewInfo().cid;
                         }
                       }), null);
-                      libs.insert(_el$20, libs.createComponent(EOM_Separator.EOM_Separator, {
+                      libs.insert(_el$18, libs.createComponent(EOM_Separator.EOM_Separator, {
                         size: "short"
                       }), null);
-                      libs.insert(_el$20, libs.createComponent(GenericPanel.CLabel, {
+                      libs.insert(_el$18, libs.createComponent(GenericPanel.CLabel, {
                         id: "CosmeticAccess",
                         get text() {
                           return GetCosmeticAccessDescription(previewInfo().cid);
                         }
                       }), null);
-                      return _el$20;
+                      return _el$18;
                     })(), libs.createComponent(libs.Show, {
                       get when() {
                         return previewInfo().cid.toString().slice(0, 3) == "531";
@@ -3469,7 +3385,7 @@ const Activity_tutu = props => {
                     })];
                   }
                 }));
-                return _el$19;
+                return _el$17;
               })()];
             }
           })];
@@ -17705,11 +17621,11 @@ if (!isSpectator()) {
     ["1001"]: "Activity_login7day",
     ["1005"]: "Activity_GuoqingLogin",
     ["9027"]: "Activity_StarryTreasure",
-    ["9026"]: "Activity_StarryTreasure2",
+    ["9028"]: "Activity_StarryTreasure2",
     ["5001"]: "Activity_MillionSubscription",
-    ["6009"]: "Activity_tutu",
+    ["6007"]: "Activity_tutu1",
     ["7015"]: "Activity_LuckyTurntable",
-    ["7025"]: "Activity_LuckCheck",
+    ["7027"]: "Activity_LuckCheck",
     ["7018"]: "Activity_XinChunTurntable",
     ["7019"]: "Activity_YuanXiaoTurntable",
     ["7026"]: "Activity_26WuYiTurntable",
@@ -18108,17 +18024,17 @@ if (!isSpectator()) {
                 });
               }
             }), libs.createComponent(ActivityMenuContent, {
-              menu_name: "Activity_tutu",
-              activity_id: 6009,
+              menu_name: "Activity_tutu1",
+              activity_id: 6007,
               get children() {
-                return libs.createComponent(Activity_tutu, {
+                return libs.createComponent(Activity_tutu1, {
                   get selected() {
-                    return seleted_menu() == "Activity_tutu";
+                    return seleted_menu() == "Activity_tutu1";
                   },
                   get show() {
                     return show();
                   },
-                  activity_id: 6009
+                  activity_id: 6007
                 });
               }
             }), libs.createComponent(ActivityMenuContent, {
@@ -18137,13 +18053,13 @@ if (!isSpectator()) {
               }
             }), libs.createComponent(ActivityMenuContent, {
               menu_name: "Activity_LuckCheck",
-              activity_id: 7025,
+              activity_id: 7027,
               get children() {
                 return libs.createComponent(Activity_LuckCheck, {
                   get selected() {
                     return seleted_menu() == "Activity_LuckCheck";
                   },
-                  activity_id: 7025,
+                  activity_id: 7027,
                   season: 15
                 });
               }
@@ -18196,13 +18112,13 @@ if (!isSpectator()) {
               }
             }), libs.createComponent(ActivityMenuContent, {
               menu_name: "Activity_StarryTreasure2",
-              activity_id: 9026,
+              activity_id: 9028,
               get children() {
                 return libs.createComponent(Activity_StarryTreasure3, {
                   get selected() {
                     return seleted_menu() == "Activity_StarryTreasure2";
                   },
-                  activity_id: 9026
+                  activity_id: 9028
                 });
               }
             }), libs.createComponent(ActivityMenuContent, {

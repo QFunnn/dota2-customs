@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -17,7 +17,9 @@ var EOM_Icon = require('./EOM_Icon.js');
 var EOM_Label = require('./EOM_Label.js');
 var EOM_Button = require('./EOM_Button.js');
 var GenericPanel = require('./GenericPanel.js');
+var Player = require('./Player.js');
 require('./netdata_utils.js');
+require('./EOM_Image.js');
 
 const Key2Command = {
   key_Backquote: "`",
@@ -658,6 +660,21 @@ function Setting() {
                   className: "SectionHeader"
                 }));
                 libs.setProp(_el$9, "className", "SectionHeaderLine");
+                libs.insert(_el$7, libs.createComponent(EOM_Panel.EOM_Panel, {
+                  marginBottom: '16px',
+                  flowChildren: 'down',
+                  get children() {
+                    return [libs.createComponent(GenericPanel.CLabel, {
+                      style: {
+                        align: "left bottom",
+                        fontSize: "16px",
+                        marginBottom: "4px"
+                      },
+                      text: "#use_cdkey",
+                      className: "SectionHeader"
+                    }), libs.createComponent(Player.ExchangeEntry, {})];
+                  }
+                }), null);
                 libs.insert(_el$7, libs.createComponent(libs.Switch, {
                   get fallback() {
                     return libs.createComponent(EnglishCommunity, {});

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -6591,7 +6591,7 @@
 	ignore-parent-flow: true;
 }
 
-.AspectRatio4x3 #TutuActivityMain #MainContainer
+.AspectRatio4x3 #TutuActivityMain1 #MainContainer
 {
 	width: 100%;
 	height: width-percentage(56.25%);
@@ -6599,18 +6599,12 @@
 	ui-scale: 66%;
 }
 
-.AspectRatio4x3 #TutuActivityMain #AwardItemContainer
+.AspectRatio4x3 #TutuActivityMain1 #AwardItemContainer
 {
 	ui-scale: 75%;
 }
 
-.AspectRatio4x3 #TutuActivityMain .TutuDrawButton
-{
-	margin: 0px 44px;
-	ui-scale: 75%;
-}
-
-.AspectRatio16x10 #TutuActivityMain #MainContainer
+.AspectRatio16x10 #TutuActivityMain1 #MainContainer
 {
 	width: 100%;
 	height: width-percentage(62.5%);
@@ -6618,18 +6612,12 @@
 	ui-scale: 84%;
 }
 
-.AspectRatio16x10 #TutuActivityMain #AwardItemContainer
+.AspectRatio16x10 #TutuActivityMain1 #AwardItemContainer
 {
 	ui-scale: 75%;
 }
 
-.AspectRatio16x10 #TutuActivityMain .TutuDrawButton
-{
-	margin: 0px 44px;
-	ui-scale: 75%;
-}
-
-#TutuActivityMain
+#TutuActivityMain1
 {
 	margin-left: -220px;
 	padding-left: 220px;
@@ -6637,42 +6625,46 @@
 	height: 100%;
 }
 
-#TutuActivityMain #Portal
+#TutuActivityMain1 #BG2
 {
-	transform: translateX(-168px) translateY(-140px);
-	width: 1600px;
-	height: 1600px;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bg_mask_png.vtex");
+	background-size: 100%;
+	margin-left: -220px;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+}
+
+#TutuActivityMain1 #Portal
+{
+	transform: translateX(65px) translateY(-60px);
+	width: 1080px;
+	height: 1080px;
 	overflow: noclip;
 	align: center center;
 }
 
-#TutuActivityMain.DrawCardHideUI #DrawButtonList
+#TutuActivityMain1.DrawCardHideUI #DrawButtonList
 {
 	opacity: 0;
 }
 
-#TutuActivityMain .DrawCardResultWindow #DrawButtonList
-{
-	margin-bottom: 60px;
-	x: 0;
-}
-
-#TutuActivityMain #MainContainer
+#TutuActivityMain1 #MainContainer
 {
 	width: 100%;
 	height: 100%;
 }
 
-#TutuActivityMain #DrawButtonList
+#TutuActivityMain1 #DrawButtonList
 {
-	x: -180px;
-	z-index: 10;
+	x: -100px;
 	align: center bottom;
-	margin-bottom: 90px;
+	margin-bottom: 66px;
 	flow-children: right;
 }
 
-#TutuActivityMain #Currencies
+#TutuActivityMain1 #Currencies
 {
 	flow-children: right;
 	align: right top;
@@ -6680,19 +6672,18 @@
 	margin-right: 80px;
 }
 
-#TutuActivityMain #Banner
+#TutuActivityMain1 #Banner
 {
 	width: 845px;
 	height: 40px;
 	align: center bottom;
 	margin-bottom: 226px;
 	x: -100px;
-	z-index: 10;
 	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_04_png.vtex");
 	background-size: 100%;
 }
 
-#TutuActivityMain #Banner Label
+#TutuActivityMain1 #Banner Label
 {
 	align: center center;
 	text-align: center;
@@ -6702,51 +6693,49 @@
 	text-shadow: 0px 1px 1px 1px #241838;
 }
 
-#TutuActivityMain #MillionInfoButton
+#TutuActivityMain1 #MillionInfoButton
 {
-	align: right top;
-	margin-top: 124px;
-	margin-right: 50px;
+	align: center center;
+	x: 758px;
+	y: -356px;
 }
 
-#TutuActivityMain #MillionInfoButton .InfoButtonIcon
+#TutuActivityMain1 #MillionInfoButton .InfoButtonIcon
 {
-	width: 55px;
+	width: 54px;
 	height: 56px;
 }
 
-#TutuActivityMain #MillionInfoButton .InfoButtonIcon
+#TutuActivityMain1 #MillionInfoButton.english
 {
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_button_05_png.vtex");
+	x: 758px;
+	y: -302px;
 }
 
-#TutuActivityMain #MillionInfoButton .InfoButtonLabel
+#TutuActivityMain1 #MillionInfoButton.russian
 {
-	margin-top: 42px;
-	width: 65px;
-	height: 22px;
+	x: 792px;
+	y: -292px;
+}
+
+#TutuActivityMain1 #MillionInfoButton .InfoButtonIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_button_05_png.vtex");
+}
+
+#TutuActivityMain1 #MillionInfoButton .InfoButtonLabel
+{
 	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_05_png.vtex");
 }
 
-#TutuActivityMain #MillionInfoButton .InfoButtonLabel Label
+#TutuActivityMain1 #MillionInfoButton .InfoButtonLabel Label
 {
-	text-overflow: shrink;
 	font-size: 16px;
-	color: gradient(linear, 0% 0%, 0% 100%, from(#F7ECFE), to(#ECC1FF));
-	text-shadow: 0px 0px 4px #3B0492;
+	color: #FFF5DB;
+	text-shadow: 0px 0px 2px 1 #316999;
 }
 
-#TutuActivityMain #mask
-{
-	width: 100%;
-	height: 450px;
-	vertical-align: bottom;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_mask_png.vtex");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-#TutuActivityMain #BGLayer
+#TutuActivityMain1 #BGLayer
 {
 	width: 100%;
 	height: 100%;
@@ -6754,171 +6743,158 @@
 	transition-duration: 0.4s;
 }
 
-#TutuActivityMain #BGLayer #ActivityTitle
+#TutuActivityMain1 #BGLayer #ActivityTitle
 {
-	align: right top;
-	margin-top: 102px;
-	margin-right: 112px;
-	width: 450px;
-	height: 285px;
+	align: center center;
+	x: 460px;
+	y: -348px;
+	width: 600px;
+	height: 220px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_title_en_png.vtex");
 	background-size: 100%;
 }
 
-#TutuActivityMain #BGLayer #ActivityTitle.english
+#TutuActivityMain1 #BGLayer #ActivityTitle.english
 {
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_title_en_png.vtex");
+	x: 436px;
+	y: -332px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_title_en_png.vtex");
 }
 
-#TutuActivityMain #BGLayer #ActivityTitle.russian
+#TutuActivityMain1 #BGLayer #ActivityTitle.russian
 {
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_title_ru_png.vtex");
+	x: 480px;
+	y: -304px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_title_ru_png.vtex");
 }
 
-#TutuActivityMain #BGLayer #ActivityTitle.schinese
+#TutuActivityMain1 #BGLayer #ActivityTitle.schinese
 {
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_title_ch_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_title_ch_png.vtex");
 }
 
-#TutuActivityMain #BGLayer #CountdownContainer
+#TutuActivityMain1 #BGLayer #CountdownContainer
 {
 	width: 241px;
 	height: 83px;
-	align: right top;
+	margin-top: 100px;
+	horizontal-align: center;
 	x: -36px;
 	background-image: url("s2r://");
 	background-size: 100%;
 }
 
-#TutuActivityMain #BGLayer #CountdownContainer.english
+#TutuActivityMain1 #BGLayer #CountdownContainer.english
 {
 	margin-top: 200px;
 	x: 516px;
 	background-image: url("s2r://");
 }
 
-#TutuActivityMain #BGLayer #CountdownContainer.russian
+#TutuActivityMain1 #BGLayer #CountdownContainer.russian
 {
 	margin-top: 196px;
 	x: 542px;
 	background-image: url("s2r://");
 }
 
-#TutuActivityMain #BGLayer #CountdownContainer.schinese
+#TutuActivityMain1 #BGLayer #CountdownContainer.schinese
 {
 	margin-top: 206px;
 	x: 598px;
 	background-image: url("s2r://");
 }
 
-#TutuActivityMain #BGLayer #PoolInfoIcon
+#TutuActivityMain1 #BGLayer #PoolInfoIcon
 {
-	x: 245px;
-	y: 293px;
+	x: 446px;
+	y: -244px;
 	align: center center;
-	wash-color: #e3e3e3;
-	z-index: 9999;
+	wash-color: #deeefd;
+	opacity-brush: #f0f0f0;
 }
 
-#TutuActivityMain #BGLayer #PoolInfoIcon:hover
+#TutuActivityMain1 #BGLayer #PoolInfoIcon:hover
 {
 	brightness: 1.5;
 }
 
-#TutuActivityMain #BGLayer #PoolInfoIcon.english
+#TutuActivityMain1 #BGLayer #PoolInfoIcon.english
 {
-	x: 365px;
-	y: 293px;
+	x: 456px;
+	y: -194px;
 }
 
-#TutuActivityMain #BGLayer #PoolInfoIcon.russian
+#TutuActivityMain1 #BGLayer #PoolInfoIcon.russian
 {
-	x: 365px;
-	y: 293px;
+	x: 506px;
+	y: -184px;
 }
 
-#TutuActivityMain #BGLayer #ActivityCountdown
+#TutuActivityMain1 #BGLayer #ActivityCountdown
 {
 	width: 282px;
-	height: 36px;
-	align: right top;
+	height: 46px;
+	x: 606px;
+	y: -244px;
+	align: center center;
 	background-size: 100%;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_board_01_png.vtex");
-	x: -104px;
-	y: 390px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_01_png.vtex");
 }
 
-#TutuActivityMain #BGLayer #ActivityCountdown.russian
+#TutuActivityMain1 #BGLayer #ActivityCountdown.english
 {
-	x: -104px;
-	y: 300px;
+	x: 616px;
+	y: -194px;
 }
 
-#TutuActivityMain #BGLayer #ActivityCountdown.english
+#TutuActivityMain1 #BGLayer #ActivityCountdown.russian
 {
-	x: -104px;
-	y: 320px;
+	x: 666px;
+	y: -184px;
 }
 
-#TutuActivityMain #BGLayer #ActivityCountdown Label
+#TutuActivityMain1 #BGLayer #ActivityCountdown Label
 {
-	font-size: 24px;
+	font-size: 30px;
 	color: #F1F7FF;
-	text-shadow: 0px 0px 4px #3B0492;
-	color: gradient(linear, 0% 0%, 0% 100%, from(#F5E7FF), to(#E3A4FF));
+	text-shadow: 0px 1px 2px #000000;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFCF0), to(#B3D9FF));
 }
 
-#TutuActivityMain #BGLayer #ActivityCountdown #timeIcon
+#TutuActivityMain1 #BGLayer #ActivityCountdown #timeIcon
 {
 	vertical-align: center;
 	margin-right: 6px;
 	width: 26px;
 	height: 27px;
 	background-size: 100%;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_time_icon_png.vtex");
 }
 
-#TutuActivityMain #BGScene
+#TutuActivityMain1 #BGScene
 {
 	width: 100%;
 	height: width-percentage(100%);
 }
 
-#TutuActivityMain #DrawPortal
+#TutuActivityMain1 #Tutu1DrawPortal,#TutuActivityMain1 #Tutu1DrawPortalGold,#TutuActivityMain1 #Tutu1DrawPortalRed
 {
 	z-index: -1;
-	transform: translateX(-168px) translateY(-140px);
-	width: 1920px;
-	height: 1920px;
+	transform: translateX(65px) translateY(-60px);
+	width: 1080px;
+	height: 1080px;
 	align: center center;
+	opacity: 0.01;
 	transition-property: opacity;
 	transition-duration: 0.4s;
 }
 
-#TutuActivityMain #DrawPortalGold
+#TutuActivityMain1 #Tutu1DrawPortal
 {
-	z-index: -1;
-	transform: translateX(-168px) translateY(-140px);
-	width: 1920px;
-	height: 1920px;
-	align: center center;
-	opacity: 0;
-	transition-property: opacity;
-	transition-duration: 0.4s;
+	opacity: 1;
 }
 
-#TutuActivityMain #DrawPortalRed
-{
-	z-index: -1;
-	transform: translateX(-168px) translateY(-140px);
-	width: 1920px;
-	height: 1920px;
-	align: center center;
-	opacity: 0;
-	transition-property: opacity;
-	transition-duration: 0.4s;
-}
-
-#TutuActivityMain #RewardsContainer
+#TutuActivityMain1 #RewardsContainer
 {
 	align: center bottom;
 	width: 100%;
@@ -6927,7 +6903,7 @@
 	overflow: noclip;
 }
 
-#TutuActivityMain #ActivityBannerParticle
+#TutuActivityMain1 #ActivityBannerParticle
 {
 	width: 130%;
 	height: width-percentage(100%);
@@ -6935,7 +6911,7 @@
 	overflow: noclip;
 }
 
-#TutuActivityMain #ActivityBannerParticle1
+#TutuActivityMain1 #ActivityBannerParticle1
 {
 	width: 130%;
 	height: width-percentage(100%);
@@ -6943,52 +6919,50 @@
 	overflow: noclip;
 }
 
-#TutuActivityMain #DiscountTokens
+#DiscountTokens
 {
-	width: 310px;
-	height: 40px;
+	width: 250px;
+	height: 52px;
 	padding-left: 40px;
-	align: right bottom;
-	x: -120px;
-	margin-bottom: 199px;
-	z-index: 6;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_board_01_png.vtex");
+	align: center bottom;
+	x: 610px;
+	margin-bottom: 174px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_02_png.vtex");
 	background-size: 100%;
 }
 
-#TutuActivityMain #DiscountTokens .EOM_Icon
+#DiscountTokens .EOM_Icon
 {
 	vertical-align: center;
 }
 
-#TutuActivityMain #DiscountTokens Label
+#DiscountTokens Label
 {
-	margin-left: 40px;
 	align: center center;
 	text-overflow: shrink;
 	font-size: 24px;
 	color: #FFFFFF;
+	margin-left: 40px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount
+.DrawStackCount
 {
-	align: right bottom;
-	x: -115px;
-	margin-bottom: 86px;
-	z-index: 6;
+	align: center bottom;
+	x: 550px;
+	margin-bottom: 64px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackCount
+.DrawStackCount #CurrentStackCount
 {
 	width: 92px;
 	height: 87px;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_button_04_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_button_04_png.vtex");
 	background-size: 100%;
 	padding-left: 12px;
 	margin-bottom: 8px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackCount Label
+.DrawStackCount #CurrentStackCount Label
 {
 	align: center center;
 	y: 2px;
@@ -6998,7 +6972,7 @@
 	text-shadow: 0px 1px 1px 1 #110623;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackCount .MenuMarkIcon
+.DrawStackCount #CurrentStackCount .MenuMarkIcon
 {
 	margin-top: 10px;
 	margin-right: -6px;
@@ -7008,7 +6982,7 @@
 	animation-duration: 1s;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackCountTitle
+.DrawStackCount #CurrentStackCountTitle
 {
 	width: 65px;
 	height: 22px;
@@ -7018,7 +6992,7 @@
 	background-size: 100%;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackCountTitle Label
+.DrawStackCount #CurrentStackCountTitle Label
 {
 	align: center center;
 	text-align: center;
@@ -7028,49 +7002,49 @@
 	text-shadow: 0px 0px 2px 2 #316999;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackMiddle
+.DrawStackCount #CurrentStackMiddle
 {
 	width: 328px;
 	height: 64px;
 	vertical-align: center;
 	margin-left: 22px;
 	y: -4px;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_board_03_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_03_png.vtex");
 	background-size: 100%;
 	z-index: -1;
 	padding: 0px 70px 0px 70px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackMiddle Label
+.DrawStackCount #CurrentStackMiddle Label
 {
 	align: center center;
-	text-overflow: shrink;
 	font-size: 24px;
 	color: #FFFFFF;
 	text-shadow: 0px 1px 1px 1px #241838;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackMiddle.english
+.DrawStackCount #CurrentStackMiddle.english
 {
 	font-size: 16px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackMiddle.russian
+.DrawStackCount #CurrentStackMiddle.russian
 {
 	font-size: 16px;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackNextReward
+.DrawStackCount #CurrentStackNextReward
 {
 	align: right center;
 	y: -2px;
 	width: 66px;
 	height: 66px;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_board_07_png.vtex");
+	border-radius: 50%;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_07_png.vtex");
 	background-size: 100%;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackNextReward Image
+.DrawStackCount #CurrentStackNextReward Image
 {
 	align: center center;
 	width: 80%;
@@ -7078,217 +7052,116 @@
 	background-size: 100%;
 }
 
-#TutuActivityMain .Tutu1DrawStackCount #CurrentStackNextReward Label
+.DrawStackCount #CurrentStackNextReward Label
 {
-	align: right bottom;
-	margin-bottom: 5px;
-	margin-right: 5px;
+	align: center bottom;
+	margin-bottom: 8px;
 	font-size: 22px;
 	color: #FFFFFF;
 	text-shadow: 0px 0px 3px 3 #000000;
 }
 
-#TutuActivityMain #Tutu1BunnyGirls
+.BunnyGirl
+{
+	align: center center;
+}
+
+#BunnyGirls
 {
 	width: 100%;
 	height: 100%;
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #BG3
+#BunnyGirls #GoldenGirlSlogen
 {
-	x: -131px;
-	y: 288px;
-	width: 962px;
-	height: 436px;
 	align: center center;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_bunny_02_png.vtex");
+	x: -386px;
+	y: -328px;
+	width: 248px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_board_06_png.vtex");
 	background-size: 100%;
-	z-index: -2;
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #light
+#BunnyGirls #GoldenGirlSlogen .EOM_Icon
 {
-	x: -207.5px;
-	y: -23.5px;
-	width: 1081px;
-	height: 953px;
-	align: center center;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_light_png.vtex");
-	background-size: 100%;
-	transition-property: opacity;
-	transition-duration: 0.4s;
-	z-index: 2;
-}
-
-#TutuActivityMain #Tutu1BunnyGirls #GoldenGirlSlogen
-{
-	x: -90px;
-	y: -185.5px;
-	width: 250px;
-	height: 43px;
-	align: center center;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_board_06_png.vtex");
-	background-size: 100%;
-	z-index: 3;
-}
-
-#TutuActivityMain #Tutu1BunnyGirls #GoldenGirlSlogen .EOM_Icon
-{
-	horizontal-align: right;
 	vertical-align: center;
-	margin-right: 17px;
+	margin-left: 17px;
 	y: -2px;
 	width: 23px;
 	height: 24px;
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #GoldenGirlSlogen Label
+#BunnyGirls #GoldenGirlSlogen Label
 {
 	vertical-align: center;
 	text-align: center;
 	text-overflow: shrink;
-	margin: 0px 22px 0px 12px;
+	margin: 0px 22px 0px 42px;
 	width: 100%;
 	font-size: 22px;
-	color: gradient(linear, 0% 0%, 0% 100%, from(#F5E7FF), to(#E9B8FF));
+	color: gradient(linear, 0% 0%, 0% 100%, from(#572360), to(#0A0747));
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #BunnyGirlBG
+#BunnyGirls #BunnyGirl1
 {
-	x: -220px;
-	y: 35px;
-	width: 1128px;
-	height: 994px;
-	align: center center;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_bunny_01_png.vtex");
+	x: -560px;
+	y: 100px;
+	width: 354px;
+	height: 848px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bunny_blue_png.vtex");
 	background-size: 100%;
-	opacity-brush: gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(0.8, #ffffff), to(#ffffff00));
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #BunnyGirlBGMask
+#BunnyGirls #BunnyGirl2
 {
-	width: 100%;
-	height: 100%;
-	opacity-mask: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_bunny_01_png.vtex");
-	overflow: noclip;
+	x: -410px;
+	y: 146px;
+	width: 329px;
+	height: 791px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bunny_white_png.vtex");
+	background-size: 100%;
 }
 
-#TutuActivityMain #Tutu1BunnyGirls #BunnyGirlBGMask #BunnyGirlsDisappearScene1
+#BunnyGirls #BunnyGirl3
 {
-	width: 1600px;
-	height: 1600px;
-	align: center center;
-	saturation: 0.7;
+	x: -234px;
+	y: 66px;
+	width: 346px;
+	height: 917px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bunny_golden_png.vtex");
+	background-size: 100%;
+	z-index: -1;
 }
 
-#BunnyGirlParticleLayer
+#BunnyGirls #BunnyGirl4
 {
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	overflow: noclip;
+	x: -14px;
+	y: 108px;
+	width: 263px;
+	height: 874px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bunny_red_png.vtex");
+	background-size: 100%;
 }
 
-#BunnyGirlParticleLayer #BunnyGirlsDisappearScene2
+#BunnyGirls #BunnyGirl5
 {
-	width: 1600px;
-	height: 1600px;
-	saturation: 0.9;
-	brightness: 0.7;
-	vertical-align: center;
-}
-
-.BunnyGirlDisappear
-{
-	opacity: 0;
-	animation-name: BunnyGirlDisappear;
-	animation-duration: 0.2s;
-	animation-timing-function: linear;
-}
-
-@keyframes 'BunnyGirlDisappear'
-{
-	0%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 100%, 0 110%, from(#ffffff), to(#ffffff00));
-	}
-	
-	20%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 100%, 0 110%, from(#ffffff), to(#ffffff00));
-	}
-	
-	28%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 90%, 0 100%, from(#ffffff), to(#ffffff00));
-	}
-	
-	36%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 80%, 0 90%, from(#ffffff), to(#ffffff00));
-	}
-	
-	44%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 70%, 0 80%, from(#ffffff), to(#ffffff00));
-	}
-	
-	52%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 60%, 0 70%, from(#ffffff), to(#ffffff00));
-	}
-	
-	60%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 50%, 0 60%, from(#ffffff), to(#ffffff00));
-	}
-	
-	68%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 40%, 0 50%, from(#ffffff), to(#ffffff00));
-	}
-	
-	76%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 30%, 0 40%, from(#ffffff), to(#ffffff00));
-	}
-	
-	84%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 20%, 0 30%, from(#ffffff), to(#ffffff00));
-	}
-	
-	92%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 10%, 0 20%, from(#ffffff), to(#ffffff00));
-	}
-	
-	100%
-	{
-		opacity: 1;
-		opacity-brush: gradient(linear, 0 0%, 0 10%, from(#ffffff), to(#ffffff00));
-	}
-	
+	x: 178px;
+	y: 92px;
+	width: 372px;
+	height: 898px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_bunny_black_png.vtex");
+	background-size: 100%;
+	z-index: -1;
 }
 
 .TutuDrawButton
 {
 	width: 353px;
 	height: 120px;
-	margin: 0px 88px;
-	padding: 20px 26px 10px 60px;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_button_01_png.vtex");
+	margin: 0px 10px;
+	padding: 48px 26px 10px 50px;
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_button_01_png.vtex");
 	background-size: 100%;
 	flow-children: right;
 }
@@ -7301,14 +7174,14 @@
 
 .TutuDrawButton.Count10
 {
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_button_02_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_button_02_png.vtex");
 }
 
 .TutuDrawButton #DrawLabel
 {
 	vertical-align: center;
 	width: fill-parent-flow(0.9);
-	max-height: 46px;
+	max-height: 34px;
 	font-size: 30px;
 	color: #FFFFFF;
 	text-shadow: 0px 0px 2px 2 #241838;
@@ -7350,12 +7223,9 @@
 {
 	width: 100%;
 	height: 100%;
-	margin: 0;
 	opacity: 0;
-	background-color: #000000aa;
 	background-image: url("s2r://panorama/images/custom_game/draw/c_result_bg_png.vtex");
 	background-size: 100%;
-	background-repeat: no-repeat;
 	z-index: 100;
 	transition-property: opacity;
 	transition-duration: 0.2s;
@@ -7383,16 +7253,6 @@
 	align: center center;
 	width: 100%;
 	height: 100%;
-}
-
-.DrawCardResultWindow #RewardList.one
-{
-	transform: translateY(-50px);
-}
-
-.DrawCardResultWindow #RewardList.ten
-{
-	transform: translateY(-40px);
 }
 
 .DrawCardResultWindow #RewardClose
@@ -7432,6 +7292,11 @@
 		pre-transform-scale2d: 1;
 	}
 	
+}
+
+.AwardItem
+{
+	horizontal-align: center;
 }
 
 .AwardItem.Rarity0 .Frame
@@ -7683,28 +7548,29 @@
 {
 	width: 178px;
 	height: 189px;
-	align: right top;
-	x: -115px;
-	y: 463px;
+	align: center center;
+	x: 656px;
+	y: -64px;
 	padding-bottom: 10px;
-	background-image: url("s2r://panorama/images/custom_game/activity/tutu_1/t3_button_03_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/activity/tutu/t3_button_03_png.vtex");
 	background-size: 100%;
 }
 
 #ExchangeButton Label
 {
-	font-size: 40px;
-	color: gradient(linear, 0% 0%, 0% 100%, from(#FCF7FF), to(#EFCAFF));
+	font-size: 48px;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#FFFCF0), to(#FFE8C8));
+	text-shadow: 0px 1px 1px 1 #110623;
 }
 
 #ExchangeButton.russian Label
 {
-	font-size: 18px;
+	font-size: 26px;
 }
 
 #ExchangeButton.english Label
 {
-	font-size: 18px;
+	font-size: 26px;
 }
 
 #ExchangePanel
@@ -8033,11 +7899,11 @@
 	ui-scale: 100%;
 }
 
-.EOM_Button.SkipButton
+#TutuActivityMain1 .EOM_Button.SkipButton
 {
 	z-index: 101;
 	align: center bottom;
-	margin-bottom: 284px;
+	margin-bottom: 204px;
 	x: 202px;
 	transition-property: opacity;
 	transition-duration: 0.2s;
@@ -8045,23 +7911,23 @@
 	opacity: 1;
 }
 
-.EOM_Button.SkipButton.Hidden
+#TutuActivityMain1 .EOM_Button.SkipButton.Hidden
 {
 	opacity: 0;
 }
 
-.EOM_Button.SkipButton.Active #Hook
+#TutuActivityMain1 .EOM_Button.SkipButton.Active #Hook
 {
 	opacity: 1;
 }
 
-.EOM_Button.SkipButton:disabled
+#TutuActivityMain1 .EOM_Button.SkipButton:disabled
 {
 	brightness: 1;
 	saturation: 1;
 }
 
-.EOM_Button.SkipButton Label
+#TutuActivityMain1 .EOM_Button.SkipButton Label
 {
 	margin-left: 28px;
 	vertical-align: center;
@@ -8072,7 +7938,7 @@
 	text-align: center;
 }
 
-.EOM_Button.SkipButton #Square
+#TutuActivityMain1 .EOM_Button.SkipButton #Square
 {
 	vertical-align: center;
 	width: 20px;
@@ -8080,7 +7946,7 @@
 	opacity: 0.65;
 }
 
-.EOM_Button.SkipButton #Hook
+#TutuActivityMain1 .EOM_Button.SkipButton #Hook
 {
 	vertical-align: center;
 	width: 22px;
@@ -23096,7 +22962,7 @@
 {
 	margin-top: 204px;
 	margin-left: 8px;
-	padding-left: 56px;
+	overflow: noclip;
 	width: 100%;
 	height: 72px;
 	z-index: -1;
@@ -23107,9 +22973,12 @@
 
 #Activity_StarryTreasure #RewardRow
 {
+	overflow: noclip;
 	margin-right: 79px;
+	margin-left: 40px;
 	vertical-align: center;
 	width: 100%;
+	opacity-brush: gradient(linear, 0 0, 100% 0, from(#ffffff00), color-stop(0.05, #ffffff00), color-stop(0.15, #ffffff));
 }
 
 #Activity_StarryTreasure #StarryRewardTitle

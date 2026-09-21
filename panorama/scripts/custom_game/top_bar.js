@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -15,7 +15,7 @@ var EOM_Panel = require('./EOM_Panel.js');
 var GenericPanel = require('./GenericPanel.js');
 
 const TopBar = props => {
-  const merged = libs.mergeProps({
+  const merged = libs.mergeProps$1({
     type: "default"
   }, props);
   const [local, others] = libs.splitProps(merged, ["type"]);

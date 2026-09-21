@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -916,6 +916,7 @@ exports.CurrencyGroup = CurrencyGroup;
 exports.EOM_Avatar = EOM_Avatar;
 exports.EOM_TextEntry = EOM_TextEntry;
 exports.EOM_UserName = EOM_UserName;
+exports.ExchangeEntry = ExchangeEntry;
 exports.PlayerAvatar = PlayerAvatar;
 exports.PlayerCurrency = PlayerCurrency;
 exports.PlayerName = PlayerName;
