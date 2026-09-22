@@ -12,6 +12,7 @@ GameUI.CustomUIConfig().activity_growth_fund = {
 	"301": {
 		activity_id: 301,
 		progress_type: "hero_level",
-		item_id: 2300001
+		item_id: 2300001,
+		product_id: 890001
 	}
 };

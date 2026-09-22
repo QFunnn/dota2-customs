@@ -4213,7 +4213,7 @@ GameUI.CustomUIConfig().npc_items_custom = {
 	},
 	"item_bleed_kill": {
 		"Note": "灵魂收集",
-		"Description": "击杀敌人在%duration%秒内提升伤害，可叠加",
+		"Description": "击杀敌人在%duration%秒内提升伤害，可叠加；深渊模式下每次击杀叠加2层",
 		"AbilityTextureName": "nevermore_dark_lord",
 		"Suit": "Bleed",
 		"RarityRange": "1|2|3|4",

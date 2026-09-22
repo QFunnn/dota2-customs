@@ -28,5 +28,9 @@ GameUI.CustomUIConfig().gem_setting = {
 	gem_fusion: {
 		key: "gem_fusion",
 		value: "120011:500"
+	},
+	gem_fusion_2: {
+		key: "gem_fusion_2",
+		value: "120011:200"
 	}
 };
