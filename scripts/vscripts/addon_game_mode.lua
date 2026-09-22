@@ -99,9 +99,9 @@ if not _G.__CUSTOM_SERVER_KEY_OK then
 		function Precache(context) end
 	end
 else
-	_G.PUBLISH_TIMESTAMP = "2026-9-21 16:21"
+	_G.PUBLISH_TIMESTAMP = "2026-9-21 17:17"
 
-	print("loading addon dota_super_mid compiled@2026-9-21 16:20:48")
+	print("loading addon dota_super_mid compiled@2026-9-21 17:16:46")
 	local ____lualib = require("lualib_bundle")
 	local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 	local ____exports = {}
