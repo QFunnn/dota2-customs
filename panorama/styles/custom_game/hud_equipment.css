@@ -1506,9 +1506,28 @@
 	horizontal-align: center;
 }
 
+#EquipForge #LeftArea #OperationBtns #GemSwapEntryBtn
+{
+	vertical-align: bottom;
+}
+
 #EquipForge #LeftArea #OperationBtns #ConsumeBtnPlus
 {
 	max-width: 320px;
+}
+
+#EquipForge #LeftArea #OperationBtns .SectionTitle
+{
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 21px;
+	color: #D8C39B;
+	text-align: center;
+}
+
+#EquipForge #LeftArea #OperationBtns #FusionModeSwitch
+{
+	vertical-align: center;
 }
 
 #EquipForge #LeftArea #NewBtnListContainer
@@ -1658,6 +1677,17 @@
 #EquipForge #LeftArea .ComsumeItem.Enough Label
 {
 	color: #FDEFC8;
+}
+
+#EquipForge #LeftArea .ComsumeItem.Dimmed Label
+{
+	color: #8a8578;
+}
+
+#EquipForge #LeftArea .ComsumeItem.Dimmed .StoreItemImage
+{
+	saturation: 0;
+	brightness: 0.55;
 }
 
 #EquipForge #LeftArea .ComsumeItem .StoreItemImage
@@ -8602,6 +8632,76 @@
 	horizontal-align: center;
 }
 
+#GemFusionPanel
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#GemFusionPanel #GemFusionResultContent
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 42px 48px 46px;
+	flow-children: down;
+}
+
+#GemFusionPanel #GemFusionResultContent .GemFusionAttributeSection
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	min-height: 230px;
+	padding: 14px 16px;
+	flow-children: down;
+	background-color: #0B0908CC;
+	border: 1px solid #554238;
+}
+
+#GemFusionPanel #GemFusionResultContent .OriginalAttributes
+{
+	margin-bottom: 14px;
+}
+
+#GemFusionPanel #GemFusionResultContent .FusionResultAttributes
+{
+	border-color: #8A603D;
+}
+
+#GemFusionPanel #GemFusionResultContent .SectionHeader
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#GemFusionPanel #GemFusionResultContent .SectionHeader .SectionTitle
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+	font-size: 21px;
+	color: #D8C39B;
+}
+
+#GemFusionPanel #GemFusionResultContent .SectionHeader .EOM_Button
+{
+	ui-scale: 72%;
+	transform-origin: 100% 0%;
+}
+
+#GemFusionPanel .GemFusionSpecialEntries
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	margin-top: 8px;
+	padding: 6px 4px 0px;
+	flow-children: down;
+}
+
+#EquipForge .GemFusionOperationBtns #ConsumeBtn
+{
+	margin-left: 165px;
+}
+
 #InlayPanel,.GemSwapLeftContent
 {
 	width: 100%;
@@ -8639,6 +8739,15 @@
 {
 	width: 100%;
 	flow-children: down;
+}
+
+#InlayPanel .SectionTitle,.GemSwapLeftContent .SectionTitle
+{
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 21px;
+	color: #D8C39B;
+	text-align: center;
 }
 
 #InlayPanel .EquipName,.GemSwapLeftContent .EquipName
@@ -10854,76 +10963,6 @@
 {
 	color: #B9B1A6;
 	font-weight: semi-bold;
-}
-
-#GemFusionPanel
-{
-	width: 100%;
-	height: 100%;
-	flow-children: down;
-}
-
-#GemFusionPanel #GemFusionResultContent
-{
-	width: 100%;
-	height: fill-parent-flow(1);
-	padding: 42px 48px 46px;
-	flow-children: down;
-}
-
-#GemFusionPanel #GemFusionResultContent .GemFusionAttributeSection
-{
-	width: 100%;
-	height: fill-parent-flow(1);
-	min-height: 230px;
-	padding: 14px 16px;
-	flow-children: down;
-	background-color: #0B0908CC;
-	border: 1px solid #554238;
-}
-
-#GemFusionPanel #GemFusionResultContent .OriginalAttributes
-{
-	margin-bottom: 14px;
-}
-
-#GemFusionPanel #GemFusionResultContent .FusionResultAttributes
-{
-	border-color: #8A603D;
-}
-
-#GemFusionPanel #GemFusionResultContent .SectionHeader
-{
-	width: 100%;
-	flow-children: right;
-}
-
-#GemFusionPanel #GemFusionResultContent .SectionHeader .SectionTitle
-{
-	width: fill-parent-flow(1);
-	vertical-align: center;
-	font-size: 21px;
-	color: #D8C39B;
-}
-
-#GemFusionPanel #GemFusionResultContent .SectionHeader .EOM_Button
-{
-	ui-scale: 72%;
-	transform-origin: 100% 0%;
-}
-
-#GemFusionPanel .GemFusionSpecialEntries
-{
-	width: 100%;
-	height: fill-parent-flow(1);
-	margin-top: 8px;
-	padding: 6px 4px 0px;
-	flow-children: down;
-}
-
-#EquipForge .GemFusionOperationBtns #ConsumeBtn
-{
-	margin-left: 165px;
 }
 
 #GemMakePanel

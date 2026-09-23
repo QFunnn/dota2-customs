@@ -2418,6 +2418,8 @@ GameUI.CustomUIConfig().src_list = [
 	"panorama/images/custom_game/store_items/1800010.png",
 	"panorama/images/custom_game/store_items/1800011.png",
 	"panorama/images/custom_game/store_items/1800012.png",
+	"panorama/images/custom_game/store_items/1800013.png",
+	"panorama/images/custom_game/store_items/1800014.png",
 	"panorama/images/custom_game/store_items/1801001.png",
 	"panorama/images/custom_game/store_items/1801002.png",
 	"panorama/images/custom_game/store_items/180101.png",

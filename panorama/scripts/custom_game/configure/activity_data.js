@@ -126,7 +126,7 @@ GameUI.CustomUIConfig().activity_data = {
 		type: 8,
 		start_time: 1788969600,
 		end_time: 1790524800,
-		data_end_time: 1790784000,
+		data_end_time: 1791388800,
 		sort: 22,
 		name: "boardslot",
 		template: "boardslot",
