@@ -114,6 +114,17 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 			hero_damage_boost: 2
 		}
 	},
+	"1710009": {
+		id: 1710009,
+		name: "欢度佳节(月石祈愿)",
+		type: "BORDER",
+		rarity: "5",
+		attribute: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 2
+		}
+	},
 	"1711001": {
 		id: 1711001,
 		name: "渊瞳域主",
@@ -180,10 +191,9 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 	},
 	"1720003": {
 		id: 1720003,
-		name: "头饰",
+		name: "头饰-太美坤冠",
 		type: "HEAD",
 		rarity: "5",
-		hide: 1,
 		model: "models/eom/hero/items/meepo_head/meepo_head.vmdl"
 	},
 	"1720401": {
@@ -654,7 +664,7 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 	},
 	"1740001": {
 		id: 1740001,
-		name: "后背",
+		name: "后背-千劫神屠",
 		type: "BACK",
 		rarity: "5",
 		hide: 1,
@@ -1278,10 +1288,9 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 	},
 	"1780005": {
 		id: 1780005,
-		name: "杂项",
+		name: "杂项-发条兔",
 		type: "MISC",
 		rarity: "5",
-		hide: 1,
 		model: "models/eom/hero/items/rattletrap_misc/rattletrap_misc.vmdl"
 	},
 	"1780006": {

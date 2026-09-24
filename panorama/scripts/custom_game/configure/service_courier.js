@@ -838,7 +838,7 @@ GameUI.CustomUIConfig().service_courier = {
 		id: 600023,
 		name: "勇士欢欢",
 		unlock: 0,
-		quality: 5,
+		quality: 4,
 		category: 1,
 		draw_scale: 1,
 		explore_skill1: "privilege_idle_explore_045",
@@ -928,6 +928,45 @@ GameUI.CustomUIConfig().service_courier = {
 		explore_skill4: "privilege_idle_explore_054",
 		explore_skill5: "privilege_idle_explore_055",
 		explore_skill6: "privilege_idle_explore_056",
+		star_effect1: {
+			damage_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect2: {
+			defense_intensity: 10,
+			hero_damage_boost: 2
+		},
+		star_effect3: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3
+		},
+		star_effect4: {
+			damage_intensity: 10,
+			defense_intensity: 10,
+			hero_damage_boost: 3,
+			equip_drop_pct: 10,
+			equip_extra_potential: 2
+		},
+		star_effect5: {
+			damage_intensity: 20,
+			hero_damage_boost: 6
+		},
+		star_effect6: {
+			defense_intensity: 20,
+			hero_damage_boost: 6,
+			equip_rarity_chance: 20
+		}
+	},
+	"600026": {
+		id: 600026,
+		name: "大聪明阿哈利姆",
+		unlock: 0,
+		in_tool: 1,
+		quality: 5,
+		category: 1,
+		draw_scale: 1,
+		active_skill: "courier_600026",
 		star_effect1: {
 			damage_intensity: 10,
 			hero_damage_boost: 2

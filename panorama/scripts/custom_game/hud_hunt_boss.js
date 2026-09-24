@@ -475,4 +475,4 @@ const HuntBossHud = () => {
     return _el$;
   })();
 };
-libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());

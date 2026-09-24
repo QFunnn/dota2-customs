@@ -165,6 +165,17 @@ GameUI.CustomUIConfig().activity_data = {
 		description: "永恒矿脉（挖矿活动）",
 		tokens: "110003|110020|110001"
 	},
+	"1002": {
+		activity_id: 1002,
+		type: 10,
+		start_time: 1790092800,
+		end_time: 1793462400,
+		data_end_time: 1794067200,
+		sort: 24,
+		name: "mining",
+		template: "mining",
+		description: "永恒矿脉2期"
+	},
 	"1101": {
 		activity_id: 1101,
 		type: 11,

@@ -522,6 +522,7 @@ return {
 	},
 	model = {
 		"eom/meshs/eom_column_006.vmdl",
+		"models/courier/aghanim_courier/aghanim_courier_flying.vmdl",
 		"models/courier/huntling/huntling_flying.vmdl",
 		"models/courier/otter_dragon/otter_dragon.vmdl",
 		"models/courier/ram/ram_flying.vmdl",

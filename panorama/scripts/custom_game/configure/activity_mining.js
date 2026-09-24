@@ -16,11 +16,7 @@ GameUI.CustomUIConfig().activity_mining = {
 		bit_id: 110026,
 		explosive_id: 110027,
 		reload_num: 7,
-		template_id: "1|2|3|4",
-		default_template: 1,
-		durability: "1",
-		box_reward_weapon: "190003:1",
-		box_reward_courier: "190002:1",
-		box_reward_hero: "190001:1"
+		durability: 1,
+		box_max_num: "40|0"
 	}
 };

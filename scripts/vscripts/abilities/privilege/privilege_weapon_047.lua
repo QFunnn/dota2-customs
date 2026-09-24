@@ -40,7 +40,7 @@ function l.prototype.EventListener(self)
 			if not IsValid(p) then
 				return
 			end
-			local q = self:GetSpecialValueFor("attack_damage_pct")
+			local q = self:GetSpecialValueFor("skill_damage_amplify")
 			p:AddProperty(PropertyFunction.ATTACK_DAMAGE_AMPLIFY, q)
 			self.triggeredCount = self.triggeredCount + 1
 			Notification:CombatToPlayer(
