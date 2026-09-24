@@ -83,21 +83,11 @@
 						<Panel id="UnassignedPlayersDivider" />
 						<Panel id="UnassignedPlayersContainer" />
 					</Button>
-					<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
-						<Image src="s2r://" />
-						<Label text="#custom_game_team_select_auto_assign" />
-					</Button>
-					<Panel id="panel_connect_autochess_server" class="invisible" style="width:100%;height:50px;flow-children:right;margin-top:20px;">
-						<TextEntry id="textentry_ip_connect_test" text="" />
-						<Button id="ConnectServerButton" class="dac_button" onactivate="OnConnectServer();">
-							<Label text="CONNECT!" />
-						</Button>
-					</Panel>
 				</Panel>
-				<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
+				<Button id="LockAndStartButton" class="PlayButton opacity0" onactivate="OnLockAndStartPressed()">
 					<Label text="#custom_game_team_select_lock_start" />
 				</Button>
-				<Button id="CancelAndUnlockButton" class="PlayButton" onactivate="OnCancelAndUnlockPressed()">
+				<Button id="CancelAndUnlockButton" class="PlayButton opacity0" onactivate="OnCancelAndUnlockPressed()">
 					<Label text="#custom_game_team_select_cancel_unlock" />
 				</Button>
 			</Panel>

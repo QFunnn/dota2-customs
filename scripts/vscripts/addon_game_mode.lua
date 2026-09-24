@@ -305,13 +305,10 @@ end
 --1、初始化变量和监听
 function DAC:InitGameMode()
 
-	--判断是不是官方服务器/自建服务器/玩家主机
-	local config = LoadKeyValues("dac_config.txt")
-	if config.IsAutochessServer == 1 then
-		AutochessServerWait()
-	end
 	-- IsDedicatedServer()
 	-- IsInToolsMode()
+
+	GameRules:SetCustomGameSetupAutoLaunchDelay(120)
 
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 0)
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 0)
@@ -426,12 +423,14 @@ function DAC:InitGameMode()
 	-- CustomGameEventManager:RegisterListener("collect_host", Dynamic_Wrap(DAC, "OnCollectHost"))
 	-- CustomGameEventManager:RegisterListener("connect_server", Dynamic_Wrap(DAC, "OnConnectServer"))
 
-	CustomGameEventManager:RegisterListener("connect_server",
-		function(eventSourceIndex, keys) 
-			DAC:OnConnectServerRequest(eventSourceIndex, keys)
-		end
-	)
+	-- CustomGameEventManager:RegisterListener("connect_server",
+	-- 	function(eventSourceIndex, keys) 
+	-- 		DAC:OnConnectServerRequest(eventSourceIndex, keys)
+	-- 	end
+	-- )
 
+	_G.is_server_game_started = false
+	_G.connect_full_player_count = 0
 	_G.game_id = ''
 	_G.precache_list = {}
 	_G.precache_busy = false
@@ -462,6 +461,16 @@ function DAC:InitGameMode()
 	_G.game_version = 'unknown'
 	_G.PER_2B = 50
 	_G.host_collect_list = {}
+	_G.player_state_table = {
+		[6] = 'undefined',
+		[7] = 'undefined',
+		[8] = 'undefined',
+		[9] = 'undefined',
+		[10] = 'undefined',
+		[11] = 'undefined',
+		[12] = 'undefined',
+		[13] = 'undefined',
+	}
 
 	-- _G.center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
 	_G.quest_init = {
@@ -2713,8 +2722,10 @@ function DAC:OnPlayerPickHero(keys)
 			InitChessboards()
 
 			Timers:CreateTimer(0.1, function()
+				_G.is_game_started = true
 				-- EmitGlobalSound("diretide.begin")
 				EmitGlobalSound('dac.season.gamestart')
+				print('[HEYBOX] match_start round=1 players='.._G.playing_player_count)
 				-- Timers:CreateTimer(4,function()
 				-- 	EmitGlobalSound("welcome.crystal_maiden")
 				-- end)
@@ -3934,6 +3945,7 @@ function StartAPrepareRound()
 					RemoveAbilityAndModifier(hhh,'invisible_to_enemy')
 				end
 			end
+			print('[HEYBOX] snapshot round='.._G.battle_round..' steam='..hero.steam_id..' state='.._G.player_state_table[team_i]..' rank='.._G.stat_info[hero.steam_id]['curr_rank'])
 		end
 	end
 
@@ -4569,8 +4581,8 @@ end
 
 --结算一名玩家，兼容1P和2P的模式
 function PostOneToServer(hero, steamid, rank, mode)
+	
 	SetStat(hero:GetPlayerID(), 'rank', rank)
-
 	local quest = _G.quest_status[hero:GetTeam()]
 	local chess_lineup = GetStat(hero:GetPlayerID(), 'chess_lineup') or 0
 	local total_money = GetStat(hero:GetPlayerID(), 'total_money') or 0
@@ -4952,6 +4964,9 @@ function PostOneToServer(hero, steamid, rank, mode)
 			SayCheerBubble(hero:GetTeam(), nil, 'chicken', 7)
 		end
 	end
+
+	print('[HEYBOX] player_state steam='..steamid..' state=eliminated round='.._G.battle_round..' rank='..rank)
+	_G.player_state_table[hero:GetTeam()] = 'eliminated'
 end
 
 function SyncHP(hero)
@@ -5300,8 +5315,16 @@ function SetRankingState(hero)
 			end
 
 			PostOneToServer(last_hero, last_steamid, 1, 'p1')
-
+			
+			Timers:CreateTimer(0.5,function()
+				for iii,vvv in pairs(_G.send_info) do 
+					print('[HEYBOX] result steam='..iii..' rank='..vvv.rank)
+				end
+			end)
+			
 			play_particle('particles/themed_fx/cny_fireworks_rockets_bsnd.vpcf', PATTACH_ABSORIGIN_FOLLOW, last_hero, 10)
+
+			print('[HEYBOX] match_end winner='..last_steamid)
 		end
 		--为防止发送失败了，30秒后自动结束游戏
 		Timers:CreateTimer(30, function()
@@ -26120,22 +26143,6 @@ function DAC:OnPlayerGainedLevel(keys)
 	end
 end
 
---有玩家连入游戏
-function DAC:OnPlayerConnectFull(keys)
-	--因为只能获得userid（没什么用）
-	--干脆直接遍历全部的PlayerID，保存PlayerID、SteamID的对应关系
-	for i = 0, 20 do
-		local player = PlayerResource:GetPlayer(i)
-		if player then
-			SetPlayerConnectedInfo({
-				PlayerID = i,
-				PlayerName = PlayerResource:GetPlayerName(i),
-				SteamID = tostring(PlayerResource:GetSteamID(i)),
-			})
-		end
-	end
-end
-
 function SetPlayerConnectedInfo(keys)
 	_G.playerid2steamid[keys.PlayerID] = keys.SteamID
 	_G.steamid2playerid[keys.SteamID] = keys.PlayerID
@@ -26163,7 +26170,9 @@ function DAC:OnPlayerReconnected(keys)
 			hehe = RandomInt(1, 100000)
 		}
 	)
-
+	local steamid = _G.playerid2steamid[keys.PlayerID]
+	
+	
 	--显示传说棋子和圣物池
 	Timers:CreateTimer(2, function()
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(keys.PlayerID), 'player_reconnect', {
@@ -26366,6 +26375,14 @@ function DAC:OnPlayerReconnected(keys)
 	if hero ~= nil then
 		hero.isDisconnected = false
 	end
+	local state_change = 'playing'
+	if hero:IsAlive() then
+		_G.player_state_table[hero:GetTeam()] = 'playing'
+	else
+		_G.player_state_table[hero:GetTeam()] = 'eliminated'
+		state_change = 'eliminated'
+	end
+	print('[HEYBOX] player_state steam='..steamid..' state='..state_change..' round='.._G.battle_round)
 
 	--单机测试模式
 	-- if _G.is_tester_mode == true then
@@ -26396,7 +26413,9 @@ function DAC:OnPlayerDisconnect(keys)
 				hehe = RandomInt(1, 100000)
 			}
 		)
-
+		local steamid = _G.playerid2steamid[keys.PlayerID]
+		
+		
 		CustomGameEventManager:Send_ServerToAllClients("drodo_chat", {
 			player_id = hero:GetPlayerID(),
 			win_streak = hero.win_streak or 0,
@@ -26419,6 +26438,9 @@ function DAC:OnPlayerDisconnect(keys)
 		-- CustomGameEventManager:Send_ServerToAllClients("player_disconnect",{
 		-- 	disconnectid = keys.PlayerID
 		-- })
+
+		_G.player_state_table[hero:GetTeam()] = 'left'
+		print('[HEYBOX] player_state steam='..steamid..' state=left round='.._G.battle_round)
 	end
 end
 
@@ -42359,60 +42381,134 @@ end
 -- 	end
 -- end
 
-function DAC:OnConnectServerRequest(eventSourceIndex, keys)
-	print("[SERVER] connect request")
-	print("[SERVER] ip =", tostring(keys.ip))
-	print("[SERVER] source =", tostring(eventSourceIndex))
+-- function DAC:OnConnectServerRequest(eventSourceIndex, keys)
+-- 	-- print("[SERVER] connect request")
+-- 	-- print("[SERVER] ip =", tostring(keys.ip))
+-- 	-- print("[SERVER] source =", tostring(eventSourceIndex))
 	
-	AutochessClientWait(tostring(keys.ip))
-end
+-- 	-- AutochessClientWait(tostring(keys.ip))
+-- end
 
-function AutochessServerWait()
-	print('[AUTOCHESS SERVER] AutochessServer Init')
-	Timers:CreateTimer(3,function()
-		print('[AUTOCHESS SERVER] waiting for players '..PlayerResource:GetPlayerCount()..'/8')
-		if PlayerResource:GetPlayerCount() >= 1 then
-			pcall(function()
-				GameRules:ResetToCustomGameSetup()
-			end)
-			if PlayerResource:GetPlayerCount() >= 8 then
-				return
-			end
-		end
-		return 3
-	end)
-end
-function AutochessClientWait(ip)
-	print('[AUTOCHESS CLIENT] AutochessClient Init')
-	Timers:CreateTimer(0,function()
-		local curr_player_count = 0
-		for player_id,steam_id in pairs(_G.playerid2steamid) do
-			if PlayerResource:GetConnectionState(player_id) == 2 then
-				curr_player_count = curr_player_count + 1
-				if player_id ~= _G.host_player_id then
-					FireGameEvent("client_connect_server",{
-						ip = tostring(ip),
-						player_id = player_id
-					})
-				end
-			end
-		end
-		print('[AUTOCHESS CLIENT] waiting for players left: '..curr_player_count)
-		if curr_player_count == 1 then
-			print('[AUTOCHESS CLIENT] host leave!')
-			FireGameEvent("client_connect_server",{
-				ip = tostring(ip),
-				player_id = _G.host_player_id
-			})
-		end
-		return 3
-	end)
-end
+
+-- function AutochessClientWait(ip)
+-- 	print('[AUTOCHESS CLIENT] AutochessClient Init')
+-- 	Timers:CreateTimer(0,function()
+-- 		local curr_player_count = 0
+-- 		for player_id,steam_id in pairs(_G.playerid2steamid) do
+-- 			if PlayerResource:GetConnectionState(player_id) == 2 then
+-- 				curr_player_count = curr_player_count + 1
+-- 				if player_id ~= _G.host_player_id then
+-- 					FireGameEvent("client_connect_server",{
+-- 						ip = tostring(ip),
+-- 						player_id = player_id
+-- 					})
+-- 				end
+-- 			end
+-- 		end
+-- 		print('[AUTOCHESS CLIENT] waiting for players left: '..curr_player_count)
+-- 		if curr_player_count == 1 then
+-- 			print('[AUTOCHESS CLIENT] host leave!')
+-- 			FireGameEvent("client_connect_server",{
+-- 				ip = tostring(ip),
+-- 				player_id = _G.host_player_id
+-- 			})
+-- 		end
+-- 		return 3
+-- 	end)
+-- end
 	
 function LiujuRequest()
 	if _G.game_id ~= nil then
 		local url = "http://autochess.ppbizon.com/game/giveup/@".._G.game_id
 		SendHTTP(url, function(t)
+		end)
+	end
+end
+
+
+--有玩家连入游戏
+function DAC:OnPlayerConnectFull(keys)
+	local playerID = keys.PlayerID
+	--因为只能获得userid（没什么用）
+	--干脆直接遍历全部的PlayerID，保存PlayerID、SteamID的对应关系
+	local player_count = 0
+	for i = 0, 20 do
+		local player = PlayerResource:GetPlayer(i)
+		if player then
+			local steam = tostring(PlayerResource:GetSteamID(i))
+			SetPlayerConnectedInfo({
+				PlayerID = i,
+				PlayerName = PlayerResource:GetPlayerName(i),
+				SteamID = steam,
+			})
+			player_count = player_count + 1
+		end
+	end
+	if _G.playerid2steamid[playerID] ~= nil then
+		if _G.player_state_table[_G.playerid2team[playerID]] == 'undefined' then 
+			_G.player_state_table[_G.playerid2team[playerID]] = 'playing'
+			print('[HEYBOX] player_state steam='.._G.playerid2steamid[playerID]..' state=playing round='.._G.battle_round)
+		end
+	end
+	_G.connect_full_player_count = player_count
+	--判断是不是官方服务器/自建服务器/玩家主机
+	local config = LoadKeyValues("dac_config.txt")
+
+	if config.IsAutochessServer == 1 and _G.is_server_game_started == false then
+		print('[AUTOCHESS SERVER] waiting for players '.._G.connect_full_player_count..'/'..config.MaxPlayer)
+		pcall(function()
+			GameRules:ResetToCustomGameSetup()
+		end)
+
+		if _G.connect_full_player_count >= config.MaxPlayer then
+			--人满了，开！
+			print('[AUTOCHESS SERVER] start game in 5s!')
+			_G.is_server_game_started  = true
+			
+			Timers:CreateTimer(1,function()
+				CustomGameEventManager:Send_ServerToAllClients("server_lock_start", {
+					hehe = RandomInt(1, 100000),
+					max_player_count = config.MaxPlayer,
+					curr_player_count = _G.connect_full_player_count,
+					map_name = GetCurrMapInfo().map_name,
+				})
+				
+				Timers:CreateTimer(6,function()
+					GameRules:FinishCustomGameSetup()  --强行开始游戏
+				end)
+			end)
+		else
+			--人还没满，显示等待
+			Timers:CreateTimer(1,function()
+				CustomGameEventManager:Send_ServerToAllClients("server_lock_wait", {
+					hehe = RandomInt(1, 100000),
+					max_player_count = config.MaxPlayer,
+					curr_player_count = _G.connect_full_player_count,
+					map_name = GetCurrMapInfo().map_name,
+				})
+				if _G.is_game_started == true then
+					return
+				end
+				return 1
+			end)
+		end	
+	end
+	
+	if config.IsAutochessServer == 0 and _G.is_server_game_started == false then
+		local count = 0
+		Timers:CreateTimer(1,function()
+			count = count + 1
+			CustomGameEventManager:Send_ServerToAllClients("server_lock_wait", {
+				hehe = RandomInt(1, 100000),
+				max_player_count = config.MaxPlayer,
+				curr_player_count = _G.connect_full_player_count,
+				map_name = GetCurrMapInfo().map_name,
+				count = count,
+			})
+			if _G.is_game_started == true then
+				return
+			end
+			return 1
 		end)
 	end
 end

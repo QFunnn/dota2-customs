@@ -277,23 +277,25 @@ function UpdateTimer() {
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
 
-if (Game.GetMapInfo().map_display_name == 'casual_2x4_ob' || Game.GetMapInfo().map_display_name == 'casual_2x4' || Game.GetMapInfo().map_display_name == 'ranked_2x4') {
-	// 双人模式，禁止洗牌
-	$('#ShuffleTeamAssignmentButton').style.visibility = 'collapse';
-}
+// if (Game.GetMapInfo().map_display_name == 'casual_2x4_ob' || Game.GetMapInfo().map_display_name == 'casual_2x4' || Game.GetMapInfo().map_display_name == 'ranked_2x4') {
+// 	// 双人模式，禁止洗牌
+// 	$('#ShuffleTeamAssignmentButton').style.visibility = 'collapse';
+// }
 
 if (GetPlayerCount() == 1 && Game.GetMapInfo().map_display_name != 'casual_1x8_ob') {
 	$('#select-block-difficulty').SetHasClass('invisible', false);
 	// 单人模式
-	// $('#GameModeNameLabel').text = $.Localize('#'+'dac_1p');
-	// $('#MapInfoLabel').text = $.Localize('#'+'dac_1p_desc');
-	$("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
-	$("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n');
+	$("#GameModeNameLabel").SetHasClass('invisible', true);
+	$("#MapInfoLabel").SetHasClass('invisible', true);
+	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
+	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
 }
 else {
 	$('#select-block-difficulty').SetHasClass('invisible', true);
-	$("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
-	$("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n');
+	$("#GameModeNameLabel").SetHasClass('invisible', true);
+	$("#MapInfoLabel").SetHasClass('invisible', true);
+	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
+	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
 }
 
 
@@ -1234,3 +1236,44 @@ function OnConnectServer(){
 
 // 	$('#panel_connect_autochess_server').SetHasClass('invisible',false);
 // }
+
+
+GameEvents.Subscribe("server_lock_wait", ServerLockWait);
+function ServerLockWait(keys){
+	if (keys.map_name){
+		$("#GameModeNameLabel").text = $.Localize('#'+'dac_' + keys.map_name);
+		$("#MapInfoLabel").text = $.Localize('#'+'dac_' + keys.map_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>',keys.curr_player_count).replaceAll('<p2>',keys.max_player_count);
+		$("#GameModeNameLabel").SetHasClass('invisible', false);
+		$("#MapInfoLabel").SetHasClass('invisible', false);
+
+		if (keys.map_name == 'casual_1x8' || keys.map_name == 'casual_1x8_ob'){
+			// 休闲局
+			// Game.SetTeamSelectionLocked(false);
+			$('#LockAndStartButton').SetHasClass('opacity0',false);
+			$('#CancelAndUnlockButton').SetHasClass('opacity0',false);
+			// $('#CancelAndUnlockButton').SetHasClass('invisible',true);
+		}
+		else{
+			// 天梯局
+			Game.AutoAssignPlayersToTeams();
+			Game.SetTeamSelectionLocked(true);
+			$('#LockAndStartButton').SetHasClass('opacity0',true);
+			$('#CancelAndUnlockButton').SetHasClass('opacity0',true);
+			$('#CancelAndUnlockButton').SetHasClass('invisible',true);
+		}
+	}
+	
+}
+GameEvents.Subscribe("server_lock_start", ServerLockStart);
+function ServerLockStart(keys){
+	if (keys.map_name){
+		$("#GameModeNameLabel").text = $.Localize('#'+'dac_' + keys.map_name);
+		$("#MapInfoLabel").text = $.Localize('#'+'dac_' + keys.map_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>',keys.curr_player_count).replaceAll('<p2>',keys.max_player_count);
+		$("#GameModeNameLabel").SetHasClass('invisible', false);
+		$("#MapInfoLabel").SetHasClass('invisible', false);
+	}
+	Game.AutoAssignPlayersToTeams();
+	Game.SetTeamSelectionLocked(true);
+	Game.SetAutoLaunchEnabled(true);
+	Game.SetRemainingSetupTime(6);
+}

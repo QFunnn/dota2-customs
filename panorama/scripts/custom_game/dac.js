@@ -2569,6 +2569,7 @@ function SendHTTPCb(keys) {
             }
         }
         else {
+            $.Msg(object);
             var text = $.Localize('#buyfail') + '<br>' + ErrorMsg(object.err_msg);
             show_msg(text, "file://{images}/custom_game/vip/bird_sang.png");
         }
@@ -10900,5 +10901,19 @@ function ShowHostInfo(){
 // })
 
 function showPanelHost(){
-    $('#panel_host').style['position'] = '0px 0px 0px';
+    if (Game.GetMapInfo().map_display_name != 'ranked_1x8'){
+        $('#panel_host').style['position'] = '0px 0px 0px';
+    }
 }
+
+
+// 天梯模式不显示主机提示
+if (Game.GetMapInfo().map_display_name == 'ranked_1x8'){
+    var host_panel_list = ["panel_host","panel_host_0","panel_host_1","panel_host_2","panel_host_3","panel_host_4","panel_host_5","panel_host_6","panel_host_7"]
+    for (var i=0;i<host_panel_list.length;i++){
+        if ($('#'+host_panel_list[i])){
+            $.Msg($('#'+host_panel_list[i]));
+            $('#'+host_panel_list[i]).SetHasClass('opacity0',true);
+        }
+    }
+}
