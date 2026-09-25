@@ -300,6 +300,32 @@ GameUI.CustomUIConfig().npc_units_custom = {
 		"UnitLabel": "courier",
 		"Skin": 1
 	},
+	"600024": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/courier/starladder_grillhound/starladder_grillhound_flying.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
+	"600025": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/courier/winter2022/greevil_donkey_courier_wings.vmdl",
+		"ModelScale": 1,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"RingRadius": 45,
+		"BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+		"UnitLabel": "courier",
+		"Skin": 1
+	},
 	"600026": {
 		"BaseClass": "npc_dota_creature",
 		"Model": "models/courier/aghanim_courier/aghanim_courier_flying.vmdl",

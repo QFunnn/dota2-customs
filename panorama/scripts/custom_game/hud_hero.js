@@ -316,7 +316,11 @@ const CourierDisplay = props => {
   });
   const courierCategories = libs.createMemo(() => service_netdata_helper.getCourierCategories());
   const [selectCategoryID, setSelectCategoryID] = libs.createSignal(0);
-  const sortCourierList = libs.createMemo(() => service_netdata_helper.getSortedCourierIDs(playerCouriers(), selectCategoryID()));
+  const sortCourierList = libs.createMemo(() => {
+    return service_netdata_helper.getSortedCourierIDs(playerCouriers(), selectCategoryID()).filter(id => {
+      return KeyValues.service_courier[id]?.in_tool != 1 || Game.IsInToolsMode();
+    });
+  });
   let listHandle;
   const [scrollPercent, setScrollPercent] = libs.createSignal(0);
   const [currentPage, setCurrentPage] = libs.createSignal(1);
@@ -596,7 +600,9 @@ const CourierDisplay = props => {
               onactivate: () => {
                 setCourierID(_courierID);
               },
-              toolOnly: false
+              get toolOnly() {
+                return KeyValues.service_courier[_courierID()]?.in_tool == 1;
+              }
             }), null);
             libs.insert(_el$44, libs.createComponent(libs.Show, {
               get when() {

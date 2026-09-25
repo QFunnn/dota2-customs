@@ -5084,27 +5084,24 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"806002": {
-		id: 806002,
-		name: "巅峰币兑换信使大聪明",
-		items: {
-			"600026": 1
-		},
-		pay_type: 110022,
-		origin_price: 3000,
-		real_price: 3000,
+	"807001": {
+		id: 807001,
+		name: "祈愿币兑换抽奖券",
+		pay_type: 110026,
+		origin_price: 200,
+		real_price: 200,
 		discount: 0,
-		tag: "pvp_shop",
+		tag: "MoonDraw",
 		hide: 1,
 		rarity: 5,
 		title: 0,
 		show_type: 0,
-		img: "600026",
+		img: "1740001",
 		orderby: 1,
 		start_time: 1787500800,
-		end_time: 0,
-		limit_type: 1,
-		limit_count: 6,
+		end_time: 1791734400,
+		limit_type: 4,
+		limit_count: 10,
 		use_purchased_num: 0,
 		overseas_originprice: 0,
 		overseas_realprice: 0,
@@ -5112,8 +5109,33 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"807001": {
-		id: 807001,
+	"807002": {
+		id: 807002,
+		name: "祈愿币兑换混沌宝珠",
+		pay_type: 110026,
+		origin_price: 800,
+		real_price: 800,
+		discount: 0,
+		tag: "MoonDraw",
+		hide: 1,
+		rarity: 5,
+		title: 0,
+		show_type: 0,
+		img: "1740001",
+		orderby: 1,
+		start_time: 1787500800,
+		end_time: 1791734400,
+		limit_type: 4,
+		limit_count: 10,
+		use_purchased_num: 0,
+		overseas_originprice: 0,
+		overseas_realprice: 0,
+		russia_originprice: 0,
+		russia_realprice: 0,
+		first_pay: 0
+	},
+	"807003": {
+		id: 807003,
 		name: "祈愿币兑换头像框",
 		items: {
 			"1710009": 1
@@ -5140,8 +5162,8 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"807002": {
-		id: 807002,
+	"807004": {
+		id: 807004,
 		name: "祈愿币兑换杂项饰品",
 		items: {
 			"1780005": 1
@@ -5168,8 +5190,8 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"807003": {
-		id: 807003,
+	"807005": {
+		id: 807005,
 		name: "祈愿币兑换头饰",
 		items: {
 			"1720003": 1
@@ -5196,8 +5218,8 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"807004": {
-		id: 807004,
+	"807006": {
+		id: 807006,
 		name: "祈愿币兑换背饰",
 		items: {
 			"1740001": 1
@@ -5224,8 +5246,8 @@ GameUI.CustomUIConfig().info_shop_product = {
 		russia_realprice: 0,
 		first_pay: 0
 	},
-	"807005": {
-		id: 807005,
+	"807007": {
+		id: 807007,
 		name: "祈愿币兑换月石",
 		items: {
 			"110001": 1
@@ -6405,6 +6427,149 @@ GameUI.CustomUIConfig().info_shop_product = {
 		orderby: 99,
 		start_time: 1787500800,
 		end_time: 1791129599,
+		limit_type: 1,
+		limit_count: 1,
+		use_purchased_num: 0,
+		overseas_originprice: 49.99,
+		overseas_realprice: 49.99,
+		russia_originprice: 3280,
+		russia_realprice: 3280,
+		first_pay: 0,
+		limit_repeat: 3280
+	},
+	"880116": {
+		id: 880116,
+		name: "星海4期01",
+		items: {
+			"190001": 1
+		},
+		pay_type: 110001,
+		origin_price: 10,
+		real_price: 10,
+		discount: 0,
+		tag: "starsea",
+		hide: 1,
+		rarity: 4,
+		title: 0,
+		show_type: 0,
+		img: "190001",
+		orderby: 99,
+		start_time: 1791129600,
+		end_time: 1794758399,
+		limit_type: 1,
+		limit_count: 1,
+		use_purchased_num: 0,
+		overseas_originprice: 0,
+		overseas_realprice: 0,
+		russia_originprice: 0,
+		russia_realprice: 0,
+		first_pay: 0
+	},
+	"880117": {
+		id: 880117,
+		name: "星海4期02",
+		items: {
+			"190003": 1
+		},
+		pay_type: 110001,
+		origin_price: 60,
+		real_price: 60,
+		discount: 0,
+		tag: "starsea",
+		hide: 1,
+		rarity: 4,
+		title: 0,
+		show_type: 0,
+		img: "190003",
+		orderby: 99,
+		start_time: 1791129600,
+		end_time: 1794758399,
+		limit_type: 1,
+		limit_count: 1,
+		use_purchased_num: 0,
+		overseas_originprice: 0,
+		overseas_realprice: 0,
+		russia_originprice: 0,
+		russia_realprice: 0,
+		first_pay: 0
+	},
+	"880118": {
+		id: 880118,
+		name: "星海4期03",
+		items: {
+			"190003": 5
+		},
+		pay_type: 0,
+		origin_price: 30,
+		real_price: 30,
+		discount: 0,
+		tag: "starsea",
+		hide: 1,
+		rarity: 4,
+		title: 0,
+		show_type: 0,
+		img: "190003",
+		orderby: 99,
+		start_time: 1791129600,
+		end_time: 1794758399,
+		limit_type: 1,
+		limit_count: 1,
+		use_purchased_num: 0,
+		overseas_originprice: 4.99,
+		overseas_realprice: 4.99,
+		russia_originprice: 300,
+		russia_realprice: 300,
+		first_pay: 0,
+		limit_repeat: 300
+	},
+	"880119": {
+		id: 880119,
+		name: "星海4期04",
+		items: {
+			"190003": 20
+		},
+		pay_type: 0,
+		origin_price: 120,
+		real_price: 120,
+		discount: 0,
+		tag: "starsea",
+		hide: 1,
+		rarity: 4,
+		title: 0,
+		show_type: 0,
+		img: "190003",
+		orderby: 99,
+		start_time: 1791129600,
+		end_time: 1794758399,
+		limit_type: 1,
+		limit_count: 1,
+		use_purchased_num: 0,
+		overseas_originprice: 19.99,
+		overseas_realprice: 19.99,
+		russia_originprice: 1200,
+		russia_realprice: 1200,
+		first_pay: 0,
+		limit_repeat: 1200
+	},
+	"880120": {
+		id: 880120,
+		name: "星海4期05",
+		items: {
+			"600022": 1
+		},
+		pay_type: 0,
+		origin_price: 328,
+		real_price: 328,
+		discount: 0,
+		tag: "starsea",
+		hide: 1,
+		rarity: 4,
+		title: 0,
+		show_type: 0,
+		img: "600022",
+		orderby: 99,
+		start_time: 1791129600,
+		end_time: 1794758399,
 		limit_type: 1,
 		limit_count: 1,
 		use_purchased_num: 0,

@@ -1315,8 +1315,12 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 		type: "MEDAL",
 		rarity: "5",
 		attribute: {
-			damage_intensity: 10,
-			defense_intensity: 10
+			damage_intensity: 30,
+			defense_intensity: 30,
+			damage_intensity_boost: 3,
+			defense_intensity_boost: 3,
+			hero_damage_boost: 3,
+			final_damage: 3
 		}
 	},
 	"1790002": {
@@ -1325,8 +1329,12 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 		type: "MEDAL",
 		rarity: "5",
 		attribute: {
-			damage_intensity: 10,
-			defense_intensity: 10
+			damage_intensity: 20,
+			defense_intensity: 20,
+			damage_intensity_boost: 2,
+			defense_intensity_boost: 2,
+			hero_damage_boost: 2,
+			final_damage: 2
 		}
 	},
 	"1790003": {
@@ -1336,7 +1344,11 @@ GameUI.CustomUIConfig().info_item_cosmetic = {
 		rarity: "5",
 		attribute: {
 			damage_intensity: 10,
-			defense_intensity: 10
+			defense_intensity: 10,
+			damage_intensity_boost: 1,
+			defense_intensity_boost: 1,
+			hero_damage_boost: 1,
+			final_damage: 1
 		}
 	}
 };

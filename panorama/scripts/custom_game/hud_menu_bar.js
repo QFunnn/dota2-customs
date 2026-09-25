@@ -30,8 +30,7 @@ const STATIC_MENU_LIST = {
     growth_fund: ["growth_fund_301"],
     starsea: [],
     seven_days: [],
-    boardslot: ["dice_game", "dice_gift"],
-    mining: ["veins_game", "veins_rank", "veins_store", "veins_gift"]
+    boardslot: ["dice_game", "dice_gift"]
   },
   hero: {
     Hero_Menu: [],
@@ -78,7 +77,6 @@ const open_store = solid_utils.createServiceNetData("open_shop", {
 });
 const player_activity_tasks = solid_utils.createServiceNetData("player_activity_tasks", {});
 const player_login_activity_data = solid_utils.createServiceNetData("player_login_activity_data", {});
-const player_mining_activity_data = solid_utils.createServiceNetData("player_mining_activity_data", {});
 const getStoreMenuOrder = tag => {
   const order = storeMenuOrder.indexOf(tag);
   return order == -1 ? storeMenuOrder.length : order;
@@ -141,7 +139,6 @@ const getActivityMenuList = () => activity_menu.buildActivityMenuList({
   now: CustomUIConfig.GetServerTimeStamp(),
   tasks: player_activity_tasks(),
   loginActivities: player_login_activity_data(),
-  miningActivities: player_mining_activity_data(),
   openStore: open_store().value
 });
 const buildActivityDropdownItems = menuList => {

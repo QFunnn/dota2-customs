@@ -50,6 +50,7 @@ function k.prototype.____constructor(self, ...)
 	self.idle_game_setting = LoadKeyValues("scripts/npc/service/idle_game_setting.kv")
 	self.equip_class_setting = LoadKeyValues("scripts/npc/service/equip_class_setting.kv")
 	self.fish_consume = LoadKeyValues("scripts/npc/service/fish_consume.kv")
+	self.pvp_season = LoadKeyValues("scripts/npc/service/pvp_season.kv")
 end
 function k.prototype.initPriority(self)
 	return 3

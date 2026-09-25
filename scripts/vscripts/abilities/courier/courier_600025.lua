@@ -85,7 +85,7 @@ function s.prototype.UpdateArtifactCount(self)
 end
 function s.prototype.DynamicProperty(self)
 	return {
-		[PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER] = function()
+		[PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER_MUL] = function()
 			return math.min(self.artifactCount, self.stack_max) * self.attribute_pct
 		end,
 	}

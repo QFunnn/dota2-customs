@@ -49,7 +49,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 1,
 			num: 0,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"6": {
@@ -57,7 +57,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 2,
 			num: 6,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"36": {
@@ -65,7 +65,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 3,
 			num: 36,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"104": {
@@ -73,7 +73,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 4,
 			num: 104,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"202": {
@@ -81,7 +81,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 5,
 			num: 202,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"330": {
@@ -89,7 +89,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 6,
 			num: 330,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"528": {
@@ -97,7 +97,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 7,
 			num: 528,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"856": {
@@ -105,7 +105,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 8,
 			num: 856,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"1504": {
@@ -113,7 +113,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 9,
 			num: 1504,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"2152": {
@@ -121,7 +121,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 10,
 			num: 2152,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"2800": {
@@ -129,7 +129,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 11,
 			num: 2800,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"3448": {
@@ -137,7 +137,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 12,
 			num: 3448,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"4096": {
@@ -145,7 +145,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 13,
 			num: 4096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"5096": {
@@ -153,7 +153,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 14,
 			num: 5096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"6096": {
@@ -161,7 +161,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 15,
 			num: 6096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"7096": {
@@ -169,7 +169,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 16,
 			num: 7096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"8096": {
@@ -177,7 +177,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 17,
 			num: 8096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"10096": {
@@ -185,7 +185,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 18,
 			num: 10096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"12096": {
@@ -193,7 +193,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 19,
 			num: 12096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"14096": {
@@ -201,7 +201,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 20,
 			num: 14096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"16096": {
@@ -209,7 +209,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 21,
 			num: 16096,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		},
 		"99999999": {
@@ -217,7 +217,7 @@ GameUI.CustomUIConfig().activity_moonstone = {
 			reward_id: 22,
 			num: 99999999,
 			rewards: {
-				"430004": 1
+				"190007": 1
 			}
 		}
 	}

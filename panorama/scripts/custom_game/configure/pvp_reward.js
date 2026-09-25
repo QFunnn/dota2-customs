@@ -11,15 +11,15 @@
 GameUI.CustomUIConfig().pvp_reward = {
 	"1": {
 		"1": {
-			rewards: "110022:1800|190004:10",
+			rewards: "1790001:1|110022:1800|190004:10",
 			txt: "rank_reward_1"
 		},
 		"2": {
-			rewards: "110022:1500|190004:5",
+			rewards: "1790002:1|110022:1500|190004:5",
 			txt: "rank_reward_2"
 		},
 		"3": {
-			rewards: "110022:1200|190004:3",
+			rewards: "1790003:1|110022:1200|190004:3",
 			txt: "rank_reward_3"
 		},
 		"10": {

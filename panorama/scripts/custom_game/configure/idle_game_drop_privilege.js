@@ -453,6 +453,42 @@ GameUI.CustomUIConfig().idle_game_drop_privilege = {
 		itemid: 110005,
 		num: 3000
 	},
+	privilege_idle_explore_057: {
+		privilege_id: "privilege_idle_explore_057",
+		chance: 5,
+		itemid: 110005,
+		num: 3000
+	},
+	privilege_idle_explore_058: {
+		privilege_id: "privilege_idle_explore_058",
+		chance: 7,
+		itemid: 110005,
+		num: 3000
+	},
+	privilege_idle_explore_059: {
+		privilege_id: "privilege_idle_explore_059",
+		chance: 9,
+		itemid: 110005,
+		num: 3000
+	},
+	privilege_idle_explore_060: {
+		privilege_id: "privilege_idle_explore_060",
+		chance: 11,
+		itemid: 110005,
+		num: 3000
+	},
+	privilege_idle_explore_061: {
+		privilege_id: "privilege_idle_explore_061",
+		chance: 13,
+		itemid: 110005,
+		num: 3000
+	},
+	privilege_idle_explore_062: {
+		privilege_id: "privilege_idle_explore_062",
+		chance: 15,
+		itemid: 110005,
+		num: 3000
+	},
 	privilege_idle_fish_019: {
 		privilege_id: "privilege_idle_fish_019",
 		chance: 0.25,
@@ -487,6 +523,42 @@ GameUI.CustomUIConfig().idle_game_drop_privilege = {
 		privilege_id: "privilege_idle_fish_024",
 		chance: 1.5,
 		itemid: 1800005,
+		num: 1
+	},
+	privilege_idle_fish_025: {
+		privilege_id: "privilege_idle_fish_025",
+		chance: 0.05,
+		itemid: 180107,
+		num: 1
+	},
+	privilege_idle_fish_026: {
+		privilege_id: "privilege_idle_fish_026",
+		chance: 0.1,
+		itemid: 180107,
+		num: 1
+	},
+	privilege_idle_fish_027: {
+		privilege_id: "privilege_idle_fish_027",
+		chance: 0.15,
+		itemid: 180107,
+		num: 1
+	},
+	privilege_idle_fish_028: {
+		privilege_id: "privilege_idle_fish_028",
+		chance: 0.2,
+		itemid: 180107,
+		num: 1
+	},
+	privilege_idle_fish_029: {
+		privilege_id: "privilege_idle_fish_029",
+		chance: 0.25,
+		itemid: 180107,
+		num: 1
+	},
+	privilege_idle_fish_030: {
+		privilege_id: "privilege_idle_fish_030",
+		chance: 0.3,
+		itemid: 180107,
 		num: 1
 	}
 };

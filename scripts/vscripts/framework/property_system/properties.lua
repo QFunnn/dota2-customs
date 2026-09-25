@@ -733,13 +733,17 @@ PropertyFunction.ENGRAVING_5_STRENGTHEN = 759
 PropertyFunction[PropertyFunction.ENGRAVING_5_STRENGTHEN] = "ENGRAVING_5_STRENGTHEN"
 PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER = 760
 PropertyFunction[PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER] = "PHYSICAL_DAMAGE_MULTIPLIER"
-PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER = 761
+PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER_MUL = 761
+PropertyFunction[PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER_MUL] = "PHYSICAL_DAMAGE_MULTIPLIER_MUL"
+PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER = 762
 PropertyFunction[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER] = "MAGICAL_DAMAGE_MULTIPLIER"
-PropertyFunction.SPELL_DAMAGE_MULTIPLIER = 762
+PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER_MUL = 763
+PropertyFunction[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER_MUL] = "MAGICAL_DAMAGE_MULTIPLIER_MUL"
+PropertyFunction.SPELL_DAMAGE_MULTIPLIER = 764
 PropertyFunction[PropertyFunction.SPELL_DAMAGE_MULTIPLIER] = "SPELL_DAMAGE_MULTIPLIER"
-PropertyFunction.SKILL_DAMAGE_MULTIPLIER = 763
+PropertyFunction.SKILL_DAMAGE_MULTIPLIER = 765
 PropertyFunction[PropertyFunction.SKILL_DAMAGE_MULTIPLIER] = "SKILL_DAMAGE_MULTIPLIER"
-PropertyFunction.LAST = 764
+PropertyFunction.LAST = 766
 PropertyFunction[PropertyFunction.LAST] = "LAST"
 PROPERTY_MAP = {
 	health = PropertyFunction.HEALTH,
@@ -1103,7 +1107,9 @@ PROPERTY_MAP = {
 	engraving_4_strengthen = PropertyFunction.ENGRAVING_4_STRENGTHEN,
 	engraving_5_strengthen = PropertyFunction.ENGRAVING_5_STRENGTHEN,
 	physical_damage_multiplier = PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER,
+	physical_damage_multiplier_mul = PropertyFunction.PHYSICAL_DAMAGE_MULTIPLIER_MUL,
 	magical_damage_multiplier = PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER,
+	magical_damage_multiplier_mul = PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER_MUL,
 	spell_damage_multiplier = PropertyFunction.SPELL_DAMAGE_MULTIPLIER,
 	skill_damage_multiplier = PropertyFunction.SKILL_DAMAGE_MULTIPLIER,
 }
@@ -3735,10 +3741,26 @@ PropertySystem:RegisterProperty({
 	enableCache = false,
 })
 PropertySystem:RegisterProperty({
+	id = "physical_damage_multiplier_mul",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.MULTIPLY,
+	notify = true,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
 	id = "magical_damage_multiplier",
 	scope = PropertyScope.UNIT,
 	valueType = PropertyValueType.NUMBER,
 	aggregation = AggregationStrategy.SUM,
+	notify = true,
+	enableCache = false,
+})
+PropertySystem:RegisterProperty({
+	id = "magical_damage_multiplier_mul",
+	scope = PropertyScope.UNIT,
+	valueType = PropertyValueType.NUMBER,
+	aggregation = AggregationStrategy.MULTIPLY,
 	notify = true,
 	enableCache = false,
 })
@@ -4676,8 +4698,14 @@ end
 function GetPhysicalDamageMultiplier(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "physical_damage_multiplier", e)
 end
+function GetPhysicalDamageMultiplierMul(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "physical_damage_multiplier_mul", e)
+end
 function GetMagicalDamageMultiplier(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "magical_damage_multiplier", e)
+end
+function GetMagicalDamageMultiplierMul(d, e)
+	return PropertySystem:GetPropertyValue(d:entindex(), "magical_damage_multiplier_mul", e)
 end
 function GetSpellDamageMultiplier(d, e)
 	return PropertySystem:GetPropertyValue(d:entindex(), "spell_damage_multiplier", e)
@@ -4992,7 +5020,9 @@ PROPERTY_FUNCTION_MAP = {
 	engraving_4_strengthen = GetEngraving4Strengthen,
 	engraving_5_strengthen = GetEngraving5Strengthen,
 	physical_damage_multiplier = GetPhysicalDamageMultiplier,
+	physical_damage_multiplier_mul = GetPhysicalDamageMultiplierMul,
 	magical_damage_multiplier = GetMagicalDamageMultiplier,
+	magical_damage_multiplier_mul = GetMagicalDamageMultiplierMul,
 	spell_damage_multiplier = GetSpellDamageMultiplier,
 	skill_damage_multiplier = GetSkillDamageMultiplier,
 }

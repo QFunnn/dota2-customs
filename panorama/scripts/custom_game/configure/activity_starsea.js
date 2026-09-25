@@ -1169,5 +1169,392 @@ GameUI.CustomUIConfig().activity_starsea = {
 			rarity: 4,
 			show: 0
 		}
+	},
+	"204": {
+		"1": {
+			id: 106,
+			activity_id: 204,
+			reward_id: 1,
+			product_id: 0,
+			rewards: {
+				"110006": 1
+			},
+			rarity: 3,
+			show: 0
+		},
+		"2": {
+			id: 107,
+			activity_id: 204,
+			reward_id: 2,
+			product_id: 0,
+			rewards: {
+				"120001": 200
+			},
+			rarity: 3,
+			show: 0
+		},
+		"3": {
+			id: 108,
+			activity_id: 204,
+			reward_id: 3,
+			product_id: 0,
+			rewards: {
+				"190003": 1
+			},
+			rarity: 5,
+			show: 0
+		},
+		"4": {
+			id: 109,
+			activity_id: 204,
+			reward_id: 4,
+			product_id: 880116,
+			rewards: {
+				"190001": 1
+			},
+			rarity: 5,
+			show: 0
+		},
+		"5": {
+			id: 110,
+			activity_id: 204,
+			reward_id: 5,
+			product_id: 0,
+			rewards: {
+				"120006": 50
+			},
+			rarity: 3,
+			show: 0
+		},
+		"6": {
+			id: 111,
+			activity_id: 204,
+			reward_id: 6,
+			product_id: 0,
+			rewards: {
+				"110001": 30
+			},
+			rarity: 4,
+			show: 0
+		},
+		"7": {
+			id: 112,
+			activity_id: 204,
+			reward_id: 7,
+			product_id: 0,
+			rewards: {
+				"110012": 20
+			},
+			rarity: 4,
+			show: 0
+		},
+		"8": {
+			id: 113,
+			activity_id: 204,
+			reward_id: 8,
+			product_id: 0,
+			rewards: {
+				"120007": 5
+			},
+			rarity: 3,
+			show: 0
+		},
+		"9": {
+			id: 114,
+			activity_id: 204,
+			reward_id: 9,
+			product_id: 880117,
+			rewards: {
+				"190003": 1
+			},
+			rarity: 5,
+			show: 0
+		},
+		"10": {
+			id: 115,
+			activity_id: 204,
+			reward_id: 10,
+			product_id: 0,
+			rewards: {
+				"110001": 70
+			},
+			rarity: 4,
+			show: 0
+		},
+		"11": {
+			id: 116,
+			activity_id: 204,
+			reward_id: 11,
+			product_id: 0,
+			rewards: {
+				"1710008": 1
+			},
+			rarity: 4,
+			show: 1
+		},
+		"12": {
+			id: 117,
+			activity_id: 204,
+			reward_id: 12,
+			product_id: 0,
+			rewards: {
+				"110012": 40
+			},
+			rarity: 4,
+			show: 0
+		},
+		"13": {
+			id: 118,
+			activity_id: 204,
+			reward_id: 13,
+			product_id: 0,
+			rewards: {
+				"190001": 1
+			},
+			rarity: 5,
+			show: 0
+		},
+		"14": {
+			id: 119,
+			activity_id: 204,
+			reward_id: 14,
+			product_id: 0,
+			rewards: {
+				"120007": 10
+			},
+			rarity: 3,
+			show: 0
+		},
+		"15": {
+			id: 120,
+			activity_id: 204,
+			reward_id: 15,
+			product_id: 0,
+			rewards: {
+				"120009": 200
+			},
+			rarity: 3,
+			show: 0
+		},
+		"16": {
+			id: 121,
+			activity_id: 204,
+			reward_id: 16,
+			product_id: 880118,
+			rewards: {
+				"190003": 5
+			},
+			rarity: 5,
+			show: 0
+		},
+		"17": {
+			id: 122,
+			activity_id: 204,
+			reward_id: 17,
+			product_id: 0,
+			rewards: {
+				"340528": 1
+			},
+			rarity: 5,
+			show: 0
+		},
+		"18": {
+			id: 123,
+			activity_id: 204,
+			reward_id: 18,
+			product_id: 0,
+			rewards: {
+				"110012": 60
+			},
+			rarity: 4,
+			show: 0
+		},
+		"19": {
+			id: 124,
+			activity_id: 204,
+			reward_id: 19,
+			product_id: 0,
+			rewards: {
+				"190001": 5
+			},
+			rarity: 5,
+			show: 0
+		},
+		"20": {
+			id: 125,
+			activity_id: 204,
+			reward_id: 20,
+			product_id: 0,
+			rewards: {
+				"110007": 30
+			},
+			rarity: 4,
+			show: 0
+		},
+		"21": {
+			id: 126,
+			activity_id: 204,
+			reward_id: 21,
+			product_id: 0,
+			rewards: {
+				"120009": 200
+			},
+			rarity: 4,
+			show: 0
+		},
+		"22": {
+			id: 127,
+			activity_id: 204,
+			reward_id: 22,
+			product_id: 0,
+			rewards: {
+				"120006": 150
+			},
+			rarity: 4,
+			show: 0
+		},
+		"23": {
+			id: 128,
+			activity_id: 204,
+			reward_id: 23,
+			product_id: 880119,
+			rewards: {
+				"190003": 20
+			},
+			rarity: 5,
+			show: 0
+		},
+		"24": {
+			id: 129,
+			activity_id: 204,
+			reward_id: 24,
+			product_id: 0,
+			rewards: {
+				"110012": 120
+			},
+			rarity: 4,
+			show: 0
+		},
+		"25": {
+			id: 130,
+			activity_id: 204,
+			reward_id: 25,
+			product_id: 0,
+			rewards: {
+				"310539": 1
+			},
+			rarity: 5,
+			show: 1
+		},
+		"26": {
+			id: 131,
+			activity_id: 204,
+			reward_id: 26,
+			product_id: 0,
+			rewards: {
+				"190001": 5
+			},
+			rarity: 5,
+			show: 0
+		},
+		"27": {
+			id: 132,
+			activity_id: 204,
+			reward_id: 27,
+			product_id: 0,
+			rewards: {
+				"110007": 120
+			},
+			rarity: 4,
+			show: 0
+		},
+		"28": {
+			id: 133,
+			activity_id: 204,
+			reward_id: 28,
+			product_id: 0,
+			rewards: {
+				"120007": 20
+			},
+			rarity: 3,
+			show: 0
+		},
+		"29": {
+			id: 134,
+			activity_id: 204,
+			reward_id: 29,
+			product_id: 0,
+			rewards: {
+				"120002": 500
+			},
+			rarity: 4,
+			show: 0
+		},
+		"30": {
+			id: 135,
+			activity_id: 204,
+			reward_id: 30,
+			product_id: 0,
+			rewards: {
+				"110009": 20
+			},
+			rarity: 4,
+			show: 0
+		},
+		"31": {
+			id: 136,
+			activity_id: 204,
+			reward_id: 31,
+			product_id: 880120,
+			rewards: {
+				"600022": 1
+			},
+			rarity: 5,
+			show: 1
+		},
+		"32": {
+			id: 137,
+			activity_id: 204,
+			reward_id: 32,
+			product_id: 0,
+			rewards: {
+				"110007": 300
+			},
+			rarity: 5,
+			show: 0
+		},
+		"33": {
+			id: 138,
+			activity_id: 204,
+			reward_id: 33,
+			product_id: 0,
+			rewards: {
+				"110012": 328
+			},
+			rarity: 4,
+			show: 0
+		},
+		"34": {
+			id: 139,
+			activity_id: 204,
+			reward_id: 34,
+			product_id: 0,
+			rewards: {
+				"110006": 20
+			},
+			rarity: 5,
+			show: 0
+		},
+		"35": {
+			id: 140,
+			activity_id: 204,
+			reward_id: 35,
+			product_id: 0,
+			rewards: {
+				"110004": 100
+			},
+			rarity: 4,
+			show: 0
+		}
 	}
 };

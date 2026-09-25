@@ -3539,7 +3539,9 @@ var PROPERTY_LIST = [
     "engraving_4_strengthen",
     "engraving_5_strengthen",
     "physical_damage_multiplier",
+    "physical_damage_multiplier_mul",
     "magical_damage_multiplier",
+    "magical_damage_multiplier_mul",
     "spell_damage_multiplier",
     "skill_damage_multiplier",
 ];

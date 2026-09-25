@@ -13457,6 +13457,153 @@ GameUI.CustomUIConfig().task = {
 		pre_task: 0,
 		status: 1
 	},
+	"6001080": {
+		task_id: 6001080,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 4,
+		target: 3,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-累积登录3天",
+		rewards: {
+			"110026": 1
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001081": {
+		task_id: 6001081,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 4,
+		target: 7,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-累积登录7天",
+		rewards: {
+			"110026": 2
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001082": {
+		task_id: 6001082,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 4,
+		target: 15,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-累积登录15天",
+		rewards: {
+			"110027": 2
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001083": {
+		task_id: 6001083,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 10,
+		target: 10000,
+		param_1: 4,
+		param_2: 0,
+		param_3: 1,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-击杀迷宫敌人-10000",
+		rewards: {
+			"110025": 10
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001084": {
+		task_id: 6001084,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 10,
+		target: 8000,
+		param_1: 4,
+		param_2: 0,
+		param_3: 2,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-击杀深渊敌人-8000",
+		rewards: {
+			"110025": 10
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001085": {
+		task_id: 6001085,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 13,
+		target: 15,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-完成15次信使远征",
+		rewards: {
+			"110025": 10
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"6001086": {
+		task_id: 6001086,
+		type: 6,
+		blessing_condition: 0,
+		event_id: 2,
+		target: 8,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-单次-通关任意难度地牢8次",
+		rewards: {
+			"110025": 5
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
 	"6002001": {
 		task_id: 6002001,
 		type: 6,
@@ -14962,6 +15109,90 @@ GameUI.CustomUIConfig().task = {
 		vip_blessing: 0,
 		achievement_group: 0,
 		activity_id: 1001,
+		pre_task: 0,
+		status: 1
+	},
+	"7002007": {
+		task_id: 7002007,
+		type: 7,
+		blessing_condition: 0,
+		event_id: 4,
+		target: 1,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-每日-登录游戏",
+		rewards: {
+			"110025": 1
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"7002008": {
+		task_id: 7002008,
+		type: 7,
+		blessing_condition: 0,
+		event_id: 19,
+		target: 2,
+		param_1: 110025,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-每日-使用2次矿镐",
+		rewards: {
+			"110025": 1
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"7002009": {
+		task_id: 7002009,
+		type: 7,
+		blessing_condition: 0,
+		event_id: 2,
+		target: 1,
+		param_1: 0,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-每日-通关任意难度地牢一次",
+		rewards: {
+			"110025": 2
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
+		pre_task: 0,
+		status: 1
+	},
+	"7002010": {
+		task_id: 7002010,
+		type: 7,
+		blessing_condition: 0,
+		event_id: 9,
+		target: 2,
+		param_1: 4,
+		param_2: 0,
+		param_3: 0,
+		param_4: 0,
+		task_description: 1,
+		description: "挖矿2期-每日-完成2个每日悬赏",
+		rewards: {
+			"110025": 2
+		},
+		vip_blessing: 0,
+		achievement_group: 0,
+		activity_id: 1002,
 		pre_task: 0,
 		status: 1
 	},

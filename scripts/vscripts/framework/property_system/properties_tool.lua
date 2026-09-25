@@ -96,94 +96,107 @@ end
 function GetOutgoingDamagePercent(self, b, c)
 	local k = 0
 	local l = 0
+	local m = 0
 	if c.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL then
 		k = k + GetOutgoingPhysicalDamagePercent(nil, b, c)
 		l = GetPhysicalDamageMultiplier(b, c)
+		m = GetPhysicalDamageMultiplierMul(b, c)
 	elseif c.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL then
 		k = k + GetOutgoingMagicalDamagePercent(nil, b, c)
 		l = GetMagicalDamageMultiplier(b, c)
+		m = GetMagicalDamageMultiplierMul(b, c)
 	elseif c.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_NONE then
-		local m = GetOutgoingPhysicalDamagePercent(nil, b, c)
-		local n = GetOutgoingMagicalDamagePercent(nil, b, c)
-		local o = GetPhysicalDamageMultiplier(b, c)
-		local p = GetMagicalDamageMultiplier(b, c)
-		if CompoundIncrease(m, o) >= CompoundIncrease(n, p) then
-			k = m
-			l = o
-		else
+		local n = GetOutgoingPhysicalDamagePercent(nil, b, c)
+		local o = GetOutgoingMagicalDamagePercent(nil, b, c)
+		local p = GetPhysicalDamageMultiplier(b, c)
+		local q = GetMagicalDamageMultiplier(b, c)
+		local r = GetPhysicalDamageMultiplierMul(b, c)
+		local s = GetMagicalDamageMultiplierMul(b, c)
+		if CompoundIncrease(n, p) >= CompoundIncrease(o, q) then
 			k = n
 			l = p
+		else
+			k = o
+			l = q
+		end
+		if CompoundIncrease(n, r) >= CompoundIncrease(o, s) then
+			k = n
+			m = r
+		else
+			k = o
+			m = s
 		end
 	end
-	local q = 0
-	local r = 0
-	local s = c.damage_category
-	if s == DOTA_DAMAGE_CATEGORY_ATTACK then
-		q = q + GetOutgoingAttackDamagePercent(nil, b, c)
-	elseif s == DOTA_DAMAGE_CATEGORY_SPELL then
-		q = q + GetOutgoingSpellDamagePercent(nil, b, c)
-		r = GetSpellDamageMultiplier(b, c)
+	local t = 0
+	local u = 0
+	local v = c.damage_category
+	if v == DOTA_DAMAGE_CATEGORY_ATTACK then
+		t = t + GetOutgoingAttackDamagePercent(nil, b, c)
+	elseif v == DOTA_DAMAGE_CATEGORY_SPELL then
+		t = t + GetOutgoingSpellDamagePercent(nil, b, c)
+		u = GetSpellDamageMultiplier(b, c)
 	end
-	q = q + GetAbilityTagDamagePercent(nil, b, c)
-	local t = c.ability
-	local u = (t and t:GetAbilityTag()) == AbilityTag.Skill and GetSkillDamageMultiplier(b, c) or 0
-	local v = 0
-	local w = c.target
-	if IsValid(w) and (w:GetShield() or 0) > 0 then
-		v = v + CompoundIncrease(GetBarrierDamageAmplify(b, c), GetBarrierDamageBoost(b, c))
+	t = t + GetAbilityTagDamagePercent(nil, b, c)
+	local w = c.ability
+	local x = (w and w:GetAbilityTag()) == AbilityTag.Skill and GetSkillDamageMultiplier(b, c) or 0
+	local y = 0
+	local z = c.target
+	if IsValid(z) and (z:GetShield() or 0) > 0 then
+		y = y + CompoundIncrease(GetBarrierDamageAmplify(b, c), GetBarrierDamageBoost(b, c))
 	end
-	local x = c.damage_flags or EOM_DAMAGE_FLAGS.NONE
-	if bit.band(x, EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE) == EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE then
-		v = v + CompoundIncrease(GetLightningDamageBoost(b, c), GetLightningDamageBoost2(b, c))
+	local A = c.damage_flags or EOM_DAMAGE_FLAGS.NONE
+	if bit.band(A, EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE) == EOM_DAMAGE_FLAGS.LIGHTNING_DAMAGE then
+		y = y + CompoundIncrease(GetLightningDamageBoost(b, c), GetLightningDamageBoost2(b, c))
 	end
-	if bit.band(x, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE) == EOM_DAMAGE_FLAGS.FREEZE_DAMAGE then
-		v = v + CompoundIncrease(GetFreezeDamageBoost(b, c), GetFreezeDamageBoost2(b, c))
+	if bit.band(A, EOM_DAMAGE_FLAGS.FREEZE_DAMAGE) == EOM_DAMAGE_FLAGS.FREEZE_DAMAGE then
+		y = y + CompoundIncrease(GetFreezeDamageBoost(b, c), GetFreezeDamageBoost2(b, c))
 	end
-	if bit.band(x, EOM_DAMAGE_FLAGS.POISON_DAMAGE) == EOM_DAMAGE_FLAGS.POISON_DAMAGE then
-		v = v + CompoundIncrease(GetPoisonDamageBoost(b, c), GetPoisonDamageBoost2(b, c))
+	if bit.band(A, EOM_DAMAGE_FLAGS.POISON_DAMAGE) == EOM_DAMAGE_FLAGS.POISON_DAMAGE then
+		y = y + CompoundIncrease(GetPoisonDamageBoost(b, c), GetPoisonDamageBoost2(b, c))
 	end
-	if bit.band(x, EOM_DAMAGE_FLAGS.BLEEDING_DAMAGE) == EOM_DAMAGE_FLAGS.BLEEDING_DAMAGE then
-		v = v + CompoundIncrease(GetBleedDamageBoost(b, c), GetBleedDamageBoost2(b, c))
-	end
-	if
-		bit.band(x, EOM_DAMAGE_FLAGS.RETALIATED_DAMAGE) == EOM_DAMAGE_FLAGS.RETALIATED_DAMAGE
-		or bit.band(x, EOM_DAMAGE_FLAGS.REFLECT_DAMAGE) == EOM_DAMAGE_FLAGS.REFLECT_DAMAGE
-		or bit.band(x, EOM_DAMAGE_FLAGS.SHIELD_DAMAGE) == EOM_DAMAGE_FLAGS.SHIELD_DAMAGE
-	then
-		v = v + CompoundIncrease(GetHolyShieldDamageBoost(b, c), GetHolyShieldDamageBoost2(b, c))
-	end
-	if bit.band(x, EOM_DAMAGE_FLAGS.RING_DAMAGE) == EOM_DAMAGE_FLAGS.RING_DAMAGE then
-		v = v + GetRingDamageBoost(b, c)
-	end
-	if bit.band(x, EOM_DAMAGE_FLAGS.SPLIT_DAMAGE) == EOM_DAMAGE_FLAGS.SPLIT_DAMAGE then
-		v = v + GetSplashDamageBoost(b, c)
+	if bit.band(A, EOM_DAMAGE_FLAGS.BLEEDING_DAMAGE) == EOM_DAMAGE_FLAGS.BLEEDING_DAMAGE then
+		y = y + CompoundIncrease(GetBleedDamageBoost(b, c), GetBleedDamageBoost2(b, c))
 	end
 	if
-		bit.band(x, EOM_DAMAGE_FLAGS.BLADE) == EOM_DAMAGE_FLAGS.BLADE
-		or bit.band(x, EOM_DAMAGE_FLAGS.SWORD) == EOM_DAMAGE_FLAGS.SWORD
+		bit.band(A, EOM_DAMAGE_FLAGS.RETALIATED_DAMAGE) == EOM_DAMAGE_FLAGS.RETALIATED_DAMAGE
+		or bit.band(A, EOM_DAMAGE_FLAGS.REFLECT_DAMAGE) == EOM_DAMAGE_FLAGS.REFLECT_DAMAGE
+		or bit.band(A, EOM_DAMAGE_FLAGS.SHIELD_DAMAGE) == EOM_DAMAGE_FLAGS.SHIELD_DAMAGE
 	then
-		v = v + CompoundIncrease(GetBladeDamageBoost(b, c), GetBladeSwordBoost2(b, c))
+		y = y + CompoundIncrease(GetHolyShieldDamageBoost(b, c), GetHolyShieldDamageBoost2(b, c))
 	end
-	v = v + GetTargetDamageBoost(nil, b, c)
-	v = v + GetRangeDamageBoost(nil, b, c)
+	if bit.band(A, EOM_DAMAGE_FLAGS.RING_DAMAGE) == EOM_DAMAGE_FLAGS.RING_DAMAGE then
+		y = y + GetRingDamageBoost(b, c)
+	end
+	if bit.band(A, EOM_DAMAGE_FLAGS.SPLIT_DAMAGE) == EOM_DAMAGE_FLAGS.SPLIT_DAMAGE then
+		y = y + GetSplashDamageBoost(b, c)
+	end
+	if
+		bit.band(A, EOM_DAMAGE_FLAGS.BLADE) == EOM_DAMAGE_FLAGS.BLADE
+		or bit.band(A, EOM_DAMAGE_FLAGS.SWORD) == EOM_DAMAGE_FLAGS.SWORD
+	then
+		y = y + CompoundIncrease(GetBladeDamageBoost(b, c), GetBladeSwordBoost2(b, c))
+	end
+	y = y + GetTargetDamageBoost(nil, b, c)
+	y = y + GetRangeDamageBoost(nil, b, c)
 	if c.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK or BitAndEquals(c.damage_flags, EOM_DAMAGE_FLAGS.Backstab) then
 		if
-			math.abs(AngleDiff(VectorToAngles(CalcDirection2D(w, b)).y, VectorToAngles(w:GetForwardVector()).y)) < 90
+			math.abs(AngleDiff(VectorToAngles(CalcDirection2D(z, b)).y, VectorToAngles(z:GetForwardVector()).y)) < 90
 			or BitAndEquals(c.damage_flags, EOM_DAMAGE_FLAGS.Backstab)
 		then
-			v = v + (BASE_BACKSTAB_DAMAGE + GetBackstabDamageAmplify(b, c)) * (1 + GetBackstabDamageBoost(b, c) * 0.01)
+			y = y + (BASE_BACKSTAB_DAMAGE + GetBackstabDamageAmplify(b, c)) * (1 + GetBackstabDamageBoost(b, c) * 0.01)
 			c.is_backstab = true
 		end
 	end
-	local y = INTENSITY_FACTOR * GetDamageIntensity(b, c) * (1 + 0.01 * GetDamageIntensityBoost(b, c))
-	local z = CompoundIncrease(
-		y,
+	local B = INTENSITY_FACTOR * GetDamageIntensity(b, c) * (1 + 0.01 * GetDamageIntensityBoost(b, c))
+	local C = CompoundIncrease(
+		B,
 		k,
-		q,
-		v,
+		t,
+		y,
 		l,
-		r,
+		m,
 		u,
+		x,
 		GetHeroDamageBoost(b, c),
 		GetDamageBoostMult(b, c),
 		GetFinalDamage(b, c),
@@ -191,46 +204,46 @@ function GetOutgoingDamagePercent(self, b, c)
 		GetFinalDamage102(b, c),
 		GetFinalDamage103(b, c)
 	)
-	return z
+	return C
 end
 function GetIncomingDamagePercent(self, b, c)
-	local A = GetIncomingDamageAmplify(b, c) - GetDamageReduction(b, c)
+	local D = GetIncomingDamageAmplify(b, c) - GetDamageReduction(b, c)
 	if
 		c ~= nil
 		and c.damage_flags ~= nil
 		and bit.band(c.damage_flags, EOM_DAMAGE_FLAGS.TRAP) == EOM_DAMAGE_FLAGS.TRAP
 	then
-		A = A + GetTrapIncomingDamageAmplify(b, c)
+		D = D + GetTrapIncomingDamageAmplify(b, c)
 	end
-	return A
+	return D
 end
 function GetAbilityChargeByType(self, g)
 	if type(g.GetAbilityTag) ~= "function" then
 		return 0
 	end
 	local e = g:GetAbilityTag()
-	local B = g:GetCaster()
+	local E = g:GetCaster()
 	repeat
-		local C = e
-		local D = C == AbilityTag.Attack
-		if D then
-			return GetAbilityChargeAttack(B)
+		local F = e
+		local G = F == AbilityTag.Attack
+		if G then
+			return GetAbilityChargeAttack(E)
 		end
-		D = D or C == AbilityTag.Skill
-		if D then
-			return GetAbilityChargeSkill(B)
+		G = G or F == AbilityTag.Skill
+		if G then
+			return GetAbilityChargeSkill(E)
 		end
-		D = D or C == AbilityTag.Dodge
-		if D then
-			return GetAbilityChargeDodge(B)
+		G = G or F == AbilityTag.Dodge
+		if G then
+			return GetAbilityChargeDodge(E)
 		end
-		D = D or C == AbilityTag.Defense
-		if D then
-			return GetAbilityChargeDefense(B)
+		G = G or F == AbilityTag.Defense
+		if G then
+			return GetAbilityChargeDefense(E)
 		end
-		D = D or C == AbilityTag.Ultimate
-		if D then
-			return GetAbilityChargeUltimate(B)
+		G = G or F == AbilityTag.Ultimate
+		if G then
+			return GetAbilityChargeUltimate(E)
 		end
 		do
 			return 0
@@ -245,15 +258,15 @@ function GetCooldownReductionByTag(self, g)
 		return 0
 	end
 	local e = g:GetAbilityTag()
-	local B = g:GetCaster()
+	local E = g:GetCaster()
 	if e == AbilityTag.Skill then
-		return GetSkillCooldownReduction(B)
+		return GetSkillCooldownReduction(E)
 	elseif e == AbilityTag.Dodge then
-		return GetEvadeCooldownReduction(B)
+		return GetEvadeCooldownReduction(E)
 	elseif e == AbilityTag.Defense then
-		return GetBlockCooldownReduction(B)
+		return GetBlockCooldownReduction(E)
 	elseif e == AbilityTag.Ultimate then
-		return GetUltimateCooldownReduction(B)
+		return GetUltimateCooldownReduction(E)
 	end
 	return 0
 end

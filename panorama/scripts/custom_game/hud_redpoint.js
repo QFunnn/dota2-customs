@@ -740,15 +740,9 @@ function useRankRedPoints() {
 
 function useMiningActivityRedPoints() {
   defineRedPointRule("activity_mining", () => {
-    const playerMiningActivityData = createRedPointServiceData("player_mining_activity_data", {});
     const playerActivityTasks = createRedPointServiceData("player_activity_tasks", {});
-    const [serverTime, setServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
-    const serverTimeInterval = setInterval(() => {
-      setServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp()));
-    }, 1000);
-    libs.onCleanup(() => clearInterval(serverTimeInterval));
     libs.createEffect(() => {
-      const hasClaimableReward = dig_veins_logic.hasClaimableDigVeinsTask(playerActivityTasks(), serverTime()) || dig_veins_logic.hasClaimableDigVeinsDepthReward(playerMiningActivityData()[dig_veins_logic.ACTIVITY_MINING_ID]);
+      const hasClaimableReward = dig_veins_logic.hasClaimableDigVeinsTask(playerActivityTasks());
       setRedPoint(["activity", "mining", "veins_game"], hasClaimableReward);
     });
   });

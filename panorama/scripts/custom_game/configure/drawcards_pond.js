@@ -2523,6 +2523,404 @@ GameUI.CustomUIConfig().drawcards_pond = {
 			drop_weight: 200
 		}
 	],
+	"2103": [
+		{
+			id: 383,
+			pond_id: 2103,
+			drop_rarity: 5,
+			drop_id: 600024,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 384,
+			pond_id: 2103,
+			drop_rarity: 5,
+			drop_id: 600025,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 385,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600033,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 386,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600034,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 387,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600035,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 388,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600036,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 389,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600037,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 390,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600038,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 391,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600039,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 392,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600040,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 393,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600041,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 394,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600042,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 395,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600043,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 396,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600044,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 397,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600045,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 398,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600046,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 399,
+			pond_id: 2103,
+			drop_rarity: 4,
+			drop_id: 1600047,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 400,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600048,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 401,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600049,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 402,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600050,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 403,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600051,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 404,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600052,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 405,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600053,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 406,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600054,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 407,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600055,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 408,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600056,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 409,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600057,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 410,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600058,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 411,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600059,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 412,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600060,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 413,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600061,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 414,
+			pond_id: 2103,
+			drop_rarity: 3,
+			drop_id: 1600062,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 415,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600063,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 416,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600064,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 417,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600065,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 418,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600066,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 419,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600067,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 420,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600068,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 421,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600069,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 422,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600070,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 423,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600071,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 424,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600072,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 425,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600073,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 426,
+			pond_id: 2103,
+			drop_rarity: 2,
+			drop_id: 1600074,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		}
+	],
 	"2201": [
 		{
 			id: 279,
@@ -3348,6 +3746,422 @@ GameUI.CustomUIConfig().drawcards_pond = {
 		{
 			id: 382,
 			pond_id: 2202,
+			drop_rarity: 2,
+			drop_id: 1600074,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		}
+	],
+	"2203": [
+		{
+			id: 427,
+			pond_id: 2203,
+			drop_rarity: 5,
+			drop_id: 1000010,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 428,
+			pond_id: 2203,
+			drop_rarity: 5,
+			drop_id: 1000014,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 429,
+			pond_id: 2203,
+			drop_rarity: 5,
+			drop_id: 1000019,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 430,
+			pond_id: 2203,
+			drop_rarity: 5,
+			drop_id: 1000026,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 5
+		},
+		{
+			id: 431,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600033,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 432,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600034,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 433,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600035,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 434,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600036,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 435,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600037,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 436,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600038,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 437,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600039,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 438,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600040,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 439,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600041,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 440,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600042,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 441,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600043,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 442,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600044,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 443,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600045,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 444,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600046,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 445,
+			pond_id: 2203,
+			drop_rarity: 4,
+			drop_id: 1600047,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 30
+		},
+		{
+			id: 446,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600048,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 447,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600049,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 448,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600050,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 449,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600051,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 450,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600052,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 451,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600053,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 452,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600054,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 453,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600055,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 454,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600056,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 455,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600057,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 456,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600058,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 457,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600059,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 458,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600060,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 459,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600061,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 460,
+			pond_id: 2203,
+			drop_rarity: 3,
+			drop_id: 1600062,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 24
+		},
+		{
+			id: 461,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600063,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 462,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600064,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 463,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600065,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 464,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600066,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 465,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600067,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 466,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600068,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 467,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600069,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 468,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600070,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 469,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600071,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 470,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600072,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 471,
+			pond_id: 2203,
+			drop_rarity: 2,
+			drop_id: 1600073,
+			drop_num_min: 1,
+			drop_num_max: 1,
+			drop_weight: 200
+		},
+		{
+			id: 472,
+			pond_id: 2203,
 			drop_rarity: 2,
 			drop_id: 1600074,
 			drop_num_min: 1,

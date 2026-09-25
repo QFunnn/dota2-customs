@@ -138,7 +138,7 @@ function s.prototype.StaticProperty(self)
 		[PropertyFunction.SPELL_DAMAGE_AMPLIFY] = self.spell_amp,
 		[PropertyFunction.FURY_REGEN] = self.mana_regen,
 		[PropertyFunction.RING_SPEED_AMPLIFY] = self.ring_speed_amplify,
-		[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER] = self.attr_magic_damage_pct,
+		[PropertyFunction.MAGICAL_DAMAGE_MULTIPLIER_MUL] = self.attr_magic_damage_pct,
 	}
 end
 s = e(

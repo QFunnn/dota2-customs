@@ -3294,10 +3294,10 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 	},
 	"courier_600024": {
 		"Name": "纯金贪魔",
-		"Description": "释放<HotkeyOnly|Dodge/>冲刺后+%damage_up_pct%%特技伤害，持续%duration%秒，重复触发刷新持续时间",
+		"Description": "每拥有1件遗物魔法伤害倍增%attribute_pct%%%[x]，最多累加10次。",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/courier/courier_600024",
-		"AbilityTextureName": "primal_beast_onslaught_release",
+		"AbilityTextureName": "omni_knight/omni_fall20_immortal_ability_icon/omni_fall20_immortal_degen_aura",
 		"MaxLevel": 6,
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {
@@ -3307,10 +3307,10 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 	},
 	"courier_600025": {
 		"Name": "咬人箱",
-		"Description": "每拥有1件遗物物理伤害倍增1%/2%/3%/4%/5%/6%[x]，最多累加10次。",
+		"Description": "每拥有1件遗物物理伤害倍增%attribute_pct%%%[x]，最多累加10次。",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/courier/courier_600025",
-		"AbilityTextureName": "primal_beast_onslaught_release",
+		"AbilityTextureName": "omni_knight/omni_fall20_immortal_ability_icon/omni_fall20_immortal_crimson_degen_aura",
 		"MaxLevel": 6,
 		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
 		"AbilityValues": {

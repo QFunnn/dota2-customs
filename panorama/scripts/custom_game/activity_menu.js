@@ -55,8 +55,7 @@ function shouldShowPrimaryMenu(menu, config, context) {
     return isBeforeEndTime(context.now, dataEndTime);
   }
   if (menu == "mining") {
-    const endTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]?.end_time ?? 0;
-    return isBeforeActivityMenuGraceEnd(context.now, endTime);
+    return false;
   }
   return true;
 }
@@ -79,7 +78,7 @@ function shouldShowSecondaryMenu(secondMenu, context) {
     if (!isBeforeActivityMenuGraceEnd(context.now, miningEndTime)) {
       return false;
     }
-    return dig_veins_logic.hasClaimableDigVeinsTaskForMenu(context.tasks) || dig_veins_logic.hasClaimableDigVeinsDepthReward(context.miningActivities[dig_veins_logic.ACTIVITY_MINING_ID]);
+    return dig_veins_logic.hasClaimableDigVeinsTaskForMenu(context.tasks);
   }
   return true;
 }

@@ -394,18 +394,18 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "银羽骰"
 	},
-	"110025": {
-		item_id: 110025,
+	"110027": {
+		item_id: 110027,
 		type: "item",
 		name: "矿镐"
 	},
-	"110026": {
-		item_id: 110026,
+	"110028": {
+		item_id: 110028,
 		type: "item",
 		name: "魔力钻头"
 	},
-	"110027": {
-		item_id: 110027,
+	"110029": {
+		item_id: 110029,
 		type: "item",
 		name: "烈性炸药"
 	},
