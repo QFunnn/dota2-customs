@@ -1245,6 +1245,7 @@ function ServerLockWait(keys){
 		$("#MapInfoLabel").text = $.Localize('#'+'dac_' + keys.map_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>',keys.curr_player_count).replaceAll('<p2>',keys.max_player_count);
 		$("#GameModeNameLabel").SetHasClass('invisible', false);
 		$("#MapInfoLabel").SetHasClass('invisible', false);
+		$('#select-block-difficulty').SetHasClass('invisible', true);
 
 		if (keys.map_name == 'casual_1x8' || keys.map_name == 'casual_1x8_ob'){
 			// 休闲局
@@ -1252,17 +1253,38 @@ function ServerLockWait(keys){
 			$('#LockAndStartButton').SetHasClass('opacity0',false);
 			$('#CancelAndUnlockButton').SetHasClass('opacity0',false);
 			// $('#CancelAndUnlockButton').SetHasClass('invisible',true);
+			
 		}
 		else{
 			// 天梯局
 			Game.AutoAssignPlayersToTeams();
-			Game.SetTeamSelectionLocked(true);
+			// Game.SetTeamSelectionLocked(true);
 			$('#LockAndStartButton').SetHasClass('opacity0',true);
 			$('#CancelAndUnlockButton').SetHasClass('opacity0',true);
 			$('#CancelAndUnlockButton').SetHasClass('invisible',true);
+
+			if ($('#UnassignedPlayersButton')){
+				$('#UnassignedPlayersButton').SetPanelEvent("onmouseover",
+					function () {
+					}
+				);
+				$('#UnassignedPlayersButton').SetPanelEvent("onmouseout",
+					function () {
+					}
+				);
+				$('#UnassignedPlayersButton').SetPanelEvent("onactivate",
+					function () {
+					}
+				);
+			}
 		}
 	}
-	
+
+	// 隐藏退出按钮
+	var xxx = FindDotaHudElement('CustomUIContainer_GameSetup').FindChildrenWithClassTraverse('DOTAReturnToDashboardOverlay');
+	if (xxx){
+		xxx[0].visible = false;
+	}
 }
 GameEvents.Subscribe("server_lock_start", ServerLockStart);
 function ServerLockStart(keys){
@@ -1277,3 +1299,13 @@ function ServerLockStart(keys){
 	Game.SetAutoLaunchEnabled(true);
 	Game.SetRemainingSetupTime(6);
 }
+function FindDotaHudElement(id) {
+    var hudRoot;
+    for (panel = $.GetContextPanel(); panel != null; panel = panel.GetParent()) {
+        hudRoot = panel;
+    }
+    var comp = hudRoot.FindChildTraverse(id);
+    return comp;
+}
+
+
