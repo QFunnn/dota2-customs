@@ -308,6 +308,15 @@ function DAC:InitGameMode()
 	-- IsDedicatedServer()
 	-- IsInToolsMode()
 
+	--判断是不是官方服务器/自建服务器/玩家主机
+	local config = LoadKeyValues("dac_config.txt")
+	if config.IsAutochessServer == 1 then
+		--服务器主机
+		CustomNetTables:SetTableValue("game_info", "game_host_type", { game_host_type = 'server' })
+	else
+		CustomNetTables:SetTableValue("game_info", "game_host_type", { game_host_type = 'player_host' })
+	end
+
 	GameRules:SetCustomGameSetupAutoLaunchDelay(120)
 
 	GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 0)
@@ -432,6 +441,7 @@ function DAC:InitGameMode()
 	_G.is_server_game_started = false
 	_G.connect_full_player_count = 0
 	_G.game_id = ''
+	_G.aws_key = ''
 	_G.precache_list = {}
 	_G.precache_busy = false
 	_G.error_trace = {}
@@ -456,7 +466,6 @@ function DAC:InitGameMode()
 		_G.custom_round_time = 999
 	end
 	_G.user_match_history = {}
-	_G.request_all_user_info_from_server = false
 	_G.is_tester_mode = false
 	_G.game_version = 'unknown'
 	_G.PER_2B = 50
@@ -4684,6 +4693,7 @@ function PostOneToServer(hero, steamid, rank, mode)
 	SendHTTP(url .. "&from=SyncHP", function(t)
 		if t ~= nil and t.err == 0 then
 			local v = t.mmr_info
+			_G.aws_key = t.aws_key
 			if _G.stat_info[v.userid] ~= nil then
 				--另一部分要从http返回值v获得
 				_G.send_info[v.userid]['account_id'] = v.userid
@@ -4772,7 +4782,10 @@ function PostOneToServer(hero, steamid, rank, mode)
 						Timers:CreateTimer(5, function()
 							PostGame()
 						end)
-						if ready_2_post == true and ready_1_post == true then
+						if _G.aws_key == '' then
+							print('Game Finished')
+						end
+						if ready_2_post == true and ready_1_post == true and _G.aws_key ~= '' then
 							prt('Send Amazon Data')
 							local t = _G.send_time
 							local amzdate = string.format(
@@ -10840,14 +10853,17 @@ function SendAmazonData(ctx, amzdate, datestamp)
 	local region = 'cn-north-1'
 	local endpoint = 'https://kinesis.cn-north-1.amazonaws.com.cn'
 	local request_parameters = ""
-	local enc_AWS_ACCESS_KEY_ID = "27715D326D6432E154E7D91D1662D7C14783D4ADE24394565A17BF91B6FD653A"
-	local AWS_ACCESS_KEY_ID = aeslua.decrypt(GetDedicatedServerKeyV2('fgnb'), string.fromhex(enc_AWS_ACCESS_KEY_ID))
-	local access_key = AWS_ACCESS_KEY_ID
-	local enc_AWS_SECRET_ACCESS_KEY =
-	"3C77FACD23AE027A4580075B1C5FC1B70339120A07B5FA37CC78A36B526045D84AA1493432AE6CBB443EFB9604C4AAD2"
-	local AWS_SECRET_ACCESS_KEY = aeslua.decrypt(GetDedicatedServerKeyV2('fgnb'),
-		string.fromhex(enc_AWS_SECRET_ACCESS_KEY))
-	local secret_key = AWS_SECRET_ACCESS_KEY
+	-- local enc_AWS_ACCESS_KEY_ID = "27715D326D6432E154E7D91D1662D7C14783D4ADE24394565A17BF91B6FD653A"
+	-- local AWS_ACCESS_KEY_ID = aeslua.decrypt(GetDedicatedServerKeyV2('fgnb'), string.fromhex(enc_AWS_ACCESS_KEY_ID))
+	-- local access_key = AWS_ACCESS_KEY_ID
+	-- local enc_AWS_SECRET_ACCESS_KEY =
+	-- "3C77FACD23AE027A4580075B1C5FC1B70339120A07B5FA37CC78A36B526045D84AA1493432AE6CBB443EFB9604C4AAD2"
+	-- local AWS_SECRET_ACCESS_KEY = aeslua.decrypt(GetDedicatedServerKeyV2('fgnb'),
+	-- 	string.fromhex(enc_AWS_SECRET_ACCESS_KEY))
+	-- local secret_key = AWS_SECRET_ACCESS_KEY
+
+	local access_key = 'AKIAWP27YT4IYVH6XJGB'
+	local secret_key = _G.aws_key
 
 	-- local method = 'POST'
 	-- local service = 'kinesis'
@@ -34922,11 +34938,9 @@ function TPFailed(keys)
 end
 
 function DAC:GetAllPlayerInfoFromServer(keys)
-	if _G.request_all_user_info_from_server ~= true then
-		--只请求一次
-		_G.request_all_user_info_from_server = true
-		local url = "http://autochess.ppbizon.com/courier/get/@" ..
-		JoinTableString(_G.playerid2steamid) .. "?hehe=" .. RandomInt(1, 9999)
+	local steam_id = keys.steam_id
+	if steam_id then
+		local url = "http://autochess.ppbizon.com/courier/get/@"..steam_id.."?hehe="..RandomInt(1, 9999)
 		url = url .. GetSendKey()
 
 		local req = CreateHTTPRequestScriptVM('GET', url)
@@ -34934,44 +34948,41 @@ function DAC:GetAllPlayerInfoFromServer(keys)
 
 		req:Send(function(res)
 			if res.StatusCode ~= 200 or not res.Body then
-				if fail_callback ~= nil then
-					combat('LOAD PLAYER INFO FAILED!')
-				end
+				print('[TEAMSELECT] load player info FAILED:'..steam_id)
 				return
 			end
 
 			local t = json.decode(res.Body)
 			combat('LOAD PLAYER INFO OK!')
 			if t ~= nil and t.err == 0 then
-				local user_info_by_playerid = {}
-				for steam_id, user_info in pairs(t.user_info) do
-					local player_id = _G.steamid2playerid[steam_id]
-					user_info_by_playerid[player_id] = {}
-					local info = user_info_by_playerid[player_id]
-					info['player_id'] = player_id
-					info['steam_id'] = steam_id
-					info['mmr_level'] = user_info["mmr_level"]
-					info['queen_rank'] = user_info["queen_rank"]
-					info['player_name'] = _G.steamid2name[steam_id]
-					info['zhugong'] = JoinTableString(user_info["zhugong"])
-					info['onduty_hero'] = user_info["onduty_hero"]
-					info['onduty_chessboard'] = user_info["onduty_chessboard"]
-					info['chessboard_list'] = json.encode(user_info['chessboard_list'])
-					info['badgeall'] = user_info['badgeall']
+				local steam_id = t.steam_id
+				local user_info = t.user_info
+				local notice = t.notice
+				
+				DAC:OnUpdateMMRLevel({
+					PlayerID = _G.steamid2playerid[steam_id],
+					mmr_level = user_info["mmr_level"] or 0,
+					queen_rank = user_info["queen_rank"],
+					candy = user_info["candy"]
+				})
 
-					DAC:OnUpdateMMRLevel({
-						PlayerID = player_id,
-						mmr_level = user_info["mmr_level"] or 0,
-						queen_rank = user_info["queen_rank"],
-						candy = user_info["candy"]
-					})
-				end
+				user_info['player_name'] = _G.steamid2name[steam_id]
+				user_info['zhugong'] = JoinTableString(user_info["zhugong"])
+				user_info['chessboard_list'] = json.encode(user_info['chessboard_list'])
+
 				CustomGameEventManager:Send_ServerToAllClients("update_user_info", {
 					hehe = RandomFloat(1, 10000),
-					user_info = user_info_by_playerid,
+					steam_id = steam_id,
+					user_info = user_info,
 					notice = t.notice,
-					qq_list = t.qq_list,
-				});
+				})
+
+				-- CustomNetTables:SetTableValue("player_team_select_table", "player_team_select", { 
+				-- 	user_info = user_info_by_playerid, 
+				-- 	notice = t.notice,
+				-- 	qq_list = t.qq_list,
+				-- 	hehe = RandomInt(1, 100000) 
+				-- })
 			end
 		end)
 	end
@@ -42479,6 +42490,14 @@ function DAC:OnPlayerConnectFull(keys)
 			end)
 		else
 			--人还没满，显示等待
+			PlayerResource:SetCustomTeamAssignment(0, 6)
+			PlayerResource:SetCustomTeamAssignment(1, 7)
+			PlayerResource:SetCustomTeamAssignment(2, 8)
+			PlayerResource:SetCustomTeamAssignment(3, 9)
+			PlayerResource:SetCustomTeamAssignment(4, 10)
+			PlayerResource:SetCustomTeamAssignment(5, 11)
+			PlayerResource:SetCustomTeamAssignment(6, 12)
+			PlayerResource:SetCustomTeamAssignment(7, 13)
 			Timers:CreateTimer(1,function()
 				CustomGameEventManager:Send_ServerToAllClients("server_lock_wait", {
 					hehe = RandomInt(1, 100000),

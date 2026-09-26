@@ -10,6 +10,18 @@
 
 "use strict";
 
+// 自动加入对应的队伍
+function AutoJoinFixedTeam(){
+	if (Game.GetMapInfo().map_display_name == 'ranked_1x8'){
+		Game.PlayerJoinTeam(Game.GetLocalPlayerID()+6);
+	}
+}
+AutoJoinFixedTeam();
+
+if (Game.GetMapInfo().map_display_name != 'ranked_1x8') {
+	Game.AutoAssignPlayersToTeams();
+}
+
 // Global list of panels representing each of the teams
 var g_TeamPanels = [];
 
@@ -24,7 +36,9 @@ var g_TEAM_SPECATOR = 1;
 // to the unssigned players team
 //--------------------------------------------------------------------------------------------------
 function OnLeaveTeamPressed() {
-	Game.PlayerJoinTeam(DOTATeam_t.DOTA_TEAM_NOTEAM);
+	if (Game.GetMapInfo().map_display_name != 'ranked_1x8'){
+		Game.PlayerJoinTeam(DOTATeam_t.DOTA_TEAM_NOTEAM);
+	}
 }
 
 
@@ -283,7 +297,7 @@ function UpdateTimer() {
 // }
 
 if (GetPlayerCount() == 1 && Game.GetMapInfo().map_display_name != 'casual_1x8_ob') {
-	$('#select-block-difficulty').SetHasClass('invisible', false);
+	$('#select-block-difficulty').SetHasClass('invisible', true);
 	// 单人模式
 	$("#GameModeNameLabel").SetHasClass('invisible', true);
 	$("#MapInfoLabel").SetHasClass('invisible', true);
@@ -334,9 +348,7 @@ for (var teamId of allTeamIDs) {
 }
 
 // Automatically assign players to teams.
-if (bAutoAssignTeams) {
-	Game.AutoAssignPlayersToTeams();
-}
+
 
 // Do an initial update of the player team assignment
 OnTeamPlayerListChanged();
@@ -350,24 +362,7 @@ $.RegisterForUnhandledEvent("DOTAGame_TeamPlayerListChanged", OnTeamPlayerListCh
 // Register a listener for the event which is broadcast whenever a player attempts to pick a team
 $.RegisterForUnhandledEvent("DOTAGame_PlayerSelectedCustomTeam", OnPlayerSelectedTeam);
 
-var local_id;
 
-
-$.Schedule(1, function () {
-	get_local_id();
-})
-function get_local_id() {
-	if (Game.GetPlayerInfo(Players.GetLocalPlayer())) {
-		local_id = Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
-		RequestUpdateUserInfo();
-		// RefreshHeroInfo();
-	}
-	else {
-		$.Schedule(1, function () {
-			get_local_id();
-		})
-	}
-}
 function GetPlayerCount() {
 	var count = 0;
 	for (var i = 0; i <= 7; i++) {
@@ -379,189 +374,171 @@ function GetPlayerCount() {
 	return count;
 }
 
+// 获取队伍选择界面的玩家信息
+var local_id;
+$.Schedule(1, function () {
+	get_local_id();
+})
+function get_local_id() {
+	if (Game.GetPlayerInfo(Players.GetLocalPlayer())) {
+		local_id = Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
 
+		GameEvents.SendCustomGameEventToServer("request_update_user_info", {
+			"steam_id": local_id,
+			"hehe": Date.now(),
+		});
 
-// 请求服务器
-function RequestUpdateUserInfo() {
-	GameEvents.SendCustomGameEventToServer("request_update_user_info", {
-		"hehe": Date.now(),
-	});
+		// 这时候已经有玩家信息了
+		// var data = CustomNetTables.GetTableValue("player_team_select_table", 'player_team_select');
+		// if (!data){
+		// 	// 请求服务器
+		// 	GameEvents.SendCustomGameEventToServer("request_update_user_info", {
+		// 		"hehe": Date.now(),
+		// 	});
+		// 	// RefreshHeroInfo();
+		// 	$.Schedule(1, function () {
+		// 		get_local_id();
+		// 	})
+		// }
+		// else{
+		// 	// 拿到玩家信息了，显示
+		// 	UpdateUserInfo({
+		// 		user_info: data.user_info,
+		// 		qq_list: data.notice,
+		// 		notice: data.qq_list,
+		// 	})
+		// }
+	}
+	else {
+		$.Schedule(1, function () {
+			get_local_id();
+		})
+	}
 }
+
 GameEvents.Subscribe("update_user_info", UpdateUserInfo);
 function UpdateUserInfo(keys) {
-	var all_user_info = keys.user_info;
-	var qq_list = keys.qq_list;
-	for (var i in all_user_info) {
-		var curr_player_id = parseInt(i);
-		if (curr_player_id == Players.GetLocalPlayer()) {
-			// 是当前玩家
-			var my_user_info = all_user_info[i];
+	
+	var steam_id = keys.steam_id;
+	var user_info = keys.user_info;
+	var notice = keys.notice;
 
-			var map_name = Game.GetMapInfo().map_display_name;
+	if (local_id == steam_id){
+		// 是当前玩家
+		var my_user_info = user_info;
 
-			// 判断是不是不符合房间段位要求
-			var my_mmr_level = my_user_info.mmr_level || 0;
-			var map_2_level = {
-				'ranked_1x8_bishop+': 19,
-				'ranked_1x8_rook+': 28,
-				'ranked_1x8_king+': 37,
-			};
-			var required_level = map_2_level[map_name]||0;
-			if (my_mmr_level < required_level){
-				if ($('#LowPlayerNoticeContainer')){
-					// $('#LowPlayerNoticeContainer').style['position'] = '0px 0px 0px';
-					if ($.Language()=='schinese' || $.Language()=='tchinese'){
-						$('#img_low_player').SetImage('file://{images}/custom_game/ui/warning_low_schinese.png');
-						$('#img_low_player2').SetImage('file://{images}/custom_game/ui/a_game_list_schinese.png');
-					}
-					else{
-						$('#img_low_player').SetImage('file://{images}/custom_game/ui/warning_low_english.png');
-						$('#img_low_player2').SetImage('file://{images}/custom_game/ui/a_game_list_english.png');
-					}
-					$('#LowPlayerNoticeContainer').SetHasClass('show',true);
+		var map_name = Game.GetMapInfo().map_display_name;
 
-					if (required_level == 19){
-						$('#require_rank_low_2').SetHasClass('invisible',false);
-					}
-					else if (required_level == 28){
-						$('#require_rank_low_3').SetHasClass('invisible',false);
-					}
-					else if (required_level == 37){
-						$('#require_rank_low_4').SetHasClass('invisible',false);
-					}
-
-					if (my_mmr_level <= 18){
-						$('#your_rank_low_1').SetHasClass('invisible',false);
-					}
-					else if (my_mmr_level <= 27){
-						$('#your_rank_low_2').SetHasClass('invisible',false);
-					}
-					else if (my_mmr_level <= 36){
-						$('#your_rank_low_3').SetHasClass('invisible',false);
-					}
+		// 判断是不是不符合房间段位要求
+		var my_mmr_level = my_user_info.mmr_level || 0;
+		var map_2_level = {
+			'ranked_1x8_bishop+': 19,
+			'ranked_1x8_rook+': 28,
+			'ranked_1x8_king+': 37,
+		};
+		var required_level = map_2_level[map_name]||0;
+		if (my_mmr_level < required_level){
+			if ($('#LowPlayerNoticeContainer')){
+				// $('#LowPlayerNoticeContainer').style['position'] = '0px 0px 0px';
+				if ($.Language()=='schinese' || $.Language()=='tchinese'){
+					$('#img_low_player').SetImage('file://{images}/custom_game/ui/warning_low_schinese.png');
+					$('#img_low_player2').SetImage('file://{images}/custom_game/ui/a_game_list_schinese.png');
 				}
-			}
-
-			// 信使选择
-			var text = '';		
-			var hero_count = 0;
-			var zhugong_list = (my_user_info['zhugong'] || '').split(',');
-
-			// 排序信使！
-			zhugong_list = sort_courier_list(zhugong_list);
-			var onduty_zhugong = my_user_info['onduty_hero'];
-			var onduty_hero = onduty_zhugong.split('_')[0];
-			var onduty_effect = onduty_zhugong.split('_')[1];
-
-			var onduty_index = zhugong_list.indexOf(onduty_zhugong);
-
-			MY_COURIER_LIST = zhugong_list;
-			MY_CURR_COURIER = onduty_zhugong;
-
-			fill_my_courier_list();
-
-			$('#select-board').style['position'] = '0px 0px 0px';
-
-			// 徽章选择
-			var badge_count = 0;
-			var badge_list = (my_user_info['badgeall'] || '').split(',');
-			if (my_user_info['bet_info']) {
-				badge_list.push('bet_' + my_user_info['bet_info']);
-			}
-			MY_BADGE_LIST = ['donnot_show_badge'];
-			for (var i = 0; i < badge_list.length; i++) {
-				if (badge_list[i]) {
-					MY_BADGE_LIST.push(badge_list[i]);
+				else{
+					$('#img_low_player').SetImage('file://{images}/custom_game/ui/warning_low_english.png');
+					$('#img_low_player2').SetImage('file://{images}/custom_game/ui/a_game_list_english.png');
 				}
-			}
+				$('#LowPlayerNoticeContainer').SetHasClass('show',true);
 
-			fill_my_badge_list();
-			if (my_user_info['chessboard_list']) {
-				// 棋盘选择
-				var chessboard_count = 0;
-				var chessboard_list_string = JSON.parse(my_user_info['chessboard_list']);
-				MY_CHESSBOARD_LIST = sort_chessboard_list(chessboard_list_string);
-				MY_CURR_CHESSBOARD = my_user_info['onduty_chessboard'] || 'b101';
-				// 判断MY_CHESSBOARD_LIST里有没有MY_CURR_CHESSBOARD
-				var is_onduty_chessboard_ok = false;
-				for (var i = 0; i < MY_CHESSBOARD_LIST.length; i++) {
-					var c = MY_CHESSBOARD_LIST[i];
-					if (c && c.id && c.id == MY_CURR_CHESSBOARD) {
-						is_onduty_chessboard_ok = true;
-					}
+				if (required_level == 19){
+					$('#require_rank_low_2').SetHasClass('invisible',false);
 				}
-				if (!is_onduty_chessboard_ok) {
-					MY_CURR_CHESSBOARD = MY_CHESSBOARD_LIST[0].id || 'b101';
+				else if (required_level == 28){
+					$('#require_rank_low_3').SetHasClass('invisible',false);
+				}
+				else if (required_level == 37){
+					$('#require_rank_low_4').SetHasClass('invisible',false);
 				}
 
-				// GameEvents.SendCustomGameEventToServer("choose_chessboard", {
-				// 	"chessboard": MY_CURR_CHESSBOARD,
-				// });
-
-				// fill_my_chessboard_list();
-				if (MY_CURR_CHESSBOARD) {
-					choose_chessboard(MY_CURR_CHESSBOARD);
+				if (my_mmr_level <= 18){
+					$('#your_rank_low_1').SetHasClass('invisible',false);
+				}
+				else if (my_mmr_level <= 27){
+					$('#your_rank_low_2').SetHasClass('invisible',false);
+				}
+				else if (my_mmr_level <= 36){
+					$('#your_rank_low_3').SetHasClass('invisible',false);
 				}
 			}
-			else {
-				$('#select-block-chessboard').SetHasClass('invisible', true);
+		}
+
+		// 信使选择
+		var text = '';		
+		var hero_count = 0;
+		var zhugong_list = (my_user_info['zhugong'] || '').split(',');
+
+		// 排序信使！
+		zhugong_list = sort_courier_list(zhugong_list);
+		var onduty_zhugong = my_user_info['onduty_hero'];
+		var onduty_hero = onduty_zhugong.split('_')[0];
+		var onduty_effect = onduty_zhugong.split('_')[1];
+
+		var onduty_index = zhugong_list.indexOf(onduty_zhugong);
+
+		MY_COURIER_LIST = zhugong_list;
+		MY_CURR_COURIER = onduty_zhugong;
+
+		fill_my_courier_list();
+
+		$('#select-board').style['position'] = '0px 0px 0px';
+
+		// 徽章选择
+		var badge_count = 0;
+		var badge_list = (my_user_info['badgeall'] || '').split(',');
+		// if (my_user_info['bet_info']) {
+		// 	badge_list.push('bet_' + my_user_info['bet_info']);
+		// }
+		MY_BADGE_LIST = ['donnot_show_badge'];
+		for (var i = 0; i < badge_list.length; i++) {
+			if (badge_list[i]) {
+				MY_BADGE_LIST.push(badge_list[i]);
+			}
+		}
+
+		fill_my_badge_list();
+		if (my_user_info['chessboard_list']) {
+			// 棋盘选择
+			var chessboard_count = 0;
+			var chessboard_list_string = JSON.parse(my_user_info['chessboard_list']);
+			MY_CHESSBOARD_LIST = sort_chessboard_list(chessboard_list_string);
+			MY_CURR_CHESSBOARD = my_user_info['onduty_chessboard'] || 'b101';
+			// 判断MY_CHESSBOARD_LIST里有没有MY_CURR_CHESSBOARD
+			var is_onduty_chessboard_ok = false;
+			for (var i = 0; i < MY_CHESSBOARD_LIST.length; i++) {
+				var c = MY_CHESSBOARD_LIST[i];
+				if (c && c.id && c.id == MY_CURR_CHESSBOARD) {
+					is_onduty_chessboard_ok = true;
+				}
+			}
+			if (!is_onduty_chessboard_ok) {
+				MY_CURR_CHESSBOARD = MY_CHESSBOARD_LIST[0].id || 'b101';
 			}
 
-			// //根据段位显示推荐的qq群列表
-			// var language = $.Language();
-			// if (language!='schinese'){
-			// 	language = 'other';
-			// }
-			// // my_mmr_level = 31;
-			// var my_group_list = [];
-			// if (qq_list){
-			// 	for (var j in qq_list){
-			// 		//my_mmr_level
-			// 		var q = qq_list[j];
-			// 		if (q.language && q.language == language){
-			// 			if ((q.min_level||q.min_level == 0) && q.min_level<=my_mmr_level){
-			// 				if (q.max_level && q.max_level>=my_mmr_level){
-			// 					my_group_list.push(q);
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// }
-			// if (my_group_list && my_group_list.length>0){
-			// 	$('#select-block-group').SetHasClass('invisible',false);
-			// 	for (var ii = 0;ii<my_group_list.length;ii++){
-			// 		var g = my_group_list[ii];
-			// 		var one_group = CreateUIElement($('#select-block-group-inner'), "Panel", "", {
-			// 			'class': 'hero_sea_top_panel_summary',
-			// 			onactivate: 'go_browser_url("'+g.link+'")',
-			// 		});
-			// 		CreateUIElement(one_group, "Image", "", {
-			// 			'class': 'img_loading_select_chesser',
-			// 			'src': 'file://{images}/custom_game/'+(g.type||'qq')+'.png',
-			// 			style: 'width:25px;height:25px;margin:5px;',
-			// 		});
-			// 		CreateUIElement(one_group, "Label", "", {
-			// 			'class': "text_20",
-			// 			'style': 'color:#bbb;',
-			// 			'text': g.name+" "+g.qq,
-			// 		});
-			// 	}
-			// 	var desc = $.Localize('#group_desc1');
-			// 	if (g.default_password){
-			// 		desc += ' '+ $.Localize('#group_desc2') +' '+ ('<font color="#fff" size="24px">'+g.default_password+'</font>');
-			// 	}
-			// 	CreateUIElement($('#select-block-group'), "Label", "", {
-			// 		class: 'MapInfoLabel',
-			// 		html: 'true',
-			// 		text: desc,
-			// 		style: 'margin-bottom:0px;',
-			// 	});
-			// }
-			
+			// GameEvents.SendCustomGameEventToServer("choose_chessboard", {
+			// 	"chessboard": MY_CURR_CHESSBOARD,
+			// });
+
+			// fill_my_chessboard_list();
+			if (MY_CURR_CHESSBOARD) {
+				choose_chessboard(MY_CURR_CHESSBOARD);
+			}
+		}
+		else {
+			$('#select-block-chessboard').SetHasClass('invisible', true);
 		}
 	}
 
-	var notice = keys.notice[$.Language()] || keys.notice['default'];
+	var notice = notice[$.Language()] || notice['default'];
 	if (notice){
 		// 显示通知与广告
 		if ($('#AdNoticeContainer')){
@@ -1257,7 +1234,8 @@ function ServerLockWait(keys){
 		}
 		else{
 			// 天梯局
-			Game.AutoAssignPlayersToTeams();
+			// Game.AutoAssignPlayersToTeams();
+			AutoJoinFixedTeam();
 			// Game.SetTeamSelectionLocked(true);
 			$('#LockAndStartButton').SetHasClass('opacity0',true);
 			$('#CancelAndUnlockButton').SetHasClass('opacity0',true);
@@ -1294,7 +1272,9 @@ function ServerLockStart(keys){
 		$("#GameModeNameLabel").SetHasClass('invisible', false);
 		$("#MapInfoLabel").SetHasClass('invisible', false);
 	}
-	Game.AutoAssignPlayersToTeams();
+	// Game.AutoAssignPlayersToTeams();
+	AutoJoinFixedTeam();
+
 	Game.SetTeamSelectionLocked(true);
 	Game.SetAutoLaunchEnabled(true);
 	Game.SetRemainingSetupTime(6);
@@ -1307,5 +1287,7 @@ function FindDotaHudElement(id) {
     var comp = hudRoot.FindChildTraverse(id);
     return comp;
 }
+
+
 
 

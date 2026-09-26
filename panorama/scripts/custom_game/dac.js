@@ -10883,7 +10883,9 @@ var HOST_CREDIT = 0;
 function ShowHostInfo(){
     var data = CustomNetTables.GetTableValue("game_info", "host_info");
     var player_index = GetPlayerIndexByPlayerID(data.host_playerid);
+    $.Msg('host:'+player_index);
     $('#panel_host_'+player_index).SetHasClass('invisible',false);
+    $('#panel_host_'+player_index).style['position'] = '0px 0px 0px';
     HOST_MATCH = data.host_match;
     HOST_CREDIT = data.host_credit;
 
@@ -10907,7 +10909,9 @@ function showPanelHost(){
 
 
 // 天梯模式不显示主机提示
-if (Game.GetMapInfo().map_display_name == 'ranked_1x8'){
+var data = CustomNetTables.GetTableValue("game_info", "game_host_type");
+$.Msg(data);
+if (data && data.game_host_type == 'server'){
     var host_panel_list = ["panel_host","panel_host_0","panel_host_1","panel_host_2","panel_host_3","panel_host_4","panel_host_5","panel_host_6","panel_host_7"]
     for (var i=0;i<host_panel_list.length;i++){
         if ($('#'+host_panel_list[i])){

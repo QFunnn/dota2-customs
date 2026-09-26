@@ -19,7 +19,9 @@ function OnJoinTeamPressed() {
 	var teamId = $.GetContextPanel().GetAttributeInt("team_id", -1);
 
 	// Request to join the team of the button that was pressed
-	Game.PlayerJoinTeam(teamId);
+	if (Game.GetMapInfo().map_display_name != 'ranked_1x8'){
+		Game.PlayerJoinTeam(teamId);
+	}
 }
 
 

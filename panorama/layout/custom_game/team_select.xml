@@ -24,7 +24,7 @@
 			<Panel hittest="false" id="TeamsSelectEmptySpace" />
 			<Panel id="TeamsList">
 				<Panel class="select_board_outer">
-					<Panel class="select-block" id="select-block-difficulty" hittest="true">
+					<Panel class="select-block invisible" id="select-block-difficulty" hittest="true">
 						<Label class="select-title" text="#text_difficulty_select" />
 						<Panel class="loading_select_block_inner difficulty" id="select-difficulty-inner" hittest="true">
 							<Panel id="panel_difficulty_1" class="hero_sea_top_panel_summary" onactivate="select_difficulty(1);">
@@ -47,7 +47,7 @@
 							<Image id="TeamListLockedIcon" src="s2r://" />
 						</Panel>
 						<Panel id="TeamsListRoot" />
-						<Button id="ShuffleTeamAssignmentButton" onactivate="OnShufflePlayersPressed()">
+						<Button id="ShuffleTeamAssignmentButton" onactivate="OnShufflePlayersPressed()" class="opacity0">
 							<Label text="#custom_game_team_select_shuffle" />
 							<Image src="s2r://" />
 						</Button>

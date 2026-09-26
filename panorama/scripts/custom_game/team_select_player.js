@@ -10,13 +10,18 @@
 
 "use strict";
 
-
+var data = CustomNetTables.GetTableValue("game_info", "game_host_type");
+if (data && data.game_host_type == 'server'){
+	$('#PlayerIsHostPanel').visible= false;
+}
 //--------------------------------------------------------------------------------------------------
 // Handeler for when the unssigned players panel is clicked that causes the player to be reassigned
 // to the unssigned players team
 //--------------------------------------------------------------------------------------------------
 function OnLeaveTeamPressed() {
-	Game.PlayerJoinTeam(5); // 5 == unassigned ( DOTA_TEAM_NOTEAM )
+	if (Game.GetMapInfo().map_display_name != 'ranked_1x8'){
+		Game.PlayerJoinTeam(DOTATeam_t.DOTA_TEAM_NOTEAM);
+	}
 }
 
 var COLOR_STR = {
