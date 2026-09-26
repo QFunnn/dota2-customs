@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,8 @@
 if dota1x6 == nil then
 	_G.dota1x6 = class({})
 end
+
+-- Zа Русский МИР ZV Русские идут !!! Можем повторить!!! РОССИЯ, ПУТИН, ПОБЕДА! Z
 
 Convars:RegisterConvar("matchId", "", "123", 0)
 
